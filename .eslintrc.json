@@ -1,0 +1,36 @@
+{
+  "root": true,
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "plugins": ["simple-import-sort"],
+  "settings": {
+    "node": {
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:node/recommended",
+    // "plugin:@typescript-eslint/eslint-recommended",
+    // "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "rules": {
+    "import/order": "off",
+    "node/no-process-env": "error",
+    "node/no-unsupported-features/es-syntax": [
+      "error",
+      {
+        "ignores": ["modules"]
+      }
+    ],
+    "no-console": "error",
+    "simple-import-sort/sort": "error",
+    "sort-imports": "off"
+  }
+}
