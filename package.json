@@ -6,7 +6,9 @@
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
-  "workspaces": [],
+  "workspaces": [
+    "core"
+  ],
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
