@@ -4,6 +4,9 @@
   "description": "Core Logic of DDRadar",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "devDependencies": {
     "@types/jest": "^25.2.3",
     "jest": "^26.0.1",
