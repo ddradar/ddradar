@@ -1,6 +1,5 @@
 import { CosmosClient } from '@azure/cosmos'
-// eslint-disable-next-line import/no-unresolved, node/no-unpublished-import
-import { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
 
 const httpTrigger: AzureFunction = async (
   context: Context,

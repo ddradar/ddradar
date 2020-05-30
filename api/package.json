@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "watch": "tsc -w",
+    "lint:eslint": "eslint --ext .js,.ts --ignore-path .gitignore .",
+    "lint:tsc": "tsc --noEmit",
     "prestart": "npm run build",
     "start": "func start",
     "test": "echo \"No tests yet...\""
