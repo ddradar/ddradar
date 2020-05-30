@@ -1,5 +1,4 @@
 {
-  "root": true,
   "env": {
     "node": true,
     "es6": true
@@ -22,7 +21,6 @@
   ],
   "rules": {
     "import/order": "off",
-    "node/no-missing-import": "off",
     "node/no-process-env": "error",
     "node/no-unsupported-features/es-syntax": [
       "error",
