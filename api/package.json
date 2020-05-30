@@ -1,7 +1,8 @@
 {
   "name": "@ddradar/api",
   "version": "0.0.1",
-  "description": "Azure Functions",
+  "description": "Backend API for DDRadar",
+  "license": "MIT",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -13,7 +14,7 @@
     "@azure/cosmos": "^3.6.3"
   },
   "devDependencies": {
-    "@azure/functions": "^1.0.2-beta2",
+    "@azure/functions": "^1.2.2",
     "@types/node": "^12",
     "typescript": "^3.3.3"
   }
