@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prestart": "npm run build",
+    "prestart": "yarn & yarn build",
     "start": "func start",
     "test": "jest"
   },
