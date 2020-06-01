@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "prestart": "yarn build",
+    "prestart": "tsc",
     "start": "func start",
     "test": "jest"
   },
@@ -17,7 +17,6 @@
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
-    "@ddradar/core": "file:../core",
     "@types/jest": "^25.2.3",
     "@types/node": "^12",
     "jest": "^26.0.1",
