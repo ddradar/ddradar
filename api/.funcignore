@@ -2,6 +2,8 @@
 *.ts
 .git*
 .vscode
+__tests__
+jest.config.js
+coverage
 local.settings.json
-test
 tsconfig.json
