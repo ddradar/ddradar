@@ -14,8 +14,11 @@
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
+    "@types/jest": "^25.2.3",
     "@types/node": "^12",
+    "jest": "^26.0.1",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.3.3"
   }
 }
