@@ -19,6 +19,7 @@
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml}\"",
     "test": "run-s test:*",
+    "test:api": "yarn workspace @ddradar/api test",
     "test:core": "yarn workspace @ddradar/core test"
   },
   "husky": {
