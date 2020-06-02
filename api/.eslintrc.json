@@ -1,19 +1,13 @@
 {
   "root": true,
   "extends": ["../.eslintrc.json"],
+  "settings": {
+    "node": {
+      "allowModules": ["@azure/functions", "@ddradar/core"],
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
   "rules": {
-    "import/no-unresolved": "off",
-    "node/no-missing-import": [
-      "error",
-      {
-        "allowModules": ["@azure/functions"]
-      }
-    ],
-    "node/no-unpublished-import": [
-      "error",
-      {
-        "allowModules": ["@azure/functions"]
-      }
-    ]
+    "import/no-unresolved": "off"
   }
 }

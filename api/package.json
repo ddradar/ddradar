@@ -3,19 +3,25 @@
   "version": "0.0.1",
   "description": "Backend API for DDRadar",
   "license": "MIT",
+  "engines": {
+    "node": "^12"
+  },
   "scripts": {
     "build": "tsc",
-    "prestart": "npm run build",
+    "prestart": "tsc",
     "start": "func start",
-    "test": "echo \"No tests yet...\""
+    "test": "jest"
   },
   "dependencies": {
     "@azure/cosmos": "^3.6.3"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
+    "@types/jest": "^25.2.3",
     "@types/node": "^12",
+    "jest": "^26.0.1",
     "prettier": "^2.0.5",
+    "ts-jest": "^26.1.0",
     "typescript": "^3.3.3"
   }
 }

@@ -19,6 +19,7 @@
     "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
     "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml}\"",
     "test": "run-s test:*",
+    "test:api": "yarn workspace @ddradar/api test",
     "test:core": "yarn workspace @ddradar/core test"
   },
   "husky": {
@@ -29,6 +30,10 @@
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{json,yaml,yml}": "prettier --write"
+  },
+  "engines": {
+    "node": "^12",
+    "yarn": "^1.22.4"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^3.0.2",

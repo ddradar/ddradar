@@ -1,6 +1,8 @@
 import { CosmosClient } from '@azure/cosmos'
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
 
+import { SongSchema } from '../song'
+
 const httpTrigger: AzureFunction = async (
   context: Context,
   req: HttpRequest
@@ -28,9 +30,8 @@ const httpTrigger: AzureFunction = async (
 
   const client = new CosmosClient(connectionString)
   const container = client.database('DDRadar').container('Songs')
-
   const { resources } = await container.items
-    .query({
+    .query<SongSchema>({
       query: 'SELECT * FROM Songs c WHERE c.id = @id',
       parameters: [{ name: '@id', value: id }],
     })
@@ -45,7 +46,7 @@ const httpTrigger: AzureFunction = async (
   }
 
   context.res = {
-    // status: 200, /* Defaults to 200 */
+    status: 200,
     body: resources[0],
   }
 }

@@ -1,7 +1,4 @@
 {
   "root": true,
-  "extends": ["../.eslintrc.json"],
-  "rules": {
-    "node/no-missing-import": "off"
-  }
+  "extends": ["../.eslintrc.json"]
 }

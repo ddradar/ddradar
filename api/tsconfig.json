@@ -7,5 +7,6 @@
     "sourceMap": true,
     "strict": false
   },
-  "types": ["node"]
+  "types": ["jest", "node"],
+  "exclude": ["**/__tests__/**"]
 }
