@@ -1,4 +1,4 @@
-# Song Collection
+# Songs Collection
 
 English version is [here](./songs.md).
 

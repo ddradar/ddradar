@@ -1,4 +1,4 @@
-# Song Collection
+# Songs Collection
 
 日本語版は[こちら](./songs-ja.md)にあります。
 
