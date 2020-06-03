@@ -1,20 +1,24 @@
 # Song Collection
 
+English version is [here](./songs.md).
+
+曲と譜面の情報を格納するコレクションです。
+
 ## Schema
 
-**Bolded** property is the partition key. 
+**太字**のプロパティは partition key です。
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|id|string|Song id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
-|name|string|Song name|
-|nameKana|string|Song furigana for sorting. `^([A-Z0-9 .ぁ-んー]*)$`|
-|**nameIndex**|integer|Index for sorting. Associated with the "Find by Name" folder.<br> `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
-|artist|string|Artist name|
-|series|string|Series title depend on official site.|
-|minBPM|integer \| null |Displayed min BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
-|maxBPM|integer \| null |Displayed max BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
-|charts|StepChart[]|Song's step charts. See below|
+|id|string|曲ID (公式サイトより) `^([01689bdiloqDIOPQ]*){32}$`|
+|name|string|曲名|
+|nameKana|string|並び替え用のふりがな `^([A-Z0-9 .ぁ-んー]*)$`|
+|**nameIndex**|integer|並び替え用の番号。「曲名から探す」フォルダと連動しています。<br /> `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
+|artist|string|アーティスト名|
+|series|string|シリーズ名 (公式サイトより)|
+|minBPM|integer \| null |表記された最小BPM (Beet Per Minutes)。「???」のように明らかでない場合は`null`をセットします|
+|maxBPM|integer \| null |表記された最大BPM (Beet Per Minutes)。「???」のように明らかでない場合は`null`をセットします|
+|charts|StepChart\[]|譜面情報の配列。[下記を参照](#stepchart)|
 
 ### StepChart
 
@@ -22,15 +26,15 @@
 |----|:--:|-----------|
 |playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
 |difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
-|level|integer|Chart level|
-|notes|integer|Normal arrow count. (Jump = 1 count)|
-|freezeArrow|integer|Freeze arrow count|
-|shockArrow|integer|Shock arrow count|
-|stream|integer|Groove Radar STREAM|
-|voltage|integer|Groove radar VOLTAGE|
-|air|integer|Groove radar AIR|
-|freeze|integer|Groove radar FREEZE|
-|chaos|integer|Groove radar CHAOS|
+|level|integer|譜面のレベル|
+|notes|integer|通常ノーツ数 (同時踏みは1とカウント)|
+|freezeArrow|integer|フリーズアロー数|
+|shockArrow|integer|ショックアロー数|
+|stream|integer|グルーブレーダーのSTREAM値|
+|voltage|integer|グルーブレーダーのVOLTAGE値|
+|air|integer|グルーブレーダーのAIR値|
+|freeze|integer|グルーブレーダーのFREEZE値|
+|chaos|integer|グルーブレーダーのCHAOS値|
 
 ## Indexes
 
