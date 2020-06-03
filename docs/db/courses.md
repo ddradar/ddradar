@@ -2,6 +2,8 @@
 
 日本語版は[こちら](./courses-ja.md)にあります。
 
+The collection that stores course information.
+
 ## Schema
 
 **Bolded** property is the partition key.
@@ -10,7 +12,7 @@
 |----|:--:|-----------|
 |**id**|string|Course id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
 |name|string|Course name|
-|orders|Order[]|Course order list by play style and difficulty. see below|
+|orders|Order\[\]|Course order list by play style and difficulty. [see below](#order)|
 
 ### Order
 
@@ -19,7 +21,7 @@
 |playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
 |difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
 |level|integer|Course level|
-|chartOrder|Chart[]|Song and chart info in this course. see below|
+|chartOrder|Chart\[\]|Song and chart info in this course. [see below](#chart)|
 
 ### Chart
 

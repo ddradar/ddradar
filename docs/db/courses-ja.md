@@ -2,6 +2,8 @@
 
 English version is [here](./courses.md).
 
+コースの情報を格納するコレクションです。
+
 ## Schema
 
 **太字**のプロパティは partition key です。
@@ -10,7 +12,7 @@ English version is [here](./courses.md).
 |----|:--:|-----------|
 |**id**|string|コースのID(公式サイトより) `^([01689bdiloqDIOPQ]*){32}$`|
 |name|string|コース名|
-|orders|Order[]|プレースタイル/難易度別のコースオーダー。下記を参照|
+|orders|Order\[\]|プレースタイル/難易度別のコースオーダー。[下記を参照](#order)|
 
 ### Order
 
@@ -19,7 +21,7 @@ English version is [here](./courses.md).
 |playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
 |difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
 |level|integer|コースのレベル|
-|chartOrder|Chart[]|コース内の曲/譜面情報。下記を参照|
+|chartOrder|Chart\[\]|コース内の曲/譜面情報。[下記を参照](#chart)|
 
 ### Chart
 
