@@ -11,10 +11,10 @@ English version is [here](./README.md).
 
 /DDRadar
 
-- [/Courses](./courses.md)
-- [/Scores](./scores.md)
-- [/Songs](./songs.md)
-- [/Users](./users.md)
+- [/Courses](./courses-ja.md)
+- [/Scores](./scores-ja.md)
+- [/Songs](./songs-ja.md)
+- [/Users](./users-ja.md)
 
 ## Initialization code
 
