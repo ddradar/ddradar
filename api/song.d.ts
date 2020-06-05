@@ -6,7 +6,7 @@ export type SongSchema = {
   nameKana: string
   nameIndex: number
   artist: string
-  series: number
+  series: string
   /** Displayed min BPM (Beet Per Minutes). */
   minBPM: number | null
   /** Displayed max BPM (Beet Per Minutes). */
