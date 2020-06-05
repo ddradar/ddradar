@@ -1,7 +1,7 @@
 import { CosmosClient } from '@azure/cosmos'
 import type { AzureFunction, Context } from '@azure/functions'
 
-import { SongSchema } from '../song'
+import { SongSchema } from '../../song'
 
 const httpTrigger: AzureFunction = async (context: Context): Promise<void> => {
   const id = context.bindingData.id

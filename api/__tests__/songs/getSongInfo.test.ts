@@ -2,9 +2,9 @@
 import { CosmosClient } from '@azure/cosmos'
 import type { Context } from '@azure/functions'
 
-import getSongInfo from '../getSongInfo'
-import { SongSchema } from '../song'
-import { describeIf } from './util'
+import { SongSchema } from '../../song'
+import getSongInfo from '../../songs/getSongInfo'
+import { describeIf } from '../util'
 
 describe('/getSongInfo', () => {
   let context: Context
