@@ -1,12 +1,12 @@
 /* eslint-disable node/no-process-env */
-import { CosmosClient } from '@azure/cosmos'
 import type { Context } from '@azure/functions'
 
+import { getConnectionString, getContainer } from '../cosmos'
 import getSongInfo from '../getSongInfo'
 import { SongSchema } from '../song'
 import { describeIf } from './util'
 
-describe('/getSongInfo', () => {
+describe('/songs/:id', () => {
   let context: Context
   const storedEnv = { ...process.env }
 
@@ -34,7 +34,7 @@ describe('/getSongInfo', () => {
     expect(context.res.status).toBe(404)
   })
 
-  test('returns "404 Not Found" if `id` is not defined', async () => {
+  test('returns "404 Not Found" if `id` does not match pattern', async () => {
     // Arrange
     context.bindingData.id = 'foo'
 
@@ -46,20 +46,16 @@ describe('/getSongInfo', () => {
     expect(context.res.body).toBe('Please pass a id like "/api/songs/:id"')
   })
 
-  test('returns "500 Internal Server Error" if COSMOS_DB_CONN is undefined', async () => {
+  test('throws error if COSMOS_DB_CONN is undefined', async () => {
     // Arrange
     process.env.COSMOS_DB_CONN = undefined
     context.bindingData.id = '00000000000000000000000000000000'
 
-    // Act
-    await getSongInfo(context)
-
-    // Assert
-    expect(context.res.status).toBe(500)
-    expect(context.res.body).toBe('Internal Server Error')
+    // Act - Assert
+    expect(getSongInfo(context)).rejects.toThrowError()
   })
 
-  describeIf(() => !!process.env.COSMOS_DB_CONN)(
+  describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
       const song: SongSchema = {
@@ -89,8 +85,7 @@ describe('/getSongInfo', () => {
       }
 
       beforeAll(async () => {
-        const client = new CosmosClient(process.env.COSMOS_DB_CONN)
-        await client.database('DDRadar').container('Songs').items.create(song)
+        await getContainer('Songs').items.create(song)
       })
 
       test('returns "404 Not Found" if no song that matches `id`', async () => {
@@ -119,12 +114,7 @@ describe('/getSongInfo', () => {
       })
 
       afterAll(async () => {
-        const client = new CosmosClient(process.env.COSMOS_DB_CONN)
-        await client
-          .database('DDRadar')
-          .container('Songs')
-          .item(song.id, song.nameIndex)
-          .delete()
+        await getContainer('Songs').item(song.id, song.nameIndex).delete()
       })
     }
   )
