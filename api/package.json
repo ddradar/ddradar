@@ -13,8 +13,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.6.3",
-    "@ddradar/core": "^0.0.1"
+    "@azure/cosmos": "^3.6.3"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
