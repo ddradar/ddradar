@@ -12,6 +12,9 @@
     "core"
   ],
   "scripts": {
+    "build": "run-p build:*",
+    "build:api": "yarn workspace @ddradar/api build",
+    "build:core": "yarn workspace @ddradar/core build",
     "fix": "run-p fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
