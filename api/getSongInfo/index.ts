@@ -1,6 +1,6 @@
-import { CosmosClient } from '@azure/cosmos'
 import type { AzureFunction, Context } from '@azure/functions'
 
+import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 
 const httpTrigger: AzureFunction = async (context: Context): Promise<void> => {
@@ -14,21 +14,7 @@ const httpTrigger: AzureFunction = async (context: Context): Promise<void> => {
     return
   }
 
-  // eslint-disable-next-line node/no-process-env
-  const connectionString = process.env.COSMOS_DB_CONN
-  if (!connectionString) {
-    context.log.error(
-      'Connection string is not set in process.env.COSMOS_DB_CONN'
-    )
-    context.res = {
-      status: 500,
-      body: 'Internal Server Error',
-    }
-    return
-  }
-
-  const client = new CosmosClient(connectionString)
-  const container = client.database('DDRadar').container('Songs')
+  const container = getContainer('Songs', true)
   const { resources } = await container.items
     .query<SongSchema>({
       query:
