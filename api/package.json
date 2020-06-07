@@ -7,7 +7,7 @@
     "node": "^12"
   },
   "scripts": {
-    "build": "yarn & tsc",
+    "build": "tsc",
     "prestart": "tsc",
     "start": "func start",
     "test": "jest"

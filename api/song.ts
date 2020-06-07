@@ -1,6 +1,6 @@
-import { isSong, Song } from '@ddradar/core/song'
-import { StepChart } from '@ddradar/core/step-chart'
-import { hasProperty } from '@ddradar/core/type-assert'
+import { isSong, Song } from 'core/song'
+import { StepChart } from 'core/step-chart'
+import { hasProperty } from 'core/type-assert'
 
 export type SongSchema = Song & {
   charts: Chart[]
