@@ -39,7 +39,6 @@ jobs:
 
       - name: Install Project Depencencies
         run: yarn --frozen-lockfile
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
 
       - name: Lint
         run: yarn lint
