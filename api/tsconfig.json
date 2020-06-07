@@ -2,20 +2,11 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "outDir": "../dist/api",
+    "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
-    "strict": false,
-    "baseUrl": "./",
-    "paths": {
-      "core/*": [
-        "../dist/core/*"
-      ]
-    }
+    "strict": false
   },
-  "references": [
-    { "path": "../core" }
-  ],
   "types": ["jest", "node"],
   "exclude": ["**/__tests__/**"]
 }

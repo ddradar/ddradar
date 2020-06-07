@@ -1,6 +1,6 @@
-import { isSong, Song } from 'core/song'
-import { StepChart } from 'core/step-chart'
-import { hasProperty } from 'core/type-assert'
+import { isSong, Song } from './core/song'
+import { StepChart } from './core/step-chart'
+import { hasProperty } from './core/type-assert'
 
 export type SongSchema = Song & {
   charts: Chart[]

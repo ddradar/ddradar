@@ -10,5 +10,9 @@ module.exports = {
   setupFiles: ['<rootDir>/__tests__/initDatabase.js'],
   coverageDirectory: './coverage/',
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/**/*.ts', '!**/__tests__/**'],
+  collectCoverageFrom: [
+    '<rootDir>/**/*.ts',
+    '!**/__tests__/**',
+    '!<rootDir>/core/**',
+  ],
 }
