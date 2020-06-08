@@ -1,10 +1,10 @@
-/* eslint-disable node/no-process-env */
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { CosmosClient } = require('@azure/cosmos')
 
+// eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
 
-async function run() {
+module.exports = async () => {
   if (!connectionString) return
 
   const client = new CosmosClient(connectionString)
@@ -44,6 +44,3 @@ async function run() {
     partitionKey: { paths: ['/area'] },
   })
 }
-
-// eslint-disable-next-line no-console
-run().catch(e => console.error(e))
