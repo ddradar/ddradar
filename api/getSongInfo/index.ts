@@ -3,9 +3,12 @@ import type { AzureFunction, Context } from '@azure/functions'
 import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 
+/** Get song and charts information that match the specified ID. */
 const httpTrigger: AzureFunction = async (context: Context): Promise<void> => {
-  const id = context.bindingData.id
+  const id: string = context.bindingData.id
 
+  // In Azure Functions, this function will only be invoked if a valid `id` is passed.
+  // So this check is only used to unit tests.
   if (!id || !/^[01689bdiloqDIOPQ]{32}$/.test(id)) {
     context.res = {
       status: 404,
