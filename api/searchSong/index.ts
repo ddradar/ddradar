@@ -5,6 +5,8 @@ import { SeriesList } from '../core/song'
 import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 
+const container = getContainer('Songs', true)
+
 /** Get a list of song information that matches the specified conditions. */
 const httpTrigger: AzureFunction = async (
   context: Context,
@@ -27,8 +29,6 @@ const httpTrigger: AzureFunction = async (
     }
     return
   }
-
-  const container = getContainer('Songs', true)
 
   // Create SQL WHERE condition dynamically
   const condition: string[] = []
