@@ -5,6 +5,7 @@ import { SeriesList } from '../core/song'
 import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 
+/** Get a list of song information that matches the specified conditions. */
 const httpTrigger: AzureFunction = async (
   context: Context,
   req: HttpRequest
