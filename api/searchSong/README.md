@@ -11,7 +11,7 @@ Get a list of song information that matches the specified conditions.
 - Links
   - [Implements (index.ts)](./index.ts)
   - [Settings (function.json)](./function.json)
-  - [Unit Test (searchSong.test.ts)](../__tests__/searchSong.test.ts)
+  - [Unit Test (index.test.ts)](../index.test.ts)
 
 ## Endpoint
 

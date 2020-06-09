@@ -11,7 +11,7 @@ Get song and charts information that match the specified ID.
 - Links
   - [Implements (index.ts)](./index.ts)
   - [Settings (function.json)](./function.json)
-  - [Unit Test (getSongInfo.test.ts)](../__tests__/getSongInfo.test.ts)
+  - [Unit Test (index.test.ts)](../index.test.ts)
 
 ## Endpoint
 

@@ -1,9 +1,9 @@
 import type { Context } from '@azure/functions'
 
+import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import searchSong from '../searchSong'
 import { SongSchema } from '../song'
-import { describeIf } from './util'
+import searchSong from '.'
 
 describe('/songs', () => {
   let context: Context

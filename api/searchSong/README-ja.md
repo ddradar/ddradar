@@ -11,7 +11,7 @@ English version is [here](./README.md).
 - リンク
   - [実装 (index.ts)](./index.ts)
   - [設定 (function.json)](./function.json)
-  - [単体テスト (searchSong.test.ts)](../__tests__/searchSong.test.ts)
+  - [単体テスト (index.test.ts)](./index.test.ts)
 
 ## Endpoint
 
