@@ -94,7 +94,7 @@ describe('GET /api/courses', () => {
 
         // Assert
         expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe(`Not found song that id: "${id}"`)
+        expect(context.res.body).toBe(`Not found course that id: "${id}"`)
       })
 
       test('/o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db returns "200 OK" with JSON body', async () => {
