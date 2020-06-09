@@ -7,7 +7,7 @@ import { SongSchema } from '../song'
 
 /** Get a list of song information that matches the specified conditions. */
 const httpTrigger: AzureFunction = async (
-  context: Context,
+  context: Pick<Context, 'bindingData' | 'res'>,
   req: HttpRequest
 ): Promise<void> => {
   const seriesIndex =

@@ -4,7 +4,9 @@ import { getContainer } from '../cosmos'
 import { CourseSchema } from '../course'
 
 /** Get course and orders information that match the specified ID. */
-const httpTrigger: AzureFunction = async (context: Context): Promise<void> => {
+const httpTrigger: AzureFunction = async (
+  context: Pick<Context, 'bindingData' | 'res'>
+): Promise<void> => {
   const id: string = context.bindingData.id
 
   // In Azure Functions, this function will only be invoked if a valid `id` is passed.
