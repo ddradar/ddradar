@@ -15,9 +15,9 @@ Add or update song and charts information.
 
 ## Endpoint
 
-Need Authentication with `administrator` role.
+Need [Authentication](../../docs/api/authentication.md#login) with `administrator` role.
 
-> POST /api/songs/*:id*
+> POST /api/admin/songs/*:id*
 
 ## Parameters
 
@@ -168,10 +168,9 @@ Need Authentication with `administrator` role.
 
 ## Response
 
-- Returns `401 Unauthorized` if user is not authenticated.
-- Returns `403 Forbidden` if user does not have `administrator` role.
-- Returns `200 OK` with [updated JSON data](#response-body---post-song-information) if succeed add or update.
+- Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
+- Returns `200 OK` with [updated JSON data](#response-body) if succeed add or update.
 
-#### Response Body - Post Song Information
+### Response Body
 
 Response JSON schema equals to [Request Body](#request-body).

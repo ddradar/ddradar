@@ -14,9 +14,9 @@
 
 ## Endpoint
 
-`administrator` ロールを持つユーザーで認証する必要があります。
+`administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
 
-> POST /api/songs/*:id*
+> POST /api/admin/songs/*:id*
 
 ## Parameters
 
@@ -167,8 +167,7 @@
 
 ## Response
 
-- 認証していない場合は、`401 Unauthorized` を返します。
-- `administrator` ロールを持っていない場合は、`403 Forbidden` を返します。
+- 認証していないか、`administrator` ロールを持っていない場合は、`401 Unauthorized` を返します。
 - 登録/更新に成功した場合は、`200 OK` と、[更新後のJSONデータ](#response-body)を返します。
 
 ### Response Body

@@ -1,4 +1,3 @@
-
 # Search Song API
 
 日本語版は[こちら](./README-ja.md)にあります。
