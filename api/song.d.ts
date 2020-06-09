@@ -6,4 +6,4 @@ export type SongSchema = Song & {
   charts: Chart[]
 }
 
-type Chart = Omit<StepChart, 'songId'>
+export type Chart = Omit<StepChart, 'songId'>
