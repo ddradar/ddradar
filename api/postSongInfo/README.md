@@ -11,7 +11,7 @@ Add or update song and charts information.
 - Links
   - Implements (index.ts)
   - Settings (function.json)
-  - Unit Test (postSongInfo.test.ts)
+  - Unit Test (index.test.ts)
 
 ## Endpoint
 
