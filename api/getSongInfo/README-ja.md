@@ -17,7 +17,7 @@ English version is [here](./README.md).
 
 認証は不要です。
 
-> GET api/song/*:id*
+> GET api/songs/*:id*
 
 ## Parameters
 
