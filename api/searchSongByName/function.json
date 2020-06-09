@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "songs"
+      "route": "songs/name/{name:int:min(0):max(36)}"
     },
     {
       "type": "http",

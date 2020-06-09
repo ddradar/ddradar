@@ -18,7 +18,8 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Song Information](../../api/getSongInfo/README.md)
 - [Post Song Information](../../api/postSongInfo/README.md) **Admin only*
-- [Search Song](../../api/searchSong/README.md)
+- [Search Song by Name](../../api/searchSongByName/README.md)
+- [Search Song by Series](../../api/searchSongBySeries/README.md)
 
 ## Course API
 

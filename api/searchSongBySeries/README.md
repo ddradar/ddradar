@@ -1,4 +1,4 @@
-# Search Song API
+# Search Song by Series API
 
 日本語版は[こちら](./README-ja.md)にあります。
 
@@ -11,15 +11,13 @@ Get a list of song information that matches the specified conditions.
 - Links
   - [Implements (index.ts)](./index.ts)
   - [Settings (function.json)](./function.json)
-  - [Unit Test (searchSong.test.ts)](../__tests__/searchSong.test.ts)
+  - [Unit Test (index.test.ts)](../index.test.ts)
 
 ## Endpoint
 
 No need Authentication.
 
 > GET /api/songs/series/0&name=0
-
-> GET /api/songs/name/0&series=0
 
 ## Parameters
 
@@ -30,8 +28,8 @@ No need Authentication.
 
 ## Response
 
-- Returns `404 Not Found` if both `series` and `name` are undefined or invalid type.
-  - If queries are invalid, they are ignored.
+- Returns `404 Not Found` if `series` is undefined or invalid type.
+  - If `name` is invalid, it is ignored.
 - Returns `404 Not Found` if no song that matches conditions.
 - Returns `200 OK` with [JSON body](#response-body) if found.
 
