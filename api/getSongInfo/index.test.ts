@@ -10,9 +10,6 @@ describe('GET /api/songs', () => {
 
   beforeEach(() => {
     context = {
-      log: ({
-        error: jest.fn(),
-      } as unknown) as typeof context.log,
       bindingData: {},
     } as Context
   })
