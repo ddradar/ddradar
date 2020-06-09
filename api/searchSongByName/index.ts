@@ -17,12 +17,10 @@ const httpTrigger: AzureFunction = async (
     Number.isInteger(seriesIndex) &&
     seriesIndex >= 0 &&
     seriesIndex < SeriesList.length
-  const isValidName =
-    Number.isInteger(nameIndex) && nameIndex >= 0 && nameIndex <= 36
 
-  // In Azure Functions, this function will only be invoked if a valid `series` or `name` is passed.
+  // In Azure Functions, this function will only be invoked if a valid `name` is passed.
   // So this check is only used to unit tests.
-  if (!isValidSeries && !isValidName) {
+  if (!Number.isInteger(nameIndex) || nameIndex < 0 || nameIndex > 36) {
     context.res = {
       status: 404,
       body: '"name" is undefined or invalid value',
@@ -33,17 +31,13 @@ const httpTrigger: AzureFunction = async (
   const container = getContainer('Songs', true)
 
   // Create SQL WHERE condition dynamically
-  const condition: string[] = []
-  const parameters: SqlParameter[] = []
+  const column: keyof SongSchema = 'nameIndex'
+  const condition: string[] = [`c.${column} = @${column}`]
+  const parameters: SqlParameter[] = [{ name: `@${column}`, value: nameIndex }]
   if (isValidSeries) {
     const column: keyof SongSchema = 'series'
     condition.push(`c.${column} = @${column}`)
     parameters.push({ name: `@${column}`, value: SeriesList[seriesIndex] })
-  }
-  if (isValidName) {
-    const column: keyof SongSchema = 'nameIndex'
-    condition.push(`c.${column} = @${column}`)
-    parameters.push({ name: `@${column}`, value: nameIndex })
   }
 
   const columns: (keyof SongSchema)[] = [
