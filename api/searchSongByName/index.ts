@@ -11,7 +11,8 @@ const httpTrigger: AzureFunction = async (
   req: HttpRequest
 ): Promise<void> => {
   const seriesIndex = parseFloat(req.query.series)
-  const nameIndex = context.bindingData.name || 0
+  const nameIndex =
+    typeof context.bindingData.name === 'number' ? context.bindingData.name : 0
 
   const isValidSeries =
     Number.isInteger(seriesIndex) &&
