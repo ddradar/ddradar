@@ -10,8 +10,8 @@ const httpTrigger: AzureFunction = async (
   context: Context,
   req: HttpRequest
 ): Promise<void> => {
-  const seriesIndex = parseFloat(req.query.series)
-  const nameIndex = parseFloat(req.query.name)
+  const seriesIndex = context.bindingData.series || parseFloat(req.query.series)
+  const nameIndex = context.bindingData.name || parseFloat(req.query.name)
 
   const isValidSeries =
     Number.isInteger(seriesIndex) &&
@@ -20,10 +20,12 @@ const httpTrigger: AzureFunction = async (
   const isValidName =
     Number.isInteger(nameIndex) && nameIndex >= 0 && nameIndex <= 36
 
+  // In Azure Functions, this function will only be invoked if a valid `series` or `name` is passed.
+  // So this check is only used to unit tests.
   if (!isValidSeries && !isValidName) {
     context.res = {
-      status: 400,
-      body: '"series" and "name" querys are not defined or are invalid values',
+      status: 404,
+      body: '"series" and "name" are not defined or are invalid values',
     }
     return
   }
@@ -34,23 +36,33 @@ const httpTrigger: AzureFunction = async (
   const condition: string[] = []
   const parameters: SqlParameter[] = []
   if (isValidSeries) {
-    condition.push('c.series = @series ')
-    parameters.push({ name: '@series', value: SeriesList[seriesIndex] })
+    const column: keyof SongSchema = 'series'
+    condition.push(`c.${column} = @${column}`)
+    parameters.push({ name: `@${column}`, value: SeriesList[seriesIndex] })
   }
   if (isValidName) {
-    condition.push('c.nameIndex = @name ')
-    parameters.push({ name: '@name', value: nameIndex })
+    const column: keyof SongSchema = 'nameIndex'
+    condition.push(`c.${column} = @${column}`)
+    parameters.push({ name: `@${column}`, value: nameIndex })
   }
 
+  const columns: (keyof SongSchema)[] = [
+    'id',
+    'name',
+    'nameKana',
+    'nameIndex',
+    'artist',
+    'series',
+    'minBPM',
+    'maxBPM',
+  ]
+  const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
     .query<SongSchema>({
       query:
-        'SELECT c.id, c.name, c.nameKana, c.nameIndex, ' +
-        'c.artist, c.series, c.minBPM, c.maxBPM ' +
-        'FROM c ' +
-        'WHERE ' +
-        condition.join('AND ') +
-        'ORDER BY c.nameIndex, c.nameKana',
+        `SELECT ${columns.map(col => `c.${col}`).join(', ')} FROM c ` +
+        `WHERE ${condition.join(' AND ')} ` +
+        `ORDER BY ${orderByColumns.map(col => `c.${col}`).join(', ')}`,
       parameters,
     })
     .fetchAll()
