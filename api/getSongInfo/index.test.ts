@@ -5,7 +5,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 import getSongInfo from '.'
 
-describe('/songs/:id', () => {
+describe('GET /api/songs/:id', () => {
   let context: Context
 
   beforeEach(() => {
@@ -17,11 +17,7 @@ describe('/songs/:id', () => {
     } as Context
   })
 
-  test('exports function', () => {
-    expect(typeof getSongInfo).toBe('function')
-  })
-
-  test('returns "404 Not Found" if `id` is not defined', async () => {
+  test('/ returns "404 Not Found"', async () => {
     // Arrange - Act
     await getSongInfo(context)
 
@@ -29,7 +25,7 @@ describe('/songs/:id', () => {
     expect(context.res.status).toBe(404)
   })
 
-  test('returns "404 Not Found" if `id` does not match pattern', async () => {
+  test('/foo returns "404 Not Found"', async () => {
     // Arrange
     context.bindingData.id = 'foo'
 
@@ -74,7 +70,7 @@ describe('/songs/:id', () => {
         await getContainer('Songs').items.create(song)
       })
 
-      test('returns "404 Not Found" if no song that matches `id`', async () => {
+      test('/00000000000000000000000000000000 returns "404 Not Found"', async () => {
         // Arrange
         const id = '00000000000000000000000000000000'
         context.bindingData.id = id
@@ -87,7 +83,7 @@ describe('/songs/:id', () => {
         expect(context.res.body).toBe(`Not found song that id: "${id}"`)
       })
 
-      test('returns "200 OK" with JSON body if found', async () => {
+      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI returns "200 OK" with JSON body', async () => {
         // Arrange
         context.bindingData.id = song.id
 
