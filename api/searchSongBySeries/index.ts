@@ -10,7 +10,7 @@ const httpTrigger: AzureFunction = async (
   context: Context,
   req: HttpRequest
 ): Promise<void> => {
-  const seriesIndex = context.bindingData.series
+  const seriesIndex = parseFloat(context.bindingData.series)
   const nameIndex = parseFloat(req.query.name)
   const isValidName =
     Number.isInteger(nameIndex) && nameIndex >= 0 && nameIndex <= 36
