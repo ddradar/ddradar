@@ -6,14 +6,6 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "songs/series/{series:int:min(0):max(16)}"
-    },
-    {
-      "type": "httpTrigger",
-      "direction": "in",
-      "name": "req",
-      "authLevel": "anonymous",
-      "methods": ["get"],
       "route": "songs/name/{name:int:min(0):max(36)}"
     },
     {

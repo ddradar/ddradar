@@ -10,8 +10,8 @@ const httpTrigger: AzureFunction = async (
   context: Context,
   req: HttpRequest
 ): Promise<void> => {
-  const seriesIndex = context.bindingData.series || parseFloat(req.query.series)
-  const nameIndex = context.bindingData.name || parseFloat(req.query.name)
+  const seriesIndex = context.bindingData.series
+  const nameIndex = parseFloat(req.query.name)
 
   const isValidSeries =
     Number.isInteger(seriesIndex) &&
@@ -25,7 +25,7 @@ const httpTrigger: AzureFunction = async (
   if (!isValidSeries && !isValidName) {
     context.res = {
       status: 404,
-      body: '"series" and "name" are not defined or are invalid values',
+      body: '"series" is undefined or invalid value',
     }
     return
   }

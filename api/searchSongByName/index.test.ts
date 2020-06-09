@@ -5,7 +5,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 import searchSong from '.'
 
-describe('/songs', () => {
+describe('GET /api/songs/name', () => {
   let context: Context
 
   beforeEach(() => {
@@ -17,41 +17,18 @@ describe('/songs', () => {
     } as Context
   })
 
-  test('exports function', () => {
-    expect(typeof searchSong).toBe('function')
-  })
-
   test.each([undefined, null, 'foo', 0.1, -1, 100])(
-    'returns "404 Not Found" if bindingData.series is "%s"',
-    async (series: unknown) => {
+    '/%s returns "404 Not Found"',
+    async (name: unknown) => {
       // Arrange
-      context.bindingData.series = series
+      context.bindingData.name = name
 
       // Act
       await searchSong(context, { query: {} })
 
       // Assert
       expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe(
-        '"series" and "name" are not defined or are invalid values'
-      )
-    }
-  )
-
-  test.each([undefined, null, 'foo', 0.1, -1, 100])(
-    'returns "404 Not Found" if bindingData.name is "%s"',
-    async (name: unknown) => {
-      // Arrange
-      context.bindingData.name = name
-
-      // Act
-      await searchSong(context)
-
-      // Assert
-      expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe(
-        '"series" and "name" are not defined or are invalid values'
-      )
+      expect(context.res.body).toBe('"name" is undefined or invalid value')
     }
   )
 
@@ -98,20 +75,7 @@ describe('/songs', () => {
         }
       })
 
-      test('/songs/series/0?name=0 returns "404 Not Found"', async () => {
-        // Arrange
-        context.bindingData.series = 0
-        // Act
-        await searchSong(context, { query: { name: '0' } })
-
-        // Assert
-        expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe(
-          'Not found song that {series: "DDR 1st" nameIndex: 0}'
-        )
-      })
-
-      test('/songs/name/0?series=0 returns "404 Not Found"', async () => {
+      test('/0?series=0 returns "404 Not Found"', async () => {
         // Arrange
         context.bindingData.name = 0
         // Act
@@ -125,34 +89,15 @@ describe('/songs', () => {
       })
 
       test.each([
-        [0, '', [songs[0]]],
-        [0, '25', [songs[0]]],
-        [10, '25', [songs[1]]],
-        [10, '28', [songs[2]]],
-        [10, '', [songs[1], songs[2]]],
-      ])(
-        '/songs/series/%i?name=%s returns "200 OK" with JSON body',
-        async (series, name, expected) => {
-          // Arrange
-          context.bindingData.series = series
-
-          // Act
-          await searchSong(context, { query: { name } })
-
-          // Assert
-          expect(context.res.status).toBe(200)
-          expect(context.res.body).toStrictEqual(expected)
-        }
-      )
-
-      test.each([
         [25, '0', [songs[0]]],
         [25, '10', [songs[1]]],
         [28, '', [songs[2]]],
+        [28, '0.1', [songs[2]]],
+        [28, '-1', [songs[2]]],
         [28, '10', [songs[2]]],
         [25, '', [songs[0], songs[1]]],
       ])(
-        '/songs/name/%i?series=%s returns "200 OK" with JSON body',
+        '/%i?series=%s returns "200 OK" with JSON body',
         async (name, series, expected) => {
           // Arrange
           context.bindingData.name = name
