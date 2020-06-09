@@ -1,4 +1,3 @@
-/* eslint-disable node/no-process-env */
 import type { Context } from '@azure/functions'
 
 import { getConnectionString, getContainer } from '../cosmos'
@@ -8,11 +7,8 @@ import { describeIf } from './util'
 
 describe('/songs/:id', () => {
   let context: Context
-  const storedEnv = { ...process.env }
 
   beforeEach(() => {
-    jest.resetModules()
-    process.env = { ...storedEnv }
     context = {
       log: ({
         error: jest.fn(),
@@ -20,7 +16,6 @@ describe('/songs/:id', () => {
       bindingData: {},
     } as Context
   })
-  afterEach(() => (process.env = { ...storedEnv }))
 
   test('exports function', () => {
     expect(typeof getSongInfo).toBe('function')
@@ -44,15 +39,6 @@ describe('/songs/:id', () => {
     // Assert
     expect(context.res.status).toBe(404)
     expect(context.res.body).toBe('Please pass a id like "/api/songs/:id"')
-  })
-
-  test('throws error if COSMOS_DB_CONN is undefined', async () => {
-    // Arrange
-    process.env.COSMOS_DB_CONN = undefined
-    context.bindingData.id = '00000000000000000000000000000000'
-
-    // Act - Assert
-    expect(getSongInfo(context)).rejects.toThrowError()
   })
 
   describeIf(() => !!getConnectionString())(

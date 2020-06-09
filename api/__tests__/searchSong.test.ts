@@ -1,18 +1,14 @@
-/* eslint-disable node/no-process-env */
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
+import { getConnectionString, getContainer } from '../cosmos'
 import searchSong from '../searchSong'
 import { SongSchema } from '../song'
 import { describeIf } from './util'
 
 describe('/songs', () => {
   let context: Context
-  const storedEnv = { ...process.env }
 
   beforeEach(() => {
-    jest.resetModules()
-    process.env = { ...storedEnv }
     context = {
       log: ({
         error: jest.fn(),
@@ -20,7 +16,6 @@ describe('/songs', () => {
       bindingData: {},
     } as Context
   })
-  afterEach(() => (process.env = { ...storedEnv }))
 
   test('exports function', () => {
     expect(typeof searchSong).toBe('function')
@@ -56,15 +51,7 @@ describe('/songs', () => {
     }
   )
 
-  test('throws error if COSMOS_DB_CONN is undefined', async () => {
-    // Arrange
-    process.env.COSMOS_DB_CONN = undefined
-
-    // Act - Assert
-    expect(searchSong(context, { series: '0' })).rejects.toThrowError()
-  })
-
-  describeIf(() => !!process.env.COSMOS_DB_CONN)(
+  describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
       const songs: Omit<SongSchema, 'charts'>[] = [
