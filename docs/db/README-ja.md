@@ -18,4 +18,4 @@ English version is [here](./README.md).
 
 ## Initialization code
 
-TBD
+[initDatabase.js](../../api/__tests__/initDatabase.js)
