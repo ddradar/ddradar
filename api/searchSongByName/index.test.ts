@@ -17,7 +17,7 @@ describe('GET /api/songs/name', () => {
     } as Context
   })
 
-  test.each(['foo', 0.1, -1, 100])(
+  test.each([NaN, 0.1, -1, 100])(
     '/%s returns "404 Not Found"',
     async (name: unknown) => {
       // Arrange
