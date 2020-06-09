@@ -17,7 +17,7 @@ Get song and charts information that match the specified ID.
 
 No need Authentication.
 
-> GET api/songs/*:id*
+> GET api/song/*:id*
 
 ## Parameters
 
