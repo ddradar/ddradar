@@ -76,7 +76,7 @@ describe('GET /api/songs/name', () => {
 
       test('/0?series=0 returns "404 Not Found"', async () => {
         // Arrange
-        context.bindingData.name = 0
+        context.bindingData.name = {} // if param is 0, passed object. (bug?)
         // Act
         await searchSong(context, { query: { series: '0' } })
 

@@ -9,9 +9,9 @@ English version is [here](./README.md).
 - [応答](#response)
   - [本文](#response-body)
 - リンク
-  - [実装 (index.ts)](./index.ts)
-  - [設定 (function.json)](./function.json)
-  - [単体テスト (index.test.ts)](./index.test.ts)
+  - [実装 (index.ts)](index.ts)
+  - [設定 (function.json)](function.json)
+  - [単体テスト (index.test.ts)](index.test.ts)
 
 ## Endpoint
 
@@ -31,7 +31,7 @@ English version is [here](./README.md).
 - `name` が未指定、あるいは型が一致しなかった場合は、`404 Not Found` を返します。
   - `series` が不正である場合は、単に無視されます。
 - 条件と一致する曲が見つからなかった場合は、`404 Not Found` を返します。
-条件と一致する曲が見つかった場合は、`200 OK` と、[JSON](#response-body)を返します。
+- 条件と一致する曲が見つかった場合は、`200 OK` と、[JSON](#response-body)を返します。
 
 ### Response Body
 

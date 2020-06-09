@@ -12,7 +12,7 @@ const httpTrigger: AzureFunction = async (
 ): Promise<void> => {
   const seriesIndex = parseFloat(req.query.series)
   const nameIndex =
-    typeof context.bindingData.name === 'number' ? context.bindingData.name : 0
+    typeof context.bindingData.name === 'number' ? context.bindingData.name : 0 // if param is 0, passed object. (bug?)
 
   const isValidSeries =
     Number.isInteger(seriesIndex) &&

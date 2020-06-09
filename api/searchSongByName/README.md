@@ -9,9 +9,9 @@ Get a list of song information that matches the specified conditions.
 - [Response](#response)
   - [Response Body](#response-body)
 - Links
-  - [Implements (index.ts)](./index.ts)
-  - [Settings (function.json)](./function.json)
-  - [Unit Test (index.test.ts)](../index.test.ts)
+  - [Implements (index.ts)](index.ts)
+  - [Settings (function.json)](function.json)
+  - [Unit Test (index.test.ts)](index.test.ts)
 
 ## Endpoint
 

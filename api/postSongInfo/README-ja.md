@@ -10,7 +10,7 @@
 - リンク
   - 実装 (index.ts)
   - 設定 (function.json)
-  - 単体テスト (postSongInfo.test.ts)
+  - 単体テスト (index.test.ts)
 
 ## Endpoint
 
