@@ -17,7 +17,7 @@ describe('GET /api/songs/name', () => {
     } as Context
   })
 
-  test.each([undefined, null, 'foo', 0.1, -1, 100])(
+  test.each(['foo', 0.1, -1, 100])(
     '/%s returns "404 Not Found"',
     async (name: unknown) => {
       // Arrange
@@ -28,7 +28,9 @@ describe('GET /api/songs/name', () => {
 
       // Assert
       expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe('"name" is undefined or invalid value')
+      expect(context.res.body).toBe(
+        `"name" is undefined or invalid value :${name}`
+      )
     }
   )
 
