@@ -16,10 +16,10 @@ const configuration: Configuration = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },
   loading: { color: '#fff' },
-  css: [],
+  css: ['~/assets/css/styles.scss'],
   plugins: [],
   buildModules: ['@nuxt/typescript-build'],
-  modules: ['nuxt-buefy', '@nuxtjs/axios', '@nuxtjs/pwa'],
+  modules: [['nuxt-buefy', { css: false }], '@nuxtjs/axios', '@nuxtjs/pwa'],
   pwa: {
     manifest: {
       name: 'DDRadar',
