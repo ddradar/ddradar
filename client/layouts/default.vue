@@ -1,74 +1,82 @@
 <template>
   <div>
-    <nav
-      class="navbar header has-shadow is-primary"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand">
-        <a
-          class="navbar-item"
-          href="/"
-        >
-          <img
-            src="~assets/buefy.png"
-            alt="Buefy"
-            height="28"
-          >
-        </a>
+    <b-navbar type="is-primary">
+      <template slot="brand">
+        <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
+          <b>DDRadar</b>
+        </b-navbar-item>
+      </template>
 
-        <div class="navbar-burger">
-          <span />
-          <span />
-          <span />
-        </div>
-      </div>
-    </nav>
+      <template slot="start">
+        <b-navbar-dropdown label="曲名から探す" hoverable collapsible>
+          <b-navbar-item tag="div" class="buttons are-small">
+            <b-button type="is-text" tag="nuxt-link" to="/name/0">
+              あ
+            </b-button>
+            <b-button type="is-text" tag="nuxt-link" to="/name/1">
+              か
+            </b-button>
+            <b-button type="is-text" tag="nuxt-link" to="/name/2">
+              さ
+            </b-button>
+          </b-navbar-item>
+        </b-navbar-dropdown>
+      </template>
 
-    <section class="main-content columns">
-      <aside class="column is-2 section">
-        <p class="menu-label is-hidden-touch">
-          General
+      <template slot="end">
+        <b-navbar-item v-if="isLoggedIn" href="/.auth/logout">
+          Logout
+        </b-navbar-item>
+        <b-navbar-dropdown v-else label="Login" hoverable right>
+          <b-navbar-item tag="div">
+            <div class="buttons">
+              <b-button
+                icon-left="twitter"
+                type="is-info"
+                tag="a"
+                href="/.auth/login/twitter"
+              >
+                Login via Twitter
+              </b-button>
+              <b-button
+                icon-left="github"
+                type="is-dark"
+                tag="a"
+                href="/.auth/login/github"
+              >
+                Login via GitHub
+              </b-button>
+            </div>
+          </b-navbar-item>
+        </b-navbar-dropdown>
+      </template>
+    </b-navbar>
+
+    <nuxt />
+
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          不具合を発見した、または新機能の要望がある場合には、
+          <a href="https://twitter.com/nogic1008" target="_blank">
+            作者のTwitter
+          </a>
+          または
+          <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+            Githubのissue
+          </a>
+          にてご報告ください。
         </p>
-        <ul class="menu-list">
-          <li
-            v-for="(item, key) of items"
-            :key="key"
-          >
-            <nuxt-link
-              :to="item.to"
-              exact-active-class="is-active"
-            >
-              <b-icon :icon="item.icon" /> {{ item.title }}
-            </nuxt-link>
-          </li>
-        </ul>
-      </aside>
-
-      <div class="container column is-10">
-        <nuxt />
       </div>
-    </section>
+    </footer>
   </div>
 </template>
 
-<script>
-export default {
-  data () {
-    return {
-      items: [
-        {
-          title: 'Home',
-          icon: 'home',
-          to: { name: 'index' }
-        },
-        {
-          title: 'Inspire',
-          icon: 'lightbulb',
-          to: { name: 'inspire' }
-        }
-      ]
-    }
-  }
+<script lang="ts">
+import { Component, Vue } from 'nuxt-property-decorator'
+
+@Component
+export default class DefaultLayout extends Vue {
+  isLoggedIn = true
 }
 </script>
