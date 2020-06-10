@@ -6,7 +6,15 @@
       "type": "node",
       "request": "attach",
       "port": 9229,
-      "preLaunchTask": "func: host start"
+      "preLaunchTask": "API: Launch"
+    },
+    {
+      "name": "Launch Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/client",
+      "preLaunchTask": "Client: Launch"
     }
   ]
 }

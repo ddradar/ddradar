@@ -2,41 +2,63 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "API: Launch",
       "type": "func",
       "command": "host start",
       "problemMatcher": "$func-watch",
       "isBackground": true,
-      "dependsOn": "yarn build",
+      "dependsOn": "API: Build",
       "options": {
         "cwd": "${workspaceFolder}/api"
       }
     },
     {
+      "label": "API: Build",
       "type": "shell",
-      "label": "yarn build",
-      "command": "yarn build",
-      "dependsOn": "yarn install",
+      "group": "build",
+      "command": "yarn",
+      "args": ["build"],
+      "dependsOn": "API: Install Dependencies",
       "problemMatcher": "$tsc",
       "options": {
         "cwd": "${workspaceFolder}/api"
       }
     },
     {
+      "label": "API: Install Dependencies",
       "type": "shell",
-      "label": "yarn install",
-      "command": "yarn install",
+      "command": "yarn",
       "options": {
         "cwd": "${workspaceFolder}/api"
       }
     },
     {
+      "label": "Client: Launch",
       "type": "shell",
-      "label": "yarn prune",
-      "command": "yarn install --production",
-      "dependsOn": "yarn build",
-      "problemMatcher": [],
+      "isBackground": true,
+      "command": "yarn dev",
+      "dependsOn": "Client: Install Dependencies",
       "options": {
-        "cwd": "${workspaceFolder}/api"
+        "cwd": "${workspaceFolder}/client"
+      },
+      "problemMatcher": {
+        "owner": "nuxt",
+        "pattern": {
+          "regexp": "^$"
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "yarn run.*",
+          "endsPattern": ".*Waiting for file changes.*"
+        }
+      }
+    },
+    {
+      "label": "Client: Install Dependencies",
+      "type": "shell",
+      "command": "yarn",
+      "options": {
+        "cwd": "${workspaceFolder}/client"
       }
     }
   ]
