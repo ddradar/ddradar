@@ -25,6 +25,15 @@
       }
     },
     {
+      "label": "API: Install Dependencies (Production)",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["--production"],
+      "options": {
+        "cwd": "${workspaceFolder}/api"
+      }
+    },
+    {
       "label": "API: Install Dependencies",
       "type": "shell",
       "command": "yarn",
