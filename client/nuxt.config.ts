@@ -1,4 +1,6 @@
-export default {
+import { Configuration } from '@nuxt/types'
+
+const configuration: Configuration = {
   mode: 'universal',
   head: {
     title: 'DDRadar',
@@ -18,9 +20,22 @@ export default {
   plugins: [],
   buildModules: ['@nuxt/typescript-build'],
   modules: ['nuxt-buefy', '@nuxtjs/axios', '@nuxtjs/pwa'],
+  pwa: {
+    manifest: {
+      name: 'DDRadar',
+      description: 'DDR Score Tracker',
+      theme_color: '#ff8c00',
+      lang: 'ja',
+      display: 'standalone',
+      scope: '/',
+      start_url: '/',
+    },
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
   axios: {},
 }
+
+export default configuration
