@@ -95,29 +95,24 @@ describe('GET /api/courses', () => {
         },
       ]
 
-      test('returns "404 Not Found" if empty', async () => {
-        // Act
-        await getCourseList(context)
-
-        // Assert
-        expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe('Not found courses')
+      beforeAll(async () => {
+        const container = getContainer('Courses')
+        for (const course of courses) {
+          await container.items.create(course)
+        }
       })
 
       test('returns "200 OK" with JSON body', async () => {
-        // Arrange
-        const container = getContainer('Courses')
-        for (const song of courses) {
-          await container.items.create(song)
-        }
-
         // Act
         await getCourseList(context)
 
         // Assert
         expect(context.res.status).toBe(200)
         expect(context.res.body).toStrictEqual(courses)
+      })
 
+      afterAll(async () => {
+        const container = getContainer('Courses')
         for (const course of courses) {
           await container.item(course.id, course.id).delete()
         }

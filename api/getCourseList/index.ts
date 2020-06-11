@@ -26,14 +26,6 @@ const httpTrigger: AzureFunction = async (
     })
     .fetchAll()
 
-  if (resources.length === 0) {
-    context.res = {
-      status: 404,
-      body: `Not found courses`,
-    }
-    return
-  }
-
   context.res = {
     status: 200,
     headers: { 'Content-type': 'application/json' },
