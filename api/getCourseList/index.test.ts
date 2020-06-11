@@ -73,7 +73,7 @@ describe('GET /api/courses', () => {
         },
         {
           id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
-          name: '??',
+          name: '初段',
           orders: [
             {
               playStyle: 1,
@@ -84,7 +84,7 @@ describe('GET /api/courses', () => {
         },
         {
           id: 'bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP',
-          name: '??',
+          name: '十段',
           orders: [
             {
               playStyle: 2,
@@ -94,13 +94,6 @@ describe('GET /api/courses', () => {
           ],
         },
       ]
-
-      beforeAll(async () => {
-        const container = getContainer('Courses')
-        for (const song of courses) {
-          await container.items.create(song)
-        }
-      })
 
       test('returns "404 Not Found" if empty', async () => {
         // Act
