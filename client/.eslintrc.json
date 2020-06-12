@@ -1,0 +1,30 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "prettier",
+    "prettier/vue",
+    "plugin:prettier/recommended",
+    "plugin:jest/recommended",
+    "plugin:nuxt/recommended"
+  ],
+  "plugins": ["jest", "prettier", "simple-import-sort"],
+  "settings": {
+    "node": {
+      "allowModules": ["buefy", "@vue/test-utils"],
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
+  "rules": {
+    "no-process-env": "error",
+    "sort-imports": "off",
+    "import/no-unresolved": "off",
+    "import/order": "off",
+    "simple-import-sort/sort": "error"
+  }
+}
