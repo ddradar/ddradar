@@ -25,9 +25,9 @@
 
       <template slot="end">
         <b-navbar-item v-if="isLoggedIn" href="/.auth/logout">
-          Logout
+          ログアウト
         </b-navbar-item>
-        <b-navbar-dropdown v-else label="Login" hoverable right>
+        <b-navbar-dropdown v-else label="ログイン" hoverable right>
           <b-navbar-item tag="div">
             <div class="buttons">
               <b-button
@@ -36,7 +36,7 @@
                 tag="a"
                 href="/.auth/login/twitter"
               >
-                Login via Twitter
+                Twitterでログイン
               </b-button>
               <b-button
                 icon-left="github"
@@ -44,7 +44,7 @@
                 tag="a"
                 href="/.auth/login/github"
               >
-                Login via GitHub
+                GitHubでログイン
               </b-button>
             </div>
           </b-navbar-item>
