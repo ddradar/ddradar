@@ -1,0 +1,164 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`layouts/default.vue renders correctly 1`] = `
+<div>
+  <nav
+    aria-label="main navigation"
+    class="navbar is-primary"
+    role="navigation"
+  >
+    <div
+      class="navbar-brand"
+    >
+      <a
+        class="navbar-item"
+      >
+        <b>
+          DDRadar
+        </b>
+      </a>
+      <a
+        aria-label="menu"
+        class="navbar-burger burger"
+        role="button"
+      >
+        <span
+          aria-hidden="true"
+        />
+         
+        <span
+          aria-hidden="true"
+        />
+         
+        <span
+          aria-hidden="true"
+        />
+      </a>
+    </div>
+    <div
+      class="navbar-menu"
+    >
+      <div
+        class="navbar-start"
+      >
+        <div
+          class="navbar-item has-dropdown is-hoverable"
+        >
+          <a
+            aria-haspopup="true"
+            class="navbar-link"
+            href="#"
+            role="menuitem"
+          >
+            曲名から探す
+          </a>
+           
+          <div
+            class="navbar-dropdown"
+            style="display: none;"
+          >
+            <div
+              class="navbar-item buttons are-small"
+            >
+              <a
+                class="button is-text"
+                type="button"
+              >
+                <!---->
+                 
+                <span>
+                  
+            あ
+          
+                </span>
+                 
+                <!---->
+              </a>
+               
+              <a
+                class="button is-text"
+                type="button"
+              >
+                <!---->
+                 
+                <span>
+                  
+            か
+          
+                </span>
+                 
+                <!---->
+              </a>
+               
+              <a
+                class="button is-text"
+                type="button"
+              >
+                <!---->
+                 
+                <span>
+                  
+            さ
+          
+                </span>
+                 
+                <!---->
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="navbar-end"
+      >
+        <a
+          class="navbar-item"
+          href="/.auth/logout"
+        >
+          
+        ログアウト
+      
+        </a>
+      </div>
+    </div>
+  </nav>
+   
+  <nuxt-stub />
+   
+  <footer
+    class="footer"
+  >
+    <div
+      class="content has-text-centered"
+    >
+      <p>
+        
+        不具合を発見した、または新機能の要望がある場合には、
+        
+        <a
+          href="https://twitter.com/nogic1008"
+          target="_blank"
+        >
+          
+          作者のTwitter
+        
+        </a>
+        
+        または
+        
+        <a
+          href="https://github.com/ddradar/ddradar/issues"
+          target="_blank"
+        >
+          
+          Githubのissue
+        
+        </a>
+        
+        にてご報告ください。
+      
+      </p>
+    </div>
+  </footer>
+</div>
+`;
