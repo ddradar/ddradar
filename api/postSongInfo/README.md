@@ -17,13 +17,9 @@ Add or update song and charts information.
 
 Need Authentication with `administrator` role.
 
-> POST /api/songs/*:id*
+> POST /api/songs
 
 ## Parameters
-
-|Name|Type|Description|
-|----|:--:|-----------|
-|`id`|string|New or unmodified song ID. Should match `^[01689bdiloqDIOPQ]{32}$` pattern.|
 
 ### Request Body
 
@@ -168,10 +164,10 @@ Need Authentication with `administrator` role.
 
 ## Response
 
-- Returns `401 Unauthorized` if user is not authenticated.
-- Returns `403 Forbidden` if user does not have `administrator` role.
+- Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
+- Returns `400 BadRequest` if body parameters are invalid.
 - Returns `200 OK` with [updated JSON data](#response-body---post-song-information) if succeed add or update.
 
-#### Response Body - Post Song Information
+### Response Body
 
 Response JSON schema equals to [Request Body](#request-body).
