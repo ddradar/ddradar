@@ -16,13 +16,9 @@
 
 `administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
 
-> POST /api/admin/songs/*:id*
+> POST /api/admin/songs
 
 ## Parameters
-
-|名前|型|説明|
-|----|:--:|---|
-|`id`|string|新規もしくは変更前の曲ID。パターン `^[01689bdiloqDIOPQ]{32}$` と一致する必要があります。|
 
 ### Request Body
 
@@ -168,6 +164,7 @@
 ## Response
 
 - 認証していないか、`administrator` ロールを持っていない場合は、`401 Unauthorized` を返します。
+- BODYパラメータが規定のものと一致しない場合は、`400 BadRequest` を返します。
 - 登録/更新に成功した場合は、`200 OK` と、[更新後のJSONデータ](#response-body)を返します。
 
 ### Response Body
