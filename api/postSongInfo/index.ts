@@ -18,11 +18,22 @@ const httpTrigger: AzureFunction = async (
 
   const container = getContainer('Songs', true)
   const { resource } = await container.items.upsert<SongSchema>(req.body)
+  const responseBody: SongSchema = {
+    id: resource.id,
+    name: resource.name,
+    nameKana: resource.nameKana,
+    nameIndex: resource.nameIndex,
+    artist: resource.artist,
+    series: resource.series,
+    minBPM: resource.minBPM,
+    maxBPM: resource.maxBPM,
+    charts: [...resource.charts],
+  }
 
   context.res = {
     status: 200,
     headers: { 'Content-type': 'application/json' },
-    body: resource,
+    body: responseBody,
   }
 }
 
