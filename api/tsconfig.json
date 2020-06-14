@@ -8,9 +8,7 @@
     "sourceMap": true,
     "strict": false
   },
-  "references": [
-    { "path": "../node_modules/@ddradar/core/" }
-  ],
+  "references": [{ "path": "../node_modules/@ddradar/core/" }],
   "types": ["jest", "node"],
   "exclude": ["__tests__", "**/**.test.ts"]
 }
