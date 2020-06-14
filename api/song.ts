@@ -7,7 +7,7 @@ export type SongSchema = Song & {
   charts: Chart[]
 }
 
-type Chart = Omit<StepChart, 'songId'>
+export type Chart = Omit<StepChart, 'songId'>
 
 const isChart = (obj: unknown): obj is Chart =>
   hasIntegerProperty(
