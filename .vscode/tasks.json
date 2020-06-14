@@ -6,16 +6,16 @@
       "command": "host start",
       "problemMatcher": "$func-watch",
       "isBackground": true,
-      "dependsOn": "npm build",
+      "dependsOn": "yarn build",
       "options": {
         "cwd": "${workspaceFolder}/api"
       }
     },
     {
       "type": "shell",
-      "label": "npm build",
-      "command": "npm run build",
-      "dependsOn": "npm install",
+      "label": "yarn build",
+      "command": "yarn build",
+      "dependsOn": "yarn install",
       "problemMatcher": "$tsc",
       "options": {
         "cwd": "${workspaceFolder}/api"
@@ -23,17 +23,17 @@
     },
     {
       "type": "shell",
-      "label": "npm install",
-      "command": "npm install",
+      "label": "yarn install",
+      "command": "yarn install",
       "options": {
         "cwd": "${workspaceFolder}/api"
       }
     },
     {
       "type": "shell",
-      "label": "npm prune",
-      "command": "npm prune --production",
-      "dependsOn": "npm build",
+      "label": "yarn prune",
+      "command": "yarn install --production",
+      "dependsOn": "yarn build",
       "problemMatcher": [],
       "options": {
         "cwd": "${workspaceFolder}/api"

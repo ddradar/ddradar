@@ -1,0 +1,60 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '**'
+      - '!**.md'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '**'
+      - '!**.md'
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Project Depencencies
+        run: yarn --frozen-lockfile
+
+      - name: Lint
+        if: matrix.os == 'ubuntu-latest'
+        run: yarn lint
+      - name: Build
+        run: yarn build
+      - name: Launch Cosmos DB Emulator (windows only)
+        if: matrix.os == 'windows-latest'
+        shell: pwsh
+        run: |
+          Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
+          Start-CosmosDbEmulator -NoUI
+          Get-CosmosDbEmulatorStatus
+          echo "::set-env name=COSMOS_DB_CONN::AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
+          echo "::set-env name=NODE_TLS_REJECT_UNAUTHORIZED::0"
+      - name: Test
+        run: yarn test

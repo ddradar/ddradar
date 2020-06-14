@@ -1,6 +1,6 @@
 {
   "name": "ddradar",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "DDR Score Manager",
   "repository": "https://github.com/ddradar/ddradar-azure.git",
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
@@ -12,6 +12,9 @@
     "core"
   ],
   "scripts": {
+    "build": "run-p build:*",
+    "build:api": "yarn workspace @ddradar/api build",
+    "build:core": "yarn workspace @ddradar/core build",
     "fix": "run-p fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",

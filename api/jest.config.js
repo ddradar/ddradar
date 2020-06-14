@@ -7,7 +7,12 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,
-  collectCoverageFrom: ['<rootDir>/**/*.ts', '!**/__tests__/**'],
+  collectCoverageFrom: [
+    '<rootDir>/**/*.ts',
+    '!**/__tests__/**',
+    '!<rootDir>/core/**',
+  ],
 }

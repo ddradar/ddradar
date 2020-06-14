@@ -1,20 +1,24 @@
-# Song Collection
+# Songs Collection
+
+日本語版は[こちら](./songs-ja.md)にあります。
+
+The collection that stores song & score information.
 
 ## Schema
 
-**Bolded** property is the partition key. 
+**Bolded** property is the partition key.
 
 |Name|Type|Description|
 |----|:--:|-----------|
 |id|string|Song id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
 |name|string|Song name|
 |nameKana|string|Song furigana for sorting. `^([A-Z0-9 .ぁ-んー]*)$`|
-|**nameIndex**|integer|Index for sorting. Associated with the "Find by Name" folder.<br> `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
+|**nameIndex**|integer|Index for sorting. Associated with the "Find by Name" folder.<br />`0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
 |artist|string|Artist name|
 |series|string|Series title depend on official site.|
-|minBPM|integer \| null |Displayed min BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
-|maxBPM|integer \| null |Displayed max BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
-|charts|StepChart[]|Song's step charts. See below|
+|minBPM|integer \| null|Displayed min BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
+|maxBPM|integer \| null|Displayed max BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
+|charts|StepChart\[]|Song's step charts. [See below](#stepchart)|
 
 ### StepChart
 

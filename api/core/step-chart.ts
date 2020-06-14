@@ -1,20 +1,7 @@
-export type SongSchema = {
-  /** ^([01689bdiloqDIOPQ]*){32}$ */
-  id: string
-  name: string
-  /** name furigana ^([A-Z0-9 .ぁ-んー]*)$ */
-  nameKana: string
-  nameIndex: number
-  artist: string
-  series: number
-  /** Displayed min BPM (Beet Per Minutes). */
-  minBPM: number | null
-  /** Displayed max BPM (Beet Per Minutes). */
-  maxBPM: number | null
-  charts: StepChart[]
-}
+import { Song } from './song'
 
-type StepChart = {
+export type StepChart = {
+  songId: string
   playStyle: PlayStyle
   difficulty: Difficulty
   level: Level
@@ -36,7 +23,12 @@ type StepChart = {
   chaos: number
 }
 
-/** SINGLE:1, DOUBLE:2 */
+export type Cource = Pick<Song, 'id' | 'name'> &
+  Pick<StepChart, 'playStyle' | 'difficulty' | 'level'> & {
+    charts: StepChart[]
+  }
+
+/** SINGLE:1, DOUBLE:4 */
 type PlayStyle = 1 | 2
 
 /** BEGINNER:0, BASIC:1, ..., CHALLENGE:4 */

@@ -1,9 +1,9 @@
 import type { AzureFunction, Context } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { SongSchema } from '../song'
+import { CourseSchema } from '../course'
 
-/** Get song and charts information that match the specified ID. */
+/** Get course and orders information that match the specified ID. */
 const httpTrigger: AzureFunction = async (
   context: Pick<Context, 'bindingData' | 'res'>
 ): Promise<void> => {
@@ -14,17 +14,17 @@ const httpTrigger: AzureFunction = async (
   if (!id || !/^[01689bdiloqDIOPQ]{32}$/.test(id)) {
     context.res = {
       status: 404,
-      body: 'Please pass a id like "/api/songs/:id"',
+      body: 'Please pass a id like "/api/courses/:id"',
     }
     return
   }
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Courses', true)
+  const columns: (keyof CourseSchema)[] = ['id', 'name', 'orders']
   const { resources } = await container.items
-    .query<SongSchema>({
+    .query<CourseSchema>({
       query:
-        'SELECT c.id, c.name, c.nameKana, c.nameIndex, ' +
-        'c.artist, c.series, c.minBPM, c.maxBPM, c.charts ' +
+        `SELECT ${columns.map(col => `c.${col}`).join(', ')} ` +
         'FROM c ' +
         'WHERE c.id = @id',
       parameters: [{ name: '@id', value: id }],
@@ -34,7 +34,7 @@ const httpTrigger: AzureFunction = async (
   if (resources.length === 0) {
     context.res = {
       status: 404,
-      body: `Not found song that id: "${id}"`,
+      body: `Not found course that id: "${id}"`,
     }
     return
   }

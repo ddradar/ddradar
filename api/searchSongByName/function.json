@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "songs/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}"
+      "route": "songs/name/{name:int:min(0):max(36)}"
     },
     {
       "type": "http",
@@ -14,5 +14,5 @@
       "name": "res"
     }
   ],
-  "scriptFile": "../dist/getSongInfo/index.js"
+  "scriptFile": "../dist/searchSongByName/index.js"
 }

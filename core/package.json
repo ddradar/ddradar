@@ -1,10 +1,11 @@
 {
   "name": "@ddradar/core",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Core Logic of DDRadar",
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "tsc",
     "test": "jest"
   },
   "devDependencies": {
