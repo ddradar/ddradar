@@ -3,8 +3,6 @@ import type { AzureFunction, Context } from '@azure/functions'
 import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 
-const container = getContainer('Songs', true)
-
 /** Get song and charts information that match the specified ID. */
 const httpTrigger: AzureFunction = async (
   context: Pick<Context, 'bindingData' | 'res'>
@@ -21,6 +19,7 @@ const httpTrigger: AzureFunction = async (
     return
   }
 
+  const container = getContainer('Songs', true)
   const { resources } = await container.items
     .query<SongSchema>({
       query:
