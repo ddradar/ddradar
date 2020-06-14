@@ -1,4 +1,6 @@
-export default {
+import { Configuration } from '@nuxt/types'
+
+const configuration: Configuration = {
   mode: 'universal',
   head: {
     title: 'DDRadar',
@@ -18,9 +20,16 @@ export default {
   plugins: [],
   buildModules: ['@nuxt/typescript-build'],
   modules: ['nuxt-buefy', '@nuxtjs/axios', '@nuxtjs/pwa'],
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
+  /**
+   * Axios module configuration
+   * See https://axios.nuxtjs.org/options
    */
   axios: {},
+  build: {
+    extend(config, { isClient }) {
+      if (isClient) config.devtool = 'source-map'
+    },
+  },
 }
+
+export default configuration
