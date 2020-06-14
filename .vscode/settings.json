@@ -1,8 +1,8 @@
 {
   "azureFunctions.deploySubpath": "api",
-  "azureFunctions.postDeployTask": "npm install",
+  "azureFunctions.postDeployTask": "API: Install Dependencies",
   "azureFunctions.projectLanguage": "TypeScript",
   "azureFunctions.projectRuntime": "~3",
   "debug.internalConsoleOptions": "neverOpen",
-  "azureFunctions.preDeployTask": "npm prune"
+  "azureFunctions.preDeployTask": "API: Install Dependencies (Production)"
 }

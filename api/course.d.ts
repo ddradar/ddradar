@@ -6,7 +6,7 @@ export type CourseSchema = Pick<Song, 'id' | 'name'> & {
   orders: Order[]
 }
 
-type Order = Pick<StepChart, 'playStyle' | 'difficulty' | 'level'> & {
+export type Order = Pick<StepChart, 'playStyle' | 'difficulty' | 'level'> & {
   chartOrder: Chart[]
 }
 

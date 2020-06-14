@@ -14,3 +14,10 @@ export const hasNumberProperty = <K extends string>(
   ...names: K[]
 ): x is { [M in K]: number } =>
   hasProperty(x, ...names) && names.every(n => typeof x[n] === 'number')
+
+export const hasIntegerProperty = <K extends string>(
+  x: unknown,
+  ...names: K[]
+): x is { [M in K]: number } =>
+  hasProperty(x, ...names) &&
+  names.every(n => typeof x[n] === 'number' && Number.isInteger(x[n]))

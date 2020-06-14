@@ -31,11 +31,16 @@ const configuration: Configuration = {
       start_url: '/',
     },
   },
-  /*
-   ** Axios module configuration
-   ** See https://axios.nuxtjs.org/options
+  /**
+   * Axios module configuration
+   * See https://axios.nuxtjs.org/options
    */
   axios: {},
+  build: {
+    extend(config, { isClient }) {
+      if (isClient) config.devtool = 'source-map'
+    },
+  },
 }
 
 export default configuration
