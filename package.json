@@ -14,6 +14,7 @@
   "scripts": {
     "build": "run-p build:*",
     "build:api": "yarn workspace @ddradar/api build",
+    "build:client": "yarn workspace @ddradar/client build",
     "build:core": "yarn workspace @ddradar/core build",
     "fix": "run-p fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
@@ -23,6 +24,7 @@
     "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml}\"",
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
+    "test:client": "yarn workspace @ddradar/client test",
     "test:core": "yarn workspace @ddradar/core test"
   },
   "husky": {

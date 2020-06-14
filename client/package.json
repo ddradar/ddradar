@@ -9,13 +9,23 @@
     "test": "jest"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
     "@nuxt/typescript-runtime": "^0.4.0",
-    "nuxt-buefy": "^0.3.2",
     "@nuxtjs/axios": "^5.3.6",
-    "@nuxtjs/pwa": "^3.0.0-0"
+    "@nuxtjs/pwa": "^3.0.0-0",
+    "nuxt": "^2.0.0",
+    "nuxt-buefy": "^0.3.2",
+    "nuxt-property-decorator": "^2.7.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "^0.6.0"
+    "@nuxt/typescript-build": "^0.6.0",
+    "@nuxtjs/eslint-config-typescript": "^2.0.0",
+    "@types/jest": "25.x",
+    "@vue/test-utils": "^1.0.3",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "jest": "25.x",
+    "jest-serializer-vue": "^2.0.2",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "vue-jest": "^4.0.0-beta.3"
   }
 }
