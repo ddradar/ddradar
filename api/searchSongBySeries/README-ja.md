@@ -1,5 +1,4 @@
-
-# Search Song API
+# Search Song by Series API
 
 English version is [here](./README.md).
 
@@ -10,17 +9,15 @@ English version is [here](./README.md).
 - [応答](#response)
   - [本文](#response-body)
 - リンク
-  - [実装 (index.ts)](./index.ts)
-  - [設定 (function.json)](./function.json)
-  - [単体テスト (searchSong.test.ts)](../__tests__/searchSong.test.ts)
+  - [実装 (index.ts)](index.ts)
+  - [設定 (function.json)](function.json)
+  - [単体テスト (index.test.ts)](index.test.ts)
 
 ## Endpoint
 
 認証は不要です。
 
 > GET /api/songs/series/0&name=0
-
-> GET /api/songs/name/0&series=0
 
 ## Parameters
 
@@ -31,10 +28,10 @@ English version is [here](./README.md).
 
 ## Response
 
-- `series` と `name` の両方が未指定、あるいは型が一致しなかった場合は、`404 Not Found` を返します。
-  - クエリで指定した条件が不正である場合は、単に無視されます。
+- `series` が未指定、あるいは型が一致しなかった場合は、`404 Not Found` を返します。
+  - `name` が不正である場合は、単に無視されます。
 - 条件と一致する曲が見つからなかった場合は、`404 Not Found` を返します。
-条件と一致する曲が見つかった場合は、`200 OK` と、[JSON](#response-body)を返します。
+- 条件と一致する曲が見つかった場合は、`200 OK` と、[JSON](#response-body)を返します。
 
 ### Response Body
 

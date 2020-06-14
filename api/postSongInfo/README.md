@@ -11,13 +11,13 @@ Add or update song and charts information.
 - Links
   - Implements (index.ts)
   - Settings (function.json)
-  - Unit Test (postSongInfo.test.ts)
+  - Unit Test (index.test.ts)
 
 ## Endpoint
 
-Need Authentication with `administrator` role.
+Need [Authentication](../../docs/api/authentication.md#login) with `administrator` role.
 
-> POST /api/songs
+> POST /api/admin/songs
 
 ## Parameters
 
@@ -166,7 +166,7 @@ Need Authentication with `administrator` role.
 
 - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
 - Returns `400 BadRequest` if body parameters are invalid.
-- Returns `200 OK` with [updated JSON data](#response-body---post-song-information) if succeed add or update.
+- Returns `200 OK` with [updated JSON data](#response-body) if succeed add or update.
 
 ### Response Body
 

@@ -10,13 +10,13 @@
 - リンク
   - 実装 (index.ts)
   - 設定 (function.json)
-  - 単体テスト (postSongInfo.test.ts)
+  - 単体テスト (index.test.ts)
 
 ## Endpoint
 
-`administrator` ロールを持つユーザーで認証する必要があります。
+`administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
 
-> POST /api/songs
+> POST /api/admin/songs
 
 ## Parameters
 
@@ -163,7 +163,7 @@
 
 ## Response
 
-- 認証していない、もしくは`administrator` ロールを持っていない場合は、`401 Unauthorized` を返します。
+- 認証していないか、`administrator` ロールを持っていない場合は、`401 Unauthorized` を返します。
 - BODYパラメータが規定のものと一致しない場合は、`400 BadRequest` を返します。
 - 登録/更新に成功した場合は、`200 OK` と、[更新後のJSONデータ](#response-body)を返します。
 

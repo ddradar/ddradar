@@ -18,4 +18,4 @@ For technical details, please see [Cosmos DB documents](https://docs.microsoft.c
 
 ## Initialization code
 
-TBD
+[initDatabase.js](../../api/__tests__/initDatabase.js)

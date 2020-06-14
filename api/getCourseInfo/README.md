@@ -9,9 +9,9 @@ Get course and orders information that match the specified ID.
 - [Response](#response)
   - [Response Body](#response-body)
 - Links
-  - Implements (index.ts)
-  - Settings (function.json)
-  - Unit Test (getCourseInfo.test.ts)
+  - [Implements (index.ts)](index.ts)
+  - [Settings (function.json)](function.json)
+  - [Unit Test (index.test.ts)](index.test.ts)
 
 ## Endpoint
 
