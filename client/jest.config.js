@@ -9,4 +9,5 @@ module.exports = {
     '^.+\\.ts$': 'ts-jest',
     '.*\\.(vue)$': 'vue-jest',
   },
+  snapshotSerializers: ['jest-serializer-vue'],
 }

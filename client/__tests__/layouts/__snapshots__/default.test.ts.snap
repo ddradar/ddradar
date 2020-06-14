@@ -111,14 +111,74 @@ exports[`layouts/default.vue renders correctly 1`] = `
       <div
         class="navbar-end"
       >
-        <a
-          class="navbar-item"
-          href="/.auth/logout"
+        <div
+          class="navbar-item has-dropdown is-hoverable"
         >
-          
-        ログアウト
-      
-        </a>
+          <a
+            aria-haspopup="true"
+            class="navbar-link"
+            href="#"
+            role="menuitem"
+          >
+            ログイン
+          </a>
+           
+          <div
+            class="navbar-dropdown is-right"
+          >
+            <div
+              class="navbar-item"
+            >
+              <div
+                class="buttons"
+              >
+                <a
+                  class="button is-info"
+                  href="/.auth/login/twitter"
+                  type="button"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-twitter"
+                    />
+                  </span>
+                   
+                  <span>
+                    
+              Twitterでログイン
+            
+                  </span>
+                   
+                  <!---->
+                </a>
+                 
+                <a
+                  class="button is-dark"
+                  href="/.auth/login/github"
+                  type="button"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-github"
+                    />
+                  </span>
+                   
+                  <span>
+                    
+              GitHubでログイン
+            
+                  </span>
+                   
+                  <!---->
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </nav>
