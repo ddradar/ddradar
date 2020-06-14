@@ -7,6 +7,7 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  transformIgnorePatterns: ['/node_modules/^(@ddradar)'],
   globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,
