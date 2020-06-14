@@ -1,21 +1,17 @@
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { SongSchema } from '../song'
+import { isSongSchema, SongSchema } from '../song'
 
 /** Add or update song and charts information. */
 const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'bindingData' | 'res'>,
-  req: HttpRequest
+  context: Pick<Context, 'res'>,
+  req: Pick<HttpRequest, 'body'>
 ): Promise<void> => {
-  const id: string = context.bindingData.id
-
-  // In Azure Functions, this function will only be invoked if a valid `id` is passed.
-  // So this check is only used to unit tests.
-  if (!id || !/^[01689bdiloqDIOPQ]{32}$/.test(id)) {
+  if (!isSongSchema(req.body)) {
     context.res = {
-      status: 404,
-      body: 'Please pass a id like "/api/admin/songs/:id"',
+      status: 400,
+      body: 'Body is not SongSchema',
     }
     return
   }

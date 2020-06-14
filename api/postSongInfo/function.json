@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["post"],
-      "route": "admin/songs/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}"
+      "route": "admin/songs"
     },
     {
       "type": "http",
