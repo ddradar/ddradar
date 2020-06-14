@@ -8,7 +8,7 @@ export const getConnectionString = (readonly?: boolean): string =>
 /* eslint-enable node/no-process-env */
 
 let readWriteClient: CosmosClient
-let readOnlyClient: CosmosClient = new CosmosClient(getConnectionString(true))
+let readOnlyClient: CosmosClient
 
 const readOnlyContainers: { [key: string]: Container } = {}
 const readWriteContainers: { [key: string]: Container } = {}
