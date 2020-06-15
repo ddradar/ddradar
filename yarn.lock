@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@azure/cosmos@^3.6.3":
-  version "3.6.3"
-  resolved "https://registry.yarnpkg.com/@azure/cosmos/-/cosmos-3.6.3.tgz#bb53bde35fbf338160691d2b6a62f47b4a9a1cbb"
-  integrity sha512-JoCDxl0TnL6EHL4xD3KC9r2bMivK13q1jl7h69wd/YFLlt3aBTTCehtAX+y4alNSENpL53XdRdw/cna0mI2XDw==
+"@azure/cosmos@^3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@azure/cosmos/-/cosmos-3.7.1.tgz#1d9c13774f0fbdd22113e33d61ca7f702574ee66"
+  integrity sha512-P/80gz4c6gAjdilOTT7TofU3Vl1Wh21+U+/d/MAIdaXhsSspL44diyl0qfLRxXiosL4yT12SGHOE9w0n3U57yA==
   dependencies:
     "@types/debug" "^4.1.4"
     debug "^4.1.1"
@@ -15,8 +15,8 @@
     os-name "^3.1.0"
     priorityqueuejs "^1.0.0"
     semaphore "^1.0.5"
-    tslib "^1.10.0"
-    uuid "^3.3.2"
+    tslib "^2.0.0"
+    uuid "^8.1.0"
 
 "@azure/functions@^1.2.2":
   version "1.2.2"
@@ -1785,6 +1785,14 @@
   version "25.2.3"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-25.2.3.tgz#33d27e4c4716caae4eced355097a47ad363fdcaf"
   integrity sha512-JXc1nK/tXHiDhV55dvfzqtmP4S3sy3T3ouV2tkViZgxY/zeUkcpQcQPGRlgF4KmWzWW5oiWYSZwtCB+2RsE4Fw==
+  dependencies:
+    jest-diff "^25.2.1"
+    pretty-format "^25.2.1"
+
+"@types/jest@^26.0.0":
+  version "26.0.0"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.0.tgz#a6d7573dffa9c68cbbdf38f2e0de26f159e11134"
+  integrity sha512-/yeMsH9HQ1RLORlXAwoLXe8S98xxvhNtUz3yrgrwbaxYjT+6SFPZZRksmRKRA6L5vsUtSHeN71viDOTTyYAD+g==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
@@ -11464,10 +11472,15 @@ tsconfig-paths@^3.9.0:
     minimist "^1.2.0"
     strip-bom "^3.0.0"
 
-tslib@^1.10.0, tslib@^1.8.1, tslib@^1.9.0:
+tslib@^1.8.1, tslib@^1.9.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.13.0.tgz#c881e13cc7015894ed914862d276436fa9a47043"
   integrity sha512-i/6DQjL8Xf3be4K/E6Wgpekn5Qasl1usyw++dAA35Ue5orEn65VIxOA+YvNNl9HV3qv70T7CNwjODHZrLwvd1Q==
+
+tslib@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.0.0.tgz#18d13fc2dce04051e20f074cc8387fd8089ce4f3"
+  integrity sha512-lTqkx847PI7xEDYJntxZH89L2/aXInsyF2luSafe/+0fHOMjlBNXdH6th7f70qxLDhul7KZK0zC8V5ZIyHl0/g==
 
 tsutils@^3.17.1:
   version "3.17.1"
@@ -11547,10 +11560,15 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.3.3, typescript@^3.9.3:
+typescript@^3.9.3:
   version "3.9.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.3.tgz#d3ac8883a97c26139e42df5e93eeece33d610b8a"
   integrity sha512-D/wqnB2xzNFIcoBG9FG8cXRDjiqSTbG2wd8DMZeQyJlP1vfTkIxH4GKveWaEBYySKIg+USu+E+EDIR47SqnaMQ==
+
+typescript@^3.9.5:
+  version "3.9.5"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.5.tgz#586f0dba300cde8be52dd1ac4f7e1009c1b13f36"
+  integrity sha512-hSAifV3k+i6lEoCJ2k6R2Z/rp/H3+8sdmcn5NrS3/3kE7+RyZXm9aqvxWqjEXHAd8b0pShatpcdMTvEdvAJltQ==
 
 typescript@~3.8:
   version "3.8.3"
@@ -11774,6 +11792,11 @@ uuid@^7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.3.tgz#c5c9f2c8cf25dc0a372c4df1441c41f5bd0c680b"
   integrity sha512-DPSke0pXhTZgoF/d+WSt2QaKMCFSfx7QegxEWT+JOuHF5aWrKEn0G+ztjuJg/gG8/ItK+rbPCD/yNv8yyih6Cg==
+
+uuid@^8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.1.0.tgz#6f1536eb43249f473abc6bd58ff983da1ca30d8d"
+  integrity sha512-CI18flHDznR0lq54xBycOVmphdCYnQLKn8abKn7PXUiKUGdEd+/l9LWNJmugXel4hXq7S+RMNl34ecyC9TntWg==
 
 v8-compile-cache@^2.0.3:
   version "2.1.0"
