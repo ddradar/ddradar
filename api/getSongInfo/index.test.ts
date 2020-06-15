@@ -1,8 +1,8 @@
 import type { Context } from '@azure/functions'
+import type { SongSchema } from '@ddradar/core/db'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { SongSchema } from '../song'
 import getSongInfo from '.'
 
 describe('GET /api/songs', () => {
