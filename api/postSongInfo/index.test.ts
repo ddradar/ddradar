@@ -22,8 +22,8 @@ describe('POST /api/admin/songs', () => {
       await postSongInfo(context, req)
 
       // Assert
-      expect(context.res.status).toBe(400)
-      expect(context.res.body).toBe('Body is not SongSchema')
+      expect(context.res?.status).toBe(400)
+      expect(context.res?.body).toBe('Body is not SongSchema')
     }
   )
 
@@ -90,8 +90,8 @@ describe('POST /api/admin/songs', () => {
         await postSongInfo(context, { body: songToBeCreated })
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(songToBeCreated)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(songToBeCreated)
       })
 
       test('returns "200 OK" with JSON body (Update)', async () => {
@@ -102,8 +102,8 @@ describe('POST /api/admin/songs', () => {
         await postSongInfo(context, { body })
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(body)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(body)
       })
 
       afterAll(async () => {

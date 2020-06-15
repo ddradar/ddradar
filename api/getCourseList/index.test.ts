@@ -107,8 +107,8 @@ describe('GET /api/courses', () => {
         await getCourseList(context)
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(courses)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(courses)
       })
 
       afterAll(async () => {

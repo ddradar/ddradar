@@ -18,6 +18,7 @@ const httpTrigger: AzureFunction = async (
 
   const container = getContainer('Songs', true)
   const { resource } = await container.items.upsert<SongSchema>(req.body)
+  if (!resource) throw new Error(`Failed upsert id:${req.body.id}`)
   const responseBody: SongSchema = {
     id: resource.id,
     name: resource.name,

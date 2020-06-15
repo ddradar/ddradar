@@ -1,7 +1,7 @@
 import { SqlParameter } from '@azure/cosmos'
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import { SeriesList } from '@ddradar/core/song'
 
-import { SeriesList } from '../core/song'
 import { getContainer } from '../cosmos'
 import { SongSchema } from '../song'
 

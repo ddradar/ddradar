@@ -2,7 +2,7 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es6",
-    "outDir": "dist",
+    "outDir": "../dist/core",
     "rootDir": ".",
     "sourceMap": true,
     "strict": false,
@@ -10,5 +10,5 @@
     "declaration": true
   },
   "types": ["jest", "node"],
-  "exclude": ["**/__tests__/**"]
+  "exclude": ["**/__tests__/**", "node_modules"]
 }
