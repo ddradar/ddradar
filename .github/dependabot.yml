@@ -1,0 +1,75 @@
+# Please see the documentation for all configuration options:
+# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+  # Root directory
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '18:00'
+      timezone: 'Asia/Tokyo'
+    commit-message:
+      prefix: 'fix'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependabot:robot:'
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+      time: '18:00'
+      timezone: 'Asia/Tokyo'
+    commit-message:
+      prefix: 'fix'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'dependabot:robot:'
+
+  # /api directory
+  - package-ecosystem: 'npm'
+    directory: '/api'
+    schedule:
+      interval: 'daily'
+      time: '18:00'
+      timezone: 'Asia/Tokyo'
+    commit-message:
+      prefix: 'fix'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'area-server'
+      - 'dependabot:robot:'
+
+  # /client directory
+  - package-ecosystem: 'npm'
+    directory: '/client'
+    schedule:
+      interval: 'daily'
+      time: '18:00'
+      timezone: 'Asia/Tokyo'
+    commit-message:
+      prefix: 'fix'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'area-client'
+      - 'dependabot:robot:'
+
+  # /core directory
+  - package-ecosystem: 'npm'
+    directory: '/core'
+    schedule:
+      interval: 'daily'
+      time: '18:00'
+      timezone: 'Asia/Tokyo'
+    commit-message:
+      prefix: 'fix'
+      prefix-development: 'chore'
+      include: 'scope'
+    labels:
+      - 'area-core'
+      - 'dependabot:robot:'
