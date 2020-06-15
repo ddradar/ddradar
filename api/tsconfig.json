@@ -13,6 +13,5 @@
     }
   },
   "references": [{ "path": "../core/" }],
-  "types": ["jest", "node"],
-  "exclude": ["__tests__", "**/**.test.ts", "node_modules"]
+  "types": ["jest", "node"]
 }

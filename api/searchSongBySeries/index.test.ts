@@ -24,8 +24,8 @@ describe('GET /api/songs/series', () => {
       await searchSong(context, { query: {} })
 
       // Assert
-      expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe(
+      expect(context.res?.status).toBe(404)
+      expect(context.res?.body).toBe(
         `"series" is undefined or invalid value :${series}`
       )
     }
@@ -81,8 +81,8 @@ describe('GET /api/songs/series', () => {
         await searchSong(context, { query: { name: '0' } })
 
         // Assert
-        expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe(
+        expect(context.res?.status).toBe(404)
+        expect(context.res?.body).toBe(
           'Not found song that {series: "DDR 1st" nameIndex: 0}'
         )
       })
@@ -105,8 +105,8 @@ describe('GET /api/songs/series', () => {
           await searchSong(context, { query: { name } })
 
           // Assert
-          expect(context.res.status).toBe(200)
-          expect(context.res.body).toStrictEqual(expected)
+          expect(context.res?.status).toBe(200)
+          expect(context.res?.body).toStrictEqual(expected)
         }
       )
 
