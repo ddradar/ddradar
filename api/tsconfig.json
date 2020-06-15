@@ -1,17 +1,12 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
     "preserveSymlinks": true,
-    "target": "es6",
     "outDir": "../dist/api",
     "rootDir": ".",
-    "sourceMap": true,
-    "strict": true,
     "baseUrl": "./",
     "paths": {
       "core/*": ["../dist/core/*"]
     }
   },
-  "references": [{ "path": "../core/" }],
-  "types": ["jest", "node"]
+  "references": [{ "path": "../core/" }]
 }
