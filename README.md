@@ -8,4 +8,4 @@
 [![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=ddradar/ddradar "Dependabot Status")](https://dependabot.com)
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
-DDR Score Manager
+DDR Score Tracker
