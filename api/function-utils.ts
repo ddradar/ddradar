@@ -19,7 +19,7 @@ export const getClientPrincipal = ({
 export const hasRole = (
   req: Pick<HttpRequest, 'headers'>,
   roleName: string
-): boolean => getClientPrincipal(req)?.userRoles.includes(roleName)
+): boolean => getClientPrincipal(req)?.userRoles.includes(roleName) ?? false
 
 export const getUserId = (req: Pick<HttpRequest, 'headers'>): string | null =>
-  getClientPrincipal(req)?.userId
+  getClientPrincipal(req)?.userId ?? null
