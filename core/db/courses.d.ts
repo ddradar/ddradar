@@ -1,4 +1,4 @@
-import { StepChart } from './songs'
+import { StepChartSchema } from './songs'
 
 /** DB Schema of "Courses" collection */
 export type CourseSchema = {
@@ -11,7 +11,7 @@ export type CourseSchema = {
   orders: Order[]
 }
 
-type ChartKeys = Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>
+type ChartKeys = Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
 
 export type Order = ChartKeys & {
   chartOrder: Chart[]

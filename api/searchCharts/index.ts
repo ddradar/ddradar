@@ -1,5 +1,5 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import { SongSchema, StepChart } from '@ddradar/core/db/songs'
+import type { Song, StepChart } from '@ddradar/core'
 
 import { getContainer } from '../cosmos'
 
@@ -28,11 +28,11 @@ const httpTrigger: AzureFunction = async (
 
   const container = getContainer('Songs', true)
 
-  const songColumns: (keyof SongSchema)[] = ['id', 'name', 'series']
+  const songColumns: (keyof StepChart)[] = ['id', 'name', 'series']
   const chartColumns: (keyof StepChart)[] = ['playStyle', 'difficulty', 'level']
-  const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
+  const orderByColumns: (keyof Song)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
-    .query<SongSchema>({
+    .query<StepChart>({
       query:
         `SELECT ${songColumns.map(col => `s.${col}`).join(', ')}, ` +
         `${chartColumns.map(col => `c.${col}`).join(', ')} ` +

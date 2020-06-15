@@ -35,7 +35,7 @@ export type SongSchema = {
    * Set to `null` if not revealed, such as "???".
    */
   maxBPM: number | null
-  charts: StepChart[]
+  charts: StepChartSchema[]
 }
 
 export const isSongSchema = (obj: unknown): obj is SongSchema =>
@@ -52,10 +52,10 @@ export const isSongSchema = (obj: unknown): obj is SongSchema =>
       obj.maxBPM === null)) &&
   hasProperty(obj, 'charts') &&
   Array.isArray(obj.charts) &&
-  obj.charts.every(c => isStepChart(c))
+  obj.charts.every(c => isStepChartSchema(c))
 
 /** Song's step chart */
-export type StepChart = {
+export type StepChartSchema = {
   /** `1`: SINGLE, `2`: DOUBLE */
   playStyle: 1 | 2
   /** `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE */
@@ -79,7 +79,7 @@ export type StepChart = {
   chaos: number
 }
 
-const isStepChart = (obj: unknown): obj is StepChart =>
+const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
   hasIntegerProperty(
     obj,
     'playStyle',
