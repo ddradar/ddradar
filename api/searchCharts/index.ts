@@ -1,7 +1,7 @@
 import type { AzureFunction, Context } from '@azure/functions'
+import { SongSchema, StepChart } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../cosmos'
-import { Chart, SongSchema } from '../song'
 
 /** Get charts that match the specified conditions. */
 const httpTrigger: AzureFunction = async (
@@ -29,7 +29,7 @@ const httpTrigger: AzureFunction = async (
   const container = getContainer('Songs', true)
 
   const songColumns: (keyof SongSchema)[] = ['id', 'name', 'series']
-  const chartColumns: (keyof Chart)[] = ['playStyle', 'difficulty', 'level']
+  const chartColumns: (keyof StepChart)[] = ['playStyle', 'difficulty', 'level']
   const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
     .query<SongSchema>({

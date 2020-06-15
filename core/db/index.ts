@@ -1,3 +1,4 @@
+import { CourseSchema } from './courses'
 import { isSongSchema, SongSchema } from './songs'
 
-export { SongSchema, isSongSchema }
+export { CourseSchema, SongSchema, isSongSchema }
