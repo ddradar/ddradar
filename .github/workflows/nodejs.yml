@@ -58,3 +58,5 @@ jobs:
           echo "::set-env name=NODE_TLS_REJECT_UNAUTHORIZED::0"
       - name: Test
         run: yarn test
+      - name: Report Code Coverage to codecov
+        uses: codecov/codecov-action@v1
