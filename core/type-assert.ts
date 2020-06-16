@@ -9,12 +9,6 @@ export const hasStringProperty = <K extends string>(
 ): x is { [M in K]: string } =>
   hasProperty(x, ...names) && names.every(n => typeof x[n] === 'string')
 
-export const hasNumberProperty = <K extends string>(
-  x: unknown,
-  ...names: K[]
-): x is { [M in K]: number } =>
-  hasProperty(x, ...names) && names.every(n => typeof x[n] === 'number')
-
 export const hasIntegerProperty = <K extends string>(
   x: unknown,
   ...names: K[]

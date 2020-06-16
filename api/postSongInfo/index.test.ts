@@ -1,8 +1,8 @@
 import type { Context } from '@azure/functions'
+import type { SongSchema } from '@ddradar/core/db'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { SongSchema } from '../song'
 import postSongInfo from '.'
 
 describe('POST /api/admin/songs', () => {
@@ -61,7 +61,7 @@ describe('POST /api/admin/songs', () => {
         nameKana: 'MAKE IT BETTER',
         nameIndex: 22,
         artist: 'mitsu-O!',
-        series: '1st',
+        series: 'DDR 1st',
         minBPM: 119,
         maxBPM: 119,
         charts: [

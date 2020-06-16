@@ -1,7 +1,7 @@
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import { isSongSchema, SongSchema } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../cosmos'
-import { isSongSchema, SongSchema } from '../song'
 
 /** Add or update song and charts information. */
 const httpTrigger: AzureFunction = async (

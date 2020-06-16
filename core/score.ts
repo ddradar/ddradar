@@ -1,23 +1,7 @@
-import { StepChart } from './step-chart'
+import { StepChart } from './'
+import { ScoreSchema } from './db'
 
-export type Score = Pick<StepChart, 'songId' | 'playStyle' | 'difficulty'> & {
-  score: number
-  exScore: number
-  clearLamp: ClearLamp | null
-  rank: DanceLevel | null
-}
-
-/**
- * 0: Failed
- * 1: Assisted Clear
- * 2: Clear
- * 3: Life 4 Clear
- * 4: (Good) Full Combo
- * 5: Great Full Combo
- * 6: Perfect Full Combo
- * 7: Marvelous Full Combo
- */
-type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+export type Score = Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>
 
 type DanceLevel =
   | 'E'

@@ -1,9 +1,9 @@
 import { SqlParameter } from '@azure/cosmos'
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
-import { SeriesList } from '@ddradar/core/song'
+import type { SongSchema } from '@ddradar/core/db'
+import { SeriesList } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../cosmos'
-import { SongSchema } from '../song'
 
 /** Get a list of song information that matches the specified conditions. */
 const httpTrigger: AzureFunction = async (
