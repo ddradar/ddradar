@@ -1,5 +1,5 @@
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
-import { isSongSchema, SongSchema } from '@ddradar/core/db'
+import { isSongSchema, SongSchema } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../cosmos'
 
