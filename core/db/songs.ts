@@ -24,7 +24,7 @@ export type SongSchema = {
   nameIndex: SongIndex
   artist: string
   /** Series title depend on official site. */
-  series: string
+  series: Series
   /**
    * Displayed min BPM (Beet Per Minutes).
    * Set to `null` if not revealed, such as "???".
