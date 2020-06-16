@@ -16,11 +16,22 @@ export type ScoreSchema = Pick<StepChartSchema, 'playStyle' | 'difficulty'> & {
   score: number
   exScore?: number
   maxCombo?: number
-  /** `0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC */
-  clearLamp: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+  clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
   rank: DanceLevel
 }
+
+/**
+ * `0`: Failed,
+ * `1`: Assisted Clear,
+ * `2`: Clear,
+ * `3`: LIFE4,
+ * `4`: Good FC (Full Combo),
+ * `5`: Great FC,
+ * `6`: PFC,
+ * `7`: MFC
+ */
+export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
 type DanceLevel =
   | 'E'

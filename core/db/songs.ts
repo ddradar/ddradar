@@ -58,8 +58,7 @@ export const isSongSchema = (obj: unknown): obj is SongSchema =>
 export type StepChartSchema = {
   /** `1`: SINGLE, `2`: DOUBLE */
   playStyle: 1 | 2
-  /** `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE */
-  difficulty: 0 | 1 | 2 | 3 | 4
+  difficulty: Difficulty
   level: Level
   /** Normal arrow count. (Jump = 1 count) */
   notes: number
@@ -99,6 +98,15 @@ const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
   obj.difficulty <= 4 &&
   obj.level >= 1 &&
   obj.level <= 20
+
+/**
+ * `0`: BEGINNER,
+ * `1`: BASIC,
+ * `2`: DIFFICULT,
+ * `3`: EXPERT,
+ * `4`: CHALLENGE
+ */
+export type Difficulty = 0 | 1 | 2 | 3 | 4
 
 type Series =
   | 'DDR 1st'
