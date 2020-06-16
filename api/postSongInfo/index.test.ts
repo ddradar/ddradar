@@ -61,7 +61,7 @@ describe('POST /api/admin/songs', () => {
         nameKana: 'MAKE IT BETTER',
         nameIndex: 22,
         artist: 'mitsu-O!',
-        series: '1st',
+        series: 'DDR 1st',
         minBPM: 119,
         maxBPM: 119,
         charts: [
