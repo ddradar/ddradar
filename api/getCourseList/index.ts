@@ -1,7 +1,7 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import { CourseSchema, Order } from '@ddradar/core/db/courses'
 
 import { getContainer } from '../cosmos'
+import { CourseSchema, Order } from '../db/courses'
 
 type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
   orders: Omit<Order, 'chartOrder'>[]

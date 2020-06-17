@@ -1,7 +1,7 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import type { SongSchema } from '@ddradar/core/db'
 
 import { getContainer } from '../cosmos'
+import type { SongSchema } from '../db'
 
 /** Get song and charts information that match the specified ID. */
 const httpTrigger: AzureFunction = async (

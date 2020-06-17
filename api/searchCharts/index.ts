@@ -1,6 +1,6 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import type { Song, StepChart } from '@ddradar/core'
 
+import type { Song, StepChart } from '..'
 import { getContainer } from '../cosmos'
 
 /** Get charts that match the specified conditions. */
