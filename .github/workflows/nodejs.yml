@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Enable Symbolic Links
-        run: git config --global core.symlinks=true
+        run: git config --global core.symlinks true
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use Node.js 12
