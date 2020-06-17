@@ -1,12 +1,7 @@
 {
   "compilerOptions": {
     "preserveSymlinks": true,
-    "outDir": "../dist/api",
-    "rootDir": ".",
-    "baseUrl": "./",
-    "paths": {
-      "core/*": ["../dist/core/*"]
-    }
-  },
-  "references": [{ "path": "../core/" }]
+    "outDir": "./dist",
+    "rootDir": "."
+  }
 }
