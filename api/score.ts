@@ -1,4 +1,4 @@
-import { StepChart } from './'
+import { StepChart } from '.'
 import { ScoreSchema } from './db'
 
 export type Score = Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>
