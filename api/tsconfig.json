@@ -1,6 +1,10 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "rootDir": "."
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "dist",
+    "sourceMap": true,
+    "strict": true,
+    "types": ["jest", "node"]
   }
 }
