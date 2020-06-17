@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
-    "preserveSymlinks": true,
-    "outDir": "../dist/api",
-    "rootDir": "."
-  }
+    "module": "commonjs",
+    "target": "es6",
+    "outDir": "dist",
+    "rootDir": ".",
+    "sourceMap": true,
+    "strict": true
+  },
+  "types": ["jest", "node"],
+  "exclude": ["__tests__", "**/**.test.ts"]
 }
