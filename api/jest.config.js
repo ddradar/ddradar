@@ -3,11 +3,10 @@ module.exports = {
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
-  testMatch: ['**/*.test.ts'],
+  testMatch: ['**/*.test.ts', '!<rootDir>/core/**'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  transformIgnorePatterns: ['/node_modules/^(@ddradar)'],
   globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,

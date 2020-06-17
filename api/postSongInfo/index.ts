@@ -1,6 +1,6 @@
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
-import { isSongSchema, SongSchema } from '@ddradar/core/db/songs'
 
+import { isSongSchema, SongSchema } from '../core/db/songs'
 import { getContainer } from '../cosmos'
 
 /** Add or update song and charts information. */

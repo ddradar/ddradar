@@ -1,8 +1,8 @@
 import { SqlParameter } from '@azure/cosmos'
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
-import type { SongSchema } from '@ddradar/core/db'
-import { SeriesList } from '@ddradar/core/db/songs'
 
+import type { SongSchema } from '../core/db'
+import { SeriesList } from '../core/db/songs'
 import { getContainer } from '../cosmos'
 
 /** Get a list of song information that matches the specified conditions. */

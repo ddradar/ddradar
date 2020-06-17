@@ -1,7 +1,7 @@
 import type { Context } from '@azure/functions'
-import { CourseSchema } from '@ddradar/core/db'
 
 import { describeIf } from '../__tests__/util'
+import { CourseSchema } from '../core/db'
 import { getConnectionString, getContainer } from '../cosmos'
 import getCourseInfo from '.'
 

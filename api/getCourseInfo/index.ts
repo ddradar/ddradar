@@ -1,6 +1,6 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import { CourseSchema } from '@ddradar/core/db'
 
+import { CourseSchema } from '../core/db'
 import { getContainer } from '../cosmos'
 
 /** Get course and orders information that match the specified ID. */

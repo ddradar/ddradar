@@ -1,6 +1,6 @@
 import type { AzureFunction, Context } from '@azure/functions'
-import type { SongSchema } from '@ddradar/core/db'
 
+import type { SongSchema } from '../core/db'
 import { getContainer } from '../cosmos'
 
 /** Get song and charts information that match the specified ID. */
