@@ -16,12 +16,12 @@ type Song = Omit<SongInfo, 'id' | 'nameKana' | 'nameIndex'>
 
 @Component
 export default class SongDetailPage extends Vue implements Song {
-  name: string
-  artist: string
-  series: string
-  minBPM: number | null
-  maxBPM: number | null
-  charts: StepChart[]
+  name: string = ''
+  artist: string = ''
+  series: string = ''
+  minBPM: number | null = null
+  maxBPM: number | null = null
+  charts: StepChart[] = []
 
   chartIndex: number = 0
 
@@ -55,6 +55,7 @@ export default class SongDetailPage extends Vue implements Song {
       series: songInfo.series,
       minBPM: songInfo.minBPM,
       maxBPM: songInfo.maxBPM,
+      charts: songInfo.charts ?? [],
       chartIndex,
     }
   }
