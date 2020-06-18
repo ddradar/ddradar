@@ -1,0 +1,78 @@
+<template>
+  <section class="section">
+    <h1 class="title">{{ title }}</h1>
+    <b-table
+      :data="songs"
+      striped
+      hoverable
+      focusable
+      :mobile-cards="false"
+      paginated
+      per-page="50"
+    >
+      <template slot-scope="props">
+        <b-table-column field="name" label="Name">
+          <nuxt-link :to="`/songs/${props.row.id}`">
+            {{ props.row.name }}
+          </nuxt-link>
+        </b-table-column>
+        <b-table-column field="artist" label="Artist">
+          {{ props.row.artist }}
+        </b-table-column>
+        <b-table-column field="bpm" label="BPM">
+          {{ displayedBPM(props.row.minBPM, props.row.maxBPM) }}
+        </b-table-column>
+      </template>
+
+      <template slot="empty">
+        <section class="section">
+          <div class="content has-text-grey has-text-centered">
+            <p>Nothing here.</p>
+          </div>
+        </section>
+      </template>
+    </b-table>
+  </section>
+</template>
+
+<script lang="ts">
+import { Context } from '@nuxt/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+
+import { SeriesList, SongInfo } from '~/types/api/song'
+
+type Song = Omit<SongInfo, 'charts'>
+
+@Component
+export default class SongBySeriesPage extends Vue {
+  title: string = ''
+  songs: Song[] = []
+
+  validate({ params }: Pick<Context, 'params'>) {
+    const parsedIndex = parseInt(params.seriesIndex, 10)
+    return (
+      /^\d{1,2}$/.test(params.seriesIndex) &&
+      parsedIndex >= 0 &&
+      parsedIndex < SeriesList.length
+    )
+  }
+
+  async asyncData({ payload, params, $http }: Context) {
+    // Get song list from generated payload or API
+    const songs: Song[] =
+      payload ??
+      (await $http.$get<Song[]>(`/songs/series/${params.seriesIndex}`))
+
+    // Get series title
+    const title = SeriesList[parseInt(params.seriesIndex, 10)]
+
+    return { title, songs }
+  }
+
+  displayedBPM(minBPM: number | null, maxBPM: number | null) {
+    if (!minBPM || !maxBPM) return '???'
+    if (minBPM === maxBPM) return `${minBPM}`
+    return `${minBPM}-${maxBPM}`
+  }
+}
+</script>
