@@ -65,11 +65,10 @@ export default class SongBySeriesPage extends Vue {
     return { title }
   }
 
-  async fetch({ params, $http }: Pick<Context, '$http' | 'params'>) {
-    // Get song list from API
-    const songs: Song[] = await $http.$get<Song[]>(
-      `/songs/series/${params.seriesIndex}`
-    )
+  // Get song list from API
+  async fetch() {
+    const i = this.$route.params.seriesIndex
+    const songs: Song[] = await this.$http.$get<Song[]>(`/songs/series/${i}`)
     this.songs = songs
   }
 

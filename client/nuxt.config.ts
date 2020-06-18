@@ -42,10 +42,7 @@ const configuration: Configuration = {
   },
   generate: {
     routes() {
-      // eslint-disable-next-line no-process-env
-      const baseUri = process.env.API_URL
       const routes: { route: string; payload?: any }[] = []
-      if (!baseUri) return routes
 
       // /series/0
       for (let i = 0; i < SeriesList.length; i++) {
