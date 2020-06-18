@@ -19,6 +19,11 @@
     {
       "route": "/api/admin/*",
       "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/songs/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ]
 }
