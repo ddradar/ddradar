@@ -33,7 +33,7 @@ export type SongInfo = {
   charts: StepChart[]
 }
 
-type StepChart = {
+export type StepChart = {
   /** `1`: SINGLE, `2`: DOUBLE */
   playStyle: 1 | 2
   /**
