@@ -46,14 +46,7 @@ const configuration: Configuration = {
       // eslint-disable-next-line no-process-env
       const baseUri = process.env.API_URL
       const routes: { route: string; payload?: any }[] = []
-
-      // Generate dynamic routes from static data if API cannot use
-      if (!baseUri) {
-        for (let i = 0; i < SeriesList.length; i++) {
-          routes.push({ route: `/songs/series/${i}` })
-        }
-        return routes
-      }
+      if (!baseUri) return routes
 
       // Generate dynamic routes from /api/songs/series/
       for (let i = 0; i < SeriesList.length; i++) {

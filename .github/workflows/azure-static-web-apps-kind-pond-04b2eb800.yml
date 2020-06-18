@@ -37,7 +37,7 @@ jobs:
           routes_location: '/'
           ###### End of Repository/Build Configurations ######
         env:
-          API_URL: 'https:/www.ddradar.app/api'
+          API_URL: 'https://www.ddradar.app/api'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
