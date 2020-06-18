@@ -53,10 +53,7 @@ const configuration: Configuration = {
         const title = SeriesList[i]
         const res = await fetch(`${baseUri}/songs/series/${i}`)
         const songs: Song[] = await res.json()
-        routes.push({ route: `/songs/series/${i}`, payload: { title, songs } })
-        for (const song of songs) {
-          routes.push({ route: `/songs/${song.id}`, payload: song })
-        }
+        routes.push({ route: `/series/${i}`, payload: { title, songs } })
       }
 
       return routes
