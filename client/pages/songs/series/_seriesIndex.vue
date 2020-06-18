@@ -58,11 +58,12 @@ export default class SongBySeriesPage extends Vue {
   }
 
   async asyncData({ payload, params, $http }: Context) {
-    // Get song list from generated payload or API
-    const songs: Song[] =
-      payload ??
-      (await $http.$get<Song[]>(`/songs/series/${params.seriesIndex}`))
+    if (payload) return { ...payload } // { title: string, songs: Song[] }
 
+    // Get song list from API
+    const songs: Song[] = await $http.$get<Song[]>(
+      `/songs/series/${params.seriesIndex}`
+    )
     // Get series title
     const title = SeriesList[parseInt(params.seriesIndex, 10)]
 
