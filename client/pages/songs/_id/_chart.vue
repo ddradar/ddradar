@@ -10,7 +10,7 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { SongInfo, StepChart } from '../../../types/api/song'
+import { SongInfo, StepChart } from '~/types/api/song'
 
 type Song = Omit<SongInfo, 'id' | 'nameKana' | 'nameIndex'>
 
@@ -32,10 +32,10 @@ export default class SongDetailPage extends Vue implements Song {
     )
   }
 
-  async asyncData({ payload, params, $axios }: Context) {
+  async asyncData({ payload, params, $http }: Context) {
     // Get song info from generated payload or API
     const songInfo: SongInfo =
-      payload ?? (await $axios.$get<SongInfo>(`/songs/${params.id}`))
+      payload ?? (await $http.$get<SongInfo>(`/songs/${params.id}`))
 
     // Set chartIndex
     let chartIndex = 0
