@@ -57,17 +57,20 @@ export default class SongBySeriesPage extends Vue {
     )
   }
 
-  async asyncData({ payload, params, $http }: Context) {
-    if (payload) return { ...payload } // { title: string, songs: Song[] }
+  asyncData({ payload, params }: Pick<Context, 'params' | 'payload'>) {
+    if (payload) return { ...payload } // { title: string }
 
+    // Get series title
+    const title = SeriesList[parseInt(params.seriesIndex, 10)]
+    return { title }
+  }
+
+  async fetch({ params, $http }: Pick<Context, '$http' | 'params'>) {
     // Get song list from API
     const songs: Song[] = await $http.$get<Song[]>(
       `/songs/series/${params.seriesIndex}`
     )
-    // Get series title
-    const title = SeriesList[parseInt(params.seriesIndex, 10)]
-
-    return { title, songs }
+    this.songs = songs
   }
 
   displayedBPM(minBPM: number | null, maxBPM: number | null) {
