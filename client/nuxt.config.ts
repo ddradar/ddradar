@@ -19,7 +19,7 @@ const configuration: Configuration = {
   css: ['~/assets/css/styles.scss'],
   plugins: [],
   buildModules: ['@nuxt/typescript-build'],
-  modules: [['nuxt-buefy', { css: false }], '@nuxtjs/axios', '@nuxtjs/pwa'],
+  modules: [['nuxt-buefy', { css: false }], '@nuxt/http', '@nuxtjs/pwa'],
   pwa: {
     manifest: {
       name: 'DDRadar',
@@ -31,11 +31,6 @@ const configuration: Configuration = {
       start_url: '/',
     },
   },
-  /**
-   * Axios module configuration
-   * See https://axios.nuxtjs.org/options
-   */
-  axios: {},
   build: {
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'

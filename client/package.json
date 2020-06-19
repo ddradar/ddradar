@@ -9,8 +9,8 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxt/http": "^0.5.5",
     "@nuxt/typescript-runtime": "^0.4.10",
-    "@nuxtjs/axios": "^5.11.0",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "nuxt": "^2.12.2",
     "nuxt-buefy": "^0.3.31",

@@ -36,6 +36,8 @@ jobs:
           app_artifact_location: 'dist' # Built app content directory - optional
           routes_location: '/'
           ###### End of Repository/Build Configurations ######
+        env:
+          API_URL: '/api'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && !contains(github.event.pull_request.labels.*.name, 'dependabot:robot:')
