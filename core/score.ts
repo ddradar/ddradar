@@ -126,7 +126,11 @@ export const setValidScoreFromChart = (
   }
 
   // PFC
-  if (clearLamp === 6 || score > 1000000 - great(baseScore)) {
+  // ClearLamp is PFC or Score is greater than Gr:1 score
+  if (
+    clearLamp === 6 ||
+    score > floorScore(1000000 - baseScore + great(baseScore))
+  ) {
     const dropCount = (1000000 - score) / 10
     return {
       score,
@@ -138,21 +142,24 @@ export const setValidScoreFromChart = (
   }
 
   // Great Full Combo
-  if (clearLamp === 5) {
-    const greatScore = great(baseScore)
-    const dropScore = baseScore - greatScore
+  // ClearLamp is GreatFC or Score is greater than Gd:1 score
+  if (
+    clearLamp === 5 ||
+    score > floorScore(1000000 - baseScore + good(baseScore))
+  ) {
+    const dropScore = great(baseScore) - baseScore
 
     // Try to calc great count from score
     let greatCount = 0
-    while (1000000 - dropScore * (greatCount + 1) > score) {
+    while (floorScore(1000000 + dropScore * (greatCount + 1)) >= score) {
       greatCount++
     }
 
     // Can calc
-    if ((notes - greatCount) * 10 < dropScore) {
-      /** A Score if no perfect */
-      const marvelousOnlyScore = floorScore(1000000 - greatScore * greatCount)
-      const perfectCount = (marvelousOnlyScore - score) / 10
+    if (greatCount === 1 || (notes - greatCount) * 10 < -dropScore) {
+      /** Perfect:0, Great: greatCount Score */
+      const target = floorScore(1000000 + dropScore * greatCount)
+      const perfectCount = (target - score) / 10
       return {
         score,
         rank: getDanceLevel(score),
@@ -163,6 +170,7 @@ export const setValidScoreFromChart = (
     }
 
     return {
+      ...incompleteScore,
       score,
       rank: getDanceLevel(score),
       clearLamp: 5,
@@ -171,38 +179,59 @@ export const setValidScoreFromChart = (
   }
 
   // Good Full Combo
-  if (clearLamp === 4) {
-    let calcedExScore: number | undefined = undefined
+  // ClearLamp is GoodFC or Score is greater than Miss:1 score
+  if (clearLamp === 4 || score > floorScore(1000000 - baseScore)) {
     // 1 Good 0 Great
-    if (score > 1000000 - good(baseScore) - great(baseScore)) {
-      /** A Score if no perfect */
-      const marvelousOnlyScore = floorScore(1000000 - good(baseScore))
-      const perfectCount = (marvelousOnlyScore - score) / 10
-      calcedExScore = exScore - 3 - perfectCount
+    if (
+      clearLamp === 4 &&
+      score >
+        floorScore(1000000 - baseScore * 2 - good(baseScore) + great(baseScore))
+    ) {
+      /** Perfect:0, Good:1 Score */
+      const target = floorScore(1000000 - baseScore + good(baseScore))
+      const perfectCount = (target - score) / 10
+      const calcedExScore = exScore - 3 - perfectCount
+      return {
+        score,
+        rank: getDanceLevel(score),
+        clearLamp: 4,
+        exScore: calcedExScore,
+        maxCombo,
+      }
     }
+
     return {
+      ...incompleteScore,
       score,
       rank: getDanceLevel(score),
-      clearLamp: 5,
-      exScore: calcedExScore,
+      clearLamp: 4,
       maxCombo,
     }
   }
 
-  let calcedExScore = incompleteScore.exScore
   // 1 Miss 0 Good 0 Great
-  if (score > 1000000 - baseScore - great(baseScore)) {
-    /** A Score if no perfect */
-    const marvelousOnlyScore = floorScore(1000000 - baseScore)
-    const perfectCount = (marvelousOnlyScore - score) / 10
-    calcedExScore = exScore - 3 - perfectCount
+  if (
+    clearLamp !== undefined && // Not selected Full combo
+    (score > floorScore(1000000 - baseScore * 2 + great(baseScore)) || // Score is greater than 1 Miss, 1 Great
+      incompleteScore.maxCombo === maxCombo) // This is NOT Full Combo. (ex. missed last FA)
+  ) {
+    /** Miss:1 score */
+    const target = floorScore(1000000 - baseScore)
+    const perfectCount = (target - score) / 10
+    return {
+      ...incompleteScore,
+      score,
+      rank: isFailed ? 'E' : getDanceLevel(score),
+      clearLamp: isFailed ? 0 : clearLamp,
+      exScore: exScore - 3 - perfectCount,
+    }
   }
+
   return {
+    ...incompleteScore,
     score,
     rank: isFailed ? 'E' : getDanceLevel(score),
     clearLamp: isFailed ? 0 : clearLamp ?? 2, // set "Clear" default
-    exScore: calcedExScore,
-    maxCombo: incompleteScore.maxCombo,
   }
 }
 
