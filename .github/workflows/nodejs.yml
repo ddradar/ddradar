@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.3.0
       - name: Use Node.js 12
         uses: actions/setup-node@v1
         with:
@@ -47,6 +47,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: yarn lint
       - name: Build
+        if: matrix.os == 'ubuntu-latest'
         run: yarn build
       - name: Launch Cosmos DB Emulator (windows only)
         if: matrix.os == 'windows-latest'
@@ -60,4 +61,5 @@ jobs:
       - name: Test
         run: yarn test
       - name: Report Code Coverage to codecov
+        if: matrix.os == 'windows-latest'
         uses: codecov/codecov-action@v1.0.7

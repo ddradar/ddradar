@@ -1,5 +1,5 @@
-import type { StepChart } from './'
 import { DanceLevel, DanceLevelList, ScoreSchema } from './db/scores'
+import type { StepChartSchema } from './db/songs'
 import { hasIntegerProperty, hasStringProperty } from './type-assert'
 
 export type ScoreKey = Pick<
@@ -29,7 +29,7 @@ export const setValidScoreFromChart = (
     notes,
     freezeArrow,
     shockArrow,
-  }: Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  }: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
   incompleteScore: Partial<Score>
 ): Score => {
   const objects = notes + freezeArrow + shockArrow
@@ -274,7 +274,7 @@ export const calcScore = (
     notes,
     freezeArrow,
     shockArrow,
-  }: Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  }: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
   marvelousCount: number,
   perfectCount: number,
   greatCount: number,

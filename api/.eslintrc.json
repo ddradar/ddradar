@@ -3,7 +3,7 @@
   "extends": ["../.eslintrc.json"],
   "settings": {
     "node": {
-      "allowModules": ["@azure/functions", "@ddradar/core"],
+      "allowModules": ["@azure/functions"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
   },
