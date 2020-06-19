@@ -9,13 +9,14 @@
 
       <template slot="start">
         <b-navbar-dropdown label="曲名から探す" hoverable collapsible>
-          <b-navbar-item
-            v-for="(label, i) in nameIndexList"
-            :key="label"
-            tag="div"
-            class="buttons are-small"
-          >
-            <b-button type="is-text" tag="nuxt-link" :to="`/name/${i}`">
+          <b-navbar-item tag="div" class="buttons are-small">
+            <b-button
+              v-for="(label, i) in nameIndexList"
+              :key="label"
+              type="is-text"
+              tag="nuxt-link"
+              :to="`/name/${i}`"
+            >
               {{ label }}
             </b-button>
           </b-navbar-item>
