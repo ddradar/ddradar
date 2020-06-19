@@ -1,9 +1,5 @@
 import { Configuration } from '@nuxt/types'
 
-import { SeriesList, SongInfo } from './types/api/song'
-
-type Song = Omit<SongInfo, 'charts'>
-
 const configuration: Configuration = {
   mode: 'universal',
   head: {
@@ -38,19 +34,6 @@ const configuration: Configuration = {
   build: {
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
-    },
-  },
-  generate: {
-    routes() {
-      const routes: { route: string; payload?: any }[] = []
-
-      // /series/0
-      for (let i = 0; i < SeriesList.length; i++) {
-        const title = SeriesList[i]
-        routes.push({ route: `/series/${i}`, payload: { title } })
-      }
-
-      return routes
     },
   },
 }

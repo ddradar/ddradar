@@ -21,7 +21,7 @@
       "allowedRoles": ["administrator"]
     },
     {
-      "route": "/songs/*",
+      "route": "/*",
       "serve": "/index.html",
       "statusCode": 200
     }
