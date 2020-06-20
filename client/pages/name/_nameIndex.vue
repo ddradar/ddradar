@@ -44,7 +44,6 @@ type Song = Omit<SongInfo, 'charts'>
 
 @Component
 export default class SongBySeriesPage extends Vue {
-  title: string = ''
   songs: Song[] = []
 
   validate({ params }: Pick<Context, 'params'>) {
@@ -56,17 +55,15 @@ export default class SongBySeriesPage extends Vue {
     )
   }
 
-  asyncData({ params }: Pick<Context, 'params'>) {
-    // Get series title
-    const title = NameIndexList[parseInt(params.nameIndex, 10)]
-    return { title }
-  }
-
   // Get song list from API
   async fetch() {
     const i = this.$route.params.nameIndex
     const songs: Song[] = await this.$http.$get<Song[]>(`/songs/name/${i}`)
     this.songs = songs
+  }
+
+  get title() {
+    return NameIndexList[parseInt(this.$route.params.nameIndex, 10)]
   }
 
   displayedBPM(minBPM: number | null, maxBPM: number | null) {
