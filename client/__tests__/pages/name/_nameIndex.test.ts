@@ -7,7 +7,7 @@ import {
 } from '@vue/test-utils'
 import Buefy from 'buefy'
 
-import NameIndexPage from '~/pages/name/_nameIndex.vue'
+import SongByNamePage from '~/pages/name/_nameIndex.vue'
 import { SongInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
@@ -143,7 +143,7 @@ describe('/name/_nameIndex.vue', () => {
     const $route = { params: { nameIndex: '36' } }
     test('loading', () => {
       // Arrange
-      const wrapper = mount(NameIndexPage, {
+      const wrapper = mount(SongByNamePage, {
         localVue,
         mocks: {
           $route,
@@ -157,7 +157,7 @@ describe('/name/_nameIndex.vue', () => {
     })
     test('loaded', () => {
       // Arrange
-      const wrapper = mount(NameIndexPage, {
+      const wrapper = mount(SongByNamePage, {
         localVue,
         mocks: {
           $route,
@@ -178,7 +178,7 @@ describe('/name/_nameIndex.vue', () => {
       '/name/%s returns false',
       nameIndex => {
         // Arrange
-        const wrapper = shallowMount(NameIndexPage, {
+        const wrapper = shallowMount(SongByNamePage, {
           localVue,
           mocks: {
             $route: { params: { nameIndex } },
@@ -196,7 +196,7 @@ describe('/name/_nameIndex.vue', () => {
       '/name/%s returns true',
       nameIndex => {
         // Arrange
-        const wrapper = shallowMount(NameIndexPage, {
+        const wrapper = shallowMount(SongByNamePage, {
           localVue,
           mocks: {
             $route: { params: { nameIndex } },
@@ -217,7 +217,7 @@ describe('/name/_nameIndex.vue', () => {
       async nameIndex => {
         // Arrange
         const $http = { $get: jest.fn<Song[], string[]>(() => []) }
-        const wrapper = shallowMount(NameIndexPage, {
+        const wrapper = shallowMount(SongByNamePage, {
           localVue,
           mocks: {
             $route: { params: { nameIndex } },
@@ -246,7 +246,7 @@ describe('/name/_nameIndex.vue', () => {
       ['36', '数字・記号'],
     ])('name/%s route returns %s', (nameIndex, expected) => {
       // Arrange
-      const wrapper = shallowMount(NameIndexPage, {
+      const wrapper = shallowMount(SongByNamePage, {
         localVue,
         mocks: {
           $route: { params: { nameIndex } },
@@ -268,7 +268,7 @@ describe('/name/_nameIndex.vue', () => {
       [150, 150, '150'],
       [100, 400, '100-400'],
     ])('(%p, %p) returns %s', (minBPM, maxBPM, expected) => {
-      const wrapper = shallowMount(NameIndexPage, {
+      const wrapper = shallowMount(SongByNamePage, {
         localVue,
         mocks: {
           $route: { params: { nameIndex: '0' } },
