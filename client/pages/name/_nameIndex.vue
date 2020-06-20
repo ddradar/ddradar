@@ -44,8 +44,10 @@ type Song = Omit<SongInfo, 'charts'>
 
 @Component
 export default class SongBySeriesPage extends Vue {
+  /** Song List from API */
   songs: Song[] = []
 
+  /** nameIndex expected [0-36] */
   validate({ params }: Pick<Context, 'params'>) {
     const parsedIndex = parseInt(params.nameIndex, 10)
     return (
@@ -55,17 +57,19 @@ export default class SongBySeriesPage extends Vue {
     )
   }
 
-  // Get song list from API
+  /** Get Song List from API */
   async fetch() {
     const i = this.$route.params.nameIndex
     const songs: Song[] = await this.$http.$get<Song[]>(`/songs/name/${i}`)
     this.songs = songs
   }
 
+  /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
     return NameIndexList[parseInt(this.$route.params.nameIndex, 10)]
   }
 
+  /** Returns BPM like '???', '150', '100-400' */
   displayedBPM(minBPM: number | null, maxBPM: number | null) {
     if (!minBPM || !maxBPM) return '???'
     if (minBPM === maxBPM) return `${minBPM}`
