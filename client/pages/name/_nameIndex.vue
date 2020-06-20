@@ -38,35 +38,35 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { SeriesList, SongInfo } from '~/types/api/song'
+import { NameIndexList, SongInfo } from '~/types/api/song'
 
 type Song = Omit<SongInfo, 'charts'>
 
 @Component
-export default class SongBySeriesPage extends Vue {
+export default class SongByNamePage extends Vue {
   /** Song List from API */
   songs: Song[] = []
 
-  /** seriesIndex expected [0-16] */
+  /** nameIndex expected [0-36] */
   validate({ params }: Pick<Context, 'params'>) {
-    const parsedIndex = parseInt(params.seriesIndex, 10)
+    const parsedIndex = parseInt(params.nameIndex, 10)
     return (
-      /^\d{1,2}$/.test(params.seriesIndex) &&
+      /^\d{1,2}$/.test(params.nameIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < SeriesList.length
+      parsedIndex < NameIndexList.length
     )
   }
 
   /** Get Song List from API */
   async fetch() {
-    const i = this.$route.params.seriesIndex
-    const songs: Song[] = await this.$http.$get<Song[]>(`/songs/series/${i}`)
+    const i = this.$route.params.nameIndex
+    const songs: Song[] = await this.$http.$get<Song[]>(`/songs/name/${i}`)
     this.songs = songs
   }
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
-    return SeriesList[parseInt(this.$route.params.seriesIndex, 10)]
+    return NameIndexList[parseInt(this.$route.params.nameIndex, 10)]
   }
 
   /** Returns BPM like '???', '150', '100-400' */
