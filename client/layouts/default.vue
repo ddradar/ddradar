@@ -10,15 +10,25 @@
       <template slot="start">
         <b-navbar-dropdown label="曲名から探す" hoverable collapsible>
           <b-navbar-item tag="div" class="buttons are-small">
-            <b-button type="is-text" tag="nuxt-link" to="/name/0">
-              あ
+            <b-button
+              v-for="(label, i) in nameIndexList"
+              :key="label"
+              type="is-text"
+              tag="nuxt-link"
+              :to="`/name/${i}`"
+            >
+              {{ label }}
             </b-button>
-            <b-button type="is-text" tag="nuxt-link" to="/name/1">
-              か
-            </b-button>
-            <b-button type="is-text" tag="nuxt-link" to="/name/2">
-              さ
-            </b-button>
+          </b-navbar-item>
+        </b-navbar-dropdown>
+        <b-navbar-dropdown label="シリーズから探す" hoverable collapsible>
+          <b-navbar-item
+            v-for="(label, i) in seriesList"
+            :key="label"
+            tag="nuxt-link"
+            :to="`/series/${i}`"
+          >
+            {{ label }}
           </b-navbar-item>
         </b-navbar-dropdown>
       </template>
@@ -75,8 +85,12 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { NameIndexList, SeriesList } from '~/types/api/song'
+
 @Component
 export default class DefaultLayout extends Vue {
   isLoggedIn = false
+  nameIndexList = NameIndexList
+  seriesList = SeriesList
 }
 </script>
