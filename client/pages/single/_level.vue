@@ -4,15 +4,14 @@
     <b-table
       :data="charts"
       striped
-      hoverable
-      focusable
+      :loading="$fetchState.pending"
       :mobile-cards="false"
       paginated
       per-page="50"
     >
       <template slot-scope="props">
         <b-table-column field="series" label="Series">
-          {{ props.row.series }}
+          {{ shortSeriesName(props.row.series) }}
         </b-table-column>
         <b-table-column field="name" label="Name">
           <nuxt-link
@@ -22,7 +21,7 @@
           </nuxt-link>
         </b-table-column>
         <b-table-column field="difficulty" label="Difficulty">
-          {{ props.row.difficulty }}
+          {{ getDifficultyName(props.row.difficulty) }}
         </b-table-column>
       </template>
 
@@ -64,6 +63,24 @@ export default class SingleLevelPage extends Vue {
   /** Page title */
   get title() {
     return `SINGLE ${this.$route.params.level}`
+  }
+
+  shortSeriesName(series: string) {
+    return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
+  }
+
+  getDifficultyName(difficulty: number) {
+    return difficulty === 0
+      ? 'BEGINNER'
+      : difficulty === 1
+      ? 'BASIC'
+      : difficulty === 2
+      ? 'DIFFICULT'
+      : difficulty === 3
+      ? 'EXPERT'
+      : difficulty === 4
+      ? 'CHALLENGE'
+      : '???'
   }
 }
 </script>
