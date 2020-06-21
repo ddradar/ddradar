@@ -8,6 +8,26 @@
       </template>
 
       <template slot="start">
+        <b-navbar-dropdown label="SINGLEのレベルから探す" hoverable collapsible>
+          <b-navbar-item
+            v-for="level in levelList"
+            :key="level"
+            tag="nuxt-link"
+            :to="`/single/${level}`"
+          >
+            {{ level }}
+          </b-navbar-item>
+        </b-navbar-dropdown>
+        <b-navbar-dropdown label="DOUBLEのレベルから探す" hoverable collapsible>
+          <b-navbar-item
+            v-for="level in levelList"
+            :key="level"
+            tag="nuxt-link"
+            :to="`/double/${level}`"
+          >
+            {{ level }}
+          </b-navbar-item>
+        </b-navbar-dropdown>
         <b-navbar-dropdown label="曲名から探す" hoverable collapsible>
           <b-navbar-item tag="div" class="buttons are-small">
             <b-button
@@ -92,5 +112,6 @@ export default class DefaultLayout extends Vue {
   isLoggedIn = false
   nameIndexList = NameIndexList
   seriesList = SeriesList
+  levelList = [...Array(19).keys()].map(n => n + 1)
 }
 </script>

@@ -63,6 +63,9 @@ export type StepChart = {
   chaos: number
 }
 
+export type ChartInfo = Pick<SongInfo, 'id' | 'name' | 'series'> &
+  Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>
+
 export const SeriesList: string[] = [
   'DDR 1st',
   'DDR 2ndMIX',
