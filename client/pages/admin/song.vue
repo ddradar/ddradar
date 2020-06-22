@@ -36,7 +36,7 @@
       <b-input
         v-model="nameKana"
         required
-        pattern="^([A-Z0-9 .ぁ-んー]*)$"
+        pattern="^[A-Z0-9 .ぁ-んー]+$"
         placeholder="A-Z 0-9 . あ-ん ー"
       />
     </b-field>
@@ -245,7 +245,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
     return (
       !this.isValidSongId ||
       !this.name ||
-      !/^([A-Z0-9 .ぁ-んー]*)$/.test(this.nameKana) ||
+      !/^[A-Z0-9 .ぁ-んー]+$/.test(this.nameKana) ||
       !this.artist ||
       !SeriesList.includes(this.series) ||
       !this.minBPM !== !this.maxBPM ||
