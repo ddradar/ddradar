@@ -8,3 +8,7 @@
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
 DDR Score Tracker
+
+## Contributing
+
+See [this guide](CONTRIBUTING.md).
