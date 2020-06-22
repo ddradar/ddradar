@@ -90,6 +90,7 @@
             </option>
           </b-select>
           <b-input
+            v-model="chart.level"
             placeholder="Level"
             type="number"
             min="1"
@@ -99,21 +100,71 @@
         </b-field>
         <b-field>
           <b-input
+            v-model="chart.notes"
             placeholder="Notes"
             type="number"
             min="0"
             max="9999"
             required
           />
-          <b-input placeholder="FA" type="number" min="0" max="9999" required />
-          <b-input placeholder="SA" type="number" min="0" max="9999" required />
+          <b-input
+            v-model="chart.freezeArrow"
+            placeholder="FA"
+            type="number"
+            min="0"
+            max="9999"
+            required
+          />
+          <b-input
+            v-model="chart.shockArrow"
+            placeholder="SA"
+            type="number"
+            min="0"
+            max="9999"
+            required
+          />
         </b-field>
         <b-field>
-          <b-input placeholder="Str" type="number" min="0" max="300" required />
-          <b-input placeholder="Vol" type="number" min="0" max="300" required />
-          <b-input placeholder="Air" type="number" min="0" max="300" required />
-          <b-input placeholder="Fre" type="number" min="0" max="300" required />
-          <b-input placeholder="Cha" type="number" min="0" max="300" required />
+          <b-input
+            v-model="chart.stream"
+            placeholder="Str"
+            type="number"
+            min="0"
+            max="300"
+            required
+          />
+          <b-input
+            v-model="chart.voltage"
+            placeholder="Vol"
+            type="number"
+            min="0"
+            max="300"
+            required
+          />
+          <b-input
+            v-model="chart.air"
+            placeholder="Air"
+            type="number"
+            min="0"
+            max="300"
+            required
+          />
+          <b-input
+            v-model="chart.freeze"
+            placeholder="Fre"
+            type="number"
+            min="0"
+            max="300"
+            required
+          />
+          <b-input
+            v-model="chart.chaos"
+            placeholder="Cha"
+            type="number"
+            min="0"
+            max="300"
+            required
+          />
         </b-field>
         <b-button type="is-danger" icon-left="delete" @click="removeChart(i)" />
       </b-field>
