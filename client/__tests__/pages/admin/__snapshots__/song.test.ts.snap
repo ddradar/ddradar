@@ -49,37 +49,41 @@ exports[`/admin/song.vue renders correctly 1`] = `
         </small>
       </div>
        
-      <button
-        class="button is-primary"
-        type="button"
+      <div
+        class="control"
       >
-        <!---->
+        <button
+          class="button is-primary"
+          type="button"
+        >
+          <!---->
+           
+          <span>
+            
+          Load
+        
+          </span>
+           
+          <!---->
+        </button>
          
-        <span>
-          
-        Load
-      
-        </span>
-         
-        <!---->
-      </button>
-       
-      <a
-        class="button is-info"
-        href="i0P1O6lbP1oDd6q6b08iPPoq6iPdI818"
-        target="_blank"
-        type="button"
-      >
-        <!---->
-         
-        <span>
-          
-        See Thumbnail
-      
-        </span>
-         
-        <!---->
-      </a>
+        <a
+          class="button is-info"
+          href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818"
+          target="_blank"
+          type="button"
+        >
+          <!---->
+           
+          <span>
+            
+          See Thumbnail
+        
+          </span>
+           
+          <!---->
+        </a>
+      </div>
        
       <!---->
     </div>

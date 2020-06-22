@@ -9,22 +9,24 @@
           required
           pattern="^[01689bdiloqDIOPQ]{32}$"
         />
-        <b-button
-          type="is-primary"
-          :disabled="!isValidSongId"
-          @click="loadSongInfo()"
-        >
-          Load
-        </b-button>
-        <b-button
-          tag="a"
-          type="is-info"
-          :disabled="!isValidSongId"
-          :href="`${id}`"
-          target="_blank"
-        >
-          See Thumbnail
-        </b-button>
+        <div class="control">
+          <b-button
+            type="is-primary"
+            :disabled="!isValidSongId"
+            @click="loadSongInfo()"
+          >
+            Load
+          </b-button>
+          <b-button
+            tag="a"
+            type="is-info"
+            :disabled="!isValidSongId"
+            :href="`https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=${id}`"
+            target="_blank"
+          >
+            See Thumbnail
+          </b-button>
+        </div>
       </b-field>
     </b-field>
 
