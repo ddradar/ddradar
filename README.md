@@ -9,6 +9,27 @@
 
 DDR Score Tracker
 
+## Setup
+
+```bash
+# Install dependencies
+yarn
+# Run Lint
+yarn lint
+# Run Lint & auto fix
+yarn fix
+# Run unit test
+yarn test
+# Production build
+yarn build
+```
+
+### Required
+
+- Node.js `>=12`
+- Yarn `>=1.22.4`
+- Azure Functions Core Tools `>=3`
+
 ## Contributing
 
 See [this guide](CONTRIBUTING.md).
