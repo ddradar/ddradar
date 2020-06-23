@@ -2,7 +2,7 @@
 name: New Song
 about: Template for add Song and Charts. / 追加曲・譜面を報告するためのテンプレートです。
 title: '[New Songs] [SONG NAME OR EVENT / 曲名またはイベントを入力]'
-labels: 'enhancement:speech_balloon:', area-backend
+labels: 'enhancement:speech_balloon:, area-backend'
 ---
 ## [SONG NAME/曲名]
 - **Song Id:** [SONG_ID]
