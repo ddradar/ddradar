@@ -17,6 +17,8 @@ updates:
       include: 'scope'
     labels:
       - 'dependabot:robot:'
+    reviewers:
+      - 'ddradar'
 
   # npm/yarn (/**/package.json)
   - package-ecosystem: 'npm'
@@ -32,3 +34,5 @@ updates:
       include: 'scope'
     labels:
       - 'dependabot:robot:'
+    reviewers:
+      - 'ddradar'
