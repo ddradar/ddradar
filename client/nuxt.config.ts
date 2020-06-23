@@ -15,7 +15,7 @@ const configuration: Configuration = {
     ],
     link: [
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
-      { rel: 'icon alternate', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon alternate', type: 'image/png', href: '/favicon.png' },
     ],
   },
   loading: { color: '#fff' },
