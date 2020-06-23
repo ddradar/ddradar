@@ -7,6 +7,7 @@ English guide is [here](./README.md).
 [![Node.js CI](https://github.com/ddradar/ddradar/workflows/Node.js%20CI/badge.svg "Node.js CI")](https://github.com/ddradar/ddradar/actions?query=workflow%3A%22Node.js+CI%22)
 [![CodeFactor](https://www.codefactor.io/repository/github/ddradar/ddradar/badge "CodeFactor")](https://www.codefactor.io/repository/github/ddradar/ddradar)
 [![codecov](https://codecov.io/gh/ddradar/ddradar/branch/master/graph/badge.svg "codecov")](https://codecov.io/gh/ddradar/ddradar)
+[![dependabot](https://img.shields.io/static/v1?label=dependabot&message=enabled&color=green&logo=dependabot "dependabot")](https://github.com/ddradar/ddradar/network/updates)
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
 DDR Score Tracker

@@ -3,12 +3,13 @@
 
 version: 2
 updates:
-  # Root directory
+  # GitHub Actions (/.github/workflows/*.yml)
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
-      time: '18:00'
+      interval: 'weekly'
+      day: 'friday'
+      time: '19:00'
       timezone: 'Asia/Tokyo'
     commit-message:
       prefix: 'fix'
@@ -16,10 +17,15 @@ updates:
       include: 'scope'
     labels:
       - 'dependabot:robot:'
+    reviewers:
+      - 'ddradar'
+
+  # npm/yarn (/**/package.json)
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'friday'
       time: '18:00'
       timezone: 'Asia/Tokyo'
     commit-message:
@@ -28,48 +34,5 @@ updates:
       include: 'scope'
     labels:
       - 'dependabot:robot:'
-
-  # /api directory
-  - package-ecosystem: 'npm'
-    directory: '/api'
-    schedule:
-      interval: 'daily'
-      time: '18:00'
-      timezone: 'Asia/Tokyo'
-    commit-message:
-      prefix: 'fix'
-      prefix-development: 'chore'
-      include: 'scope'
-    labels:
-      - 'area-server'
-      - 'dependabot:robot:'
-
-  # /client directory
-  - package-ecosystem: 'npm'
-    directory: '/client'
-    schedule:
-      interval: 'daily'
-      time: '18:00'
-      timezone: 'Asia/Tokyo'
-    commit-message:
-      prefix: 'fix'
-      prefix-development: 'chore'
-      include: 'scope'
-    labels:
-      - 'area-client'
-      - 'dependabot:robot:'
-
-  # /core directory
-  - package-ecosystem: 'npm'
-    directory: '/core'
-    schedule:
-      interval: 'daily'
-      time: '18:00'
-      timezone: 'Asia/Tokyo'
-    commit-message:
-      prefix: 'fix'
-      prefix-development: 'chore'
-      include: 'scope'
-    labels:
-      - 'area-core'
-      - 'dependabot:robot:'
+    reviewers:
+      - 'ddradar'
