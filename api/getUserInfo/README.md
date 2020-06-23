@@ -2,7 +2,7 @@
 
 日本語版は[こちら](./README-ja.md)にあります。
 
-Get song and charts information that match the specified ID.
+Get user information that match the specified ID.
 
 - [Endpoint](#endpoint)
 - [Parameters](#parameters)
