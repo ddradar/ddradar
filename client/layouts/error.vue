@@ -47,7 +47,7 @@ import { NuxtError } from '@nuxt/types'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component({ layout: 'empty' })
-export default class DefaultLayout extends Vue {
+export default class ErrorPage extends Vue {
   @Prop({ type: Object, default: null })
   error: NuxtError | null
 }
