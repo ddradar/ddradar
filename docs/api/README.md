@@ -30,4 +30,6 @@ See also [Authentication API Docs](./authentication.md).
 
 ## User API
 
+- [Get Current User Data](../../api/getCurrentUser/README.md)
 - [Get User List](../../api/getUserList/README.md)
+- [Get User Information](../../api/getUserInfo/README.md)
