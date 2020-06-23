@@ -3,11 +3,13 @@
 
 version: 2
 updates:
+  # GitHub Actions (/.github/workflows/*.yml)
   - package-ecosystem: 'github-actions'
     directory: '/'
     schedule:
-      interval: 'daily'
-      time: '18:00'
+      interval: 'weekly'
+      day: 'friday'
+      time: '19:00'
       timezone: 'Asia/Tokyo'
     commit-message:
       prefix: 'fix'
@@ -15,10 +17,13 @@ updates:
       include: 'scope'
     labels:
       - 'dependabot:robot:'
+
+  # npm/yarn (/**/package.json)
   - package-ecosystem: 'npm'
     directory: '/'
     schedule:
-      interval: 'daily'
+      interval: 'weekly'
+      day: 'friday'
       time: '18:00'
       timezone: 'Asia/Tokyo'
     commit-message:
