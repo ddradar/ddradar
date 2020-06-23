@@ -2,6 +2,7 @@
 
 日本語版のガイドは[こちら](README-ja.md)です。
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ddradar/ddradar/staging?label=stage%20build&logo=microsoft-azure)](https://beta.ddradar.app/)
 [![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/master)
 [![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
 [![Node.js CI](https://github.com/ddradar/ddradar/workflows/Node.js%20CI/badge.svg "Node.js CI")](https://github.com/ddradar/ddradar/actions?query=workflow%3A%22Node.js+CI%22)
