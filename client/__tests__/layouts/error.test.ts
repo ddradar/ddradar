@@ -21,7 +21,7 @@ describe('layouts/default.vue', () => {
       },
       propsData: { error },
     })
-    expect(wrapper.element).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
   test('renders other error page', () => {
     const error: NuxtError = {
@@ -36,6 +36,6 @@ describe('layouts/default.vue', () => {
       },
       propsData: { error },
     })
-    expect(wrapper.element).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 })
