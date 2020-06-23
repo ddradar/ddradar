@@ -3,6 +3,7 @@
     <b-navbar type="is-primary">
       <template slot="brand">
         <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
+          <img src="~assets/logo.svg" alt="DDRadar Logo" />
           <b>DDRadar</b>
         </b-navbar-item>
       </template>
