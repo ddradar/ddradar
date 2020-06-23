@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "courses"
+      "route": "v1/courses"
     },
     {
       "type": "http",

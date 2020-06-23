@@ -17,7 +17,7 @@ Add or update song and charts information.
 
 Need [Authentication](../../docs/api/authentication.md#login) with `administrator` role.
 
-> POST /api/admin/songs
+> POST /api/v1/admin/songs
 
 ## Parameters
 

@@ -16,7 +16,7 @@
 
 `administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
 
-> POST /api/admin/songs
+> POST /api/v1/admin/songs
 
 ## Parameters
 

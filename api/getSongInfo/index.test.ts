@@ -5,7 +5,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import type { SongSchema } from '../db'
 import getSongInfo from '.'
 
-describe('GET /api/songs', () => {
+describe('GET /api/v1/songs', () => {
   let context: Context
 
   beforeEach(() => {

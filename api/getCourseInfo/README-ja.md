@@ -17,7 +17,7 @@ English version is [here](./README.md).
 
 認証は不要です。
 
-> GET api/courses/*:id*
+> GET api/v1/courses/*:id*
 
 ## Parameters
 

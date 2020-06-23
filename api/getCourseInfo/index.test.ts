@@ -5,7 +5,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import { CourseSchema } from '../db'
 import getCourseInfo from '.'
 
-describe('GET /api/courses', () => {
+describe('GET /api/v1/courses', () => {
   let context: Context
 
   beforeEach(() => {

@@ -1,6 +1,6 @@
 # DDRadar
 
-日本語版のガイドは[こちら](README-ja.md)です。
+English guide is [here](./README.md).
 
 [![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/master)
 [![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
@@ -14,7 +14,7 @@ DDR Score Tracker
 ## Setup
 
 ```bash
-# Install dependencies
+# 依存関係のインストール
 yarn
 ```
 
@@ -24,28 +24,28 @@ yarn
 - Yarn `>=1.22.4`
 - [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) `>=3`
 
-- If you want to use [Azure Cosmos Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) for API development and test, install it and set env below.
+- API開発やテストに[Azure Cosmos Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)を使う場合は、下記の環境変数を設定してください。
   - `COSMOS_DB_CONN`: `AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==`
   - `NODE_TLS_REJECT_UNAUTHORIZED`: `0`
 
-- If you want to develop client with API integration, set env below.
+- クライアントとAPIの統合開発を行う場合は、下記の環境変数を設定してください。
   - `API_URL`: `http://localhost:7071/api/v1`
 
 ## Develop Command
 
 ```bash
-# Install dependencies
+# 依存関係のインストール
 yarn
-# Run Lint
+# Lintツールの実行
 yarn lint
-# Run Lint & auto fix
+# Lintツールの実行&自動修正
 yarn fix
-# Run unit test
+# 単体テスト
 yarn test
-# Production build
+# 本番ビルド
 yarn build
 ```
 
 ## Contributing
 
-See [this guide](CONTRIBUTING.md).
+[こちらのガイド](CONTRIBUTING-ja.md)をご覧ください。
