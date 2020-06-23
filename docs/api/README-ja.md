@@ -5,6 +5,7 @@ English version is [here](./README.md).
 - [認証](#authentication-api)
 - [曲](#song-api)
 - [コース](#course-api)
+- [ユーザー](#user-api)
 
 ## Authentication API
 
@@ -26,3 +27,7 @@ English version is [here](./README.md).
 
 - [コース情報の取得](../../api/getCourseInfo/README-ja.md)
 - [コース一覧の取得](../../api/getCourseList/README-ja.md)
+
+## User API
+
+- [ユーザー一覧の取得](../../api/getUserList/README-ja.md)
