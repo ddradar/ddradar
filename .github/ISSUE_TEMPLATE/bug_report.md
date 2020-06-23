@@ -1,9 +1,12 @@
 ---
 name: Bug Report / バグ報告
 about: Create a report to help us improve. / バグ報告のためのテンプレートです。
-title: '[BUG]'
+title: "[BUG]"
 labels: 'bug:bug:'
+assignees: ''
+
 ---
+
 ## Actual Behavior / 問題の概要
 
 A clear and concise description of what the bug is.
