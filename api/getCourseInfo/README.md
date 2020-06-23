@@ -17,7 +17,7 @@ Get course and orders information that match the specified ID.
 
 No need Authentication.
 
-> GET api/courses/*:id*
+> GET api/v1/courses/*:id*
 
 ## Parameters
 

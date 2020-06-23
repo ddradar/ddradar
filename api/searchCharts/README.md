@@ -17,7 +17,7 @@ Get charts that match the specified conditions.
 
 No need Authentication.
 
-> GET /api/charts/*:playStyle*/*:level*
+> GET /api/v1/charts/*:playStyle*/*:level*
 
 ## Parameters
 

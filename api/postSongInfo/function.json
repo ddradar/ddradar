@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["post"],
-      "route": "admin/songs"
+      "route": "v1/admin/songs"
     },
     {
       "type": "http",
