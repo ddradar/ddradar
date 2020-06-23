@@ -4,7 +4,7 @@
     {
       "label": "API: Launch",
       "type": "func",
-      "command": "host start",
+      "command": "start --cors http://localhost:3000/",
       "problemMatcher": "$func-watch",
       "isBackground": true,
       "dependsOn": "API: Build",

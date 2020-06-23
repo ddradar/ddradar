@@ -17,7 +17,7 @@ English version is [here](./README.md).
 
 認証は不要です。
 
-> GET /api/charts/*:playStyle*/*:level*
+> GET /api/v1/charts/*:playStyle*/*:level*
 
 ## Parameters
 

@@ -5,7 +5,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import type { SongSchema } from '../db'
 import postSongInfo from '.'
 
-describe('POST /api/admin/songs', () => {
+describe('POST /api/v1/admin/songs', () => {
   let context: Context
 
   beforeEach(() => {

@@ -16,7 +16,7 @@ Get course information list.
 
 No need Authentication.
 
-> GET api/courses
+> GET api/v1/courses
 
 ## Response
 

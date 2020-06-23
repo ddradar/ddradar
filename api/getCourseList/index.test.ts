@@ -9,7 +9,7 @@ type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
   orders: Omit<Order, 'chartOrder'>[]
 }
 
-describe('GET /api/courses', () => {
+describe('GET /api/v1/courses', () => {
   let context: Context
 
   beforeEach(() => {

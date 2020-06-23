@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "charts/{playStyle:int:range(1,2)}/{level:int:range(1,20)}"
+      "route": "v1/charts/{playStyle:int:range(1,2)}/{level:int:range(1,20)}"
     },
     {
       "type": "http",
