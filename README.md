@@ -29,7 +29,7 @@ yarn
   - `NODE_TLS_REJECT_UNAUTHORIZED`: `0`
 
 - If you want to develop client with API integration, set env below.
-  - `API_URL`: `http://localhost:7071/api`
+  - `API_URL`: `http://localhost:7071/api/v1`
 
 ## Develop Command
 

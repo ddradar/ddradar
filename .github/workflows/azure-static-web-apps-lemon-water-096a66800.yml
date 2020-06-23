@@ -37,7 +37,7 @@ jobs:
           routes_location: '/'
           ###### End of Repository/Build Configurations ######
         env:
-          API_URL: '/api'
+          API_URL: '/api/v1'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

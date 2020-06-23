@@ -29,7 +29,7 @@ yarn
   - `NODE_TLS_REJECT_UNAUTHORIZED`: `0`
 
 - クライアントとAPIの統合開発を行う場合は、下記の環境変数を設定してください。
-  - `API_URL`: `http://localhost:7071/api`
+  - `API_URL`: `http://localhost:7071/api/v1`
 
 ## Develop Command
 
