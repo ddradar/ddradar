@@ -1,17 +1,20 @@
-import type { Context, HttpRequest } from '@azure/functions'
+import type { Context } from '@azure/functions'
+import { mocked } from 'ts-jest/utils'
 
-import { addClientPrincipalHeader, describeIf } from '../__tests__/util'
+import { describeIf } from '../__tests__/util'
+import { getClientPrincipal } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
 import type { UserSchema } from '../db'
 import getUserInfo from '.'
 
+jest.mock('../auth')
+
 describe('GET /api/v1/users', () => {
-  let context: Pick<Context, 'bindingData' | 'res'>
-  let req: Pick<HttpRequest, 'headers'>
+  let context: Pick<Context, 'bindingData'>
+  const req = { headers: {} }
 
   beforeEach(() => {
     context = { bindingData: {} }
-    req = { headers: {} }
   })
 
   test('/ returns "404 Not Found"', async () => {
@@ -105,8 +108,13 @@ describe('GET /api/v1/users', () => {
       test(`/${privateUser.displayedId} returns "404 Not Found" if logged in as otherUser`, async () => {
         // Arrange
         const id = privateUser.displayedId
-        addClientPrincipalHeader(req, 'foo')
         context.bindingData.id = id
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'github',
+          userDetails: publicUser.displayedId,
+          userId: publicUser.id,
+          userRoles: ['anonymous', 'authenticated'],
+        })
 
         // Act
         const result = await getUserInfo(context, req)
@@ -119,8 +127,13 @@ describe('GET /api/v1/users', () => {
       test(`/${privateUser.displayedId} returns "200 OK" with JSON body if logged in as privateUser`, async () => {
         // Arrange
         const id = privateUser.displayedId
-        addClientPrincipalHeader(req, privateUser.id)
         context.bindingData.id = id
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'github',
+          userDetails: privateUser.displayedId,
+          userId: privateUser.id,
+          userRoles: ['anonymous', 'authenticated'],
+        })
 
         // Act
         const result = await getUserInfo(context, req)
@@ -135,10 +148,10 @@ describe('GET /api/v1/users', () => {
       })
 
       afterAll(async () => {
-        await getContainer('Songs')
+        await getContainer('Users')
           .item(publicUser.id, publicUser.area)
           .delete()
-        await getContainer('Songs')
+        await getContainer('Users')
           .item(privateUser.id, privateUser.area)
           .delete()
       })
