@@ -30,6 +30,7 @@ English version is [here](./README.md).
 
 ## User API
 
-- [ログインユーザー情報取得](../../api/getCurrentUser/README-ja.md)
+- [ログインユーザー情報取得](../../api/getCurrentUser/README-ja.md) **ログインユーザーのみ*
 - [ユーザー一覧の取得](../../api/getUserList/README-ja.md)
 - [ユーザー情報の取得](../../api/getUserInfo/README-ja.md)
+- [ユーザー情報の追加/更新](../../api/postUserInfo/README-ja.md) **ログインユーザーのみ*

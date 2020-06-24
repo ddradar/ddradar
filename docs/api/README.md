@@ -30,6 +30,7 @@ See also [Authentication API Docs](./authentication.md).
 
 ## User API
 
-- [Get Current User Data](../../api/getCurrentUser/README.md)
+- [Get Current User Data](../../api/getCurrentUser/README.md) **Authed user only*
 - [Get User List](../../api/getUserList/README.md)
 - [Get User Information](../../api/getUserInfo/README.md)
+- [Post User Information](../../api/postUserInfo/README.md) **Authed user only*
