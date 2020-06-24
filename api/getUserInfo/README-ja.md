@@ -83,5 +83,3 @@ English version is [here](./README.md).
 |`name`|string|ユーザー名|
 |`area`|number|[エリアコード](../../docs/db/users-ja.md#area)|
 |`code`|number?|DDR CODE (省略可)|
-|`totalClear.single`<br />`totalClear.double`|integer\[8\]\[5\]|\[0\]\[0\]: BEGINNER/プレー済未クリア数, \[1\]\[0\]: BEGINNER/アシストクリア数, ..., \[7\]\[0\]: BEGINNER/MFC数, \[0\]\[1\]: BASIC/プレー済未クリア数, ..., \[7\]\[4\]: CHALLENGE/MFC数|
-|`totalScore.single`<br />`totalScore.double`|integer\[5\]|\[0\]: BEGINNERの合計スコア, \[1\]: BASICの合計スコア, ..., \[4\]: CHALEENGEの合計スコア|
