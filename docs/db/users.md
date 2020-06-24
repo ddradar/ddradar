@@ -1,4 +1,4 @@
-# Scores Collection
+# Users Collection
 
 日本語版は[こちら](./courses-ja.md)にあります。
 
@@ -16,8 +16,6 @@ The collection that stores user infomation.
 |**area**|number|Area code ([See below](#area))|
 |code|number?|DDR CODE (optional)|
 |isPublic|boolean|`true` if this user info is public, otherwize `false`.|
-|totalClear.single<br />totalClear.double|integer\[8\]\[5\]|\[0\]\[0\]: BEGINNER/Failed count, \[1\]\[0\]: BEGINNER/Assisted Clear count, ..., \[7\]\[0\]: BEGINNER/MFC count, \[0\]\[1\]: BASIC/Failed count, ..., \[7\]\[4\]: CHALLENGE/MFC count|
-|totalScore.single<br />totalScore.double|integer\[5\]|\[0\]: BEGINNER total score, \[1\]: BASIC total score, ..., \[4\]: CHALLENGE total score|
 
 ### Area
 
@@ -86,26 +84,6 @@ The collection that stores user infomation.
     "name": "User 1",
     "area": 13,
     "code": 10000000,
-    "isPublic": true,
-    "totalClear": {
-        "single": [
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-        ],
-        "double": [
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-            [0, 0, 0, 0, 0, 0, 0, 0],
-        ]
-    },
-    "totalScore": {
-        "single": [0, 0, 0, 0, 0],
-        "double": [0, 0, 0, 0, 0]
-    }
+    "isPublic": true
 }
 ```
