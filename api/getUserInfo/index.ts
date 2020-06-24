@@ -2,23 +2,8 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
-import type { UserSchema } from '../db'
-
-type User = Pick<UserSchema, 'name' | 'area' | 'code'> & {
-  /** User id (used for user page URL) */
-  id: string
-}
-
-type NotFoundResult = {
-  status: 404
-  body: string
-}
-
-type SuccessResult<T> = {
-  status: 200
-  headers: { 'Content-type': 'application/json' }
-  body: T
-}
+import type { NotFoundResult, SuccessResult } from '../function'
+import type { User } from '../user'
 
 /** Get user information that match the specified ID. */
 const httpTrigger = async (
