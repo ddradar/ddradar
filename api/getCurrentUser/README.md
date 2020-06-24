@@ -35,37 +35,7 @@ Need Authentication.
   "name": "AFRO",
   "area": 13,
   "code": 10000000,
-  "isPublic": false,
-  "totalClear": {
-    "single": {
-      "0": [0, 0, 0, 0, 0, 0, 0, 0],
-      "1": [0, 0, 0, 0, 0, 0, 0, 0],
-      "2": [0, 0, 0, 0, 0, 0, 0, 0],
-      "3": [0, 0, 0, 0, 0, 0, 0, 0],
-      "4": [0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "double": {
-      "1": [0, 0, 0, 0, 0, 0, 0, 0],
-      "2": [0, 0, 0, 0, 0, 0, 0, 0],
-      "3": [0, 0, 0, 0, 0, 0, 0, 0],
-      "4": [0, 0, 0, 0, 0, 0, 0, 0]
-    }
-  },
-  "totalScore": {
-    "single": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0
-    },
-    "double": {
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0
-    }
-  }
+  "isPublic": false
 }
 ```
 
@@ -78,5 +48,3 @@ Need Authentication.
 |`area`|number|[Area code](../../docs/db/users.md#area)|
 |`code`|number?|DDR CODE (optional)|
 |`isPublic`|boolean|`true` if this user info is public, otherwize `false`.|
-|`totalClear.single`<br />`totalClear.double`|integer\[8\]\[5\]|\[0\]\[0\]: BEGINNER/Failed count, \[1\]\[0\]: BEGINNER/Assisted Clear count, ..., \[7\]\[0\]: BEGINNER/MFC count, \[0\]\[1\]: BASIC/Failed count, ..., \[7\]\[4\]: CHALLENGE/MFC count|
-|`totalScore.single`<br />`totalScore.double`|integer\[5\]|\[0\]: BEGINNER total score, \[1\]: BASIC total score, ..., \[4\]: CHALLENGE total score|
