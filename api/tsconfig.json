@@ -5,7 +5,7 @@
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
-    "strict": false
+    "strict": true
   },
   "types": ["jest", "node"],
   "exclude": ["__tests__", "**/**.test.ts"]

@@ -1,7 +1,11 @@
 import type { AzureFunction, Context } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { CourseSchema, Order } from '../course'
+import { CourseSchema, Order } from '../db/courses'
+
+type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
+  orders: Omit<Order, 'chartOrder'>[]
+}
 
 /** Get course information list. */
 const httpTrigger: AzureFunction = async (
@@ -10,12 +14,12 @@ const httpTrigger: AzureFunction = async (
   const container = getContainer('Courses', true)
 
   // Create SQL
-  const courseColumns: (keyof CourseSchema)[] = ['id', 'name']
+  const courseColumns: (keyof ShrinkedCourse)[] = ['id', 'name']
   const orderColumns: (keyof Order)[] = ['playStyle', 'difficulty', 'level']
-  const joinColumn: keyof CourseSchema = 'orders'
+  const joinColumn: keyof ShrinkedCourse = 'orders'
 
   const { resources } = await container.items
-    .query<CourseSchema>({
+    .query<ShrinkedCourse>({
       query:
         `SELECT ${courseColumns.map(col => `c.${col}`).join(', ')}, ` +
         'ARRAY(' +

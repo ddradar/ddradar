@@ -1,7 +1,7 @@
 import type { AzureFunction, Context } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { CourseSchema } from '../course'
+import { CourseSchema } from '../db'
 
 /** Get course and orders information that match the specified ID. */
 const httpTrigger: AzureFunction = async (

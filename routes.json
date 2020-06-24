@@ -17,8 +17,13 @@
       "allowedRoles": ["administrator"]
     },
     {
-      "route": "/api/admin/*",
+      "route": "/api/v1/admin/*",
       "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ]
 }

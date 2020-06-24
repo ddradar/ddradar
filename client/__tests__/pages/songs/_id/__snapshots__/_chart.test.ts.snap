@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`songs/:id/:chart rendars correctly 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    MAKE IT BETTER
+  </h1>
+   
+  <h2
+    class="subtitle"
+  >
+    mitsu-O! / DDR 1st
+  </h2>
+   
+  <h2
+    class="subtitle"
+  >
+    119
+  </h2>
+</section>
+`;

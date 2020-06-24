@@ -2,10 +2,10 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { SongSchema } from '../song'
+import type { SongSchema } from '../db'
 import getSongInfo from '.'
 
-describe('GET /api/songs', () => {
+describe('GET /api/v1/songs', () => {
   let context: Context
 
   beforeEach(() => {
@@ -19,7 +19,7 @@ describe('GET /api/songs', () => {
     await getSongInfo(context)
 
     // Assert
-    expect(context.res.status).toBe(404)
+    expect(context.res?.status).toBe(404)
   })
 
   test('/foo returns "404 Not Found"', async () => {
@@ -30,8 +30,8 @@ describe('GET /api/songs', () => {
     await getSongInfo(context)
 
     // Assert
-    expect(context.res.status).toBe(404)
-    expect(context.res.body).toBe('Please pass a id like "/api/songs/:id"')
+    expect(context.res?.status).toBe(404)
+    expect(context.res?.body).toBe('Please pass a id like "/api/songs/:id"')
   })
 
   describeIf(() => !!getConnectionString())(
@@ -76,8 +76,8 @@ describe('GET /api/songs', () => {
         await getSongInfo(context)
 
         // Assert
-        expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe(`Not found song that id: "${id}"`)
+        expect(context.res?.status).toBe(404)
+        expect(context.res?.body).toBe(`Not found song that id: "${id}"`)
       })
 
       test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI returns "200 OK" with JSON body', async () => {
@@ -88,8 +88,8 @@ describe('GET /api/songs', () => {
         await getSongInfo(context)
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(song)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(song)
       })
 
       afterAll(async () => {

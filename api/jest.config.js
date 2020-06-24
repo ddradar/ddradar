@@ -12,6 +12,7 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
+    '!**/*.d.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],

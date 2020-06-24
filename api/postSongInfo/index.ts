@@ -1,7 +1,7 @@
 import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { isSongSchema, SongSchema } from '../song'
+import { isSongSchema, SongSchema } from '../db/songs'
 
 /** Add or update song and charts information. */
 const httpTrigger: AzureFunction = async (
@@ -16,8 +16,9 @@ const httpTrigger: AzureFunction = async (
     return
   }
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
   const { resource } = await container.items.upsert<SongSchema>(req.body)
+  if (!resource) throw new Error(`Failed upsert id:${req.body.id}`)
   const responseBody: SongSchema = {
     id: resource.id,
     name: resource.name,

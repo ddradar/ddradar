@@ -2,10 +2,10 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { SongSchema } from '../song'
+import type { SongSchema } from '../db'
 import postSongInfo from '.'
 
-describe('POST /api/admin/songs', () => {
+describe('POST /api/v1/admin/songs', () => {
   let context: Context
 
   beforeEach(() => {
@@ -22,8 +22,8 @@ describe('POST /api/admin/songs', () => {
       await postSongInfo(context, req)
 
       // Assert
-      expect(context.res.status).toBe(400)
-      expect(context.res.body).toBe('Body is not SongSchema')
+      expect(context.res?.status).toBe(400)
+      expect(context.res?.body).toBe('Body is not SongSchema')
     }
   )
 
@@ -61,7 +61,7 @@ describe('POST /api/admin/songs', () => {
         nameKana: 'MAKE IT BETTER',
         nameIndex: 22,
         artist: 'mitsu-O!',
-        series: '1st',
+        series: 'DDR 1st',
         minBPM: 119,
         maxBPM: 119,
         charts: [
@@ -90,8 +90,8 @@ describe('POST /api/admin/songs', () => {
         await postSongInfo(context, { body: songToBeCreated })
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(songToBeCreated)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(songToBeCreated)
       })
 
       test('returns "200 OK" with JSON body (Update)', async () => {
@@ -102,8 +102,8 @@ describe('POST /api/admin/songs', () => {
         await postSongInfo(context, { body })
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(body)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(body)
       })
 
       afterAll(async () => {

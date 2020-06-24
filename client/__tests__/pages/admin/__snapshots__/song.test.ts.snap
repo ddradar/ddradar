@@ -1,0 +1,2688 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/admin/song.vue renders correctly 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    Add/Update Song
+  </h1>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Song ID
+    </label>
+     
+    <div
+      class="field is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="control is-clearfix"
+      >
+        <input
+          autocomplete="on"
+          class="input"
+          maxlength="32"
+          pattern="^[01689bdiloqDIOPQ]{32}$"
+          required="required"
+          type="text"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <small
+          class="help counter is-invisible"
+        >
+          
+            32 / 32
+        
+        </small>
+      </div>
+       
+      <div
+        class="control"
+      >
+        <button
+          class="button is-primary"
+          type="button"
+        >
+          <!---->
+           
+          <span>
+            
+          Load
+        
+          </span>
+           
+          <!---->
+        </button>
+         
+        <a
+          class="button is-info"
+          href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818"
+          target="_blank"
+          type="button"
+        >
+          <!---->
+           
+          <span>
+            
+          See Thumbnail
+        
+          </span>
+           
+          <!---->
+        </a>
+      </div>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Name
+    </label>
+     
+    <div
+      class="control is-clearfix"
+    >
+      <input
+        autocomplete="on"
+        class="input"
+        required="required"
+        type="text"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Furigana
+    </label>
+     
+    <div
+      class="control is-clearfix"
+    >
+      <input
+        autocomplete="on"
+        class="input"
+        pattern="^[A-Z0-9 .ぁ-んー]+$"
+        placeholder="A-Z 0-9 . あ-ん ー"
+        required="required"
+        type="text"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Artist
+    </label>
+     
+    <div
+      class="control is-clearfix"
+    >
+      <input
+        autocomplete="on"
+        class="input"
+        type="text"
+      />
+       
+      <!---->
+       
+      <!---->
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Series
+    </label>
+     
+    <div
+      class="control"
+    >
+      <span
+        class="select"
+      >
+        <select>
+          <!---->
+           
+          <option
+            value="DDR 1st"
+          >
+            
+        DDR 1st
+      
+          </option>
+          <option
+            value="DDR 2ndMIX"
+          >
+            
+        DDR 2ndMIX
+      
+          </option>
+          <option
+            value="DDR 3rdMIX"
+          >
+            
+        DDR 3rdMIX
+      
+          </option>
+          <option
+            value="DDR 4thMIX"
+          >
+            
+        DDR 4thMIX
+      
+          </option>
+          <option
+            value="DDR 5thMIX"
+          >
+            
+        DDR 5thMIX
+      
+          </option>
+          <option
+            value="DDRMAX"
+          >
+            
+        DDRMAX
+      
+          </option>
+          <option
+            value="DDRMAX2"
+          >
+            
+        DDRMAX2
+      
+          </option>
+          <option
+            value="DDR EXTREME"
+          >
+            
+        DDR EXTREME
+      
+          </option>
+          <option
+            value="DDR SuperNOVA"
+          >
+            
+        DDR SuperNOVA
+      
+          </option>
+          <option
+            value="DDR SuperNOVA2"
+          >
+            
+        DDR SuperNOVA2
+      
+          </option>
+          <option
+            value="DDR X"
+          >
+            
+        DDR X
+      
+          </option>
+          <option
+            value="DDR X2"
+          >
+            
+        DDR X2
+      
+          </option>
+          <option
+            value="DDR X3 VS 2ndMIX"
+          >
+            
+        DDR X3 VS 2ndMIX
+      
+          </option>
+          <option
+            value="DanceDanceRevolution (2013)"
+          >
+            
+        DanceDanceRevolution (2013)
+      
+          </option>
+          <option
+            value="DanceDanceRevolution (2014)"
+          >
+            
+        DanceDanceRevolution (2014)
+      
+          </option>
+          <option
+            value="DanceDanceRevolution A"
+          >
+            
+        DanceDanceRevolution A
+      
+          </option>
+          <option
+            value="DanceDanceRevolution A20"
+          >
+            
+        DanceDanceRevolution A20
+      
+          </option>
+        </select>
+      </span>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      BPM
+    </label>
+     
+    <div
+      class="field is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="control is-clearfix"
+      >
+        <input
+          autocomplete="on"
+          class="input"
+          placeholder="min"
+          type="number"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <span
+        class="control"
+      >
+        -
+      </span>
+       
+      <div
+        class="control is-clearfix"
+      >
+        <input
+          autocomplete="on"
+          class="input"
+          placeholder="max"
+          type="number"
+        />
+         
+        <!---->
+         
+        <!---->
+         
+        <!---->
+      </div>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 1
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 2
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 3
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 4
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 5
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 6
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+  <div
+    class="field"
+  >
+    <label
+      class="label"
+    >
+      Chart 7
+    </label>
+     
+    <div
+      class="field is-grouped-multiline is-grouped"
+    >
+      <!---->
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="1"
+              >
+                
+            SINGLE
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DOUBLE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <span
+            class="select"
+          >
+            <select>
+              <!---->
+               
+              <option
+                value="0"
+              >
+                
+            BEGINNER
+          
+              </option>
+              <option
+                value="1"
+              >
+                
+            BASIC
+          
+              </option>
+              <option
+                value="2"
+              >
+                
+            DIFFICULT
+          
+              </option>
+              <option
+                value="3"
+              >
+                
+            EXPERT
+          
+              </option>
+              <option
+                value="4"
+              >
+                
+            CHALLENGE
+          
+              </option>
+            </select>
+          </span>
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="20"
+            min="1"
+            placeholder="Level"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <p
+          class="help"
+        />
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="Notes"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="FA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="9999"
+            min="0"
+            placeholder="SA"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <div
+        class="field has-addons"
+      >
+        <!---->
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Str"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Vol"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Air"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Fre"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <div
+          class="control is-clearfix"
+        >
+          <input
+            autocomplete="on"
+            class="input"
+            max="300"
+            min="0"
+            placeholder="Cha"
+            required="required"
+            type="number"
+          />
+           
+          <!---->
+           
+          <!---->
+           
+          <!---->
+        </div>
+         
+        <!---->
+      </div>
+       
+      <button
+        class="button is-danger"
+        type="button"
+      >
+        <span
+          class="icon is-small"
+        >
+          <i
+            class="mdi mdi-delete"
+          />
+        </span>
+         
+        <!---->
+         
+        <!---->
+      </button>
+       
+      <!---->
+    </div>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <!---->
+     
+    <button
+      class="button is-info"
+      type="button"
+    >
+      <span
+        class="icon is-small"
+      >
+        <i
+          class="mdi mdi-plus"
+        />
+      </span>
+       
+      <span>
+        
+      Add Chart
+    
+      </span>
+       
+      <!---->
+    </button>
+     
+    <!---->
+  </div>
+   
+  <div
+    class="field"
+  >
+    <!---->
+     
+    <button
+      class="button is-success"
+      type="button"
+    >
+      <!---->
+       
+      <span>
+        
+      Save
+    
+      </span>
+       
+      <!---->
+    </button>
+     
+    <!---->
+  </div>
+</section>
+`;

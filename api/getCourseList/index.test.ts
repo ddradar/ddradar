@@ -2,14 +2,14 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { CourseSchema, Order } from '../course'
+import { CourseSchema, Order } from '../db/courses'
 import getCourseList from '.'
 
 type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
   orders: Omit<Order, 'chartOrder'>[]
 }
 
-describe('GET /api/courses', () => {
+describe('GET /api/v1/courses', () => {
   let context: Context
 
   beforeEach(() => {
@@ -107,8 +107,8 @@ describe('GET /api/courses', () => {
         await getCourseList(context)
 
         // Assert
-        expect(context.res.status).toBe(200)
-        expect(context.res.body).toStrictEqual(courses)
+        expect(context.res?.status).toBe(200)
+        expect(context.res?.body).toStrictEqual(courses)
       })
 
       afterAll(async () => {

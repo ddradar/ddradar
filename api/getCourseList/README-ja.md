@@ -16,7 +16,7 @@ English version is [here](./README.md).
 
 認証は不要です。
 
-> GET api/courses
+> GET api/v1/courses
 
 ## Response
 

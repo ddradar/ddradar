@@ -2,10 +2,10 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { SongSchema } from '../song'
+import type { SongSchema } from '../db'
 import searchCharts from '.'
 
-describe('GET /api/charts', () => {
+describe('GET /api/v1/charts', () => {
   let context: Context
 
   beforeEach(() => {
@@ -24,8 +24,8 @@ describe('GET /api/charts', () => {
       await searchCharts(context)
 
       // Assert
-      expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe(
+      expect(context.res?.status).toBe(404)
+      expect(context.res?.body).toBe(
         `"playStyle" is undefined or invalid value :${playStyle}`
       )
     }
@@ -41,8 +41,8 @@ describe('GET /api/charts', () => {
       await searchCharts(context)
 
       // Assert
-      expect(context.res.status).toBe(404)
-      expect(context.res.body).toBe(
+      expect(context.res?.status).toBe(404)
+      expect(context.res?.body).toBe(
         `"level" is undefined or invalid value :${level}`
       )
     }
@@ -249,8 +249,8 @@ describe('GET /api/charts', () => {
         await searchCharts(context)
 
         // Assert
-        expect(context.res.status).toBe(404)
-        expect(context.res.body).toBe(
+        expect(context.res?.status).toBe(404)
+        expect(context.res?.body).toBe(
           'Not found chart that {playStyle: 1, level: 1}'
         )
       })
@@ -317,8 +317,8 @@ describe('GET /api/charts', () => {
           await searchCharts(context)
 
           // Assert
-          expect(context.res.status).toBe(200)
-          expect(context.res.body).toStrictEqual(expected)
+          expect(context.res?.status).toBe(200)
+          expect(context.res?.body).toStrictEqual(expected)
         }
       )
 

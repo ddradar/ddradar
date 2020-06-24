@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "songs/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}"
+      "route": "v1/songs/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}"
     },
     {
       "type": "http",

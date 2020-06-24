@@ -17,7 +17,7 @@ Get a list of song information that matches the specified conditions.
 
 No need Authentication.
 
-> GET /api/songs/series/0&name=0
+> GET /api/v1/songs/series/0&name=0
 
 ## Parameters
 

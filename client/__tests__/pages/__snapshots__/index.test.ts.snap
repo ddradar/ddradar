@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/index.vue renders correctly 1`] = `
+<div>
+  <section
+    class="hero"
+  >
+    <div
+      class="hero-body"
+    >
+      <div
+        class="container"
+      >
+        <h1
+          class="title"
+        >
+          DDRadar
+        </h1>
+         
+        <p
+          class="subtitle"
+        >
+          DDR Score Tracker
+        </p>
+      </div>
+    </div>
+  </section>
+   
+  <section
+    class="section"
+  />
+</div>
+`;
