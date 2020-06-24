@@ -7,7 +7,7 @@ import type { User } from '../user'
 
 /** Get user information that match the specified ID. */
 const httpTrigger = async (
-  context: Pick<Context, 'bindingData' | 'res'>,
+  context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>
 ): Promise<NotFoundResult | SuccessResult<User>> => {
   const displayedId: string = context.bindingData.id
