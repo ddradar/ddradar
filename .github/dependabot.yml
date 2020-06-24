@@ -18,7 +18,7 @@ updates:
     labels:
       - 'dependabot:robot:'
     reviewers:
-      - 'ddradar'
+      - 'ddradar/developer'
 
   # npm/yarn (/**/package.json)
   - package-ecosystem: 'npm'
@@ -35,4 +35,4 @@ updates:
     labels:
       - 'dependabot:robot:'
     reviewers:
-      - 'ddradar'
+      - 'ddradar/developer'
