@@ -131,7 +131,6 @@ describe('GET /api/v1/users', () => {
           id: privateUser.displayedId,
           name: privateUser.name,
           area: privateUser.area,
-          code: privateUser.code,
         })
       })
 
