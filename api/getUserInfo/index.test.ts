@@ -148,10 +148,10 @@ describe('GET /api/v1/users', () => {
       })
 
       afterAll(async () => {
-        await getContainer('Songs')
+        await getContainer('Users')
           .item(publicUser.id, publicUser.area)
           .delete()
-        await getContainer('Songs')
+        await getContainer('Users')
           .item(privateUser.id, privateUser.area)
           .delete()
       })
