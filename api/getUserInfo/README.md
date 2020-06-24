@@ -83,5 +83,3 @@ No need Authentication. Authenticated users can get their own data even if they 
 |`name`|string|User name|
 |`area`|number|[Area code](../../docs/db/users.md#area)|
 |`code`|number?|DDR CODE (optional)|
-|`totalClear.single`<br />`totalClear.double`|integer\[8\]\[5\]|\[0\]\[0\]: BEGINNER/Failed count, \[1\]\[0\]: BEGINNER/Assisted Clear count, ..., \[7\]\[0\]: BEGINNER/MFC count, \[0\]\[1\]: BASIC/Failed count, ..., \[7\]\[4\]: CHALLENGE/MFC count|
-|`totalScore.single`<br />`totalScore.double`|integer\[5\]|\[0\]: BEGINNER total score, \[1\]: BASIC total score, ..., \[4\]: CHALLENGE total score|
