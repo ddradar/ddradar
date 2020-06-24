@@ -14,13 +14,17 @@ import {
   hasStringProperty,
 } from '../type-assert'
 
-type UserInfo = Pick<UserSchema, 'name' | 'area' | 'code' | 'isPublic'> & {
+export type UserInfo = Pick<
+  UserSchema,
+  'name' | 'area' | 'code' | 'isPublic'
+> & {
   /** User id (used for user page URL) */
   id: string
 }
 
 const isUserInfo = (obj: unknown): obj is UserInfo =>
   hasStringProperty(obj, 'id', 'name') &&
+  /^[-a-z0-9_]+$/.test(obj.id) &&
   hasIntegerProperty(obj, 'area') &&
   (areaCodeList as number[]).includes(obj.area) &&
   (!hasProperty(obj, 'code') ||
