@@ -10,10 +10,10 @@ import {
 import { User } from '../user'
 
 /** Get information about the currently logged in user. */
-const httpTrigger = async (
+export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers'>
-): Promise<NotFoundResult | SuccessResult<User> | UnauthenticatedResult> => {
+): Promise<NotFoundResult | SuccessResult<User> | UnauthenticatedResult> {
   const clientPrincipal = getClientPrincipal(req)
   // This check is only used to unit tests.
   if (!clientPrincipal) return { status: 401 }
@@ -41,5 +41,3 @@ const httpTrigger = async (
     body: resources[0],
   }
 }
-
-export default httpTrigger
