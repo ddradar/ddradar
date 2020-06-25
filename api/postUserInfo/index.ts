@@ -54,18 +54,27 @@ const httpTrigger = async (
     }
   }
 
-  const user: UserSchema = {
-    id,
-    displayedId: req.body.id,
+  const container = getContainer('Users')
+
+  // Read existing data
+  const { resource: oldData } = await container
+    .item(id, req.body.area)
+    .read<UserSchema>()
+
+  // Merge existing data with new data
+  const newData: UserSchema = {
+    id: oldData?.id ?? id,
+    displayedId: oldData?.displayedId ?? req.body.id,
     name: req.body.name,
-    area: req.body.area,
+    area: oldData?.area ?? req.body.area,
     isPublic: req.body.isPublic,
   }
-  if (req.body.code) user.code = req.body.code
+  if (req.body.code) newData.code = req.body.code
 
-  const container = getContainer('Users')
-  const { resource } = await container.items.upsert<UserSchema>(user)
+  const { resource } = await container.items.upsert<UserSchema>(newData)
   if (!resource) throw new Error(`Failed upsert id:${req.body.id}`)
+
+  // Create response
   const responseBody: UserInfo = {
     id: resource.displayedId,
     name: resource.name,

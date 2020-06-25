@@ -41,9 +41,9 @@ Need Authentication.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`id`|string|User id (used for user page URL)|
+|`id`|string|User id (used for user page URL) Ignored on update.|
 |`name`|string|User name|
-|`area`|number|[Area code](../../docs/db/users.md#area)|
+|`area`|number|[Area code](../../docs/db/users.md#area) Ignored on update.|
 |`code`|number?|DDR CODE (optional)|
 |`isPublic`|boolean|`true` if this user info is public, otherwize `false`.|
 
@@ -51,7 +51,7 @@ Need Authentication.
 
 - Returns `401 Unauthorized` if you are not logged in.
 - Returns `400 Bad Request` if parameter is invalid.
-- Returns `200 OK` with [JSON body](#response-body) if found.
+- Returns `200 OK` with [JSON body](#response-body) if succeed.
 
 ### Response Body
 

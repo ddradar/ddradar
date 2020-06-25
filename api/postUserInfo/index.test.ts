@@ -68,51 +68,38 @@ describe('POST /api/v1/user', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const userToBeCreated: UserInfo = {
+      const userToBeCreated: UserSchema = {
         ...validUserInfo,
+        id: '1',
+        displayedId: validUserInfo.id,
         code: 10000000,
       }
-      const userToBeUpdated: UserInfo = {
-        id: 'exist_user',
+      const userToBeUpdated: UserSchema = {
+        id: '2',
+        displayedId: 'exist_user',
         name: 'EMI',
         area: 0,
         isPublic: false,
       }
 
       beforeAll(async () => {
-        await getContainer('Users').items.create<UserSchema>({
-          ...userToBeUpdated,
-          id: '2',
-          displayedId: userToBeUpdated.id,
-        })
+        await getContainer('Users').items.create<UserSchema>(userToBeUpdated)
       })
 
       test('returns "200 OK" with JSON body (Create)', async () => {
         // Arrange
-        req.body = userToBeCreated
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'github',
-          userDetails: userToBeCreated.id,
-          userId: '1',
-          userRoles: ['anonymous', 'authenticated'],
-        })
-
-        // Act
-        const result = await postUserInfo(null, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual(userToBeCreated)
-      })
-
-      test('returns "200 OK" with JSON body (Update)', async () => {
-        // Arrange
-        const body = { ...userToBeUpdated, name: 'AFRO' }
+        const body: UserInfo = {
+          id: userToBeCreated.displayedId,
+          name: userToBeCreated.name,
+          area: userToBeCreated.area,
+          code: userToBeCreated.code,
+          isPublic: userToBeCreated.isPublic,
+        }
         req.body = body
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'github',
-          userDetails: userToBeUpdated.id,
-          userId: '2',
+          userDetails: userToBeCreated.displayedId,
+          userId: userToBeCreated.id,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -124,9 +111,68 @@ describe('POST /api/v1/user', () => {
         expect(result.body).toStrictEqual(body)
       })
 
+      test.each([{ name: 'AFRO' }, { isPublic: true }, { code: 20000000 }])(
+        'returns "200 OK" with JSON body (Update) if changed %p',
+        async (diff: Partial<UserInfo>) => {
+          // Arrange
+          const body: UserInfo = {
+            id: userToBeUpdated.displayedId,
+            name: userToBeUpdated.name,
+            area: userToBeUpdated.area,
+            isPublic: userToBeUpdated.isPublic,
+            ...diff,
+          }
+          req.body = body
+          mocked(getClientPrincipal).mockReturnValueOnce({
+            identityProvider: 'github',
+            userDetails: userToBeUpdated.displayedId,
+            userId: userToBeUpdated.id,
+            userRoles: ['anonymous', 'authenticated'],
+          })
+
+          // Act
+          const result = await postUserInfo(null, req)
+
+          // Assert
+          expect(result.status).toBe(200)
+          expect(result.body).toStrictEqual(body)
+        }
+      )
+
+      test.each([{ id: 'update' }, { area: 14 as const }])(
+        'returns "200 OK" but does not update if changed %p',
+        async (diff: Partial<UserInfo>) => {
+          // Arrange
+          const expected: UserInfo = {
+            id: userToBeUpdated.displayedId,
+            name: userToBeUpdated.name,
+            area: userToBeUpdated.area,
+            isPublic: userToBeUpdated.isPublic,
+          }
+          req.body = { ...expected, ...diff }
+          mocked(getClientPrincipal).mockReturnValueOnce({
+            identityProvider: 'github',
+            userDetails: userToBeUpdated.displayedId,
+            userId: userToBeUpdated.id,
+            userRoles: ['anonymous', 'authenticated'],
+          })
+
+          // Act
+          const result = await postUserInfo(null, req)
+
+          // Assert
+          expect(result.status).toBe(200)
+          expect(result.body).toStrictEqual(expected)
+        }
+      )
+
       afterAll(async () => {
-        await getContainer('Users').item('1', userToBeCreated.area).delete()
-        await getContainer('Users').item('2', userToBeUpdated.area).delete()
+        await getContainer('Users')
+          .item(userToBeCreated.id, userToBeCreated.area)
+          .delete()
+        await getContainer('Users')
+          .item(userToBeUpdated.id, userToBeUpdated.area)
+          .delete()
       })
     }
   )
