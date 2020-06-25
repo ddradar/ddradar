@@ -22,8 +22,8 @@ describe('GET /api/v1/users', () => {
     'Cosmos DB integration test',
     () => {
       const users: UserSchema[] = [...Array(100).keys()].map(i => ({
-        id: `${i}`,
-        displayedId: `user_${i}`,
+        id: `user_${i}`,
+        loginId: `${i}`,
         name: `User ${i}`,
         area: (i % 50) as AreaCode,
         isPublic: i !== 0,
@@ -50,8 +50,8 @@ describe('GET /api/v1/users', () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'github',
-          userDetails: users[0].displayedId,
-          userId: users[0].id,
+          userDetails: users[0].id,
+          userId: users[0].loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -76,7 +76,7 @@ describe('GET /api/v1/users', () => {
         // Arrange
         req.query = query
         const expected = expectedUser.map<User>(u => ({
-          id: u.displayedId,
+          id: u.id,
           name: u.name,
           area: u.area,
           code: u.code,

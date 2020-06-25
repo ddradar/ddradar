@@ -10,13 +10,13 @@ const httpTrigger = async (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>
 ): Promise<NotFoundResult | SuccessResult<User>> => {
-  const displayedId: string = context.bindingData.id
+  const id: string = context.bindingData.id
   const clientPrincipal = getClientPrincipal(req)
-  const id = clientPrincipal?.userId ?? ''
+  const loginId = clientPrincipal?.userId ?? ''
 
   // In Azure Functions, this function will only be invoked if a valid `id` is passed.
   // So this check is only used to unit tests.
-  if (!displayedId || !/^[-a-z0-9_]+$/.test(displayedId)) {
+  if (!id || !/^[-a-z0-9_]+$/.test(id)) {
     return { status: 404, body: 'Please pass a id like "/api/v1/users/:id"' }
   }
 
@@ -24,19 +24,19 @@ const httpTrigger = async (
   const { resources } = await container.items
     .query<User>({
       query:
-        'SELECT c.displayedId AS id, c.name, c.area, c.code ' +
+        'SELECT c.id, c.name, c.area, c.code ' +
         'FROM c ' +
-        'WHERE c.displayedId = @displayedId ' +
-        'AND (c.isPublic = true OR c.id = @id)',
+        'WHERE c.id = @id ' +
+        'AND (c.isPublic = true OR c.loginId = @loginId)',
       parameters: [
-        { name: '@displayedId', value: displayedId },
         { name: '@id', value: id },
+        { name: '@loginId', value: loginId },
       ],
     })
     .fetchAll()
 
   if (resources.length === 0) {
-    return { status: 404, body: `Not found user that id: "${displayedId}"` }
+    return { status: 404, body: `Not found user that id: "${id}"` }
   }
 
   return {

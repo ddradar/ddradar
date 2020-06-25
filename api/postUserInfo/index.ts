@@ -14,13 +14,7 @@ import {
   hasStringProperty,
 } from '../type-assert'
 
-export type UserInfo = Pick<
-  UserSchema,
-  'name' | 'area' | 'code' | 'isPublic'
-> & {
-  /** User id (used for user page URL) */
-  id: string
-}
+export type UserInfo = Omit<UserSchema, 'loginId'>
 
 const isUserInfo = (obj: unknown): obj is UserInfo =>
   hasStringProperty(obj, 'id', 'name') &&
@@ -45,7 +39,7 @@ const httpTrigger = async (
   // This check is only used to unit tests.
   if (!clientPrincipal) return { status: 401 }
 
-  const id = clientPrincipal.userId
+  const loginId = clientPrincipal.userId
 
   if (!isUserInfo(req.body)) {
     return {
@@ -57,12 +51,18 @@ const httpTrigger = async (
   const container = getContainer('Users')
 
   // Read existing data
-  const { resource: oldData } = await container.item(id, id).read<UserSchema>()
+  const { resources } = await container.items
+    .query<UserSchema>({
+      query: 'SELECT * FROM c WHERE c.loginId = @loginId',
+      parameters: [{ name: '@loginId', value: loginId }],
+    })
+    .fetchAll()
+  const oldData = resources[0]
 
   // Merge existing data with new data
   const newData: UserSchema = {
-    id: oldData?.id ?? id,
-    displayedId: oldData?.displayedId ?? req.body.id,
+    loginId: oldData?.loginId ?? loginId,
+    id: oldData?.id ?? req.body.id,
     name: req.body.name,
     area: oldData?.area ?? req.body.area,
     isPublic: req.body.isPublic,
@@ -74,7 +74,7 @@ const httpTrigger = async (
 
   // Create response
   const responseBody: UserInfo = {
-    id: resource.displayedId,
+    id: resource.id,
     name: resource.name,
     area: resource.area,
     isPublic: resource.isPublic,

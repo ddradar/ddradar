@@ -26,16 +26,16 @@ describe('GET /api/v1/user', () => {
     'Cosmos DB integration test',
     () => {
       const publicUser: UserSchema = {
-        id: '1',
-        displayedId: 'public_user',
+        id: 'public_user',
+        loginId: '1',
         name: 'Public User',
         area: 13,
         code: 10000000,
         isPublic: true,
       } as const
       const privateUser: UserSchema = {
-        id: '2',
-        displayedId: 'private_user',
+        id: 'private_user',
+        loginId: '2',
         name: 'Private User',
         area: 0,
         isPublic: false,
@@ -66,8 +66,8 @@ describe('GET /api/v1/user', () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValue({
           identityProvider: 'github',
-          userDetails: publicUser.displayedId,
-          userId: publicUser.id,
+          userDetails: publicUser.id,
+          userId: publicUser.loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -77,7 +77,7 @@ describe('GET /api/v1/user', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual({
-          id: publicUser.displayedId,
+          id: publicUser.id,
           name: publicUser.name,
           area: publicUser.area,
           code: publicUser.code,
@@ -88,8 +88,8 @@ describe('GET /api/v1/user', () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValue({
           identityProvider: 'twitter',
-          userDetails: privateUser.displayedId,
-          userId: privateUser.id,
+          userDetails: privateUser.id,
+          userId: privateUser.loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -99,7 +99,7 @@ describe('GET /api/v1/user', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual({
-          id: privateUser.displayedId,
+          id: privateUser.id,
           name: privateUser.name,
           area: privateUser.area,
         })

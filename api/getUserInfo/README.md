@@ -23,7 +23,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`id`|string|User id (used for user page URL)|
+|`id`|string|User id|
 
 ## Response
 
@@ -41,37 +41,7 @@ No need Authentication. Authenticated users can get their own data even if they 
   "id": "afro0001",
   "name": "AFRO",
   "area": 13,
-  "code": 10000000,
-  "totalClear": {
-    "single": {
-      "0": [0, 0, 0, 0, 0, 0, 0, 0],
-      "1": [0, 0, 0, 0, 0, 0, 0, 0],
-      "2": [0, 0, 0, 0, 0, 0, 0, 0],
-      "3": [0, 0, 0, 0, 0, 0, 0, 0],
-      "4": [0, 0, 0, 0, 0, 0, 0, 0]
-    },
-    "double": {
-      "1": [0, 0, 0, 0, 0, 0, 0, 0],
-      "2": [0, 0, 0, 0, 0, 0, 0, 0],
-      "3": [0, 0, 0, 0, 0, 0, 0, 0],
-      "4": [0, 0, 0, 0, 0, 0, 0, 0]
-    }
-  },
-  "totalScore": {
-    "single": {
-      "0": 0,
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0
-    },
-    "double": {
-      "1": 0,
-      "2": 0,
-      "3": 0,
-      "4": 0
-    }
-  }
+  "code": 10000000
 }
 ```
 
