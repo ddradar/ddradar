@@ -7,8 +7,8 @@ import { areaCodeList } from '../db/users'
 import type { NotFoundResult, SuccessResult } from '../function'
 import type { User } from '../user'
 
-type UserListResponse = {
-  next: string
+export type UserListResponse = {
+  next: string | null
   result: User[]
 }
 
@@ -42,7 +42,7 @@ const httpTrigger = async (
   }
 
   const container = getContainer('Users', true)
-  const { resources, continuationToken } = await container.items
+  const { resources, continuationToken, hasMoreResults } = await container.items
     .query<User>(
       {
         query:
@@ -51,7 +51,7 @@ const httpTrigger = async (
           `WHERE ${conditions.join(' AND ')}`,
         parameters,
       },
-      { continuationToken: token, maxItemCount: 50 }
+      { continuationToken: token }
     )
     .fetchAll()
 
@@ -67,7 +67,9 @@ const httpTrigger = async (
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body: {
-      next: `/api/v1/users?token=${continuationToken}${queries}`,
+      next: hasMoreResults
+        ? `/api/v1/users?token=${continuationToken}${queries}`
+        : null,
       result: resources,
     },
   }
