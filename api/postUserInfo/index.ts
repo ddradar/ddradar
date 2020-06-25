@@ -63,7 +63,7 @@ const httpTrigger = async (
   }
   if (req.body.code) user.code = req.body.code
 
-  const container = getContainer('Songs')
+  const container = getContainer('Users')
   const { resource } = await container.items.upsert<UserSchema>(user)
   if (!resource) throw new Error(`Failed upsert id:${req.body.id}`)
   const responseBody: UserInfo = {
