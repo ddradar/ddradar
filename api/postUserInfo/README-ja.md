@@ -41,9 +41,9 @@ English version is [here](./README.md).
 
 |名前|型|説明|
 |----|:--:|-----------|
-|`id`|string|ユーザーID (ユーザーページのURL等に用いる)|
+|`id`|string|ユーザーID (ユーザーページのURL等に用いる) 更新時には無視されます。|
 |`name`|string|ユーザー名|
-|`area`|number|[エリアコード](../../docs/db/users-ja.md#area)|
+|`area`|number|[エリアコード](../../docs/db/users-ja.md#area) 更新時には無視されます。|
 |`code`|number?|DDR CODE (省略可)|
 |`isPublic`|boolean|ユーザーを一般公開する場合は`true`、本人のみ閲覧できる場合には`false`|
 

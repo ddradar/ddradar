@@ -10,10 +10,10 @@ English version is [here](./scores.md).
 
 |名前|型|説明|
 |----|:--:|-----------|
-|id|string|Azure Authentication より自動生成された内部ユーザーID|
+|**id**|string|Azure Authentication より自動生成された内部ユーザーID|
 |displayedId|string|ユーザーID (ユーザーページのURL等に用いる)|
 |name|string|ユーザー名|
-|**area**|number|エリアコード ([下記を参照](#area))|
+|area|number|エリアコード ([下記を参照](#area))|
 |code|number?|DDR CODE (省略可)|
 |isPublic|boolean|ユーザーを一般公開する場合は`true`、本人のみ閲覧できる場合には`false`|
 

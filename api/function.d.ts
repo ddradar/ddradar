@@ -1,3 +1,8 @@
+export type BadRequestResult = {
+  status: 400
+  body?: string
+}
+
 export type UnauthenticatedResult = {
   status: 401
   body?: string
