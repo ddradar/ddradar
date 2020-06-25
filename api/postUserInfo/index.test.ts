@@ -167,12 +167,8 @@ describe('POST /api/v1/user', () => {
       )
 
       afterAll(async () => {
-        await getContainer('Users')
-          .item(userToBeCreated.id, userToBeCreated.area)
-          .delete()
-        await getContainer('Users')
-          .item(userToBeUpdated.id, userToBeUpdated.area)
-          .delete()
+        await getContainer('Users').item(userToBeCreated.id).delete()
+        await getContainer('Users').item(userToBeUpdated.id).delete()
       })
     }
   )
