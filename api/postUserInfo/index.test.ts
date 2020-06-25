@@ -82,8 +82,8 @@ describe('POST /api/v1/user', () => {
         isPublic: false,
       }
 
-      beforeAll(async () => {
-        await getContainer('Users').items.create<UserSchema>(userToBeUpdated)
+      beforeEach(async () => {
+        await getContainer('Users').items.upsert<UserSchema>(userToBeUpdated)
       })
 
       test('returns "200 OK" with JSON body (Create)', async () => {
