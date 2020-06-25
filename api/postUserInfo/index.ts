@@ -57,7 +57,7 @@ const httpTrigger = async (
   const container = getContainer('Users')
 
   // Read existing data
-  const { resource: oldData } = await container.item(id).read<UserSchema>()
+  const { resource: oldData } = await container.item(id, id).read<UserSchema>()
 
   // Merge existing data with new data
   const newData: UserSchema = {
