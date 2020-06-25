@@ -18,16 +18,16 @@ const httpTrigger = async (
   // This check is only used to unit tests.
   if (!clientPrincipal) return { status: 401 }
 
-  const id = clientPrincipal.userId
+  const loginId = clientPrincipal.userId
 
   const container = getContainer('Users', true)
   const { resources } = await container.items
     .query<User>({
       query:
-        'SELECT c.displayedId AS id, c.name, c.area, c.code ' +
+        'SELECT c.id, c.name, c.area, c.code ' +
         'FROM c ' +
-        'WHERE c.id = @id',
-      parameters: [{ name: '@id', value: id }],
+        'WHERE c.loginId = @loginId',
+      parameters: [{ name: '@loginId', value: loginId }],
     })
     .fetchAll()
 

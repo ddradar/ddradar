@@ -18,7 +18,7 @@ const httpTrigger = async (
   req: Pick<HttpRequest, 'headers' | 'query'>
 ): Promise<NotFoundResult | SuccessResult<UserListResponse>> => {
   const clientPrincipal = getClientPrincipal(req)
-  const id = clientPrincipal?.userId ?? ''
+  const loginId = clientPrincipal?.userId ?? ''
 
   const area = parseFloat(req.query.area)
   const name = req.query.name
@@ -26,8 +26,8 @@ const httpTrigger = async (
   const token = req.query.token
 
   // Create SQL WHERE condition dynamically
-  const conditions: string[] = ['(c.isPublic = true OR c.id = @id)']
-  const parameters: SqlParameter[] = [{ name: '@id', value: id }]
+  const conditions: string[] = ['(c.isPublic = true OR c.loginId = @loginId)']
+  const parameters: SqlParameter[] = [{ name: '@loginId', value: loginId }]
   if ((areaCodeList as number[]).includes(area)) {
     conditions.push('c.area = @area')
     parameters.push({ name: '@area', value: area })
@@ -46,7 +46,7 @@ const httpTrigger = async (
     .query<User>(
       {
         query:
-          'SELECT c.displayedId AS id, c.name, c.area, c.code ' +
+          'SELECT c.id, c.name, c.area, c.code ' +
           'FROM c ' +
           `WHERE ${conditions.join(' AND ')}`,
         parameters,

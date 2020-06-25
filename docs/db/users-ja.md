@@ -10,8 +10,8 @@ English version is [here](./scores.md).
 
 |名前|型|説明|
 |----|:--:|-----------|
-|**id**|string|Azure Authentication より自動生成された内部ユーザーID|
-|displayedId|string|ユーザーID (ユーザーページのURL等に用いる)|
+|**id**|string|ユーザーID|
+|loginId|string|Azure Authentication より自動生成された内部ユーザーID|
 |name|string|ユーザー名|
 |area|number|エリアコード ([下記を参照](#area))|
 |code|number?|DDR CODE (省略可)|
@@ -79,8 +79,8 @@ English version is [here](./scores.md).
 
 ```json
 {
-    "id": "<Azure Authenticationの自動生成>",
-    "displayedId": "user1",
+    "id": "user1",
+    "loginId": "<Azure Authenticationの自動生成>",
     "name": "ユーザー1",
     "area": 13,
     "code": 10000000,

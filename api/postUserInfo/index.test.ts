@@ -70,13 +70,13 @@ describe('POST /api/v1/user', () => {
     () => {
       const userToBeCreated: UserSchema = {
         ...validUserInfo,
-        id: '1',
-        displayedId: validUserInfo.id,
+        id: validUserInfo.id,
+        loginId: '1',
         code: 10000000,
       }
       const userToBeUpdated: UserSchema = {
-        id: '2',
-        displayedId: 'exist_user',
+        id: 'exist_user',
+        loginId: '2',
         name: 'EMI',
         area: 0,
         isPublic: false,
@@ -89,7 +89,7 @@ describe('POST /api/v1/user', () => {
       test('returns "200 OK" with JSON body (Create)', async () => {
         // Arrange
         const body: UserInfo = {
-          id: userToBeCreated.displayedId,
+          id: userToBeCreated.id,
           name: userToBeCreated.name,
           area: userToBeCreated.area,
           code: userToBeCreated.code,
@@ -98,8 +98,8 @@ describe('POST /api/v1/user', () => {
         req.body = body
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'github',
-          userDetails: userToBeCreated.displayedId,
-          userId: userToBeCreated.id,
+          userDetails: userToBeCreated.id,
+          userId: userToBeCreated.loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -116,7 +116,7 @@ describe('POST /api/v1/user', () => {
         async (diff: Partial<UserInfo>) => {
           // Arrange
           const body: UserInfo = {
-            id: userToBeUpdated.displayedId,
+            id: userToBeUpdated.id,
             name: userToBeUpdated.name,
             area: userToBeUpdated.area,
             isPublic: userToBeUpdated.isPublic,
@@ -125,8 +125,8 @@ describe('POST /api/v1/user', () => {
           req.body = body
           mocked(getClientPrincipal).mockReturnValueOnce({
             identityProvider: 'github',
-            userDetails: userToBeUpdated.displayedId,
-            userId: userToBeUpdated.id,
+            userDetails: userToBeUpdated.id,
+            userId: userToBeUpdated.loginId,
             userRoles: ['anonymous', 'authenticated'],
           })
 
@@ -144,7 +144,7 @@ describe('POST /api/v1/user', () => {
         async (diff: Partial<UserInfo>) => {
           // Arrange
           const expected: UserInfo = {
-            id: userToBeUpdated.displayedId,
+            id: userToBeUpdated.id,
             name: userToBeUpdated.name,
             area: userToBeUpdated.area,
             isPublic: userToBeUpdated.isPublic,
@@ -152,8 +152,8 @@ describe('POST /api/v1/user', () => {
           req.body = { ...expected, ...diff }
           mocked(getClientPrincipal).mockReturnValueOnce({
             identityProvider: 'github',
-            userDetails: userToBeUpdated.displayedId,
-            userId: userToBeUpdated.id,
+            userDetails: userToBeUpdated.id,
+            userId: userToBeUpdated.loginId,
             userRoles: ['anonymous', 'authenticated'],
           })
 

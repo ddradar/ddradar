@@ -43,7 +43,7 @@ Need Authentication.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`id`|string|User id (used for user page URL)|
+|`id`|string|User id|
 |`name`|string|User name|
 |`area`|number|[Area code](../../docs/db/users.md#area)|
 |`code`|number?|DDR CODE (optional)|

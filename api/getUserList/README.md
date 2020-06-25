@@ -73,7 +73,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`id`|string|User id (used for user page URL)|
+|`id`|string|User id|
 |`name`|string|User Name|
 |`area`|number|[Area code](../../docs/db/users.md#area)|
 |`code`|number?|DDR CODE (optional)|

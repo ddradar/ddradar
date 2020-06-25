@@ -41,16 +41,16 @@ describe('GET /api/v1/users', () => {
     'Cosmos DB integration test',
     () => {
       const publicUser: UserSchema = {
-        id: '1',
-        displayedId: 'public_user',
+        id: 'public_user',
+        loginId: '1',
         name: 'Public User',
         area: 13,
         code: 10000000,
         isPublic: true,
       } as const
       const privateUser: UserSchema = {
-        id: '2',
-        displayedId: 'private_user',
+        id: 'private_user',
+        loginId: '2',
         name: 'Private User',
         area: 0,
         isPublic: false,
@@ -74,9 +74,9 @@ describe('GET /api/v1/users', () => {
         expect(result.body).toBe(`Not found user that id: "${id}"`)
       })
 
-      test(`/${publicUser.displayedId} returns "200 OK" with JSON body`, async () => {
+      test(`/${publicUser.id} returns "200 OK" with JSON body`, async () => {
         // Arrange
-        const id = publicUser.displayedId
+        const id = publicUser.id
         context.bindingData.id = id
 
         // Act
@@ -85,16 +85,16 @@ describe('GET /api/v1/users', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual({
-          id: publicUser.displayedId,
+          id: publicUser.id,
           name: publicUser.name,
           area: publicUser.area,
           code: publicUser.code,
         })
       })
 
-      test(`/${privateUser.displayedId} returns "404 Not Found" if no authenticated`, async () => {
+      test(`/${privateUser.id} returns "404 Not Found" if no authenticated`, async () => {
         // Arrange
-        const id = privateUser.displayedId
+        const id = privateUser.id
         context.bindingData.id = id
 
         // Act
@@ -105,14 +105,14 @@ describe('GET /api/v1/users', () => {
         expect(result.body).toBe(`Not found user that id: "${id}"`)
       })
 
-      test(`/${privateUser.displayedId} returns "404 Not Found" if logged in as otherUser`, async () => {
+      test(`/${privateUser.id} returns "404 Not Found" if logged in as otherUser`, async () => {
         // Arrange
-        const id = privateUser.displayedId
+        const id = privateUser.id
         context.bindingData.id = id
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'github',
-          userDetails: publicUser.displayedId,
-          userId: publicUser.id,
+          userDetails: publicUser.id,
+          userId: publicUser.loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -124,14 +124,14 @@ describe('GET /api/v1/users', () => {
         expect(result.body).toBe(`Not found user that id: "${id}"`)
       })
 
-      test(`/${privateUser.displayedId} returns "200 OK" with JSON body if logged in as privateUser`, async () => {
+      test(`/${privateUser.id} returns "200 OK" with JSON body if logged in as privateUser`, async () => {
         // Arrange
-        const id = privateUser.displayedId
+        const id = privateUser.id
         context.bindingData.id = id
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'github',
-          userDetails: privateUser.displayedId,
-          userId: privateUser.id,
+          userDetails: privateUser.id,
+          userId: privateUser.loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
 
@@ -141,7 +141,7 @@ describe('GET /api/v1/users', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual({
-          id: privateUser.displayedId,
+          id: privateUser.id,
           name: privateUser.name,
           area: privateUser.area,
         })
