@@ -13,10 +13,10 @@ export type UserListResponse = {
 }
 
 /** Get user list that match the specified conditions. */
-const httpTrigger = async (
+export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>
-): Promise<NotFoundResult | SuccessResult<UserListResponse>> => {
+): Promise<NotFoundResult | SuccessResult<UserListResponse>> {
   const clientPrincipal = getClientPrincipal(req)
   const loginId = clientPrincipal?.userId ?? ''
 
@@ -74,5 +74,3 @@ const httpTrigger = async (
     },
   }
 }
-
-export default httpTrigger

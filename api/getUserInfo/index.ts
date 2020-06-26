@@ -6,10 +6,10 @@ import type { NotFoundResult, SuccessResult } from '../function'
 import type { User } from '../user'
 
 /** Get user information that match the specified ID. */
-const httpTrigger = async (
+export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>
-): Promise<NotFoundResult | SuccessResult<User>> => {
+): Promise<NotFoundResult | SuccessResult<User>> {
   const id: string = context.bindingData.id
   const clientPrincipal = getClientPrincipal(req)
   const loginId = clientPrincipal?.userId ?? ''
@@ -45,5 +45,3 @@ const httpTrigger = async (
     body: resources[0],
   }
 }
-
-export default httpTrigger
