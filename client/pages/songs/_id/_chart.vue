@@ -34,7 +34,9 @@ export default class SongDetailPage extends Vue implements Song {
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
     // Get song info from API
-    const songInfo: SongInfo = await $http.$get<SongInfo>(`/songs/${params.id}`)
+    const songInfo: SongInfo = await $http.$get<SongInfo>(
+      `/api/v1/songs/${params.id}`
+    )
 
     // Set chartIndex
     let chartIndex = 0

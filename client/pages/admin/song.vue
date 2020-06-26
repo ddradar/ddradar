@@ -339,7 +339,9 @@ export default class SongEditorPage extends Vue implements SongInfo {
   async loadSongInfo() {
     if (!this.isValidSongId) return
     try {
-      const songInfo = await this.$http.$get<SongInfo>(`/songs/${this.id}`)
+      const songInfo = await this.$http.$get<SongInfo>(
+        `/api/v1/songs/${this.id}`
+      )
 
       this.name = songInfo.name
       this.nameKana = songInfo.nameKana
@@ -379,7 +381,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
         }
         try {
           const songInfo = await this.$http.$post<SongInfo>(
-            '/admin/songs',
+            '/api/v1/admin/songs',
             postData
           )
           this.$buefy.notification.open({
