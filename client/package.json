@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts generate",
+    "build": "nuxt-ts build && nuxt-ts export",
     "test": "jest"
   },
   "dependencies": {
