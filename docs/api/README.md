@@ -5,6 +5,7 @@
 - [Authentication](#authentication-api)
 - [Song](#song-api)
 - [Course](#course-api)
+- [User](#user-api)
 
 ## Authentication API
 
@@ -26,3 +27,10 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Course Information](../../api/getCourseInfo/README.md)
 - [Get Course List](../../api/getCourseList/README.md)
+
+## User API
+
+- [Get Current User Data](../../api/getCurrentUser/README.md) **Authed user only*
+- [Get User List](../../api/getUserList/README.md)
+- [Get User Information](../../api/getUserInfo/README.md)
+- [Post User Information](../../api/postUserInfo/README.md) **Authed user only*

@@ -41,6 +41,6 @@ module.exports = async () => {
   })
   await database.containers.createIfNotExists({
     id: 'Users',
-    partitionKey: { paths: ['/area'] },
+    partitionKey: { paths: ['/id'] },
   })
 }
