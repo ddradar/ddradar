@@ -22,7 +22,7 @@ const configuration: Configuration = {
   loading: { color: '#fff' },
   css: ['~/assets/css/styles.scss'],
   plugins: [],
-  buildModules: ['@nuxt/typescript-build'],
+  buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
   modules: [['nuxt-buefy', { css: false }], '@nuxt/http', '@nuxtjs/pwa'],
   pwa: {
     manifest: {
@@ -36,6 +36,7 @@ const configuration: Configuration = {
     },
   },
   build: {
+    transpile: [/typed-vuex/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
     },

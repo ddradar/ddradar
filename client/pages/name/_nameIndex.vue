@@ -60,7 +60,9 @@ export default class SongByNamePage extends Vue {
   /** Get Song List from API */
   async fetch() {
     const i = this.$route.params.nameIndex
-    const songs: Song[] = await this.$http.$get<Song[]>(`/songs/name/${i}`)
+    const songs: Song[] = await this.$http.$get<Song[]>(
+      `/api/v1/songs/name/${i}`
+    )
     this.songs = songs
   }
 

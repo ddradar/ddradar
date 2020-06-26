@@ -13,7 +13,14 @@
 </template>
 
 <script lang="ts">
-import { Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 
-export default class IndexPage extends Vue {}
+@Component({ fetchOnServer: false })
+export default class IndexPage extends Vue {
+  async fetch() {
+    await this.$accessor.fetchUser()
+    if (this.$accessor.auth && !this.$accessor.user)
+      this.$router.push('/profile')
+  }
+}
 </script>

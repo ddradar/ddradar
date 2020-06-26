@@ -55,6 +55,9 @@
       </template>
 
       <template slot="end">
+        <b-navbar-item v-if="isLoggedIn" href="/profile">
+          {{ name }}
+        </b-navbar-item>
         <b-navbar-item v-if="isLoggedIn" href="/.auth/logout">
           ログアウト
         </b-navbar-item>
@@ -110,9 +113,16 @@ import { NameIndexList, SeriesList } from '~/types/api/song'
 
 @Component
 export default class DefaultLayout extends Vue {
-  isLoggedIn = false
   nameIndexList = NameIndexList
   seriesList = SeriesList
   levelList = [...Array(19).keys()].map(n => n + 1)
+
+  get isLoggedIn() {
+    return !!this.$accessor.auth
+  }
+
+  get name() {
+    return this.$accessor.user?.name
+  }
 }
 </script>
