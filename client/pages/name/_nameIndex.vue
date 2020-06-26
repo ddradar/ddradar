@@ -42,7 +42,7 @@ import { NameIndexList, SongInfo } from '~/types/api/song'
 
 type Song = Omit<SongInfo, 'charts'>
 
-@Component
+@Component({ fetchOnServer: false })
 export default class SongByNamePage extends Vue {
   /** Song List from API */
   songs: Song[] = []
