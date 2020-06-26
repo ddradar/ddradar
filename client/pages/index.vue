@@ -15,7 +15,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-@Component
+@Component({ fetchOnServer: false })
 export default class IndexPage extends Vue {
   async fetch() {
     await this.$accessor.fetchUser()
