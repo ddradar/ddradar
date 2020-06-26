@@ -55,6 +55,9 @@
       </template>
 
       <template slot="end">
+        <b-navbar-item v-if="isLoggedIn" href="/profile">
+          {{ name }}
+        </b-navbar-item>
         <b-navbar-item v-if="isLoggedIn" href="/.auth/logout">
           ログアウト
         </b-navbar-item>
@@ -116,6 +119,10 @@ export default class DefaultLayout extends Vue {
 
   get isLoggedIn() {
     return !!this.$accessor.auth
+  }
+
+  get name() {
+    return this.$accessor.user?.name
   }
 }
 </script>

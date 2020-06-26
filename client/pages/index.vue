@@ -19,7 +19,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 export default class IndexPage extends Vue {
   async fetch() {
     await this.$accessor.fetchUser()
-    if (!this.$accessor.user) this.$router.push('/profile')
+    if (this.$accessor.auth && !this.$accessor.user)
+      this.$router.push('/profile')
   }
 }
 </script>
