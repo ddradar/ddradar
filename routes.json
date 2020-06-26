@@ -23,11 +23,12 @@
     {
       "route": "/api/v1/admin/*",
       "allowedRoles": ["administrator"]
-    },
+    }
+  ],
+  "platformErrorOverrides": [
     {
-      "route": "/*",
-      "serve": "/index.html",
-      "statusCode": 200
+      "errorType": "NotFound",
+      "serve": "/index.html"
     }
   ]
 }
