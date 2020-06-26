@@ -18,7 +18,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class IndexPage extends Vue {
-  async asyncData({ redirect }: Context) {
+  async asyncData({ redirect }: Pick<Context, 'redirect'>) {
     await this.$accessor.fetchUser()
     if (!this.$accessor.user) redirect('/profile')
   }

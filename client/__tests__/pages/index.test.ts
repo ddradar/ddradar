@@ -7,6 +7,6 @@ const localVue = createLocalVue()
 describe('pages/index.vue', () => {
   test('renders correctly', () => {
     const wrapper = mount(IndexPage, { localVue })
-    expect(wrapper.element).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
 })
