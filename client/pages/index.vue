@@ -13,14 +13,13 @@
 </template>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component
 export default class IndexPage extends Vue {
-  async asyncData({ redirect }: Pick<Context, 'redirect'>) {
+  async fetch() {
     await this.$accessor.fetchUser()
-    if (!this.$accessor.user) redirect('/profile')
+    if (!this.$accessor.user) this.$router.push('/profile')
   }
 }
 </script>
