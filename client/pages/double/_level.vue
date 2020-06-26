@@ -42,7 +42,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { ChartInfo } from '~/types/api/song'
 
-@Component
+@Component({ fetchOnServer: false })
 export default class DoubleLevelPage extends Vue {
   /** Chart list */
   charts: ChartInfo[] = []

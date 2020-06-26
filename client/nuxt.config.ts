@@ -2,6 +2,7 @@ import { Configuration } from '@nuxt/types'
 
 const configuration: Configuration = {
   mode: 'universal',
+  target: 'static',
   head: {
     title: 'DDRadar',
     meta: [
