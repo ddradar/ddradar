@@ -23,12 +23,11 @@
     {
       "route": "/api/v1/admin/*",
       "allowedRoles": ["administrator"]
-    }
-  ],
-  "platformErrorOverrides": [
+    },
     {
-      "errorType": "NotFound",
-      "serve": "/index.html"
+      "route": "/songs/*",
+      "serve": "/index.html",
+      "statusCode": 200
     }
   ]
 }
