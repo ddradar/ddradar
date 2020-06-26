@@ -110,9 +110,12 @@ import { NameIndexList, SeriesList } from '~/types/api/song'
 
 @Component
 export default class DefaultLayout extends Vue {
-  isLoggedIn = false
   nameIndexList = NameIndexList
   seriesList = SeriesList
   levelList = [...Array(19).keys()].map(n => n + 1)
+
+  get isLoggedIn() {
+    return !!this.$accessor.auth
+  }
 }
 </script>
