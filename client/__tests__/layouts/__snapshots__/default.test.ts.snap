@@ -280,7 +280,6 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
         </div>
       </div>
       <div class="navbar-end">
-        <!---->
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
@@ -595,11 +594,22 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
             </a></div>
         </div>
       </div>
-      <div class="navbar-end"><a href="/profile" class="navbar-item">
-
-        </a> <a href="/.auth/logout" class="navbar-item">
-          ログアウト
-        </a></div>
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
+          <div class="navbar-dropdown is-right">
+            <div class="navbar-item">
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
+              設定
+            </span>
+                  <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
+                  <!----> <span>
+              ログアウト
+            </span>
+                  <!----></a></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </nav>
   <nuxt-stub></nuxt-stub>
