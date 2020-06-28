@@ -11,7 +11,7 @@ jest.mock('../auth')
 describe('GET /api/v1/user', () => {
   const req = { headers: {} }
 
-  test('returns "404 Not Found" if not logged in', async () => {
+  test('returns "401 Unauthorized" if not logged in', async () => {
     // Arrange
     mocked(getClientPrincipal).mockReturnValue(null)
 
