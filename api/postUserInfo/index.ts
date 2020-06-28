@@ -34,9 +34,7 @@ export default async function (
   req: Pick<HttpRequest, 'body' | 'headers'>
 ): Promise<BadRequestResult | SuccessResult<UserInfo> | UnauthenticatedResult> {
   const clientPrincipal = getClientPrincipal(req)
-  // This check is only used to unit tests.
-  if (!clientPrincipal) return { status: 401 }
-
+  if (!clientPrincipal) return { status: 401 } // This check is only used to unit tests.
   const loginId = clientPrincipal.userId
 
   if (!isUserInfo(req.body)) {
@@ -51,8 +49,11 @@ export default async function (
   // Read existing data
   const { resources } = await container.items
     .query<UserSchema>({
-      query: 'SELECT * FROM c WHERE c.loginId = @loginId',
-      parameters: [{ name: '@loginId', value: loginId }],
+      query: 'SELECT * FROM c WHERE c.id = @id OR c.loginId = @loginId',
+      parameters: [
+        { name: '@id', value: req.body.id },
+        { name: '@loginId', value: loginId },
+      ],
     })
     .fetchAll()
   const oldData = resources[0]
