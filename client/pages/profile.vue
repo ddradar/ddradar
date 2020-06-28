@@ -9,11 +9,15 @@
         pattern="^[-a-z0-9_]+$"
         placeholder="半角英数字, ハイフン, アンダーバー"
         :disabled="!isNewUser"
+        :loading="loading"
+        :type="type"
+        :message="message"
+        @blur="checkDuplicate()"
       />
     </b-field>
 
     <b-field label="表示名">
-      <b-input v-model="name" required :disabled="!isNewUser" />
+      <b-input v-model="name" required />
     </b-field>
 
     <b-field label="所属地域">
@@ -39,7 +43,7 @@
     </b-field>
 
     <b-field>
-      <b-button type="is-success" :disabled="hasError">
+      <b-button type="is-success" :disabled="hasError" @click="save()">
         保存
       </b-button>
     </b-field>
@@ -58,6 +62,10 @@ export default class ProfilePage extends Vue implements User {
   area: AreaCode = 0
   code: number | null
   isPublic: boolean = true
+
+  loading = false
+  type = ''
+  message = ''
 
   readonly areaOptions = Object.entries(areaList).map(v => ({
     key: v[0],
@@ -88,6 +96,21 @@ export default class ProfilePage extends Vue implements User {
     this.area = this.$accessor.user?.area ?? 0
     this.code = this.$accessor.user?.code
     this.isPublic = this.$accessor.user?.isPublic ?? true
+  }
+
+  async checkDuplicate() {
+    this.loading = true
+    const { exists } = await this.$http.$get<{ exists: boolean }>(
+      `/api/v1/users/exists/${this.id}`
+    )
+    this.loading = false
+    if (exists) {
+      this.type = 'is-error'
+      this.message = 'ユーザーIDはすでに使われています'
+    } else {
+      this.type = 'is-success'
+      this.message = 'ユーザーIDは使用可能です'
+    }
   }
 
   async save() {
