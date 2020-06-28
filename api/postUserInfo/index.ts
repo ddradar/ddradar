@@ -57,6 +57,10 @@ export default async function (
     .fetchAll()
   const oldData = resources[0]
 
+  if (oldData && (oldData.id !== req.body.id || oldData.loginId !== loginId)) {
+    return { status: 400, body: 'Duplicated Id' }
+  }
+
   // Merge existing data with new data
   const newData: UserSchema = {
     loginId: oldData?.loginId ?? loginId,
