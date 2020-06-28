@@ -27,6 +27,7 @@ Need Authentication.
 
 ## Response
 
+- Returns `401 Unauthorized` if you are not logged in.
 - Returns `404 Not Found` if `id` does not match pattern.
 - Returns `200 OK` with [JSON body](#response-body) otherwize.
 

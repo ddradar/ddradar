@@ -27,6 +27,7 @@ English version is [here](./README.md).
 
 ## Response
 
+- 未認証の場合、`401 Unauthorized` を返します。
 - `id` が正規表現にマッチしない場合、`404 Not Found` を返します。
 - その他の場合、`200 OK` と [JSON](#response-body)を返します。
 
