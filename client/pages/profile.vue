@@ -7,7 +7,7 @@
         v-model="id"
         required
         pattern="^[-a-z0-9_]+$"
-        placeholder="半角英数字, -, _"
+        placeholder="半角英数字, ハイフン, アンダーバー"
         :disabled="!isNewUser"
       />
     </b-field>
@@ -19,7 +19,7 @@
     <b-field label="所属地域">
       <b-select v-model="area" placeholder="Select" :disabled="!isNewUser">
         <option v-for="area in areaOptions" :key="area.key" :value="area.key">
-          {{ value }}
+          {{ area.value }}
         </option>
       </b-select>
     </b-field>
@@ -27,10 +27,10 @@
     <b-field label="DDR CODE">
       <b-input
         v-model.number="code"
-        type="number"
         placeholder="10000000"
-        min="10000000"
-        max="99999999"
+        minlength="8"
+        maxlength="8"
+        pattern="^\d{8}$"
       />
     </b-field>
 
@@ -53,11 +53,11 @@ import { AreaCode, areaList, User } from '../types/api/user'
 
 @Component({ fetchOnServer: false })
 export default class ProfilePage extends Vue implements User {
-  id: string
-  name: string
-  area: AreaCode
-  code: number
-  isPublic: boolean
+  id: string = ''
+  name: string = ''
+  area: AreaCode = 0
+  code: number | null
+  isPublic: boolean = true
 
   readonly areaOptions = Object.entries(areaList).map(v => ({
     key: v[0],
@@ -73,9 +73,10 @@ export default class ProfilePage extends Vue implements User {
       !/^[-a-z0-9_]+$/.test(this.id) ||
       !this.name ||
       !Object.keys(areaList).includes(`${this.area}`) ||
-      !Number.isInteger(this.code) ||
-      this.code < 10000000 ||
-      this.code > 99999999
+      (this.code &&
+        (!Number.isInteger(this.code) ||
+          this.code < 10000000 ||
+          this.code > 99999999))
     )
   }
 
@@ -97,7 +98,22 @@ export default class ProfilePage extends Vue implements User {
       isPublic: this.isPublic,
     }
     if (this.code) user.code = this.code
-    await this.$accessor.saveUser(user)
+    try {
+      await this.$accessor.saveUser(user)
+      this.$buefy.notification.open({
+        message: 'Success!',
+        type: 'is-success',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    } catch (error) {
+      this.$buefy.notification.open({
+        message: error.message ?? error,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
   }
 }
 </script>
