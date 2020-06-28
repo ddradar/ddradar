@@ -17,6 +17,10 @@
       "allowedRoles": ["authenticated"]
     },
     {
+      "route": "/api/v1/users/exists/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/admin/*",
       "allowedRoles": ["administrator"]
     },
