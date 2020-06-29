@@ -5,34 +5,32 @@
     </b-message>
     <h1 class="title">ユーザー設定</h1>
 
-    <b-field
-      label="ID"
-      message="あなたの情報をDDRadar上で管理する識別子です。登録後の変更はできません。"
-    >
+    <b-field label="ID" :type="type" :message="message">
       <b-input
         v-model="id"
         placeholder="半角英数字, ハイフン, アンダーバー"
         :disabled="!isNewUser"
         :loading="loading"
-        :type="type"
-        :message="message"
         @blur="checkId()"
       />
+      <p class="help">
+        あなたの情報をDDRadar上で管理する識別子です。登録後の変更はできません。
+      </p>
     </b-field>
 
-    <b-field label="表示名" message="あなたの名前です。">
+    <b-field label="表示名">
       <b-input v-model="name" required />
     </b-field>
 
-    <b-field
-      label="所属地域"
-      message="あなたの所属地域です。登録後の変更はできません。"
-    >
+    <b-field label="所属地域">
       <b-select v-model="area" placeholder="Select" :disabled="!isNewUser">
         <option v-for="area in areaOptions" :key="area.key" :value="area.key">
           {{ area.value }}
         </option>
       </b-select>
+      <p class="help">
+        あなたの所属地域です。登録後の変更はできません。
+      </p>
     </b-field>
 
     <b-field label="DDR CODE(任意)">
@@ -45,14 +43,15 @@
       />
     </b-field>
 
-    <b-field
-      :message="[
-        'ONにすると、ユーザーページが一般公開され、その間に登録されたスコアはランキングに登録されます。',
-        'OFFにすると、ユーザーページは本人のみ閲覧可能となり、その間に登録したスコアも非公開となります。',
-        '※OFFにしても、すでにランキング登録済みのスコアは非公開になりません。ご注意ください。',
-      ]"
-    >
+    <b-field>
       <b-switch v-model="isPublic">公開する</b-switch>
+      <p class="help">
+        ONにすると、ユーザーページが一般公開され、その間に登録されたスコアはランキングに登録されます。<br />
+        OFFにすると、ユーザーページは本人のみ閲覧可能となり、その間に登録したスコアも非公開となります。
+      </p>
+      <p class="help has-text-weight-bold">
+        ※OFFにしても、すでにランキング登録済みのスコアは非公開になりません。ご注意ください。
+      </p>
     </b-field>
 
     <b-field>
