@@ -55,12 +55,23 @@
       </template>
 
       <template slot="end">
-        <b-navbar-item v-if="isLoggedIn" href="/profile">
-          {{ name }}
-        </b-navbar-item>
-        <b-navbar-item v-if="isLoggedIn" href="/.auth/logout">
-          ログアウト
-        </b-navbar-item>
+        <b-navbar-dropdown v-if="isLoggedIn" :label="name" hoverable right>
+          <b-navbar-item tag="div">
+            <div class="buttons">
+              <b-button
+                icon-left="account-cog"
+                type="is-info"
+                tag="nuxt-link"
+                to="/profile"
+              >
+                設定
+              </b-button>
+              <b-button type="is-warning" tag="a" href="/.auth/logout">
+                ログアウト
+              </b-button>
+            </div>
+          </b-navbar-item>
+        </b-navbar-dropdown>
         <b-navbar-dropdown v-else label="ログイン" hoverable right>
           <b-navbar-item tag="div">
             <div class="buttons">

@@ -50,6 +50,10 @@ export const actions = actionTree(
       commit('setAuth', null)
       commit('setUser', null)
     },
+    async saveUser({ commit }, user: User) {
+      const response = await this.$http.$post<User>('/api/v1/user', user)
+      commit('setUser', response)
+    },
   }
 )
 
