@@ -1,5 +1,6 @@
 <template>
   <div>
+    <b-loading :active.sync="isLoading" />
     <section class="hero">
       <div class="hero-body">
         <div class="container">
@@ -17,10 +18,13 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({ fetchOnServer: false })
 export default class IndexPage extends Vue {
+  isLoading = true
+
   async fetch() {
     await this.$accessor.fetchUser()
     if (this.$accessor.auth && !this.$accessor.user)
       this.$router.push('/profile')
+    this.isLoading = false
   }
 }
 </script>
