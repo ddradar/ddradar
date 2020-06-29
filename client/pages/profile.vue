@@ -97,7 +97,7 @@ export default class ProfilePage extends Vue implements User {
   isPublic: boolean = true
 
   loading = false
-  type: '' | 'is-success' | 'is-error' = ''
+  type: '' | 'is-success' | 'is-danger' = ''
   message = ''
 
   readonly areaOptions = Object.entries(areaList).map(v => ({
@@ -111,7 +111,7 @@ export default class ProfilePage extends Vue implements User {
 
   get hasError() {
     return (
-      this.type === 'is-error' ||
+      this.type === 'is-danger' ||
       !/^[-a-z0-9_]+$/.test(this.id) ||
       !this.name ||
       !Object.keys(areaList).includes(`${this.area}`) ||
@@ -135,14 +135,14 @@ export default class ProfilePage extends Vue implements User {
   async checkId() {
     // Requred check
     if (!this.id) {
-      this.type = 'is-error'
+      this.type = 'is-danger'
       this.message = 'ユーザーIDは必須です'
       return
     }
 
     // Pattern check
     if (!/^[-a-z0-9_]+$/.test(this.id)) {
-      this.type = 'is-error'
+      this.type = 'is-danger'
       this.message =
         'ユーザーIDは半角英数字, ハイフン, アンダーバーのみ使用可能です'
       return
@@ -156,7 +156,7 @@ export default class ProfilePage extends Vue implements User {
     this.loading = false
 
     if (exists) {
-      this.type = 'is-error'
+      this.type = 'is-danger'
       this.message = 'ユーザーIDはすでに使われています'
     } else {
       this.type = 'is-success'
