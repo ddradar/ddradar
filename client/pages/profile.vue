@@ -5,7 +5,17 @@
     </b-message>
     <h1 class="title">ユーザー設定</h1>
 
-    <b-field label="ID" :type="type" :message="message">
+    <b-field :type="type" :message="message">
+      <template slot="label">
+        ID
+        <b-tooltip
+          type="is-dark"
+          position="is-right"
+          label="登録後の変更はできません。"
+        >
+          <b-icon size="is-small" icon="help-circle-outline" />
+        </b-tooltip>
+      </template>
       <b-input
         v-model="id"
         placeholder="半角英数字, ハイフン, アンダーバー"
@@ -13,24 +23,28 @@
         :loading="loading"
         @blur="checkId()"
       />
-      <p class="help">
-        あなたの情報をDDRadar上で管理する識別子です。登録後の変更はできません。
-      </p>
     </b-field>
 
     <b-field label="表示名">
       <b-input v-model="name" required />
     </b-field>
 
-    <b-field label="所属地域">
+    <b-field>
+      <template slot="label">
+        所属地域
+        <b-tooltip
+          type="is-dark"
+          position="is-right"
+          label="登録後の変更はできません。"
+        >
+          <b-icon size="is-small" icon="help-circle-outline" />
+        </b-tooltip>
+      </template>
       <b-select v-model="area" placeholder="Select" :disabled="!isNewUser">
         <option v-for="area in areaOptions" :key="area.key" :value="area.key">
           {{ area.value }}
         </option>
       </b-select>
-      <p class="help">
-        あなたの所属地域です。登録後の変更はできません。
-      </p>
     </b-field>
 
     <b-field label="DDR CODE(任意)">
@@ -43,15 +57,18 @@
       />
     </b-field>
 
-    <b-field>
+    <b-field grouped group-multiline>
       <b-switch v-model="isPublic">公開する</b-switch>
-      <p class="help">
-        ONにすると、ユーザーページが一般公開され、その間に登録されたスコアはランキングに登録されます。<br />
-        OFFにすると、ユーザーページは本人のみ閲覧可能となり、その間に登録したスコアも非公開となります。
-      </p>
-      <p class="help has-text-weight-bold">
-        ※OFFにしても、すでにランキング登録済みのスコアは非公開になりません。ご注意ください。
-      </p>
+      <div class="help">
+        <p>
+          ONに設定すると、ユーザー検索に表示され、登録するスコアは公開されます。<br />
+          OFFに設定すると、ユーザー検索に表示されず、登録するスコアは非公開となります。
+        </p>
+        <p class="has-text-weight-bold has-text-danger">
+          <b-icon size="is-small" icon="alert" />
+          ONからOFFにしても、今まで登録したスコアは非公開になりません。ご注意ください。
+        </p>
+      </div>
     </b-field>
 
     <b-field>
@@ -72,7 +89,7 @@ export default class ProfilePage extends Vue implements User {
   id: string = ''
   name: string = ''
   area: AreaCode = 0
-  code: number | null
+  code: number | null = null
   isPublic: boolean = true
 
   loading = false
