@@ -60,13 +60,17 @@
     <b-field grouped group-multiline>
       <b-switch v-model="isPublic">公開する</b-switch>
       <div class="help">
-        <p>
-          ONに設定すると、ユーザー検索に表示され、登録するスコアは公開されます。<br />
-          OFFに設定すると、ユーザー検索に表示されず、登録するスコアは非公開となります。
+        <p v-if="isPublic">
+          ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。<br />
+          これから登録するスコアはランキングに自動登録され、一般公開されます。
+        </p>
+        <p v-else>
+          ユーザー検索に表示されず、ユーザーページはあなたしか閲覧できません。<br />
+          これから登録するスコアは非公開となります。
         </p>
         <p class="has-text-weight-bold has-text-danger">
           <b-icon size="is-small" icon="alert" />
-          ONからOFFにしても、今まで登録したスコアは非公開になりません。ご注意ください。
+          ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
         </p>
       </div>
     </b-field>
