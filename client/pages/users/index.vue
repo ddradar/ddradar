@@ -25,11 +25,11 @@
             pattern="^\d{8}$"
           />
         </b-field>
-        <b-field>
-          <b-button type="is-success" @click="search()">
-            検索
-          </b-button>
-        </b-field>
+      </b-field>
+      <b-field>
+        <b-button type="is-success" @click="search()">
+          検索
+        </b-button>
       </b-field>
     </section>
 
@@ -51,6 +51,19 @@
           <b-table-column field="area" label="Area">
             {{ getAreaName(props.row.area) }}
           </b-table-column>
+        </template>
+
+        <template slot="empty">
+          <section v-if="loading" class="section">
+            <b-skeleton animated />
+            <b-skeleton animated />
+            <b-skeleton animated />
+          </section>
+          <section v-else class="section">
+            <div class="content has-text-grey has-text-centered">
+              <p>Nothing here.</p>
+            </div>
+          </section>
         </template>
       </b-table>
     </section>
