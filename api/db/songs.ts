@@ -126,6 +126,7 @@ type Series =
   | 'DanceDanceRevolution (2014)'
   | 'DanceDanceRevolution A'
   | 'DanceDanceRevolution A20'
+  | 'DanceDanceRevolution A20 PLUS'
 
 export const SeriesList: Series[] = [
   'DDR 1st',
@@ -145,6 +146,7 @@ export const SeriesList: Series[] = [
   'DanceDanceRevolution (2014)',
   'DanceDanceRevolution A',
   'DanceDanceRevolution A20',
+  'DanceDanceRevolution A20 PLUS',
 ]
 
 type SongIndex =
