@@ -89,6 +89,7 @@ export default class UserListPage extends Vue {
 
   loading = false
 
+  /** AreaCode - String mapping for <select> components */
   readonly areaOptions = Object.entries(areaList).map(v => ({
     key: v[0],
     value: v[1],
@@ -99,6 +100,27 @@ export default class UserListPage extends Vue {
   }
 
   /** Load user info */
-  async search() {}
+  async search() {
+    this.loading = true
+    try {
+      const searchParams = new URLSearchParams()
+      if (this.name) searchParams.append('name', this.name)
+      if (this.area) searchParams.append('area', `${this.area}`)
+      if (this.code) searchParams.append('code', `${this.code}`)
+      const { result } = await this.$http.$get<UserListResponse>(
+        '/api/v1/users',
+        { searchParams }
+      )
+      this.users = result
+    } catch (error) {
+      this.$buefy.notification.open({
+        message: error.message ?? error,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
+    this.loading = false
+  }
 }
 </script>
