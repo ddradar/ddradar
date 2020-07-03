@@ -40,7 +40,11 @@
           <b-icon size="is-small" icon="help-circle-outline" />
         </b-tooltip>
       </template>
-      <b-select v-model="area" placeholder="Select" :disabled="!isNewUser">
+      <b-select
+        v-model.number="area"
+        placeholder="Select"
+        :disabled="!isNewUser"
+      >
         <option v-for="area in areaOptions" :key="area.key" :value="area.key">
           {{ area.value }}
         </option>
