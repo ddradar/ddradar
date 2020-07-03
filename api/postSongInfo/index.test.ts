@@ -82,7 +82,7 @@ describe('POST /api/v1/admin/songs', () => {
       }
 
       beforeAll(
-        async () => await getContainer('Songs').items.create(songToBeUpdated)
+        async () => getContainer('Songs').items.create(songToBeUpdated)
       )
 
       test('returns "200 OK" with JSON body (Create)', async () => {
