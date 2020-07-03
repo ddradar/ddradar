@@ -12,6 +12,7 @@ The collection that stores course information.
 |----|:--:|-----------|
 |**id**|string|Course id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
 |name|string|Course name|
+|series|string|Series title depend on official site.|
 |orders|Order\[\]|Course order list by play style and difficulty. [see below](#order)|
 
 ### Order
