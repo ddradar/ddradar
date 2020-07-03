@@ -39,8 +39,11 @@
         striped
         :loading="loading"
         :mobile-cards="false"
+        :total="totalCount"
         paginated
+        backend-pagination
         per-page="50"
+        @page-change="onPageChange"
       >
         <template slot-scope="props">
           <b-table-column field="name" label="Name">
@@ -88,6 +91,7 @@ export default class UserListPage extends Vue {
   users: User[] = []
 
   loading = false
+  nextUrl: string | null = null
 
   /** AreaCode - String mapping for <select> components */
   readonly areaOptions = Object.entries(areaList).map(v => ({
@@ -95,8 +99,16 @@ export default class UserListPage extends Vue {
     value: v[1],
   }))
 
+  get totalCount() {
+    return this.nextUrl ? this.users.length + 1 : this.users.length
+  }
+
   getAreaName(areaCode: AreaCode) {
     return areaList[areaCode]
+  }
+
+  async onPageChange() {
+    await this.loadMoreData()
   }
 
   /** Load user info */
@@ -107,11 +119,12 @@ export default class UserListPage extends Vue {
       if (this.name) searchParams.append('name', this.name)
       if (this.area) searchParams.append('area', `${this.area}`)
       if (this.code) searchParams.append('code', `${this.code}`)
-      const { result } = await this.$http.$get<UserListResponse>(
+      const { result, next } = await this.$http.$get<UserListResponse>(
         '/api/v1/users',
         { searchParams }
       )
       this.users = result
+      this.nextUrl = next
     } catch (error) {
       this.$buefy.notification.open({
         message: error.message ?? error,
@@ -121,6 +134,24 @@ export default class UserListPage extends Vue {
       })
     }
     this.loading = false
+  }
+
+  async loadMoreData() {
+    if (!this.nextUrl) return
+    try {
+      const { result, next } = await this.$http.$get<UserListResponse>(
+        this.nextUrl
+      )
+      this.users.push(...result)
+      this.nextUrl = next
+    } catch (error) {
+      this.$buefy.notification.open({
+        message: error.message ?? error,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
   }
 }
 </script>
