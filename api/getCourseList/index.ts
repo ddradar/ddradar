@@ -14,7 +14,7 @@ const httpTrigger: AzureFunction = async (
   const container = getContainer('Courses', true)
 
   // Create SQL
-  const courseColumns: (keyof ShrinkedCourse)[] = ['id', 'name']
+  const courseColumns: (keyof ShrinkedCourse)[] = ['id', 'name', 'series']
   const orderColumns: (keyof Order)[] = ['playStyle', 'difficulty', 'level']
   const joinColumn: keyof ShrinkedCourse = 'orders'
 
