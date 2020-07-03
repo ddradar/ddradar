@@ -78,10 +78,11 @@ describe('GET /api/v1/users', () => {
         expect((result.body as UserListResponse).next).not.toBe(null)
 
         // Arrange
-        const token = (result.body as UserListResponse).next.replace(
-          /^\/api\/v1\/users\?token=(.+)&.+$/,
-          '$1'
-        )
+        const token =
+          (result.body as UserListResponse).next?.replace(
+            /^\/api\/v1\/users\?token=(.+)&.+$/,
+            '$1'
+          ) ?? ''
         req.query = { token }
 
         // Act
