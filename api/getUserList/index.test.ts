@@ -96,7 +96,7 @@ describe('GET /api/v1/users', () => {
         { code: '20000000' },
         { name: 'User 200' },
         { name: 'User 23', code: '10000024' },
-      ])('%p returns "404 Not Found"', async query => {
+      ])('%p returns []', async query => {
         // Arrange
         req.query = { ...query }
 
@@ -104,7 +104,8 @@ describe('GET /api/v1/users', () => {
         const result = await getUserList(null, req)
 
         // Assert
-        expect(result.status).toBe(404)
+        expect(result.status).toBe(200)
+        expect((result.body as UserListResponse).result).toHaveLength(0)
       })
 
       afterAll(async () => {

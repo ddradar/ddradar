@@ -33,8 +33,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 ## Response
 
 - Returns `400 Bad Request` if conditions are invalid.
-- Returns `204 No Content` if no user that matches conditions.
-- Returns `200 OK` with [JSON body](#response-body) if found.
+- Returns `200 OK` with [JSON body](#response-body) otherwize.
 
 ### Response Body
 

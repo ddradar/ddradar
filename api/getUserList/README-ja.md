@@ -33,7 +33,6 @@ English version is [here](./README.md).
 ## Response
 
 - パラメータのいずれかが不正な値である場合、`400 Bad Request`を返します。
-- 条件と一致するユーザーが見つからない場合は、`204 No Content` を返します。
 - その他の場合は、`200 OK` と [JSON](#response-body)を返します。
 
 ### Response Body
