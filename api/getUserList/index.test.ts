@@ -21,7 +21,7 @@ describe('GET /api/v1/users', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const users: UserSchema[] = [...Array(100).keys()].map(i => ({
+      const users: Required<UserSchema>[] = [...Array(100).keys()].map(i => ({
         id: `user_${i}`,
         loginId: `${i}`,
         name: `User ${i}`,

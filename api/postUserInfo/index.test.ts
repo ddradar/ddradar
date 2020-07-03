@@ -68,13 +68,13 @@ describe('POST /api/v1/user', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const userToBeCreated: UserSchema = {
+      const userToBeCreated: Required<UserSchema> = {
         ...validUserInfo,
         id: validUserInfo.id,
         loginId: '1',
         code: 10000000,
       }
-      const userToBeUpdated: UserSchema = {
+      const userToBeUpdated: UserSchema & { loginId: string } = {
         id: 'exist_user',
         loginId: '2',
         name: 'EMI',
