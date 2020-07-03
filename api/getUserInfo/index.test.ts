@@ -40,7 +40,7 @@ describe('GET /api/v1/users', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const publicUser: UserSchema = {
+      const publicUser: Required<UserSchema> = {
         id: 'public_user',
         loginId: '1',
         name: 'Public User',
@@ -48,7 +48,7 @@ describe('GET /api/v1/users', () => {
         code: 10000000,
         isPublic: true,
       } as const
-      const privateUser: UserSchema = {
+      const privateUser: UserSchema & { loginId: string } = {
         id: 'private_user',
         loginId: '2',
         name: 'Private User',
