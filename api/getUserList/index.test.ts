@@ -7,7 +7,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import type { UserSchema } from '../db'
 import { AreaCode } from '../db/users'
 import { User } from '../user'
-import getUserList, { UserListResponse } from '.'
+import getUserList from '.'
 
 jest.mock('../auth')
 
@@ -45,8 +45,7 @@ describe('GET /api/v1/users', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(9)
-        expect((result.body as UserListResponse).next).toBe(null)
+        expect(result.body).toHaveLength(9)
       })
 
       test('returns users with logged in user', async () => {
@@ -64,34 +63,7 @@ describe('GET /api/v1/users', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(10)
-        expect((result.body as UserListResponse).next).toBe(null)
-      })
-
-      test('returns users with continuationToken', async () => {
-        // Arrange - Act
-        const result = await getUserList(null, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(50)
-        expect((result.body as UserListResponse).next).not.toBe(null)
-
-        // Arrange
-        const token =
-          (result.body as UserListResponse).next?.replace(
-            /^\/api\/v1\/users\?token=(.+)&.+$/,
-            '$1'
-          ) ?? ''
-        req.query = { token }
-
-        // Act
-        const nextResult = await getUserList(null, req)
-
-        // Assert
-        expect(nextResult.status).toBe(200)
-        expect((nextResult.body as UserListResponse).result).toHaveLength(49)
-        expect((nextResult.body as UserListResponse).next).toBe(null)
+        expect(result.body).toHaveLength(10)
       })
 
       test.each([
@@ -117,8 +89,7 @@ describe('GET /api/v1/users', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toStrictEqual(expected)
-        expect((result.body as UserListResponse).next).toBe(null)
+        expect(result.body).toStrictEqual(expected)
       })
 
       test.each<{ [key: string]: string }>([
@@ -135,7 +106,7 @@ describe('GET /api/v1/users', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(0)
+        expect(result.body).toHaveLength(0)
       })
 
       afterAll(async () => {

@@ -19,8 +19,6 @@ No need Authentication. Authenticated users can get their own data even if they 
 
 > GET api/v1/users?area=0&name=foo&code=10000000
 
-> GET api/v1/users?token=foo
-
 ## Parameters
 
 |Name|Type|Description|
@@ -28,7 +26,6 @@ No need Authentication. Authenticated users can get their own data even if they 
 |`area`|integer|optional: [Area code](../../docs/db/users.md#area).|
 |`name`|string|optional: User Name(partial match).|
 |`code`|integer|optional: DDR CODE. Should be `10000000` - `99999999`.|
-|`token`|string|Continuation token|
 
 ## Response
 
@@ -41,32 +38,24 @@ No need Authentication. Authenticated users can get their own data even if they 
   <summary>Sample</summary>
 
 ```json
-{
-  "count": 2,
-  "next": null,
-  "result": [
-    {
-      "id": "afro0001",
-      "name": "AFRO",
-      "area": 13,
-      "code": 10000000
-    },
-    {
-      "id": "emi",
-      "name": "TOSHIBA EMI",
-      "area": 0
-    },
-  ]
-}
+[
+  {
+    "id": "afro0001",
+    "name": "AFRO",
+    "area": 13,
+    "code": 10000000
+  },
+  {
+    "id": "emi",
+    "name": "TOSHIBA EMI",
+    "area": 0
+  },
+]
 ```
 
 </details>
 
-|Name|Type|Description|
-|----|:--:|-----------|
-|`count`|integer|result count|
-|`next`|string \| null|Next API endpoint to continue|
-|`result`|User\[\]|Array of [User](#user) (max:50)|
+Array of [User](#user)
 
 #### User
 
