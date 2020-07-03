@@ -119,7 +119,7 @@ describe('/admin/song.vue', () => {
       localVue,
       data: () => songInfo,
     })
-    expect(wrapper.element).toMatchSnapshot()
+    expect(wrapper).toMatchSnapshot()
   })
   describe('get nameIndex()', () => {
     test.each([

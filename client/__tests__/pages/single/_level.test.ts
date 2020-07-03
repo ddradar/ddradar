@@ -206,6 +206,7 @@ describe('/single/_level.vue', () => {
       ['DDRMAX', 'DDRMAX'],
       ['DanceDanceRevolution (2014)', '2014'],
       ['DanceDanceRevolution A20', 'A20'],
+      ['DanceDanceRevolution A20 PLUS', 'A20 PLUS'],
     ])('(%s) returns %s', (series, expected) => {
       // Arrange - Act
       // @ts-ignore
