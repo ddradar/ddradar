@@ -1,4 +1,4 @@
-import { StepChartSchema } from './songs'
+import type { StepChartSchema } from './songs'
 
 /** DB Schema of "Courses" collection */
 export type CourseSchema = {
@@ -8,8 +8,12 @@ export type CourseSchema = {
    */
   id: string
   name: string
+  /** Series title depend on official site. */
+  series: CourseSeries
   orders: Order[]
 }
+
+type CourseSeries = 'DanceDanceRevolution A20' | 'DanceDanceRevolution A20 PLUS'
 
 type ChartKeys = Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
 

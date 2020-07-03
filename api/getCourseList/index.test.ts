@@ -23,6 +23,7 @@ describe('GET /api/v1/courses', () => {
         {
           id: 'q6oOPqQPlOQoooq888bPI1OPDlqDIQQD',
           name: 'PASSION',
+          series: 'DanceDanceRevolution A20',
           orders: [
             {
               playStyle: 1,
@@ -74,6 +75,7 @@ describe('GET /api/v1/courses', () => {
         {
           id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
           name: '初段',
+          series: 'DanceDanceRevolution A20',
           orders: [
             {
               playStyle: 1,
@@ -85,6 +87,7 @@ describe('GET /api/v1/courses', () => {
         {
           id: 'bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP',
           name: '十段',
+          series: 'DanceDanceRevolution A20',
           orders: [
             {
               playStyle: 2,
