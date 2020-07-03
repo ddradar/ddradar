@@ -51,13 +51,9 @@ export default async function (
           `WHERE ${conditions.join(' AND ')}`,
         parameters,
       },
-      { continuationToken: token }
+      { maxItemCount: 50, continuationToken: token }
     )
-    .fetchAll()
-
-  if (resources.length === 0) {
-    return { status: 404 }
-  }
+    .fetchNext()
 
   const queries = parameters
     .map(p => p.name.replace('@', '&') + p.value?.toString())

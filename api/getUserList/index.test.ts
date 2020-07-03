@@ -37,12 +37,15 @@ describe('GET /api/v1/users', () => {
       })
 
       test('returns users without private user', async () => {
-        // Arrange - Act
+        // Arrange
+        req.query = { name: '0' }
+
+        // Act
         const result = await getUserList(null, req)
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(99)
+        expect((result.body as UserListResponse).result).toHaveLength(9)
         expect((result.body as UserListResponse).next).toBe(null)
       })
 
@@ -54,14 +57,41 @@ describe('GET /api/v1/users', () => {
           userId: users[0].loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
+        req.query = { name: '0' }
 
         // Act
         const result = await getUserList(null, req)
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(100)
+        expect((result.body as UserListResponse).result).toHaveLength(10)
         expect((result.body as UserListResponse).next).toBe(null)
+      })
+
+      test('returns users with continuationToken', async () => {
+        // Arrange - Act
+        const result = await getUserList(null, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect((result.body as UserListResponse).result).toHaveLength(50)
+        expect((result.body as UserListResponse).next).not.toBe(null)
+
+        // Arrange
+        const token =
+          (result.body as UserListResponse).next?.replace(
+            /^\/api\/v1\/users\?token=(.+)&.+$/,
+            '$1'
+          ) ?? ''
+        req.query = { token }
+
+        // Act
+        const nextResult = await getUserList(null, req)
+
+        // Assert
+        expect(nextResult.status).toBe(200)
+        expect((nextResult.body as UserListResponse).result).toHaveLength(49)
+        expect((nextResult.body as UserListResponse).next).toBe(null)
       })
 
       test.each([
@@ -96,7 +126,7 @@ describe('GET /api/v1/users', () => {
         { code: '20000000' },
         { name: 'User 200' },
         { name: 'User 23', code: '10000024' },
-      ])('%p returns "404 Not Found"', async query => {
+      ])('%p returns []', async query => {
         // Arrange
         req.query = { ...query }
 
@@ -104,7 +134,8 @@ describe('GET /api/v1/users', () => {
         const result = await getUserList(null, req)
 
         // Assert
-        expect(result.status).toBe(404)
+        expect(result.status).toBe(200)
+        expect((result.body as UserListResponse).result).toHaveLength(0)
       })
 
       afterAll(async () => {
