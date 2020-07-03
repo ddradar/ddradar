@@ -11,7 +11,7 @@ English version is [here](./scores.md).
 |名前|型|説明|
 |----|:--:|-----------|
 |**id**|string|ユーザーID|
-|loginId|string|Azure Authentication より自動生成された内部ユーザーID|
+|loginId|string?|Azure Authentication より自動生成された内部ユーザーID。エリアトップなど、DDRadarのシステムユーザーは未定義です。|
 |name|string|ユーザー名|
 |area|number|エリアコード ([下記を参照](#area))|
 |code|number?|DDR CODE (省略可)|
