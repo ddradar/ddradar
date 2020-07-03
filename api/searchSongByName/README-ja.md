@@ -23,7 +23,7 @@ English version is [here](./README.md).
 
 |名前|型|説明|
 |---|:--|---|
-|`series`|integer|`0`: DDR 1st, `1`: DDR 2ndMIX, ..., `16`: Dance Dance Revolution A20|
+|`series`|integer|`0`: DDR 1st, `1`: DDR 2ndMIX, ..., `17`: Dance Dance Revolution A20 PLUS|
 |`name`|integer|`0`: あ行, `1`: か行, ..., `9`: わ行, `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
 
 ## Response

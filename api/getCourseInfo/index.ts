@@ -20,7 +20,7 @@ const httpTrigger: AzureFunction = async (
   }
 
   const container = getContainer('Courses', true)
-  const columns: (keyof CourseSchema)[] = ['id', 'name', 'orders']
+  const columns: (keyof CourseSchema)[] = ['id', 'name', 'series', 'orders']
   const { resources } = await container.items
     .query<CourseSchema>({
       query:

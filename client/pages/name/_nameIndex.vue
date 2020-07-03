@@ -42,7 +42,7 @@ import { NameIndexList, SongInfo } from '~/types/api/song'
 
 type Song = Omit<SongInfo, 'charts'>
 
-@Component
+@Component({ fetchOnServer: false })
 export default class SongByNamePage extends Vue {
   /** Song List from API */
   songs: Song[] = []
@@ -60,7 +60,9 @@ export default class SongByNamePage extends Vue {
   /** Get Song List from API */
   async fetch() {
     const i = this.$route.params.nameIndex
-    const songs: Song[] = await this.$http.$get<Song[]>(`/songs/name/${i}`)
+    const songs: Song[] = await this.$http.$get<Song[]>(
+      `/api/v1/songs/name/${i}`
+    )
     this.songs = songs
   }
 

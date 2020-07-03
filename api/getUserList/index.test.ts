@@ -7,7 +7,7 @@ import { getConnectionString, getContainer } from '../cosmos'
 import type { UserSchema } from '../db'
 import { AreaCode } from '../db/users'
 import { User } from '../user'
-import getUserList, { UserListResponse } from '.'
+import getUserList from '.'
 
 jest.mock('../auth')
 
@@ -21,7 +21,7 @@ describe('GET /api/v1/users', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const users: UserSchema[] = [...Array(100).keys()].map(i => ({
+      const users: Required<UserSchema>[] = [...Array(100).keys()].map(i => ({
         id: `user_${i}`,
         loginId: `${i}`,
         name: `User ${i}`,
@@ -37,13 +37,15 @@ describe('GET /api/v1/users', () => {
       })
 
       test('returns users without private user', async () => {
-        // Arrange - Act
+        // Arrange
+        req.query = { name: '0' }
+
+        // Act
         const result = await getUserList(null, req)
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(99)
-        expect((result.body as UserListResponse).next).toBe(null)
+        expect(result.body).toHaveLength(9)
       })
 
       test('returns users with logged in user', async () => {
@@ -54,14 +56,14 @@ describe('GET /api/v1/users', () => {
           userId: users[0].loginId,
           userRoles: ['anonymous', 'authenticated'],
         })
+        req.query = { name: '0' }
 
         // Act
         const result = await getUserList(null, req)
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toHaveLength(100)
-        expect((result.body as UserListResponse).next).toBe(null)
+        expect(result.body).toHaveLength(10)
       })
 
       test.each([
@@ -87,8 +89,7 @@ describe('GET /api/v1/users', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect((result.body as UserListResponse).result).toStrictEqual(expected)
-        expect((result.body as UserListResponse).next).toBe(null)
+        expect(result.body).toStrictEqual(expected)
       })
 
       test.each<{ [key: string]: string }>([
@@ -96,7 +97,7 @@ describe('GET /api/v1/users', () => {
         { code: '20000000' },
         { name: 'User 200' },
         { name: 'User 23', code: '10000024' },
-      ])('%p returns "404 Not Found"', async query => {
+      ])('%p returns []', async query => {
         // Arrange
         req.query = { ...query }
 
@@ -104,7 +105,8 @@ describe('GET /api/v1/users', () => {
         const result = await getUserList(null, req)
 
         // Assert
-        expect(result.status).toBe(404)
+        expect(result.status).toBe(200)
+        expect(result.body).toHaveLength(0)
       })
 
       afterAll(async () => {

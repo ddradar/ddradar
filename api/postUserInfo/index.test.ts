@@ -68,13 +68,13 @@ describe('POST /api/v1/user', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const userToBeCreated: UserSchema = {
+      const userToBeCreated: Required<UserSchema> = {
         ...validUserInfo,
         id: validUserInfo.id,
         loginId: '1',
         code: 10000000,
       }
-      const userToBeUpdated: UserSchema = {
+      const userToBeUpdated: UserSchema & { loginId: string } = {
         id: 'exist_user',
         loginId: '2',
         name: 'EMI',
@@ -139,32 +139,73 @@ describe('POST /api/v1/user', () => {
         }
       )
 
-      test.each([{ id: 'update' }, { area: 14 as const }])(
-        'returns "200 OK" but does not update if changed %p',
-        async (diff: Partial<UserInfo>) => {
-          // Arrange
-          const expected: UserInfo = {
-            id: userToBeUpdated.id,
-            name: userToBeUpdated.name,
-            area: userToBeUpdated.area,
-            isPublic: userToBeUpdated.isPublic,
-          }
-          req.body = { ...expected, ...diff }
-          mocked(getClientPrincipal).mockReturnValueOnce({
-            identityProvider: 'github',
-            userDetails: userToBeUpdated.id,
-            userId: userToBeUpdated.loginId,
-            userRoles: ['anonymous', 'authenticated'],
-          })
-
-          // Act
-          const result = await postUserInfo(null, req)
-
-          // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual(expected)
+      test('returns "400 BadRequest" if changed loginId', async () => {
+        // Arrange
+        req.body = {
+          id: userToBeUpdated.id,
+          name: userToBeUpdated.name,
+          area: userToBeUpdated.area,
+          isPublic: userToBeUpdated.isPublic,
         }
-      )
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'github',
+          userDetails: 'other_user',
+          userId: '3',
+          userRoles: ['anonymous', 'authenticated'],
+        })
+
+        // Act
+        const result = await postUserInfo(null, req)
+
+        // Assert
+        expect(result.status).toBe(400)
+      })
+
+      test('returns "400 BadRequest" if changed id', async () => {
+        // Arrange
+        req.body = {
+          id: 'update',
+          name: userToBeUpdated.name,
+          area: userToBeUpdated.area,
+          isPublic: userToBeUpdated.isPublic,
+        }
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'github',
+          userDetails: userToBeUpdated.id,
+          userId: userToBeUpdated.loginId,
+          userRoles: ['anonymous', 'authenticated'],
+        })
+
+        // Act
+        const result = await postUserInfo(null, req)
+
+        // Assert
+        expect(result.status).toBe(400)
+      })
+
+      test('returns "200 OK" but does not update if changed area', async () => {
+        // Arrange
+        const expected: UserInfo = {
+          id: userToBeUpdated.id,
+          name: userToBeUpdated.name,
+          area: userToBeUpdated.area,
+          isPublic: userToBeUpdated.isPublic,
+        }
+        req.body = { ...expected, area: 14 }
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'github',
+          userDetails: userToBeUpdated.id,
+          userId: userToBeUpdated.loginId,
+          userRoles: ['anonymous', 'authenticated'],
+        })
+
+        // Act
+        const result = await postUserInfo(null, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual(expected)
+      })
 
       afterAll(async () => {
         await getContainer('Users')

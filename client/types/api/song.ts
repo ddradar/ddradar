@@ -84,6 +84,7 @@ export const SeriesList: string[] = [
   'DanceDanceRevolution (2014)',
   'DanceDanceRevolution A',
   'DanceDanceRevolution A20',
+  'DanceDanceRevolution A20 PLUS',
 ]
 
 export const NameIndexList: string[] = [

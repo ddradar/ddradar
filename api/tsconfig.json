@@ -8,6 +8,5 @@
     "sourceMap": true,
     "strict": true
   },
-  "types": ["jest", "node"],
-  "exclude": ["__tests__", "**/**.test.ts"]
+  "types": ["jest", "node"]
 }

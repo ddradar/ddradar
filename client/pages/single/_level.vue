@@ -42,7 +42,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { ChartInfo } from '~/types/api/song'
 
-@Component
+@Component({ fetchOnServer: false })
 export default class SingleLevelPage extends Vue {
   /** Chart list */
   charts: ChartInfo[] = []
@@ -56,7 +56,7 @@ export default class SingleLevelPage extends Vue {
   /** Get chart list from API */
   async fetch() {
     const i = this.$route.params.level
-    const charts = await this.$http.$get<ChartInfo[]>(`/charts/1/${i}`)
+    const charts = await this.$http.$get<ChartInfo[]>(`/api/v1/charts/1/${i}`)
     this.charts = charts
   }
 

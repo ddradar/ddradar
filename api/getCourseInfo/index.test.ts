@@ -41,6 +41,7 @@ describe('GET /api/v1/courses', () => {
       const course: CourseSchema = {
         id: 'o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db',
         name: '皆伝',
+        series: 'DanceDanceRevolution A20',
         orders: [
           {
             playStyle: 2,

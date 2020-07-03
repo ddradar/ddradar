@@ -12,6 +12,7 @@ English version is [here](./courses.md).
 |----|:--:|-----------|
 |**id**|string|コースのID(公式サイトより) `^([01689bdiloqDIOPQ]*){32}$`|
 |name|string|コース名|
+|series|string|シリーズ名 (公式サイトより)|
 |orders|Order\[\]|プレースタイル/難易度別のコースオーダー。[下記を参照](#order)|
 
 ### Order

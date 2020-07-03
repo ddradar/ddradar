@@ -152,6 +152,7 @@ describe('/series/_seriesIndex.vue', () => {
       ['0', 'DDR 1st'],
       ['10', 'DDR X'],
       ['16', 'DanceDanceRevolution A20'],
+      ['17', 'DanceDanceRevolution A20 PLUS'],
     ])('name/%s route returns %s', (seriesIndex, expected) => {
       // Arrange
       const wrapper = shallowMount(SongBySeriesPage, {

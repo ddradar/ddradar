@@ -17,16 +17,22 @@
       "allowedRoles": ["authenticated"]
     },
     {
+      "route": "/api/v1/users/exists/*",
+      "allowedRoles": ["authenticated"]
+    },
+    {
       "route": "/admin/*",
       "allowedRoles": ["administrator"]
     },
     {
       "route": "/api/v1/admin/*",
       "allowedRoles": ["administrator"]
-    },
+    }
+  ],
+  "platformErrorOverrides": [
     {
-      "route": "/*",
-      "serve": "/index.html",
+      "errorType": "NotFound",
+      "serve": "/200.html",
       "statusCode": 200
     }
   ]

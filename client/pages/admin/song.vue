@@ -71,7 +71,7 @@
             'Duplicate PlayStyle and Difficulty': hasDuplicateKey(chart),
           }"
         >
-          <b-select v-model="chart.playStyle" placeholder="PlayStyle">
+          <b-select v-model.number="chart.playStyle" placeholder="PlayStyle">
             <option
               v-for="option in playStyleList"
               :key="option.value"
@@ -80,7 +80,7 @@
               {{ option.label }}
             </option>
           </b-select>
-          <b-select v-model="chart.difficulty" placeholder="Difficulty">
+          <b-select v-model.number="chart.difficulty" placeholder="Difficulty">
             <option
               v-for="option in difficultyList"
               :key="option.value"
@@ -90,7 +90,7 @@
             </option>
           </b-select>
           <b-input
-            v-model="chart.level"
+            v-model.number="chart.level"
             placeholder="Level"
             type="number"
             min="1"
@@ -100,7 +100,7 @@
         </b-field>
         <b-field>
           <b-input
-            v-model="chart.notes"
+            v-model.number="chart.notes"
             placeholder="Notes"
             type="number"
             min="0"
@@ -108,7 +108,7 @@
             required
           />
           <b-input
-            v-model="chart.freezeArrow"
+            v-model.number="chart.freezeArrow"
             placeholder="FA"
             type="number"
             min="0"
@@ -116,7 +116,7 @@
             required
           />
           <b-input
-            v-model="chart.shockArrow"
+            v-model.number="chart.shockArrow"
             placeholder="SA"
             type="number"
             min="0"
@@ -126,7 +126,7 @@
         </b-field>
         <b-field>
           <b-input
-            v-model="chart.stream"
+            v-model.number="chart.stream"
             placeholder="Str"
             type="number"
             min="0"
@@ -134,7 +134,7 @@
             required
           />
           <b-input
-            v-model="chart.voltage"
+            v-model.number="chart.voltage"
             placeholder="Vol"
             type="number"
             min="0"
@@ -142,7 +142,7 @@
             required
           />
           <b-input
-            v-model="chart.air"
+            v-model.number="chart.air"
             placeholder="Air"
             type="number"
             min="0"
@@ -150,7 +150,7 @@
             required
           />
           <b-input
-            v-model="chart.freeze"
+            v-model.number="chart.freeze"
             placeholder="Fre"
             type="number"
             min="0"
@@ -158,7 +158,7 @@
             required
           />
           <b-input
-            v-model="chart.chaos"
+            v-model.number="chart.chaos"
             placeholder="Cha"
             type="number"
             min="0"
@@ -339,7 +339,9 @@ export default class SongEditorPage extends Vue implements SongInfo {
   async loadSongInfo() {
     if (!this.isValidSongId) return
     try {
-      const songInfo = await this.$http.$get<SongInfo>(`/songs/${this.id}`)
+      const songInfo = await this.$http.$get<SongInfo>(
+        `/api/v1/songs/${this.id}`
+      )
 
       this.name = songInfo.name
       this.nameKana = songInfo.nameKana
@@ -379,7 +381,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
         }
         try {
           const songInfo = await this.$http.$post<SongInfo>(
-            '/admin/songs',
+            '/api/v1/admin/songs',
             postData
           )
           this.$buefy.notification.open({

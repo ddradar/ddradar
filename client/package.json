@@ -1,32 +1,33 @@
 {
   "name": "@ddradar/client",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Client side of DDRadar",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts generate",
+    "build": "nuxt-ts build && nuxt-ts export",
     "test": "jest"
   },
   "dependencies": {
     "@nuxt/http": "^0.5.5",
     "@nuxt/typescript-runtime": "^0.4.10",
     "@nuxtjs/pwa": "^3.0.0-beta.20",
-    "nuxt": "^2.13.0",
+    "nuxt": "^2.13.3",
     "nuxt-buefy": "^0.3.31",
-    "nuxt-property-decorator": "^2.7.2"
+    "nuxt-property-decorator": "^2.7.2",
+    "nuxt-typed-vuex": "^0.1.19"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^1.0.3",
     "@nuxtjs/eslint-config-typescript": "^2.0.0",
-    "@types/jest": "25.x",
+    "@types/jest": "26.x",
     "@vue/test-utils": "^1.0.3",
     "babel-jest": "25.x",
     "eslint-plugin-nuxt": "^1.0.0",
     "jest": "25.x",
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^8.0.2",
+    "sass-loader": "^9.0.0",
     "vue-jest": "^4.0.0-beta.3"
   }
 }
