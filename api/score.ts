@@ -244,28 +244,25 @@ export const getDanceLevel = (score: number): Exclude<DanceLevel, 'E'> => {
     throw new RangeError(
       `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
     )
-  if (score >= 990000) return 'AAA'
-  if (score >= 890000) {
-    if (score >= 950000) return 'AA+'
-    if (score >= 900000) return 'AA'
-    return 'AA-'
+  const rankList = [
+    { border: 990000, rank: 'AAA' } as const,
+    { border: 950000, rank: 'AA+' } as const,
+    { border: 900000, rank: 'AA' } as const,
+    { border: 890000, rank: 'AA-' } as const,
+    { border: 850000, rank: 'A+' } as const,
+    { border: 800000, rank: 'A' } as const,
+    { border: 790000, rank: 'A-' } as const,
+    { border: 750000, rank: 'B+' } as const,
+    { border: 700000, rank: 'B' } as const,
+    { border: 690000, rank: 'B-' } as const,
+    { border: 650000, rank: 'C+' } as const,
+    { border: 600000, rank: 'C' } as const,
+    { border: 590000, rank: 'C-' } as const,
+    { border: 550000, rank: 'D+' } as const,
+  ] as const
+  for (const { border, rank } of rankList) {
+    if (score >= border) return rank
   }
-  if (score >= 790000) {
-    if (score >= 850000) return 'A+'
-    if (score >= 800000) return 'A'
-    return 'A-'
-  }
-  if (score >= 690000) {
-    if (score >= 750000) return 'B+'
-    if (score >= 700000) return 'B'
-    return 'B-'
-  }
-  if (score >= 590000) {
-    if (score >= 650000) return 'C+'
-    if (score >= 600000) return 'C'
-    return 'C-'
-  }
-  if (score >= 550000) return 'D+'
   return 'D'
 }
 
