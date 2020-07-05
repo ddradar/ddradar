@@ -7,7 +7,7 @@
       <h1 v-if="user" class="title">{{ user.name }}</h1>
       <b-skeleton v-else class="title" animated />
 
-      <h2 v-if="user" class="subtitle">{{ areaName }}</h2>
+      <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
       <b-skeleton v-else class="subtitle" animated />
     </template>
   </section>
@@ -28,6 +28,12 @@ export default class UserDetailPage extends Vue {
 
   get areaName() {
     return this.user ? areaList[this.user.area] : ''
+  }
+
+  get ddrCode() {
+    return this.user?.code
+      ? String(this.user.code).replace(/^(\d{4})(\d{4})$/, '$1-$2')
+      : ''
   }
 
   /** id expected [a-z], [0-9], [-], [_] */
