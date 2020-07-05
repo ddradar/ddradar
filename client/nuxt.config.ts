@@ -30,6 +30,7 @@ const configuration: Configuration = {
   pwa: {
     manifest: {
       name: title,
+      short_name: title,
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
