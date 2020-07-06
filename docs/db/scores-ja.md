@@ -10,8 +10,8 @@ English version is [here](./scores.md).
 
 |名前|型|説明|
 |----|:--:|-----------|
-|id|string|データベース側で自動生成|
-|**userId**|string|Azure Authentication より自動生成されたユーザーID。もしくは[下記](#special-userid)の特別なID。|
+|id|string|`${userId}-${songId}-${playStyle}-${difficulty}`|
+|**userId**|string|ユーザーID|
 |userName|string|ユーザー名|
 |isPublic|boolean|このスコアが一般公開されている場合は`true`、本人のみ閲覧できる場合には`false`|
 |songId|string|曲ID (公式サイトより) `^([01689bdiloqDIOPQ]*){32}$`|
@@ -23,42 +23,6 @@ English version is [here](./scores.md).
 |maxCombo|integer?|MAXコンボ数 (省略可)|
 |clearLamp|integer|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
 |rank|string|クリアランク (`"E"`～`"AAA"`)|
-
-### Special userId
-
-#### `top_score`
-
-全国トップのスコアを格納します。
-
-公式サイトの「全国トップ」欄より導出されます。
-
-以下の値を取ります。
-
-|名前|値|
-|----|--|
-|userId|`"top_score"`|
-|userName|`"全国トップ"`|
-|isPublic|`true`|
-|exScore|`score`から類推できない場合は省略|
-|maxCombo|`score`から類推できない場合は省略|
-|clearLamp|`score`から類推できない場合は`2`|
-
-#### `area_top_score_*`
-
-各エリアトップのスコアを格納します。`*`には[エリアコード](./users-ja.md#area)が入ります。
-
-公式サイトの「全国トップ」欄、または登録ユーザーの公開されたスコアより導出されます。
-
-以下の値を取ります。
-
-|名前|値|
-|----|--|
-|userId|`"area_top_score_"` + エリアコード|
-|userName|エリア名称 + `"トップ"`|
-|isPublic|`true`|
-|exScore|`score`から類推できない場合は省略|
-|maxCombo|`score`から類推できない場合は省略|
-|clearLamp|`score`から類推できない場合は`2`|
 
 ## Indexes
 
