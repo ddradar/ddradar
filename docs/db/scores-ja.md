@@ -47,8 +47,8 @@ English version is [here](./scores.md).
 
 ```json
 {
-    "id": "<データベースの自動生成>",
-    "userId": "<Azure Authenticationの自動生成>",
+    "id": "some_user1-QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl-1-0",
+    "userId": "some_user1",
     "userName": "ユーザー1",
     "isPublic": true,
     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
