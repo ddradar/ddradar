@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{playStyle:int:min(1):max(2)}/{difficulty:int:min(0):max(4)}"
+    },
+    {
+      "name": "charts",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT s.name, c.notes, c.freezeArrow, c.shockArrow FROM s JOIN c IN s.charts where s.id = {songId} AND c.playStyle = {playStyle} AND c.difficulty = {difficulty}",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/postChartScore/index.js"
+}

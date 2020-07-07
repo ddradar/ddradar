@@ -20,6 +20,21 @@ export const isScore = (obj: unknown): obj is Score =>
   hasStringProperty(obj, 'rank') &&
   (DanceLevelList as string[]).includes(obj.rank)
 
+export const mergeScore = (left: Score, right: Score): Score => {
+  return {
+    score: left.score > right.score ? left.score : right.score,
+    clearLamp:
+      left.clearLamp > right.clearLamp ? left.clearLamp : right.clearLamp,
+    rank: left.score > right.score ? left.rank : right.rank,
+    exScore:
+      (left.exScore ?? 0) > (right.exScore ?? 0) ? left.exScore : right.exScore,
+    maxCombo:
+      (left.maxCombo ?? 0) > (right.maxCombo ?? 0)
+        ? left.maxCombo
+        : right.maxCombo,
+  }
+}
+
 export const setValidScoreFromChart = (
   {
     notes,

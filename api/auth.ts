@@ -1,5 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
+import { getContainer } from './cosmos'
+import { UserSchema } from './db'
+
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
 /** User information provided by Azure */
@@ -27,4 +30,19 @@ export const getClientPrincipal = (
   } catch {
     return null
   }
+}
+
+export async function getLoginUserInfo(
+  clientPrincipal: ClientPrincipal | null
+): Promise<UserSchema | null> {
+  if (!clientPrincipal) return null
+
+  const userContainer = getContainer('Users', true)
+  const { resources } = await userContainer.items
+    .query<UserSchema>({
+      query: 'SELECT * FROM c WHERE c.loginId = @loginId',
+      parameters: [{ name: '@loginId', value: clientPrincipal.userId }],
+    })
+    .fetchAll()
+  return resources[0] ?? null
 }
