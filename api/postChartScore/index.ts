@@ -60,6 +60,22 @@ export default async function (
       ? context.bindingData.difficulty
       : 0 // if param is 0, passed object. (bug?)
 
+  // Get chart info
+  const container = getContainer('Songs', true)
+  const { resources: charts } = await container.items
+    .query<ChartInfo>({
+      query:
+        'SELECT s.name, c.notes, c.freezeArrow, c.shockArrow ' +
+        'FROM s JOIN c IN s.charts ' +
+        'WHERE s.id = @songId AND c.playStyle = @playStyle AND c.difficulty = @difficulty',
+      parameters: [
+        { name: '@songId', value: songId },
+        { name: '@playStyle', value: playStyle },
+        { name: '@difficulty', value: difficulty },
+      ],
+    })
+    .fetchAll()
+
   // In Azure Functions, this function will only be invoked if a valid route.
   // So this check is only used to unit tests.
   if (
