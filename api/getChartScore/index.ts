@@ -29,7 +29,6 @@ export default async function (
   // In Azure Functions, this function will only be invoked if a valid route.
   // So this check is only used to unit tests.
   if (
-    !songId ||
     !/^[01689bdiloqDIOPQ]{32}$/.test(songId) ||
     (playStyle !== 1 && playStyle !== 2) ||
     ![0, 1, 2, 3, 4].includes(difficulty)
@@ -62,31 +61,26 @@ export default async function (
 
     if (resources.length !== 0) {
       foundUser = true
-      if (scope === 'private') {
-        conditions.push('c.userId = @id')
-        parameters.push({ name: '@id', value: resources[0].id })
-      } else {
-        conditions.push(
-          scope === 'medium'
-            ? 'ARRAY_CONTAINS(@ids, c.userId)'
-            : '(c.isPublic = true OR ARRAY_CONTAINS(@ids, c.userId))'
-        )
-        parameters.push({
-          name: '@ids',
-          value: [resources[0].id, '0', `${resources[0].area}`],
-        })
-      }
+      parameters.push({
+        name: '@ids',
+        value:
+          scope === 'private'
+            ? [resources[0].id]
+            : [resources[0].id, '0', `${resources[0].area}`],
+      })
     }
   }
 
   if (!foundUser) {
     if (scope === 'private') return { status: 404 }
-    conditions.push(
-      scope === 'medium'
-        ? "c.userId = '0'"
-        : "(c.isPublic = true OR c.userId = '0')"
-    )
+    parameters.push({ name: '@ids', value: ['0'] })
   }
+
+  conditions.push(
+    scope === 'full'
+      ? '(c.isPublic = true OR ARRAY_CONTAINS(@ids, c.userId))'
+      : 'ARRAY_CONTAINS(@ids, c.userId)'
+  )
 
   const container = getContainer('Scores', true)
   const columns: (keyof Score)[] = [
