@@ -7,7 +7,7 @@ import type { ScoreSchema, UserSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 type Score = Omit<ScoreSchema, 'id' | 'isPublic'>
-type Scope = 'medium' | 'full'
+type Scope = 'private' | 'medium' | 'full'
 
 /** Get course and orders information that match the specified ID. */
 export default async function (
@@ -22,7 +22,7 @@ export default async function (
     typeof context.bindingData.difficulty === 'number'
       ? context.bindingData.difficulty
       : 0 // if param is 0, passed object. (bug?)
-  const scope: Scope = ['medium', 'full'].includes(req.query.scope)
+  const scope: Scope = ['private', 'medium', 'full'].includes(req.query.scope)
     ? (req.query.scope as Scope)
     : 'medium'
 
@@ -59,21 +59,28 @@ export default async function (
         parameters: [{ name: '@loginId', value: clientPrincipal.userId }],
       })
       .fetchAll()
+
     if (resources.length !== 0) {
       foundUser = true
-      if (scope === 'medium') {
-        conditions.push('ARRAY_CONTAINS(@ids, c.userId)')
+      if (scope === 'private') {
+        conditions.push('c.userId = @id')
+        parameters.push({ name: '@id', value: resources[0].id })
       } else {
-        conditions.push('(c.isPublic = true OR ARRAY_CONTAINS(@ids, c.userId))')
+        conditions.push(
+          scope === 'medium'
+            ? 'ARRAY_CONTAINS(@ids, c.userId)'
+            : '(c.isPublic = true OR ARRAY_CONTAINS(@ids, c.userId))'
+        )
+        parameters.push({
+          name: '@ids',
+          value: [resources[0].id, '0', `${resources[0].area}`],
+        })
       }
-      parameters.push({
-        name: '@ids',
-        value: [resources[0].id, '0', `${resources[0].area}`],
-      })
     }
   }
 
   if (!foundUser) {
+    if (scope === 'private') return { status: 404 }
     conditions.push('c.isPublic = true')
     if (scope === 'medium') conditions.push("c.userId = '0'") // Only top score
   }

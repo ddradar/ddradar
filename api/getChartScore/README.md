@@ -26,7 +26,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 |`songId`|string|Song ID. Should match `^[01689bdiloqDIOPQ]{32}$` pattern.|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`difficulty`|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
-|`scope`|string?|`medium`(default): Only user's best score, area top, and world top `full`: All scores|
+|`scope`|string?|`private`: Only personal best score `medium`(default): Personal best, area top, and world top scores `full`: All scores|
 
 ## Response
 

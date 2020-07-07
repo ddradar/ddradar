@@ -26,7 +26,7 @@ English version is [here](./README.md).
 |`songId`|string|曲ID。パターン `^[01689bdiloqDIOPQ]{32}$` と一致する必要があります。|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`difficulty`|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
-|`scope`|string?|`medium`(デフォルト): 自己ベスト、エリアトップ、全国トップのみ `full`: 全ユーザー|
+|`scope`|string?|`private`: 自己ベストのみ `medium`(デフォルト): 自己ベスト、エリアトップ、全国トップ `full`: 全ユーザー|
 
 ## Response
 

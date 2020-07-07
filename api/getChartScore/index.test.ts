@@ -71,6 +71,20 @@ describe('GET /api/v1/scores', () => {
     }
   )
 
+  test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns "404 Not Found" if anonymous', async () => {
+    // Arrange
+    context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+    context.bindingData.playStyle = 1
+    context.bindingData.difficulty = 0
+    req.query.scope = 'private'
+
+    // Act
+    const result = await getChartScore(context, req)
+
+    // Assert
+    expect(result.status).toBe(404)
+  })
+
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
@@ -271,6 +285,58 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
+      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns only World Best Score if unregisted user', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'twitter',
+          userDetails: 'foo',
+          userId: 'foo',
+          userRoles: ['anonymous', 'authenticated'],
+        })
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+
+        // Act
+        const result = await getChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual([
+          {
+            userId: scores[0].userId,
+            userName: scores[0].userName,
+            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+            songName: scores[0].songName,
+            playStyle: 1,
+            difficulty: 0,
+            score: scores[0].score,
+            clearLamp: scores[0].clearLamp,
+            rank: scores[0].rank,
+          },
+        ])
+      })
+
+      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns "404 Not Found" if unregisted user', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'twitter',
+          userDetails: 'foo',
+          userId: 'foo',
+          userRoles: ['anonymous', 'authenticated'],
+        })
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+        req.query.scope = 'private'
+
+        // Act
+        const result = await getChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(404)
+      })
+
       test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns World Best, Area Best, and Personal Best Scores if authenticated', async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
@@ -313,6 +379,40 @@ describe('GET /api/v1/scores', () => {
             clearLamp: scores[1].clearLamp,
             rank: scores[1].rank,
           },
+          // Personal Best
+          {
+            userId: scores[3].userId,
+            userName: scores[3].userName,
+            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+            songName: scores[3].songName,
+            playStyle: 1,
+            difficulty: 0,
+            score: scores[3].score,
+            clearLamp: scores[3].clearLamp,
+            rank: scores[3].rank,
+          },
+        ])
+      })
+
+      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns only Personal Best Score if authenticated', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          identityProvider: 'twitter',
+          userDetails: user.id,
+          userId: user.id,
+          userRoles: ['anonymous', 'authenticated'],
+        })
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+        req.query.scope = 'private'
+
+        // Act
+        const result = await getChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual([
           // Personal Best
           {
             userId: scores[3].userId,
