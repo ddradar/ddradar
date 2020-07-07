@@ -39,6 +39,20 @@ The collection that stores user scores.
         {
             "path": "/\"_etag\"/?"
         }
+    ],
+    "compositeIndexes": [
+        {
+            "path": "/score",
+            "order": "descending"
+        },
+        {
+            "path": "/clearLamp",
+            "order": "descending"
+        },
+        {
+            "path": "/_ts",
+            "order": "ascending"
+        }
     ]
 }
 ```

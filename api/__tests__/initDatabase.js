@@ -20,6 +20,24 @@ module.exports = async () => {
   await database.containers.createIfNotExists({
     id: 'Scores',
     partitionKey: { paths: ['/userId'] },
+    indexingPolicy: {
+      compositeIndexes: [
+        [
+          {
+            path: '/score',
+            order: 'descending',
+          },
+          {
+            path: '/clearLamp',
+            order: 'descending',
+          },
+          {
+            path: '/_ts',
+            order: 'ascending',
+          },
+        ],
+      ],
+    },
   })
   await database.containers.createIfNotExists({
     id: 'Songs',
