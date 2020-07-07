@@ -55,7 +55,7 @@ export default async function (
     const container = getContainer('Users', true)
     const { resources } = await container.items
       .query<UserSchema>({
-        query: 'SELECT * FROM c WHERE loginId = @loginId',
+        query: 'SELECT * FROM c WHERE c.loginId = @loginId',
         parameters: [{ name: '@loginId', value: clientPrincipal.userId }],
       })
       .fetchAll()
@@ -98,7 +98,7 @@ export default async function (
         `SELECT ${columns.map(col => `c.${col}`).join(', ')} ` +
         'FROM c ' +
         `WHERE ${conditions.join(' AND ')} ` +
-        'ORDER BY score DESC, clearLamp DESC, _ts',
+        'ORDER BY c.score DESC, c.clearLamp DESC, c._ts',
       parameters,
     })
     .fetchAll()
