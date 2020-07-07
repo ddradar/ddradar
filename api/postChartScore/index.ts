@@ -3,7 +3,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import type { ScoreSchema } from '../db'
+import type { ScoreSchema, UserSchema } from '../db'
 import { DanceLevelList } from '../db/scores'
 import { Difficulty, SongSchema, StepChartSchema } from '../db/songs'
 import type {
@@ -42,8 +42,7 @@ function isPartialScore(obj: unknown): obj is Partial<Score> {
 /** Get course and orders information that match the specified ID. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
-  req: Pick<HttpRequest, 'headers' | 'body'>,
-  charts: ChartInfo[]
+  req: Pick<HttpRequest, 'headers' | 'body'>
 ): Promise<
   | BadRequestResult
   | NotFoundResult
@@ -55,9 +54,9 @@ export default async function (
 
   const songId: string = context.bindingData.songId
   const playStyle: number = context.bindingData.playStyle
-  const difficulty: number =
+  const difficulty: Difficulty =
     typeof context.bindingData.difficulty === 'number'
-      ? context.bindingData.difficulty
+      ? (context.bindingData.difficulty as Difficulty)
       : 0 // if param is 0, passed object. (bug?)
 
   // Get chart info
@@ -94,7 +93,60 @@ export default async function (
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) return { status: 404 }
 
-  const scoreContainer = getContainer('Scores')
+  // Completement new score
+  const newScore = setValidScoreFromChart(charts[0], req.body)
+
+  if (user.isPublic) {
+    // World Record
+    await upsertScore(
+      { id: '0', name: '0', isPublic: false },
+      songId,
+      charts[0].name,
+      playStyle,
+      difficulty,
+      newScore
+    )
+    if (user.area) {
+      // Area Top
+      await upsertScore(
+        { id: `${user.area}`, name: `${user.area}`, isPublic: false },
+        songId,
+        charts[0].name,
+        playStyle,
+        difficulty,
+        newScore
+      )
+    }
+  }
+
+  const body = await upsertScore(
+    user,
+    songId,
+    charts[0].name,
+    playStyle,
+    difficulty,
+    newScore
+  )
+  return {
+    status: 200,
+    headers: { 'Content-type': 'application/json' },
+    body,
+  }
+}
+
+async function upsertScore(
+  {
+    id: userId,
+    name: userName,
+    isPublic,
+  }: Pick<UserSchema, 'id' | 'name' | 'isPublic'>,
+  songId: string,
+  songName: string,
+  playStyle: 1 | 2,
+  difficulty: Difficulty,
+  newScore: Score
+): Promise<ScoreResponse> {
+  const container = getContainer('Scores')
 
   // Get previous score
   const whereConditions: (keyof ScoreSchema)[] = [
@@ -104,12 +156,12 @@ export default async function (
     'difficulty',
   ]
   const parameters: SqlParameter[] = [
-    { name: '@userId', value: user.id },
+    { name: '@userId', value: userId },
     { name: '@songId', value: songId },
     { name: '@playStyle', value: playStyle },
     { name: '@difficulty', value: difficulty },
   ]
-  const { resources } = await scoreContainer.items
+  const { resources } = await container.items
     .query<Score>({
       query:
         'SELECT * FROM c WHERE ' +
@@ -123,41 +175,42 @@ export default async function (
     clearLamp: 0,
   }
 
-  // Completement new score
-  const newScore = setValidScoreFromChart(charts[0], req.body)
-
-  const mergedScore: ScoreSchema = {
+  const mergedScore = {
     ...mergeScore(oldScore, newScore),
-    id: `${user.id}-${songId}-${playStyle}-${difficulty}`,
-    userId: user.id,
-    userName: user.name,
-    isPublic: user.isPublic,
+    id: `${userId}-${songId}-${playStyle}-${difficulty}`,
+    userId,
+    userName,
+    isPublic,
     songId,
-    songName: charts[0].name,
+    songName,
     playStyle,
-    difficulty: difficulty as Difficulty,
+    difficulty,
+  }
+  if (
+    mergedScore.score === oldScore.score &&
+    mergedScore.clearLamp === oldScore.clearLamp &&
+    mergedScore.exScore === oldScore.exScore &&
+    mergedScore.maxCombo === oldScore.maxCombo &&
+    mergedScore.rank === oldScore.rank
+  ) {
+    return mergedScore
   }
 
-  const { resource } = await scoreContainer.items.upsert<ScoreSchema>(
-    mergedScore
-  )
+  const { resource } = await container.items.upsert<ScoreSchema>(mergedScore)
   if (!resource) throw new Error(`Failed upsert id:${mergedScore.id}`)
+  // Remove Resource property
   return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: {
-      userId: resource.userId,
-      userName: resource.userName,
-      isPublic: resource.isPublic,
-      songId,
-      songName: resource.songName,
-      playStyle,
-      difficulty: resource.difficulty,
-      score: resource.score,
-      clearLamp: resource.clearLamp,
-      rank: resource.rank,
-      exScore: resource.exScore,
-      maxCombo: resource.maxCombo,
-    },
+    userId: resource.userId,
+    userName: resource.userName,
+    isPublic: resource.isPublic,
+    songId: resource.songId,
+    songName: resource.songName,
+    playStyle: resource.playStyle,
+    difficulty: resource.difficulty,
+    score: resource.score,
+    clearLamp: resource.clearLamp,
+    rank: resource.rank,
+    exScore: resource.exScore,
+    maxCombo: resource.maxCombo,
   }
 }
