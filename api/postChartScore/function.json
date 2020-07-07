@@ -5,7 +5,7 @@
       "direction": "in",
       "name": "req",
       "authLevel": "anonymous",
-      "methods": ["get"],
+      "methods": ["post"],
       "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{playStyle:int:min(1):max(2)}/{difficulty:int:min(0):max(4)}"
     },
     {
