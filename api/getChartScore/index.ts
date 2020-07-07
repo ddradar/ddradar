@@ -81,8 +81,11 @@ export default async function (
 
   if (!foundUser) {
     if (scope === 'private') return { status: 404 }
-    conditions.push('c.isPublic = true')
-    if (scope === 'medium') conditions.push("c.userId = '0'") // Only top score
+    conditions.push(
+      scope === 'medium'
+        ? "c.userId = '0'"
+        : "(c.isPublic = true OR c.userId = '0')"
+    )
   }
 
   const container = getContainer('Scores', true)
