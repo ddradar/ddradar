@@ -2,10 +2,6 @@ import { DanceLevel, DanceLevelList, ScoreSchema } from './db/scores'
 import type { StepChartSchema } from './db/songs'
 import { hasIntegerProperty, hasStringProperty } from './type-assert'
 
-export type ScoreKey = Pick<
-  ScoreSchema,
-  'userId' | 'songId' | 'playStyle' | 'difficulty'
->
 export type Score = Pick<
   ScoreSchema,
   'score' | 'clearLamp' | 'exScore' | 'maxCombo' | 'rank'
@@ -30,128 +26,173 @@ export const setValidScoreFromChart = (
     freezeArrow,
     shockArrow,
   }: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
-  incompleteScore: Partial<Score>
+  partialScore: Readonly<Partial<Score>>
 ): Score => {
   const objects = notes + freezeArrow + shockArrow
   /** Max EX SCORE */
-  const exScore = objects * 3
+  const maxExScore = objects * 3
   /** Full Combo */
   const maxCombo = notes + shockArrow
   const baseScore = 1000000 / objects
 
-  const score = incompleteScore.score
-  const clearLamp = incompleteScore.clearLamp
-  const isFailed = incompleteScore.rank === 'E' || clearLamp === 0
+  const isFailed = partialScore.rank === 'E' || partialScore.clearLamp === 0
 
-  if (incompleteScore.exScore && incompleteScore.exScore > exScore)
+  if (partialScore.exScore && partialScore.exScore > maxExScore)
     throw new Error(
-      `Invalid Score object: exScore(${incompleteScore.exScore}) is greater than MAX(${exScore})`
+      `Invalid Score object: exScore(${partialScore.exScore}) is greater than MAX(${maxExScore})`
     )
 
-  // MFC
-  if (
-    clearLamp === 7 ||
-    score === 1000000 ||
-    incompleteScore.exScore === exScore
-  ) {
+  if (isMFC()) {
     return {
       score: 1000000,
       rank: 'AAA',
       clearLamp: 7,
-      exScore,
+      exScore: maxExScore,
       maxCombo,
     }
   }
 
   // Patterns that can be calculated from EX SCORE
-  // 1 Perfect
-  if (incompleteScore.exScore === exScore - 1) {
-    return {
-      score: 999990,
-      rank: 'AAA',
-      clearLamp: 6,
-      exScore: exScore - 1,
-      maxCombo,
-    }
-  }
-  // X Perfects
-  if (clearLamp === 6 && incompleteScore.exScore) {
-    const dropCount = exScore - incompleteScore.exScore
-    return {
-      score: 1000000 - dropCount * 10,
-      rank: 'AAA',
-      clearLamp: 6,
-      exScore: exScore - dropCount,
-      maxCombo,
-    }
-  }
-  // 1 Great 0 Perfect
-  if (clearLamp === 5 && incompleteScore.exScore === exScore - 2) {
-    const score = floorScore(1000000 - baseScore + great(baseScore))
-    return {
-      score,
-      rank: getDanceLevel(score),
-      clearLamp: 5,
-      exScore: exScore - 2,
-      maxCombo,
-    }
-  }
-  // 1 Good 0 Great 0 Perfect
-  if (clearLamp === 4 && incompleteScore.exScore === exScore - 3) {
-    const score = floorScore(1000000 - baseScore + good(baseScore))
-    return {
-      score,
-      rank: getDanceLevel(score),
-      clearLamp: 4,
-      exScore: exScore - 3,
-      maxCombo,
-    }
+  const scoreFromEx = tryCalcFromExScore()
+  if (scoreFromEx !== null) {
+    return scoreFromEx
   }
 
-  if (score === undefined)
+  if (partialScore.score === undefined)
     throw new Error('Cannot guess Score object. set score property')
+
+  const result: Score = {
+    ...partialScore,
+    score: partialScore.score,
+    rank: getDanceLevel(partialScore.score),
+    clearLamp: partialScore.clearLamp ?? 2, // set "Clear" default
+  }
+
+  if (isFailed) {
+    result.clearLamp = 0
+    result.rank = 'E'
+  }
 
   // Currently, 0 point can only be obtained by the following methods:
   // 1. Failed
   // 2. CHAOS [SP-BEGINNER] with CUT1 (= Assisted Clear)
   // 3. ようこそジャパリパークへ [DP-CHALLENGE] with JUMP OFF (= Assisted Clear)
-  if (score === 0) {
+  if (partialScore.score === 0) {
     return {
+      ...result,
       score: 0,
-      rank: isFailed ? 'E' : 'D',
       clearLamp: isFailed ? 0 : 1,
       exScore: 0,
       maxCombo: 0,
     }
   }
 
-  // PFC
-  // ClearLamp is PFC or Score is greater than Gr:1 score
-  if (
-    clearLamp === 6 ||
-    score > floorScore(1000000 - baseScore + great(baseScore))
-  ) {
-    const dropCount = (1000000 - score) / 10
+  if (isPFC()) {
+    const dropCount = (1000000 - partialScore.score) / 10
     return {
-      score,
-      rank: getDanceLevel(score), // AAA or AA+
+      ...result,
       clearLamp: 6,
-      exScore: exScore - dropCount,
+      exScore: maxExScore - dropCount,
       maxCombo,
     }
   }
 
-  // Great Full Combo
-  // ClearLamp is GreatFC or Score is greater than Gd:1 score
-  if (
-    clearLamp === 5 ||
-    score > floorScore(1000000 - baseScore + good(baseScore))
-  ) {
+  if (isGreatFC()) {
+    const calcFromGreatFC = tryCalcFromGreatFC()
+    return (
+      calcFromGreatFC ?? {
+        ...result,
+        clearLamp: 5,
+        maxCombo,
+      }
+    )
+  }
+
+  if (isGood1()) {
+    /** Perfect:0, Great:0, Good:1 Score */
+    const target = floorScore(1000000 - baseScore + good(baseScore))
+    const perfectCount = (target - partialScore.score) / 10
+    return {
+      ...result,
+      clearLamp: 4,
+      exScore: maxExScore - 3 - perfectCount,
+      maxCombo,
+    }
+  }
+
+  if (isGoodFC()) {
+    return {
+      ...result,
+      clearLamp: 4,
+      maxCombo,
+    }
+  }
+
+  if (isMiss1()) {
+    /** Perfect:0, Great:0, Good:0, Miss:1 score */
+    const target = floorScore(1000000 - baseScore)
+    const perfectCount = (target - partialScore.score) / 10
+    result.exScore = maxExScore - 3 - perfectCount
+  }
+
+  return result
+
+  function isMFC() {
+    return (
+      partialScore.clearLamp === 7 ||
+      partialScore.score === 1000000 ||
+      partialScore.exScore === maxExScore
+    )
+  }
+
+  /* eslint-disable @typescript-eslint/no-non-null-assertion -- already checked before these methods called */
+  function isPFC() {
+    return (
+      partialScore.clearLamp === 6 || // ClearLamp is PFC
+      partialScore.score! > floorScore(1000000 - baseScore + great(baseScore)) // Score is greater than Gr:1 score
+    )
+  }
+
+  function isGreatFC() {
+    return (
+      partialScore.clearLamp === 5 || // ClearLamp is GreatFC
+      partialScore.score! > floorScore(1000000 - baseScore + good(baseScore)) // Score is greater than Good:1 score
+    )
+  }
+
+  function isGoodFC() {
+    return (
+      partialScore.clearLamp === 4 || // ClearLamp is GoodFC
+      partialScore.score! > floorScore(1000000 - baseScore) // Score is greater than Miss:1 score
+    )
+  }
+
+  function isGood1() {
+    return (
+      partialScore.clearLamp === 4 &&
+      partialScore.score! >
+        floorScore(1000000 - baseScore * 2 - good(baseScore) + great(baseScore)) // Score is greater than Great:1, Good:1 score
+    )
+  }
+
+  function isMiss1() {
+    return (
+      partialScore.clearLamp !== 4 &&
+      partialScore.clearLamp !== undefined && // Not selected Full combo
+      (partialScore.score! >
+        floorScore(1000000 - baseScore * 2 + great(baseScore)) || // Score is greater than Great:1, Miss:1
+        partialScore.maxCombo === maxCombo) // [Note]: This is NOT Full Combo. (ex. missed last Freeze Arrow)
+    )
+  }
+
+  function tryCalcFromGreatFC(): Required<Score> | null {
     const dropScore = great(baseScore) - baseScore
 
     // Try to calc great count from score
     let greatCount = 0
-    while (floorScore(1000000 + dropScore * (greatCount + 1)) >= score) {
+    while (
+      floorScore(1000000 + dropScore * (greatCount + 1)) >= partialScore.score!
+    ) {
       greatCount++
     }
 
@@ -159,79 +200,75 @@ export const setValidScoreFromChart = (
     if (greatCount === 1 || (notes - greatCount) * 10 < -dropScore) {
       /** Perfect:0, Great: greatCount Score */
       const target = floorScore(1000000 + dropScore * greatCount)
-      const perfectCount = (target - score) / 10
+      const perfectCount = (target - partialScore.score!) / 10
+      return {
+        score: partialScore.score!,
+        rank: getDanceLevel(partialScore.score!),
+        clearLamp: 5,
+        exScore: maxExScore - perfectCount - greatCount * 2,
+        maxCombo,
+      }
+    }
+
+    return null
+  }
+  /* eslint-enable @typescript-eslint/no-non-null-assertion */
+
+  function tryCalcFromExScore(): Required<Score> | null {
+    // 1 Perfect
+    if (partialScore.exScore === maxExScore - 1) {
+      return {
+        score: 999990,
+        rank: 'AAA',
+        clearLamp: 6,
+        exScore: maxExScore - 1,
+        maxCombo,
+      }
+    }
+
+    // X Perfects
+    if (partialScore.clearLamp === 6 && partialScore.exScore) {
+      const dropCount = maxExScore - partialScore.exScore
+      return {
+        score: 1000000 - dropCount * 10,
+        rank: 'AAA',
+        clearLamp: 6,
+        exScore: maxExScore - dropCount,
+        maxCombo,
+      }
+    }
+
+    // 1 Great 0 Perfect
+    if (
+      partialScore.clearLamp === 5 &&
+      partialScore.exScore === maxExScore - 2
+    ) {
+      const score = floorScore(1000000 - baseScore + great(baseScore))
       return {
         score,
         rank: getDanceLevel(score),
         clearLamp: 5,
-        exScore: exScore - perfectCount - greatCount * 2,
+        exScore: maxExScore - 2,
         maxCombo,
       }
     }
 
-    return {
-      ...incompleteScore,
-      score,
-      rank: getDanceLevel(score),
-      clearLamp: 5,
-      maxCombo,
-    }
-  }
-
-  // Good Full Combo
-  // ClearLamp is GoodFC or Score is greater than Miss:1 score
-  if (clearLamp === 4 || score > floorScore(1000000 - baseScore)) {
-    // 1 Good 0 Great
+    // 1 Good 0 Great 0 Perfect
     if (
-      clearLamp === 4 &&
-      score >
-        floorScore(1000000 - baseScore * 2 - good(baseScore) + great(baseScore))
+      partialScore.clearLamp === 4 &&
+      partialScore.exScore === maxExScore - 3
     ) {
-      /** Perfect:0, Good:1 Score */
-      const target = floorScore(1000000 - baseScore + good(baseScore))
-      const perfectCount = (target - score) / 10
-      const calcedExScore = exScore - 3 - perfectCount
+      const score = floorScore(1000000 - baseScore + good(baseScore))
       return {
         score,
         rank: getDanceLevel(score),
         clearLamp: 4,
-        exScore: calcedExScore,
+        exScore: maxExScore - 3,
         maxCombo,
       }
     }
 
-    return {
-      ...incompleteScore,
-      score,
-      rank: getDanceLevel(score),
-      clearLamp: 4,
-      maxCombo,
-    }
-  }
-
-  // 1 Miss 0 Good 0 Great
-  if (
-    clearLamp !== undefined && // Not selected Full combo
-    (score > floorScore(1000000 - baseScore * 2 + great(baseScore)) || // Score is greater than 1 Miss, 1 Great
-      incompleteScore.maxCombo === maxCombo) // This is NOT Full Combo. (ex. missed last FA)
-  ) {
-    /** Miss:1 score */
-    const target = floorScore(1000000 - baseScore)
-    const perfectCount = (target - score) / 10
-    return {
-      ...incompleteScore,
-      score,
-      rank: isFailed ? 'E' : getDanceLevel(score),
-      clearLamp: isFailed ? 0 : clearLamp,
-      exScore: exScore - 3 - perfectCount,
-    }
-  }
-
-  return {
-    ...incompleteScore,
-    score,
-    rank: isFailed ? 'E' : getDanceLevel(score),
-    clearLamp: isFailed ? 0 : clearLamp ?? 2, // set "Clear" default
+    return null
   }
 }
 
