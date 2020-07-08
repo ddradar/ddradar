@@ -107,7 +107,12 @@ export default async function (
   if (charts.length === 0) return { status: 404 }
 
   // Completement new score
-  const newScore = setValidScoreFromChart(charts[0], req.body)
+  let newScore: Score
+  try {
+    newScore = setValidScoreFromChart(charts[0], req.body)
+  } catch (error) {
+    return { status: 400, body: error.message ?? error }
+  }
 
   if (user.isPublic) {
     // World Record

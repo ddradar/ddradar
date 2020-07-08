@@ -322,6 +322,28 @@ describe('POST /api/v1/scores', () => {
         }
       )
 
+      test.each([{ exScore: 1000 }, { rank: 'AA' }, { clearLamp: 4 }])(
+        'returns "400 Bad Request" if body is %p',
+        async score => {
+          // Arrange
+          mocked(getClientPrincipal).mockReturnValueOnce({
+            ...clientPrincipal,
+            userId: publicUser.loginId,
+          })
+          mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+          context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+          context.bindingData.playStyle = 1
+          context.bindingData.difficulty = 0
+          req.body = score
+
+          // Act
+          const result = await postChartScore(context, req)
+
+          // Assert
+          expect(result.status).toBe(400)
+        }
+      )
+
       test.each([
         { score: 900000 },
         { score: 890000, clearLamp: 4 },
