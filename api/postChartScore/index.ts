@@ -17,19 +17,24 @@ import { hasIntegerProperty, hasStringProperty } from '../type-assert'
 
 type ChartInfo = Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'> &
   Pick<SongSchema, 'name'>
-type ScoreResponse = Omit<ScoreSchema, 'id'>
+
+/** Assert obj[name] is integer and range in [start, end] */
+function hasRangedIntegerProperty<K extends string>(
+  obj: unknown,
+  name: K,
+  start: number,
+  end: number
+): obj is { [M in K]: number } {
+  return hasIntegerProperty(obj, name) && obj[name] >= start && obj[name] <= end
+}
 
 function isPartialScore(obj: unknown): obj is Partial<Score> {
   return (
     typeof obj === 'object' &&
     !!obj &&
-    ((hasIntegerProperty(obj, 'score') &&
-      obj.score >= 0 &&
-      obj.score <= 1000000) ||
+    (hasRangedIntegerProperty(obj, 'score', 0, 10000000) ||
       (obj as Record<string, unknown>).score === undefined) &&
-    ((hasIntegerProperty(obj, 'clearLamp') &&
-      obj.clearLamp >= 0 &&
-      obj.clearLamp <= 7) ||
+    (hasRangedIntegerProperty(obj, 'clearLamp', 0, 7) ||
       (obj as Record<string, unknown>).clearLamp === undefined) &&
     (hasIntegerProperty(obj, 'exScore') ||
       (obj as Record<string, unknown>).exScore === undefined) &&
@@ -49,7 +54,7 @@ export default async function (
   | BadRequestResult
   | NotFoundResult
   | UnauthenticatedResult
-  | SuccessResult<ScoreResponse>
+  | SuccessResult<ScoreSchema>
 > {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { status: 401 }
@@ -153,7 +158,7 @@ async function upsertScore(
   playStyle: 1 | 2,
   difficulty: Difficulty,
   newScore: Score
-): Promise<ScoreResponse> {
+): Promise<ScoreSchema> {
   const container = getContainer('Scores')
 
   // Get previous score
@@ -208,6 +213,7 @@ async function upsertScore(
   if (!resource) throw new Error(`Failed upsert id:${mergedScore.id}`)
   // Remove Resource property
   return {
+    id: resource.id,
     userId: resource.userId,
     userName: resource.userName,
     isPublic: resource.isPublic,

@@ -348,18 +348,7 @@ describe('POST /api/v1/scores', () => {
 
         // Assert
         expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual({
-          userId: scores[2].userId,
-          userName: scores[2].userName,
-          songId: scores[2].songId,
-          songName: scores[2].songName,
-          playStyle: scores[2].playStyle,
-          difficulty: scores[2].difficulty,
-          score: scores[2].score,
-          clearLamp: scores[2].clearLamp,
-          rank: scores[2].rank,
-          isPublic: scores[2].isPublic,
-        })
+        expect(result.body).toStrictEqual(scores[2])
       })
 
       afterAll(async () => {
