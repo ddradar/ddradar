@@ -21,6 +21,8 @@ type ScoreResponse = Omit<ScoreSchema, 'id'>
 
 function isPartialScore(obj: unknown): obj is Partial<Score> {
   return (
+    typeof obj === 'object' &&
+    !!obj &&
     ((hasIntegerProperty(obj, 'score') &&
       obj.score >= 0 &&
       obj.score <= 1000000) ||
@@ -59,6 +61,28 @@ export default async function (
       ? (context.bindingData.difficulty as Difficulty)
       : 0 // if param is 0, passed object. (bug?)
 
+  // In Azure Functions, this function will only be invoked if a valid route.
+  // So this check is only used to unit tests.
+  if (
+    !/^[01689bdiloqDIOPQ]{32}$/.test(songId) ||
+    (playStyle !== 1 && playStyle !== 2) ||
+    ![0, 1, 2, 3, 4].includes(difficulty)
+  ) {
+    return { status: 404 }
+  }
+
+  if (!isPartialScore(req.body)) {
+    return { status: 400, body: 'body is not Score' }
+  }
+
+  const user = await getLoginUserInfo(clientPrincipal)
+  if (!user) {
+    return {
+      status: 404,
+      body: `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`,
+    }
+  }
+
   // Get chart info
   const container = getContainer('Songs', true)
   const { resources: charts } = await container.items
@@ -75,23 +99,7 @@ export default async function (
     })
     .fetchAll()
 
-  // In Azure Functions, this function will only be invoked if a valid route.
-  // So this check is only used to unit tests.
-  if (
-    !/^[01689bdiloqDIOPQ]{32}$/.test(songId) ||
-    (playStyle !== 1 && playStyle !== 2) ||
-    ![0, 1, 2, 3, 4].includes(difficulty) ||
-    charts.length === 0
-  ) {
-    return { status: 404 }
-  }
-
-  if (!isPartialScore(req.body)) {
-    return { status: 400, body: 'body is not Score' }
-  }
-
-  const user = await getLoginUserInfo(clientPrincipal)
-  if (!user) return { status: 404 }
+  if (charts.length === 0) return { status: 404 }
 
   // Completement new score
   const newScore = setValidScoreFromChart(charts[0], req.body)
