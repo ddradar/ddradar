@@ -331,7 +331,7 @@ describe('POST /api/v1/scores', () => {
           maxCombo: 138,
           exScore: 366,
         },
-      ])('returns previous score if body is %p', async score => {
+      ])('does not upsert score if body is %p', async score => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           ...clientPrincipal,
@@ -342,6 +342,9 @@ describe('POST /api/v1/scores', () => {
         context.bindingData.playStyle = 1
         context.bindingData.difficulty = 0
         req.body = score
+        const { resource } = await scoreContainer
+          .item(scores[2].id, scores[2].userId)
+          .read<ScoreSchema>()
 
         // Act
         const result = await postChartScore(context, req)
@@ -349,6 +352,126 @@ describe('POST /api/v1/scores', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual(scores[2])
+        expect(
+          scoreContainer
+            .item(scores[2].id, scores[2].userId)
+            .read<ScoreSchema>()
+        ).resolves.toStrictEqual(resource)
+      })
+
+      test('upserts world record, area top and personal best if user is public', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: publicUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+        req.body = { score: 1000000 }
+        const { resource: previousWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
+        const { resource: previousAreaTop } = await scoreContainer
+          .item(scores[1].id, scores[1].userId)
+          .read<ScoreSchema>()
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual({
+          ...scores[2],
+          score: 1000000,
+          rank: 'AAA',
+          exScore: 414,
+        })
+        expect(
+          scoreContainer
+            .item(scores[0].id, scores[0].userId)
+            .read<ScoreSchema>()
+        ).resolves.not.toStrictEqual(previousWorldRecord)
+        expect(
+          scoreContainer
+            .item(scores[1].id, scores[1].userId)
+            .read<ScoreSchema>()
+        ).resolves.not.toStrictEqual(previousAreaTop)
+      })
+
+      test('upserts world record and personal best if user is public and area is 0', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: areaHiddenUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(areaHiddenUser)
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+        req.body = { score: 1000000 }
+        const { resource: previousWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual({
+          ...scores[3],
+          score: 1000000,
+          rank: 'AAA',
+          exScore: 414,
+        })
+        expect(
+          scoreContainer
+            .item(scores[0].id, scores[0].userId)
+            .read<ScoreSchema>()
+        ).resolves.not.toStrictEqual(previousWorldRecord)
+      })
+
+      test('upserts personal best only if user is private', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: privateUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.playStyle = 1
+        context.bindingData.difficulty = 0
+        req.body = { score: 1000000 }
+        const { resource: previousWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
+        const { resource: previousAreaTop } = await scoreContainer
+          .item(scores[1].id, scores[1].userId)
+          .read<ScoreSchema>()
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual({
+          ...scores[4],
+          score: 1000000,
+          rank: 'AAA',
+          exScore: 414,
+        })
+        expect(
+          scoreContainer
+            .item(scores[0].id, scores[0].userId)
+            .read<ScoreSchema>()
+        ).resolves.toStrictEqual(previousWorldRecord)
+        expect(
+          scoreContainer
+            .item(scores[1].id, scores[1].userId)
+            .read<ScoreSchema>()
+        ).resolves.toStrictEqual(previousAreaTop)
       })
 
       afterAll(async () => {
