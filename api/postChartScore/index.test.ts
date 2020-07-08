@@ -348,15 +348,14 @@ describe('POST /api/v1/scores', () => {
 
         // Act
         const result = await postChartScore(context, req)
+        const { resource: current } = await scoreContainer
+          .item(scores[2].id, scores[2].userId)
+          .read<ScoreSchema>()
 
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toStrictEqual(scores[2])
-        expect(
-          scoreContainer
-            .item(scores[2].id, scores[2].userId)
-            .read<ScoreSchema>()
-        ).resolves.toStrictEqual(resource)
+        expect(current).toStrictEqual(resource)
       })
 
       test('upserts world record, area top and personal best if user is public', async () => {
@@ -379,6 +378,12 @@ describe('POST /api/v1/scores', () => {
 
         // Act
         const result = await postChartScore(context, req)
+        const { resource: currentWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
+        const { resource: currentAreaTop } = await scoreContainer
+          .item(scores[1].id, scores[1].userId)
+          .read<ScoreSchema>()
 
         // Assert
         expect(result.status).toBe(200)
@@ -388,16 +393,8 @@ describe('POST /api/v1/scores', () => {
           rank: 'AAA',
           exScore: 414,
         })
-        expect(
-          scoreContainer
-            .item(scores[0].id, scores[0].userId)
-            .read<ScoreSchema>()
-        ).resolves.not.toStrictEqual(previousWorldRecord)
-        expect(
-          scoreContainer
-            .item(scores[1].id, scores[1].userId)
-            .read<ScoreSchema>()
-        ).resolves.not.toStrictEqual(previousAreaTop)
+        expect(currentWorldRecord).not.toStrictEqual(previousWorldRecord)
+        expect(currentAreaTop).not.toStrictEqual(previousAreaTop)
       })
 
       test('upserts world record and personal best if user is public and area is 0', async () => {
@@ -417,6 +414,9 @@ describe('POST /api/v1/scores', () => {
 
         // Act
         const result = await postChartScore(context, req)
+        const { resource: currentWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
 
         // Assert
         expect(result.status).toBe(200)
@@ -426,11 +426,7 @@ describe('POST /api/v1/scores', () => {
           rank: 'AAA',
           exScore: 414,
         })
-        expect(
-          scoreContainer
-            .item(scores[0].id, scores[0].userId)
-            .read<ScoreSchema>()
-        ).resolves.not.toStrictEqual(previousWorldRecord)
+        expect(currentWorldRecord).not.toStrictEqual(previousWorldRecord)
       })
 
       test('upserts personal best only if user is private', async () => {
@@ -453,6 +449,12 @@ describe('POST /api/v1/scores', () => {
 
         // Act
         const result = await postChartScore(context, req)
+        const { resource: currentWorldRecord } = await scoreContainer
+          .item(scores[0].id, scores[0].userId)
+          .read<ScoreSchema>()
+        const { resource: currentAreaTop } = await scoreContainer
+          .item(scores[1].id, scores[1].userId)
+          .read<ScoreSchema>()
 
         // Assert
         expect(result.status).toBe(200)
@@ -462,16 +464,8 @@ describe('POST /api/v1/scores', () => {
           rank: 'AAA',
           exScore: 414,
         })
-        expect(
-          scoreContainer
-            .item(scores[0].id, scores[0].userId)
-            .read<ScoreSchema>()
-        ).resolves.toStrictEqual(previousWorldRecord)
-        expect(
-          scoreContainer
-            .item(scores[1].id, scores[1].userId)
-            .read<ScoreSchema>()
-        ).resolves.toStrictEqual(previousAreaTop)
+        expect(currentWorldRecord).toStrictEqual(previousWorldRecord)
+        expect(currentAreaTop).toStrictEqual(previousAreaTop)
       })
 
       afterAll(async () => {
