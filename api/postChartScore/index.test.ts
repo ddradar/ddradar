@@ -390,6 +390,7 @@ describe('POST /api/v1/scores', () => {
         expect(result.body).toStrictEqual({
           ...scores[2],
           score: 1000000,
+          clearLamp: 7,
           rank: 'AAA',
           exScore: 414,
         })
@@ -423,6 +424,7 @@ describe('POST /api/v1/scores', () => {
         expect(result.body).toStrictEqual({
           ...scores[3],
           score: 1000000,
+          clearLamp: 7,
           rank: 'AAA',
           exScore: 414,
         })
@@ -461,6 +463,7 @@ describe('POST /api/v1/scores', () => {
         expect(result.body).toStrictEqual({
           ...scores[4],
           score: 1000000,
+          clearLamp: 7,
           rank: 'AAA',
           exScore: 414,
         })
