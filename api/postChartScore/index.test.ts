@@ -290,6 +290,9 @@ describe('POST /api/v1/scores', () => {
             userContainer.items.create(u)
           )
         )
+      })
+
+      beforeEach(async () => {
         await Promise.all(scores.map(s => scoreContainer.items.create(s)))
       })
 
@@ -471,15 +474,18 @@ describe('POST /api/v1/scores', () => {
         expect(currentAreaTop).toStrictEqual(previousAreaTop)
       })
 
+      afterEach(async () => {
+        await Promise.all(
+          scores.map(s => scoreContainer.item(s.id, s.userId).delete())
+        )
+      })
+
       afterAll(async () => {
         await songContainer.item(song.id, song.nameIndex).delete()
         await Promise.all(
           [publicUser, areaHiddenUser, privateUser].map(u =>
             userContainer.item(u.id, u.id).delete()
           )
-        )
-        await Promise.all(
-          scores.map(s => scoreContainer.item(s.id, s.userId).delete())
         )
       })
     }
