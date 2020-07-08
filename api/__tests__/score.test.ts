@@ -3,6 +3,7 @@ import {
   calcScore,
   getDanceLevel,
   isScore,
+  mergeScore,
   Score,
   setValidScoreFromChart,
 } from '../score'
@@ -36,6 +37,33 @@ describe('./score.ts', () => {
       { ...validScore, exScore: 334, maxCombo: {} },
       { ...validScore, exScore: NaN, maxCombo: 120 },
     ])('(%p) returns false', (obj: unknown) => expect(isScore(obj)).toBe(false))
+  })
+  describe('mergeScore', () => {
+    test.each([
+      [
+        { score: 900000, clearLamp: 3, rank: 'AA' },
+        { score: 850000, clearLamp: 4, exScore: 100, rank: 'A+' },
+        { score: 900000, clearLamp: 4, rank: 'AA', exScore: 100 },
+      ],
+      [
+        { score: 900000, clearLamp: 3, rank: 'AA' },
+        { score: 920000, clearLamp: 0, rank: 'E' },
+        { score: 920000, clearLamp: 3, rank: 'E' },
+      ],
+      [
+        { score: 900000, clearLamp: 3, rank: 'AA' },
+        { score: 850000, clearLamp: 4, maxCombo: 100, rank: 'A+' },
+        { score: 900000, clearLamp: 4, rank: 'AA', maxCombo: 100 },
+      ],
+    ] as const)('(%p, %p) returns %p', (left, right, expected) => {
+      // Assert - Act
+      const merged1 = mergeScore(left, right)
+      const merged2 = mergeScore(right, left)
+
+      // Assert
+      expect(merged1).toStrictEqual(expected)
+      expect(merged2).toStrictEqual(expected)
+    })
   })
   describe('setValidScoreFromChart', () => {
     const chart = { notes: 1000, freezeArrow: 10, shockArrow: 10 } as const

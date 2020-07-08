@@ -21,18 +21,21 @@ export const isScore = (obj: unknown): obj is Score =>
   (DanceLevelList as string[]).includes(obj.rank)
 
 export const mergeScore = (left: Score, right: Score): Score => {
-  return {
+  const result: Score = {
     score: left.score > right.score ? left.score : right.score,
     clearLamp:
       left.clearLamp > right.clearLamp ? left.clearLamp : right.clearLamp,
     rank: left.score > right.score ? left.rank : right.rank,
-    exScore:
-      (left.exScore ?? 0) > (right.exScore ?? 0) ? left.exScore : right.exScore,
-    maxCombo:
-      (left.maxCombo ?? 0) > (right.maxCombo ?? 0)
-        ? left.maxCombo
-        : right.maxCombo,
   }
+  const exScore =
+    (left.exScore ?? 0) > (right.exScore ?? 0) ? left.exScore : right.exScore
+  if (exScore !== undefined) result.exScore = exScore
+  const maxCombo =
+    (left.maxCombo ?? 0) > (right.maxCombo ?? 0)
+      ? left.maxCombo
+      : right.maxCombo
+  if (maxCombo !== undefined) result.maxCombo = maxCombo
+  return result
 }
 
 export const setValidScoreFromChart = (
