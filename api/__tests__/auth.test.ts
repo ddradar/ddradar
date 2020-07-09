@@ -1,6 +1,12 @@
+import type { Container } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import { mocked } from 'ts-jest/utils'
 
-import { ClientPrincipal, getClientPrincipal } from '../auth'
+import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
+import { getContainer } from '../cosmos'
+import { UserSchema } from '../db'
+
+jest.mock('../cosmos')
 
 const toBase64 = (obj: unknown) => {
   const jsonString = JSON.stringify(obj)
@@ -54,5 +60,66 @@ describe('./auth.ts', () => {
         expect(clientPrincipal).toStrictEqual(expected)
       }
     )
+  })
+
+  describe('getLoginUserInfo', () => {
+    let resources: UserSchema[] = []
+    const container = {
+      items: {
+        query: () => ({
+          fetchAll: async () => ({ resources }),
+        }),
+      },
+    }
+    beforeAll(() => {
+      mocked(getContainer).mockReturnValue((container as unknown) as Container)
+    })
+
+    test('(null) returns null', async () => {
+      // Arrange - Act
+      const user = await getLoginUserInfo(null)
+
+      // Assert
+      expect(user).toBeNull()
+    })
+
+    test('({ Unregistered user }) returns null', async () => {
+      // Arrange
+      resources = []
+
+      // Act
+      const user = await getLoginUserInfo({
+        identityProvider: 'github',
+        userId: 'unregistered_user',
+        userDetails: 'unregistered_user',
+        userRoles: ['anonymous', 'authenticated'],
+      })
+
+      // Assert
+      expect(user).toBeNull()
+    })
+
+    test('({ Registered user }) returns UserSchema', async () => {
+      // Arrange
+      const userSchema: UserSchema = {
+        id: 'registered_user',
+        loginId: 'registered_user',
+        area: 0,
+        isPublic: false,
+        name: 'Registered user',
+      }
+      resources = [userSchema]
+
+      // Act
+      const user = await getLoginUserInfo({
+        identityProvider: 'github',
+        userId: 'registered_user',
+        userDetails: 'registered_user',
+        userRoles: ['anonymous', 'authenticated'],
+      })
+
+      // Assert
+      expect(user).toBe(userSchema)
+    })
   })
 })
