@@ -1,41 +1,44 @@
-import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import type { HttpRequest } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
 import { isSongSchema, SongSchema } from '../db/songs'
+import type { BadRequestResult, SuccessResult } from '../function'
 
-/** Add or update song and charts information. */
-const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'res'>,
-  req: Pick<HttpRequest, 'body'>
-): Promise<void> => {
-  if (!isSongSchema(req.body)) {
-    context.res = {
-      status: 400,
-      body: 'Body is not SongSchema',
-    }
-    return
-  }
-
-  const container = getContainer('Songs')
-  const { resource } = await container.items.upsert<SongSchema>(req.body)
-  if (!resource) throw new Error(`Failed upsert id:${req.body.id}`)
-  const responseBody: SongSchema = {
-    id: resource.id,
-    name: resource.name,
-    nameKana: resource.nameKana,
-    nameIndex: resource.nameIndex,
-    artist: resource.artist,
-    series: resource.series,
-    minBPM: resource.minBPM,
-    maxBPM: resource.maxBPM,
-    charts: [...resource.charts],
-  }
-
-  context.res = {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: responseBody,
-  }
+type PostSongResult = {
+  httpResponse: BadRequestResult | SuccessResult<SongSchema>
+  document?: SongSchema
 }
 
-export default httpTrigger
+/** Add or update song and charts information. */
+export default async function (
+  _context: unknown,
+  req: Pick<HttpRequest, 'body'>
+): Promise<PostSongResult> {
+  if (!isSongSchema(req.body)) {
+    return { httpResponse: { status: 400, body: 'Body is not SongSchema' } }
+  }
+
+  const document: SongSchema = {
+    id: req.body.id,
+    name: req.body.name,
+    nameKana: req.body.nameKana,
+    nameIndex: req.body.nameIndex,
+    artist: req.body.artist,
+    series: req.body.series,
+    minBPM: req.body.minBPM,
+    maxBPM: req.body.maxBPM,
+    charts: req.body.charts.sort((l, r) =>
+      l.playStyle === r.playStyle
+        ? l.difficulty - r.difficulty
+        : l.playStyle - r.playStyle
+    ),
+  }
+
+  return {
+    httpResponse: {
+      status: 200,
+      headers: { 'Content-type': 'application/json' },
+      body: document,
+    },
+    document,
+  }
+}
