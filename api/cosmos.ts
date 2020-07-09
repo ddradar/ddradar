@@ -1,5 +1,7 @@
 import { Container, CosmosClient } from '@azure/cosmos'
 
+type ContainerName = 'Courses' | 'Scores' | 'Songs' | 'Users'
+
 /* eslint-disable node/no-process-env */
 export const getConnectionString = (readonly?: boolean): string | undefined =>
   readonly
@@ -13,7 +15,7 @@ let readOnlyClient: CosmosClient
 const readOnlyContainers: { [key: string]: Container } = {}
 const readWriteContainers: { [key: string]: Container } = {}
 
-export const getContainer = (id: string, readonly?: boolean): Container => {
+export function getContainer(id: ContainerName, readonly?: boolean): Container {
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
   if (readonly && !readOnlyClient)
     readOnlyClient = new CosmosClient(getConnectionString(true)!)
