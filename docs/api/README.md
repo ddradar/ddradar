@@ -35,3 +35,8 @@ See also [Authentication API Docs](./authentication.md).
 - [Get User List](../../api/getUserList/README.md)
 - [Get User Information](../../api/getUserInfo/README.md)
 - [Post User Information](../../api/postUserInfo/README.md) **Authed user only*
+
+## Score API
+
+- [Get Chart Score](../../api/getChartScore/README.md)
+- [Post Chart Score](../../api/postChartScore/README.md) **Authed user only*
