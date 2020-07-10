@@ -13,6 +13,30 @@ describe('GET /api/v1/courses', () => {
     () => {
       const courses: ShrinkedCourse[] = [
         {
+          id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
+          name: '初段',
+          series: 'DanceDanceRevolution A20',
+          orders: [
+            {
+              playStyle: 1,
+              difficulty: 4,
+              level: 10,
+            },
+          ],
+        },
+        {
+          id: 'bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP',
+          name: '十段',
+          series: 'DanceDanceRevolution A20',
+          orders: [
+            {
+              playStyle: 2,
+              difficulty: 4,
+              level: 19,
+            },
+          ],
+        },
+        {
           id: 'q6oOPqQPlOQoooq888bPI1OPDlqDIQQD',
           name: 'PASSION',
           series: 'DanceDanceRevolution A20',
@@ -61,30 +85,6 @@ describe('GET /api/v1/courses', () => {
               playStyle: 2,
               difficulty: 4,
               level: 18,
-            },
-          ],
-        },
-        {
-          id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
-          name: '初段',
-          series: 'DanceDanceRevolution A20',
-          orders: [
-            {
-              playStyle: 1,
-              difficulty: 4,
-              level: 10,
-            },
-          ],
-        },
-        {
-          id: 'bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP',
-          name: '十段',
-          series: 'DanceDanceRevolution A20',
-          orders: [
-            {
-              playStyle: 2,
-              difficulty: 4,
-              level: 19,
             },
           ],
         },

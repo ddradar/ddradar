@@ -23,7 +23,8 @@ export default async function (): Promise<SuccessResult<ShrinkedCourse[]>> {
         `SELECT ${orderColumns.map(col => `o.${col}`).join(', ')} ` +
         `FROM o IN c.${joinColumn}` +
         `) as ${joinColumn} ` +
-        'FROM c',
+        'FROM c ' +
+        'ORDER BY c.id',
     })
     .fetchAll()
 
