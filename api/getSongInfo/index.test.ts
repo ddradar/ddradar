@@ -6,20 +6,17 @@ import type { SongSchema } from '../db'
 import getSongInfo from '.'
 
 describe('GET /api/v1/songs', () => {
-  let context: Context
-
+  let context: Pick<Context, 'bindingData'>
   beforeEach(() => {
-    context = {
-      bindingData: {},
-    } as Context
+    context = { bindingData: {} }
   })
 
   test('/ returns "404 Not Found"', async () => {
     // Arrange - Act
-    await getSongInfo(context)
+    const result = await getSongInfo(context)
 
     // Assert
-    expect(context.res?.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test('/foo returns "404 Not Found"', async () => {
@@ -27,11 +24,10 @@ describe('GET /api/v1/songs', () => {
     context.bindingData.id = 'foo'
 
     // Act
-    await getSongInfo(context)
+    const result = await getSongInfo(context)
 
     // Assert
-    expect(context.res?.status).toBe(404)
-    expect(context.res?.body).toBe('Please pass a id like "/api/songs/:id"')
+    expect(result.status).toBe(404)
   })
 
   describeIf(() => !!getConnectionString())(
@@ -73,11 +69,11 @@ describe('GET /api/v1/songs', () => {
         context.bindingData.id = id
 
         // Act
-        await getSongInfo(context)
+        const result = await getSongInfo(context)
 
         // Assert
-        expect(context.res?.status).toBe(404)
-        expect(context.res?.body).toBe(`Not found song that id: "${id}"`)
+        expect(result.status).toBe(404)
+        expect(result.body).toBe(`Not found song that id: "${id}"`)
       })
 
       test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI returns "200 OK" with JSON body', async () => {
@@ -85,11 +81,11 @@ describe('GET /api/v1/songs', () => {
         context.bindingData.id = song.id
 
         // Act
-        await getSongInfo(context)
+        const result = await getSongInfo(context)
 
         // Assert
-        expect(context.res?.status).toBe(200)
-        expect(context.res?.body).toStrictEqual(song)
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual(song)
       })
 
       afterAll(async () => {

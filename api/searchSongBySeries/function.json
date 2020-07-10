@@ -6,12 +6,12 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "v1/songs/series/{series:int:min(0):max(17)}"
+      "route": "v1/songs/series/{series:int:range(0,17)}"
     },
     {
       "type": "http",
       "direction": "out",
-      "name": "res"
+      "name": "$return"
     }
   ],
   "scriptFile": "../dist/searchSongBySeries/index.js"

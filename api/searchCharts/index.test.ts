@@ -6,12 +6,9 @@ import type { SongSchema } from '../db'
 import searchCharts from '.'
 
 describe('GET /api/v1/charts', () => {
-  let context: Context
-
+  let context: Pick<Context, 'bindingData'>
   beforeEach(() => {
-    context = {
-      bindingData: {},
-    } as Context
+    context = { bindingData: {} }
   })
 
   test.each([NaN, 0, 1.5, -1, 100, Infinity, -Infinity])(
@@ -21,13 +18,10 @@ describe('GET /api/v1/charts', () => {
       context.bindingData.playStyle = playStyle
 
       // Act
-      await searchCharts(context)
+      const result = await searchCharts(context)
 
       // Assert
-      expect(context.res?.status).toBe(404)
-      expect(context.res?.body).toBe(
-        `"playStyle" is undefined or invalid value :${playStyle}`
-      )
+      expect(result.status).toBe(404)
     }
   )
   test.each([NaN, 0, 1.5, -1, 100, Infinity, -Infinity])(
@@ -38,13 +32,10 @@ describe('GET /api/v1/charts', () => {
       context.bindingData.level = level
 
       // Act
-      await searchCharts(context)
+      const result = await searchCharts(context)
 
       // Assert
-      expect(context.res?.status).toBe(404)
-      expect(context.res?.body).toBe(
-        `"level" is undefined or invalid value :${level}`
-      )
+      expect(result.status).toBe(404)
     }
   )
 
@@ -235,9 +226,7 @@ describe('GET /api/v1/charts', () => {
 
       beforeAll(async () => {
         const container = getContainer('Songs')
-        for (const song of songs) {
-          await container.items.create(song)
-        }
+        await Promise.all(songs.map(s => container.items.create(s)))
       })
 
       test('/1/1 returns "404 Not Found"', async () => {
@@ -246,11 +235,11 @@ describe('GET /api/v1/charts', () => {
         context.bindingData.level = 1
 
         // Act
-        await searchCharts(context)
+        const result = await searchCharts(context)
 
         // Assert
-        expect(context.res?.status).toBe(404)
-        expect(context.res?.body).toBe(
+        expect(result.status).toBe(404)
+        expect(result.body).toBe(
           'Not found chart that {playStyle: 1, level: 1}'
         )
       })
@@ -314,19 +303,19 @@ describe('GET /api/v1/charts', () => {
           context.bindingData.level = level
 
           // Act
-          await searchCharts(context)
+          const result = await searchCharts(context)
 
           // Assert
-          expect(context.res?.status).toBe(200)
-          expect(context.res?.body).toStrictEqual(expected)
+          expect(result.status).toBe(200)
+          expect(result.body).toStrictEqual(expected)
         }
       )
 
       afterAll(async () => {
         const container = getContainer('Songs')
-        for (const song of songs) {
-          await container.item(song.id, song.nameIndex).delete()
-        }
+        await Promise.all(
+          songs.map(s => container.item(s.id, s.nameIndex).delete())
+        )
       })
     }
   )

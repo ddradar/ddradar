@@ -11,7 +11,15 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "httpResponse"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "document",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "connectionStringSetting": "COSMOS_DB_CONN"
     }
   ],
   "scriptFile": "../dist/postUserInfo/index.js"

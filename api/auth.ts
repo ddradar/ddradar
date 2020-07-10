@@ -17,9 +17,9 @@ export type ClientPrincipal = {
   userRoles: Role[]
 }
 
-export const getClientPrincipal = (
+export function getClientPrincipal(
   req: Pick<HttpRequest, 'headers'>
-): ClientPrincipal | null => {
+): ClientPrincipal | null {
   const header = req.headers['x-ms-client-principal']
   if (!header) return null
 

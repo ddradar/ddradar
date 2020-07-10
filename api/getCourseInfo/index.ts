@@ -1,22 +1,19 @@
-import type { AzureFunction, Context } from '@azure/functions'
+import type { Context } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import { CourseSchema } from '../db'
+import type { CourseSchema } from '../db'
+import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */
-const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'bindingData' | 'res'>
-): Promise<void> => {
+export default async function (
+  context: Pick<Context, 'bindingData'>
+): Promise<NotFoundResult | SuccessResult<CourseSchema>> {
   const id: string = context.bindingData.id
 
   // In Azure Functions, this function will only be invoked if a valid `id` is passed.
   // So this check is only used to unit tests.
   if (!id || !/^[01689bdiloqDIOPQ]{32}$/.test(id)) {
-    context.res = {
-      status: 404,
-      body: 'Please pass a id like "/api/courses/:id"',
-    }
-    return
+    return { status: 404 }
   }
 
   const container = getContainer('Courses', true)
@@ -32,18 +29,15 @@ const httpTrigger: AzureFunction = async (
     .fetchAll()
 
   if (resources.length === 0) {
-    context.res = {
+    return {
       status: 404,
       body: `Not found course that id: "${id}"`,
     }
-    return
   }
 
-  context.res = {
+  return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body: resources[0],
   }
 }
-
-export default httpTrigger

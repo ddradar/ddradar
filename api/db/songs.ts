@@ -38,21 +38,24 @@ export type SongSchema = {
   charts: StepChartSchema[]
 }
 
-export const isSongSchema = (obj: unknown): obj is SongSchema =>
-  hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
-  /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
-  /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
-  (SeriesList as string[]).includes(obj.series) &&
-  hasIntegerProperty(obj, 'nameIndex') &&
-  obj.nameIndex >= 0 &&
-  obj.nameIndex <= 36 &&
-  (hasIntegerProperty(obj, 'minBPM', 'maxBPM') ||
-    (hasProperty(obj, 'minBPM', 'maxBPM') &&
-      obj.minBPM === null &&
-      obj.maxBPM === null)) &&
-  hasProperty(obj, 'charts') &&
-  Array.isArray(obj.charts) &&
-  obj.charts.every(c => isStepChartSchema(c))
+export function isSongSchema(obj: unknown): obj is SongSchema {
+  return (
+    hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
+    /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
+    /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
+    (SeriesList as string[]).includes(obj.series) &&
+    hasIntegerProperty(obj, 'nameIndex') &&
+    obj.nameIndex >= 0 &&
+    obj.nameIndex <= 36 &&
+    (hasIntegerProperty(obj, 'minBPM', 'maxBPM') ||
+      (hasProperty(obj, 'minBPM', 'maxBPM') &&
+        obj.minBPM === null &&
+        obj.maxBPM === null)) &&
+    hasProperty(obj, 'charts') &&
+    Array.isArray(obj.charts) &&
+    obj.charts.every(c => isStepChartSchema(c))
+  )
+}
 
 /** Song's step chart */
 export type StepChartSchema = {
