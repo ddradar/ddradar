@@ -4,17 +4,16 @@ import { mocked } from 'ts-jest/utils'
 import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { UserSchema } from '../db'
 import postUserInfo, { UserInfo } from '.'
 
 jest.mock('../auth')
 
-const validUserInfo: UserInfo = {
+const validUserInfo = {
   id: 'new_user',
   name: 'New User',
   area: 13,
   isPublic: true,
-}
+} as const
 
 describe('POST /api/v1/user', () => {
   let req: Pick<HttpRequest, 'body' | 'headers'>
@@ -28,7 +27,7 @@ describe('POST /api/v1/user', () => {
     const result = await postUserInfo(null, req)
 
     // Assert
-    expect(result.status).toBe(401)
+    expect(result.httpResponse.status).toBe(401)
   })
 
   test.each([
@@ -61,29 +60,28 @@ describe('POST /api/v1/user', () => {
     const result = await postUserInfo(null, req)
 
     // Assert
-    expect(result.status).toBe(400)
-    expect(result.body).toBe('Body is not UserSchema')
+    expect(result.httpResponse.status).toBe(400)
+    expect(result.httpResponse.body).toBe('Body is not UserSchema')
   })
 
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const userToBeCreated: Required<UserSchema> = {
+      const userToBeCreated = {
         ...validUserInfo,
-        id: validUserInfo.id,
         loginId: '1',
         code: 10000000,
-      }
-      const userToBeUpdated: UserSchema & { loginId: string } = {
+      } as const
+      const userToBeUpdated = {
         id: 'exist_user',
         loginId: '2',
         name: 'EMI',
         area: 0,
         isPublic: false,
-      }
+      } as const
 
-      beforeEach(async () => {
-        await getContainer('Users').items.upsert<UserSchema>(userToBeUpdated)
+      beforeAll(async () => {
+        await getContainer('Users').items.create(userToBeUpdated)
       })
 
       test('returns "200 OK" with JSON body (Create)', async () => {
@@ -107,8 +105,9 @@ describe('POST /api/v1/user', () => {
         const result = await postUserInfo(null, req)
 
         // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual(body)
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual(body)
+        expect(result.document).toStrictEqual(userToBeCreated)
       })
 
       test.each([{ name: 'AFRO' }, { isPublic: true }, { code: 20000000 }])(
@@ -134,8 +133,12 @@ describe('POST /api/v1/user', () => {
           const result = await postUserInfo(null, req)
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual(body)
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual(body)
+          expect(result.document).toStrictEqual({
+            ...body,
+            loginId: userToBeUpdated.loginId,
+          })
         }
       )
 
@@ -158,7 +161,7 @@ describe('POST /api/v1/user', () => {
         const result = await postUserInfo(null, req)
 
         // Assert
-        expect(result.status).toBe(400)
+        expect(result.httpResponse.status).toBe(400)
       })
 
       test('returns "400 BadRequest" if changed id', async () => {
@@ -180,7 +183,7 @@ describe('POST /api/v1/user', () => {
         const result = await postUserInfo(null, req)
 
         // Assert
-        expect(result.status).toBe(400)
+        expect(result.httpResponse.status).toBe(400)
       })
 
       test('returns "200 OK" but does not update if changed area', async () => {
@@ -203,14 +206,12 @@ describe('POST /api/v1/user', () => {
         const result = await postUserInfo(null, req)
 
         // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual(expected)
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual(expected)
+        expect(result.document).toStrictEqual(userToBeUpdated)
       })
 
       afterAll(async () => {
-        await getContainer('Users')
-          .item(userToBeCreated.id, userToBeCreated.id)
-          .delete()
         await getContainer('Users')
           .item(userToBeUpdated.id, userToBeUpdated.id)
           .delete()

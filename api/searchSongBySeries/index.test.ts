@@ -6,12 +6,9 @@ import type { SongSchema } from '../db'
 import searchSong from '.'
 
 describe('GET /api/v1/songs/series', () => {
-  let context: Context
-
+  let context: Pick<Context, 'bindingData'>
   beforeEach(() => {
-    context = {
-      bindingData: {},
-    } as Context
+    context = { bindingData: {} }
   })
 
   test.each([NaN, 0.1, -1, 100])(
@@ -21,13 +18,10 @@ describe('GET /api/v1/songs/series', () => {
       context.bindingData.series = series
 
       // Act
-      await searchSong(context, { query: {} })
+      const result = await searchSong(context, { query: {} })
 
       // Assert
-      expect(context.res?.status).toBe(404)
-      expect(context.res?.body).toBe(
-        `"series" is undefined or invalid value :${series}`
-      )
+      expect(result.status).toBe(404)
     }
   )
 
@@ -69,20 +63,19 @@ describe('GET /api/v1/songs/series', () => {
 
       beforeAll(async () => {
         const container = getContainer('Songs')
-        for (const song of songs) {
-          await container.items.create(song)
-        }
+        await Promise.all(songs.map(s => container.items.create(s)))
       })
 
       test('/0?name=0 returns "404 Not Found"', async () => {
         // Arrange
         context.bindingData.series = {} // if param is 0, passed object. (bug?)
+
         // Act
-        await searchSong(context, { query: { name: '0' } })
+        const result = await searchSong(context, { query: { name: '0' } })
 
         // Assert
-        expect(context.res?.status).toBe(404)
-        expect(context.res?.body).toBe(
+        expect(result.status).toBe(404)
+        expect(result.body).toBe(
           'Not found song that {series: "DDR 1st" nameIndex: 0}'
         )
       })
@@ -96,25 +89,25 @@ describe('GET /api/v1/songs/series', () => {
         [10, '28', [songs[2]]],
         [10, '', [songs[1], songs[2]]],
       ])(
-        '/%i?name=%s returns "200 OK" with JSON body',
+        '/%i?name=%s returns "200 OK" with JSON body %p',
         async (series, name, expected) => {
           // Arrange
           context.bindingData.series = series
 
           // Act
-          await searchSong(context, { query: { name } })
+          const result = await searchSong(context, { query: { name } })
 
           // Assert
-          expect(context.res?.status).toBe(200)
-          expect(context.res?.body).toStrictEqual(expected)
+          expect(result.status).toBe(200)
+          expect(result.body).toStrictEqual(expected)
         }
       )
 
       afterAll(async () => {
         const container = getContainer('Songs')
-        for (const song of songs) {
-          await container.item(song.id, song.nameIndex).delete()
-        }
+        await Promise.all(
+          songs.map(s => container.item(s.id, s.nameIndex).delete())
+        )
       })
     }
   )

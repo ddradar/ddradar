@@ -1,6 +1,4 @@
 import {
-  calcExScore,
-  calcScore,
   getDanceLevel,
   isScore,
   mergeScore,
@@ -279,91 +277,6 @@ describe('./score.ts', () => {
       1000010,
     ])('(%d) throws error', d =>
       expect(() => getDanceLevel(d)).toThrowError(/^Invalid parameter: score/)
-    )
-  })
-  describe('calcScore', () => {
-    test.each([
-      [
-        { notes: 270, freezeArrow: 20, shockArrow: 10 },
-        270,
-        0,
-        0,
-        0,
-        30,
-        1000000,
-      ],
-      [
-        { notes: 270, freezeArrow: 20, shockArrow: 10 },
-        70,
-        200,
-        0,
-        0,
-        30,
-        998000,
-      ],
-      [
-        { notes: 846, freezeArrow: 12, shockArrow: 0 },
-        352,
-        171,
-        103,
-        10,
-        11,
-        693890,
-      ],
-      [
-        { notes: 492, freezeArrow: 36, shockArrow: 0 },
-        421,
-        66,
-        5,
-        0,
-        36,
-        995500,
-      ],
-    ])(
-      '(%p, %i, %i, %i, %i, %i) returns %i',
-      (chart, mv, pf, gr, gd, ok, expected) =>
-        expect(calcScore(chart, mv, pf, gr, gd, ok)).toBe(expected)
-    )
-    test.each([
-      [-1, 0, 0, 0, 0, /^Invalid parameter: marvelous/],
-      [0, 10.5, 0, 0, 0, /^Invalid parameter: perfect/],
-      [0, 0, Infinity, 0, 0, /^Invalid parameter: great/],
-      [0, 0, 0, -Infinity, 0, /^Invalid parameter: good/],
-      [0, 0, 0, 0, NaN, /^Invalid parameter: ok/],
-      [201, 0, 0, 0, 0, /^Invalid parameter: judge count\(\d+\) is greater/],
-      [200, 0, 0, 0, 21, /^Invalid parameter: okCount\(\d+\) is greater/],
-    ])(
-      '({ notes: 200, freezeArrow: 20, shockArrow: 0 }, %d, %d, %d, %d, %d) throws error',
-      (mv, pf, gr, gd, ok, err) => {
-        expect(() =>
-          calcScore(
-            { notes: 200, freezeArrow: 20, shockArrow: 0 },
-            mv,
-            pf,
-            gr,
-            gd,
-            ok
-          )
-        ).toThrowError(err)
-      }
-    )
-  })
-  describe('calcExScore', () => {
-    test.each([
-      [0, 0, 0, 0, 0],
-      [144, 99, 100, 45, 865],
-      [470, 37, 0, 25, 1559],
-    ])('(%i, %i, %i, %i) returns %i', (mv, pf, gr, ok, expected) =>
-      expect(calcExScore(mv, pf, gr, ok)).toBe(expected)
-    )
-    test.each([
-      [-1, 0, 0, 0, /^Invalid parameter: marvelous/],
-      [0, 10.5, 0, 0, /^Invalid parameter: perfect/],
-      [0, 0, Infinity, 0, /^Invalid parameter: great/],
-      [0, 0, 0, -Infinity, /^Invalid parameter: ok/],
-      [NaN, NaN, NaN, NaN, /^Invalid parameter: marvelous/],
-    ])('(%d, %d, %d, %d) throws error', (mv, pf, gr, ok, err) =>
-      expect(() => calcExScore(mv, pf, gr, ok)).toThrowError(err)
     )
   })
 })

@@ -11,7 +11,15 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "res"
+      "name": "httpResponse"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "document",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "connectionStringSetting": "COSMOS_DB_CONN"
     }
   ],
   "scriptFile": "../dist/postSongInfo/index.js"
