@@ -1,8 +1,6 @@
-import type { Context } from '@azure/functions'
-
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { CourseSchema, Order } from '../db/courses'
+import type { CourseSchema, Order } from '../db/courses'
 import getCourseList from '.'
 
 type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
@@ -10,12 +8,6 @@ type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
 }
 
 describe('GET /api/v1/courses', () => {
-  let context: Context
-
-  beforeEach(() => {
-    context = {} as Context
-  })
-
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
@@ -100,25 +92,21 @@ describe('GET /api/v1/courses', () => {
 
       beforeAll(async () => {
         const container = getContainer('Courses')
-        for (const course of courses) {
-          await container.items.create(course)
-        }
+        await Promise.all(courses.map(c => container.items.create(c)))
       })
 
       test('returns "200 OK" with JSON body', async () => {
         // Act
-        await getCourseList(context)
+        const result = await getCourseList()
 
         // Assert
-        expect(context.res?.status).toBe(200)
-        expect(context.res?.body).toStrictEqual(courses)
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual(courses)
       })
 
       afterAll(async () => {
         const container = getContainer('Courses')
-        for (const course of courses) {
-          await container.item(course.id, course.id).delete()
-        }
+        await Promise.all(courses.map(c => container.item(c.id, c.id).delete()))
       })
     }
   )

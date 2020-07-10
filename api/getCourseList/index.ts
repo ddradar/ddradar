@@ -1,16 +1,13 @@
-import type { AzureFunction, Context } from '@azure/functions'
-
 import { getContainer } from '../cosmos'
-import { CourseSchema, Order } from '../db/courses'
+import type { CourseSchema, Order } from '../db/courses'
+import type { SuccessResult } from '../function'
 
 type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
   orders: Omit<Order, 'chartOrder'>[]
 }
 
 /** Get course information list. */
-const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'res'>
-): Promise<void> => {
+export default async function (): Promise<SuccessResult<ShrinkedCourse[]>> {
   const container = getContainer('Courses', true)
 
   // Create SQL
@@ -30,11 +27,9 @@ const httpTrigger: AzureFunction = async (
     })
     .fetchAll()
 
-  context.res = {
+  return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body: resources,
   }
 }
-
-export default httpTrigger

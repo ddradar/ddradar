@@ -1,15 +1,16 @@
-import { SqlParameter } from '@azure/cosmos'
-import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import type { SqlParameter } from '@azure/cosmos'
+import type { Context, HttpRequest } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
 import type { SongSchema } from '../db'
 import { SeriesList } from '../db/songs'
+import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get a list of song information that matches the specified conditions. */
-const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'bindingData' | 'res'>,
-  req: HttpRequest
-): Promise<void> => {
+export default async function (
+  context: Pick<Context, 'bindingData'>,
+  req: Pick<HttpRequest, 'query'>
+): Promise<NotFoundResult | SuccessResult<SongSchema[]>> {
   const seriesIndex = parseFloat(req.query.series)
   const nameIndex =
     typeof context.bindingData.name === 'number' ? context.bindingData.name : 0 // if param is 0, passed object. (bug?)
@@ -22,11 +23,7 @@ const httpTrigger: AzureFunction = async (
   // In Azure Functions, this function will only be invoked if a valid `name` is passed.
   // So this check is only used to unit tests.
   if (!Number.isInteger(nameIndex) || nameIndex < 0 || nameIndex > 36) {
-    context.res = {
-      status: 404,
-      body: `"name" is undefined or invalid value :${nameIndex}`,
-    }
-    return
+    return { status: 404 }
   }
 
   const container = getContainer('Songs', true)
@@ -63,18 +60,15 @@ const httpTrigger: AzureFunction = async (
     .fetchAll()
 
   if (resources.length === 0) {
-    context.res = {
+    return {
       status: 404,
       body: `Not found song that {series: "${SeriesList[seriesIndex]}" nameIndex: ${nameIndex}}`,
     }
-    return
   }
 
-  context.res = {
+  return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body: resources,
   }
 }
-
-export default httpTrigger

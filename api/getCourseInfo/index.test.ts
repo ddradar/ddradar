@@ -2,24 +2,21 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import { CourseSchema } from '../db'
+import type { CourseSchema } from '../db'
 import getCourseInfo from '.'
 
 describe('GET /api/v1/courses', () => {
-  let context: Context
-
+  let context: Pick<Context, 'bindingData'>
   beforeEach(() => {
-    context = {
-      bindingData: {},
-    } as Context
+    context = { bindingData: {} }
   })
 
   test('/ returns "404 Not Found"', async () => {
     // Arrange - Act
-    await getCourseInfo(context)
+    const result = await getCourseInfo(context)
 
     // Assert
-    expect(context.res?.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test('/foo returns "404 Not Found"', async () => {
@@ -27,11 +24,10 @@ describe('GET /api/v1/courses', () => {
     context.bindingData.id = 'foo'
 
     // Act
-    await getCourseInfo(context)
+    const result = await getCourseInfo(context)
 
     // Assert
-    expect(context.res?.status).toBe(404)
-    expect(context.res?.body).toBe('Please pass a id like "/api/courses/:id"')
+    expect(result.status).toBe(404)
   })
 
   describeIf(() => !!getConnectionString())(
@@ -91,11 +87,11 @@ describe('GET /api/v1/courses', () => {
         context.bindingData.id = id
 
         // Act
-        await getCourseInfo(context)
+        const result = await getCourseInfo(context)
 
         // Assert
-        expect(context.res?.status).toBe(404)
-        expect(context.res?.body).toBe(`Not found course that id: "${id}"`)
+        expect(result.status).toBe(404)
+        expect(result.body).toBe(`Not found course that id: "${id}"`)
       })
 
       test('/o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db returns "200 OK" with JSON body', async () => {
@@ -103,11 +99,11 @@ describe('GET /api/v1/courses', () => {
         context.bindingData.id = course.id
 
         // Act
-        await getCourseInfo(context)
+        const result = await getCourseInfo(context)
 
         // Assert
-        expect(context.res?.status).toBe(200)
-        expect(context.res?.body).toStrictEqual(course)
+        expect(result.status).toBe(200)
+        expect(result.body).toStrictEqual(course)
       })
 
       afterAll(async () => {

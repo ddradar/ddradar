@@ -1,15 +1,15 @@
 import type { SqlParameter } from '@azure/cosmos'
-import type { AzureFunction, Context, HttpRequest } from '@azure/functions'
+import type { Context, HttpRequest } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import type { SongSchema } from '../db'
-import { SeriesList } from '../db/songs'
+import { SeriesList, SongSchema } from '../db/songs'
+import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get a list of song information that matches the specified conditions. */
-const httpTrigger: AzureFunction = async (
-  context: Pick<Context, 'bindingData' | 'res'>,
-  req: HttpRequest
-): Promise<void> => {
+export default async function (
+  context: Pick<Context, 'bindingData'>,
+  req: Pick<HttpRequest, 'query'>
+): Promise<NotFoundResult | SuccessResult<SongSchema[]>> {
   const seriesIndex =
     typeof context.bindingData.series === 'number'
       ? context.bindingData.series
@@ -25,11 +25,7 @@ const httpTrigger: AzureFunction = async (
     seriesIndex < 0 ||
     seriesIndex >= SeriesList.length
   ) {
-    context.res = {
-      status: 404,
-      body: `"series" is undefined or invalid value :${seriesIndex}`,
-    }
-    return
+    return { status: 404 }
   }
 
   const container = getContainer('Songs', true)
@@ -68,18 +64,15 @@ const httpTrigger: AzureFunction = async (
     .fetchAll()
 
   if (resources.length === 0) {
-    context.res = {
+    return {
       status: 404,
       body: `Not found song that {series: "${SeriesList[seriesIndex]}" nameIndex: ${nameIndex}}`,
     }
-    return
   }
 
-  context.res = {
+  return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body: resources,
   }
 }
-
-export default httpTrigger
