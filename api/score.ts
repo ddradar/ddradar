@@ -7,20 +7,26 @@ export type Score = Pick<
   'score' | 'clearLamp' | 'exScore' | 'maxCombo' | 'rank'
 >
 
-export const isScore = (obj: unknown): obj is Score =>
-  hasIntegerProperty(obj, 'score', 'clearLamp') &&
-  obj.score >= 0 &&
-  obj.score <= 1000000 &&
-  obj.clearLamp >= 0 &&
-  obj.clearLamp <= 7 &&
-  (hasIntegerProperty(obj, 'exScore') ||
-    (obj as Record<string, unknown>).exScore === undefined) &&
-  (hasIntegerProperty(obj, 'maxCombo') ||
-    (obj as Record<string, unknown>).maxCombo === undefined) &&
-  hasStringProperty(obj, 'rank') &&
-  (DanceLevelList as string[]).includes(obj.rank)
+export function isScore(obj: unknown): obj is Score {
+  return (
+    hasIntegerProperty(obj, 'score', 'clearLamp') &&
+    obj.score >= 0 &&
+    obj.score <= 1000000 &&
+    obj.clearLamp >= 0 &&
+    obj.clearLamp <= 7 &&
+    (hasIntegerProperty(obj, 'exScore') ||
+      (obj as Record<string, unknown>).exScore === undefined) &&
+    (hasIntegerProperty(obj, 'maxCombo') ||
+      (obj as Record<string, unknown>).maxCombo === undefined) &&
+    hasStringProperty(obj, 'rank') &&
+    (DanceLevelList as string[]).includes(obj.rank)
+  )
+}
 
-export const mergeScore = (left: Score, right: Score): Score => {
+export function mergeScore(
+  left: Readonly<Score>,
+  right: Readonly<Score>
+): Score {
   const result: Score = {
     score: left.score > right.score ? left.score : right.score,
     clearLamp:
@@ -38,14 +44,14 @@ export const mergeScore = (left: Score, right: Score): Score => {
   return result
 }
 
-export const setValidScoreFromChart = (
+export function setValidScoreFromChart(
   {
     notes,
     freezeArrow,
     shockArrow,
-  }: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
   partialScore: Readonly<Partial<Score>>
-): Score => {
+): Score {
   const objects = notes + freezeArrow + shockArrow
   /** Max EX SCORE */
   const maxExScore = objects * 3
@@ -290,7 +296,7 @@ export const setValidScoreFromChart = (
   }
 }
 
-export const getDanceLevel = (score: number): Exclude<DanceLevel, 'E'> => {
+export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
   if (!isPositiveInteger(score))
     throw new RangeError(
       `Invalid parameter: score(${score}) should be positive integer or 0.`
@@ -300,20 +306,20 @@ export const getDanceLevel = (score: number): Exclude<DanceLevel, 'E'> => {
       `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
     )
   const rankList = [
-    { border: 990000, rank: 'AAA' } as const,
-    { border: 950000, rank: 'AA+' } as const,
-    { border: 900000, rank: 'AA' } as const,
-    { border: 890000, rank: 'AA-' } as const,
-    { border: 850000, rank: 'A+' } as const,
-    { border: 800000, rank: 'A' } as const,
-    { border: 790000, rank: 'A-' } as const,
-    { border: 750000, rank: 'B+' } as const,
-    { border: 700000, rank: 'B' } as const,
-    { border: 690000, rank: 'B-' } as const,
-    { border: 650000, rank: 'C+' } as const,
-    { border: 600000, rank: 'C' } as const,
-    { border: 590000, rank: 'C-' } as const,
-    { border: 550000, rank: 'D+' } as const,
+    { border: 990000, rank: 'AAA' },
+    { border: 950000, rank: 'AA+' },
+    { border: 900000, rank: 'AA' },
+    { border: 890000, rank: 'AA-' },
+    { border: 850000, rank: 'A+' },
+    { border: 800000, rank: 'A' },
+    { border: 790000, rank: 'A-' },
+    { border: 750000, rank: 'B+' },
+    { border: 700000, rank: 'B' },
+    { border: 690000, rank: 'B-' },
+    { border: 650000, rank: 'C+' },
+    { border: 600000, rank: 'C' },
+    { border: 590000, rank: 'C-' },
+    { border: 550000, rank: 'D+' },
   ] as const
   for (const { border, rank } of rankList) {
     if (score >= border) return rank

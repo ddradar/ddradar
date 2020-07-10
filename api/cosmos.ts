@@ -3,10 +3,11 @@ import { Container, CosmosClient } from '@azure/cosmos'
 type ContainerName = 'Courses' | 'Scores' | 'Songs' | 'Users'
 
 /* eslint-disable node/no-process-env */
-export const getConnectionString = (readonly?: boolean): string | undefined =>
-  readonly
+export function getConnectionString(readonly?: boolean): string | undefined {
+  return readonly
     ? process.env.COSMOS_DB_CONN_READONLY || process.env.COSMOS_DB_CONN
     : process.env.COSMOS_DB_CONN
+}
 /* eslint-enable node/no-process-env */
 
 let readWriteClient: CosmosClient
