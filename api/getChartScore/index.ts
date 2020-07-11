@@ -9,7 +9,7 @@ import type { NotFoundResult, SuccessResult } from '../function'
 type Score = Omit<ScoreSchema, 'id' | 'isPublic'>
 type Scope = 'private' | 'medium' | 'full'
 
-/** Get course and orders information that match the specified ID. */
+/** Get scores that match the specified chart. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'query'>
