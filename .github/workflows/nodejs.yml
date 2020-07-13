@@ -33,7 +33,8 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: Cache Dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v2.0.0
+        if: matrix.os == 'ubuntu-latest'
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
