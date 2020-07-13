@@ -18,3 +18,7 @@ export type SuccessResult<T> = {
   headers: { 'Content-type': 'application/json' }
   body: T
 }
+
+export type NoContentResult = {
+  status: 204
+}
