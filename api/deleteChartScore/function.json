@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["delete"],
+      "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{playStyle:int:range(1,2)}/{difficulty:int:range(0,4)}"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/deleteChartScore/index.js"
+}
