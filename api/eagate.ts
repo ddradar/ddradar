@@ -36,23 +36,11 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
       .map((_, chart) => {
         // Get difficulty
         const id = $(chart).attr().id?.toLowerCase()
-        const difficulty =
-          id === 'beginner'
-            ? 0
-            : id === 'basic'
-            ? 1
-            : id === 'difficult'
-            ? 2
-            : id === 'expert'
-            ? 3
-            : id === 'challenge'
-            ? 4
-            : 5
-        if (difficulty === 5) throw new Error('invalid html')
+        const difficulty = getDifficulty(id)
 
         // Get score
         const scoreText = $(chart).children('.data_score').text()
-        const score = parseInt(scoreText)
+        const score = parseInt(scoreText, 10)
         if (!Number.isInteger(score) || score < 0 || score > 1000000) return
 
         // Get clearLamp
@@ -60,25 +48,16 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
           .find('.music_info')
           .children('img')[1]
           .attribs['src'].toLowerCase()
-        const isFailed = /^.+\/rank_s_e\.png$/.test(
-          $(chart)
-            .find('.music_info')
-            .children('img')[0]
-            .attribs['src'].toLowerCase()
-        )
-        const clearLamp = /^.+\/full_mar\.png$/.test(fcImageUrl)
-          ? 7
-          : /^.+\/full_perfect\.png$/.test(fcImageUrl)
-          ? 6
-          : /^.+\/full_great\.png$/.test(fcImageUrl)
-          ? 5
-          : /^.+\/full_good\.png$/.test(fcImageUrl)
-          ? 4
-          : isFailed
+        const rankImageUrl = $(chart)
+          .find('.music_info')
+          .children('img')[0]
+          .attribs['src'].toLowerCase()
+        const isFailed = /^.+\/rank_s_e\.png$/.test(rankImageUrl)
+        const clearLamp = isFailed
           ? 0
           : score === 0
           ? 1
-          : 2
+          : getClearLamp(fcImageUrl)
 
         // Get rank
         const rank = isFailed ? 'E' : getDanceLevel(score)
@@ -95,4 +74,28 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
       })
   })
   return result
+
+  /** Get chart difficulty from element id */
+  function getDifficulty(elementId: string) {
+    if (elementId === 'beginner') return 0
+    if (elementId === 'basic') return 1
+    if (elementId === 'difficult') return 2
+    if (elementId === 'expert') return 3
+    if (elementId === 'challenge') return 4
+    throw new Error('invalid html')
+  }
+
+  /** Get ClearLamp from full combo image URL */
+  function getClearLamp(imageUrl: string) {
+    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_mar.png
+    if (/^.+\/full_mar\.png$/.test(imageUrl)) return 7
+    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_perfect.png
+    if (/^.+\/full_perfect\.png$/.test(imageUrl)) return 6
+    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_great.png
+    if (/^.+\/full_great\.png$/.test(imageUrl)) return 5
+    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_good.png
+    if (/^.+\/full_good\.png$/.test(imageUrl)) return 4
+    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_none.png
+    return 2
+  }
 }
