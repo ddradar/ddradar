@@ -203,6 +203,9 @@ describe('DELETE /api/v1/scores', () => {
         // Assert
         expect(result.status).toBe(204)
         expect(resources).toHaveLength(2)
+
+        // Clean up
+        scoreContainer.items.create(scores[2])
       })
 
       afterEach(async () => {
