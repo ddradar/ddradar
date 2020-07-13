@@ -42,13 +42,12 @@ export default async function (
   }
 
   const container = getContainer('Scores')
-  const { statusCode } = await container
-    .item(`${user.id}-${songId}-${playStyle}-${difficulty}`, user.id)
-    .delete()
-
-  if (statusCode === 204) {
+  try {
+    await container
+      .item(`${user.id}-${songId}-${playStyle}-${difficulty}`, user.id)
+      .delete()
     return { status: 204 }
+  } catch {
+    return { status: 404 }
   }
-
-  return { status: 404 }
 }
