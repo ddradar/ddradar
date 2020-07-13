@@ -53,11 +53,8 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
           .children('img')[0]
           .attribs['src'].toLowerCase()
         const isFailed = /^.+\/rank_s_e\.png$/.test(rankImageUrl)
-        const clearLamp = isFailed
-          ? 0
-          : score === 0
-          ? 1
-          : getClearLamp(fcImageUrl)
+        const clearLamp =
+          getClearLamp(fcImageUrl) ?? isFailed ? 0 : score === 0 ? 1 : 2
 
         // Get rank
         const rank = isFailed ? 'E' : getDanceLevel(score)
@@ -96,6 +93,6 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
     // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_good.png
     if (/^.+\/full_good\.png$/.test(imageUrl)) return 4
     // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_none.png
-    return 2
+    return null
   }
 }
