@@ -2,7 +2,7 @@
 
 日本語版は[こちら](./README-ja.md)にあります。
 
-Get scores that match the specified chart.
+Add or update score that match the specified chart.
 
 - [Endpoint](#endpoint)
 - [Parameters](#parameters)

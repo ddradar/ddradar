@@ -46,7 +46,7 @@ function isPartialScore(obj: unknown): obj is Partial<Score> {
   )
 }
 
-/** Get course and orders information that match the specified ID. */
+/** Add or update score that match the specified chart. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'body'>
