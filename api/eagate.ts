@@ -54,7 +54,7 @@ export function musicDataToScoreList(sourceCode: string): ChartScore[] {
           .attribs['src'].toLowerCase()
         const isFailed = /^.+\/rank_s_e\.png$/.test(rankImageUrl)
         const clearLamp =
-          getClearLamp(fcImageUrl) ?? isFailed ? 0 : score === 0 ? 1 : 2
+          getClearLamp(fcImageUrl) ?? (isFailed ? 0 : score === 0 ? 1 : 2)
 
         // Get rank
         const rank = isFailed ? 'E' : getDanceLevel(score)
