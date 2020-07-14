@@ -75,8 +75,7 @@
       </template>
     </template>
 
-    <!-- Loading state -->
-    <template v-else></template>
+    <b-loading v-else />
   </section>
 </template>
 
