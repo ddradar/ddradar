@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/shared/ChartList.vue renders chart list if loaded charts 1`] = `
+exports[`/components/pages/ChartList.vue renders chart list if loaded charts 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -187,7 +187,7 @@ exports[`/components/shared/ChartList.vue renders chart list if loaded charts 1`
 </div>
 `;
 
-exports[`/components/shared/ChartList.vue renders loading spin if { loading: true } 1`] = `
+exports[`/components/pages/ChartList.vue renders loading spin if { loading: true } 1`] = `
 <div class="b-table is-loading">
   <!---->
   <!---->
