@@ -1,13 +1,13 @@
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 
-import ChartListComponent from '~/components/shared/ChartList.vue'
+import ChartListComponent from '~/components/pages/ChartList.vue'
 import type { ChartInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
-describe('/components/shared/ChartList.vue', () => {
+describe('/components/pages/ChartList.vue', () => {
   describe('renders', () => {
     test('loading spin if { loading: true }', () => {
       // Arrange

@@ -9,7 +9,7 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import ChartList from '~/components/shared/ChartList.vue'
+import ChartList from '~/components/pages/ChartList.vue'
 import { ChartInfo } from '~/types/api/song'
 
 @Component({ fetchOnServer: false, components: { ChartList } })
