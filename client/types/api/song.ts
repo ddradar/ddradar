@@ -126,3 +126,18 @@ export const NameIndexList: string[] = [
   'Z',
   '数字・記号',
 ]
+
+export function shortenSeriesName(series: string) {
+  return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
+}
+
+export function getPlayStyleName(playStyle: number) {
+  return ['SINGLE', 'DOUBLE'][playStyle - 1] ?? 'UNKNOWN'
+}
+
+export function getDifficultyName(difficulty: number) {
+  return (
+    ['BEGINNER', 'BASIC', 'DIFFICULT', 'EXPERT', 'CHALLENGE'][difficulty] ??
+    'UNKNOWN'
+  )
+}
