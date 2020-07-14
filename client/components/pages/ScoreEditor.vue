@@ -1,9 +1,9 @@
 <template>
-  <section class="section">
-    <h1 class="title">Edit Score</h1>
-    <template v-if="songData">
-      <h2 class="subtitle">{{ songData.name }}</h2>
-
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <h1 class="modal-card-title">Edit Score</h1>
+    </header>
+    <section v-if="songData" class="modal-card-body">
       <!-- Select chart -->
       <template v-if="playStyle === null || difficulty === null">
         <b-field label="Select chart">
@@ -64,19 +64,24 @@
           />
         </b-field>
 
-        <b-field>
-          <b-button type="is-success" icon-left="save" @click="saveScore()">
-            Save
-          </b-button>
-          <b-button type="is-success" icon-left="delete" @click="deleteScore()">
-            Delete
-          </b-button>
-        </b-field>
+        <b-field> </b-field>
       </template>
-    </template>
+    </section>
 
     <b-loading v-else />
-  </section>
+
+    <footer
+      v-if="songData && playStyle !== null && difficulty !== null"
+      class="modal-card-foot"
+    >
+      <b-button type="is-success" icon-left="save" @click="saveScore()">
+        Save
+      </b-button>
+      <b-button type="is-danger" icon-left="delete" @click="deleteScore()">
+        Delete
+      </b-button>
+    </footer>
+  </div>
 </template>
 
 <script lang="ts">
