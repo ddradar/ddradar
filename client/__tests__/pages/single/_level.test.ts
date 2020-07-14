@@ -1,4 +1,4 @@
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
   mount,
@@ -8,7 +8,7 @@ import {
 import Buefy from 'buefy'
 
 import SingleLevelPage from '~/pages/single/_level.vue'
-import { ChartInfo } from '~/types/api/song'
+import type { ChartInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
