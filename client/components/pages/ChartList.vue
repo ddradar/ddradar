@@ -65,6 +65,7 @@ import {
   getDifficultyName,
   getPlayStyleName,
   shortenSeriesName,
+  SongInfo,
 } from '~/types/api/song'
 
 @Component
@@ -91,11 +92,17 @@ export default class ChartListComponent extends Vue {
     return `is-${getDifficultyName(difficulty).toLowerCase()}`
   }
 
-  scoreEditorModal(songId: string, playStyle: number, difficulty: number) {
+  async scoreEditorModal(
+    songId: string,
+    playStyle: number,
+    difficulty: number
+  ) {
+    const songData = await this.$http.$get<SongInfo>(`/api/v1/songs/${songId}`)
     this.$buefy.modal.open({
       parent: this,
       component: ScoreEditor,
-      props: { songId, playStyle, difficulty },
+      props: { songId, playStyle, difficulty, songData },
+      hasModalCard: true,
       trapFocus: true,
     })
   }

@@ -3,7 +3,7 @@
     <header class="modal-card-head">
       <h1 class="modal-card-title">Edit Score</h1>
     </header>
-    <section v-if="songData" class="modal-card-body">
+    <section class="modal-card-body">
       <!-- Select chart -->
       <template v-if="playStyle === null || difficulty === null">
         <b-field label="Select chart">
@@ -63,15 +63,11 @@
             :max="maxComboMax"
           />
         </b-field>
-
-        <b-field> </b-field>
       </template>
     </section>
 
-    <b-loading v-else />
-
     <footer
-      v-if="songData && playStyle !== null && difficulty !== null"
+      v-if="playStyle !== null && difficulty !== null"
       class="modal-card-foot"
     >
       <b-button type="is-success" icon-left="save" @click="saveScore()">
@@ -108,6 +104,7 @@ export default class ScoreEditorComponent extends Vue {
   @Prop({ required: false, type: Number, default: null })
   difficulty: 0 | 1 | 2 | 3 | 4 | null
 
+  @Prop({ required: true, type: Object })
   songData: SongInfo
 
   private chart?: StepChart
@@ -139,12 +136,6 @@ export default class ScoreEditorComponent extends Vue {
   get maxComboMax() {
     if (!this.selectedChart) return 0
     return this.selectedChart.notes + this.selectedChart.shockArrow
-  }
-
-  /** Get SongInfo from API */
-  async fetch() {
-    const song = await this.$http.$get<SongInfo>(`/api/v1/songs/${this.songId}`)
-    this.songData = song
   }
 
   getChartName({ playStyle, difficulty }: ChartKey) {
