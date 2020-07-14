@@ -8,13 +8,12 @@ import {
 import Buefy from 'buefy'
 
 import SongByNamePage from '~/pages/name/_nameIndex.vue'
-import { SongInfo } from '~/types/api/song'
+import type { SongListData } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
-type Song = Omit<SongInfo, 'charts'>
-const songs: Song[] = [
+const songs: SongListData[] = [
   {
     id: 'IQ0dIiDql9Q68d9ddQIiQbq1OPq8Db69',
     name: '.59',
@@ -216,7 +215,7 @@ describe('/name/_nameIndex.vue', () => {
       'calls /songs/name/%s API',
       async nameIndex => {
         // Arrange
-        const $http = { $get: jest.fn<Song[], string[]>(() => []) }
+        const $http = { $get: jest.fn<SongListData[], string[]>(() => []) }
         const wrapper = shallowMount(SongByNamePage, {
           localVue,
           mocks: {
