@@ -17,13 +17,11 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, User } from '~/types/api/user'
-
-type UserInfo = Omit<User, 'isPublic'>
+import { areaList, UserListData } from '~/types/api/user'
 
 @Component({ fetchOnServer: false })
 export default class UserDetailPage extends Vue {
-  user: UserInfo | null
+  user: UserListData | null
   loading = true
 
   get areaName() {
@@ -45,7 +43,7 @@ export default class UserDetailPage extends Vue {
   async fetch() {
     const id = this.$route.params.id
     try {
-      const user = await this.$http.$get<UserInfo>(`/api/v1/users/${id}`)
+      const user = await this.$http.$get<UserListData>(`/api/v1/users/${id}`)
       this.user = user
     } catch {
       this.user = null

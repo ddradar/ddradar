@@ -38,14 +38,12 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SongInfo } from '~/types/api/song'
-
-type Song = Omit<SongInfo, 'charts'>
+import { NameIndexList, SongListData } from '~/types/api/song'
 
 @Component({ fetchOnServer: false })
 export default class SongByNamePage extends Vue {
   /** Song List from API */
-  songs: Song[] = []
+  songs: SongListData[] = []
 
   /** nameIndex expected [0-36] */
   validate({ params }: Pick<Context, 'params'>) {
@@ -60,7 +58,7 @@ export default class SongByNamePage extends Vue {
   /** Get Song List from API */
   async fetch() {
     const i = this.$route.params.nameIndex
-    const songs: Song[] = await this.$http.$get<Song[]>(
+    const songs = await this.$http.$get<SongListData[]>(
       `/api/v1/songs/name/${i}`
     )
     this.songs = songs

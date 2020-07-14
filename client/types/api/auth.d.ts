@@ -14,6 +14,7 @@ type ClientPrincipal = {
   userRoles: Role[]
 }
 
+/** Object type returned by `/.auth/me` */
 export type AuthResult = {
   clientPrincipal: ClientPrincipal | null
 }

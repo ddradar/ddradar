@@ -1,4 +1,4 @@
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
   mount,
@@ -8,13 +8,12 @@ import {
 import Buefy from 'buefy'
 
 import SongBySeriesPage from '~/pages/series/_seriesIndex.vue'
-import { SongInfo } from '~/types/api/song'
+import type { SongListData } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
-type Song = Omit<SongInfo, 'charts'>
-const songs: Song[] = [
+const songs: SongListData[] = [
   {
     id: '8Il6980di8P89lil1PDIqqIbiq1QO8lQ',
     name: 'MAKE IT BETTER',
@@ -126,7 +125,7 @@ describe('/series/_seriesIndex.vue', () => {
       'calls /songs/series/%s API',
       async seriesIndex => {
         // Arrange
-        const $http = { $get: jest.fn<Song[], string[]>(() => []) }
+        const $http = { $get: jest.fn<SongListData[], string[]>(() => []) }
         const wrapper = shallowMount(SongBySeriesPage, {
           localVue,
           mocks: {

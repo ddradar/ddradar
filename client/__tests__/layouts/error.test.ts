@@ -1,4 +1,4 @@
-import { NuxtError } from '@nuxt/types'
+import type { NuxtError } from '@nuxt/types'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 

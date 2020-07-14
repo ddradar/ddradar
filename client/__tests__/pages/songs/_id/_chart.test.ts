@@ -2,7 +2,7 @@ import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import SongPage from '~/pages/songs/_id/_chart.vue'
-import { SongInfo } from '~/types/api/song'
+import type { SongInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

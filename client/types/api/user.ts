@@ -1,3 +1,7 @@
+/**
+ * Object type returned by `/api/v1/user`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/getCurrentUser/README.md
+ */
 export type User = {
   /** User id */
   id: string
@@ -8,6 +12,12 @@ export type User = {
   /** `true` if this user info is public, otherwize `false`. */
   isPublic: boolean
 }
+
+/**
+ * Object type returned by `/api/v1/users/{:id}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/getUserInfo/README.md
+ */
+export type UserListData = Omit<User, 'isPublic'>
 
 export type AreaCode =
   | 0

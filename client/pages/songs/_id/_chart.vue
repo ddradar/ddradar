@@ -12,10 +12,8 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { SongInfo, StepChart } from '~/types/api/song'
 
-type Song = Omit<SongInfo, 'id' | 'nameKana' | 'nameIndex'>
-
 @Component
-export default class SongDetailPage extends Vue implements Song {
+export default class SongDetailPage extends Vue {
   name: string = ''
   artist: string = ''
   series: string = ''
