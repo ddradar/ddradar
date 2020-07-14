@@ -32,7 +32,15 @@
         {{ props.row.level }}
       </b-table-column>
       <b-table-column field="level" label="Edit">
-        <a>
+        <a
+          @click="
+            scoreEditorModal(
+              props.row.id,
+              props.row.playStyle,
+              props.row.difficulty
+            )
+          "
+        >
           <b-icon icon="pencil-box-outline" />
         </a>
       </b-table-column>
@@ -51,6 +59,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import {
   ChartInfo,
   getDifficultyName,
@@ -80,6 +89,15 @@ export default class ChartListComponent extends Vue {
 
   getTagClass(difficulty: number) {
     return `is-${getDifficultyName(difficulty).toLowerCase()}`
+  }
+
+  scoreEditorModal(songId: string, playStyle: number, difficulty: number) {
+    this.$buefy.modal.open({
+      parent: this,
+      component: ScoreEditor,
+      props: { songId, playStyle, difficulty },
+      trapFocus: true,
+    })
   }
 }
 </script>

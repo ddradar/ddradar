@@ -65,10 +65,10 @@
         </b-field>
 
         <b-field>
-          <b-button type="is-success" icon-left="save">
+          <b-button type="is-success" icon-left="save" @click="saveScore()">
             Save
           </b-button>
-          <b-button type="is-success" icon-left="delete">
+          <b-button type="is-success" icon-left="delete" @click="deleteScore()">
             Delete
           </b-button>
         </b-field>
@@ -150,6 +150,54 @@ export default class ScoreEditorComponent extends Vue {
   onChartSelected({ playStyle, difficulty }: ChartKey) {
     this.playStyle = playStyle
     this.difficulty = difficulty
+  }
+
+  async saveScore() {
+    try {
+      await this.$http.$post(
+        `/api/v1/scores/${this.songId}/${this.playStyle}/${this.difficulty}`,
+        {
+          score: this.score,
+          exScore: this.exScore,
+          maxCombo: this.maxCombo,
+          clearLamp: this.clearLamp,
+        }
+      )
+      this.$buefy.notification.open({
+        message: 'Success!',
+        type: 'is-success',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    } catch (error) {
+      this.$buefy.notification.open({
+        message: error.message ?? error,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
+  }
+
+  async deleteScore() {
+    try {
+      await this.$http.delete(
+        `/api/v1/scores/${this.songId}/${this.playStyle}/${this.difficulty}`
+      )
+      this.$buefy.notification.open({
+        message: 'Success!',
+        type: 'is-success',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    } catch (error) {
+      this.$buefy.notification.open({
+        message: error.message ?? error,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
   }
 }
 </script>
