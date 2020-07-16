@@ -35,7 +35,7 @@ export default async function (
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
 
   const songId: string = context.bindingData.songId
-  const playStyle: number = context.bindingData.playStyle
+  const playStyle = context.bindingData.playStyle as 1 | 2
   const difficulty =
     typeof context.bindingData.difficulty === 'number'
       ? (context.bindingData.difficulty as Difficulty)
@@ -43,11 +43,7 @@ export default async function (
 
   // In Azure Functions, this function will only be invoked if a valid route.
   // So this check is only used to unit tests.
-  if (
-    !/^[01689bdiloqDIOPQ]{32}$/.test(songId) ||
-    (playStyle !== 1 && playStyle !== 2) ||
-    ![0, 1, 2, 3, 4].includes(difficulty)
-  ) {
+  if (!isValidRoute()) {
     return { httpResponse: { status: 404 } }
   }
 
@@ -133,47 +129,55 @@ export default async function (
   }
 
   return result
-}
 
-async function fetchUpdatedAreaScore(
-  area: string,
-  score: ScoreSchema
-): Promise<ScoreSchema | null> {
-  const container = getContainer('Scores', true)
-
-  // Get previous score
-  const id = `${area}-${score.songId}-${score.playStyle}-${score.difficulty}`
-  const { resources } = await container.items
-    .query<ScoreSchema>({
-      query: 'SELECT * FROM c WHERE c.id = @id',
-      parameters: [{ name: '@id', value: id }],
-    })
-    .fetchAll()
-  const oldScore = resources[0] ?? {
-    score: 0,
-    rank: 'E',
-    clearLamp: 0,
+  function isValidRoute() {
+    return (
+      /^[01689bdiloqDIOPQ]{32}$/.test(songId) &&
+      (playStyle === 1 || playStyle === 2) &&
+      [0, 1, 2, 3, 4].includes(difficulty)
+    )
   }
 
-  const mergedScore = {
-    ...mergeScore(oldScore, score),
-    id,
-    userId: area,
-    userName: area,
-    isPublic: false,
-    songId: score.songId,
-    songName: score.songName,
-    playStyle: score.playStyle,
-    difficulty: score.difficulty,
+  async function fetchUpdatedAreaScore(
+    area: string,
+    score: ScoreSchema
+  ): Promise<ScoreSchema | null> {
+    const container = getContainer('Scores', true)
+
+    // Get previous score
+    const id = `${area}-${score.songId}-${score.playStyle}-${score.difficulty}`
+    const { resources } = await container.items
+      .query<ScoreSchema>({
+        query: 'SELECT * FROM c WHERE c.id = @id',
+        parameters: [{ name: '@id', value: id }],
+      })
+      .fetchAll()
+    const oldScore = resources[0] ?? {
+      score: 0,
+      rank: 'E',
+      clearLamp: 0,
+    }
+
+    const mergedScore = {
+      ...mergeScore(oldScore, score),
+      id,
+      userId: area,
+      userName: area,
+      isPublic: false,
+      songId: score.songId,
+      songName: score.songName,
+      playStyle: score.playStyle,
+      difficulty: score.difficulty,
+    }
+    if (
+      mergedScore.score === oldScore.score &&
+      mergedScore.clearLamp === oldScore.clearLamp &&
+      mergedScore.exScore === oldScore.exScore &&
+      mergedScore.maxCombo === oldScore.maxCombo &&
+      mergedScore.rank === oldScore.rank
+    ) {
+      return null
+    }
+    return mergedScore
   }
-  if (
-    mergedScore.score === oldScore.score &&
-    mergedScore.clearLamp === oldScore.clearLamp &&
-    mergedScore.exScore === oldScore.exScore &&
-    mergedScore.maxCombo === oldScore.maxCombo &&
-    mergedScore.rank === oldScore.rank
-  ) {
-    return null
-  }
-  return mergedScore
 }
