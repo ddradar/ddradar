@@ -4,7 +4,6 @@ import { mocked } from 'ts-jest/utils'
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema, SongSchema } from '../db'
 import postChartScore from '.'
 
 jest.mock('../auth')
@@ -32,7 +31,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(401)
+    expect(result.httpResponse.status).toBe(401)
   })
 
   test('/ returns "404 Not Found"', async () => {
@@ -40,7 +39,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.httpResponse.status).toBe(404)
   })
 
   test.each(['', 'foo'])('/%s/1/0 returns "404 Not Found"', async songId => {
@@ -53,7 +52,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.httpResponse.status).toBe(404)
   })
 
   test.each([0, -1, 3, 2.5, NaN, Infinity, -Infinity])(
@@ -68,7 +67,7 @@ describe('POST /api/v1/scores', () => {
       const result = await postChartScore(context, req)
 
       // Assert
-      expect(result.status).toBe(404)
+      expect(result.httpResponse.status).toBe(404)
     }
   )
 
@@ -84,7 +83,7 @@ describe('POST /api/v1/scores', () => {
       const result = await postChartScore(context, req)
 
       // Assert
-      expect(result.status).toBe(404)
+      expect(result.httpResponse.status).toBe(404)
     }
   )
 
@@ -94,16 +93,12 @@ describe('POST /api/v1/scores', () => {
     1000000,
     '',
     true,
-    { score: '1000000' },
-    { score: -5 },
+    {},
     { score: 50000000 },
-    { clearLamp: 'MFC' },
-    { clearLamp: -1 },
-    { clearLamp: 10 },
-    { exScore: false },
-    { maxCombo: '200' },
-    { rank: 1 },
-    { rank: '-' },
+    { score: 1000000, clearLamp: 'MFC', rank: 'AAA' },
+    { score: 1000000, clearLamp: 7, maxCombo: '200', rank: 'AAA' },
+    { score: 0, clearLamp: 0, rank: '-' },
+    { score: 950000, rank: 'AA' },
   ])('returns "400 Bad Request" if body is %p', async body => {
     // Arrange
     context.bindingData.songId = '00000000000000000000000000000000'
@@ -115,7 +110,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(400)
+    expect(result.httpResponse.status).toBe(400)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -129,16 +124,15 @@ describe('POST /api/v1/scores', () => {
     const result = await postChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.httpResponse.status).toBe(404)
   })
 
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
       const songContainer = getContainer('Songs')
-      const userContainer = getContainer('Users')
       const scoreContainer = getContainer('Scores')
-      const song: SongSchema = {
+      const song = {
         id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
         name: 'PARANOiA',
         nameKana: 'PARANOIA',
@@ -175,7 +169,7 @@ describe('POST /api/v1/scores', () => {
             chaos: 4,
           },
         ],
-      }
+      } as const
       const publicUser = {
         id: 'public_user',
         loginId: 'public_user',
@@ -197,83 +191,58 @@ describe('POST /api/v1/scores', () => {
         area: 13,
         isPublic: false,
       } as const
-      const scores: ScoreSchema[] = [
-        {
-          id: `0-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
-          userId: '0',
-          userName: '0',
-          songId: song.id,
-          songName: song.name,
-          playStyle: song.charts[0].playStyle,
-          difficulty: song.charts[0].difficulty,
-          score: 999620, // P:38
-          clearLamp: 6,
-          rank: 'AAA',
-          maxCombo: 138,
-          exScore: 376,
-          isPublic: false,
-        },
-        {
-          id: `13-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
-          userId: '13',
-          userName: '13',
-          songId: song.id,
-          songName: song.name,
-          playStyle: song.charts[0].playStyle,
-          difficulty: song.charts[0].difficulty,
-          score: 996720, // P:37, Gr:1
-          clearLamp: 5,
-          rank: 'AAA',
-          maxCombo: 138,
-          exScore: 375,
-          isPublic: false,
-        },
-        {
-          id: `${publicUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          songId: song.id,
-          songName: song.name,
-          playStyle: song.charts[0].playStyle,
-          difficulty: song.charts[0].difficulty,
-          score: 970630, // P:28, Gr:10
-          clearLamp: 5,
-          rank: 'AA+',
-          maxCombo: 138,
-          exScore: 366,
-          isPublic: publicUser.isPublic,
-        },
-        {
-          id: `${areaHiddenUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
-          userId: areaHiddenUser.id,
-          userName: areaHiddenUser.name,
-          songId: song.id,
-          songName: song.name,
-          playStyle: song.charts[0].playStyle,
-          difficulty: song.charts[0].difficulty,
-          score: 970630, // P:28, Gr:10
-          clearLamp: 5,
-          rank: 'AA+',
-          maxCombo: 138,
-          exScore: 366,
-          isPublic: areaHiddenUser.isPublic,
-        },
-        {
-          id: `${privateUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
-          userId: privateUser.id,
-          userName: privateUser.name,
-          songId: song.id,
-          songName: song.name,
-          playStyle: song.charts[0].playStyle,
-          difficulty: song.charts[0].difficulty,
-          score: 970630, // P:28, Gr:10
-          clearLamp: 5,
-          rank: 'AA+',
-          maxCombo: 138,
-          exScore: 366,
-          isPublic: privateUser.isPublic,
-        },
-      ]
+      const worldScore = {
+        id: `0-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+        userId: '0',
+        userName: '0',
+        songId: song.id,
+        songName: song.name,
+        playStyle: song.charts[0].playStyle,
+        difficulty: song.charts[0].difficulty,
+        score: 999620, // P:38
+        clearLamp: 6,
+        rank: 'AAA',
+        maxCombo: 138,
+        exScore: 376,
+        isPublic: false,
+      } as const
+      const areaScore = {
+        ...worldScore,
+        id: `13-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+        userId: '13',
+        userName: '13',
+        score: 996720, // P:37, Gr:1
+        clearLamp: 5,
+        rank: 'AAA',
+        maxCombo: 138,
+        exScore: 375,
+      } as const
+      const publicUserScore = {
+        ...worldScore,
+        id: `${publicUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+        userId: publicUser.id,
+        userName: publicUser.name,
+        score: 970630, // P:28, Gr:10
+        clearLamp: 5,
+        rank: 'AA+',
+        maxCombo: 138,
+        exScore: 366,
+        isPublic: publicUser.isPublic,
+      } as const
+      const areaHiddenUserScore = {
+        ...publicUserScore,
+        id: `${areaHiddenUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+        userId: areaHiddenUser.id,
+        userName: areaHiddenUser.name,
+        isPublic: areaHiddenUser.isPublic,
+      } as const
+      const privateUserScore = {
+        ...publicUserScore,
+        id: `${privateUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+        userId: privateUser.id,
+        userName: privateUser.name,
+        isPublic: privateUser.isPublic,
+      } as const
       const clientPrincipal: Pick<
         ClientPrincipal,
         'identityProvider' | 'userRoles' | 'userDetails'
@@ -286,20 +255,20 @@ describe('POST /api/v1/scores', () => {
       beforeAll(async () => {
         await songContainer.items.create(song)
         await Promise.all(
-          [publicUser, areaHiddenUser, privateUser].map(u =>
-            userContainer.items.create(u)
-          )
+          [
+            worldScore,
+            areaScore,
+            publicUserScore,
+            areaHiddenUserScore,
+            privateUserScore,
+          ].map(s => scoreContainer.items.create(s))
         )
-      })
-
-      beforeEach(async () => {
-        await Promise.all(scores.map(s => scoreContainer.items.create(s)))
       })
 
       test.each([
         ['00000000000000000000000000000000', 1, 0],
-        ['06loOQ0DQb0DqbOibl6qO81qlIdoP9DI', 2, 0],
-        ['06loOQ0DQb0DqbOibl6qO81qlIdoP9DI', 1, 4],
+        [song.id, 2, 0],
+        [song.id, 1, 4],
       ])(
         '/%s/%i/%i returns "404 Not Found"',
         async (songId, playStyle, difficulty) => {
@@ -318,196 +287,250 @@ describe('POST /api/v1/scores', () => {
           const result = await postChartScore(context, req)
 
           // Assert
-          expect(result.status).toBe(404)
+          expect(result.httpResponse.status).toBe(404)
         }
       )
 
-      test.each([{ exScore: 1000 }, { rank: 'AA' }, { clearLamp: 4 }])(
-        'returns "400 Bad Request" if body is %p',
-        async score => {
-          // Arrange
-          mocked(getClientPrincipal).mockReturnValueOnce({
-            ...clientPrincipal,
-            userId: publicUser.loginId,
-          })
-          mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-          context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-          context.bindingData.playStyle = 1
-          context.bindingData.difficulty = 0
-          req.body = score
-
-          // Act
-          const result = await postChartScore(context, req)
-
-          // Assert
-          expect(result.status).toBe(400)
-        }
-      )
-
-      test.each([
-        { score: 900000 },
-        { score: 890000, clearLamp: 4 },
-        { score: 880000, maxCombo: 58 },
-        { score: 890000, exScore: 300 },
-        {
-          score: 970630,
-          clearLamp: 5,
-          rank: 'AA+',
-          maxCombo: 138,
-          exScore: 366,
-        },
-      ])('does not upsert score if body is %p', async score => {
+      test('returns "400 Bad Request" if body is invalid Score', async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           ...clientPrincipal,
           userId: publicUser.loginId,
         })
         mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
-        req.body = score
-        const { resource } = await scoreContainer
-          .item(scores[2].id, scores[2].userId)
-          .read<ScoreSchema>()
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 90000, clearLamp: 2, rank: 'E', exScore: 1000 }
 
         // Act
         const result = await postChartScore(context, req)
-        const { resource: current } = await scoreContainer
-          .item(scores[2].id, scores[2].userId)
-          .read<ScoreSchema>()
 
         // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual(scores[2])
-        expect(current).toStrictEqual(resource)
+        expect(result.httpResponse.status).toBe(400)
       })
 
-      test('upserts world record, area top and personal best if user is public', async () => {
+      test('inserts World & Area Top', async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           ...clientPrincipal,
           userId: publicUser.loginId,
         })
         mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
+        context.bindingData.songId = song.id
         context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
-        req.body = { score: 1000000 }
-        const { resource: previousWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
-        const { resource: previousAreaTop } = await scoreContainer
-          .item(scores[1].id, scores[1].userId)
-          .read<ScoreSchema>()
-
-        // Act
-        const result = await postChartScore(context, req)
-        const { resource: currentWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
-        const { resource: currentAreaTop } = await scoreContainer
-          .item(scores[1].id, scores[1].userId)
-          .read<ScoreSchema>()
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual({
-          ...scores[2],
-          score: 1000000,
-          clearLamp: 7,
+        context.bindingData.difficulty = 1
+        req.body = {
+          score: 999700,
+          clearLamp: 6,
           rank: 'AAA',
-          exScore: 414,
+          maxCombo: 264,
+          exScore: 762,
+        }
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...publicUserScore,
+          ...req.body,
+          id: `${publicUser.id}-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
+          difficulty: song.charts[1].difficulty,
         })
-        expect(currentWorldRecord).not.toStrictEqual(previousWorldRecord)
-        expect(currentAreaTop).not.toStrictEqual(previousAreaTop)
+        expect(result.userScore).toStrictEqual({
+          ...publicUserScore,
+          ...req.body,
+          id: `${publicUser.id}-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
+          difficulty: song.charts[1].difficulty,
+        })
+        expect(result.areaScore).toStrictEqual({
+          ...areaScore,
+          ...req.body,
+          id: `13-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
+          difficulty: song.charts[1].difficulty,
+        })
+        expect(result.worldScore).toStrictEqual({
+          ...worldScore,
+          ...req.body,
+          id: `0-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
+          difficulty: song.charts[1].difficulty,
+        })
       })
 
-      test('upserts world record and personal best if user is public and area is 0', async () => {
+      test('does not update World & Area Top if score is less than them', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: publicUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 890000, clearLamp: 4, rank: 'AA-', exScore: 200 }
+        const expected = { ...req.body, maxCombo: 138 }
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.userScore).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.areaScore).toBeUndefined()
+        expect(result.worldScore).toBeUndefined()
+      })
+
+      test('updates Area Top if user is public and score is greater than it', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: publicUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 999620, clearLamp: 6, rank: 'AAA', exScore: 376 }
+        const expected = { ...req.body, maxCombo: 138 }
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.userScore).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.areaScore).toStrictEqual({
+          ...areaScore,
+          ...expected,
+        })
+        expect(result.worldScore).toBeUndefined()
+      })
+
+      test('updates World & Area Top if user is public and score is greater than them', async () => {
+        // Arrange
+        mocked(getClientPrincipal).mockReturnValueOnce({
+          ...clientPrincipal,
+          userId: publicUser.loginId,
+        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+        const expected = { ...req.body, maxCombo: 138, exScore: 414 }
+
+        // Act
+        const result = await postChartScore(context, req)
+
+        // Assert
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.userScore).toStrictEqual({
+          ...publicUserScore,
+          ...expected,
+        })
+        expect(result.areaScore).toStrictEqual({
+          ...areaScore,
+          ...expected,
+        })
+        expect(result.worldScore).toStrictEqual({
+          ...worldScore,
+          ...expected,
+        })
+      })
+
+      test('updates World Top if user is public and area is 0', async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           ...clientPrincipal,
           userId: areaHiddenUser.loginId,
         })
         mocked(getLoginUserInfo).mockResolvedValueOnce(areaHiddenUser)
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
-        req.body = { score: 1000000 }
-        const { resource: previousWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+        const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
         // Act
         const result = await postChartScore(context, req)
-        const { resource: currentWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
 
         // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual({
-          ...scores[3],
-          score: 1000000,
-          clearLamp: 7,
-          rank: 'AAA',
-          exScore: 414,
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...areaHiddenUserScore,
+          ...expected,
         })
-        expect(currentWorldRecord).not.toStrictEqual(previousWorldRecord)
+        expect(result.userScore).toStrictEqual({
+          ...areaHiddenUserScore,
+          ...expected,
+        })
+        expect(result.areaScore).toBeUndefined()
+        expect(result.worldScore).toStrictEqual({
+          ...worldScore,
+          ...expected,
+        })
       })
 
-      test('upserts personal best only if user is private', async () => {
+      test('updates personal best only if user is private', async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           ...clientPrincipal,
           userId: privateUser.loginId,
         })
         mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
-        req.body = { score: 1000000 }
-        const { resource: previousWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
-        const { resource: previousAreaTop } = await scoreContainer
-          .item(scores[1].id, scores[1].userId)
-          .read<ScoreSchema>()
+        context.bindingData.songId = song.id
+        context.bindingData.playStyle = song.charts[0].playStyle
+        context.bindingData.difficulty = song.charts[0].difficulty
+        req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+        const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
         // Act
         const result = await postChartScore(context, req)
-        const { resource: currentWorldRecord } = await scoreContainer
-          .item(scores[0].id, scores[0].userId)
-          .read<ScoreSchema>()
-        const { resource: currentAreaTop } = await scoreContainer
-          .item(scores[1].id, scores[1].userId)
-          .read<ScoreSchema>()
 
         // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual({
-          ...scores[4],
-          score: 1000000,
-          clearLamp: 7,
-          rank: 'AAA',
-          exScore: 414,
+        expect(result.httpResponse.status).toBe(200)
+        expect(result.httpResponse.body).toStrictEqual({
+          ...privateUserScore,
+          ...expected,
         })
-        expect(currentWorldRecord).toStrictEqual(previousWorldRecord)
-        expect(currentAreaTop).toStrictEqual(previousAreaTop)
-      })
-
-      afterEach(async () => {
-        await Promise.all(
-          scores.map(s => scoreContainer.item(s.id, s.userId).delete())
-        )
+        expect(result.userScore).toStrictEqual({
+          ...privateUserScore,
+          ...expected,
+        })
+        expect(result.areaScore).toBeUndefined()
+        expect(result.worldScore).toBeUndefined()
       })
 
       afterAll(async () => {
         await songContainer.item(song.id, song.nameIndex).delete()
         await Promise.all(
-          [publicUser, areaHiddenUser, privateUser].map(u =>
-            userContainer.item(u.id, u.id).delete()
-          )
+          [
+            worldScore,
+            areaScore,
+            publicUserScore,
+            areaHiddenUserScore,
+            privateUserScore,
+          ].map(s => scoreContainer.item(s.id, s.userId).delete())
         )
       })
     }
