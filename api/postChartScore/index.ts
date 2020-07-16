@@ -83,32 +83,7 @@ export default async function (
     return { httpResponse: { status: 400, body: 'body is invalid Score' } }
   }
 
-  const userScore: ScoreSchema = {
-    id: `${user.id}-${songId}-${playStyle}-${difficulty}`,
-    userId: user.id,
-    userName: user.name,
-    isPublic: user.isPublic,
-    songId,
-    songName: charts[0].name,
-    playStyle,
-    difficulty,
-    score: req.body.score,
-    clearLamp: req.body.clearLamp,
-    rank: req.body.rank,
-  }
-  if (req.body.exScore) {
-    userScore.exScore = req.body.exScore
-  }
-  if (req.body.clearLamp === 7) {
-    userScore.exScore =
-      (charts[0].notes + charts[0].freezeArrow + charts[0].shockArrow) * 3
-  }
-  if (req.body.maxCombo) {
-    userScore.maxCombo = req.body.maxCombo
-  }
-  if (req.body.clearLamp >= 4) {
-    userScore.maxCombo = charts[0].notes + charts[0].shockArrow
-  }
+  const userScore = createScoreSchema()
 
   const result: PostScoreResult = {
     httpResponse: {
@@ -138,6 +113,43 @@ export default async function (
     )
   }
 
+  /**
+   * Create ScoreSchema from req.body and User.
+   * Also complement exScore and maxCombo.
+   */
+  function createScoreSchema() {
+    /* eslint-disable @typescript-eslint/no-non-null-assertion -- user is not null if this function called */
+    const score: ScoreSchema = {
+      id: `${user!.id}-${songId}-${playStyle}-${difficulty}`,
+      userId: user!.id,
+      userName: user!.name,
+      isPublic: user!.isPublic,
+      songId,
+      songName: charts[0].name,
+      playStyle,
+      difficulty,
+      score: req.body.score,
+      clearLamp: req.body.clearLamp,
+      rank: req.body.rank,
+    }
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
+    if (req.body.exScore) {
+      score.exScore = req.body.exScore
+    }
+    if (req.body.clearLamp === 7) {
+      score.exScore =
+        (charts[0].notes + charts[0].freezeArrow + charts[0].shockArrow) * 3
+    }
+    if (req.body.maxCombo) {
+      score.maxCombo = req.body.maxCombo
+    }
+    if (req.body.clearLamp >= 4) {
+      score.maxCombo = charts[0].notes + charts[0].shockArrow
+    }
+    return score
+  }
+
+  /** Return new Area Top score if greater than old one. otherwize, return `null`. */
   async function fetchUpdatedAreaScore(
     area: string,
     score: ScoreSchema
