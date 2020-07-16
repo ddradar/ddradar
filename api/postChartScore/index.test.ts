@@ -205,7 +205,7 @@ describe('POST /api/v1/scores', () => {
         maxCombo: 138,
         exScore: 376,
         isPublic: false,
-      } as const
+      }
       const areaScore = {
         ...worldScore,
         id: `13-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
@@ -216,7 +216,7 @@ describe('POST /api/v1/scores', () => {
         rank: 'AAA',
         maxCombo: 138,
         exScore: 375,
-      } as const
+      }
       const publicUserScore = {
         ...worldScore,
         id: `${publicUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
@@ -228,21 +228,21 @@ describe('POST /api/v1/scores', () => {
         maxCombo: 138,
         exScore: 366,
         isPublic: publicUser.isPublic,
-      } as const
+      }
       const areaHiddenUserScore = {
         ...publicUserScore,
         id: `${areaHiddenUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: areaHiddenUser.id,
         userName: areaHiddenUser.name,
         isPublic: areaHiddenUser.isPublic,
-      } as const
+      }
       const privateUserScore = {
         ...publicUserScore,
         id: `${privateUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: privateUser.id,
         userName: privateUser.name,
         isPublic: privateUser.isPublic,
-      } as const
+      }
       const clientPrincipal: Pick<
         ClientPrincipal,
         'identityProvider' | 'userRoles' | 'userDetails'
@@ -281,7 +281,7 @@ describe('POST /api/v1/scores', () => {
           context.bindingData.songId = songId
           context.bindingData.playStyle = playStyle
           context.bindingData.difficulty = difficulty
-          req.body = { score: 1000000 }
+          req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
           // Act
           const result = await postChartScore(context, req)
