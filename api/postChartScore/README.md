@@ -30,8 +30,6 @@ Need Authentication.
 
 ### Request Body
 
-Undefined parameters are inferred from other.
-
 <details>
   <summary>Sample</summary>
 
@@ -49,17 +47,17 @@ Undefined parameters are inferred from other.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`score`|integer?|Normal score (optional)|
+|`score`|integer|Normal score|
 |`exScore`|integer?|EX SCORE (optional)|
 |`maxCombo`|integer?|MAX COMBO (optional)|
-|`clearLamp`|integer?|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC (optional)|
-|`rank`|string?|Clear rank (`E`～`AAA`) (optional)|
+|`clearLamp`|integer|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
+|`rank`|string|Clear rank (`E`～`AAA`)|
 
 ## Response
 
 - Returns `401 Unauthorized` if you are not logged in.
 - Returns `404 Not Found` if route parameters are invalid or no chart.
-- Returns `400 Bad Request` if parameter body is invalid or cannot guess `score`.
+- Returns `400 Bad Request` if parameter body is invalid.
 - Returns `404 Not Found` if user registration is not completed.
 - Returns `200 OK` with [JSON body](#response-body) otherwize.
 
