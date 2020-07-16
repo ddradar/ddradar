@@ -102,13 +102,15 @@ export default async function (
   }
   if (req.body.exScore) {
     userScore.exScore = req.body.exScore
-  } else if (req.body.clearLamp === 7) {
+  }
+  if (req.body.clearLamp === 7) {
     userScore.exScore =
       (charts[0].notes + charts[0].freezeArrow + charts[0].shockArrow) * 3
   }
   if (req.body.maxCombo) {
     userScore.maxCombo = req.body.maxCombo
-  } else if (req.body.clearLamp >= 4) {
+  }
+  if (req.body.clearLamp >= 4) {
     userScore.maxCombo = charts[0].notes + charts[0].shockArrow
   }
 

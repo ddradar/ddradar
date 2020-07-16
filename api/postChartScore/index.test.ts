@@ -118,7 +118,7 @@ describe('POST /api/v1/scores', () => {
     context.bindingData.songId = '00000000000000000000000000000000'
     context.bindingData.playStyle = 1
     context.bindingData.difficulty = 0
-    req.body = { score: 1000000 }
+    req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
     // Act
     const result = await postChartScore(context, req)
