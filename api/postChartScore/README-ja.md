@@ -30,8 +30,6 @@ English version is [here](./README.md).
 
 ### Request Body
 
-未定義のパラメータは、他のパラメータから類推されます。
-
 <details>
   <summary>サンプル</summary>
 
@@ -49,17 +47,17 @@ English version is [here](./README.md).
 
 |名前|型|説明|
 |---|:--|---|
-|`score`|integer?|通常スコア (省略可)|
+|`score`|integer|通常スコア|
 |`exScore`|integer?|EXスコア (省略可)|
 |`maxCombo`|integer?|MAXコンボ数 (省略可)|
-|`clearLamp`|integer?|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC (省略可)|
-|`rank`|string?|クリアランク (`E`～`AAA`) (省略可)|
+|`clearLamp`|integer|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
+|`rank`|string|クリアランク (`E`～`AAA`)|
 
 ## Response
 
 - 未認証の場合、`401 Unauthorized` を返します。
 - ルートパラメータが不正か、一致する譜面が存在しない場合、`404 Not Found` を返します。
-- パラメータ本文が不正か、`score` が類推できない場合、`400 Bad Request` を返します。
+- パラメータ本文が不正な場合、`400 Bad Request` を返します。
 - ユーザー登録が完了していない場合、`404 Not Found` を返します。
 - その他の場合、`200 OK` と [JSON](#response-body)を返します。
 

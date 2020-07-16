@@ -44,6 +44,33 @@ export function mergeScore(
   return result
 }
 
+export function isValidScore(
+  {
+    notes,
+    freezeArrow,
+    shockArrow,
+  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
+  { clearLamp, exScore, maxCombo }: Readonly<Omit<Score, 'score' | 'rank'>>
+): boolean {
+  const maxExScore = (notes + freezeArrow + shockArrow) * 3
+  const fullCombo = notes + shockArrow
+
+  if (exScore) {
+    if (
+      !isPositiveInteger(exScore) ||
+      exScore > maxExScore ||
+      (clearLamp !== 7 && exScore === maxExScore) || // EX SCORE is MAX, but not MFC
+      (clearLamp !== 6 && exScore === maxExScore - 1) || // EX SCORE is P1, but not PFC
+      (clearLamp < 5 && exScore === maxExScore - 2) // EX SCORE is Gr1 or P2, but not Great FC or PFC
+    )
+      return false
+  }
+
+  // Do not check maxCombo because "MAX COMBO is fullCombo, but not FC" pattern is exists.
+  // ex. missed last Freeze Arrow
+  return !maxCombo || (isPositiveInteger(maxCombo) && maxCombo <= fullCombo)
+}
+
 export function setValidScoreFromChart(
   {
     notes,

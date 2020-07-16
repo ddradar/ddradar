@@ -11,7 +11,31 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "$return"
+      "name": "httpResponse"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "userScore",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "areaScore",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "worldScore",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "connectionStringSetting": "COSMOS_DB_CONN"
     }
   ],
   "scriptFile": "../dist/postChartScore/index.js"
