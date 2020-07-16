@@ -1,6 +1,7 @@
 import {
   getDanceLevel,
   isScore,
+  isValidScore,
   mergeScore,
   Score,
   setValidScoreFromChart,
@@ -61,6 +62,38 @@ describe('./score.ts', () => {
       // Assert
       expect(merged1).toStrictEqual(expected)
       expect(merged2).toStrictEqual(expected)
+    })
+  })
+  describe('isValidScore', () => {
+    const chart = {
+      notes: 100,
+      freezeArrow: 20,
+      shockArrow: 10,
+    } as const
+    const baseScore: Score = {
+      score: 900000,
+      clearLamp: 4,
+      rank: 'AA',
+    }
+    test.each([
+      { ...baseScore, exScore: 1000 },
+      { ...baseScore, maxCombo: 1000 },
+      { ...baseScore, exScore: 390 },
+      { ...baseScore, exScore: 389 },
+      { ...baseScore, exScore: 388 },
+    ])('(chart, %p) returns false', score => {
+      expect(isValidScore(chart, score)).toBe(false)
+    })
+    test.each([
+      baseScore,
+      { ...baseScore, exScore: 200 },
+      { ...baseScore, clearLamp: 7, exScore: 390 },
+      { ...baseScore, clearLamp: 6, exScore: 389 },
+      { ...baseScore, clearLamp: 5, exScore: 388 },
+      { ...baseScore, maxCombo: 110 },
+      { ...baseScore, clearLamp: 3, maxCombo: 110 },
+    ] as const)('(chart, %p) returns true', score => {
+      expect(isValidScore(chart, score)).toBe(true)
     })
   })
   describe('setValidScoreFromChart', () => {
