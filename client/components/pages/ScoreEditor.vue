@@ -8,12 +8,8 @@
       <template v-if="playStyle === null || difficulty === null">
         <b-field label="Select chart">
           <b-select @input="onChartSelected">
-            <option
-              v-for="chart in songData.charts"
-              :key="`${chart.playStyle}-${chart.difficulty}`"
-              :value="chart"
-            >
-              {{ getChartName(chart) }}
+            <option v-for="chart in charts" :key="chart.label" :value="chart">
+              {{ chart.label }}
             </option>
           </b-select>
         </b-field>
@@ -21,16 +17,19 @@
 
       <!-- Input score -->
       <template v-else>
-        <b-field label="Score">
-          <b-input
-            v-model.number="score"
-            type="number"
-            required
-            placeholder="0-1000000"
-            min="0"
-            max="1000000"
-            step="10"
-          />
+        <b-field grouped>
+          <b-field label="Score">
+            <b-input
+              v-model.number="score"
+              type="number"
+              required
+              placeholder="0-1000000"
+              min="0"
+              max="1000000"
+              step="10"
+            />
+          </b-field>
+          <b-checkbox v-model="isFailed">E判定</b-checkbox>
         </b-field>
 
         <b-field label="Clear Lamp">
@@ -52,6 +51,7 @@
             type="number"
             min="0"
             :max="exScoreMax"
+            :placeholder="`0-${exScoreMax}`"
           />
         </b-field>
 
@@ -61,6 +61,7 @@
             type="number"
             min="0"
             :max="maxComboMax"
+            :placeholder="`0-${maxComboMax}`"
           />
         </b-field>
       </template>
@@ -70,7 +71,7 @@
       v-if="playStyle !== null && difficulty !== null"
       class="modal-card-foot"
     >
-      <b-button type="is-success" icon-left="save" @click="saveScore()">
+      <b-button type="is-success" icon-left="content-save" @click="saveScore()">
         Save
       </b-button>
       <b-button type="is-danger" icon-left="delete" @click="deleteScore()">
@@ -83,7 +84,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { ClearLamp } from '~/types/api/score'
+import { ClearLamp, getDanceLevel } from '~/types/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
@@ -107,21 +108,22 @@ export default class ScoreEditorComponent extends Vue {
   @Prop({ required: true, type: Object })
   songData: SongInfo
 
-  private chart?: StepChart
   get selectedChart() {
     if (this.playStyle === null || this.difficulty === null) return undefined
-    if (!this.chart) {
-      this.chart = this.songData.charts.find(
-        c => c.playStyle === this.playStyle && c.difficulty === this.difficulty
-      )
-    }
-    return this.chart
+    return this.songData.charts.find(
+      c => c.playStyle === this.playStyle && c.difficulty === this.difficulty
+    )
   }
 
   score: number
   exScore: number
   clearLamp: ClearLamp
   maxCombo: number
+  isFailed: boolean
+
+  get rank() {
+    return this.isFailed ? 'E' : getDanceLevel(this.score)
+  }
 
   get exScoreMax() {
     if (!this.selectedChart) return 0
@@ -136,6 +138,16 @@ export default class ScoreEditorComponent extends Vue {
   get maxComboMax() {
     if (!this.selectedChart) return 0
     return this.selectedChart.notes + this.selectedChart.shockArrow
+  }
+
+  get charts() {
+    return this.songData.charts.map(c => ({
+      playStyle: c.playStyle,
+      difficulty: c.difficulty,
+      label: `${getPlayStyleName(c.playStyle)}/${getDifficultyName(
+        c.difficulty
+      )}`,
+    }))
   }
 
   getChartName({ playStyle, difficulty }: ChartKey) {
@@ -156,6 +168,7 @@ export default class ScoreEditorComponent extends Vue {
           exScore: this.exScore,
           maxCombo: this.maxCombo,
           clearLamp: this.clearLamp,
+          rank: this.rank,
         }
       )
       this.$buefy.notification.open({
@@ -174,7 +187,16 @@ export default class ScoreEditorComponent extends Vue {
     }
   }
 
-  async deleteScore() {
+  deleteScore() {
+    this.$buefy.dialog.confirm({
+      message: 'スコアを削除しますか？',
+      type: 'is-warning',
+      hasIcon: true,
+      onConfirm: async () => await this.callDeleteAPI(),
+    })
+  }
+
+  async callDeleteAPI() {
     try {
       await this.$http.delete(
         `/api/v1/scores/${this.songId}/${this.playStyle}/${this.difficulty}`
