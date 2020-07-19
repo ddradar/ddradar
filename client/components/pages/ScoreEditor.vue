@@ -64,6 +64,12 @@
             :placeholder="`0-${maxComboMax}`"
           />
         </b-field>
+
+        <b-field>
+          <b-button type="is-info" icon-left="calculator" @click="calcScore()">
+            自動計算
+          </b-button>
+        </b-field>
       </template>
     </section>
 
@@ -84,7 +90,11 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { ClearLamp, getDanceLevel } from '~/types/api/score'
+import {
+  ClearLamp,
+  getDanceLevel,
+  setValidScoreFromChart,
+} from '~/types/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
@@ -157,6 +167,30 @@ export default class ScoreEditorComponent extends Vue {
   onChartSelected({ playStyle, difficulty }: ChartKey) {
     this.playStyle = playStyle
     this.difficulty = difficulty
+  }
+
+  calcScore() {
+    try {
+      const score = setValidScoreFromChart(this.selectedChart, {
+        score: this.score,
+        exScore: this.exScore,
+        maxCombo: this.maxCombo,
+        clearLamp: this.clearLamp,
+        rank: this.isFailed ? 'E' : undefined,
+      })
+      this.score = score.score
+      this.exScore = score.exScore
+      this.maxCombo = score.maxCombo
+      this.clearLamp = score.clearLamp
+      this.isFailed = score.rank === 'E'
+    } catch {
+      this.$buefy.notification.open({
+        message: '情報が足りないため、スコアの自動計算ができませんでした。',
+        type: 'is-warning',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
   }
 
   async saveScore() {
