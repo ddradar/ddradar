@@ -107,13 +107,13 @@ type ChartKey = Pick<StepChart, 'playStyle' | 'difficulty'>
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
   @Prop({ required: true, type: String })
-  songId: string
+  readonly songId: string
 
   @Prop({ required: false, type: Number, default: null })
-  playStyle: 1 | 2 | null
+  readonly playStyle: 1 | 2 | null
 
   @Prop({ required: false, type: Number, default: null })
-  difficulty: 0 | 1 | 2 | 3 | 4 | null
+  readonly difficulty: 0 | 1 | 2 | 3 | 4 | null
 
   @Prop({ required: true, type: Object })
   songData: SongInfo
@@ -164,12 +164,7 @@ export default class ScoreEditorComponent extends Vue {
     return `${getPlayStyleName(playStyle)}/${getDifficultyName(difficulty)}`
   }
 
-  onChartSelected({ playStyle, difficulty }: ChartKey) {
-    this.playStyle = playStyle
-    this.difficulty = difficulty
-  }
-
-  calcScore() {
+  async calcScore() {
     try {
       const score = setValidScoreFromChart(this.selectedChart, {
         score: this.score,
@@ -183,6 +178,7 @@ export default class ScoreEditorComponent extends Vue {
       this.maxCombo = score.maxCombo
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
+      await this.$nextTick()
     } catch {
       this.$buefy.notification.open({
         message: '情報が足りないため、スコアの自動計算ができませんでした。',
