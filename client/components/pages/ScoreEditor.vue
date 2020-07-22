@@ -257,14 +257,16 @@ export default class ScoreEditorComponent extends Vue {
       this.maxCombo = scores[0].maxCombo
       this.isFailed = scores[0].rank === 'E'
     } catch (error) {
+      this.isLoading = false
       const message = error.message ?? error
-      if (message === '404') return
-      this.$buefy.notification.open({
-        message,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      if (message !== '404') {
+        this.$buefy.notification.open({
+          message,
+          type: 'is-danger',
+          position: 'is-top',
+          hasIcon: true,
+        })
+      }
     }
     this.isLoading = false
   }
