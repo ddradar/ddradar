@@ -1,3 +1,4 @@
+/** @type {import('@jest/types/build/Config').InitialOptions} */
 module.exports = {
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
@@ -7,7 +8,9 @@ module.exports = {
   moduleFileExtensions: ['ts', 'js', 'vue', 'json'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
+    '^.+\\.js$': 'babel-jest',
     '.*\\.(vue)$': 'vue-jest',
   },
+  transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
   snapshotSerializers: ['jest-serializer-vue'],
 }
