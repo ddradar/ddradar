@@ -14,10 +14,6 @@ module.exports = async () => {
   })
 
   await database.containers.createIfNotExists({
-    id: 'Courses',
-    partitionKey: { paths: ['/id'] },
-  })
-  await database.containers.createIfNotExists({
     id: 'Scores',
     partitionKey: { paths: ['/userId'] },
     indexingPolicy: {
