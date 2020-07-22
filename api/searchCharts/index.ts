@@ -34,7 +34,9 @@ export default async function (
         `${chartColumns.map(col => `c.${col}`).join(', ')} ` +
         'FROM s ' +
         'JOIN c IN s.charts ' +
-        'WHERE c.level = @level ' +
+        'WHERE s.nameIndex != -1 ' +
+        'AND s.nameIndex != -2 ' +
+        'AND c.level = @level ' +
         'AND c.playStyle = @playStyle ' +
         `ORDER BY ${orderByColumns.map(col => `s.${col}`).join(', ')}`,
       parameters: [

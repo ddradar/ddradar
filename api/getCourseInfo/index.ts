@@ -16,14 +16,24 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Courses', true)
-  const columns: (keyof CourseSchema)[] = ['id', 'name', 'series', 'orders']
+  const container = getContainer('Songs', true)
+  const columns: (keyof CourseSchema)[] = [
+    'id',
+    'name',
+    'nameKana',
+    'nameIndex',
+    'series',
+    'minBPM',
+    'maxBPM',
+    'charts',
+  ]
   const { resources } = await container.items
     .query<CourseSchema>({
       query:
         `SELECT ${columns.map(col => `c.${col}`).join(', ')} ` +
         'FROM c ' +
-        'WHERE c.id = @id',
+        'WHERE c.id = @id ' +
+        'AND (c.nameIndex = -1 OR c.nameIndex = -2)',
       parameters: [{ name: '@id', value: id }],
     })
     .fetchAll()

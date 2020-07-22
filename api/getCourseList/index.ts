@@ -1,19 +1,23 @@
 import { getContainer } from '../cosmos'
-import type { CourseSchema, Order } from '../db/courses'
+import type { CourseInfoSchema, CourseSchema } from '../db/songs'
 import type { SuccessResult } from '../function'
 
-type ShrinkedCourse = Omit<CourseSchema, 'orders'> & {
-  orders: Omit<Order, 'chartOrder'>[]
+type ShrinkedCourse = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
+  charts: Pick<CourseInfoSchema, 'playStyle' | 'difficulty' | 'level'>[]
 }
 
 /** Get course information list. */
 export default async function (): Promise<SuccessResult<ShrinkedCourse[]>> {
-  const container = getContainer('Courses', true)
+  const container = getContainer('Songs', true)
 
   // Create SQL
   const courseColumns: (keyof ShrinkedCourse)[] = ['id', 'name', 'series']
-  const orderColumns: (keyof Order)[] = ['playStyle', 'difficulty', 'level']
-  const joinColumn: keyof ShrinkedCourse = 'orders'
+  const orderColumns: (keyof CourseInfoSchema)[] = [
+    'playStyle',
+    'difficulty',
+    'level',
+  ]
+  const joinColumn: keyof ShrinkedCourse = 'charts'
 
   const { resources } = await container.items
     .query<ShrinkedCourse>({
@@ -24,6 +28,7 @@ export default async function (): Promise<SuccessResult<ShrinkedCourse[]>> {
         `FROM o IN c.${joinColumn}` +
         `) as ${joinColumn} ` +
         'FROM c ' +
+        'WHERE c.nameIndex = -1 OR c.nameIndex = -2 ' +
         'ORDER BY c.id',
     })
     .fetchAll()
