@@ -2,7 +2,7 @@
 
 日本語版は[こちら](./songs-ja.md)にあります。
 
-The collection that stores song & score information.
+The collection that stores song & course information.
 
 ## Schema
 
@@ -10,15 +10,15 @@ The collection that stores song & score information.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|id|string|Song id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
-|name|string|Song name|
-|nameKana|string|Song furigana for sorting. `^([A-Z0-9 .ぁ-んー]*)$`|
-|**nameIndex**|integer|Index for sorting. Associated with the "Find by Name" folder.<br />`0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
-|artist|string|Artist name|
+|id|string|Song/Course id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
+|name|string|Song/Course name|
+|nameKana|string|Song/Course furigana for sorting. `^([A-Z0-9 .ぁ-んー]*)$`|
+|**nameIndex**|integer|Index for sorting. Associated with the "Find by Name" folder.<br />`-1`: NONSTOP, `-2`: Grade, `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
+|artist|string?|Artist name|
 |series|string|Series title depend on official site.|
 |minBPM|integer \| null|Displayed min BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
 |maxBPM|integer \| null|Displayed max BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
-|charts|StepChart\[]|Song's step charts. [See below](#stepchart)|
+|charts|[StepChart](#stepchart)\[] \| [CourseInfo](#courseinfo)\[]|Song's step charts or Course info.|
 
 ### StepChart
 
@@ -35,6 +35,28 @@ The collection that stores song & score information.
 |air|integer|Groove radar AIR|
 |freeze|integer|Groove radar FREEZE|
 |chaos|integer|Groove radar CHAOS|
+
+### CourseInfo
+
+|Name|Type|Description|
+|----|:--:|-----------|
+|playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
+|difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
+|level|integer|Course level|
+|notes|integer|Total normal arrow count. (Jump = 1 count)|
+|freezeArrow|integer|Total freeze arrow count|
+|shockArrow|integer|Total shock arrow count|
+|order|[ChartOrder](#chartorder)\[]|Song and chart info in this course.|
+
+#### ChartOrder
+
+|Name|Type|Description|
+|----|:--:|-----------|
+|songId|string|Song id that depend on official site. `^([01689bdiloqDIOPQ]*){32}$`|
+|songName|string|Song name|
+|playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
+|difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
+|level|integer|Chart level|
 
 ## Indexes
 
@@ -170,6 +192,286 @@ The collection that stores song & score information.
       "air": 20,
       "freeze": 64,
       "chaos": 40
+    }
+  ]
+}
+```
+
+```json
+{
+  "id": "qbbOOO1QibO1861bqQII9lqlPiIoqb98",
+  "name": "FIRST",
+  "nameKana": "FIRST",
+  "nameIndex": -1,
+  "series": "Dance Dance Revolution A20",
+  "minBPM": 119,
+  "maxBPM": 180,
+  "charts": [
+    {
+      "playStyle": 1,
+      "difficulty": 0,
+      "level": 4,
+      "notes": 401,
+      "freezeArrow": 8,
+      "shockArrow": 0,
+      "order": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 2
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 3
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 3
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 4
+        }
+      ]
+    },
+    {
+      "playStyle": 1,
+      "difficulty": 1,
+      "level": 8,
+      "notes": 730,
+      "freezeArrow": 4,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 1,
+          "difficulty": 1,
+          "level": 4
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 1,
+          "difficulty": 1,
+          "level": 7
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 1,
+          "difficulty": 1,
+          "level": 8
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 1,
+          "difficulty": 1,
+          "level": 8
+        }
+      ]
+    },
+    {
+      "playStyle": 1,
+      "difficulty": 2,
+      "level": 9,
+      "notes": 918,
+      "freezeArrow": 18,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 1,
+          "difficulty": 2,
+          "level": 6
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 1,
+          "difficulty": 2,
+          "level": 9
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 1,
+          "difficulty": 2,
+          "level": 9
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 1,
+          "difficulty": 2,
+          "level": 9
+        }
+      ]
+    },
+    {
+      "playStyle": 1,
+      "difficulty": 3,
+      "level": 12,
+      "notes": 1091,
+      "freezeArrow": 21,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 1,
+          "difficulty": 3,
+          "level": 10
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 1,
+          "difficulty": 3,
+          "level": 12
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 1,
+          "difficulty": 3,
+          "level": 10
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 1,
+          "difficulty": 3,
+          "level": 11
+        }
+      ]
+    },
+    {
+      "playStyle": 2,
+      "difficulty": 1,
+      "level": 9,
+      "notes": 733,
+      "freezeArrow": 3,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 2,
+          "difficulty": 1,
+          "level": 4
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 2,
+          "difficulty": 1,
+          "level": 7
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 2,
+          "difficulty": 1,
+          "level": 9
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 2,
+          "difficulty": 1,
+          "level": 8
+        }
+      ]
+    },
+    {
+      "playStyle": 2,
+      "difficulty": 2,
+      "level": 13,
+      "notes": 951,
+      "freezeArrow": 8,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 2,
+          "difficulty": 2,
+          "level": 6
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 2,
+          "difficulty": 2,
+          "level": 9
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 2,
+          "difficulty": 2,
+          "level": 10
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 2,
+          "difficulty": 2,
+          "level": 13
+        }
+      ]
+    },
+    {
+      "playStyle": 2,
+      "difficulty": 3,
+      "level": 11,
+      "notes": 1176,
+      "freezeArrow": 15,
+      "shockArrow": 0,
+      "chartOrder": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 2,
+          "difficulty": 3,
+          "level": 10
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 2,
+          "difficulty": 3,
+          "level": 11
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 2,
+          "difficulty": 3,
+          "level": 10
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 2,
+          "difficulty": 3,
+          "level": 11
+        }
+      ]
     }
   ]
 }
