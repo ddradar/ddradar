@@ -5,7 +5,7 @@
     </header>
     <section class="modal-card-body">
       <!-- Select chart -->
-      <template v-if="playStyle === null || difficulty === null">
+      <template v-if="!selectedChart">
         <b-field label="Select chart">
           <b-select @input="onChartSelected">
             <option v-for="chart in charts" :key="chart.label" :value="chart">
@@ -17,6 +17,7 @@
 
       <!-- Input score -->
       <template v-else>
+        <b-loading :active.sync="isLoading" />
         <b-field grouped>
           <b-field label="Score">
             <b-input
@@ -94,6 +95,7 @@ import {
   ClearLamp,
   getDanceLevel,
   setValidScoreFromChart,
+  UserScore,
 } from '~/types/api/score'
 import {
   getDifficultyName,
@@ -101,8 +103,6 @@ import {
   SongInfo,
   StepChart,
 } from '~/types/api/song'
-
-type ChartKey = Pick<StepChart, 'playStyle' | 'difficulty'>
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
@@ -116,20 +116,17 @@ export default class ScoreEditorComponent extends Vue {
   readonly difficulty: 0 | 1 | 2 | 3 | 4 | null
 
   @Prop({ required: true, type: Object })
-  songData: SongInfo
+  readonly songData: SongInfo
 
-  get selectedChart() {
-    if (this.playStyle === null || this.difficulty === null) return undefined
-    return this.songData.charts.find(
-      c => c.playStyle === this.playStyle && c.difficulty === this.difficulty
-    )
-  }
+  score = 0
+  exScore = 0
+  clearLamp: ClearLamp = 0
+  maxCombo = 0
+  isFailed = false
 
-  score: number
-  exScore: number
-  clearLamp: ClearLamp
-  maxCombo: number
-  isFailed: boolean
+  selectedChart: StepChart | null = null
+
+  isLoading = true
 
   get rank() {
     return this.isFailed ? 'E' : getDanceLevel(this.score)
@@ -160,11 +157,28 @@ export default class ScoreEditorComponent extends Vue {
     }))
   }
 
-  getChartName({ playStyle, difficulty }: ChartKey) {
-    return `${getPlayStyleName(playStyle)}/${getDifficultyName(difficulty)}`
+  async created() {
+    if (this.playStyle !== null && this.difficulty !== null) {
+      this.selectedChart =
+        this.songData.charts.find(
+          c =>
+            c.playStyle === this.playStyle && c.difficulty === this.difficulty
+        ) ?? null
+      await this.fetchScore()
+    }
   }
 
-  async calcScore() {
+  async onChartSelected({
+    playStyle,
+    difficulty,
+  }: Pick<StepChart, 'playStyle' | 'difficulty'>) {
+    this.selectedChart = this.songData.charts.find(
+      c => c.playStyle === playStyle && c.difficulty === difficulty
+    )
+    await this.fetchScore()
+  }
+
+  calcScore() {
     try {
       const score = setValidScoreFromChart(this.selectedChart, {
         score: this.score,
@@ -178,7 +192,6 @@ export default class ScoreEditorComponent extends Vue {
       this.maxCombo = score.maxCombo
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
-      await this.$nextTick()
     } catch {
       this.$buefy.notification.open({
         message: '情報が足りないため、スコアの自動計算ができませんでした。',
@@ -190,9 +203,12 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   async saveScore() {
+    if (!this.selectedChart) return
+    const playStyle = this.selectedChart.playStyle
+    const difficulty = this.selectedChart.difficulty
     try {
       await this.$http.$post(
-        `/api/v1/scores/${this.songId}/${this.playStyle}/${this.difficulty}`,
+        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`,
         {
           score: this.score,
           exScore: this.exScore,
@@ -226,10 +242,40 @@ export default class ScoreEditorComponent extends Vue {
     })
   }
 
+  async fetchScore() {
+    if (!this.selectedChart) return
+    this.isLoading = true
+    const playStyle = this.selectedChart.playStyle
+    const difficulty = this.selectedChart.difficulty
+    try {
+      const scores = await this.$http.$get<UserScore[]>(
+        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}&scope=private`
+      )
+      this.score = scores[0].score
+      this.exScore = scores[0].exScore
+      this.clearLamp = scores[0].clearLamp
+      this.maxCombo = scores[0].maxCombo
+      this.isFailed = scores[0].rank === 'E'
+    } catch (error) {
+      const message = error.message ?? error
+      if (message === '404') return
+      this.$buefy.notification.open({
+        message,
+        type: 'is-danger',
+        position: 'is-top',
+        hasIcon: true,
+      })
+    }
+    this.isLoading = false
+  }
+
   async callDeleteAPI() {
+    if (!this.selectedChart) return
+    const playStyle = this.selectedChart.playStyle
+    const difficulty = this.selectedChart.difficulty
     try {
       await this.$http.delete(
-        `/api/v1/scores/${this.songId}/${this.playStyle}/${this.difficulty}`
+        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`
       )
       this.$buefy.notification.open({
         message: 'Success!',
