@@ -249,7 +249,7 @@ export default class ScoreEditorComponent extends Vue {
     const difficulty = this.selectedChart.difficulty
     try {
       const scores = await this.$http.$get<UserScore[]>(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}&scope=private`
+        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}?scope=private`
       )
       this.score = scores[0].score
       this.exScore = scores[0].exScore
