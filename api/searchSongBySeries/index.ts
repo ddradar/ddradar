@@ -40,6 +40,10 @@ export default async function (
     const column: keyof SongSchema = 'nameIndex'
     condition.push(`c.${column} = @${column}`)
     parameters.push({ name: `@${column}`, value: nameIndex })
+  } else {
+    const column: keyof SongSchema = 'nameIndex'
+    condition.push(`c.${column} != -1`)
+    condition.push(`c.${column} != -2`)
   }
 
   const columns: (keyof SongSchema)[] = [

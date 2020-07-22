@@ -2,7 +2,7 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { CourseSchema } from '../db'
+import type { CourseSchema, SongSchema } from '../db'
 import getCourseInfo from '.'
 
 describe('GET /api/v1/courses', () => {
@@ -33,17 +33,24 @@ describe('GET /api/v1/courses', () => {
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
-      const container = getContainer('Courses')
+      const container = getContainer('Songs')
       const course: CourseSchema = {
         id: 'o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db',
         name: '皆伝',
+        nameIndex: -2,
+        nameKana: '2-11',
         series: 'DanceDanceRevolution A20',
-        orders: [
+        minBPM: 23,
+        maxBPM: 840,
+        charts: [
           {
             playStyle: 2,
             difficulty: 4,
             level: 19,
-            chartOrder: [
+            notes: 634 + 640 + 759 + 804,
+            freezeArrow: 45 + 10 + 28 + 1,
+            shockArrow: 0,
+            order: [
               {
                 songId: '186dd6DQq891Ib9Ilq8Qbo8lIqb0Qoll',
                 songName: 'Valkyrie dimension',
@@ -76,14 +83,53 @@ describe('GET /api/v1/courses', () => {
           },
         ],
       }
+      const song: SongSchema = {
+        id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+        name: 'PARANOiA',
+        nameKana: 'PARANOIA',
+        nameIndex: 25,
+        artist: '180',
+        series: 'DDR 1st',
+        minBPM: 180,
+        maxBPM: 180,
+        charts: [
+          {
+            playStyle: 1,
+            difficulty: 0,
+            level: 4,
+            notes: 138,
+            freezeArrow: 0,
+            shockArrow: 0,
+            stream: 29,
+            voltage: 22,
+            air: 5,
+            freeze: 0,
+            chaos: 0,
+          },
+        ],
+      }
 
       beforeAll(async () => {
         await container.items.create(course)
+        await container.items.create(song)
       })
 
       test('/00000000000000000000000000000000 returns "404 Not Found"', async () => {
         // Arrange
         const id = '00000000000000000000000000000000'
+        context.bindingData.id = id
+
+        // Act
+        const result = await getCourseInfo(context)
+
+        // Assert
+        expect(result.status).toBe(404)
+        expect(result.body).toBe(`Not found course that id: "${id}"`)
+      })
+
+      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI returns "404 Not Found"', async () => {
+        // Arrange
+        const id = song.id
         context.bindingData.id = id
 
         // Act
@@ -107,7 +153,8 @@ describe('GET /api/v1/courses', () => {
       })
 
       afterAll(async () => {
-        await container.item(course.id, course.id).delete()
+        await container.item(course.id, course.nameIndex).delete()
+        await container.item(song.id, song.nameIndex).delete()
       })
     }
   )

@@ -4,7 +4,7 @@ import {
   hasStringProperty,
 } from '../type-assert'
 
-/** DB Schema of "Songs" collection */
+/** DB Schema of "Song" */
 export type SongSchema = {
   /**
    * Song id that depend on official site.
@@ -57,6 +57,45 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
   )
 }
 
+/** DB Schema of "Course" */
+export type CourseSchema = {
+  /**
+   * Course id that depend on official site.
+   * @example `^([01689bdiloqDIOPQ]*){32}$`
+   */
+  id: string
+  name: string
+  /**
+   * Course furigana for sorting.
+   * @example `^([A-Z0-9 .ぁ-んー]*)$`
+   */
+  nameKana: string
+  /** `-1`: NONSTOP, `-2`: Grade */
+  nameIndex: -1 | -2
+  /** Series title depend on official site. */
+  series: Series
+  /** Displayed min BPM (Beet Per Minutes). */
+  minBPM: number
+  /** Displayed max BPM (Beet Per Minutes). */
+  maxBPM: number
+  charts: CourseInfoSchema[]
+}
+
+export function isCourseSchema(obj: unknown): obj is CourseSchema {
+  return (
+    hasStringProperty(obj, 'id', 'name', 'nameKana', 'series') &&
+    /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
+    /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
+    (SeriesList as string[]).includes(obj.series) &&
+    hasIntegerProperty(obj, 'nameIndex') &&
+    (obj.nameIndex === -1 || obj.nameIndex === -2) &&
+    hasIntegerProperty(obj, 'minBPM', 'maxBPM') &&
+    hasProperty(obj, 'charts') &&
+    Array.isArray(obj.charts) &&
+    obj.charts.every(c => isCourseInfoSchema(c))
+  )
+}
+
 /** Song's step chart */
 export type StepChartSchema = {
   /** `1`: SINGLE, `2`: DOUBLE */
@@ -96,6 +135,54 @@ const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
     'freeze',
     'chaos'
   ) &&
+  (obj.playStyle === 1 || obj.playStyle === 2) &&
+  obj.difficulty >= 0 &&
+  obj.difficulty <= 4 &&
+  obj.level >= 1 &&
+  obj.level <= 20
+
+export type CourseInfoSchema = Pick<
+  StepChartSchema,
+  'playStyle' | 'difficulty' | 'level' | 'notes' | 'freezeArrow' | 'shockArrow'
+> & {
+  order: ChartOrder[]
+}
+
+const isCourseInfoSchema = (obj: unknown): obj is CourseInfoSchema =>
+  hasIntegerProperty(
+    obj,
+    'playStyle',
+    'difficulty',
+    'level',
+    'notes',
+    'freezeArrow',
+    'shockArrow'
+  ) &&
+  (obj.playStyle === 1 || obj.playStyle === 2) &&
+  obj.difficulty >= 0 &&
+  obj.difficulty <= 4 &&
+  obj.level >= 1 &&
+  obj.level <= 20 &&
+  hasProperty(obj, 'order') &&
+  Array.isArray(obj.order) &&
+  obj.order.every(c => isChartOrder(c))
+
+export type ChartOrder = Pick<
+  StepChartSchema,
+  'playStyle' | 'difficulty' | 'level'
+> & {
+  /**
+   * Song id that depend on official site.
+   * @example `^([01689bdiloqDIOPQ]*){32}$`
+   */
+  songId: string
+  songName: string
+}
+
+const isChartOrder = (obj: unknown): obj is ChartOrder =>
+  hasIntegerProperty(obj, 'playStyle', 'difficulty', 'level') &&
+  hasStringProperty(obj, 'songId', 'songName') &&
+  /^[01689bdiloqDIOPQ]{32}$/.test(obj.songId) &&
   (obj.playStyle === 1 || obj.playStyle === 2) &&
   obj.difficulty >= 0 &&
   obj.difficulty <= 4 &&

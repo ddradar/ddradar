@@ -203,7 +203,7 @@ The collection that stores song & course information.
   "name": "FIRST",
   "nameKana": "FIRST",
   "nameIndex": -1,
-  "series": "Dance Dance Revolution A20",
+  "series": "DanceDanceRevolution A20",
   "minBPM": 119,
   "maxBPM": 180,
   "charts": [
@@ -252,7 +252,7 @@ The collection that stores song & course information.
       "notes": 730,
       "freezeArrow": 4,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
@@ -290,7 +290,7 @@ The collection that stores song & course information.
       "notes": 918,
       "freezeArrow": 18,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
@@ -328,7 +328,7 @@ The collection that stores song & course information.
       "notes": 1091,
       "freezeArrow": 21,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
@@ -366,7 +366,7 @@ The collection that stores song & course information.
       "notes": 733,
       "freezeArrow": 3,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
@@ -404,7 +404,7 @@ The collection that stores song & course information.
       "notes": 951,
       "freezeArrow": 8,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
@@ -442,7 +442,7 @@ The collection that stores song & course information.
       "notes": 1176,
       "freezeArrow": 15,
       "shockArrow": 0,
-      "chartOrder": [
+      "order": [
         {
           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",

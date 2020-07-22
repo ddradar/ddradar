@@ -203,7 +203,7 @@ English version is [here](./songs.md).
   "name": "FIRST",
   "nameKana": "FIRST",
   "nameIndex": -1,
-  "series": "Dance Dance Revolution A20",
+  "series": "DanceDanceRevolution A20",
   "minBPM": 119,
   "maxBPM": 180,
   "charts": [
