@@ -22,7 +22,7 @@
   </b-collapse>
   <div v-else class="card" animation="slide" :aria-id="title">
     <header class="card-header" :class="type" :aria-controls="title">
-      <h2 class="card-header-title">{{ title }}</h2>
+      <div class="card-header-title">{{ title }}</div>
     </header>
     <slot />
   </div>

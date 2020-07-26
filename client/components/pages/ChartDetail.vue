@@ -9,7 +9,7 @@
             :mobile-cards="false"
             :selected="userScore"
           >
-            <template v-slot:trigger="props">
+            <template v-slot="props">
               <b-table-column field="name" label="Name">
                 <nuxt-link :to="`/users/${props.row.userId}`">
                   {{ props.row.userName }}

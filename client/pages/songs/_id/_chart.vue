@@ -3,7 +3,7 @@
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">{{ displayedBPM }}</h2>
-    <div class="content columns is-tablet">
+    <div class="content columns is-tablet is-multiline">
       <chart-detail
         v-for="(chart, i) in song.charts"
         :key="i"
