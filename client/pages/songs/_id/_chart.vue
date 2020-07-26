@@ -10,6 +10,7 @@
         :song="song"
         :chart="chart"
         class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+        :open="chartIndex === i"
       />
     </div>
   </section>
@@ -25,7 +26,8 @@ import { SongInfo } from '~/types/api/song'
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
   song: SongInfo | null = null
-  chartIndex: number = 0
+  playStyle: 1 | 2 | null = null
+  difficulty: 0 | 1 | 2 | 3 | 4 | null = null
 
   validate({ params }: Pick<Context, 'params'>) {
     return (

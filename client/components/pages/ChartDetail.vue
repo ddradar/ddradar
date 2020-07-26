@@ -1,6 +1,6 @@
 <template>
   <section>
-    <card :title="chartTitle" :type="cardType">
+    <card :title="chartTitle" :type="cardType" collapsible :open="open">
       <div class="card-content">
         <div class="table-container">
           <b-table
@@ -110,6 +110,9 @@ export default class ChartDetailComponent extends Vue {
 
   @Prop({ required: true, type: Object })
   readonly chart!: StepChart
+
+  @Prop({ required: false, type: Boolean, default: false })
+  readonly open!: boolean
 
   loading = true
   scores: UserScore[] = []

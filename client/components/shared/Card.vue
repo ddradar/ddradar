@@ -4,6 +4,7 @@
     class="card"
     animation="slide"
     :aria-id="title"
+    :open="open"
   >
     <template v-slot:trigger="props">
       <header
@@ -12,7 +13,7 @@
         role="button"
         :aria-controls="title"
       >
-        <h2 class="card-header-title">{{ title }}</h2>
+        <div class="card-header-title">{{ title }}</div>
         <a class="card-header-icon">
           <b-icon :icon="props.open ? 'menu-down' : 'menu-up'" />
         </a>
@@ -41,6 +42,9 @@ export default class CardComponent extends Vue {
 
   @Prop({ required: false, type: Boolean, default: false })
   readonly collapsible!: boolean
+
+  @Prop({ required: false, type: Boolean, default: false })
+  readonly open!: boolean
 }
 </script>
 
