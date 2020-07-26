@@ -1,22 +1,31 @@
 <template>
-  <section>
-    <b-collapse class="card" animation="slide" :aria-id="title">
-      <template v-slot:trigger="props">
-        <header
-          class="card-header"
-          :class="type"
-          role="button"
-          :aria-controls="title"
-        >
-          <h1 class="card-header-title">{{ title }}</h1>
-          <a class="card-header-icon">
-            <b-icon :icon="props.open ? 'menu-down' : 'menu-up'" />
-          </a>
-        </header>
-      </template>
-      <slot />
-    </b-collapse>
-  </section>
+  <b-collapse
+    v-if="collapsible"
+    class="card"
+    animation="slide"
+    :aria-id="title"
+  >
+    <template v-slot:trigger="props">
+      <header
+        class="card-header"
+        :class="type"
+        role="button"
+        :aria-controls="title"
+      >
+        <h2 class="card-header-title">{{ title }}</h2>
+        <a class="card-header-icon">
+          <b-icon :icon="props.open ? 'menu-down' : 'menu-up'" />
+        </a>
+      </header>
+    </template>
+    <slot />
+  </b-collapse>
+  <div v-else class="card" animation="slide" :aria-id="title">
+    <header class="card-header" :class="type" :aria-controls="title">
+      <h2 class="card-header-title">{{ title }}</h2>
+    </header>
+    <slot />
+  </div>
 </template>
 
 <script lang="ts">
@@ -29,6 +38,9 @@ export default class CardComponent extends Vue {
 
   @Prop({ required: true, type: String })
   readonly type!: string
+
+  @Prop({ required: false, type: Boolean, default: false })
+  readonly collapsible!: boolean
 }
 </script>
 

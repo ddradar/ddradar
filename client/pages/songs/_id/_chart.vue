@@ -1,8 +1,17 @@
 <template>
-  <section class="section">
-    <h1 class="title">{{ name }}</h1>
-    <h2 class="subtitle">{{ artist }} / {{ series }}</h2>
+  <section v-if="song" class="section">
+    <h1 class="title">{{ song.name }}</h1>
+    <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">{{ displayedBPM }}</h2>
+    <div class="content columns is-tablet">
+      <chart-detail
+        v-for="(chart, i) in song.charts"
+        :key="i"
+        :song="song"
+        :chart="chart"
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      />
+    </div>
   </section>
 </template>
 
@@ -10,17 +19,12 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { SongInfo, StepChart } from '~/types/api/song'
+import ChartDetail from '~/components/pages/ChartDetail.vue'
+import { SongInfo } from '~/types/api/song'
 
-@Component
+@Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
-  name: string = ''
-  artist: string = ''
-  series: string = ''
-  minBPM: number | null = null
-  maxBPM: number | null = null
-  charts: StepChart[] = []
-
+  song: SongInfo | null = null
   chartIndex: number = 0
 
   validate({ params }: Pick<Context, 'params'>) {
@@ -32,9 +36,7 @@ export default class SongDetailPage extends Vue {
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
     // Get song info from API
-    const songInfo: SongInfo = await $http.$get<SongInfo>(
-      `/api/v1/songs/${params.id}`
-    )
+    const song = await $http.$get<SongInfo>(`/api/v1/songs/${params.id}`)
 
     // Set chartIndex
     let chartIndex = 0
@@ -42,27 +44,22 @@ export default class SongDetailPage extends Vue {
       const selectedChart = parseInt(params.chart)
       const difficulty = selectedChart % 10
       const playStyle = (selectedChart - difficulty) / 10
-      chartIndex = songInfo.charts.findIndex(
+      chartIndex = song.charts.findIndex(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       )
       if (chartIndex === -1) chartIndex = 0
     }
 
     return {
-      name: songInfo.name,
-      artist: songInfo.artist,
-      series: songInfo.series,
-      minBPM: songInfo.minBPM,
-      maxBPM: songInfo.maxBPM,
-      charts: songInfo.charts,
+      song,
       chartIndex,
     }
   }
 
   get displayedBPM() {
-    if (!this.minBPM || !this.maxBPM) return '???'
-    if (this.minBPM === this.maxBPM) return `${this.minBPM}`
-    return `${this.minBPM}-${this.maxBPM}`
+    if (!this.song?.minBPM || !this.song?.maxBPM) return '???'
+    if (this.song?.minBPM === this.song?.maxBPM) return `${this.song.minBPM}`
+    return `${this.song.minBPM}-${this.song.maxBPM}`
   }
 }
 </script>

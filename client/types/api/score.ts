@@ -25,6 +25,17 @@ export type UserScore = {
 /** 0: Failed, 1: Assisted Clear 2: Clear, 3: LIFE4, 4: Good FC (Full Combo), 5: Great FC, 6: PFC, 7: MFC */
 export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
+export const clearLampList: Record<ClearLamp, string> = {
+  '0': 'Failed',
+  '1': 'Assisted Clear',
+  '2': 'Clear',
+  '3': 'Life 4',
+  '4': 'Full Combo',
+  '5': 'Great Full Combo',
+  '6': 'Perfect Full Combo',
+  '7': 'Marvelous Full Combo',
+}
+
 /**
  * Request body to `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
  * @see https://github.com/ddradar/ddradar/blob/master/api/postChartScore/README.md
