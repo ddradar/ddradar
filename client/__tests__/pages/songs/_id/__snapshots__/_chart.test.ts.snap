@@ -23,10 +23,10 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   </h2>
    
   <div
-    class="content columns is-tablet is-multiline"
+    class="content columns is-desktop is-multiline"
   >
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -287,7 +287,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -548,7 +548,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -809,7 +809,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -1069,8 +1069,13 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         </transition-stub>
       </div>
     </section>
+  </div>
+   
+  <div
+    class="content columns is-desktop is-multiline"
+  >
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -1331,7 +1336,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"
@@ -1592,7 +1597,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
+      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
     >
       <div
         class="collapse card"

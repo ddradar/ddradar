@@ -118,7 +118,8 @@ describe('songs/:id/:chart', () => {
       data: () => {
         return {
           song,
-          chartIndex: 0,
+          playStyle: 1,
+          difficulty: 0,
         }
       },
     })

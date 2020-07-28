@@ -3,14 +3,24 @@
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">{{ displayedBPM }}</h2>
-    <div class="content columns is-tablet is-multiline">
+    <div class="content columns is-desktop is-multiline">
       <chart-detail
-        v-for="(chart, i) in song.charts"
+        v-for="(chart, i) in singleCharts"
         :key="i"
         :song="song"
         :chart="chart"
-        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen is-one-fifth-fullhd"
-        :open="chartIndex === i"
+        class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+        :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
+      />
+    </div>
+    <div class="content columns is-desktop is-multiline">
+      <chart-detail
+        v-for="(chart, i) in doubleCharts"
+        :key="i"
+        :song="song"
+        :chart="chart"
+        class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+        :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>
   </section>
@@ -26,7 +36,22 @@ import { SongInfo } from '~/types/api/song'
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
   song: SongInfo | null = null
-  chartIndex = -1
+  playStyle = 0
+  difficulty = -1
+
+  get singleCharts() {
+    return this.song?.charts.filter(c => c.playStyle === 1) ?? []
+  }
+
+  get doubleCharts() {
+    return this.song?.charts.filter(c => c.playStyle === 2) ?? []
+  }
+
+  get displayedBPM() {
+    if (!this.song?.minBPM || !this.song?.maxBPM) return '???'
+    if (this.song?.minBPM === this.song?.maxBPM) return `${this.song.minBPM}`
+    return `${this.song.minBPM}-${this.song.maxBPM}`
+  }
 
   validate({ params }: Pick<Context, 'params'>) {
     return (
@@ -44,19 +69,10 @@ export default class SongDetailPage extends Vue {
       const selectedChart = parseInt(params.chart)
       const difficulty = selectedChart % 10
       const playStyle = (selectedChart - difficulty) / 10
-      const chartIndex = song.charts.findIndex(
-        c => c.playStyle === playStyle && c.difficulty === difficulty
-      )
-      return { song, chartIndex }
+      return { song, playStyle, difficulty }
     }
 
     return { song }
-  }
-
-  get displayedBPM() {
-    if (!this.song?.minBPM || !this.song?.maxBPM) return '???'
-    if (this.song?.minBPM === this.song?.maxBPM) return `${this.song.minBPM}`
-    return `${this.song.minBPM}-${this.song.maxBPM}`
   }
 }
 </script>
