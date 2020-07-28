@@ -26,8 +26,7 @@ import { SongInfo } from '~/types/api/song'
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
   song: SongInfo | null = null
-  playStyle: 1 | 2 | null = null
-  difficulty: 0 | 1 | 2 | 3 | 4 | null = null
+  chartIndex = -1
 
   validate({ params }: Pick<Context, 'params'>) {
     return (
@@ -41,21 +40,17 @@ export default class SongDetailPage extends Vue {
     const song = await $http.$get<SongInfo>(`/api/v1/songs/${params.id}`)
 
     // Set chartIndex
-    let chartIndex = 0
     if (params.chart) {
       const selectedChart = parseInt(params.chart)
       const difficulty = selectedChart % 10
       const playStyle = (selectedChart - difficulty) / 10
-      chartIndex = song.charts.findIndex(
+      const chartIndex = song.charts.findIndex(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       )
-      if (chartIndex === -1) chartIndex = 0
+      return { song, chartIndex }
     }
 
-    return {
-      song,
-      chartIndex,
-    }
+    return { song }
   }
 
   get displayedBPM() {

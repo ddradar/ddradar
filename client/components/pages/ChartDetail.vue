@@ -42,25 +42,17 @@
         <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
       </footer>
     </card>
-    <card title="譜面情報" :type="cardType" collapsible>
+    <card title="Chart Info" :type="cardType" collapsible>
       <div class="card-content">
-        <div class="table-container">
-          <table class="table">
-            <thead>
-              <tr>
-                <th>Notes</th>
-                <th><abbr title="Freeze Arrow">FA</abbr></th>
-                <th><abbr title="Shock Arrow">SA</abbr></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{ chart.notes }}</td>
-                <td>{{ chart.freezeArrow }}</td>
-                <td>{{ chart.shockArrow }}</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="content">
+          <dl>
+            <dt>Notes</dt>
+            <dd>{{ chart.notes }}</dd>
+            <dt>Freeze Arrow</dt>
+            <dd>{{ chart.freezeArrow }}</dd>
+            <dt>Shock Arrow</dt>
+            <dd>{{ chart.shockArrow }}</dd>
+          </dl>
         </div>
         <div class="table-container">
           <table class="table">

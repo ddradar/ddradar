@@ -1,4 +1,4 @@
-import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
+import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import SongPage from '~/pages/songs/_id/_chart.vue'
@@ -7,7 +7,7 @@ import type { SongInfo } from '~/types/api/song'
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
-const songInfo: SongInfo = {
+const song: SongInfo = {
   id: '8Il6980di8P89lil1PDIqqIbiq1QO8lQ',
   name: 'MAKE IT BETTER',
   nameKana: 'MAKE IT BETTER',
@@ -112,34 +112,16 @@ const songInfo: SongInfo = {
 }
 
 describe('songs/:id/:chart', () => {
-  let wrapper: Wrapper<SongPage>
-  let vm: any
-
-  beforeEach(() => {
-    wrapper = shallowMount(SongPage, { localVue })
-    vm = wrapper.vm
-  })
-
   test('rendars correctly', () => {
     const wrapper = mount(SongPage, {
       localVue,
       data: () => {
         return {
-          name: songInfo.name,
-          artist: songInfo.artist,
-          series: songInfo.series,
-          minBPM: songInfo.minBPM,
-          maxBPM: songInfo.maxBPM,
-          charts: songInfo.charts,
+          song,
           chartIndex: 0,
         }
       },
     })
     expect(wrapper.element).toMatchSnapshot()
-  })
-
-  test('initialized default', () => {
-    expect(vm.charts).toHaveLength(0)
-    expect(vm.chartIndex).toBe(0)
   })
 })
