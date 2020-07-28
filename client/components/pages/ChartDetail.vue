@@ -8,22 +8,28 @@
             :loading="loading"
             :mobile-cards="false"
             :selected="userScore"
+            narrowed
+            striped
           >
             <template v-slot="props">
               <b-table-column field="name" label="Name">
-                <nuxt-link :to="`/users/${props.row.userId}`">
+                <nuxt-link
+                  v-if="!props.row.isArea"
+                  :to="`/users/${props.row.userId}`"
+                  class="is-size-7"
+                >
                   {{ props.row.userName }}
                 </nuxt-link>
+                <span v-else class="is-size-7">{{ props.row.userName }}</span>
               </b-table-column>
-              <b-table-column field="score" label="Score">
+              <b-table-column field="score" label="Score" numeric>
                 <score-badge
                   :lamp="props.row.clearLamp"
-                  :rank="props.row.rank"
                   :score="props.row.score"
                 />
               </b-table-column>
-              <b-table-column field="exScore" label="EX SCORE">
-                {{ props.row.exScore }}
+              <b-table-column field="exScore" label="EX" numeric>
+                <span class="is-size-7">{{ props.row.exScore }}</span>
               </b-table-column>
             </template>
 
@@ -94,6 +100,9 @@ import {
   SongInfo,
   StepChart,
 } from '~/types/api/song'
+import { areaList } from '~/types/api/user'
+
+type RankingScore = UserScore & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class ChartDetailComponent extends Vue {
@@ -107,7 +116,7 @@ export default class ChartDetailComponent extends Vue {
   readonly open!: boolean
 
   loading = true
-  scores: UserScore[] = []
+  scores: RankingScore[] = []
 
   get userScore() {
     return this.scores.find(s => s.userId === this.$accessor.user?.id)
@@ -115,7 +124,8 @@ export default class ChartDetailComponent extends Vue {
 
   get chartTitle() {
     const shortPlayStyle = getPlayStyleName(this.chart.playStyle)[0] + 'P' // 'SP' or 'DP'
-    return `${shortPlayStyle}-${getDifficultyName(this.chart.difficulty)}`
+    const difficulty = getDifficultyName(this.chart.difficulty)
+    return `${shortPlayStyle}-${difficulty} (${this.chart.level})`
   }
 
   get cardType() {
@@ -148,9 +158,15 @@ export default class ChartDetailComponent extends Vue {
     const difficulty = this.chart.difficulty
     const query = fetchAllData ? '?scope=full' : ''
     try {
-      this.scores = await this.$http.$get<UserScore[]>(
+      const scores = await this.$http.$get<UserScore[]>(
         `/api/v1/scores/${this.song.id}/${playStyle}/${difficulty}${query}`
       )
+      this.scores = scores.map(s => {
+        if (areaList[s.userId]) {
+          return { ...s, isArea: true, userName: areaList[s.userId] }
+        }
+        return s
+      })
     } catch {}
     this.loading = false
   }

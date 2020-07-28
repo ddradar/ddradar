@@ -35,14 +35,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="SP-BEGINNER"
+            aria-controls="SP-BEGINNER (3)"
             class="card-header is-beginner"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              SP-BEGINNER
+              SP-BEGINNER (3)
             </div>
              
             <a
@@ -64,7 +64,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           <div
             aria-expanded="true"
             class="collapse-content"
-            id="SP-BEGINNER"
+            id="SP-BEGINNER (3)"
           >
              
             <div
@@ -84,7 +84,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -296,14 +296,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="SP-BASIC"
+            aria-controls="SP-BASIC (7)"
             class="card-header is-basic"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              SP-BASIC
+              SP-BASIC (7)
             </div>
              
             <a
@@ -324,7 +324,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="SP-BASIC"
+            id="SP-BASIC (7)"
             style="display: none;"
           >
              
@@ -345,7 +345,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -557,14 +557,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="SP-DIFFICULT"
+            aria-controls="SP-DIFFICULT (9)"
             class="card-header is-difficult"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              SP-DIFFICULT
+              SP-DIFFICULT (9)
             </div>
              
             <a
@@ -585,7 +585,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="SP-DIFFICULT"
+            id="SP-DIFFICULT (9)"
             style="display: none;"
           >
              
@@ -606,7 +606,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -818,14 +818,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="SP-EXPERT"
+            aria-controls="SP-EXPERT (12)"
             class="card-header is-expert"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              SP-EXPERT
+              SP-EXPERT (12)
             </div>
              
             <a
@@ -846,7 +846,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="SP-EXPERT"
+            id="SP-EXPERT (12)"
             style="display: none;"
           >
              
@@ -867,7 +867,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -1084,14 +1084,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="DP-BASIC"
+            aria-controls="DP-BASIC (7)"
             class="card-header is-basic"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              DP-BASIC
+              DP-BASIC (7)
             </div>
              
             <a
@@ -1112,7 +1112,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="DP-BASIC"
+            id="DP-BASIC (7)"
             style="display: none;"
           >
              
@@ -1133,7 +1133,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -1345,14 +1345,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="DP-DIFFICULT"
+            aria-controls="DP-DIFFICULT (9)"
             class="card-header is-difficult"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              DP-DIFFICULT
+              DP-DIFFICULT (9)
             </div>
              
             <a
@@ -1373,7 +1373,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="DP-DIFFICULT"
+            id="DP-DIFFICULT (9)"
             style="display: none;"
           >
              
@@ -1394,7 +1394,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
@@ -1606,14 +1606,14 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
           class="collapse-trigger"
         >
           <header
-            aria-controls="DP-EXPERT"
+            aria-controls="DP-EXPERT (11)"
             class="card-header is-expert"
             role="button"
           >
             <div
               class="card-header-title"
             >
-              DP-EXPERT
+              DP-EXPERT (11)
             </div>
              
             <a
@@ -1634,7 +1634,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <div
             class="collapse-content"
-            id="DP-EXPERT"
+            id="DP-EXPERT (11)"
             style="display: none;"
           >
              
@@ -1655,7 +1655,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
                     class="table-wrapper"
                   >
                     <table
-                      class="table"
+                      class="table is-striped is-narrow"
                     >
                       <!---->
                        
