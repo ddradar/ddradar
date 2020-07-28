@@ -22,7 +22,7 @@
                 </nuxt-link>
                 <span v-else class="is-size-7">{{ props.row.userName }}</span>
               </b-table-column>
-              <b-table-column field="score" label="Score" numeric>
+              <b-table-column field="score" label="Score" centered>
                 <score-badge
                   :lamp="props.row.clearLamp"
                   :score="props.row.score"
@@ -48,17 +48,14 @@
         <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
       </footer>
     </card>
-    <card title="Chart Info" :type="cardType" collapsible>
+    <card title="Chart Info" type="is-light" collapsible>
       <div class="card-content">
         <div class="content">
-          <dl>
-            <dt>Notes</dt>
-            <dd>{{ chart.notes }}</dd>
-            <dt>Freeze Arrow</dt>
-            <dd>{{ chart.freezeArrow }}</dd>
-            <dt>Shock Arrow</dt>
-            <dd>{{ chart.shockArrow }}</dd>
-          </dl>
+          <ul>
+            <li><em>Notes</em>: {{ chart.notes }}</li>
+            <li><em>Freeze Arrow</em>: {{ chart.freezeArrow }}</li>
+            <li><em>Shock Arrow</em>: {{ chart.shockArrow }}</li>
+          </ul>
         </div>
         <div class="table-container">
           <table class="table">
@@ -163,7 +160,12 @@ export default class ChartDetailComponent extends Vue {
       )
       this.scores = scores.map(s => {
         if (areaList[s.userId]) {
-          return { ...s, isArea: true, userName: areaList[s.userId] }
+          return {
+            ...s,
+            isArea: true,
+            userName:
+              (s.userId === '0' ? '全国' : areaList[s.userId]) + 'トップ',
+          }
         }
         return s
       })

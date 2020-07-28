@@ -19,11 +19,11 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   <h2
     class="subtitle"
   >
-    119
+    BPM 119
   </h2>
    
   <div
-    class="content columns is-desktop is-multiline"
+    class="content columns is-tablet is-multiline"
   >
     <section
       class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
@@ -146,7 +146,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-beginner"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -183,31 +183,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 67
+                  </li>
                    
-                  <dd>
-                    67
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -407,7 +404,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-basic"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -444,31 +441,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 143
+                  </li>
                    
-                  <dd>
-                    143
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -668,7 +662,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-difficult"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -705,31 +699,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 188
+                  </li>
                    
-                  <dd>
-                    188
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -929,7 +920,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-expert"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -966,31 +957,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 212
+                  </li>
                    
-                  <dd>
-                    212
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -1072,7 +1060,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   </div>
    
   <div
-    class="content columns is-desktop is-multiline"
+    class="content columns is-tablet is-multiline"
   >
     <section
       class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
@@ -1195,7 +1183,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-basic"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -1232,31 +1220,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 130
+                  </li>
                    
-                  <dd>
-                    130
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -1456,7 +1441,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-difficult"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -1493,31 +1478,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 181
+                  </li>
                    
-                  <dd>
-                    181
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div
@@ -1717,7 +1699,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-expert"
+            class="card-header is-light"
             role="button"
           >
             <div
@@ -1754,31 +1736,28 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
               <div
                 class="content"
               >
-                <dl>
-                  <dt>
-                    Notes
-                  </dt>
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 220
+                  </li>
                    
-                  <dd>
-                    220
-                  </dd>
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
                    
-                  <dt>
-                    Freeze Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                   
-                  <dt>
-                    Shock Arrow
-                  </dt>
-                   
-                  <dd>
-                    0
-                  </dd>
-                </dl>
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
               </div>
                
               <div

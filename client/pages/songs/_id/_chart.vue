@@ -2,8 +2,8 @@
   <section v-if="song" class="section">
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
-    <h2 class="subtitle">{{ displayedBPM }}</h2>
-    <div class="content columns is-desktop is-multiline">
+    <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
+    <div class="content columns is-tablet is-multiline">
       <chart-detail
         v-for="(chart, i) in singleCharts"
         :key="i"
@@ -13,7 +13,7 @@
         :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>
-    <div class="content columns is-desktop is-multiline">
+    <div class="content columns is-tablet is-multiline">
       <chart-detail
         v-for="(chart, i) in doubleCharts"
         :key="i"
