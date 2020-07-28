@@ -23,10 +23,10 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   </h2>
    
   <div
-    class="content columns is-tablet is-multiline"
+    class="content columns is-mobile is-multiline"
   >
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -146,7 +146,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-beginner"
             role="button"
           >
             <div
@@ -284,7 +284,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -404,7 +404,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-basic"
             role="button"
           >
             <div
@@ -542,7 +542,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -662,7 +662,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-difficult"
             role="button"
           >
             <div
@@ -800,7 +800,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -920,7 +920,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-expert"
             role="button"
           >
             <div
@@ -1060,10 +1060,10 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   </div>
    
   <div
-    class="content columns is-tablet is-multiline"
+    class="content columns is-mobile is-multiline"
   >
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -1183,7 +1183,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-basic"
             role="button"
           >
             <div
@@ -1321,7 +1321,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -1441,7 +1441,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-difficult"
             role="button"
           >
             <div
@@ -1579,7 +1579,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
       </div>
     </section>
     <section
-      class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
     >
       <div
         class="collapse card"
@@ -1699,7 +1699,7 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
         >
           <header
             aria-controls="Chart Info"
-            class="card-header is-light"
+            class="card-header is-expert"
             role="button"
           >
             <div

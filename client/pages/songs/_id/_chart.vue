@@ -3,23 +3,23 @@
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
-    <div class="content columns is-tablet is-multiline">
+    <div class="content columns is-mobile is-multiline">
       <chart-detail
         v-for="(chart, i) in singleCharts"
         :key="i"
         :song="song"
         :chart="chart"
-        class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
         :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>
-    <div class="content columns is-tablet is-multiline">
+    <div class="content columns is-mobile is-multiline">
       <chart-detail
         v-for="(chart, i) in doubleCharts"
         :key="i"
         :song="song"
         :chart="chart"
-        class="column is-one-half-desktop is-one-third-widescreen is-one-quarter-fullhd"
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
         :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>

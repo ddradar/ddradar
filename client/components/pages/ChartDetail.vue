@@ -48,7 +48,7 @@
         <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
       </footer>
     </card>
-    <card title="Chart Info" type="is-light" collapsible>
+    <card title="Chart Info" :type="cardType" collapsible>
       <div class="card-content">
         <div class="content">
           <ul>
