@@ -120,25 +120,6 @@ export function setValidScoreFromChart(
     clearLamp: partialScore.clearLamp ?? 2, // set "Clear" default
   }
 
-  if (isFailed) {
-    result.clearLamp = 0
-    result.rank = 'E'
-  }
-
-  // Currently, 0 point can only be obtained by the following methods:
-  // 1. Failed
-  // 2. CHAOS [SP-BEGINNER] with CUT1 (= Assisted Clear)
-  // 3. ようこそジャパリパークへ [DP-CHALLENGE] with JUMP OFF (= Assisted Clear)
-  if (partialScore.score === 0) {
-    return {
-      ...result,
-      score: 0,
-      clearLamp: isFailed ? 0 : 1,
-      exScore: 0,
-      maxCombo: 0,
-    }
-  }
-
   if (isPFC()) {
     const dropCount = (1000000 - partialScore.score) / 10
     return {
@@ -177,6 +158,25 @@ export function setValidScoreFromChart(
       ...result,
       clearLamp: 4,
       maxCombo,
+    }
+  }
+
+  if (isFailed) {
+    result.clearLamp = 0
+    result.rank = 'E'
+  }
+
+  // Currently, 0 point can only be obtained by the following methods:
+  // 1. Failed
+  // 2. CHAOS [SP-BEGINNER] with CUT1 (= Assisted Clear)
+  // 3. ようこそジャパリパークへ [DP-CHALLENGE] with JUMP OFF (= Assisted Clear)
+  if (partialScore.score === 0) {
+    return {
+      ...result,
+      score: 0,
+      clearLamp: isFailed ? 0 : 1,
+      exScore: 0,
+      maxCombo: 0,
     }
   }
 
