@@ -19,7 +19,1823 @@ exports[`songs/:id/:chart rendars correctly 1`] = `
   <h2
     class="subtitle"
   >
-    119
+    BPM 119
   </h2>
+   
+  <div
+    class="content columns is-multiline"
+  >
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="SP-BEGINNER (3)"
+            class="card-header is-beginner"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              SP-BEGINNER (3)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-down mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            aria-expanded="true"
+            class="collapse-content"
+            id="SP-BEGINNER (3)"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-beginner"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 67
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        14
+                      </td>
+                       
+                      <td>
+                        14
+                      </td>
+                       
+                      <td>
+                        9
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="SP-BASIC (7)"
+            class="card-header is-basic"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              SP-BASIC (7)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="SP-BASIC (7)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-basic"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 143
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        31
+                      </td>
+                       
+                      <td>
+                        29
+                      </td>
+                       
+                      <td>
+                        47
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        3
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="SP-DIFFICULT (9)"
+            class="card-header is-difficult"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              SP-DIFFICULT (9)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="SP-DIFFICULT (9)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-difficult"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 188
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        41
+                      </td>
+                       
+                      <td>
+                        39
+                      </td>
+                       
+                      <td>
+                        27
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        13
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="SP-EXPERT (12)"
+            class="card-header is-expert"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              SP-EXPERT (12)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="SP-EXPERT (12)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-expert"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 212
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        46
+                      </td>
+                       
+                      <td>
+                        39
+                      </td>
+                       
+                      <td>
+                        54
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        19
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+  </div>
+   
+  <div
+    class="content columns is-multiline"
+  >
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="DP-BASIC (7)"
+            class="card-header is-basic"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              DP-BASIC (7)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="DP-BASIC (7)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-basic"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 130
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        28
+                      </td>
+                       
+                      <td>
+                        29
+                      </td>
+                       
+                      <td>
+                        61
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        1
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="DP-DIFFICULT (9)"
+            class="card-header is-difficult"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              DP-DIFFICULT (9)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="DP-DIFFICULT (9)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-difficult"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 181
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        40
+                      </td>
+                       
+                      <td>
+                        39
+                      </td>
+                       
+                      <td>
+                        30
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        11
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+    <section
+      class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+    >
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="DP-EXPERT (11)"
+            class="card-header is-expert"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              DP-EXPERT (11)
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="DP-EXPERT (11)"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="table-container"
+              >
+                <div
+                  class="b-table is-loading"
+                >
+                  <!---->
+                   
+                  <!---->
+                   
+                  <div
+                    class="table-wrapper"
+                  >
+                    <table
+                      class="table is-striped is-narrow"
+                    >
+                      <!---->
+                       
+                      <tbody>
+                        <tr
+                          class="is-empty"
+                        >
+                          <td
+                            colspan="0"
+                          >
+                            <section
+                              class="section"
+                            >
+                              <div
+                                class="content has-text-grey has-text-centered"
+                              >
+                                <p>
+                                  Nothing here.
+                                </p>
+                              </div>
+                            </section>
+                          </td>
+                        </tr>
+                      </tbody>
+                       
+                      <!---->
+                    </table>
+                  </div>
+                   
+                  <!---->
+                </div>
+              </div>
+            </div>
+             
+            <footer
+              class="card-footer"
+            >
+              <a
+                class="card-footer-item"
+              >
+                スコア編集
+              </a>
+               
+              <a
+                class="card-footer-item"
+              >
+                全件表示
+              </a>
+            </footer>
+          </div>
+        </transition-stub>
+      </div>
+       
+      <div
+        class="collapse card"
+      >
+        <div
+          class="collapse-trigger"
+        >
+          <header
+            aria-controls="Chart Info"
+            class="card-header is-expert"
+            role="button"
+          >
+            <div
+              class="card-header-title"
+            >
+              Chart Info
+            </div>
+             
+            <a
+              class="card-header-icon"
+            >
+              <span
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-menu-up mdi-24px"
+                />
+              </span>
+            </a>
+          </header>
+        </div>
+        <transition-stub
+          name="slide"
+        >
+          <div
+            class="collapse-content"
+            id="Chart Info"
+            style="display: none;"
+          >
+             
+            <div
+              class="card-content"
+            >
+              <div
+                class="content"
+              >
+                <ul>
+                  <li>
+                    <em>
+                      Notes
+                    </em>
+                    : 220
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Freeze Arrow
+                    </em>
+                    : 0
+                  </li>
+                   
+                  <li>
+                    <em>
+                      Shock Arrow
+                    </em>
+                    : 0
+                  </li>
+                </ul>
+              </div>
+               
+              <div
+                class="table-container"
+              >
+                <table
+                  class="table"
+                >
+                  <thead>
+                    <tr>
+                      <th>
+                        <abbr
+                          title="STREAM"
+                        >
+                          STR
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="VOLTAGE"
+                        >
+                          VOL
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        AIR
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="FREEZE"
+                        >
+                          FRE
+                        </abbr>
+                      </th>
+                       
+                      <th>
+                        <abbr
+                          title="CHAOS"
+                        >
+                          CHA
+                        </abbr>
+                      </th>
+                    </tr>
+                  </thead>
+                   
+                  <tbody>
+                    <tr>
+                      <td>
+                        48
+                      </td>
+                       
+                      <td>
+                        54
+                      </td>
+                       
+                      <td>
+                        27
+                      </td>
+                       
+                      <td>
+                        0
+                      </td>
+                       
+                      <td>
+                        41
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </transition-stub>
+      </div>
+    </section>
+  </div>
 </section>
 `;

@@ -1,22 +1,23 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head">
-      <h1 class="modal-card-title">Edit Score</h1>
+      <h1 class="modal-card-title">{{ songData.name }}</h1>
     </header>
     <section class="modal-card-body">
       <!-- Select chart -->
-      <template v-if="!selectedChart">
-        <b-field label="Select chart">
-          <b-select @input="onChartSelected">
-            <option v-for="chart in charts" :key="chart.label" :value="chart">
-              {{ chart.label }}
-            </option>
-          </b-select>
-        </b-field>
-      </template>
+      <h2 v-if="selectedChart" class="subtitle is-small">
+        {{ songData.name }}
+      </h2>
+      <b-field v-else label="Select chart">
+        <b-select :disabled="selectedChart" @input="onChartSelected">
+          <option v-for="c in charts" :key="c.label" :value="c">
+            {{ c.label }}
+          </option>
+        </b-select>
+      </b-field>
 
       <!-- Input score -->
-      <template v-else>
+      <template v-if="selectedChart">
         <b-loading :active.sync="isLoading" />
         <b-field grouped>
           <b-field label="Score">
@@ -140,6 +141,13 @@ export default class ScoreEditorComponent extends Vue {
         this.selectedChart.shockArrow) *
       3
     )
+  }
+
+  get chartName() {
+    if (!this.selectedChart) return null
+    const playStyle = getPlayStyleName(this.selectedChart.playStyle)
+    const difficulty = getDifficultyName(this.selectedChart.difficulty)
+    return `${playStyle}/${difficulty}`
   }
 
   get maxComboMax() {
