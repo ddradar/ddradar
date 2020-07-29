@@ -1,19 +1,16 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head">
-      <h1 class="modal-card-title">Edit Score</h1>
+      <h1 class="modal-card-title">{{ songData.name }}</h1>
     </header>
     <section class="modal-card-body">
-      <h2 class="subtitle is-small">{{ songData.name }}</h2>
       <!-- Select chart -->
-      <b-field label="Select chart">
+      <h2 v-if="selectedChart" class="subtitle is-small">
+        {{ songData.name }}
+      </h2>
+      <b-field v-else label="Select chart">
         <b-select :disabled="selectedChart" @input="onChartSelected">
-          <option
-            v-for="c in charts"
-            :key="c.label"
-            :value="c"
-            :selected="playStyle === c.playStyle && difficulty === c.difficulty"
-          >
+          <option v-for="c in charts" :key="c.label" :value="c">
             {{ c.label }}
           </option>
         </b-select>
