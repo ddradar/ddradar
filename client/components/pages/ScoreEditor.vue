@@ -2,6 +2,10 @@
   <div class="modal-card">
     <header class="modal-card-head">
       <h1 class="modal-card-title">Edit Score</h1>
+      <h2 class="modal-card-title is-small">{{ songData.name }}</h2>
+      <h2 v-if="selectedChart" class="modal-card-title is-small">
+        {{ chartName }}
+      </h2>
     </header>
     <section class="modal-card-body">
       <!-- Select chart -->
@@ -140,6 +144,13 @@ export default class ScoreEditorComponent extends Vue {
         this.selectedChart.shockArrow) *
       3
     )
+  }
+
+  get chartName() {
+    if (!this.selectedChart) return null
+    const playStyle = getPlayStyleName(this.selectedChart.playStyle)
+    const difficulty = getDifficultyName(this.selectedChart.difficulty)
+    return `${playStyle}/${difficulty}`
   }
 
   get maxComboMax() {
