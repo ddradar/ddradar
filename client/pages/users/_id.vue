@@ -9,6 +9,25 @@
 
       <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
       <b-skeleton v-else class="subtitle" animated />
+
+      <div v-if="isSelfPage" class="buttons">
+        <b-button
+          icon-left="import"
+          type="is-primary"
+          tag="nuxt-link"
+          to="/import"
+        >
+          スコアのインポート
+        </b-button>
+        <b-button
+          icon-left="account-cog"
+          type="is-info"
+          tag="nuxt-link"
+          to="/profile"
+        >
+          設定
+        </b-button>
+      </div>
     </template>
   </section>
 </template>
@@ -32,6 +51,11 @@ export default class UserDetailPage extends Vue {
     return this.user?.code
       ? String(this.user.code).replace(/^(\d{4})(\d{4})$/, '$1-$2')
       : ''
+  }
+
+  get isSelfPage() {
+    const loginId = this.$accessor.user?.id
+    return this.user && this.user.id === loginId
   }
 
   /** id expected [a-z], [0-9], [-], [_] */
