@@ -6,7 +6,7 @@
     <section class="modal-card-body">
       <!-- Select chart -->
       <h2 v-if="selectedChart" class="subtitle is-small">
-        {{ songData.name }}
+        {{ songData.chartName }}
       </h2>
       <b-field v-else label="Select chart">
         <b-select :disabled="selectedChart" @input="onChartSelected">
@@ -239,6 +239,8 @@ export default class ScoreEditorComponent extends Vue {
         hasIcon: true,
       })
     }
+    // @ts-ignore
+    this.$parent.close()
   }
 
   deleteScore() {
@@ -246,7 +248,11 @@ export default class ScoreEditorComponent extends Vue {
       message: 'スコアを削除しますか？',
       type: 'is-warning',
       hasIcon: true,
-      onConfirm: async () => await this.callDeleteAPI(),
+      onConfirm: async () => {
+        await this.callDeleteAPI()
+        // @ts-ignore
+        this.$parent.close()
+      },
     })
   }
 
