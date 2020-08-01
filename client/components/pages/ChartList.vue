@@ -19,14 +19,9 @@
         </nuxt-link>
       </b-table-column>
       <b-table-column field="difficulty" label="Difficulty">
-        <b-taglist attached>
-          <b-tag type="is-dark" size="is-medium">
-            {{ getPlayStyle(props.row.playStyle) }}
-          </b-tag>
-          <b-tag :type="getTagClass(props.row.difficulty)" size="is-medium">
-            {{ getDifficulty(props.row.difficulty) }}
-          </b-tag>
-        </b-taglist>
+        <b-tag :type="getTagClass(props.row.difficulty)">
+          {{ getDifficulty(props.row.difficulty) }}
+        </b-tag>
       </b-table-column>
       <b-table-column field="level" label="Lv" numeric>
         {{ props.row.level }}
@@ -63,7 +58,6 @@ import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import {
   ChartInfo,
   getDifficultyName,
-  getPlayStyleName,
   shortenSeriesName,
   SongInfo,
 } from '~/types/api/song'
@@ -78,10 +72,6 @@ export default class ChartListComponent extends Vue {
 
   shortenSeries(series: string) {
     return shortenSeriesName(series)
-  }
-
-  getPlayStyle(playStyle: number) {
-    return getPlayStyleName(playStyle)
   }
 
   getDifficulty(difficulty: number) {
