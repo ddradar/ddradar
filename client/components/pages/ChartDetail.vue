@@ -134,18 +134,20 @@ export default class ChartDetailComponent extends Vue {
   }
 
   launchScoreEditor() {
-    this.$buefy.modal.open({
-      parent: this,
-      component: ScoreEditor,
-      props: {
-        songId: this.song.id,
-        playStyle: this.chart.playStyle,
-        difficulty: this.chart.difficulty,
-        songData: this.song,
-      },
-      hasModalCard: true,
-      trapFocus: true,
-    })
+    this.$buefy.modal
+      .open({
+        parent: this,
+        component: ScoreEditor,
+        props: {
+          songId: this.song.id,
+          playStyle: this.chart.playStyle,
+          difficulty: this.chart.difficulty,
+          songData: this.song,
+        },
+        hasModalCard: true,
+        trapFocus: true,
+      })
+      .$on('close', async () => await this.fetchScores())
   }
 
   /** Call Get Chart Score API */
