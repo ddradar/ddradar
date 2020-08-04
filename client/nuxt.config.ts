@@ -24,7 +24,7 @@ const configuration: NuxtConfig = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/css/styles.scss'],
-  plugins: ['~/plugins/application-insights.ts'],
+  plugins: ['~/plugins/application-insights.client.ts'],
   buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
   modules: [['nuxt-buefy', { css: false }], '@nuxt/http', '@nuxtjs/pwa'],
   /** @nuxtjs/pwa settings */

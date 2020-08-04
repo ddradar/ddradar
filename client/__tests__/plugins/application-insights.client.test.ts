@@ -1,11 +1,11 @@
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
 import { mocked } from 'ts-jest/utils'
 
-import plugin from '~/plugins/application-insights'
+import plugin from '~/plugins/application-insights.client'
 
 jest.mock('@microsoft/applicationinsights-web')
 
-describe('plugins/application-insights.ts', () => {
+describe('plugins/application-insights.client.ts', () => {
   const $config = { instrumentationKey: 'APP_INSIGHTS_KEY' }
   const mockAppInsights = mocked(ApplicationInsights)
   mockAppInsights.mockImplementation(
