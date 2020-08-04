@@ -49,7 +49,7 @@ const configuration: NuxtConfig = {
   privateRuntimeConfig: {
     /** Application Insights Instrumentation Key */
     // eslint-disable-next-line no-process-env
-    instrumentationKey: process.env.APPLICATION_INSIGHTS_KEY,
+    instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
   },
   build: {
     transpile: [/typed-vuex/],

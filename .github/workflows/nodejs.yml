@@ -49,6 +49,8 @@ jobs:
       - name: Build
         if: matrix.os == 'ubuntu-latest'
         run: yarn build
+        env:
+          APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
       - name: Launch Cosmos DB Emulator (windows only)
         if: matrix.os == 'windows-latest'
         shell: pwsh
