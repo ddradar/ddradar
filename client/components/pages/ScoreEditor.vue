@@ -6,7 +6,7 @@
     <section class="modal-card-body">
       <!-- Select chart -->
       <h2 v-if="selectedChart" class="subtitle is-small">
-        {{ songData.chartName }}
+        {{ chartName }}
       </h2>
       <b-field v-else label="Select chart">
         <b-select :disabled="selectedChart" @input="onChartSelected">
