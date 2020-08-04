@@ -46,7 +46,7 @@ const configuration: NuxtConfig = {
       lang: 'ja',
     },
   },
-  privateRuntimeConfig: {
+  publicRuntimeConfig: {
     /** Application Insights Instrumentation Key */
     // eslint-disable-next-line no-process-env
     instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
