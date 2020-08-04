@@ -11,625 +11,443 @@ exports[`pages/index.vue renders correctly 1`] = `
     </div>
   </section>
   <section class="section">
-    <div class="content columns is-multiline">
-      <div class="collapse card column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
-        <div class="collapse-trigger">
-          <header role="button" aria-controls="曲名から探す" class="card-header is-primary">
-            <div class="card-header-title">曲名から探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
-          </header>
-        </div>
-        <transition-stub name="slide">
-          <div id="曲名から探す" class="collapse-content" style="display: none;">
-            <div class="card-content">
-              <div class="buttons">
-                <nuxt-link type="button" to="/name/0" class="button is-text">
-                  <!----> <span>
-              あ
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/1" class="button is-text">
-                  <!----> <span>
-              か
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/2" class="button is-text">
-                  <!----> <span>
-              さ
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/3" class="button is-text">
-                  <!----> <span>
-              た
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/4" class="button is-text">
-                  <!----> <span>
-              な
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/5" class="button is-text">
-                  <!----> <span>
-              は
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/6" class="button is-text">
-                  <!----> <span>
-              ま
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/7" class="button is-text">
-                  <!----> <span>
-              や
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/8" class="button is-text">
-                  <!----> <span>
-              ら
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/9" class="button is-text">
-                  <!----> <span>
-              わ
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/10" class="button is-text">
-                  <!----> <span>
-              A
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/11" class="button is-text">
-                  <!----> <span>
-              B
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/12" class="button is-text">
-                  <!----> <span>
-              C
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/13" class="button is-text">
-                  <!----> <span>
-              D
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/14" class="button is-text">
-                  <!----> <span>
-              E
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/15" class="button is-text">
-                  <!----> <span>
-              F
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/16" class="button is-text">
-                  <!----> <span>
-              G
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/17" class="button is-text">
-                  <!----> <span>
-              H
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/18" class="button is-text">
-                  <!----> <span>
-              I
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/19" class="button is-text">
-                  <!----> <span>
-              J
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/20" class="button is-text">
-                  <!----> <span>
-              K
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/21" class="button is-text">
-                  <!----> <span>
-              L
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/22" class="button is-text">
-                  <!----> <span>
-              M
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/23" class="button is-text">
-                  <!----> <span>
-              N
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/24" class="button is-text">
-                  <!----> <span>
-              O
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/25" class="button is-text">
-                  <!----> <span>
-              P
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/26" class="button is-text">
-                  <!----> <span>
-              Q
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/27" class="button is-text">
-                  <!----> <span>
-              R
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/28" class="button is-text">
-                  <!----> <span>
-              S
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/29" class="button is-text">
-                  <!----> <span>
-              T
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/30" class="button is-text">
-                  <!----> <span>
-              U
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/31" class="button is-text">
-                  <!----> <span>
-              V
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/32" class="button is-text">
-                  <!----> <span>
-              W
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/33" class="button is-text">
-                  <!----> <span>
-              X
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/34" class="button is-text">
-                  <!----> <span>
-              Y
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/35" class="button is-text">
-                  <!----> <span>
-              Z
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/name/36" class="button is-text">
-                  <!----> <span>
-              数字・記号
-            </span>
-                  <!---->
-                </nuxt-link>
+    <div class="columns is-multiline">
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="曲名から探す" class="card-header is-primary">
+              <div class="card-header-title">曲名から探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="曲名から探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                あ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                か
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                さ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                た
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                な
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                は
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                ま
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                や
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                ら
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                わ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                B
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                C
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                D
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                E
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                F
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                G
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                H
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                I
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                J
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                K
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                L
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                M
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                N
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                O
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                P
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Q
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                R
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                S
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                T
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                U
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                V
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                W
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Y
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Z
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                数字・記号
+              </span>
+                    <!----></a></div>
               </div>
             </div>
-          </div>
-        </transition-stub>
-      </div>
-      <div class="collapse card column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
-        <div class="collapse-trigger">
-          <header role="button" aria-controls="SINGLEのレベルから探す" class="card-header is-primary">
-            <div class="card-header-title">SINGLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
-          </header>
+          </transition-stub>
         </div>
-        <transition-stub name="slide">
-          <div id="SINGLEのレベルから探す" class="collapse-content" style="display: none;">
-            <div class="card-content">
-              <div class="buttons">
-                <nuxt-link type="button" to="/single/1" class="button is-text">
-                  <!----> <span>
-              1
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/2" class="button is-text">
-                  <!----> <span>
-              2
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/3" class="button is-text">
-                  <!----> <span>
-              3
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/4" class="button is-text">
-                  <!----> <span>
-              4
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/5" class="button is-text">
-                  <!----> <span>
-              5
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/6" class="button is-text">
-                  <!----> <span>
-              6
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/7" class="button is-text">
-                  <!----> <span>
-              7
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/8" class="button is-text">
-                  <!----> <span>
-              8
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/9" class="button is-text">
-                  <!----> <span>
-              9
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/10" class="button is-text">
-                  <!----> <span>
-              10
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/11" class="button is-text">
-                  <!----> <span>
-              11
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/12" class="button is-text">
-                  <!----> <span>
-              12
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/13" class="button is-text">
-                  <!----> <span>
-              13
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/14" class="button is-text">
-                  <!----> <span>
-              14
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/15" class="button is-text">
-                  <!----> <span>
-              15
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/16" class="button is-text">
-                  <!----> <span>
-              16
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/17" class="button is-text">
-                  <!----> <span>
-              17
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/18" class="button is-text">
-                  <!----> <span>
-              18
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/single/19" class="button is-text">
-                  <!----> <span>
-              19
-            </span>
-                  <!---->
-                </nuxt-link>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="SINGLEのレベルから探す" class="card-header is-primary">
+              <div class="card-header-title">SINGLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="SINGLEのレベルから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                1
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                6
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                7
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                8
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                9
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                10
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                11
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                12
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                13
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                14
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                15
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                16
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                17
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                18
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                19
+              </span>
+                    <!----></a></div>
               </div>
             </div>
-          </div>
-        </transition-stub>
-      </div>
-      <div class="collapse card column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
-        <div class="collapse-trigger">
-          <header role="button" aria-controls="DOUBLEのレベルから探す" class="card-header is-primary">
-            <div class="card-header-title">DOUBLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
-          </header>
+          </transition-stub>
         </div>
-        <transition-stub name="slide">
-          <div id="DOUBLEのレベルから探す" class="collapse-content" style="display: none;">
-            <div class="card-content">
-              <div class="buttons">
-                <nuxt-link type="button" to="/double/1" class="button is-text">
-                  <!----> <span>
-              1
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/2" class="button is-text">
-                  <!----> <span>
-              2
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/3" class="button is-text">
-                  <!----> <span>
-              3
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/4" class="button is-text">
-                  <!----> <span>
-              4
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/5" class="button is-text">
-                  <!----> <span>
-              5
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/6" class="button is-text">
-                  <!----> <span>
-              6
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/7" class="button is-text">
-                  <!----> <span>
-              7
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/8" class="button is-text">
-                  <!----> <span>
-              8
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/9" class="button is-text">
-                  <!----> <span>
-              9
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/10" class="button is-text">
-                  <!----> <span>
-              10
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/11" class="button is-text">
-                  <!----> <span>
-              11
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/12" class="button is-text">
-                  <!----> <span>
-              12
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/13" class="button is-text">
-                  <!----> <span>
-              13
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/14" class="button is-text">
-                  <!----> <span>
-              14
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/15" class="button is-text">
-                  <!----> <span>
-              15
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/16" class="button is-text">
-                  <!----> <span>
-              16
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/17" class="button is-text">
-                  <!----> <span>
-              17
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/18" class="button is-text">
-                  <!----> <span>
-              18
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/double/19" class="button is-text">
-                  <!----> <span>
-              19
-            </span>
-                  <!---->
-                </nuxt-link>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="DOUBLEのレベルから探す" class="card-header is-primary">
+              <div class="card-header-title">DOUBLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="DOUBLEのレベルから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                1
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                6
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                7
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                8
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                9
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                10
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                11
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                12
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                13
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                14
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                15
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                16
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                17
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                18
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                19
+              </span>
+                    <!----></a></div>
               </div>
             </div>
-          </div>
-        </transition-stub>
-      </div>
-      <div class="collapse card column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
-        <div class="collapse-trigger">
-          <header role="button" aria-controls="シリーズから探す" class="card-header is-primary">
-            <div class="card-header-title">シリーズから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
-          </header>
+          </transition-stub>
         </div>
-        <transition-stub name="slide">
-          <div id="シリーズから探す" class="collapse-content" style="display: none;">
-            <div class="card-content">
-              <div class="buttons">
-                <nuxt-link type="button" to="/series/17" class="button is-text">
-                  <!----> <span>
-              DanceDanceRevolution A20 PLUS
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/16" class="button is-text">
-                  <!----> <span>
-              DanceDanceRevolution A20
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/15" class="button is-text">
-                  <!----> <span>
-              DanceDanceRevolution A
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/14" class="button is-text">
-                  <!----> <span>
-              DanceDanceRevolution (2014)
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/13" class="button is-text">
-                  <!----> <span>
-              DanceDanceRevolution (2013)
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/12" class="button is-text">
-                  <!----> <span>
-              DDR X3 VS 2ndMIX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/11" class="button is-text">
-                  <!----> <span>
-              DDR X2
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/10" class="button is-text">
-                  <!----> <span>
-              DDR X
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/9" class="button is-text">
-                  <!----> <span>
-              DDR SuperNOVA2
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/8" class="button is-text">
-                  <!----> <span>
-              DDR SuperNOVA
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/7" class="button is-text">
-                  <!----> <span>
-              DDR EXTREME
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/6" class="button is-text">
-                  <!----> <span>
-              DDRMAX2
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/5" class="button is-text">
-                  <!----> <span>
-              DDRMAX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/4" class="button is-text">
-                  <!----> <span>
-              DDR 5thMIX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/3" class="button is-text">
-                  <!----> <span>
-              DDR 4thMIX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/2" class="button is-text">
-                  <!----> <span>
-              DDR 3rdMIX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/1" class="button is-text">
-                  <!----> <span>
-              DDR 2ndMIX
-            </span>
-                  <!---->
-                </nuxt-link>
-                <nuxt-link type="button" to="/series/0" class="button is-text">
-                  <!----> <span>
-              DDR 1st
-            </span>
-                  <!---->
-                </nuxt-link>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="シリーズから探す" class="card-header is-primary">
+              <div class="card-header-title">シリーズから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="シリーズから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                A20 PLUS
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A20
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2014
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2013
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X3 VS 2ndMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                SuperNOVA2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                SuperNOVA
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                EXTREME
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                DDRMAX2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                DDRMAX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5thMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4thMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3rdMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2ndMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                1st
+              </span>
+                    <!----></a></div>
               </div>
             </div>
-          </div>
-        </transition-stub>
-      </div>
+          </transition-stub>
+        </div>
+      </section>
     </div>
   </section>
 </div>
