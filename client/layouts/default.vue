@@ -89,7 +89,10 @@
       </template>
     </b-navbar>
 
-    <nuxt />
+    <div>
+      <b-loading :active.sync="isLoading" />
+      <nuxt />
+    </div>
 
     <footer class="footer">
       <div class="content has-text-centered">
@@ -114,8 +117,10 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { NameIndexList, SeriesList } from '~/types/api/song'
 
-@Component
+@Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
+  isLoading = true
+
   get isLoggedIn() {
     return !!this.$accessor.auth
   }
@@ -156,6 +161,13 @@ export default class DefaultLayout extends Vue {
 
   get nameIndexList() {
     return NameIndexList
+  }
+
+  async fetch() {
+    await this.$accessor.fetchUser()
+    if (this.$accessor.auth && !this.$accessor.user)
+      this.$router.push('/profile')
+    this.isLoading = false
   }
 }
 </script>

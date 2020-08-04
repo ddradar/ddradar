@@ -2,12 +2,6 @@
 
 exports[`pages/index.vue renders correctly 1`] = `
 <div>
-  <transition-stub name="fade">
-    <div class="loading-overlay is-active is-full-page">
-      <div class="loading-background"></div>
-      <div class="loading-icon"></div>
-    </div>
-  </transition-stub>
   <section class="hero">
     <div class="hero-body">
       <div class="container">
@@ -16,6 +10,445 @@ exports[`pages/index.vue renders correctly 1`] = `
       </div>
     </div>
   </section>
-  <section class="section"></section>
+  <section class="section">
+    <div class="columns is-multiline">
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="曲名から探す" class="card-header is-primary">
+              <div class="card-header-title">曲名から探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="曲名から探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                あ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                か
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                さ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                た
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                な
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                は
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                ま
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                や
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                ら
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                わ
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                B
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                C
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                D
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                E
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                F
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                G
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                H
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                I
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                J
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                K
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                L
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                M
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                N
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                O
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                P
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Q
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                R
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                S
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                T
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                U
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                V
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                W
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Y
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                Z
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                数字・記号
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="SINGLEのレベルから探す" class="card-header is-primary">
+              <div class="card-header-title">SINGLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="SINGLEのレベルから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                1
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                6
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                7
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                8
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                9
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                10
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                11
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                12
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                13
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                14
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                15
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                16
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                17
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                18
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                19
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="DOUBLEのレベルから探す" class="card-header is-primary">
+              <div class="card-header-title">DOUBLEのレベルから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="DOUBLEのレベルから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                1
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                6
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                7
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                8
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                9
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                10
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                11
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                12
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                13
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                14
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                15
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                16
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                17
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                18
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                19
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="シリーズから探す" class="card-header is-primary">
+              <div class="card-header-title">シリーズから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="シリーズから探す" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                A20 PLUS
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A20
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                A
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2014
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2013
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X3 VS 2ndMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                X
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                SuperNOVA2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                SuperNOVA
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                EXTREME
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                DDRMAX2
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                DDRMAX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                5thMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                4thMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                3rdMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                2ndMIX
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                1st
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+    </div>
+  </section>
 </div>
 `;
