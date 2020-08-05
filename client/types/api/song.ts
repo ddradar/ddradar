@@ -1,5 +1,7 @@
-// Port from /api/db/songs.ts
-
+/**
+ * Object type returned by `/api/v1/songs/{:songId}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/getSongInfo/README.md
+ */
 export type SongInfo = {
   /**
    * Song id that depend on official site.
@@ -63,6 +65,17 @@ export type StepChart = {
   chaos: number
 }
 
+/**
+ * Object type returned by `/api/v1/songs/name/{:name}` and `/api/v1/songs/series/{:series}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/searchSongByName/README.md
+ * @see https://github.com/ddradar/ddradar/blob/master/api/searchSongBySeries/README.md
+ */
+export type SongListData = Omit<SongInfo, 'charts'>
+
+/**
+ * Object type returned by `/api/v1/charts/{:playStyle}/{:level}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/searchCharts/README.md
+ */
 export type ChartInfo = Pick<SongInfo, 'id' | 'name' | 'series'> &
   Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>
 
@@ -126,3 +139,23 @@ export const NameIndexList: string[] = [
   'Z',
   '数字・記号',
 ]
+
+export function shortenSeriesName(series: string) {
+  return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
+}
+
+export function getPlayStyleName(
+  playStyle: number
+): 'SINGLE' | 'DOUBLE' | 'UNKNOWN' {
+  return (['SINGLE', 'DOUBLE'] as const)[playStyle - 1] ?? 'UNKNOWN'
+}
+
+export function getDifficultyName(
+  difficulty: number
+): 'BEGINNER' | 'BASIC' | 'DIFFICULT' | 'EXPERT' | 'CHALLENGE' | 'UNKNOWN' {
+  return (
+    (['BEGINNER', 'BASIC', 'DIFFICULT', 'EXPERT', 'CHALLENGE'] as const)[
+      difficulty
+    ] ?? 'UNKNOWN'
+  )
+}

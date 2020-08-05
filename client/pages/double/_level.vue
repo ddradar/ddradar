@@ -1,38 +1,7 @@
 <template>
   <section class="section">
     <h1 class="title">{{ title }}</h1>
-    <b-table
-      :data="charts"
-      striped
-      :loading="$fetchState.pending"
-      :mobile-cards="false"
-      paginated
-      per-page="50"
-    >
-      <template slot-scope="props">
-        <b-table-column field="series" label="Series">
-          {{ shortSeriesName(props.row.series) }}
-        </b-table-column>
-        <b-table-column field="name" label="Name">
-          <nuxt-link
-            :to="`/songs/${props.row.id}/${props.row.playStyle}${props.row.difficulty}`"
-          >
-            {{ props.row.name }}
-          </nuxt-link>
-        </b-table-column>
-        <b-table-column field="difficulty" label="Difficulty">
-          {{ getDifficultyName(props.row.difficulty) }}
-        </b-table-column>
-      </template>
-
-      <template slot="empty">
-        <section class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>Nothing here.</p>
-          </div>
-        </section>
-      </template>
-    </b-table>
+    <chart-list :charts="charts" :loading="$fetchState.pending" />
   </section>
 </template>
 
@@ -40,9 +9,10 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import ChartList from '~/components/pages/ChartList.vue'
 import { ChartInfo } from '~/types/api/song'
 
-@Component({ fetchOnServer: false })
+@Component({ fetchOnServer: false, components: { ChartList } })
 export default class DoubleLevelPage extends Vue {
   /** Chart list */
   charts: ChartInfo[] = []
@@ -63,24 +33,6 @@ export default class DoubleLevelPage extends Vue {
   /** Page title */
   get title() {
     return `DOUBLE ${this.$route.params.level}`
-  }
-
-  shortSeriesName(series: string) {
-    return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
-  }
-
-  getDifficultyName(difficulty: number) {
-    return difficulty === 0
-      ? 'BEGINNER'
-      : difficulty === 1
-      ? 'BASIC'
-      : difficulty === 2
-      ? 'DIFFICULT'
-      : difficulty === 3
-      ? 'EXPERT'
-      : difficulty === 4
-      ? 'CHALLENGE'
-      : '???'
   }
 }
 </script>

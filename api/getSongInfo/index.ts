@@ -23,7 +23,8 @@ export default async function (
         'SELECT c.id, c.name, c.nameKana, c.nameIndex, ' +
         'c.artist, c.series, c.minBPM, c.maxBPM, c.charts ' +
         'FROM c ' +
-        'WHERE c.id = @id',
+        'WHERE c.id = @id ' +
+        'AND c.nameIndex != -1 AND c.nameIndex != -2',
       parameters: [{ name: '@id', value: id }],
     })
     .fetchAll()

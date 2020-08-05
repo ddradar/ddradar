@@ -6,7 +6,7 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               1
             </a><a class="navbar-item">
@@ -47,7 +47,7 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
               19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               1
             </a><a class="navbar-item">
@@ -88,7 +88,46 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
               19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
+          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
+              DanceDanceRevolution A20 PLUS
+            </a><a class="navbar-item">
+              DanceDanceRevolution A20
+            </a><a class="navbar-item">
+              DanceDanceRevolution A
+            </a><a class="navbar-item">
+              DanceDanceRevolution (2014)
+            </a><a class="navbar-item">
+              DanceDanceRevolution (2013)
+            </a><a class="navbar-item">
+              DDR X3 VS 2ndMIX
+            </a><a class="navbar-item">
+              DDR X2
+            </a><a class="navbar-item">
+              DDR X
+            </a><a class="navbar-item">
+              DDR SuperNOVA2
+            </a><a class="navbar-item">
+              DDR SuperNOVA
+            </a><a class="navbar-item">
+              DDR EXTREME
+            </a><a class="navbar-item">
+              DDRMAX2
+            </a><a class="navbar-item">
+              DDRMAX
+            </a><a class="navbar-item">
+              DDR 5thMIX
+            </a><a class="navbar-item">
+              DDR 4thMIX
+            </a><a class="navbar-item">
+              DDR 3rdMIX
+            </a><a class="navbar-item">
+              DDR 2ndMIX
+            </a><a class="navbar-item">
+              DDR 1st
+            </a></div>
+        </div>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
                 <!----> <span>
@@ -241,45 +280,6 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
                 <!----></a></div>
           </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
-          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              DDR 1st
-            </a><a class="navbar-item">
-              DDR 2ndMIX
-            </a><a class="navbar-item">
-              DDR 3rdMIX
-            </a><a class="navbar-item">
-              DDR 4thMIX
-            </a><a class="navbar-item">
-              DDR 5thMIX
-            </a><a class="navbar-item">
-              DDRMAX
-            </a><a class="navbar-item">
-              DDRMAX2
-            </a><a class="navbar-item">
-              DDR EXTREME
-            </a><a class="navbar-item">
-              DDR SuperNOVA
-            </a><a class="navbar-item">
-              DDR SuperNOVA2
-            </a><a class="navbar-item">
-              DDR X
-            </a><a class="navbar-item">
-              DDR X2
-            </a><a class="navbar-item">
-              DDR X3 VS 2ndMIX
-            </a><a class="navbar-item">
-              DanceDanceRevolution (2013)
-            </a><a class="navbar-item">
-              DanceDanceRevolution (2014)
-            </a><a class="navbar-item">
-              DanceDanceRevolution A
-            </a><a class="navbar-item">
-              DanceDanceRevolution A20
-            </a><a class="navbar-item">
-              DanceDanceRevolution A20 PLUS
-            </a></div>
-        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
@@ -298,7 +298,15 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
       </div>
     </div>
   </nav>
-  <nuxt-stub></nuxt-stub>
+  <div>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active is-full-page">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
+    <nuxt-stub></nuxt-stub>
+  </div>
   <footer class="footer">
     <div class="content has-text-centered">
       <p>
@@ -323,7 +331,7 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               1
             </a><a class="navbar-item">
@@ -364,7 +372,7 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
               19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               1
             </a><a class="navbar-item">
@@ -405,7 +413,46 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
               19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
+          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
+              DanceDanceRevolution A20 PLUS
+            </a><a class="navbar-item">
+              DanceDanceRevolution A20
+            </a><a class="navbar-item">
+              DanceDanceRevolution A
+            </a><a class="navbar-item">
+              DanceDanceRevolution (2014)
+            </a><a class="navbar-item">
+              DanceDanceRevolution (2013)
+            </a><a class="navbar-item">
+              DDR X3 VS 2ndMIX
+            </a><a class="navbar-item">
+              DDR X2
+            </a><a class="navbar-item">
+              DDR X
+            </a><a class="navbar-item">
+              DDR SuperNOVA2
+            </a><a class="navbar-item">
+              DDR SuperNOVA
+            </a><a class="navbar-item">
+              DDR EXTREME
+            </a><a class="navbar-item">
+              DDRMAX2
+            </a><a class="navbar-item">
+              DDRMAX
+            </a><a class="navbar-item">
+              DDR 5thMIX
+            </a><a class="navbar-item">
+              DDR 4thMIX
+            </a><a class="navbar-item">
+              DDR 3rdMIX
+            </a><a class="navbar-item">
+              DDR 2ndMIX
+            </a><a class="navbar-item">
+              DDR 1st
+            </a></div>
+        </div>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
                 <!----> <span>
@@ -558,52 +605,13 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
                 <!----></a></div>
           </div>
         </div>
-        <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
-          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              DDR 1st
-            </a><a class="navbar-item">
-              DDR 2ndMIX
-            </a><a class="navbar-item">
-              DDR 3rdMIX
-            </a><a class="navbar-item">
-              DDR 4thMIX
-            </a><a class="navbar-item">
-              DDR 5thMIX
-            </a><a class="navbar-item">
-              DDRMAX
-            </a><a class="navbar-item">
-              DDRMAX2
-            </a><a class="navbar-item">
-              DDR EXTREME
-            </a><a class="navbar-item">
-              DDR SuperNOVA
-            </a><a class="navbar-item">
-              DDR SuperNOVA2
-            </a><a class="navbar-item">
-              DDR X
-            </a><a class="navbar-item">
-              DDR X2
-            </a><a class="navbar-item">
-              DDR X3 VS 2ndMIX
-            </a><a class="navbar-item">
-              DanceDanceRevolution (2013)
-            </a><a class="navbar-item">
-              DanceDanceRevolution (2014)
-            </a><a class="navbar-item">
-              DanceDanceRevolution A
-            </a><a class="navbar-item">
-              DanceDanceRevolution A20
-            </a><a class="navbar-item">
-              DanceDanceRevolution A20 PLUS
-            </a></div>
-        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
-              設定
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span> <span>
+              マイページ
             </span>
                   <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
                   <!----> <span>
@@ -616,7 +624,15 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
       </div>
     </div>
   </nav>
-  <nuxt-stub></nuxt-stub>
+  <div>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active is-full-page">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
+    <nuxt-stub></nuxt-stub>
+  </div>
   <footer class="footer">
     <div class="content has-text-centered">
       <p>

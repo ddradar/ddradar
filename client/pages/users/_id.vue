@@ -9,6 +9,25 @@
 
       <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
       <b-skeleton v-else class="subtitle" animated />
+
+      <div v-if="isSelfPage" class="buttons">
+        <b-button
+          icon-left="import"
+          type="is-primary"
+          tag="nuxt-link"
+          to="/import"
+        >
+          スコアのインポート
+        </b-button>
+        <b-button
+          icon-left="account-cog"
+          type="is-info"
+          tag="nuxt-link"
+          to="/profile"
+        >
+          設定
+        </b-button>
+      </div>
     </template>
   </section>
 </template>
@@ -17,13 +36,11 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, User } from '~/types/api/user'
-
-type UserInfo = Omit<User, 'isPublic'>
+import { areaList, UserListData } from '~/types/api/user'
 
 @Component({ fetchOnServer: false })
 export default class UserDetailPage extends Vue {
-  user: UserInfo | null
+  user: UserListData | null
   loading = true
 
   get areaName() {
@@ -36,6 +53,11 @@ export default class UserDetailPage extends Vue {
       : ''
   }
 
+  get isSelfPage() {
+    const loginId = this.$accessor.user?.id
+    return this.user && this.user.id === loginId
+  }
+
   /** id expected [a-z], [0-9], [-], [_] */
   validate({ params }: Pick<Context, 'params'>) {
     return /^[-a-z0-9_]+$/.test(params.id)
@@ -45,7 +67,7 @@ export default class UserDetailPage extends Vue {
   async fetch() {
     const id = this.$route.params.id
     try {
-      const user = await this.$http.$get<UserInfo>(`/api/v1/users/${id}`)
+      const user = await this.$http.$get<UserListData>(`/api/v1/users/${id}`)
       this.user = user
     } catch {
       this.user = null

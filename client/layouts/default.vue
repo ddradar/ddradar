@@ -1,35 +1,37 @@
 <template>
   <div>
     <b-navbar type="is-primary">
-      <template slot="brand">
+      <template v-slot:brand>
         <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img src="~assets/logo.svg" alt="DDRadar Logo" />
           <b>DDRadar</b>
         </b-navbar-item>
       </template>
 
-      <template slot="start">
-        <b-navbar-dropdown label="SINGLEのレベルから探す" hoverable collapsible>
+      <template v-slot:start>
+        <b-navbar-dropdown
+          v-for="m in menuList"
+          :key="m.label"
+          class="is-hidden-touch"
+          :label="m.label"
+          hoverable
+          collapsible
+        >
           <b-navbar-item
-            v-for="level in levelList"
-            :key="level"
+            v-for="i in m.items"
+            :key="i.name"
             tag="nuxt-link"
-            :to="`/single/${level}`"
+            :to="i.to"
           >
-            {{ level }}
+            {{ i.name }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-dropdown label="DOUBLEのレベルから探す" hoverable collapsible>
-          <b-navbar-item
-            v-for="level in levelList"
-            :key="level"
-            tag="nuxt-link"
-            :to="`/double/${level}`"
-          >
-            {{ level }}
-          </b-navbar-item>
-        </b-navbar-dropdown>
-        <b-navbar-dropdown label="曲名から探す" hoverable collapsible>
+        <b-navbar-dropdown
+          class="is-hidden-touch"
+          label="曲名から探す"
+          hoverable
+          collapsible
+        >
           <b-navbar-item tag="div" class="buttons are-small">
             <b-button
               v-for="(label, i) in nameIndexList"
@@ -42,29 +44,19 @@
             </b-button>
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-dropdown label="シリーズから探す" hoverable collapsible>
-          <b-navbar-item
-            v-for="(label, i) in seriesList"
-            :key="label"
-            tag="nuxt-link"
-            :to="`/series/${i}`"
-          >
-            {{ label }}
-          </b-navbar-item>
-        </b-navbar-dropdown>
       </template>
 
-      <template slot="end">
+      <template v-slot:end>
         <b-navbar-dropdown v-if="isLoggedIn" :label="name" hoverable right>
           <b-navbar-item tag="div">
             <div class="buttons">
               <b-button
-                icon-left="account-cog"
+                icon-left="account"
                 type="is-info"
                 tag="nuxt-link"
-                to="/profile"
+                :to="userPage"
               >
-                設定
+                マイページ
               </b-button>
               <b-button type="is-warning" tag="a" href="/.auth/logout">
                 ログアウト
@@ -97,7 +89,10 @@
       </template>
     </b-navbar>
 
-    <nuxt />
+    <div>
+      <b-loading :active.sync="isLoading" />
+      <nuxt />
+    </div>
 
     <footer class="footer">
       <div class="content has-text-centered">
@@ -122,11 +117,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { NameIndexList, SeriesList } from '~/types/api/song'
 
-@Component
+@Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
-  nameIndexList = NameIndexList
-  seriesList = SeriesList
-  levelList = [...Array(19).keys()].map(n => n + 1)
+  isLoading = true
 
   get isLoggedIn() {
     return !!this.$accessor.auth
@@ -134,6 +127,47 @@ export default class DefaultLayout extends Vue {
 
   get name() {
     return this.$accessor.user?.name
+  }
+
+  get userPage() {
+    return `/users/${this.$accessor.user?.id}`
+  }
+
+  get menuList() {
+    return [
+      {
+        label: 'SINGLEのレベルから探す',
+        items: [...Array(19).keys()].map(i => ({
+          name: `${i + 1}`,
+          to: `/single/${i + 1}`,
+        })),
+      },
+      {
+        label: 'DOUBLEのレベルから探す',
+        items: [...Array(19).keys()].map(i => ({
+          name: `${i + 1}`,
+          to: `/double/${i + 1}`,
+        })),
+      },
+      {
+        label: 'シリーズから探す',
+        items: SeriesList.map((name, i) => ({
+          name,
+          to: `/series/${i}`,
+        })).reverse(),
+      },
+    ]
+  }
+
+  get nameIndexList() {
+    return NameIndexList
+  }
+
+  async fetch() {
+    await this.$accessor.fetchUser()
+    if (this.$accessor.auth && !this.$accessor.user)
+      this.$router.push('/profile')
+    this.isLoading = false
   }
 }
 </script>

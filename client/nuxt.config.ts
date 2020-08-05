@@ -1,9 +1,9 @@
-import { Configuration } from '@nuxt/types'
+import type { NuxtConfig } from '@nuxt/types'
 
 const title = 'DDRadar'
 const description = 'DDR Score Tracker'
 
-const configuration: Configuration = {
+const configuration: NuxtConfig = {
   mode: 'universal',
   target: 'static',
   head: {
@@ -24,9 +24,10 @@ const configuration: Configuration = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/css/styles.scss'],
-  plugins: [],
+  plugins: ['~/plugins/application-insights.client.ts'],
   buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
   modules: [['nuxt-buefy', { css: false }], '@nuxt/http', '@nuxtjs/pwa'],
+  /** @nuxtjs/pwa settings */
   pwa: {
     manifest: {
       name: title,
@@ -44,6 +45,11 @@ const configuration: Configuration = {
       theme_color: '#ff8c00',
       lang: 'ja',
     },
+  },
+  publicRuntimeConfig: {
+    /** Application Insights Instrumentation Key */
+    // eslint-disable-next-line no-process-env
+    instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
   },
   build: {
     transpile: [/typed-vuex/],

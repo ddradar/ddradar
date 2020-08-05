@@ -2,7 +2,7 @@ import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { SongSchema } from '../db'
+import type { CourseSchema, SongSchema } from '../db'
 import searchCharts from '.'
 
 describe('GET /api/v1/charts', () => {
@@ -223,10 +223,288 @@ describe('GET /api/v1/charts', () => {
           ],
         },
       ]
+      const course: CourseSchema = {
+        id: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+        name: 'FIRST',
+        nameKana: 'FIRST',
+        nameIndex: -1,
+        series: 'DanceDanceRevolution A20',
+        minBPM: 119,
+        maxBPM: 180,
+        charts: [
+          {
+            playStyle: 1,
+            difficulty: 0,
+            level: 4,
+            notes: 401,
+            freezeArrow: 8,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 1,
+                difficulty: 0,
+                level: 2,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 1,
+                difficulty: 0,
+                level: 3,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 1,
+                difficulty: 0,
+                level: 3,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 1,
+                difficulty: 0,
+                level: 4,
+              },
+            ],
+          },
+          {
+            playStyle: 1,
+            difficulty: 1,
+            level: 8,
+            notes: 730,
+            freezeArrow: 4,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 1,
+                difficulty: 1,
+                level: 4,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 1,
+                difficulty: 1,
+                level: 7,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 1,
+                difficulty: 1,
+                level: 8,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 1,
+                difficulty: 1,
+                level: 8,
+              },
+            ],
+          },
+          {
+            playStyle: 1,
+            difficulty: 2,
+            level: 9,
+            notes: 918,
+            freezeArrow: 18,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 1,
+                difficulty: 2,
+                level: 6,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 1,
+                difficulty: 2,
+                level: 9,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 1,
+                difficulty: 2,
+                level: 9,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 1,
+                difficulty: 2,
+                level: 9,
+              },
+            ],
+          },
+          {
+            playStyle: 1,
+            difficulty: 3,
+            level: 12,
+            notes: 1091,
+            freezeArrow: 21,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 1,
+                difficulty: 3,
+                level: 10,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 1,
+                difficulty: 3,
+                level: 12,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 1,
+                difficulty: 3,
+                level: 10,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 1,
+                difficulty: 3,
+                level: 11,
+              },
+            ],
+          },
+          {
+            playStyle: 2,
+            difficulty: 1,
+            level: 9,
+            notes: 733,
+            freezeArrow: 3,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 2,
+                difficulty: 1,
+                level: 4,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 2,
+                difficulty: 1,
+                level: 7,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 2,
+                difficulty: 1,
+                level: 9,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 2,
+                difficulty: 1,
+                level: 8,
+              },
+            ],
+          },
+          {
+            playStyle: 2,
+            difficulty: 2,
+            level: 13,
+            notes: 951,
+            freezeArrow: 8,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 2,
+                difficulty: 2,
+                level: 6,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 2,
+                difficulty: 2,
+                level: 9,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 2,
+                difficulty: 2,
+                level: 10,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 2,
+                difficulty: 2,
+                level: 13,
+              },
+            ],
+          },
+          {
+            playStyle: 2,
+            difficulty: 3,
+            level: 11,
+            notes: 1176,
+            freezeArrow: 15,
+            shockArrow: 0,
+            order: [
+              {
+                songId: 'lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI',
+                songName: 'HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)',
+                playStyle: 2,
+                difficulty: 3,
+                level: 10,
+              },
+              {
+                songId: 'b1do8OI6qDDlQO0PI16868ql6bdbI886',
+                songName: 'MAKE IT BETTER',
+                playStyle: 2,
+                difficulty: 3,
+                level: 11,
+              },
+              {
+                songId: 'Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi',
+                songName: 'TRIP MACHINE',
+                playStyle: 2,
+                difficulty: 3,
+                level: 10,
+              },
+              {
+                songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+                songName: 'PARANOiA',
+                playStyle: 2,
+                difficulty: 3,
+                level: 11,
+              },
+            ],
+          },
+        ],
+      }
 
       beforeAll(async () => {
         const container = getContainer('Songs')
         await Promise.all(songs.map(s => container.items.create(s)))
+        await container.items.create(course)
       })
 
       test('/1/1 returns "404 Not Found"', async () => {
@@ -316,6 +594,7 @@ describe('GET /api/v1/charts', () => {
         await Promise.all(
           songs.map(s => container.item(s.id, s.nameIndex).delete())
         )
+        await container.item(course.id, course.nameIndex).delete()
       })
     }
   )

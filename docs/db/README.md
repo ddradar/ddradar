@@ -11,7 +11,6 @@ For technical details, please see [Cosmos DB documents](https://docs.microsoft.c
 
 /DDRadar
 
-- [/Courses](./courses.md)
 - [/Scores](./scores.md)
 - [/Songs](./songs.md)
 - [/Users](./users.md)
