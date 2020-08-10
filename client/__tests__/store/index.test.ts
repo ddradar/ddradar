@@ -1,6 +1,6 @@
-import { ClientPrincipal } from '~/api/auth'
+import type { ClientPrincipal } from '~/api/auth'
+import type { User } from '~/api/user'
 import { actions, getters, mutations, RootState, state } from '~/store'
-import type { User } from '~/types/api/user'
 
 const auth: ClientPrincipal = {
   identityProvider: 'github',

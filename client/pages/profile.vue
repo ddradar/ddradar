@@ -90,7 +90,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AreaCode, areaList, User } from '../types/api/user'
+import { AreaCode, areaList, existsUser, User } from '~/api/user'
 
 @Component({ fetchOnServer: false })
 export default class ProfilePage extends Vue implements User {
@@ -154,9 +154,7 @@ export default class ProfilePage extends Vue implements User {
 
     // Duplicate check from API
     this.loading = true
-    const { exists } = await this.$http.$get<{ exists: boolean }>(
-      `/api/v1/users/exists/${this.id}`
-    )
+    const exists = await existsUser(this.$http, this.id)
     this.loading = false
 
     if (exists) {

@@ -36,7 +36,7 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, UserListData } from '~/types/api/user'
+import { areaList, getUserInfo, UserListData } from '~/api/user'
 
 @Component({ fetchOnServer: false })
 export default class UserDetailPage extends Vue {
@@ -67,7 +67,7 @@ export default class UserDetailPage extends Vue {
   async fetch() {
     const id = this.$route.params.id
     try {
-      const user = await this.$http.$get<UserListData>(`/api/v1/users/${id}`)
+      const user = await getUserInfo(this.$http, id)
       this.user = user
     } catch {
       this.user = null

@@ -87,6 +87,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+import { areaList } from '~/api/user'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
@@ -97,7 +98,6 @@ import {
   SongInfo,
   StepChart,
 } from '~/types/api/song'
-import { areaList } from '~/types/api/user'
 
 type RankingScore = UserScore & { isArea?: true }
 
