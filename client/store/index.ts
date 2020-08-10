@@ -1,6 +1,6 @@
 import { actionTree, getAccessorType, mutationTree } from 'typed-vuex'
 
-import { AuthResult, ClientPrincipal } from '~/types/api/auth'
+import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
 import { User } from '~/types/api/user'
 
 export type RootState = {
@@ -30,7 +30,7 @@ export const actions = actionTree(
   { state, getters, mutations },
   {
     async fetchUser({ commit }) {
-      const { clientPrincipal } = await this.$http.$get<AuthResult>('/.auth/me')
+      const clientPrincipal = await getClientPrincipal(this.$http)
       commit('setAuth', clientPrincipal)
 
       if (!clientPrincipal) {

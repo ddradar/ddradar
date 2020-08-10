@@ -1,9 +1,11 @@
+import type { NuxtHTTPInstance } from '@nuxt/http'
+
 // Port from /api/auth.ts
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
 /** User information provided by Azure */
-type ClientPrincipal = {
+export type ClientPrincipal = {
   /** The name of the identity provider. */
   identityProvider: 'github' | 'twitter'
   /** An Azure Static Web Apps-specific unique identifier for the user. */
@@ -14,7 +16,11 @@ type ClientPrincipal = {
   userRoles: Role[]
 }
 
-/** Object type returned by `/.auth/me` */
-export type AuthResult = {
+type AuthResult = {
   clientPrincipal: ClientPrincipal | null
+}
+
+export async function getClientPrincipal($http: NuxtHTTPInstance) {
+  const { clientPrincipal } = await $http.$get<AuthResult>('/.auth/me')
+  return clientPrincipal
 }

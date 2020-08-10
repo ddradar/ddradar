@@ -1,5 +1,5 @@
+import { ClientPrincipal } from '~/api/auth'
 import { actions, getters, mutations, RootState, state } from '~/store'
-import type { ClientPrincipal } from '~/types/api/auth'
 import type { User } from '~/types/api/user'
 
 const auth: ClientPrincipal = {
