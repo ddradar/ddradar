@@ -1,7 +1,7 @@
 import { actionTree, getAccessorType, mutationTree } from 'typed-vuex'
 
-import { AuthResult, ClientPrincipal } from '~/types/api/auth'
-import { User } from '~/types/api/user'
+import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
+import { getCurrentUser, postUserInfo, User } from '~/api/user'
 
 export type RootState = {
   auth: ClientPrincipal | null
@@ -30,7 +30,7 @@ export const actions = actionTree(
   { state, getters, mutations },
   {
     async fetchUser({ commit }) {
-      const { clientPrincipal } = await this.$http.$get<AuthResult>('/.auth/me')
+      const clientPrincipal = await getClientPrincipal(this.$http)
       commit('setAuth', clientPrincipal)
 
       if (!clientPrincipal) {
@@ -40,7 +40,7 @@ export const actions = actionTree(
       }
 
       try {
-        const user = await this.$http.$get<User>('/api/v1/user')
+        const user = await getCurrentUser(this.$http)
         commit('setUser', user)
       } catch {
         commit('setUser', null)
@@ -51,7 +51,7 @@ export const actions = actionTree(
       commit('setUser', null)
     },
     async saveUser({ commit }, user: User) {
-      const response = await this.$http.$post<User>('/api/v1/user', user)
+      const response = await postUserInfo(this.$http, user)
       commit('setUser', response)
     },
   }

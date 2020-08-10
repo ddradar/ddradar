@@ -13,4 +13,12 @@ module.exports = {
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
   snapshotSerializers: ['jest-serializer-vue'],
+  collectCoverage: true,
+  collectCoverageFrom: [
+    '**/*.ts',
+    '!<rootDir>/*.config.ts',
+    '!**/*.d.ts',
+    '!**/node_modules/**',
+    '!**/__tests__/**',
+  ],
 }

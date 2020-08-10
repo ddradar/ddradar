@@ -20,7 +20,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { ClearLamp, clearLampList } from '~/types/api/score'
+import { ClearLamp, clearLampList } from '~/api/score'
 
 @Component
 export default class ScoreBadgeComponent extends Vue {

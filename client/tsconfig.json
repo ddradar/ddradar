@@ -6,6 +6,7 @@
     "lib": ["esnext", "esnext.asynciterable", "dom"],
     "esModuleInterop": true,
     "noEmit": true,
+    "strict": true,
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "baseUrl": ".",

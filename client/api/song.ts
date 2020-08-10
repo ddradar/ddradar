@@ -1,3 +1,7 @@
+import type { NuxtHTTPInstance } from '@nuxt/http'
+
+import { apiPrefix } from '~/api'
+
 /**
  * Object type returned by `/api/v1/songs/{:songId}`
  * @see https://github.com/ddradar/ddradar/blob/master/api/getSongInfo/README.md
@@ -158,4 +162,46 @@ export function getDifficultyName(
       difficulty
     ] ?? 'UNKNOWN'
   )
+}
+
+/**
+ * Call "Get Song Information" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getSongInfo
+ */
+export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
+  return $http.$get<SongInfo>(`${apiPrefix}/songs/${id}`)
+}
+
+/**
+ * Call "Search Song by Name" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/searchSongByName
+ */
+export function searchSongByName(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  nameIndex: number
+) {
+  return $http.$get<SongListData[]>(`${apiPrefix}/songs/name/${nameIndex}`)
+}
+
+/**
+ * Call "Search Song by Series" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/searchSongBySeries
+ */
+export function searchSongBySeries(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  series: number
+) {
+  return $http.$get<SongListData[]>(`${apiPrefix}/songs/series/${series}`)
+}
+
+/**
+ * Call "Search Charts" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/searchCharts
+ */
+export function searchCharts(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  playStyle: 1 | 2,
+  level: number
+) {
+  return $http.$get<ChartInfo[]>(`${apiPrefix}/charts/${playStyle}/${level}`)
 }

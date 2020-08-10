@@ -1,3 +1,7 @@
+import type { NuxtHTTPInstance } from '@nuxt/http'
+
+import { apiPrefix } from '~/api'
+
 /**
  * Object type returned by `/api/v1/user`
  * @see https://github.com/ddradar/ddradar/blob/master/api/getCurrentUser/README.md
@@ -156,4 +160,63 @@ export const areaList: Record<AreaCode, string> = {
   '116': 'ポルトガル',
   '117': 'インドネシア',
   '118': 'フィリピン',
+}
+
+/**
+ * Call "User Exists" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/existsUser
+ */
+export async function existsUser(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  id: string
+) {
+  type ExistsUserResult = Pick<User, 'id'> & { exists: boolean }
+  const { exists } = await $http.$get<ExistsUserResult>(
+    `${apiPrefix}/user/exists/${id}`
+  )
+  return exists
+}
+
+/**
+ * Call "Get Current User Data" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getCurrentUser
+ */
+export function getCurrentUser($http: Pick<NuxtHTTPInstance, '$get'>) {
+  return $http.$get<User>(`${apiPrefix}/user`)
+}
+
+/**
+ * Call "Get User List" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getUserList
+ */
+export function getUserList(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  name?: string,
+  area?: AreaCode,
+  code?: number
+) {
+  const searchParams = new URLSearchParams()
+  if (name) searchParams.append('name', name)
+  if (area) searchParams.append('area', `${area}`)
+  if (code) searchParams.append('code', `${code}`)
+  return $http.$get<UserListData[]>(`${apiPrefix}/users`, { searchParams })
+}
+
+/**
+ * Call "Get User Information" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getUserInfo
+ */
+export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
+  return $http.$get<UserListData>(`${apiPrefix}/users/${id}`)
+}
+
+/**
+ * Call "Post User Information" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/postUserInfo
+ */
+export function postUserInfo(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  user: User
+) {
+  return $http.$post<User>(`${apiPrefix}/user`, user)
 }

@@ -1,6 +1,15 @@
-import { getDanceLevel, Score, setValidScoreFromChart } from '~/types/api/score'
+import {
+  deleteChartScore,
+  getChartScore,
+  getDanceLevel,
+  importEagateScoreList,
+  postChartScore,
+  Score,
+  setValidScoreFromChart,
+  UserScore,
+} from '~/api/score'
 
-describe('./types/api/score.ts', () => {
+describe('./api/score.ts', () => {
   describe('getDanceLevel', () => {
     test.each([
       [0, 'D'],
@@ -200,5 +209,108 @@ describe('./types/api/score.ts', () => {
         expect(actual).toStrictEqual(expected)
       }
     )
+  })
+  describe('getChartScore', () => {
+    const $http = { $get: jest.fn<Promise<any>, [string]>() }
+    const scores: UserScore[] = []
+    $http.$get.mockResolvedValue(scores)
+    test.each([
+      [
+        '00000000000000000000000000000000',
+        1,
+        0,
+        undefined,
+        '/api/v1/scores/00000000000000000000000000000000/1/0',
+      ] as const,
+      [
+        '00000000000000000000000000000000',
+        2,
+        1,
+        'full',
+        '/api/v1/scores/00000000000000000000000000000000/2/1?scope=full',
+      ] as const,
+    ])(
+      '($http, %s, %i, %i, %p) calls GET "%s"',
+      async (songId, playStyle, difficulty, scope, uri) => {
+        // Arrange
+        $http.$get.mockClear()
+
+        // Act
+        const result = await getChartScore(
+          $http,
+          songId,
+          playStyle,
+          difficulty,
+          scope
+        )
+
+        // Assert
+        expect(result).toBe(scores)
+        expect($http.$get.mock.calls).toHaveLength(1)
+        expect($http.$get.mock.calls[0][0]).toBe(uri)
+      }
+    )
+  })
+  describe('postChartScore', () => {
+    const songId = '00000000000000000000000000000000'
+    const playStyle = 1
+    const difficulty = 0
+    test(`($http, "${songId}", ${playStyle}, ${difficulty}, score) calls POST "/api/v1/scores/${songId}/${playStyle}/${difficulty}"`, async () => {
+      // Arrange
+      const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
+      const score: Score = {
+        clearLamp: 7,
+        rank: 'AAA',
+        score: 999800,
+      }
+
+      // Act
+      await postChartScore($http, songId, playStyle, difficulty, score)
+
+      // Assert
+      expect($http.$post.mock.calls).toHaveLength(1)
+      expect($http.$post.mock.calls[0][0]).toBe(
+        '/api/v1/scores/00000000000000000000000000000000/1/0'
+      )
+      expect($http.$post.mock.calls[0][1]).toBe(score)
+    })
+  })
+  describe('deleteChartScore', () => {
+    const songId = '00000000000000000000000000000000'
+    const playStyle = 2
+    const difficulty = 1
+    test(`($http, "${songId}", ${playStyle}, ${difficulty}) calls DELETE "/api/v1/scores/${songId}/${playStyle}/${difficulty}"`, async () => {
+      // Arrange
+      const $http = { delete: jest.fn<any, [string]>() }
+
+      // Act
+      await deleteChartScore($http, songId, playStyle, difficulty)
+
+      // Assert
+      expect($http.delete.mock.calls).toHaveLength(1)
+      expect($http.delete.mock.calls[0][0]).toBe(
+        '/api/v1/scores/00000000000000000000000000000000/2/1'
+      )
+    })
+  })
+  describe('importEagateScoreList', () => {
+    test('calls POST "/api/v1/scores"', async () => {
+      // Arrange
+      const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
+      const result = { count: 3 }
+      $http.$post.mockResolvedValue(result)
+      const body = '<html></html>'
+
+      // Act
+      await importEagateScoreList($http, body)
+
+      // Assert
+      expect($http.$post.mock.calls).toHaveLength(1)
+      expect($http.$post.mock.calls[0][0]).toBe('/api/v1/scores')
+      expect($http.$post.mock.calls[0][1]).toStrictEqual({
+        type: 'eagate_music_data',
+        body,
+      })
+    })
   })
 })

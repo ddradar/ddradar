@@ -73,7 +73,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AreaCode, areaList, UserListData } from '~/types/api/user'
+import { AreaCode, areaList, getUserList, UserListData } from '~/api/user'
 
 @Component
 export default class UserListPage extends Vue {
@@ -99,14 +99,12 @@ export default class UserListPage extends Vue {
   async search() {
     this.loading = true
     try {
-      const searchParams = new URLSearchParams()
-      if (this.name) searchParams.append('name', this.name)
-      if (this.area) searchParams.append('area', `${this.area}`)
-      if (this.code) searchParams.append('code', `${this.code}`)
-      const users = await this.$http.$get<UserListData[]>('/api/v1/users', {
-        searchParams,
-      })
-      this.users = users
+      this.users = await getUserList(
+        this.$http,
+        this.name,
+        this.area,
+        this.code ?? 0
+      )
     } catch (error) {
       this.$buefy.notification.open({
         message: error.message ?? error,

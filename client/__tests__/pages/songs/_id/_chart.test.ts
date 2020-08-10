@@ -1,8 +1,8 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { SongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/_chart.vue'
-import type { SongInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

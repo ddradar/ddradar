@@ -94,30 +94,32 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import {
   ClearLamp,
+  deleteChartScore,
+  getChartScore,
   getDanceLevel,
+  postChartScore,
   setValidScoreFromChart,
-  UserScore,
-} from '~/types/api/score'
+} from '~/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
   SongInfo,
   StepChart,
-} from '~/types/api/song'
+} from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
   @Prop({ required: true, type: String })
-  readonly songId: string
+  readonly songId!: string
 
   @Prop({ required: false, type: Number, default: null })
-  readonly playStyle: 1 | 2 | null
+  readonly playStyle!: 1 | 2 | null
 
   @Prop({ required: false, type: Number, default: null })
-  readonly difficulty: 0 | 1 | 2 | 3 | 4 | null
+  readonly difficulty!: 0 | 1 | 2 | 3 | 4 | null
 
   @Prop({ required: true, type: Object })
-  readonly songData: SongInfo
+  readonly songData!: SongInfo
 
   score = 0
   exScore = 0
@@ -180,13 +182,15 @@ export default class ScoreEditorComponent extends Vue {
     playStyle,
     difficulty,
   }: Pick<StepChart, 'playStyle' | 'difficulty'>) {
-    this.selectedChart = this.songData.charts.find(
-      c => c.playStyle === playStyle && c.difficulty === difficulty
-    )
+    this.selectedChart =
+      this.songData.charts.find(
+        c => c.playStyle === playStyle && c.difficulty === difficulty
+      ) ?? null
     await this.fetchScore()
   }
 
   calcScore() {
+    if (!this.selectedChart) return
     try {
       const score = setValidScoreFromChart(this.selectedChart, {
         score: this.score,
@@ -196,8 +200,8 @@ export default class ScoreEditorComponent extends Vue {
         rank: this.isFailed ? 'E' : undefined,
       })
       this.score = score.score
-      this.exScore = score.exScore
-      this.maxCombo = score.maxCombo
+      this.exScore = score.exScore ?? this.exScore
+      this.maxCombo = score.maxCombo ?? this.maxCombo
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
     } catch {
@@ -215,16 +219,13 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      await this.$http.$post(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`,
-        {
-          score: this.score,
-          exScore: this.exScore,
-          maxCombo: this.maxCombo,
-          clearLamp: this.clearLamp,
-          rank: this.rank,
-        }
-      )
+      await postChartScore(this.$http, this.songId, playStyle, difficulty, {
+        score: this.score,
+        exScore: this.exScore,
+        maxCombo: this.maxCombo,
+        clearLamp: this.clearLamp,
+        rank: this.rank,
+      })
       this.$buefy.notification.open({
         message: 'Success!',
         type: 'is-success',
@@ -262,13 +263,17 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      const scores = await this.$http.$get<UserScore[]>(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}?scope=private`
+      const scores = await getChartScore(
+        this.$http,
+        this.songId,
+        playStyle,
+        difficulty,
+        'private'
       )
       this.score = scores[0].score
-      this.exScore = scores[0].exScore
+      this.exScore = scores[0].exScore ?? this.exScore
       this.clearLamp = scores[0].clearLamp
-      this.maxCombo = scores[0].maxCombo
+      this.maxCombo = scores[0].maxCombo ?? this.maxCombo
       this.isFailed = scores[0].rank === 'E'
     } catch (error) {
       this.isLoading = false
@@ -290,9 +295,7 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      await this.$http.delete(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`
-      )
+      await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
       this.$buefy.notification.open({
         message: 'Success!',
         type: 'is-success',

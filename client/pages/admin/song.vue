@@ -186,7 +186,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { SeriesList, SongInfo, StepChart } from '~/types/api/song'
+import { getSongInfo, SeriesList, SongInfo, StepChart } from '~/api/song'
 
 @Component
 export default class SongEditorPage extends Vue implements SongInfo {
@@ -339,10 +339,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
   async loadSongInfo() {
     if (!this.isValidSongId) return
     try {
-      const songInfo = await this.$http.$get<SongInfo>(
-        `/api/v1/songs/${this.id}`
-      )
-
+      const songInfo = await getSongInfo(this.$http, this.id)
       this.name = songInfo.name
       this.nameKana = songInfo.nameKana
       this.artist = songInfo.artist

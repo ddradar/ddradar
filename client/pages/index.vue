@@ -39,8 +39,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
 import Card from '~/components/shared/Card.vue'
-import { NameIndexList, SeriesList, shortenSeriesName } from '~/types/api/song'
 
 @Component({ components: { Card } })
 export default class IndexPage extends Vue {

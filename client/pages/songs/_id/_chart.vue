@@ -30,8 +30,8 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { getSongInfo, SongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/ChartDetail.vue'
-import { SongInfo } from '~/types/api/song'
 
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
@@ -62,7 +62,7 @@ export default class SongDetailPage extends Vue {
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
     // Get song info from API
-    const song = await $http.$get<SongInfo>(`/api/v1/songs/${params.id}`)
+    const song = await getSongInfo($http, params.id)
 
     // Set chartIndex
     if (params.chart) {

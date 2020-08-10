@@ -87,17 +87,17 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import ScoreBadge from '~/components/pages/ScoreBadge.vue'
-import ScoreEditor from '~/components/pages/ScoreEditor.vue'
-import Card from '~/components/shared/Card.vue'
-import { UserScore } from '~/types/api/score'
+import { getChartScore, UserScore } from '~/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
   SongInfo,
   StepChart,
-} from '~/types/api/song'
-import { areaList } from '~/types/api/user'
+} from '~/api/song'
+import { AreaCode, areaList } from '~/api/user'
+import ScoreBadge from '~/components/pages/ScoreBadge.vue'
+import ScoreEditor from '~/components/pages/ScoreEditor.vue'
+import Card from '~/components/shared/Card.vue'
 
 type RankingScore = UserScore & { isArea?: true }
 
@@ -153,20 +153,21 @@ export default class ChartDetailComponent extends Vue {
   /** Call Get Chart Score API */
   async fetchScores(fetchAllData: boolean = false) {
     this.loading = true
-    const playStyle = this.chart.playStyle
-    const difficulty = this.chart.difficulty
-    const query = fetchAllData ? '?scope=full' : ''
     try {
-      const scores = await this.$http.$get<UserScore[]>(
-        `/api/v1/scores/${this.song.id}/${playStyle}/${difficulty}${query}`
+      const scores = await getChartScore(
+        this.$http,
+        this.song.id,
+        this.chart.playStyle,
+        this.chart.difficulty,
+        fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
-        if (areaList[s.userId]) {
+        const id = parseInt(s.userId, 10) as AreaCode
+        if (!isNaN(id) && areaList[id]) {
           return {
             ...s,
             isArea: true,
-            userName:
-              (s.userId === '0' ? '全国' : areaList[s.userId]) + 'トップ',
+            userName: (s.userId === '0' ? '全国' : areaList[id]) + 'トップ',
           }
         }
         return s
