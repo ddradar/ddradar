@@ -98,7 +98,7 @@ describe('/series/_seriesIndex.vue', () => {
         const ctx = ({ params: { seriesIndex } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(false)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
       }
     )
     test.each(['0', '1', '9', '10', '16'])(
@@ -116,7 +116,7 @@ describe('/series/_seriesIndex.vue', () => {
         const ctx = ({ params: { seriesIndex } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(true)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
       }
     )
   })

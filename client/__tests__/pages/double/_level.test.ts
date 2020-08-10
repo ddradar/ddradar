@@ -107,7 +107,7 @@ describe('/double/_level.vue', () => {
         const ctx = ({ params: { level } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(false)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
       }
     )
     test.each(['1', '9', '19', '20'])('/double/%s returns true', level => {
@@ -123,7 +123,7 @@ describe('/double/_level.vue', () => {
       const ctx = ({ params: { level } } as unknown) as Context
 
       // Act - Assert
-      expect(wrapper.vm.$options.validate(ctx)).toBe(true)
+      expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
     })
   })
   describe('fetch()', () => {

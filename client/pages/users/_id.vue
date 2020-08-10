@@ -40,7 +40,7 @@ import { areaList, getUserInfo, UserListData } from '~/api/user'
 
 @Component({ fetchOnServer: false })
 export default class UserDetailPage extends Vue {
-  user: UserListData | null
+  user: UserListData | null = null
   loading = true
 
   get areaName() {

@@ -3,20 +3,18 @@
     <section class="hero is-warning">
       <div class="hero-body">
         <div class="container">
-          <h1 v-if="error.statusCode === 404" class="title">
+          <h1 v-if="statusCode === 404" class="title">
             <b-icon icon="alert" />
             ページが見つかりません
           </h1>
-          <h1 v-else class="title">
-            エラーが発生しました: {{ error.statusCode }}
-          </h1>
-          <h2 class="subtitle">{{ error.path }}</h2>
+          <h1 v-else class="title">エラーが発生しました: {{ statusCode }}</h1>
+          <h2 class="subtitle">{{ path }}</h2>
         </div>
       </div>
     </section>
     <section class="section">
       <div class="container content">
-        <blockquote>{{ error.message }}</blockquote>
+        <blockquote>{{ message }}</blockquote>
       </div>
     </section>
     <section class="section">
@@ -49,6 +47,18 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 @Component({ layout: 'empty' })
 export default class ErrorPage extends Vue {
   @Prop({ type: Object, default: null })
-  error: NuxtError | null
+  readonly error!: NuxtError | null
+
+  get statusCode() {
+    return this.error ? this.error.statusCode : 500
+  }
+
+  get path() {
+    return this.error ? this.error.path : ''
+  }
+
+  get message() {
+    return this.error ? this.error.message : ''
+  }
 }
 </script>

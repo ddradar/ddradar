@@ -231,7 +231,7 @@ export function setValidScoreFromChart(
 
   function isMiss1() {
     return (
-      partialScore.clearLamp < 4 && // Not selected Full combo
+      (partialScore.clearLamp ?? 2) < 4 && // Not selected Full combo
       (partialScore.score! > floorScore(1000000 - baseScore * 2 + great) || // Score is greater than Great:1, Miss:1
         partialScore.maxCombo === maxCombo) // [Note]: This is NOT Full Combo. (ex. missed last Freeze Arrow)
     )

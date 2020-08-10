@@ -87,17 +87,17 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+import { getChartScore, UserScore } from '~/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
   SongInfo,
   StepChart,
 } from '~/api/song'
-import { areaList } from '~/api/user'
+import { AreaCode, areaList } from '~/api/user'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
-import { UserScore, getChartScore } from '~/api/score'
 
 type RankingScore = UserScore & { isArea?: true }
 
@@ -162,12 +162,12 @@ export default class ChartDetailComponent extends Vue {
         fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
-        if (areaList[s.userId]) {
+        const id = parseInt(s.userId, 10) as AreaCode
+        if (!isNaN(id) && areaList[id]) {
           return {
             ...s,
             isArea: true,
-            userName:
-              (s.userId === '0' ? '全国' : areaList[s.userId]) + 'トップ',
+            userName: (s.userId === '0' ? '全国' : areaList[id]) + 'トップ',
           }
         }
         return s

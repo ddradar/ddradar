@@ -103,7 +103,7 @@ export default class UserListPage extends Vue {
         this.$http,
         this.name,
         this.area,
-        this.code
+        this.code ?? 0
       )
     } catch (error) {
       this.$buefy.notification.open({

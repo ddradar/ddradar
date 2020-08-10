@@ -188,7 +188,7 @@ describe('/name/_nameIndex.vue', () => {
         const ctx = ({ params: { nameIndex } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(false)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
       }
     )
     test.each(['0', '1', '9', '10', '36'])(
@@ -206,7 +206,7 @@ describe('/name/_nameIndex.vue', () => {
         const ctx = ({ params: { nameIndex } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(true)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
       }
     )
   })
