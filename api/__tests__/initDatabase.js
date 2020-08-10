@@ -57,4 +57,22 @@ module.exports = async () => {
     id: 'Users',
     partitionKey: { paths: ['/id'] },
   })
+  await database.containers.createIfNotExists({
+    id: 'Notification',
+    partitionKey: { paths: ['/sender'] },
+    indexingPolicy: {
+      compositeIndexes: [
+        [
+          {
+            path: '/pinned',
+            order: 'ascending',
+          },
+          {
+            path: '/_ts',
+            order: 'descending',
+          },
+        ],
+      ],
+    },
+  })
 }
