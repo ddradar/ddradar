@@ -1,6 +1,6 @@
-import { getDanceLevel, Score, setValidScoreFromChart } from '~/types/api/score'
+import { getDanceLevel, Score, setValidScoreFromChart } from '~/api/score'
 
-describe('./types/api/score.ts', () => {
+describe('./api/score.ts', () => {
   describe('getDanceLevel', () => {
     test.each([
       [0, 'D'],

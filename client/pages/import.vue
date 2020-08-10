@@ -29,6 +29,8 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { importEagateScoreList } from '~/api/score'
+
 @Component
 export default class ImportPage extends Vue {
   /**
@@ -44,10 +46,7 @@ export default class ImportPage extends Vue {
   async importEageteScores() {
     this.loading = true
     try {
-      const res = await this.$http.$post<{ count: number }>('api/v1/scores', {
-        type: 'eagate_music_data',
-        body: this.sourceCode,
-      })
+      const res = await importEagateScoreList(this.$http, this.sourceCode)
       this.$buefy.notification.open({
         message: `${res.count}件のスコアを登録しました`,
         type: 'is-success',

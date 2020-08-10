@@ -70,7 +70,7 @@ describe('pages/import.vue', () => {
       await wrapper.vm.importEageteScores()
 
       // Assert
-      expect($http.$post).lastCalledWith('api/v1/scores', {
+      expect($http.$post).lastCalledWith('/api/v1/scores', {
         type: 'eagate_music_data',
         body: '<html></html>',
       })

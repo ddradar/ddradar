@@ -93,17 +93,19 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import {
+  ClearLamp,
+  deleteChartScore,
+  getChartScore,
+  getDanceLevel,
+  postChartScore,
+  setValidScoreFromChart,
+} from '~/api/score'
+import {
   getDifficultyName,
   getPlayStyleName,
   SongInfo,
   StepChart,
 } from '~/api/song'
-import {
-  ClearLamp,
-  getDanceLevel,
-  setValidScoreFromChart,
-  UserScore,
-} from '~/types/api/score'
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
@@ -215,16 +217,13 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      await this.$http.$post(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`,
-        {
-          score: this.score,
-          exScore: this.exScore,
-          maxCombo: this.maxCombo,
-          clearLamp: this.clearLamp,
-          rank: this.rank,
-        }
-      )
+      await postChartScore(this.$http, this.songId, playStyle, difficulty, {
+        score: this.score,
+        exScore: this.exScore,
+        maxCombo: this.maxCombo,
+        clearLamp: this.clearLamp,
+        rank: this.rank,
+      })
       this.$buefy.notification.open({
         message: 'Success!',
         type: 'is-success',
@@ -262,8 +261,12 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      const scores = await this.$http.$get<UserScore[]>(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}?scope=private`
+      const scores = await getChartScore(
+        this.$http,
+        this.songId,
+        playStyle,
+        difficulty,
+        'private'
       )
       this.score = scores[0].score
       this.exScore = scores[0].exScore
@@ -290,9 +293,7 @@ export default class ScoreEditorComponent extends Vue {
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
     try {
-      await this.$http.delete(
-        `/api/v1/scores/${this.songId}/${playStyle}/${difficulty}`
-      )
+      await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
       this.$buefy.notification.open({
         message: 'Success!',
         type: 'is-success',

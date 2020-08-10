@@ -1,3 +1,6 @@
+import type { NuxtHTTPInstance } from '@nuxt/http'
+
+import { apiPrefix } from '~/api'
 import { StepChart } from '~/api/song'
 
 /**
@@ -324,4 +327,65 @@ export function setValidScoreFromChart(
   function floorScore(rawScore: number) {
     return Math.floor(rawScore / 10) * 10
   }
+}
+
+/**
+ * Call "Get Chart Score" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getChartScore
+ */
+export function getChartScore(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: 0 | 1 | 2 | 3 | 4,
+  scope?: 'private' | 'medium' | 'full'
+) {
+  const query = scope ? `?scope=${scope}` : ''
+  return $http.$get<UserScore[]>(
+    `${apiPrefix}/scores/${songId}/${playStyle}/${difficulty}${query}`
+  )
+}
+
+/**
+ * Call "Get Chart Score" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getChartScore
+ */
+export function postChartScore(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: 0 | 1 | 2 | 3 | 4,
+  score: Score
+) {
+  return $http.$post(
+    `${apiPrefix}/scores/${songId}/${playStyle}/${difficulty}`,
+    score
+  )
+}
+
+/**
+ * Call "Delete Chart Score" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/deleteChartScore
+ */
+export function deleteChartScore(
+  $http: Pick<NuxtHTTPInstance, 'delete'>,
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: 0 | 1 | 2 | 3 | 4
+) {
+  return $http.delete(`/api/v1/scores/${songId}/${playStyle}/${difficulty}`)
+}
+
+/**
+ * Call "Import Scores from e-amusement GATE" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/deleteChartScore
+ */
+export function importEagateScoreList(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  sourceCode: string
+) {
+  return $http.$post<{ count: number }>(`${apiPrefix}/scores`, {
+    type: 'eagate_music_data',
+    body: sourceCode,
+  })
 }

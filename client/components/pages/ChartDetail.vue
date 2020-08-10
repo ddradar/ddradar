@@ -97,7 +97,7 @@ import { areaList } from '~/api/user'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
-import { UserScore } from '~/types/api/score'
+import { UserScore, getChartScore } from '~/api/score'
 
 type RankingScore = UserScore & { isArea?: true }
 
@@ -153,12 +153,13 @@ export default class ChartDetailComponent extends Vue {
   /** Call Get Chart Score API */
   async fetchScores(fetchAllData: boolean = false) {
     this.loading = true
-    const playStyle = this.chart.playStyle
-    const difficulty = this.chart.difficulty
-    const query = fetchAllData ? '?scope=full' : ''
     try {
-      const scores = await this.$http.$get<UserScore[]>(
-        `/api/v1/scores/${this.song.id}/${playStyle}/${difficulty}${query}`
+      const scores = await getChartScore(
+        this.$http,
+        this.song.id,
+        this.chart.playStyle,
+        this.chart.difficulty,
+        fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
         if (areaList[s.userId]) {
