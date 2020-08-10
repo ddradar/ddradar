@@ -7,8 +7,8 @@ import {
 } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { ChartInfo } from '~/api/song'
 import DoubleLevelPage from '~/pages/double/_level.vue'
-import type { ChartInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

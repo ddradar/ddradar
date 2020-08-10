@@ -2,9 +2,9 @@ import {
   getDifficultyName,
   getPlayStyleName,
   shortenSeriesName,
-} from '~/types/api/song'
+} from '~/api/song'
 
-describe('./types/api/song.ts', () => {
+describe('./api/song.ts', () => {
   describe('shortenSeriesName', () => {
     test.each([
       ['DDR 1st', '1st'],

@@ -1,8 +1,8 @@
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { SongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song.vue'
-import type { SongInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

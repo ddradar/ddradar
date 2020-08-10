@@ -93,17 +93,17 @@
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import {
+  getDifficultyName,
+  getPlayStyleName,
+  SongInfo,
+  StepChart,
+} from '~/api/song'
+import {
   ClearLamp,
   getDanceLevel,
   setValidScoreFromChart,
   UserScore,
 } from '~/types/api/score'
-import {
-  getDifficultyName,
-  getPlayStyleName,
-  SongInfo,
-  StepChart,
-} from '~/types/api/song'
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {

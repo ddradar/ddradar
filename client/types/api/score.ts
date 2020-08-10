@@ -1,4 +1,4 @@
-import { StepChart } from './song'
+import { StepChart } from '~/api/song'
 
 /**
  * Object type returned by `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`

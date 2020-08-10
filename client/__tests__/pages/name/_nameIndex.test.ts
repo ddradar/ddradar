@@ -7,8 +7,8 @@ import {
 } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { SongListData } from '~/api/song'
 import SongByNamePage from '~/pages/name/_nameIndex.vue'
-import type { SongListData } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

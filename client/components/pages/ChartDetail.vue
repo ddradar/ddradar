@@ -87,17 +87,17 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { areaList } from '~/api/user'
-import ScoreBadge from '~/components/pages/ScoreBadge.vue'
-import ScoreEditor from '~/components/pages/ScoreEditor.vue'
-import Card from '~/components/shared/Card.vue'
-import { UserScore } from '~/types/api/score'
 import {
   getDifficultyName,
   getPlayStyleName,
   SongInfo,
   StepChart,
-} from '~/types/api/song'
+} from '~/api/song'
+import { areaList } from '~/api/user'
+import ScoreBadge from '~/components/pages/ScoreBadge.vue'
+import ScoreEditor from '~/components/pages/ScoreEditor.vue'
+import Card from '~/components/shared/Card.vue'
+import { UserScore } from '~/types/api/score'
 
 type RankingScore = UserScore & { isArea?: true }
 

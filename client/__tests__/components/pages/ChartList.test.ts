@@ -1,8 +1,8 @@
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { ChartInfo } from '~/api/song'
 import ChartListComponent from '~/components/pages/ChartList.vue'
-import type { ChartInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

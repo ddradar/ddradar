@@ -9,8 +9,8 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { ChartInfo, searchCharts } from '~/api/song'
 import ChartList from '~/components/pages/ChartList.vue'
-import { ChartInfo } from '~/types/api/song'
 
 @Component({ fetchOnServer: false, components: { ChartList } })
 export default class SingleLevelPage extends Vue {
@@ -25,9 +25,8 @@ export default class SingleLevelPage extends Vue {
 
   /** Get chart list from API */
   async fetch() {
-    const i = this.$route.params.level
-    const charts = await this.$http.$get<ChartInfo[]>(`/api/v1/charts/1/${i}`)
-    this.charts = charts
+    const level = parseInt(this.$route.params.level, 10)
+    this.charts = await searchCharts(this.$http, 1, level)
   }
 
   /** Page title */

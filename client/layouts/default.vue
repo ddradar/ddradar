@@ -115,7 +115,7 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SeriesList } from '~/types/api/song'
+import { NameIndexList, SeriesList } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
