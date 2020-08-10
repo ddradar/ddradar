@@ -1,23 +1,23 @@
 # Notification Collection
 
-日本語版は[こちら](./notification-ja.md)にあります。
+English version is [here](./notification.md).
 
-The collection that stores notification.
+ユーザーに通知する情報を格納するコレクションです。
 
 ## Schema
 
-**Bolded** property is the partition key.
+**太字**のプロパティは partition key です。
 
-|Name|Type|Description|
-|----|:--:|-----------|
-|id|string|Auto Generated|
-|**sender**|string|`SYSTEM`: global notification|
-|pinned|boolean|`true`: show top page|
-|type|string|Notification type|
-|icon|string|Notification icon (Material Design Icon)|
-|title|string|Notification title|
-|body|string|Notification body|
-|_ts|integer|Created or Updated time (UNIX time)|
+|名前|型|説明|
+|----|:--:|--|
+|id|string|自動生成|
+|**sender**|string|`SYSTEM`: システム通知|
+|pinned|boolean|`true`: トップページに常に表示|
+|type|string|通知の種類|
+|icon|string|アイコン (Material Design Icon)|
+|title|string|タイトル|
+|body|string|本文|
+|_ts|integer|作成/更新日時 (UNIX time)|
 
 ## Indexes
 
