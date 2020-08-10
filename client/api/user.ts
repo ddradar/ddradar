@@ -207,7 +207,7 @@ export function getUserList(
  * @see https://github.com/ddradar/ddradar/tree/master/api/getUserInfo
  */
 export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
-  return $http.$get<UserListData>(`${apiPrefix}/user/${id}`)
+  return $http.$get<UserListData>(`${apiPrefix}/users/${id}`)
 }
 
 /**
