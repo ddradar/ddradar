@@ -4,10 +4,12 @@ import { getContainer } from '../cosmos'
 import type { NotificationSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
+type Notification = Omit<NotificationSchema, '_ts'>
+
 /** Get notification that match the specified ID. */
 export default async function (
   context: Pick<Context, 'bindingData'>
-): Promise<NotFoundResult | SuccessResult<NotificationSchema>> {
+): Promise<NotFoundResult | SuccessResult<Notification>> {
   const id = context.bindingData.id
 
   // In Azure Functions, this function will only be invoked if a valid `id` is passed.
@@ -16,7 +18,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const columns: (keyof NotificationSchema)[] = [
+  const columns: (keyof Notification)[] = [
     'id',
     'sender',
     'pinned',
@@ -24,11 +26,10 @@ export default async function (
     'icon',
     'title',
     'body',
-    '_ts',
   ]
   const container = getContainer('Notification', true)
   const { resources } = await container.items
-    .query<NotificationSchema>({
+    .query<Notification>({
       query:
         'SELECT ' +
         `${columns.map(c => `c.${c}`).join(', ')} ` +

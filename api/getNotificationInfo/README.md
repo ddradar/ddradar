@@ -43,8 +43,7 @@ No need Authentication.
   "type": "is-info",
   "icon": "info",
   "title": "このサイトはベータ版です",
-  "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
-  "_ts": 1597028400
+  "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。"
 }
 ```
 
@@ -59,4 +58,3 @@ No need Authentication.
 |icon|string|Notification icon (Material Design Icon)|
 |title|string|Notification title|
 |body|string|Notification body|
-|_ts|integer|Created or Updated time (UNIX time)|

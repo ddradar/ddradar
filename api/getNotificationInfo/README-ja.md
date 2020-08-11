@@ -43,8 +43,7 @@ English version is [here](./README.md).
   "type": "is-info",
   "icon": "info",
   "title": "このサイトはベータ版です",
-  "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
-  "_ts": 1597028400
+  "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。"
 }
 ```
 
@@ -59,4 +58,3 @@ English version is [here](./README.md).
 |icon|string|アイコン (Material Design Icon)|
 |title|string|タイトル|
 |body|string|本文|
-|_ts|integer|作成/更新日時 (UNIX time)|
