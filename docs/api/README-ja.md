@@ -42,3 +42,7 @@ English version is [here](./README.md).
 - [スコア追加/更新(譜面別)](../../api/postChartScore/README-ja.md) **ログインユーザーのみ*
 - [スコア削除(譜面別)](../../api/deleteChartScore/README-ja.md) **ログインユーザーのみ*
 - [e-amusement GATEからインポート](../../api/importScores/README-ja.md) **ログインユーザーのみ*
+
+## Notification API
+
+- [通知情報の取得](../../api/getNotification/README.md)
