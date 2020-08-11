@@ -37,6 +37,7 @@ English version is [here](./README.md).
 ```json
 [
   {
+    "id": "<Auto Generated>",
     "type": "is-info",
     "icon": "info",
     "title": "このサイトはベータ版です",
@@ -44,6 +45,7 @@ English version is [here](./README.md).
     "_ts": 1597028400
   },
   {
+    "id": "<Auto Generated>",
     "type": "is-warning",
     "icon": "warning",
     "title": "システムメンテナンスのお知らせ",
@@ -57,6 +59,7 @@ English version is [here](./README.md).
 
 |名前|型|説明|
 |----|:--:|--|
+|id|string|自動生成|
 |type|string|通知の種類|
 |icon|string|アイコン (Material Design Icon)|
 |title|string|タイトル|

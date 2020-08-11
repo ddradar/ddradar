@@ -37,6 +37,7 @@ No need Authentication.
 ```json
 [
   {
+    "id": "<Auto Generated>",
     "type": "is-info",
     "icon": "info",
     "title": "このサイトはベータ版です",
@@ -44,6 +45,7 @@ No need Authentication.
     "_ts": 1597028400
   },
   {
+    "id": "<Auto Generated>",
     "type": "is-warning",
     "icon": "warning",
     "title": "システムメンテナンスのお知らせ",
@@ -57,6 +59,7 @@ No need Authentication.
 
 |Name|Type|Description|
 |----|:--:|-----------|
+|id|string|Auto Generated|
 |type|string|Notification type|
 |icon|string|Notification icon (Material Design Icon)|
 |title|string|Notification title|
