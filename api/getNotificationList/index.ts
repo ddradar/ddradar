@@ -4,7 +4,7 @@ import { getContainer } from '../cosmos'
 import type { NotificationSchema } from '../db'
 import type { SuccessResult } from '../function'
 
-type Notification = Omit<NotificationSchema, 'id' | 'sender' | 'pinned'>
+type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
 
 /** Get system notification list. */
 export default async function (
@@ -14,6 +14,7 @@ export default async function (
   const scope = req.query.scope === 'top' ? 'top' : 'full'
 
   const columns: (keyof Notification)[] = [
+    'id',
     'type',
     'icon',
     'title',

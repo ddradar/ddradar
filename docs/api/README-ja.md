@@ -46,3 +46,4 @@ English version is [here](./README.md).
 ## Notification API
 
 - [通知一覧の取得](../../api/getNotificationList/README-ja.md)
+- [通知詳細の取得](../../api/getNotificationInfo/README-ja.md)
