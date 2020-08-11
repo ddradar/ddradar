@@ -187,6 +187,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getSongInfo, SeriesList, SongInfo, StepChart } from '~/api/song'
+import * as notification from '~/utils/notification'
 
 @Component
 export default class SongEditorPage extends Vue implements SongInfo {
@@ -348,12 +349,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.maxBPM = songInfo.maxBPM
       this.charts = songInfo.charts
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.danger(this.$buefy, error.message ?? error)
     }
   }
 
@@ -381,12 +377,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
             '/api/v1/admin/songs',
             postData
           )
-          this.$buefy.notification.open({
-            message: 'Success!',
-            type: 'is-success',
-            position: 'is-top',
-            hasIcon: true,
-          })
+          notification.success(this.$buefy, 'Success!')
           this.name = songInfo.name
           this.nameKana = songInfo.nameKana
           this.artist = songInfo.artist
@@ -395,12 +386,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
           this.maxBPM = songInfo.maxBPM
           this.charts = songInfo.charts
         } catch (error) {
-          this.$buefy.notification.open({
-            message: error.message ?? error,
-            type: 'is-danger',
-            position: 'is-top',
-            hasIcon: true,
-          })
+          notification.danger(this.$buefy, error.message ?? error)
         }
       },
     })

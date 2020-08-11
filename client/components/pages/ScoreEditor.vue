@@ -106,6 +106,7 @@ import {
   SongInfo,
   StepChart,
 } from '~/api/song'
+import * as notification from '~/utils/notification'
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
@@ -205,12 +206,10 @@ export default class ScoreEditorComponent extends Vue {
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
     } catch {
-      this.$buefy.notification.open({
-        message: '情報が足りないため、スコアの自動計算ができませんでした。',
-        type: 'is-warning',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.warning(
+        this.$buefy,
+        '情報が足りないため、スコアの自動計算ができませんでした。'
+      )
     }
   }
 
@@ -226,19 +225,9 @@ export default class ScoreEditorComponent extends Vue {
         clearLamp: this.clearLamp,
         rank: this.rank,
       })
-      this.$buefy.notification.open({
-        message: 'Success!',
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.success(this.$buefy, 'Success!')
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.danger(this.$buefy, error.message ?? error)
     }
     // @ts-ignore
     this.$parent.close()
@@ -279,12 +268,7 @@ export default class ScoreEditorComponent extends Vue {
       this.isLoading = false
       const message = error.message ?? error
       if (message !== '404') {
-        this.$buefy.notification.open({
-          message,
-          type: 'is-danger',
-          position: 'is-top',
-          hasIcon: true,
-        })
+        notification.danger(this.$buefy, message)
       }
     }
     this.isLoading = false
@@ -296,19 +280,9 @@ export default class ScoreEditorComponent extends Vue {
     const difficulty = this.selectedChart.difficulty
     try {
       await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
-      this.$buefy.notification.open({
-        message: 'Success!',
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.success(this.$buefy, 'Success!')
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.danger(this.$buefy, error.message ?? error)
     }
   }
 }
