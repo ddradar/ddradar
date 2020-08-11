@@ -74,6 +74,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { AreaCode, areaList, getUserList, UserListData } from '~/api/user'
+import * as notification from '~/utils/notification'
 
 @Component
 export default class UserListPage extends Vue {
@@ -106,12 +107,7 @@ export default class UserListPage extends Vue {
         this.code ?? 0
       )
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.danger(this.$buefy, error.message ?? error)
     }
     this.loading = false
   }

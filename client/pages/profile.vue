@@ -91,6 +91,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { AreaCode, areaList, existsUser, User } from '~/api/user'
+import * as notification from '~/utils/notification'
 
 @Component({ fetchOnServer: false })
 export default class ProfilePage extends Vue {
@@ -176,19 +177,9 @@ export default class ProfilePage extends Vue {
     if (this.code) user.code = this.code
     try {
       await this.$accessor.saveUser(user)
-      this.$buefy.notification.open({
-        message: 'Success!',
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.success(this.$buefy, 'Success!')
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      notification.danger(this.$buefy, error.message ?? error)
     }
     this.type = ''
     this.message = ''
