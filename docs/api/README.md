@@ -45,4 +45,4 @@ See also [Authentication API Docs](./authentication.md).
 
 ## Notification API
 
-- [Get Notification](../../api/getNotification/README.md)
+- [Get Notification List](../../api/getNotificationList/README.md)

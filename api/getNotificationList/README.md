@@ -1,4 +1,4 @@
-# Get Notification API
+# Get Notification List API
 
 日本語版は[こちら](./README-ja.md)にあります。
 

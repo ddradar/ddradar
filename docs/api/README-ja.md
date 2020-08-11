@@ -45,4 +45,4 @@ English version is [here](./README.md).
 
 ## Notification API
 
-- [通知情報の取得](../../api/getNotification/README.md)
+- [通知一覧の取得](../../api/getNotificationList/README-ja.md)

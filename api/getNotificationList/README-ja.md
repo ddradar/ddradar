@@ -1,8 +1,8 @@
-# Get Notification API
+# Get Notification List API
 
 English version is [here](./README.md).
 
-システムからの通知情報を取得します。
+システムからの通知情報の一覧を取得します。
 
 - [エンドポイント](#endpoint)
 - [パラメータ](#parameters)
