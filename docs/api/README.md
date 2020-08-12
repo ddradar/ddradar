@@ -6,6 +6,8 @@
 - [Song](#song-api)
 - [Course](#course-api)
 - [User](#user-api)
+- [Score](#score-api)
+- [Notification](#notification-api)
 
 ## Authentication API
 
@@ -47,3 +49,4 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Notification List](../../api/getNotificationList/README.md)
 - [Get Notification Info](../../api/getNotificationInfo/README.md)
+- [Post Notification](../../api/postNotification/README.md) **Admin only*
