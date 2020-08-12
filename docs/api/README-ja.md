@@ -6,6 +6,8 @@ English version is [here](./README.md).
 - [曲](#song-api)
 - [コース](#course-api)
 - [ユーザー](#user-api)
+- [スコア](#score-api)
+- [通知](#notification-api)
 
 ## Authentication API
 
@@ -47,3 +49,4 @@ English version is [here](./README.md).
 
 - [通知一覧の取得](../../api/getNotificationList/README-ja.md)
 - [通知詳細の取得](../../api/getNotificationInfo/README-ja.md)
+- [通知の追加/更新](../../api/postNotification/README-ja.md) **管理者のみ*
