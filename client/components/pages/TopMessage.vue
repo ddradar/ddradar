@@ -18,6 +18,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+import { unixTimeToString } from '~/utils/date'
+
 @Component
 export default class TopMessageComponent extends Vue {
   @Prop({ required: true, type: String })
@@ -36,8 +38,7 @@ export default class TopMessageComponent extends Vue {
   time!: number
 
   get date() {
-    const d = new Date(this.time * 1000)
-    return `${d.getFullYear()}/${d.getMonth() + 1}/${d.getDate()}`
+    return unixTimeToString(this.time)
   }
 }
 </script>
