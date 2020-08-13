@@ -1,8 +1,8 @@
 import { BNotificationConfig } from 'buefy/types/components'
 
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
-describe('utils/notification.ts', () => {
+describe('utils/popup.ts', () => {
   const $buefy = {
     notification: { open: jest.fn<any, [BNotificationConfig | string]>() },
   }
@@ -12,7 +12,7 @@ describe('utils/notification.ts', () => {
   describe('success', () => {
     test('($buefy, message) calls $buefy.notification.open("is-success")', () => {
       // Arrange - Act
-      notification.success($buefy, message)
+      popup.success($buefy, message)
 
       // Assert
       expect($buefy.notification.open).toHaveBeenCalledTimes(1)
@@ -27,7 +27,7 @@ describe('utils/notification.ts', () => {
   describe('warning', () => {
     test('($buefy, message) calls $buefy.notification.open("is-warning")', () => {
       // Arrange - Act
-      notification.warning($buefy, message)
+      popup.warning($buefy, message)
 
       // Assert
       expect($buefy.notification.open).toHaveBeenCalledTimes(1)
@@ -42,7 +42,7 @@ describe('utils/notification.ts', () => {
   describe('danger', () => {
     test('($buefy, message) calls $buefy.notification.open("is-danger")', () => {
       // Arrange - Act
-      notification.danger($buefy, message)
+      popup.danger($buefy, message)
 
       // Assert
       expect($buefy.notification.open).toHaveBeenCalledTimes(1)

@@ -1,5 +1,14 @@
 <template>
   <div>
+    <top-message
+      v-for="m in messages"
+      :key="m.id"
+      :type="m.type"
+      :icon="m.icon"
+      :title="m.title"
+      :body="m.body"
+      :time="m._ts"
+    />
     <section class="hero">
       <div class="hero-body">
         <div class="container">
@@ -39,11 +48,15 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
+import { getNotificationList, Notification } from '~/api/notification'
 import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
+import TopMessage from '~/components/pages/TopMessage.vue'
 import Card from '~/components/shared/Card.vue'
+import * as popup from '~/utils/popup'
 
-@Component({ components: { Card } })
+@Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
+  messages: Omit<Notification, 'sender' | 'pinned'>[] = []
   get menuList() {
     return [
       {
@@ -75,6 +88,17 @@ export default class IndexPage extends Vue {
         })).reverse(),
       },
     ]
+  }
+
+  async fetch() {
+    try {
+      this.messages = await getNotificationList(this.$http, true)
+    } catch (error) {
+      const message = error.message ?? error
+      if (message !== '404') {
+        popup.danger(this.$buefy, message)
+      }
+    }
   }
 }
 </script>

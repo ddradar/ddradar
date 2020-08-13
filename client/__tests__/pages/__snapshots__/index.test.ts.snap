@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/index.vue renders correctly 1`] = `
+exports[`/pages/index.vue renders correctly 1`] = `
 <div>
+  <topmessage-stub type="is-info" icon="account" title="Title 1" body="Message Body1" time="1597244400"></topmessage-stub>
+  <topmessage-stub type="is-info" icon="" title="Title 2" body="Message Body2" time="1597244400"></topmessage-stub>
   <section class="hero">
     <div class="hero-body">
       <div class="container">
