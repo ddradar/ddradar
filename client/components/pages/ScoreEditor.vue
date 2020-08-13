@@ -106,7 +106,7 @@ import {
   SongInfo,
   StepChart,
 } from '~/api/song'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
@@ -206,7 +206,7 @@ export default class ScoreEditorComponent extends Vue {
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
     } catch {
-      notification.warning(
+      popup.warning(
         this.$buefy,
         '情報が足りないため、スコアの自動計算ができませんでした。'
       )
@@ -225,9 +225,9 @@ export default class ScoreEditorComponent extends Vue {
         clearLamp: this.clearLamp,
         rank: this.rank,
       })
-      notification.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, 'Success!')
     } catch (error) {
-      notification.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error.message ?? error)
     }
     // @ts-ignore
     this.$parent.close()
@@ -268,7 +268,7 @@ export default class ScoreEditorComponent extends Vue {
       this.isLoading = false
       const message = error.message ?? error
       if (message !== '404') {
-        notification.danger(this.$buefy, message)
+        popup.danger(this.$buefy, message)
       }
     }
     this.isLoading = false
@@ -280,9 +280,9 @@ export default class ScoreEditorComponent extends Vue {
     const difficulty = this.selectedChart.difficulty
     try {
       await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
-      notification.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, 'Success!')
     } catch (error) {
-      notification.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error.message ?? error)
     }
   }
 }

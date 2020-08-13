@@ -30,7 +30,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { importEagateScoreList } from '~/api/score'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
 @Component
 export default class ImportPage extends Vue {
@@ -48,13 +48,13 @@ export default class ImportPage extends Vue {
     this.loading = true
     try {
       const res = await importEagateScoreList(this.$http, this.sourceCode)
-      notification.success(this.$buefy, `${res.count}件のスコアを登録しました`)
+      popup.success(this.$buefy, `${res.count}件のスコアを登録しました`)
     } catch (error) {
       const message = error.message ?? error
       if (message === '400') {
-        notification.warning(this.$buefy, 'HTMLソース文字列が不正です')
+        popup.warning(this.$buefy, 'HTMLソース文字列が不正です')
       } else {
-        notification.danger(this.$buefy, message)
+        popup.danger(this.$buefy, message)
       }
     }
     this.loading = false

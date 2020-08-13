@@ -52,7 +52,7 @@ import { getNotificationList, Notification } from '~/api/notification'
 import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
 import TopMessage from '~/components/pages/TopMessage.vue'
 import Card from '~/components/shared/Card.vue'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
@@ -96,7 +96,7 @@ export default class IndexPage extends Vue {
     } catch (error) {
       const message = error.message ?? error
       if (message !== '404') {
-        notification.danger(this.$buefy, message)
+        popup.danger(this.$buefy, message)
       }
     }
   }

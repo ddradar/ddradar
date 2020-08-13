@@ -3,9 +3,9 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
 import ImportPage from '~/pages/import.vue'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
-jest.mock('~/utils/notification')
+jest.mock('~/utils/popup')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -61,7 +61,7 @@ describe('pages/import.vue', () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const successMock = mocked(notification.success)
+      const successMock = mocked(popup.success)
       $http.$post.mockResolvedValueOnce({ count: 5 })
 
       // Act
@@ -79,7 +79,7 @@ describe('pages/import.vue', () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const warningMock = mocked(notification.warning)
+      const warningMock = mocked(popup.warning)
       $http.$post.mockRejectedValueOnce({ message: '400' })
 
       // Act
@@ -94,7 +94,7 @@ describe('pages/import.vue', () => {
       const errorMessage = '500 Server Error'
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const dangerMock = mocked(notification.danger)
+      const dangerMock = mocked(popup.danger)
       $http.$post.mockRejectedValueOnce(errorMessage)
 
       // Act

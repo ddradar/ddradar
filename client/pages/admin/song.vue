@@ -188,7 +188,7 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postSongInfo } from '~/api/admin'
 import { getSongInfo, SeriesList, SongInfo, StepChart } from '~/api/song'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
 @Component
 export default class SongEditorPage extends Vue implements SongInfo {
@@ -350,7 +350,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.maxBPM = songInfo.maxBPM
       this.charts = songInfo.charts
     } catch (error) {
-      notification.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error.message ?? error)
     }
   }
 
@@ -360,9 +360,9 @@ export default class SongEditorPage extends Vue implements SongInfo {
       onConfirm: async () => {
         try {
           await this.callPostAPI()
-          notification.success(this.$buefy, 'Success!')
+          popup.success(this.$buefy, 'Success!')
         } catch (error) {
-          notification.danger(this.$buefy, error.message ?? error)
+          popup.danger(this.$buefy, error.message ?? error)
         }
       },
     })

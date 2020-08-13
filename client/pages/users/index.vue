@@ -74,7 +74,7 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { AreaCode, areaList, getUserList, UserListData } from '~/api/user'
-import * as notification from '~/utils/notification'
+import * as popup from '~/utils/popup'
 
 @Component
 export default class UserListPage extends Vue {
@@ -107,7 +107,7 @@ export default class UserListPage extends Vue {
         this.code ?? 0
       )
     } catch (error) {
-      notification.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error.message ?? error)
     }
     this.loading = false
   }
