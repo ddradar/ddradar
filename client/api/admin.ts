@@ -1,6 +1,7 @@
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import type { Notification } from '~/api/notification'
+import type { SongInfo } from '~/api/song'
 
 type NotificationRequest = Omit<Notification, 'id' | 'sender' | '_ts'> & {
   id?: string
@@ -18,4 +19,15 @@ export function postNotification(
     ...body,
     sender: 'SYSTEM',
   })
+}
+
+/**
+ * Call "Post Song Information" API. (Admin only)
+ * @see https://github.com/ddradar/ddradar/tree/master/api/postSongInfo
+ */
+export function postSongInfo(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  body: SongInfo
+) {
+  return $http.$post<SongInfo>('/api/v1/admin/songs', body)
 }
