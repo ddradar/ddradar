@@ -1,6 +1,6 @@
 <template>
   <div>
-    <section>
+    <section class="section">
       <top-message
         v-for="m in messages"
         :key="m.id"
@@ -10,7 +10,7 @@
         :body="m.body"
         :time="m._ts"
       />
-      <div class="has-text-right">
+      <div class="has-text-right top-notification">
         <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>
       </div>
     </section>
@@ -107,3 +107,9 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.top-notification {
+  padding: 0.75rem 0.75rem 0 0.75rem;
+}
+</style>

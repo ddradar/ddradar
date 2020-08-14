@@ -2,10 +2,10 @@
 
 exports[`/pages/index.vue renders correctly 1`] = `
 <div>
-  <section>
+  <section class="section">
     <topmessage-stub type="is-info" icon="account" title="Title 1" body="Message Body1" time="1597244400"></topmessage-stub>
     <topmessage-stub type="is-info" icon="" title="Title 2" body="Message Body2" time="1597244400"></topmessage-stub>
-    <div class="has-text-right"><a>過去のお知らせ一覧</a></div>
+    <div class="has-text-right top-notification"><a>過去のお知らせ一覧</a></div>
   </section>
   <section class="hero">
     <div class="hero-body">
