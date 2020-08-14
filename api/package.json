@@ -14,17 +14,17 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.7.4",
+    "@azure/cosmos": "^3.8.1",
     "cheerio": "^1.0.0-rc.3"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
     "@types/cheerio": "^0.22.21",
-    "@types/jest": "^26.0.8",
-    "@types/node": "^12.12.48",
-    "jest": "^26.2.2",
+    "@types/jest": "^26.0.9",
+    "@types/node": "^12.12.54",
+    "jest": "^26.4.0",
     "prettier": "^2.0.5",
-    "ts-jest": "^26.1.4",
+    "ts-jest": "^26.2.0",
     "typescript": "^3.9.7"
   }
 }
