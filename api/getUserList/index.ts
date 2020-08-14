@@ -20,7 +20,10 @@ export default async function (
   const code = parseFloat(req.query.code)
 
   // Create SQL WHERE condition dynamically
-  const conditions: string[] = ['(c.isPublic = true OR c.loginId = @loginId)']
+  const conditions: string[] = [
+    'IS_DEFINED(c.loginId)',
+    '(c.isPublic = true OR c.loginId = @loginId)',
+  ]
   const parameters: SqlParameter[] = [{ name: '@loginId', value: loginId }]
   if ((areaCodeList as number[]).includes(area)) {
     conditions.push('c.area = @area')
@@ -35,12 +38,14 @@ export default async function (
     parameters.push({ name: '@code', value: code })
   }
 
+  const columns: (keyof User)[] = ['id', 'name', 'area', 'code']
   const container = getContainer('Users', true)
   const { resources } = await container.items
     .query<User>({
       query:
-        'SELECT c.id, c.name, c.area, c.code ' +
-        'FROM c ' +
+        'SELECT ' +
+        columns.map(col => `c.${col}`).join(', ') +
+        ' FROM c ' +
         `WHERE ${conditions.join(' AND ')}`,
       parameters,
     })
