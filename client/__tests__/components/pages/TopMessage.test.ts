@@ -19,7 +19,7 @@ describe('/components/pages/TopMessage.vue', () => {
   const propsData = {
     type: 'is-info',
     title: 'Title',
-    body: 'Message Body',
+    body: 'Message Body\n\n- First\n- Second',
     time,
   } as const
 

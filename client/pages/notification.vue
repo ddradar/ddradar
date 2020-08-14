@@ -19,7 +19,7 @@
             {{ props.row.title }}
           </b-table-column>
           <b-table-column field="_ts" label="Date">
-            {{ dateString(props.row._ts) }}
+            {{ props.row.date }}
           </b-table-column>
           <b-table-column :visible="$accessor.isAdmin" label="Edit">
             <nuxt-link :to="`/admin/notification/${props.row.id}`">
@@ -29,13 +29,8 @@
         </template>
 
         <template v-slot:detail="props">
-          <top-message
-            :type="props.row.type"
-            :icon="props.row.icon"
-            :title="props.row.title"
-            :body="props.row.body"
-            :time="props.row._ts"
-          />
+          <!-- eslint-disable-next-line vue/no-v-html -->
+          <div class="content" v-html="props.row.body" />
         </template>
 
         <template v-slot:empty>
@@ -56,6 +51,7 @@
 </template>
 
 <script lang="ts">
+import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getNotificationList, Notification } from '~/api/notification'
@@ -65,19 +61,27 @@ import * as popup from '~/utils/popup'
 
 @Component({ components: { TopMessage }, fetchOnServer: false })
 export default class UserListPage extends Vue {
-  messages: Omit<Notification, 'sender' | 'pinned'>[] = []
+  messages: NotificationDetail[] = []
 
   /** Call "Get Notification API" once. */
   async fetch() {
     try {
-      this.messages = await getNotificationList(this.$http)
+      const messages = await getNotificationList(this.$http)
+      this.messages = messages.map(d => ({
+        id: d.id,
+        type: d.type,
+        icon: d.icon,
+        title: d.title,
+        body: marked(d.body),
+        date: unixTimeToString(d._ts),
+      }))
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
     }
   }
+}
 
-  dateString(unixTime: number) {
-    return unixTimeToString(unixTime)
-  }
+type NotificationDetail = Omit<Notification, 'sender' | 'pinned' | '_ts'> & {
+  date: string
 }
 </script>
