@@ -13,11 +13,7 @@
       >
         <template v-slot:default="props">
           <b-table-column field="icon" label="Icon">
-            <b-button
-              :type="props.row.type"
-              :icon-left="props.row.icon"
-              size="is-small"
-            />
+            <b-button :type="props.row.type" :icon-left="props.row.icon" />
           </b-table-column>
           <b-table-column field="title" label="Title">
             {{ props.row.title }}
@@ -34,11 +30,11 @@
 
         <template v-slot:detail="props">
           <top-message
-            :type="props.type"
-            :icon="props.icon"
-            :title="props.title"
-            :body="props.body"
-            :time="props._ts"
+            :type="props.row.type"
+            :icon="props.row.icon"
+            :title="props.row.title"
+            :body="props.row.body"
+            :time="props.row._ts"
           />
         </template>
 
