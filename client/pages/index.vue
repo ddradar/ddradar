@@ -1,14 +1,25 @@
 <template>
   <div>
-    <top-message
-      v-for="m in messages"
-      :key="m.id"
-      :type="m.type"
-      :icon="m.icon"
-      :title="m.title"
-      :body="m.body"
-      :time="m._ts"
-    />
+    <section class="section">
+      <template v-if="$fetchState.pending">
+        <b-skeleton animated />
+        <b-skeleton animated />
+        <b-skeleton animated />
+      </template>
+      <top-message
+        v-for="m in messages"
+        v-else
+        :key="m.id"
+        :type="m.type"
+        :icon="m.icon"
+        :title="m.title"
+        :body="m.body"
+        :time="m._ts"
+      />
+      <div class="has-text-right top-notification">
+        <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>
+      </div>
+    </section>
     <section class="hero">
       <div class="hero-body">
         <div class="container">
@@ -102,3 +113,9 @@ export default class IndexPage extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.top-notification {
+  padding: 0.75rem 0.75rem 0 0.75rem;
+}
+</style>

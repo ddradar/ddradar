@@ -15,6 +15,8 @@ export const state = (): RootState => ({
 
 export const getters = {
   name: (state: RootState) => state.user?.name,
+  isAdmin: (state: RootState) =>
+    state.auth?.userRoles.includes('administrator') ?? false,
 }
 
 export const mutations = mutationTree(state, {

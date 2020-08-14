@@ -8,7 +8,7 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 
 describe('/pages/index.vue', () => {
-  test('renders correctly', () => {
+  describe('snapshot test', () => {
     const messages: Omit<Notification, 'sender' | 'pinned'>[] = [
       {
         id: 'foo',
@@ -27,11 +27,23 @@ describe('/pages/index.vue', () => {
         _ts: 1597244400, // 2020/8/13
       },
     ]
-    const wrapper = mount(IndexPage, {
-      localVue,
-      stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
-      data: () => ({ messages }),
+    test('renders loading skeleton', () => {
+      const wrapper = mount(IndexPage, {
+        localVue,
+        mocks: { $fetchState: { pending: true } },
+        stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
+        data: () => ({ messages }),
+      })
+      expect(wrapper).toMatchSnapshot()
     })
-    expect(wrapper).toMatchSnapshot()
+    test('renders correctly', () => {
+      const wrapper = mount(IndexPage, {
+        localVue,
+        mocks: { $fetchState: { pending: false } },
+        stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
+        data: () => ({ messages }),
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 })

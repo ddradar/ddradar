@@ -32,10 +32,7 @@ describe('./store/index.ts', () => {
     describe('name', () => {
       test('returns user.name', () => {
         // Arrange
-        const state: RootState = {
-          auth: null,
-          user,
-        }
+        const state: RootState = { auth: null, user }
 
         // Act - Assert
         expect(getters.name(state)).toBe(user.name)
@@ -48,12 +45,38 @@ describe('./store/index.ts', () => {
         expect(getters.name(state)).toBeUndefined()
       })
     })
+    describe('isAdmin', () => {
+      test('returns false if auth is null', () => {
+        // Arrange
+        const state: RootState = { auth: null, user }
+
+        // Act - Assert
+        expect(getters.isAdmin(state)).toBe(false)
+      })
+      test('returns false if user does not have administrator role', () => {
+        // Arrange
+        const state: RootState = { auth, user }
+
+        // Act - Assert
+        expect(getters.isAdmin(state)).toBe(false)
+      })
+      test('returns true if user have administrator role', () => {
+        // Arrange
+        const state: RootState = {
+          auth: { ...auth, userRoles: [...auth.userRoles, 'administrator'] },
+          user,
+        }
+
+        // Act - Assert
+        expect(getters.isAdmin(state)).toBe(true)
+      })
+    })
   })
   describe('mutations', () => {
     test.each([
       [{ auth: null, user: null }, auth],
       [{ auth, user }, null],
-    ])('setAuth(state, %p) changes state.auth', (state, auth) => {
+    ])('setAuth(%p, %p) changes state.auth', (state, auth) => {
       // Arrange - Act
       mutations.setAuth(state, auth)
 
@@ -63,7 +86,7 @@ describe('./store/index.ts', () => {
     test.each([
       [{ auth: null, user: null }, user],
       [{ auth, user }, null],
-    ])('setUser(state, %p) changes state.user', (state, user) => {
+    ])('setUser(%p, %p) changes state.user', (state, user) => {
       // Arrange - Act
       mutations.setUser(state, user)
 
