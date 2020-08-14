@@ -14,8 +14,8 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 
 describe('/components/pages/TopMessage.vue', () => {
-  /** 2020/8/13 0:00 (Local Time zone) */
-  const time = Math.floor(new Date(2020, 7, 13).valueOf() / 1000)
+  /** 2020/8/13 0:00 (UTC) */
+  const time = 1597276800
   const propsData = {
     type: 'is-info',
     title: 'Title',
