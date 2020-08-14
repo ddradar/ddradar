@@ -7,7 +7,7 @@ import { unixTimeToString } from '~/utils/date'
 
 jest.mock('~/utils/date')
 mocked(unixTimeToString).mockImplementation(unixTime =>
-  new Date(unixTime).toUTCString()
+  new Date(unixTime * 1000).toUTCString()
 )
 
 const localVue = createLocalVue()
