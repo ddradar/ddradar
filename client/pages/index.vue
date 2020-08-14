@@ -1,8 +1,14 @@
 <template>
   <div>
     <section class="section">
+      <template v-if="$fetchState.pending">
+        <b-skeleton animated />
+        <b-skeleton animated />
+        <b-skeleton animated />
+      </template>
       <top-message
         v-for="m in messages"
+        v-else
         :key="m.id"
         :type="m.type"
         :icon="m.icon"
