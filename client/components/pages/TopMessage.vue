@@ -7,7 +7,8 @@
       :icon="icon"
       aria-close-label="Close message"
     >
-      <p>{{ body }}</p>
+      <!-- eslint-disable-next-line vue/no-v-html -->
+      <div class="content" v-html="markedContent" />
       <div class="content is-italic has-text-weight-light has-text-right">
         {{ date }}
       </div>
@@ -16,6 +17,7 @@
 </template>
 
 <script lang="ts">
+import marked from 'marked'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { unixTimeToString } from '~/utils/date'
@@ -39,6 +41,10 @@ export default class TopMessageComponent extends Vue {
 
   get date() {
     return unixTimeToString(this.time)
+  }
+
+  get markedContent() {
+    return marked(this.body)
   }
 }
 </script>
