@@ -44,6 +44,9 @@
             </b-button>
           </b-navbar-item>
         </b-navbar-dropdown>
+        <b-navbar-item tag="nuxt-link" to="/users">
+          ユーザーを探す
+        </b-navbar-item>
       </template>
 
       <template v-slot:end>

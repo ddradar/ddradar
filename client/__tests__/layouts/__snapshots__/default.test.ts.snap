@@ -279,7 +279,9 @@ exports[`layouts/default.vue renders login button if not authed 1`] = `
           </span>
                 <!----></a></div>
           </div>
-        </div>
+        </div> <a class="navbar-item">
+          ユーザーを探す
+        </a>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
@@ -604,7 +606,9 @@ exports[`layouts/default.vue renders logout button if authed 1`] = `
           </span>
                 <!----></a></div>
           </div>
-        </div>
+        </div> <a class="navbar-item">
+          ユーザーを探す
+        </a>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
