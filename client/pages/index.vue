@@ -1,14 +1,19 @@
 <template>
   <div>
-    <top-message
-      v-for="m in messages"
-      :key="m.id"
-      :type="m.type"
-      :icon="m.icon"
-      :title="m.title"
-      :body="m.body"
-      :time="m._ts"
-    />
+    <section>
+      <top-message
+        v-for="m in messages"
+        :key="m.id"
+        :type="m.type"
+        :icon="m.icon"
+        :title="m.title"
+        :body="m.body"
+        :time="m._ts"
+      />
+      <div class="has-text-right">
+        <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>
+      </div>
+    </section>
     <section class="hero">
       <div class="hero-body">
         <div class="container">
