@@ -1,7 +1,14 @@
 import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { mocked } from 'ts-jest/utils'
 
 import TopMessage from '~/components/pages/TopMessage.vue'
+import { unixTimeToString } from '~/utils/date'
+
+jest.mock('~/utils/date')
+mocked(unixTimeToString).mockImplementation(unixTime =>
+  new Date(unixTime).toUTCString()
+)
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
