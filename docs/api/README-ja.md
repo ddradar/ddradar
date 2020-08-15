@@ -42,6 +42,7 @@ English version is [here](./README.md).
 
 - [スコア取得(譜面別)](../../api/getChartScore/README-ja.md)
 - [スコア追加/更新(譜面別)](../../api/postChartScore/README-ja.md) **ログインユーザーのみ*
+- [スコア追加/更新(曲別)](../../api/postSongScores/README-ja.md) **ログインユーザーのみ*
 - [スコア削除(譜面別)](../../api/deleteChartScore/README-ja.md) **ログインユーザーのみ*
 - [e-amusement GATEからインポート](../../api/importScores/README-ja.md) **ログインユーザーのみ*
 

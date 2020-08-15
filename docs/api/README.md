@@ -42,6 +42,7 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Chart Score](../../api/getChartScore/README.md)
 - [Post Chart Score](../../api/postChartScore/README.md) **Authed user only*
+- [Post Song Scores](../../api/postSongScores/README.md) **Authed user only*
 - [Delete Chart Score](../../api/deleteChartScore/README.md) **Authed user only*
 - [Import Scores from e-amusement GATE](../../api/importScores/README.md) **Authed user only*
 
