@@ -10,7 +10,13 @@ import type {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import { getDanceLevel, isScore, mergeScore, Score } from '../score'
+import {
+  getDanceLevel,
+  isScore,
+  isValidScore,
+  mergeScore,
+  Score,
+} from '../score'
 import { hasIntegerProperty } from '../type-assert'
 
 type ScoreBody = Score & Pick<ScoreSchema, 'playStyle' | 'difficulty'>
@@ -50,7 +56,11 @@ export default async function (
     return { status: 404 }
   }
 
-  if (!Array.isArray(req.body) || req.body.some(d => !isScoreBody(d))) {
+  if (
+    !Array.isArray(req.body) ||
+    req.body.length === 0 ||
+    req.body.some(d => !isScoreBody(d))
+  ) {
     return { status: 400, body: 'body is not Score[]' }
   }
 
@@ -77,11 +87,14 @@ export default async function (
 
   const topScores: ScoreSchema[] = []
   const body: ScoreSchema[] = []
-  for (const score of req.body as (ScoreBody & { topScore?: number })[]) {
+  for (let i = 0; i < req.body.length; i++) {
+    const score: ScoreBody & { topScore?: number } = req.body[i]
     const chart = charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { status: 404 }
+    if (!isValidScore(chart, score))
+      return { status: 400, body: `body[${i}] is invalid Score` }
 
     body.push(createSchema(chart, user, score))
 
@@ -139,9 +152,13 @@ export default async function (
       songName: charts[0].name,
       playStyle: chart.playStyle,
       difficulty: chart.difficulty,
-      ...score,
+      score: score.score,
+      clearLamp: score.clearLamp,
+      rank: score.rank,
     }
-    if (score.clearLamp >= 6) {
+    if (score.exScore) scoreSchema.exScore = score.exScore
+    if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
+    if (!scoreSchema.exScore && score.clearLamp >= 6) {
       const exScore = (chart.notes + chart.freezeArrow + chart.shockArrow) * 3
       scoreSchema.exScore = exScore - (1000000 - score.score) / 10
     }
