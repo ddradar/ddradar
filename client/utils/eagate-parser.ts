@@ -39,7 +39,7 @@ export function musicDataToScoreList(
         /^\/game\/ddr\/ddra20\/p\/playdata\/music_detail.html\?index=([01689bdiloqDIOPQ]{32})$/,
         '$1'
       )
-    const songName = songCol.textContent?.trim()
+    const songName = songCol.textContent!.trim()
     if (!songId || !songName) continue
 
     result[songId] = []
@@ -52,9 +52,9 @@ export function musicDataToScoreList(
       const difficulty = getDifficulty(chart.id.toLowerCase())
 
       // Get score
-      const scoreText =
-        chart.getElementsByClassName('data_score')[0].textContent ?? ''
-      const score = parseInt(scoreText, 10)
+      const scoreText = chart.getElementsByClassName('data_score')[0]
+        .textContent
+      const score = parseInt(scoreText!, 10)
       if (!Number.isInteger(score) || score < 0 || score > 1000000) continue
 
       // Get clearLamp
