@@ -1,9 +1,11 @@
 import {
+  ChartScore,
   deleteChartScore,
   getChartScore,
   getDanceLevel,
   importEagateScoreList,
   postChartScore,
+  postSongScores,
   Score,
   setValidScoreFromChart,
   UserScore,
@@ -290,6 +292,32 @@ describe('./api/score.ts', () => {
       expect($http.delete.mock.calls).toHaveLength(1)
       expect($http.delete.mock.calls[0][0]).toBe(
         '/api/v1/scores/00000000000000000000000000000000/2/1'
+      )
+    })
+  })
+  describe('postSongScores', () => {
+    const songId = '00000000000000000000000000000000'
+    test(`($http, "${songId}", scores) calls POST "/api/v1/scores/${songId}"`, async () => {
+      // Arrange
+      const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
+      const scores: ChartScore[] = [
+        {
+          playStyle: 1,
+          difficulty: 0,
+          clearLamp: 7,
+          rank: 'AAA',
+          score: 999800,
+        },
+      ]
+
+      // Act
+      await postSongScores($http, songId, scores)
+
+      // Assert
+      expect($http.$post).toBeCalledTimes(1)
+      expect($http.$post).toBeCalledWith(
+        '/api/v1/scores/00000000000000000000000000000000',
+        scores
       )
     })
   })

@@ -49,6 +49,15 @@ export type Score = Pick<
 >
 
 /**
+ * Request body to `/api/v1/scores/{:songId}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/postSongScores/README.md
+ */
+export type ChartScore = Omit<
+  UserScore,
+  'userId' | 'userName' | 'songId' | 'songName'
+> & { topScore?: number }
+
+/**
  * Calcurate DanceLevel from score.
  * @see https://github.com/ddradar/ddradar/blob/master/api/score.ts
  */
@@ -374,6 +383,18 @@ export function deleteChartScore(
   difficulty: 0 | 1 | 2 | 3 | 4
 ) {
   return $http.delete(`/api/v1/scores/${songId}/${playStyle}/${difficulty}`)
+}
+
+/**
+ * Call "Post Song Scores" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/postSongScores
+ */
+export function postSongScores(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  songId: string,
+  scores: ChartScore[]
+) {
+  return $http.$post<UserScore[]>(`${apiPrefix}/scores/${songId}`, scores)
 }
 
 /**
