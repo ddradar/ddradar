@@ -1,12 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/import.vue renders correctly 1`] = `
+exports[`pages/import.vue snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">スコアのインポート</h1>
   <h2 class="subtitle">e-amusementサイトからインポート</h2>
   <div class="content">
     <p>
-      公式サイトの「楽曲データ一覧」ページより、スコアを取得します。<wbr> <strong>
+      公式サイトの
+      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+        「楽曲データ一覧」ページ
+      </a>
+      より、スコアを取得します。<wbr> <strong>
         公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
       </strong></p>
     <div class="field"><label class="label">HTMLソース</label>
@@ -18,12 +22,49 @@ exports[`pages/import.vue renders correctly 1`] = `
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" disabled="disabled" class="button is-success">
+      <!----> <button type="button" class="button is-success">
         <!----> <span>
         登録
       </span>
         <!----></button>
       <!---->
+    </div>
+    <!---->
+  </div>
+</section>
+`;
+
+exports[`pages/import.vue snapshot test renders uploading state 1`] = `
+<section class="section">
+  <h1 class="title">スコアのインポート</h1>
+  <h2 class="subtitle">e-amusementサイトからインポート</h2>
+  <div class="content">
+    <p>
+      公式サイトの
+      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+        「楽曲データ一覧」ページ
+      </a>
+      より、スコアを取得します。<wbr> <strong>
+        公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
+      </strong></p>
+    <div class="field"><label class="label">HTMLソース</label>
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----> <button type="button" class="button is-success is-loading">
+        <!----> <span>
+        登録
+      </span>
+        <!----></button>
+      <!---->
+    </div>
+    <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
+      <p class="progress-value">7</p>
     </div>
   </div>
 </section>

@@ -49,6 +49,15 @@ export type Score = Pick<
 >
 
 /**
+ * Request body to `/api/v1/scores/{:songId}`
+ * @see https://github.com/ddradar/ddradar/blob/master/api/postSongScores/README.md
+ */
+export type ChartScore = Omit<
+  UserScore,
+  'userId' | 'userName' | 'songId' | 'songName'
+> & { topScore?: number }
+
+/**
  * Calcurate DanceLevel from score.
  * @see https://github.com/ddradar/ddradar/blob/master/api/score.ts
  */
@@ -377,15 +386,13 @@ export function deleteChartScore(
 }
 
 /**
- * Call "Import Scores from e-amusement GATE" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/deleteChartScore
+ * Call "Post Song Scores" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/postSongScores
  */
-export function importEagateScoreList(
+export function postSongScores(
   $http: Pick<NuxtHTTPInstance, '$post'>,
-  sourceCode: string
+  songId: string,
+  scores: ChartScore[]
 ) {
-  return $http.$post<{ count: number }>(`${apiPrefix}/scores`, {
-    type: 'eagate_music_data',
-    body: sourceCode,
-  })
+  return $http.$post<UserScore[]>(`${apiPrefix}/scores/${songId}`, scores)
 }

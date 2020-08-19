@@ -1,9 +1,10 @@
 import {
+  ChartScore,
   deleteChartScore,
   getChartScore,
   getDanceLevel,
-  importEagateScoreList,
   postChartScore,
+  postSongScores,
   Score,
   setValidScoreFromChart,
   UserScore,
@@ -293,24 +294,30 @@ describe('./api/score.ts', () => {
       )
     })
   })
-  describe('importEagateScoreList', () => {
-    test('calls POST "/api/v1/scores"', async () => {
+  describe('postSongScores', () => {
+    const songId = '00000000000000000000000000000000'
+    test(`($http, "${songId}", scores) calls POST "/api/v1/scores/${songId}"`, async () => {
       // Arrange
       const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
-      const result = { count: 3 }
-      $http.$post.mockResolvedValue(result)
-      const body = '<html></html>'
+      const scores: ChartScore[] = [
+        {
+          playStyle: 1,
+          difficulty: 0,
+          clearLamp: 7,
+          rank: 'AAA',
+          score: 999800,
+        },
+      ]
 
       // Act
-      await importEagateScoreList($http, body)
+      await postSongScores($http, songId, scores)
 
       // Assert
-      expect($http.$post.mock.calls).toHaveLength(1)
-      expect($http.$post.mock.calls[0][0]).toBe('/api/v1/scores')
-      expect($http.$post.mock.calls[0][1]).toStrictEqual({
-        type: 'eagate_music_data',
-        body,
-      })
+      expect($http.$post).toBeCalledTimes(1)
+      expect($http.$post).toBeCalledWith(
+        '/api/v1/scores/00000000000000000000000000000000',
+        scores
+      )
     })
   })
 })
