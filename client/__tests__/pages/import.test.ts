@@ -40,6 +40,7 @@ describe('pages/import.vue', () => {
           loading: true,
           maxCount: 20,
           doneCount: 7,
+          currentSong: 'PARANOiA',
         }),
       })
       expect(wrapper).toMatchSnapshot()
