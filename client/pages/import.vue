@@ -82,7 +82,9 @@ export default class ImportPage extends Vue {
     for (const songId in scoreList) {
       const scores = scoreList[songId]
       try {
+        if (scores) {
         await postSongScores(this.$http, songId, scores)
+        }
         this.doneCount++
       } catch (error) {
         popup.danger(this.$buefy, error.message ?? error)

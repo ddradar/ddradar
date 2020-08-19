@@ -117,13 +117,17 @@ describe('pages/import.vue', () => {
         },
       ],
     }
+    const postMock = mocked(postSongScores)
+    beforeEach(() => {
+      postMock.mockClear()
+    })
+
     test('calls "Post Song Scores" API', async () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
       const convertMock = mocked(musicDataToScoreList)
       convertMock.mockReturnValue(scoreList)
-      const postMock = mocked(postSongScores)
 
       // Act
       // @ts-ignore
@@ -135,6 +139,20 @@ describe('pages/import.vue', () => {
         'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
         scoreList.I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o
       )
+    })
+    test('does not call "Post Song Scores" API if scores is empty', async () => {
+      // Arrange
+      wrapper.setData({ sourceCode: '<html></html>', loading: false })
+      await wrapper.vm.$nextTick()
+      const convertMock = mocked(musicDataToScoreList)
+      convertMock.mockReturnValue({ foo: [] })
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.importEageteScores()
+
+      // Assert
+      expect(postMock).not.toBeCalled()
     })
     test('shows warning message if sourceCode is invalid', async () => {
       // Arrange
@@ -161,7 +179,6 @@ describe('pages/import.vue', () => {
       const dangerMock = mocked(popup.danger)
       const convertMock = mocked(musicDataToScoreList)
       convertMock.mockReturnValue(scoreList)
-      const postMock = mocked(postSongScores)
       postMock.mockRejectedValue(new Error(errorMessage))
 
       // Act
