@@ -64,7 +64,9 @@ exports[`pages/import.vue snapshot test renders uploading state 1`] = `
       <!---->
     </div>
     <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
-      <p class="progress-value">7</p>
+      <p class="progress-value">
+        Uploading: PARANOiA (7/20)
+      </p>
     </div>
   </div>
 </section>
