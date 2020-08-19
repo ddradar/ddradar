@@ -3,7 +3,6 @@ import {
   deleteChartScore,
   getChartScore,
   getDanceLevel,
-  importEagateScoreList,
   postChartScore,
   postSongScores,
   Score,
@@ -319,26 +318,6 @@ describe('./api/score.ts', () => {
         '/api/v1/scores/00000000000000000000000000000000',
         scores
       )
-    })
-  })
-  describe('importEagateScoreList', () => {
-    test('calls POST "/api/v1/scores"', async () => {
-      // Arrange
-      const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
-      const result = { count: 3 }
-      $http.$post.mockResolvedValue(result)
-      const body = '<html></html>'
-
-      // Act
-      await importEagateScoreList($http, body)
-
-      // Assert
-      expect($http.$post.mock.calls).toHaveLength(1)
-      expect($http.$post.mock.calls[0][0]).toBe('/api/v1/scores')
-      expect($http.$post.mock.calls[0][1]).toStrictEqual({
-        type: 'eagate_music_data',
-        body,
-      })
     })
   })
 })

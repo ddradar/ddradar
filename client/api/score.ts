@@ -396,17 +396,3 @@ export function postSongScores(
 ) {
   return $http.$post<UserScore[]>(`${apiPrefix}/scores/${songId}`, scores)
 }
-
-/**
- * Call "Import Scores from e-amusement GATE" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/deleteChartScore
- */
-export function importEagateScoreList(
-  $http: Pick<NuxtHTTPInstance, '$post'>,
-  sourceCode: string
-) {
-  return $http.$post<{ count: number }>(`${apiPrefix}/scores`, {
-    type: 'eagate_music_data',
-    body: sourceCode,
-  })
-}
