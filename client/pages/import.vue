@@ -35,7 +35,9 @@
         :value="doneCount"
         :max="maxCount"
         show-value
-      />
+      >
+        {{ message }}
+      </b-progress>
     </div>
   </section>
 </template>
@@ -62,6 +64,12 @@ export default class ImportPage extends Vue {
 
   doneCount = 0
 
+  currentSong = ''
+
+  get message() {
+    return `Uploading: ${this.currentSong} (${this.doneCount}/${this.maxCount})`
+  }
+
   /** Call Import Scores from e-amusement GATE API */
   async importEageteScores() {
     this.loading = true
@@ -82,12 +90,16 @@ export default class ImportPage extends Vue {
     for (const songId in scoreList) {
       const scores = scoreList[songId]
       try {
-        await postSongScores(this.$http, songId, scores)
+        if (scores) {
+          this.currentSong = scores[0].songName
+          await postSongScores(this.$http, songId, scores)
+        }
         this.doneCount++
       } catch (error) {
         popup.danger(this.$buefy, error.message ?? error)
         this.maxCount = 0
         this.doneCount = 0
+        this.currentSong = ''
         this.loading = false
         return
       }
@@ -96,6 +108,7 @@ export default class ImportPage extends Vue {
     popup.success(this.$buefy, `${this.doneCount}件のスコアを登録しました`)
     this.maxCount = 0
     this.doneCount = 0
+    this.currentSong = ''
     this.loading = false
   }
 }
