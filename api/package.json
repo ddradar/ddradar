@@ -14,12 +14,10 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.8.1",
-    "cheerio": "^1.0.0-rc.3"
+    "@azure/cosmos": "^3.8.1"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
-    "@types/cheerio": "^0.22.21",
     "@types/jest": "^26.0.9",
     "@types/node": "^12.12.54",
     "jest": "^26.4.0",
