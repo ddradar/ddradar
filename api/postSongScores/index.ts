@@ -17,17 +17,10 @@ import {
   mergeScore,
   Score,
 } from '../score'
-import { hasIntegerProperty } from '../type-assert'
+import { hasIntegerProperty, hasProperty } from '../type-assert'
 
-type ScoreBody = Score & Pick<ScoreSchema, 'playStyle' | 'difficulty'>
-function isScoreBody(obj: unknown): obj is ScoreBody {
-  return (
-    isScore(obj) &&
-    hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-    [1, 2].includes(obj.playStyle) &&
-    [0, 1, 2, 3, 4].includes(obj.difficulty)
-  )
-}
+type ScoreBody = Score &
+  Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
 type ChartInfo = Pick<
   StepChartSchema,
@@ -56,11 +49,7 @@ export default async function (
     return { status: 404 }
   }
 
-  if (
-    !Array.isArray(req.body) ||
-    req.body.length === 0 ||
-    req.body.some(d => !isScoreBody(d))
-  ) {
+  if (!isValidBody(req.body)) {
     return { status: 400, body: 'body is not Score[]' }
   }
 
@@ -88,7 +77,7 @@ export default async function (
   const topScores: ScoreSchema[] = []
   const body: ScoreSchema[] = []
   for (let i = 0; i < req.body.length; i++) {
-    const score: ScoreBody & { topScore?: number } = req.body[i]
+    const score = req.body[i]
     const chart = charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
@@ -132,6 +121,23 @@ export default async function (
     status: 200,
     headers: { 'Content-type': 'application/json' },
     body,
+  }
+
+  /** Assert request body is valid schema. */
+  function isValidBody(body: unknown): body is ScoreBody[] {
+    return (
+      Array.isArray(body) && body.length > 0 && body.every(d => isScoreBody(d))
+    )
+
+    function isScoreBody(obj: unknown): obj is ScoreBody {
+      return (
+        isScore(obj) &&
+        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
+        [1, 2].includes(obj.playStyle) &&
+        [0, 1, 2, 3, 4].includes(obj.difficulty) &&
+        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
+      )
+    }
   }
 
   /**
