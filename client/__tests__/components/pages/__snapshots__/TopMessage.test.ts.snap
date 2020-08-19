@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/components/pages/TopMessage.vue snapshot test renders default icon if not set 1`] = `
+<section>
+  <transition-stub name="fade">
+    <article class="message is-info">
+      <header class="message-header">
+        <p>Title</p> <button type="button" aria-label="Close message" class="delete"></button>
+      </header>
+      <section class="message-body">
+        <div class="media">
+          <div class="media-left"><span class="icon is-large is-info"><i class="mdi mdi-information mdi-48px"></i></span></div>
+          <div class="media-content">
+            <div class="content">
+              <p>Message Body</p>
+              <ul>
+                <li>First</li>
+                <li>Second</li>
+              </ul>
+            </div>
+            <div class="content is-italic has-text-weight-light has-text-right">
+              Thu, 13 Aug 2020 00:00:00 GMT
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </transition-stub>
+</section>
+`;
+
+exports[`/components/pages/TopMessage.vue snapshot test renders specified icon 1`] = `
+<section>
+  <transition-stub name="fade">
+    <article class="message is-info">
+      <header class="message-header">
+        <p>Title</p> <button type="button" aria-label="Close message" class="delete"></button>
+      </header>
+      <section class="message-body">
+        <div class="media">
+          <div class="media-left"><span class="icon is-large is-info"><i class="mdi mdi-account mdi-48px"></i></span></div>
+          <div class="media-content">
+            <div class="content">
+              <p>Message Body</p>
+              <ul>
+                <li>First</li>
+                <li>Second</li>
+              </ul>
+            </div>
+            <div class="content is-italic has-text-weight-light has-text-right">
+              Thu, 13 Aug 2020 00:00:00 GMT
+            </div>
+          </div>
+        </div>
+      </section>
+    </article>
+  </transition-stub>
+</section>
+`;

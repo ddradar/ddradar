@@ -186,7 +186,9 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { SeriesList, SongInfo, StepChart } from '~/types/api/song'
+import { postSongInfo } from '~/api/admin'
+import { getSongInfo, SeriesList, SongInfo, StepChart } from '~/api/song'
+import * as popup from '~/utils/popup'
 
 @Component
 export default class SongEditorPage extends Vue implements SongInfo {
@@ -339,10 +341,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
   async loadSongInfo() {
     if (!this.isValidSongId) return
     try {
-      const songInfo = await this.$http.$get<SongInfo>(
-        `/api/v1/songs/${this.id}`
-      )
-
+      const songInfo = await getSongInfo(this.$http, this.id)
       this.name = songInfo.name
       this.nameKana = songInfo.nameKana
       this.artist = songInfo.artist
@@ -351,12 +350,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.maxBPM = songInfo.maxBPM
       this.charts = songInfo.charts
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      popup.danger(this.$buefy, error.message ?? error)
     }
   }
 
@@ -364,49 +358,40 @@ export default class SongEditorPage extends Vue implements SongInfo {
     this.$buefy.dialog.confirm({
       message: 'Add or update this?',
       onConfirm: async () => {
-        const postData: SongInfo = {
-          id: this.id,
-          name: this.name,
-          nameKana: this.nameKana,
-          nameIndex: this.nameIndex,
-          artist: this.artist,
-          series: this.series,
-          minBPM: this.minBPM ? this.minBPM : null,
-          maxBPM: this.maxBPM ? this.maxBPM : null,
-          charts: this.charts.sort((l, r) =>
-            l.playStyle === r.playStyle
-              ? l.difficulty - r.difficulty
-              : l.playStyle - r.playStyle
-          ),
-        }
         try {
-          const songInfo = await this.$http.$post<SongInfo>(
-            '/api/v1/admin/songs',
-            postData
-          )
-          this.$buefy.notification.open({
-            message: 'Success!',
-            type: 'is-success',
-            position: 'is-top',
-            hasIcon: true,
-          })
-          this.name = songInfo.name
-          this.nameKana = songInfo.nameKana
-          this.artist = songInfo.artist
-          this.series = songInfo.series
-          this.minBPM = songInfo.minBPM
-          this.maxBPM = songInfo.maxBPM
-          this.charts = songInfo.charts
+          await this.callPostAPI()
+          popup.success(this.$buefy, 'Success!')
         } catch (error) {
-          this.$buefy.notification.open({
-            message: error.message ?? error,
-            type: 'is-danger',
-            position: 'is-top',
-            hasIcon: true,
-          })
+          popup.danger(this.$buefy, error.message ?? error)
         }
       },
     })
+  }
+
+  private async callPostAPI() {
+    const postData: SongInfo = {
+      id: this.id,
+      name: this.name,
+      nameKana: this.nameKana,
+      nameIndex: this.nameIndex,
+      artist: this.artist,
+      series: this.series,
+      minBPM: this.minBPM ? this.minBPM : null,
+      maxBPM: this.maxBPM ? this.maxBPM : null,
+      charts: this.charts.sort((l, r) =>
+        l.playStyle === r.playStyle
+          ? l.difficulty - r.difficulty
+          : l.playStyle - r.playStyle
+      ),
+    }
+    const songInfo = await postSongInfo(this.$http, postData)
+    this.name = songInfo.name
+    this.nameKana = songInfo.nameKana
+    this.artist = songInfo.artist
+    this.series = songInfo.series
+    this.minBPM = songInfo.minBPM
+    this.maxBPM = songInfo.maxBPM
+    this.charts = songInfo.charts
   }
 }
 </script>

@@ -1,8 +1,15 @@
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { BNotificationConfig } from 'buefy/types/components'
+import { mocked } from 'ts-jest/utils'
 
+import { postSongScores } from '~/api/score'
 import ImportPage from '~/pages/import.vue'
+import { musicDataToScoreList } from '~/utils/eagate-parser'
+import * as popup from '~/utils/popup'
+
+jest.mock('~/api/score')
+jest.mock('~/utils/eagate-parser')
+jest.mock('~/utils/popup')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -10,22 +17,34 @@ localVue.use(Buefy)
 describe('pages/import.vue', () => {
   let wrapper: Wrapper<ImportPage>
   const $http = {
-    $post: jest.fn((_url, _body, _options) => Promise.resolve({ count: 1 })),
+    $post: jest.fn(),
   }
-  const $buefy = {
-    notification: { open: jest.fn<void, [BNotificationConfig]>() },
-  }
+  const $buefy = { notification: {} }
   beforeEach(() => {
-    $http.$post.mockReset()
-    $buefy.notification.open.mockReset()
     wrapper = shallowMount(ImportPage, { localVue, mocks: { $http, $buefy } })
   })
 
-  test('renders correctly', () => {
-    const wrapper = mount(ImportPage, { localVue })
-    expect(wrapper).toMatchSnapshot()
+  describe('snapshot test', () => {
+    test('renders correctly', () => {
+      const wrapper = mount(ImportPage, {
+        localVue,
+        data: () => ({ sourceCode: '<html></html>' }),
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
+    test('renders uploading state', () => {
+      const wrapper = mount(ImportPage, {
+        localVue,
+        data: () => ({
+          sourceCode: '<html></html>',
+          loading: true,
+          maxCount: 20,
+          doneCount: 7,
+        }),
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
   })
-
   describe('register button', () => {
     test('has no disabled attribute if sourceCode is valid', async () => {
       // Arrange - Act
@@ -57,66 +76,100 @@ describe('pages/import.vue', () => {
       expect(button.attributes().loading).toBeTruthy()
     })
   })
-
   describe('importEageteScores()', () => {
-    test('calls "api/v1/scores" API', async () => {
+    const scoreList: ReturnType<typeof musicDataToScoreList> = {
+      I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
+        {
+          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 0,
+          score: 876000,
+          clearLamp: 2,
+          rank: 'A+',
+        },
+        {
+          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 2,
+          score: 823000,
+          clearLamp: 2,
+          rank: 'A',
+        },
+        {
+          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 3,
+          score: 798000,
+          clearLamp: 2,
+          rank: 'A-',
+        },
+        {
+          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 4,
+          score: 780000,
+          clearLamp: 2,
+          rank: 'B+',
+        },
+      ],
+    }
+    test('calls "Post Song Scores" API', async () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      $http.$post.mockResolvedValueOnce({ count: 5 })
+      const convertMock = mocked(musicDataToScoreList)
+      convertMock.mockReturnValue(scoreList)
+      const postMock = mocked(postSongScores)
 
       // Act
       // @ts-ignore
       await wrapper.vm.importEageteScores()
 
       // Assert
-      expect($http.$post).lastCalledWith('api/v1/scores', {
-        type: 'eagate_music_data',
-        body: '<html></html>',
-      })
-      expect($buefy.notification.open).lastCalledWith({
-        message: '5件のスコアを登録しました',
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      expect(postMock).lastCalledWith(
+        $http,
+        'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+        scoreList.I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o
+      )
     })
-    test('shows warning message if API returns 400', async () => {
+    test('shows warning message if sourceCode is invalid', async () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      $http.$post.mockRejectedValueOnce({ message: '400' })
+      const warningMock = mocked(popup.warning)
+      const convertMock = mocked(musicDataToScoreList)
+      convertMock.mockImplementation(() => {
+        throw new Error('invalid')
+      })
 
       // Act
       // @ts-ignore
       await wrapper.vm.importEageteScores()
 
       // Assert
-      expect($buefy.notification.open).lastCalledWith({
-        message: 'HTMLソース文字列が不正です',
-        type: 'is-warning',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      expect(warningMock).lastCalledWith($buefy, 'HTMLソース文字列が不正です')
     })
     test('shows error message if API returns ErrorCode', async () => {
       // Arrange
       const errorMessage = '500 Server Error'
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      $http.$post.mockRejectedValueOnce(errorMessage)
+      const dangerMock = mocked(popup.danger)
+      const convertMock = mocked(musicDataToScoreList)
+      convertMock.mockReturnValue(scoreList)
+      const postMock = mocked(postSongScores)
+      postMock.mockRejectedValue(new Error(errorMessage))
 
       // Act
       // @ts-ignore
       await wrapper.vm.importEageteScores()
 
       // Assert
-      expect($buefy.notification.open).lastCalledWith({
-        message: errorMessage,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      expect(dangerMock).lastCalledWith($buefy, errorMessage)
     })
   })
 })

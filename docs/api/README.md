@@ -6,6 +6,8 @@
 - [Song](#song-api)
 - [Course](#course-api)
 - [User](#user-api)
+- [Score](#score-api)
+- [Notification](#notification-api)
 
 ## Authentication API
 
@@ -40,5 +42,11 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Chart Score](../../api/getChartScore/README.md)
 - [Post Chart Score](../../api/postChartScore/README.md) **Authed user only*
+- [Post Song Scores](../../api/postSongScores/README.md) **Authed user only*
 - [Delete Chart Score](../../api/deleteChartScore/README.md) **Authed user only*
-- [Import Scores from e-amusement GATE](../../api/importScores/README.md) **Authed user only*
+
+## Notification API
+
+- [Get Notification List](../../api/getNotificationList/README.md)
+- [Get Notification Info](../../api/getNotificationInfo/README.md)
+- [Post Notification](../../api/postNotification/README.md) **Admin only*

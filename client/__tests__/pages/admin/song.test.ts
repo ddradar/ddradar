@@ -1,8 +1,8 @@
-import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
+import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { SongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song.vue'
-import type { SongInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -110,10 +110,6 @@ const songInfo: Omit<SongInfo, 'nameIndex'> = {
 }
 
 describe('/admin/song.vue', () => {
-  let wrapper: Wrapper<SongEditorPage>
-  beforeEach(() => {
-    wrapper = shallowMount(SongEditorPage, { localVue })
-  })
   test('renders correctly', () => {
     const wrapper = mount(SongEditorPage, {
       localVue,
@@ -122,6 +118,7 @@ describe('/admin/song.vue', () => {
     expect(wrapper).toMatchSnapshot()
   })
   describe('get nameIndex()', () => {
+    const wrapper = shallowMount(SongEditorPage, { localVue })
     test.each([
       [0, 'あ'],
       [1, 'ぎ'],
@@ -176,6 +173,7 @@ describe('/admin/song.vue', () => {
     })
   })
   describe('get isValidSongId()', () => {
+    const wrapper = shallowMount(SongEditorPage, { localVue })
     test.each([0, 66666666666666666666666666666666, '', 'foo'])(
       'returns false if id is %s',
       id => {
@@ -200,6 +198,7 @@ describe('/admin/song.vue', () => {
     })
   })
   describe('get hasError()', () => {
+    const wrapper = shallowMount(SongEditorPage, { localVue })
     test.each([
       { id: 'foo' },
       { name: '' },

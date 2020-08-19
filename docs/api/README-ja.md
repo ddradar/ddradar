@@ -6,6 +6,8 @@ English version is [here](./README.md).
 - [曲](#song-api)
 - [コース](#course-api)
 - [ユーザー](#user-api)
+- [スコア](#score-api)
+- [通知](#notification-api)
 
 ## Authentication API
 
@@ -40,5 +42,11 @@ English version is [here](./README.md).
 
 - [スコア取得(譜面別)](../../api/getChartScore/README-ja.md)
 - [スコア追加/更新(譜面別)](../../api/postChartScore/README-ja.md) **ログインユーザーのみ*
+- [スコア追加/更新(曲別)](../../api/postSongScores/README-ja.md) **ログインユーザーのみ*
 - [スコア削除(譜面別)](../../api/deleteChartScore/README-ja.md) **ログインユーザーのみ*
-- [e-amusement GATEからインポート](../../api/importScores/README-ja.md) **ログインユーザーのみ*
+
+## Notification API
+
+- [通知一覧の取得](../../api/getNotificationList/README-ja.md)
+- [通知詳細の取得](../../api/getNotificationInfo/README-ja.md)
+- [通知の追加/更新](../../api/postNotification/README-ja.md) **管理者のみ*

@@ -4,7 +4,14 @@
     <h2 class="subtitle">e-amusementサイトからインポート</h2>
     <div class="content">
       <p>
-        公式サイトの「楽曲データ一覧」ページより、スコアを取得します。<wbr />
+        公式サイトの
+        <a
+          href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html"
+          target="_blank"
+        >
+          「楽曲データ一覧」ページ
+        </a>
+        より、スコアを取得します。<wbr />
         <strong>
           公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
         </strong>
@@ -22,12 +29,23 @@
           登録
         </b-button>
       </b-field>
+      <b-progress
+        v-if="loading"
+        type="is-success"
+        :value="doneCount"
+        :max="maxCount"
+        show-value
+      />
     </div>
   </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
+
+import { postSongScores } from '~/api/score'
+import { musicDataToScoreList } from '~/utils/eagate-parser'
+import * as popup from '~/utils/popup'
 
 @Component
 export default class ImportPage extends Vue {
@@ -40,38 +58,44 @@ export default class ImportPage extends Vue {
 
   loading = false
 
+  maxCount = 0
+
+  doneCount = 0
+
   /** Call Import Scores from e-amusement GATE API */
   async importEageteScores() {
     this.loading = true
+    this.maxCount = 0
+    this.doneCount = 0
+
+    let scoreList: ReturnType<typeof musicDataToScoreList>
     try {
-      const res = await this.$http.$post<{ count: number }>('api/v1/scores', {
-        type: 'eagate_music_data',
-        body: this.sourceCode,
-      })
-      this.$buefy.notification.open({
-        message: `${res.count}件のスコアを登録しました`,
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
-    } catch (error) {
-      const message = error.message ?? error
-      if (message === '400') {
-        this.$buefy.notification.open({
-          message: 'HTMLソース文字列が不正です',
-          type: 'is-warning',
-          position: 'is-top',
-          hasIcon: true,
-        })
-      } else {
-        this.$buefy.notification.open({
-          message,
-          type: 'is-danger',
-          position: 'is-top',
-          hasIcon: true,
-        })
+      scoreList = musicDataToScoreList(this.sourceCode)
+    } catch {
+      popup.warning(this.$buefy, 'HTMLソース文字列が不正です')
+      this.loading = false
+      return
+    }
+
+    this.maxCount = Object.keys(scoreList).length
+
+    for (const songId in scoreList) {
+      const scores = scoreList[songId]
+      try {
+        await postSongScores(this.$http, songId, scores)
+        this.doneCount++
+      } catch (error) {
+        popup.danger(this.$buefy, error.message ?? error)
+        this.maxCount = 0
+        this.doneCount = 0
+        this.loading = false
+        return
       }
     }
+
+    popup.success(this.$buefy, `${this.doneCount}件のスコアを登録しました`)
+    this.maxCount = 0
+    this.doneCount = 0
     this.loading = false
   }
 }

@@ -44,6 +44,9 @@
             </b-button>
           </b-navbar-item>
         </b-navbar-dropdown>
+        <b-navbar-item tag="nuxt-link" to="/users">
+          ユーザーを探す
+        </b-navbar-item>
       </template>
 
       <template v-slot:end>
@@ -90,7 +93,7 @@
     </b-navbar>
 
     <div>
-      <b-loading :active.sync="isLoading" />
+      <b-loading :active.sync="$fetchState.pending" />
       <nuxt />
     </div>
 
@@ -115,12 +118,10 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SeriesList } from '~/types/api/song'
+import { NameIndexList, SeriesList } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
-  isLoading = true
-
   get isLoggedIn() {
     return !!this.$accessor.auth
   }
@@ -163,11 +164,10 @@ export default class DefaultLayout extends Vue {
     return NameIndexList
   }
 
+  /** Get Login user info */
   async fetch() {
     await this.$accessor.fetchUser()
-    if (this.$accessor.auth && !this.$accessor.user)
-      this.$router.push('/profile')
-    this.isLoading = false
+    if (this.isLoggedIn && !this.$accessor.user) this.$router.push('/profile')
   }
 }
 </script>

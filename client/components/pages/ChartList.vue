@@ -54,13 +54,13 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import {
   ChartInfo,
   getDifficultyName,
+  getSongInfo,
   shortenSeriesName,
-  SongInfo,
-} from '~/types/api/song'
+} from '~/api/song'
+import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 
 @Component
 export default class ChartListComponent extends Vue {
@@ -87,7 +87,7 @@ export default class ChartListComponent extends Vue {
     playStyle: number,
     difficulty: number
   ) {
-    const songData = await this.$http.$get<SongInfo>(`/api/v1/songs/${songId}`)
+    const songData = await getSongInfo(this.$http, songId)
     this.$buefy.modal.open({
       parent: this,
       component: ScoreEditor,

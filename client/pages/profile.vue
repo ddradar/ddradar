@@ -90,10 +90,11 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AreaCode, areaList, User } from '../types/api/user'
+import { AreaCode, areaList, existsUser, User } from '~/api/user'
+import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
-export default class ProfilePage extends Vue implements User {
+export default class ProfilePage extends Vue {
   id: string = ''
   name: string = ''
   area: AreaCode = 0
@@ -129,10 +130,10 @@ export default class ProfilePage extends Vue implements User {
   /** Load user info */
   async fetch() {
     await this.$accessor.fetchUser()
-    this.id = this.$accessor.user?.id ?? this.$accessor.auth.userDetails
+    this.id = this.$accessor.user?.id ?? this.$accessor.auth?.userDetails ?? ''
     this.name = this.$accessor.user?.name ?? ''
     this.area = this.$accessor.user?.area ?? 0
-    this.code = this.$accessor.user?.code
+    this.code = this.$accessor.user?.code ?? null
     this.isPublic = this.$accessor.user?.isPublic ?? true
   }
 
@@ -154,9 +155,7 @@ export default class ProfilePage extends Vue implements User {
 
     // Duplicate check from API
     this.loading = true
-    const { exists } = await this.$http.$get<{ exists: boolean }>(
-      `/api/v1/users/exists/${this.id}`
-    )
+    const exists = await existsUser(this.$http, this.id)
     this.loading = false
 
     if (exists) {
@@ -178,19 +177,9 @@ export default class ProfilePage extends Vue implements User {
     if (this.code) user.code = this.code
     try {
       await this.$accessor.saveUser(user)
-      this.$buefy.notification.open({
-        message: 'Success!',
-        type: 'is-success',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      popup.success(this.$buefy, 'Success!')
     } catch (error) {
-      this.$buefy.notification.open({
-        message: error.message ?? error,
-        type: 'is-danger',
-        position: 'is-top',
-        hasIcon: true,
-      })
+      popup.danger(this.$buefy, error.message ?? error)
     }
     this.type = ''
     this.message = ''

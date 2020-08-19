@@ -38,7 +38,7 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SongListData } from '~/types/api/song'
+import { NameIndexList, searchSongByName, SongListData } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class SongByNamePage extends Vue {
@@ -57,11 +57,8 @@ export default class SongByNamePage extends Vue {
 
   /** Get Song List from API */
   async fetch() {
-    const i = this.$route.params.nameIndex
-    const songs = await this.$http.$get<SongListData[]>(
-      `/api/v1/songs/name/${i}`
-    )
-    this.songs = songs
+    const nameIndex = parseInt(this.$route.params.nameIndex, 10)
+    this.songs = await searchSongByName(this.$http, nameIndex)
   }
 
   /** Name index title (like "あ", "A", "数字・記号") */

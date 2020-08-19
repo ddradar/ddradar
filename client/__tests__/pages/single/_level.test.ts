@@ -7,8 +7,8 @@ import {
 } from '@vue/test-utils'
 import Buefy from 'buefy'
 
+import type { ChartInfo } from '~/api/song'
 import SingleLevelPage from '~/pages/single/_level.vue'
-import type { ChartInfo } from '~/types/api/song'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -115,7 +115,7 @@ describe('/single/_level.vue', () => {
         const ctx = ({ params: { level } } as unknown) as Context
 
         // Act - Assert
-        expect(wrapper.vm.$options.validate(ctx)).toBe(false)
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
       }
     )
     test.each(['1', '9', '19', '20'])('/single/%s returns true', level => {
@@ -131,7 +131,7 @@ describe('/single/_level.vue', () => {
       const ctx = ({ params: { level } } as unknown) as Context
 
       // Act - Assert
-      expect(wrapper.vm.$options.validate(ctx)).toBe(true)
+      expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
     })
   })
   describe('fetch()', () => {
