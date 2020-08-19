@@ -34,6 +34,7 @@
         type="is-success"
         :value="doneCount"
         :max="maxCount"
+        show-value
       />
     </div>
   </section>
