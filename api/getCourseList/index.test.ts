@@ -377,9 +377,7 @@ describe('GET /api/v1/courses', () => {
       afterAll(async () => {
         const container = getContainer('Songs')
         await Promise.all(
-          courses.map(c =>
-            container.item(c.id, c.charts.length === 1 ? -2 : -1).delete()
-          )
+          courses.map(c => container.item(c.id, c.nameIndex).delete())
         )
         await container.item(song.id, song.nameIndex).delete()
       })
