@@ -184,6 +184,7 @@
 </template>
 
 <script lang="ts">
+import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postSongInfo } from '~/api/admin'
@@ -307,6 +308,45 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.charts.length === 0 ||
       this.charts.some(c => this.hasDuplicateKey(c))
     )
+  }
+
+  async asyncData({ $http, params }: Pick<Context, '$http' | 'params'>) {
+    const id = params.id
+    if (!id) {
+      const chart = {
+        level: 1,
+        notes: 1,
+        freezeArrow: 0,
+        shockArrow: 0,
+        stream: 0,
+        voltage: 0,
+        air: 0,
+        freeze: 0,
+        chaos: 0,
+      } as const
+      const charts: StepChart[] = [
+        { ...chart, playStyle: 1, difficulty: 0 },
+        { ...chart, playStyle: 1, difficulty: 1 },
+        { ...chart, playStyle: 1, difficulty: 2 },
+        { ...chart, playStyle: 1, difficulty: 3 },
+        { ...chart, playStyle: 2, difficulty: 1 },
+        { ...chart, playStyle: 2, difficulty: 2 },
+        { ...chart, playStyle: 2, difficulty: 3 },
+      ]
+      return { charts }
+    }
+
+    const songInfo = await getSongInfo($http, id)
+    return {
+      id,
+      name: songInfo.name,
+      nameKana: songInfo.nameKana,
+      artist: songInfo.artist,
+      series: songInfo.series,
+      minBPM: songInfo.minBPM,
+      maxBPM: songInfo.maxBPM,
+      charts: songInfo.charts,
+    }
   }
 
   addChart() {
