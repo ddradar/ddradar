@@ -11,7 +11,7 @@ export type CourseInfo = Omit<SongInfo, 'artist' | 'charts'> & {
   charts: CourseChart[]
 }
 
-type CourseChart = Omit<
+export type CourseChart = Omit<
   StepChart,
   'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
 > & {
