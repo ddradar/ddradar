@@ -3,6 +3,16 @@
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
+    <div v-if="$accessor.isAdmin" class="buttons">
+      <b-button
+        type="is-info"
+        icon-left="pencil-box"
+        tag="nuxt-link"
+        :to="`/admin/song/${song.id}`"
+      >
+        編集
+      </b-button>
+    </div>
     <div class="content columns is-multiline">
       <chart-detail
         v-for="(chart, i) in singleCharts"
