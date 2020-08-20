@@ -2,7 +2,7 @@ import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import type { SongInfo } from '~/api/song'
-import SongEditorPage from '~/pages/admin/song.vue'
+import SongEditorPage from '~/pages/admin/song/_id.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -109,7 +109,7 @@ const songInfo: Omit<SongInfo, 'nameIndex'> = {
   ],
 }
 
-describe('/admin/song.vue', () => {
+describe('pages/admin/song/_id.vue', () => {
   test('renders correctly', () => {
     const wrapper = mount(SongEditorPage, {
       localVue,
