@@ -1,4 +1,4 @@
-import { createLocalVue, mount } from '@vue/test-utils'
+import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import type { SongInfo } from '~/api/song'
@@ -111,18 +111,38 @@ const song: SongInfo = {
   ],
 }
 
-describe('songs/:id/:chart', () => {
-  test('rendars correctly', () => {
-    const wrapper = mount(SongPage, {
-      localVue,
-      data: () => {
-        return {
-          song,
-          playStyle: 1,
-          difficulty: 0,
-        }
-      },
+describe('pages/songs/_id/_chart.vue', () => {
+  describe('snapshot test', () => {
+    test('renders correctly', () => {
+      const $accessor = { isAdmin: false }
+      const wrapper = mount(SongPage, {
+        localVue,
+        mocks: { $accessor },
+        data: () => {
+          return {
+            song,
+            playStyle: 1,
+            difficulty: 0,
+          }
+        },
+      })
+      expect(wrapper).toMatchSnapshot()
     })
-    expect(wrapper.element).toMatchSnapshot()
+    test('renders "Edit" button if admin', () => {
+      const $accessor = { isAdmin: true }
+      const wrapper = mount(SongPage, {
+        localVue,
+        mocks: { $accessor },
+        stubs: { NuxtLink: RouterLinkStub },
+        data: () => {
+          return {
+            song,
+            playStyle: 1,
+            difficulty: 0,
+          }
+        },
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
   })
 })
