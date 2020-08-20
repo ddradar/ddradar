@@ -347,12 +347,12 @@ describe('GET /api/v1/courses', () => {
         // Assert
         expect(result.status).toBe(200)
         expect(result.body).toHaveLength(6)
-        expect(result.body[0].id).toBe('q6oOPqQPlOQoooq888bPI1OPDlqDIQQD') // PASSION(A20)
-        expect(result.body[1].id).toBe('O6Pi0O800b8b6d9dd9P89dD1900I1q80') // HYPER(A20 PLUS)
-        expect(result.body[2].id).toBe('19id1DO6q9Pb1681db61D8D8oQi9dlb6') // SP初段(A20)
-        expect(result.body[3].id).toBe('bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP') // DP十段(A20)
-        expect(result.body[4].id).toBe('6bo6ID6l11qd6lolilI6o6q8I6ddo88i') // SP初段(A20 PLUS)
-        expect(result.body[5].id).toBe('q0IObiQdI9o918O0DbPlldqd01liQ8Ql') // DP五段(A20 PLUS)
+        expect(result.body[0].id).toBe('19id1DO6q9Pb1681db61D8D8oQi9dlb6') // SP初段(A20)
+        expect(result.body[1].id).toBe('bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP') // DP十段(A20)
+        expect(result.body[2].id).toBe('6bo6ID6l11qd6lolilI6o6q8I6ddo88i') // SP初段(A20 PLUS)
+        expect(result.body[3].id).toBe('q0IObiQdI9o918O0DbPlldqd01liQ8Ql') // DP五段(A20 PLUS)
+        expect(result.body[4].id).toBe('q6oOPqQPlOQoooq888bPI1OPDlqDIQQD') // PASSION(A20)
+        expect(result.body[5].id).toBe('O6Pi0O800b8b6d9dd9P89dD1900I1q80') // HYPER(A20 PLUS)
       })
 
       test.each([
