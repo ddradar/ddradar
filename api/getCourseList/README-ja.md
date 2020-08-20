@@ -5,6 +5,7 @@ English version is [here](./README.md).
 コース情報の一覧を取得します。
 
 - [エンドポイント](#endpoint)
+- [パラメータ](#parameters)
 - [応答](#response)
   - [本文](#response-body)
 - リンク
@@ -16,7 +17,14 @@ English version is [here](./README.md).
 
 認証は不要です。
 
-> GET api/v1/courses
+> GET api/v1/courses?series=16&type=1
+
+## Parameters
+
+|名前|型|説明|
+|----|:--:|---|
+|`series`|integer?|`16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS (省略可)|
+|`type`|integer?|`1`: NONSTOP, `2`: 段位認定 (省略可)|
 
 ## Response
 
