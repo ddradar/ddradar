@@ -1,13 +1,14 @@
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { CourseInfoSchema, CourseSchema, SongSchema } from '../db/songs'
+import type { CourseSchema, SongSchema } from '../db/songs'
 import getCourseList from '.'
 
-type ShrinkedCourse = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
-  charts: Pick<CourseInfoSchema, 'playStyle' | 'difficulty' | 'level'>[]
-}
-
 describe('GET /api/v1/courses', () => {
+  const req = { query: {} }
+  beforeEach(() => {
+    req.query = {}
+  })
+
   describeIf(() => !!getConnectionString())(
     'Cosmos DB integration test',
     () => {
@@ -339,9 +340,9 @@ describe('GET /api/v1/courses', () => {
         await container.items.create(song)
       })
 
-      test('returns "200 OK" with JSON body', async () => {
+      test('returns "200 OK" with all courses', async () => {
         // Act
-        const result = await getCourseList()
+        const result = await getCourseList(null, req)
 
         // Assert
         expect(result.status).toBe(200)
@@ -352,6 +353,25 @@ describe('GET /api/v1/courses', () => {
         expect(result.body[3].id).toBe('bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP') // DP十段(A20)
         expect(result.body[4].id).toBe('6bo6ID6l11qd6lolilI6o6q8I6ddo88i') // SP初段(A20 PLUS)
         expect(result.body[5].id).toBe('q0IObiQdI9o918O0DbPlldqd01liQ8Ql') // DP五段(A20 PLUS)
+      })
+
+      test.each([
+        [{ series: '16' }, 3],
+        [{ series: '17' }, 3],
+        [{ type: '1' }, 2],
+        [{ type: '2' }, 4],
+        [{ series: '16', type: '1' }, 1],
+        [{ series: '17', type: '1' }, 1],
+        [{ series: '16', type: '2' }, 2],
+        [{ series: '17', type: '2' }, 2],
+      ])('%p returns "200 OK" with %i courses', async (query, length) => {
+        // Act
+        req.query = { ...query }
+        const result = await getCourseList(null, req)
+
+        // Assert
+        expect(result.status).toBe(200)
+        expect(result.body).toHaveLength(length)
       })
 
       afterAll(async () => {
