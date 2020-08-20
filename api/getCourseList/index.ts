@@ -18,18 +18,19 @@ export default async function (): Promise<SuccessResult<ShrinkedCourse[]>> {
     'level',
   ]
   const joinColumn: keyof ShrinkedCourse = 'charts'
+  const orderByColumns: (keyof CourseSchema)[] = ['nameIndex', 'nameKana']
 
   const { resources } = await container.items
     .query<ShrinkedCourse>({
       query:
         `SELECT ${courseColumns.map(col => `c.${col}`).join(', ')}, ` +
         'ARRAY(' +
-        `SELECT ${orderColumns.map(col => `o.${col}`).join(', ')} ` +
-        `FROM o IN c.${joinColumn}` +
+        `  SELECT ${orderColumns.map(col => `o.${col}`).join(', ')} ` +
+        `  FROM o IN c.${joinColumn}` +
         `) as ${joinColumn} ` +
         'FROM c ' +
         'WHERE c.nameIndex = -1 OR c.nameIndex = -2 ' +
-        'ORDER BY c.id',
+        `ORDER BY ${orderByColumns.map(col => `c.${col}`).join(', ')}`,
     })
     .fetchAll()
 
