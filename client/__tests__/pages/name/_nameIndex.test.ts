@@ -66,7 +66,7 @@ describe('pages/name/_nameIndex.vue', () => {
 
         // Assert
         expect(apiMock).toBeCalledTimes(1)
-        expect(apiMock).toBeCalledWith($http, parseInt(nameIndex))
+        expect(apiMock).toBeCalledWith($http, parseInt(nameIndex, 10))
       }
     )
   })

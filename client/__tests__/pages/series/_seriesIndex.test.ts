@@ -66,7 +66,7 @@ describe('pages/series/_seriesIndex.vue', () => {
 
         // Assert
         expect(apiMock).toBeCalledTimes(1)
-        expect(apiMock).toBeCalledWith($http, parseInt(seriesIndex))
+        expect(apiMock).toBeCalledWith($http, parseInt(seriesIndex, 10))
       }
     )
   })
