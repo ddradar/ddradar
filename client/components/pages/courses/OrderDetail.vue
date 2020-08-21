@@ -56,6 +56,12 @@
             <li><em>Freeze Arrow</em>: {{ chart.freezeArrow }}</li>
             <li><em>Shock Arrow</em>: {{ chart.shockArrow }}</li>
           </ul>
+          <ol>
+            <li v-for="o in orders" :key="o.id">
+              <nuxt-link :to="o.to">{{ o.name }}</nuxt-link>
+              {{ o.chartName }}
+            </li>
+          </ol>
         </div>
       </div>
     </card>
@@ -91,13 +97,30 @@ export default class ChartDetailComponent extends Vue {
   }
 
   get chartTitle() {
-    const shortPlayStyle = getPlayStyleName(this.chart.playStyle)[0] + 'P' // 'SP' or 'DP'
-    const difficulty = getDifficultyName(this.chart.difficulty)
-    return `${shortPlayStyle}-${difficulty} (${this.chart.level})`
+    return this.getChartTitle(
+      this.chart.playStyle,
+      this.chart.difficulty,
+      this.chart.level
+    )
   }
 
   get cardType() {
     return `is-${getDifficultyName(this.chart.difficulty).toLowerCase()}`
+  }
+
+  get orders() {
+    return this.chart.order.map(s => ({
+      id: s.songId,
+      name: s.songName,
+      chartName: this.getChartTitle(s.playStyle, s.difficulty, s.level),
+      to: `/songs/${s.songId}/${s.playStyle}${s.difficulty}`,
+    }))
+  }
+
+  private getChartTitle(playStyle: number, difficulty: number, level: number) {
+    const shortPlayStyle = getPlayStyleName(playStyle)[0] + 'P' // 'SP' or 'DP'
+    const difficultyName = getDifficultyName(difficulty)
+    return `${shortPlayStyle}-${difficultyName} (${level})`
   }
 
   async fetch() {
