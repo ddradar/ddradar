@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <!---->
+      <tbody>
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20
+          </td>
+          <td data-label="Name" class=""><a>
+              初段(SINGLE)
+            </a></td>
+          <td data-label="Type" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20 PLUS
+          </td>
+          <td data-label="Name" class=""><a>
+              初段(SINGLE)
+            </a></td>
+          <td data-label="Type" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20
+          </td>
+          <td data-label="Name" class=""><a>
+              四段(DOUBLE)
+            </a></td>
+          <td data-label="Type" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20 PLUS
+          </td>
+          <td data-label="Name" class=""><a>
+              九段(DOUBLE)
+            </a></td>
+          <td data-label="Type" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20 PLUS
+          </td>
+          <td data-label="Name" class=""><a>
+              HYPER
+            </a></td>
+          <td data-label="Type" class="">
+            NONSTOP
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A20
+          </td>
+          <td data-label="Name" class=""><a>
+              PLANET
+            </a></td>
+          <td data-label="Type" class="">
+            NONSTOP
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </tbody>
+      <!---->
+    </table>
+  </div>
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <!---->
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="0">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>Nothing here.</p>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+  </div>
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/courses/CourseList.vue snapshot test renders loading spin if { loading: true } 1`] = `
+<div class="b-table is-loading">
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <!---->
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="0">
+            <section class="section">
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+  </div>
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;

@@ -44,10 +44,10 @@ import { getPlayStyleName, shortenSeriesName } from '~/api/song'
 
 @Component
 export default class CourseListComponent extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({ type: Array, required: false, default: () => [] })
   readonly courses!: CourseList[]
 
-  @Prop({ type: Boolean, required: true })
+  @Prop({ type: Boolean, required: false, default: false })
   readonly loading!: boolean
 
   get displayedCourses() {
