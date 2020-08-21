@@ -16,14 +16,7 @@ export function musicDataToScoreList(
   const dataTable = doc.getElementById('data_tbl')
   if (!dataTable) throw new Error('invalid html')
 
-  // Get PlayStyle from columns count
-  const headerColumns =
-    dataTable
-      .getElementsByClassName('column')[0]
-      ?.getElementsByClassName('rank')?.length ?? 0
-  if (headerColumns !== 4 && headerColumns !== 5)
-    throw new Error('invalid html')
-  const playStyle = headerColumns === 5 ? 1 : 2
+  const playStyle = getPlayStyle(dataTable)
 
   const result: Record<string, ChartScore[]> = {}
 
@@ -35,11 +28,11 @@ export function musicDataToScoreList(
     const songCol = songRow
       .getElementsByTagName('td')[0]
       .getElementsByClassName('music_info')[0]
-    const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP
+    const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP or 段位認定
     const songId = songCol
       .getAttribute('href')
       ?.replace(
-        /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32})$/,
+        /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32}).*$/,
         '$1'
       )
     const songName = songCol.textContent!.trim() || jacketAlt
@@ -88,6 +81,45 @@ export function musicDataToScoreList(
     }
   }
   return result
+
+  /** Get playStyle from element */
+  function getPlayStyle(dataTable: HTMLElement) {
+    // Get PlayStyle from columns count
+    const headerColumns =
+      dataTable
+        .getElementsByClassName('column')[0]
+        ?.getElementsByClassName('rank')?.length ||
+      dataTable
+        .getElementsByClassName('column')[0]
+        ?.getElementsByClassName('rank_a')?.length
+    if (headerColumns === 5) return 1 // BEGINNER, BASIC, DIFFICULT, EXPERT, CHALLENGE
+    if (headerColumns === 4) return 2 // BASIC, DIFFICULT, EXPERT, CHALLENGE
+    if (headerColumns !== 1) throw new Error('invalid html')
+
+    // if 段位認定, find 1st Dan Course id
+    const single1stDan = [
+      '19id1DO6q9Pb1681db61D8D8oQi9dlb6', // A20
+      '6bo6ID6l11qd6lolilI6o6q8I6ddo88i', // A20 PLUS
+    ]
+    const double1stDan = [
+      '9IliQ1O0dOQPiObPDDDblDO6oliDodlb', // A20
+      'bIb6Q6DD9iP1d61dbOqdi6IQPllOb1IP', // A20 PLUS
+    ]
+    const songs = dataTable.getElementsByClassName('data')
+    for (let i = 0; i < songs.length; i++) {
+      const songId = songs[i]
+        .getElementsByTagName('td')[0]
+        .getElementsByClassName('music_info')[0]
+        .getAttribute('href')!
+        .replace(
+          /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32}).+$/,
+          '$1'
+        )
+      if (single1stDan.includes(songId!)) return 1
+      if (double1stDan.includes(songId!)) return 2
+    }
+    throw new Error('invalid html')
+  }
 
   /** Get chart difficulty from element id */
   function getDifficulty(elementId: string) {
