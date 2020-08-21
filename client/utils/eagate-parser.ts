@@ -6,6 +6,8 @@ type ChartScore = Omit<UserScore, 'userId' | 'userName'>
  * Convert music data to { songId: Score[] } Record.
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_double.html
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/nonstop_data_single.html
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/nonstop_data_double.html
  */
 export function musicDataToScoreList(
   sourceCode: string
@@ -33,13 +35,14 @@ export function musicDataToScoreList(
     const songCol = songRow
       .getElementsByTagName('td')[0]
       .getElementsByClassName('music_info')[0]
+    const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP
     const songId = songCol
       .getAttribute('href')
       ?.replace(
-        /^\/game\/ddr\/ddra20\/p\/playdata\/music_detail.html\?index=([01689bdiloqDIOPQ]{32})$/,
+        /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32})$/,
         '$1'
       )
-    const songName = songCol.textContent!.trim()
+    const songName = songCol.textContent!.trim() || jacketAlt
     if (!songId || !songName) continue
 
     result[songId] = []

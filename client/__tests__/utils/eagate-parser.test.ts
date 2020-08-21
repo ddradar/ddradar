@@ -205,17 +205,7 @@ describe('/utils/eagate-parser.ts', () => {
             rank: 'AA',
           },
         ],
-        qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [
-          {
-            songId: 'qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb',
-            songName: '革命(X-Special)',
-            playStyle: 2,
-            difficulty: 4,
-            score: 898000,
-            clearLamp: 2,
-            rank: 'AA-',
-          },
-        ],
+        qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [],
         llo89P08I1PlID9DO8lqdbbq69O8Qiib: [
           {
             songId: 'llo89P08I1PlID9DO8lqdbbq69O8Qiib',
@@ -243,6 +233,163 @@ describe('/utils/eagate-parser.ts', () => {
             score: 45310,
             clearLamp: 0,
             rank: 'E',
+          },
+        ],
+      })
+    })
+    test('(nonstop_data_single.html) returns single courses ScoreList', async () => {
+      // Arrange
+      const source = await readFileAsync(
+        join(__dirname, 'eagate', 'nonstop_data_single.html'),
+        { encoding: 'utf8' }
+      )
+
+      // Act
+      const result = musicDataToScoreList(source)
+
+      // Assert
+      expect(result).toStrictEqual({
+        qbbOOO1QibO1861bqQII9lqlPiIoqb98: [
+          {
+            songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+            songName: 'FIRST',
+            playStyle: 1,
+            difficulty: 0,
+            score: 902500,
+            clearLamp: 4,
+            rank: 'AA',
+          },
+          {
+            songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+            songName: 'FIRST',
+            playStyle: 1,
+            difficulty: 1,
+            score: 998380,
+            clearLamp: 2,
+            rank: 'AAA',
+          },
+          {
+            songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+            songName: 'FIRST',
+            playStyle: 1,
+            difficulty: 2,
+            score: 860000,
+            clearLamp: 2,
+            rank: 'A+',
+          },
+          {
+            songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+            songName: 'FIRST',
+            playStyle: 1,
+            difficulty: 3,
+            score: 599100,
+            clearLamp: 2,
+            rank: 'C-',
+          },
+        ],
+        '88o8Oq69ldilblP10DI0qqb6b8I0DDi9': [
+          {
+            songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
+            songName: 'BOUNCE',
+            playStyle: 1,
+            difficulty: 0,
+            score: 1000000,
+            clearLamp: 7,
+            rank: 'AAA',
+          },
+          {
+            songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
+            songName: 'BOUNCE',
+            playStyle: 1,
+            difficulty: 3,
+            score: 983530,
+            clearLamp: 5,
+            rank: 'AA+',
+          },
+          {
+            songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
+            songName: 'BOUNCE',
+            playStyle: 1,
+            difficulty: 4,
+            score: 664060,
+            clearLamp: 0,
+            rank: 'E',
+          },
+        ],
+        DQilQP810dq8D9i11q6Oq0ooDdQQO0lI: [],
+      })
+    })
+    test('(nonstop_data_double.html) returns single courses ScoreList', async () => {
+      // Arrange
+      const source = await readFileAsync(
+        join(__dirname, 'eagate', 'nonstop_data_double.html'),
+        { encoding: 'utf8' }
+      )
+
+      // Act
+      const result = musicDataToScoreList(source)
+
+      // Assert
+      expect(result).toStrictEqual({
+        l1o0olodIDDiqDQ101obOD1qo81q0QOP: [
+          {
+            songId: 'l1o0olodIDDiqDQ101obOD1qo81q0QOP',
+            songName: 'ONE HALF',
+            playStyle: 2,
+            difficulty: 1,
+            score: 999930,
+            clearLamp: 6,
+            rank: 'AAA',
+          },
+        ],
+        O6Pi0O800b8b6d9dd9P89dD1900I1q80: [],
+        dqQD9ilqIIilOQi986Ql6dd1ldiPob88: [
+          {
+            songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
+            songName: '☆☆☆☆',
+            playStyle: 2,
+            difficulty: 1,
+            score: 999900,
+            clearLamp: 6,
+            rank: 'AAA',
+          },
+          {
+            songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
+            songName: '☆☆☆☆',
+            playStyle: 2,
+            difficulty: 2,
+            score: 999700,
+            clearLamp: 6,
+            rank: 'AAA',
+          },
+          {
+            songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
+            songName: '☆☆☆☆',
+            playStyle: 2,
+            difficulty: 3,
+            score: 996000,
+            clearLamp: 4,
+            rank: 'AAA',
+          },
+          {
+            songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
+            songName: '☆☆☆☆',
+            playStyle: 2,
+            difficulty: 4,
+            score: 946220,
+            clearLamp: 2,
+            rank: 'AA',
+          },
+        ],
+        Plld00DiIO9bPqdq190li1iIPDdq6Qlb: [
+          {
+            songId: 'Plld00DiIO9bPqdq190li1iIPDdq6Qlb',
+            songName: 'Intelligence',
+            playStyle: 2,
+            difficulty: 4,
+            score: 938020,
+            clearLamp: 2,
+            rank: 'AA',
           },
         ],
       })
