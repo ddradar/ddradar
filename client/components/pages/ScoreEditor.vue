@@ -92,6 +92,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+import { CourseChart, CourseInfo } from '~/api/course'
 import {
   ClearLamp,
   deleteChartScore,
@@ -120,7 +121,9 @@ export default class ScoreEditorComponent extends Vue {
   readonly difficulty!: 0 | 1 | 2 | 3 | 4 | null
 
   @Prop({ required: true, type: Object })
-  readonly songData!: SongInfo
+  readonly songData!:
+    | Pick<SongInfo, 'name' | 'charts'>
+    | Pick<CourseInfo, 'name' | 'charts'>
 
   score = 0
   exScore = 0
@@ -128,7 +131,7 @@ export default class ScoreEditorComponent extends Vue {
   maxCombo = 0
   isFailed = false
 
-  selectedChart: StepChart | null = null
+  selectedChart: StepChart | CourseChart | null = null
 
   isLoading = true
 
@@ -159,7 +162,10 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get charts() {
-    return this.songData.charts.map(c => ({
+    return (this.songData.charts as {
+      playStyle: number
+      difficulty: number
+    }[]).map(c => ({
       playStyle: c.playStyle,
       difficulty: c.difficulty,
       label: `${getPlayStyleName(c.playStyle)}/${getDifficultyName(
@@ -171,7 +177,7 @@ export default class ScoreEditorComponent extends Vue {
   async created() {
     if (this.playStyle !== null && this.difficulty !== null) {
       this.selectedChart =
-        this.songData.charts.find(
+        (this.songData.charts as (StepChart | CourseChart)[]).find(
           c =>
             c.playStyle === this.playStyle && c.difficulty === this.difficulty
         ) ?? null
@@ -184,7 +190,7 @@ export default class ScoreEditorComponent extends Vue {
     difficulty,
   }: Pick<StepChart, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
-      this.songData.charts.find(
+      (this.songData.charts as (StepChart | CourseChart)[]).find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       ) ?? null
     await this.fetchScore()
