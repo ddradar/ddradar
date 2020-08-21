@@ -8,7 +8,11 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { CourseList as CourseListData, getCourseList } from '~/api/course'
+import {
+  CourseList as CourseListData,
+  getCourseList,
+  getCourseType,
+} from '~/api/course'
 import { SeriesList } from '~/api/song'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 
@@ -42,12 +46,13 @@ export default class SongBySeriesPage extends Vue {
         ? SeriesList[17]
         : undefined
     const type =
-      this.$route.query.type === '1'
-        ? '段位認定'
-        : this.$route.query.type === '2'
-        ? 'NONSTOP'
-        : undefined
-    return series && type ? `${series} - ${type}` : (series || type) ?? ''
+      typeof this.$route.query.type === 'string'
+        ? parseInt(this.$route.query.type, 10)
+        : 0
+    const typeString = getCourseType(type)
+    return series && typeString
+      ? `${series} - ${typeString}`
+      : (series || typeString) ?? ''
   }
 }
 </script>

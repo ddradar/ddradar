@@ -1,6 +1,15 @@
-import { CourseInfo, getCourseInfo, getCourseList } from '~/api/course'
+import { getCourseInfo, getCourseList, getCourseType } from '~/api/course'
 
 describe('api/course.ts', () => {
+  describe('getCourseType', () => {
+    test.each([
+      [1, 'NONSTOP'],
+      [2, '段位認定'],
+      [0, ''],
+    ])('(%i) returns "%s"', (type, expected) => {
+      expect(getCourseType(type)).toBe(expected)
+    })
+  })
   describe('getCourseList', () => {
     type Option = { searchParams: URLSearchParams }
     const $http = {
@@ -35,55 +44,7 @@ describe('api/course.ts', () => {
     )
   })
   describe('getCourseInfo', () => {
-    const courseInfo: CourseInfo = {
-      id: 'DQqi68IP1qbDiQ9li6PI1Q9Iddd6o9QQ',
-      name: '九段',
-      nameKana: 'D-A20PLUS-2-09',
-      nameIndex: -2,
-      series: 'DanceDanceRevolution A20 PLUS',
-      minBPM: 40,
-      maxBPM: 400,
-      charts: [
-        {
-          playStyle: 2,
-          difficulty: 4,
-          level: 18,
-          notes: 2487,
-          freezeArrow: 134,
-          shockArrow: 0,
-          order: [
-            {
-              songId: '18l0blb188Oqqi8I68o8oq91Qbq86QDi',
-              songName: 'Magnetic',
-              playStyle: 2,
-              difficulty: 4,
-              level: 17,
-            },
-            {
-              songId: 'd810q0I8q6d0l1POlIO6d66bOPb96dql',
-              songName: 'Triple Counter',
-              playStyle: 2,
-              difficulty: 3,
-              level: 17,
-            },
-            {
-              songId: 'o0l1Qioq1i9iQl6b9q6il0iqi1b1OQ9b',
-              songName: 'New Decade',
-              playStyle: 2,
-              difficulty: 3,
-              level: 17,
-            },
-            {
-              songId: '606b9d6OiliId69bO9Odi6qq8o8Qd0dq',
-              songName: 'PARANOiA Revolution',
-              playStyle: 2,
-              difficulty: 3,
-              level: 18,
-            },
-          ],
-        },
-      ],
-    }
+    const courseInfo = { id: 'DQqi68IP1qbDiQ9li6PI1Q9Iddd6o9QQ' }
     const $http = {
       $get: jest.fn<Promise<any>, [string]>(_ => Promise.resolve(courseInfo)),
     }

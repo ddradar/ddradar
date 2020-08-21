@@ -4,7 +4,10 @@ import { mocked } from 'ts-jest/utils'
 import { getCourseList } from '~/api/course'
 import CourseListPage from '~/pages/courses/index.vue'
 
-jest.mock('~/api/course')
+jest.mock('~/api/course', () => ({
+  ...jest.genMockFromModule<object>('~/api/course'),
+  getCourseType: jest.requireActual('~/api/course').getCourseType,
+}))
 const localVue = createLocalVue()
 
 describe('pages/courses/index.vue', () => {
@@ -44,8 +47,8 @@ describe('pages/courses/index.vue', () => {
       [{}, ''],
       [{ series: '16' }, 'DanceDanceRevolution A20'],
       [{ series: '17' }, 'DanceDanceRevolution A20 PLUS'],
-      [{ series: '16', type: '1' }, 'DanceDanceRevolution A20 - 段位認定'],
-      [{ series: '17', type: '2' }, 'DanceDanceRevolution A20 PLUS - NONSTOP'],
+      [{ series: '16', type: '1' }, 'DanceDanceRevolution A20 - NONSTOP'],
+      [{ series: '17', type: '2' }, 'DanceDanceRevolution A20 PLUS - 段位認定'],
     ])('%p returns "%s"', (query, expected) => {
       // Arrange
       const $route = { query }
