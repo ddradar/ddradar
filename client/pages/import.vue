@@ -90,7 +90,7 @@ export default class ImportPage extends Vue {
     for (const songId in scoreList) {
       const scores = scoreList[songId]
       try {
-        if (scores) {
+        if (scores && scores.length > 0) {
           this.currentSong = scores[0].songName
           await postSongScores(this.$http, songId, scores)
         }
