@@ -368,12 +368,12 @@ exports[`/pages/index.vue snapshot test renders correctly 1`] = `
       <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
-            <header role="button" aria-controls="シリーズから探す" class="card-header is-primary">
-              <div class="card-header-title">シリーズから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            <header role="button" aria-controls="バージョンから探す" class="card-header is-primary">
+              <div class="card-header-title">バージョンから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
             </header>
           </div>
           <transition-stub name="slide">
-            <div id="シリーズから探す" class="collapse-content" style="display: none;">
+            <div id="バージョンから探す" class="collapse-content" style="display: none;">
               <div class="card-content">
                 <div class="buttons"><a type="button" class="button is-text">
                     <!----> <span>
@@ -446,6 +446,38 @@ exports[`/pages/index.vue snapshot test renders correctly 1`] = `
                     <!----></a><a type="button" class="button is-text">
                     <!----> <span>
                 1st
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="コースデータ" class="card-header is-primary">
+              <div class="card-header-title">コースデータ</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="コースデータ" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                NONSTOP(A20)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                NONSTOP(A20 PLUS)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                段位認定(A20)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                段位認定(A20 PLUS)
               </span>
                     <!----></a></div>
               </div>
@@ -833,12 +865,12 @@ exports[`/pages/index.vue snapshot test renders loading skeleton 1`] = `
       <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
-            <header role="button" aria-controls="シリーズから探す" class="card-header is-primary">
-              <div class="card-header-title">シリーズから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            <header role="button" aria-controls="バージョンから探す" class="card-header is-primary">
+              <div class="card-header-title">バージョンから探す</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
             </header>
           </div>
           <transition-stub name="slide">
-            <div id="シリーズから探す" class="collapse-content" style="display: none;">
+            <div id="バージョンから探す" class="collapse-content" style="display: none;">
               <div class="card-content">
                 <div class="buttons"><a type="button" class="button is-text">
                     <!----> <span>
@@ -911,6 +943,38 @@ exports[`/pages/index.vue snapshot test renders loading skeleton 1`] = `
                     <!----></a><a type="button" class="button is-text">
                     <!----> <span>
                 1st
+              </span>
+                    <!----></a></div>
+              </div>
+            </div>
+          </transition-stub>
+        </div>
+      </section>
+      <section class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen">
+        <div class="collapse card">
+          <div class="collapse-trigger">
+            <header role="button" aria-controls="コースデータ" class="card-header is-primary">
+              <div class="card-header-title">コースデータ</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+            </header>
+          </div>
+          <transition-stub name="slide">
+            <div id="コースデータ" class="collapse-content" style="display: none;">
+              <div class="card-content">
+                <div class="buttons"><a type="button" class="button is-text">
+                    <!----> <span>
+                NONSTOP(A20)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                NONSTOP(A20 PLUS)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                段位認定(A20)
+              </span>
+                    <!----></a><a type="button" class="button is-text">
+                    <!----> <span>
+                段位認定(A20 PLUS)
               </span>
                     <!----></a></div>
               </div>

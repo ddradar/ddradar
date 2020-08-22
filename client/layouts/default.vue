@@ -9,6 +9,9 @@
       </template>
 
       <template v-slot:start>
+        <b-navbar-item tag="nuxt-link" to="/users">
+          ユーザーを探す
+        </b-navbar-item>
         <b-navbar-dropdown
           v-for="m in menuList"
           :key="m.label"
@@ -28,7 +31,7 @@
         </b-navbar-dropdown>
         <b-navbar-dropdown
           class="is-hidden-touch"
-          label="曲名から探す"
+          label="曲名"
           hoverable
           collapsible
         >
@@ -44,9 +47,6 @@
             </b-button>
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-item tag="nuxt-link" to="/users">
-          ユーザーを探す
-        </b-navbar-item>
       </template>
 
       <template v-slot:end>
@@ -137,25 +137,34 @@ export default class DefaultLayout extends Vue {
   get menuList() {
     return [
       {
-        label: 'SINGLEのレベルから探す',
+        label: 'レベル(SINGLE)',
         items: [...Array(19).keys()].map(i => ({
-          name: `${i + 1}`,
+          name: `LEVEL ${i + 1}`,
           to: `/single/${i + 1}`,
         })),
       },
       {
-        label: 'DOUBLEのレベルから探す',
+        label: 'レベル(DOUBLE)',
         items: [...Array(19).keys()].map(i => ({
-          name: `${i + 1}`,
+          name: `LEVEL ${i + 1}`,
           to: `/double/${i + 1}`,
         })),
       },
       {
-        label: 'シリーズから探す',
+        label: 'バージョン',
         items: SeriesList.map((name, i) => ({
           name,
           to: `/series/${i}`,
         })).reverse(),
+      },
+      {
+        label: 'コースデータ',
+        items: [
+          { name: 'NONSTOP(A20)', to: '/courses?series=16&type=1' },
+          { name: 'NONSTOP(A20 PLUS)', to: '/courses?series=17&type=1' },
+          { name: '段位認定(A20)', to: '/courses?series=16&type=2' },
+          { name: '段位認定(A20 PLUS)', to: '/courses?series=17&type=2' },
+        ],
       },
     ]
   }

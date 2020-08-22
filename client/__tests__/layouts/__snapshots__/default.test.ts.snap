@@ -5,90 +5,92 @@ exports[`/layouts/default.vue snapshot test renders loading 1`] = `
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
-      <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
+      <div class="navbar-start"><a class="navbar-item">
+          ユーザーを探す
+        </a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -127,7 +129,18 @@ exports[`/layouts/default.vue snapshot test renders loading 1`] = `
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
+              NONSTOP(A20)
+            </a><a class="navbar-item">
+              NONSTOP(A20 PLUS)
+            </a><a class="navbar-item">
+              段位認定(A20)
+            </a><a class="navbar-item">
+              段位認定(A20 PLUS)
+            </a></div>
+        </div>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
                 <!----> <span>
@@ -279,9 +292,7 @@ exports[`/layouts/default.vue snapshot test renders loading 1`] = `
           </span>
                 <!----></a></div>
           </div>
-        </div> <a class="navbar-item">
-          ユーザーを探す
-        </a>
+        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
@@ -333,90 +344,92 @@ exports[`/layouts/default.vue snapshot test renders login button if not authed 1
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
-      <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
+      <div class="navbar-start"><a class="navbar-item">
+          ユーザーを探す
+        </a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -455,7 +468,18 @@ exports[`/layouts/default.vue snapshot test renders login button if not authed 1
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
+              NONSTOP(A20)
+            </a><a class="navbar-item">
+              NONSTOP(A20 PLUS)
+            </a><a class="navbar-item">
+              段位認定(A20)
+            </a><a class="navbar-item">
+              段位認定(A20 PLUS)
+            </a></div>
+        </div>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
                 <!----> <span>
@@ -607,9 +631,7 @@ exports[`/layouts/default.vue snapshot test renders login button if not authed 1
           </span>
                 <!----></a></div>
           </div>
-        </div> <a class="navbar-item">
-          ユーザーを探す
-        </a>
+        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
@@ -657,90 +679,92 @@ exports[`/layouts/default.vue snapshot test renders logout button if authed 1`] 
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
-      <div class="navbar-start">
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">SINGLEのレベルから探す</a>
+      <div class="navbar-start"><a class="navbar-item">
+          ユーザーを探す
+        </a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">DOUBLEのレベルから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
-              1
+              LEVEL 1
             </a><a class="navbar-item">
-              2
+              LEVEL 2
             </a><a class="navbar-item">
-              3
+              LEVEL 3
             </a><a class="navbar-item">
-              4
+              LEVEL 4
             </a><a class="navbar-item">
-              5
+              LEVEL 5
             </a><a class="navbar-item">
-              6
+              LEVEL 6
             </a><a class="navbar-item">
-              7
+              LEVEL 7
             </a><a class="navbar-item">
-              8
+              LEVEL 8
             </a><a class="navbar-item">
-              9
+              LEVEL 9
             </a><a class="navbar-item">
-              10
+              LEVEL 10
             </a><a class="navbar-item">
-              11
+              LEVEL 11
             </a><a class="navbar-item">
-              12
+              LEVEL 12
             </a><a class="navbar-item">
-              13
+              LEVEL 13
             </a><a class="navbar-item">
-              14
+              LEVEL 14
             </a><a class="navbar-item">
-              15
+              LEVEL 15
             </a><a class="navbar-item">
-              16
+              LEVEL 16
             </a><a class="navbar-item">
-              17
+              LEVEL 17
             </a><a class="navbar-item">
-              18
+              LEVEL 18
             </a><a class="navbar-item">
-              19
+              LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">シリーズから探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -779,7 +803,18 @@ exports[`/layouts/default.vue snapshot test renders logout button if authed 1`] 
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名から探す</a>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+          <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
+              NONSTOP(A20)
+            </a><a class="navbar-item">
+              NONSTOP(A20 PLUS)
+            </a><a class="navbar-item">
+              段位認定(A20)
+            </a><a class="navbar-item">
+              段位認定(A20 PLUS)
+            </a></div>
+        </div>
+        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
                 <!----> <span>
@@ -931,9 +966,7 @@ exports[`/layouts/default.vue snapshot test renders logout button if authed 1`] 
           </span>
                 <!----></a></div>
           </div>
-        </div> <a class="navbar-item">
-          ユーザーを探す
-        </a>
+        </div>
       </div>
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
