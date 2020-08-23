@@ -19,7 +19,12 @@ describe('/utils/eagate-parser.ts', () => {
     test('(music_data_invalid_column.html) throws error', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'music_data_invalid_column.html'),
+        join(
+          __dirname,
+          'eagate',
+          'music_data',
+          'music_data_invalid_column.html'
+        ),
         { encoding: 'utf8' }
       )
 
@@ -29,7 +34,12 @@ describe('/utils/eagate-parser.ts', () => {
     test('(music_data_invalid_chart_id.html) throws error', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'music_data_invalid_chart_id.html'),
+        join(
+          __dirname,
+          'eagate',
+          'music_data',
+          'music_data_invalid_chart_id.html'
+        ),
         { encoding: 'utf8' }
       )
 
@@ -39,7 +49,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(music_data_single.html) returns single ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'music_data_single.html'),
+        join(__dirname, 'eagate', 'music_data', 'music_data_single.html'),
         { encoding: 'utf8' }
       )
 
@@ -158,7 +168,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(music_data_double.html) returns double ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'music_data_double.html'),
+        join(__dirname, 'eagate', 'music_data', 'music_data_double.html'),
         { encoding: 'utf8' }
       )
 
@@ -240,7 +250,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(nonstop_data_single.html) returns single courses ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'nonstop_data_single.html'),
+        join(__dirname, 'eagate', 'music_data', 'nonstop_data_single.html'),
         { encoding: 'utf8' }
       )
 
@@ -322,7 +332,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(nonstop_data_double.html) returns single courses ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'nonstop_data_double.html'),
+        join(__dirname, 'eagate', 'music_data', 'nonstop_data_double.html'),
         { encoding: 'utf8' }
       )
 
@@ -397,7 +407,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(grade_data_single.html) returns single grades ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'grade_data_single.html'),
+        join(__dirname, 'eagate', 'music_data', 'grade_data_single.html'),
         { encoding: 'utf8' }
       )
 
@@ -446,7 +456,7 @@ describe('/utils/eagate-parser.ts', () => {
     test('(grade_data_double.html) returns double grades ScoreList', async () => {
       // Arrange
       const source = await readFileAsync(
-        join(__dirname, 'eagate', 'grade_data_double.html'),
+        join(__dirname, 'eagate', 'music_data', 'grade_data_double.html'),
         { encoding: 'utf8' }
       )
 
