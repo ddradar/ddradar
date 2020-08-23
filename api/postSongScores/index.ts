@@ -163,16 +163,19 @@ export default async function (
     }
     if (score.exScore) scoreSchema.exScore = score.exScore
     if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
-    const great1Score =
-      999990 -
-      (1000000 / (chart.notes + chart.freezeArrow + chart.shockArrow)) * 0.4
-    if (score.clearLamp < 6 && score.score > great1Score)
-      scoreSchema.clearLamp = 6
-    if (!scoreSchema.exScore && score.clearLamp >= 6) {
+
+    // calc clearLamp from score
+    const baseScore =
+      1000000 / (chart.notes + chart.freezeArrow + chart.shockArrow)
+    if (score.score === 1000000) scoreSchema.clearLamp = 7
+    // Score is greater than Gr:1
+    else if (score.score > 999990 - baseScore * 0.4) scoreSchema.clearLamp = 6
+
+    if (scoreSchema.clearLamp >= 6) {
       const exScore = (chart.notes + chart.freezeArrow + chart.shockArrow) * 3
       scoreSchema.exScore = exScore - (1000000 - score.score) / 10
     }
-    if (score.clearLamp >= 4) {
+    if (scoreSchema.clearLamp >= 4) {
       scoreSchema.maxCombo = chart.notes + chart.shockArrow
     }
     return scoreSchema
