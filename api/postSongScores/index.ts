@@ -89,8 +89,7 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const clearLamp =
-        score.topScore === 1000000 ? 7 : score.topScore > 999500 ? 6 : 2
+      const clearLamp = score.topScore === 1000000 ? 7 : 2
       const topScore: Score = {
         score: score.topScore,
         clearLamp,
@@ -145,9 +144,9 @@ export default async function (
    * Also complement exScore and maxCombo.
    */
   function createSchema(
-    chart: ChartInfo,
-    user: Pick<UserSchema, 'id' | 'name' | 'isPublic'>,
-    score: Score
+    chart: Readonly<ChartInfo>,
+    user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
+    score: Readonly<Score>
   ) {
     const scoreSchema: ScoreSchema = {
       id: `${user.id}-${songId}-${chart.playStyle}-${chart.difficulty}`,
@@ -155,7 +154,7 @@ export default async function (
       userName: user.name,
       isPublic: user.isPublic,
       songId,
-      songName: charts[0].name,
+      songName: chart.name,
       playStyle: chart.playStyle,
       difficulty: chart.difficulty,
       score: score.score,
@@ -164,18 +163,26 @@ export default async function (
     }
     if (score.exScore) scoreSchema.exScore = score.exScore
     if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
-    if (!scoreSchema.exScore && score.clearLamp >= 6) {
+
+    // calc clearLamp from score
+    const baseScore =
+      1000000 / (chart.notes + chart.freezeArrow + chart.shockArrow)
+    if (score.score === 1000000) scoreSchema.clearLamp = 7
+    // Score is greater than Gr:1
+    else if (score.score > 999990 - baseScore * 0.4) scoreSchema.clearLamp = 6
+
+    if (scoreSchema.clearLamp >= 6) {
       const exScore = (chart.notes + chart.freezeArrow + chart.shockArrow) * 3
       scoreSchema.exScore = exScore - (1000000 - score.score) / 10
     }
-    if (score.clearLamp >= 4) {
+    if (scoreSchema.clearLamp >= 4) {
       scoreSchema.maxCombo = chart.notes + chart.shockArrow
     }
     return scoreSchema
   }
 
   /** Upsert ScoreSchema. Score is merged old one. */
-  async function upsertScore(score: ScoreSchema): Promise<void> {
+  async function upsertScore(score: Readonly<ScoreSchema>): Promise<void> {
     const container = getContainer('Scores')
 
     // Get previous score
