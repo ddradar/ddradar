@@ -2,7 +2,7 @@ import { readFile } from 'fs'
 import { join } from 'path'
 import { promisify } from 'util'
 
-import { musicDataToScoreList } from '~/utils/eagate-parser'
+import { musicDataToScoreList, musicDetailToScore } from '~/utils/eagate-parser'
 
 const readFileAsync = promisify(readFile)
 
@@ -481,5 +481,154 @@ describe('/utils/eagate-parser.ts', () => {
         ],
       })
     })
+  })
+  describe('musicDetailToScore', () => {
+    const aceForAces = {
+      songId: 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0',
+      songName: 'ACE FOR ACES',
+    }
+    const raspberryHeart = {
+      songId: '60qiDd000qDIobO0QI916i18bbolO919',
+      songName: 'Raspberry♡Heart(English version)',
+    }
+    test.each([
+      '',
+      'foo',
+      '<html></html>',
+      '<html>\n<div id="data_tbl" />\n</html>',
+    ])('("%s") throws error', source => {
+      expect(() => musicDetailToScore(source)).toThrowError()
+    })
+    test.each([
+      [
+        'music_detail_sp_beg.html',
+        {
+          ...aceForAces,
+          playStyle: 1,
+          difficulty: 0,
+          score: 1000000,
+          rank: 'AAA',
+          clearLamp: 7,
+          maxCombo: 116,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_sp_bas.html',
+        {
+          ...aceForAces,
+          playStyle: 1,
+          difficulty: 1,
+          score: 999990,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 311,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_sp_dif.html',
+        {
+          ...aceForAces,
+          playStyle: 1,
+          difficulty: 2,
+          score: 998600,
+          rank: 'AAA',
+          clearLamp: 5,
+          maxCombo: 467,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_sp_exp.html',
+        {
+          ...aceForAces,
+          playStyle: 1,
+          difficulty: 3,
+          score: 968760,
+          rank: 'AA+',
+          clearLamp: 4,
+          maxCombo: 658,
+          topScore: 999940,
+        } as const,
+      ],
+      [
+        'music_detail_sp_cha.html',
+        {
+          ...aceForAces,
+          playStyle: 1,
+          difficulty: 4,
+          score: 795780,
+          rank: 'A-',
+          clearLamp: 2,
+          maxCombo: 95,
+          topScore: 999940,
+        } as const,
+      ],
+      [
+        'music_detail_dp_bas.html',
+        {
+          ...raspberryHeart,
+          playStyle: 2,
+          difficulty: 1,
+          score: 999940,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 193,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_dp_dif.html',
+        {
+          ...raspberryHeart,
+          playStyle: 2,
+          difficulty: 2,
+          score: 999990,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 240,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_dp_exp.html',
+        {
+          ...raspberryHeart,
+          playStyle: 2,
+          difficulty: 3,
+          score: 999890,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 295,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'music_detail_dp_cha.html',
+        {
+          ...raspberryHeart,
+          playStyle: 2,
+          difficulty: 4,
+          score: 999950,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 331,
+          topScore: 1000000,
+        } as const,
+      ],
+    ])(
+      '(%s) returns %p',
+      async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
+        // Arrange
+        const source = await readFileAsync(
+          join(__dirname, 'eagate', 'music_detail', fileName),
+          { encoding: 'utf8' }
+        )
+
+        // Act - Assert
+        expect(musicDetailToScore(source)).toStrictEqual(expected)
+      }
+    )
   })
 })

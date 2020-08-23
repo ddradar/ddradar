@@ -1,24 +1,24 @@
 import { getDanceLevel, UserScore } from '~/api/score'
 
-type ChartScore = Omit<UserScore, 'userId' | 'userName'>
-
 /**
  * Convert music data to { songId: Score[] } Record.
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_double.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/nonstop_data_single.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/nonstop_data_double.html
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/grade_data_single.html
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/grade_data_double.html
  */
 export function musicDataToScoreList(
   sourceCode: string
-): Record<string, ChartScore[]> {
+): Record<string, Omit<UserScore, 'userId' | 'userName'>[]> {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
   const dataTable = doc.getElementById('data_tbl')
   if (!dataTable) throw new Error('invalid html')
 
   const playStyle = getPlayStyle(dataTable)
 
-  const result: Record<string, ChartScore[]> = {}
+  const result: Record<string, Omit<UserScore, 'userId' | 'userName'>[]> = {}
 
   const songs = dataTable.getElementsByClassName('data')
   for (let i = 0; i < songs.length; i++) {
@@ -143,5 +143,110 @@ export function musicDataToScoreList(
     if (/^.+\/full_good\.png$/.test(imageUrl)) return 4
     // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_none.png
     return null
+  }
+}
+
+export function musicDetailToScore(
+  sourceCode: string
+): Omit<UserScore, 'userId' | 'userName'> & { topScore: number } {
+  const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
+
+  // Get songId and songName
+  const musicInfoTable = doc.getElementById('music_info')
+  if (!musicInfoTable) throw new Error('Invalid HTML')
+  const songNameRow = musicInfoTable.getElementsByTagName('tr')[0]
+  const songId = songNameRow
+    .getElementsByTagName('td')[0]
+    .getElementsByTagName('img')[0]
+    .src.replace(
+      /^\/game\/ddr\/ddra20\/p\/images\/binary_jk.html\?img=([01689bdiloqDIOPQ]{32}).*$/,
+      '$1'
+    )
+  const songName = songNameRow
+    .getElementsByTagName('td')[1]
+    .innerHTML.trim()
+    .replace(/^(.+)<br>.+$/, '$1')
+
+  const musicDetailTable = doc.getElementById('music_detail_table')
+  if (!musicDetailTable) {
+    const message =
+      doc.getElementById('popup_cnt')!.textContent ?? 'Invalid HTML'
+    throw new Error(message)
+  }
+
+  // Get playStyle and difficulty
+  const difficultyLogo = musicDetailTable
+    .getElementsByTagName('tr')[0]
+    .getElementsByTagName('td')[0]
+    .getElementsByTagName('img')[0].src
+  const { playStyle, difficulty } = getPlayStyleAndDifficulty(difficultyLogo)
+
+  const rank = musicDetailTable
+    .getElementsByTagName('tr')[1]
+    .getElementsByTagName('td')[0].textContent!
+  const score = parseInt(
+    musicDetailTable.getElementsByTagName('tr')[1].getElementsByTagName('td')[1]
+      .textContent!,
+    10
+  )
+  const maxCombo = parseInt(
+    musicDetailTable.getElementsByTagName('tr')[2].getElementsByTagName('td')[0]
+      .textContent!,
+    10
+  )
+  const fullComboText = musicDetailTable
+    .getElementsByTagName('tr')[4]
+    .getElementsByTagName('td')[0].textContent
+  const clearCount = parseInt(
+    musicDetailTable.getElementsByTagName('tr')[5].getElementsByTagName('td')[0]
+      .textContent!,
+    10
+  )
+  const clearLamp = clearCount === 0 ? 0 : getClearLamp(fullComboText)
+  const topScore = parseInt(
+    musicDetailTable
+      .getElementsByTagName('tr')[3]
+      .getElementsByTagName('td')[0]
+      .getElementsByTagName('span')[0].textContent!,
+    10
+  )
+
+  return {
+    songId,
+    songName,
+    playStyle,
+    difficulty,
+    score,
+    rank,
+    clearLamp,
+    maxCombo,
+    topScore,
+  }
+
+  function getPlayStyleAndDifficulty(
+    logoUri: string
+  ): Pick<UserScore, 'playStyle' | 'difficulty'> {
+    const fileName = logoUri.replace(
+      /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/,
+      '$1'
+    )
+    if (fileName === 'songdetails0') return { playStyle: 1, difficulty: 0 }
+    if (fileName === 'songdetails1') return { playStyle: 1, difficulty: 1 }
+    if (fileName === 'songdetails2') return { playStyle: 1, difficulty: 2 }
+    if (fileName === 'songdetails3') return { playStyle: 1, difficulty: 3 }
+    if (fileName === 'songdetails4') return { playStyle: 1, difficulty: 4 }
+    if (fileName === 'songdetails5') return { playStyle: 2, difficulty: 1 }
+    if (fileName === 'songdetails6') return { playStyle: 2, difficulty: 2 }
+    if (fileName === 'songdetails7') return { playStyle: 2, difficulty: 3 }
+    if (fileName === 'songdetails8') return { playStyle: 2, difficulty: 4 }
+    throw new Error('Invalid HTML')
+  }
+
+  function getClearLamp(fullComboText: string | null) {
+    if (fullComboText === 'マーベラスフルコンボ') return 7
+    if (fullComboText === 'パーフェクトフルコンボ') return 6
+    if (fullComboText === 'グレートフルコンボ') return 5
+    if (fullComboText === 'グッドフルコンボ') return 4
+    return 2
   }
 }
