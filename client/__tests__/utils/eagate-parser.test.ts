@@ -500,6 +500,20 @@ describe('/utils/eagate-parser.ts', () => {
       expect(() => musicDetailToScore(source)).toThrowError()
     })
     test.each([
+      ['music_detail_no_play.html', 'NO PLAY...'],
+      ['music_detail_not_select.html', '難易度を選択してください。'],
+      ['music_detail_invalid_title.html', 'Invalid HTML'],
+    ])('(%s) throws "%s" error', async (fileName, message) => {
+      // Arrange
+      const source = await readFileAsync(
+        join(__dirname, 'eagate', 'music_detail', fileName),
+        { encoding: 'utf8' }
+      )
+
+      // Act - Assert
+      expect(() => musicDetailToScore(source)).toThrowError(message)
+    })
+    test.each([
       [
         'music_detail_sp_beg.html',
         {
@@ -610,10 +624,10 @@ describe('/utils/eagate-parser.ts', () => {
           ...raspberryHeart,
           playStyle: 2,
           difficulty: 4,
-          score: 999950,
-          rank: 'AAA',
-          clearLamp: 6,
-          maxCombo: 331,
+          score: 900000,
+          rank: 'E',
+          clearLamp: 0,
+          maxCombo: 300,
           topScore: 1000000,
         } as const,
       ],

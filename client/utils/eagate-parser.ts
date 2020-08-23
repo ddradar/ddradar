@@ -169,9 +169,8 @@ export function musicDetailToScore(
 
   const musicDetailTable = doc.getElementById('music_detail_table')
   if (!musicDetailTable) {
-    const message =
-      doc.getElementById('popup_cnt')!.textContent ?? 'Invalid HTML'
-    throw new Error(message)
+    const message = doc.getElementById('popup_cnt')!.textContent!
+    throw new Error(message.replace(/^.+\n *([^ ]+)$/ms, '$1').trim())
   }
 
   // Get playStyle and difficulty
