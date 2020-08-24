@@ -1,5 +1,8 @@
 import { getDanceLevel, UserScore } from '~/api/score'
 
+const idRegex = /^\/game\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
+const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+
 /**
  * Convert music data to { songId: Score[] } Record.
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html
@@ -29,12 +32,7 @@ export function musicDataToScoreList(
       .getElementsByTagName('td')[0]
       .getElementsByClassName('music_info')[0]
     const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP or 段位認定
-    const songId = songCol
-      .getAttribute('href')
-      ?.replace(
-        /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32}).*$/,
-        '$1'
-      )
+    const songId = songCol.getAttribute('href')?.replace(idRegex, '$1')
     const songName = songCol.textContent!.trim() || jacketAlt
     if (!songId || !songName) continue
 
@@ -58,11 +56,11 @@ export function musicDataToScoreList(
         .getElementsByClassName('music_info')[0]
         .getElementsByTagName('img')[1]
         .src.toLowerCase()
-      const rankImageUrl = chart
+      const rankImageFileName = chart
         .getElementsByClassName('music_info')[0]
         .getElementsByTagName('img')[0]
-        .src.toLowerCase()
-      const isFailed = /^.+\/rank_s_e\.png$/.test(rankImageUrl)
+        .src.replace(srcRegex, '$1')
+      const isFailed = rankImageFileName === 'rank_s_e'
       const clearLamp =
         getClearLamp(fcImageUrl) ?? (isFailed ? 0 : score === 0 ? 1 : 2)
 
@@ -111,10 +109,7 @@ export function musicDataToScoreList(
         .getElementsByTagName('td')[0]
         .getElementsByClassName('music_info')[0]
         .getAttribute('href')!
-        .replace(
-          /^\/game\/ddr\/ddra20\/p\/playdata\/.+_detail.html\?index=([01689bdiloqDIOPQ]{32}).+$/,
-          '$1'
-        )
+        .replace(idRegex, '$1')
       if (single1stDan.includes(songId!)) return 1
       if (double1stDan.includes(songId!)) return 2
     }
@@ -133,15 +128,11 @@ export function musicDataToScoreList(
 
   /** Get ClearLamp from full combo image URL */
   function getClearLamp(imageUrl: string) {
-    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_mar.png
-    if (/^.+\/full_mar\.png$/.test(imageUrl)) return 7
-    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_perfect.png
-    if (/^.+\/full_perfect\.png$/.test(imageUrl)) return 6
-    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_great.png
-    if (/^.+\/full_great\.png$/.test(imageUrl)) return 5
-    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_good.png
-    if (/^.+\/full_good\.png$/.test(imageUrl)) return 4
-    // https://p.eagate.573.jp/game/ddr/ddra20/p/images/play_data/full_none.png
+    const fileName = imageUrl.replace(srcRegex, '$1')
+    if (fileName === 'full_mar') return 7
+    if (fileName === 'full_perfect') return 6
+    if (fileName === 'full_great') return 5
+    if (fileName === 'full_good') return 4
     return null
   }
 }
@@ -158,10 +149,7 @@ export function musicDetailToScore(
   const songId = songNameRow
     .getElementsByTagName('td')[0]
     .getElementsByTagName('img')[0]
-    .src.replace(
-      /^\/game\/ddr\/ddra20\/p\/images\/binary_jk.html\?img=([01689bdiloqDIOPQ]{32}).*$/,
-      '$1'
-    )
+    .src.replace(idRegex, '$1')
   const songName = songNameRow
     .getElementsByTagName('td')[1]
     .innerHTML.trim()
@@ -225,10 +213,7 @@ export function musicDetailToScore(
   function getPlayStyleAndDifficulty(
     logoUri: string
   ): Pick<UserScore, 'playStyle' | 'difficulty'> {
-    const fileName = logoUri.replace(
-      /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/,
-      '$1'
-    )
+    const fileName = logoUri.replace(srcRegex, '$1')
     if (fileName === 'songdetails0') return { playStyle: 1, difficulty: 0 }
     if (fileName === 'songdetails1') return { playStyle: 1, difficulty: 1 }
     if (fileName === 'songdetails2') return { playStyle: 1, difficulty: 2 }
