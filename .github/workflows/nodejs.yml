@@ -33,7 +33,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: Cache Dependencies
-        uses: actions/cache@v2.1.0
+        uses: actions/cache@v2.1.1
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -64,4 +64,4 @@ jobs:
         run: yarn test
       - name: Report Code Coverage to codecov
         if: matrix.os == 'windows-latest'
-        uses: codecov/codecov-action@v1.0.12
+        uses: codecov/codecov-action@v1.0.13

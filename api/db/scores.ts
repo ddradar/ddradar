@@ -19,7 +19,8 @@ export type ScoreSchema = Pick<StepChartSchema, 'playStyle' | 'difficulty'> & {
   exScore?: number
   maxCombo?: number
   clearLamp: ClearLamp
-  rank: DanceLevel
+  /** Clear rank (`"E"`～`"AAA"`) */
+  rank: string
 }
 
 /**
@@ -34,26 +35,7 @@ export type ScoreSchema = Pick<StepChartSchema, 'playStyle' | 'difficulty'> & {
  */
 export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
-/** Clear rank (`"E"`～`"AAA"`) */
-export type DanceLevel =
-  | 'E'
-  | 'D'
-  | 'D+'
-  | 'C-'
-  | 'C'
-  | 'C+'
-  | 'B-'
-  | 'B'
-  | 'B+'
-  | 'A-'
-  | 'A'
-  | 'A+'
-  | 'AA-'
-  | 'AA'
-  | 'AA+'
-  | 'AAA'
-
-export const DanceLevelList: DanceLevel[] = [
+export const DanceLevelList = [
   'E',
   'D',
   'D+',
@@ -70,4 +52,4 @@ export const DanceLevelList: DanceLevel[] = [
   'AA',
   'AA+',
   'AAA',
-]
+] as const

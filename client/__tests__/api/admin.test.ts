@@ -7,8 +7,12 @@ describe('/api/admin.ts', () => {
   beforeEach(() => $http.$post.mockClear())
 
   describe('postNotification()', () => {
-    type NotificationRequest = Omit<Notification, 'id' | 'sender' | '_ts'> & {
+    type NotificationRequest = Omit<
+      Notification,
+      'id' | 'sender' | 'timeStamp'
+    > & {
       id?: string
+      timeStamp?: number
     }
     const notification: NotificationRequest = {
       id: 'return-value',

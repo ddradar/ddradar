@@ -19,7 +19,7 @@ export default async function (
     'icon',
     'title',
     'body',
-    '_ts',
+    'timeStamp',
   ]
   const condition = scope === 'top' ? 'WHERE c.pinned = true ' : ''
   const container = getContainer('Notification', true)
@@ -30,7 +30,7 @@ export default async function (
         `${columns.map(c => `c.${c}`).join(', ')} ` +
         'FROM c ' +
         condition +
-        'ORDER BY c.pinned, c._ts DESC',
+        'ORDER BY c.pinned, c.timeStamp DESC',
     })
     .fetchAll()
 

@@ -14,7 +14,7 @@
         :icon="m.icon"
         :title="m.title"
         :body="m.body"
-        :time="m._ts"
+        :time="m.timeStamp"
       />
       <div class="has-text-right top-notification">
         <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>
@@ -68,6 +68,7 @@ import * as popup from '~/utils/popup'
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
   messages: Omit<Notification, 'sender' | 'pinned'>[] = []
+
   get menuList() {
     return [
       {
@@ -92,11 +93,20 @@ export default class IndexPage extends Vue {
         })),
       },
       {
-        label: 'シリーズから探す',
+        label: 'バージョンから探す',
         items: SeriesList.map((name, i) => ({
           name: shortenSeriesName(name),
           to: `/series/${i}`,
         })).reverse(),
+      },
+      {
+        label: 'コースデータ',
+        items: [
+          { name: 'NONSTOP(A20)', to: '/courses?series=16&type=1' },
+          { name: 'NONSTOP(A20 PLUS)', to: '/courses?series=17&type=1' },
+          { name: '段位認定(A20)', to: '/courses?series=16&type=2' },
+          { name: '段位認定(A20 PLUS)', to: '/courses?series=17&type=2' },
+        ],
       },
     ]
   }

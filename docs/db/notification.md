@@ -17,7 +17,7 @@ The collection that stores notification.
 |icon|string|Notification icon (Material Design Icon)|
 |title|string|Notification title|
 |body|string|Notification body|
-|_ts|integer|Created or Updated time (UNIX time)|
+|timeStamp|integer|Created or Updated time (UNIX time)|
 
 ## Indexes
 
@@ -41,7 +41,7 @@ The collection that stores notification.
       "order": "ascending"
     },
     {
-      "path": "/_ts",
+      "path": "/timeStamp",
       "order": "descending"
     }
   ]
@@ -59,6 +59,6 @@ The collection that stores notification.
   "icon": "info",
   "title": "このサイトはベータ版です",
   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
-  "_ts": 1597028400
+  "timeStamp": 1597028400
 }
 ```

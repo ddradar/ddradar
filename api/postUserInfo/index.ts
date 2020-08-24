@@ -42,10 +42,7 @@ export default async function (
   req: Pick<HttpRequest, 'body' | 'headers'>
 ): Promise<PostUserResult> {
   const clientPrincipal = getClientPrincipal(req)
-  // This check is only used to unit tests.
-  if (!clientPrincipal) {
-    return { httpResponse: { status: 401 } }
-  }
+  if (!clientPrincipal) return { httpResponse: { status: 401 } }
   const loginId = clientPrincipal.userId
 
   if (!isUserInfo(req.body)) {
@@ -76,8 +73,8 @@ export default async function (
     name: req.body.name,
     area: oldData?.area ?? req.body.area,
     isPublic: req.body.isPublic,
+    ...(req.body.code ? { code: req.body.code } : {}),
   }
-  if (req.body.code) document.code = req.body.code
 
   // Create response
   const body: UserInfo = {

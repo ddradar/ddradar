@@ -12,7 +12,7 @@ export type Notification = {
   icon: string
   title: string
   body: string
-  _ts: number
+  timeStamp: number
 }
 
 /**
@@ -36,6 +36,5 @@ export function getNotificationInfo(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   id: string
 ) {
-  type NotificationInfo = Omit<Notification, '_ts'>
-  return $http.$get<NotificationInfo>(`/api/v1/notification/${id}`)
+  return $http.$get<Notification>(`/api/v1/notification/${id}`)
 }

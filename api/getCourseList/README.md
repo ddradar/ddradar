@@ -5,6 +5,7 @@
 Get course information list.
 
 - [Endpoint](#endpoint)
+- [Parameters](#parameters)
 - [Response](#response)
   - [Response Body](#response-body)
 - Links
@@ -16,7 +17,14 @@ Get course information list.
 
 No need Authentication.
 
-> GET api/v1/courses
+> GET api/v1/courses?series=16&type=1
+
+## Parameters
+
+|Name|Type|Description|
+|----|:--:|---|
+|`series`|integer?|`16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS (optional)|
+|`type`|integer?|`1`: NONSTOP, `2`: 段位認定 (optional)|
 
 ## Response
 

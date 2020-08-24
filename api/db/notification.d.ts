@@ -8,5 +8,5 @@ export type NotificationSchema = {
   icon: string
   title: string
   body: string
-  _ts: number
+  timeStamp: number
 }

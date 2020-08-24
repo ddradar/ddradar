@@ -2,15 +2,16 @@ import type { SqlParameter } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getContainer } from '../cosmos'
-import type { SongSchema } from '../db'
-import { SeriesList } from '../db/songs'
+import { SeriesList, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
+
+type SongListData = Omit<SongSchema, 'charts'>
 
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'query'>
-): Promise<NotFoundResult | SuccessResult<SongSchema[]>> {
+): Promise<NotFoundResult | SuccessResult<SongListData[]>> {
   const seriesIndex = parseFloat(req.query.series)
   const nameIndex =
     typeof context.bindingData.name === 'number' ? context.bindingData.name : 0 // if param is 0, passed object. (bug?)
@@ -29,16 +30,14 @@ export default async function (
   const container = getContainer('Songs', true)
 
   // Create SQL WHERE condition dynamically
-  const column: keyof SongSchema = 'nameIndex'
-  const condition: string[] = [`c.${column} = @${column}`]
-  const parameters: SqlParameter[] = [{ name: `@${column}`, value: nameIndex }]
+  const condition: string[] = ['c.nameIndex = @nameIndex']
+  const parameters: SqlParameter[] = [{ name: '@nameIndex', value: nameIndex }]
   if (isValidSeries) {
-    const column: keyof SongSchema = 'series'
-    condition.push(`c.${column} = @${column}`)
-    parameters.push({ name: `@${column}`, value: SeriesList[seriesIndex] })
+    condition.push('c.series = @series')
+    parameters.push({ name: '@series', value: SeriesList[seriesIndex] })
   }
 
-  const columns: (keyof SongSchema)[] = [
+  const columns: (keyof SongListData)[] = [
     'id',
     'name',
     'nameKana',
@@ -48,9 +47,9 @@ export default async function (
     'minBPM',
     'maxBPM',
   ]
-  const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
+  const orderByColumns: (keyof SongListData)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
-    .query<SongSchema>({
+    .query<SongListData>({
       query:
         `SELECT ${columns.map(col => `c.${col}`).join(', ')} FROM c ` +
         `WHERE ${condition.join(' AND ')} ` +

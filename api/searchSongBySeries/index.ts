@@ -5,11 +5,13 @@ import { getContainer } from '../cosmos'
 import { SeriesList, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
+type SongListData = Omit<SongSchema, 'charts'>
+
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'query'>
-): Promise<NotFoundResult | SuccessResult<SongSchema[]>> {
+): Promise<NotFoundResult | SuccessResult<SongListData[]>> {
   const seriesIndex =
     typeof context.bindingData.series === 'number'
       ? context.bindingData.series
@@ -31,22 +33,19 @@ export default async function (
   const container = getContainer('Songs', true)
 
   // Create SQL WHERE condition dynamically
-  const column: keyof SongSchema = 'series'
-  const condition: string[] = [`c.${column} = @${column}`]
+  const condition: string[] = ['c.series = @series']
   const parameters: SqlParameter[] = [
-    { name: `@${column}`, value: SeriesList[seriesIndex] },
+    { name: '@series', value: SeriesList[seriesIndex] },
   ]
   if (isValidName) {
-    const column: keyof SongSchema = 'nameIndex'
-    condition.push(`c.${column} = @${column}`)
-    parameters.push({ name: `@${column}`, value: nameIndex })
+    condition.push('c.nameIndex = @nameIndex')
+    parameters.push({ name: '@nameIndex', value: nameIndex })
   } else {
-    const column: keyof SongSchema = 'nameIndex'
-    condition.push(`c.${column} != -1`)
-    condition.push(`c.${column} != -2`)
+    condition.push('c.nameIndex != -1')
+    condition.push('c.nameIndex != -2')
   }
 
-  const columns: (keyof SongSchema)[] = [
+  const columns: (keyof SongListData)[] = [
     'id',
     'name',
     'nameKana',
@@ -56,9 +55,9 @@ export default async function (
     'minBPM',
     'maxBPM',
   ]
-  const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
+  const orderByColumns: (keyof SongListData)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
-    .query<SongSchema>({
+    .query<SongListData>({
       query:
         `SELECT ${columns.map(col => `c.${col}`).join(', ')} FROM c ` +
         `WHERE ${condition.join(' AND ')} ` +

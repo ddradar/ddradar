@@ -1,6 +1,8 @@
 import type { NotificationSchema } from '../db'
 import postNotification from '.'
 
+Date.now = jest.fn(() => 1597114800000)
+
 describe('POST /api/v1/admin/notification', () => {
   const validBody: Partial<NotificationSchema> = {
     sender: 'SYSTEM',
@@ -24,6 +26,7 @@ describe('POST /api/v1/admin/notification', () => {
     { ...validBody, icon: false },
     { ...validBody, title: 1 },
     { ...validBody, body: [] },
+    { ...validBody, timeStamp: [] },
   ])('(%p) returns "400 Bad Request"', async (body: unknown) => {
     // Arrange - Act
     const result = await postNotification(null, { body })
@@ -33,12 +36,15 @@ describe('POST /api/v1/admin/notification', () => {
   })
 
   test.each([
-    [validBody, validBody],
+    [validBody, { ...validBody, timeStamp: 1597114800 }],
     [
       { ...validBody, id: 'foo' },
-      { ...validBody, id: 'foo' },
+      { ...validBody, id: 'foo', timeStamp: 1597114800 },
     ],
-    [{ ...validBody, _ts: 1597028400 }, validBody],
+    [
+      { ...validBody, timeStamp: 1597028400 },
+      { ...validBody, timeStamp: 1597028400 },
+    ],
   ])('(%p) returns "200 OK" with JSON body %p', async (body, expected) => {
     // Arrange - Act
     const result = await postNotification(null, { body })
