@@ -31,7 +31,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'info',
           title: '新曲を追加しました',
           body: '新曲2曲の譜面情報を追加しました。',
-          _ts: 1597028400,
+          timeStamp: 1597028400,
         },
         {
           id: 'bar',
@@ -41,7 +41,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'warning',
           title: 'このサイトはベータ版です',
           body: 'このWebサイトはベータ版環境です。',
-          _ts: 1596250800,
+          timeStamp: 1596250800,
         },
         {
           id: 'baz',
@@ -51,7 +51,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'info',
           title: 'v0.6.0をリリースしました',
           body: '変更点は以下を参照してください。',
-          _ts: 1597114800,
+          timeStamp: 1597114800,
         },
       ]
       beforeAll(async () => {
