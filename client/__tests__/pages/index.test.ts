@@ -16,7 +16,7 @@ describe('/pages/index.vue', () => {
         type: 'is-info',
         title: 'Title 1',
         body: 'Message Body1',
-        _ts: 1597244400, // 2020/8/13
+        timeStamp: 1597244400, // 2020/8/13
       },
       {
         id: 'bar',
@@ -24,7 +24,7 @@ describe('/pages/index.vue', () => {
         type: 'is-info',
         title: 'Title 2',
         body: 'Message Body2',
-        _ts: 1597244400, // 2020/8/13
+        timeStamp: 1597244400, // 2020/8/13
       },
     ]
     test('renders loading skeleton', () => {

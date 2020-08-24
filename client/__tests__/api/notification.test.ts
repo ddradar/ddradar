@@ -27,7 +27,7 @@ describe('/api/notification.ts', () => {
   })
   describe('getNotificationInfo', () => {
     const id = 'notification-id'
-    const notification: Omit<Notification, '_ts'> = {
+    const notification: Notification = {
       id,
       sender: 'SYSTEM',
       pinned: true,
@@ -35,6 +35,7 @@ describe('/api/notification.ts', () => {
       icon: 'account',
       title: 'Title',
       body: 'Message Body',
+      timeStamp: 1597244400,
     } as const
     beforeEach(() => $http.$get.mockResolvedValue(notification))
     test(`($http, ${id}) calls GET "/api/v1/notification/${id}"`, async () => {

@@ -3,8 +3,9 @@ import type { NuxtHTTPInstance } from '@nuxt/http'
 import type { Notification } from '~/api/notification'
 import type { SongInfo } from '~/api/song'
 
-type NotificationRequest = Omit<Notification, 'id' | 'sender' | '_ts'> & {
+type NotificationRequest = Omit<Notification, 'id' | 'sender' | 'timeStamp'> & {
   id?: string
+  timeStamp?: number
 }
 
 /**
