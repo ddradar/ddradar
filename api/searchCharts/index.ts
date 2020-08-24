@@ -4,8 +4,8 @@ import { getContainer } from '../cosmos'
 import type { SongSchema, StepChartSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
-type Song = Omit<SongSchema, 'charts'>
-type StepChart = StepChartSchema & Pick<SongSchema, 'id' | 'name' | 'series'>
+type StepChart = Pick<SongSchema, 'id' | 'name' | 'series'> &
+  Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
 
 /** Get charts that match the specified conditions. */
 export default async function (
@@ -26,7 +26,7 @@ export default async function (
 
   const songColumns: (keyof StepChart)[] = ['id', 'name', 'series']
   const chartColumns: (keyof StepChart)[] = ['playStyle', 'difficulty', 'level']
-  const orderByColumns: (keyof Song)[] = ['nameIndex', 'nameKana']
+  const orderByColumns: (keyof SongSchema)[] = ['nameIndex', 'nameKana']
   const { resources } = await container.items
     .query<StepChart>({
       query:
