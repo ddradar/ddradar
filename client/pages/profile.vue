@@ -90,14 +90,14 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AreaCode, areaList, existsUser, User } from '~/api/user'
+import { areaList, existsUser, User } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
 export default class ProfilePage extends Vue {
   id: string = ''
   name: string = ''
-  area: AreaCode = 0
+  area: number = 0
   code: number | null = null
   isPublic: boolean = true
 

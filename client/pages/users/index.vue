@@ -73,13 +73,13 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { AreaCode, areaList, getUserList, UserListData } from '~/api/user'
+import { areaList, getUserList, UserListData } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component
 export default class UserListPage extends Vue {
   name: string = ''
-  area: AreaCode = 0
+  area: number = 0
   code: number | null = null
   users: UserListData[] = []
 
@@ -92,7 +92,7 @@ export default class UserListPage extends Vue {
     value: v[1],
   }))
 
-  getAreaName(areaCode: AreaCode) {
+  getAreaName(areaCode: number) {
     return areaList[areaCode]
   }
 

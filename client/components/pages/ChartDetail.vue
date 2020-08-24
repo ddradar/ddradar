@@ -94,7 +94,7 @@ import {
   SongInfo,
   StepChart,
 } from '~/api/song'
-import { AreaCode, areaList } from '~/api/user'
+import { areaList } from '~/api/user'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
@@ -162,7 +162,7 @@ export default class ChartDetailComponent extends Vue {
         fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
-        const id = parseInt(s.userId, 10) as AreaCode
+        const id = parseInt(s.userId, 10)
         if (!isNaN(id) && areaList[id]) {
           return {
             ...s,
