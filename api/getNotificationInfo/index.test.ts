@@ -70,18 +70,10 @@ describe('GET /api/v1/notification/', () => {
         // Assert
         expect(result.status).toBe(404)
       })
-      test('/foo returns "404 Not Found"', async () => {
+      test('/foo returns "200 OK" with JSON body', async () => {
         // Arrange
         context.bindingData.id = 'foo'
-        const expected: Omit<NotificationSchema, '_ts'> = {
-          id: notification[0].id,
-          sender: notification[0].sender,
-          pinned: notification[0].pinned,
-          type: notification[0].type,
-          icon: notification[0].icon,
-          title: notification[0].title,
-          body: notification[0].body,
-        }
+        const expected = { ...notification[0] }
 
         // Act
         const result = await getNotificationInfo(context)
