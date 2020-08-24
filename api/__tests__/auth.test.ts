@@ -46,20 +46,17 @@ describe('./auth.ts', () => {
         userId: '123456',
         userRoles: ['anonymous', 'authenticated', 'administrator'],
       } as ClientPrincipal,
-    ])(
-      `({ ${authHeader} : toBase64(%p) }) returns same object`,
-      (expected: ClientPrincipal) => {
-        // Arrange
-        const header = toBase64(expected)
-        req.headers[authHeader] = header
+    ])(`({ ${authHeader} : toBase64(%p) }) returns same object`, expected => {
+      // Arrange
+      const header = toBase64(expected)
+      req.headers[authHeader] = header
 
-        // Act
-        const clientPrincipal = getClientPrincipal(req)
+      // Act
+      const clientPrincipal = getClientPrincipal(req)
 
-        // Assert
-        expect(clientPrincipal).toStrictEqual(expected)
-      }
-    )
+      // Assert
+      expect(clientPrincipal).toStrictEqual(expected)
+    })
   })
 
   describe('getLoginUserInfo', () => {
@@ -88,12 +85,7 @@ describe('./auth.ts', () => {
       resources = []
 
       // Act
-      const user = await getLoginUserInfo({
-        identityProvider: 'github',
-        userId: 'unregistered_user',
-        userDetails: 'unregistered_user',
-        userRoles: ['anonymous', 'authenticated'],
-      })
+      const user = await getLoginUserInfo({ userId: 'unregistered_user' })
 
       // Assert
       expect(user).toBeNull()
@@ -111,12 +103,7 @@ describe('./auth.ts', () => {
       resources = [userSchema]
 
       // Act
-      const user = await getLoginUserInfo({
-        identityProvider: 'github',
-        userId: 'registered_user',
-        userDetails: 'registered_user',
-        userRoles: ['anonymous', 'authenticated'],
-      })
+      const user = await getLoginUserInfo({ userId: 'registered_user' })
 
       // Assert
       expect(user).toBe(userSchema)

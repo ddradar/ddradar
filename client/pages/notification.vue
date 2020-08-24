@@ -18,7 +18,7 @@
           <b-table-column field="title" label="Title">
             {{ props.row.title }}
           </b-table-column>
-          <b-table-column field="_ts" label="Date">
+          <b-table-column field="timeStamp" label="Date">
             {{ props.row.date }}
           </b-table-column>
           <b-table-column :visible="$accessor.isAdmin" label="Edit">
@@ -73,7 +73,7 @@ export default class UserListPage extends Vue {
         icon: d.icon,
         title: d.title,
         body: marked(d.body),
-        date: unixTimeToString(d._ts),
+        date: unixTimeToString(d.timeStamp),
       }))
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
@@ -81,7 +81,10 @@ export default class UserListPage extends Vue {
   }
 }
 
-type NotificationDetail = Omit<Notification, 'sender' | 'pinned' | '_ts'> & {
+type NotificationDetail = Omit<
+  Notification,
+  'sender' | 'pinned' | 'timeStamp'
+> & {
   date: string
 }
 </script>

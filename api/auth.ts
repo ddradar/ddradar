@@ -33,7 +33,7 @@ export function getClientPrincipal(
 }
 
 export async function getLoginUserInfo(
-  clientPrincipal: ClientPrincipal | null
+  clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
 ): Promise<UserSchema | null> {
   if (!clientPrincipal) return null
 

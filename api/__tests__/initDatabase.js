@@ -68,7 +68,7 @@ module.exports = async () => {
             order: 'ascending',
           },
           {
-            path: '/_ts',
+            path: '/timeStamp',
             order: 'descending',
           },
         ],

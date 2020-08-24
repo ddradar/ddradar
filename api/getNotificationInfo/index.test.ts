@@ -31,7 +31,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'info',
           title: '新曲を追加しました',
           body: '新曲2曲の譜面情報を追加しました。',
-          _ts: 1597028400,
+          timeStamp: 1597028400,
         },
         {
           id: 'bar',
@@ -41,7 +41,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'warning',
           title: 'このサイトはベータ版です',
           body: 'このWebサイトはベータ版環境です。',
-          _ts: 1596250800,
+          timeStamp: 1596250800,
         },
         {
           id: 'baz',
@@ -51,7 +51,7 @@ describe('GET /api/v1/notification/', () => {
           icon: 'info',
           title: 'v0.6.0をリリースしました',
           body: '変更点は以下を参照してください。',
-          _ts: 1597114800,
+          timeStamp: 1597114800,
         },
       ]
       beforeAll(async () => {
@@ -70,18 +70,10 @@ describe('GET /api/v1/notification/', () => {
         // Assert
         expect(result.status).toBe(404)
       })
-      test('/foo returns "404 Not Found"', async () => {
+      test('/foo returns "200 OK" with JSON body', async () => {
         // Arrange
         context.bindingData.id = 'foo'
-        const expected: Omit<NotificationSchema, '_ts'> = {
-          id: notification[0].id,
-          sender: notification[0].sender,
-          pinned: notification[0].pinned,
-          type: notification[0].type,
-          icon: notification[0].icon,
-          title: notification[0].title,
-          body: notification[0].body,
-        }
+        const expected = { ...notification[0] }
 
         // Act
         const result = await getNotificationInfo(context)

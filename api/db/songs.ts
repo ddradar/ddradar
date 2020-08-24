@@ -21,10 +21,10 @@ export type SongSchema = {
    * Index for sorting. Associated with the "Choose by Name" folder.
    * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
    */
-  nameIndex: SongIndex
+  nameIndex: number
   artist: string
   /** Series title depend on official site. */
-  series: Series
+  series: string
   /**
    * Displayed min BPM (Beet Per Minutes).
    * Set to `null` if not revealed, such as "???".
@@ -43,7 +43,7 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
     hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
     /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
     /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
-    (SeriesList as string[]).includes(obj.series) &&
+    (SeriesList as readonly string[]).includes(obj.series) &&
     hasIntegerProperty(obj, 'nameIndex') &&
     obj.nameIndex >= 0 &&
     obj.nameIndex <= 36 &&
@@ -73,7 +73,7 @@ export type CourseSchema = {
   /** `-1`: NONSTOP, `-2`: Grade */
   nameIndex: -1 | -2
   /** Series title depend on official site. */
-  series: Series
+  series: string
   /** Displayed min BPM (Beet Per Minutes). */
   minBPM: number
   /** Displayed max BPM (Beet Per Minutes). */
@@ -86,7 +86,7 @@ export type StepChartSchema = {
   /** `1`: SINGLE, `2`: DOUBLE */
   playStyle: 1 | 2
   difficulty: Difficulty
-  level: Level
+  level: number
   /** Normal arrow count. (Jump = 1 count) */
   notes: number
   /** Freeze Arrow count. */
@@ -154,27 +154,7 @@ export type ChartOrder = Pick<
  */
 export type Difficulty = 0 | 1 | 2 | 3 | 4
 
-type Series =
-  | 'DDR 1st'
-  | 'DDR 2ndMIX'
-  | 'DDR 3rdMIX'
-  | 'DDR 4thMIX'
-  | 'DDR 5thMIX'
-  | 'DDRMAX'
-  | 'DDRMAX2'
-  | 'DDR EXTREME'
-  | 'DDR SuperNOVA'
-  | 'DDR SuperNOVA2'
-  | 'DDR X'
-  | 'DDR X2'
-  | 'DDR X3 VS 2ndMIX'
-  | 'DanceDanceRevolution (2013)'
-  | 'DanceDanceRevolution (2014)'
-  | 'DanceDanceRevolution A'
-  | 'DanceDanceRevolution A20'
-  | 'DanceDanceRevolution A20 PLUS'
-
-export const SeriesList: Series[] = [
+export const SeriesList = [
   'DDR 1st',
   'DDR 2ndMIX',
   'DDR 3rdMIX',
@@ -193,105 +173,4 @@ export const SeriesList: Series[] = [
   'DanceDanceRevolution A',
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
-]
-
-type SongIndex =
-  | 0
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
-  | 21
-  | 22
-  | 23
-  | 24
-  | 25
-  | 26
-  | 27
-  | 28
-  | 29
-  | 30
-  | 31
-  | 32
-  | 33
-  | 34
-  | 35
-  | 36
-
-export const SongNameIndex: string[] = [
-  'あ',
-  'か',
-  'さ',
-  'た',
-  'な',
-  'は',
-  'ま',
-  'や',
-  'ら',
-  'わ',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  '数字・記号',
-]
-
-type Level =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
+] as const

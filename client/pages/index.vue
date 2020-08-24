@@ -14,7 +14,7 @@
         :icon="m.icon"
         :title="m.title"
         :body="m.body"
-        :time="m._ts"
+        :time="m.timeStamp"
       />
       <div class="has-text-right top-notification">
         <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>

@@ -2,10 +2,14 @@ import type { HttpRequest } from '@azure/functions'
 
 import { NotificationSchema } from '../db'
 import type { BadRequestResult, SuccessResult } from '../function'
-import { hasProperty, hasStringProperty } from '../type-assert'
+import {
+  hasIntegerProperty,
+  hasProperty,
+  hasStringProperty,
+} from '../type-assert'
 
 type NotificationBody = Partial<NotificationSchema> &
-  Omit<NotificationSchema, 'id' | '_ts'>
+  Omit<NotificationSchema, 'id' | 'timeStamp'>
 
 type PostNotificationResult = {
   httpResponse: BadRequestResult | SuccessResult<NotificationBody>
@@ -18,7 +22,9 @@ function isNotificationBody(obj: unknown): obj is NotificationBody {
     obj.sender === 'SYSTEM' &&
     ['is-info', 'is-warning'].includes(obj.type) &&
     hasProperty(obj, 'pinned') &&
-    typeof obj.pinned === 'boolean'
+    typeof obj.pinned === 'boolean' &&
+    (!hasProperty(obj, 'id') || hasStringProperty(obj, 'id')) &&
+    (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
   )
 }
 
@@ -28,7 +34,9 @@ export default async function (
   req: Pick<HttpRequest, 'body'>
 ): Promise<PostNotificationResult> {
   if (!isNotificationBody(req.body)) {
-    return { httpResponse: { status: 400, body: 'Body is not SongSchema' } }
+    return {
+      httpResponse: { status: 400, body: 'Body is not NotificationSchema' },
+    }
   }
 
   const document: NotificationBody = {
@@ -38,9 +46,8 @@ export default async function (
     icon: req.body.icon,
     title: req.body.title,
     body: req.body.body,
-  }
-  if (req.body.id) {
-    document.id = req.body.id
+    timeStamp: req.body.timeStamp || Math.floor(Date.now() / 1000),
+    ...(req.body.id ? { id: req.body.id } : {}),
   }
 
   return {
