@@ -24,7 +24,7 @@ type ScoreBody = Score &
 
 type ChartInfo = Pick<
   StepChartSchema,
-  'playStyle' | 'difficulty' | 'notes' | 'freezeArrow' | 'shockArrow'
+  'playStyle' | 'difficulty' | 'level' | 'notes' | 'freezeArrow' | 'shockArrow'
 > &
   Pick<SongSchema, 'name'>
 
@@ -66,7 +66,7 @@ export default async function (
   const { resources: charts } = await container.items
     .query<ChartInfo>({
       query:
-        'SELECT s.name, c.playStyle, c.difficulty, c.notes, c.freezeArrow, c.shockArrow ' +
+        'SELECT s.name, c.playStyle, c.difficulty, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
         'FROM s JOIN c IN s.charts ' +
         'WHERE s.id = @songId',
       parameters: [{ name: '@songId', value: songId }],
@@ -157,6 +157,7 @@ export default async function (
       songName: chart.name,
       playStyle: chart.playStyle,
       difficulty: chart.difficulty,
+      level: chart.level,
       score: score.score,
       clearLamp: score.clearLamp,
       rank: score.rank,

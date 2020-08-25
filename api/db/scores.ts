@@ -1,6 +1,9 @@
 import type { StepChartSchema } from './songs'
 
-export type ScoreSchema = Pick<StepChartSchema, 'playStyle' | 'difficulty'> & {
+export type ScoreSchema = Pick<
+  StepChartSchema,
+  'playStyle' | 'difficulty' | 'level'
+> & {
   /** `${userId}-${songId}-${playStyle}-${difficulty}` */
   id: string
   /** User ID */

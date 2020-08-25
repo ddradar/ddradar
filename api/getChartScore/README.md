@@ -91,6 +91,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 |`songName`|string|Song name|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`difficulty`|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
+|`level`|integer|Chart level|
 |`score`|integer|Normal score|
 |`exScore`|integer?|EX SCORE (optional)|
 |`maxCombo`|integer?|MAX COMBO (optional)|
