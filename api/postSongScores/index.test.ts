@@ -172,6 +172,7 @@ describe('POST /api/v1/scores', () => {
         songName: song.name,
         playStyle: song.charts[0].playStyle,
         difficulty: song.charts[0].difficulty,
+        level: song.charts[0].level,
         score: 999620, // P:38
         clearLamp: 6,
         rank: 'AAA',
@@ -333,6 +334,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 1,
+          level: 8,
           score: 999700,
           clearLamp: 6,
           rank: 'AAA',
@@ -393,6 +395,7 @@ describe('POST /api/v1/scores', () => {
           const expected = {
             playStyle: 1,
             difficulty: 1,
+            level: 8,
             score: 900000,
             clearLamp: 4,
             rank: 'AA',
@@ -449,6 +452,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 890000,
           clearLamp: 4,
           rank: 'AA-',
@@ -492,6 +496,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 999620,
           clearLamp: 6,
           rank: 'AAA',
@@ -534,6 +539,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',
@@ -576,6 +582,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',
@@ -618,6 +625,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',
@@ -660,6 +668,7 @@ describe('POST /api/v1/scores', () => {
         const expected = {
           playStyle: 1,
           difficulty: 0,
+          level: 4,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',

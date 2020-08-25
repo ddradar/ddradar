@@ -12,7 +12,10 @@ import type {
 } from '../function'
 import { isScore, isValidScore, mergeScore } from '../score'
 
-type ChartInfo = Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'> &
+type ChartInfo = Pick<
+  StepChartSchema,
+  'level' | 'notes' | 'freezeArrow' | 'shockArrow'
+> &
   Pick<SongSchema, 'name'>
 
 type PostScoreResult = {
@@ -66,7 +69,7 @@ export default async function (
   const { resources: charts } = await container.items
     .query<ChartInfo>({
       query:
-        'SELECT s.name, c.notes, c.freezeArrow, c.shockArrow ' +
+        'SELECT s.name, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
         'FROM s JOIN c IN s.charts ' +
         'WHERE s.id = @songId AND c.playStyle = @playStyle AND c.difficulty = @difficulty',
       parameters: [
@@ -128,6 +131,7 @@ export default async function (
       songName: charts[0].name,
       playStyle,
       difficulty,
+      level: charts[0].level,
       score: req.body.score,
       clearLamp: req.body.clearLamp,
       rank: req.body.rank,
@@ -170,7 +174,7 @@ export default async function (
       clearLamp: 0,
     }
 
-    const mergedScore = {
+    const mergedScore: ScoreSchema = {
       ...mergeScore(oldScore, score),
       id,
       userId: area,
@@ -180,6 +184,7 @@ export default async function (
       songName: score.songName,
       playStyle: score.playStyle,
       difficulty: score.difficulty,
+      level: score.level,
     }
     if (
       mergedScore.score === oldScore.score &&
