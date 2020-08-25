@@ -3,6 +3,8 @@ import { getDanceLevel, UserScore } from '~/api/score'
 const idRegex = /^\/game\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
 const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
 
+type MusicScore = Omit<UserScore, 'userId' | 'userName' | 'level'>
+
 /**
  * Convert music data to { songId: Score[] } Record.
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html
@@ -14,14 +16,14 @@ const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
  */
 export function musicDataToScoreList(
   sourceCode: string
-): Record<string, Omit<UserScore, 'userId' | 'userName'>[]> {
+): Record<string, MusicScore[]> {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
   const dataTable = doc.getElementById('data_tbl')
   if (!dataTable) throw new Error('invalid html')
 
   const playStyle = getPlayStyle(dataTable)
 
-  const result: Record<string, Omit<UserScore, 'userId' | 'userName'>[]> = {}
+  const result: Record<string, MusicScore[]> = {}
 
   const songs = dataTable.getElementsByClassName('data')
   for (let i = 0; i < songs.length; i++) {
@@ -139,7 +141,7 @@ export function musicDataToScoreList(
 
 export function musicDetailToScore(
   sourceCode: string
-): Omit<UserScore, 'userId' | 'userName'> & { topScore: number } {
+): MusicScore & { topScore: number } {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
 
   // Get songId and songName

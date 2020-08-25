@@ -15,6 +15,7 @@ export type UserScore = {
   songName: string
   playStyle: 1 | 2
   difficulty: 0 | 1 | 2 | 3 | 4
+  level: number
   /** Normal score */
   score: number
   exScore?: number
@@ -54,7 +55,7 @@ export type Score = Pick<
  */
 export type ChartScore = Omit<
   UserScore,
-  'userId' | 'userName' | 'songId' | 'songName'
+  'userId' | 'userName' | 'songId' | 'songName' | 'level'
 > & { topScore?: number }
 
 /**
