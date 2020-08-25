@@ -22,7 +22,7 @@ const configuration: NuxtConfig = {
       { rel: 'icon alternate', type: 'image/png', href: '/favicon.png' },
     ],
   },
-  loading: { color: '#fff' },
+  loading: { color: '#48c774' },
   css: ['~/assets/css/styles.scss'],
   plugins: ['~/plugins/application-insights.client.ts'],
   buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],

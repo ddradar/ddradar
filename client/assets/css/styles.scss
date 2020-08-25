@@ -60,6 +60,10 @@ $link: $info;
 $link-invert: $info-invert;
 $link-focus-border: $info;
 
+.loading-icon {
+  color: $green;
+}
+
 // Import Bulma and Buefy styles
 @import '~bulma';
 @import '~buefy/src/scss/buefy';
