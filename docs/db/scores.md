@@ -18,6 +18,7 @@ The collection that stores user scores.
 |songName|string|Song name|
 |playStyle|integer|`1`: SINGLE, `2`: DOUBLE|
 |difficulty|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
+|level|integer|Chart level|
 |score|integer|Normal score|
 |exScore|integer?|EX SCORE (optional)|
 |maxCombo|integer?|MAX COMBO (optional)|
@@ -69,6 +70,7 @@ The collection that stores user scores.
     "songName": "愛言葉",
     "playStyle": 1,
     "difficulty": 0,
+    "level": 3,
     "score": 1000000,
     "exScore": 402,
     "maxCombo": 122,
