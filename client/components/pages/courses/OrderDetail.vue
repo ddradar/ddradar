@@ -44,7 +44,8 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a class="card-footer-item" @click="launchScoreEditor()">スコア編集</a>
+        <a class="card-footer-item" @click="launchScoreEditor">編集</a>
+        <a class="card-footer-item" @click="launchScoreImporter">インポート</a>
         <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
       </footer>
     </card>
@@ -75,6 +76,7 @@ import { CourseChart, CourseInfo } from '~/api/course'
 import { getChartScore, UserScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
+import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
@@ -82,7 +84,7 @@ import Card from '~/components/shared/Card.vue'
 type RankingScore = UserScore & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
-export default class ChartDetailComponent extends Vue {
+export default class OrderDetailComponent extends Vue {
   @Prop({ required: true, type: Object })
   readonly course!: CourseInfo
 
@@ -137,6 +139,23 @@ export default class ChartDetailComponent extends Vue {
           playStyle: this.chart.playStyle,
           difficulty: this.chart.difficulty,
           songData: this.course,
+        },
+        hasModalCard: true,
+        trapFocus: true,
+      })
+      .$on('close', async () => await this.fetchScores())
+  }
+
+  launchScoreImporter() {
+    this.$buefy.modal
+      .open({
+        parent: this,
+        component: ScoreImporter,
+        props: {
+          songId: this.course.id,
+          playStyle: this.chart.playStyle,
+          difficulty: this.chart.difficulty,
+          isCourse: true,
         },
         hasModalCard: true,
         trapFocus: true,
