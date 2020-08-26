@@ -1,7 +1,7 @@
 import { getDanceLevel, UserScore } from '~/api/score'
 
-const idRegex = /^\/game\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
-const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
+const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
 
 type MusicScore = Omit<UserScore, 'userId' | 'userName' | 'level'>
 

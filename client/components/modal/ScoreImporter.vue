@@ -4,25 +4,18 @@
       <h1 class="modal-card-title">スコアのインポート</h1>
     </header>
     <section class="modal-card-body">
-      <ol>
-        <li>e-amusement GATEにログインしてください。</li>
-        <li>
-          <a target="_blank" :href="musicDetailUri">楽曲データ詳細</a>
-          のソースコードを取得し、コピーします。
-          <ul>
-            <li>
-              Google Chrome, Firefox, Edge, Operaをお使いの方は、
-              <a target="_blank" :href="`view-source:${musicDetailUri}`">
-                こちら
-              </a>
-              から直接ソースコードを表示できます。
-            </li>
-          </ul>
-        </li>
-        <li>
-          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-        </li>
-      </ol>
+      <div class="content">
+        <ol>
+          <li>e-amusement GATEにログインしてください。</li>
+          <li>
+            <a target="_blank" :href="musicDetailUri">楽曲データ詳細</a>
+            のソースコードを取得し、コピーしてください。
+          </li>
+          <li>
+            下のテキストボックスに、コピーしたソースコードを貼り付けてください。
+          </li>
+        </ol>
+      </div>
       <b-field>
         <b-input v-model="sourceCode" type="textarea" required />
       </b-field>
@@ -78,7 +71,14 @@ export default class ScoreImporterComponent extends Vue {
     this.loading = true
 
     // Convert sourceCode to Score
-    const score = musicDetailToScore(this.sourceCode)
+    let score: ReturnType<typeof musicDetailToScore>
+    try {
+      score = musicDetailToScore(this.sourceCode)
+    } catch {
+      popup.warning(this.$buefy, 'HTMLソース文字列が不正です')
+      this.loading = false
+      return
+    }
 
     try {
       await postSongScores(this.$http, this.songId, [score])

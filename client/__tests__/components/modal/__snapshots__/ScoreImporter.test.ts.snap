@@ -6,24 +6,17 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
     <h1 class="modal-card-title">スコアのインポート</h1>
   </header>
   <section class="modal-card-body">
-    <ol>
-      <li>e-amusement GATEにログインしてください。</li>
-      <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-        のソースコードを取得し、コピーします。
-        <ul>
-          <li>
-            Google Chrome, Firefox, Edge, Operaをお使いの方は、
-            <a target="_blank" href="view-source:https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
-              こちら
-            </a>
-            から直接ソースコードを表示できます。
-          </li>
-        </ul>
-      </li>
-      <li>
-        下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-      </li>
-    </ol>
+    <div class="content">
+      <ol>
+        <li>e-amusement GATEにログインしてください。</li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
+          のソースコードを取得し、コピーしてください。
+        </li>
+        <li>
+          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
+        </li>
+      </ol>
+    </div>
     <div class="field">
       <!---->
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
@@ -48,24 +41,17 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
     <h1 class="modal-card-title">スコアのインポート</h1>
   </header>
   <section class="modal-card-body">
-    <ol>
-      <li>e-amusement GATEにログインしてください。</li>
-      <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-        のソースコードを取得し、コピーします。
-        <ul>
-          <li>
-            Google Chrome, Firefox, Edge, Operaをお使いの方は、
-            <a target="_blank" href="view-source:https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
-              こちら
-            </a>
-            から直接ソースコードを表示できます。
-          </li>
-        </ul>
-      </li>
-      <li>
-        下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-      </li>
-    </ol>
+    <div class="content">
+      <ol>
+        <li>e-amusement GATEにログインしてください。</li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
+          のソースコードを取得し、コピーしてください。
+        </li>
+        <li>
+          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
+        </li>
+      </ol>
+    </div>
     <div class="field">
       <!---->
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
@@ -90,24 +76,17 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: null } 
     <h1 class="modal-card-title">スコアのインポート</h1>
   </header>
   <section class="modal-card-body">
-    <ol>
-      <li>e-amusement GATEにログインしてください。</li>
-      <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-        のソースコードを取得し、コピーします。
-        <ul>
-          <li>
-            Google Chrome, Firefox, Edge, Operaをお使いの方は、
-            <a target="_blank" href="view-source:https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
-              こちら
-            </a>
-            から直接ソースコードを表示できます。
-          </li>
-        </ul>
-      </li>
-      <li>
-        下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-      </li>
-    </ol>
+    <div class="content">
+      <ol>
+        <li>e-amusement GATEにログインしてください。</li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
+          のソースコードを取得し、コピーしてください。
+        </li>
+        <li>
+          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
+        </li>
+      </ol>
+    </div>
     <div class="field">
       <!---->
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
