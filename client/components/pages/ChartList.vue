@@ -60,7 +60,7 @@ import {
   getSongInfo,
   shortenSeriesName,
 } from '~/api/song'
-import ScoreEditor from '~/components/pages/ScoreEditor.vue'
+import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 
 @Component
 export default class ChartListComponent extends Vue {
