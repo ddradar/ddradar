@@ -76,9 +76,9 @@ import { CourseChart, CourseInfo } from '~/api/course'
 import { getChartScore, UserScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
+import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import ScoreBadge from '~/components/pages/ScoreBadge.vue'
-import ScoreEditor from '~/components/pages/ScoreEditor.vue'
 import Card from '~/components/shared/Card.vue'
 
 type RankingScore = UserScore & { isArea?: true }
