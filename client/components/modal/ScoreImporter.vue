@@ -78,14 +78,7 @@ export default class ScoreImporterComponent extends Vue {
     this.loading = true
 
     // Convert sourceCode to Score
-    let score: ReturnType<typeof musicDetailToScore>
-    try {
-      score = musicDetailToScore(this.sourceCode)
-    } catch {
-      popup.warning(this.$buefy, 'HTMLソース文字列が不正です')
-      this.loading = false
-      return
-    }
+    const score = musicDetailToScore(this.sourceCode)
 
     try {
       await postSongScores(this.$http, this.songId, [score])
