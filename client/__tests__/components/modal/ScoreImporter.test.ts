@@ -83,7 +83,6 @@ describe('/components/modal/ScoreImporter.vue', () => {
   describe('importScore()', () => {
     const score: ReturnType<typeof musicDetailToScore> = {
       songId: 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0',
-      songName: 'ACE FOR ACES',
       playStyle: 1,
       difficulty: 0,
       score: 1000000,

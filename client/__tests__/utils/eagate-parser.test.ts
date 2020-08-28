@@ -445,36 +445,12 @@ describe('/utils/eagate-parser.ts', () => {
     })
   })
   describe('musicDetailToScore', () => {
-    let aceForAcesSource: string
-    let raspberryHeartSource: string
-    const aceForAces = {
-      songId: 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0',
-      songName: 'ACE FOR ACES',
-    }
-    const raspberryHeart = {
-      songId: '60qiDd000qDIobO0QI916i18bbolO919',
-      songName: 'Raspberry♡Heart(English version)',
-    }
+    let template: string
     beforeAll(async () => {
-      const template = await readFileAsync(
+      template = await readFileAsync(
         join(__dirname, 'eagate', 'music_detail', 'template.html'),
         { encoding: 'utf8' }
       )
-      aceForAcesSource = template
-        .replace('{{ songName }}', 'ACE FOR ACES<br />TAG&times;U1')
-        .replace(
-          '{{ imgSrc }}',
-          '/game/ddr/ddra20/p/images/binary_jk.html?img=ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0&kind=1'
-        )
-      raspberryHeartSource = template
-        .replace(
-          '{{ songName }}',
-          '\nRaspberry&#9825;Heart(English version)<br />jun feat. PAULA TERRY\n'
-        )
-        .replace(
-          '{{ imgSrc }}',
-          '/game/ddr/ddra20/p/images/binary_jk.html?img=60qiDd000qDIobO0QI916i18bbolO919&kind=1'
-        )
     })
     test.each([
       '',
@@ -498,11 +474,12 @@ describe('/utils/eagate-parser.ts', () => {
       // Act - Assert
       expect(() => musicDetailToScore(source)).toThrowError(message)
     })
+    const aceForAces = 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0'
     test.each([
       [
         'diff_0.html',
         {
-          ...aceForAces,
+          songId: aceForAces,
           playStyle: 1,
           difficulty: 0,
           score: 1000000,
@@ -515,7 +492,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_1.html',
         {
-          ...aceForAces,
+          songId: aceForAces,
           playStyle: 1,
           difficulty: 1,
           score: 999990,
@@ -528,7 +505,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_2.html',
         {
-          ...aceForAces,
+          songId: aceForAces,
           playStyle: 1,
           difficulty: 2,
           score: 998600,
@@ -541,7 +518,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_3.html',
         {
-          ...aceForAces,
+          songId: aceForAces,
           playStyle: 1,
           difficulty: 3,
           score: 968760,
@@ -554,7 +531,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_4.html',
         {
-          ...aceForAces,
+          songId: aceForAces,
           playStyle: 1,
           difficulty: 4,
           score: 795780,
@@ -568,23 +545,29 @@ describe('/utils/eagate-parser.ts', () => {
       '(%s) returns %p',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
-        const source = aceForAcesSource.replace(
-          '{{ contents }}',
-          await readFileAsync(
-            join(__dirname, 'eagate', 'music_detail', fileName),
-            { encoding: 'utf8' }
+        const source = template
+          .replace(
+            '{{ imgSrc }}',
+            `/game/ddr/ddra20/p/images/binary_jk.html?img=${aceForAces}&kind=1`
           )
-        )
+          .replace(
+            '{{ contents }}',
+            await readFileAsync(
+              join(__dirname, 'eagate', 'music_detail', fileName),
+              { encoding: 'utf8' }
+            )
+          )
 
         // Act - Assert
         expect(musicDetailToScore(source)).toStrictEqual(expected)
       }
     )
+    const raspberryHeart = '60qiDd000qDIobO0QI916i18bbolO919'
     test.each([
       [
         'diff_5.html',
         {
-          ...raspberryHeart,
+          songId: raspberryHeart,
           playStyle: 2,
           difficulty: 1,
           score: 999940,
@@ -597,7 +580,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_6.html',
         {
-          ...raspberryHeart,
+          songId: raspberryHeart,
           playStyle: 2,
           difficulty: 2,
           score: 999990,
@@ -610,7 +593,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_7.html',
         {
-          ...raspberryHeart,
+          songId: raspberryHeart,
           playStyle: 2,
           difficulty: 3,
           score: 999890,
@@ -623,7 +606,7 @@ describe('/utils/eagate-parser.ts', () => {
       [
         'diff_8.html',
         {
-          ...raspberryHeart,
+          songId: raspberryHeart,
           playStyle: 2,
           difficulty: 4,
           score: 900000,
@@ -637,13 +620,66 @@ describe('/utils/eagate-parser.ts', () => {
       '(%s) returns %p',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
-        const source = raspberryHeartSource.replace(
-          '{{ contents }}',
-          await readFileAsync(
-            join(__dirname, 'eagate', 'music_detail', fileName),
-            { encoding: 'utf8' }
+        const source = template
+          .replace(
+            '{{ imgSrc }}',
+            `/game/ddr/ddra20/p/images/binary_jk.html?img=${raspberryHeart}&kind=1`
           )
-        )
+          .replace(
+            '{{ contents }}',
+            await readFileAsync(
+              join(__dirname, 'eagate', 'music_detail', fileName),
+              { encoding: 'utf8' }
+            )
+          )
+
+        // Act - Assert
+        expect(musicDetailToScore(source)).toStrictEqual(expected)
+      }
+    )
+    test.each([
+      [
+        'grade.html',
+        {
+          songId: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
+          playStyle: 1,
+          difficulty: 4,
+          score: 999360,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 1019,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'nonstop.html',
+        {
+          songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+          playStyle: 1,
+          difficulty: 0,
+          score: 999850,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 401,
+          topScore: 1000000,
+        } as const,
+      ],
+    ])(
+      '(%s) returns %p',
+      async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
+        // Arrange
+        const source = template
+          .replace(
+            '{{ imgSrc }}',
+            `/game/ddr/ddra20/p/images/binary_jk_c.html?img=${expected.songId}&kind=1`
+          )
+          .replace(
+            '{{ contents }}',
+            await readFileAsync(
+              join(__dirname, 'eagate', 'music_detail', fileName),
+              { encoding: 'utf8' }
+            )
+          )
 
         // Act - Assert
         expect(musicDetailToScore(source)).toStrictEqual(expected)
