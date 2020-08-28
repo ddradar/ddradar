@@ -83,7 +83,7 @@ export default class NotificationEditorPage extends Vue {
         icon: notification.icon,
         title: notification.title,
         body: notification.body,
-        timeStamp: notification.timetamp,
+        timeStamp: notification.timeStamp,
       }
     } catch {}
   }
