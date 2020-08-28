@@ -64,6 +64,7 @@ export default class NotificationEditorPage extends Vue {
   icon: string = ''
   title: string = ''
   body: string = ''
+  timeStamp: number | null = null
 
   get hasError() {
     return !this.title || !this.body
@@ -82,6 +83,7 @@ export default class NotificationEditorPage extends Vue {
         icon: notification.icon,
         title: notification.title,
         body: notification.body,
+        timeStamp: notification.timetamp,
       }
     } catch {}
   }
@@ -94,6 +96,7 @@ export default class NotificationEditorPage extends Vue {
       icon: this.icon,
       title: this.title,
       body: this.body,
+      ...{ timeStamp: this.timeStamp || undefined },
     }
     try {
       await postNotification(this.$http, notification)
