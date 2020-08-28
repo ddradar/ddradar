@@ -146,7 +146,7 @@ export function musicDataToScoreList(
  */
 export function musicDetailToScore(
   sourceCode: string
-): MusicScore & { topScore: number } {
+): Omit<MusicScore, 'songName'> & { topScore: number } {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
 
   // Get songId and songName
@@ -157,12 +157,10 @@ export function musicDetailToScore(
     .getElementsByTagName('td')[0]
     .getElementsByTagName('img')[0]
     .src.replace(idRegex, '$1')
-  const songName = songNameRow
-    .getElementsByTagName('td')[1]
-    .innerHTML.trim()
-    .replace(/^(.+)<br>.+$/, '$1')
 
-  const musicDetailTable = doc.getElementById('music_detail_table')
+  const musicDetailTable =
+    doc.getElementById('music_detail_table') ||
+    doc.getElementById('course_detail_table')
   if (!musicDetailTable) {
     const message = doc.getElementById('popup_cnt')!.textContent!
     throw new Error(message.replace(/^.+\n *([^ ]+)$/ms, '$1').trim())
@@ -207,7 +205,6 @@ export function musicDetailToScore(
 
   return {
     songId,
-    songName,
     playStyle,
     difficulty,
     score,
