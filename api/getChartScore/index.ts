@@ -90,6 +90,7 @@ export default async function (
     'songName',
     'playStyle',
     'difficulty',
+    'level',
     'clearLamp',
     'score',
     'rank',

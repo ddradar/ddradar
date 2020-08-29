@@ -97,73 +97,67 @@ describe('GET /api/v1/scores', () => {
         area: 13,
         isPublic: false,
       }
-      const scores: ScoreSchema[] = [
+      const chart = {
+        songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+        songName: 'PARANOiA',
+        playStyle: 1,
+        difficulty: 0,
+        level: 4,
+      } as const
+      const scores: readonly ScoreSchema[] = [
         {
-          id: '0-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
+          id: `0-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
           userId: '0',
           userName: '全国トップ',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',
           isPublic: false,
         },
         {
-          id: '13-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
+          id: `13-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
           userId: '13',
           userName: '東京都トップ',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 999980,
           clearLamp: 6,
           rank: 'AAA',
           isPublic: false,
         },
         {
-          id: 'public_user-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
+          id: `public_user-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
           userId: 'public_user',
           userName: 'AFRO',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 999960,
           clearLamp: 6,
           rank: 'AAA',
           isPublic: true,
         },
         {
-          id: 'private_user-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
-          userId: 'private_user',
-          userName: 'EMI',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          id: `${user.id}-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
+          userId: user.id,
+          userName: user.name,
+          ...chart,
           score: 999900,
           clearLamp: 6,
           rank: 'AAA',
-          isPublic: false,
+          isPublic: user.isPublic,
         },
         {
-          id: '0-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-1',
+          id: `0-${chart.songId}-${chart.playStyle}-1`,
           userId: '0',
           userName: '全国トップ',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
+          ...chart,
           difficulty: 1,
+          level: 8,
           score: 1000000,
           clearLamp: 7,
           rank: 'AAA',
           isPublic: false,
         },
-      ]
+      ] as const
 
       beforeAll(async () => {
         await userContainer.items.create(user)
@@ -192,11 +186,11 @@ describe('GET /api/v1/scores', () => {
         }
       )
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns only World Best Score if anonymous', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns only World Best Score if anonymous`, async () => {
         // Arrange
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
 
         // Act
         const result = await getChartScore(context, req)
@@ -207,10 +201,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -218,11 +209,11 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=medium returns only World Best Score if anonymous', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=medium returns only World Best Score if anonymous`, async () => {
         // Arrange
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
         req.query.scope = 'medium'
 
         // Act
@@ -234,10 +225,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -245,11 +233,11 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=full returns all public scores if anonymous', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=full returns all public scores if anonymous`, async () => {
         // Arrange
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
         req.query.scope = 'full'
 
         // Act
@@ -262,10 +250,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -274,10 +259,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[2].userId,
             userName: scores[2].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[2].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[2].score,
             clearLamp: scores[2].clearLamp,
             rank: scores[2].rank,
@@ -285,7 +267,7 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns only World Best Score if unregisted user', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns only World Best Score if unregisted user`, async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'twitter',
@@ -293,9 +275,9 @@ describe('GET /api/v1/scores', () => {
           userId: 'foo',
           userRoles: ['anonymous', 'authenticated'],
         })
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
 
         // Act
         const result = await getChartScore(context, req)
@@ -306,10 +288,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -317,7 +296,7 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns "404 Not Found" if unregisted user', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=private returns "404 Not Found" if unregisted user`, async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'twitter',
@@ -325,9 +304,9 @@ describe('GET /api/v1/scores', () => {
           userId: 'foo',
           userRoles: ['anonymous', 'authenticated'],
         })
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
         req.query.scope = 'private'
 
         // Act
@@ -337,17 +316,17 @@ describe('GET /api/v1/scores', () => {
         expect(result.status).toBe(404)
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns World Best, Area Best, and Personal Best Scores if authenticated', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns World Best, Area Best, and Personal Best Scores if authenticated`, async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'twitter',
           userDetails: user.id,
-          userId: user.id,
+          userId: user.loginId ?? '',
           userRoles: ['anonymous', 'authenticated'],
         })
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
 
         // Act
         const result = await getChartScore(context, req)
@@ -359,10 +338,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -371,10 +347,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[1].userId,
             userName: scores[1].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[1].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[1].score,
             clearLamp: scores[1].clearLamp,
             rank: scores[1].rank,
@@ -383,10 +356,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[3].userId,
             userName: scores[3].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[3].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[3].score,
             clearLamp: scores[3].clearLamp,
             rank: scores[3].rank,
@@ -394,17 +364,17 @@ describe('GET /api/v1/scores', () => {
         ])
       })
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns only Personal Best Score if authenticated', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=private returns only Personal Best Score if authenticated`, async () => {
         // Arrange
         mocked(getClientPrincipal).mockReturnValueOnce({
           identityProvider: 'twitter',
           userDetails: user.id,
-          userId: user.id,
+          userId: user.loginId ?? '',
           userRoles: ['anonymous', 'authenticated'],
         })
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
         req.query.scope = 'private'
 
         // Act
@@ -417,10 +387,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[3].userId,
             userName: scores[3].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[3].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[3].score,
             clearLamp: scores[3].clearLamp,
             rank: scores[3].rank,
@@ -451,10 +418,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[0].userId,
             userName: scores[0].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[0].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[0].score,
             clearLamp: scores[0].clearLamp,
             rank: scores[0].rank,
@@ -463,10 +427,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[1].userId,
             userName: scores[1].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[1].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[1].score,
             clearLamp: scores[1].clearLamp,
             rank: scores[1].rank,
@@ -475,10 +436,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[2].userId,
             userName: scores[2].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[2].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[2].score,
             clearLamp: scores[2].clearLamp,
             rank: scores[2].rank,
@@ -487,10 +445,7 @@ describe('GET /api/v1/scores', () => {
           {
             userId: scores[3].userId,
             userName: scores[3].userName,
-            songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-            songName: scores[3].songName,
-            playStyle: 1,
-            difficulty: 0,
+            ...chart,
             score: scores[3].score,
             clearLamp: scores[3].clearLamp,
             rank: scores[3].rank,

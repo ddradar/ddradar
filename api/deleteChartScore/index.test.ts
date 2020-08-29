@@ -111,15 +111,19 @@ describe('DELETE /api/v1/scores', () => {
         isPublic: true,
       } as const
       const scoreContainer = getContainer('Scores')
-      const scores: ScoreSchema[] = [
+      const chart = {
+        songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+        songName: 'PARANOiA',
+        playStyle: 1,
+        difficulty: 0,
+        level: 4,
+      } as const
+      const scores: readonly ScoreSchema[] = [
         {
           id: '0-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
           userId: '0',
           userName: '0',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 999620, // P:38
           clearLamp: 6,
           rank: 'AAA',
@@ -131,10 +135,7 @@ describe('DELETE /api/v1/scores', () => {
           id: '13-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
           userId: '13',
           userName: '13',
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 996720, // P:37, Gr:1
           clearLamp: 5,
           rank: 'AAA',
@@ -146,10 +147,7 @@ describe('DELETE /api/v1/scores', () => {
           id: `${user.id}-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0`,
           userId: user.id,
           userName: user.name,
-          songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-          songName: 'PARANOiA',
-          playStyle: 1,
-          difficulty: 0,
+          ...chart,
           score: 970630, // P:28, Gr:10
           clearLamp: 5,
           rank: 'AA+',
@@ -157,7 +155,7 @@ describe('DELETE /api/v1/scores', () => {
           exScore: 366,
           isPublic: user.isPublic,
         },
-      ]
+      ] as const
 
       beforeEach(async () => {
         await Promise.all(scores.map(s => scoreContainer.items.create(s)))
@@ -190,11 +188,11 @@ describe('DELETE /api/v1/scores', () => {
         }
       )
 
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0 returns "204 No Content"', async () => {
+      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns "204 No Content"`, async () => {
         // Arrange
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
+        context.bindingData.songId = chart.songId
+        context.bindingData.playStyle = chart.playStyle
+        context.bindingData.difficulty = chart.difficulty
 
         // Act
         const result = await deleteChartScore(context, req)

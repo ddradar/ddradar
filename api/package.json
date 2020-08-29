@@ -1,6 +1,6 @@
 {
   "name": "@ddradar/api",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Backend API for DDRadar",
   "license": "MIT",
   "private": true,
@@ -21,8 +21,7 @@
     "@types/jest": "^26.0.10",
     "@types/node": "^12.12.54",
     "jest": "^26.4.1",
-    "prettier": "^2.0.5",
-    "ts-jest": "^26.2.0",
+    "ts-jest": "^26.3.0",
     "typescript": "^3.9.7"
   }
 }

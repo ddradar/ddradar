@@ -1,7 +1,9 @@
 import { getDanceLevel, UserScore } from '~/api/score'
 
-const idRegex = /^\/game\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
-const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
+const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+
+type MusicScore = Omit<UserScore, 'userId' | 'userName' | 'level'>
 
 /**
  * Convert music data to { songId: Score[] } Record.
@@ -14,14 +16,14 @@ const srcRegex = /^\/game\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
  */
 export function musicDataToScoreList(
   sourceCode: string
-): Record<string, Omit<UserScore, 'userId' | 'userName'>[]> {
+): Record<string, MusicScore[]> {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
   const dataTable = doc.getElementById('data_tbl')
   if (!dataTable) throw new Error('invalid html')
 
   const playStyle = getPlayStyle(dataTable)
 
-  const result: Record<string, Omit<UserScore, 'userId' | 'userName'>[]> = {}
+  const result: Record<string, MusicScore[]> = {}
 
   const songs = dataTable.getElementsByClassName('data')
   for (let i = 0; i < songs.length; i++) {
@@ -137,9 +139,14 @@ export function musicDataToScoreList(
   }
 }
 
+/**
+ * Convert music detail to Score.
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html
+ * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/course_detail.html
+ */
 export function musicDetailToScore(
   sourceCode: string
-): Omit<UserScore, 'userId' | 'userName'> & { topScore: number } {
+): Omit<MusicScore, 'songName'> & { topScore: number } {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
 
   // Get songId and songName
@@ -150,12 +157,10 @@ export function musicDetailToScore(
     .getElementsByTagName('td')[0]
     .getElementsByTagName('img')[0]
     .src.replace(idRegex, '$1')
-  const songName = songNameRow
-    .getElementsByTagName('td')[1]
-    .innerHTML.trim()
-    .replace(/^(.+)<br>.+$/, '$1')
 
-  const musicDetailTable = doc.getElementById('music_detail_table')
+  const musicDetailTable =
+    doc.getElementById('music_detail_table') ||
+    doc.getElementById('course_detail_table')
   if (!musicDetailTable) {
     const message = doc.getElementById('popup_cnt')!.textContent!
     throw new Error(message.replace(/^.+\n *([^ ]+)$/ms, '$1').trim())
@@ -200,7 +205,6 @@ export function musicDetailToScore(
 
   return {
     songId,
-    songName,
     playStyle,
     difficulty,
     score,

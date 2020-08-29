@@ -93,6 +93,7 @@ English version is [here](./README.md).
     "songName": "愛言葉",
     "playStyle": 1,
     "difficulty": 0,
+    "level": 3,
     "score": 1000000,
     "exScore": 402,
     "maxCombo": 122,
@@ -108,6 +109,7 @@ English version is [here](./README.md).
     "songName": "愛言葉",
     "playStyle": 1,
     "difficulty": 1,
+    "level": 5,
     "score": 999990,
     "exScore": 617,
     "maxCombo": 194,
@@ -129,6 +131,7 @@ English version is [here](./README.md).
 |`songName`|string|曲名|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`difficulty`|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
+|`level`|integer|譜面のレベル|
 |`score`|integer|通常スコア|
 |`exScore`|integer?|EXスコア (省略可)|
 |`maxCombo`|integer?|MAXコンボ数 (省略可)|

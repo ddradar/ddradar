@@ -199,6 +199,7 @@ describe('POST /api/v1/scores', () => {
         songName: song.name,
         playStyle: song.charts[0].playStyle,
         difficulty: song.charts[0].difficulty,
+        level: song.charts[0].level,
         score: 999620, // P:38
         clearLamp: 6,
         rank: 'AAA',
@@ -338,24 +339,28 @@ describe('POST /api/v1/scores', () => {
           ...req.body,
           id: `${publicUser.id}-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
           difficulty: song.charts[1].difficulty,
+          level: song.charts[1].level,
         })
         expect(result.userScore).toStrictEqual({
           ...publicUserScore,
           ...req.body,
           id: `${publicUser.id}-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
           difficulty: song.charts[1].difficulty,
+          level: song.charts[1].level,
         })
         expect(result.areaScore).toStrictEqual({
           ...areaScore,
           ...req.body,
           id: `13-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
           difficulty: song.charts[1].difficulty,
+          level: song.charts[1].level,
         })
         expect(result.worldScore).toStrictEqual({
           ...worldScore,
           ...req.body,
           id: `0-${song.id}-${song.charts[1].playStyle}-${song.charts[1].difficulty}`,
           difficulty: song.charts[1].difficulty,
+          level: song.charts[1].level,
         })
       })
 
