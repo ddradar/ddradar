@@ -209,6 +209,7 @@ export default async function (
       songName: score.songName,
       playStyle: score.playStyle,
       difficulty: score.difficulty,
+      level: score.level,
     }
     if (
       mergedScore.score === oldScore.score &&
