@@ -110,6 +110,7 @@ export default class ImportPage extends Vue {
     this.doneCount = 0
     this.currentSong = ''
     this.loading = false
+    this.sourceCode = ''
   }
 }
 </script>
