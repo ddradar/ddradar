@@ -1,6 +1,19 @@
 <template>
   <section class="section">
     <h1 class="title">{{ title }}</h1>
+    <div class="buttons">
+      <b-button
+        v-for="level in levelList"
+        :key="level"
+        :to="`/single/${level}`"
+        type="is-info"
+        tag="nuxt-link"
+        :disabled="level === selected"
+        :outlined="level === selected"
+      >
+        {{ level }}
+      </b-button>
+    </div>
     <chart-list :charts="charts" :loading="$fetchState.pending" />
   </section>
 </template>
@@ -25,13 +38,21 @@ export default class SingleLevelPage extends Vue {
 
   /** Get chart list from API */
   async fetch() {
-    const level = parseInt(this.$route.params.level, 10)
-    this.charts = await searchCharts(this.$http, 1, level)
+    this.charts = await searchCharts(this.$http, 1, this.selected)
+  }
+
+  get selected() {
+    return parseInt(this.$route.params.level, 10)
   }
 
   /** Page title */
   get title() {
-    return `SINGLE ${this.$route.params.level}`
+    return `SINGLE ${this.selected}`
+  }
+
+  /** 1-19 */
+  get levelList() {
+    return [...Array(19).keys()].map(i => i + 1)
   }
 }
 </script>

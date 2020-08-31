@@ -14,6 +14,7 @@ localVue.use(Buefy)
 describe('/layouts/default.vue', () => {
   const stubs = { NuxtLink: RouterLinkStub, Nuxt: true }
   const $fetchState = { pending: false }
+  const $route = { path: '/' }
   describe('snapshot test', () => {
     test('renders loading', () => {
       const wrapper = mount(DefaultLayout, {
@@ -26,6 +27,7 @@ describe('/layouts/default.vue', () => {
             user: { id: 'user_id' },
           },
           $fetchState: { pending: true },
+          $route,
         },
       })
       expect(wrapper).toMatchSnapshot()
@@ -41,6 +43,7 @@ describe('/layouts/default.vue', () => {
             user: { id: 'user_id' },
           },
           $fetchState,
+          $route,
         },
       })
       expect(wrapper).toMatchSnapshot()
@@ -49,7 +52,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = mount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor: { isLoggedIn: false }, $fetchState },
+        mocks: { $accessor: { isLoggedIn: false }, $fetchState, $route },
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -67,7 +70,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router },
+        mocks: { $accessor, $fetchState, $router, $route },
       })
 
       // Act
@@ -83,7 +86,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router },
+        mocks: { $accessor, $fetchState, $router, $route },
       })
 
       // Act

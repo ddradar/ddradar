@@ -3,12 +3,12 @@ import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { mocked } from 'ts-jest/utils'
 
 import { CourseInfo, getCourseInfo } from '~/api/course'
-import CourseDetailPage from '~/pages/courses/_id.vue'
+import CourseDetailPage from '~/pages/courses/_id/index.vue'
 
 jest.mock('~/api/course')
 const localVue = createLocalVue()
 
-describe('pages/courses/_id.vue', () => {
+describe('pages/courses/_id/index.vue', () => {
   const course: CourseInfo = {
     id: 'I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob',
     name: 'TWENTY',

@@ -1,5 +1,6 @@
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
 import { searchSongByName } from '~/api/song'
@@ -10,6 +11,7 @@ jest.mock('~/api/song', () => ({
   NameIndexList: jest.requireActual('~/api/song').NameIndexList,
 }))
 const localVue = createLocalVue()
+localVue.use(Buefy)
 
 describe('pages/name/_nameIndex.vue', () => {
   const $fetchState = { pending: false }
