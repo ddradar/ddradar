@@ -637,10 +637,10 @@ exports[`/layouts/default.vue snapshot test renders login button if not authed 1
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" href="/.auth/login/twitter" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span> <span>
+              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span> <span>
               Twitterでログイン
             </span>
-                  <!----></a> <a type="button" href="/.auth/login/github" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span> <span>
+                  <!----></a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span> <span>
               GitHubでログイン
             </span>
                   <!----></a></div>

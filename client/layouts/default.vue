@@ -79,7 +79,7 @@
                 icon-left="twitter"
                 type="is-info"
                 tag="a"
-                href="/.auth/login/twitter"
+                :href="`/.auth/login/twitter?post_login_redirect_uri=${$route.path}`"
               >
                 Twitterでログイン
               </b-button>
@@ -87,7 +87,7 @@
                 icon-left="github"
                 type="is-dark"
                 tag="a"
-                href="/.auth/login/github"
+                :href="`/.auth/login/github?post_login_redirect_uri=${$route.path}`"
               >
                 GitHubでログイン
               </b-button>
