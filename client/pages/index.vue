@@ -102,10 +102,10 @@ export default class IndexPage extends Vue {
       {
         label: 'コースデータ',
         items: [
-          { name: 'NONSTOP(A20)', to: '/courses?series=16&type=1' },
-          { name: 'NONSTOP(A20 PLUS)', to: '/courses?series=17&type=1' },
-          { name: '段位認定(A20)', to: '/courses?series=16&type=2' },
-          { name: '段位認定(A20 PLUS)', to: '/courses?series=17&type=2' },
+          { name: 'NONSTOP(A20)', to: '/nonstop/16' },
+          { name: 'NONSTOP(A20 PLUS)', to: '/nonstop/17' },
+          { name: '段位認定(A20)', to: '/grade/16' },
+          { name: '段位認定(A20 PLUS)', to: '/grade/17' },
         ],
       },
     ]
