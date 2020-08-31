@@ -109,6 +109,8 @@ describe('/components/modal/ScoreImporter.vue', () => {
       await wrapper.vm.$nextTick()
       const convertMock = mocked(musicDetailToScore)
       convertMock.mockReturnValue(score)
+      // @ts-ignore
+      wrapper.vm.$parent.close = jest.fn()
 
       // Act
       // @ts-ignore
@@ -133,7 +135,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
 
       // Assert
       expect(postMock).not.toBeCalled()
-      expect(warningMock).lastCalledWith($buefy, 'HTMLソース文字列が不正です')
+      expect(warningMock).lastCalledWith($buefy, 'invalid')
     })
     test('shows error message if API returns ErrorCode', async () => {
       // Arrange

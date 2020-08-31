@@ -50,7 +50,12 @@
       </template>
 
       <template v-slot:end>
-        <b-navbar-dropdown v-if="isLoggedIn" :label="name" hoverable right>
+        <b-navbar-dropdown
+          v-if="$accessor.isLoggedIn"
+          :label="$accessor.name"
+          hoverable
+          right
+        >
           <b-navbar-item tag="div">
             <div class="buttons">
               <b-button
@@ -74,7 +79,7 @@
                 icon-left="twitter"
                 type="is-info"
                 tag="a"
-                href="/.auth/login/twitter"
+                :href="`/.auth/login/twitter?post_login_redirect_uri=${$route.path}`"
               >
                 Twitterでログイン
               </b-button>
@@ -82,7 +87,7 @@
                 icon-left="github"
                 type="is-dark"
                 tag="a"
-                href="/.auth/login/github"
+                :href="`/.auth/login/github?post_login_redirect_uri=${$route.path}`"
               >
                 GitHubでログイン
               </b-button>
@@ -118,18 +123,10 @@
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SeriesList } from '~/api/song'
+import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
-  get isLoggedIn() {
-    return !!this.$accessor.auth
-  }
-
-  get name() {
-    return this.$accessor.user?.name
-  }
-
   get userPage() {
     return `/users/${this.$accessor.user?.id}`
   }
@@ -159,12 +156,18 @@ export default class DefaultLayout extends Vue {
       },
       {
         label: 'コースデータ',
-        items: [
-          { name: 'NONSTOP(A20)', to: '/courses?series=16&type=1' },
-          { name: 'NONSTOP(A20 PLUS)', to: '/courses?series=17&type=1' },
-          { name: '段位認定(A20)', to: '/courses?series=16&type=2' },
-          { name: '段位認定(A20 PLUS)', to: '/courses?series=17&type=2' },
-        ],
+        items: [16, 17]
+          .map(i => [
+            {
+              name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+              to: `/nonstop/${i}`,
+            },
+            {
+              name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+              to: `/grade/${i}`,
+            },
+          ])
+          .flat(),
       },
     ]
   }
@@ -176,7 +179,8 @@ export default class DefaultLayout extends Vue {
   /** Get Login user info */
   async fetch() {
     await this.$accessor.fetchUser()
-    if (this.isLoggedIn && !this.$accessor.user) this.$router.push('/profile')
+    if (this.$accessor.auth && !this.$accessor.isLoggedIn)
+      this.$router.push('/profile')
   }
 }
 </script>

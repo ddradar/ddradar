@@ -1,5 +1,6 @@
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
 import { searchSongBySeries } from '~/api/song'
@@ -10,6 +11,7 @@ jest.mock('~/api/song', () => ({
   SeriesList: jest.requireActual('~/api/song').SeriesList,
 }))
 const localVue = createLocalVue()
+localVue.use(Buefy)
 
 describe('pages/series/_seriesIndex.vue', () => {
   const $fetchState = { pending: false }

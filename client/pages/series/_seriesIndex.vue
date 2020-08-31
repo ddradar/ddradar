@@ -1,6 +1,19 @@
 <template>
   <section class="section">
     <h1 class="title">{{ title }}</h1>
+    <div class="buttons">
+      <b-button
+        v-for="(name, i) in seriesList"
+        :key="i"
+        :to="`/series/${i}`"
+        type="is-info"
+        tag="nuxt-link"
+        :disabled="i === selected"
+        :outlined="i === selected"
+      >
+        {{ name }}
+      </b-button>
+    </div>
     <song-list :songs="songs" :loading="$fetchState.pending" />
   </section>
 </template>
@@ -9,7 +22,12 @@
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { searchSongBySeries, SeriesList, SongListData } from '~/api/song'
+import {
+  searchSongBySeries,
+  SeriesList,
+  shortenSeriesName,
+  SongListData,
+} from '~/api/song'
 import SongList from '~/components/shared/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
@@ -29,13 +47,20 @@ export default class SongBySeriesPage extends Vue {
 
   /** Get Song List from API */
   async fetch() {
-    const seriesIndex = parseInt(this.$route.params.seriesIndex, 10)
-    this.songs = await searchSongBySeries(this.$http, seriesIndex)
+    this.songs = await searchSongBySeries(this.$http, this.selected)
   }
 
-  /** Name index title (like "あ", "A", "数字・記号") */
+  /** Series title */
   get title() {
-    return SeriesList[parseInt(this.$route.params.seriesIndex, 10)]
+    return SeriesList[this.selected]
+  }
+
+  get selected() {
+    return parseInt(this.$route.params.seriesIndex, 10)
+  }
+
+  get seriesList() {
+    return SeriesList.map(s => shortenSeriesName(s))
   }
 }
 </script>

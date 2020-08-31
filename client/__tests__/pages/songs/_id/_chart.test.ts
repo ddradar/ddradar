@@ -113,8 +113,23 @@ const song: SongInfo = {
 
 describe('pages/songs/_id/_chart.vue', () => {
   describe('snapshot test', () => {
+    test('not renders score button if guest', () => {
+      const $accessor = { isAdmin: false, isLoggedIn: false }
+      const wrapper = mount(SongPage, {
+        localVue,
+        mocks: { $accessor },
+        data: () => {
+          return {
+            song,
+            playStyle: 1,
+            difficulty: 0,
+          }
+        },
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
     test('renders correctly', () => {
-      const $accessor = { isAdmin: false }
+      const $accessor = { isAdmin: false, isLoggedIn: true }
       const wrapper = mount(SongPage, {
         localVue,
         mocks: { $accessor },
@@ -129,7 +144,7 @@ describe('pages/songs/_id/_chart.vue', () => {
       expect(wrapper).toMatchSnapshot()
     })
     test('renders "Edit" button if admin', () => {
-      const $accessor = { isAdmin: true }
+      const $accessor = { isAdmin: true, isLoggedIn: true }
       const wrapper = mount(SongPage, {
         localVue,
         mocks: { $accessor },
