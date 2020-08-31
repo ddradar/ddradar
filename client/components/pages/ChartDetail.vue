@@ -44,8 +44,20 @@
         </div>
       </div>
       <footer class="card-footer">
-        <a class="card-footer-item" @click="launchScoreEditor">編集</a>
-        <a class="card-footer-item" @click="launchScoreImporter">インポート</a>
+        <a
+          v-if="this.$accessor.isLoggedIn"
+          class="card-footer-item"
+          @click="launchScoreEditor"
+        >
+          編集
+        </a>
+        <a
+          v-if="this.$accessor.isLoggedIn"
+          class="card-footer-item"
+          @click="launchScoreImporter"
+        >
+          インポート
+        </a>
         <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
       </footer>
     </card>
