@@ -15,6 +15,7 @@ export const state = (): RootState => ({
 
 export const getters = {
   name: (state: RootState) => state.user?.name,
+  isLoggedIn: (state: RootState) => !!state.user,
   isAdmin: (state: RootState) =>
     state.auth?.userRoles.includes('administrator') ?? false,
 }

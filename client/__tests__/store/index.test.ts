@@ -45,6 +45,22 @@ describe('./store/index.ts', () => {
         expect(getters.name(state)).toBeUndefined()
       })
     })
+    describe('isLoggedIn', () => {
+      test('({ user: null }) returns false', () => {
+        // Arrange
+        const state: RootState = { auth, user: null }
+
+        // Act - Assert
+        expect(getters.isLoggedIn(state)).toBe(false)
+      })
+      test('({ user }) returns true', () => {
+        // Arrange
+        const state: RootState = { auth, user }
+
+        // Act - Assert
+        expect(getters.isLoggedIn(state)).toBe(true)
+      })
+    })
     describe('isAdmin', () => {
       test('returns false if auth is null', () => {
         // Arrange

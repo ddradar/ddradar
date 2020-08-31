@@ -20,7 +20,11 @@ describe('/layouts/default.vue', () => {
         localVue,
         stubs,
         mocks: {
-          $accessor: { auth: true, user: { name: 'User 1', id: 'user_id' } },
+          $accessor: {
+            isLoggedIn: true,
+            name: 'User 1',
+            user: { id: 'user_id' },
+          },
           $fetchState: { pending: true },
         },
       })
@@ -31,7 +35,11 @@ describe('/layouts/default.vue', () => {
         localVue,
         stubs,
         mocks: {
-          $accessor: { auth: true, user: { name: 'User 1', id: 'user_id' } },
+          $accessor: {
+            isLoggedIn: true,
+            name: 'User 1',
+            user: { id: 'user_id' },
+          },
           $fetchState,
         },
       })
@@ -41,7 +49,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = mount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor: { auth: false }, $fetchState },
+        mocks: { $accessor: { isLoggedIn: false }, $fetchState },
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -55,7 +63,7 @@ describe('/layouts/default.vue', () => {
     })
     test('calls $accessor.fetchUser()', async () => {
       // Arrange
-      const $accessor = { fetchUser, auth: true, user: true }
+      const $accessor = { fetchUser, auth: true, isLoggedIn: true }
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
@@ -71,7 +79,7 @@ describe('/layouts/default.vue', () => {
     })
     test('redirects /profile if new user', async () => {
       // Arrange
-      const $accessor = { fetchUser, auth: true, user: false }
+      const $accessor = { fetchUser, auth: true, isLoggedIn: false }
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
