@@ -50,7 +50,12 @@
       </template>
 
       <template v-slot:end>
-        <b-navbar-dropdown v-if="isLoggedIn" :label="name" hoverable right>
+        <b-navbar-dropdown
+          v-if="$accessor.isLoggedIn"
+          :label="$accessor.name"
+          hoverable
+          right
+        >
           <b-navbar-item tag="div">
             <div class="buttons">
               <b-button
@@ -122,14 +127,6 @@ import { NameIndexList, SeriesList } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class DefaultLayout extends Vue {
-  get isLoggedIn() {
-    return !!this.$accessor.auth
-  }
-
-  get name() {
-    return this.$accessor.user?.name
-  }
-
   get userPage() {
     return `/users/${this.$accessor.user?.id}`
   }
@@ -176,7 +173,8 @@ export default class DefaultLayout extends Vue {
   /** Get Login user info */
   async fetch() {
     await this.$accessor.fetchUser()
-    if (this.isLoggedIn && !this.$accessor.user) this.$router.push('/profile')
+    if (this.$accessor.auth && !this.$accessor.isLoggedIn)
+      this.$router.push('/profile')
   }
 }
 </script>
