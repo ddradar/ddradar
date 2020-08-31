@@ -101,12 +101,18 @@ export default class IndexPage extends Vue {
       },
       {
         label: 'コースデータ',
-        items: [
-          { name: 'NONSTOP(A20)', to: '/nonstop/16' },
-          { name: 'NONSTOP(A20 PLUS)', to: '/nonstop/17' },
-          { name: '段位認定(A20)', to: '/grade/16' },
-          { name: '段位認定(A20 PLUS)', to: '/grade/17' },
-        ],
+        items: [16, 17]
+          .map(i => [
+            {
+              name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+              to: `/nonstop/${i}`,
+            },
+            {
+              name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+              to: `/grade/${i}`,
+            },
+          ])
+          .flat(),
       },
     ]
   }

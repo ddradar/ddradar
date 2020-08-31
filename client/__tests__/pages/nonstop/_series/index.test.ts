@@ -20,7 +20,7 @@ describe('pages/nonstop/_series/index.vue', () => {
       ['17', 17],
     ])('/%s calls getCourseList($http, %i, 1)', async (series, expected) => {
       // Arrange
-      const $route = { params: { series } }
+      const $route = { params: { series }, path: `/nonstop/${series}` }
       const $http = { $get: jest.fn() }
       const wrapper = shallowMount(NonstopListPage, {
         mocks: { $fetchState, $http, $route },
@@ -42,7 +42,7 @@ describe('pages/nonstop/_series/index.vue', () => {
       ['17', 'DanceDanceRevolution A20 PLUS'],
     ])('/%s returns "%s"', (series, expected) => {
       // Arrange
-      const $route = { params: { series } }
+      const $route = { params: { series }, path: `/nonstop/${series}` }
       const wrapper = shallowMount(NonstopListPage, {
         localVue,
         mocks: { $fetchState, $route },

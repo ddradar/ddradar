@@ -20,7 +20,7 @@ describe('pages/grade/_series/index.vue', () => {
       ['17', 17],
     ])('/%s calls getCourseList($http, %i, 2)', async (series, expected) => {
       // Arrange
-      const $route = { params: { series } }
+      const $route = { params: { series }, path: `/grade/${series}` }
       const $http = { $get: jest.fn() }
       const wrapper = shallowMount(GradeListPage, {
         mocks: { $fetchState, $http, $route },
@@ -42,7 +42,7 @@ describe('pages/grade/_series/index.vue', () => {
       ['17', 'DanceDanceRevolution A20 PLUS'],
     ])('/%s returns "%s"', (series, expected) => {
       // Arrange
-      const $route = { params: { series } }
+      const $route = { params: { series }, path: `/grade/${series}` }
       const wrapper = shallowMount(GradeListPage, {
         localVue,
         mocks: { $fetchState, $route },

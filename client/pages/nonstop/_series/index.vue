@@ -1,6 +1,19 @@
 <template>
   <section class="section">
     <h1 class="title">{{ seriesTitle }} - NONSTOP</h1>
+    <div class="buttons">
+      <b-button
+        v-for="link in pageLinks"
+        :key="link.name"
+        :to="link.to"
+        type="is-info"
+        tag="nuxt-link"
+        :disabled="link.to === $route.path"
+        :outlined="link.to === $route.path"
+      >
+        {{ link.name }}
+      </b-button>
+    </div>
     <course-list :courses="courses" :loading="$fetchState.pending" />
   </section>
 </template>
@@ -10,7 +23,7 @@ import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { CourseList as CourseListData, getCourseList } from '~/api/course'
-import { SeriesList } from '~/api/song'
+import { SeriesList, shortenSeriesName } from '~/api/song'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 
 @Component({ components: { CourseList }, fetchOnServer: false })
@@ -31,6 +44,21 @@ export default class NonstopListPage extends Vue {
   get seriesTitle() {
     const series = parseInt(this.$route.params.series, 10)
     return SeriesList[series]
+  }
+
+  get pageLinks() {
+    return [16, 17]
+      .map(i => [
+        {
+          name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+          to: `/nonstop/${i}`,
+        },
+        {
+          name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+          to: `/grade/${i}`,
+        },
+      ])
+      .flat()
   }
 }
 </script>
