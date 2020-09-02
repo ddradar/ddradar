@@ -5,13 +5,27 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { IVueI18n } from 'vue-i18n'
 
 import DefaultLayout from '~/layouts/default.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.mixin({
+  methods: {
+    localePath: (obj: object) => obj,
+    switchLocalePath: (code: string) => code,
+  },
+})
 
 describe('/layouts/default.vue', () => {
+  const $i18n: Partial<IVueI18n> = {
+    locale: 'ja',
+    locales: [
+      { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
+      { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
+    ],
+  }
   const stubs = { NuxtLink: RouterLinkStub, Nuxt: true }
   const $fetchState = { pending: false }
   const $route = { path: '/' }
@@ -27,6 +41,7 @@ describe('/layouts/default.vue', () => {
             user: { id: 'user_id' },
           },
           $fetchState: { pending: true },
+          $i18n,
           $route,
         },
       })
@@ -43,6 +58,7 @@ describe('/layouts/default.vue', () => {
             user: { id: 'user_id' },
           },
           $fetchState,
+          $i18n,
           $route,
         },
       })
@@ -52,7 +68,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = mount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor: { isLoggedIn: false }, $fetchState, $route },
+        mocks: { $accessor: { isLoggedIn: false }, $i18n, $fetchState, $route },
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -70,7 +86,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router, $route },
+        mocks: { $accessor, $fetchState, $i18n, $router, $route },
       })
 
       // Act
@@ -86,7 +102,7 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router, $route },
+        mocks: { $accessor, $fetchState, $i18n, $router, $route },
       })
 
       // Act
