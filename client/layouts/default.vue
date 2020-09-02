@@ -55,8 +55,7 @@
             <b-navbar-item
               v-for="locale in availableLocales"
               :key="locale.code"
-              tag="nuxt-link"
-              :to="switchLocalePath(locale.code)"
+              @click="$i18n.setLocale(locale.code)"
             >
               <flag :iso="locale.flag" :title="locale.name" />
             </b-navbar-item>
