@@ -60,6 +60,7 @@ const configuration: NuxtConfig = {
       { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
     ] as Locale[],
     defaultLocale: 'ja',
+    strategy: 'no_prefix',
     vueI18n: { fallbackLocale: 'ja' },
     vueI18nLoader: true,
   },

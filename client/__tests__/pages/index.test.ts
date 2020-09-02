@@ -1,11 +1,13 @@
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
+import VueI18n from 'vue-i18n'
 
 import type { Notification } from '~/api/notification'
 import IndexPage from '~/pages/index.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.use(VueI18n)
 
 describe('/pages/index.vue', () => {
   describe('snapshot test', () => {
@@ -28,20 +30,24 @@ describe('/pages/index.vue', () => {
       },
     ]
     test('renders loading skeleton', () => {
+      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
       const wrapper = mount(IndexPage, {
         localVue,
         mocks: { $fetchState: { pending: true } },
         stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
         data: () => ({ messages }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
-    test('renders correctly', () => {
+    test.each(['en', 'ja'])('renders correctly if locale is "%s"', locale => {
+      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const wrapper = mount(IndexPage, {
         localVue,
         mocks: { $fetchState: { pending: false } },
         stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
         data: () => ({ messages }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
