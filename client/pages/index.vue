@@ -17,14 +17,14 @@
         :time="m.timeStamp"
       />
       <div class="has-text-right top-notification">
-        <nuxt-link to="/notification">過去のお知らせ一覧</nuxt-link>
+        <nuxt-link to="/notification">{{ $t('old_notification') }}</nuxt-link>
       </div>
     </section>
     <section class="hero">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">DDRadar</h1>
-          <p class="subtitle">DDR Score Tracker</p>
+          <p class="subtitle">{{ $t('subtitle') }}</p>
         </div>
       </div>
     </section>
@@ -56,6 +56,37 @@
   </div>
 </template>
 
+<i18n>
+{
+  "ja": {
+    "old_notification": "過去のお知らせ一覧",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "曲名から探す",
+      "single": "SINGLEのレベルから探す",
+      "double": "DOUBLEのレベルから探す",
+      "series": "バージョンから探す",
+      "course": "コースデータ"
+    },
+    "grade": "段位認定({series})",
+    "nonstop": "NONSTOP({series})"
+  },
+  "en": {
+    "old_notification": "Old Notification",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "Choose by Name",
+      "single": "Choose by SINGLE LV",
+      "double": "Choose by DOUBLE LV",
+      "series": "Choose by Version",
+      "course": "Choose by Courses"
+    },
+    "grade": "GRADE({series})",
+    "nonstop": "NONSTOP({series})"
+  }
+}
+</i18n>
+
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -72,43 +103,47 @@ export default class IndexPage extends Vue {
   get menuList() {
     return [
       {
-        label: '曲名から探す',
+        label: this.$t('search.name'),
         items: NameIndexList.map((s, i) => ({
           name: s,
           to: `/name/${i}`,
         })),
       },
       {
-        label: 'SINGLEのレベルから探す',
+        label: this.$t('search.single'),
         items: [...Array(19).keys()].map(i => ({
           name: `${i + 1}`,
           to: `/single/${i + 1}`,
         })),
       },
       {
-        label: 'DOUBLEのレベルから探す',
+        label: this.$t('search.double'),
         items: [...Array(19).keys()].map(i => ({
           name: `${i + 1}`,
           to: `/double/${i + 1}`,
         })),
       },
       {
-        label: 'バージョンから探す',
+        label: this.$t('search.series'),
         items: SeriesList.map((name, i) => ({
           name: shortenSeriesName(name),
           to: `/series/${i}`,
         })).reverse(),
       },
       {
-        label: 'コースデータ',
+        label: this.$t('search.course'),
         items: [16, 17]
           .map(i => [
             {
-              name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+              name: this.$t('nonstop', {
+                series: shortenSeriesName(SeriesList[i]),
+              }),
               to: `/nonstop/${i}`,
             },
             {
-              name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+              name: this.$t('grade', {
+                series: shortenSeriesName(SeriesList[i]),
+              }),
               to: `/grade/${i}`,
             },
           ])

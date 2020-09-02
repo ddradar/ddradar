@@ -50,6 +50,20 @@
       </template>
 
       <template v-slot:end>
+        <b-navbar-dropdown right collapsible>
+          <template>
+            <b-navbar-item
+              v-for="locale in availableLocales"
+              :key="locale.code"
+              @click="$i18n.setLocale(locale.code)"
+            >
+              <flag :iso="locale.flag" :title="locale.name" />
+            </b-navbar-item>
+          </template>
+          <template v-slot:label>
+            <flag :iso="selectedLocale.flag" :title="selectedLocale.name" />
+          </template>
+        </b-navbar-dropdown>
         <b-navbar-dropdown
           v-if="$accessor.isLoggedIn"
           :label="$accessor.name"
@@ -124,8 +138,10 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
+import Flag from '~/components/pages/Flag.vue'
+import { Locale } from '~/types/locale'
 
-@Component({ fetchOnServer: false })
+@Component({ components: { Flag }, fetchOnServer: false })
 export default class DefaultLayout extends Vue {
   get userPage() {
     return `/users/${this.$accessor.user?.id}`
@@ -174,6 +190,18 @@ export default class DefaultLayout extends Vue {
 
   get nameIndexList() {
     return NameIndexList
+  }
+
+  get selectedLocale() {
+    return this.$i18n.locales?.find(
+      i => typeof i === 'object' && i.code === this.$i18n.locale
+    ) as Locale
+  }
+
+  get availableLocales() {
+    return this.$i18n.locales?.filter(
+      i => typeof i === 'object' && i.code !== this.$i18n.locale
+    ) as Locale[]
   }
 
   /** Get Login user info */

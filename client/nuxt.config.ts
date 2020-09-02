@@ -1,5 +1,7 @@
 import type { NuxtConfig } from '@nuxt/types'
 
+import type { Locale } from './types/locale'
+
 const title = 'DDRadar'
 const description = 'DDR Score Tracker'
 
@@ -26,7 +28,12 @@ const configuration: NuxtConfig = {
   css: ['~/assets/css/styles.scss'],
   plugins: ['~/plugins/application-insights.client.ts'],
   buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
-  modules: [['nuxt-buefy', { css: false }], '@nuxt/http', '@nuxtjs/pwa'],
+  modules: [
+    ['nuxt-buefy', { css: false }],
+    '@nuxt/http',
+    '@nuxtjs/pwa',
+    'nuxt-i18n',
+  ],
   /** @nuxtjs/pwa settings */
   pwa: {
     manifest: {
@@ -45,6 +52,17 @@ const configuration: NuxtConfig = {
       theme_color: '#ff8c00',
       lang: 'ja',
     },
+  },
+  /** @nuxt-i18n settings */
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
+      { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
+    ] as Locale[],
+    defaultLocale: 'ja',
+    strategy: 'no_prefix',
+    vueI18n: { fallbackLocale: 'ja' },
+    vueI18nLoader: true,
   },
   publicRuntimeConfig: {
     /** Application Insights Instrumentation Key */

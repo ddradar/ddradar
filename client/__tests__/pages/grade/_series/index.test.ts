@@ -1,4 +1,5 @@
 import { createLocalVue, shallowMount } from '@vue/test-utils'
+import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
 import { getCourseList } from '~/api/course'
@@ -6,6 +7,7 @@ import GradeListPage from '~/pages/grade/_series/index.vue'
 
 jest.mock('~/api/course')
 const localVue = createLocalVue()
+localVue.use(Buefy)
 
 describe('pages/grade/_series/index.vue', () => {
   const $fetchState = { pending: false }
