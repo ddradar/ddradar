@@ -1,19 +1,18 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head">
-      <h1 class="modal-card-title">スコアのインポート</h1>
+      <h1 class="modal-card-title">{{ $t('title') }}</h1>
     </header>
     <section class="modal-card-body">
       <div class="content">
         <ol>
-          <li>e-amusement GATEにログインしてください。</li>
-          <li>
-            <a target="_blank" :href="musicDetailUri">楽曲データ詳細</a>
-            のソースコードを取得し、コピーしてください。
-          </li>
-          <li>
-            下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-          </li>
+          <li>{{ $t('process_1') }}</li>
+          <i18n path="process_2" tag="li">
+            <a target="_blank" :href="musicDetailUri">
+              {{ $t('process_2_0') }}
+            </a>
+          </i18n>
+          <li>{{ $t('process_3') }}</li>
         </ol>
       </div>
       <b-field>
@@ -27,11 +26,39 @@
         type="is-success"
         @click="importScore()"
       >
-        登録
+        {{ $t('regist') }}
+      </b-button>
+      <b-button type="is-warning" @click="close()">
+        {{ $t('close') }}
       </b-button>
     </footer>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "スコアのインポート",
+    "process_1": "e-amusement GATEにログインしてください。",
+    "process_2": "{0}のソースコードを取得し、コピーしてください。",
+    "process_2_0": "楽曲データ詳細",
+    "process_3": "下のテキストボックスに、コピーしたソースコードを貼り付けてください。",
+    "regist": "登録",
+    "success": "インポートしました",
+    "close": "閉じる"
+  },
+  "en": {
+    "title": "Import Score",
+    "process_1": "Login to e-amusement GATE.",
+    "process_2": "Get {0} HTML source, and copy it.",
+    "process_2_0": "Music Detail's",
+    "process_3": "Paste copied text below.",
+    "regist": "Import",
+    "success": "Imported",
+    "close": "Close"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
@@ -82,7 +109,7 @@ export default class ScoreImporterComponent extends Vue {
 
     try {
       await postSongScores(this.$http, this.songId, [score])
-      popup.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, this.$t('success') as string)
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
       this.loading = false
@@ -90,6 +117,10 @@ export default class ScoreImporterComponent extends Vue {
     }
 
     this.loading = false
+    this.close()
+  }
+
+  close() {
     // @ts-ignore
     this.$parent.close()
   }

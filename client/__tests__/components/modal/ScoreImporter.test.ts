@@ -1,6 +1,7 @@
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
+import VueI18n from 'vue-i18n'
 
 import { postSongScores } from '~/api/score'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
@@ -12,16 +13,19 @@ jest.mock('~/utils/eagate-parser')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.use(VueI18n)
 
 describe('/components/modal/ScoreImporter.vue', () => {
   const songId = '8Il6980di8P89lil1PDIqqIbiq1QO8lQ'
   const propsData = { songId, playStyle: 1, difficulty: 1, isCourse: false }
+  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   describe('snapshot test', () => {
     test('{ sourceCode: "foo" } renders normal button', () => {
       const wrapper = mount(ScoreImporter, {
         localVue,
         propsData,
         data: () => ({ sourceCode: 'foo', loading: false }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -30,6 +34,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
         localVue,
         propsData,
         data: () => ({ sourceCode: null, loading: false }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -38,6 +43,17 @@ describe('/components/modal/ScoreImporter.vue', () => {
         localVue,
         propsData,
         data: () => ({ sourceCode: 'foo', loading: true }),
+        i18n,
+      })
+      expect(wrapper).toMatchSnapshot()
+    })
+    test('{ sourceCode: "foo" } renders English id locale is en', () => {
+      const i18n = new VueI18n({ locale: 'en', silentFallbackWarn: true })
+      const wrapper = mount(ScoreImporter, {
+        localVue,
+        propsData,
+        data: () => ({ sourceCode: 'foo', loading: false }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
@@ -69,6 +85,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
         const wrapper = shallowMount(ScoreImporter, {
           localVue,
           propsData: { songId, playStyle, difficulty, isCourse },
+          i18n,
         })
 
         // Act
@@ -101,6 +118,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
         localVue,
         mocks: { $http, $buefy },
         propsData,
+        i18n,
       })
     })
     test('calls "Post Song Scores" API', async () => {
