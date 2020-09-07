@@ -25,6 +25,7 @@ describe('pages/grade/_series/index.vue', () => {
       const $route = { params: { series }, path: `/grade/${series}` }
       const $http = { $get: jest.fn() }
       const wrapper = shallowMount(GradeListPage, {
+        localVue,
         mocks: { $fetchState, $http, $route },
         data: () => ({ courses: [] }),
       })

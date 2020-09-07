@@ -25,6 +25,7 @@ describe('pages/nonstop/_series/index.vue', () => {
       const $route = { params: { series }, path: `/nonstop/${series}` }
       const $http = { $get: jest.fn() }
       const wrapper = shallowMount(NonstopListPage, {
+        localVue,
         mocks: { $fetchState, $http, $route },
         data: () => ({ courses: [] }),
       })
