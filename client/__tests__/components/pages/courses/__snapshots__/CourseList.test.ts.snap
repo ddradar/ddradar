@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses 1`] = `
+exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses and { locale: en } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -18,7 +18,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
               初段(SINGLE)
             </a></td>
           <td data-label="Type" class="">
-            段位認定
+            GRADE
           </td>
           <!---->
         </tr>
@@ -34,7 +34,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
               初段(SINGLE)
             </a></td>
           <td data-label="Type" class="">
-            段位認定
+            GRADE
           </td>
           <!---->
         </tr>
@@ -50,7 +50,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
               四段(DOUBLE)
             </a></td>
           <td data-label="Type" class="">
-            段位認定
+            GRADE
           </td>
           <!---->
         </tr>
@@ -66,7 +66,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
               九段(DOUBLE)
             </a></td>
           <td data-label="Type" class="">
-            段位認定
+            GRADE
           </td>
           <!---->
         </tr>
@@ -127,7 +127,134 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty 1`] = `
+exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses and { locale: ja } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <!---->
+      <tbody>
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20
+          </td>
+          <td data-label="名称" class=""><a>
+              初段(SINGLE)
+            </a></td>
+          <td data-label="タイプ" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20 PLUS
+          </td>
+          <td data-label="名称" class=""><a>
+              初段(SINGLE)
+            </a></td>
+          <td data-label="タイプ" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20
+          </td>
+          <td data-label="名称" class=""><a>
+              四段(DOUBLE)
+            </a></td>
+          <td data-label="タイプ" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20 PLUS
+          </td>
+          <td data-label="名称" class=""><a>
+              九段(DOUBLE)
+            </a></td>
+          <td data-label="タイプ" class="">
+            段位認定
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20 PLUS
+          </td>
+          <td data-label="名称" class=""><a>
+              HYPER
+            </a></td>
+          <td data-label="タイプ" class="">
+            NONSTOP
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A20
+          </td>
+          <td data-label="名称" class=""><a>
+              PLANET
+            </a></td>
+          <td data-label="タイプ" class="">
+            NONSTOP
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </tbody>
+      <!---->
+    </table>
+  </div>
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty and { locale: en } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -139,7 +266,46 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if
           <td colspan="0">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
-                <p>Nothing here.</p>
+                <p>No Data</p>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+  </div>
+  <div class="level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty and { locale: ja } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <!---->
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="0">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>データがありません</p>
               </div>
             </section>
           </td>

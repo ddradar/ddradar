@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="title">{{ seriesTitle }} - 段位認定</h1>
+    <h1 class="title">{{ title }}</h1>
     <div class="buttons">
       <b-button
         v-for="link in pageLinks"
@@ -17,6 +17,21 @@
     <course-list :courses="courses" :loading="$fetchState.pending" />
   </section>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "{series} - 段位認定",
+    "grade": "段位認定({series})",
+    "nonstop": "NONSTOP({series})"
+  },
+  "en": {
+    "title": "{series} - GRADE",
+    "grade": "GRADE({series})",
+    "nonstop": "NONSTOP({series})"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Context } from '@nuxt/types'
@@ -41,9 +56,9 @@ export default class GradeListPage extends Vue {
     this.courses = await getCourseList(this.$http, series, 2)
   }
 
-  get seriesTitle() {
+  get title() {
     const series = parseInt(this.$route.params.series, 10)
-    return SeriesList[series]
+    return this.$t('title', { series: SeriesList[series] })
   }
 
   get pageLinks() {
