@@ -202,20 +202,26 @@ export default class SongEditorPage extends Vue implements SongInfo {
   maxBPM: number | null = null
   charts: StepChart[] = []
 
-  readonly playStyleList = [
-    { label: 'SINGLE', value: 1 } as const,
-    { label: 'DOUBLE', value: 2 } as const,
-  ]
+  get playStyleList() {
+    return [
+      { label: 'SINGLE', value: 1 },
+      { label: 'DOUBLE', value: 2 },
+    ]
+  }
 
-  readonly difficultyList = [
-    { label: 'BEGINNER', value: 0 },
-    { label: 'BASIC', value: 1 },
-    { label: 'DIFFICULT', value: 2 },
-    { label: 'EXPERT', value: 3 },
-    { label: 'CHALLENGE', value: 4 },
-  ]
+  get difficultyList() {
+    return [
+      { label: 'BEGINNER', value: 0 },
+      { label: 'BASIC', value: 1 },
+      { label: 'DIFFICULT', value: 2 },
+      { label: 'EXPERT', value: 3 },
+      { label: 'CHALLENGE', value: 4 },
+    ]
+  }
 
-  readonly seriesList = SeriesList
+  get seriesList() {
+    return SeriesList
+  }
 
   get nameIndex() {
     return /^[ぁ-お]/.test(this.nameKana)
