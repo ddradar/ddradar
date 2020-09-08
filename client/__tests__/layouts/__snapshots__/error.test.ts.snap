@@ -1,12 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`layouts/default.vue renders Not Found error page 1`] = `
+exports[`layouts/error.vue { locale: "en" } renders Not Found error page 1`] = `
 <div>
   <section class="hero is-warning">
     <div class="hero-body">
       <div class="container">
         <h1 class="title"><span class="icon"><i class="mdi mdi-alert mdi-24px"></i></span>
-          ページが見つかりません
+          Not Found
         </h1>
         <h2 class="subtitle">/foo</h2>
       </div>
@@ -22,28 +22,22 @@ exports[`layouts/default.vue renders Not Found error page 1`] = `
   </section>
   <footer class="footer">
     <div class="content has-text-centered">
-      <p>
-        このエラーが頻発する場合は、お手数ですが、
-        <a href="https://twitter.com/nogic1008" target="_blank">
-          作者のTwitter
-        </a>
-        または
-        <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
-          Githubのissue
-        </a>
-        にてご報告ください。
-      </p>
+      <p>If this error occurs frequently, please report it on <a href="https://twitter.com/nogic1008" target="_blank">
+          Twitter
+        </a> or <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+          GitHub
+        </a>.</p>
     </div>
   </footer>
 </div>
 `;
 
-exports[`layouts/default.vue renders other error page 1`] = `
+exports[`layouts/error.vue { locale: "en" } renders other error page 1`] = `
 <div>
   <section class="hero is-warning">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">エラーが発生しました: 500</h1>
+        <h1 class="title">Error: 500</h1>
         <h2 class="subtitle">/invalid-call</h2>
       </div>
     </div>
@@ -58,17 +52,73 @@ exports[`layouts/default.vue renders other error page 1`] = `
   </section>
   <footer class="footer">
     <div class="content has-text-centered">
-      <p>
-        このエラーが頻発する場合は、お手数ですが、
-        <a href="https://twitter.com/nogic1008" target="_blank">
-          作者のTwitter
-        </a>
-        または
-        <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
-          Githubのissue
-        </a>
-        にてご報告ください。
-      </p>
+      <p>If this error occurs frequently, please report it on <a href="https://twitter.com/nogic1008" target="_blank">
+          Twitter
+        </a> or <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+          GitHub
+        </a>.</p>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`layouts/error.vue { locale: "ja" } renders Not Found error page 1`] = `
+<div>
+  <section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title"><span class="icon"><i class="mdi mdi-alert mdi-24px"></i></span>
+          Not Found
+        </h1>
+        <h2 class="subtitle">/foo</h2>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content">
+      <blockquote>This page could not be found</blockquote>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container"><a><span class="icon"><i class="mdi mdi-home mdi-24px"></i></span>Back to Home</a></div>
+  </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>If this error occurs frequently, please report it on <a href="https://twitter.com/nogic1008" target="_blank">
+          Twitter
+        </a> or <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+          GitHub
+        </a>.</p>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`layouts/error.vue { locale: "ja" } renders other error page 1`] = `
+<div>
+  <section class="hero is-warning">
+    <div class="hero-body">
+      <div class="container">
+        <h1 class="title">Error: 500</h1>
+        <h2 class="subtitle">/invalid-call</h2>
+      </div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container content">
+      <blockquote>Internal Server Error</blockquote>
+    </div>
+  </section>
+  <section class="section">
+    <div class="container"><a><span class="icon"><i class="mdi mdi-home mdi-24px"></i></span>Back to Home</a></div>
+  </section>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>If this error occurs frequently, please report it on <a href="https://twitter.com/nogic1008" target="_blank">
+          Twitter
+        </a> or <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+          GitHub
+        </a>.</p>
     </div>
   </footer>
 </div>
