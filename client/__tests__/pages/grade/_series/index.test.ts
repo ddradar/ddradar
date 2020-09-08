@@ -14,6 +14,21 @@ localVue.use(VueI18n)
 
 describe('pages/grade/_series/index.vue', () => {
   const $fetchState = { pending: false }
+  describe('snapshot test', () => {
+    test.each(['ja', 'en'])('{ locale: "%s" } renders correctly', locale => {
+      // Arrange
+      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+      const $route = { params: { series: '16' }, path: '/grade/16' }
+      const wrapper = shallowMount(GradeListPage, {
+        localVue,
+        mocks: { $fetchState, $route },
+        i18n,
+      })
+
+      // Act - Assert
+      expect(wrapper).toMatchSnapshot()
+    })
+  })
   describe('validate()', () => {
     const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
     test.each(['', 'foo', '0', '1', '10'])('/%s returns false', series => {

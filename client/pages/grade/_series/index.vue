@@ -65,11 +65,15 @@ export default class GradeListPage extends Vue {
     return [16, 17]
       .map(i => [
         {
-          name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+          name: this.$t('nonstop', {
+            series: shortenSeriesName(SeriesList[i]),
+          }),
           to: `/nonstop/${i}`,
         },
         {
-          name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+          name: this.$t('grade', {
+            series: shortenSeriesName(SeriesList[i]),
+          }),
           to: `/grade/${i}`,
         },
       ])
