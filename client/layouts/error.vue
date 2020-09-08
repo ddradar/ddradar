@@ -76,15 +76,15 @@ export default class ErrorPage extends Vue {
   readonly error!: NuxtError | null
 
   get statusCode() {
-    return this.error ? this.error.statusCode : 500
+    return this.error?.statusCode ?? 500
   }
 
   get path() {
-    return this.error ? this.error.path : ''
+    return this.error?.path ?? ''
   }
 
   get message() {
-    return this.error ? this.error.message : ''
+    return this.error?.message ?? ''
   }
 }
 </script>
