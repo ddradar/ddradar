@@ -6,9 +6,12 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { mocked } from 'ts-jest/utils'
 
-import type { ChartInfo } from '~/api/song'
+import { ChartInfo, searchCharts } from '~/api/song'
 import SingleLevelPage from '~/pages/single/_level.vue'
+
+jest.mock('~/api/song')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -66,30 +69,35 @@ describe('/single/_level.vue', () => {
     })
   })
   describe('fetch()', () => {
-    test.skip.each(['1', '9', '19', '20'])(
-      'calls /songs/name/%s API',
-      async level => {
-        // Arrange
-        const $http = { $get: jest.fn<ChartInfo[], string[]>(() => []) }
-        const wrapper = shallowMount(SingleLevelPage, {
-          localVue,
-          mocks: {
-            $route: { params: { level } },
-            $fetchState,
-            $http,
-          },
-          stubs: { NuxtLink: RouterLinkStub, ChartList: true },
-        })
+    test.each([
+      ['1', 1],
+      ['9', 9],
+      ['19', 19],
+      ['20', 20],
+    ])('/%s calls searchCharts($http, 2, %i)', async (level, expected) => {
+      // Arrange
+      const apiMock = mocked(searchCharts)
+      const charts: ChartInfo[] = []
+      apiMock.mockResolvedValue(charts)
+      const $http = {}
+      const wrapper = shallowMount(SingleLevelPage, {
+        localVue,
+        mocks: {
+          $route: { params: { level } },
+          $fetchState,
+          $http,
+        },
+        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
+      })
 
-        // Act
-        // @ts-ignore
-        await wrapper.vm.$options.fetch()
+      // Act
+      // @ts-ignore
+      await wrapper.vm.$options.fetch!.call(wrapper.vm)
 
-        // Assert
-        expect($http.$get.mock.calls.length).toBe(1)
-        expect($http.$get.mock.calls[0][0]).toBe(`/songs/name/${level}`)
-      }
-    )
+      // Assert
+      expect(apiMock).toBeCalledWith($http, 1, expected)
+      expect(wrapper.vm.$data.charts).toBe(charts)
+    })
   })
   describe('get title()', () => {
     test.each([
