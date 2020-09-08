@@ -110,8 +110,8 @@ import {
 import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
-import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import Card from '~/components/shared/Card.vue'
+import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
 type RankingScore = UserScore & { isArea?: true }
 

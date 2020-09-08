@@ -2,12 +2,12 @@ import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import type { SongListData } from '~/api/song'
-import SongList from '~/components/shared/SongList.vue'
+import SongList from '~/components/pages/songs/SongList.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
-describe('/components/shared/SongList.vue', () => {
+describe('/components/pages/songs/SongList.vue', () => {
   const songs: Omit<SongListData, 'nameKana' | 'nameIndex'>[] = [
     {
       id: '8Il6980di8P89lil1PDIqqIbiq1QO8lQ',

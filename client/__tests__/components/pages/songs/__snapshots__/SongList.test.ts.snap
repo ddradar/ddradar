@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: [] } renders empty state 1`] = `
+exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, songs: [] } renders empty state 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -39,7 +39,7 @@ exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: 
 </div>
 `;
 
-exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: [songs] } renders "Edit" column if admin 1`] = `
+exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, songs: [songs] } renders "Edit" column if admin 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -130,7 +130,7 @@ exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: 
 </div>
 `;
 
-exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
+exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -221,7 +221,7 @@ exports[`/components/shared/SongList.vue snapshot test { loading: false, songs: 
 </div>
 `;
 
-exports[`/components/shared/SongList.vue snapshot test { loading: true, songs: [] } renders loading state 1`] = `
+exports[`/components/pages/songs/SongList.vue snapshot test { loading: true, songs: [] } renders loading state 1`] = `
 <div class="b-table is-loading">
   <!---->
   <!---->
