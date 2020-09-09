@@ -7,27 +7,25 @@
     paginated
     per-page="50"
   >
-    <template v-slot:default="props">
-      <b-table-column field="series" :label="$t('list.series')">
-        {{ props.row.series }}
-      </b-table-column>
-      <b-table-column field="name" :label="$t('list.name')">
-        <nuxt-link :to="`/songs/${props.row.id}`">
-          {{ props.row.name }}
-        </nuxt-link>
-      </b-table-column>
-      <b-table-column field="artist" :label="$t('list.artist')">
-        {{ props.row.artist }}
-      </b-table-column>
-      <b-table-column field="bpm" :label="$t('list.bpm')">
-        {{ props.row.bpm }}
-      </b-table-column>
-      <b-table-column :visible="$accessor.isAdmin" label="Edit">
-        <nuxt-link :to="`/admin/song/${props.row.id}`">
-          <b-icon icon="pencil-box-outline" />
-        </nuxt-link>
-      </b-table-column>
-    </template>
+    <b-table-column v-slot="props" field="series" :label="$t('list.series')">
+      {{ props.row.series }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="name" :label="$t('list.name')">
+      <nuxt-link :to="`/songs/${props.row.id}`">
+        {{ props.row.name }}
+      </nuxt-link>
+    </b-table-column>
+    <b-table-column v-slot="props" field="artist" :label="$t('list.artist')">
+      {{ props.row.artist }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="bpm" :label="$t('list.bpm')">
+      {{ props.row.bpm }}
+    </b-table-column>
+    <b-table-column v-slot="props" :visible="$accessor.isAdmin" label="Edit">
+      <nuxt-link :to="`/admin/song/${props.row.id}`">
+        <b-icon icon="pencil-box-outline" />
+      </nuxt-link>
+    </b-table-column>
 
     <template v-slot:empty>
       <section v-if="loading" class="section">

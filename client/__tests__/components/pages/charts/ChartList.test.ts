@@ -11,7 +11,7 @@ localVue.use(VueI18n)
 
 describe('/components/pages/charts/ChartList.vue', () => {
   describe('snapshot test', () => {
-    test('renders loading spin if { loading: true }', () => {
+    test('renders loading spin if { loading: true }', async () => {
       // Arrange
       const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
       const wrapper = mount(ChartListComponent, {
@@ -20,13 +20,14 @@ describe('/components/pages/charts/ChartList.vue', () => {
         propsData: { loading: true },
         i18n,
       })
+      await wrapper.vm.$nextTick()
 
       // Act - Assert
       expect(wrapper).toMatchSnapshot()
     })
     test.each(['ja', 'en'])(
       'renders chart list if loaded charts and { locale: %s }',
-      locale => {
+      async locale => {
         // Arrange
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
         const charts: ChartInfo[] = [
@@ -85,6 +86,7 @@ describe('/components/pages/charts/ChartList.vue', () => {
           propsData: { charts },
           i18n,
         })
+        await wrapper.vm.$nextTick()
 
         // Act - Assert
         expect(wrapper).toMatchSnapshot()
@@ -92,7 +94,7 @@ describe('/components/pages/charts/ChartList.vue', () => {
     )
     test.each(['ja', 'en'])(
       'renders empty if courses is empty and { locale: %s }',
-      locale => {
+      async locale => {
         // Arrange
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
         const wrapper = mount(ChartListComponent, {
@@ -100,6 +102,7 @@ describe('/components/pages/charts/ChartList.vue', () => {
           stubs: { NuxtLink: RouterLinkStub },
           i18n,
         })
+        await wrapper.vm.$nextTick()
 
         // Act - Assert
         expect(wrapper).toMatchSnapshot()

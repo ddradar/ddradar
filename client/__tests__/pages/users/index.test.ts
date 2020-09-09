@@ -30,31 +30,41 @@ describe('pages/users/index.vue', () => {
   }))
   const stubs = { NuxtLink: RouterLinkStub }
   describe('snapshot test', () => {
-    test.each(['ja', 'en'])('{ locale: "%s" } renders correctly', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserListPage, { localVue, i18n, stubs })
-      expect(wrapper).toMatchSnapshot()
-    })
-    test.each(['ja', 'en'])('{ locale: "%s" } renders user list', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserListPage, {
-        localVue,
-        i18n,
-        stubs,
-        data: () => ({ users }),
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
-    test.each(['ja', 'en'])('{ locale: "%s" } renders loading', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserListPage, {
-        localVue,
-        i18n,
-        stubs,
-        data: () => ({ loading: true }),
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders correctly',
+      async locale => {
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = mount(UserListPage, { localVue, i18n, stubs })
+        await wrapper.vm.$nextTick()
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders user list',
+      async locale => {
+        const wrapper = mount(UserListPage, {
+          localVue,
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+          stubs,
+          data: () => ({ users }),
+        })
+        await wrapper.vm.$nextTick()
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders loading',
+      async locale => {
+        const wrapper = mount(UserListPage, {
+          localVue,
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+          stubs,
+          data: () => ({ loading: true }),
+        })
+        await wrapper.vm.$nextTick()
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
   })
   describe('search()', () => {
     const dangerMock = mocked(danger)

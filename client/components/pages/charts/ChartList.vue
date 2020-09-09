@@ -7,33 +7,31 @@
     paginated
     per-page="50"
   >
-    <template slot-scope="props">
-      <b-table-column field="series" :label="$t('series')">
-        {{ props.row.series }}
-      </b-table-column>
-      <b-table-column field="name" :label="$t('name')">
-        <nuxt-link :to="props.row.link">{{ props.row.name }}</nuxt-link>
-      </b-table-column>
-      <b-table-column field="difficulty" :label="$t('difficulty')">
-        <b-tag :type="props.row.class">{{ props.row.difficultyName }}</b-tag>
-      </b-table-column>
-      <b-table-column field="level" :label="$t('level')" numeric>
-        {{ props.row.level }}
-      </b-table-column>
-      <b-table-column field="level" :label="$t('edit')">
-        <a
-          @click="
-            scoreEditorModal(
-              props.row.id,
-              props.row.playStyle,
-              props.row.difficulty
-            )
-          "
-        >
-          <b-icon icon="pencil-box-outline" />
-        </a>
-      </b-table-column>
-    </template>
+    <b-table-column v-slot="props" field="series" :label="$t('series')">
+      {{ props.row.series }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="name" :label="$t('name')">
+      <nuxt-link :to="props.row.link">{{ props.row.name }}</nuxt-link>
+    </b-table-column>
+    <b-table-column v-slot="props" field="difficulty" :label="$t('difficulty')">
+      <b-tag :type="props.row.class">{{ props.row.difficultyName }}</b-tag>
+    </b-table-column>
+    <b-table-column v-slot="props" field="level" :label="$t('level')" numeric>
+      {{ props.row.level }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="level" :label="$t('edit')">
+      <a
+        @click="
+          scoreEditorModal(
+            props.row.id,
+            props.row.playStyle,
+            props.row.difficulty
+          )
+        "
+      >
+        <b-icon icon="pencil-box-outline" />
+      </a>
+    </b-table-column>
 
     <template slot="empty">
       <section v-if="loading" class="section">

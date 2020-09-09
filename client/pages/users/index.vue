@@ -43,18 +43,16 @@
         paginated
         per-page="50"
       >
-        <template slot-scope="props">
-          <b-table-column field="name" :label="$t('list.name')">
-            <nuxt-link :to="`/users/${props.row.id}`">
-              {{ props.row.name }}
-            </nuxt-link>
-          </b-table-column>
-          <b-table-column field="area" :label="$t('list.area')">
-            {{ props.row.area }}
-          </b-table-column>
-        </template>
+        <b-table-column v-slot="props" field="name" :label="$t('list.name')">
+          <nuxt-link :to="`/users/${props.row.id}`">
+            {{ props.row.name }}
+          </nuxt-link>
+        </b-table-column>
+        <b-table-column v-slot="props" field="area" :label="$t('list.area')">
+          {{ props.row.area }}
+        </b-table-column>
 
-        <template slot="empty">
+        <template v-slot:empty>
           <section v-if="loading" class="section">
             <b-skeleton animated />
             <b-skeleton animated />

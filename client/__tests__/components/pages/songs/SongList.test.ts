@@ -40,19 +40,21 @@ describe('/components/pages/songs/SongList.vue', () => {
   describe('snapshot test', () => {
     test.each(['ja', 'en'])(
       '{ locale: "%s", loading: true, songs: [] } renders loading state',
-      locale => {
+      async locale => {
         const wrapper = mount(SongList, {
           localVue,
           propsData: { loading: true, songs: [] },
+          mocks: { $accessor: { isAdmin: false } },
           i18n: new VueI18n({ locale, silentFallbackWarn: true }),
         })
+        await wrapper.vm.$nextTick()
 
         expect(wrapper).toMatchSnapshot()
       }
     )
     test.each(['ja', 'en'])(
       '{ locale: "%s", loading: false, songs: [songs] } renders song list',
-      locale => {
+      async locale => {
         const wrapper = mount(SongList, {
           localVue,
           propsData: { loading: false, songs },
@@ -60,11 +62,11 @@ describe('/components/pages/songs/SongList.vue', () => {
           stubs,
           i18n: new VueI18n({ locale, silentFallbackWarn: true }),
         })
-
+        await wrapper.vm.$nextTick()
         expect(wrapper).toMatchSnapshot()
       }
     )
-    test('{ loading: false, songs: [songs] } renders "Edit" column if admin', () => {
+    test('{ loading: false, songs: [songs] } renders "Edit" column if admin', async () => {
       const wrapper = mount(SongList, {
         localVue,
         propsData: { loading: false, songs },
@@ -72,17 +74,19 @@ describe('/components/pages/songs/SongList.vue', () => {
         stubs,
         i18n: new VueI18n({ locale: 'ja', silentFallbackWarn: true }),
       })
-
+      await wrapper.vm.$nextTick()
       expect(wrapper).toMatchSnapshot()
     })
     test.each(['ja', 'en'])(
       '{ locale: "%s", loading: false, songs: [] } renders empty state',
-      locale => {
+      async locale => {
         const wrapper = mount(SongList, {
           localVue,
+          mocks: { $accessor: { isAdmin: false } },
           propsData: { loading: false, songs: [] },
           i18n: new VueI18n({ locale, silentFallbackWarn: true }),
         })
+        await wrapper.vm.$nextTick()
 
         expect(wrapper).toMatchSnapshot()
       }

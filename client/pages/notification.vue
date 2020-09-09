@@ -11,22 +11,24 @@
         detail-key="id"
         show-detail-icon
       >
-        <template v-slot:default="props">
-          <b-table-column field="icon">
-            <b-button :type="props.row.type" :icon-left="props.row.icon" />
-          </b-table-column>
-          <b-table-column field="title" :label="$t('title')">
-            {{ props.row.title }}
-          </b-table-column>
-          <b-table-column field="timeStamp" :label="$t('date')">
-            {{ props.row.date }}
-          </b-table-column>
-          <b-table-column :visible="$accessor.isAdmin" label="Edit">
-            <nuxt-link :to="`/admin/notification/${props.row.id}`">
-              <b-icon icon="pencil-box-outline" />
-            </nuxt-link>
-          </b-table-column>
-        </template>
+        <b-table-column v-slot="props" field="icon">
+          <b-button :type="props.row.type" :icon-left="props.row.icon" />
+        </b-table-column>
+        <b-table-column v-slot="props" field="title" :label="$t('title')">
+          {{ props.row.title }}
+        </b-table-column>
+        <b-table-column v-slot="props" field="timeStamp" :label="$t('date')">
+          {{ props.row.date }}
+        </b-table-column>
+        <b-table-column
+          v-slot="props"
+          :visible="$accessor.isAdmin"
+          label="Edit"
+        >
+          <nuxt-link :to="`/admin/notification/${props.row.id}`">
+            <b-icon icon="pencil-box-outline" />
+          </nuxt-link>
+        </b-table-column>
 
         <template v-slot:detail="props">
           <!-- eslint-disable-next-line vue/no-v-html -->

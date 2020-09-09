@@ -4,9 +4,37 @@ exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, so
 <div class="b-table">
   <!---->
   <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> アーティスト <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Edit <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr draggable="false" class="">
           <!---->
@@ -68,15 +96,17 @@ exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, so
         </tr>
         <!---->
         <!---->
+        <!---->
       </tbody>
       <!---->
     </table>
+    <!---->
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -95,12 +125,37 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 <div class="b-table">
   <!---->
   <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Version <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Artist <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="0">
+          <td colspan="5">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
                 <p>No Data</p>
@@ -111,12 +166,13 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
       </tbody>
       <!---->
     </table>
+    <!---->
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -134,9 +190,34 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 <div class="b-table">
   <!---->
   <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Version <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Artist <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr draggable="false" class="">
           <!---->
@@ -153,7 +234,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
           <td data-label="BPM" class="">
             119
           </td>
-          <!---->
           <!---->
         </tr>
         <!---->
@@ -174,7 +254,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
             180
           </td>
           <!---->
-          <!---->
         </tr>
         <!---->
         <!---->
@@ -194,19 +273,20 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
             160
           </td>
           <!---->
-          <!---->
         </tr>
+        <!---->
         <!---->
         <!---->
       </tbody>
       <!---->
     </table>
+    <!---->
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -222,15 +302,40 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 `;
 
 exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", loading: true, songs: [] } renders loading state 1`] = `
-<div class="b-table is-loading">
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <!---->
   <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Version <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Artist <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="0">
+          <td colspan="5">
             <section class="section">
               <div class="b-skeleton is-animated">
                 <div class="b-skeleton-item is-rounded"></div>
@@ -247,12 +352,18 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
       </tbody>
       <!---->
     </table>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -270,12 +381,37 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
 <div class="b-table">
   <!---->
   <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> アーティスト <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="0">
+          <td colspan="5">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
                 <p>データがありません</p>
@@ -286,12 +422,13 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
       </tbody>
       <!---->
     </table>
+    <!---->
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -309,9 +446,34 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
 <div class="b-table">
   <!---->
   <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> アーティスト <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr draggable="false" class="">
           <!---->
@@ -328,7 +490,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
           <td data-label="BPM" class="">
             119
           </td>
-          <!---->
           <!---->
         </tr>
         <!---->
@@ -349,7 +510,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
             180
           </td>
           <!---->
-          <!---->
         </tr>
         <!---->
         <!---->
@@ -369,19 +529,20 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
             160
           </td>
           <!---->
-          <!---->
         </tr>
+        <!---->
         <!---->
         <!---->
       </tbody>
       <!---->
     </table>
+    <!---->
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->
@@ -397,15 +558,40 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
 `;
 
 exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", loading: true, songs: [] } renders loading state 1`] = `
-<div class="b-table is-loading">
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
   <!---->
   <!---->
   <div class="table-wrapper">
     <table class="table is-striped">
-      <!---->
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> アーティスト <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="0">
+          <td colspan="5">
             <section class="section">
               <div class="b-skeleton is-animated">
                 <div class="b-skeleton-item is-rounded"></div>
@@ -422,12 +608,18 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
       </tbody>
       <!---->
     </table>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
   </div>
-  <div class="level">
+  <div class="top level">
     <div class="level-left"></div>
     <div class="level-right">
       <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
           <ul class="pagination-list">
             <!---->
             <!---->

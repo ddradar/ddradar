@@ -4,10 +4,13 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">Area</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             undefined
           </option><option value="1">
             Hokkaido
@@ -142,31 +145,32 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
           </option><option value="118">
             Philippines
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">Name (partial match)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         Search
       </span>
         <!----></button>
@@ -177,12 +181,28 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
     <div class="b-table">
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="0">
+              <td colspan="2">
                 <section class="section">
                   <div class="content has-text-grey has-text-centered">
                     <p>Not Found User</p>
@@ -193,12 +213,13 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
           </tbody>
           <!---->
         </table>
+        <!---->
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
@@ -218,10 +239,13 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">Area</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             undefined
           </option><option value="1">
             Hokkaido
@@ -356,31 +380,32 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
           </option><option value="118">
             Philippines
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">Name (partial match)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         Search
       </span>
         <!----></button>
@@ -388,15 +413,31 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
     </div>
   </section>
   <section>
-    <div class="b-table is-loading">
+    <div class="b-table">
+      <!---->
+      <!---->
       <!---->
       <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="0">
+              <td colspan="2">
                 <section class="section">
                   <div class="b-skeleton is-animated">
                     <div class="b-skeleton-item is-rounded"></div>
@@ -413,12 +454,18 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
           </tbody>
           <!---->
         </table>
+        <transition-stub name="fade">
+          <div class="loading-overlay is-active">
+            <div class="loading-background"></div>
+            <div class="loading-icon"></div>
+          </div>
+        </transition-stub>
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
@@ -438,10 +485,13 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">Area</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             undefined
           </option><option value="1">
             Hokkaido
@@ -576,31 +626,32 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
           </option><option value="118">
             Philippines
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">Name (partial match)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         Search
       </span>
         <!----></button>
@@ -611,9 +662,25 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
     <div class="b-table">
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr draggable="false" class="">
               <!---->
@@ -745,15 +812,17 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
             </tr>
             <!---->
             <!---->
+            <!---->
           </tbody>
           <!---->
         </table>
+        <!---->
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
@@ -774,10 +843,13 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">所属地域</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             未指定
           </option><option value="1">
             北海道
@@ -912,31 +984,32 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
           </option><option value="118">
             フィリピン
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">登録名(部分一致)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         検索
       </span>
         <!----></button>
@@ -947,12 +1020,28 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
     <div class="b-table">
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="0">
+              <td colspan="2">
                 <section class="section">
                   <div class="content has-text-grey has-text-centered">
                     <p>ユーザーが見つかりません</p>
@@ -963,12 +1052,13 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
           </tbody>
           <!---->
         </table>
+        <!---->
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
@@ -988,10 +1078,13 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">所属地域</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             未指定
           </option><option value="1">
             北海道
@@ -1126,31 +1219,32 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
           </option><option value="118">
             フィリピン
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">登録名(部分一致)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         検索
       </span>
         <!----></button>
@@ -1158,15 +1252,31 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
     </div>
   </section>
   <section>
-    <div class="b-table is-loading">
+    <div class="b-table">
+      <!---->
+      <!---->
       <!---->
       <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="0">
+              <td colspan="2">
                 <section class="section">
                   <div class="b-skeleton is-animated">
                     <div class="b-skeleton-item is-rounded"></div>
@@ -1183,12 +1293,18 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
           </tbody>
           <!---->
         </table>
+        <transition-stub name="fade">
+          <div class="loading-overlay is-active">
+            <div class="loading-background"></div>
+            <div class="loading-icon"></div>
+          </div>
+        </transition-stub>
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
@@ -1208,10 +1324,13 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">所属地域</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             未指定
           </option><option value="1">
             北海道
@@ -1346,31 +1465,32 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
           </option><option value="118">
             フィリピン
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">登録名(部分一致)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         検索
       </span>
         <!----></button>
@@ -1381,9 +1501,25 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
     <div class="b-table">
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr draggable="false" class="">
               <!---->
@@ -1515,15 +1651,17 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
             </tr>
             <!---->
             <!---->
+            <!---->
           </tbody>
           <!---->
         </table>
+        <!---->
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->

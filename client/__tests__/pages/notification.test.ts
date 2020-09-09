@@ -44,61 +44,55 @@ describe('/pages/notification.vue', () => {
       date: '2020/8/13 0:00:00',
     },
   ]
+  const $accessor = { isAdmin: false }
+  const $fetchState = { pending: false }
   describe('snapshot test', () => {
-    test('renders loading skeleton', () => {
+    test('renders loading skeleton', async () => {
       const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
       const wrapper = mount(NotificationPage, {
         localVue,
-        mocks: {
-          $fetchState: { pending: true },
-          $accessor: { isAdmin: false },
-        },
+        mocks: { $fetchState: { pending: true }, $accessor },
         stubs: { NuxtLink: RouterLinkStub },
         data: () => ({ messages: [] }),
         i18n,
       })
+      await wrapper.vm.$nextTick()
       expect(wrapper).toMatchSnapshot()
     })
-    test.each(['en', 'ja'])('renders correctly if { locale: %s }', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    test.each(['en', 'ja'])(
+      'renders correctly if { locale: %s }',
+      async locale => {
+        const wrapper = mount(NotificationPage, {
+          localVue,
+          mocks: { $fetchState, $accessor },
+          stubs: { NuxtLink: RouterLinkStub },
+          data: () => ({ messages }),
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        })
+        await wrapper.vm.$nextTick()
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
+    test.each(['en', 'ja'])('renders empty if { locale: %s }', async locale => {
       const wrapper = mount(NotificationPage, {
         localVue,
-        mocks: {
-          $fetchState: { pending: false },
-          $accessor: { isAdmin: false },
-        },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ messages }),
-        i18n,
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
-    test.each(['en', 'ja'])('renders empty if { locale: %s }', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(NotificationPage, {
-        localVue,
-        mocks: {
-          $fetchState: { pending: false },
-          $accessor: { isAdmin: false },
-        },
+        mocks: { $fetchState, $accessor },
         stubs: { NuxtLink: RouterLinkStub },
         data: () => ({ messages: [] }),
-        i18n,
+        i18n: new VueI18n({ locale, silentFallbackWarn: true }),
       })
+      await wrapper.vm.$nextTick()
       expect(wrapper).toMatchSnapshot()
     })
-    test('renders Edit column if admin', () => {
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+    test('renders Edit column if admin', async () => {
       const wrapper = mount(NotificationPage, {
         localVue,
-        mocks: {
-          $fetchState: { pending: false },
-          $accessor: { isAdmin: true },
-        },
+        mocks: { $fetchState, $accessor: { isAdmin: true } },
         stubs: { NuxtLink: RouterLinkStub },
         data: () => ({ messages }),
-        i18n,
+        i18n: new VueI18n({ locale: 'ja', silentFallbackWarn: true }),
       })
+      await wrapper.vm.$nextTick()
       expect(wrapper).toMatchSnapshot()
     })
   })
@@ -133,7 +127,7 @@ describe('/pages/notification.vue', () => {
       const $http = { $get: jest.fn() }
       const wrapper = shallowMount(NotificationPage, {
         localVue,
-        mocks: { $fetchState: { pending: false }, $http },
+        mocks: { $fetchState, $http, $accessor },
         data: () => ({ messages: [] }),
         i18n,
       })
@@ -156,7 +150,7 @@ describe('/pages/notification.vue', () => {
       const $buefy = {}
       const wrapper = shallowMount(NotificationPage, {
         localVue,
-        mocks: { $fetchState: { pending: false }, $http, $buefy },
+        mocks: { $fetchState, $http, $buefy, $accessor },
         data: () => ({ messages: [] }),
         i18n,
       })
