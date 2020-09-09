@@ -23,7 +23,7 @@ import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { ChartInfo, searchCharts } from '~/api/song'
-import ChartList from '~/components/pages/ChartList.vue'
+import ChartList from '~/components/pages/charts/ChartList.vue'
 
 @Component({ fetchOnServer: false, components: { ChartList } })
 export default class DoubleLevelPage extends Vue {

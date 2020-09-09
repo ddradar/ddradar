@@ -1,6 +1,7 @@
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
+import VueI18n from 'vue-i18n'
 
 import { postSongScores } from '~/api/score'
 import ImportPage from '~/pages/import.vue'
@@ -13,38 +14,49 @@ jest.mock('~/utils/popup')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.use(VueI18n)
 
 describe('pages/import.vue', () => {
   let wrapper: Wrapper<ImportPage>
-  const $http = {
-    $post: jest.fn(),
-  }
-  const $buefy = { notification: {} }
+  const $http = {}
+  const $buefy = {}
+  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   beforeEach(() => {
-    wrapper = shallowMount(ImportPage, { localVue, mocks: { $http, $buefy } })
+    wrapper = shallowMount(ImportPage, {
+      localVue,
+      mocks: { $http, $buefy },
+      i18n,
+    })
   })
 
   describe('snapshot test', () => {
-    test('renders correctly', () => {
+    test.each(['ja', 'en'])('{ locale: "%s" } renders correctly', locale => {
+      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const wrapper = mount(ImportPage, {
         localVue,
         data: () => ({ sourceCode: '<html></html>' }),
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
-    test('renders uploading state', () => {
-      const wrapper = mount(ImportPage, {
-        localVue,
-        data: () => ({
-          sourceCode: '<html></html>',
-          loading: true,
-          maxCount: 20,
-          doneCount: 7,
-          currentSong: 'PARANOiA',
-        }),
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders uploading state',
+      locale => {
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = mount(ImportPage, {
+          localVue,
+          data: () => ({
+            sourceCode: '<html></html>',
+            loading: true,
+            maxCount: 20,
+            doneCount: 7,
+            currentSong: 'PARANOiA',
+          }),
+          i18n,
+        })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
   })
   describe('register button', () => {
     test('has no disabled attribute if sourceCode is valid', async () => {
@@ -119,33 +131,51 @@ describe('pages/import.vue', () => {
       ],
     }
     const postMock = mocked(postSongScores)
+    const convertMock = mocked(musicDataToScoreList)
+    const successMock = mocked(popup.success)
+    const warningMock = mocked(popup.warning)
+    const dangerMock = mocked(popup.danger)
     beforeEach(() => {
       postMock.mockClear()
+      convertMock.mockClear()
+      successMock.mockClear()
+      warningMock.mockClear()
+      dangerMock.mockClear()
     })
 
-    test('calls "Post Song Scores" API', async () => {
-      // Arrange
-      wrapper.setData({ sourceCode: '<html></html>', loading: false })
-      await wrapper.vm.$nextTick()
-      const convertMock = mocked(musicDataToScoreList)
-      convertMock.mockReturnValue(scoreList)
+    test.each([
+      ['ja', '1件のスコアを登録しました'],
+      ['en', 'Uploaded: 1 song'],
+    ])(
+      '{ locale: "%s" } calls "Post Song Scores" API and popup.success($buefy, "%s")',
+      async (locale, message) => {
+        // Arrange
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = shallowMount(ImportPage, {
+          localVue,
+          mocks: { $http, $buefy },
+          i18n,
+          data: () => ({ sourceCode: '<html></html>', loading: false }),
+        })
+        convertMock.mockReturnValue(scoreList)
 
-      // Act
-      // @ts-ignore
-      await wrapper.vm.importEageteScores()
+        // Act
+        // @ts-ignore
+        await wrapper.vm.importEageteScores()
 
-      // Assert
-      expect(postMock).lastCalledWith(
-        $http,
-        'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
-        scoreList.I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o
-      )
-    })
+        // Assert
+        expect(postMock).toBeCalledWith(
+          $http,
+          'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
+          scoreList.I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o
+        )
+        expect(successMock).toBeCalledWith($buefy, message)
+      }
+    )
     test('does not call "Post Song Scores" API if scores is empty', async () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const convertMock = mocked(musicDataToScoreList)
       convertMock.mockReturnValue({ foo: [] })
 
       // Act
@@ -155,30 +185,37 @@ describe('pages/import.vue', () => {
       // Assert
       expect(postMock).not.toBeCalled()
     })
-    test('shows warning message if sourceCode is invalid', async () => {
-      // Arrange
-      wrapper.setData({ sourceCode: '<html></html>', loading: false })
-      await wrapper.vm.$nextTick()
-      const warningMock = mocked(popup.warning)
-      const convertMock = mocked(musicDataToScoreList)
-      convertMock.mockImplementation(() => {
-        throw new Error('invalid')
-      })
+    test.each([
+      ['ja', 'HTMLソース文字列が不正です'],
+      ['en', 'Invalid HTML'],
+    ])(
+      '{ locale: "%s" } warns "%s" if sourceCode is invalid',
+      async (locale, message) => {
+        // Arrange
+        convertMock.mockImplementation(() => {
+          throw new Error('invalid')
+        })
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = shallowMount(ImportPage, {
+          localVue,
+          mocks: { $http, $buefy },
+          i18n,
+          data: () => ({ sourceCode: '<html></html>', loading: false }),
+        })
 
-      // Act
-      // @ts-ignore
-      await wrapper.vm.importEageteScores()
+        // Act
+        // @ts-ignore
+        await wrapper.vm.importEageteScores()
 
-      // Assert
-      expect(warningMock).lastCalledWith($buefy, 'HTMLソース文字列が不正です')
-    })
+        // Assert
+        expect(warningMock).toBeCalledWith($buefy, message)
+      }
+    )
     test('shows error message if API returns ErrorCode', async () => {
       // Arrange
       const errorMessage = '500 Server Error'
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const dangerMock = mocked(popup.danger)
-      const convertMock = mocked(musicDataToScoreList)
       convertMock.mockReturnValue(scoreList)
       postMock.mockRejectedValue(new Error(errorMessage))
 
@@ -187,7 +224,7 @@ describe('pages/import.vue', () => {
       await wrapper.vm.importEageteScores()
 
       // Assert
-      expect(dangerMock).lastCalledWith($buefy, errorMessage)
+      expect(dangerMock).toBeCalledWith($buefy, errorMessage)
     })
   })
 })

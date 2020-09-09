@@ -1,6 +1,6 @@
 <template>
   <b-table
-    :data="charts"
+    :data="displayedCharts"
     striped
     :loading="loading"
     :mobile-cards="false"
@@ -8,25 +8,19 @@
     per-page="50"
   >
     <template slot-scope="props">
-      <b-table-column field="series" label="Series">
-        {{ shortenSeries(props.row.series) }}
+      <b-table-column field="series" :label="$t('series')">
+        {{ props.row.series }}
       </b-table-column>
-      <b-table-column field="name" label="Name">
-        <nuxt-link
-          :to="`/songs/${props.row.id}/${props.row.playStyle}${props.row.difficulty}`"
-        >
-          {{ props.row.name }}
-        </nuxt-link>
+      <b-table-column field="name" :label="$t('name')">
+        <nuxt-link :to="props.row.link">{{ props.row.name }}</nuxt-link>
       </b-table-column>
-      <b-table-column field="difficulty" label="Difficulty">
-        <b-tag :type="getTagClass(props.row.difficulty)">
-          {{ getDifficulty(props.row.difficulty) }}
-        </b-tag>
+      <b-table-column field="difficulty" :label="$t('difficulty')">
+        <b-tag :type="props.row.class">{{ props.row.difficultyName }}</b-tag>
       </b-table-column>
-      <b-table-column field="level" label="Lv" numeric>
+      <b-table-column field="level" :label="$t('level')" numeric>
         {{ props.row.level }}
       </b-table-column>
-      <b-table-column field="level" label="Edit">
+      <b-table-column field="level" :label="$t('edit')">
         <a
           @click="
             scoreEditorModal(
@@ -42,14 +36,40 @@
     </template>
 
     <template slot="empty">
-      <section class="section">
+      <section v-if="loading" class="section">
+        <b-skeleton animated />
+        <b-skeleton animated />
+        <b-skeleton animated />
+      </section>
+      <section v-else class="section">
         <div class="content has-text-grey has-text-centered">
-          <p>Nothing here.</p>
+          <p>{{ $t('noData') }}</p>
         </div>
       </section>
     </template>
   </b-table>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "series": "バージョン",
+    "name": "曲名",
+    "difficulty": "難易度",
+    "level": "レベル",
+    "edit": "スコア編集",
+    "noData": "データがありません"
+  },
+  "en": {
+    "series": "Series",
+    "name": "Name",
+    "difficulty": "Difficulty",
+    "level": "Lv",
+    "edit": "Edit Score",
+    "noData": "No data"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
@@ -70,16 +90,18 @@ export default class ChartListComponent extends Vue {
   @Prop({ required: false, type: Boolean, default: false })
   loading!: boolean
 
-  shortenSeries(series: string) {
-    return shortenSeriesName(series)
-  }
-
-  getDifficulty(difficulty: number) {
-    return getDifficultyName(difficulty)
-  }
-
-  getTagClass(difficulty: number) {
-    return `is-${getDifficultyName(difficulty).toLowerCase()}`
+  get displayedCharts() {
+    return this.charts.map(c => ({
+      series: shortenSeriesName(c.series),
+      name: c.name,
+      link: `/songs/${c.id}/${c.playStyle}${c.difficulty}`,
+      difficultyName: getDifficultyName(c.difficulty),
+      class: `is-${getDifficultyName(c.difficulty).toLowerCase()}`,
+      level: c.level,
+      id: c.id,
+      playStyle: c.playStyle,
+      difficulty: c.difficulty,
+    }))
   }
 
   async scoreEditorModal(

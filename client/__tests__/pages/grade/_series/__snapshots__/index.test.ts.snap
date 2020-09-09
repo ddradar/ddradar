@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`pages/grade/_series/index.vue snapshot test { locale: "en" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">DanceDanceRevolution A20 - GRADE</h1>
+  <div class="buttons">
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/16">
+      NONSTOP(A20)
+    </b-button-stub>
+    <b-button-stub type="is-info" outlined="true" nativetype="button" tag="nuxt-link" to="/grade/16" disabled="true">
+      GRADE(A20)
+    </b-button-stub>
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/17">
+      NONSTOP(A20 PLUS)
+    </b-button-stub>
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/17">
+      GRADE(A20 PLUS)
+    </b-button-stub>
+  </div>
+  <course-list-stub courses=""></course-list-stub>
+</section>
+`;
+
+exports[`pages/grade/_series/index.vue snapshot test { locale: "ja" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">DanceDanceRevolution A20 - 段位認定</h1>
+  <div class="buttons">
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/16">
+      NONSTOP(A20)
+    </b-button-stub>
+    <b-button-stub type="is-info" outlined="true" nativetype="button" tag="nuxt-link" to="/grade/16" disabled="true">
+      段位認定(A20)
+    </b-button-stub>
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/17">
+      NONSTOP(A20 PLUS)
+    </b-button-stub>
+    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/17">
+      段位認定(A20 PLUS)
+    </b-button-stub>
+  </div>
+  <course-list-stub courses=""></course-list-stub>
+</section>
+`;

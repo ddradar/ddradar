@@ -1,18 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/import.vue snapshot test renders correctly 1`] = `
+exports[`pages/import.vue snapshot test { locale: "en" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">Import Scores</h1>
+  <h2 class="subtitle">Import from e-amusement GATE</h2>
+  <div class="content">
+    <p><span>Get scores from <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          "Music List" page
+        </a>.</span> <wbr> <strong>You need to subscribe "e-amusement Basic Course" to see scores.</strong></p>
+    <div class="field"><label class="label">HTML Sourse</label>
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----> <button type="button" class="button is-success">
+        <!----> <span>
+        Submit
+      </span>
+        <!----></button>
+      <!---->
+    </div>
+    <!---->
+  </div>
+</section>
+`;
+
+exports[`pages/import.vue snapshot test { locale: "en" } renders uploading state 1`] = `
+<section class="section">
+  <h1 class="title">Import Scores</h1>
+  <h2 class="subtitle">Import from e-amusement GATE</h2>
+  <div class="content">
+    <p><span>Get scores from <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          "Music List" page
+        </a>.</span> <wbr> <strong>You need to subscribe "e-amusement Basic Course" to see scores.</strong></p>
+    <div class="field"><label class="label">HTML Sourse</label>
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----> <button type="button" class="button is-success is-loading">
+        <!----> <span>
+        Submit
+      </span>
+        <!----></button>
+      <!---->
+    </div>
+    <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
+      <p class="progress-value">
+        Uploading: PARANOiA (7/20)
+      </p>
+    </div>
+  </div>
+</section>
+`;
+
+exports[`pages/import.vue snapshot test { locale: "ja" } renders correctly 1`] = `
 <section class="section">
   <h1 class="title">スコアのインポート</h1>
   <h2 class="subtitle">e-amusementサイトからインポート</h2>
   <div class="content">
-    <p>
-      公式サイトの
-      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
-        「楽曲データ一覧」ページ
-      </a>
-      より、スコアを取得します。<wbr> <strong>
-        公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
-      </strong></p>
+    <p><span>公式サイトの<a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          「楽曲データ一覧」ページ
+        </a>より、スコアを取得します。</span> <wbr> <strong>公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。</strong></p>
     <div class="field"><label class="label">HTMLソース</label>
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
         <!---->
@@ -34,19 +91,14 @@ exports[`pages/import.vue snapshot test renders correctly 1`] = `
 </section>
 `;
 
-exports[`pages/import.vue snapshot test renders uploading state 1`] = `
+exports[`pages/import.vue snapshot test { locale: "ja" } renders uploading state 1`] = `
 <section class="section">
   <h1 class="title">スコアのインポート</h1>
   <h2 class="subtitle">e-amusementサイトからインポート</h2>
   <div class="content">
-    <p>
-      公式サイトの
-      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
-        「楽曲データ一覧」ページ
-      </a>
-      より、スコアを取得します。<wbr> <strong>
-        公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
-      </strong></p>
+    <p><span>公式サイトの<a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          「楽曲データ一覧」ページ
+        </a>より、スコアを取得します。</span> <wbr> <strong>公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。</strong></p>
     <div class="field"><label class="label">HTMLソース</label>
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
         <!---->
@@ -65,7 +117,7 @@ exports[`pages/import.vue snapshot test renders uploading state 1`] = `
     </div>
     <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
       <p class="progress-value">
-        Uploading: PARANOiA (7/20)
+        登録中: PARANOiA (7/20)
       </p>
     </div>
   </div>

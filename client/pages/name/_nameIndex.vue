@@ -23,7 +23,7 @@ import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { NameIndexList, searchSongByName, SongListData } from '~/api/song'
-import SongList from '~/components/shared/SongList.vue'
+import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
 export default class SongByNamePage extends Vue {

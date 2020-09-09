@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/users/_id.vue snapshot test { locale: "en" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">User 1</h1>
+  <h2 class="subtitle">Tokyo / 1234-5678</h2>
+  <!---->
+</section>
+`;
+
+exports[`/users/_id.vue snapshot test { locale: "en" } renders empty 1`] = `<section class="section">User does not exist or is private</section>`;
+
+exports[`/users/_id.vue snapshot test { locale: "en" } renders loading 1`] = `
+<section class="section">
+  <div class="b-skeleton is-animated">
+    <div class="b-skeleton-item is-rounded"></div>
+  </div>
+  <div class="b-skeleton is-animated">
+    <div class="b-skeleton-item is-rounded"></div>
+  </div>
+  <!---->
+</section>
+`;
+
+exports[`/users/_id.vue snapshot test { locale: "en" } renders setting button if selfPage 1`] = `
+<section class="section">
+  <h1 class="title">User 1</h1>
+  <h2 class="subtitle">Tokyo / 1234-5678</h2>
+  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span> <span>
+        Import Scores
+      </span>
+      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
+        Settings
+      </span>
+      <!----></a></div>
+</section>
+`;
+
+exports[`/users/_id.vue snapshot test { locale: "ja" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">User 1</h1>
+  <h2 class="subtitle">東京都 / 1234-5678</h2>
+  <!---->
+</section>
+`;
+
+exports[`/users/_id.vue snapshot test { locale: "ja" } renders empty 1`] = `<section class="section">ユーザーが存在しないか、非公開に設定されています。</section>`;
+
+exports[`/users/_id.vue snapshot test { locale: "ja" } renders loading 1`] = `
+<section class="section">
+  <div class="b-skeleton is-animated">
+    <div class="b-skeleton-item is-rounded"></div>
+  </div>
+  <div class="b-skeleton is-animated">
+    <div class="b-skeleton-item is-rounded"></div>
+  </div>
+  <!---->
+</section>
+`;
+
+exports[`/users/_id.vue snapshot test { locale: "ja" } renders setting button if selfPage 1`] = `
+<section class="section">
+  <h1 class="title">User 1</h1>
+  <h2 class="subtitle">東京都 / 1234-5678</h2>
+  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span> <span>
+        スコアのインポート
+      </span>
+      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
+        設定
+      </span>
+      <!----></a></div>
+</section>
+`;

@@ -1,8 +1,9 @@
 <template>
   <section class="section">
+    <h1 class="title">{{ $t('title') }}</h1>
     <section>
       <b-field grouped group-multiline>
-        <b-field label="所属地域">
+        <b-field :label="$t('field.area')">
           <b-select v-model="area" placeholder="Select">
             <option
               v-for="area in areaOptions"
@@ -13,10 +14,10 @@
             </option>
           </b-select>
         </b-field>
-        <b-field label="登録名(部分一致)">
+        <b-field :label="$t('field.name')">
           <b-input v-model="name" />
         </b-field>
-        <b-field label="DDR CODE">
+        <b-field :label="$t('field.code')">
           <b-input
             v-model.number="code"
             placeholder="10000000"
@@ -28,14 +29,14 @@
       </b-field>
       <b-field>
         <b-button type="is-success" @click="search()">
-          検索
+          {{ $t('search') }}
         </b-button>
       </b-field>
     </section>
 
     <section>
       <b-table
-        :data="users"
+        :data="displayedUsers"
         striped
         :loading="loading"
         :mobile-cards="false"
@@ -43,13 +44,13 @@
         per-page="50"
       >
         <template slot-scope="props">
-          <b-table-column field="name" label="Name">
+          <b-table-column field="name" :label="$t('list.name')">
             <nuxt-link :to="`/users/${props.row.id}`">
               {{ props.row.name }}
             </nuxt-link>
           </b-table-column>
-          <b-table-column field="area" label="Area">
-            {{ getAreaName(props.row.area) }}
+          <b-table-column field="area" :label="$t('list.area')">
+            {{ props.row.area }}
           </b-table-column>
         </template>
 
@@ -61,7 +62,7 @@
           </section>
           <section v-else class="section">
             <div class="content has-text-grey has-text-centered">
-              <p>Nothing here.</p>
+              <p>{{ $t('list.empty') }}</p>
             </div>
           </section>
         </template>
@@ -69,6 +70,40 @@
     </section>
   </section>
 </template>
+
+<i18n src="../../i18n/area.json"></i18n>
+<i18n>
+{
+  "ja": {
+    "title": "ユーザーを探す",
+    "field": {
+      "area": "所属地域",
+      "name": "登録名(部分一致)",
+      "code": "DDR CODE"
+    },
+    "list": {
+      "name": "登録名",
+      "area": "所属地域",
+      "empty": "ユーザーが見つかりません"
+    },
+    "search": "検索"
+  },
+  "en": {
+    "title": "Search User",
+    "field": {
+      "area": "Area",
+      "name": "Name (partial match)",
+      "code": "DDR CODE"
+    },
+    "list": {
+      "name": "Name",
+      "area": "Area",
+      "empty": "Not Found User"
+    },
+    "search": "Search"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
@@ -84,16 +119,21 @@ export default class UserListPage extends Vue {
   users: UserListData[] = []
 
   loading = false
-  nextUrl: string | null = null
 
   /** AreaCode - String mapping for <select> components */
-  readonly areaOptions = Object.entries(areaList).map(v => ({
-    key: v[0],
-    value: v[1],
-  }))
+  get areaOptions() {
+    return Object.keys(areaList).map(key => ({
+      key,
+      value: this.$t(`area.${key}`),
+    }))
+  }
 
-  getAreaName(areaCode: number) {
-    return areaList[areaCode]
+  get displayedUsers() {
+    return this.users.map(u => ({
+      id: u.id,
+      name: u.name,
+      area: this.$t(`area.${u.area}`),
+    }))
   }
 
   /** Load user info */

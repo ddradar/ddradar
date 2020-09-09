@@ -12,7 +12,7 @@
             striped
           >
             <template v-slot="props">
-              <b-table-column field="name" label="Name">
+              <b-table-column field="name" :label="$t('list.name')">
                 <nuxt-link
                   v-if="!props.row.isArea"
                   :to="`/users/${props.row.userId}`"
@@ -22,13 +22,17 @@
                 </nuxt-link>
                 <span v-else class="is-size-7">{{ props.row.userName }}</span>
               </b-table-column>
-              <b-table-column field="score" label="Score" centered>
+              <b-table-column field="score" :label="$t('list.score')" centered>
                 <score-badge
                   :lamp="props.row.clearLamp"
                   :score="props.row.score"
                 />
               </b-table-column>
-              <b-table-column field="exScore" label="EX" numeric>
+              <b-table-column
+                field="exScore"
+                :label="$t('list.exScore')"
+                numeric
+              >
                 <span class="is-size-7">{{ props.row.exScore }}</span>
               </b-table-column>
             </template>
@@ -36,7 +40,7 @@
             <template v-slot:empty>
               <section class="section">
                 <div class="content has-text-grey has-text-centered">
-                  <p>Nothing here.</p>
+                  <p>{{ $t('list.noData') }}</p>
                 </div>
               </section>
             </template>
@@ -49,16 +53,18 @@
           class="card-footer-item"
           @click="launchScoreEditor"
         >
-          編集
+          {{ $t('button.edit') }}
         </a>
         <a
           v-if="this.$accessor.isLoggedIn"
           class="card-footer-item"
           @click="launchScoreImporter"
         >
-          インポート
+          {{ $t('button.import') }}
         </a>
-        <a class="card-footer-item" @click="fetchScores(true)">全件表示</a>
+        <a class="card-footer-item" @click="fetchScores(true)">
+          {{ $t('button.all') }}
+        </a>
       </footer>
     </card>
     <card title="Chart Info" :type="cardType" collapsible>
@@ -97,6 +103,46 @@
   </section>
 </template>
 
+<i18n src="../../../i18n/area.json"></i18n>
+<i18n>
+{
+  "ja": {
+    "list": {
+      "name": "ユーザー名",
+      "score": "スコア",
+      "exScore": "EX",
+      "noData": "データがありません",
+      "top": "{area}トップ"
+    },
+    "button": {
+      "edit": "編集",
+      "import": "インポート",
+      "all": "全件表示"
+    },
+    "area": {
+      "0": "全国"
+    }
+  },
+  "en": {
+    "list": {
+      "name": "Name",
+      "score": "Score",
+      "exScore": "EX",
+      "noData": "No Data",
+      "top": "{area} Top"
+    },
+    "button": {
+      "edit": "Edit",
+      "import": "Import",
+      "all": "Show All"
+    },
+    "area": {
+      "0": "World"
+    }
+  }
+}
+</i18n>
+
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
@@ -110,8 +156,8 @@ import {
 import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
-import ScoreBadge from '~/components/pages/ScoreBadge.vue'
 import Card from '~/components/shared/Card.vue'
+import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
 type RankingScore = UserScore & { isArea?: true }
 
@@ -197,7 +243,9 @@ export default class ChartDetailComponent extends Vue {
           return {
             ...s,
             isArea: true,
-            userName: (s.userId === '0' ? '全国' : areaList[id]) + 'トップ',
+            userName: this.$t('list.top', {
+              area: this.$t(`area.${id}`),
+            }) as string,
           }
         }
         return s

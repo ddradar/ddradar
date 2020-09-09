@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses and { locale: en } 1`] = `
+exports[`/components/pages/charts/ChartList.vue snapshot test renders chart list if loaded charts and { locale: en } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -12,14 +12,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20
+            2014
           </td>
-          <td data-label="Name" class=""><a>
-              初段(SINGLE)
-            </a></td>
-          <td data-label="Type" class="">
-            GRADE
+          <td data-label="Name" class=""><a>EGOISM 440</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -28,14 +29,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20 PLUS
+            A
           </td>
-          <td data-label="Name" class=""><a>
-              初段(SINGLE)
-            </a></td>
-          <td data-label="Type" class="">
-            GRADE
+          <td data-label="Name" class=""><a>ENDYMION</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -44,14 +46,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20
+            A
           </td>
-          <td data-label="Name" class=""><a>
-              四段(DOUBLE)
-            </a></td>
-          <td data-label="Type" class="">
-            GRADE
+          <td data-label="Name" class=""><a>MAX 360</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -60,14 +63,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20 PLUS
+            2014
           </td>
-          <td data-label="Name" class=""><a>
-              九段(DOUBLE)
-            </a></td>
-          <td data-label="Type" class="">
-            GRADE
+          <td data-label="Name" class=""><a>Over The “Period”</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -76,14 +80,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20 PLUS
+            X3 VS 2ndMIX
           </td>
-          <td data-label="Name" class=""><a>
-              HYPER
-            </a></td>
-          <td data-label="Type" class="">
-            NONSTOP
+          <td data-label="Name" class=""><a>PARANOiA Revolution</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -92,14 +97,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="Series" class="">
-            A20
+            X2
           </td>
-          <td data-label="Name" class=""><a>
-              PLANET
-            </a></td>
-          <td data-label="Type" class="">
-            NONSTOP
+          <td data-label="Name" class=""><a>Valkyrie dimension</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="Lv" class="has-text-right">
+            19
           </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -127,7 +133,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders course list if loaded courses and { locale: ja } 1`] = `
+exports[`/components/pages/charts/ChartList.vue snapshot test renders chart list if loaded charts and { locale: ja } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -139,14 +145,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20
+            2014
           </td>
-          <td data-label="名称" class=""><a>
-              初段(SINGLE)
-            </a></td>
-          <td data-label="タイプ" class="">
-            段位認定
+          <td data-label="曲名" class=""><a>EGOISM 440</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -155,14 +162,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20 PLUS
+            A
           </td>
-          <td data-label="名称" class=""><a>
-              初段(SINGLE)
-            </a></td>
-          <td data-label="タイプ" class="">
-            段位認定
+          <td data-label="曲名" class=""><a>ENDYMION</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -171,14 +179,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20
+            A
           </td>
-          <td data-label="名称" class=""><a>
-              四段(DOUBLE)
-            </a></td>
-          <td data-label="タイプ" class="">
-            段位認定
+          <td data-label="曲名" class=""><a>MAX 360</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -187,14 +196,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20 PLUS
+            2014
           </td>
-          <td data-label="名称" class=""><a>
-              九段(DOUBLE)
-            </a></td>
-          <td data-label="タイプ" class="">
-            段位認定
+          <td data-label="曲名" class=""><a>Over The “Period”</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -203,14 +213,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20 PLUS
+            X3 VS 2ndMIX
           </td>
-          <td data-label="名称" class=""><a>
-              HYPER
-            </a></td>
-          <td data-label="タイプ" class="">
-            NONSTOP
+          <td data-label="曲名" class=""><a>PARANOiA Revolution</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -219,14 +230,15 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            A20
+            X2
           </td>
-          <td data-label="名称" class=""><a>
-              PLANET
-            </a></td>
-          <td data-label="タイプ" class="">
-            NONSTOP
+          <td data-label="曲名" class=""><a>Valkyrie dimension</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span></td>
+          <td data-label="レベル" class="has-text-right">
+            19
           </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
           <!---->
         </tr>
         <!---->
@@ -254,7 +266,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders course l
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty and { locale: en } 1`] = `
+exports[`/components/pages/charts/ChartList.vue snapshot test renders empty if courses is empty and { locale: en } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -266,7 +278,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if
           <td colspan="0">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
-                <p>No Data</p>
+                <p>No data</p>
               </div>
             </section>
           </td>
@@ -293,7 +305,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if courses is empty and { locale: ja } 1`] = `
+exports[`/components/pages/charts/ChartList.vue snapshot test renders empty if courses is empty and { locale: ja } 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -332,7 +344,7 @@ exports[`/components/pages/courses/CourseList.vue snapshot test renders empty if
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue snapshot test renders loading spin if { loading: true } 1`] = `
+exports[`/components/pages/charts/ChartList.vue snapshot test renders loading spin if { loading: true } 1`] = `
 <div class="b-table is-loading">
   <!---->
   <!---->
