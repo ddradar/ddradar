@@ -3,7 +3,7 @@
 exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           Find User
@@ -143,151 +143,151 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`]
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Name</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -301,11 +301,11 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`]
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span> <span>
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               MyPage
             </span>
                   <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
-                  <!----> <span>
+                  <!----><span>
               Logout
             </span>
                   <!----></a></div>
@@ -339,7 +339,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`]
 exports[`/layouts/default.vue snapshot test { locale: "en" } renders login button if not authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           Find User
@@ -479,151 +479,151 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders login butto
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Name</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -637,10 +637,10 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders login butto
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Login</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span> <span>
+              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
               Login via Twitter
             </span>
-                  <!----></a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span> <span>
+                  <!----></a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
               Login via GitHub
             </span>
                   <!----></a></div>
@@ -671,7 +671,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders login butto
 exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout button if authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           Find User
@@ -811,151 +811,151 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout butt
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Name</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -969,11 +969,11 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout butt
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span> <span>
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               MyPage
             </span>
                   <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
-                  <!----> <span>
+                  <!----><span>
               Logout
             </span>
                   <!----></a></div>
@@ -1004,7 +1004,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout butt
 exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
@@ -1144,151 +1144,151 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`]
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -1302,11 +1302,11 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`]
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span> <span>
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               マイページ
             </span>
                   <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
-                  <!----> <span>
+                  <!----><span>
               ログアウト
             </span>
                   <!----></a></div>
@@ -1340,7 +1340,7 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`]
 exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login button if not authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
@@ -1480,151 +1480,151 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login butto
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -1638,10 +1638,10 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login butto
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span> <span>
+              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
               Twitterでログイン
             </span>
-                  <!----></a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span> <span>
+                  <!----></a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
               GitHubでログイン
             </span>
                   <!----></a></div>
@@ -1672,7 +1672,7 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login butto
 exports[`/layouts/default.vue snapshot test { locale: "ja" } renders logout button if authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
-    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span> <span aria-hidden="true"></span> <span aria-hidden="true"></span></a></div>
+    <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
@@ -1812,151 +1812,151 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders logout butt
         <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">曲名</a>
           <div class="navbar-dropdown" style="display: none;">
             <div class="navbar-item buttons are-small"><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             あ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             か
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             さ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             た
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             な
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             は
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ま
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             や
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             ら
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             わ
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             A
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             B
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             C
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             D
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             E
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             F
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             G
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             H
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             I
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             J
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             K
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             L
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             M
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             N
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             O
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             P
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Q
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             R
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             S
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             T
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             U
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             V
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             W
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             X
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Y
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             Z
           </span>
                 <!----></a><a type="button" class="button is-text">
-                <!----> <span>
+                <!----><span>
             数字・記号
           </span>
                 <!----></a></div>
@@ -1970,11 +1970,11 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders logout butt
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span> <span>
+              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               マイページ
             </span>
                   <!----></a> <a type="button" href="/.auth/logout" class="button is-warning">
-                  <!----> <span>
+                  <!----><span>
               ログアウト
             </span>
                   <!----></a></div>

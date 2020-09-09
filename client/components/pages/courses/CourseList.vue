@@ -7,19 +7,17 @@
     paginated
     per-page="50"
   >
-    <template v-slot="props">
-      <b-table-column field="series" :label="$t('series')">
-        {{ props.row.series }}
-      </b-table-column>
-      <b-table-column field="name" :label="$t('name')">
-        <nuxt-link :to="`/courses/${props.row.id}`">
-          {{ props.row.name }}
-        </nuxt-link>
-      </b-table-column>
-      <b-table-column field="type" :label="$t('type')">
-        {{ props.row.type }}
-      </b-table-column>
-    </template>
+    <b-table-column v-slot="props" field="series" :label="$t('series')">
+      {{ props.row.series }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="name" :label="$t('name')">
+      <nuxt-link :to="`/courses/${props.row.id}`">
+        {{ props.row.name }}
+      </nuxt-link>
+    </b-table-column>
+    <b-table-column v-slot="props" field="type" :label="$t('type')">
+      {{ props.row.type }}
+    </b-table-column>
 
     <template v-slot:empty>
       <section v-if="loading" class="section">

@@ -11,31 +11,39 @@
             narrowed
             striped
           >
-            <template v-slot="props">
-              <b-table-column field="name" :label="$t('list.name')">
-                <nuxt-link
-                  v-if="!props.row.isArea"
-                  :to="`/users/${props.row.userId}`"
-                  class="is-size-7"
-                >
-                  {{ props.row.userName }}
-                </nuxt-link>
-                <span v-else class="is-size-7">{{ props.row.userName }}</span>
-              </b-table-column>
-              <b-table-column field="score" :label="$t('list.score')" centered>
-                <score-badge
-                  :lamp="props.row.clearLamp"
-                  :score="props.row.score"
-                />
-              </b-table-column>
-              <b-table-column
-                field="exScore"
-                :label="$t('list.exScore')"
-                numeric
+            <b-table-column
+              v-slot="props"
+              field="name"
+              :label="$t('list.name')"
+            >
+              <nuxt-link
+                v-if="!props.row.isArea"
+                :to="`/users/${props.row.userId}`"
+                class="is-size-7"
               >
-                <span class="is-size-7">{{ props.row.exScore }}</span>
-              </b-table-column>
-            </template>
+                {{ props.row.userName }}
+              </nuxt-link>
+              <span v-else class="is-size-7">{{ props.row.userName }}</span>
+            </b-table-column>
+            <b-table-column
+              v-slot="props"
+              field="score"
+              :label="$t('list.score')"
+              centered
+            >
+              <score-badge
+                :lamp="props.row.clearLamp"
+                :score="props.row.score"
+              />
+            </b-table-column>
+            <b-table-column
+              v-slot="props"
+              field="exScore"
+              :label="$t('list.exScore')"
+              numeric
+            >
+              <span class="is-size-7">{{ props.row.exScore }}</span>
+            </b-table-column>
 
             <template v-slot:empty>
               <section class="section">
