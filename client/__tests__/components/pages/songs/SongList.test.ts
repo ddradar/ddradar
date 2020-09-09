@@ -1,11 +1,13 @@
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
+import VueI18n from 'vue-i18n'
 
 import type { SongListData } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.use(VueI18n)
 
 describe('/components/pages/songs/SongList.vue', () => {
   const songs: Omit<SongListData, 'nameKana' | 'nameIndex'>[] = [
@@ -34,42 +36,56 @@ describe('/components/pages/songs/SongList.vue', () => {
       maxBPM: 160,
     },
   ]
+  const stubs = { NuxtLink: RouterLinkStub }
   describe('snapshot test', () => {
-    test('{ loading: true, songs: [] } renders loading state', () => {
-      const wrapper = mount(SongList, {
-        localVue,
-        propsData: { loading: true, songs: [] },
-      })
+    test.each(['ja', 'en'])(
+      '{ locale: "%s", loading: true, songs: [] } renders loading state',
+      locale => {
+        const wrapper = mount(SongList, {
+          localVue,
+          propsData: { loading: true, songs: [] },
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        })
 
-      expect(wrapper).toMatchSnapshot()
-    })
-    test('{ loading: false, songs: [songs] } renders song list', () => {
-      const wrapper = mount(SongList, {
-        localVue,
-        propsData: { loading: false, songs },
-        mocks: { $accessor: { isAdmin: false } },
-        stubs: { NuxtLink: RouterLinkStub },
-      })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
+    test.each(['ja', 'en'])(
+      '{ locale: "%s", loading: false, songs: [songs] } renders song list',
+      locale => {
+        const wrapper = mount(SongList, {
+          localVue,
+          propsData: { loading: false, songs },
+          mocks: { $accessor: { isAdmin: false } },
+          stubs,
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        })
 
-      expect(wrapper).toMatchSnapshot()
-    })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
     test('{ loading: false, songs: [songs] } renders "Edit" column if admin', () => {
       const wrapper = mount(SongList, {
         localVue,
         propsData: { loading: false, songs },
         mocks: { $accessor: { isAdmin: true } },
-        stubs: { NuxtLink: RouterLinkStub },
+        stubs,
+        i18n: new VueI18n({ locale: 'ja', silentFallbackWarn: true }),
       })
 
       expect(wrapper).toMatchSnapshot()
     })
-    test('{ loading: false, songs: [] } renders empty state', () => {
-      const wrapper = mount(SongList, {
-        localVue,
-        propsData: { loading: false, songs: [] },
-      })
+    test.each(['ja', 'en'])(
+      '{ locale: "%s", loading: false, songs: [] } renders empty state',
+      locale => {
+        const wrapper = mount(SongList, {
+          localVue,
+          propsData: { loading: false, songs: [] },
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        })
 
-      expect(wrapper).toMatchSnapshot()
-    })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
   })
 })
