@@ -5,7 +5,7 @@ exports[`/components/pages/TopMessage.vue snapshot test renders default icon if 
   <transition-stub name="fade">
     <article class="message is-info">
       <header class="message-header">
-        <p>Title</p> <button type="button" aria-label="Close message" class="delete"></button>
+        <p>Title</p><button type="button" aria-label="Close message" class="delete"></button>
       </header>
       <section class="message-body">
         <div class="media">
@@ -34,7 +34,7 @@ exports[`/components/pages/TopMessage.vue snapshot test renders specified icon 1
   <transition-stub name="fade">
     <article class="message is-info">
       <header class="message-header">
-        <p>Title</p> <button type="button" aria-label="Close message" class="delete"></button>
+        <p>Title</p><button type="button" aria-label="Close message" class="delete"></button>
       </header>
       <section class="message-body">
         <div class="media">

@@ -26,10 +26,10 @@ exports[`/users/_id.vue snapshot test { locale: "en" } renders setting button if
 <section class="section">
   <h1 class="title">User 1</h1>
   <h2 class="subtitle">Tokyo / 1234-5678</h2>
-  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span> <span>
+  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span><span>
         Import Scores
       </span>
-      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
+      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
         Settings
       </span>
       <!----></a></div>
@@ -62,10 +62,10 @@ exports[`/users/_id.vue snapshot test { locale: "ja" } renders setting button if
 <section class="section">
   <h1 class="title">User 1</h1>
   <h2 class="subtitle">東京都 / 1234-5678</h2>
-  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span> <span>
+  <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span><span>
         スコアのインポート
       </span>
-      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span> <span>
+      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
         設定
       </span>
       <!----></a></div>

@@ -18,13 +18,13 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
   <h1 class="title">User Settings</h1>
   <div class="field"><label class="label">
       ID
-      <span data-label="can not be changed after registration." class="is-dark is-right is-medium b-tooltip" style="transition-delay: 0ms;"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></span></label>
-    <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
-      <!---->
-      <!---->
-      <!---->
-    </div>
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">can not be changed after registration.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
     <!---->
+    <!---->
+    <!---->
+  </div>
+  <!---->
   </div>
   <div class="field"><label class="label">Display Name</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" required="required" class="input">
@@ -36,8 +36,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
   </div>
   <div class="field"><label class="label">
       Area
-      <span data-label="can not be changed after registration." class="is-dark is-right is-medium b-tooltip" style="transition-delay: 0ms;"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></span></label>
-    <div class="control"><span class="select"><select><!----> <option value="0">
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">can not be changed after registration.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control"><span class="select"><select><!----><option value="0">
         undefined
       </option><option value="1">
         Hokkaido
@@ -172,34 +172,38 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
       </option><option value="118">
         Philippines
       </option></select></span>
-      <!---->
-    </div>
     <!---->
+  </div>
+  <!---->
   </div>
   <div class="field"><label class="label">DDR CODE(optional)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
       <!---->
-      <!----> <small class="help counter is-invisible">
-        0 / 8
-      </small></div>
+      <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
     <!---->
   </div>
-  <div class="field is-grouped-multiline is-grouped">
-    <!----> <label class="switch is-rounded"><input type="checkbox" true-value="true" value="false"> <span class="check"></span> <span class="control-label">Public</span></label>
-    <div class="help">
-      <p>
-        You will be shown in the user search and your page will be visible to anyone.<br>
-        Registered scores will be public.
-      </p>
-      <p class="has-text-weight-bold has-text-danger"><span class="icon is-small"><i class="mdi mdi-alert"></i></span>
-        Note: Even if you turn off, the scores so far will not be private.
-      </p>
+  <div class="field">
+    <!---->
+    <div class="field-body">
+      <div class="field is-grouped is-grouped-multiline">
+        <!----><label class="switch is-rounded"><input type="checkbox" true-value="true" value="false"><span class="check"></span><span class="control-label">Public</span></label>
+        <div class="help">
+          <p>
+            You will be shown in the user search and your page will be visible to anyone.<br>
+            Registered scores will be public.
+          </p>
+          <p class="has-text-weight-bold has-text-danger"><span class="icon is-small"><i class="mdi mdi-alert"></i></span>
+            Note: Even if you turn off, the scores so far will not be private.
+          </p>
+        </div>
+        <!---->
+      </div>
     </div>
     <!---->
   </div>
   <div class="field">
-    <!----> <button type="button" disabled="disabled" class="button is-success">
-      <!----> <span>
+    <!----><button type="button" disabled="disabled" class="button is-success">
+      <!----><span>
       Save
     </span>
       <!----></button>
@@ -226,13 +230,13 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
   <h1 class="title">ユーザー設定</h1>
   <div class="field"><label class="label">
       ID
-      <span data-label="登録後の変更はできません。" class="is-dark is-right is-medium b-tooltip" style="transition-delay: 0ms;"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></span></label>
-    <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
-      <!---->
-      <!---->
-      <!---->
-    </div>
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">登録後の変更はできません。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
     <!---->
+    <!---->
+    <!---->
+  </div>
+  <!---->
   </div>
   <div class="field"><label class="label">表示名</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" required="required" class="input">
@@ -244,8 +248,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
   </div>
   <div class="field"><label class="label">
       所属地域
-      <span data-label="登録後の変更はできません。" class="is-dark is-right is-medium b-tooltip" style="transition-delay: 0ms;"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></span></label>
-    <div class="control"><span class="select"><select><!----> <option value="0">
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">登録後の変更はできません。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control"><span class="select"><select><!----><option value="0">
         未指定
       </option><option value="1">
         北海道
@@ -380,34 +384,38 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
       </option><option value="118">
         フィリピン
       </option></select></span>
-      <!---->
-    </div>
     <!---->
+  </div>
+  <!---->
   </div>
   <div class="field"><label class="label">DDR CODE(任意)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
       <!---->
-      <!----> <small class="help counter is-invisible">
-        0 / 8
-      </small></div>
+      <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
     <!---->
   </div>
-  <div class="field is-grouped-multiline is-grouped">
-    <!----> <label class="switch is-rounded"><input type="checkbox" true-value="true" value="false"> <span class="check"></span> <span class="control-label">公開する</span></label>
-    <div class="help">
-      <p>
-        ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。<br>
-        これから登録するスコアはランキングに自動登録され、一般公開されます。
-      </p>
-      <p class="has-text-weight-bold has-text-danger"><span class="icon is-small"><i class="mdi mdi-alert"></i></span>
-        ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
-      </p>
+  <div class="field">
+    <!---->
+    <div class="field-body">
+      <div class="field is-grouped is-grouped-multiline">
+        <!----><label class="switch is-rounded"><input type="checkbox" true-value="true" value="false"><span class="check"></span><span class="control-label">公開する</span></label>
+        <div class="help">
+          <p>
+            ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。<br>
+            これから登録するスコアはランキングに自動登録され、一般公開されます。
+          </p>
+          <p class="has-text-weight-bold has-text-danger"><span class="icon is-small"><i class="mdi mdi-alert"></i></span>
+            ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
+          </p>
+        </div>
+        <!---->
+      </div>
     </div>
     <!---->
   </div>
   <div class="field">
-    <!----> <button type="button" disabled="disabled" class="button is-success">
-      <!----> <span>
+    <!----><button type="button" disabled="disabled" class="button is-success">
+      <!----><span>
       保存
     </span>
       <!----></button>

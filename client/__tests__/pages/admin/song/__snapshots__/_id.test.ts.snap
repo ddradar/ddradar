@@ -4,22 +4,26 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
 <section class="section">
   <h1 class="title">Add/Update Song</h1>
   <div class="field"><label class="label">Song ID</label>
-    <div class="field is-grouped">
+    <div class="field">
       <!---->
-      <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="32" required="required" pattern="^[01689bdiloqDIOPQ]{32}$" class="input">
-        <!---->
-        <!----> <small class="help counter is-invisible">
-          32 / 32
-        </small></div>
-      <div class="control"><button type="button" class="button is-primary">
-          <!----> <span>
+      <div class="field-body">
+        <div class="field is-grouped">
+          <!---->
+          <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="32" required="required" pattern="^[01689bdiloqDIOPQ]{32}$" class="input">
+            <!---->
+            <!----><small class="help counter is-invisible"> 32 / 32 </small></div>
+          <div class="control"><button type="button" class="button is-primary">
+              <!----><span>
           Load
         </span>
-          <!----></button> <a type="button" href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818" target="_blank" class="button is-info">
-          <!----> <span>
+              <!----></button> <a type="button" href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818" target="_blank" class="button is-info">
+              <!----><span>
           See Thumbnail
         </span>
-          <!----></a></div>
+              <!----></a></div>
+          <!---->
+        </div>
+      </div>
       <!---->
     </div>
     <!---->
@@ -49,7 +53,7 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
     <!---->
   </div>
   <div class="field"><label class="label">Series</label>
-    <div class="control"><span class="select"><select><!----> <option value="DDR 1st">
+    <div class="control"><span class="select"><select><!----><option value="DDR 1st">
         DDR 1st
       </option><option value="DDR 2ndMIX">
         DDR 2ndMIX
@@ -91,35 +95,47 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
     <!---->
   </div>
   <div class="field"><label class="label">BPM</label>
-    <div class="field is-grouped">
+    <div class="field">
       <!---->
-      <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="min" class="input">
-        <!---->
-        <!---->
-        <!---->
-      </div> <span class="control">-</span>
-      <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="max" class="input">
-        <!---->
-        <!---->
-        <!---->
+      <div class="field-body">
+        <div class="field is-grouped">
+          <!---->
+          <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="min" class="input">
+            <!---->
+            <!---->
+            <!---->
+          </div> <span class="control">-</span>
+          <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="max" class="input">
+            <!---->
+            <!---->
+            <!---->
+          </div>
+          <!---->
+        </div>
       </div>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 1</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -130,82 +146,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 2</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -216,82 +256,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 3</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -302,82 +366,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 4</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -388,82 +476,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 5</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -474,82 +586,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 6</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -560,82 +696,106 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field"><label class="label">Chart 7</label>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field has-addons">
-        <!---->
-        <div class="control"><span class="select"><select><!----> <option value="1">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control"><span class="select"><select><!----><option value="1">
             SINGLE
           </option><option value="2">
             DOUBLE
           </option></select></span>
-          <!---->
-        </div>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+                  <!---->
+                </div>
+                <div class="control"><span class="select"><select><!----><option value="0">
             BEGINNER
           </option><option value="1">
             BASIC
@@ -646,79 +806,97 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           </option><option value="4">
             CHALLENGE
           </option></select></span>
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <p class="help"></p>
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div>
+          <div class="field">
+            <!---->
+            <div class="field-body">
+              <div class="field has-addons">
+                <!---->
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
+                  <!---->
+                  <!---->
+                  <!---->
+                </div>
+                <!---->
+              </div>
+            </div>
+            <!---->
+          </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
+            <!---->
+            <!----></button>
           <!---->
         </div>
-        <div class="control"><input type="number" autocomplete="on" placeholder="Level" min="1" max="20" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <p class="help"></p>
       </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Notes" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="FA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="SA" min="0" max="9999" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field has-addons">
-        <!---->
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Str" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Vol" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Air" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Fre" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <div class="control is-clearfix"><input type="number" autocomplete="on" placeholder="Cha" min="0" max="300" required="required" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
-        <!---->
-        <!----></button>
       <!---->
     </div>
     <!---->
   </div>
   <div class="field">
-    <!----> <button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-plus"></i></span> <span>
+    <!----><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-plus"></i></span><span>
       Add Chart
     </span>
       <!----></button>
     <!---->
   </div>
   <div class="field">
-    <!----> <button type="button" class="button is-success">
-      <!----> <span>
+    <!----><button type="button" class="button is-success">
+      <!----><span>
       Save
     </span>
       <!----></button>

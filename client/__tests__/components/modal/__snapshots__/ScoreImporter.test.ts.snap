@@ -26,11 +26,11 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" class="button is-success is-loading">
-      <!----> <span>
+      <!----><span>
       登録
     </span>
       <!----></button> <button type="button" class="button is-warning">
-      <!----> <span>
+      <!----><span>
       閉じる
     </span>
       <!----></button></footer>
@@ -63,11 +63,11 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" class="button is-success">
-      <!----> <span>
+      <!----><span>
       Import
     </span>
       <!----></button> <button type="button" class="button is-warning">
-      <!----> <span>
+      <!----><span>
       Close
     </span>
       <!----></button></footer>
@@ -100,11 +100,11 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" class="button is-success">
-      <!----> <span>
+      <!----><span>
       登録
     </span>
       <!----></button> <button type="button" class="button is-warning">
-      <!----> <span>
+      <!----><span>
       閉じる
     </span>
       <!----></button></footer>
@@ -137,11 +137,11 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: null } 
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" disabled="disabled" class="button is-success">
-      <!----> <span>
+      <!----><span>
       登録
     </span>
       <!----></button> <button type="button" class="button is-warning">
-      <!----> <span>
+      <!----><span>
       閉じる
     </span>
       <!----></button></footer>
