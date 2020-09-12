@@ -1,7 +1,11 @@
 *.js.map
+*.test.js
 *.ts
 .git*
 .vscode
+.eslintrc*
+jest.config.js
+coverage
 local.settings.json
-test
 tsconfig.json
+*.md
