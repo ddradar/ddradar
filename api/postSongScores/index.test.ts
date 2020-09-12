@@ -36,27 +36,6 @@ describe('POST /api/v1/scores', () => {
     expect(result.status).toBe(401)
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await postSongScores(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each(['', 'foo'])('/%s returns "404 Not Found"', async songId => {
-    // Arrange
-    context.bindingData.songId = songId
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-
-    // Act
-    const result = await postSongScores(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
   const score: Score = {
     score: 1000000,
     clearLamp: 7,

@@ -41,17 +41,12 @@ export default async function (
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { status: 401 }
 
+  // if param is 0, passed object. (bug?)
   const songId: string =
     typeof context.bindingData.songId === 'object'
       ? '0'
       : context.bindingData.songId
-
   const isSkillAttackId = /^\d{1,3}$/.test(songId)
-  // In Azure Functions, this function will only be invoked if a valid route.
-  // So this check is only used to unit tests.
-  if (!/^[01689bdiloqDIOPQ]{32}$/.test(songId) && !isSkillAttackId) {
-    return { status: 404 }
-  }
 
   if (!isValidBody(req.body)) {
     return { status: 400, body: 'body is not Score[]' }
