@@ -41,7 +41,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Project Dependencies
-        run: yarn --frozen-lockfile
+        run: |
+          yarn install --frozen-lockfile
+          yarn --cwd ./functions/ install --frozen-lockfile
 
       - name: Lint
         if: matrix.os == 'ubuntu-latest'
