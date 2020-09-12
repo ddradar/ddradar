@@ -90,10 +90,9 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const clearLamp = score.topScore === 1000000 ? 7 : 2
       const topScore: Score = {
         score: score.topScore,
-        clearLamp,
+        clearLamp: 2,
         rank: getDanceLevel(score.topScore),
       }
       topScores.push(
