@@ -17,18 +17,32 @@ const container = client.database('DDRadar').container('Songs')
 /** Import skillAttackId from Skill Attack site. */
 export default async function (context: Context): Promise<void> {
   const songs: SongSchema[] = context.bindings.documents
+  context.log.verbose(`Found ${songs.length} Songs.`)
   if (!songs.length) return
 
+  context.log.verbose(`Get master_music from ${masterMusicUri}`)
   const res = await fetch(masterMusicUri)
+  if (!res.ok) {
+    context.log.error(`${res.status}: ${res.statusText}`)
+    context.log.error(await res.text())
+    return
+  }
+
+  context.log.verbose('Convert master_music to Map')
   const map = masterMusicToMap(Buffer.from(await res.arrayBuffer()))
 
+  context.log.verbose('Update start')
   for (const song of songs) {
     const skillAttackId = map.get(song.id)
-    if (!skillAttackId) return
+    if (skillAttackId === undefined) {
+      context.log.info(`Not Found skillAttackId: ${song.name}`)
+      continue
+    }
     song.skillAttackId = skillAttackId
     await container.items.upsert(song)
     context.log.info(
       `Updated: ${song.name} { id: "${song.id}", skillAttackId: ${skillAttackId} }`
     )
   }
+  context.log.verbose('Update end')
 }

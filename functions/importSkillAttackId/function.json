@@ -4,7 +4,7 @@
       "name": "launchTimer",
       "type": "timerTrigger",
       "direction": "in",
-      "schedule": "0 0 2 * * Mon"
+      "schedule": "0 0 2 * * *"
     },
     {
       "name": "documents",
