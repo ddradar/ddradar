@@ -1,0 +1,20 @@
+{
+  "bindings": [
+    {
+      "name": "launchTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 0 2 * * *"
+    },
+    {
+      "name": "documents",
+      "type": "cosmosDB",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "direction": "in"
+    }
+  ],
+  "scriptFile": "../dist/importSkillAttackId/index.js"
+}

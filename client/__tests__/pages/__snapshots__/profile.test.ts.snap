@@ -179,7 +179,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
   <div class="field"><label class="label">DDR CODE(optional)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
       <!---->
-      <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+      <!----><small class="help counter is-invisible"> 0 / 8 </small>
+    </div>
     <!---->
   </div>
   <div class="field">
@@ -206,7 +207,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
       <!----><span>
       Save
     </span>
-      <!----></button>
+      <!---->
+    </button>
     <!---->
   </div>
 </section>
@@ -391,7 +393,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
   <div class="field"><label class="label">DDR CODE(任意)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
       <!---->
-      <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+      <!----><small class="help counter is-invisible"> 0 / 8 </small>
+    </div>
     <!---->
   </div>
   <div class="field">
@@ -418,7 +421,8 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
       <!----><span>
       保存
     </span>
-      <!----></button>
+      <!---->
+    </button>
     <!---->
   </div>
 </section>

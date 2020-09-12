@@ -11,16 +11,19 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
           <!---->
           <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="32" required="required" pattern="^[01689bdiloqDIOPQ]{32}$" class="input">
             <!---->
-            <!----><small class="help counter is-invisible"> 32 / 32 </small></div>
+            <!----><small class="help counter is-invisible"> 32 / 32 </small>
+          </div>
           <div class="control"><button type="button" class="button is-primary">
               <!----><span>
           Load
         </span>
-              <!----></button> <a type="button" href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818" target="_blank" class="button is-info">
+              <!---->
+            </button> <a type="button" href="https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=i0P1O6lbP1oDd6q6b08iPPoq6iPdI818" target="_blank" class="button is-info">
               <!----><span>
           See Thumbnail
         </span>
-              <!----></a></div>
+              <!---->
+            </a></div>
           <!---->
         </div>
       </div>
@@ -219,7 +222,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -329,7 +333,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -439,7 +444,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -549,7 +555,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -659,7 +666,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -769,7 +777,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -879,7 +888,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
             <!---->
           </div> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span>
             <!---->
-            <!----></button>
+            <!---->
+          </button>
           <!---->
         </div>
       </div>
@@ -891,7 +901,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
     <!----><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-plus"></i></span><span>
       Add Chart
     </span>
-      <!----></button>
+      <!---->
+    </button>
     <!---->
   </div>
   <div class="field">
@@ -899,7 +910,8 @@ exports[`pages/admin/song/_id.vue renders correctly 1`] = `
       <!----><span>
       Save
     </span>
-      <!----></button>
+      <!---->
+    </button>
     <!---->
   </div>
 </section>

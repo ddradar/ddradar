@@ -21,7 +21,8 @@ exports[`pages/import.vue snapshot test { locale: "en" } renders correctly 1`] =
         <!----><span>
         Submit
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
     <!---->
@@ -50,7 +51,8 @@ exports[`pages/import.vue snapshot test { locale: "en" } renders uploading state
         <!----><span>
         Submit
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
     <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
@@ -83,7 +85,8 @@ exports[`pages/import.vue snapshot test { locale: "ja" } renders correctly 1`] =
         <!----><span>
         登録
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
     <!---->
@@ -112,7 +115,8 @@ exports[`pages/import.vue snapshot test { locale: "ja" } renders uploading state
         <!----><span>
         登録
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
     <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>

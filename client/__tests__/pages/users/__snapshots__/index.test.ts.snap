@@ -160,7 +160,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -173,7 +174,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
         <!----><span>
         Search
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -395,7 +397,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -408,7 +411,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
         <!----><span>
         Search
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -641,7 +645,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -654,7 +659,8 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
         <!----><span>
         Search
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -999,7 +1005,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -1012,7 +1019,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
         <!----><span>
         検索
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -1234,7 +1242,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -1247,7 +1256,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
         <!----><span>
         検索
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -1480,7 +1490,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
           <div class="field"><label class="label">DDR CODE</label>
             <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
               <!---->
-              <!----><small class="help counter is-invisible"> 0 / 8 </small></div>
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
             <!---->
           </div>
           <!---->
@@ -1493,7 +1504,8 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 
         <!----><span>
         検索
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
