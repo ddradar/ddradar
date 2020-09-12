@@ -29,11 +29,13 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
       <!----><span>
       登録
     </span>
-      <!----></button> <button type="button" class="button is-warning">
+      <!---->
+    </button> <button type="button" class="button is-warning">
       <!----><span>
       閉じる
     </span>
-      <!----></button></footer>
+      <!---->
+    </button></footer>
 </div>
 `;
 
@@ -66,11 +68,13 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
       <!----><span>
       Import
     </span>
-      <!----></button> <button type="button" class="button is-warning">
+      <!---->
+    </button> <button type="button" class="button is-warning">
       <!----><span>
       Close
     </span>
-      <!----></button></footer>
+      <!---->
+    </button></footer>
 </div>
 `;
 
@@ -103,11 +107,13 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
       <!----><span>
       登録
     </span>
-      <!----></button> <button type="button" class="button is-warning">
+      <!---->
+    </button> <button type="button" class="button is-warning">
       <!----><span>
       閉じる
     </span>
-      <!----></button></footer>
+      <!---->
+    </button></footer>
 </div>
 `;
 
@@ -140,10 +146,12 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: null } 
       <!----><span>
       登録
     </span>
-      <!----></button> <button type="button" class="button is-warning">
+      <!---->
+    </button> <button type="button" class="button is-warning">
       <!----><span>
       閉じる
     </span>
-      <!----></button></footer>
+      <!---->
+    </button></footer>
 </div>
 `;

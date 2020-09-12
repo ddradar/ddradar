@@ -29,10 +29,12 @@ exports[`/users/_id.vue snapshot test { locale: "en" } renders setting button if
   <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span><span>
         Import Scores
       </span>
-      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
+      <!---->
+    </a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
         Settings
       </span>
-      <!----></a></div>
+      <!---->
+    </a></div>
 </section>
 `;
 
@@ -65,9 +67,11 @@ exports[`/users/_id.vue snapshot test { locale: "ja" } renders setting button if
   <div class="buttons"><a type="button" class="button is-primary"><span class="icon is-small"><i class="mdi mdi-import"></i></span><span>
         スコアのインポート
       </span>
-      <!----></a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
+      <!---->
+    </a> <a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account-cog"></i></span><span>
         設定
       </span>
-      <!----></a></div>
+      <!---->
+    </a></div>
 </section>
 `;
