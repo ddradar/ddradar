@@ -3,7 +3,7 @@
   "extends": ["../.eslintrc.json"],
   "settings": {
     "node": {
-      "allowModules": ["@azure/functions"],
+      "allowModules": ["@azure/functions", "jest-fetch-mock"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
   },

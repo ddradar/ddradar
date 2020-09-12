@@ -25,7 +25,7 @@ export default async function (context: Context): Promise<void> {
   for (const song of songs) {
     const skillAttackId = map.get(song.id)
     if (!skillAttackId) return
-    song.skillAttackId = parseInt(skillAttackId, 10)
+    song.skillAttackId = skillAttackId
     await container.items.upsert(song)
     context.log.info(
       `Updated: ${song.name} { id: "${song.id}", skillAttackId: ${skillAttackId} }`

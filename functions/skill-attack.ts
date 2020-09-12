@@ -2,14 +2,17 @@ import { decode } from 'iconv-lite'
 
 /**
  * Convert master_music to {id - skillAttackId} mapper.
- * @param buffer master_music.txt (Shift JIS)
+ * @param buffer master_music.txt (Shift JIS, LF)
  */
-export function masterMusicToMap(buffer: Buffer): Map<string, string> {
+export function masterMusicToMap(buffer: Buffer): Map<string, number> {
   const text = decode(buffer, 'shift_jis')
   return new Map(
-    text.split('\r').map(s => {
-      const elements = s.split('\t')
-      return [elements[1], elements[0]] // id, skillAttackId
-    })
+    text
+      .trim()
+      .split('\n')
+      .map(s => {
+        const elements = s.split('\t')
+        return [elements[1], parseInt(elements[0], 10)] // id, skillAttackId
+      })
   )
 }
