@@ -25,7 +25,8 @@
     "sort-imports": "off",
     "import/no-unresolved": "off",
     "import/order": "off",
-    "simple-import-sort/sort": "error"
+    "simple-import-sort/sort": "error",
+    "unicorn/number-literal-case": "off"
   },
   "overrides": [
     {
