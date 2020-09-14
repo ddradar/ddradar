@@ -18,13 +18,14 @@ localVue.use(VueI18n)
 
 describe('pages/import.vue', () => {
   let wrapper: Wrapper<ImportPage>
+  const $accessor = { user: { code: 10000000 } }
   const $http = {}
   const $buefy = {}
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   beforeEach(() => {
     wrapper = shallowMount(ImportPage, {
       localVue,
-      mocks: { $http, $buefy },
+      mocks: { $accessor, $http, $buefy },
       i18n,
     })
   })
@@ -35,6 +36,7 @@ describe('pages/import.vue', () => {
       const wrapper = mount(ImportPage, {
         localVue,
         data: () => ({ sourceCode: '<html></html>' }),
+        mocks: { $accessor },
         i18n,
       })
       expect(wrapper).toMatchSnapshot()
@@ -52,6 +54,7 @@ describe('pages/import.vue', () => {
             doneCount: 7,
             currentSong: 'PARANOiA',
           }),
+          mocks: { $accessor },
           i18n,
         })
         expect(wrapper).toMatchSnapshot()
@@ -153,7 +156,7 @@ describe('pages/import.vue', () => {
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
         const wrapper = shallowMount(ImportPage, {
           localVue,
-          mocks: { $http, $buefy },
+          mocks: { $accessor, $http, $buefy },
           i18n,
           data: () => ({ sourceCode: '<html></html>', loading: false }),
         })
@@ -198,7 +201,7 @@ describe('pages/import.vue', () => {
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
         const wrapper = shallowMount(ImportPage, {
           localVue,
-          mocks: { $http, $buefy },
+          mocks: { $accessor, $http, $buefy },
           i18n,
           data: () => ({ sourceCode: '<html></html>', loading: false }),
         })
