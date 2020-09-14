@@ -23,8 +23,12 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.ts',
+    '<rootDir>/components/*.vue',
+    '<rootDir>/layouts/*.vue',
+    '<rootDir>/pages/*.vue',
     '!<rootDir>/*.config.ts',
     '!**/*.d.ts',
+    '!<rootDir>/layouts/empty.vue',
     '!**/node_modules/**',
     '!**/__tests__/**',
   ],
