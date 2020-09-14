@@ -2,6 +2,36 @@ import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
 
+export type StepChart = {
+  /** `1`: SINGLE, `2`: DOUBLE */
+  playStyle: 1 | 2
+  /**
+   * `0`: BEGINNER,
+   * `1`: BASIC,
+   * `2`: DIFFICULT,
+   * `3`: EXPERT,
+   * `4`: CHALLENGE
+   */
+  difficulty: 0 | 1 | 2 | 3 | 4
+  level: number
+  /** Normal arrow count. (Jump = 1 count) */
+  notes: number
+  /** Freeze Arrow count. */
+  freezeArrow: number
+  /** Shock Arrow count. */
+  shockArrow: number
+  /** Groove Radar STREAM */
+  stream: number
+  /** Groove Radar VOLTAGE */
+  voltage: number
+  /** Groove Radar AIR */
+  air: number
+  /** Groove Radar FREEZE */
+  freeze: number
+  /** Groove Radar CHAOS */
+  chaos: number
+}
+
 /**
  * Object type returned by `/api/v1/songs/{:songId}`
  * @see https://github.com/ddradar/ddradar/blob/master/api/getSongInfo/README.md
@@ -37,36 +67,6 @@ export type SongInfo = {
    */
   maxBPM: number | null
   charts: StepChart[]
-}
-
-export type StepChart = {
-  /** `1`: SINGLE, `2`: DOUBLE */
-  playStyle: 1 | 2
-  /**
-   * `0`: BEGINNER,
-   * `1`: BASIC,
-   * `2`: DIFFICULT,
-   * `3`: EXPERT,
-   * `4`: CHALLENGE
-   */
-  difficulty: 0 | 1 | 2 | 3 | 4
-  level: number
-  /** Normal arrow count. (Jump = 1 count) */
-  notes: number
-  /** Freeze Arrow count. */
-  freezeArrow: number
-  /** Shock Arrow count. */
-  shockArrow: number
-  /** Groove Radar STREAM */
-  stream: number
-  /** Groove Radar VOLTAGE */
-  voltage: number
-  /** Groove Radar AIR */
-  air: number
-  /** Groove Radar FREEZE */
-  freeze: number
-  /** Groove Radar CHAOS */
-  chaos: number
 }
 
 /**
