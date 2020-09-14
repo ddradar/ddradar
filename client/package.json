@@ -20,7 +20,7 @@
     "marked": "^1.1.1",
     "nuxt": "^2.14.5",
     "nuxt-buefy": "^0.4.3",
-    "nuxt-i18n": "^6.15.0",
+    "nuxt-i18n": "^6.15.1",
     "nuxt-property-decorator": "^2.7.2",
     "nuxt-typed-vuex": "^0.1.21"
   },
@@ -31,12 +31,11 @@
     "@types/jest": "^26.0.13",
     "@types/marked": "^1.1.0",
     "@vue/test-utils": "^1.1.0",
-    "babel-jest": "^25.5.1",
     "eslint-plugin-nuxt": "^1.0.0",
-    "jest": "^25.5.4",
+    "jest": "^26.4.2",
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2",
-    "vue-jest": "^4.0.0-beta.5"
+    "vue-jest": "^4.0.0-rc.0"
   }
 }
