@@ -1,8 +1,4 @@
-import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
-
-type AuthResult = {
-  clientPrincipal: ClientPrincipal | null
-}
+import { getClientPrincipal } from '~/api/auth'
 
 describe('./api/auth.ts', () => {
   describe('getClientPrincipal()', () => {
@@ -16,8 +12,8 @@ describe('./api/auth.ts', () => {
 
       // Assert
       expect(result).toBeNull()
-      expect($http.$get.mock.calls).toHaveLength(1)
-      expect($http.$get.mock.calls[0][0]).toBe('/.auth/me')
+      expect($http.$get).toBeCalledTimes(1)
+      expect($http.$get).toBeCalledWith('/.auth/me')
     })
   })
 })
