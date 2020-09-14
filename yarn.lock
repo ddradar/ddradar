@@ -7693,7 +7693,7 @@ jest@^25.5.4:
     import-local "^3.0.2"
     jest-cli "^25.5.4"
 
-jest@^26.4.1:
+jest@^26.4.2:
   version "26.4.2"
   resolved "https://registry.yarnpkg.com/jest/-/jest-26.4.2.tgz#7e8bfb348ec33f5459adeaffc1a25d5752d9d312"
   integrity sha512-LLCjPrUh98Ik8CzW8LLVnSCfLaiY+wbK53U7VxnFSX7Q+kWC4noVeDvGWIFw0Amfq1lq2VfGm7YHWSLBV62MJw==
@@ -12157,12 +12157,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.9.7:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
-
-typescript@~4.0:
+typescript@^4.0.2, typescript@~4.0:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.2.tgz#7ea7c88777c723c681e33bf7988be5d008d05ac2"
   integrity sha512-e4ERvRV2wb+rRZ/IQeb3jm2VxBsirQLpQhdxplZ2MEzGvDkkMmPglecnNDfSUBivMjP93vRbngYYDQqQ/78bcQ==
