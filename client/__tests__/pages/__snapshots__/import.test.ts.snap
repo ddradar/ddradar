@@ -36,9 +36,8 @@ exports[`pages/import.vue snapshot test { locale: "en" } renders correctly 1`] =
     <div class="field file is-primary">
       <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
             Select file
-          </span></span>
-        <!----><input type="file" accept=".txt">
-      </label>
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
       <!---->
     </div>
     <div class="field">
@@ -95,9 +94,8 @@ exports[`pages/import.vue snapshot test { locale: "en" } renders uploading state
     <div class="field file is-primary">
       <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
             Select file
-          </span></span>
-        <!----><input type="file" accept=".txt">
-      </label>
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
       <!---->
     </div>
     <div class="field">
@@ -150,9 +148,8 @@ exports[`pages/import.vue snapshot test { locale: "ja" } renders correctly 1`] =
     <div class="field file is-primary">
       <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
             ファイルを選択
-          </span></span>
-        <!----><input type="file" accept=".txt">
-      </label>
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
       <!---->
     </div>
     <div class="field">
@@ -209,9 +206,8 @@ exports[`pages/import.vue snapshot test { locale: "ja" } renders uploading state
     <div class="field file is-primary">
       <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
             ファイルを選択
-          </span></span>
-        <!----><input type="file" accept=".txt">
-      </label>
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
       <!---->
     </div>
     <div class="field">

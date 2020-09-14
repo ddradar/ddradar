@@ -59,10 +59,8 @@
               {{ file ? file.name : $t('upload') }}
             </span>
           </span>
-          <span v-if="file" class="file-name" @click="file = null">
-            <b-icon icon="window-close" />
-          </span>
         </b-upload>
+        <b-button v-if="file" icon-left="window-close" @click="file = null" />
       </b-field>
       <b-field>
         <b-button
