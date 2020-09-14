@@ -1,5 +1,6 @@
 /** @type {import('@jest/types/build/Config').InitialOptions} */
 module.exports = {
+  displayName: 'Functions',
   automock: false,
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],

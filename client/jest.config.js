@@ -1,5 +1,6 @@
 /** @type {import('@jest/types/build/Config').InitialOptions} */
 module.exports = {
+  displayName: 'Client',
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
     '^vue$': 'vue/dist/vue.common.js',
