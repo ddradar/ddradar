@@ -10,7 +10,7 @@
 
       <template v-slot:start>
         <b-navbar-item tag="nuxt-link" to="/users">
-          ユーザーを探す
+          {{ $t('menu.user') }}
         </b-navbar-item>
         <b-navbar-dropdown
           v-for="m in menuList"
@@ -31,7 +31,7 @@
         </b-navbar-dropdown>
         <b-navbar-dropdown
           class="is-hidden-touch"
-          label="曲名"
+          :label="$t('menu.name')"
           hoverable
           collapsible
         >
@@ -50,6 +50,24 @@
       </template>
 
       <template v-slot:end>
+        <b-navbar-dropdown right collapsible>
+          <template>
+            <b-navbar-item
+              v-for="locale in availableLocales"
+              :key="locale.code"
+              @click="$i18n.setLocale(locale.code)"
+            >
+              <flag :iso="locale.flag" :title="locale.name" />
+            </b-navbar-item>
+          </template>
+          <template v-slot:label>
+            <flag
+              v-if="selectedLocale"
+              :iso="selectedLocale.flag"
+              :title="selectedLocale.name"
+            />
+          </template>
+        </b-navbar-dropdown>
         <b-navbar-dropdown
           v-if="$accessor.isLoggedIn"
           :label="$accessor.name"
@@ -64,15 +82,15 @@
                 tag="nuxt-link"
                 :to="userPage"
               >
-                マイページ
+                {{ $t('menu.mypage') }}
               </b-button>
               <b-button type="is-warning" tag="a" href="/.auth/logout">
-                ログアウト
+                {{ $t('menu.logout') }}
               </b-button>
             </div>
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-dropdown v-else label="ログイン" hoverable right>
+        <b-navbar-dropdown v-else :label="$t('menu.login')" hoverable right>
           <b-navbar-item tag="div">
             <div class="buttons">
               <b-button
@@ -81,7 +99,7 @@
                 tag="a"
                 :href="`/.auth/login/twitter?post_login_redirect_uri=${$route.path}`"
               >
-                Twitterでログイン
+                {{ $t('login.twitter') }}
               </b-button>
               <b-button
                 icon-left="github"
@@ -89,7 +107,7 @@
                 tag="a"
                 :href="`/.auth/login/github?post_login_redirect_uri=${$route.path}`"
               >
-                GitHubでログイン
+                {{ $t('login.github') }}
               </b-button>
             </div>
           </b-navbar-item>
@@ -104,28 +122,84 @@
 
     <footer class="footer">
       <div class="content has-text-centered">
-        <p>
-          不具合を発見した、または新機能の要望がある場合には、
-          <a href="https://twitter.com/nogic1008" target="_blank">
-            作者のTwitter
-          </a>
-          または
-          <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
-            Githubのissue
-          </a>
-          にてご報告ください。
-        </p>
+        <i18n path="footer.text" tag="p">
+          <template v-slot:twitter>
+            <a href="https://twitter.com/nogic1008" target="_blank">
+              {{ $t('footer.twitter') }}
+            </a>
+          </template>
+          <template v-slot:github>
+            <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
+              {{ $t('footer.github') }}
+            </a>
+          </template>
+        </i18n>
       </div>
     </footer>
   </div>
 </template>
 
+<i18n>
+{
+  "ja": {
+    "menu": {
+      "user": "ユーザーを探す",
+      "single": "レベル(SINGLE)",
+      "double": "レベル(DOUBLE)",
+      "series": "バージョン",
+      "course": "コースデータ",
+      "nonstop": "NONSTOP({series})",
+      "grade": "段位認定({series})",
+      "name": "曲名",
+      "mypage": "マイページ",
+      "logout": "ログアウト",
+      "login": "ログイン"
+    },
+    "login": {
+      "twitter": "Twitterでログイン",
+      "github": "GitHubでログイン"
+    },
+    "footer": {
+      "text": "不具合を発見した、または新機能の要望がある場合には、{twitter}または{github}にてご報告ください。",
+      "twitter": "作者のTwitter",
+      "github": "Githubのissue"
+    }
+  },
+  "en": {
+    "menu": {
+      "user": "Find User",
+      "single": "Lv(SINGLE)",
+      "double": "Lv(DOUBLE)",
+      "series": "Version",
+      "course": "Courses",
+      "nonstop": "NONSTOP({series})",
+      "grade": "GRADE({series})",
+      "name": "Name",
+      "mypage": "MyPage",
+      "logout": "Logout",
+      "login": "Login"
+    },
+    "login": {
+      "twitter": "Login via Twitter",
+      "github": "Login via GitHub"
+    },
+    "footer": {
+      "text": "Did you find a bug or have an idea? Please report on {twitter} or {github}.",
+      "twitter": "Twitter",
+      "github": "GitHub"
+    }
+  }
+}
+</i18n>
+
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
+import Flag from '~/components/pages/Flag.vue'
+import { Locale } from '~/types/locale'
 
-@Component({ fetchOnServer: false })
+@Component({ components: { Flag }, fetchOnServer: false })
 export default class DefaultLayout extends Vue {
   get userPage() {
     return `/users/${this.$accessor.user?.id}`
@@ -134,36 +208,40 @@ export default class DefaultLayout extends Vue {
   get menuList() {
     return [
       {
-        label: 'レベル(SINGLE)',
+        label: this.$t('menu.single'),
         items: [...Array(19).keys()].map(i => ({
           name: `LEVEL ${i + 1}`,
           to: `/single/${i + 1}`,
         })),
       },
       {
-        label: 'レベル(DOUBLE)',
+        label: this.$t('menu.double'),
         items: [...Array(19).keys()].map(i => ({
           name: `LEVEL ${i + 1}`,
           to: `/double/${i + 1}`,
         })),
       },
       {
-        label: 'バージョン',
+        label: this.$t('menu.series'),
         items: SeriesList.map((name, i) => ({
           name,
           to: `/series/${i}`,
         })).reverse(),
       },
       {
-        label: 'コースデータ',
+        label: this.$t('menu.course'),
         items: [16, 17]
           .map(i => [
             {
-              name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+              name: this.$t('menu.nonstop', {
+                series: shortenSeriesName(SeriesList[i]),
+              }),
               to: `/nonstop/${i}`,
             },
             {
-              name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+              name: this.$t('menu.grade', {
+                series: shortenSeriesName(SeriesList[i]),
+              }),
               to: `/grade/${i}`,
             },
           ])
@@ -174,6 +252,18 @@ export default class DefaultLayout extends Vue {
 
   get nameIndexList() {
     return NameIndexList
+  }
+
+  get selectedLocale() {
+    return this.$i18n.locales?.find(
+      i => typeof i === 'object' && i.code === this.$i18n.locale
+    ) as Locale
+  }
+
+  get availableLocales() {
+    return this.$i18n.locales?.filter(
+      i => typeof i === 'object' && i.code !== this.$i18n.locale
+    ) as Locale[]
   }
 
   /** Get Login user info */

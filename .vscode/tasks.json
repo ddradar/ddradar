@@ -25,15 +25,6 @@
       }
     },
     {
-      "label": "API: Install Dependencies (Production)",
-      "type": "shell",
-      "command": "yarn",
-      "args": ["--production"],
-      "options": {
-        "cwd": "${workspaceFolder}/api"
-      }
-    },
-    {
       "label": "API: Install Dependencies",
       "type": "shell",
       "command": "yarn",
@@ -68,6 +59,47 @@
       "command": "yarn",
       "options": {
         "cwd": "${workspaceFolder}/client"
+      }
+    },
+    {
+      "label": "Functions: Launch",
+      "type": "func",
+      "command": "start --cors http://localhost:3000/",
+      "problemMatcher": "$func-watch",
+      "isBackground": true,
+      "dependsOn": "Functions: Build",
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
+      }
+    },
+    {
+      "label": "Functions: Build",
+      "type": "shell",
+      "group": "build",
+      "command": "yarn",
+      "args": ["build"],
+      "dependsOn": "Functions: Install Dependencies",
+      "problemMatcher": "$tsc",
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
+      }
+    },
+    {
+      "label": "Functions: Install Dependencies (Production)",
+      "type": "shell",
+      "command": "yarn",
+      "args": ["--production"],
+      "dependsOn": "Functions: Build",
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
+      }
+    },
+    {
+      "label": "Functions: Install Dependencies",
+      "type": "shell",
+      "command": "yarn",
+      "options": {
+        "cwd": "${workspaceFolder}/functions"
       }
     }
   ]

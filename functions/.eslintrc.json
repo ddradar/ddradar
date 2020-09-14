@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": ["../.eslintrc.json"],
+  "settings": {
+    "node": {
+      "allowModules": ["@azure/functions", "jest-fetch-mock"],
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "node/no-unpublished-import": "off"
+  }
+}

@@ -1,48 +1,40 @@
 <template>
   <section class="section">
     <b-message v-if="isNewUser" type="is-danger" has-icon>
-      ユーザー登録は、まだ完了していません。引き続き、以下の情報を入力してください。
+      {{ $t('newUser') }}
     </b-message>
-    <h1 class="title">ユーザー設定</h1>
+    <h1 class="title">{{ $t('title') }}</h1>
 
     <b-field :type="type" :message="message">
       <template slot="label">
-        ID
-        <b-tooltip
-          type="is-dark"
-          position="is-right"
-          label="登録後の変更はできません。"
-        >
+        {{ $t('field.id') }}
+        <b-tooltip type="is-dark" position="is-right" :label="$t('text.id')">
           <b-icon size="is-small" icon="help-circle-outline" />
         </b-tooltip>
       </template>
       <b-input
         v-model="id"
-        placeholder="半角英数字, ハイフン, アンダーバー"
+        :placeholder="$t('placeholder.id')"
         :disabled="!isNewUser"
         :loading="loading"
         @blur="checkId()"
       />
     </b-field>
 
-    <b-field label="表示名">
+    <b-field :label="$t('field.name')">
       <b-input v-model="name" required />
     </b-field>
 
     <b-field>
       <template slot="label">
-        所属地域
-        <b-tooltip
-          type="is-dark"
-          position="is-right"
-          label="登録後の変更はできません。"
-        >
+        {{ $t('field.area') }}
+        <b-tooltip type="is-dark" position="is-right" :label="$t('text.area')">
           <b-icon size="is-small" icon="help-circle-outline" />
         </b-tooltip>
       </template>
       <b-select
         v-model.number="area"
-        placeholder="Select"
+        :placeholder="$t('placeholder.area')"
         :disabled="!isNewUser"
       >
         <option v-for="area in areaOptions" :key="area.key" :value="area.key">
@@ -51,10 +43,10 @@
       </b-select>
     </b-field>
 
-    <b-field label="DDR CODE(任意)">
+    <b-field :label="$t('field.ddrCode')">
       <b-input
         v-model.number="code"
-        placeholder="10000000"
+        :placeholder="$t('placeholder.ddrCode')"
         minlength="8"
         maxlength="8"
         pattern="^\d{8}$"
@@ -62,30 +54,110 @@
     </b-field>
 
     <b-field grouped group-multiline>
-      <b-switch v-model="isPublic">公開する</b-switch>
+      <b-switch v-model="isPublic">{{ $t('field.isPublic') }}</b-switch>
       <div class="help">
         <p v-if="isPublic">
-          ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。<br />
-          これから登録するスコアはランキングに自動登録され、一般公開されます。
+          {{ $t('text.isPublic.public_0') }}<br />
+          {{ $t('text.isPublic.public_1') }}
         </p>
         <p v-else>
-          ユーザー検索に表示されず、ユーザーページはあなたしか閲覧できません。<br />
-          これから登録するスコアは非公開となります。
+          {{ $t('text.isPublic.private_0') }}<br />
+          {{ $t('text.isPublic.private_1') }}
         </p>
         <p class="has-text-weight-bold has-text-danger">
           <b-icon size="is-small" icon="alert" />
-          ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
+          {{ $t('text.isPublic.caution') }}
         </p>
       </div>
     </b-field>
 
     <b-field>
       <b-button type="is-success" :disabled="hasError" @click="save()">
-        保存
+        {{ $t('save') }}
       </b-button>
     </b-field>
   </section>
 </template>
+
+<i18n src="../i18n/area.json"></i18n>
+<i18n>
+{
+  "ja": {
+    "newUser": "ユーザー登録は、まだ完了していません。引き続き、以下の情報を入力してください。",
+    "title": "ユーザー設定",
+    "field": {
+      "id": "ID",
+      "name": "表示名",
+      "area": "所属地域",
+      "ddrCode": "DDR CODE(任意)",
+      "isPublic": "公開する"
+    },
+    "text": {
+      "id": "登録後の変更はできません。",
+      "area": "登録後の変更はできません。",
+      "isPublic": {
+        "public_0": "ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。",
+        "public_1": "これから登録するスコアはランキングに自動登録され、一般公開されます。",
+        "private_0": "ユーザー検索に表示されず、ユーザーページはあなたしか閲覧できません。",
+        "private_1": "これから登録するスコアは非公開となります。",
+        "caution": "ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。"
+      }
+    },
+    "placeholder": {
+      "id": "ID",
+      "area": "Select",
+      "ddrCode": "10000000"
+    },
+    "message": {
+      "id": {
+        "required": "ユーザーIDは必須です",
+        "invalid": "ユーザーIDは半角英数字, ハイフン, アンダーバーのみ使用可能です",
+        "duplicate": "ユーザーIDはすでに使われています",
+        "available": "ユーザーIDは使用可能です"
+      },
+      "success": "保存しました"
+    },
+    "save": "保存"
+  },
+  "en": {
+    "newUser": "User registration has not been completed yet. Please continue to enter the following information.",
+    "title": "User Settings",
+    "field": {
+      "id": "ID",
+      "name": "Display Name",
+      "area": "Area",
+      "ddrCode": "DDR CODE(optional)",
+      "isPublic": "Public"
+    },
+    "text": {
+      "id": "can not be changed after registration.",
+      "area": "can not be changed after registration.",
+      "isPublic": {
+        "public_0": "You will be shown in the user search and your page will be visible to anyone.",
+        "public_1": "Registered scores will be public.",
+        "private_0": "You are not shown in the user search and the user page is only visible to you.",
+        "private_1": "Registered scores will be private.",
+        "caution": "Note: Even if you turn off, the scores so far will not be private."
+      }
+    },
+    "placeholder": {
+      "id": "ID",
+      "area": "Select",
+      "ddrCode": "10000000"
+    },
+    "message": {
+      "id": {
+        "required": "ID is required",
+        "invalid": "Only alphanumeric characters, hyphens, and underbars can be used for ID",
+        "duplicate": "User ID is already in use",
+        "available": "This ID is available"
+      },
+      "success": "Saved"
+    },
+    "save": "Save"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Component, Vue } from 'nuxt-property-decorator'
@@ -105,10 +177,12 @@ export default class ProfilePage extends Vue {
   type: '' | 'is-success' | 'is-danger' = ''
   message = ''
 
-  readonly areaOptions = Object.entries(areaList).map(v => ({
-    key: v[0],
-    value: v[1],
-  }))
+  get areaOptions() {
+    return Object.keys(areaList).map(v => ({
+      key: v,
+      value: this.$t(`area.${v}`),
+    }))
+  }
 
   get isNewUser() {
     return !this.$accessor.user
@@ -120,7 +194,7 @@ export default class ProfilePage extends Vue {
       !/^[-a-z0-9_]+$/.test(this.id) ||
       !this.name ||
       !Object.keys(areaList).includes(`${this.area}`) ||
-      (this.code &&
+      (!!this.code &&
         (!Number.isInteger(this.code) ||
           this.code < 10000000 ||
           this.code > 99999999))
@@ -138,18 +212,17 @@ export default class ProfilePage extends Vue {
   }
 
   async checkId() {
-    // Requred check
+    // Required check
     if (!this.id) {
       this.type = 'is-danger'
-      this.message = 'ユーザーIDは必須です'
+      this.message = this.$t('message.id.required').toString()
       return
     }
 
     // Pattern check
     if (!/^[-a-z0-9_]+$/.test(this.id)) {
       this.type = 'is-danger'
-      this.message =
-        'ユーザーIDは半角英数字, ハイフン, アンダーバーのみ使用可能です'
+      this.message = this.$t('message.id.invalid').toString()
       return
     }
 
@@ -160,10 +233,10 @@ export default class ProfilePage extends Vue {
 
     if (exists) {
       this.type = 'is-danger'
-      this.message = 'ユーザーIDはすでに使われています'
+      this.message = this.$t('message.id.duplicate').toString()
     } else {
       this.type = 'is-success'
-      this.message = 'ユーザーIDは使用可能です'
+      this.message = this.$t('message.id.available').toString()
     }
   }
 
@@ -177,7 +250,7 @@ export default class ProfilePage extends Vue {
     if (this.code) user.code = this.code
     try {
       await this.$accessor.saveUser(user)
-      popup.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, this.$t('message.success').toString())
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
     }

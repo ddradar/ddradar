@@ -26,7 +26,7 @@ type ChartInfo = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level' | 'notes' | 'freezeArrow' | 'shockArrow'
 > &
-  Pick<SongSchema, 'name'>
+  Pick<SongSchema, 'id' | 'name'>
 
 /** Add or update score that match the specified chart. */
 export default async function (
@@ -41,13 +41,12 @@ export default async function (
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { status: 401 }
 
-  const songId: string = context.bindingData.songId
-
-  // In Azure Functions, this function will only be invoked if a valid route.
-  // So this check is only used to unit tests.
-  if (!/^[01689bdiloqDIOPQ]{32}$/.test(songId)) {
-    return { status: 404 }
-  }
+  // if param is 0, passed object. (bug?)
+  const songId: string =
+    typeof context.bindingData.songId === 'object'
+      ? '0'
+      : context.bindingData.songId
+  const isSkillAttackId = /^\d{1,3}$/.test(songId)
 
   if (!isValidBody(req.body)) {
     return { status: 400, body: 'body is not Score[]' }
@@ -66,10 +65,12 @@ export default async function (
   const { resources: charts } = await container.items
     .query<ChartInfo>({
       query:
-        'SELECT s.name, c.playStyle, c.difficulty, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
+        'SELECT s.id, s.name, c.playStyle, c.difficulty, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
         'FROM s JOIN c IN s.charts ' +
-        'WHERE s.id = @songId',
-      parameters: [{ name: '@songId', value: songId }],
+        `WHERE s.${isSkillAttackId ? 'skillAttackId' : 'id'} = @id`,
+      parameters: [
+        { name: '@id', value: isSkillAttackId ? parseInt(songId, 10) : songId },
+      ],
     })
     .fetchAll()
   if (charts.length === 0) return { status: 404 }
@@ -89,10 +90,9 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const clearLamp = score.topScore === 1000000 ? 7 : 2
       const topScore: Score = {
         score: score.topScore,
-        clearLamp,
+        clearLamp: 2,
         rank: getDanceLevel(score.topScore),
       }
       topScores.push(
@@ -149,11 +149,11 @@ export default async function (
     score: Readonly<Score>
   ) {
     const scoreSchema: ScoreSchema = {
-      id: `${user.id}-${songId}-${chart.playStyle}-${chart.difficulty}`,
+      id: `${user.id}-${chart.id}-${chart.playStyle}-${chart.difficulty}`,
       userId: user.id,
       userName: user.name,
       isPublic: user.isPublic,
-      songId,
+      songId: chart.id,
       songName: chart.name,
       playStyle: chart.playStyle,
       difficulty: chart.difficulty,

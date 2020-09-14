@@ -11,22 +11,24 @@
         detail-key="id"
         show-detail-icon
       >
-        <template v-slot:default="props">
-          <b-table-column field="icon" label="Icon">
-            <b-button :type="props.row.type" :icon-left="props.row.icon" />
-          </b-table-column>
-          <b-table-column field="title" label="Title">
-            {{ props.row.title }}
-          </b-table-column>
-          <b-table-column field="timeStamp" label="Date">
-            {{ props.row.date }}
-          </b-table-column>
-          <b-table-column :visible="$accessor.isAdmin" label="Edit">
-            <nuxt-link :to="`/admin/notification/${props.row.id}`">
-              <b-icon icon="pencil-box-outline" />
-            </nuxt-link>
-          </b-table-column>
-        </template>
+        <b-table-column v-slot="props" field="icon">
+          <b-button :type="props.row.type" :icon-left="props.row.icon" />
+        </b-table-column>
+        <b-table-column v-slot="props" field="title" :label="$t('title')">
+          {{ props.row.title }}
+        </b-table-column>
+        <b-table-column v-slot="props" field="timeStamp" :label="$t('date')">
+          {{ props.row.date }}
+        </b-table-column>
+        <b-table-column
+          v-slot="props"
+          :visible="$accessor.isAdmin"
+          label="Edit"
+        >
+          <nuxt-link :to="`/admin/notification/${props.row.id}`">
+            <b-icon icon="pencil-box-outline" />
+          </nuxt-link>
+        </b-table-column>
 
         <template v-slot:detail="props">
           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -41,7 +43,7 @@
           </section>
           <section v-else class="section">
             <div class="content has-text-grey has-text-centered">
-              <p>Nothing here.</p>
+              <p>{{ $t('noData') }}</p>
             </div>
           </section>
         </template>
@@ -50,16 +52,30 @@
   </section>
 </template>
 
+<i18n>
+{
+  "ja": {
+    "title": "タイトル",
+    "date": "投稿日時",
+    "noData": "データがありません"
+  },
+  "en": {
+    "title": "Title",
+    "date": "Date",
+    "noData": "No data"
+  }
+}
+</i18n>
+
 <script lang="ts">
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getNotificationList, Notification } from '~/api/notification'
-import TopMessage from '~/components/pages/TopMessage.vue'
 import { unixTimeToString } from '~/utils/date'
 import * as popup from '~/utils/popup'
 
-@Component({ components: { TopMessage }, fetchOnServer: false })
+@Component({ fetchOnServer: false })
 export default class UserListPage extends Vue {
   messages: NotificationDetail[] = []
 

@@ -1,357 +1,104 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/double/_level.vue renders loaded 1`] = `
+exports[`/double/_level.vue snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DOUBLE 19</h1>
   <div class="buttons"><a type="button" class="button is-info">
-      <!----> <span>
+      <!----><span>
       1
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       2
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       3
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       4
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       5
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       6
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       7
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       8
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       9
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       10
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       11
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       12
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       13
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       14
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       15
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       16
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       17
     </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       18
     </span>
-      <!----></a><button type="button" to="/double/19" disabled="disabled" class="button is-info is-outlined">
-      <!----> <span>
+      <!---->
+    </a><button type="button" to="/double/19" disabled="disabled" class="button is-info is-outlined">
+      <!----><span>
       19
     </span>
-      <!----></button></div>
-  <div class="b-table">
-    <!---->
-    <!---->
-    <div class="table-wrapper">
-      <table class="table is-striped">
-        <!---->
-        <tbody>
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              2014
-            </td>
-            <td data-label="Name" class=""><a>
-                EGOISM 440
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              A
-            </td>
-            <td data-label="Name" class=""><a>
-                ENDYMION
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              A
-            </td>
-            <td data-label="Name" class=""><a>
-                MAX 360
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              2014
-            </td>
-            <td data-label="Name" class=""><a>
-                Over The “Period”
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              X3 VS 2ndMIX
-            </td>
-            <td data-label="Name" class=""><a>
-                PARANOiA Revolution
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-          <tr draggable="false" class="">
-            <!---->
-            <!---->
-            <td data-label="Series" class="">
-              X2
-            </td>
-            <td data-label="Name" class=""><a>
-                Valkyrie dimension
-              </a></td>
-            <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">
-        CHALLENGE
-      </span>
-              <!----></span></td>
-            <td data-label="Lv" class="has-text-right">
-              19
-            </td>
-            <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-            <!---->
-          </tr>
-          <!---->
-          <!---->
-        </tbody>
-        <!---->
-      </table>
-    </div>
-    <div class="level">
-      <div class="level-left"></div>
-      <div class="level-right">
-        <div class="level-item">
-          <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
-            <ul class="pagination-list">
-              <!---->
-              <!---->
-              <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
-              <!---->
-              <!---->
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-`;
-
-exports[`/double/_level.vue renders loading 1`] = `
-<section class="section">
-  <h1 class="title">DOUBLE 19</h1>
-  <div class="buttons"><a type="button" class="button is-info">
-      <!----> <span>
-      1
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      2
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      3
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      4
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      5
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      6
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      7
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      8
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      9
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      10
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      11
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      12
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      13
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      14
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      15
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      16
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      17
-    </span>
-      <!----></a><a type="button" class="button is-info">
-      <!----> <span>
-      18
-    </span>
-      <!----></a><button type="button" to="/double/19" disabled="disabled" class="button is-info is-outlined">
-      <!----> <span>
-      19
-    </span>
-      <!----></button></div>
-  <div class="b-table is-loading">
-    <!---->
-    <!---->
-    <div class="table-wrapper">
-      <table class="table is-striped">
-        <!---->
-        <tbody>
-          <tr class="is-empty">
-            <td colspan="0">
-              <section class="section">
-                <div class="content has-text-grey has-text-centered">
-                  <p>Nothing here.</p>
-                </div>
-              </section>
-            </td>
-          </tr>
-        </tbody>
-        <!---->
-      </table>
-    </div>
-    <div class="level">
-      <div class="level-left"></div>
-      <div class="level-right">
-        <div class="level-item">
-          <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
-            <ul class="pagination-list">
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </div>
+      <!---->
+    </button></div>
+  <chartlist-stub charts=""></chartlist-stub>
 </section>
 `;

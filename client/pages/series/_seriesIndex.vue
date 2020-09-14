@@ -28,7 +28,7 @@ import {
   shortenSeriesName,
   SongListData,
 } from '~/api/song'
-import SongList from '~/components/shared/SongList.vue'
+import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
 export default class SongBySeriesPage extends Vue {

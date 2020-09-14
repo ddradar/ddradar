@@ -1,5 +1,6 @@
 /** @type {import('@jest/types/build/Config').InitialOptions} */
 module.exports = {
+  displayName: 'API',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',

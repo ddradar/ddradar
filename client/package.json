@@ -1,37 +1,41 @@
 {
   "name": "@ddradar/client",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "Client side of DDRadar",
   "private": true,
+  "engines": {
+    "node": ">=10.0.0"
+  },
   "scripts": {
     "dev": "nuxt-ts",
-    "build": "nuxt-ts build && nuxt-ts export",
+    "build": "nuxt-ts generate",
     "test": "jest"
   },
   "dependencies": {
-    "@microsoft/applicationinsights-web": "^2.5.7",
-    "@nuxt/http": "^0.5.11",
-    "@nuxt/typescript-runtime": "^1.0.0",
+    "@microsoft/applicationinsights-web": "^2.5.8",
+    "@nuxt/http": "^0.5.12",
+    "@nuxt/typescript-runtime": "^2.0.0",
     "@nuxtjs/pwa": "^3.0.2",
+    "flag-icon-css": "^3.5.0",
     "marked": "^1.1.1",
-    "nuxt": "^2.14.4",
-    "nuxt-buefy": "^0.3.31",
+    "nuxt": "^2.14.5",
+    "nuxt-buefy": "^0.4.3",
+    "nuxt-i18n": "^6.15.1",
     "nuxt-property-decorator": "^2.7.2",
-    "nuxt-typed-vuex": "^0.1.20"
+    "nuxt-typed-vuex": "^0.1.21"
   },
   "devDependencies": {
-    "@nuxt/types": "^2.14.4",
-    "@nuxt/typescript-build": "^2.0.2",
+    "@nuxt/types": "^2.14.5",
+    "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
-    "@types/jest": "^26.0.10",
+    "@types/jest": "^26.0.13",
     "@types/marked": "^1.1.0",
-    "@vue/test-utils": "^1.0.4",
-    "babel-jest": "^25.5.1",
+    "@vue/test-utils": "^1.1.0",
     "eslint-plugin-nuxt": "^1.0.0",
-    "jest": "^25.5.4",
+    "jest": "^26.4.2",
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.1",
-    "vue-jest": "^4.0.0-beta.5"
+    "sass-loader": "^10.0.2",
+    "vue-jest": "^4.0.0-rc.0"
   }
 }

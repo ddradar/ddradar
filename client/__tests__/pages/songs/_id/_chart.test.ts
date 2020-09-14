@@ -1,4 +1,4 @@
-import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
+import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
 import type { SongInfo } from '~/api/song'
@@ -113,49 +113,22 @@ const song: SongInfo = {
 
 describe('pages/songs/_id/_chart.vue', () => {
   describe('snapshot test', () => {
-    test('not renders score button if guest', () => {
-      const $accessor = { isAdmin: false, isLoggedIn: false }
-      const wrapper = mount(SongPage, {
-        localVue,
-        mocks: { $accessor },
-        data: () => {
-          return {
-            song,
-            playStyle: 1,
-            difficulty: 0,
-          }
-        },
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
     test('renders correctly', () => {
       const $accessor = { isAdmin: false, isLoggedIn: true }
-      const wrapper = mount(SongPage, {
+      const wrapper = shallowMount(SongPage, {
         localVue,
         mocks: { $accessor },
-        data: () => {
-          return {
-            song,
-            playStyle: 1,
-            difficulty: 0,
-          }
-        },
+        data: () => ({ song, playStyle: 1, difficulty: 0 }),
       })
       expect(wrapper).toMatchSnapshot()
     })
     test('renders "Edit" button if admin', () => {
       const $accessor = { isAdmin: true, isLoggedIn: true }
-      const wrapper = mount(SongPage, {
+      const wrapper = shallowMount(SongPage, {
         localVue,
         mocks: { $accessor },
         stubs: { NuxtLink: RouterLinkStub },
-        data: () => {
-          return {
-            song,
-            playStyle: 1,
-            difficulty: 0,
-          }
-        },
+        data: () => ({ song, playStyle: 1, difficulty: 0 }),
       })
       expect(wrapper).toMatchSnapshot()
     })

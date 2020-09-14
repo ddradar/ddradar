@@ -13,7 +13,7 @@
     "paths": {
       "~/*": ["./*"]
     },
-    "types": ["jest", "node", "@nuxt/http", "@nuxt/types"]
+    "types": ["jest", "node", "@nuxt/http", "@nuxt/types", "nuxt-i18n"]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }

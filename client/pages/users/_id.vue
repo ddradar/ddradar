@@ -1,8 +1,6 @@
 <template>
   <section class="section">
-    <template v-if="!user && !loading">
-      ユーザーは存在しないか、非公開に設定されています。
-    </template>
+    <template v-if="!user && !$fetchState.pending">{{ $t('empty') }}</template>
     <template v-else>
       <h1 v-if="user" class="title">{{ user.name }}</h1>
       <b-skeleton v-else class="title" animated />
@@ -17,7 +15,7 @@
           tag="nuxt-link"
           to="/import"
         >
-          スコアのインポート
+          {{ $t('import') }}
         </b-button>
         <b-button
           icon-left="account-cog"
@@ -25,26 +23,41 @@
           tag="nuxt-link"
           to="/profile"
         >
-          設定
+          {{ $t('settings') }}
         </b-button>
       </div>
     </template>
   </section>
 </template>
 
+<i18n src="../../i18n/area.json"></i18n>
+<i18n>
+{
+  "ja": {
+    "empty": "ユーザーが存在しないか、非公開に設定されています。",
+    "import": "スコアのインポート",
+    "settings": "設定"
+  },
+  "en": {
+    "empty": "User does not exist or is private",
+    "import": "Import Scores",
+    "settings": "Settings"
+  }
+}
+</i18n>
+
 <script lang="ts">
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, getUserInfo, UserListData } from '~/api/user'
+import { getUserInfo, UserListData } from '~/api/user'
 
 @Component({ fetchOnServer: false })
-export default class UserDetailPage extends Vue {
+export default class UserPage extends Vue {
   user: UserListData | null = null
-  loading = true
 
   get areaName() {
-    return this.user ? areaList[this.user.area] : ''
+    return this.user ? this.$t(`area.${this.user.area}`) : ''
   }
 
   get ddrCode() {
@@ -55,7 +68,7 @@ export default class UserDetailPage extends Vue {
 
   get isSelfPage() {
     const loginId = this.$accessor.user?.id
-    return this.user && this.user.id === loginId
+    return !!this.user && this.user.id === loginId
   }
 
   /** id expected [a-z], [0-9], [-], [_] */
@@ -63,16 +76,14 @@ export default class UserDetailPage extends Vue {
     return /^[-a-z0-9_]+$/.test(params.id)
   }
 
-  /** Get User info from API */
+  /** Fetch User info from API */
   async fetch() {
     const id = this.$route.params.id
     try {
-      const user = await getUserInfo(this.$http, id)
-      this.user = user
+      this.user = await getUserInfo(this.$http, id)
     } catch {
       this.user = null
     }
-    this.loading = false
   }
 }
 </script>

@@ -1,6 +1,6 @@
 {
   "name": "ddradar",
-  "version": "0.8.2",
+  "version": "0.9.0",
   "description": "DDR Score Tracker",
   "repository": "https://github.com/ddradar/ddradar.git",
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
@@ -14,6 +14,7 @@
     "build": "run-p build:*",
     "build:api": "yarn workspace @ddradar/api build",
     "build:client": "yarn workspace @ddradar/client build",
+    "build:func": "yarn --cwd ./functions/ build",
     "fix": "run-p fix:*",
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
@@ -22,7 +23,8 @@
     "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml}\"",
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
-    "test:client": "yarn workspace @ddradar/client test"
+    "test:client": "yarn workspace @ddradar/client test",
+    "test:func": "yarn --cwd ./functions/ test"
   },
   "husky": {
     "hooks": {
@@ -38,16 +40,16 @@
     "yarn": "^1.22.4"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^3.10.1",
-    "@typescript-eslint/parser": "^3.10.1",
-    "eslint": "^7.7.0",
+    "@typescript-eslint/eslint-plugin": "^4.1.0",
+    "@typescript-eslint/parser": "^4.1.0",
+    "eslint": "^7.9.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-simple-import-sort": "^5.0.3",
-    "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
+    "husky": "^4.3.0",
+    "lint-staged": "^10.3.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.1.1"
   }

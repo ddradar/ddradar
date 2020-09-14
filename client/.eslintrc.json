@@ -16,7 +16,7 @@
   "plugins": ["jest", "prettier", "simple-import-sort"],
   "settings": {
     "node": {
-      "allowModules": ["buefy", "@vue/test-utils"],
+      "allowModules": ["buefy", "js-yaml", "@vue/test-utils"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
   },
@@ -25,6 +25,15 @@
     "sort-imports": "off",
     "import/no-unresolved": "off",
     "import/order": "off",
-    "simple-import-sort/sort": "error"
-  }
+    "simple-import-sort/sort": "error",
+    "unicorn/number-literal-case": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": "off"
+      }
+    }
+  ]
 }

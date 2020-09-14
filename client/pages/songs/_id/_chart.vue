@@ -41,7 +41,7 @@ import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getSongInfo, SongInfo } from '~/api/song'
-import ChartDetail from '~/components/pages/ChartDetail.vue'
+import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
 
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {

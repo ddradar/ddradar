@@ -1,12 +1,861 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/users/index.vue renders correctly 1`] = `
+exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 1`] = `
 <section class="section">
+  <h1 class="title">Search User</h1>
   <section>
-    <div class="field is-grouped-multiline is-grouped">
+    <div class="field">
       <!---->
-      <div class="field"><label class="label">所属地域</label>
-        <div class="control"><span class="select"><select><!----> <option value="0">
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
+            undefined
+          </option><option value="1">
+            Hokkaido
+          </option><option value="2">
+            Aomori
+          </option><option value="3">
+            Iwate
+          </option><option value="4">
+            Miyagi
+          </option><option value="5">
+            Akita
+          </option><option value="6">
+            Yamagata
+          </option><option value="7">
+            Fukushima
+          </option><option value="8">
+            Ibaraki
+          </option><option value="9">
+            Tochigi
+          </option><option value="10">
+            Gunma
+          </option><option value="11">
+            Saitama
+          </option><option value="12">
+            Chiba
+          </option><option value="13">
+            Tokyo
+          </option><option value="14">
+            Kanagawa
+          </option><option value="15">
+            Niigata
+          </option><option value="16">
+            Toyama
+          </option><option value="17">
+            Ishikawa
+          </option><option value="18">
+            Gukui
+          </option><option value="19">
+            Yamanashi
+          </option><option value="20">
+            Nagano
+          </option><option value="21">
+            Gifu
+          </option><option value="22">
+            Shizuoka
+          </option><option value="23">
+            Aichi
+          </option><option value="24">
+            Mie
+          </option><option value="25">
+            Shiga
+          </option><option value="26">
+            Kyoto
+          </option><option value="27">
+            Osaka
+          </option><option value="28">
+            Hyogo
+          </option><option value="29">
+            Nara
+          </option><option value="30">
+            Wakayama
+          </option><option value="31">
+            Tottori
+          </option><option value="32">
+            Shimane
+          </option><option value="33">
+            Okayama
+          </option><option value="34">
+            Hiroshima
+          </option><option value="35">
+            Yamaguchi
+          </option><option value="36">
+            Tokushima
+          </option><option value="37">
+            Kagawa
+          </option><option value="38">
+            Ehime
+          </option><option value="39">
+            Kochi
+          </option><option value="40">
+            Fukuoka
+          </option><option value="41">
+            Saga
+          </option><option value="42">
+            Nagasaki
+          </option><option value="43">
+            Kumamoto
+          </option><option value="44">
+            Oita
+          </option><option value="45">
+            Miyazaki
+          </option><option value="46">
+            Kagoshima
+          </option><option value="47">
+            Okinawa
+          </option><option value="48">
+            Hong Kong
+          </option><option value="49">
+            Korea
+          </option><option value="50">
+            Taiwan
+          </option><option value="51">
+            USA
+          </option><option value="52">
+            Europe
+          </option><option value="53">
+            Oversea
+          </option><option value="106">
+            Canada
+          </option><option value="107">
+            Singapore
+          </option><option value="108">
+            Thailand
+          </option><option value="109">
+            Australia
+          </option><option value="110">
+            New Zealand
+          </option><option value="111">
+            United Kingdom
+          </option><option value="112">
+            Italy
+          </option><option value="113">
+            Spain
+          </option><option value="114">
+            Germany
+          </option><option value="115">
+            France
+          </option><option value="116">
+            Portugal
+          </option><option value="117">
+            Indonesia
+          </option><option value="118">
+            Philippines
+          </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        Search
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="is-empty">
+              <td colspan="2">
+                <section class="section">
+                  <div class="content has-text-grey has-text-centered">
+                    <p>Not Found User</p>
+                  </div>
+                </section>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`] = `
+<section class="section">
+  <h1 class="title">Search User</h1>
+  <section>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
+            undefined
+          </option><option value="1">
+            Hokkaido
+          </option><option value="2">
+            Aomori
+          </option><option value="3">
+            Iwate
+          </option><option value="4">
+            Miyagi
+          </option><option value="5">
+            Akita
+          </option><option value="6">
+            Yamagata
+          </option><option value="7">
+            Fukushima
+          </option><option value="8">
+            Ibaraki
+          </option><option value="9">
+            Tochigi
+          </option><option value="10">
+            Gunma
+          </option><option value="11">
+            Saitama
+          </option><option value="12">
+            Chiba
+          </option><option value="13">
+            Tokyo
+          </option><option value="14">
+            Kanagawa
+          </option><option value="15">
+            Niigata
+          </option><option value="16">
+            Toyama
+          </option><option value="17">
+            Ishikawa
+          </option><option value="18">
+            Gukui
+          </option><option value="19">
+            Yamanashi
+          </option><option value="20">
+            Nagano
+          </option><option value="21">
+            Gifu
+          </option><option value="22">
+            Shizuoka
+          </option><option value="23">
+            Aichi
+          </option><option value="24">
+            Mie
+          </option><option value="25">
+            Shiga
+          </option><option value="26">
+            Kyoto
+          </option><option value="27">
+            Osaka
+          </option><option value="28">
+            Hyogo
+          </option><option value="29">
+            Nara
+          </option><option value="30">
+            Wakayama
+          </option><option value="31">
+            Tottori
+          </option><option value="32">
+            Shimane
+          </option><option value="33">
+            Okayama
+          </option><option value="34">
+            Hiroshima
+          </option><option value="35">
+            Yamaguchi
+          </option><option value="36">
+            Tokushima
+          </option><option value="37">
+            Kagawa
+          </option><option value="38">
+            Ehime
+          </option><option value="39">
+            Kochi
+          </option><option value="40">
+            Fukuoka
+          </option><option value="41">
+            Saga
+          </option><option value="42">
+            Nagasaki
+          </option><option value="43">
+            Kumamoto
+          </option><option value="44">
+            Oita
+          </option><option value="45">
+            Miyazaki
+          </option><option value="46">
+            Kagoshima
+          </option><option value="47">
+            Okinawa
+          </option><option value="48">
+            Hong Kong
+          </option><option value="49">
+            Korea
+          </option><option value="50">
+            Taiwan
+          </option><option value="51">
+            USA
+          </option><option value="52">
+            Europe
+          </option><option value="53">
+            Oversea
+          </option><option value="106">
+            Canada
+          </option><option value="107">
+            Singapore
+          </option><option value="108">
+            Thailand
+          </option><option value="109">
+            Australia
+          </option><option value="110">
+            New Zealand
+          </option><option value="111">
+            United Kingdom
+          </option><option value="112">
+            Italy
+          </option><option value="113">
+            Spain
+          </option><option value="114">
+            Germany
+          </option><option value="115">
+            France
+          </option><option value="116">
+            Portugal
+          </option><option value="117">
+            Indonesia
+          </option><option value="118">
+            Philippines
+          </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        Search
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="is-empty">
+              <td colspan="2">
+                <section class="section">
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                </section>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade">
+          <div class="loading-overlay is-active">
+            <div class="loading-background"></div>
+            <div class="loading-icon"></div>
+          </div>
+        </transition-stub>
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 1`] = `
+<section class="section">
+  <h1 class="title">Search User</h1>
+  <section>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">Area</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
+            undefined
+          </option><option value="1">
+            Hokkaido
+          </option><option value="2">
+            Aomori
+          </option><option value="3">
+            Iwate
+          </option><option value="4">
+            Miyagi
+          </option><option value="5">
+            Akita
+          </option><option value="6">
+            Yamagata
+          </option><option value="7">
+            Fukushima
+          </option><option value="8">
+            Ibaraki
+          </option><option value="9">
+            Tochigi
+          </option><option value="10">
+            Gunma
+          </option><option value="11">
+            Saitama
+          </option><option value="12">
+            Chiba
+          </option><option value="13">
+            Tokyo
+          </option><option value="14">
+            Kanagawa
+          </option><option value="15">
+            Niigata
+          </option><option value="16">
+            Toyama
+          </option><option value="17">
+            Ishikawa
+          </option><option value="18">
+            Gukui
+          </option><option value="19">
+            Yamanashi
+          </option><option value="20">
+            Nagano
+          </option><option value="21">
+            Gifu
+          </option><option value="22">
+            Shizuoka
+          </option><option value="23">
+            Aichi
+          </option><option value="24">
+            Mie
+          </option><option value="25">
+            Shiga
+          </option><option value="26">
+            Kyoto
+          </option><option value="27">
+            Osaka
+          </option><option value="28">
+            Hyogo
+          </option><option value="29">
+            Nara
+          </option><option value="30">
+            Wakayama
+          </option><option value="31">
+            Tottori
+          </option><option value="32">
+            Shimane
+          </option><option value="33">
+            Okayama
+          </option><option value="34">
+            Hiroshima
+          </option><option value="35">
+            Yamaguchi
+          </option><option value="36">
+            Tokushima
+          </option><option value="37">
+            Kagawa
+          </option><option value="38">
+            Ehime
+          </option><option value="39">
+            Kochi
+          </option><option value="40">
+            Fukuoka
+          </option><option value="41">
+            Saga
+          </option><option value="42">
+            Nagasaki
+          </option><option value="43">
+            Kumamoto
+          </option><option value="44">
+            Oita
+          </option><option value="45">
+            Miyazaki
+          </option><option value="46">
+            Kagoshima
+          </option><option value="47">
+            Okinawa
+          </option><option value="48">
+            Hong Kong
+          </option><option value="49">
+            Korea
+          </option><option value="50">
+            Taiwan
+          </option><option value="51">
+            USA
+          </option><option value="52">
+            Europe
+          </option><option value="53">
+            Oversea
+          </option><option value="106">
+            Canada
+          </option><option value="107">
+            Singapore
+          </option><option value="108">
+            Thailand
+          </option><option value="109">
+            Australia
+          </option><option value="110">
+            New Zealand
+          </option><option value="111">
+            United Kingdom
+          </option><option value="112">
+            Italy
+          </option><option value="113">
+            Spain
+          </option><option value="114">
+            Germany
+          </option><option value="115">
+            France
+          </option><option value="116">
+            Portugal
+          </option><option value="117">
+            Indonesia
+          </option><option value="118">
+            Philippines
+          </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">Name (partial match)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        Search
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> Area <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 0
+                </a></td>
+              <td data-label="Area" class="">
+                undefined
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 1
+                </a></td>
+              <td data-label="Area" class="">
+                Hokkaido
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 2
+                </a></td>
+              <td data-label="Area" class="">
+                Aomori
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 3
+                </a></td>
+              <td data-label="Area" class="">
+                Iwate
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 4
+                </a></td>
+              <td data-label="Area" class="">
+                Miyagi
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 5
+                </a></td>
+              <td data-label="Area" class="">
+                Akita
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 6
+                </a></td>
+              <td data-label="Area" class="">
+                Yamagata
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 7
+                </a></td>
+              <td data-label="Area" class="">
+                Fukushima
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 8
+                </a></td>
+              <td data-label="Area" class="">
+                Ibaraki
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="Name" class=""><a>
+                  User 9
+                </a></td>
+              <td data-label="Area" class="">
+                Tochigi
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <!---->
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">ユーザーを探す</h1>
+  <section>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
             未指定
           </option><option value="1">
             北海道
@@ -141,34 +990,37 @@ exports[`pages/users/index.vue renders correctly 1`] = `
           </option><option value="118">
             フィリピン
           </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
           <!---->
         </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">登録名(部分一致)</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
-          <!---->
-          <!---->
-          <!---->
-        </div>
-        <!---->
-      </div>
-      <div class="field"><label class="label">DDR CODE</label>
-        <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
-          <!---->
-          <!----> <small class="help counter is-invisible">
-            0 / 8
-          </small></div>
-        <!---->
       </div>
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         検索
       </span>
-        <!----></button>
+        <!---->
+      </button>
       <!---->
     </div>
   </section>
@@ -176,15 +1028,31 @@ exports[`pages/users/index.vue renders correctly 1`] = `
     <div class="b-table">
       <!---->
       <!---->
+      <!---->
+      <!---->
       <div class="table-wrapper">
         <table class="table is-striped">
-          <!---->
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="0">
+              <td colspan="2">
                 <section class="section">
                   <div class="content has-text-grey has-text-centered">
-                    <p>Nothing here.</p>
+                    <p>ユーザーが見つかりません</p>
                   </div>
                 </section>
               </td>
@@ -192,15 +1060,624 @@ exports[`pages/users/index.vue renders correctly 1`] = `
           </tbody>
           <!---->
         </table>
+        <!---->
       </div>
-      <div class="level">
+      <div class="top level">
         <div class="level-left"></div>
         <div class="level-right">
           <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a> <a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
               <ul class="pagination-list">
                 <!---->
                 <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`] = `
+<section class="section">
+  <h1 class="title">ユーザーを探す</h1>
+  <section>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
+            未指定
+          </option><option value="1">
+            北海道
+          </option><option value="2">
+            青森県
+          </option><option value="3">
+            岩手県
+          </option><option value="4">
+            宮城県
+          </option><option value="5">
+            秋田県
+          </option><option value="6">
+            山形県
+          </option><option value="7">
+            福島県
+          </option><option value="8">
+            茨城県
+          </option><option value="9">
+            栃木県
+          </option><option value="10">
+            群馬県
+          </option><option value="11">
+            埼玉県
+          </option><option value="12">
+            千葉県
+          </option><option value="13">
+            東京都
+          </option><option value="14">
+            神奈川県
+          </option><option value="15">
+            新潟県
+          </option><option value="16">
+            富山県
+          </option><option value="17">
+            石川県
+          </option><option value="18">
+            福井県
+          </option><option value="19">
+            山梨県
+          </option><option value="20">
+            長野県
+          </option><option value="21">
+            岐阜県
+          </option><option value="22">
+            静岡県
+          </option><option value="23">
+            愛知県
+          </option><option value="24">
+            三重県
+          </option><option value="25">
+            滋賀県
+          </option><option value="26">
+            京都府
+          </option><option value="27">
+            大阪府
+          </option><option value="28">
+            兵庫県
+          </option><option value="29">
+            奈良県
+          </option><option value="30">
+            和歌山県
+          </option><option value="31">
+            鳥取県
+          </option><option value="32">
+            島根県
+          </option><option value="33">
+            岡山県
+          </option><option value="34">
+            広島県
+          </option><option value="35">
+            山口県
+          </option><option value="36">
+            徳島県
+          </option><option value="37">
+            香川県
+          </option><option value="38">
+            愛媛県
+          </option><option value="39">
+            高知県
+          </option><option value="40">
+            福岡県
+          </option><option value="41">
+            佐賀県
+          </option><option value="42">
+            長崎県
+          </option><option value="43">
+            熊本県
+          </option><option value="44">
+            大分県
+          </option><option value="45">
+            宮崎県
+          </option><option value="46">
+            鹿児島県
+          </option><option value="47">
+            沖縄県
+          </option><option value="48">
+            香港
+          </option><option value="49">
+            韓国
+          </option><option value="50">
+            台湾
+          </option><option value="51">
+            アメリカ
+          </option><option value="52">
+            ヨーロッパ
+          </option><option value="53">
+            海外
+          </option><option value="106">
+            カナダ
+          </option><option value="107">
+            シンガポール
+          </option><option value="108">
+            タイ
+          </option><option value="109">
+            オーストラリア
+          </option><option value="110">
+            ニュージーランド
+          </option><option value="111">
+            イギリス
+          </option><option value="112">
+            イタリア
+          </option><option value="113">
+            スペイン
+          </option><option value="114">
+            ドイツ
+          </option><option value="115">
+            フランス
+          </option><option value="116">
+            ポルトガル
+          </option><option value="117">
+            インドネシア
+          </option><option value="118">
+            フィリピン
+          </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        検索
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="is-empty">
+              <td colspan="2">
+                <section class="section">
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                </section>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade">
+          <div class="loading-overlay is-active">
+            <div class="loading-background"></div>
+            <div class="loading-icon"></div>
+          </div>
+        </transition-stub>
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 1`] = `
+<section class="section">
+  <h1 class="title">ユーザーを探す</h1>
+  <section>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped is-grouped-multiline">
+          <!---->
+          <div class="field"><label class="label">所属地域</label>
+            <div class="control"><span class="select"><select><!----><option value="0">
+            未指定
+          </option><option value="1">
+            北海道
+          </option><option value="2">
+            青森県
+          </option><option value="3">
+            岩手県
+          </option><option value="4">
+            宮城県
+          </option><option value="5">
+            秋田県
+          </option><option value="6">
+            山形県
+          </option><option value="7">
+            福島県
+          </option><option value="8">
+            茨城県
+          </option><option value="9">
+            栃木県
+          </option><option value="10">
+            群馬県
+          </option><option value="11">
+            埼玉県
+          </option><option value="12">
+            千葉県
+          </option><option value="13">
+            東京都
+          </option><option value="14">
+            神奈川県
+          </option><option value="15">
+            新潟県
+          </option><option value="16">
+            富山県
+          </option><option value="17">
+            石川県
+          </option><option value="18">
+            福井県
+          </option><option value="19">
+            山梨県
+          </option><option value="20">
+            長野県
+          </option><option value="21">
+            岐阜県
+          </option><option value="22">
+            静岡県
+          </option><option value="23">
+            愛知県
+          </option><option value="24">
+            三重県
+          </option><option value="25">
+            滋賀県
+          </option><option value="26">
+            京都府
+          </option><option value="27">
+            大阪府
+          </option><option value="28">
+            兵庫県
+          </option><option value="29">
+            奈良県
+          </option><option value="30">
+            和歌山県
+          </option><option value="31">
+            鳥取県
+          </option><option value="32">
+            島根県
+          </option><option value="33">
+            岡山県
+          </option><option value="34">
+            広島県
+          </option><option value="35">
+            山口県
+          </option><option value="36">
+            徳島県
+          </option><option value="37">
+            香川県
+          </option><option value="38">
+            愛媛県
+          </option><option value="39">
+            高知県
+          </option><option value="40">
+            福岡県
+          </option><option value="41">
+            佐賀県
+          </option><option value="42">
+            長崎県
+          </option><option value="43">
+            熊本県
+          </option><option value="44">
+            大分県
+          </option><option value="45">
+            宮崎県
+          </option><option value="46">
+            鹿児島県
+          </option><option value="47">
+            沖縄県
+          </option><option value="48">
+            香港
+          </option><option value="49">
+            韓国
+          </option><option value="50">
+            台湾
+          </option><option value="51">
+            アメリカ
+          </option><option value="52">
+            ヨーロッパ
+          </option><option value="53">
+            海外
+          </option><option value="106">
+            カナダ
+          </option><option value="107">
+            シンガポール
+          </option><option value="108">
+            タイ
+          </option><option value="109">
+            オーストラリア
+          </option><option value="110">
+            ニュージーランド
+          </option><option value="111">
+            イギリス
+          </option><option value="112">
+            イタリア
+          </option><option value="113">
+            スペイン
+          </option><option value="114">
+            ドイツ
+          </option><option value="115">
+            フランス
+          </option><option value="116">
+            ポルトガル
+          </option><option value="117">
+            インドネシア
+          </option><option value="118">
+            フィリピン
+          </option></select></span>
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">登録名(部分一致)</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div>
+          <div class="field"><label class="label">DDR CODE</label>
+            <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
+              <!---->
+              <!----><small class="help counter is-invisible"> 0 / 8 </small>
+            </div>
+            <!---->
+          </div>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        検索
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper">
+        <table class="table is-striped">
+          <thead>
+            <tr>
+              <!---->
+              <!---->
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 登録名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th class="">
+                <div class="th-wrap"><span class="is-relative"> 所属地域 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 0
+                </a></td>
+              <td data-label="所属地域" class="">
+                未指定
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 1
+                </a></td>
+              <td data-label="所属地域" class="">
+                北海道
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 2
+                </a></td>
+              <td data-label="所属地域" class="">
+                青森県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 3
+                </a></td>
+              <td data-label="所属地域" class="">
+                岩手県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 4
+                </a></td>
+              <td data-label="所属地域" class="">
+                宮城県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 5
+                </a></td>
+              <td data-label="所属地域" class="">
+                秋田県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 6
+                </a></td>
+              <td data-label="所属地域" class="">
+                山形県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 7
+                </a></td>
+              <td data-label="所属地域" class="">
+                福島県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 8
+                </a></td>
+              <td data-label="所属地域" class="">
+                茨城県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <tr draggable="false" class="">
+              <!---->
+              <!---->
+              <td data-label="登録名" class=""><a>
+                  User 9
+                </a></td>
+              <td data-label="所属地域" class="">
+                栃木県
+              </td>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+            <!---->
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
                 <!---->
                 <!---->
               </ul>

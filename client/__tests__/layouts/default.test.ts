@@ -5,18 +5,35 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
+import VueI18n, { IVueI18n } from 'vue-i18n'
 
 import DefaultLayout from '~/layouts/default.vue'
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
+localVue.mixin({
+  methods: {
+    localePath: (obj: object) => obj,
+    switchLocalePath: (code: string) => code,
+  },
+})
+localVue.use(VueI18n)
 
 describe('/layouts/default.vue', () => {
+  const $i18n: Partial<IVueI18n> = {
+    locale: 'ja',
+    locales: [
+      { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
+      { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
+    ],
+  }
   const stubs = { NuxtLink: RouterLinkStub, Nuxt: true }
   const $fetchState = { pending: false }
   const $route = { path: '/' }
+  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   describe('snapshot test', () => {
-    test('renders loading', () => {
+    test.each(['ja', 'en'])('{ locale: "%s" } renders loading', locale => {
+      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const wrapper = mount(DefaultLayout, {
         localVue,
         stubs,
@@ -27,35 +44,53 @@ describe('/layouts/default.vue', () => {
             user: { id: 'user_id' },
           },
           $fetchState: { pending: true },
+          $i18n,
           $route,
         },
+        i18n,
       })
       expect(wrapper).toMatchSnapshot()
     })
-    test('renders logout button if authed', () => {
-      const wrapper = mount(DefaultLayout, {
-        localVue,
-        stubs,
-        mocks: {
-          $accessor: {
-            isLoggedIn: true,
-            name: 'User 1',
-            user: { id: 'user_id' },
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders logout button if authed',
+      locale => {
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = mount(DefaultLayout, {
+          localVue,
+          stubs,
+          mocks: {
+            $accessor: {
+              isLoggedIn: true,
+              name: 'User 1',
+              user: { id: 'user_id' },
+            },
+            $fetchState,
+            $i18n,
+            $route,
           },
-          $fetchState,
-          $route,
-        },
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
-    test('renders login button if not authed', () => {
-      const wrapper = mount(DefaultLayout, {
-        localVue,
-        stubs,
-        mocks: { $accessor: { isLoggedIn: false }, $fetchState, $route },
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
+          i18n,
+        })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
+    test.each(['ja', 'en'])(
+      '{ locale: "%s" } renders login button if not authed',
+      locale => {
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = mount(DefaultLayout, {
+          localVue,
+          stubs,
+          mocks: {
+            $accessor: { isLoggedIn: false },
+            $i18n,
+            $fetchState,
+            $route,
+          },
+          i18n,
+        })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
   })
   describe('fetch()', () => {
     const fetchUser = jest.fn()
@@ -70,7 +105,8 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router, $route },
+        mocks: { $accessor, $fetchState, $i18n, $router, $route },
+        i18n,
       })
 
       // Act
@@ -86,7 +122,8 @@ describe('/layouts/default.vue', () => {
       const wrapper = shallowMount(DefaultLayout, {
         localVue,
         stubs,
-        mocks: { $accessor, $fetchState, $router, $route },
+        mocks: { $accessor, $fetchState, $i18n, $router, $route },
+        i18n,
       })
 
       // Act

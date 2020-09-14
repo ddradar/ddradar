@@ -1,0 +1,554 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/components/pages/charts/ChartList.vue snapshot test renders chart list if loaded charts and { locale: en } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Series <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Difficulty <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap is-numeric"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Edit Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
+      <tbody>
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            2014
+          </td>
+          <td data-label="Name" class=""><a>EGOISM 440</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A
+          </td>
+          <td data-label="Name" class=""><a>ENDYMION</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            A
+          </td>
+          <td data-label="Name" class=""><a>MAX 360</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            2014
+          </td>
+          <td data-label="Name" class=""><a>Over The “Period”</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            X3 VS 2ndMIX
+          </td>
+          <td data-label="Name" class=""><a>PARANOiA Revolution</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Series" class="">
+            X2
+          </td>
+          <td data-label="Name" class=""><a>Valkyrie dimension</a></td>
+          <td data-label="Difficulty" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="Lv" class="has-text-right">
+            19
+          </td>
+          <td data-label="Edit Score" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <!---->
+      </tbody>
+      <!---->
+    </table>
+    <!---->
+  </div>
+  <div class="top level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/charts/ChartList.vue snapshot test renders chart list if loaded charts and { locale: ja } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 難易度 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap is-numeric"><span class="is-relative"> レベル <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> スコア編集 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
+      <tbody>
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            2014
+          </td>
+          <td data-label="曲名" class=""><a>EGOISM 440</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A
+          </td>
+          <td data-label="曲名" class=""><a>ENDYMION</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            A
+          </td>
+          <td data-label="曲名" class=""><a>MAX 360</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            2014
+          </td>
+          <td data-label="曲名" class=""><a>Over The “Period”</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            X3 VS 2ndMIX
+          </td>
+          <td data-label="曲名" class=""><a>PARANOiA Revolution</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            X2
+          </td>
+          <td data-label="曲名" class=""><a>Valkyrie dimension</a></td>
+          <td data-label="難易度" class=""><span class="tag is-challenge"><span class="">CHALLENGE</span>
+            <!----></span>
+          </td>
+          <td data-label="レベル" class="has-text-right">
+            19
+          </td>
+          <td data-label="スコア編集" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <!---->
+      </tbody>
+      <!---->
+    </table>
+    <!---->
+  </div>
+  <div class="top level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/charts/ChartList.vue snapshot test renders empty if courses is empty and { locale: en } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Series <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Difficulty <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap is-numeric"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> Edit Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="5">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>No data</p>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+    <!---->
+  </div>
+  <div class="top level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/charts/ChartList.vue snapshot test renders empty if courses is empty and { locale: ja } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 難易度 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap is-numeric"><span class="is-relative"> レベル <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> スコア編集 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="5">
+            <section class="section">
+              <div class="content has-text-grey has-text-centered">
+                <p>データがありません</p>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+    <!---->
+  </div>
+  <div class="top level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`/components/pages/charts/ChartList.vue snapshot test renders loading spin if { loading: true } 1`] = `
+<div class="b-table">
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <!---->
+  <div class="table-wrapper">
+    <table class="table is-striped">
+      <thead>
+        <tr>
+          <!---->
+          <!---->
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> 難易度 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap is-numeric"><span class="is-relative"> レベル <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <th class="">
+            <div class="th-wrap"><span class="is-relative"> スコア編集 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+          </th>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+      </thead>
+      <tbody>
+        <tr class="is-empty">
+          <td colspan="5">
+            <section class="section">
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+              <div class="b-skeleton is-animated">
+                <div class="b-skeleton-item is-rounded"></div>
+              </div>
+            </section>
+          </td>
+        </tr>
+      </tbody>
+      <!---->
+    </table>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="top level">
+    <div class="level-left"></div>
+    <div class="level-right">
+      <div class="level-item">
+        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+          <ul class="pagination-list">
+            <!---->
+            <!---->
+            <!---->
+            <!---->
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>
+`;

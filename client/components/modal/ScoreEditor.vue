@@ -8,7 +8,7 @@
       <h2 v-if="selectedChart" class="subtitle is-small">
         {{ chartName }}
       </h2>
-      <b-field v-else label="Select chart">
+      <b-field v-else :label="$t('label.selectChart')">
         <b-select :disabled="selectedChart" @input="onChartSelected">
           <option v-for="c in charts" :key="c.label" :value="c">
             {{ c.label }}
@@ -20,7 +20,7 @@
       <template v-if="selectedChart">
         <b-loading :active.sync="isLoading" />
         <b-field grouped>
-          <b-field label="Score">
+          <b-field :label="$t('label.score')">
             <b-input
               v-model.number="score"
               type="number"
@@ -31,11 +31,11 @@
               step="10"
             />
           </b-field>
-          <b-checkbox v-model="isFailed">E判定</b-checkbox>
+          <b-checkbox v-model="isFailed">{{ $t('label.rankE') }}</b-checkbox>
         </b-field>
 
-        <b-field label="Clear Lamp">
-          <b-select v-model.number="clearLamp" placeholder="Clear Lamp">
+        <b-field :label="$t('label.clear')">
+          <b-select v-model.number="clearLamp" :placeholder="$t('label.clear')">
             <option value="0">Failed</option>
             <option value="1">Assisted Clear</option>
             <option value="2">Clear</option>
@@ -47,7 +47,7 @@
           </b-select>
         </b-field>
 
-        <b-field label="EX SCORE">
+        <b-field :label="$t('label.exScore')">
           <b-input
             v-model.number="exScore"
             type="number"
@@ -57,7 +57,7 @@
           />
         </b-field>
 
-        <b-field label="MAX COMBO">
+        <b-field :label="$t('label.maxCombo')">
           <b-input
             v-model.number="maxCombo"
             type="number"
@@ -69,7 +69,7 @@
 
         <b-field>
           <b-button type="is-info" icon-left="calculator" @click="calcScore()">
-            自動計算
+            {{ $t('button.calc') }}
           </b-button>
         </b-field>
       </template>
@@ -80,14 +80,66 @@
       class="modal-card-foot"
     >
       <b-button type="is-success" icon-left="content-save" @click="saveScore()">
-        Save
+        {{ $t('button.save') }}
       </b-button>
       <b-button type="is-danger" icon-left="delete" @click="deleteScore()">
-        Delete
+        {{ $t('button.delete') }}
+      </b-button>
+      <b-button type="is-warning" @click="close()">
+        {{ $t('button.close') }}
       </b-button>
     </footer>
   </div>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "label": {
+      "selectChart": "譜面を選択",
+      "score": "ハイスコア",
+      "rankE": "E判定",
+      "clear": "クリア種別",
+      "exScore": "EXスコア",
+      "maxCombo": "最大コンボ数"
+    },
+    "button": {
+      "calc": "自動計算",
+      "save": "保存",
+      "delete": "削除",
+      "close": "閉じる"
+    },
+    "message": {
+      "cannotCalc": "情報が足りないため、スコアの自動計算ができませんでした。",
+      "successSave": "保存しました",
+      "deleteScore": "スコアを削除しますか？",
+      "successDelete": "削除しました"
+    }
+  },
+  "en": {
+    "label": {
+      "selectChart": "Select Chart",
+      "score": "Score",
+      "rankE": "Rank E",
+      "clear": "Clear Lamp",
+      "exScore": "EX SCORE",
+      "maxCombo": "MAX COMBO"
+    },
+    "button": {
+      "calc": "Auto Calc",
+      "save": "Save",
+      "delete": "Delete",
+      "close": "Close"
+    },
+    "message": {
+      "cannotCalc": "Cannot guess score due to lack of information.",
+      "successSave": "Saved",
+      "deleteScore": "Do you delete this score?",
+      "successDelete": "Deleted"
+    }
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
@@ -212,10 +264,7 @@ export default class ScoreEditorComponent extends Vue {
       this.clearLamp = score.clearLamp
       this.isFailed = score.rank === 'E'
     } catch {
-      popup.warning(
-        this.$buefy,
-        '情報が足りないため、スコアの自動計算ができませんでした。'
-      )
+      popup.warning(this.$buefy, this.$t('message.cannotCalc') as string)
     }
   }
 
@@ -231,23 +280,21 @@ export default class ScoreEditorComponent extends Vue {
         clearLamp: this.clearLamp,
         rank: this.rank,
       })
-      popup.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, this.$t('message.successSave') as string)
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
     }
-    // @ts-ignore
-    this.$parent.close()
+    this.close()
   }
 
   deleteScore() {
     this.$buefy.dialog.confirm({
-      message: 'スコアを削除しますか？',
+      message: this.$t('message.deleteScore') as string,
       type: 'is-warning',
       hasIcon: true,
       onConfirm: async () => {
         await this.callDeleteAPI()
-        // @ts-ignore
-        this.$parent.close()
+        this.close()
       },
     })
   }
@@ -286,10 +333,15 @@ export default class ScoreEditorComponent extends Vue {
     const difficulty = this.selectedChart.difficulty
     try {
       await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
-      popup.success(this.$buefy, 'Success!')
+      popup.success(this.$buefy, this.$t('message.successDelete') as string)
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
     }
+  }
+
+  close() {
+    // @ts-ignore
+    this.$parent.close()
   }
 }
 </script>

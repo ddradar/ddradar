@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="title">{{ seriesTitle }} - NONSTOP</h1>
+    <h1 class="title">{{ title }}</h1>
     <div class="buttons">
       <b-button
         v-for="link in pageLinks"
@@ -17,6 +17,21 @@
     <course-list :courses="courses" :loading="$fetchState.pending" />
   </section>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "title": "{series} - NONSTOP",
+    "grade": "段位認定({series})",
+    "nonstop": "NONSTOP({series})"
+  },
+  "en": {
+    "title": "{series} - NONSTOP",
+    "grade": "GRADE({series})",
+    "nonstop": "NONSTOP({series})"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import { Context } from '@nuxt/types'
@@ -41,20 +56,24 @@ export default class NonstopListPage extends Vue {
     this.courses = await getCourseList(this.$http, series, 1)
   }
 
-  get seriesTitle() {
+  get title() {
     const series = parseInt(this.$route.params.series, 10)
-    return SeriesList[series]
+    return this.$t('title', { series: SeriesList[series] })
   }
 
   get pageLinks() {
     return [16, 17]
       .map(i => [
         {
-          name: `NONSTOP(${shortenSeriesName(SeriesList[i])})`,
+          name: this.$t('nonstop', {
+            series: shortenSeriesName(SeriesList[i]),
+          }),
           to: `/nonstop/${i}`,
         },
         {
-          name: `段位認定(${shortenSeriesName(SeriesList[i])})`,
+          name: this.$t('grade', {
+            series: shortenSeriesName(SeriesList[i]),
+          }),
           to: `/grade/${i}`,
         },
       ])

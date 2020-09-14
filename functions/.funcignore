@@ -1,0 +1,13 @@
+*.js.map
+*.test.js
+*.ts
+.git*
+.vscode
+.eslintrc*
+__tests__
+jest.config.js
+coverage
+local.settings.json
+tsconfig.json
+*.md
+yarn.lock

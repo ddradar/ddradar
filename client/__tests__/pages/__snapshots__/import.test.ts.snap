@@ -1,19 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/import.vue snapshot test renders correctly 1`] = `
+exports[`pages/import.vue snapshot test { locale: "en" } renders correctly 1`] = `
 <section class="section">
-  <h1 class="title">スコアのインポート</h1>
-  <h2 class="subtitle">e-amusementサイトからインポート</h2>
+  <h1 class="title">Import Scores</h1>
+  <h2 id="eagate" class="subtitle">Import from e-amusement GATE</h2>
   <div class="content">
-    <p>
-      公式サイトの
-      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
-        「楽曲データ一覧」ページ
-      </a>
-      より、スコアを取得します。<wbr> <strong>
-        公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
-      </strong></p>
-    <div class="field"><label class="label">HTMLソース</label>
+    <p><span>Get scores from <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          "Music List" page
+        </a>.</span> <wbr> <strong>You need to subscribe "e-amusement Basic Course" to see scores.</strong></p>
+    <div class="field"><label class="label">HTML Sourse</label>
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
         <!---->
         <!---->
@@ -22,11 +17,36 @@ exports[`pages/import.vue snapshot test renders correctly 1`] = `
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success">
-        <!----> <span>
-        登録
+      <!----><button type="button" class="button is-success">
+        <!----><span>
+        Submit
       </span>
-        <!----></button>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <!---->
+  </div>
+  <h2 id="skillAttack" class="subtitle">Import from Skill Attack</h2>
+  <div class="content">
+    <p>Import your scores from <a href="http://skillattack.com/sa4/" target="_blank">Skill Attack</a>.</p>
+    <p>Please download <a href="http://skillattack.com/sa4/data/dancer/10000000/score_10000000.txt" target="_blank">
+        Score Data
+      </a> in advance, and upload here.</p>
+    <div class="field file is-primary">
+      <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
+            Select file
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" disabled="disabled" class="button is-success">
+        <!----><span>
+        Submit
+      </span>
+        <!---->
+      </button>
       <!---->
     </div>
     <!---->
@@ -34,19 +54,72 @@ exports[`pages/import.vue snapshot test renders correctly 1`] = `
 </section>
 `;
 
-exports[`pages/import.vue snapshot test renders uploading state 1`] = `
+exports[`pages/import.vue snapshot test { locale: "en" } renders uploading state 1`] = `
+<section class="section">
+  <h1 class="title">Import Scores</h1>
+  <h2 id="eagate" class="subtitle">Import from e-amusement GATE</h2>
+  <div class="content">
+    <p><span>Get scores from <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          "Music List" page
+        </a>.</span> <wbr> <strong>You need to subscribe "e-amusement Basic Course" to see scores.</strong></p>
+    <div class="field"><label class="label">HTML Sourse</label>
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success is-loading">
+        <!----><span>
+        Submit
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
+      <p class="progress-value">
+        Uploading: PARANOiA (7/20)
+      </p>
+    </div>
+  </div>
+  <h2 id="skillAttack" class="subtitle">Import from Skill Attack</h2>
+  <div class="content">
+    <p>Import your scores from <a href="http://skillattack.com/sa4/" target="_blank">Skill Attack</a>.</p>
+    <p>Please download <a href="http://skillattack.com/sa4/data/dancer/10000000/score_10000000.txt" target="_blank">
+        Score Data
+      </a> in advance, and upload here.</p>
+    <div class="field file is-primary">
+      <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
+            Select file
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" disabled="disabled" class="button is-success is-loading">
+        <!----><span>
+        Submit
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <!---->
+  </div>
+</section>
+`;
+
+exports[`pages/import.vue snapshot test { locale: "ja" } renders correctly 1`] = `
 <section class="section">
   <h1 class="title">スコアのインポート</h1>
-  <h2 class="subtitle">e-amusementサイトからインポート</h2>
+  <h2 id="eagate" class="subtitle">e-amusementサイトからインポート</h2>
   <div class="content">
-    <p>
-      公式サイトの
-      <a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
-        「楽曲データ一覧」ページ
-      </a>
-      より、スコアを取得します。<wbr> <strong>
-        公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。
-      </strong></p>
+    <p><span>公式サイトの<a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          「楽曲データ一覧」ページ
+        </a>より、スコアを取得します。</span> <wbr> <strong>公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。</strong></p>
     <div class="field"><label class="label">HTMLソース</label>
       <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
         <!---->
@@ -56,18 +129,97 @@ exports[`pages/import.vue snapshot test renders uploading state 1`] = `
       <!---->
     </div>
     <div class="field">
-      <!----> <button type="button" class="button is-success is-loading">
-        <!----> <span>
+      <!----><button type="button" class="button is-success">
+        <!----><span>
         登録
       </span>
-        <!----></button>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <!---->
+  </div>
+  <h2 id="skillAttack" class="subtitle">Skill Attackからインポート</h2>
+  <div class="content">
+    <p><a href="http://skillattack.com/sa4/" target="_blank">Skill Attack</a>より、スコアをインポートします。</p>
+    <p>事前に<a href="http://skillattack.com/sa4/data/dancer/10000000/score_10000000.txt" target="_blank">
+        スコアデータ一覧
+      </a>をダウンロードして、下記よりアップロードを実行してください。</p>
+    <div class="field file is-primary">
+      <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
+            ファイルを選択
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" disabled="disabled" class="button is-success">
+        <!----><span>
+        登録
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <!---->
+  </div>
+</section>
+`;
+
+exports[`pages/import.vue snapshot test { locale: "ja" } renders uploading state 1`] = `
+<section class="section">
+  <h1 class="title">スコアのインポート</h1>
+  <h2 id="eagate" class="subtitle">e-amusementサイトからインポート</h2>
+  <div class="content">
+    <p><span>公式サイトの<a href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html" target="_blank">
+          「楽曲データ一覧」ページ
+        </a>より、スコアを取得します。</span> <wbr> <strong>公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。</strong></p>
+    <div class="field"><label class="label">HTMLソース</label>
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-success is-loading">
+        <!----><span>
+        登録
+      </span>
+        <!---->
+      </button>
       <!---->
     </div>
     <div class="progress-wrapper"><progress max="20" class="progress is-success" value="7">7</progress>
       <p class="progress-value">
-        Uploading: PARANOiA (7/20)
+        登録中: PARANOiA (7/20)
       </p>
     </div>
+  </div>
+  <h2 id="skillAttack" class="subtitle">Skill Attackからインポート</h2>
+  <div class="content">
+    <p><a href="http://skillattack.com/sa4/" target="_blank">Skill Attack</a>より、スコアをインポートします。</p>
+    <p>事前に<a href="http://skillattack.com/sa4/data/dancer/10000000/score_10000000.txt" target="_blank">
+        スコアデータ一覧
+      </a>をダウンロードして、下記よりアップロードを実行してください。</p>
+    <div class="field file is-primary">
+      <!----><label class="upload control file-label"><span class="file-cta"><span class="icon file-icon"><i class="mdi mdi-upload mdi-24px"></i></span> <span class="file-label">
+            ファイルを選択
+          </span></span><input type="file" accept=".txt"></label>
+      <!---->
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" disabled="disabled" class="button is-success is-loading">
+        <!----><span>
+        登録
+      </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+    <!---->
   </div>
 </section>
 `;

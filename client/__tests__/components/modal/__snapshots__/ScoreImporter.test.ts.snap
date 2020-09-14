@@ -9,12 +9,10 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
     <div class="content">
       <ol>
         <li>e-amusement GATEにログインしてください。</li>
-        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-          のソースコードを取得し、コピーしてください。
-        </li>
-        <li>
-          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-        </li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
+            楽曲データ詳細
+          </a>のソースコードを取得し、コピーしてください。</li>
+        <li>下のテキストボックスに、コピーしたソースコードを貼り付けてください。</li>
       </ol>
     </div>
     <div class="field">
@@ -28,28 +26,32 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" class="button is-success is-loading">
-      <!----> <span>
+      <!----><span>
       登録
     </span>
-      <!----></button></footer>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      閉じる
+    </span>
+      <!---->
+    </button></footer>
 </div>
 `;
 
-exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" } renders normal button 1`] = `
+exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" } renders English id locale is en 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
-    <h1 class="modal-card-title">スコアのインポート</h1>
+    <h1 class="modal-card-title">Import Score</h1>
   </header>
   <section class="modal-card-body">
     <div class="content">
       <ol>
-        <li>e-amusement GATEにログインしてください。</li>
-        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-          のソースコードを取得し、コピーしてください。
-        </li>
-        <li>
-          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-        </li>
+        <li>Login to e-amusement GATE.</li>
+        <li>Get <a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
+            Music Detail's
+          </a> HTML source, and copy it.</li>
+        <li>Paste copied text below.</li>
       </ol>
     </div>
     <div class="field">
@@ -63,10 +65,55 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" class="button is-success">
-      <!----> <span>
+      <!----><span>
+      Import
+    </span>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      Close
+    </span>
+      <!---->
+    </button></footer>
+</div>
+`;
+
+exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" } renders normal button 1`] = `
+<div class="modal-card">
+  <header class="modal-card-head">
+    <h1 class="modal-card-title">スコアのインポート</h1>
+  </header>
+  <section class="modal-card-body">
+    <div class="content">
+      <ol>
+        <li>e-amusement GATEにログインしてください。</li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
+            楽曲データ詳細
+          </a>のソースコードを取得し、コピーしてください。</li>
+        <li>下のテキストボックスに、コピーしたソースコードを貼り付けてください。</li>
+      </ol>
+    </div>
+    <div class="field">
+      <!---->
+      <div class="control is-clearfix"><textarea required="required" class="textarea"></textarea>
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+  </section>
+  <footer class="modal-card-foot"><button type="button" class="button is-success">
+      <!----><span>
       登録
     </span>
-      <!----></button></footer>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      閉じる
+    </span>
+      <!---->
+    </button></footer>
 </div>
 `;
 
@@ -79,12 +126,10 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: null } 
     <div class="content">
       <ol>
         <li>e-amusement GATEにログインしてください。</li>
-        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">楽曲データ詳細</a>
-          のソースコードを取得し、コピーしてください。
-        </li>
-        <li>
-          下のテキストボックスに、コピーしたソースコードを貼り付けてください。
-        </li>
+        <li><a target="_blank" href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html?index=8Il6980di8P89lil1PDIqqIbiq1QO8lQ&amp;diff=1">
+            楽曲データ詳細
+          </a>のソースコードを取得し、コピーしてください。</li>
+        <li>下のテキストボックスに、コピーしたソースコードを貼り付けてください。</li>
       </ol>
     </div>
     <div class="field">
@@ -98,9 +143,15 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: null } 
     </div>
   </section>
   <footer class="modal-card-foot"><button type="button" disabled="disabled" class="button is-success">
-      <!----> <span>
+      <!----><span>
       登録
     </span>
-      <!----></button></footer>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      閉じる
+    </span>
+      <!---->
+    </button></footer>
 </div>
 `;

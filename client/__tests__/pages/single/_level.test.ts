@@ -6,93 +6,27 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { mocked } from 'ts-jest/utils'
 
-import type { ChartInfo } from '~/api/song'
+import { ChartInfo, searchCharts } from '~/api/song'
 import SingleLevelPage from '~/pages/single/_level.vue'
+
+jest.mock('~/api/song')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
 const $fetchState = { pending: false }
 
 describe('/single/_level.vue', () => {
-  describe('renders', () => {
-    const $route = { params: { level: '19' } }
-    test('loading', () => {
+  describe('snapshot test', () => {
+    test('renders correctly', () => {
       // Arrange
+      const $route = { params: { level: '19' } }
       const wrapper = mount(SingleLevelPage, {
         localVue,
         mocks: { $route, $fetchState: { pending: true } },
-        stubs: { NuxtLink: RouterLinkStub },
-      })
-
-      // Act - Assert
-      expect(wrapper).toMatchSnapshot()
-    })
-    test('loaded', () => {
-      // Arrange
-      const charts: ChartInfo[] = [
-        {
-          id: '9i0q91lPPiO61b9P891O1i86iOP1I08O',
-          name: 'EGOISM 440',
-          series: 'DanceDanceRevolution (2014)',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: 'PO9Pl1q896bDDl89qQb98D80DQoPio1I',
-          name: 'ENDYMION',
-          series: 'DanceDanceRevolution A',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: '1Dl19idl0i0qiqidbDIIbQddiP6o11PP',
-          name: 'MAX 360',
-          series: 'DanceDanceRevolution A',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: '6bid6d9qPQ80DOqiidQQ891o6Od8801l',
-          name: 'Over The “Period”',
-          series: 'DanceDanceRevolution (2014)',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: '606b9d6OiliId69bO9Odi6qq8o8Qd0dq',
-          name: 'PARANOiA Revolution',
-          series: 'DDR X3 VS 2ndMIX',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: 'q6di1DQbi88i9QlPol1iIPbb8lP1qP1b',
-          name: 'POSSESSION',
-          series: 'DDR X2',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-        {
-          id: '186dd6DQq891Ib9Ilq8Qbo8lIqb0Qoll',
-          name: 'Valkyrie dimension',
-          series: 'DDR X2',
-          playStyle: 2,
-          difficulty: 4,
-          level: 19,
-        },
-      ]
-      const wrapper = mount(SingleLevelPage, {
-        localVue,
-        mocks: { $route, $fetchState },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ charts }),
+        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
+        data: () => ({ charts: [] }),
       })
 
       // Act - Assert
@@ -110,7 +44,7 @@ describe('/single/_level.vue', () => {
             $route: { params: { level } },
             $fetchState,
           },
-          stubs: { NuxtLink: RouterLinkStub },
+          stubs: { NuxtLink: RouterLinkStub, ChartList: true },
         })
         const ctx = ({ params: { level } } as unknown) as Context
 
@@ -126,7 +60,7 @@ describe('/single/_level.vue', () => {
           $route: { params: { level } },
           $fetchState,
         },
-        stubs: { NuxtLink: RouterLinkStub },
+        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
       })
       const ctx = ({ params: { level } } as unknown) as Context
 
@@ -135,30 +69,35 @@ describe('/single/_level.vue', () => {
     })
   })
   describe('fetch()', () => {
-    test.skip.each(['1', '9', '19', '20'])(
-      'calls /songs/name/%s API',
-      async level => {
-        // Arrange
-        const $http = { $get: jest.fn<ChartInfo[], string[]>(() => []) }
-        const wrapper = shallowMount(SingleLevelPage, {
-          localVue,
-          mocks: {
-            $route: { params: { level } },
-            $fetchState,
-            $http,
-          },
-          stubs: { NuxtLink: RouterLinkStub },
-        })
+    test.each([
+      ['1', 1],
+      ['9', 9],
+      ['19', 19],
+      ['20', 20],
+    ])('/%s calls searchCharts($http, 2, %i)', async (level, expected) => {
+      // Arrange
+      const apiMock = mocked(searchCharts)
+      const charts: ChartInfo[] = []
+      apiMock.mockResolvedValue(charts)
+      const $http = {}
+      const wrapper = shallowMount(SingleLevelPage, {
+        localVue,
+        mocks: {
+          $route: { params: { level } },
+          $fetchState,
+          $http,
+        },
+        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
+      })
 
-        // Act
-        // @ts-ignore
-        await wrapper.vm.$options.fetch()
+      // Act
+      // @ts-ignore
+      await wrapper.vm.$options.fetch!.call(wrapper.vm)
 
-        // Assert
-        expect($http.$get.mock.calls.length).toBe(1)
-        expect($http.$get.mock.calls[0][0]).toBe(`/songs/name/${level}`)
-      }
-    )
+      // Assert
+      expect(apiMock).toBeCalledWith($http, 1, expected)
+      expect(wrapper.vm.$data.charts).toBe(charts)
+    })
   })
   describe('get title()', () => {
     test.each([
@@ -171,7 +110,7 @@ describe('/single/_level.vue', () => {
       const wrapper = shallowMount(SingleLevelPage, {
         localVue,
         mocks: { $route: { params: { level } }, $fetchState },
-        stubs: { NuxtLink: RouterLinkStub },
+        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
       })
 
       // Act - Assert
