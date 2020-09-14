@@ -18,7 +18,7 @@ export function readTextAsync(file: File) {
  */
 export function scoreTexttoScoreList(text: string) {
   const rows = text.trim().split('\n')
-  const result: Record<number, MusicScore[]> = {}
+  const result: Record<string, MusicScore[]> = {}
   rows.forEach(r => {
     /**
      * - [0]: skillAttackId
@@ -34,7 +34,7 @@ export function scoreTexttoScoreList(text: string) {
     const cols = r.split('\t')
     if (cols.length < 8) return
 
-    const skillAttackId = parseInt(cols[0], 10)
+    const skillAttackId = cols[0]
     const playStyle = (parseInt(cols[1], 10) + 1) as 1 | 2
     const difficulty = parseInt(cols[2], 10) as 0 | 1 | 2 | 3 | 4
     const score = parseInt(cols[5], 10)

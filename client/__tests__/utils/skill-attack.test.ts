@@ -26,7 +26,7 @@ describe('/utils/skill-attack.ts', () => {
     )
     test('(validText) returns ScoreList', () => {
       expect(scoreTexttoScoreList(validText)).toStrictEqual({
-        700: [
+        '700': [
           {
             songName: 'New Century',
             playStyle: 1,
@@ -68,7 +68,7 @@ describe('/utils/skill-attack.ts', () => {
             rank: 'A',
           },
         ],
-        455: [
+        '455': [
           {
             songName: 'TWINKLE♡HEART',
             playStyle: 2,
@@ -78,7 +78,7 @@ describe('/utils/skill-attack.ts', () => {
             rank: 'AAA',
           },
         ],
-        753: [
+        '753': [
           {
             songName: 'エキサイティング！！も・ちゃ・ちゃ☆',
             playStyle: 1,
