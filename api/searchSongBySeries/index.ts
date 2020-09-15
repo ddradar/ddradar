@@ -1,8 +1,6 @@
-import type { SqlParameter } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import { SeriesList, SongSchema } from '../db/songs'
+import { fetchSongList, SeriesList, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 type SongListData = Omit<SongSchema, 'charts'>
@@ -12,10 +10,11 @@ export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'query'>
 ): Promise<NotFoundResult | SuccessResult<SongListData[]>> {
+  // workaround for https://github.com/Azure/azure-functions-host/issues/6055
   const seriesIndex =
     typeof context.bindingData.series === 'number'
       ? context.bindingData.series
-      : 0 // if param is 0, passed object. (bug?)
+      : 0
   const nameIndex = parseFloat(req.query.name)
   const isValidName =
     Number.isInteger(nameIndex) && nameIndex >= 0 && nameIndex <= 36
@@ -30,43 +29,12 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
+  const body = await fetchSongList(
+    isValidName ? nameIndex : undefined,
+    seriesIndex
+  )
 
-  // Create SQL WHERE condition dynamically
-  const condition: string[] = ['c.series = @series']
-  const parameters: SqlParameter[] = [
-    { name: '@series', value: SeriesList[seriesIndex] },
-  ]
-  if (isValidName) {
-    condition.push('c.nameIndex = @nameIndex')
-    parameters.push({ name: '@nameIndex', value: nameIndex })
-  } else {
-    condition.push('c.nameIndex != -1')
-    condition.push('c.nameIndex != -2')
-  }
-
-  const columns: (keyof SongListData)[] = [
-    'id',
-    'name',
-    'nameKana',
-    'nameIndex',
-    'artist',
-    'series',
-    'minBPM',
-    'maxBPM',
-  ]
-  const orderByColumns: (keyof SongListData)[] = ['nameIndex', 'nameKana']
-  const { resources } = await container.items
-    .query<SongListData>({
-      query:
-        `SELECT ${columns.map(col => `c.${col}`).join(', ')} FROM c ` +
-        `WHERE ${condition.join(' AND ')} ` +
-        `ORDER BY ${orderByColumns.map(col => `c.${col}`).join(', ')}`,
-      parameters,
-    })
-    .fetchAll()
-
-  if (resources.length === 0) {
+  if (body.length === 0) {
     return {
       status: 404,
       body: `Not found song that {series: "${SeriesList[seriesIndex]}" nameIndex: ${nameIndex}}`,
@@ -76,6 +44,6 @@ export default async function (
   return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
-    body: resources,
+    body,
   }
 }
