@@ -5,12 +5,16 @@ on:
     branches:
       - master
     paths-ignore:
+      - 'docs/**'
+      - 'functions/**'
       - '**.md'
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
       - master
     paths-ignore:
+      - 'docs/**'
+      - 'functions/**'
       - '**.md'
 
 jobs:

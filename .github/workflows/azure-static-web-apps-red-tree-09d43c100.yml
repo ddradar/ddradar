@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - release
+    paths-ignore:
+      - 'docs/**'
+      - 'functions/**'
+      - '**.md'
 
 jobs:
   build_and_deploy_job:
