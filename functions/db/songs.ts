@@ -1,3 +1,5 @@
+import { getContainer } from '.'
+
 /** DB Schema of "Song" */
 export type SongSchema = {
   /**
@@ -55,4 +57,9 @@ export type StepChartSchema = {
   freeze: number
   /** Groove Radar CHAOS */
   chaos: number
+}
+
+export async function upsertSong(song: SongSchema): Promise<void> {
+  const container = getContainer('Songs')
+  await container.items.upsert(song)
 }

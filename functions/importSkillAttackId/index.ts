@@ -1,18 +1,10 @@
-import { CosmosClient } from '@azure/cosmos'
 import type { Context } from '@azure/functions'
 import fetch from 'node-fetch'
 
-import { SongSchema } from '../db/songs'
+import { SongSchema, upsertSong } from '../db/songs'
 import { masterMusicToMap } from '../skill-attack'
 
 const masterMusicUri = 'http://skillattack.com/sa4/data/master_music.txt'
-
-// eslint-disable-next-line node/no-process-env
-const connectionString = process.env.COSMOS_DB_CONN
-if (!connectionString) throw new Error('COSMOS_DB_CONN is undefined.')
-
-const client = new CosmosClient(connectionString)
-const container = client.database('DDRadar').container('Songs')
 
 /** Import skillAttackId from Skill Attack site. */
 export default async function (context: Context): Promise<void> {
@@ -39,7 +31,7 @@ export default async function (context: Context): Promise<void> {
       continue
     }
     song.skillAttackId = skillAttackId
-    await container.items.upsert(song)
+    await upsertSong(song)
     context.log.info(
       `Updated: ${song.name} { id: "${song.id}", skillAttackId: ${skillAttackId} }`
     )
