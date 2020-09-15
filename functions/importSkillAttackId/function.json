@@ -7,13 +7,21 @@
       "schedule": "0 0 2 * * *"
     },
     {
-      "name": "documents",
+      "name": "songs",
       "type": "cosmosDB",
+      "direction": "in",
+      "connectionStringSetting": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
       "collectionName": "Songs",
-      "sqlQuery": "SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)",
+      "sqlQuery": "SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)"
+    },
+    {
+      "name": "$return",
+      "type": "cosmosDB",
+      "direction": "out",
       "connectionStringSetting": "COSMOS_DB_CONN",
-      "direction": "in"
+      "databaseName": "DDRadar",
+      "collectionName": "Songs"
     }
   ],
   "scriptFile": "../dist/importSkillAttackId/index.js"
