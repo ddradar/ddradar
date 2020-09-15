@@ -1,7 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { SongSchema } from '../db'
+import { fetchSong, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get song and charts information that match the specified ID. */
@@ -16,20 +15,9 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
-  const { resources } = await container.items
-    .query<SongSchema>({
-      query:
-        'SELECT c.id, c.name, c.nameKana, c.nameIndex, ' +
-        'c.artist, c.series, c.minBPM, c.maxBPM, c.charts ' +
-        'FROM c ' +
-        'WHERE c.id = @id ' +
-        'AND c.nameIndex != -1 AND c.nameIndex != -2',
-      parameters: [{ name: '@id', value: id }],
-    })
-    .fetchAll()
+  const body = await fetchSong(id)
 
-  if (resources.length === 0) {
+  if (!body) {
     return {
       status: 404,
       body: `Not found song that id: "${id}"`,
@@ -39,6 +27,6 @@ export default async function (
   return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
-    body: resources[0],
+    body,
   }
 }

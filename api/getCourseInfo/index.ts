@@ -1,7 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { CourseSchema } from '../db'
+import { CourseSchema, fetchCourse } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */
@@ -16,29 +15,9 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
-  const columns: (keyof CourseSchema)[] = [
-    'id',
-    'name',
-    'nameKana',
-    'nameIndex',
-    'series',
-    'minBPM',
-    'maxBPM',
-    'charts',
-  ]
-  const { resources } = await container.items
-    .query<CourseSchema>({
-      query:
-        `SELECT ${columns.map(col => `c.${col}`).join(', ')} ` +
-        'FROM c ' +
-        'WHERE c.id = @id ' +
-        'AND (c.nameIndex = -1 OR c.nameIndex = -2)',
-      parameters: [{ name: '@id', value: id }],
-    })
-    .fetchAll()
+  const body = await fetchCourse(id)
 
-  if (resources.length === 0) {
+  if (!body) {
     return {
       status: 404,
       body: `Not found course that id: "${id}"`,
@@ -48,6 +27,6 @@ export default async function (
   return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
-    body: resources[0],
+    body,
   }
 }

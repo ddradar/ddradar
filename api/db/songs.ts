@@ -1,8 +1,11 @@
+import { SqlParameter } from '@azure/cosmos'
+
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
 } from '../type-assert'
+import { fetchList, fetchOne } from '.'
 
 /** DB Schema of "Song" */
 export type SongSchema = {
@@ -174,3 +177,76 @@ export const SeriesList = [
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
 ] as const
+
+export function fetchSong(id: string): Promise<SongSchema | null> {
+  return fetchOne<SongSchema>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'artist',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'charts',
+    ],
+    ['c.id = @id', 'c.nameIndex != -1', 'c.nameIndex != -2'],
+    [{ name: '@id', value: id }]
+  )
+}
+
+export function fetchCourse(id: string): Promise<CourseSchema | null> {
+  return fetchOne<CourseSchema>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'charts',
+    ],
+    ['c.id = @id', '(c.nameIndex = -1 OR c.nameIndex = -2)'],
+    [{ name: '@id', value: id }]
+  )
+}
+
+export function fetchSongList(
+  nameIndex?: number,
+  seriesIndex?: number
+): Promise<Omit<SongSchema, 'charts'>[]> {
+  const conditions: string[] = []
+  const parameters: SqlParameter[] = []
+
+  if (nameIndex !== undefined) {
+    conditions.push('c.nameIndex == @nameIndex')
+    parameters.push({ name: '@nameIndex', value: nameIndex })
+  }
+  if (seriesIndex !== undefined) {
+    conditions.push('c.series == @series')
+    parameters.push({ name: '@series', value: SeriesList[seriesIndex] })
+  }
+  return fetchList<Omit<SongSchema, 'charts'>>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'artist',
+      'series',
+      'minBPM',
+      'maxBPM',
+    ],
+    conditions,
+    parameters,
+    {
+      nameIndex: 'ASC',
+      nameKana: 'ASC',
+    }
+  )
+}
