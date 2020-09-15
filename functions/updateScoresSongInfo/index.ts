@@ -1,4 +1,4 @@
-import type { Context } from '@azure/functions'
+import type { Logger } from '@azure/functions'
 
 import type { ScoreSchema } from '../db/scores'
 import type { SongSchema } from '../db/songs'
@@ -10,12 +10,12 @@ import type { SongSchema } from '../db/songs'
  * @param scores "Scores" container
  */
 export default async function (
-  context: Context,
+  context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
   songs: SongSchema[],
   scores: ScoreSchema[]
 ): Promise<ScoreSchema[]> {
   if (songs.length !== 1) {
-    context.log.warn(`Change feed includes multiple songs. Skiped trigger.`)
+    context.log.warn('Change feed includes multiple songs. Skiped trigger.')
     return []
   }
   const song: SongSchema = songs[0]
