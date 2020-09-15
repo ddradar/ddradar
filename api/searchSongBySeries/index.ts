@@ -19,16 +19,6 @@ export default async function (
   const isValidName =
     Number.isInteger(nameIndex) && nameIndex >= 0 && nameIndex <= 36
 
-  // In Azure Functions, this function will only be invoked if a valid `series` is passed.
-  // So this check is only used to unit tests.
-  if (
-    !Number.isInteger(seriesIndex) ||
-    seriesIndex < 0 ||
-    seriesIndex >= SeriesList.length
-  ) {
-    return { status: 404 }
-  }
-
   const body = await fetchSongList(
     isValidName ? nameIndex : undefined,
     seriesIndex

@@ -9,12 +9,6 @@ export default async function (
 ): Promise<NotFoundResult | SuccessResult<CourseSchema>> {
   const id: string = context.bindingData.id
 
-  // In Azure Functions, this function will only be invoked if a valid `id` is passed.
-  // So this check is only used to unit tests.
-  if (!id || !/^[01689bdiloqDIOPQ]{32}$/.test(id)) {
-    return { status: 404 }
-  }
-
   const body = await fetchCourse(id)
 
   if (!body) {

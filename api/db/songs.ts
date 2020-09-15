@@ -223,11 +223,14 @@ export function fetchSongList(
   const parameters: SqlParameter[] = []
 
   if (nameIndex !== undefined) {
-    conditions.push('c.nameIndex == @nameIndex')
+    conditions.push('c.nameIndex = @nameIndex')
     parameters.push({ name: '@nameIndex', value: nameIndex })
+  } else {
+    conditions.push('c.nameIndex != -1')
+    conditions.push('c.nameIndex != -2')
   }
   if (seriesIndex !== undefined) {
-    conditions.push('c.series == @series')
+    conditions.push('c.series = @series')
     parameters.push({ name: '@series', value: SeriesList[seriesIndex] })
   }
   return fetchList<Omit<SongSchema, 'charts'>>(

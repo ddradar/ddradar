@@ -73,7 +73,7 @@ export async function fetchList<T>(
   const condition = conditions ? ` WHERE ${conditions.join(' AND ')}` : ''
   const orderBy = orders
     ? ` ORDER BY ${Object.entries(orders)
-        .map(([k, v]) => `${k} ${v}`)
+        .map(([k, v]) => `c.${k} ${v}`)
         .join(', ')}`
     : ''
   const { resources } = await container.items
