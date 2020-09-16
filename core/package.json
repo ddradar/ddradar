@@ -1,0 +1,19 @@
+{
+  "name": "@ddradar/core",
+  "version": "0.9.1",
+  "description": "DDRadar Core Logic",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  }
+}
