@@ -24,7 +24,7 @@ export type ScoreSchema = Pick<
   maxCombo?: number
   clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
-  rank: string
+  rank: Rank
 }
 
 /**
@@ -38,3 +38,21 @@ export type ScoreSchema = Pick<
  * `7`: MFC
  */
 export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+
+export type Rank =
+  | 'E'
+  | 'D'
+  | 'D+'
+  | 'C-'
+  | 'C'
+  | 'C+'
+  | 'B-'
+  | 'B'
+  | 'B+'
+  | 'A-'
+  | 'A'
+  | 'A+'
+  | 'AA-'
+  | 'AA'
+  | 'AA+'
+  | 'AAA'
