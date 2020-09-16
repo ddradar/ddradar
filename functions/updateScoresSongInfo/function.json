@@ -11,15 +11,6 @@
       "createLeaseCollectionIfNotExists": true
     },
     {
-      "name": "scores",
-      "type": "cosmosDB",
-      "direction": "in",
-      "connectionStringSetting": "COSMOS_DB_CONN",
-      "databaseName": "DDRadar",
-      "collectionName": "Scores",
-      "sqlQuery": "SELECT * FROM c WHERE c.songId = {songs[0].id}"
-    },
-    {
       "name": "$return",
       "type": "cosmosDB",
       "direction": "out",
