@@ -1,19 +1,17 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { fetchSongList, SeriesList, SongSchema } from '../db/songs'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { getBindingData, NotFoundResult, SuccessResult } from '../function'
 
 type SongListData = Omit<SongSchema, 'charts'>
 
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'query'>
 ): Promise<NotFoundResult | SuccessResult<SongListData[]>> {
   const seriesIndex = parseFloat(req.query.series)
-  // workaround for https://github.com/Azure/azure-functions-host/issues/6055
-  const nameIndex =
-    typeof context.bindingData.name === 'number' ? context.bindingData.name : 0
+  const nameIndex = getBindingData(bindingData, 'name')
 
   const isValidSeries =
     Number.isInteger(seriesIndex) &&

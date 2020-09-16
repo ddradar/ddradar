@@ -2,7 +2,8 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import type {
+import {
+  getBindingData,
   NoContentResult,
   NotFoundResult,
   UnauthenticatedResult,
@@ -10,18 +11,15 @@ import type {
 
 /** Get course and orders information that match the specified ID. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>
 ): Promise<NotFoundResult | UnauthenticatedResult | NoContentResult> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { status: 401 }
 
-  const songId: string = context.bindingData.songId
-  const playStyle: number = context.bindingData.playStyle
-  const difficulty =
-    typeof context.bindingData.difficulty === 'number'
-      ? context.bindingData.difficulty
-      : 0 // if param is 0, passed object. (bug?)
+  const songId: string = bindingData.songId
+  const playStyle: number = bindingData.playStyle
+  const difficulty = getBindingData(bindingData, 'difficulty')
 
   // In Azure Functions, this function will only be invoked if a valid route.
   // So this check is only used to unit tests.

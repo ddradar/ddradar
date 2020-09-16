@@ -4,24 +4,21 @@ import type { Context, HttpRequest } from '@azure/functions'
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
 import type { ScoreSchema, UserSchema } from '../db'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { getBindingData, NotFoundResult, SuccessResult } from '../function'
 
 type Score = Omit<ScoreSchema, 'id' | 'isPublic'>
 type Scope = 'private' | 'medium' | 'full'
 
 /** Get scores that match the specified chart. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'query'>
 ): Promise<NotFoundResult | SuccessResult<Score[]>> {
   const clientPrincipal = getClientPrincipal(req)
 
-  const songId: string = context.bindingData.songId
-  const playStyle: number = context.bindingData.playStyle
-  const difficulty: number =
-    typeof context.bindingData.difficulty === 'number'
-      ? context.bindingData.difficulty
-      : 0 // if param is 0, passed object. (bug?)
+  const songId: string = bindingData.songId
+  const playStyle: number = bindingData.playStyle
+  const difficulty: number = getBindingData(bindingData, 'difficulty')
   const scope: Scope = ['private', 'medium', 'full'].includes(req.query.scope)
     ? (req.query.scope as Scope)
     : 'medium'
