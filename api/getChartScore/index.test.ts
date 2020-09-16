@@ -1,34 +1,27 @@
 import type { Context, HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { describeIf } from '../__tests__/util'
-import { getClientPrincipal } from '../auth'
-import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema, UserSchema } from '../db'
+import { fetchChartScores } from '../db/scores'
 import getChartScore from '.'
 
 jest.mock('../auth')
+jest.mock('../db/scores')
 
 describe('GET /api/v1/scores', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'query'>
+  const fetchMock = mocked(fetchChartScores)
 
   beforeEach(() => {
     context = { bindingData: {} }
     req = { headers: {}, query: {} }
+    fetchMock.mockClear()
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await getChartScore(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each(['', 'foo'])('/%s/1/0 returns "404 Not Found"', async songId => {
+  test('returns "404 Not Found" if fetchChartScores() returns empty', async () => {
     // Arrange
-    context.bindingData.songId = songId
+    fetchMock.mockResolvedValue([])
+    context.bindingData.songId = '00000000000000000000000000000000'
     context.bindingData.playStyle = 1
     context.bindingData.difficulty = 0
 
@@ -39,426 +32,36 @@ describe('GET /api/v1/scores', () => {
     expect(result.status).toBe(404)
   })
 
-  test.each([0, -1, 3, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/%d/0 returns "404 Not Found"',
-    async playStyle => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = playStyle
-      context.bindingData.difficulty = 0
-
-      // Act
-      const result = await getChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
-  test.each([5, -1, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/1/%d returns "404 Not Found"',
-    async difficulty => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = 1
-      context.bindingData.difficulty = difficulty
-
-      // Act
-      const result = await getChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
-  test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns "404 Not Found" if anonymous', async () => {
+  test('returns "200 OK" with JSON body if fetchChartScores() returns array', async () => {
     // Arrange
-    context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
+    const chart = {
+      songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+      songName: 'PARANOiA',
+      playStyle: 1,
+      difficulty: 0,
+      level: 4,
+    } as const
+    const scores = [
+      {
+        userId: '0',
+        userName: '全国トップ',
+        ...chart,
+        score: 1000000,
+        clearLamp: 7,
+        rank: 'AAA',
+      } as const,
+    ]
+    fetchMock.mockResolvedValue(scores)
+    context.bindingData.songId = chart.songId
+    context.bindingData.playStyle = chart.playStyle
+    context.bindingData.difficulty = chart.difficulty
     req.query.scope = 'private'
 
     // Act
     const result = await getChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.status).toBe(200)
+    expect(result.body).toBe(scores)
   })
-
-  describeIf(() => !!getConnectionString())(
-    'Cosmos DB integration test',
-    () => {
-      const userContainer = getContainer('Users')
-      const scoreContainer = getContainer('Scores')
-      const user: UserSchema = {
-        id: 'private_user',
-        loginId: 'private_user',
-        name: 'EMI',
-        area: 13,
-        isPublic: false,
-      }
-      const chart = {
-        songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-        songName: 'PARANOiA',
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-      } as const
-      const scores: readonly ScoreSchema[] = [
-        {
-          id: `0-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
-          userId: '0',
-          userName: '全国トップ',
-          ...chart,
-          score: 1000000,
-          clearLamp: 7,
-          rank: 'AAA',
-          isPublic: false,
-        },
-        {
-          id: `13-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
-          userId: '13',
-          userName: '東京都トップ',
-          ...chart,
-          score: 999980,
-          clearLamp: 6,
-          rank: 'AAA',
-          isPublic: false,
-        },
-        {
-          id: `public_user-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
-          userId: 'public_user',
-          userName: 'AFRO',
-          ...chart,
-          score: 999960,
-          clearLamp: 6,
-          rank: 'AAA',
-          isPublic: true,
-        },
-        {
-          id: `${user.id}-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
-          userId: user.id,
-          userName: user.name,
-          ...chart,
-          score: 999900,
-          clearLamp: 6,
-          rank: 'AAA',
-          isPublic: user.isPublic,
-        },
-        {
-          id: `0-${chart.songId}-${chart.playStyle}-1`,
-          userId: '0',
-          userName: '全国トップ',
-          ...chart,
-          difficulty: 1,
-          level: 8,
-          score: 1000000,
-          clearLamp: 7,
-          rank: 'AAA',
-          isPublic: false,
-        },
-      ] as const
-
-      beforeAll(async () => {
-        await userContainer.items.create(user)
-        for (const score of scores) {
-          await scoreContainer.items.create(score)
-        }
-      })
-
-      test.each([
-        ['00000000000000000000000000000000', 1, 0],
-        ['06loOQ0DQb0DqbOibl6qO81qlIdoP9DI', 2, 0],
-        ['06loOQ0DQb0DqbOibl6qO81qlIdoP9DI', 1, 4],
-      ])(
-        '/%s/%i/%i returns "404 Not Found"',
-        async (songId, playStyle, difficulty) => {
-          // Arrange
-          context.bindingData.songId = songId
-          context.bindingData.playStyle = playStyle
-          context.bindingData.difficulty = difficulty
-
-          // Act
-          const result = await getChartScore(context, req)
-
-          // Assert
-          expect(result.status).toBe(404)
-        }
-      )
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns only World Best Score if anonymous`, async () => {
-        // Arrange
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-        ])
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=medium returns only World Best Score if anonymous`, async () => {
-        // Arrange
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-        req.query.scope = 'medium'
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-        ])
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=full returns all public scores if anonymous`, async () => {
-        // Arrange
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-        req.query.scope = 'full'
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          // World Best
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-          // Public User
-          {
-            userId: scores[2].userId,
-            userName: scores[2].userName,
-            ...chart,
-            score: scores[2].score,
-            clearLamp: scores[2].clearLamp,
-            rank: scores[2].rank,
-          },
-        ])
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns only World Best Score if unregisted user`, async () => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: 'foo',
-          userId: 'foo',
-          userRoles: ['anonymous', 'authenticated'],
-        })
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-        ])
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=private returns "404 Not Found" if unregisted user`, async () => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: 'foo',
-          userId: 'foo',
-          userRoles: ['anonymous', 'authenticated'],
-        })
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-        req.query.scope = 'private'
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(404)
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns World Best, Area Best, and Personal Best Scores if authenticated`, async () => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: user.id,
-          userId: user.loginId ?? '',
-          userRoles: ['anonymous', 'authenticated'],
-        })
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          // World Best
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-          // Area Best
-          {
-            userId: scores[1].userId,
-            userName: scores[1].userName,
-            ...chart,
-            score: scores[1].score,
-            clearLamp: scores[1].clearLamp,
-            rank: scores[1].rank,
-          },
-          // Personal Best
-          {
-            userId: scores[3].userId,
-            userName: scores[3].userName,
-            ...chart,
-            score: scores[3].score,
-            clearLamp: scores[3].clearLamp,
-            rank: scores[3].rank,
-          },
-        ])
-      })
-
-      test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=private returns only Personal Best Score if authenticated`, async () => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: user.id,
-          userId: user.loginId ?? '',
-          userRoles: ['anonymous', 'authenticated'],
-        })
-        context.bindingData.songId = chart.songId
-        context.bindingData.playStyle = chart.playStyle
-        context.bindingData.difficulty = chart.difficulty
-        req.query.scope = 'private'
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          // Personal Best
-          {
-            userId: scores[3].userId,
-            userName: scores[3].userName,
-            ...chart,
-            score: scores[3].score,
-            clearLamp: scores[3].clearLamp,
-            rank: scores[3].rank,
-          },
-        ])
-      })
-
-      test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=full returns Area Best, Personal Best, and all public Scores if authenticated', async () => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: user.id,
-          userId: user.id,
-          userRoles: ['anonymous', 'authenticated'],
-        })
-        context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
-        context.bindingData.playStyle = 1
-        context.bindingData.difficulty = 0
-        req.query.scope = 'full'
-
-        // Act
-        const result = await getChartScore(context, req)
-
-        // Assert
-        expect(result.status).toBe(200)
-        expect(result.body).toStrictEqual([
-          // World Best
-          {
-            userId: scores[0].userId,
-            userName: scores[0].userName,
-            ...chart,
-            score: scores[0].score,
-            clearLamp: scores[0].clearLamp,
-            rank: scores[0].rank,
-          },
-          // Area Best
-          {
-            userId: scores[1].userId,
-            userName: scores[1].userName,
-            ...chart,
-            score: scores[1].score,
-            clearLamp: scores[1].clearLamp,
-            rank: scores[1].rank,
-          },
-          // Public User
-          {
-            userId: scores[2].userId,
-            userName: scores[2].userName,
-            ...chart,
-            score: scores[2].score,
-            clearLamp: scores[2].clearLamp,
-            rank: scores[2].rank,
-          },
-          // Personal Best
-          {
-            userId: scores[3].userId,
-            userName: scores[3].userName,
-            ...chart,
-            score: scores[3].score,
-            clearLamp: scores[3].clearLamp,
-            rank: scores[3].rank,
-          },
-        ])
-      })
-
-      afterAll(async () => {
-        await userContainer.item(user.id, user.id).delete()
-        for (const score of scores) {
-          await scoreContainer.item(score.id, score.userId).delete()
-        }
-      })
-    }
-  )
 })

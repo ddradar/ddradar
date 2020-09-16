@@ -50,12 +50,10 @@ export async function fetchOne<T>(
   parameters: SqlParameter[]
 ): Promise<T | null> {
   const container = getContainer(containerName, true)
+  const column = columns.map(col => `c.${col}`).join(', ') || '*'
   const { resources } = await container.items
     .query<T>({
-      query:
-        `SELECT ${columns.map(col => `c.${col}`).join(', ')} ` +
-        'FROM c ' +
-        `WHERE ${conditions.join(' AND ')}`,
+      query: `SELECT ${column} FROM c WHERE ${conditions.join(' AND ')}`,
       parameters,
     })
     .fetchAll()

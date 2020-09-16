@@ -1,4 +1,8 @@
-import type { StepChartSchema } from './songs'
+import type { SqlParameter } from '@azure/cosmos'
+
+import { fetchList, fetchOne } from '.'
+import type { Difficulty, StepChartSchema } from './songs'
+import type { UserSchema } from './users'
 
 export type ScoreSchema = Pick<
   StepChartSchema,
@@ -56,3 +60,60 @@ export const DanceLevelList = [
   'AA+',
   'AAA',
 ] as const
+
+export function fetchChartScores(
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: Difficulty,
+  user?: Pick<UserSchema, 'id' | 'area'> | null,
+  scope: 'private' | 'medium' | 'full' = 'medium'
+): Promise<Omit<ScoreSchema, 'id' | 'isPublic'>[]> {
+  const conditions: string[] = [
+    'c.songId = @songId',
+    'c.playStyle = @playStyle',
+    'c.difficulty = @difficulty',
+  ]
+  const parameters: SqlParameter[] = [
+    { name: '@songId', value: songId },
+    { name: '@playStyle', value: playStyle },
+    { name: '@difficulty', value: difficulty },
+  ]
+  if (user) {
+    parameters.push({
+      name: '@ids',
+      value: [user.id, ...(scope === 'private' ? [] : ['0', `${user.area}`])],
+    })
+  } else {
+    if (scope === 'private') return Promise.resolve([])
+    parameters.push({ name: '@ids', value: ['0'] })
+  }
+  conditions.push(
+    scope === 'full'
+      ? '(c.isPublic = true OR ARRAY_CONTAINS(@ids, c.userId))'
+      : 'ARRAY_CONTAINS(@ids, c.userId)'
+  )
+
+  return fetchList<Omit<ScoreSchema, 'id' | 'isPublic'>>(
+    'Scores',
+    [
+      'userId',
+      'userName',
+      'songId',
+      'songName',
+      'playStyle',
+      'difficulty',
+      'level',
+      'clearLamp',
+      'score',
+      'rank',
+      'exScore',
+      'maxCombo',
+    ],
+    conditions,
+    parameters,
+    {
+      score: 'DESC',
+      clearLamp: 'DESC',
+    }
+  )
+}
