@@ -1,16 +1,20 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { ScoreSchema } from '@ddradar/core/db'
+import type {
+  Difficulty,
+  SongSchema,
+  StepChartSchema,
+} from '@ddradar/core/db/songs'
+import { isScoreRequest, isValidScore, mergeScore } from '@ddradar/core/score'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import type { ScoreSchema } from '../db'
-import type { Difficulty, SongSchema, StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,
   NotFoundResult,
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import { isScore, isValidScore, mergeScore } from '../score'
 
 type ChartInfo = Pick<
   StepChartSchema,
@@ -50,7 +54,7 @@ export default async function (
     return { httpResponse: { status: 404 } }
   }
 
-  if (!isScore(req.body)) {
+  if (!isScoreRequest(req.body)) {
     return { httpResponse: { status: 400, body: 'body is not Score' } }
   }
 

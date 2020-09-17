@@ -1,9 +1,9 @@
 import type { SqlParameter } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
+import type { ScoreSchema, UserSchema } from '@ddradar/core/db'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
-import type { ScoreSchema, UserSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 type Score = Omit<ScoreSchema, 'id' | 'isPublic'>

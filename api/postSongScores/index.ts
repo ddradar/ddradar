@@ -1,8 +1,15 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { ScoreSchema, SongSchema, UserSchema } from '@ddradar/core/db'
+import {
+  getDanceLevel,
+  isScoreRequest,
+  isValidScore,
+  mergeScore,
+  ScoreRequest,
+} from '@ddradar/core/score'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import type { ScoreSchema, SongSchema, UserSchema } from '../db'
 import type { StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,
@@ -10,16 +17,9 @@ import type {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import {
-  getDanceLevel,
-  isScore,
-  isValidScore,
-  mergeScore,
-  Score,
-} from '../score'
 import { hasIntegerProperty, hasProperty } from '../type-assert'
 
-type ScoreBody = Score &
+type ScoreBody = ScoreRequest &
   Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
 type ChartInfo = Pick<
@@ -90,7 +90,7 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const topScore: Score = {
+      const topScore: ScoreRequest = {
         score: score.topScore,
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
@@ -130,7 +130,7 @@ export default async function (
 
     function isScoreBody(obj: unknown): obj is ScoreBody {
       return (
-        isScore(obj) &&
+        isScoreRequest(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
         [1, 2].includes(obj.playStyle) &&
         [0, 1, 2, 3, 4].includes(obj.difficulty) &&
@@ -146,7 +146,7 @@ export default async function (
   function createSchema(
     chart: Readonly<ChartInfo>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Score>
+    score: Readonly<ScoreRequest>
   ) {
     const scoreSchema: ScoreSchema = {
       id: `${user.id}-${chart.id}-${chart.playStyle}-${chart.difficulty}`,

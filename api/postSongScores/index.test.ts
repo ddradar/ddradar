@@ -1,11 +1,11 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import { ScoreSchema } from '@ddradar/core/db'
+import { ScoreRequest } from '@ddradar/core/score'
 import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema } from '../db'
-import { Score } from '../score'
 import postSongScores from '.'
 
 jest.mock('../auth')
@@ -36,7 +36,7 @@ describe('POST /api/v1/scores', () => {
     expect(result.status).toBe(401)
   })
 
-  const score: Score = {
+  const score: ScoreRequest = {
     score: 1000000,
     clearLamp: 7,
     maxCombo: 200,

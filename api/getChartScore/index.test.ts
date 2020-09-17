@@ -1,10 +1,10 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import { ScoreSchema, UserSchema } from '@ddradar/core/db'
 import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema, UserSchema } from '../db'
 import getChartScore from '.'
 
 jest.mock('../auth')
