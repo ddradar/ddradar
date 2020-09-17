@@ -1,11 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
+import { AreaCode, UserSchema } from '@ddradar/core/db/users'
 import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { UserSchema } from '../db'
-import { AreaCode } from '../db/users'
 import getUserList from '.'
 
 jest.mock('../auth')

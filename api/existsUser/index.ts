@@ -1,4 +1,5 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { UserInfo } from '@ddradar/core/user'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
@@ -7,9 +8,8 @@ import type {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import type { User } from '../user'
 
-type ExistsUser = Pick<User, 'id'> & {
+type ExistsUser = Pick<UserInfo, 'id'> & {
   exists: boolean
 }
 

@@ -1,10 +1,10 @@
 import type { Container } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import { UserSchema } from '@ddradar/core/db'
 import { mocked } from 'ts-jest/utils'
 
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import { UserSchema } from '../db'
 
 jest.mock('../cosmos')
 

@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { UserSchema } from '@ddradar/core/db'
 
 import { getContainer } from './cosmos'
-import { UserSchema } from './db'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 

@@ -1,4 +1,5 @@
 import type { HttpRequest } from '@azure/functions'
+import { UserInfo } from '@ddradar/core/user'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
@@ -7,13 +8,12 @@ import {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import { User } from '../user'
 
 /** Get information about the currently logged in user. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers'>
-): Promise<NotFoundResult | SuccessResult<User> | UnauthenticatedResult> {
+): Promise<NotFoundResult | SuccessResult<UserInfo> | UnauthenticatedResult> {
   const clientPrincipal = getClientPrincipal(req)
   // This check is only used to unit tests.
   if (!clientPrincipal) return { status: 401 }
@@ -22,7 +22,7 @@ export default async function (
 
   const container = getContainer('Users', true)
   const { resources } = await container.items
-    .query<User>({
+    .query<UserInfo>({
       query:
         'SELECT c.id, c.name, c.area, c.code ' +
         'FROM c ' +

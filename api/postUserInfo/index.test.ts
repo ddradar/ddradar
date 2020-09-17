@@ -1,10 +1,11 @@
 import type { HttpRequest } from '@azure/functions'
+import type { UserInfo } from '@ddradar/core/user'
 import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
 import { getConnectionString, getContainer } from '../cosmos'
-import postUserInfo, { UserInfo } from '.'
+import postUserInfo from '.'
 
 jest.mock('../auth')
 

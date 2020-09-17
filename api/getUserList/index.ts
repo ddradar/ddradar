@@ -1,17 +1,16 @@
 import { SqlParameter } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import { areaCodeList, UserListData } from '@ddradar/core/user'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
-import { areaCodeList } from '../db/users'
 import type { SuccessResult } from '../function'
-import type { User } from '../user'
 
 /** Get user list that match the specified conditions. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>
-): Promise<SuccessResult<User[]>> {
+): Promise<SuccessResult<UserListData[]>> {
   const clientPrincipal = getClientPrincipal(req)
   const loginId = clientPrincipal?.userId ?? ''
 
@@ -38,10 +37,10 @@ export default async function (
     parameters.push({ name: '@code', value: code })
   }
 
-  const columns: (keyof User)[] = ['id', 'name', 'area', 'code']
+  const columns: (keyof UserListData)[] = ['id', 'name', 'area', 'code']
   const container = getContainer('Users', true)
   const { resources } = await container.items
-    .query<User>({
+    .query<UserListData>({
       query:
         'SELECT ' +
         columns.map(col => `c.${col}`).join(', ') +

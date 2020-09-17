@@ -1,32 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
+import type { UserSchema } from '@ddradar/core/db'
+import { isUserInfo, UserInfo } from '@ddradar/core/user'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
-import { areaCodeList, UserSchema } from '../db/users'
 import type {
   BadRequestResult,
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import {
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from '../type-assert'
-
-export type UserInfo = Omit<UserSchema, 'loginId'>
-
-const isUserInfo = (obj: unknown): obj is UserInfo =>
-  hasStringProperty(obj, 'id', 'name') &&
-  /^[-a-z0-9_]+$/.test(obj.id) &&
-  hasIntegerProperty(obj, 'area') &&
-  (areaCodeList as number[]).includes(obj.area) &&
-  (!hasProperty(obj, 'code') ||
-    (hasIntegerProperty(obj, 'code') &&
-      obj.code >= 10000000 &&
-      obj.code <= 99999999)) &&
-  hasProperty(obj, 'isPublic') &&
-  typeof obj.isPublic === 'boolean'
 
 type PostUserResult = {
   httpResponse:

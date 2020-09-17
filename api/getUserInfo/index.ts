@@ -1,15 +1,15 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { UserInfo } from '@ddradar/core/user'
 
 import { getClientPrincipal } from '../auth'
 import { getContainer } from '../cosmos'
 import type { NotFoundResult, SuccessResult } from '../function'
-import type { User } from '../user'
 
 /** Get user information that match the specified ID. */
 export default async function (
   context: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>
-): Promise<NotFoundResult | SuccessResult<User>> {
+): Promise<NotFoundResult | SuccessResult<UserInfo>> {
   const id: string = context.bindingData.id
   const clientPrincipal = getClientPrincipal(req)
   const loginId = clientPrincipal?.userId ?? ''
@@ -22,7 +22,7 @@ export default async function (
 
   const container = getContainer('Users', true)
   const { resources } = await container.items
-    .query<User>({
+    .query<UserInfo>({
       query:
         'SELECT c.id, c.name, c.area, c.code ' +
         'FROM c ' +
