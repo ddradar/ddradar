@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { NotificationSchema } from '@ddradar/core/db'
 
 import { getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
 import type { SuccessResult } from '../function'
 
 type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>

@@ -14,7 +14,8 @@
     "test": "jest --runInBand"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.9.1"
+    "@azure/cosmos": "^3.9.1",
+    "@ddradar/core": "*"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",

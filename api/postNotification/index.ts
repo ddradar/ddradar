@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import { NotificationSchema } from '@ddradar/core/db'
 
-import { NotificationSchema } from '../db'
 import type { BadRequestResult, SuccessResult } from '../function'
 import {
   hasIntegerProperty,

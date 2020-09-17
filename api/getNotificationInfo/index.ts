@@ -1,7 +1,7 @@
 import type { Context } from '@azure/functions'
+import type { NotificationSchema } from '@ddradar/core/db'
 
 import { getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get notification that match the specified ID. */

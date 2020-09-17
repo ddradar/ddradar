@@ -1,6 +1,7 @@
+import type { NotificationSchema } from '@ddradar/core/db'
+
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
 import getNotification from '.'
 
 describe('GET /api/v1/notification', () => {
