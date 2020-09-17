@@ -12,14 +12,6 @@
       "client",
       "core",
       "functions"
-    ],
-    "nohoist": [
-      "@ddradar/functions/@azure/cosmos",
-      "@ddradar/functions/iconv-lite",
-      "@ddradar/functions/node-fetch",
-      "@ddradar/functions/@azure/cosmos/**",
-      "@ddradar/functions/iconv-lite/**",
-      "@ddradar/functions/node-fetch/**"
     ]
   },
   "scripts": {

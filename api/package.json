@@ -4,6 +4,12 @@
   "description": "Backend API for DDRadar",
   "license": "MIT",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "@ddradar/core",
+      "@ddradar/core/**"
+    ]
+  },
   "engines": {
     "node": ">=12"
   },
