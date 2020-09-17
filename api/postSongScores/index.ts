@@ -1,16 +1,17 @@
 import type { Context, HttpRequest } from '@azure/functions'
-import type { ScoreSchema, SongSchema, UserSchema } from '@ddradar/core/db'
+import type { ScoreSchema, UserSchema } from '@ddradar/core/db'
+import type { SongSchema, StepChartSchema } from '@ddradar/core/db/songs'
 import {
   getDanceLevel,
   isScoreRequest,
   isValidScore,
   mergeScore,
+  ScoreListRequest,
   ScoreRequest,
 } from '@ddradar/core/score'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer } from '../cosmos'
-import type { StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,
   NotFoundResult,
@@ -18,9 +19,6 @@ import type {
   UnauthenticatedResult,
 } from '../function'
 import { hasIntegerProperty, hasProperty } from '../type-assert'
-
-type ScoreBody = ScoreRequest &
-  Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
 type ChartInfo = Pick<
   StepChartSchema,
@@ -123,12 +121,12 @@ export default async function (
   }
 
   /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ScoreBody[] {
+  function isValidBody(body: unknown): body is ScoreListRequest[] {
     return (
       Array.isArray(body) && body.length > 0 && body.every(d => isScoreBody(d))
     )
 
-    function isScoreBody(obj: unknown): obj is ScoreBody {
+    function isScoreBody(obj: unknown): obj is ScoreListRequest {
       return (
         isScoreRequest(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&

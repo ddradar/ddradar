@@ -1,6 +1,7 @@
+import type { CourseSchema, SongSchema } from '@ddradar/core/db'
+
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { CourseSchema, SongSchema } from '../db/songs'
 import getCourseList from '.'
 
 describe('GET /api/v1/courses', () => {

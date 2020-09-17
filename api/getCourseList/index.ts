@@ -1,8 +1,9 @@
 import type { SqlParameter } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import { CourseInfoSchema, CourseSchema } from '@ddradar/core/db/songs'
+import { seriesList } from '@ddradar/core/song'
 
 import { getContainer } from '../cosmos'
-import { CourseInfoSchema, CourseSchema, SeriesList } from '../db/songs'
 import type { SuccessResult } from '../function'
 
 type ShrinkedCourse = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
@@ -44,7 +45,7 @@ export default async function (
   if (isValidSeries) {
     const col: keyof CourseSchema = 'series'
     conditions.push(`c.${col} = @${col}`)
-    parameters.push({ name: `@${col}`, value: SeriesList[series] })
+    parameters.push({ name: `@${col}`, value: seriesList[series] })
   }
 
   const { resources } = await container.items

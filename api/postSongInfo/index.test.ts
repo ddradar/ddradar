@@ -1,4 +1,5 @@
-import type { SongSchema } from '../db'
+import type { SongSchema } from '@ddradar/core/db'
+
 import postSongInfo from '.'
 
 describe('POST /api/v1/admin/songs', () => {

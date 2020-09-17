@@ -1,11 +1,11 @@
 import type { HttpRequest } from '@azure/functions'
+import { isSongSchema, SongInfo } from '@ddradar/core/song'
 
-import { isSongSchema, SongSchema } from '../db/songs'
 import type { BadRequestResult, SuccessResult } from '../function'
 
 type PostSongResult = {
-  httpResponse: BadRequestResult | SuccessResult<SongSchema>
-  document?: SongSchema
+  httpResponse: BadRequestResult | SuccessResult<SongInfo>
+  document?: SongInfo
 }
 
 /** Add or update song and charts information. */
@@ -17,7 +17,7 @@ export default async function (
     return { httpResponse: { status: 400, body: 'Body is not SongSchema' } }
   }
 
-  const document: SongSchema = {
+  const document: SongInfo = {
     id: req.body.id,
     name: req.body.name,
     nameKana: req.body.nameKana,

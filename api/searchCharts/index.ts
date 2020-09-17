@@ -1,7 +1,7 @@
 import type { Context } from '@azure/functions'
+import type { SongSchema, StepChartSchema } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../cosmos'
-import type { SongSchema, StepChartSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 type StepChart = Pick<SongSchema, 'id' | 'name' | 'series'> &

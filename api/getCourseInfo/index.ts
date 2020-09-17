@@ -1,7 +1,7 @@
 import type { Context } from '@azure/functions'
+import type { CourseSchema } from '@ddradar/core/db'
 
 import { getContainer } from '../cosmos'
-import type { CourseSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */

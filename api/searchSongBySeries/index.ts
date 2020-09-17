@@ -1,11 +1,9 @@
 import type { SqlParameter } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
+import { seriesList, SongListData } from '@ddradar/core/song'
 
 import { getContainer } from '../cosmos'
-import { SeriesList, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
-
-type SongListData = Omit<SongSchema, 'charts'>
 
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
@@ -25,7 +23,7 @@ export default async function (
   if (
     !Number.isInteger(seriesIndex) ||
     seriesIndex < 0 ||
-    seriesIndex >= SeriesList.length
+    seriesIndex >= seriesList.length
   ) {
     return { status: 404 }
   }
@@ -35,7 +33,7 @@ export default async function (
   // Create SQL WHERE condition dynamically
   const condition: string[] = ['c.series = @series']
   const parameters: SqlParameter[] = [
-    { name: '@series', value: SeriesList[seriesIndex] },
+    { name: '@series', value: seriesList[seriesIndex] },
   ]
   if (isValidName) {
     condition.push('c.nameIndex = @nameIndex')
@@ -69,7 +67,7 @@ export default async function (
   if (resources.length === 0) {
     return {
       status: 404,
-      body: `Not found song that {series: "${SeriesList[seriesIndex]}" nameIndex: ${nameIndex}}`,
+      body: `Not found song that {series: "${seriesList[seriesIndex]}" nameIndex: ${nameIndex}}`,
     }
   }
 

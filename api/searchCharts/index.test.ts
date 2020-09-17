@@ -1,8 +1,8 @@
 import type { Context } from '@azure/functions'
+import type { CourseSchema, SongSchema } from '@ddradar/core/db'
 
 import { describeIf } from '../__tests__/util'
 import { getConnectionString, getContainer } from '../cosmos'
-import type { CourseSchema, SongSchema } from '../db'
 import searchCharts from '.'
 
 describe('GET /api/v1/charts', () => {
