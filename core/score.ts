@@ -1,5 +1,6 @@
 import type { ClearLamp, Rank, ScoreSchema } from './db/scores'
 import { StepChartSchema } from './db/songs'
+import { hasIntegerProperty, hasStringProperty } from './type-assert'
 
 /**
  * Object type returned by `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
@@ -55,8 +56,32 @@ export const danceLevelList = [
   'AAA',
 ] as const
 
+export function isScoreRequest(obj: unknown): obj is ScoreRequest {
+  return (
+    hasIntegerProperty(obj, 'score', 'clearLamp') &&
+    obj.score >= 0 &&
+    obj.score <= 1000000 &&
+    obj.clearLamp >= 0 &&
+    obj.clearLamp <= 7 &&
+    (hasIntegerProperty(obj, 'exScore') ||
+      (obj as Record<string, unknown>).exScore === undefined) &&
+    (hasIntegerProperty(obj, 'maxCombo') ||
+      (obj as Record<string, unknown>).maxCombo === undefined) &&
+    hasStringProperty(obj, 'rank') &&
+    (danceLevelList as readonly string[]).includes(obj.rank)
+  )
+}
+
 /** Calcurate DanceLevel from score. */
 export function getDanceLevel(score: number): Exclude<Rank, 'E'> {
+  if (!isPositiveInteger(score))
+    throw new RangeError(
+      `Invalid parameter: score(${score}) should be positive integer or 0.`
+    )
+  if (score > 1000000)
+    throw new RangeError(
+      `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
+    )
   const rankList = [
     { border: 990000, rank: 'AAA' },
     { border: 950000, rank: 'AA+' },
@@ -332,3 +357,57 @@ export function completeScoreFromChart(
     return Math.floor(rawScore / 10) * 10
   }
 }
+
+export function mergeScore(
+  left: Readonly<ScoreRequest>,
+  right: Readonly<ScoreRequest>
+): ScoreRequest {
+  const result: ScoreRequest = {
+    score: left.score > right.score ? left.score : right.score,
+    clearLamp:
+      left.clearLamp > right.clearLamp ? left.clearLamp : right.clearLamp,
+    rank: left.score > right.score ? left.rank : right.rank,
+  }
+  const exScore =
+    (left.exScore ?? 0) > (right.exScore ?? 0) ? left.exScore : right.exScore
+  if (exScore !== undefined) result.exScore = exScore
+  const maxCombo =
+    (left.maxCombo ?? 0) > (right.maxCombo ?? 0)
+      ? left.maxCombo
+      : right.maxCombo
+  if (maxCombo !== undefined) result.maxCombo = maxCombo
+  return result
+}
+
+export function isValidScore(
+  {
+    notes,
+    freezeArrow,
+    shockArrow,
+  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
+  {
+    clearLamp,
+    exScore,
+    maxCombo,
+  }: Readonly<Omit<ScoreRequest, 'score' | 'rank'>>
+): boolean {
+  const maxExScore = (notes + freezeArrow + shockArrow) * 3
+  const fullCombo = notes + shockArrow
+
+  if (exScore) {
+    if (
+      !isPositiveInteger(exScore) ||
+      exScore > maxExScore ||
+      (clearLamp !== 7 && exScore === maxExScore) || // EX SCORE is MAX, but not MFC
+      (clearLamp !== 6 && exScore === maxExScore - 1) || // EX SCORE is P1, but not PFC
+      (clearLamp < 5 && exScore === maxExScore - 2) // EX SCORE is Gr1 or P2, but not Great FC or PFC
+    )
+      return false
+  }
+
+  // Do not check maxCombo because "MAX COMBO is fullCombo, but not FC" pattern is exists.
+  // ex. missed last Freeze Arrow
+  return !maxCombo || (isPositiveInteger(maxCombo) && maxCombo <= fullCombo)
+}
+
+const isPositiveInteger = (num: number) => Number.isInteger(num) && num >= 0
