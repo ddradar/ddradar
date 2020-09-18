@@ -65,12 +65,12 @@ export async function fetchOne<T>(
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(', ')
   const condition = conditions
-    .map((c, i) => c.condition.replace('@', `@${i}`))
+    .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
     .filter(c => c.value !== undefined)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    .map<SqlParameter>((c, i) => ({ name: `@${i}`, value: c.value! }))
+    .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
   const query = `SELECT ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
@@ -89,12 +89,12 @@ export async function fetchList<T>(
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(', ')
   const condition = conditions
-    .map((c, i) => c.condition.replace('@', `@${i}`))
+    .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
     .filter(c => c.value !== undefined)
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    .map<SqlParameter>((c, i) => ({ name: `@${i}`, value: c.value! }))
+    .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
