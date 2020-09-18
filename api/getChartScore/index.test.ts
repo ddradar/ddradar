@@ -3,8 +3,12 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
-import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema, UserSchema } from '../db'
+import {
+  getConnectionString,
+  getContainer,
+  ScoreSchema,
+  UserSchema,
+} from '../db'
 import getChartScore from '.'
 
 jest.mock('../auth')

@@ -1,7 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { CourseSchema } from '../db'
+import { CourseSchema, getContainer } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */

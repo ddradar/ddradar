@@ -1,8 +1,12 @@
 import type { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
-import { getConnectionString, getContainer } from '../cosmos'
-import type { CourseSchema, SongSchema } from '../db'
+import {
+  CourseSchema,
+  getConnectionString,
+  getContainer,
+  SongSchema,
+} from '../db'
 import searchCharts from '.'
 
 describe('GET /api/v1/charts', () => {

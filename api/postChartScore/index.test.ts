@@ -3,7 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getConnectionString, getContainer } from '../cosmos'
+import { getConnectionString, getContainer } from '../db'
 import postChartScore from '.'
 
 jest.mock('../auth')

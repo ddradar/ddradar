@@ -3,10 +3,9 @@ import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer } from '../cosmos'
-import { UserSchema } from '../db'
+import { getContainer, UserSchema } from '../db'
 
-jest.mock('../cosmos')
+jest.mock('../db')
 
 const toBase64 = (obj: unknown) => {
   const jsonString = JSON.stringify(obj)

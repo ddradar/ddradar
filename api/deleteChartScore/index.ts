@@ -1,7 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import type {
   NoContentResult,
   NotFoundResult,

@@ -1,7 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { SongSchema } from '../db'
+import { getContainer, SongSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get song and charts information that match the specified ID. */

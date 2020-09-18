@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
+import { getContainer, NotificationSchema } from '../db'
 import type { SuccessResult } from '../function'
 
 type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>

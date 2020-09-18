@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import type { SongSchema, StepChartSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 

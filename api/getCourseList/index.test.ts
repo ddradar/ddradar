@@ -1,5 +1,5 @@
 import { describeIf } from '../__tests__/util'
-import { getConnectionString, getContainer } from '../cosmos'
+import { getConnectionString, getContainer } from '../db'
 import type { CourseSchema, SongSchema } from '../db/songs'
 import getCourseList from '.'
 

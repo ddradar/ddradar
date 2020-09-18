@@ -3,8 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getConnectionString, getContainer } from '../cosmos'
-import { ScoreSchema } from '../db'
+import { getConnectionString, getContainer, ScoreSchema } from '../db'
 import { Score } from '../score'
 import postSongScores from '.'
 

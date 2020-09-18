@@ -1,7 +1,7 @@
 import type { SqlParameter } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import { SeriesList, SongSchema } from '../db/songs'
 import type { NotFoundResult, SuccessResult } from '../function'
 

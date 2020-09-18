@@ -1,8 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer } from '../cosmos'
-import type { ScoreSchema, SongSchema, UserSchema } from '../db'
+import { getContainer, ScoreSchema, SongSchema, UserSchema } from '../db'
 import type { StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,

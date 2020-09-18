@@ -1,8 +1,7 @@
 import { Context } from '@azure/functions'
 
 import { describeIf } from '../__tests__/util'
-import { getConnectionString, getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
+import { getConnectionString, getContainer, NotificationSchema } from '../db'
 import getNotificationInfo from '.'
 
 describe('GET /api/v1/notification/', () => {
