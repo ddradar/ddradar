@@ -34,6 +34,7 @@ module.exports = async () => {
         ],
       ],
     },
+    defaultTtl: -1,
   })
   await database.containers.createIfNotExists({
     id: 'Songs',

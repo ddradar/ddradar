@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { getContainer } from './cosmos'
-import { UserSchema } from './db'
+import { getContainer, UserSchema } from './db'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 

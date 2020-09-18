@@ -1,11 +1,11 @@
-import type { StepChartSchema } from './songs'
+import { fetchList, fetchOne, ItemDefinition } from '.'
+import type { Difficulty, StepChartSchema } from './songs'
+import { UserSchema } from './users'
 
 export type ScoreSchema = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level'
 > & {
-  /** `${userId}-${songId}-${playStyle}-${difficulty}` */
-  id: string
   /** User ID */
   userId: string
   userName: string
@@ -56,3 +56,80 @@ export const DanceLevelList = [
   'AA+',
   'AAA',
 ] as const
+
+export function fetchScore(
+  userId: string,
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: Difficulty
+): Promise<Omit<ScoreSchema, 'isPublic'> | null> {
+  return fetchOne<Omit<ScoreSchema & ItemDefinition, 'isPublic'>>(
+    'Scores',
+    [
+      'id',
+      'userId',
+      'userName',
+      'songId',
+      'songName',
+      'playStyle',
+      'difficulty',
+      'level',
+      'clearLamp',
+      'score',
+      'rank',
+      'exScore',
+      'maxCombo',
+    ],
+    [
+      { condition: 'c.userId = @', value: userId },
+      { condition: 'c.songId = @', value: songId },
+      { condition: 'c.playStyle = @', value: playStyle },
+      { condition: 'c.difficulty = @', value: difficulty },
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1)' },
+    ]
+  )
+}
+
+export function fetchChartScores(
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: Difficulty,
+  scope: 'medium' | 'full' = 'medium',
+  user?: Pick<UserSchema, 'id' | 'area'> | null
+): Promise<Omit<ScoreSchema, 'isPublic'>[]> {
+  return fetchList<Omit<ScoreSchema, 'isPublic'>>(
+    'Scores',
+    [
+      'userId',
+      'userName',
+      'songId',
+      'songName',
+      'playStyle',
+      'difficulty',
+      'level',
+      'clearLamp',
+      'score',
+      'rank',
+      'exScore',
+      'maxCombo',
+    ],
+    [
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1)' },
+      { condition: 'c.songId = @', value: songId },
+      { condition: 'c.playStyle = @', value: playStyle },
+      { condition: 'c.difficulty = @', value: difficulty },
+      {
+        condition:
+          scope === 'full'
+            ? '(c.isPublic = true OR ARRAY_CONTAINS(@, c.userId))'
+            : 'ARRAY_CONTAINS(@, c.userId)',
+        value: ['0', ...(user ? [`${user.id}`, `${user.area}`] : [])],
+      },
+    ],
+    {
+      score: 'DESC',
+      clearLamp: 'DESC',
+      _ts: 'ASC',
+    }
+  )
+}

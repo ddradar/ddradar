@@ -2,6 +2,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer, ScoreSchema } from '../db'
+import { fetchScore } from '../db/scores'
 import type { Difficulty, SongSchema, StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,
@@ -122,7 +123,6 @@ export default async function (
   function createScoreSchema() {
     /* eslint-disable @typescript-eslint/no-non-null-assertion -- user is not null if this function called */
     const score: ScoreSchema = {
-      id: `${user!.id}-${songId}-${playStyle}-${difficulty}`,
       userId: user!.id,
       userName: user!.name,
       isPublic: user!.isPublic,
@@ -157,25 +157,25 @@ export default async function (
     area: string,
     score: ScoreSchema
   ): Promise<ScoreSchema | null> {
-    const container = getContainer('Scores', true)
-
     // Get previous score
-    const id = `${area}-${score.songId}-${score.playStyle}-${score.difficulty}`
-    const { resources } = await container.items
-      .query<ScoreSchema>({
-        query: 'SELECT * FROM c WHERE c.id = @id',
-        parameters: [{ name: '@id', value: id }],
-      })
-      .fetchAll()
-    const oldScore = resources[0] ?? {
-      score: 0,
-      rank: 'E',
-      clearLamp: 0,
-    }
+    const oldScore =
+      (await fetchScore(
+        score.userId,
+        score.songId,
+        score.playStyle,
+        score.difficulty
+      )) ??
+      ({
+        score: 0,
+        rank: 'E',
+        clearLamp: 0,
+      } as Pick<
+        ScoreSchema,
+        'score' | 'rank' | 'clearLamp' | 'exScore' | 'maxCombo'
+      >)
 
     const mergedScore: ScoreSchema = {
       ...mergeScore(oldScore, score),
-      id,
       userId: area,
       userName: area,
       isPublic: false,

@@ -10,7 +10,6 @@ The collection that stores user scores.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|id|string|`${userId}-${songId}-${playStyle}-${difficulty}`|
 |**userId**|string|User ID|
 |userName|string|User name|
 |isPublic|boolean|`true` if this score is public, otherwize `false`.|

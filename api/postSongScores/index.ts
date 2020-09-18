@@ -2,6 +2,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { getContainer, ScoreSchema, SongSchema, UserSchema } from '../db'
+import { fetchScore } from '../db/scores'
 import type { StepChartSchema } from '../db/songs'
 import type {
   BadRequestResult,
@@ -148,7 +149,6 @@ export default async function (
     score: Readonly<Score>
   ) {
     const scoreSchema: ScoreSchema = {
-      id: `${user.id}-${chart.id}-${chart.playStyle}-${chart.difficulty}`,
       userId: user.id,
       userName: user.name,
       isPublic: user.isPublic,
@@ -186,21 +186,24 @@ export default async function (
     const container = getContainer('Scores')
 
     // Get previous score
-    const { resources } = await container.items
-      .query<ScoreSchema>({
-        query: 'SELECT * FROM c WHERE c.id = @id',
-        parameters: [{ name: '@id', value: score.id }],
-      })
-      .fetchAll()
-    const oldScore = resources[0] ?? {
-      score: 0,
-      rank: 'E',
-      clearLamp: 0,
-    }
+    const oldScore =
+      (await fetchScore(
+        score.userId,
+        score.songId,
+        score.playStyle,
+        score.difficulty
+      )) ??
+      ({
+        score: 0,
+        rank: 'E',
+        clearLamp: 0,
+      } as Pick<
+        ScoreSchema,
+        'score' | 'rank' | 'clearLamp' | 'exScore' | 'maxCombo'
+      >)
 
     const mergedScore = {
       ...mergeScore(oldScore, score),
-      id: score.id,
       userId: score.userId,
       userName: score.userName,
       isPublic: score.isPublic,
@@ -219,6 +222,6 @@ export default async function (
     ) {
       return
     }
-    await container.items.upsert(mergedScore)
+    await container.items.create(mergedScore)
   }
 }

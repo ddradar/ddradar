@@ -117,7 +117,7 @@ describe('DELETE /api/v1/scores', () => {
         difficulty: 0,
         level: 4,
       } as const
-      const scores: readonly ScoreSchema[] = [
+      const scores: readonly (ScoreSchema & { id: string })[] = [
         {
           id: '0-06loOQ0DQb0DqbOibl6qO81qlIdoP9DI-1-0',
           userId: '0',

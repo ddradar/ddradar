@@ -22,3 +22,14 @@ export type SuccessResult<T> = {
 export type NoContentResult = {
   status: 204
 }
+
+/**
+ * Get context.bindingData[key] as number
+ * workaround for https://github.com/Azure/azure-functions-host/issues/6055
+ */
+export function getBindingNumber(
+  bindingData: { [key: string]: unknown },
+  key: string
+): number {
+  return typeof bindingData[key] === 'number' ? (bindingData[key] as number) : 0
+}

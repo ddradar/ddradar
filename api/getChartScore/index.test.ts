@@ -22,59 +22,6 @@ describe('GET /api/v1/scores', () => {
     req = { headers: {}, query: {} }
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await getChartScore(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each(['', 'foo'])('/%s/1/0 returns "404 Not Found"', async songId => {
-    // Arrange
-    context.bindingData.songId = songId
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-
-    // Act
-    const result = await getChartScore(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each([0, -1, 3, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/%d/0 returns "404 Not Found"',
-    async playStyle => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = playStyle
-      context.bindingData.difficulty = 0
-
-      // Act
-      const result = await getChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
-  test.each([5, -1, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/1/%d returns "404 Not Found"',
-    async difficulty => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = 1
-      context.bindingData.difficulty = difficulty
-
-      // Act
-      const result = await getChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
   test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=private returns "404 Not Found" if anonymous', async () => {
     // Arrange
     context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
@@ -108,7 +55,7 @@ describe('GET /api/v1/scores', () => {
         difficulty: 0,
         level: 4,
       } as const
-      const scores: readonly ScoreSchema[] = [
+      const scores: readonly (ScoreSchema & { id: string })[] = [
         {
           id: `0-${chart.songId}-${chart.playStyle}-${chart.difficulty}`,
           userId: '0',
