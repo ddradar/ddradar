@@ -33,3 +33,16 @@ export function getBindingNumber(
 ): number {
   return typeof bindingData[key] === 'number' ? (bindingData[key] as number) : 0
 }
+
+/**
+ * Get context.bindingData[key] as string
+ * workaround for https://github.com/Azure/azure-functions-host/issues/6055
+ */
+export function getBindingString(
+  bindingData: { [key: string]: unknown },
+  key: string
+): string {
+  return typeof bindingData[key] === 'string'
+    ? (bindingData[key] as string)
+    : '0'
+}

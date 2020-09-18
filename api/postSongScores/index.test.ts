@@ -3,7 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getConnectionString, getContainer, ScoreSchema } from '../db'
+import { getConnectionString, getContainer } from '../db'
 import { Score } from '../score'
 import postSongScores from '.'
 
@@ -32,7 +32,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postSongScores(context, req)
 
     // Assert
-    expect(result.status).toBe(401)
+    expect(result.httpResponse.status).toBe(401)
   })
 
   const score: Score = {
@@ -63,7 +63,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postSongScores(context, req)
 
     // Assert
-    expect(result.status).toBe(400)
+    expect(result.httpResponse.status).toBe(400)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -75,7 +75,7 @@ describe('POST /api/v1/scores', () => {
     const result = await postSongScores(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.httpResponse.status).toBe(404)
   })
 
   describeIf(() => !!getConnectionString())(
@@ -204,12 +204,6 @@ describe('POST /api/v1/scores', () => {
         userDetails: 'github_account',
         userRoles: ['anonymous', 'authenticated'],
       }
-      async function getCurrentScore(id: string, userId: string) {
-        const { resource } = await scoreContainer
-          .item(id, userId)
-          .read<ScoreSchema>()
-        return resource
-      }
 
       beforeEach(async () => {
         await songContainer.items.create(song)
@@ -252,7 +246,7 @@ describe('POST /api/v1/scores', () => {
           const result = await postSongScores(context, req)
 
           // Assert
-          expect(result.status).toBe(404)
+          expect(result.httpResponse.status).toBe(404)
         }
       )
 
@@ -275,7 +269,7 @@ describe('POST /api/v1/scores', () => {
           const result = await postSongScores(context, req)
 
           // Assert
-          expect(result.status).toBe(404)
+          expect(result.httpResponse.status).toBe(404)
         }
       )
 
@@ -298,7 +292,7 @@ describe('POST /api/v1/scores', () => {
           const result = await postSongScores(context, req)
 
           // Assert
-          expect(result.status).toBe(404)
+          expect(result.httpResponse.status).toBe(404)
         }
       )
 
@@ -327,7 +321,7 @@ describe('POST /api/v1/scores', () => {
           const result = await postSongScores(context, req)
 
           // Assert
-          expect(result.status).toBe(400)
+          expect(result.httpResponse.status).toBe(400)
         }
       )
 
@@ -355,37 +349,17 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            `0-${song.id}-1-1`,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            `${areaScore.userId}-${song.id}-1-1`,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...publicUserScore,
               ...expected,
-              id: `${publicUser.id}-${song.id}-1-1`,
             },
           ])
-          expect(currentWR?.score).toBe(expected.score)
-          expect(currentArea?.score).toBe(expected.score)
-
-          // Clean up
-          await scoreContainer
-            .item(`${publicUser.id}-${song.id}-1-1`, publicUser.id)
-            .delete()
-          await scoreContainer
-            .item(`0-${song.id}-1-1`, worldScore.userId)
-            .delete()
-          await scoreContainer
-            .item(`${areaScore.userId}-${song.id}-1-1`, areaScore.userId)
-            .delete()
+          expect(result.documents?.[1].score).toBe(expected.score)
+          expect(result.documents?.[2].score).toBe(expected.score)
         }
       )
 
@@ -417,38 +391,18 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            `0-${song.id}-1-1`,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            `${areaScore.userId}-${song.id}-1-1`,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...publicUserScore,
               ...expected,
-              id: `${publicUser.id}-${song.id}-1-1`,
             },
           ])
-          expect(currentWR?.score).toBe(topScore)
-          expect(currentWR?.clearLamp).toBe(clearLamp)
-          expect(currentArea?.score).toBe(expected.score)
-
-          // Clean up
-          await scoreContainer
-            .item(`${publicUser.id}-${song.id}-1-1`, publicUser.id)
-            .delete()
-          await scoreContainer
-            .item(`0-${song.id}-1-1`, worldScore.userId)
-            .delete()
-          await scoreContainer
-            .item(`${areaScore.userId}-${song.id}-1-1`, areaScore.userId)
-            .delete()
+          expect(result.documents?.[1].score).toBe(topScore)
+          expect(result.documents?.[1].clearLamp).toBe(clearLamp)
+          expect(result.documents?.[2].score).toBe(expected.score)
         }
       )
 
@@ -476,26 +430,16 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            `0-${song.id}-1-0`,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            `${areaScore.userId}-${song.id}-1-0`,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...publicUserScore,
               ...expected,
-              id: `${publicUser.id}-${song.id}-1-0`,
             },
           ])
-          expect(currentWR?.score).toBe(worldScore.score)
-          expect(currentArea?.score).toBe(areaScore.score)
+          expect(result.documents).toHaveLength(1)
         }
       )
 
@@ -522,26 +466,16 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            worldScore.id,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            areaScore.id,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...publicUserScore,
               ...expected,
-              id: `${publicUser.id}-${song.id}-1-0`,
             },
           ])
-          expect(currentWR?.score).toBe(worldScore.score)
-          expect(currentArea?.score).toBe(expected.score)
+          expect(result.documents?.[1]?.score).toBe(expected.score)
         }
       )
 
@@ -569,25 +503,17 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            worldScore.id,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            areaScore.id,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...publicUserScore,
               ...expected,
             },
           ])
-          expect(currentWR?.score).toBe(expected.score)
-          expect(currentArea?.score).toBe(expected.score)
+          expect(result.documents?.[1].score).toBe(expected.score)
+          expect(result.documents?.[2].score).toBe(expected.score)
         }
       )
 
@@ -615,25 +541,16 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            worldScore.id,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            areaScore.id,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...areaHiddenUserScore,
               ...expected,
             },
           ])
-          expect(currentWR?.score).toBe(expected.score)
-          expect(currentArea?.score).toBe(areaScore.score)
+          expect(result.documents?.[1].score).toBe(expected.score)
         }
       )
 
@@ -661,25 +578,16 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            worldScore.id,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            areaScore.id,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...privateUserScore,
               ...expected,
             },
           ])
-          expect(currentWR?.score).toBe(worldScore.score)
-          expect(currentArea?.score).toBe(areaScore.score)
+          expect(result.documents).toHaveLength(1)
         }
       )
 
@@ -707,26 +615,17 @@ describe('POST /api/v1/scores', () => {
 
           // Act
           const result = await postSongScores(context, req)
-          const currentWR = await getCurrentScore(
-            worldScore.id,
-            worldScore.userId
-          )
-          const currentArea = await getCurrentScore(
-            areaScore.id,
-            areaScore.userId
-          )
 
           // Assert
-          expect(result.status).toBe(200)
-          expect(result.body).toStrictEqual([
+          expect(result.httpResponse.status).toBe(200)
+          expect(result.httpResponse.body).toStrictEqual([
             {
               ...privateUserScore,
               ...expected,
             },
           ])
-          expect(currentWR?.score).toBe(999700)
-          expect(currentWR?.exScore).toBe(384)
-          expect(currentArea?.score).toBe(areaScore.score)
+          expect(result.documents?.[1].score).toBe(999700)
+          expect(result.documents?.[1].exScore).toBe(384)
         }
       )
     }
