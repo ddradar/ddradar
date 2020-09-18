@@ -28,7 +28,6 @@
     "@nuxt/types": "^2.14.5",
     "@nuxt/typescript-build": "^2.0.3",
     "@nuxtjs/eslint-config-typescript": "^3.0.0",
-    "@types/jest": "^26.0.14",
     "@types/marked": "^1.1.0",
     "@vue/test-utils": "^1.1.0",
     "eslint-plugin-nuxt": "^1.0.0",
@@ -36,6 +35,7 @@
     "jest-serializer-vue": "^2.0.2",
     "node-sass": "^4.14.1",
     "sass-loader": "^10.0.2",
+    "ts-jest": "^26.3.0",
     "vue-jest": "^4.0.0-rc.0"
   }
 }
