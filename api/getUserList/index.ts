@@ -39,7 +39,7 @@ export default async function (
   }
 
   const columns: (keyof User)[] = ['id', 'name', 'area', 'code']
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<User>({
       query:

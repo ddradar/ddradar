@@ -29,7 +29,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query({
       query: 'SELECT c.id FROM c WHERE c.id = @id',

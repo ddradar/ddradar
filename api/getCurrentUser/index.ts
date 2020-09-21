@@ -20,7 +20,7 @@ export default async function (
 
   const loginId = clientPrincipal.userId
 
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<User>({
       query:

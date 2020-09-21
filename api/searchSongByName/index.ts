@@ -27,7 +27,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
 
   // Create SQL WHERE condition dynamically
   const condition: string[] = ['c.nameIndex = @nameIndex']

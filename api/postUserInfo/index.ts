@@ -50,7 +50,7 @@ export default async function (
   }
 
   // Read existing data
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<UserSchema>({
       query: 'SELECT * FROM c WHERE c.id = @id OR c.loginId = @loginId',

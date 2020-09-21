@@ -22,7 +22,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
 
   const songColumns: (keyof StepChart)[] = ['id', 'name', 'series']
   const chartColumns: (keyof StepChart)[] = ['playStyle', 'difficulty', 'level']

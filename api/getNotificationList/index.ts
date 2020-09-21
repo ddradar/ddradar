@@ -21,7 +21,7 @@ export default async function (
     'timeStamp',
   ]
   const condition = scope === 'top' ? 'WHERE c.pinned = true ' : ''
-  const container = getContainer('Notification', true)
+  const container = getContainer('Notification')
   const { resources } = await container.items
     .query<Notification>({
       query:

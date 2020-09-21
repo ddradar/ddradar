@@ -25,7 +25,7 @@ export default async function (
     'body',
     'timeStamp',
   ]
-  const container = getContainer('Notification', true)
+  const container = getContainer('Notification')
   const { resources } = await container.items
     .query<NotificationSchema>({
       query:

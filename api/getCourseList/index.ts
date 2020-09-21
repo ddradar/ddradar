@@ -20,7 +20,7 @@ export default async function (
   const isValidSeries = series === 16 || series === 17
   const isValidType = type === 1 || type === 2
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
 
   // Create SQL
   const courseColumns: (keyof ShrinkedCourse)[] = ['id', 'name', 'series']

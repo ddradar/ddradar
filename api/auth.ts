@@ -36,7 +36,7 @@ export async function getLoginUserInfo(
 ): Promise<UserSchema | null> {
   if (!clientPrincipal) return null
 
-  const userContainer = getContainer('Users', true)
+  const userContainer = getContainer('Users')
   const { resources } = await userContainer.items
     .query<UserSchema>({
       query: 'SELECT * FROM c WHERE c.loginId = @loginId',

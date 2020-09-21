@@ -15,7 +15,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
   const columns: (keyof CourseSchema)[] = [
     'id',
     'name',

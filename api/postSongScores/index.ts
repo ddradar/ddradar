@@ -66,7 +66,7 @@ export default async function (
   }
 
   // Get chart info
-  const container = getContainer('Songs', true)
+  const container = getContainer('Songs')
   const { resources: charts } = await container.items
     .query<ChartInfo>({
       query:
