@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import {
   NotFoundResult,
   SuccessResult,
@@ -20,7 +20,7 @@ export default async function (
 
   const loginId = clientPrincipal.userId
 
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<User>({
       query:

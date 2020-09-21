@@ -1,7 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
+import { getContainer, NotificationSchema } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 
 /** Get notification that match the specified ID. */
@@ -26,7 +25,7 @@ export default async function (
     'body',
     'timeStamp',
   ]
-  const container = getContainer('Notification', true)
+  const container = getContainer('Notification')
   const { resources } = await container.items
     .query<NotificationSchema>({
       query:

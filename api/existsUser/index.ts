@@ -1,7 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import type {
   NotFoundResult,
   SuccessResult,
@@ -29,7 +29,7 @@ export default async function (
     return { status: 404 }
   }
 
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query({
       query: 'SELECT c.id FROM c WHERE c.id = @id',

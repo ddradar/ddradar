@@ -1,11 +1,12 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer } from '../cosmos'
-import type { ScoreSchema, SongSchema, UserSchema } from '../db'
-import type { StepChartSchema } from '../db/songs'
-import type {
+import { UserSchema } from '../db'
+import { fetchScore, ScoreSchema } from '../db/scores'
+import { fetchSongInfo, SongSchema, StepChartSchema } from '../db/songs'
+import {
   BadRequestResult,
+  getBindingString,
   NotFoundResult,
   SuccessResult,
   UnauthenticatedResult,
@@ -28,65 +29,67 @@ type ChartInfo = Pick<
 > &
   Pick<SongSchema, 'id' | 'name'>
 
+type PostSongScoresResponse = {
+  httpResponse:
+    | BadRequestResult
+    | UnauthenticatedResult
+    | NotFoundResult
+    | SuccessResult<ScoreSchema[]>
+  documents?: ScoreSchema[]
+}
+
+const topUser = { id: '0', name: '0', isPublic: false } as const
+
 /** Add or update score that match the specified chart. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'body'>
-): Promise<
-  | BadRequestResult
-  | UnauthenticatedResult
-  | NotFoundResult
-  | SuccessResult<ScoreSchema[]>
-> {
+): Promise<PostSongScoresResponse> {
   const clientPrincipal = getClientPrincipal(req)
-  if (!clientPrincipal) return { status: 401 }
+  if (!clientPrincipal) return { httpResponse: { status: 401 } }
 
-  // if param is 0, passed object. (bug?)
-  const songId: string =
-    typeof context.bindingData.songId === 'object'
-      ? '0'
-      : context.bindingData.songId
+  const songId: string = getBindingString(bindingData, 'songId')
   const isSkillAttackId = /^\d{1,3}$/.test(songId)
 
   if (!isValidBody(req.body)) {
-    return { status: 400, body: 'body is not Score[]' }
+    return { httpResponse: { status: 400, body: 'body is not Score[]' } }
   }
 
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
     return {
-      status: 404,
-      body: `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`,
+      httpResponse: {
+        status: 404,
+        body: `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`,
+      },
     }
   }
 
   // Get chart info
-  const container = getContainer('Songs', true)
-  const { resources: charts } = await container.items
-    .query<ChartInfo>({
-      query:
-        'SELECT s.id, s.name, c.playStyle, c.difficulty, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
-        'FROM s JOIN c IN s.charts ' +
-        `WHERE s.${isSkillAttackId ? 'skillAttackId' : 'id'} = @id`,
-      parameters: [
-        { name: '@id', value: isSkillAttackId ? parseInt(songId, 10) : songId },
-      ],
-    })
-    .fetchAll()
-  if (charts.length === 0) return { status: 404 }
+  const song = await fetchSongInfo(
+    isSkillAttackId ? parseInt(songId, 10) : songId
+  )
+  if (!song) return { httpResponse: { status: 404 } }
 
-  const topScores: ScoreSchema[] = []
+  const documents: ScoreSchema[] = []
   const body: ScoreSchema[] = []
   for (let i = 0; i < req.body.length; i++) {
     const score = req.body[i]
-    const chart = charts.find(
+    const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
-    if (!chart) return { status: 404 }
-    if (!isValidScore(chart, score))
-      return { status: 400, body: `body[${i}] is invalid Score` }
+    if (!chart) return { httpResponse: { status: 404 } }
+    if (!isValidScore(chart, score)) {
+      return {
+        httpResponse: { status: 400, body: `body[${i}] is invalid Score` },
+      }
+    }
 
-    body.push(createSchema(chart, user, score))
+    const chartInfo = { ...chart, id: song.id, name: song.name }
+
+    body.push(createSchema(chartInfo, user, score))
+    const userMergeScore = await fetchMergedScore(chartInfo, user, score)
+    if (userMergeScore) documents.push(userMergeScore)
 
     // World Record
     if (score.topScore) {
@@ -95,31 +98,29 @@ export default async function (
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
       }
-      topScores.push(
-        createSchema(chart, { id: '0', name: '0', isPublic: false }, topScore)
-      )
+      const scoreSchema = await fetchMergedScore(chartInfo, topUser, topScore)
+      if (scoreSchema) documents.push(scoreSchema)
     } else if (user.isPublic) {
-      topScores.push(
-        createSchema(chart, { id: '0', name: '0', isPublic: false }, score)
-      )
+      const scoreSchema = await fetchMergedScore(chartInfo, topUser, score)
+      if (scoreSchema) documents.push(scoreSchema)
     }
 
     // Area Top
     if (user.isPublic && user.area) {
       const area = `${user.area}`
-      topScores.push(
-        createSchema(chart, { id: area, name: area, isPublic: false }, score)
-      )
+      const areaUser = { ...topUser, id: area, name: area }
+      const scoreSchema = await fetchMergedScore(chartInfo, areaUser, score)
+      if (scoreSchema) documents.push(scoreSchema)
     }
   }
 
-  await Promise.all(body.map(s => upsertScore(s)))
-  await Promise.all(topScores.map(s => upsertScore(s)))
-
   return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
+    httpResponse: {
+      status: 200,
+      headers: { 'Content-type': 'application/json' },
+      body,
+    },
+    documents,
   }
 
   /** Assert request body is valid schema. */
@@ -149,7 +150,6 @@ export default async function (
     score: Readonly<Score>
   ) {
     const scoreSchema: ScoreSchema = {
-      id: `${user.id}-${chart.id}-${chart.playStyle}-${chart.difficulty}`,
       userId: user.id,
       userName: user.name,
       isPublic: user.isPublic,
@@ -182,44 +182,49 @@ export default async function (
     return scoreSchema
   }
 
-  /** Upsert ScoreSchema. Score is merged old one. */
-  async function upsertScore(score: Readonly<ScoreSchema>): Promise<void> {
-    const container = getContainer('Scores')
-
+  /** Merge score is merged old one. */
+  async function fetchMergedScore(
+    chart: Readonly<ChartInfo>,
+    user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
+    score: Readonly<Score>
+  ): Promise<ScoreSchema | null> {
+    const scoreSchema = createSchema(chart, user, score)
     // Get previous score
-    const { resources } = await container.items
-      .query<ScoreSchema>({
-        query: 'SELECT * FROM c WHERE c.id = @id',
-        parameters: [{ name: '@id', value: score.id }],
-      })
-      .fetchAll()
-    const oldScore = resources[0] ?? {
+    const emptyScore = {
       score: 0,
       rank: 'E',
       clearLamp: 0,
-    }
+      exScore: undefined,
+      maxCombo: undefined,
+    } as const
+    const oldScore = await fetchScore(
+      scoreSchema.userId,
+      scoreSchema.songId,
+      scoreSchema.playStyle,
+      scoreSchema.difficulty
+    )
+    const previousScore = oldScore ?? emptyScore
 
     const mergedScore = {
-      ...mergeScore(oldScore, score),
-      id: score.id,
-      userId: score.userId,
-      userName: score.userName,
-      isPublic: score.isPublic,
-      songId: score.songId,
-      songName: score.songName,
-      playStyle: score.playStyle,
-      difficulty: score.difficulty,
-      level: score.level,
+      ...mergeScore(previousScore, scoreSchema),
+      userId: scoreSchema.userId,
+      userName: scoreSchema.userName,
+      isPublic: scoreSchema.isPublic,
+      songId: scoreSchema.songId,
+      songName: scoreSchema.songName,
+      playStyle: scoreSchema.playStyle,
+      difficulty: scoreSchema.difficulty,
+      level: scoreSchema.level,
     }
     if (
-      mergedScore.score === oldScore.score &&
-      mergedScore.clearLamp === oldScore.clearLamp &&
-      mergedScore.exScore === oldScore.exScore &&
-      mergedScore.maxCombo === oldScore.maxCombo &&
-      mergedScore.rank === oldScore.rank
+      mergedScore.score === previousScore.score &&
+      mergedScore.clearLamp === previousScore.clearLamp &&
+      mergedScore.exScore === previousScore.exScore &&
+      mergedScore.maxCombo === previousScore.maxCombo &&
+      mergedScore.rank === previousScore.rank
     ) {
-      return
+      return null
     }
-    await container.items.upsert(mergedScore)
+    return mergedScore
   }
 }

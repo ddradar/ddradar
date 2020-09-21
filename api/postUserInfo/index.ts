@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import { areaCodeList, UserSchema } from '../db/users'
 import type {
   BadRequestResult,
@@ -50,7 +50,7 @@ export default async function (
   }
 
   // Read existing data
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<UserSchema>({
       query: 'SELECT * FROM c WHERE c.id = @id OR c.loginId = @loginId',

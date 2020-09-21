@@ -10,7 +10,6 @@ English version is [here](./scores.md).
 
 |名前|型|説明|
 |----|:--:|-----------|
-|id|string|`${userId}-${songId}-${playStyle}-${difficulty}`|
 |**userId**|string|ユーザーID|
 |userName|string|ユーザー名|
 |isPublic|boolean|このスコアが一般公開されている場合は`true`、本人のみ閲覧できる場合には`false`|

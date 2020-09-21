@@ -1,8 +1,11 @@
+import type { SqlParameter } from '@azure/cosmos'
+
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
 } from '../type-assert'
+import { fetchList, fetchOne, getContainer } from '.'
 
 /** DB Schema of "Song" */
 export type SongSchema = {
@@ -174,3 +177,176 @@ export const SeriesList = [
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
 ] as const
+
+export function fetchSongInfo(id: string | number): Promise<SongSchema | null> {
+  return fetchOne<SongSchema>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'artist',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'charts',
+    ],
+    [
+      {
+        condition: typeof id === 'string' ? 'c.id = @' : 'c.skillAttackId = @',
+        value: id,
+      },
+      { condition: 'c.nameIndex != -1 AND c.nameIndex != -2' },
+    ]
+  )
+}
+
+export function fetchSongList(
+  name?: number,
+  series?: number
+): Promise<Omit<SongSchema, 'charts'>[]> {
+  return fetchList<SongSchema>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'artist',
+      'series',
+      'minBPM',
+      'maxBPM',
+    ],
+    [
+      ...(series !== undefined
+        ? [{ condition: 'c.series = @', value: SeriesList[series] }]
+        : []),
+      ...(name !== undefined
+        ? [{ condition: 'c.nameIndex = @', value: name }]
+        : [{ condition: 'c.nameIndex != -1 AND c.nameIndex != -2' }]),
+    ],
+    {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      nameIndex: 'ASC',
+      nameKana: 'ASC',
+    }
+  )
+}
+
+export function fetchCourseInfo(id: string): Promise<CourseSchema | null> {
+  return fetchOne<CourseSchema>(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'charts',
+    ],
+    [
+      { condition: 'c.id = @', value: id },
+      { condition: '(c.nameIndex = -1 OR c.nameIndex = -2)' },
+    ]
+  )
+}
+
+type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
+  charts: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
+}
+export async function fetchCourseList(
+  name?: number,
+  series?: number
+): Promise<CourseListData[]> {
+  const container = getContainer('Songs')
+
+  const conditions = ['c.nameIndex < 0']
+  const parameters: SqlParameter[] = []
+  if (name === -1 || name === -2) {
+    conditions.push('c.nameIndex = @name')
+    parameters.push({ name: '@name', value: name })
+  }
+  if (series !== undefined) {
+    conditions.push('c.series = @series')
+    parameters.push({ name: '@series', value: SeriesList[series] })
+  }
+
+  const { resources } = await container.items
+    .query<CourseListData>({
+      query:
+        'SELECT c.id, c.name, c.series, ' +
+        'ARRAY(SELECT o.playStyle, o.difficulty, o.level FROM o IN c.charts) as charts ' +
+        'FROM c ' +
+        `WHERE ${conditions.join(' AND ')} ` +
+        'ORDER BY c.nameIndex, c.nameKana',
+      parameters,
+    })
+    .fetchAll()
+  return resources
+}
+
+type ChartInfo = Pick<SongSchema, 'id' | 'name'> &
+  Pick<
+    StepChartSchema,
+    | 'playStyle'
+    | 'difficulty'
+    | 'level'
+    | 'notes'
+    | 'freezeArrow'
+    | 'shockArrow'
+  >
+export async function fetchChartInfo(
+  songId: string,
+  playStyle: 1 | 2,
+  difficulty: Difficulty
+): Promise<ChartInfo | null> {
+  const container = getContainer('Songs')
+  const { resources } = await container.items
+    .query<ChartInfo>({
+      query:
+        'SELECT s.id, s.name, c.playStyle, c.difficulty, ' +
+        'c.level, c.notes, c.freezeArrow, c.shockArrow ' +
+        'FROM s JOIN c IN s.charts ' +
+        'WHERE s.id = @id ' +
+        'AND c.playStyle = @playStyle ' +
+        'AND c.difficulty = @difficulty',
+      parameters: [
+        { name: '@id', value: songId },
+        { name: '@playStyle', value: playStyle },
+        { name: '@difficulty', value: difficulty },
+      ],
+    })
+    .fetchNext()
+  return resources.length === 0 ? null : resources[0]
+}
+
+type ChartListData = Pick<SongSchema, 'id' | 'name' | 'series'> &
+  Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
+export async function fetchChartList(
+  playStyle: 1 | 2,
+  level: number
+): Promise<ChartListData[]> {
+  const container = getContainer('Songs')
+  const { resources } = await container.items
+    .query<ChartListData>({
+      query:
+        'SELECT s.id, s.name, s.series, ' +
+        'c.playStyle, c.difficulty, c.level ' +
+        'FROM s JOIN c IN s.charts ' +
+        'WHERE s.nameIndex != -1 ' +
+        'AND s.nameIndex != -2 ' +
+        'AND c.level = @level ' +
+        'AND c.playStyle = @playStyle ' +
+        'ORDER BY s.nameIndex, s.nameKana',
+      parameters: [
+        { name: '@level', value: level },
+        { name: '@playStyle', value: playStyle },
+      ],
+    })
+    .fetchAll()
+  return resources
+}

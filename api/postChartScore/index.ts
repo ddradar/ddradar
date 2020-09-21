@@ -1,22 +1,16 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer } from '../cosmos'
-import type { ScoreSchema } from '../db'
-import type { Difficulty, SongSchema, StepChartSchema } from '../db/songs'
-import type {
+import { fetchScore, ScoreSchema } from '../db/scores'
+import { Difficulty, fetchChartInfo } from '../db/songs'
+import {
   BadRequestResult,
+  getBindingNumber,
   NotFoundResult,
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
 import { isScore, isValidScore, mergeScore } from '../score'
-
-type ChartInfo = Pick<
-  StepChartSchema,
-  'level' | 'notes' | 'freezeArrow' | 'shockArrow'
-> &
-  Pick<SongSchema, 'name'>
 
 type PostScoreResult = {
   httpResponse:
@@ -24,31 +18,16 @@ type PostScoreResult = {
     | NotFoundResult
     | UnauthenticatedResult
     | SuccessResult<ScoreSchema>
-  userScore?: ScoreSchema
-  areaScore?: ScoreSchema
-  worldScore?: ScoreSchema
+  documents?: ScoreSchema[]
 }
 
 /** Add or update score that match the specified chart. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'body'>
 ): Promise<PostScoreResult> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
-
-  const songId: string = context.bindingData.songId
-  const playStyle = context.bindingData.playStyle as 1 | 2
-  const difficulty =
-    typeof context.bindingData.difficulty === 'number'
-      ? (context.bindingData.difficulty as Difficulty)
-      : 0 // if param is 0, passed object. (bug?)
-
-  // In Azure Functions, this function will only be invoked if a valid route.
-  // So this check is only used to unit tests.
-  if (!isValidRoute()) {
-    return { httpResponse: { status: 404 } }
-  }
 
   if (!isScore(req.body)) {
     return { httpResponse: { status: 400, body: 'body is not Score' } }
@@ -64,56 +43,37 @@ export default async function (
     }
   }
 
+  const songId: string = bindingData.songId
+  const playStyle: 1 | 2 = bindingData.playStyle
+  const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
+
   // Get chart info
-  const container = getContainer('Songs', true)
-  const { resources: charts } = await container.items
-    .query<ChartInfo>({
-      query:
-        'SELECT s.name, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
-        'FROM s JOIN c IN s.charts ' +
-        'WHERE s.id = @songId AND c.playStyle = @playStyle AND c.difficulty = @difficulty',
-      parameters: [
-        { name: '@songId', value: songId },
-        { name: '@playStyle', value: playStyle },
-        { name: '@difficulty', value: difficulty },
-      ],
-    })
-    .fetchAll()
+  const chart = await fetchChartInfo(songId, playStyle, difficulty)
+  if (!chart) return { httpResponse: { status: 404 } }
 
-  if (charts.length === 0) return { httpResponse: { status: 404 } }
-
-  if (!isValidScore(charts[0], req.body)) {
+  if (!isValidScore(chart, req.body)) {
     return { httpResponse: { status: 400, body: 'body is invalid Score' } }
   }
 
   const userScore = createScoreSchema()
+  const documents = [userScore]
 
-  const result: PostScoreResult = {
+  if (user.isPublic) {
+    const worldScore = await fetchUpdatedAreaScore('0', userScore)
+    if (worldScore) documents.push(worldScore)
+    if (user.area) {
+      const areaScore = await fetchUpdatedAreaScore(`${user.area}`, userScore)
+      if (areaScore) documents.push(areaScore)
+    }
+  }
+
+  return {
     httpResponse: {
       status: 200,
       headers: { 'Content-type': 'application/json' },
       body: userScore,
     },
-    userScore,
-  }
-
-  if (user.isPublic) {
-    const worldScore = await fetchUpdatedAreaScore('0', userScore)
-    if (worldScore) result.worldScore = worldScore
-    if (user.area) {
-      const areaScore = await fetchUpdatedAreaScore(`${user.area}`, userScore)
-      if (areaScore) result.areaScore = areaScore
-    }
-  }
-
-  return result
-
-  function isValidRoute() {
-    return (
-      /^[01689bdiloqDIOPQ]{32}$/.test(songId) &&
-      (playStyle === 1 || playStyle === 2) &&
-      [0, 1, 2, 3, 4].includes(difficulty)
-    )
+    documents,
   }
 
   /**
@@ -121,36 +81,35 @@ export default async function (
    * Also complement exScore and maxCombo.
    */
   function createScoreSchema() {
-    /* eslint-disable @typescript-eslint/no-non-null-assertion -- user is not null if this function called */
+    /* eslint-disable @typescript-eslint/no-non-null-assertion -- not null if this function called */
     const score: ScoreSchema = {
-      id: `${user!.id}-${songId}-${playStyle}-${difficulty}`,
       userId: user!.id,
       userName: user!.name,
       isPublic: user!.isPublic,
       songId,
-      songName: charts[0].name,
+      songName: chart!.name,
       playStyle,
       difficulty,
-      level: charts[0].level,
+      level: chart!.level,
       score: req.body.score,
       clearLamp: req.body.clearLamp,
       rank: req.body.rank,
     }
-    /* eslint-enable @typescript-eslint/no-non-null-assertion */
     if (req.body.exScore) {
       score.exScore = req.body.exScore
     }
     if (req.body.clearLamp === 7) {
       score.exScore =
-        (charts[0].notes + charts[0].freezeArrow + charts[0].shockArrow) * 3
+        (chart!.notes + chart!.freezeArrow + chart!.shockArrow) * 3
     }
     if (req.body.maxCombo) {
       score.maxCombo = req.body.maxCombo
     }
     if (req.body.clearLamp >= 4) {
-      score.maxCombo = charts[0].notes + charts[0].shockArrow
+      score.maxCombo = chart!.notes + chart!.shockArrow
     }
     return score
+    /* eslint-enable @typescript-eslint/no-non-null-assertion */
   }
 
   /** Return new Area Top score if greater than old one. otherwize, return `null`. */
@@ -158,25 +117,25 @@ export default async function (
     area: string,
     score: ScoreSchema
   ): Promise<ScoreSchema | null> {
-    const container = getContainer('Scores', true)
-
     // Get previous score
-    const id = `${area}-${score.songId}-${score.playStyle}-${score.difficulty}`
-    const { resources } = await container.items
-      .query<ScoreSchema>({
-        query: 'SELECT * FROM c WHERE c.id = @id',
-        parameters: [{ name: '@id', value: id }],
-      })
-      .fetchAll()
-    const oldScore = resources[0] ?? {
-      score: 0,
-      rank: 'E',
-      clearLamp: 0,
-    }
+    const oldScore =
+      (await fetchScore(
+        area,
+        score.songId,
+        score.playStyle,
+        score.difficulty
+      )) ??
+      ({
+        score: 0,
+        rank: 'E',
+        clearLamp: 0,
+      } as Pick<
+        ScoreSchema,
+        'score' | 'rank' | 'clearLamp' | 'exScore' | 'maxCombo'
+      >)
 
     const mergedScore: ScoreSchema = {
       ...mergeScore(oldScore, score),
-      id,
       userId: area,
       userName: area,
       isPublic: false,

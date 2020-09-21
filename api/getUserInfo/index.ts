@@ -1,7 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../cosmos'
+import { getContainer } from '../db'
 import type { NotFoundResult, SuccessResult } from '../function'
 import type { User } from '../user'
 
@@ -20,7 +20,7 @@ export default async function (
     return { status: 404, body: 'Please pass a id like "/api/v1/users/:id"' }
   }
 
-  const container = getContainer('Users', true)
+  const container = getContainer('Users')
   const { resources } = await container.items
     .query<User>({
       query:

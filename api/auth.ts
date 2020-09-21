@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { getContainer } from './cosmos'
-import { UserSchema } from './db'
+import { getContainer, UserSchema } from './db'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
@@ -37,7 +36,7 @@ export async function getLoginUserInfo(
 ): Promise<UserSchema | null> {
   if (!clientPrincipal) return null
 
-  const userContainer = getContainer('Users', true)
+  const userContainer = getContainer('Users')
   const { resources } = await userContainer.items
     .query<UserSchema>({
       query: 'SELECT * FROM c WHERE c.loginId = @loginId',

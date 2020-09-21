@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { getContainer } from '../cosmos'
-import type { NotificationSchema } from '../db'
+import { getContainer, NotificationSchema } from '../db'
 import type { SuccessResult } from '../function'
 
 type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
@@ -22,7 +21,7 @@ export default async function (
     'timeStamp',
   ]
   const condition = scope === 'top' ? 'WHERE c.pinned = true ' : ''
-  const container = getContainer('Notification', true)
+  const container = getContainer('Notification')
   const { resources } = await container.items
     .query<Notification>({
       query:
