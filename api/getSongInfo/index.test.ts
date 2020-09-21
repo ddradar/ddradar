@@ -10,25 +10,6 @@ describe('GET /api/v1/songs', () => {
     context = { bindingData: {} }
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await getSongInfo(context)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test('/foo returns "404 Not Found"', async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getSongInfo(context)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const song: SongSchema = {
       id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',

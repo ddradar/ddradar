@@ -34,59 +34,6 @@ describe('POST /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(401)
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await postChartScore(context, req)
-
-    // Assert
-    expect(result.httpResponse.status).toBe(404)
-  })
-
-  test.each(['', 'foo'])('/%s/1/0 returns "404 Not Found"', async songId => {
-    // Arrange
-    context.bindingData.songId = songId
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-
-    // Act
-    const result = await postChartScore(context, req)
-
-    // Assert
-    expect(result.httpResponse.status).toBe(404)
-  })
-
-  test.each([0, -1, 3, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/%d/0 returns "404 Not Found"',
-    async playStyle => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = playStyle
-      context.bindingData.difficulty = 0
-
-      // Act
-      const result = await postChartScore(context, req)
-
-      // Assert
-      expect(result.httpResponse.status).toBe(404)
-    }
-  )
-
-  test.each([5, -1, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/1/%d returns "404 Not Found"',
-    async difficulty => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = 1
-      context.bindingData.difficulty = difficulty
-
-      // Act
-      const result = await postChartScore(context, req)
-
-      // Assert
-      expect(result.httpResponse.status).toBe(404)
-    }
-  )
-
   test.each([
     undefined,
     null,
@@ -349,19 +296,19 @@ describe('POST /api/v1/scores', () => {
         difficulty: song.charts[1].difficulty,
         level: song.charts[1].level,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...publicUserScore,
         ...req.body,
         difficulty: song.charts[1].difficulty,
         level: song.charts[1].level,
       })
-      expect(result.areaScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...areaScore,
         ...req.body,
         difficulty: song.charts[1].difficulty,
         level: song.charts[1].level,
       })
-      expect(result.worldScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...worldScore,
         ...req.body,
         difficulty: song.charts[1].difficulty,
@@ -391,12 +338,10 @@ describe('POST /api/v1/scores', () => {
         ...publicUserScore,
         ...expected,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...publicUserScore,
         ...expected,
       })
-      expect(result.areaScore).toBeUndefined()
-      expect(result.worldScore).toBeUndefined()
     })
 
     test('updates Area Top if user is public and score is greater than it', async () => {
@@ -421,15 +366,14 @@ describe('POST /api/v1/scores', () => {
         ...publicUserScore,
         ...expected,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...publicUserScore,
         ...expected,
       })
-      expect(result.areaScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...areaScore,
         ...expected,
       })
-      expect(result.worldScore).toBeUndefined()
     })
 
     test('updates World & Area Top if user is public and score is greater than them', async () => {
@@ -454,15 +398,15 @@ describe('POST /api/v1/scores', () => {
         ...publicUserScore,
         ...expected,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...publicUserScore,
         ...expected,
       })
-      expect(result.areaScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...areaScore,
         ...expected,
       })
-      expect(result.worldScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...worldScore,
         ...expected,
       })
@@ -490,12 +434,11 @@ describe('POST /api/v1/scores', () => {
         ...areaHiddenUserScore,
         ...expected,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...areaHiddenUserScore,
         ...expected,
       })
-      expect(result.areaScore).toBeUndefined()
-      expect(result.worldScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...worldScore,
         ...expected,
       })
@@ -523,12 +466,10 @@ describe('POST /api/v1/scores', () => {
         ...privateUserScore,
         ...expected,
       })
-      expect(result.userScore).toStrictEqual({
+      expect(result.documents).toContainEqual({
         ...privateUserScore,
         ...expected,
       })
-      expect(result.areaScore).toBeUndefined()
-      expect(result.worldScore).toBeUndefined()
     })
   })
 })

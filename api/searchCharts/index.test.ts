@@ -10,34 +10,6 @@ describe('GET /api/v1/charts', () => {
     context = { bindingData: {} }
   })
 
-  test.each([NaN, 0, 1.5, -1, 100, Infinity, -Infinity])(
-    '/%s/1 returns "404 Not Found"',
-    async (playStyle: unknown) => {
-      // Arrange
-      context.bindingData.playStyle = playStyle
-
-      // Act
-      const result = await searchCharts(context)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-  test.each([NaN, 0, 1.5, -1, 100, Infinity, -Infinity])(
-    '/1/%d returns "404 Not Found"',
-    async (level: unknown) => {
-      // Arrange
-      context.bindingData.playStyle = 1
-      context.bindingData.level = level
-
-      // Act
-      const result = await searchCharts(context)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const songs: SongSchema[] = [
       {

@@ -10,25 +10,6 @@ describe('GET /api/v1/courses', () => {
     context = { bindingData: {} }
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await getCourseInfo(context)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test('/foo returns "404 Not Found"', async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getCourseInfo(context)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const container = getContainer('Songs')
     const course: CourseSchema = {

@@ -1,9 +1,9 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer, ScoreSchema, SongSchema, UserSchema } from '../db'
-import { fetchScore } from '../db/scores'
-import type { StepChartSchema } from '../db/songs'
+import { UserSchema } from '../db'
+import { fetchScore, ScoreSchema } from '../db/scores'
+import { fetchSongInfo, SongSchema, StepChartSchema } from '../db/songs'
 import {
   BadRequestResult,
   getBindingString,
@@ -66,35 +66,29 @@ export default async function (
   }
 
   // Get chart info
-  const container = getContainer('Songs')
-  const { resources: charts } = await container.items
-    .query<ChartInfo>({
-      query:
-        'SELECT s.id, s.name, c.playStyle, c.difficulty, c.level, c.notes, c.freezeArrow, c.shockArrow ' +
-        'FROM s JOIN c IN s.charts ' +
-        `WHERE s.${isSkillAttackId ? 'skillAttackId' : 'id'} = @id`,
-      parameters: [
-        { name: '@id', value: isSkillAttackId ? parseInt(songId, 10) : songId },
-      ],
-    })
-    .fetchAll()
-  if (charts.length === 0) return { httpResponse: { status: 404 } }
+  const song = await fetchSongInfo(
+    isSkillAttackId ? parseInt(songId, 10) : songId
+  )
+  if (!song) return { httpResponse: { status: 404 } }
 
   const documents: ScoreSchema[] = []
   const body: ScoreSchema[] = []
   for (let i = 0; i < req.body.length; i++) {
     const score = req.body[i]
-    const chart = charts.find(
+    const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { httpResponse: { status: 404 } }
-    if (!isValidScore(chart, score))
+    if (!isValidScore(chart, score)) {
       return {
         httpResponse: { status: 400, body: `body[${i}] is invalid Score` },
       }
+    }
 
-    body.push(createSchema(chart, user, score))
-    const userMergeScore = await fetchMergedScore(chart, user, score)
+    const chartInfo = { ...chart, id: song.id, name: song.name }
+
+    body.push(createSchema(chartInfo, user, score))
+    const userMergeScore = await fetchMergedScore(chartInfo, user, score)
     if (userMergeScore) documents.push(userMergeScore)
 
     // World Record
@@ -104,10 +98,10 @@ export default async function (
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
       }
-      const scoreSchema = await fetchMergedScore(chart, topUser, topScore)
+      const scoreSchema = await fetchMergedScore(chartInfo, topUser, topScore)
       if (scoreSchema) documents.push(scoreSchema)
     } else if (user.isPublic) {
-      const scoreSchema = await fetchMergedScore(chart, topUser, score)
+      const scoreSchema = await fetchMergedScore(chartInfo, topUser, score)
       if (scoreSchema) documents.push(scoreSchema)
     }
 
@@ -115,7 +109,7 @@ export default async function (
     if (user.isPublic && user.area) {
       const area = `${user.area}`
       const areaUser = { ...topUser, id: area, name: area }
-      const scoreSchema = await fetchMergedScore(chart, areaUser, score)
+      const scoreSchema = await fetchMergedScore(chartInfo, areaUser, score)
       if (scoreSchema) documents.push(scoreSchema)
     }
   }

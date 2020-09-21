@@ -10,20 +10,6 @@ describe('GET /api/v1/songs/name', () => {
     context = { bindingData: {} }
   })
 
-  test.each([NaN, 0.1, -1, 100])(
-    '/%s returns "404 Not Found"',
-    async (name: unknown) => {
-      // Arrange
-      context.bindingData.name = name
-
-      // Act
-      const result = await searchSong(context, { query: {} })
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const songs: Omit<SongSchema, 'charts'>[] = [
       {
