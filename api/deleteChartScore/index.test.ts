@@ -33,59 +33,6 @@ describe('DELETE /api/v1/scores', () => {
     expect(result.status).toBe(401)
   })
 
-  test('/ returns "404 Not Found"', async () => {
-    // Arrange - Act
-    const result = await deleteChartScore(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each(['', 'foo'])('/%s/1/0 returns "404 Not Found"', async songId => {
-    // Arrange
-    context.bindingData.songId = songId
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-
-    // Act
-    const result = await deleteChartScore(context, req)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test.each([0, -1, 3, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/%d/0 returns "404 Not Found"',
-    async playStyle => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = playStyle
-      context.bindingData.difficulty = 0
-
-      // Act
-      const result = await deleteChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
-  test.each([5, -1, 2.5, NaN, Infinity, -Infinity])(
-    '/00000000000000000000000000000000/1/%d returns "404 Not Found"',
-    async difficulty => {
-      // Arrange
-      context.bindingData.songId = '00000000000000000000000000000000'
-      context.bindingData.playStyle = 1
-      context.bindingData.difficulty = difficulty
-
-      // Act
-      const result = await deleteChartScore(context, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    }
-  )
-
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
     context.bindingData.songId = '00000000000000000000000000000000'
@@ -195,14 +142,16 @@ describe('DELETE /api/v1/scores', () => {
 
         // Act
         const result = await deleteChartScore(context, req)
-        const { resources } = await scoreContainer.items.readAll().fetchAll()
+        const { resource } = await scoreContainer
+          .item(scores[2].id, scores[2].userId)
+          .read()
 
         // Assert
         expect(result.status).toBe(204)
-        expect(resources).toHaveLength(2)
+        expect(resource.ttl).toBe(3600)
 
         // Clean up
-        scoreContainer.items.create(scores[2])
+        await scoreContainer.items.upsert({ ...resource, ttl: -1 })
       })
 
       afterEach(async () => {
