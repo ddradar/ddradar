@@ -19,8 +19,7 @@ export default async function (
     ? (req.query.scope as 'private' | 'medium' | 'full')
     : 'medium'
 
-  const clientPrincipal = getClientPrincipal(req)
-  const user = await getLoginUserInfo(clientPrincipal)
+  const user = await getLoginUserInfo(getClientPrincipal(req))
 
   if (scope === 'private') {
     if (!user) return { status: 404 }

@@ -23,10 +23,6 @@ export default async function (
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
 
-  const songId: string = bindingData.songId
-  const playStyle: 1 | 2 = bindingData.playStyle
-  const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
-
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
     return {
@@ -39,9 +35,9 @@ export default async function (
 
   const scores = await fetchDeleteTargetScores(
     user.id,
-    songId,
-    playStyle,
-    difficulty
+    bindingData.songId,
+    bindingData.playStyle,
+    getBindingNumber(bindingData, 'difficulty') as Difficulty
   )
 
   if (scores.length === 0) {

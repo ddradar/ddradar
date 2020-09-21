@@ -20,7 +20,8 @@ const connectionString =
   process.env.COSMOS_DB_CONN_READONLY || process.env.COSMOS_DB_CONN
 
 export function canConnectDB(): boolean {
-  return !!connectionString
+  // eslint-disable-next-line node/no-process-env
+  return !process.env.COSMOS_DB_CONN_READONLY && !!process.env.COSMOS_DB_CONN
 }
 
 let client: CosmosClient
