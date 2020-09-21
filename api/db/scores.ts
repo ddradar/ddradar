@@ -1,4 +1,4 @@
-import { fetchList, fetchOne, getContainer } from '.'
+import { fetchList, fetchOne } from '.'
 import type { Difficulty, StepChartSchema } from './songs'
 import { UserSchema } from './users'
 
@@ -133,35 +133,40 @@ export function fetchChartScores(
   )
 }
 
-export async function deleteChartScore(
+export function fetchDeleteTargetScores(
   userId: string,
   songId: string,
   playStyle: 1 | 2,
   difficulty: Difficulty
-): Promise<boolean> {
-  const container = getContainer('Scores')
-  const { resources } = await container.items
-    .query({
-      query:
-        'SELECT * FROM c ' +
-        'WHERE c.userId = @userId ' +
-        'AND c.songId = @songId ' +
-        'AND c.playStyle = @playStyle ' +
-        'AND c.difficulty = @difficulty ' +
-        'AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
-      parameters: [
-        { name: '@userId', value: userId },
-        { name: '@songId', value: songId },
-        { name: '@playStyle', value: playStyle },
-        { name: '@difficulty', value: difficulty },
-      ],
-    })
-    .fetchAll()
-  if (resources.length === 0) return false
-
-  await Promise.all(
-    resources.map(s => container.items.upsert({ ...s, ttl: 3600 }))
+): Promise<ScoreSchema[]> {
+  return fetchList<ScoreSchema>(
+    'Scores',
+    [
+      'id',
+      'userId',
+      'userName',
+      'isPublic',
+      'songId',
+      'songName',
+      'playStyle',
+      'difficulty',
+      'level',
+      'clearLamp',
+      'score',
+      'rank',
+      'exScore',
+      'maxCombo',
+    ],
+    [
+      { condition: 'c.userId = @', value: userId },
+      { condition: 'c.songId = @', value: songId },
+      { condition: 'c.playStyle = @', value: playStyle },
+      { condition: 'c.difficulty = @', value: difficulty },
+    ],
+    {
+      score: 'DESC',
+      clearLamp: 'DESC',
+      _ts: 'ASC',
+    }
   )
-
-  return true
 }

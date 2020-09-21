@@ -82,7 +82,7 @@ export async function fetchOne<T>(
 
 export async function fetchList<T>(
   containerName: ContainerName,
-  columns: (keyof T | ItemDefinition)[],
+  columns: (keyof T | keyof ItemDefinition)[],
   conditions: Condition[],
   orderBy: Record<keyof (T | ItemDefinition), 'ASC' | 'DESC'>
 ): Promise<(T & ItemDefinition)[]> {

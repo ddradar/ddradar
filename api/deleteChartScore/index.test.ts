@@ -30,7 +30,7 @@ describe('DELETE /api/v1/scores', () => {
     const result = await deleteChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(401)
+    expect(result.httpResponse.status).toBe(401)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -43,7 +43,7 @@ describe('DELETE /api/v1/scores', () => {
     const result = await deleteChartScore(context, req)
 
     // Assert
-    expect(result.status).toBe(404)
+    expect(result.httpResponse.status).toBe(404)
   })
 
   describeIf(() => !!getConnectionString())(
@@ -130,7 +130,7 @@ describe('DELETE /api/v1/scores', () => {
           const result = await deleteChartScore(context, req)
 
           // Assert
-          expect(result.status).toBe(404)
+          expect(result.httpResponse.status).toBe(404)
         }
       )
 
@@ -142,16 +142,10 @@ describe('DELETE /api/v1/scores', () => {
 
         // Act
         const result = await deleteChartScore(context, req)
-        const { resource } = await scoreContainer
-          .item(scores[2].id, scores[2].userId)
-          .read()
 
         // Assert
-        expect(result.status).toBe(204)
-        expect(resource.ttl).toBe(3600)
-
-        // Clean up
-        await scoreContainer.items.upsert({ ...resource, ttl: -1 })
+        expect(result.httpResponse.status).toBe(204)
+        expect(result.documents?.[0]).toStrictEqual({ ...scores[2], ttl: 3600 })
       })
 
       afterEach(async () => {
