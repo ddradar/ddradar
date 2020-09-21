@@ -160,7 +160,7 @@ export default async function (
     // Get previous score
     const oldScore =
       (await fetchScore(
-        score.userId,
+        area,
         score.songId,
         score.playStyle,
         score.difficulty

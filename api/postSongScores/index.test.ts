@@ -3,7 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getConnectionString, getContainer } from '../db'
+import { getConnectionString, getContainer, ScoreSchema } from '../db'
 import { Score } from '../score'
 import postSongScores from '.'
 
@@ -143,8 +143,7 @@ describe('POST /api/v1/scores', () => {
         area: 13,
         isPublic: false,
       } as const
-      const worldScore = {
-        id: `0-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
+      const worldScore: ScoreSchema = {
         userId: '0',
         userName: '0',
         songId: song.id,
@@ -159,9 +158,8 @@ describe('POST /api/v1/scores', () => {
         exScore: 376,
         isPublic: false,
       }
-      const areaScore = {
+      const areaScore: ScoreSchema = {
         ...worldScore,
-        id: `13-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: '13',
         userName: '13',
         score: 996720, // P:37, Gr:1
@@ -170,9 +168,8 @@ describe('POST /api/v1/scores', () => {
         maxCombo: 138,
         exScore: 375,
       }
-      const publicUserScore = {
+      const publicUserScore: ScoreSchema = {
         ...worldScore,
-        id: `${publicUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: publicUser.id,
         userName: publicUser.name,
         score: 970630, // P:28, Gr:10
@@ -182,16 +179,14 @@ describe('POST /api/v1/scores', () => {
         exScore: 366,
         isPublic: publicUser.isPublic,
       }
-      const areaHiddenUserScore = {
+      const areaHiddenUserScore: ScoreSchema = {
         ...publicUserScore,
-        id: `${areaHiddenUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: areaHiddenUser.id,
         userName: areaHiddenUser.name,
         isPublic: areaHiddenUser.isPublic,
       }
-      const privateUserScore = {
+      const privateUserScore: ScoreSchema = {
         ...publicUserScore,
-        id: `${privateUser.id}-${song.id}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
         userId: privateUser.id,
         userName: privateUser.name,
         isPublic: privateUser.isPublic,
@@ -204,16 +199,20 @@ describe('POST /api/v1/scores', () => {
         userDetails: 'github_account',
         userRoles: ['anonymous', 'authenticated'],
       }
+      const addId = (s: ScoreSchema) => ({
+        ...s,
+        id: `${s.userId}-${s.songId}-${s.playStyle}-${s.difficulty}`,
+      })
 
       beforeEach(async () => {
         await songContainer.items.create(song)
         await Promise.all(
           [
-            worldScore,
-            areaScore,
-            publicUserScore,
-            areaHiddenUserScore,
-            privateUserScore,
+            addId(worldScore),
+            addId(areaScore),
+            addId(publicUserScore),
+            addId(areaHiddenUserScore),
+            addId(privateUserScore),
           ].map(s => scoreContainer.items.create(s))
         )
       })
@@ -221,11 +220,11 @@ describe('POST /api/v1/scores', () => {
         await songContainer.item(song.id, song.nameIndex).delete()
         await Promise.all(
           [
-            worldScore,
-            areaScore,
-            publicUserScore,
-            areaHiddenUserScore,
-            privateUserScore,
+            addId(worldScore),
+            addId(areaScore),
+            addId(publicUserScore),
+            addId(areaHiddenUserScore),
+            addId(privateUserScore),
           ].map(s => scoreContainer.item(s.id, s.userId).delete())
         )
       })
@@ -407,7 +406,7 @@ describe('POST /api/v1/scores', () => {
       )
 
       test.each([song.id, `${song.skillAttackId}`])(
-        '/%s does not update World & Area Top if score is less than them',
+        '/%s does not update if score is less than old one',
         async songId => {
           // Arrange
           mocked(getClientPrincipal).mockReturnValueOnce({
@@ -439,7 +438,7 @@ describe('POST /api/v1/scores', () => {
               ...expected,
             },
           ])
-          expect(result.documents).toHaveLength(1)
+          expect(result.documents).toHaveLength(0)
         }
       )
 

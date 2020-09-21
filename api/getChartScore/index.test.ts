@@ -2,7 +2,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
-import { getClientPrincipal } from '../auth'
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import {
   getConnectionString,
   getContainer,
@@ -112,9 +112,13 @@ describe('GET /api/v1/scores', () => {
 
       beforeAll(async () => {
         await userContainer.items.create(user)
-        for (const score of scores) {
-          await scoreContainer.items.create(score)
-        }
+        await Promise.all(scores.map(s => scoreContainer.items.create(s)))
+      })
+      afterAll(async () => {
+        await userContainer.item(user.id, user.id).delete()
+        await Promise.all(
+          scores.map(s => scoreContainer.item(s.id, s.userId).delete())
+        )
       })
 
       test.each([
@@ -220,7 +224,7 @@ describe('GET /api/v1/scores', () => {
 
       test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty} returns only World Best Score if unregisted user`, async () => {
         // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
+        mocked(getClientPrincipal).mockReturnValue({
           identityProvider: 'twitter',
           userDetails: 'foo',
           userId: 'foo',
@@ -275,6 +279,7 @@ describe('GET /api/v1/scores', () => {
           userId: user.loginId ?? '',
           userRoles: ['anonymous', 'authenticated'],
         })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(user)
         context.bindingData.songId = chart.songId
         context.bindingData.playStyle = chart.playStyle
         context.bindingData.difficulty = chart.difficulty
@@ -317,12 +322,7 @@ describe('GET /api/v1/scores', () => {
 
       test(`/${chart.songId}/${chart.playStyle}/${chart.difficulty}?scope=private returns only Personal Best Score if authenticated`, async () => {
         // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: user.id,
-          userId: user.loginId ?? '',
-          userRoles: ['anonymous', 'authenticated'],
-        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(user)
         context.bindingData.songId = chart.songId
         context.bindingData.playStyle = chart.playStyle
         context.bindingData.difficulty = chart.difficulty
@@ -348,12 +348,7 @@ describe('GET /api/v1/scores', () => {
 
       test('/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI/1/0?scope=full returns Area Best, Personal Best, and all public Scores if authenticated', async () => {
         // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          identityProvider: 'twitter',
-          userDetails: user.id,
-          userId: user.id,
-          userRoles: ['anonymous', 'authenticated'],
-        })
+        mocked(getLoginUserInfo).mockResolvedValueOnce(user)
         context.bindingData.songId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'
         context.bindingData.playStyle = 1
         context.bindingData.difficulty = 0
@@ -402,13 +397,6 @@ describe('GET /api/v1/scores', () => {
             rank: scores[3].rank,
           },
         ])
-      })
-
-      afterAll(async () => {
-        await userContainer.item(user.id, user.id).delete()
-        for (const score of scores) {
-          await scoreContainer.item(score.id, score.userId).delete()
-        }
       })
     }
   )

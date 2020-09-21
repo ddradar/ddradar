@@ -1,4 +1,4 @@
-import { fetchList, fetchOne, ItemDefinition } from '.'
+import { fetchList, fetchOne } from '.'
 import type { Difficulty, StepChartSchema } from './songs'
 import { UserSchema } from './users'
 
@@ -63,10 +63,9 @@ export function fetchScore(
   playStyle: 1 | 2,
   difficulty: Difficulty
 ): Promise<Omit<ScoreSchema, 'isPublic'> | null> {
-  return fetchOne<Omit<ScoreSchema & ItemDefinition, 'isPublic'>>(
+  return fetchOne<Omit<ScoreSchema, 'isPublic'>>(
     'Scores',
     [
-      'id',
       'userId',
       'userName',
       'songId',
@@ -85,7 +84,7 @@ export function fetchScore(
       { condition: 'c.songId = @', value: songId },
       { condition: 'c.playStyle = @', value: playStyle },
       { condition: 'c.difficulty = @', value: difficulty },
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1)' },
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
     ]
   )
 }
@@ -114,7 +113,6 @@ export function fetchChartScores(
       'maxCombo',
     ],
     [
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1)' },
       { condition: 'c.songId = @', value: songId },
       { condition: 'c.playStyle = @', value: playStyle },
       { condition: 'c.difficulty = @', value: difficulty },
@@ -125,6 +123,7 @@ export function fetchChartScores(
             : 'ARRAY_CONTAINS(@, c.userId)',
         value: ['0', ...(user ? [`${user.id}`, `${user.area}`] : [])],
       },
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
     ],
     {
       score: 'DESC',
