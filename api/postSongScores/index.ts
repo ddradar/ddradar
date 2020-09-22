@@ -1,12 +1,11 @@
-import type { Context, HttpRequest } from '@azure/functions'
+import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { UserSchema } from '../db'
 import { fetchScore, ScoreSchema } from '../db/scores'
-import { fetchSongInfo, SongSchema, StepChartSchema } from '../db/songs'
+import { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
 import {
   BadRequestResult,
-  getBindingString,
   NotFoundResult,
   SuccessResult,
   UnauthenticatedResult,
@@ -29,6 +28,10 @@ type ChartInfo = Pick<
 > &
   Pick<SongSchema, 'id' | 'name'>
 
+type SongInput = Pick<SongSchema, 'id' | 'name'> & {
+  charts: (StepChartSchema | CourseInfoSchema)[]
+}
+
 type PostSongScoresResponse = {
   httpResponse:
     | BadRequestResult
@@ -42,14 +45,12 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
 
 /** Add or update score that match the specified chart. */
 export default async function (
-  { bindingData }: Pick<Context, 'bindingData'>,
-  req: Pick<HttpRequest, 'headers' | 'body'>
+  _context: unknown,
+  req: Pick<HttpRequest, 'headers' | 'body'>,
+  songs: SongInput[]
 ): Promise<PostSongScoresResponse> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
-
-  const songId: string = getBindingString(bindingData, 'songId')
-  const isSkillAttackId = /^\d{1,3}$/.test(songId)
 
   if (!isValidBody(req.body)) {
     return { httpResponse: { status: 400, body: 'body is not Score[]' } }
@@ -57,19 +58,13 @@ export default async function (
 
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
-    return {
-      httpResponse: {
-        status: 404,
-        body: `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`,
-      },
-    }
+    const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
+    return { httpResponse: { status: 404, body } }
   }
 
   // Get chart info
-  const song = await fetchSongInfo(
-    isSkillAttackId ? parseInt(songId, 10) : songId
-  )
-  if (!song) return { httpResponse: { status: 404 } }
+  if (!songs || songs.length !== 1) return { httpResponse: { status: 404 } }
+  const song = songs[0]
 
   const documents: ScoreSchema[] = []
   const body: ScoreSchema[] = []

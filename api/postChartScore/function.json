@@ -9,6 +9,15 @@
       "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{playStyle:int:min(1):max(2)}/{difficulty:int:min(0):max(4)}"
     },
     {
+      "name": "songs",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT c.id, c.name, c.charts FROM c WHERE c.id = {songId}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "httpResponse"

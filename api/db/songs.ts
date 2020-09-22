@@ -3,7 +3,7 @@ import {
   hasProperty,
   hasStringProperty,
 } from '../type-assert'
-import { fetchList, fetchOne, getContainer } from '.'
+import { fetchList } from '.'
 
 /** DB Schema of "Song" */
 export type SongSchema = {
@@ -176,30 +176,6 @@ export const SeriesList = [
   'DanceDanceRevolution A20 PLUS',
 ] as const
 
-export function fetchSongInfo(id: string | number): Promise<SongSchema | null> {
-  return fetchOne<SongSchema>(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'artist',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'charts',
-    ],
-    [
-      {
-        condition: typeof id === 'string' ? 'c.id = @' : 'c.skillAttackId = @',
-        value: id,
-      },
-      { condition: 'c.nameIndex != -1 AND c.nameIndex != -2' },
-    ]
-  )
-}
-
 export function fetchSongList(
   name?: number,
   series?: number
@@ -231,39 +207,4 @@ export function fetchSongList(
       nameKana: 'ASC',
     }
   )
-}
-
-type ChartInfo = Pick<SongSchema, 'id' | 'name'> &
-  Pick<
-    StepChartSchema,
-    | 'playStyle'
-    | 'difficulty'
-    | 'level'
-    | 'notes'
-    | 'freezeArrow'
-    | 'shockArrow'
-  >
-export async function fetchChartInfo(
-  songId: string,
-  playStyle: 1 | 2,
-  difficulty: Difficulty
-): Promise<ChartInfo | null> {
-  const container = getContainer('Songs')
-  const { resources } = await container.items
-    .query<ChartInfo>({
-      query:
-        'SELECT s.id, s.name, c.playStyle, c.difficulty, ' +
-        'c.level, c.notes, c.freezeArrow, c.shockArrow ' +
-        'FROM s JOIN c IN s.charts ' +
-        'WHERE s.id = @id ' +
-        'AND c.playStyle = @playStyle ' +
-        'AND c.difficulty = @difficulty',
-      parameters: [
-        { name: '@id', value: songId },
-        { name: '@playStyle', value: playStyle },
-        { name: '@difficulty', value: difficulty },
-      ],
-    })
-    .fetchNext()
-  return resources.length === 0 ? null : resources[0]
 }

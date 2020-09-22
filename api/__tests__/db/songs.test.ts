@@ -1,7 +1,6 @@
 import { canConnectDB, getContainer } from '../../db'
 import {
   CourseSchema,
-  fetchSongInfo,
   fetchSongList,
   isSongSchema,
   SongSchema,
@@ -563,26 +562,6 @@ describe('./db/songs.ts', () => {
       await Promise.all(
         courses.map(c => getContainer('Songs').item(c.id, c.nameIndex).delete())
       )
-    })
-
-    describe('fetchSongInfo', () => {
-      test.each(['', 'foo', courses[0].id])('(%s) returns null', async id => {
-        // Arrange - Act
-        const song = await fetchSongInfo(id)
-
-        // Assert
-        expect(song).toBeNull()
-      })
-      test.each([
-        [songs[0].id, songs[0]],
-        [songs[1].id, songs[1]],
-      ])('(%s) returns %p', async (id, expected) => {
-        // Arrange - Act
-        const song = await fetchSongInfo(id)
-
-        // Assert
-        expect(song).toStrictEqual(expected)
-      })
     })
 
     describe('fetchSongList', () => {

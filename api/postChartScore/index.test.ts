@@ -3,7 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { canConnectDB, getContainer, ScoreSchema } from '../db'
+import { canConnectDB, getContainer, ScoreSchema, SongSchema } from '../db'
 import postChartScore from '.'
 
 jest.mock('../auth')
@@ -11,7 +11,44 @@ jest.mock('../auth')
 describe('POST /api/v1/scores', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'body'>
-
+  const song: SongSchema = {
+    id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+    name: 'PARANOiA',
+    nameKana: 'PARANOIA',
+    nameIndex: 25,
+    artist: '180',
+    series: 'DDR 1st',
+    minBPM: 180,
+    maxBPM: 180,
+    charts: [
+      {
+        playStyle: 1,
+        difficulty: 0,
+        level: 4,
+        notes: 138,
+        freezeArrow: 0,
+        shockArrow: 0,
+        stream: 29,
+        voltage: 22,
+        air: 5,
+        freeze: 0,
+        chaos: 0,
+      },
+      {
+        playStyle: 1,
+        difficulty: 1,
+        level: 8,
+        notes: 264,
+        freezeArrow: 0,
+        shockArrow: 0,
+        stream: 56,
+        voltage: 44,
+        air: 18,
+        freeze: 0,
+        chaos: 4,
+      },
+    ],
+  }
   beforeEach(() => {
     context = { bindingData: {} }
     req = { headers: {} }
@@ -28,7 +65,7 @@ describe('POST /api/v1/scores', () => {
     mocked(getClientPrincipal).mockReturnValueOnce(null)
 
     // Act
-    const result = await postChartScore(context, req)
+    const result = await postChartScore(context, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(401)
@@ -54,7 +91,7 @@ describe('POST /api/v1/scores', () => {
     req.body = body
 
     // Act
-    const result = await postChartScore(context, req)
+    const result = await postChartScore(context, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(400)
@@ -68,53 +105,14 @@ describe('POST /api/v1/scores', () => {
     req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
     // Act
-    const result = await postChartScore(context, req)
+    const result = await postChartScore(context, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
   })
 
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
-    const songContainer = getContainer('Songs')
     const scoreContainer = getContainer('Scores')
-    const song = {
-      id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-      name: 'PARANOiA',
-      nameKana: 'PARANOIA',
-      nameIndex: 25,
-      artist: '180',
-      series: 'DDR 1st',
-      minBPM: 180,
-      maxBPM: 180,
-      charts: [
-        {
-          playStyle: 1,
-          difficulty: 0,
-          level: 4,
-          notes: 138,
-          freezeArrow: 0,
-          shockArrow: 0,
-          stream: 29,
-          voltage: 22,
-          air: 5,
-          freeze: 0,
-          chaos: 0,
-        },
-        {
-          playStyle: 1,
-          difficulty: 1,
-          level: 8,
-          notes: 264,
-          freezeArrow: 0,
-          shockArrow: 0,
-          stream: 56,
-          voltage: 44,
-          air: 18,
-          freeze: 0,
-          chaos: 4,
-        },
-      ],
-    } as const
     const publicUser = {
       id: 'public_user',
       loginId: 'public_user',
@@ -198,7 +196,6 @@ describe('POST /api/v1/scores', () => {
     })
 
     beforeAll(async () => {
-      await songContainer.items.create(song)
       await Promise.all(
         [
           addId(worldScore),
@@ -210,7 +207,6 @@ describe('POST /api/v1/scores', () => {
       )
     })
     afterAll(async () => {
-      await songContainer.item(song.id, song.nameIndex).delete()
       await Promise.all(
         [
           addId(worldScore),
@@ -241,7 +237,7 @@ describe('POST /api/v1/scores', () => {
         req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
         // Act
-        const result = await postChartScore(context, req)
+        const result = await postChartScore(context, req, [song])
 
         // Assert
         expect(result.httpResponse.status).toBe(404)
@@ -261,7 +257,7 @@ describe('POST /api/v1/scores', () => {
       req.body = { score: 90000, clearLamp: 2, rank: 'E', exScore: 1000 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(400)
@@ -286,7 +282,7 @@ describe('POST /api/v1/scores', () => {
       }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
@@ -330,7 +326,7 @@ describe('POST /api/v1/scores', () => {
       const expected = { ...req.body, maxCombo: 138 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
@@ -358,7 +354,7 @@ describe('POST /api/v1/scores', () => {
       const expected = { ...req.body, maxCombo: 138 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
@@ -390,7 +386,7 @@ describe('POST /api/v1/scores', () => {
       const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
@@ -426,7 +422,7 @@ describe('POST /api/v1/scores', () => {
       const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
@@ -458,7 +454,7 @@ describe('POST /api/v1/scores', () => {
       const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
       // Act
-      const result = await postChartScore(context, req)
+      const result = await postChartScore(context, req, [song])
 
       // Assert
       expect(result.httpResponse.status).toBe(200)

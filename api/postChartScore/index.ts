@@ -2,7 +2,12 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { fetchScore, ScoreSchema } from '../db/scores'
-import { Difficulty, fetchChartInfo } from '../db/songs'
+import {
+  CourseInfoSchema,
+  Difficulty,
+  SongSchema,
+  StepChartSchema,
+} from '../db/songs'
 import {
   BadRequestResult,
   getBindingNumber,
@@ -11,6 +16,10 @@ import {
   UnauthenticatedResult,
 } from '../function'
 import { isScore, isValidScore, mergeScore } from '../score'
+
+type SongInput = Pick<SongSchema, 'id' | 'name'> & {
+  charts: (StepChartSchema | CourseInfoSchema)[]
+}
 
 type PostScoreResult = {
   httpResponse:
@@ -24,7 +33,8 @@ type PostScoreResult = {
 /** Add or update score that match the specified chart. */
 export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
-  req: Pick<HttpRequest, 'headers' | 'body'>
+  req: Pick<HttpRequest, 'headers' | 'body'>,
+  songs: SongInput[]
 ): Promise<PostScoreResult> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
@@ -35,12 +45,8 @@ export default async function (
 
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
-    return {
-      httpResponse: {
-        status: 404,
-        body: `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`,
-      },
-    }
+    const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
+    return { httpResponse: { status: 404, body } }
   }
 
   const songId: string = bindingData.songId
@@ -48,7 +54,10 @@ export default async function (
   const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
 
   // Get chart info
-  const chart = await fetchChartInfo(songId, playStyle, difficulty)
+  if (!songs || songs.length !== 1) return { httpResponse: { status: 404 } }
+  const chart = songs[0].charts.find(
+    c => c.playStyle === playStyle && c.difficulty === difficulty
+  )
   if (!chart) return { httpResponse: { status: 404 } }
 
   if (!isValidScore(chart, req.body)) {
@@ -87,7 +96,7 @@ export default async function (
       userName: user!.name,
       isPublic: user!.isPublic,
       songId,
-      songName: chart!.name,
+      songName: songs[0].name,
       playStyle,
       difficulty,
       level: chart!.level,
