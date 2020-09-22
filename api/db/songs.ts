@@ -235,26 +235,6 @@ export function fetchSongList(
   )
 }
 
-export function fetchCourseInfo(id: string): Promise<CourseSchema | null> {
-  return fetchOne<CourseSchema>(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'charts',
-    ],
-    [
-      { condition: 'c.id = @', value: id },
-      { condition: '(c.nameIndex = -1 OR c.nameIndex = -2)' },
-    ]
-  )
-}
-
 type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
   charts: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
 }

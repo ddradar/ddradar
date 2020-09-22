@@ -1,12 +1,9 @@
 import type { Context } from '@azure/functions'
-import { mocked } from 'ts-jest/utils'
 
-import { CourseSchema, fetchCourseInfo } from '../db/songs'
+import type { CourseSchema } from '../db/songs'
 import getCourseInfo from '.'
 
-jest.mock('../db/songs')
-
-describe('GET /api/v1/courses', () => {
+describe('GET /api/v1/courses/{id}', () => {
   let context: Pick<Context, 'bindingData'>
   const course: CourseSchema = {
     id: 'o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db',
@@ -59,33 +56,41 @@ describe('GET /api/v1/courses', () => {
   }
   beforeEach(() => {
     context = { bindingData: {} }
-    mocked(fetchCourseInfo).mockClear()
-    mocked(fetchCourseInfo).mockResolvedValue(course)
   })
 
-  test(`/${course.id} calls fetchCourseInfo("${course.id}")`, async () => {
+  test(`returns "200 OK" with JSON if documents contain 1 course`, async () => {
     // Arrange
     context.bindingData.id = course.id
 
     // Act
-    const result = await getCourseInfo(context)
+    const result = await getCourseInfo(context, null, [course])
 
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toBe(course)
-    expect(mocked(fetchCourseInfo)).toBeCalledWith(course.id)
   })
 
-  test(`/foo returns "404 Not Found" if fetchCourseInfo("foo") returns null`, async () => {
+  test(`returns "404 Not Found" if documents is []`, async () => {
     // Arrange
-    mocked(fetchCourseInfo).mockResolvedValue(null)
     context.bindingData.id = 'foo'
 
     // Act
-    const result = await getCourseInfo(context)
+    const result = await getCourseInfo(context, null, [])
 
     // Assert
     expect(result.status).toBe(404)
-    expect(mocked(fetchCourseInfo)).toBeCalledWith('foo')
+    expect(result.body).toMatch(/"foo"/)
+  })
+
+  test(`returns "404 Not Found" if documents has 2 or more courses`, async () => {
+    // Arrange
+    context.bindingData.id = 'foo'
+
+    // Act
+    const result = await getCourseInfo(context, null, [course, course])
+
+    // Assert
+    expect(result.status).toBe(404)
+    expect(result.body).toMatch(/"foo"/)
   })
 })

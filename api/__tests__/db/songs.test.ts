@@ -2,7 +2,6 @@ import { canConnectDB, getContainer } from '../../db'
 import {
   CourseSchema,
   fetchChartList,
-  fetchCourseInfo,
   fetchCourseList,
   fetchSongInfo,
   fetchSongList,
@@ -623,26 +622,6 @@ describe('./db/songs.ts', () => {
 
         // Assert
         expect(result).toStrictEqual(expected)
-      })
-    })
-
-    describe('fetchCourseInfo', () => {
-      test.each(['', 'foo', songs[0].id])('(%s) returns null', async id => {
-        // Arrange - Act
-        const course = await fetchCourseInfo(id)
-
-        // Assert
-        expect(course).toBeNull()
-      })
-      test.each([
-        [courses[0].id, courses[0]],
-        [courses[1].id, courses[1]],
-      ])('(%s) returns %p', async (id, expected) => {
-        // Arrange - Act
-        const course = await fetchCourseInfo(id)
-
-        // Assert
-        expect(course).toStrictEqual(expected)
       })
     })
 
