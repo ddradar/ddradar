@@ -1,12 +1,8 @@
 import type { Context } from '@azure/functions'
-import { mocked } from 'ts-jest/utils'
 
-import { fetchChartList } from '../db/songs'
 import searchCharts from '.'
 
-jest.mock('../db/songs')
-
-describe('GET /api/v1/charts', () => {
+describe('GET /api/v1/charts/{playStyle}/{level}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const charts = [
     {
@@ -18,37 +14,30 @@ describe('GET /api/v1/charts', () => {
       level: 4,
     } as const,
   ]
-  beforeEach(() => {
-    context.bindingData = {}
-    mocked(fetchChartList).mockClear()
-    mocked(fetchChartList).mockResolvedValue(charts)
-  })
+  beforeEach(() => (context.bindingData = {}))
 
-  test('/1/4 calls fetchChartList(1, 4)', async () => {
+  test('returns "200 OK" with JSON body if documents is not empty', async () => {
     // Arrange
     context.bindingData.playStyle = 1
     context.bindingData.level = 4
 
     // Act
-    const result = await searchCharts(context)
+    const result = await searchCharts(context, null, charts)
 
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toBe(charts)
-    expect(mocked(fetchChartList)).toBeCalledWith(1, 4)
   })
 
-  test('/1/20 returns "404 Not Found" if fetchChartList(1, 30) returns []', async () => {
+  test('returns "404 Not Found" if documents is empty', async () => {
     // Arrange
     context.bindingData.playStyle = 1
-    context.bindingData.level = 20
-    mocked(fetchChartList).mockResolvedValueOnce([])
+    context.bindingData.level = 4
 
     // Act
-    const result = await searchCharts(context)
+    const result = await searchCharts(context, null, [])
 
     // Assert
     expect(result.status).toBe(404)
-    expect(mocked(fetchChartList)).toBeCalledWith(1, 20)
   })
 })

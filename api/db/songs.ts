@@ -303,30 +303,3 @@ export async function fetchChartInfo(
     .fetchNext()
   return resources.length === 0 ? null : resources[0]
 }
-
-type ChartListData = Pick<SongSchema, 'id' | 'name' | 'series'> &
-  Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
-export async function fetchChartList(
-  playStyle: 1 | 2,
-  level: number
-): Promise<ChartListData[]> {
-  const container = getContainer('Songs')
-  const { resources } = await container.items
-    .query<ChartListData>({
-      query:
-        'SELECT s.id, s.name, s.series, ' +
-        'c.playStyle, c.difficulty, c.level ' +
-        'FROM s JOIN c IN s.charts ' +
-        'WHERE s.nameIndex != -1 ' +
-        'AND s.nameIndex != -2 ' +
-        'AND c.level = @level ' +
-        'AND c.playStyle = @playStyle ' +
-        'ORDER BY s.nameIndex, s.nameKana',
-      parameters: [
-        { name: '@level', value: level },
-        { name: '@playStyle', value: playStyle },
-      ],
-    })
-    .fetchAll()
-  return resources
-}

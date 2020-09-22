@@ -9,6 +9,15 @@
       "route": "v1/songs/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}"
     },
     {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT c.id, c.name, c.nameKana, c.nameIndex, c.artist, c.series, c.minBPM, c.maxBPM, c.charts FROM c WHERE c.id = {id} AND c.nameIndex != -1 AND c.nameIndex != -2",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"
