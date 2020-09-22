@@ -54,9 +54,7 @@ describe('GET /api/v1/courses/{id}', () => {
       },
     ],
   }
-  beforeEach(() => {
-    context = { bindingData: {} }
-  })
+  beforeEach(() => (context = { bindingData: {} }))
 
   test(`returns "200 OK" with JSON if documents contain 1 course`, async () => {
     // Arrange
@@ -76,18 +74,6 @@ describe('GET /api/v1/courses/{id}', () => {
 
     // Act
     const result = await getCourseInfo(context, null, [])
-
-    // Assert
-    expect(result.status).toBe(404)
-    expect(result.body).toMatch(/"foo"/)
-  })
-
-  test(`returns "404 Not Found" if documents has 2 or more courses`, async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getCourseInfo(context, null, [course, course])
 
     // Assert
     expect(result.status).toBe(404)

@@ -3,8 +3,6 @@ import type { Context } from '@azure/functions'
 import type { SongSchema } from '../db/songs'
 import getSongInfo from '.'
 
-jest.mock('../db/songs')
-
 describe('GET /api/v1/songs', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const song: SongSchema = {
@@ -52,18 +50,6 @@ describe('GET /api/v1/songs', () => {
 
     // Act
     const result = await getSongInfo(context, null, [])
-
-    // Assert
-    expect(result.status).toBe(404)
-    expect(result.body).toMatch(/"foo"/)
-  })
-
-  test(`returns "404 Not Found" if documents has 2 or more songs`, async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getSongInfo(context, null, [song, song])
 
     // Assert
     expect(result.status).toBe(404)

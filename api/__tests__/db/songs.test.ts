@@ -1,7 +1,6 @@
 import { canConnectDB, getContainer } from '../../db'
 import {
   CourseSchema,
-  fetchCourseList,
   fetchSongInfo,
   fetchSongList,
   isSongSchema,
@@ -621,38 +620,6 @@ describe('./db/songs.ts', () => {
 
         // Assert
         expect(result).toStrictEqual(expected)
-      })
-    })
-
-    describe('fetchCourseList', () => {
-      test('() returns all courses', async () => {
-        // Arrange - Act
-        const result = await fetchCourseList()
-
-        // Assert
-        expect(result).toHaveLength(6)
-        expect(result[0].id).toBe('19id1DO6q9Pb1681db61D8D8oQi9dlb6') // SP初段(A20)
-        expect(result[1].id).toBe('bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP') // DP十段(A20)
-        expect(result[2].id).toBe('6bo6ID6l11qd6lolilI6o6q8I6ddo88i') // SP初段(A20 PLUS)
-        expect(result[3].id).toBe('q0IObiQdI9o918O0DbPlldqd01liQ8Ql') // DP五段(A20 PLUS)
-        expect(result[4].id).toBe('q6oOPqQPlOQoooq888bPI1OPDlqDIQQD') // PASSION(A20)
-        expect(result[5].id).toBe('O6Pi0O800b8b6d9dd9P89dD1900I1q80') // HYPER(A20 PLUS)
-      })
-      test.each([
-        [undefined, 16, 3],
-        [undefined, 17, 3],
-        [-1, undefined, 2],
-        [-2, undefined, 4],
-        [-1, 16, 1],
-        [-1, 17, 1],
-        [-2, 16, 2],
-        [-2, 17, 2],
-      ])('(%i, %i) returns %i course(s)', async (name, series, length) => {
-        // Arrange - Act
-        const result = await fetchCourseList(name, series)
-
-        // Assert
-        expect(result).toHaveLength(length)
       })
     })
   })

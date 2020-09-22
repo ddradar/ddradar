@@ -42,19 +42,4 @@ describe('GET /api/v1/notification/{id}', () => {
     expect(result.status).toBe(404)
     expect(result.body).toMatch(/"foo"/)
   })
-
-  test(`returns "404 Not Found" if documents has 2 or more notification`, async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getNotificationInfo(context, null, [
-      notification,
-      notification,
-    ])
-
-    // Assert
-    expect(result.status).toBe(404)
-    expect(result.body).toMatch(/"foo"/)
-  })
 })

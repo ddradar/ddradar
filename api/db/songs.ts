@@ -1,5 +1,3 @@
-import type { SqlParameter } from '@azure/cosmos'
-
 import {
   hasIntegerProperty,
   hasProperty,
@@ -233,40 +231,6 @@ export function fetchSongList(
       nameKana: 'ASC',
     }
   )
-}
-
-type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
-  charts: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
-}
-export async function fetchCourseList(
-  name?: number,
-  series?: number
-): Promise<CourseListData[]> {
-  const container = getContainer('Songs')
-
-  const conditions = ['c.nameIndex < 0']
-  const parameters: SqlParameter[] = []
-  if (name === -1 || name === -2) {
-    conditions.push('c.nameIndex = @name')
-    parameters.push({ name: '@name', value: name })
-  }
-  if (series !== undefined) {
-    conditions.push('c.series = @series')
-    parameters.push({ name: '@series', value: SeriesList[series] })
-  }
-
-  const { resources } = await container.items
-    .query<CourseListData>({
-      query:
-        'SELECT c.id, c.name, c.series, ' +
-        'ARRAY(SELECT o.playStyle, o.difficulty, o.level FROM o IN c.charts) as charts ' +
-        'FROM c ' +
-        `WHERE ${conditions.join(' AND ')} ` +
-        'ORDER BY c.nameIndex, c.nameKana',
-      parameters,
-    })
-    .fetchAll()
-  return resources
 }
 
 type ChartInfo = Pick<SongSchema, 'id' | 'name'> &
