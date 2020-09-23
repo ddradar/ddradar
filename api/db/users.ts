@@ -200,11 +200,11 @@ export function fetchUserList(
 ): Promise<UserListData[]> {
   const columns = ['id', 'name', 'area', 'code'] as const
   const cond: Condition[] = [
-    { condition: 'IS_DEFINED(c.loginId)' },
     { condition: '(c.isPublic = true OR c.loginId = @)', value: loginId },
   ]
-  if (area) cond.push({ condition: 'c.area = @', value: area })
+  if (area !== undefined) cond.push({ condition: 'c.area = @', value: area })
   if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (code) cond.push({ condition: 'c.code = @', value: code })
+  cond.push({ condition: 'IS_DEFINED(c.loginId)' })
   return fetchList<UserListData>('Users', columns, cond, { name: 'ASC' })
 }

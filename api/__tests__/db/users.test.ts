@@ -162,7 +162,7 @@ describe('./db/users.ts', () => {
           },
         ],
       ])(
-        '("", undefined, %s, %i) returns [%p]',
+        '("", undefined, "%s", %i) returns [%p]',
         async (name, code, expected) => {
           // Arrange - Act
           const result = await fetchUserList('', undefined, name, code)
