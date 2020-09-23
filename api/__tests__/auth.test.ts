@@ -1,11 +1,10 @@
-import type { Container } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { getContainer, UserSchema } from '../db'
+import { fetchLoginUser, UserSchema } from '../db/users'
 
-jest.mock('../db')
+jest.mock('../db/users')
 
 const toBase64 = (obj: unknown) => {
   const jsonString = JSON.stringify(obj)
@@ -16,9 +15,9 @@ const authHeader = 'x-ms-client-principal'
 
 describe('./auth.ts', () => {
   describe('getClientPrincipal', () => {
-    let req: Pick<HttpRequest, 'headers'>
+    const req: Pick<HttpRequest, 'headers'> = { headers: {} }
     beforeEach(() => {
-      req = { headers: {} }
+      req.headers = {}
     })
 
     test.each(['', 'foo'])(`({ ${authHeader} : %s }) returns null`, header => {
@@ -59,18 +58,6 @@ describe('./auth.ts', () => {
   })
 
   describe('getLoginUserInfo', () => {
-    let resources: UserSchema[] = []
-    const container = {
-      items: {
-        query: () => ({
-          fetchAll: async () => ({ resources }),
-        }),
-      },
-    }
-    beforeAll(() => {
-      mocked(getContainer).mockReturnValue((container as unknown) as Container)
-    })
-
     test('(null) returns null', async () => {
       // Arrange - Act
       const user = await getLoginUserInfo(null)
@@ -81,7 +68,7 @@ describe('./auth.ts', () => {
 
     test('({ Unregistered user }) returns null', async () => {
       // Arrange
-      resources = []
+      mocked(fetchLoginUser).mockResolvedValueOnce(null)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'unregistered_user' })
@@ -99,7 +86,7 @@ describe('./auth.ts', () => {
         isPublic: false,
         name: 'Registered user',
       }
-      resources = [userSchema]
+      mocked(fetchLoginUser).mockResolvedValueOnce(userSchema)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'registered_user' })

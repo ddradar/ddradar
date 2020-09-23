@@ -201,8 +201,6 @@ export function fetchSongList(
         : [{ condition: 'c.nameIndex != -1 AND c.nameIndex != -2' }]),
     ],
     {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
       nameIndex: 'ASC',
       nameKana: 'ASC',
     }

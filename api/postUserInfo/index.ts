@@ -1,37 +1,22 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../db'
-import { areaCodeList, UserSchema } from '../db/users'
+import {
+  fetchLoginUser,
+  fetchUser,
+  isUserSchema,
+  UserSchema,
+} from '../db/users'
 import type {
   BadRequestResult,
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import {
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from '../type-assert'
-
-export type UserInfo = Omit<UserSchema, 'loginId'>
-
-const isUserInfo = (obj: unknown): obj is UserInfo =>
-  hasStringProperty(obj, 'id', 'name') &&
-  /^[-a-z0-9_]+$/.test(obj.id) &&
-  hasIntegerProperty(obj, 'area') &&
-  (areaCodeList as number[]).includes(obj.area) &&
-  (!hasProperty(obj, 'code') ||
-    (hasIntegerProperty(obj, 'code') &&
-      obj.code >= 10000000 &&
-      obj.code <= 99999999)) &&
-  hasProperty(obj, 'isPublic') &&
-  typeof obj.isPublic === 'boolean'
 
 type PostUserResult = {
   httpResponse:
     | BadRequestResult
-    | SuccessResult<UserInfo>
+    | SuccessResult<UserSchema>
     | UnauthenticatedResult
   document?: UserSchema
 }
@@ -45,30 +30,20 @@ export default async function (
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
   const loginId = clientPrincipal.userId
 
-  if (!isUserInfo(req.body)) {
+  if (!isUserSchema(req.body)) {
     return { httpResponse: { status: 400, body: 'Body is not UserSchema' } }
   }
 
   // Read existing data
-  const container = getContainer('Users')
-  const { resources } = await container.items
-    .query<UserSchema>({
-      query: 'SELECT * FROM c WHERE c.id = @id OR c.loginId = @loginId',
-      parameters: [
-        { name: '@id', value: req.body.id },
-        { name: '@loginId', value: loginId },
-      ],
-    })
-    .fetchAll()
-  const oldData = resources[0]
+  const oldData =
+    (await fetchUser(req.body.id)) ?? (await fetchLoginUser(loginId))
 
   if (oldData && (oldData.id !== req.body.id || oldData.loginId !== loginId)) {
     return { httpResponse: { status: 400, body: 'Duplicated Id' } }
   }
 
   // Merge existing data with new data
-  const document: UserSchema = {
-    loginId: oldData?.loginId ?? loginId,
+  const body: UserSchema = {
     id: oldData?.id ?? req.body.id,
     name: req.body.name,
     area: oldData?.area ?? req.body.area,
@@ -76,21 +51,12 @@ export default async function (
     ...(req.body.code ? { code: req.body.code } : {}),
   }
 
-  // Create response
-  const body: UserInfo = {
-    id: document.id,
-    name: document.name,
-    area: document.area,
-    isPublic: document.isPublic,
-  }
-  if (document.code) body.code = document.code
-
   return {
     httpResponse: {
       status: 200,
       headers: { 'Content-type': 'application/json' },
       body,
     },
-    document,
+    document: { ...body, loginId: oldData?.loginId ?? loginId },
   }
 }

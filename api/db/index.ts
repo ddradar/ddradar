@@ -74,9 +74,10 @@ export async function fetchOne<T>(
 
 export async function fetchList<T>(
   containerName: ContainerName,
-  columns: (keyof T | keyof ItemDefinition)[],
-  conditions: Condition[],
-  orderBy: Record<keyof (T | ItemDefinition), 'ASC' | 'DESC'>
+  columns: Readonly<(keyof T | keyof ItemDefinition)[]>,
+  conditions: Readonly<Condition[]>,
+  orderBy: Partial<Record<keyof T | keyof ItemDefinition, 'ASC' | 'DESC'>>,
+  fetchAll = true
 ): Promise<(T & ItemDefinition)[]> {
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(', ')
@@ -90,11 +91,13 @@ export async function fetchList<T>(
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
-  const query = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
+  const sql = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
 
   const container = getContainer(containerName)
-  const { resources } = await container.items
-    .query<T & ItemDefinition>({ query, parameters })
-    .fetchAll()
+  const query = container.items.query<T & ItemDefinition>({
+    query: sql,
+    parameters,
+  })
+  const { resources } = await (fetchAll ? query.fetchAll() : query.fetchNext())
   return resources
 }

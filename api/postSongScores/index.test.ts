@@ -51,6 +51,13 @@ describe('POST /api/v1/scores', () => {
       },
     ],
   }
+  const publicUser = {
+    id: 'public_user',
+    loginId: 'public_user',
+    name: 'AFRO',
+    area: 13,
+    isPublic: true,
+  } as const
 
   beforeEach(() => {
     context = { bindingData: {} }
@@ -117,15 +124,21 @@ describe('POST /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(404)
   })
 
+  test('returns "404 Not Found" if songs is empty', async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = '00000000000000000000000000000000'
+    req.body = [{ playStyle: 1, difficulty: 0, ...score }]
+
+    // Act
+    const result = await postSongScores(context, req, [])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(404)
+  })
+
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const scoreContainer = getContainer('Scores')
-    const publicUser = {
-      id: 'public_user',
-      loginId: 'public_user',
-      name: 'AFRO',
-      area: 13,
-      isPublic: true,
-    } as const
     const areaHiddenUser = {
       id: 'area_hidden_user',
       loginId: 'area_hidden_user',
@@ -140,6 +153,14 @@ describe('POST /api/v1/scores', () => {
       area: 13,
       isPublic: false,
     } as const
+    const clientPrincipal: Pick<
+      ClientPrincipal,
+      'identityProvider' | 'userRoles' | 'userDetails'
+    > = {
+      identityProvider: 'github',
+      userDetails: 'github_account',
+      userRoles: ['anonymous', 'authenticated'],
+    }
     const worldScore: ScoreSchema = {
       userId: '0',
       userName: '0',
@@ -188,14 +209,6 @@ describe('POST /api/v1/scores', () => {
       userName: privateUser.name,
       isPublic: privateUser.isPublic,
     }
-    const clientPrincipal: Pick<
-      ClientPrincipal,
-      'identityProvider' | 'userRoles' | 'userDetails'
-    > = {
-      identityProvider: 'github',
-      userDetails: 'github_account',
-      userRoles: ['anonymous', 'authenticated'],
-    }
     const addId = (s: ScoreSchema) => ({
       ...s,
       id: `${s.userId}-${s.songId}-${s.playStyle}-${s.difficulty}`,
@@ -224,26 +237,6 @@ describe('POST /api/v1/scores', () => {
       )
     })
 
-    test.each(['00000000000000000000000000000000', '999', {}])(
-      '/%s returns "404 Not Found"',
-      async songId => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          ...clientPrincipal,
-          userId: publicUser.loginId,
-        })
-        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-        context.bindingData.songId = songId
-        req.body = [{ playStyle: 1, difficulty: 0, ...score }]
-
-        // Act
-        const result = await postSongScores(context, req, [song])
-
-        // Assert
-        expect(result.httpResponse.status).toBe(404)
-      }
-    )
-
     test.each([
       [2, 0],
       [1, 4],
@@ -260,7 +253,7 @@ describe('POST /api/v1/scores', () => {
         req.body = [{ playStyle, difficulty, ...score }]
 
         // Act
-        const result = await postSongScores(context, req, [song])
+        const result = await postSongScores(context, req, [])
 
         // Assert
         expect(result.httpResponse.status).toBe(404)
