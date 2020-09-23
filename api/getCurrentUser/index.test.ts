@@ -1,110 +1,56 @@
 import { mocked } from 'ts-jest/utils'
 
-import { describeIf } from '../__tests__/util'
 import { getClientPrincipal } from '../auth'
-import { canConnectDB, getContainer, UserSchema } from '../db'
+import { fetchLoginUser, UserSchema } from '../db/users'
 import getCurrentUser from '.'
 
 jest.mock('../auth')
+jest.mock('../db/users')
 
 describe('GET /api/v1/user', () => {
   const req = { headers: {} }
+  beforeAll(() =>
+    mocked(getClientPrincipal).mockReturnValue({
+      identityProvider: 'github',
+      userDetails: 'new_user',
+      userId: '3',
+      userRoles: ['anonymous', 'authenticated'],
+    })
+  )
 
-  test('returns "401 Unauthorized" if not logged in', async () => {
+  test('returns "404 Not Found" if fetchLoginUser() returns null', async () => {
     // Arrange
-    mocked(getClientPrincipal).mockReturnValue(null)
+    mocked(getClientPrincipal).mockReturnValueOnce(null)
 
     // Act
     const result = await getCurrentUser(null, req)
 
     // Assert
-    expect(result.status).toBe(401)
+    expect(result.status).toBe(404)
   })
 
-  describeIf(canConnectDB)('Cosmos DB integration test', () => {
-    const publicUser: Required<UserSchema> = {
+  test('returns "200 OK" with JSON body if fetchLoginUser() returns user', async () => {
+    // Arrange
+    const user: UserSchema = {
       id: 'public_user',
       loginId: '1',
       name: 'Public User',
       area: 13,
       code: 10000000,
       isPublic: true,
-    } as const
-    const privateUser: UserSchema & { loginId: string } = {
-      id: 'private_user',
-      loginId: '2',
-      name: 'Private User',
-      area: 0,
-      isPublic: false,
-    } as const
+    }
+    mocked(fetchLoginUser).mockResolvedValueOnce(user)
 
-    beforeAll(async () => {
-      await getContainer('Users').items.create(publicUser)
-      await getContainer('Users').items.create(privateUser)
-    })
+    // Act
+    const result = await getCurrentUser(null, req)
 
-    test('returns "404 Not Found" if user registration is not completed', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValue({
-        identityProvider: 'github',
-        userDetails: 'new_user',
-        userId: '3',
-        userRoles: ['anonymous', 'authenticated'],
-      })
-
-      // Act
-      const result = await getCurrentUser(null, req)
-
-      // Assert
-      expect(result.status).toBe(404)
-    })
-
-    test('returns "200 OK" with JSON body if user is publicUser', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValue({
-        identityProvider: 'github',
-        userDetails: publicUser.id,
-        userId: publicUser.loginId,
-        userRoles: ['anonymous', 'authenticated'],
-      })
-
-      // Act
-      const result = await getCurrentUser(null, req)
-
-      // Assert
-      expect(result.status).toBe(200)
-      expect(result.body).toStrictEqual({
-        id: publicUser.id,
-        name: publicUser.name,
-        area: publicUser.area,
-        code: publicUser.code,
-      })
-    })
-
-    test('returns "200 OK" with JSON body if user is privateUser', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValue({
-        identityProvider: 'twitter',
-        userDetails: privateUser.id,
-        userId: privateUser.loginId,
-        userRoles: ['anonymous', 'authenticated'],
-      })
-
-      // Act
-      const result = await getCurrentUser(null, req)
-
-      // Assert
-      expect(result.status).toBe(200)
-      expect(result.body).toStrictEqual({
-        id: privateUser.id,
-        name: privateUser.name,
-        area: privateUser.area,
-      })
-    })
-
-    afterAll(async () => {
-      await getContainer('Users').item(publicUser.id, publicUser.id).delete()
-      await getContainer('Users').item(privateUser.id, privateUser.id).delete()
+    // Assert
+    expect(result.status).toBe(200)
+    expect(result.body).toStrictEqual({
+      id: user.id,
+      name: user.name,
+      area: user.area,
+      code: user.code,
     })
   })
 })

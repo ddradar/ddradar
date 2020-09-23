@@ -9,6 +9,15 @@
       "route": "v1/users/exists/{id:regex(^[-a-z0-9_]+$)}"
     },
     {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT c.id FROM c WHERE c.id = {id}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"

@@ -1,10 +1,6 @@
 import { canConnectDB, getContainer } from '../../db'
 import {
   CourseSchema,
-  fetchChartList,
-  fetchCourseInfo,
-  fetchCourseList,
-  fetchSongInfo,
   fetchSongList,
   isSongSchema,
   SongSchema,
@@ -568,26 +564,6 @@ describe('./db/songs.ts', () => {
       )
     })
 
-    describe('fetchSongInfo', () => {
-      test.each(['', 'foo', courses[0].id])('(%s) returns null', async id => {
-        // Arrange - Act
-        const song = await fetchSongInfo(id)
-
-        // Assert
-        expect(song).toBeNull()
-      })
-      test.each([
-        [songs[0].id, songs[0]],
-        [songs[1].id, songs[1]],
-      ])('(%s) returns %p', async (id, expected) => {
-        // Arrange - Act
-        const song = await fetchSongInfo(id)
-
-        // Assert
-        expect(song).toStrictEqual(expected)
-      })
-    })
-
     describe('fetchSongList', () => {
       const removeCharts = (song: SongSchema) => ({
         id: song.id,
@@ -620,129 +596,6 @@ describe('./db/songs.ts', () => {
       ])('(%i, %i) returns %p', async (name, series, expected) => {
         // Arrange - Act
         const result = await fetchSongList(name, series)
-
-        // Assert
-        expect(result).toStrictEqual(expected)
-      })
-    })
-
-    describe('fetchCourseInfo', () => {
-      test.each(['', 'foo', songs[0].id])('(%s) returns null', async id => {
-        // Arrange - Act
-        const course = await fetchCourseInfo(id)
-
-        // Assert
-        expect(course).toBeNull()
-      })
-      test.each([
-        [courses[0].id, courses[0]],
-        [courses[1].id, courses[1]],
-      ])('(%s) returns %p', async (id, expected) => {
-        // Arrange - Act
-        const course = await fetchCourseInfo(id)
-
-        // Assert
-        expect(course).toStrictEqual(expected)
-      })
-    })
-
-    describe('fetchCourseList', () => {
-      test('() returns all courses', async () => {
-        // Arrange - Act
-        const result = await fetchCourseList()
-
-        // Assert
-        expect(result).toHaveLength(6)
-        expect(result[0].id).toBe('19id1DO6q9Pb1681db61D8D8oQi9dlb6') // SP初段(A20)
-        expect(result[1].id).toBe('bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP') // DP十段(A20)
-        expect(result[2].id).toBe('6bo6ID6l11qd6lolilI6o6q8I6ddo88i') // SP初段(A20 PLUS)
-        expect(result[3].id).toBe('q0IObiQdI9o918O0DbPlldqd01liQ8Ql') // DP五段(A20 PLUS)
-        expect(result[4].id).toBe('q6oOPqQPlOQoooq888bPI1OPDlqDIQQD') // PASSION(A20)
-        expect(result[5].id).toBe('O6Pi0O800b8b6d9dd9P89dD1900I1q80') // HYPER(A20 PLUS)
-      })
-      test.each([
-        [undefined, 16, 3],
-        [undefined, 17, 3],
-        [-1, undefined, 2],
-        [-2, undefined, 4],
-        [-1, 16, 1],
-        [-1, 17, 1],
-        [-2, 16, 2],
-        [-2, 17, 2],
-      ])('(%i, %i) returns %i course(s)', async (name, series, length) => {
-        // Arrange - Act
-        const result = await fetchCourseList(name, series)
-
-        // Assert
-        expect(result).toHaveLength(length)
-      })
-    })
-
-    describe('fetchChartList', () => {
-      test.each([[1, 1] as const])(
-        '(%i, %i) returns []',
-        async (playStyle, level) => {
-          // Arrange - Act
-          const result = await fetchChartList(playStyle, level)
-
-          // Assert
-          expect(result).toHaveLength(0)
-        }
-      )
-      test.each([
-        [
-          1,
-          4,
-          [
-            {
-              id: songs[0].id,
-              name: songs[0].name,
-              series: songs[0].series,
-              playStyle: songs[0].charts[0].playStyle,
-              difficulty: songs[0].charts[0].difficulty,
-              level: songs[0].charts[0].level,
-            },
-          ],
-        ],
-        [
-          1,
-          11,
-          [
-            {
-              id: songs[0].id,
-              name: songs[0].name,
-              series: songs[0].series,
-              playStyle: songs[0].charts[3].playStyle,
-              difficulty: songs[0].charts[3].difficulty,
-              level: songs[0].charts[3].level,
-            },
-            {
-              id: songs[2].id,
-              name: songs[2].name,
-              series: songs[2].series,
-              playStyle: songs[2].charts[0].playStyle,
-              difficulty: songs[2].charts[0].difficulty,
-              level: songs[2].charts[0].level,
-            },
-          ],
-        ],
-        [
-          2,
-          14,
-          [
-            {
-              id: songs[1].id,
-              name: songs[1].name,
-              series: songs[1].series,
-              playStyle: songs[1].charts[1].playStyle,
-              difficulty: songs[1].charts[1].difficulty,
-              level: songs[1].charts[1].level,
-            },
-          ],
-        ],
-      ])('(%i, %i) returns %p', async (playStyle, level, expected) => {
-        // Arrange - Act
-        const result = await fetchChartList(playStyle as 1 | 2, level)
 
         // Assert
         expect(result).toStrictEqual(expected)

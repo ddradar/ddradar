@@ -1,43 +1,29 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { getContainer } from '../db'
-import {
-  NotFoundResult,
-  SuccessResult,
-  UnauthenticatedResult,
-} from '../function'
+import { fetchLoginUser } from '../db/users'
+import { NotFoundResult, SuccessResult } from '../function'
 import { User } from '../user'
 
 /** Get information about the currently logged in user. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers'>
-): Promise<NotFoundResult | SuccessResult<User> | UnauthenticatedResult> {
+): Promise<NotFoundResult | SuccessResult<User>> {
   const clientPrincipal = getClientPrincipal(req)
-  // This check is only used to unit tests.
-  if (!clientPrincipal) return { status: 401 }
 
-  const loginId = clientPrincipal.userId
+  const loginId = clientPrincipal?.userId
 
-  const container = getContainer('Users')
-  const { resources } = await container.items
-    .query<User>({
-      query:
-        'SELECT c.id, c.name, c.area, c.code ' +
-        'FROM c ' +
-        'WHERE c.loginId = @loginId',
-      parameters: [{ name: '@loginId', value: loginId }],
-    })
-    .fetchAll()
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- routes.json
+  const user = await fetchLoginUser(loginId!)
 
-  if (resources.length === 0) {
+  if (!user) {
     return { status: 404, body: 'User registration is not completed' }
   }
 
   return {
     status: 200,
     headers: { 'Content-type': 'application/json' },
-    body: resources[0],
+    body: { id: user.id, name: user.name, area: user.area, code: user.code },
   }
 }

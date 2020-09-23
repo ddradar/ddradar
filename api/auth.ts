@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { getContainer, UserSchema } from './db'
+import { fetchLoginUser, UserSchema } from './db/users'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
@@ -35,13 +35,5 @@ export async function getLoginUserInfo(
   clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
 ): Promise<UserSchema | null> {
   if (!clientPrincipal) return null
-
-  const userContainer = getContainer('Users')
-  const { resources } = await userContainer.items
-    .query<UserSchema>({
-      query: 'SELECT * FROM c WHERE c.loginId = @loginId',
-      parameters: [{ name: '@loginId', value: clientPrincipal.userId }],
-    })
-    .fetchAll()
-  return resources[0] ?? null
+  return fetchLoginUser(clientPrincipal.userId)
 }

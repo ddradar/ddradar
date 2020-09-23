@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { CourseSchema, fetchCourseList, StepChartSchema } from '../db/songs'
+import { CourseSchema, SeriesList, StepChartSchema } from '../db/songs'
 import type { SuccessResult } from '../function'
 
 type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
@@ -10,7 +10,8 @@ type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
 /** Get course information list. */
 export default async function (
   _context: unknown,
-  req: Pick<HttpRequest, 'query'>
+  req: Pick<HttpRequest, 'query'>,
+  documents: (CourseListData & Pick<CourseSchema, 'nameIndex'>)[]
 ): Promise<SuccessResult<CourseListData[]>> {
   // Parse search query
   const type = parseFloat(req.query.type)
@@ -18,14 +19,13 @@ export default async function (
   const isValidType = type === 1 || type === 2
   const isValidSeries = series === 16 || series === 17
 
-  const body = await fetchCourseList(
-    isValidType ? type * -1 : undefined,
-    isValidSeries ? series : undefined
-  )
+  const body = documents
+    .filter(
+      c =>
+        (!isValidType || c.nameIndex === -1 * type) &&
+        (!isValidSeries || c.series === SeriesList[series])
+    )
+    .map(c => ({ id: c.id, name: c.name, series: c.series, charts: c.charts }))
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  return { status: 200, headers: { 'Content-type': 'application/json' }, body }
 }

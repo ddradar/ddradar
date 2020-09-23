@@ -1,10 +1,7 @@
 import type { Context } from '@azure/functions'
-import { mocked } from 'ts-jest/utils'
 
-import { fetchSongInfo, SongSchema } from '../db/songs'
+import type { SongSchema } from '../db/songs'
 import getSongInfo from '.'
-
-jest.mock('../db/songs')
 
 describe('GET /api/v1/songs', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
@@ -33,35 +30,29 @@ describe('GET /api/v1/songs', () => {
       },
     ],
   }
-  beforeEach(() => {
-    context.bindingData = {}
-    mocked(fetchSongInfo).mockClear()
-    mocked(fetchSongInfo).mockResolvedValue(song)
-  })
+  beforeEach(() => (context.bindingData = {}))
 
-  test(`/${song.id} returns "200 OK" with JSON`, async () => {
+  test(`returns "200 OK" with JSON if documents contain 1 song`, async () => {
     // Arrange
     context.bindingData.id = song.id
 
     // Act
-    const result = await getSongInfo(context)
+    const result = await getSongInfo(context, null, [song])
 
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toBe(song)
-    expect(mocked(fetchSongInfo)).toBeCalledWith(song.id)
   })
 
-  test('/foo returns "404 Not Found" if fetchSongInfo("foo") returns null', async () => {
+  test(`returns "404 Not Found" if documents is []`, async () => {
     // Arrange
     context.bindingData.id = 'foo'
-    mocked(fetchSongInfo).mockResolvedValueOnce(null)
 
     // Act
-    const result = await getSongInfo(context)
+    const result = await getSongInfo(context, null, [])
 
     // Assert
     expect(result.status).toBe(404)
-    expect(mocked(fetchSongInfo)).toBeCalledWith('foo')
+    expect(result.body).toMatch(/"foo"/)
   })
 })

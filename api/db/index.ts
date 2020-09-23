@@ -74,9 +74,9 @@ export async function fetchOne<T>(
 
 export async function fetchList<T>(
   containerName: ContainerName,
-  columns: (keyof T | keyof ItemDefinition)[],
-  conditions: Condition[],
-  orderBy: Record<keyof (T | ItemDefinition), 'ASC' | 'DESC'>
+  columns: Readonly<(keyof T | keyof ItemDefinition)[]>,
+  conditions: Readonly<Condition[]>,
+  orderBy: Partial<Record<keyof T | keyof ItemDefinition, 'ASC' | 'DESC'>>
 ): Promise<(T & ItemDefinition)[]> {
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(', ')
@@ -85,16 +85,16 @@ export async function fetchList<T>(
     .join(' AND ')
   const parameters = conditions
     .filter(c => c.value !== undefined)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- already checked
     .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
-  const query = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
+  const sql = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
-    .query<T & ItemDefinition>({ query, parameters })
+    .query<T & ItemDefinition>({ query: sql, parameters })
     .fetchAll()
   return resources
 }

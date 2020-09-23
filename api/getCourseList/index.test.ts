@@ -1,9 +1,4 @@
-import { mocked } from 'ts-jest/utils'
-
-import { fetchCourseList } from '../db/songs'
 import getCourseList from '.'
-
-jest.mock('../db/songs')
 
 describe('GET /api/v1/courses', () => {
   const req = { query: {} }
@@ -11,6 +6,7 @@ describe('GET /api/v1/courses', () => {
     {
       id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
       name: '初段',
+      nameIndex: -2 as const,
       series: 'DanceDanceRevolution A20',
       charts: [
         {
@@ -20,30 +16,63 @@ describe('GET /api/v1/courses', () => {
         } as const,
       ],
     },
+    {
+      id: 'q6oOPqQPlOQoooq888bPI1OPDlqDIQQD',
+      name: 'PASSION',
+      nameIndex: -1 as const,
+      series: 'DanceDanceRevolution A20',
+      minBPM: 140,
+      maxBPM: 182,
+      charts: [
+        {
+          playStyle: 1,
+          difficulty: 0,
+          level: 4,
+        } as const,
+      ],
+    },
+    {
+      id: '6bo6ID6l11qd6lolilI6o6q8I6ddo88i',
+      name: '初段',
+      nameIndex: -2 as const,
+      series: 'DanceDanceRevolution A20 PLUS',
+      charts: [
+        {
+          playStyle: 1,
+          difficulty: 4,
+          level: 10,
+        } as const,
+      ],
+    },
+    {
+      id: 'O6Pi0O800b8b6d9dd9P89dD1900I1q80',
+      name: 'HYPER',
+      nameIndex: -1 as const,
+      series: 'DanceDanceRevolution A20 PLUS',
+      charts: [
+        {
+          playStyle: 1,
+          difficulty: 0,
+          level: 5,
+        } as const,
+      ],
+    },
   ]
-  beforeEach(() => {
-    req.query = {}
-    mocked(fetchCourseList).mockClear()
-    mocked(fetchCourseList).mockResolvedValue(courses)
-  })
+  beforeEach(() => (req.query = {}))
 
   test.each([
-    [1, 16, -1, 16],
-    [2, 17, -2, 17],
-    ['', '', undefined, undefined],
-  ])(
-    '?type=%i&series=%i calls fetchCourseList(%i, %i)',
-    async (type, series, arg1, arg2) => {
-      // Arrange
-      req.query = { type, series }
+    [1, 16, 1],
+    [2, 17, 1],
+    ['', '', 4],
+  ])('?type=%i&series=%i returns %i courses', async (type, series, length) => {
+    // Arrange
+    req.query = { type, series }
 
-      // Act
-      const result = await getCourseList(null, req)
+    // Act
+    const result = await getCourseList(null, req, courses)
 
-      // Assert
-      expect(result.status).toBe(200)
-      expect(result.body).toBe(courses)
-      expect(mocked(fetchCourseList)).toBeCalledWith(arg1, arg2)
-    }
-  )
+    // Assert
+    expect(result.status).toBe(200)
+    expect(result.body).toHaveLength(length)
+  })
 })

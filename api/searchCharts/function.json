@@ -9,6 +9,15 @@
       "route": "v1/charts/{playStyle:int:range(1,2)}/{level:int:range(1,20)}"
     },
     {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT s.id, s.name, s.series, c.playStyle, c.difficulty, c.level FROM s JOIN c IN s.charts WHERE s.nameIndex != -1 AND s.nameIndex != -2 AND c.playStyle = {playStyle} AND c.level = {level} ORDER BY s.nameIndex, s.nameKana",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"
