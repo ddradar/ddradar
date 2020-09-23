@@ -49,7 +49,7 @@ describe('./db/users.ts', () => {
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const users: Required<UserSchema>[] = [...Array(100).keys()].map(i => ({
       id: `user_${i}`,
-      loginId: `${i}`,
+      loginId: `login_${i}`,
       name: `User ${i}`,
       area: (i % 50) as AreaCode,
       isPublic: i !== 0,
@@ -76,18 +76,16 @@ describe('./db/users.ts', () => {
     })
 
     describe('fetchUser', () => {
-      test.each([
-        '',
-        'foo',
-        users[0].loginId as string,
-        users[1].loginId as string,
-      ])('("%s") returns null', async id => {
-        // Arrange - Act
-        const user = await fetchUser(id)
+      test.each(['', 'foo', users[0].loginId, users[1].loginId])(
+        '("%s") returns null',
+        async id => {
+          // Arrange - Act
+          const user = await fetchUser(id)
 
-        // Assert
-        expect(user).toBeNull()
-      })
+          // Assert
+          expect(user).toBeNull()
+        }
+      )
 
       test.each([
         [users[0].id, users[0]],
