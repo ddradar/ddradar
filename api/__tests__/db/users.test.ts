@@ -1,7 +1,9 @@
 import { canConnectDB, getContainer } from '../../db'
 import {
+  AreaCode,
   fetchLoginUser,
   fetchUser,
+  fetchUserList,
   isUserSchema,
   UserSchema,
 } from '../../db/users'
@@ -45,30 +47,31 @@ describe('./db/users.ts', () => {
     })
   })
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
-    const users: UserSchema[] = [
-      {
-        id: 'public_user',
-        loginId: 'user_1',
-        name: 'User 1',
-        area: 13,
-        code: 10000000,
-        isPublic: true,
-      },
-      {
-        id: 'private_user',
-        loginId: 'user_2',
-        name: 'User 2',
-        area: 0,
-        isPublic: false,
-      },
-      { id: '0', name: '0', area: 0, isPublic: false },
-    ]
+    const users: Required<UserSchema>[] = [...Array(100).keys()].map(i => ({
+      id: `user_${i}`,
+      loginId: `${i}`,
+      name: `User ${i}`,
+      area: (i % 50) as AreaCode,
+      isPublic: i !== 0,
+      code: 10000000 + i,
+    }))
+    /** System users */
+    const areas: UserSchema[] = [...Array(50).keys()].map(i => ({
+      id: `${i}`,
+      name: `User ${i}`,
+      area: (i % 50) as AreaCode,
+      isPublic: true,
+    }))
     beforeAll(async () => {
       await Promise.all(users.map(u => getContainer('Users').items.create(u)))
+      await Promise.all(areas.map(u => getContainer('Users').items.create(u)))
     })
     afterAll(async () => {
       await Promise.all(
         users.map(u => getContainer('Users').item(u.id, u.id).delete())
+      )
+      await Promise.all(
+        areas.map(u => getContainer('Users').item(u.id, u.id).delete())
       )
     })
 
@@ -86,9 +89,10 @@ describe('./db/users.ts', () => {
         expect(user).toBeNull()
       })
 
-      test.each(
-        users.map<[string, UserSchema]>(u => [u.id, u])
-      )('("%s") returns %p', async (id, expected) => {
+      test.each([
+        [users[0].id, users[0]],
+        [users[1].id, users[1]],
+      ])('("%s") returns %p', async (id, expected) => {
         // Arrange - Act
         const user = await fetchUser(id)
 
@@ -110,8 +114,8 @@ describe('./db/users.ts', () => {
       )
 
       test.each([
-        [users[0].loginId as string, users[0]],
-        [users[1].loginId as string, users[1]],
+        [users[0].loginId, users[0]],
+        [users[1].loginId, users[1]],
       ])('("%s") returns %p', async (loginId, expected) => {
         // Arrange - Act
         const user = await fetchLoginUser(loginId)
@@ -119,6 +123,57 @@ describe('./db/users.ts', () => {
         // Assert
         expect(user).toStrictEqual(expected)
       })
+    })
+
+    describe('fetchUserList', () => {
+      test('("") returns 9 users', async () => {
+        // Arrange - Act
+        const result = await fetchUserList('')
+
+        // Assert
+        expect(result).toHaveLength(9)
+      })
+
+      test(`("${users[0].loginId}") returns 10 users`, async () => {
+        // Arrange - Act
+        const result = await fetchUserList(users[0].loginId)
+
+        // Assert
+        expect(result).toHaveLength(10)
+      })
+
+      test.each([
+        [
+          undefined,
+          10000010,
+          {
+            id: users[10].id,
+            name: users[10].name,
+            area: users[10].area,
+            code: users[10].code,
+          },
+        ],
+        [
+          'User 2',
+          10000023,
+          {
+            id: users[23].id,
+            name: users[23].name,
+            area: users[23].area,
+            code: users[23].code,
+          },
+        ],
+      ])(
+        '("", undefined, %s, %i) returns [%p]',
+        async (name, code, expected) => {
+          // Arrange - Act
+          const result = await fetchUserList('', undefined, name, code)
+
+          // Assert
+          expect(result).toHaveLength(1)
+          expect(result[0]).toStrictEqual(expected)
+        }
+      )
     })
   })
 })
