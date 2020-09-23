@@ -35,5 +35,5 @@ export async function getLoginUserInfo(
   clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
 ): Promise<UserSchema | null> {
   if (!clientPrincipal) return null
-  return await fetchLoginUser(clientPrincipal.userId)
+  return fetchLoginUser(clientPrincipal.userId)
 }

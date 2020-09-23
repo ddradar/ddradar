@@ -49,14 +49,27 @@ describe('POST /api/v1/scores', () => {
       },
     ],
   }
+  const publicUser = {
+    id: 'public_user',
+    loginId: 'public_user',
+    name: 'AFRO',
+    area: 13,
+    isPublic: true,
+  } as const
+  const clientPrincipal: Pick<
+    ClientPrincipal,
+    'identityProvider' | 'userRoles' | 'userDetails'
+  > = {
+    identityProvider: 'github',
+    userDetails: 'github_account',
+    userRoles: ['anonymous', 'authenticated'],
+  }
   beforeEach(() => {
     context = { bindingData: {} }
     req = { headers: {} }
     mocked(getClientPrincipal).mockReturnValue({
-      identityProvider: 'github',
+      ...clientPrincipal,
       userId: 'some_user',
-      userDetails: 'some_user',
-      userRoles: ['anonymous', 'authenticated'],
     })
   })
 
@@ -111,15 +124,52 @@ describe('POST /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(404)
   })
 
+  test('returns "404 Not Found" if songs is empty', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
+    })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = '00000000000000000000000000000000'
+    context.bindingData.playStyle = 1
+    context.bindingData.difficulty = 0
+    req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
+
+    // Act
+    const result = await postChartScore(context, req, [])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(404)
+  })
+
+  test.each([
+    [song.id, 2, 0],
+    [song.id, 1, 4],
+  ])(
+    '/%s/%i/%i returns "404 Not Found"',
+    async (songId, playStyle, difficulty) => {
+      // Arrange
+      mocked(getClientPrincipal).mockReturnValueOnce({
+        ...clientPrincipal,
+        userId: publicUser.loginId,
+      })
+      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+      context.bindingData.songId = songId
+      context.bindingData.playStyle = playStyle
+      context.bindingData.difficulty = difficulty
+      req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
+
+      // Act
+      const result = await postChartScore(context, req, [song])
+
+      // Assert
+      expect(result.httpResponse.status).toBe(404)
+    }
+  )
+
   describeIf(canConnectDB)('Cosmos DB integration test', () => {
     const scoreContainer = getContainer('Scores')
-    const publicUser = {
-      id: 'public_user',
-      loginId: 'public_user',
-      name: 'AFRO',
-      area: 13,
-      isPublic: true,
-    } as const
     const areaHiddenUser = {
       id: 'area_hidden_user',
       loginId: 'area_hidden_user',
@@ -182,14 +232,6 @@ describe('POST /api/v1/scores', () => {
       userName: privateUser.name,
       isPublic: privateUser.isPublic,
     }
-    const clientPrincipal: Pick<
-      ClientPrincipal,
-      'identityProvider' | 'userRoles' | 'userDetails'
-    > = {
-      identityProvider: 'github',
-      userDetails: 'github_account',
-      userRoles: ['anonymous', 'authenticated'],
-    }
     const addId = (s: ScoreSchema) => ({
       ...s,
       id: `${s.userId}-${s.songId}-${s.playStyle}-${s.difficulty}`,
@@ -217,32 +259,6 @@ describe('POST /api/v1/scores', () => {
         ].map(s => scoreContainer.item(s.id, s.userId).delete())
       )
     })
-
-    test.each([
-      ['00000000000000000000000000000000', 1, 0],
-      [song.id, 2, 0],
-      [song.id, 1, 4],
-    ])(
-      '/%s/%i/%i returns "404 Not Found"',
-      async (songId, playStyle, difficulty) => {
-        // Arrange
-        mocked(getClientPrincipal).mockReturnValueOnce({
-          ...clientPrincipal,
-          userId: publicUser.loginId,
-        })
-        mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-        context.bindingData.songId = songId
-        context.bindingData.playStyle = playStyle
-        context.bindingData.difficulty = difficulty
-        req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
-
-        // Act
-        const result = await postChartScore(context, req, [song])
-
-        // Assert
-        expect(result.httpResponse.status).toBe(404)
-      }
-    )
 
     test('returns "400 Bad Request" if body is invalid Score', async () => {
       // Arrange

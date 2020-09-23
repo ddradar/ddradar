@@ -68,7 +68,7 @@ describe('./db/users.ts', () => {
     })
     afterAll(async () => {
       await Promise.all(
-        users.map(u => getContainer('Users').item(u.id, u.area).delete())
+        users.map(u => getContainer('Users').item(u.id, u.id).delete())
       )
     })
 
