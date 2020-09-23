@@ -124,17 +124,17 @@ describe('./db/users.ts', () => {
     })
 
     describe('fetchUserList', () => {
-      test('("") returns 9 users', async () => {
+      test('("", undefined, "0") returns 9 users', async () => {
         // Arrange - Act
-        const result = await fetchUserList('')
+        const result = await fetchUserList('', undefined, '0')
 
         // Assert
         expect(result).toHaveLength(9)
       })
 
-      test(`("${users[0].loginId}") returns 10 users`, async () => {
+      test(`("${users[0].loginId}", undefined, "0") returns 10 users`, async () => {
         // Arrange - Act
-        const result = await fetchUserList(users[0].loginId)
+        const result = await fetchUserList(users[0].loginId, undefined, '0')
 
         // Assert
         expect(result).toHaveLength(10)

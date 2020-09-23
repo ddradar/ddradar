@@ -206,5 +206,5 @@ export function fetchUserList(
   if (area) cond.push({ condition: 'c.area = @', value: area })
   if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (code) cond.push({ condition: 'c.code = @', value: code })
-  return fetchList<UserListData>('Users', columns, cond, { name: 'ASC' }, false)
+  return fetchList<UserListData>('Users', columns, cond, { name: 'ASC' })
 }
