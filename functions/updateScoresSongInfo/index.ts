@@ -26,9 +26,6 @@ export default async function (
         parameters: [{ name: '@id', value: song.id }],
       })
       .fetchAll()
-    if (!resources) {
-      continue
-    }
 
     for (const score of resources) {
       const chart = song.charts.find(
