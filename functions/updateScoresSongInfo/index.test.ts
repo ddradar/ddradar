@@ -1,6 +1,12 @@
-import { ScoreSchema } from '../db/scores'
+import type { Container } from '@azure/cosmos'
+import { mocked } from 'ts-jest/utils'
+
+import { getContainer } from '../db'
+import type { ScoreSchema } from '../db/scores'
 import type { SongSchema } from '../db/songs'
 import updateScores from '.'
+
+jest.mock('../db')
 
 describe('/updateScoresSongInfo/index.ts', () => {
   const context = {
@@ -10,10 +16,22 @@ describe('/updateScoresSongInfo/index.ts', () => {
       error: jest.fn(),
     },
   }
+  let resources: ScoreSchema[] = []
+  const container = {
+    items: {
+      query: () => ({
+        fetchAll: async () => ({ resources }),
+      }),
+    },
+  }
+  beforeAll(() =>
+    mocked(getContainer).mockReturnValue((container as unknown) as Container)
+  )
   beforeEach(() => {
     context.log.info.mockClear()
     context.log.warn.mockClear()
     context.log.error.mockClear()
+    resources = []
   })
   const song: SongSchema = {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
@@ -69,31 +87,17 @@ describe('/updateScoresSongInfo/index.ts', () => {
     rank: 'AAA',
   }
 
-  test('returns [] with warn if songs is empty', async () => {
+  test('returns [] if songs is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [], [])
+    const result = await updateScores(context, [])
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).toBeCalled()
-    expect(context.log.info).not.toBeCalled()
-  })
-
-  test('returns [] with warn if songs is multiple', async () => {
-    // Arrange - Act
-    const result = await updateScores(context, [song, song], [])
-
-    // Assert
-    expect(result).toStrictEqual([])
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).toBeCalled()
-    expect(context.log.info).not.toBeCalled()
   })
 
   test('returns [] with info if scores is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [song], [])
+    const result = await updateScores(context, [song])
 
     // Assert
     expect(result).toStrictEqual([])
@@ -103,40 +107,48 @@ describe('/updateScoresSongInfo/index.ts', () => {
   })
 
   test('returns [] no need to update Scores', async () => {
-    // Arrange - Act
-    const result = await updateScores(context, [song], [validScore])
+    // Arrange
+    resources = [validScore]
+
+    // Act
+    const result = await updateScores(context, [song])
 
     // Assert
     expect(result).toStrictEqual([])
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).not.toBeCalled()
+    expect(context.log.info).toBeCalled()
   })
 
   test('returns [] with error if invalid Scores', async () => {
     // Arrange
     const score = { ...validScore, playStyle: 2, difficulty: 0 } as const
+    resources = [score]
+
     // Act
-    const result = await updateScores(context, [song], [score])
+    const result = await updateScores(context, [song])
 
     // Assert
     expect(result).toStrictEqual([])
     expect(context.log.error).toBeCalled()
     expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).not.toBeCalled()
+    expect(context.log.info).toBeCalled()
   })
 
   test.each([
     { ...validScore, songName: 'foo' },
     { ...validScore, level: 10 },
   ])('returns [score] if Scores info has diff', async score => {
-    // Arrange - Act
-    const result = await updateScores(context, [song], [score])
+    // Arrange
+    resources = [score]
+
+    // Act
+    const result = await updateScores(context, [song])
 
     // Assert
     expect(result).toStrictEqual([validScore])
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).not.toBeCalled()
+    expect(context.log.info).toBeCalled()
   })
 })

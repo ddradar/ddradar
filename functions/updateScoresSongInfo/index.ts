@@ -1,5 +1,6 @@
 import type { Logger } from '@azure/functions'
 
+import { getContainer } from '../db'
 import type { ScoreSchema } from '../db/scores'
 import type { SongSchema } from '../db/songs'
 
@@ -11,32 +12,38 @@ import type { SongSchema } from '../db/songs'
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
-  songs: SongSchema[],
-  scores: ScoreSchema[]
+  songs: SongSchema[]
 ): Promise<ScoreSchema[]> {
-  if (songs.length !== 1) {
-    context.log.warn('Change feed includes multiple songs. Skiped trigger.')
-    return []
-  }
-  const song: SongSchema = songs[0]
+  const result: ScoreSchema[] = []
 
-  if (scores.length === 0) {
-    context.log.info(`Not Found Scores: ${song.name}`)
-    return []
-  }
+  for (const song of songs) {
+    context.log.info(`Start: ${song.name}`)
+    // Get scores
+    const container = getContainer('Scores')
+    const { resources } = await container.items
+      .query<ScoreSchema>({
+        query: 'SELECT * FROM c WHERE c.songId = @id',
+        parameters: [{ name: '@id', value: song.id }],
+      })
+      .fetchAll()
 
-  return scores
-    .map(s => {
+    for (const score of resources) {
       const chart = song.charts.find(
-        c => c.playStyle === s.playStyle && c.difficulty === s.difficulty
+        c =>
+          c.playStyle === score.playStyle && c.difficulty === score.difficulty
       )
       if (!chart) {
-        context.log.error(`Invalid score: { id: ${s.id}, name: ${s.songName} }`)
-        return
+        context.log.error(
+          `Invalid score: { id: ${score.id}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
+        )
+        continue
       }
-      if (song.name !== s.songName || chart.level !== s.level) {
-        return { ...s, songName: song.name, level: chart.level }
+      if (song.name !== score.songName || chart.level !== score.level) {
+        context.log.info(`Updated: ${score.id}`)
+        result.push({ ...score, songName: song.name, level: chart.level })
       }
-    })
-    .filter(s => !!s) as ScoreSchema[]
+    }
+  }
+
+  return result
 }
