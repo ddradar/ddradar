@@ -1,10 +1,5 @@
 import { canConnectDB, getContainer } from '../../db'
-import {
-  fetchChartScores,
-  fetchDeleteTargetScores,
-  fetchScore,
-  ScoreSchema,
-} from '../../db/scores'
+import { fetchChartScores, fetchScore, ScoreSchema } from '../../db/scores'
 import { describeIf } from '../util'
 
 describe('/db/scores.ts', () => {
@@ -181,42 +176,6 @@ describe('/db/scores.ts', () => {
           ).resolves.toStrictEqual(
             (indexes as readonly number[]).map(i => removeIsPublic(scores[i]))
           )
-        }
-      )
-    })
-
-    describe('fetchDeleteTargetScores', () => {
-      test.each([
-        ['', '', 1, 4] as const,
-        ['1', chart.songId, chart.playStyle, chart.difficulty] as const,
-        [user.id, 'foo', chart.playStyle, chart.difficulty] as const,
-        [user.id, chart.songId, 2, chart.difficulty] as const,
-        [user.id, chart.songId, chart.playStyle, 1] as const,
-      ])(
-        '("%s", "%s", %i, %i) returns []',
-        async (userId, songId, playStyle, difficulty) => {
-          await expect(
-            fetchDeleteTargetScores(userId, songId, playStyle, difficulty)
-          ).resolves.toHaveLength(0)
-        }
-      )
-      test.each(
-        scores.map(
-          score =>
-            [
-              score.userId,
-              score.songId,
-              score.playStyle,
-              score.difficulty,
-              [addId(score)],
-            ] as const
-        )
-      )(
-        '("%s", "%s", %i, %i) returns %p',
-        async (userId, songId, playStyle, difficulty, expected) => {
-          await expect(
-            fetchDeleteTargetScores(userId, songId, playStyle, difficulty)
-          ).resolves.toStrictEqual(expected)
         }
       )
     })

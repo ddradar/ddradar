@@ -1,17 +1,12 @@
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { fetchDeleteTargetScores } from '../db/scores'
+import type { ScoreSchema } from '../db'
 import deleteChartScore from '.'
 
 jest.mock('../auth')
-jest.mock('../db/scores')
 
 describe('DELETE /api/v1/scores', () => {
-  const songId = '00000000000000000000000000000000'
-  const playStyle = 1
-  const difficulty = 0
-  const context = { bindingData: { songId, playStyle, difficulty } }
   const req = { headers: {} }
   const user = {
     id: 'public_user',
@@ -20,9 +15,10 @@ describe('DELETE /api/v1/scores', () => {
     area: 13,
     isPublic: true,
   } as const
-  const score = {
+  const score: ScoreSchema = {
     userId: user.id,
     userName: user.name,
+    isPublic: user.isPublic,
     songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     songName: 'PARANOiA',
     playStyle: 1,
@@ -33,9 +29,7 @@ describe('DELETE /api/v1/scores', () => {
     rank: 'AA+',
     maxCombo: 138,
     exScore: 366,
-    isPublic: user.isPublic,
-  } as const
-  const fetchMock = mocked(fetchDeleteTargetScores)
+  }
 
   beforeEach(() => {
     mocked(getClientPrincipal).mockReturnValue({
@@ -45,8 +39,6 @@ describe('DELETE /api/v1/scores', () => {
       userRoles: ['anonymous', 'authenticated'],
     })
     mocked(getLoginUserInfo).mockResolvedValue(user)
-    fetchMock.mockClear()
-    fetchMock.mockResolvedValue([score])
   })
 
   test('returns "401 Unauthenticated" if no authentication', async () => {
@@ -54,7 +46,7 @@ describe('DELETE /api/v1/scores', () => {
     mocked(getClientPrincipal).mockReturnValueOnce(null)
 
     // Act
-    const result = await deleteChartScore(context, req)
+    const result = await deleteChartScore(null, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(401)
@@ -65,39 +57,26 @@ describe('DELETE /api/v1/scores', () => {
     mocked(getLoginUserInfo).mockResolvedValueOnce(null)
 
     // Act
-    const result = await deleteChartScore(context, req)
+    const result = await deleteChartScore(null, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
   })
 
-  test('returns "404 Not Found" if fetchDeleteTargetScores returns []', async () => {
-    // Arrange
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-    fetchMock.mockResolvedValueOnce([])
-
-    // Act
-    const result = await deleteChartScore(context, req)
+  test('returns "404 Not Found" if scores is empty', async () => {
+    // Arrange - Act
+    const result = await deleteChartScore(null, req, [])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
-    expect(fetchMock).toBeCalledWith(user.id, songId, playStyle, difficulty)
   })
 
   test('returns "204 No Content" if fetchDeleteTargetScores returns scores', async () => {
-    // Arrange
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-
-    // Act
-    const result = await deleteChartScore(context, req)
+    // Arrange - Act
+    const result = await deleteChartScore(null, req, [score])
 
     // Assert
     expect(result.httpResponse.status).toBe(204)
     expect(result.documents).toStrictEqual([{ ...score, ttl: 3600 }])
-    expect(fetchMock).toBeCalledWith(user.id, songId, playStyle, difficulty)
   })
 })
