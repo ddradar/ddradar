@@ -18,6 +18,15 @@
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {
+      "name": "scores",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "sqlQuery": "SELECT * FROM c WHERE c.songId = {songId} AND c.playStyle = {playStyle} AND c.difficulty = {difficulty} AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "httpResponse"

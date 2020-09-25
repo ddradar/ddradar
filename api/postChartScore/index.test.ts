@@ -1,9 +1,8 @@
 import type { Context, HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { describeIf } from '../__tests__/util'
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { canConnectDB, getContainer, ScoreSchema, SongSchema } from '../db'
+import { ScoreSchema, SongSchema } from '../db'
 import postChartScore from '.'
 
 jest.mock('../auth')
@@ -78,33 +77,21 @@ describe('POST /api/v1/scores', () => {
     mocked(getClientPrincipal).mockReturnValueOnce(null)
 
     // Act
-    const result = await postChartScore(context, req, [])
+    const result = await postChartScore(context, req, [], [])
 
     // Assert
     expect(result.httpResponse.status).toBe(401)
   })
 
-  test.each([
-    undefined,
-    null,
-    1000000,
-    '',
-    true,
-    {},
-    { score: 50000000 },
-    { score: 1000000, clearLamp: 'MFC', rank: 'AAA' },
-    { score: 1000000, clearLamp: 7, maxCombo: '200', rank: 'AAA' },
-    { score: 0, clearLamp: 0, rank: '-' },
-    { score: 950000, rank: 'AA' },
-  ])('returns "400 Bad Request" if body is %p', async body => {
+  test('returns "400 Bad Request" if body is not Score', async () => {
     // Arrange
     context.bindingData.songId = '00000000000000000000000000000000'
     context.bindingData.playStyle = 1
     context.bindingData.difficulty = 0
-    req.body = body
+    req.body = {}
 
     // Act
-    const result = await postChartScore(context, req, [])
+    const result = await postChartScore(context, req, [], [])
 
     // Assert
     expect(result.httpResponse.status).toBe(400)
@@ -118,7 +105,7 @@ describe('POST /api/v1/scores', () => {
     req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
     // Act
-    const result = await postChartScore(context, req, [])
+    const result = await postChartScore(context, req, [], [])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
@@ -137,7 +124,7 @@ describe('POST /api/v1/scores', () => {
     req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
     // Act
-    const result = await postChartScore(context, req, [])
+    const result = await postChartScore(context, req, [], [])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
@@ -161,327 +148,292 @@ describe('POST /api/v1/scores', () => {
       req.body = { score: 1000000, rank: 'AAA', clearLamp: 7 }
 
       // Act
-      const result = await postChartScore(context, req, [song])
+      const result = await postChartScore(context, req, [song], [])
 
       // Assert
       expect(result.httpResponse.status).toBe(404)
     }
   )
 
-  describeIf(canConnectDB)('Cosmos DB integration test', () => {
-    const scoreContainer = getContainer('Scores')
-    const areaHiddenUser = {
-      id: 'area_hidden_user',
-      loginId: 'area_hidden_user',
-      name: 'ZERO',
-      area: 0,
-      isPublic: true,
-    } as const
-    const privateUser = {
-      id: 'private_user',
-      loginId: 'private_user',
-      name: 'EMI',
-      area: 13,
-      isPublic: false,
-    } as const
-    const worldScore: ScoreSchema = {
+  test('returns "400 Bad Request" if body is invalid Score', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
+    })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 90000, clearLamp: 2, rank: 'E', exScore: 1000 }
+
+    // Act
+    const result = await postChartScore(context, req, [song], [])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(400)
+  })
+
+  const areaHiddenUser = {
+    id: 'area_hidden_user',
+    loginId: 'area_hidden_user',
+    name: 'ZERO',
+    area: 0,
+    isPublic: true,
+  } as const
+  const privateUser = {
+    id: 'private_user',
+    loginId: 'private_user',
+    name: 'EMI',
+    area: 13,
+    isPublic: false,
+  } as const
+  const score = {
+    songId: song.id,
+    songName: song.name,
+    playStyle: song.charts[0].playStyle,
+    difficulty: song.charts[0].difficulty,
+    level: song.charts[0].level,
+    score: 970630, // P:28, Gr:10
+    clearLamp: 5,
+    rank: 'AA+',
+    maxCombo: 138,
+    exScore: 366,
+  } as const
+  const scores: ScoreSchema[] = [
+    {
+      ...score,
       userId: '0',
       userName: '0',
-      songId: song.id,
-      songName: song.name,
-      playStyle: song.charts[0].playStyle,
-      difficulty: song.charts[0].difficulty,
-      level: song.charts[0].level,
+      isPublic: false,
       score: 999620, // P:38
       clearLamp: 6,
       rank: 'AAA',
       maxCombo: 138,
       exScore: 376,
-      isPublic: false,
-    }
-    const areaScore: ScoreSchema = {
-      ...worldScore,
+    },
+    {
+      ...score,
       userId: '13',
       userName: '13',
+      isPublic: false,
       score: 996720, // P:37, Gr:1
       clearLamp: 5,
       rank: 'AAA',
       maxCombo: 138,
       exScore: 375,
-    }
-    const publicUserScore: ScoreSchema = {
-      ...worldScore,
+    },
+    {
+      ...score,
       userId: publicUser.id,
       userName: publicUser.name,
-      score: 970630, // P:28, Gr:10
-      clearLamp: 5,
-      rank: 'AA+',
-      maxCombo: 138,
-      exScore: 366,
       isPublic: publicUser.isPublic,
-    }
-    const areaHiddenUserScore: ScoreSchema = {
-      ...publicUserScore,
+    },
+    {
+      ...score,
       userId: areaHiddenUser.id,
       userName: areaHiddenUser.name,
       isPublic: areaHiddenUser.isPublic,
-    }
-    const privateUserScore: ScoreSchema = {
-      ...publicUserScore,
+    },
+    {
+      ...score,
       userId: privateUser.id,
       userName: privateUser.name,
       isPublic: privateUser.isPublic,
+    },
+  ]
+
+  test('inserts World & Area Top', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
+    })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[1].playStyle
+    context.bindingData.difficulty = song.charts[1].difficulty
+    req.body = { score: 900000, clearLamp: 3, rank: 'AA' }
+
+    // Act
+    const result = await postChartScore(context, req, [song], [])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...req.body,
+      userId: publicUser.id,
+      userName: publicUser.name,
+      isPublic: publicUser.isPublic,
+      songId: song.id,
+      songName: song.name,
+      playStyle: song.charts[0].playStyle,
+      difficulty: song.charts[1].difficulty,
+      level: song.charts[1].level,
+    })
+    expect(result.documents).toHaveLength(3)
+  })
+
+  test('does not update World & Area Top if score is less than them', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
+    })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 890000, clearLamp: 4, rank: 'AA-', exScore: 200 }
+    const expected = { ...req.body, maxCombo: 138 }
+
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...scores[2],
+      ...expected,
+    })
+    expect(result.documents).toStrictEqual([{ ...scores[2], ...expected }])
+  })
+
+  test('does not update World & Area Top if score is less than them', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
+    })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = {
+      score: 890000,
+      clearLamp: 4,
+      rank: 'AA-',
+      exScore: 200,
+      maxCombo: 138,
     }
-    const addId = (s: ScoreSchema) => ({
-      ...s,
-      id: `${s.userId}-${s.songId}-${s.playStyle}-${s.difficulty}`,
+    const expected = { ...scores[2], ...req.body }
+
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual(expected)
+    expect(result.documents).toStrictEqual([expected])
+  })
+
+  test('updates Area Top if user is public and score is greater than it', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
     })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 999620, clearLamp: 6, rank: 'AAA', exScore: 376 }
+    const expected = { ...req.body, maxCombo: 138 }
 
-    beforeAll(async () => {
-      await Promise.all(
-        [
-          addId(worldScore),
-          addId(areaScore),
-          addId(publicUserScore),
-          addId(areaHiddenUserScore),
-          addId(privateUserScore),
-        ].map(s => scoreContainer.items.create(s))
-      )
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...scores[2],
+      ...expected,
     })
-    afterAll(async () => {
-      await Promise.all(
-        [
-          addId(worldScore),
-          addId(areaScore),
-          addId(publicUserScore),
-          addId(areaHiddenUserScore),
-          addId(privateUserScore),
-        ].map(s => scoreContainer.item(s.id, s.userId).delete())
-      )
+    expect(result.documents).toStrictEqual([
+      { ...scores[2], ...expected },
+      { ...scores[1], ...expected },
+    ])
+  })
+
+  test('updates World & Area Top if user is public and score is greater than them', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: publicUser.loginId,
     })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+    const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
-    test('returns "400 Bad Request" if body is invalid Score', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: publicUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 90000, clearLamp: 2, rank: 'E', exScore: 1000 }
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
 
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(400)
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...scores[2],
+      ...expected,
     })
+    expect(result.documents).toStrictEqual([
+      { ...scores[2], ...expected },
+      { ...scores[0], ...expected },
+      { ...scores[1], ...expected },
+    ])
+  })
 
-    test('inserts World & Area Top', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: publicUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = 1
-      context.bindingData.difficulty = 1
-      req.body = {
-        score: 999700,
-        clearLamp: 6,
-        rank: 'AAA',
-        maxCombo: 264,
-        exScore: 762,
-      }
-
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...publicUserScore,
-        ...req.body,
-        difficulty: song.charts[1].difficulty,
-        level: song.charts[1].level,
-      })
-      expect(result.documents).toContainEqual({
-        ...publicUserScore,
-        ...req.body,
-        difficulty: song.charts[1].difficulty,
-        level: song.charts[1].level,
-      })
-      expect(result.documents).toContainEqual({
-        ...areaScore,
-        ...req.body,
-        difficulty: song.charts[1].difficulty,
-        level: song.charts[1].level,
-      })
-      expect(result.documents).toContainEqual({
-        ...worldScore,
-        ...req.body,
-        difficulty: song.charts[1].difficulty,
-        level: song.charts[1].level,
-      })
+  test('updates World Top if user is public and area is 0', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: areaHiddenUser.loginId,
     })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(areaHiddenUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+    const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
-    test('does not update World & Area Top if score is less than them', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: publicUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 890000, clearLamp: 4, rank: 'AA-', exScore: 200 }
-      const expected = { ...req.body, maxCombo: 138 }
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
 
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...publicUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...publicUserScore,
-        ...expected,
-      })
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...scores[3],
+      ...expected,
     })
+    expect(result.documents).toStrictEqual([
+      { ...scores[3], ...expected },
+      { ...scores[0], ...expected },
+    ])
+  })
 
-    test('updates Area Top if user is public and score is greater than it', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: publicUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 999620, clearLamp: 6, rank: 'AAA', exScore: 376 }
-      const expected = { ...req.body, maxCombo: 138 }
-
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...publicUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...publicUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...areaScore,
-        ...expected,
-      })
+  test('updates personal best only if user is private', async () => {
+    // Arrange
+    mocked(getClientPrincipal).mockReturnValueOnce({
+      ...clientPrincipal,
+      userId: privateUser.loginId,
     })
+    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
+    const expected = { ...req.body, maxCombo: 138, exScore: 414 }
 
-    test('updates World & Area Top if user is public and score is greater than them', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: publicUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
-      const expected = { ...req.body, maxCombo: 138, exScore: 414 }
+    // Act
+    const result = await postChartScore(context, req, [song], scores)
 
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...publicUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...publicUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...areaScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...worldScore,
-        ...expected,
-      })
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...scores[4],
+      ...expected,
     })
-
-    test('updates World Top if user is public and area is 0', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: areaHiddenUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(areaHiddenUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
-      const expected = { ...req.body, maxCombo: 138, exScore: 414 }
-
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...areaHiddenUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...areaHiddenUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...worldScore,
-        ...expected,
-      })
-    })
-
-    test('updates personal best only if user is private', async () => {
-      // Arrange
-      mocked(getClientPrincipal).mockReturnValueOnce({
-        ...clientPrincipal,
-        userId: privateUser.loginId,
-      })
-      mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
-      req.body = { score: 1000000, clearLamp: 7, rank: 'AAA' }
-      const expected = { ...req.body, maxCombo: 138, exScore: 414 }
-
-      // Act
-      const result = await postChartScore(context, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual({
-        ...privateUserScore,
-        ...expected,
-      })
-      expect(result.documents).toContainEqual({
-        ...privateUserScore,
-        ...expected,
-      })
-    })
+    expect(result.documents).toStrictEqual([{ ...scores[4], ...expected }])
   })
 })
