@@ -1,26 +1,17 @@
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal } from '../auth'
-import { fetchLoginUser, UserSchema } from '../db/users'
+import { getLoginUserInfo } from '../auth'
+import type { UserSchema } from '../db/users'
 import getCurrentUser from '.'
 
 jest.mock('../auth')
-jest.mock('../db/users')
 
 describe('GET /api/v1/user', () => {
   const req = { headers: {} }
-  beforeAll(() =>
-    mocked(getClientPrincipal).mockReturnValue({
-      identityProvider: 'github',
-      userDetails: 'new_user',
-      userId: '3',
-      userRoles: ['anonymous', 'authenticated'],
-    })
-  )
 
-  test('returns "404 Not Found" if fetchLoginUser() returns null', async () => {
+  test('returns "404 Not Found" if getLoginUserInfo() returns null', async () => {
     // Arrange
-    mocked(getClientPrincipal).mockReturnValueOnce(null)
+    mocked(getLoginUserInfo).mockResolvedValueOnce(null)
 
     // Act
     const result = await getCurrentUser(null, req)
@@ -29,7 +20,7 @@ describe('GET /api/v1/user', () => {
     expect(result.status).toBe(404)
   })
 
-  test('returns "200 OK" with JSON body if fetchLoginUser() returns user', async () => {
+  test('returns "200 OK" with JSON body if getLoginUserInfo() returns user', async () => {
     // Arrange
     const user: UserSchema = {
       id: 'public_user',
@@ -39,7 +30,7 @@ describe('GET /api/v1/user', () => {
       code: 10000000,
       isPublic: true,
     }
-    mocked(fetchLoginUser).mockResolvedValueOnce(user)
+    mocked(getLoginUserInfo).mockResolvedValueOnce(user)
 
     // Act
     const result = await getCurrentUser(null, req)
@@ -51,6 +42,7 @@ describe('GET /api/v1/user', () => {
       name: user.name,
       area: user.area,
       code: user.code,
+      isPublic: user.isPublic,
     })
   })
 })
