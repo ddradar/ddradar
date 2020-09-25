@@ -7,10 +7,12 @@ import { postSongScores } from '~/api/score'
 import ImportPage from '~/pages/import.vue'
 import { musicDataToScoreList } from '~/utils/eagate-parser'
 import * as popup from '~/utils/popup'
+import { scoreTexttoScoreList } from '~/utils/skill-attack'
 
 jest.mock('~/api/score')
 jest.mock('~/utils/eagate-parser')
 jest.mock('~/utils/popup')
+jest.mock('~/utils/skill-attack')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)
@@ -92,6 +94,7 @@ describe('pages/import.vue', () => {
       expect(button.attributes().loading).toBeTruthy()
     })
   })
+
   describe('importEageteScores()', () => {
     const scoreList: ReturnType<typeof musicDataToScoreList> = {
       I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
@@ -220,11 +223,156 @@ describe('pages/import.vue', () => {
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
       convertMock.mockReturnValue(scoreList)
-      postMock.mockRejectedValue(new Error(errorMessage))
+      postMock.mockRejectedValueOnce(new Error(errorMessage))
 
       // Act
       // @ts-ignore
       await wrapper.vm.importEageteScores()
+
+      // Assert
+      expect(dangerMock).toBeCalledWith($buefy, errorMessage)
+    })
+  })
+
+  describe('importSkillAttackScores()', () => {
+    const scoreList: ReturnType<typeof scoreTexttoScoreList> = {
+      '691': [
+        {
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 0,
+          score: 876000,
+          clearLamp: 2,
+          rank: 'A+',
+        },
+        {
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 2,
+          score: 823000,
+          clearLamp: 2,
+          rank: 'A',
+        },
+        {
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 3,
+          score: 798000,
+          clearLamp: 2,
+          rank: 'A-',
+        },
+        {
+          songName: '朧',
+          playStyle: 1,
+          difficulty: 4,
+          score: 780000,
+          clearLamp: 2,
+          rank: 'B+',
+        },
+      ],
+    }
+    const postMock = mocked(postSongScores)
+    const convertMock = mocked(scoreTexttoScoreList)
+    const successMock = mocked(popup.success)
+    const warningMock = mocked(popup.warning)
+    const dangerMock = mocked(popup.danger)
+    beforeEach(() => {
+      postMock.mockClear()
+      convertMock.mockClear()
+      successMock.mockClear()
+      warningMock.mockClear()
+      dangerMock.mockClear()
+    })
+
+    test.each([
+      ['ja', '1件のスコアを登録しました'],
+      ['en', 'Uploaded: 1 song'],
+    ])(
+      '{ locale: "%s" } calls "Post Song Scores" API and popup.success($buefy, "%s")',
+      async (locale, message) => {
+        // Arrange
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = shallowMount(ImportPage, {
+          localVue,
+          mocks: { $accessor, $http, $buefy },
+          i18n,
+          data: () => ({ file: true }),
+        })
+        convertMock.mockReturnValue(scoreList)
+
+        // Act
+        // @ts-ignore
+        await wrapper.vm.importSkillAttackScores()
+
+        // Assert
+        expect(postMock).toBeCalledWith($http, '691', scoreList['691'])
+        expect(successMock).toBeCalledWith($buefy, message)
+      }
+    )
+    test('does not call scoreTexttoScoreList() if file is empty', async () => {
+      // Arrange
+      wrapper.setData({ file: null })
+      await wrapper.vm.$nextTick()
+      convertMock.mockReturnValue({ foo: [] })
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.importSkillAttackScores()
+
+      // Assert
+      expect(convertMock).not.toBeCalled()
+      expect(postMock).not.toBeCalled()
+    })
+    test('does not call "Post Song Scores" API if scores is empty', async () => {
+      // Arrange
+      wrapper.setData({ file: true })
+      await wrapper.vm.$nextTick()
+      convertMock.mockReturnValue({ foo: [] })
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.importSkillAttackScores()
+
+      // Assert
+      expect(postMock).not.toBeCalled()
+    })
+    test.each([
+      ['ja', 'ファイルが読み取れないか、正しい形式ではありません'],
+      ['en', 'Cannot read file or invalid file'],
+    ])(
+      '{ locale: "%s" } warns "%s" if sourceCode is invalid',
+      async (locale, message) => {
+        // Arrange
+        convertMock.mockImplementation(() => {
+          throw new Error('invalid')
+        })
+        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const wrapper = shallowMount(ImportPage, {
+          localVue,
+          mocks: { $accessor, $http, $buefy },
+          i18n,
+          data: () => ({ file: true }),
+        })
+
+        // Act
+        // @ts-ignore
+        await wrapper.vm.importSkillAttackScores()
+
+        // Assert
+        expect(warningMock).toBeCalledWith($buefy, message)
+      }
+    )
+    test('shows error message if API returns ErrorCode', async () => {
+      // Arrange
+      const errorMessage = '500 Server Error'
+      wrapper.setData({ file: true })
+      await wrapper.vm.$nextTick()
+      convertMock.mockReturnValue(scoreList)
+      postMock.mockRejectedValueOnce(new Error(errorMessage))
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.importSkillAttackScores()
 
       // Assert
       expect(dangerMock).toBeCalledWith($buefy, errorMessage)
