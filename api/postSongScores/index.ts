@@ -63,7 +63,7 @@ export default async function (
   }
 
   // Get chart info
-  if (!songs || songs.length !== 1) return { httpResponse: { status: 404 } }
+  if (songs.length !== 1) return { httpResponse: { status: 404 } }
   const song = songs[0]
 
   const documents: ScoreSchema[] = []
