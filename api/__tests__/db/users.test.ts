@@ -140,6 +140,14 @@ describe('./db/users.ts', () => {
         expect(result).toHaveLength(10)
       })
 
+      test(`("", 13) returns 1 user`, async () => {
+        // Arrange - Act
+        const result = await fetchUserList('', 13)
+
+        // Assert
+        expect(result).toHaveLength(2)
+      })
+
       test.each([
         [
           undefined,

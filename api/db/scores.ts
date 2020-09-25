@@ -1,6 +1,5 @@
-import { fetchList, fetchOne } from '.'
+import { fetchOne, ItemDefinition } from '.'
 import type { Difficulty, StepChartSchema } from './songs'
-import { UserSchema } from './users'
 
 export type ScoreSchema = Pick<
   StepChartSchema,
@@ -62,84 +61,8 @@ export function fetchScore(
   songId: string,
   playStyle: 1 | 2,
   difficulty: Difficulty
-): Promise<Omit<ScoreSchema, 'isPublic'> | null> {
-  return fetchOne<Omit<ScoreSchema, 'isPublic'>>(
-    'Scores',
-    [
-      'userId',
-      'userName',
-      'songId',
-      'songName',
-      'playStyle',
-      'difficulty',
-      'level',
-      'clearLamp',
-      'score',
-      'rank',
-      'exScore',
-      'maxCombo',
-    ],
-    [
-      { condition: 'c.userId = @', value: userId },
-      { condition: 'c.songId = @', value: songId },
-      { condition: 'c.playStyle = @', value: playStyle },
-      { condition: 'c.difficulty = @', value: difficulty },
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
-    ]
-  )
-}
-
-export function fetchChartScores(
-  songId: string,
-  playStyle: 1 | 2,
-  difficulty: Difficulty,
-  scope: 'medium' | 'full' = 'medium',
-  user?: Pick<UserSchema, 'id' | 'area'> | null
-): Promise<Omit<ScoreSchema, 'isPublic'>[]> {
-  return fetchList<Omit<ScoreSchema, 'isPublic'>>(
-    'Scores',
-    [
-      'userId',
-      'userName',
-      'songId',
-      'songName',
-      'playStyle',
-      'difficulty',
-      'level',
-      'clearLamp',
-      'score',
-      'rank',
-      'exScore',
-      'maxCombo',
-    ],
-    [
-      { condition: 'c.songId = @', value: songId },
-      { condition: 'c.playStyle = @', value: playStyle },
-      { condition: 'c.difficulty = @', value: difficulty },
-      {
-        condition:
-          scope === 'full'
-            ? '(c.isPublic = true OR ARRAY_CONTAINS(@, c.userId))'
-            : 'ARRAY_CONTAINS(@, c.userId)',
-        value: ['0', ...(user ? [`${user.id}`, `${user.area}`] : [])],
-      },
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
-    ],
-    {
-      score: 'DESC',
-      clearLamp: 'DESC',
-      _ts: 'ASC',
-    }
-  )
-}
-
-export function fetchDeleteTargetScores(
-  userId: string,
-  songId: string,
-  playStyle: 1 | 2,
-  difficulty: Difficulty
-): Promise<ScoreSchema[]> {
-  return fetchList<ScoreSchema>(
+): Promise<(ScoreSchema & ItemDefinition) | null> {
+  return fetchOne<ScoreSchema>(
     'Scores',
     [
       'id',
@@ -162,11 +85,7 @@ export function fetchDeleteTargetScores(
       { condition: 'c.songId = @', value: songId },
       { condition: 'c.playStyle = @', value: playStyle },
       { condition: 'c.difficulty = @', value: difficulty },
-    ],
-    {
-      score: 'DESC',
-      clearLamp: 'DESC',
-      _ts: 'ASC',
-    }
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
+    ]
   )
 }

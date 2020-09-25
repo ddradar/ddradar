@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { UserSchema } from '../db'
+import type { ItemDefinition, UserSchema } from '../db'
 import { fetchScore, ScoreSchema } from '../db/scores'
-import { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
-import {
+import type { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
+import type {
   BadRequestResult,
   NotFoundResult,
   SuccessResult,
@@ -22,12 +22,6 @@ import { hasIntegerProperty, hasProperty } from '../type-assert'
 type ScoreBody = Score &
   Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
-type ChartInfo = Pick<
-  StepChartSchema,
-  'playStyle' | 'difficulty' | 'level' | 'notes' | 'freezeArrow' | 'shockArrow'
-> &
-  Pick<SongSchema, 'id' | 'name'>
-
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   charts: (StepChartSchema | CourseInfoSchema)[]
 }
@@ -38,7 +32,7 @@ type PostSongScoresResponse = {
     | UnauthenticatedResult
     | NotFoundResult
     | SuccessResult<ScoreSchema[]>
-  documents?: ScoreSchema[]
+  documents?: (ScoreSchema & ItemDefinition)[]
 }
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
@@ -63,10 +57,10 @@ export default async function (
   }
 
   // Get chart info
-  if (!songs || songs.length !== 1) return { httpResponse: { status: 404 } }
+  if (songs.length !== 1) return { httpResponse: { status: 404 } }
   const song = songs[0]
 
-  const documents: ScoreSchema[] = []
+  const documents: (ScoreSchema & ItemDefinition)[] = []
   const body: ScoreSchema[] = []
   for (let i = 0; i < req.body.length; i++) {
     const score = req.body[i]
@@ -80,11 +74,8 @@ export default async function (
       }
     }
 
-    const chartInfo = { ...chart, id: song.id, name: song.name }
-
-    body.push(createSchema(chartInfo, user, score))
-    const userMergeScore = await fetchMergedScore(chartInfo, user, score)
-    if (userMergeScore) documents.push(userMergeScore)
+    body.push(createSchema(chart, user, score))
+    await fetchMergedScore(chart, user, score)
 
     // World Record
     if (score.topScore) {
@@ -93,19 +84,16 @@ export default async function (
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
       }
-      const scoreSchema = await fetchMergedScore(chartInfo, topUser, topScore)
-      if (scoreSchema) documents.push(scoreSchema)
+      await fetchMergedScore(chart, topUser, topScore)
     } else if (user.isPublic) {
-      const scoreSchema = await fetchMergedScore(chartInfo, topUser, score)
-      if (scoreSchema) documents.push(scoreSchema)
+      await fetchMergedScore(chart, topUser, score)
     }
 
     // Area Top
     if (user.isPublic && user.area) {
       const area = `${user.area}`
       const areaUser = { ...topUser, id: area, name: area }
-      const scoreSchema = await fetchMergedScore(chartInfo, areaUser, score)
-      if (scoreSchema) documents.push(scoreSchema)
+      await fetchMergedScore(chart, areaUser, score)
     }
   }
 
@@ -140,7 +128,7 @@ export default async function (
    * Also complement exScore and maxCombo.
    */
   function createSchema(
-    chart: Readonly<ChartInfo>,
+    chart: Readonly<StepChartSchema | CourseInfoSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Score>
   ) {
@@ -148,8 +136,8 @@ export default async function (
       userId: user.id,
       userName: user.name,
       isPublic: user.isPublic,
-      songId: chart.id,
-      songName: chart.name,
+      songId: song.id,
+      songName: song.name,
       playStyle: chart.playStyle,
       difficulty: chart.difficulty,
       level: chart.level,
@@ -179,29 +167,24 @@ export default async function (
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(
-    chart: Readonly<ChartInfo>,
+    chart: Readonly<StepChartSchema | CourseInfoSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Score>
-  ): Promise<ScoreSchema | null> {
+  ): Promise<void> {
     const scoreSchema = createSchema(chart, user, score)
     // Get previous score
-    const emptyScore = {
-      score: 0,
-      rank: 'E',
-      clearLamp: 0,
-      exScore: undefined,
-      maxCombo: undefined,
-    } as const
     const oldScore = await fetchScore(
       scoreSchema.userId,
       scoreSchema.songId,
       scoreSchema.playStyle,
       scoreSchema.difficulty
     )
-    const previousScore = oldScore ?? emptyScore
 
     const mergedScore = {
-      ...mergeScore(previousScore, scoreSchema),
+      ...mergeScore(
+        oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
+        scoreSchema
+      ),
       userId: scoreSchema.userId,
       userName: scoreSchema.userName,
       isPublic: scoreSchema.isPublic,
@@ -212,14 +195,16 @@ export default async function (
       level: scoreSchema.level,
     }
     if (
-      mergedScore.score === previousScore.score &&
-      mergedScore.clearLamp === previousScore.clearLamp &&
-      mergedScore.exScore === previousScore.exScore &&
-      mergedScore.maxCombo === previousScore.maxCombo &&
-      mergedScore.rank === previousScore.rank
+      mergedScore.score === oldScore?.score &&
+      mergedScore.clearLamp === oldScore.clearLamp &&
+      mergedScore.exScore === oldScore.exScore &&
+      mergedScore.maxCombo === oldScore.maxCombo &&
+      mergedScore.rank === oldScore.rank
     ) {
-      return null
+      return
     }
-    return mergedScore
+
+    documents.push(mergedScore)
+    if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }
