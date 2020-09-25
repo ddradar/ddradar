@@ -1,7 +1,7 @@
 import type { SongSchema } from '../db/songs'
 import searchSong from '.'
 
-describe('GET /api/v1/songs/name', () => {
+describe('GET /api/v1/songs/name/{name}', () => {
   const req: { query: Record<string, string> } = { query: {} }
   const songs: Omit<SongSchema, 'charts'>[] = [
     {
@@ -27,7 +27,7 @@ describe('GET /api/v1/songs/name', () => {
   ]
   beforeEach(() => (req.query = {}))
 
-  test('/25 calls fetchSongList(25, undefined)', async () => {
+  test('returns "200 OK" with JSON body', async () => {
     // Arrange - Act
     const result = await searchSong(null, req, songs)
 
@@ -39,7 +39,7 @@ describe('GET /api/v1/songs/name', () => {
   test.each([
     ['0', [songs[0]]],
     ['10', [songs[1]]],
-  ])('/25&series=%s returns %p', async (series, expected) => {
+  ])('?series=%s returns "200 OK" with %p', async (series, expected) => {
     // Arrange
     req.query.series = series
 
@@ -51,7 +51,7 @@ describe('GET /api/v1/songs/name', () => {
     expect(result.body).toStrictEqual(expected)
   })
 
-  test('/25&series=9 returns "404 Not Found"', async () => {
+  test('?series=9 returns "404 Not Found"', async () => {
     // Arrange
     req.query.series = '9'
 

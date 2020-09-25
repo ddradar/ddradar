@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Scores",
-      "sqlQuery": "SELECT * FROM c WHERE c.songId = {songId} AND c.playStyle = {playStyle} AND c.difficulty = {difficulty}",
+      "sqlQuery": "SELECT * FROM c WHERE c.songId = {songId} AND c.playStyle = StringToNumber({playStyle}) AND c.difficulty = StringToNumber({difficulty})",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {

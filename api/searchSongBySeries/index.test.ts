@@ -1,13 +1,7 @@
-import type { Context } from '@azure/functions'
-import { mocked } from 'ts-jest/utils'
-
-import { fetchSongList, SongSchema } from '../db/songs'
+import type { SongSchema } from '../db/songs'
 import searchSong from '.'
 
-jest.mock('../db/songs')
-
-describe('GET /api/v1/songs/series', () => {
-  const context: Pick<Context, 'bindingData'> = { bindingData: {} }
+describe('GET /api/v1/songs/series/{series}', () => {
   const req: { query: Record<string, string> } = { query: {} }
   const songs: Omit<SongSchema, 'charts'>[] = [
     {
@@ -31,51 +25,48 @@ describe('GET /api/v1/songs/series', () => {
       maxBPM: 160,
     },
   ]
-  beforeEach(() => {
-    context.bindingData = {}
-    req.query = {}
-    mocked(fetchSongList).mockClear()
-    mocked(fetchSongList).mockResolvedValue(songs)
-  })
+  beforeEach(() => (req.query = {}))
 
-  test('/10 calls fetchSongList(undefined, 10)', async () => {
-    // Arrange
-    context.bindingData.series = 10
-
-    // Act
-    const result = await searchSong(context, req)
+  test('returns "200 OK" with JSON body', async () => {
+    // Arrange - Act
+    const result = await searchSong(null, req, songs)
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toBe(songs)
-    expect(mocked(fetchSongList)).toBeCalledWith(undefined, 10)
+    expect(result.body).toStrictEqual(songs)
   })
 
   test.each([
-    ['25', 25],
-    ['28', 28],
-  ])('/10&series=%s calls fetchSongList(%i, 10)', async (name, expected) => {
+    ['25', [songs[0]]],
+    ['28', [songs[1]]],
+  ])('?series=%s returns "200 OK" with %p', async (name, expected) => {
     // Arrange
-    context.bindingData.series = 10
     req.query.name = name
 
     // Act
-    await searchSong(context, req)
+    const result = await searchSong(null, req, songs)
 
     // Assert
-    expect(mocked(fetchSongList)).toBeCalledWith(expected, 10)
+    expect(result.status).toBe(200)
+    expect(result.body).toStrictEqual(expected)
   })
 
-  test('/30 returns "404 Not Found" if fetchSongList(undefined, 30) returns []', async () => {
+  test('?series=1 returns "404 Not Found"', async () => {
     // Arrange
-    context.bindingData.series = 30
-    mocked(fetchSongList).mockResolvedValueOnce([])
+    req.query.name = '1'
 
     // Act
-    const result = await searchSong(context, req)
+    const result = await searchSong(null, req, songs)
 
     // Assert
     expect(result.status).toBe(404)
-    expect(mocked(fetchSongList)).toBeCalledWith(undefined, 30)
+  })
+
+  test('returns "404 Not Found" if songs is empty', async () => {
+    // Arrange - Act
+    const result = await searchSong(null, req, [])
+
+    // Assert
+    expect(result.status).toBe(404)
   })
 })
