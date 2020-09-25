@@ -60,9 +60,9 @@ export async function fetchOne<T>(
     .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
-    .filter(c => c.value !== undefined)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- filtered next
     .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
+    .filter(c => c.value !== undefined)
   const query = `SELECT ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
@@ -84,9 +84,9 @@ export async function fetchList<T>(
     .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
-    .filter(c => c.value !== undefined)
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- already checked
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- filtered next
     .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
+    .filter(c => c.value !== undefined)
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
