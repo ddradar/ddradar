@@ -1,4 +1,4 @@
-import { fetchOne } from '.'
+import { fetchOne, ItemDefinition } from '.'
 import type { Difficulty, StepChartSchema } from './songs'
 
 export type ScoreSchema = Pick<
@@ -61,12 +61,14 @@ export function fetchScore(
   songId: string,
   playStyle: 1 | 2,
   difficulty: Difficulty
-): Promise<Omit<ScoreSchema, 'isPublic'> | null> {
-  return fetchOne<Omit<ScoreSchema, 'isPublic'>>(
+): Promise<(ScoreSchema & ItemDefinition) | null> {
+  return fetchOne<ScoreSchema>(
     'Scores',
     [
+      'id',
       'userId',
       'userName',
+      'isPublic',
       'songId',
       'songName',
       'playStyle',

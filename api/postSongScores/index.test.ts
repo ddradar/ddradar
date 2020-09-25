@@ -328,7 +328,7 @@ describe('POST /api/v1/scores', () => {
       },
     ],
     [
-      2,
+      4,
       {
         playStyle: 1,
         difficulty: 0,
@@ -362,9 +362,9 @@ describe('POST /api/v1/scores', () => {
   )
 
   test.each([
-    [1, privateUser],
-    [2, areaHiddenUser],
-    [3, publicUser],
+    [2, privateUser],
+    [4, areaHiddenUser],
+    [6, publicUser],
   ])(
     `/${song.id} returns "200 OK" with JSON and documents[%i] if user is %p and score is MFC`,
     async (length, user) => {
@@ -390,7 +390,7 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test('/%s updates World Top if topScore is defined', async () => {
+  test(`/${song.id} updates World Top if topScore is defined`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     const expected = {
@@ -412,7 +412,6 @@ describe('POST /api/v1/scores', () => {
         ...expected,
       },
     ])
-    expect(result.documents?.[1].score).toBe(999700)
-    expect(result.documents?.[1].exScore).toBe(384)
+    expect(result.documents).toHaveLength(4)
   })
 })

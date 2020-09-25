@@ -1,6 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { ItemDefinition } from '../db'
 import { ScoreSchema } from '../db/scores'
 import {
   CourseInfoSchema,
@@ -15,7 +16,7 @@ import {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import { isScore, isValidScore, mergeScore, Score } from '../score'
+import { isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   charts: (StepChartSchema | CourseInfoSchema)[]
@@ -27,7 +28,7 @@ type PostScoreResult = {
     | NotFoundResult
     | UnauthenticatedResult
     | SuccessResult<ScoreSchema>
-  documents?: ScoreSchema[]
+  documents?: (ScoreSchema & ItemDefinition)[]
 }
 
 /** Add or update score that match the specified chart. */
@@ -35,7 +36,7 @@ export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers' | 'body'>,
   songs: SongInput[],
-  scores: ScoreSchema[]
+  scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<PostScoreResult> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
@@ -86,14 +87,15 @@ export default async function (
   if (req.body.clearLamp >= 4) {
     userScore.maxCombo = chart.notes + chart.shockArrow
   }
-  const documents = [userScore]
+  const documents: (ScoreSchema & ItemDefinition)[] = [
+    userScore,
+    ...scores.filter(s => s.userId === user.id).map(s => ({ ...s, ttl: 3600 })),
+  ]
 
   if (user.isPublic) {
-    const worldScore = updateAreaScore('0', userScore)
-    if (worldScore) documents.push(worldScore)
+    updateAreaScore('0', userScore)
     if (user.area) {
-      const areaScore = updateAreaScore(`${user.area}`, userScore)
-      if (areaScore) documents.push(areaScore)
+      updateAreaScore(`${user.area}`, userScore)
     }
   }
 
@@ -106,28 +108,13 @@ export default async function (
     documents,
   }
 
-  /** Return new Area Top score if greater than old one. otherwize, return `null`. */
-  function updateAreaScore(
-    area: string,
-    score: ScoreSchema
-  ): ScoreSchema | null {
+  /** Add new Area Top score into documents if greater than old one. */
+  function updateAreaScore(area: string, score: ScoreSchema) {
     // Get previous score
-    const oldScore =
-      scores.find(
-        s =>
-          s.userId === area &&
-          s.songId === score.songId &&
-          s.playStyle === score.playStyle &&
-          s.difficulty === score.difficulty
-      ) ??
-      ({
-        score: 0,
-        rank: 'E',
-        clearLamp: 0,
-      } as Score)
+    const oldScore = scores.find(s => s.userId === area)
 
     const mergedScore: ScoreSchema = {
-      ...mergeScore(oldScore, score),
+      ...mergeScore(oldScore ?? { score: 0, rank: 'E', clearLamp: 0 }, score),
       userId: area,
       userName: area,
       isPublic: false,
@@ -138,14 +125,16 @@ export default async function (
       level: score.level,
     }
     if (
-      mergedScore.score === oldScore.score &&
+      mergedScore.score === oldScore?.score &&
       mergedScore.clearLamp === oldScore.clearLamp &&
       mergedScore.exScore === oldScore.exScore &&
       mergedScore.maxCombo === oldScore.maxCombo &&
       mergedScore.rank === oldScore.rank
     ) {
-      return null
+      return
     }
-    return mergedScore
+
+    documents.push(mergedScore)
+    if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }

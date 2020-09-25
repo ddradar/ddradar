@@ -94,13 +94,6 @@ describe('/db/scores.ts', () => {
       ...s,
       id: `${s.userId}-${s.songId}-${s.playStyle}-${s.difficulty}`,
     })
-    const removeIsPublic = (s: ScoreSchema) => {
-      const result: Omit<ScoreSchema, 'isPublic'> & Partial<ScoreSchema> = {
-        ...s,
-      }
-      delete result.isPublic
-      return result
-    }
 
     beforeAll(async () => {
       await Promise.all(
@@ -138,7 +131,7 @@ describe('/db/scores.ts', () => {
               score.songId,
               score.playStyle,
               score.difficulty,
-              removeIsPublic(score),
+              addId(score),
             ] as const
         )
       )(
