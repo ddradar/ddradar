@@ -145,7 +145,7 @@ describe('./db/users.ts', () => {
         const result = await fetchUserList('', 13)
 
         // Assert
-        expect(result).toHaveLength(1)
+        expect(result).toHaveLength(2)
       })
 
       test.each([
