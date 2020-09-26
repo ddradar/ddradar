@@ -14,6 +14,7 @@ For technical details, please see [Cosmos DB documents](https://docs.microsoft.c
 - [/Scores](./scores.md)
 - [/Songs](./songs.md)
 - [/Users](./users.md)
+- [/UserDetails](./user-details.md)
 
 ## Initialization code
 

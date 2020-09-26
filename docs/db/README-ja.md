@@ -14,6 +14,7 @@ English version is [here](./README.md).
 - [/Scores](./scores-ja.md)
 - [/Songs](./songs-ja.md)
 - [/Users](./users-ja.md)
+- [/UserDetails](./user-details-ja.md)
 
 ## Initialization code
 
