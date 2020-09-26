@@ -7,6 +7,18 @@
   "engines": {
     "node": ">=12"
   },
+  "workspaces": {
+    "nohoist": [
+      "@azure/cosmos",
+      "@azure/cosmos/**",
+      "iconv-lite",
+      "iconv-lite/**",
+      "node-fetch",
+      "node-fetch/**",
+      "jest-fetch-mock",
+      "jest-fetch-mock/**"
+    ]
+  },
   "scripts": {
     "build": "tsc",
     "prestart": "tsc",

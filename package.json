@@ -8,7 +8,8 @@
   "private": true,
   "workspaces": [
     "api",
-    "client"
+    "client",
+    "functions"
   ],
   "scripts": {
     "build": "run-p build:*",
@@ -24,7 +25,7 @@
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
     "test:client": "yarn workspace @ddradar/client test",
-    "test:func": "yarn --cwd ./functions/ test"
+    "test:func": "yarn workspace @ddradar/functions test"
   },
   "husky": {
     "hooks": {
