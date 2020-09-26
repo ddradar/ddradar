@@ -7,6 +7,18 @@
   "engines": {
     "node": ">=12"
   },
+  "workspaces": {
+    "nohoist": [
+      "@azure/cosmos",
+      "@azure/cosmos/**",
+      "iconv-lite",
+      "iconv-lite/**",
+      "node-fetch",
+      "node-fetch/**",
+      "jest-fetch-mock",
+      "jest-fetch-mock/**"
+    ]
+  },
   "scripts": {
     "build": "tsc",
     "prestart": "tsc",
@@ -24,7 +36,7 @@
     "@types/node-fetch": "^2.5.7",
     "jest": "^26.4.2",
     "jest-fetch-mock": "^3.0.3",
-    "ts-jest": "^26.3.0",
-    "typescript": "^4.0.2"
+    "ts-jest": "^26.4.0",
+    "typescript": "^4.0.3"
   }
 }

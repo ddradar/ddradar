@@ -1,7 +1,7 @@
 import fetchMock from 'jest-fetch-mock'
 import { mocked } from 'ts-jest/utils'
 
-import { SongSchema } from '../db/songs'
+import type { SongSchema } from '../db/songs'
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
@@ -9,6 +9,7 @@ jest.mock('../skill-attack')
 
 describe('/importSkillAttrackId/index.ts', () => {
   const context = { log: { error: jest.fn(), info: jest.fn() } }
+  const uri = 'http://skillattack.com/sa4/data/master_music.txt'
   const mapMock = mocked(masterMusicToMap)
   beforeEach(() => {
     fetchMock.mockClear()
@@ -72,23 +73,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(fetchMock).toBeCalledWith(
-      'http://skillattack.com/sa4/data/master_music.txt'
-    )
-    expect(context.log.error).toBeCalledTimes(2)
-    expect(context.log.error).toBeCalledWith('404: Not Found')
-    expect(context.log.error).toBeCalledWith('Error')
-  })
-
-  test('returns [] with error if fetch() returns 404', async () => {
-    // Arrange - Act
-    const result = await importSkillAttrackId(context, null, [song])
-
-    // Assert
-    expect(result).toStrictEqual([])
-    expect(fetchMock).toBeCalledWith(
-      'http://skillattack.com/sa4/data/master_music.txt'
-    )
+    expect(fetchMock).toBeCalledWith(uri)
     expect(context.log.error).toBeCalledTimes(2)
     expect(context.log.error).toBeCalledWith('404: Not Found')
     expect(context.log.error).toBeCalledWith('Error')
@@ -104,9 +89,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(fetchMock).toBeCalledWith(
-      'http://skillattack.com/sa4/data/master_music.txt'
-    )
+    expect(fetchMock).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
     expect(context.log.info).toBeCalled()
     expect(context.log.info).toBeCalledWith(
@@ -124,9 +107,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([{ ...song, skillAttackId: 1 }])
-    expect(fetchMock).toBeCalledWith(
-      'http://skillattack.com/sa4/data/master_music.txt'
-    )
+    expect(fetchMock).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
     expect(context.log.info).toBeCalled()
     expect(context.log.info).toBeCalledWith(
