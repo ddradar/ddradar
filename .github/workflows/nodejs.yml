@@ -39,9 +39,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install Project Dependencies
-        run: |
-          yarn install --frozen-lockfile
-          yarn --cwd ./functions/ install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
       - name: Lint
         if: matrix.os == 'ubuntu-latest'
@@ -65,3 +63,11 @@ jobs:
       - name: Report Code Coverage to codecov
         if: matrix.os == 'windows-latest'
         uses: codecov/codecov-action@v1.0.13
+
+      - name: Deploy Azure Functions (Development)
+        if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
+        uses: Azure/functions-action@v1.1.5
+        with:
+          app-name: ddradar-staging
+          package: ./functions/
+          publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_STAGING }}
