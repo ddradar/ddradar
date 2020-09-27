@@ -11,6 +11,7 @@ import type {
   UnauthenticatedResult,
 } from '../function'
 import {
+  calcMyGrooveRadar,
   getDanceLevel,
   isScore,
   isValidScore,
@@ -23,6 +24,7 @@ type ScoreBody = Score &
   Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
+  isCourse: boolean
   charts: (StepChartSchema | CourseInfoSchema)[]
 }
 
@@ -74,8 +76,13 @@ export default async function (
       }
     }
 
-    body.push(createSchema(chart, user, score))
-    await fetchMergedScore(chart, user, score)
+    body.push({
+      ...createSchema(chart, user, score),
+      ...(song.isCourse
+        ? {}
+        : { radar: calcMyGrooveRadar(chart as StepChartSchema, score) }),
+    })
+    await fetchMergedScore(chart, user, score, false)
 
     // World Record
     if (score.topScore) {
@@ -169,7 +176,8 @@ export default async function (
   async function fetchMergedScore(
     chart: Readonly<StepChartSchema | CourseInfoSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Score>
+    score: Readonly<Score>,
+    isAreaUser = true
   ): Promise<void> {
     const scoreSchema = createSchema(chart, user, score)
     // Get previous score
@@ -180,7 +188,7 @@ export default async function (
       scoreSchema.difficulty
     )
 
-    const mergedScore = {
+    const mergedScore: ScoreSchema = {
       ...mergeScore(
         oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
         scoreSchema
@@ -202,6 +210,13 @@ export default async function (
       mergedScore.rank === oldScore.rank
     ) {
       return
+    }
+
+    if (!isAreaUser && !song.isCourse) {
+      mergedScore.radar = calcMyGrooveRadar(
+        chart as StepChartSchema,
+        mergedScore
+      )
     }
 
     documents.push(mergedScore)

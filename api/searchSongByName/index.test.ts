@@ -1,30 +1,9 @@
-import type { SongSchema } from '../db/songs'
+import { testSongList } from '../__tests__/data'
 import searchSong from '.'
 
 describe('GET /api/v1/songs/name/{name}', () => {
   const req: { query: Record<string, string> } = { query: {} }
-  const songs: Omit<SongSchema, 'charts'>[] = [
-    {
-      id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-      name: 'PARANOiA',
-      nameKana: 'PARANOIA',
-      nameIndex: 25,
-      artist: '180',
-      series: 'DDR 1st',
-      minBPM: 180,
-      maxBPM: 180,
-    },
-    {
-      id: 'I8bQ8ilD9l1Qi9Q9iI0q6qqqiolo01QP',
-      name: 'PARANOiA(X-Special)',
-      nameKana: 'PARANOIA X SPECIAL',
-      nameIndex: 25,
-      artist: '180',
-      series: 'DDR X',
-      minBPM: 180,
-      maxBPM: 180,
-    },
-  ]
+  const songs = testSongList.filter(s => s.nameIndex === 25)
   beforeEach(() => (req.query = {}))
 
   test('returns "200 OK" with JSON body', async () => {

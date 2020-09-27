@@ -23,6 +23,17 @@ English version is [here](./scores.md).
 |maxCombo|integer?|MAXコンボ数 (省略可)|
 |clearLamp|integer|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
 |rank|string|クリアランク (`"E"`～`"AAA"`)|
+|radar|GrooveRadar?|Myグルーブレーダー (ユーザーのスコアのみ)|
+
+### GrooveRadar
+
+|名前|型|説明|
+|----|:--:|-----------|
+|stream|integer|グルーブレーダーのSTREAM値|
+|voltage|integer|グルーブレーダーのVOLTAGE値|
+|air|integer|グルーブレーダーのAIR値|
+|freeze|integer|グルーブレーダーのFREEZE値|
+|chaos|integer|グルーブレーダーのCHAOS値|
 
 ## Indexes
 

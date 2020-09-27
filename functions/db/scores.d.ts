@@ -4,7 +4,6 @@ export type ScoreSchema = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level'
 > & {
-  /** `${userId}-${songId}-${playStyle}-${difficulty}` */
   id: string
   /** User ID */
   userId: string
@@ -24,6 +23,11 @@ export type ScoreSchema = Pick<
   clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
   rank: string
+  /** Groove Radar */
+  radar?: Pick<
+    StepChartSchema,
+    'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
+  >
 }
 
 /**
