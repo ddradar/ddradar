@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { testSongData } from '../__tests__/data'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { SongSchema } from '../db'
 import { fetchScore, ScoreSchema } from '../db/scores'
 import type { Score } from '../score'
 import postSongScores from '.'
@@ -15,45 +15,7 @@ jest.mock('../db/scores', () => ({
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
-  const song: SongSchema & { isCourse: boolean } = {
-    id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-    name: 'PARANOiA',
-    nameKana: 'PARANOIA',
-    nameIndex: 25,
-    artist: '180',
-    series: 'DDR 1st',
-    minBPM: 180,
-    maxBPM: 180,
-    isCourse: false,
-    charts: [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-        notes: 138,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 29,
-        voltage: 22,
-        air: 5,
-        freeze: 0,
-        chaos: 0,
-      },
-      {
-        playStyle: 1,
-        difficulty: 1,
-        level: 8,
-        notes: 264,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 56,
-        voltage: 44,
-        air: 18,
-        freeze: 0,
-        chaos: 4,
-      },
-    ],
-  }
+  const song = { ...testSongData, isCourse: false }
 
   const publicUser = {
     id: 'public_user',
