@@ -109,10 +109,17 @@ describe('./score.ts', () => {
       chaos: 100,
     }
     const score: Score = { clearLamp: 2, score: 800000, rank: 'A' }
+    test('({ freeze: 0 }, score) returns { freeze: 0 }', () =>
+      expect(
+        calcMyGrooveRadar(
+          { ...chart, freezeArrow: 0, freeze: 0 },
+          { ...score, clearLamp: 4 }
+        ).freeze
+      ).toBe(0))
     test.each([
       [score, 80, 0, 0, 0, 0],
       [{ ...score, maxCombo: 100 } as const, 80, 50, 50, 0, 50],
-      [{ ...score, clearLamp: 3 } as const, 80, 0, 99, 94, 99],
+      [{ ...score, clearLamp: 3 } as const, 80, 0, 98, 94, 98],
       [{ ...score, clearLamp: 4 } as const, 80, 100, 100, 100, 100],
     ])(
       '(chart, %p) returns { %i, %i, %i, %i, %i }',

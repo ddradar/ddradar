@@ -89,11 +89,14 @@ export function calcMyGrooveRadar(
     : 0
 
   return {
-    stream: Math.round((chart.stream * score.score) / 1000000),
-    voltage: Math.round((chart.voltage * maxCombo) / note),
-    air: Math.round((chart.air * arrowCount) / note),
-    freeze: Math.round((chart.freeze * freezeCount) / chart.freezeArrow),
-    chaos: Math.round((chart.chaos * arrowCount) / note),
+    stream: Math.trunc((chart.stream * score.score) / 1000000),
+    voltage: Math.trunc((chart.voltage * maxCombo) / note),
+    air: Math.trunc((chart.air * arrowCount) / note),
+    freeze:
+      chart.freezeArrow === 0
+        ? 0
+        : Math.trunc((chart.freeze * freezeCount) / chart.freezeArrow),
+    chaos: Math.trunc((chart.chaos * arrowCount) / note),
   }
 }
 
