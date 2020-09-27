@@ -15,7 +15,7 @@ jest.mock('../db/scores', () => ({
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
-  const song: SongSchema = {
+  const song: SongSchema & { isCourse: boolean } = {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',
     nameKana: 'PARANOIA',
@@ -24,6 +24,7 @@ describe('POST /api/v1/scores', () => {
     series: 'DDR 1st',
     minBPM: 180,
     maxBPM: 180,
+    isCourse: false,
     charts: [
       {
         playStyle: 1,
@@ -135,6 +136,7 @@ describe('POST /api/v1/scores', () => {
     rank: 'AAA',
     exScore: 414,
   }
+  const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
   beforeAll(async () => {
     mocked(getClientPrincipal).mockReturnValue({
@@ -269,6 +271,7 @@ describe('POST /api/v1/scores', () => {
       {
         ...scores[publicUser.id],
         ...expected,
+        radar: { stream: 55, voltage: 44, air: 18, freeze: 0, chaos: 4 },
       },
     ])
     expect(result.documents?.[1].score).toBe(expected.score)
@@ -301,15 +304,8 @@ describe('POST /api/v1/scores', () => {
 
       // Assert
       expect(result.httpResponse.status).toBe(200)
-      expect(result.httpResponse.body).toStrictEqual([
-        {
-          ...scores[publicUser.id],
-          ...expected,
-        },
-      ])
       expect(result.documents?.[1].score).toBe(topScore)
       expect(result.documents?.[1].clearLamp).toBe(clearLamp)
-      expect(result.documents?.[2].score).toBe(expected.score)
     }
   )
 
@@ -326,6 +322,7 @@ describe('POST /api/v1/scores', () => {
         exScore: 200,
         maxCombo: 138,
       },
+      { ...radar, stream: 25 },
     ],
     [
       4,
@@ -338,10 +335,11 @@ describe('POST /api/v1/scores', () => {
         rank: 'AAA',
         exScore: 376,
       },
+      { ...radar, stream: 28 },
     ],
   ])(
     `/${song.id} returns "200 OK" with JSON and documents[%i] if score is %p`,
-    async (length, score) => {
+    async (length, score, radar) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       req.body = [{ ...score }]
@@ -355,6 +353,7 @@ describe('POST /api/v1/scores', () => {
         {
           ...scores[publicUser.id],
           ...score,
+          radar,
         },
       ])
       expect(result.documents).toHaveLength(length)
@@ -384,11 +383,34 @@ describe('POST /api/v1/scores', () => {
       // Assert
       expect(result.httpResponse.status).toBe(200)
       expect(result.httpResponse.body).toStrictEqual([
-        { ...scores[user.id], ...expected },
+        { ...scores[user.id], ...expected, radar },
       ])
       expect(result.documents).toHaveLength(length)
     }
   )
+
+  test(`/${song.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    const expected = {
+      playStyle: 1,
+      difficulty: 0,
+      level: 4,
+      ...score,
+    }
+    req.body = [{ ...expected }]
+
+    // Act
+    const result = await postSongScores(null, req, [
+      { ...song, isCourse: true },
+    ])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual([
+      { ...scores[privateUser.id], ...expected },
+    ])
+  })
 
   test(`/${song.id} updates World Top if topScore is defined`, async () => {
     // Arrange
@@ -410,6 +432,7 @@ describe('POST /api/v1/scores', () => {
       {
         ...scores[privateUser.id],
         ...expected,
+        radar,
       },
     ])
     expect(result.documents).toHaveLength(4)

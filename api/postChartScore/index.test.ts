@@ -10,7 +10,7 @@ jest.mock('../auth')
 describe('POST /api/v1/scores', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'body'>
-  const song: SongSchema = {
+  const song: SongSchema & { isCourse: boolean } = {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',
     nameKana: 'PARANOIA',
@@ -19,6 +19,7 @@ describe('POST /api/v1/scores', () => {
     series: 'DDR 1st',
     minBPM: 180,
     maxBPM: 180,
+    isCourse: false,
     charts: [
       {
         playStyle: 1,
@@ -72,6 +73,7 @@ describe('POST /api/v1/scores', () => {
   } as const
 
   const mfcScore = { score: 1000000, rank: 'AAA', clearLamp: 7 }
+  const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
   beforeAll(() =>
     mocked(getClientPrincipal).mockReturnValue({
@@ -254,6 +256,7 @@ describe('POST /api/v1/scores', () => {
       playStyle: song.charts[1].playStyle,
       difficulty: song.charts[1].difficulty,
       level: song.charts[1].level,
+      radar: { stream: 50, voltage: 0, air: 17, freeze: 0, chaos: 3 },
     })
     expect(result.documents).toHaveLength(3)
   })
@@ -262,15 +265,17 @@ describe('POST /api/v1/scores', () => {
     [
       2,
       { score: 890000, clearLamp: 4, rank: 'AA-', exScore: 200, maxCombo: 138 },
+      { ...radar, stream: 25 },
     ],
     [
       4,
       { score: 999620, clearLamp: 6, rank: 'AAA', exScore: 376, maxCombo: 138 },
+      { ...radar, stream: 28 },
     ],
-    [6, { ...mfcScore, maxCombo: 138, exScore: 414 }],
+    [6, { ...mfcScore, maxCombo: 138, exScore: 414 }, radar],
   ])(
     `/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if body is %p`,
-    async (length, score) => {
+    async (length, score, radar) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       context.bindingData.songId = song.id
@@ -286,6 +291,7 @@ describe('POST /api/v1/scores', () => {
       expect(result.httpResponse.body).toStrictEqual({
         ...scores[2],
         ...score,
+        radar,
       })
       expect(result.documents).toHaveLength(length)
     }
@@ -318,8 +324,39 @@ describe('POST /api/v1/scores', () => {
         ...mfcScore,
         maxCombo: 138,
         exScore: 414,
+        radar,
       })
       expect(result.documents).toHaveLength(length)
     }
   )
+
+  test(`/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if course`, async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    context.bindingData.songId = song.id
+    context.bindingData.playStyle = song.charts[0].playStyle
+    context.bindingData.difficulty = song.charts[0].difficulty
+    req.body = mfcScore
+
+    // Act
+    const result = await postChartScore(
+      context,
+      req,
+      [{ ...song, isCourse: true }],
+      scores
+    )
+
+    // Assert
+    expect(result.httpResponse.status).toBe(200)
+    expect(result.httpResponse.body).toStrictEqual({
+      ...score,
+      userId: privateUser.id,
+      userName: privateUser.name,
+      isPublic: privateUser.isPublic,
+      ...mfcScore,
+      maxCombo: 138,
+      exScore: 414,
+    })
+    expect(result.documents).toHaveLength(2)
+  })
 })
