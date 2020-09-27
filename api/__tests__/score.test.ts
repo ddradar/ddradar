@@ -1,4 +1,6 @@
+import type { StepChartSchema } from '../db/songs'
 import {
+  calcMyGrooveRadar,
   getDanceLevel,
   isScore,
   isValidScore,
@@ -94,6 +96,35 @@ describe('./score.ts', () => {
     ] as const)('(chart, %p) returns true', score => {
       expect(isValidScore(chart, score)).toBe(true)
     })
+  })
+  describe('calcMyGrooveRadar', () => {
+    const chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'> = {
+      notes: 150,
+      freezeArrow: 50,
+      shockArrow: 50,
+      stream: 100,
+      voltage: 100,
+      air: 100,
+      freeze: 100,
+      chaos: 100,
+    }
+    const score: Score = { clearLamp: 2, score: 800000, rank: 'A' }
+    test.each([
+      [score, 80, 0, 0, 0, 0],
+      [{ ...score, maxCombo: 100 } as const, 80, 50, 50, 0, 50],
+      [{ ...score, clearLamp: 3 } as const, 80, 0, 99, 94, 99],
+      [{ ...score, clearLamp: 4 } as const, 80, 100, 100, 100, 100],
+    ])(
+      '(chart, %p) returns { %i, %i, %i, %i, %i }',
+      (score, stream, voltage, air, freeze, chaos) =>
+        expect(calcMyGrooveRadar(chart, score)).toStrictEqual({
+          stream,
+          voltage,
+          air,
+          freeze,
+          chaos,
+        })
+    )
   })
   describe('getDanceLevel', () => {
     test.each([

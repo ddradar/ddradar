@@ -71,6 +71,32 @@ export function isValidScore(
   return !maxCombo || (isPositiveInteger(maxCombo) && maxCombo <= fullCombo)
 }
 
+export function calcMyGrooveRadar(
+  chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>,
+  score: Score
+): Pick<StepChartSchema, 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'> {
+  const note = chart.notes + chart.shockArrow
+  const isFullCombo = score.clearLamp >= 4
+  const maxCombo = isFullCombo ? note : score.maxCombo ?? 0
+
+  // Treat as miss:3 if Life 4 Clear
+  const arrowCount =
+    score.clearLamp === 3 && maxCombo < note - 3 ? note - 3 : maxCombo
+  const freezeCount = isFullCombo
+    ? chart.freezeArrow
+    : score.clearLamp === 3
+    ? chart.freezeArrow - 3
+    : 0
+
+  return {
+    stream: Math.round((chart.stream * score.score) / 1000000),
+    voltage: Math.round((chart.voltage * maxCombo) / note),
+    air: Math.round((chart.air * arrowCount) / note),
+    freeze: Math.round((chart.freeze * freezeCount) / chart.freezeArrow),
+    chaos: Math.round((chart.chaos * arrowCount) / note),
+  }
+}
+
 export function getDanceLevel(score: number): string {
   if (!isPositiveInteger(score))
     throw new RangeError(
