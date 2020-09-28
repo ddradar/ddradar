@@ -23,7 +23,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Scores",
-      "sqlQuery": "SELECT c.playStyle, MAX(r.stream) AS stream, MAX(r.voltage) AS voltage, MAX(r.air) AS air, MAX(r.freeze) AS freeze, MAX(r.chaos) AS chaos FROM c JOIN r IN c.radar WHERE c.userId = {id} AND IS_DEFINED(c.radar) AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) GROUP BY c.playStyle",
+      "sqlQuery": "SELECT c.playStyle, MAX(c.radar.stream) AS stream, MAX(c.radar.voltage) AS voltage, MAX(c.radar.air) AS air, MAX(c.radar.freeze) AS freeze, MAX(c.radar.chaos) AS chaos FROM c WHERE c.userId = {id} AND IS_DEFINED(c.radar) AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) GROUP BY c.playStyle",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {
