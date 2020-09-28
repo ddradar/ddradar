@@ -1,5 +1,6 @@
 import { canConnectDB, getContainer } from '../../db'
 import { fetchScore, ScoreSchema } from '../../db/scores'
+import { testSongData } from '../data'
 import { describeIf } from '../util'
 
 describe('/db/scores.ts', () => {
@@ -11,12 +12,12 @@ describe('/db/scores.ts', () => {
       isPublic: false,
     } as const
     const chart = {
-      songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-      songName: 'PARANOiA',
-      playStyle: 1,
-      difficulty: 0,
-      level: 4,
-    } as const
+      songId: testSongData.id,
+      songName: testSongData.name,
+      playStyle: testSongData.charts[0].playStyle,
+      difficulty: testSongData.charts[0].difficulty,
+      level: testSongData.charts[0].level,
+    }
     const scores: ScoreSchema[] = [
       {
         userId: '0',
