@@ -4,17 +4,21 @@ import { promisify } from 'util'
 
 import { musicDataToScoreList, musicDetailToScore } from '~/utils/eagate-parser'
 
-const readFileAsync = promisify(readFile)
+const readFileAsync = (folder: string, fileName: string) =>
+  promisify(readFile)(join(__dirname, 'eagate', folder, fileName), {
+    encoding: 'utf8',
+  })
 
 describe('/utils/eagate-parser.ts', () => {
   describe('musicDataToScoreList', () => {
     let template: string
-    beforeAll(async () => {
-      template = await readFileAsync(
-        join(__dirname, 'eagate', 'music_data', 'template.html'),
-        { encoding: 'utf8' }
-      )
-    })
+    const folder = 'music_data'
+    beforeAll(
+      async () => (template = await readFileAsync(folder, 'template.html'))
+    )
+    const createSource = async (fileName: string) =>
+      template.replace('{{ contents }}', await readFileAsync(folder, fileName))
+
     test.each([
       '',
       'foo',
@@ -27,13 +31,7 @@ describe('/utils/eagate-parser.ts', () => {
       '(%s) throws error',
       async fileName => {
         // Arrange
-        const source = template.replace(
-          '{{ contents }}',
-          await readFileAsync(
-            join(__dirname, 'eagate', 'music_data', fileName),
-            { encoding: 'utf8' }
-          )
-        )
+        const source = await createSource(fileName)
 
         // Act - Assert
         expect(() => musicDataToScoreList(source)).toThrowError()
@@ -433,25 +431,24 @@ describe('/utils/eagate-parser.ts', () => {
       ],
     ])('(%s) returns expected ScoreList', async (fileName, expected) => {
       // Arrange
-      const source = template.replace(
-        '{{ contents }}',
-        await readFileAsync(join(__dirname, 'eagate', 'music_data', fileName), {
-          encoding: 'utf8',
-        })
-      )
+      const source = await createSource(fileName)
 
       // Act - Assert
       expect(musicDataToScoreList(source)).toStrictEqual(expected)
     })
   })
+
   describe('musicDetailToScore', () => {
     let template: string
-    beforeAll(async () => {
-      template = await readFileAsync(
-        join(__dirname, 'eagate', 'music_detail', 'template.html'),
-        { encoding: 'utf8' }
-      )
-    })
+    const folder = 'music_detail'
+    beforeAll(
+      async () => (template = await readFileAsync(folder, 'template.html'))
+    )
+    const createSource = async (imgSrc: string, fileName: string) =>
+      template
+        .replace('{{ imgSrc }}', imgSrc)
+        .replace('{{ contents }}', await readFileAsync(folder, fileName))
+
     test.each([
       '',
       'foo',
@@ -460,21 +457,21 @@ describe('/utils/eagate-parser.ts', () => {
     ])('("%s") throws error', source => {
       expect(() => musicDetailToScore(source)).toThrowError()
     })
+
     test.each([
       ['no_play.html', 'NO PLAY...'],
       ['not_select.html', '難易度を選択してください。'],
       ['invalid_title.html', 'Invalid HTML'],
     ])('(%s) throws "%s" error', async (fileName, message) => {
       // Arrange
-      const source = await readFileAsync(
-        join(__dirname, 'eagate', 'music_detail', fileName),
-        { encoding: 'utf8' }
-      )
+      const source = await readFileAsync(folder, fileName)
 
       // Act - Assert
       expect(() => musicDetailToScore(source)).toThrowError(message)
     })
+
     const aceForAces = 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0'
+    const raspberryHeart = '60qiDd000qDIobO0QI916i18bbolO919'
     test.each([
       [
         'diff_0.html',
@@ -541,29 +538,6 @@ describe('/utils/eagate-parser.ts', () => {
           topScore: 999940,
         } as const,
       ],
-    ])(
-      '(%s) returns %p',
-      async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
-        // Arrange
-        const source = template
-          .replace(
-            '{{ imgSrc }}',
-            `/game/ddr/ddra20/p/images/binary_jk.html?img=${aceForAces}&kind=1`
-          )
-          .replace(
-            '{{ contents }}',
-            await readFileAsync(
-              join(__dirname, 'eagate', 'music_detail', fileName),
-              { encoding: 'utf8' }
-            )
-          )
-
-        // Act - Assert
-        expect(musicDetailToScore(source)).toStrictEqual(expected)
-      }
-    )
-    const raspberryHeart = '60qiDd000qDIobO0QI916i18bbolO919'
-    test.each([
       [
         'diff_5.html',
         {
@@ -620,23 +594,16 @@ describe('/utils/eagate-parser.ts', () => {
       '(%s) returns %p',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
-        const source = template
-          .replace(
-            '{{ imgSrc }}',
-            `/game/ddr/ddra20/p/images/binary_jk.html?img=${raspberryHeart}&kind=1`
-          )
-          .replace(
-            '{{ contents }}',
-            await readFileAsync(
-              join(__dirname, 'eagate', 'music_detail', fileName),
-              { encoding: 'utf8' }
-            )
-          )
+        const source = await createSource(
+          `/game/ddr/ddra20/p/images/binary_jk.html?img=${expected.songId}&kind=1`,
+          fileName
+        )
 
         // Act - Assert
         expect(musicDetailToScore(source)).toStrictEqual(expected)
       }
     )
+
     test.each([
       [
         'grade.html',
@@ -668,18 +635,10 @@ describe('/utils/eagate-parser.ts', () => {
       '(%s) returns %p',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
-        const source = template
-          .replace(
-            '{{ imgSrc }}',
-            `/game/ddr/ddra20/p/images/binary_jk_c.html?img=${expected.songId}&kind=1`
-          )
-          .replace(
-            '{{ contents }}',
-            await readFileAsync(
-              join(__dirname, 'eagate', 'music_detail', fileName),
-              { encoding: 'utf8' }
-            )
-          )
+        const source = await createSource(
+          `/game/ddr/ddra20/p/images/binary_jk_c.html?img=${expected.songId}&kind=1`,
+          fileName
+        )
 
         // Act - Assert
         expect(musicDetailToScore(source)).toStrictEqual(expected)
