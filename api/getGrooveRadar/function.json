@@ -1,0 +1,36 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/users/{id:regex(^[-a-z0-9_]+$)}/radar/{playStyle?:int:min(1):max(2)}"
+    },
+    {
+      "name": "users",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT c.id, c.isPublic FROM c WHERE c.id = {id}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "name": "radars",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "sqlQuery": "SELECT c.playStyle, MAX(r.stream) AS stream, MAX(r.voltage) AS voltage, MAX(r.air) AS air, MAX(r.freeze) AS freeze, MAX(r.chaos) AS chaos FROM c JOIN r IN c.radar WHERE c.userId = {id} AND IS_DEFINED(c.radar) AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) GROUP BY c.playStyle",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/getGrooveRadar/index.js"
+}
