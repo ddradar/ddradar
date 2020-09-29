@@ -3,7 +3,7 @@ import type { StepChartSchema } from './songs'
 
 export type GrooveRadarSchema = Pick<
   StepChartSchema,
-  'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
+  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
 > & {
   userId: string
   type: 'radar'
