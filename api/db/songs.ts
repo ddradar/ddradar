@@ -3,7 +3,6 @@ import {
   hasProperty,
   hasStringProperty,
 } from '../type-assert'
-import { fetchList } from '.'
 
 /** DB Schema of "Song" */
 export type SongSchema = {
@@ -175,34 +174,3 @@ export const SeriesList = [
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
 ] as const
-
-export function fetchSongList(
-  name?: number,
-  series?: number
-): Promise<Omit<SongSchema, 'charts'>[]> {
-  return fetchList<SongSchema>(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'artist',
-      'series',
-      'minBPM',
-      'maxBPM',
-    ],
-    [
-      ...(series !== undefined
-        ? [{ condition: 'c.series = @', value: SeriesList[series] }]
-        : []),
-      ...(name !== undefined
-        ? [{ condition: 'c.nameIndex = @', value: name }]
-        : [{ condition: 'c.nameIndex != -1 AND c.nameIndex != -2' }]),
-    ],
-    {
-      nameIndex: 'ASC',
-      nameKana: 'ASC',
-    }
-  )
-}
