@@ -63,6 +63,7 @@ describe('pages/import.vue', () => {
       }
     )
   })
+
   describe('register button', () => {
     test('has no disabled attribute if sourceCode is valid', async () => {
       // Arrange - Act
@@ -273,42 +274,30 @@ describe('pages/import.vue', () => {
     }
     const postMock = mocked(postSongScores)
     const convertMock = mocked(scoreTexttoScoreList)
-    const successMock = mocked(popup.success)
     const warningMock = mocked(popup.warning)
-    const dangerMock = mocked(popup.danger)
     beforeEach(() => {
       postMock.mockClear()
       convertMock.mockClear()
-      successMock.mockClear()
       warningMock.mockClear()
-      dangerMock.mockClear()
     })
 
-    test.each([
-      ['ja', '1件のスコアを登録しました'],
-      ['en', 'Uploaded: 1 song'],
-    ])(
-      '{ locale: "%s" } calls "Post Song Scores" API and popup.success($buefy, "%s")',
-      async (locale, message) => {
-        // Arrange
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ImportPage, {
-          localVue,
-          mocks: { $accessor, $http, $buefy },
-          i18n,
-          data: () => ({ file: true }),
-        })
-        convertMock.mockReturnValue(scoreList)
+    test('calls "Post Song Scores" API', async () => {
+      // Arrange
+      const wrapper = shallowMount(ImportPage, {
+        localVue,
+        mocks: { $accessor, $http, $buefy },
+        i18n,
+        data: () => ({ file: {} }),
+      })
+      convertMock.mockReturnValue(scoreList)
 
-        // Act
-        // @ts-ignore
-        await wrapper.vm.importSkillAttackScores()
+      // Act
+      // @ts-ignore
+      await wrapper.vm.importSkillAttackScores()
 
-        // Assert
-        expect(postMock).toBeCalledWith($http, '691', scoreList['691'])
-        expect(successMock).toBeCalledWith($buefy, message)
-      }
-    )
+      // Assert
+      expect(postMock).toBeCalledWith($http, '691', scoreList['691'])
+    })
     test('does not call scoreTexttoScoreList() if file is empty', async () => {
       // Arrange
       wrapper.setData({ file: null })
@@ -325,7 +314,7 @@ describe('pages/import.vue', () => {
     })
     test('does not call "Post Song Scores" API if scores is empty', async () => {
       // Arrange
-      wrapper.setData({ file: true })
+      wrapper.setData({ file: {} })
       await wrapper.vm.$nextTick()
       convertMock.mockReturnValue({ foo: [] })
 
@@ -334,6 +323,7 @@ describe('pages/import.vue', () => {
       await wrapper.vm.importSkillAttackScores()
 
       // Assert
+      expect(convertMock).toBeCalled()
       expect(postMock).not.toBeCalled()
     })
     test.each([
@@ -351,7 +341,7 @@ describe('pages/import.vue', () => {
           localVue,
           mocks: { $accessor, $http, $buefy },
           i18n,
-          data: () => ({ file: true }),
+          data: () => ({ file: {} }),
         })
 
         // Act
@@ -362,20 +352,5 @@ describe('pages/import.vue', () => {
         expect(warningMock).toBeCalledWith($buefy, message)
       }
     )
-    test('shows error message if API returns ErrorCode', async () => {
-      // Arrange
-      const errorMessage = '500 Server Error'
-      wrapper.setData({ file: true })
-      await wrapper.vm.$nextTick()
-      convertMock.mockReturnValue(scoreList)
-      postMock.mockRejectedValueOnce(new Error(errorMessage))
-
-      // Act
-      // @ts-ignore
-      await wrapper.vm.importSkillAttackScores()
-
-      // Assert
-      expect(dangerMock).toBeCalledWith($buefy, errorMessage)
-    })
   })
 })

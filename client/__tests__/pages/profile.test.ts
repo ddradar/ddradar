@@ -39,6 +39,7 @@ describe('pages/profile.vue', () => {
       expect(wrapper).toMatchSnapshot()
     })
   })
+
   describe('get isNewUser()', () => {
     test('returns true if $accessor.user is null', () => {
       // Arrange
@@ -65,6 +66,7 @@ describe('pages/profile.vue', () => {
       expect(wrapper.vm.isNewUser).toBe(false)
     })
   })
+
   describe('get hasError()', () => {
     test.each([
       { type: 'is-danger' },
@@ -104,6 +106,7 @@ describe('pages/profile.vue', () => {
       expect(wrapper.vm.hasError).toBe(false)
     })
   })
+
   describe('fetch()', () => {
     test('calls $accessor.fetchUser()', async () => {
       // Arrange
@@ -173,6 +176,7 @@ describe('pages/profile.vue', () => {
       expect(wrapper.vm.$data.isPublic).toBe(true)
     })
   })
+
   describe('checkId()', () => {
     const existsUserMock = mocked(existsUser)
     beforeEach(() => existsUserMock.mockClear())
@@ -190,33 +194,6 @@ describe('pages/profile.vue', () => {
           i18n,
           mocks: { $accessor },
           data: () => ({ ...user, id: '' }),
-        })
-
-        // Act
-        // @ts-ignore
-        await wrapper.vm.checkId()
-
-        // Assert
-        expect(wrapper.vm.$data.type).toBe('is-danger')
-        expect(wrapper.vm.$data.message).toBe(message)
-      }
-    )
-    test.each([
-      ['ja', 'ユーザーIDは半角英数字, ハイフン, アンダーバーのみ使用可能です'],
-      [
-        'en',
-        'Only alphanumeric characters, hyphens, and underbars can be used for ID',
-      ],
-    ])(
-      '{ locale: "%s" } sets "%s" error if id is "FOO"',
-      async (locale, message) => {
-        // Arrange
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks: { $accessor },
-          data: () => ({ ...user, id: 'FOO' }),
         })
 
         // Act
@@ -306,6 +283,7 @@ describe('pages/profile.vue', () => {
       }
     )
   })
+
   describe('save()', () => {
     const successMock = mocked(popup.success)
     const dangerMock = mocked(popup.danger)

@@ -23,6 +23,17 @@ The collection that stores user scores.
 |maxCombo|integer?|MAX COMBO (optional)|
 |clearLamp|integer|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
 |rank|string|Clear rank (`"E"`～`"AAA"`)|
+|radar|GrooveRadar?|My Groove Radar (only user score)|
+
+### GrooveRadar
+
+|Name|Type|Description|
+|----|:--:|-----------|
+|stream|integer|Groove Radar STREAM|
+|voltage|integer|Groove radar VOLTAGE|
+|air|integer|Groove radar AIR|
+|freeze|integer|Groove radar FREEZE|
+|chaos|integer|Groove radar CHAOS|
 
 ## Indexes
 

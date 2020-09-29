@@ -16,9 +16,10 @@ import {
   SuccessResult,
   UnauthenticatedResult,
 } from '../function'
-import { isScore, isValidScore, mergeScore } from '../score'
+import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
+  isCourse: boolean
   charts: (StepChartSchema | CourseInfoSchema)[]
 }
 
@@ -51,13 +52,13 @@ export default async function (
     return { httpResponse: { status: 404, body } }
   }
 
-  const songId: string = bindingData.songId
   const playStyle: 1 | 2 = bindingData.playStyle
   const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
 
   // Get chart info
   if (songs.length !== 1) return { httpResponse: { status: 404 } }
-  const chart = songs[0].charts.find(
+  const song = songs[0]
+  const chart = song.charts.find(
     c => c.playStyle === playStyle && c.difficulty === difficulty
   )
   if (!chart) return { httpResponse: { status: 404 } }
@@ -70,8 +71,8 @@ export default async function (
     userId: user.id,
     userName: user.name,
     isPublic: user.isPublic,
-    songId,
-    songName: songs[0].name,
+    songId: song.id,
+    songName: song.name,
     playStyle,
     difficulty,
     level: chart.level,
@@ -88,7 +89,12 @@ export default async function (
     userScore.maxCombo = chart.notes + chart.shockArrow
   }
   const documents: (ScoreSchema & ItemDefinition)[] = [
-    userScore,
+    {
+      ...userScore,
+      ...(song.isCourse
+        ? {}
+        : { radar: calcMyGrooveRadar(chart as StepChartSchema, userScore) }),
+    },
     ...scores.filter(s => s.userId === user.id).map(s => ({ ...s, ttl: 3600 })),
   ]
 
@@ -103,7 +109,7 @@ export default async function (
     httpResponse: {
       status: 200,
       headers: { 'Content-type': 'application/json' },
-      body: userScore,
+      body: documents[0],
     },
     documents,
   }

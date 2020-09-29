@@ -23,6 +23,11 @@ export type ScoreSchema = Pick<
   clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
   rank: string
+  /** Groove Radar */
+  radar?: Pick<
+    StepChartSchema,
+    'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
+  >
 }
 
 /**
@@ -79,6 +84,7 @@ export function fetchScore(
       'rank',
       'exScore',
       'maxCombo',
+      'radar',
     ],
     [
       { condition: 'c.userId = @', value: userId },
