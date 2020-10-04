@@ -2,12 +2,12 @@
   "bindings": [
     {
       "type": "cosmosDBTrigger",
-      "name": "songs",
+      "name": "scores",
       "direction": "in",
-      "leaseCollectionPrefix": "updateSong",
+      "leaseCollectionPrefix": "updateScores",
       "connectionStringSetting": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
-      "collectionName": "Songs",
+      "collectionName": "Scores",
       "createLeaseCollectionIfNotExists": true
     },
     {
@@ -16,8 +16,8 @@
       "direction": "out",
       "connectionStringSetting": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
-      "collectionName": "Scores"
+      "collectionName": "UserDetails"
     }
   ],
-  "scriptFile": "../dist/updateScoresSongInfo/index.js"
+  "scriptFile": "../dist/summaryUserScores/index.js"
 }

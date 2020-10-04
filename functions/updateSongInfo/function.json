@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "type": "cosmosDBTrigger",
+      "name": "songs",
+      "direction": "in",
+      "leaseCollectionPrefix": "updateSong",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "createLeaseCollectionIfNotExists": true
+    },
+    {
+      "name": "$return",
+      "type": "cosmosDB",
+      "direction": "out",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores"
+    }
+  ],
+  "scriptFile": "../dist/updateSongInfo/index.js"
+}

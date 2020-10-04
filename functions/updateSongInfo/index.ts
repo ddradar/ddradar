@@ -5,10 +5,9 @@ import type { ScoreSchema } from '../db/scores'
 import type { SongSchema } from '../db/songs'
 
 /**
- * Update song info of "Scores" container.
+ * Update song info of other container.
  * @param context Function context
  * @param songs Change feed of "Songs" container
- * @param scores "Scores" container
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
