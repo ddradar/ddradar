@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Context } from '@azure/functions'
+import type { Logger } from '@azure/functions'
 
-import { ScoreSchema } from '../db/scores'
+import type { ScoreSchema } from '../db/scores'
 import {
   ClearStatusSchema,
   fetchClearAndScoreStatus,
@@ -17,7 +17,7 @@ type UserDetailsSchema =
 
 /** Import skillAttackId from Skill Attack site. */
 export default async function (
-  context: Context,
+  context: { log: Pick<Logger, 'info'> },
   scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<UserDetailsSchema[]> {
   const userScores = scores.reduce((prev, s) => {
@@ -56,7 +56,7 @@ export default async function (
           s.rank === score.rank
       )
       // Deleted Score
-      if (score?.ttl ?? -1 > 0) {
+      if ((score.ttl ?? -1) > 0) {
         if (clear) clear.count--
         if (rank) rank.count--
         continue

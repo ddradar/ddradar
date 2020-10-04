@@ -1,5 +1,3 @@
-import type { ItemDefinition } from '@azure/cosmos'
-
 import { getContainer } from '.'
 import type { ScoreSchema } from './scores'
 import type { StepChartSchema } from './songs'
@@ -47,7 +45,7 @@ export async function generateGrooveRadar(
   const { resources } = await container.items
     .query<GrooveRadarSchema>({
       query:
-        `SELECT c.userId, "radar" AS type, c.playStyle, ${column} ` +
+        `SELECT c.id, c.userId, "radar" AS type, c.playStyle, ${column} ` +
         'FROM c ' +
         'WHERE c.userId = @id ' +
         'AND c.playStyle = @playStyle ' +
@@ -60,26 +58,26 @@ export async function generateGrooveRadar(
       ],
     })
     .fetchAll()
-  const result = resources[0] ?? {
-    userId,
-    type: 'radar',
-    playStyle,
-    stream: 0,
-    voltage: 0,
-    air: 0,
-    freeze: 0,
-    chaos: 0,
-  }
-  result.id = `radar-${userId}-${playStyle}`
-  return result
+  return (
+    resources[0] ?? {
+      userId,
+      type: 'radar',
+      playStyle,
+      stream: 0,
+      voltage: 0,
+      air: 0,
+      freeze: 0,
+      chaos: 0,
+    }
+  )
 }
 
 export async function fetchClearAndScoreStatus(
   userId: string
-): Promise<((ClearStatusSchema | ScoreStatusSchema) & ItemDefinition)[]> {
+): Promise<(ClearStatusSchema | ScoreStatusSchema)[]> {
   const container = getContainer('UserDetails')
   const { resources } = await container.items
-    .query<(ClearStatusSchema | ScoreStatusSchema) & ItemDefinition>({
+    .query<ClearStatusSchema | ScoreStatusSchema>({
       query:
         'SELECT * FROM c ' +
         'WHERE c.userId = @id ' +
