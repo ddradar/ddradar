@@ -1,3 +1,5 @@
+import type { ItemDefinition } from '@azure/cosmos'
+
 import { getContainer } from '.'
 import type { ScoreSchema } from './scores'
 import type { StepChartSchema } from './songs'
@@ -29,39 +31,6 @@ export type ScoreStatusSchema = Pick<
   count: number
 }
 
-export async function fetchGrooveRadar(
-  userId: string,
-  playStyle: 1 | 2
-): Promise<Required<GrooveRadarSchema> | null> {
-  const container = getContainer('UserDetails')
-  const columns: (keyof GrooveRadarSchema)[] = [
-    'id',
-    'userId',
-    'type',
-    'playStyle',
-    'stream',
-    'voltage',
-    'air',
-    'freeze',
-    'chaos',
-  ]
-  const column = columns.map(c => `c.${c}`).join(', ')
-
-  const { resources } = await container.items
-    .query<Required<GrooveRadarSchema>>({
-      query:
-        `SELECT ${column} ` +
-        'FROM c ' +
-        'WHERE c.userId = @id AND c.type = "radar" AND c.playStyle = @playStyle',
-      parameters: [
-        { name: '@id', value: userId },
-        { name: '@playStyle', value: playStyle },
-      ],
-    })
-    .fetchAll()
-  return resources[0] ?? null
-}
-
 export async function generateGrooveRadar(
   userId: string,
   playStyle: 1 | 2
@@ -91,16 +60,32 @@ export async function generateGrooveRadar(
       ],
     })
     .fetchAll()
-  return (
-    resources[0] ?? {
-      userId,
-      type: 'radar',
-      playStyle,
-      stream: 0,
-      voltage: 0,
-      air: 0,
-      freeze: 0,
-      chaos: 0,
-    }
-  )
+  const result = resources[0] ?? {
+    userId,
+    type: 'radar',
+    playStyle,
+    stream: 0,
+    voltage: 0,
+    air: 0,
+    freeze: 0,
+    chaos: 0,
+  }
+  result.id = `radar-${userId}-${playStyle}`
+  return result
+}
+
+export async function fetchClearAndScoreStatus(
+  userId: string
+): Promise<((ClearStatusSchema | ScoreStatusSchema) & ItemDefinition)[]> {
+  const container = getContainer('UserDetails')
+  const { resources } = await container.items
+    .query<(ClearStatusSchema | ScoreStatusSchema) & ItemDefinition>({
+      query:
+        'SELECT * FROM c ' +
+        'WHERE c.userId = @id ' +
+        'AND c.type = "clear" OR c.type = "score"',
+      parameters: [{ name: '@id', value: userId }],
+    })
+    .fetchAll()
+  return resources
 }

@@ -1,0 +1,23 @@
+{
+  "bindings": [
+    {
+      "type": "cosmosDBTrigger",
+      "name": "scores",
+      "direction": "in",
+      "leaseCollectionPrefix": "updateScores",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "createLeaseCollectionIfNotExists": true
+    },
+    {
+      "name": "$return",
+      "type": "cosmosDB",
+      "direction": "out",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails"
+    }
+  ],
+  "scriptFile": "../dist/summaryUserScores/index.js"
+}
