@@ -1,14 +1,11 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { StepChartSchema } from '../db/songs'
+import type { GrooveRadarSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
 import type { NotFoundResult, SuccessResult } from '../function'
 
-type GrooveRadarInfo = Pick<
-  StepChartSchema,
-  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
->
+type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>
 
 /** Get Groove Radar that match the specified user ID and play style. */
 export default async function (
@@ -30,6 +27,6 @@ export default async function (
     headers: { 'Content-type': 'application/json' },
     body: radars
       .filter(r => !playStyle || r.playStyle === playStyle)
-      .sort((l, r) => l.playStyle - r.playStyle), // Single, Double
+      .sort((l, r) => l.playStyle - r.playStyle), // ORDER BY Single, Double
   }
 }

@@ -3,7 +3,7 @@ import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import type { UserSchema } from '../db'
-import type { StepChartSchema } from '../db/songs'
+import type { GrooveRadarSchema } from '../db/user-details'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')
@@ -25,32 +25,16 @@ describe('GET /api/v1/users/{id}/radar', () => {
     area: 0,
     isPublic: false,
   }
-  const radars: Pick<
-    StepChartSchema,
-    'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
-  >[] = [
-    {
-      playStyle: 2,
-      stream: 100,
-      voltage: 100,
-      air: 100,
-      freeze: 100,
-      chaos: 100,
-    },
-    {
-      playStyle: 1,
-      stream: 100,
-      voltage: 100,
-      air: 100,
-      freeze: 100,
-      chaos: 100,
-    },
+  const radar = { stream: 100, voltage: 100, air: 100, freeze: 100, chaos: 100 }
+  const radars: Omit<GrooveRadarSchema, 'userId' | 'type'>[] = [
+    { ...radar, playStyle: 2 },
+    { ...radar, playStyle: 1 },
   ]
 
   const req = { headers: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('returns "404 Not Found" if users is empty', async () => {
+  test('/foo/radar returns "404 Not Found"', async () => {
     // Arrange
     context.bindingData.id = 'foo'
 
@@ -61,7 +45,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     expect(result.status).toBe(404)
   })
 
-  test('returns "404 Not Found" if users has 1 private user', async () => {
+  test(`/${privateUser.id}/radar returns "404 Not Found"`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
 
@@ -72,7 +56,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     expect(result.status).toBe(404)
   })
 
-  test('/ returns "200 OK" with JSON body if documents has 1 public user', async () => {
+  test(`/${publicUser.id}/radar returns "200 OK" with JSON body`, async () => {
     // Arrange
     context.bindingData.id = publicUser.id
 
@@ -103,7 +87,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     }
   )
 
-  test('/ returns "200 OK" with JSON body if documents has 1 login user', async () => {
+  test(`/${privateUser.id}/radar returns "200 OK" with JSON body`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
