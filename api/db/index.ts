@@ -13,7 +13,12 @@ export type {
   UserSchema,
 }
 
-type ContainerName = 'Scores' | 'Songs' | 'Users' | 'Notification'
+type ContainerName =
+  | 'Scores'
+  | 'Songs'
+  | 'Users'
+  | 'Notification'
+  | 'UserDetails'
 
 const connectionString =
   // eslint-disable-next-line node/no-process-env

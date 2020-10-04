@@ -1,6 +1,11 @@
 import { Container, CosmosClient } from '@azure/cosmos'
 
-type ContainerName = 'Scores' | 'Songs' | 'Users' | 'Notification'
+type ContainerName =
+  | 'Scores'
+  | 'Songs'
+  | 'Users'
+  | 'Notification'
+  | 'UserDetails'
 
 export function getConnectionString(): string | undefined {
   // eslint-disable-next-line node/no-process-env
