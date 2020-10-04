@@ -41,24 +41,23 @@ describe('/db/user-details.ts', () => {
 
     test('returns groove radar', async () => {
       // Arrange
-      const dbRadar = { ...radar, id: 'radar-public_user-1' }
-      resources.push(dbRadar)
+      resources.push({ ...radar })
 
       // Act
       const result = await generateGrooveRadar('public_user', 1)
 
       // Assert
-      expect(result).toBe(dbRadar)
+      expect(result).toStrictEqual({ ...radar, id: 'radar-public_user-1' })
       expect(container.items.query).toBeCalledWith({
         query:
-          'SELECT c.id, c.userId, "radar" AS type, c.playStyle, ' +
+          'SELECT c.userId, "radar" AS type, c.playStyle, ' +
           'MAX(c.radar.stream) AS stream, MAX(c.radar.voltage) AS voltage, MAX(c.radar.air) AS air, MAX(c.radar.freeze) AS freeze, MAX(c.radar.chaos) AS chaos ' +
           'FROM c ' +
           'WHERE c.userId = @id ' +
           'AND c.playStyle = @playStyle ' +
           'AND IS_DEFINED(c.radar) ' +
           'AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) ' +
-          'GROUP BY c.playStyle',
+          'GROUP BY c.userId, c.playStyle',
         parameters: [
           { name: '@id', value: 'public_user' },
           { name: '@playStyle', value: 1 },
@@ -71,7 +70,11 @@ describe('/db/user-details.ts', () => {
       const result = await generateGrooveRadar('public_user', 1)
       const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
 
-      expect(result).toStrictEqual({ ...radar, ...emptyRadar })
+      expect(result).toStrictEqual({
+        ...radar,
+        ...emptyRadar,
+        id: 'radar-public_user-1',
+      })
       expect(container.items.query).toBeCalled()
     })
   })

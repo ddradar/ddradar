@@ -45,31 +45,31 @@ export async function generateGrooveRadar(
   const { resources } = await container.items
     .query<GrooveRadarSchema>({
       query:
-        `SELECT c.id, c.userId, "radar" AS type, c.playStyle, ${column} ` +
+        `SELECT c.userId, "radar" AS type, c.playStyle, ${column} ` +
         'FROM c ' +
         'WHERE c.userId = @id ' +
         'AND c.playStyle = @playStyle ' +
         'AND IS_DEFINED(c.radar) ' +
         'AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) ' +
-        'GROUP BY c.playStyle',
+        'GROUP BY c.userId, c.playStyle',
       parameters: [
         { name: '@id', value: userId },
         { name: '@playStyle', value: playStyle },
       ],
     })
     .fetchAll()
-  return (
-    resources[0] ?? {
-      userId,
-      type: 'radar',
-      playStyle,
-      stream: 0,
-      voltage: 0,
-      air: 0,
-      freeze: 0,
-      chaos: 0,
-    }
-  )
+  const result = resources[0] ?? {
+    userId,
+    type: 'radar',
+    playStyle,
+    stream: 0,
+    voltage: 0,
+    air: 0,
+    freeze: 0,
+    chaos: 0,
+  }
+  result.id = `radar-${userId}-${playStyle}`
+  return result
 }
 
 export async function fetchClearAndScoreStatus(
