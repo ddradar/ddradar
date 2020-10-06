@@ -1,7 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { testSongData } from '../__tests__/data'
+import {
+  areaHiddenUser,
+  privateUser,
+  publicUser,
+  testSongData,
+} from '../__tests__/data'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { fetchScore, ScoreSchema } from '../db/scores'
 import type { Score } from '../score'
@@ -16,25 +21,6 @@ jest.mock('../db/scores', () => ({
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
   const song = { ...testSongData, isCourse: false }
-
-  const publicUser = {
-    id: 'public_user',
-    name: 'AFRO',
-    area: 13,
-    isPublic: true,
-  } as const
-  const areaHiddenUser = {
-    id: 'area_hidden_user',
-    name: 'ZERO',
-    area: 0,
-    isPublic: true,
-  } as const
-  const privateUser = {
-    id: 'private_user',
-    name: 'EMI',
-    area: 13,
-    isPublic: false,
-  } as const
 
   const scoreTemplate = {
     songId: song.id,
@@ -174,7 +160,7 @@ describe('POST /api/v1/scores', () => {
     [2, 0],
     [1, 4],
   ])(
-    `/%s returns "404 Not Found" if body is [{ playStyle: %i, difficulty: %i }]`,
+    `/${song.id} returns "404 Not Found" if body is [{ playStyle: %i, difficulty: %i }]`,
     async (playStyle, difficulty) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
@@ -188,7 +174,7 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test('/%s returns "400 Bad Request" if body is invalid Score', async () => {
+  test(`/${song.id} returns "400 Bad Request" if body is invalid Score`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     req.body = [
