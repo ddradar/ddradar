@@ -4,7 +4,7 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { DanceLevelList } from '../db/scores'
 import type { ScoreStatusSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>
 
@@ -14,12 +14,12 @@ export default async function (
   req: Pick<HttpRequest, 'headers' | 'query'>,
   [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
   scoreStatuses: ScoreStatus[]
-): Promise<NotFoundResult | SuccessResult<ScoreStatus[]>> {
+): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private
   if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return { status: 404 }
+    return new ErrorResult(404)
   }
 
   const playStyle = parseInt(req.query.playStyle, 10)
@@ -27,10 +27,8 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: scoreStatuses
+  return new SuccessResult(
+    scoreStatuses
       .filter(
         r =>
           (!isValidPlayStyle || r.playStyle === playStyle) &&
@@ -43,6 +41,6 @@ export default async function (
           ? l.level - r.level
           : DanceLevelList.findIndex(s => l.rank === s) -
             DanceLevelList.findIndex(s => r.rank === s)
-      ), // ORDER BY playStyle, level, rank
-  }
+      ) // ORDER BY playStyle, level, rank
+  )
 }

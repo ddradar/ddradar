@@ -7,17 +7,10 @@ import {
   isUserSchema,
   UserSchema,
 } from '../db/users'
-import type {
-  BadRequestResult,
-  SuccessResult,
-  UnauthenticatedResult,
-} from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type PostUserResult = {
-  httpResponse:
-    | BadRequestResult
-    | SuccessResult<UserSchema>
-    | UnauthenticatedResult
+  httpResponse: ErrorResult<400 | 401> | SuccessResult<UserSchema>
   document?: UserSchema
 }
 
@@ -27,11 +20,11 @@ export default async function (
   req: Pick<HttpRequest, 'body' | 'headers'>
 ): Promise<PostUserResult> {
   const clientPrincipal = getClientPrincipal(req)
-  if (!clientPrincipal) return { httpResponse: { status: 401 } }
+  if (!clientPrincipal) return { httpResponse: new ErrorResult(401) }
   const loginId = clientPrincipal.userId
 
   if (!isUserSchema(req.body)) {
-    return { httpResponse: { status: 400, body: 'Body is not UserSchema' } }
+    return { httpResponse: new ErrorResult(400, 'Body is not UserSchema') }
   }
 
   // Read existing data
@@ -39,7 +32,7 @@ export default async function (
     (await fetchUser(req.body.id)) ?? (await fetchLoginUser(loginId))
 
   if (oldData && (oldData.id !== req.body.id || oldData.loginId !== loginId)) {
-    return { httpResponse: { status: 400, body: 'Duplicated Id' } }
+    return { httpResponse: new ErrorResult(400, 'Duplicated Id') }
   }
 
   // Merge existing data with new data
@@ -52,11 +45,7 @@ export default async function (
   }
 
   return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body,
-    },
+    httpResponse: new SuccessResult(body),
     document: { ...body, loginId: oldData?.loginId ?? loginId },
   }
 }

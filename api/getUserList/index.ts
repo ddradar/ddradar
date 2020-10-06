@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
 import { AreaCode, areaCodeList, fetchUserList, UserSchema } from '../db/users'
-import type { SuccessResult } from '../function'
+import { SuccessResult } from '../function'
 
 const isArea = (obj: unknown): obj is AreaCode =>
   typeof obj === 'number' && (areaCodeList as number[]).includes(obj)
@@ -26,9 +26,5 @@ export default async function (
       : undefined
   )
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  return new SuccessResult(body)
 }

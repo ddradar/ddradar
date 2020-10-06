@@ -9,13 +9,7 @@ import {
   SongSchema,
   StepChartSchema,
 } from '../db/songs'
-import {
-  BadRequestResult,
-  getBindingNumber,
-  NotFoundResult,
-  SuccessResult,
-  UnauthenticatedResult,
-} from '../function'
+import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
@@ -24,11 +18,7 @@ type SongInput = Pick<SongSchema, 'id' | 'name'> & {
 }
 
 type PostScoreResult = {
-  httpResponse:
-    | BadRequestResult
-    | NotFoundResult
-    | UnauthenticatedResult
-    | SuccessResult<ScoreSchema>
+  httpResponse: ErrorResult<400 | 401 | 404> | SuccessResult<ScoreSchema>
   documents?: (ScoreSchema & ItemDefinition)[]
 }
 
@@ -43,28 +33,28 @@ export default async function (
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
 
   if (!isScore(req.body)) {
-    return { httpResponse: { status: 400, body: 'body is not Score' } }
+    return { httpResponse: new ErrorResult(400, 'body is not Score') }
   }
 
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
     const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
-    return { httpResponse: { status: 404, body } }
+    return { httpResponse: new ErrorResult(404, body) }
   }
 
   const playStyle: 1 | 2 = bindingData.playStyle
   const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
 
   // Get chart info
-  if (songs.length !== 1) return { httpResponse: { status: 404 } }
+  if (songs.length !== 1) return { httpResponse: new ErrorResult(404) }
   const song = songs[0]
   const chart = song.charts.find(
     c => c.playStyle === playStyle && c.difficulty === difficulty
   )
-  if (!chart) return { httpResponse: { status: 404 } }
+  if (!chart) return { httpResponse: new ErrorResult(404) }
 
   if (!isValidScore(chart, req.body)) {
-    return { httpResponse: { status: 400, body: 'body is invalid Score' } }
+    return { httpResponse: new ErrorResult(400, 'body is invalid Score') }
   }
 
   const userScore: ScoreSchema = {
@@ -105,14 +95,7 @@ export default async function (
     }
   }
 
-  return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body: documents[0],
-    },
-    documents,
-  }
+  return { httpResponse: new SuccessResult(documents[0]), documents }
 
   /** Add new Area Top score into documents if greater than old one. */
   function updateAreaScore(area: string, score: ScoreSchema) {
