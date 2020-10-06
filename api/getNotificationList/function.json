@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Notification",
-      "sqlQuery": "SELECT c.id, c.type, c.icon, c.title, c.body, c.timeStamp, c.pinned, c.sender FROM c ORDER BY c.pinned, c.timeStamp DESC",
+      "sqlQuery": "SELECT c.id, c.type, c.icon, c.title, c.body, c.timeStamp, c.pinned, c.sender FROM c ORDER BY c.pinned DESC, c.timeStamp DESC",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {
