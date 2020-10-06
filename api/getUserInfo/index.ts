@@ -2,7 +2,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
 import type { UserSchema } from '../db'
-import { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic'>
 
@@ -11,7 +11,7 @@ export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>,
   [user]: UserSchema[]
-): Promise<NotFoundResult | SuccessResult<UserInfo>> {
+): Promise<ErrorResult<404> | SuccessResult<UserInfo>> {
   const clientPrincipal = getClientPrincipal(req)
   const loginId = clientPrincipal?.userId ?? ''
 

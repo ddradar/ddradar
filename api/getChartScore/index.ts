@@ -2,21 +2,21 @@ import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ScoreSchema } from '../db/scores'
-import { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 /** Get scores that match the specified chart. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
   scores: ScoreSchema[]
-): Promise<NotFoundResult | SuccessResult<Omit<ScoreSchema, 'isPublic'>[]>> {
+): Promise<ErrorResult<404> | SuccessResult<Omit<ScoreSchema, 'isPublic'>[]>> {
   const scope = ['private', 'medium', 'full'].includes(req.query.scope)
     ? (req.query.scope as 'private' | 'medium' | 'full')
     : 'medium'
 
   const user = await getLoginUserInfo(getClientPrincipal(req))
 
-  if (scope === 'private' && !user) return { status: 404 }
+  if (scope === 'private' && !user) return new ErrorResult(404)
 
   /**
    * private: `[user.id]`
@@ -31,7 +31,7 @@ export default async function (
     .filter(s => userIds.includes(s.userId) || (scope === 'full' && s.isPublic))
     .map(omitProperty)
 
-  if (body.length === 0) return { status: 404 }
+  if (body.length === 0) return new ErrorResult(404)
 
   return new SuccessResult(body)
 }

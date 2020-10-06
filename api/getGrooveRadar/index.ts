@@ -3,7 +3,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { GrooveRadarSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
-import { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>
 
@@ -13,12 +13,12 @@ export default async function (
   req: Pick<HttpRequest, 'headers'>,
   [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
   radars: GrooveRadarInfo[]
-): Promise<NotFoundResult | SuccessResult<GrooveRadarInfo[]>> {
+): Promise<ErrorResult<404> | SuccessResult<GrooveRadarInfo[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private
   if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return { status: 404 }
+    return new ErrorResult(404)
   }
 
   const playStyle = bindingData.playStyle as 1 | 2 | undefined

@@ -4,12 +4,7 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ItemDefinition, UserSchema } from '../db'
 import { fetchScore, ScoreSchema } from '../db/scores'
 import type { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
-import {
-  BadRequestResult,
-  NotFoundResult,
-  SuccessResult,
-  UnauthenticatedResult,
-} from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
@@ -29,11 +24,7 @@ type SongInput = Pick<SongSchema, 'id' | 'name'> & {
 }
 
 type PostSongScoresResponse = {
-  httpResponse:
-    | BadRequestResult
-    | UnauthenticatedResult
-    | NotFoundResult
-    | SuccessResult<ScoreSchema[]>
+  httpResponse: ErrorResult<400 | 401 | 404> | SuccessResult<ScoreSchema[]>
   documents?: (ScoreSchema & ItemDefinition)[]
 }
 
@@ -49,17 +40,17 @@ export default async function (
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
 
   if (!isValidBody(req.body)) {
-    return { httpResponse: { status: 400, body: 'body is not Score[]' } }
+    return { httpResponse: new ErrorResult(400, 'body is not Score[]') }
   }
 
   const user = await getLoginUserInfo(clientPrincipal)
   if (!user) {
     const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
-    return { httpResponse: { status: 404, body } }
+    return { httpResponse: new ErrorResult(404, body) }
   }
 
   // Get chart info
-  if (!song) return { httpResponse: { status: 404 } }
+  if (!song) return { httpResponse: new ErrorResult(404) }
 
   const documents: (ScoreSchema & ItemDefinition)[] = []
   const body: ScoreSchema[] = []
@@ -68,10 +59,10 @@ export default async function (
     const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
-    if (!chart) return { httpResponse: { status: 404 } }
+    if (!chart) return { httpResponse: new ErrorResult(404) }
     if (!isValidScore(chart, score)) {
       return {
-        httpResponse: { status: 400, body: `body[${i}] is invalid Score` },
+        httpResponse: new ErrorResult(400, `body[${i}] is invalid Score`),
       }
     }
 

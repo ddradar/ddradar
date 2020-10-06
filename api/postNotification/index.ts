@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { NotificationSchema } from '../db'
-import { BadRequestResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 import {
   hasIntegerProperty,
   hasProperty,
@@ -12,7 +12,7 @@ type NotificationBody = Partial<NotificationSchema> &
   Omit<NotificationSchema, 'id' | 'timeStamp'>
 
 type PostNotificationResult = {
-  httpResponse: BadRequestResult | SuccessResult<NotificationBody>
+  httpResponse: ErrorResult<400> | SuccessResult<NotificationBody>
   document?: NotificationBody
 }
 
@@ -34,9 +34,7 @@ export default async function (
   req: Pick<HttpRequest, 'body'>
 ): Promise<PostNotificationResult> {
   if (!isNotificationBody(req.body)) {
-    return {
-      httpResponse: { status: 400, body: 'Body is not NotificationSchema' },
-    }
+    return { httpResponse: new ErrorResult(400) }
   }
 
   const document: NotificationBody = {

@@ -1,22 +1,12 @@
-export type BadRequestResult = {
-  status: 400
-  body?: string
-}
-
-export type UnauthenticatedResult = {
-  status: 401
-  body?: string
-}
-
-export type NotFoundResult = {
-  status: 404
-  body?: string
-}
-
 export class SuccessResult<T> {
   status = 200 as const
   headers = { 'Content-type': 'application/json' as const }
   constructor(public body: T) {}
+}
+
+type ErrorCode = 400 | 401 | 404
+export class ErrorResult<T extends ErrorCode> {
+  constructor(public status: T, public body?: string) {}
 }
 
 export type NoContentResult = {

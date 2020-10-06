@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { isSongSchema, SongSchema } from '../db/songs'
-import { BadRequestResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type PostSongResult = {
-  httpResponse: BadRequestResult | SuccessResult<SongSchema>
+  httpResponse: ErrorResult<400> | SuccessResult<SongSchema>
   document?: SongSchema
 }
 
@@ -14,7 +14,7 @@ export default async function (
   req: Pick<HttpRequest, 'body'>
 ): Promise<PostSongResult> {
   if (!isSongSchema(req.body)) {
-    return { httpResponse: { status: 400, body: 'Body is not SongSchema' } }
+    return { httpResponse: new ErrorResult(400) }
   }
 
   const document: SongSchema = {
