@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import type { UserSchema } from '../db'
 import type { ClearLamp } from '../db/scores'
 import type { ClearStatusSchema } from '../db/user-details'
 import getGrooveRadar from '.'
@@ -10,21 +10,6 @@ import getGrooveRadar from '.'
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/clear', () => {
-  const publicUser: UserSchema = {
-    id: 'public_user',
-    loginId: '1',
-    name: 'Public User',
-    area: 13,
-    code: 10000000,
-    isPublic: true,
-  }
-  const privateUser: UserSchema = {
-    id: 'private_user',
-    loginId: '2',
-    name: 'Private User',
-    area: 0,
-    isPublic: false,
-  }
   const statuses: Omit<ClearStatusSchema, 'userId' | 'type'>[] = [
     ...Array(19 * 8).keys(),
   ].map(n => ({

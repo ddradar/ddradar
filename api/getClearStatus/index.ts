@@ -3,7 +3,7 @@ import type { HttpRequest } from '@azure/functions'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ClearStatusSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type ClearStatus = Omit<ClearStatusSchema, 'userId' | 'type'>
 
@@ -13,12 +13,12 @@ export default async function (
   req: Pick<HttpRequest, 'headers' | 'query'>,
   [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
   clearStatuses: ClearStatus[]
-): Promise<NotFoundResult | SuccessResult<ClearStatus[]>> {
+): Promise<ErrorResult<404> | SuccessResult<ClearStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private
   if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return { status: 404 }
+    return new ErrorResult(404)
   }
 
   const playStyle = parseInt(req.query.playStyle, 10)
@@ -26,10 +26,8 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 20
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: clearStatuses
+  return new SuccessResult(
+    clearStatuses
       .filter(
         r =>
           (!isValidPlayStyle || playStyle === r.playStyle) &&
@@ -41,6 +39,6 @@ export default async function (
           : l.level !== r.level
           ? l.level - r.level
           : l.clearLamp - r.clearLamp
-      ), // ORDER BY Single 1, Single 2, ..., Single 19, Double 1, ...
-  }
+      ) // ORDER BY playStyle, level, clearLamp
+  )
 }
