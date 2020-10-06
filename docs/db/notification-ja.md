@@ -38,7 +38,7 @@ English version is [here](./notification.md).
   "compositeIndexes": [
     {
       "path": "/pinned",
-      "order": "ascending"
+      "order": "descending"
     },
     {
       "path": "/timeStamp",
