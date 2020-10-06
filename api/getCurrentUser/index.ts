@@ -12,7 +12,7 @@ export default async function (
   const user = await getLoginUserInfo(getClientPrincipal(req))
 
   if (!user) {
-    return { status: 404, body: 'User registration is not completed' }
+    return new ErrorResult(404, 'User registration is not completed')
   }
   delete user.loginId
 

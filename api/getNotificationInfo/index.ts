@@ -10,8 +10,7 @@ export default async function (
   [notification]: NotificationSchema[]
 ): Promise<ErrorResult<404> | SuccessResult<NotificationSchema>> {
   if (!notification) {
-    const id = bindingData.id
-    return { status: 404, body: `Not found course that id: "${id}"` }
+    return new ErrorResult(404, `Not found course that id: "${bindingData.id}"`)
   }
 
   return new SuccessResult(notification)

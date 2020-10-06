@@ -16,8 +16,7 @@ export default async function (
   const loginId = clientPrincipal?.userId ?? ''
 
   if (!user || (!user.isPublic && user.loginId !== loginId)) {
-    const id: string = bindingData.id
-    return { status: 404, body: `Not found user that id: "${id}"` }
+    return new ErrorResult(404, `Not found user that id: "${bindingData.id}"`)
   }
 
   const body: UserInfo = { id: user.id, name: user.name, area: user.area }

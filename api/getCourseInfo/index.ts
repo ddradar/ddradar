@@ -10,8 +10,7 @@ export default async function (
   [course]: CourseSchema[]
 ): Promise<ErrorResult<404> | SuccessResult<CourseSchema>> {
   if (!course) {
-    const body = `Not found course that id: "${bindingData.id}"`
-    return { status: 404, body }
+    return new ErrorResult(404, `Not found course that id: "${bindingData.id}"`)
   }
 
   return new SuccessResult(course)

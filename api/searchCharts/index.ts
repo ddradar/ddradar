@@ -14,7 +14,7 @@ export default async function (
 ): Promise<ErrorResult<404> | SuccessResult<ChartListData[]>> {
   if (documents.length === 0) {
     const message = `Not found chart that {playStyle: ${bindingData.playStyle}, level: ${bindingData.level}}`
-    return { status: 404, body: message }
+    return new ErrorResult(404, message)
   }
   return new SuccessResult(documents)
 }
