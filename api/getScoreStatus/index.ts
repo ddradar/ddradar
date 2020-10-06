@@ -4,7 +4,7 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { DanceLevelList } from '../db/scores'
 import type { ScoreStatusSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { NotFoundResult, SuccessResult } from '../function'
 
 type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>
 
@@ -27,10 +27,8 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: scoreStatuses
+  return new SuccessResult(
+    scoreStatuses
       .filter(
         r =>
           (!isValidPlayStyle || r.playStyle === playStyle) &&
@@ -43,6 +41,6 @@ export default async function (
           ? l.level - r.level
           : DanceLevelList.findIndex(s => l.rank === s) -
             DanceLevelList.findIndex(s => r.rank === s)
-      ), // ORDER BY playStyle, level, rank
-  }
+      ) // ORDER BY playStyle, level, rank
+  )
 }

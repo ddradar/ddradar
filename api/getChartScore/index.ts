@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ScoreSchema } from '../db/scores'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { NotFoundResult, SuccessResult } from '../function'
 
 /** Get scores that match the specified chart. */
 export default async function (
@@ -18,6 +18,10 @@ export default async function (
 
   if (scope === 'private' && !user) return { status: 404 }
 
+  /**
+   * private: `[user.id]`
+   * medium, full: `[user.id, '0', user.area]`
+   */
   const userIds = [
     user?.id,
     ...(scope !== 'private' ? ['0', `${user?.area ?? ''}`] : []),
@@ -27,14 +31,9 @@ export default async function (
     .filter(s => userIds.includes(s.userId) || (scope === 'full' && s.isPublic))
     .map(omitProperty)
 
-  if (body.length === 0) {
-    return { status: 404 }
-  }
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  if (body.length === 0) return { status: 404 }
+
+  return new SuccessResult(body)
 }
 
 const omitProperty = (s: ScoreSchema) => ({

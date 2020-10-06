@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import type { NotificationSchema } from '../db/notification'
-import type { SuccessResult } from '../function'
+import { SuccessResult } from '../function'
 
 type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
 
@@ -24,9 +24,5 @@ export default async function (
       timeStamp: n.timeStamp,
     }))
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  return new SuccessResult(body)
 }

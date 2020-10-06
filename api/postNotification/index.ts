@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { NotificationSchema } from '../db'
-import type { BadRequestResult, SuccessResult } from '../function'
+import { BadRequestResult, SuccessResult } from '../function'
 import {
   hasIntegerProperty,
   hasProperty,
@@ -50,12 +50,5 @@ export default async function (
     ...(req.body.id ? { id: req.body.id } : {}),
   }
 
-  return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body: document,
-    },
-    document,
-  }
+  return { httpResponse: new SuccessResult(document), document }
 }

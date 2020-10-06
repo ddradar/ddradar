@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { isSongSchema, SongSchema } from '../db/songs'
-import type { BadRequestResult, SuccessResult } from '../function'
+import { BadRequestResult, SuccessResult } from '../function'
 
 type PostSongResult = {
   httpResponse: BadRequestResult | SuccessResult<SongSchema>
@@ -33,12 +33,5 @@ export default async function (
     ),
   }
 
-  return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body: document,
-    },
-    document,
-  }
+  return { httpResponse: new SuccessResult(document), document }
 }

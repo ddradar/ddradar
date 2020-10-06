@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { UserSchema } from '../db/users'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { NotFoundResult, SuccessResult } from '../function'
 
 /** Get information about the currently logged in user. */
 export default async function (
@@ -16,9 +16,5 @@ export default async function (
   }
   delete user.loginId
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: user,
-  }
+  return new SuccessResult(user)
 }

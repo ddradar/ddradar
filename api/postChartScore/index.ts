@@ -105,14 +105,7 @@ export default async function (
     }
   }
 
-  return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body: documents[0],
-    },
-    documents,
-  }
+  return { httpResponse: new SuccessResult(documents[0]), documents }
 
   /** Add new Area Top score into documents if greater than old one. */
   function updateAreaScore(area: string, score: ScoreSchema) {

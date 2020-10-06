@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { CourseSchema, SeriesList, StepChartSchema } from '../db/songs'
-import type { SuccessResult } from '../function'
+import { SuccessResult } from '../function'
 
 type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
   charts: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
@@ -19,7 +19,7 @@ export default async function (
   const isValidType = type === 1 || type === 2
   const isValidSeries = series === 16 || series === 17
 
-  const body = documents
+  const courses = documents
     .filter(
       c =>
         (!isValidType || c.nameIndex === -1 * type) &&
@@ -27,5 +27,5 @@ export default async function (
     )
     .map(c => ({ id: c.id, name: c.name, series: c.series, charts: c.charts }))
 
-  return { status: 200, headers: { 'Content-type': 'application/json' }, body }
+  return new SuccessResult(courses)
 }

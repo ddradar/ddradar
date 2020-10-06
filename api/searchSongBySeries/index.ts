@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import type { SongSchema } from '../db/songs'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { NotFoundResult, SuccessResult } from '../function'
 
 type SongListData = Omit<SongSchema, 'charts'>
 
@@ -18,9 +18,5 @@ export default async function (
 
   if (body.length === 0) return { status: 404 }
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  return new SuccessResult(body)
 }

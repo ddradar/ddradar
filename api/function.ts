@@ -13,10 +13,10 @@ export type NotFoundResult = {
   body?: string
 }
 
-export type SuccessResult<T> = {
-  status: 200
-  headers: { 'Content-type': 'application/json' }
-  body: T
+export class SuccessResult<T> {
+  status = 200 as const
+  headers = { 'Content-type': 'application/json' as const }
+  constructor(public body: T) {}
 }
 
 export type NoContentResult = {

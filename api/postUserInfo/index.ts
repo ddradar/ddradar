@@ -7,7 +7,7 @@ import {
   isUserSchema,
   UserSchema,
 } from '../db/users'
-import type {
+import {
   BadRequestResult,
   SuccessResult,
   UnauthenticatedResult,
@@ -52,11 +52,7 @@ export default async function (
   }
 
   return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body,
-    },
+    httpResponse: new SuccessResult(body),
     document: { ...body, loginId: oldData?.loginId ?? loginId },
   }
 }

@@ -4,7 +4,7 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ItemDefinition, UserSchema } from '../db'
 import { fetchScore, ScoreSchema } from '../db/scores'
 import type { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
-import type {
+import {
   BadRequestResult,
   NotFoundResult,
   SuccessResult,
@@ -43,7 +43,7 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'body'>,
-  songs: SongInput[]
+  [song]: SongInput[]
 ): Promise<PostSongScoresResponse> {
   const clientPrincipal = getClientPrincipal(req)
   if (!clientPrincipal) return { httpResponse: { status: 401 } }
@@ -59,8 +59,7 @@ export default async function (
   }
 
   // Get chart info
-  if (songs.length !== 1) return { httpResponse: { status: 404 } }
-  const song = songs[0]
+  if (!song) return { httpResponse: { status: 404 } }
 
   const documents: (ScoreSchema & ItemDefinition)[] = []
   const body: ScoreSchema[] = []
@@ -104,14 +103,7 @@ export default async function (
     }
   }
 
-  return {
-    httpResponse: {
-      status: 200,
-      headers: { 'Content-type': 'application/json' },
-      body,
-    },
-    documents,
-  }
+  return { httpResponse: new SuccessResult(body), documents }
 
   /** Assert request body is valid schema. */
   function isValidBody(body: unknown): body is ScoreBody[] {

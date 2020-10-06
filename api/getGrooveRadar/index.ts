@@ -3,7 +3,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { GrooveRadarSchema } from '../db/user-details'
 import type { UserSchema } from '../db/users'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { NotFoundResult, SuccessResult } from '../function'
 
 type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>
 
@@ -11,22 +11,20 @@ type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>
 export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>,
-  users: Pick<UserSchema, 'id' | 'isPublic'>[],
+  [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
   radars: GrooveRadarInfo[]
 ): Promise<NotFoundResult | SuccessResult<GrooveRadarInfo[]>> {
-  const user = await getLoginUserInfo(getClientPrincipal(req))
+  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private
-  if (users.length != 1 || (!users[0].isPublic && users[0].id !== user?.id)) {
+  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
     return { status: 404 }
   }
 
   const playStyle = bindingData.playStyle as 1 | 2 | undefined
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: radars
+  return new SuccessResult(
+    radars
       .filter(r => !playStyle || r.playStyle === playStyle)
-      .sort((l, r) => l.playStyle - r.playStyle), // ORDER BY Single, Double
-  }
+      .sort((l, r) => l.playStyle - r.playStyle) // ORDER BY Single, Double
+  )
 }
