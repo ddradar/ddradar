@@ -56,8 +56,8 @@ jobs:
           Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
           Start-CosmosDbEmulator -NoUI
           Get-CosmosDbEmulatorStatus
-          echo "::set-env name=COSMOS_DB_CONN::AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw=="
-          echo "::set-env name=NODE_TLS_REJECT_UNAUTHORIZED::0"
+          echo "COSMOS_DB_CONN=AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==" >> $GITHUB_ENV
+          echo "NODE_TLS_REJECT_UNAUTHORIZED=0" >> $GITHUB_ENV
       - name: Test
         run: yarn test
       - name: Report Code Coverage to codecov
