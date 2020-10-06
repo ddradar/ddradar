@@ -1,4 +1,5 @@
 import type { SongSchema } from '../db/songs'
+import type { UserSchema } from '../db/users'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
 export const testSongData: SongSchema = {
@@ -73,3 +74,22 @@ export const testSongList: Omit<SongSchema, 'charts'>[] = [
     maxBPM: 160,
   },
 ]
+
+/** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
+export const publicUser: UserSchema = {
+  id: 'public_user',
+  loginId: '1',
+  name: 'Public User',
+  area: 13,
+  code: 10000000,
+  isPublic: true,
+} as const
+
+/** { isPublic: false, area: 0, code: undefined } user */
+export const privateUser: UserSchema = {
+  id: 'private_user',
+  loginId: '2',
+  name: 'Private User',
+  area: 0,
+  isPublic: false,
+} as const
