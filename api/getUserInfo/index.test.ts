@@ -1,6 +1,7 @@
 import type { Context } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { privateUser, publicUser } from '../__tests__/data'
 import { getClientPrincipal } from '../auth'
 import getUserInfo from '.'
 
@@ -8,25 +9,10 @@ jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  const publicUser = {
-    id: 'public_user',
-    loginId: '1',
-    name: 'Public User',
-    area: 13,
-    code: 10000000,
-    isPublic: true,
-  } as const
-  const privateUser = {
-    id: 'private_user',
-    loginId: '2',
-    name: 'Private User',
-    area: 0,
-    isPublic: false,
-  } as const
   const req = { headers: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('returns "404 Not Found" if documents is empty', async () => {
+  test('/foo returns "404 Not Found"', async () => {
     // Arrange
     context.bindingData.id = 'foo'
 
@@ -35,10 +21,9 @@ describe('GET /api/v1/users/{id}', () => {
 
     // Assert
     expect(result.status).toBe(404)
-    expect(result.body).toBe('Not found user that id: "foo"')
   })
 
-  test('returns "200 OK" with JSON body if documents has 1 public user', async () => {
+  test(`/${publicUser.id} returns "200 OK" with JSON body`, async () => {
     // Arrange
     context.bindingData.id = publicUser.id
 
@@ -55,7 +40,7 @@ describe('GET /api/v1/users/{id}', () => {
     })
   })
 
-  test('returns "404 Not Found" if documents has 1 private user', async () => {
+  test(`/${privateUser.id} returns "404 Not Found"`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
 
@@ -64,10 +49,9 @@ describe('GET /api/v1/users/{id}', () => {
 
     // Assert
     expect(result.status).toBe(404)
-    expect(result.body).toBe(`Not found user that id: "${privateUser.id}"`)
   })
 
-  test('returns "200 OK" with JSON body if documents has 1 login user', async () => {
+  test(`/${privateUser.id} returns "200 OK" with JSON body if logged in`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
     mocked(getClientPrincipal).mockReturnValueOnce({

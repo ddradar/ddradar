@@ -1,30 +1,14 @@
 import type { Context } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import type { UserSchema } from '../db'
 import type { GrooveRadarSchema } from '../db/user-details'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/radar', () => {
-  const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  const publicUser: UserSchema = {
-    id: 'public_user',
-    loginId: '1',
-    name: 'Public User',
-    area: 13,
-    code: 10000000,
-    isPublic: true,
-  }
-  const privateUser: UserSchema = {
-    id: 'private_user',
-    loginId: '2',
-    name: 'Private User',
-    area: 0,
-    isPublic: false,
-  }
   const radar = { stream: 100, voltage: 100, air: 100, freeze: 100, chaos: 100 }
   const radars: Omit<GrooveRadarSchema, 'userId' | 'type'>[] = [
     { ...radar, playStyle: 2 },
@@ -32,6 +16,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
   ]
 
   const req = { headers: {} }
+  const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 
   test('/foo/radar returns "404 Not Found"', async () => {

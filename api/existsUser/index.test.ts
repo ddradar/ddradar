@@ -1,14 +1,15 @@
 import type { Context } from '@azure/functions'
 
+import { privateUser } from '../__tests__/data'
 import existsUser from '.'
 
 describe('GET /api/v1/users/exists/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('returns "200 OK" with not exists JSON body if documents is empty', async () => {
+  test('/not_exists_user returns "200 OK" with { exists: false }', async () => {
     // Arrange
-    const id = 'phantom_user'
+    const id = 'not_exists_user'
     context.bindingData.id = id
 
     // Act
@@ -19,16 +20,15 @@ describe('GET /api/v1/users/exists/{id}', () => {
     expect(result.body).toStrictEqual({ id, exists: false })
   })
 
-  test('returns "200 OK" with exists JSON body if documents is not empty', async () => {
+  test(`/${privateUser.id} returns "200 OK" with { exists: true }`, async () => {
     // Arrange
-    const id = 'exists_user'
-    context.bindingData.id = id
+    context.bindingData.id = privateUser.id
 
     // Act
-    const result = await existsUser(context, null, [{}])
+    const result = await existsUser(context, null, [privateUser])
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toStrictEqual({ id, exists: true })
+    expect(result.body).toStrictEqual({ id: privateUser.id, exists: true })
   })
 })

@@ -1,7 +1,12 @@
 import type { Context, HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { testSongData } from '../__tests__/data'
+import {
+  areaHiddenUser,
+  privateUser,
+  publicUser,
+  testSongData,
+} from '../__tests__/data'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ScoreSchema } from '../db'
 import postChartScore from '.'
@@ -12,29 +17,6 @@ describe('POST /api/v1/scores', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'body'>
   const song = { ...testSongData, isCourse: false }
-
-  const publicUser = {
-    id: 'public_user',
-    loginId: 'public_user',
-    name: 'AFRO',
-    area: 13,
-    isPublic: true,
-  } as const
-  const areaHiddenUser = {
-    id: 'area_hidden_user',
-    loginId: 'area_hidden_user',
-    name: 'ZERO',
-    area: 0,
-    isPublic: true,
-  } as const
-  const privateUser = {
-    id: 'private_user',
-    loginId: 'private_user',
-    name: 'EMI',
-    area: 13,
-    isPublic: false,
-  } as const
-
   const mfcScore = { score: 1000000, rank: 'AAA', clearLamp: 7 }
   const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 

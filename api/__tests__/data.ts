@@ -73,3 +73,31 @@ export const testSongList: Omit<SongSchema, 'charts'>[] = [
     maxBPM: 160,
   },
 ]
+
+/** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
+export const publicUser = {
+  id: 'public_user',
+  loginId: '1',
+  name: 'Public User',
+  area: 13,
+  code: 10000000,
+  isPublic: true,
+} as const
+
+/** { isPublic: true, area: 0, code: undefined } user */
+export const areaHiddenUser = {
+  id: 'area_hidden_user',
+  loginId: 'area_hidden_user',
+  name: 'Area Hidden User',
+  area: 0,
+  isPublic: true,
+} as const
+
+/** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
+export const privateUser = {
+  id: 'private_user',
+  loginId: '2',
+  name: 'Private User',
+  area: 0,
+  isPublic: false,
+} as const
