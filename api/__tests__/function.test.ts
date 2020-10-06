@@ -1,4 +1,4 @@
-import { getBindingNumber, getBindingString } from '../function'
+import { getBindingNumber } from '../function'
 
 describe('./function.ts', () => {
   describe('getBindingNumber', () => {
@@ -10,15 +10,6 @@ describe('./function.ts', () => {
       [{ string: '0', data: 'string' }, 0],
     ])('({ key: %p }, "key") returns %d', (key, num) => {
       expect(getBindingNumber({ key }, 'key')).toBe(num)
-    })
-  })
-  describe('getBindingString', () => {
-    test.each([
-      ['', ''],
-      ['foo', 'foo'],
-      [{ string: '0', data: 'string' }, '0'],
-    ])('({ key: %p }, "key") returns %d', (key, str) => {
-      expect(getBindingString({ key }, 'key')).toBe(str)
     })
   })
 })
