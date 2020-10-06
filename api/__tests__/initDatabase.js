@@ -66,7 +66,7 @@ module.exports = async () => {
         [
           {
             path: '/pinned',
-            order: 'ascending',
+            order: 'descending',
           },
           {
             path: '/timeStamp',

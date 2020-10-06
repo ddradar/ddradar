@@ -38,7 +38,7 @@ The collection that stores notification.
   "compositeIndexes": [
     {
       "path": "/pinned",
-      "order": "ascending"
+      "order": "descending"
     },
     {
       "path": "/timeStamp",
