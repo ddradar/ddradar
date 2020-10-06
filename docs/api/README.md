@@ -37,6 +37,7 @@ See also [Authentication API Docs](./authentication.md).
 - [Get User List](../../api/getUserList/README.md)
 - [Get User Information](../../api/getUserInfo/README.md)
 - [Post User Information](../../api/postUserInfo/README.md) **Authed user only*
+- [Get Clear Status](../../api/getClearStatus/README.md)
 - [Get Score Status](../../api/getScoreStatus/README.md)
 
 ## Score API
