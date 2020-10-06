@@ -62,6 +62,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
+    expect(fetchMock).not.toBeCalled()
   })
 
   test('returns [] with error if fetch() returns 404', async () => {
@@ -74,7 +75,6 @@ describe('/importSkillAttrackId/index.ts', () => {
     // Assert
     expect(result).toStrictEqual([])
     expect(fetchMock).toBeCalledWith(uri)
-    expect(context.log.error).toBeCalledTimes(2)
     expect(context.log.error).toBeCalledWith('404: Not Found')
     expect(context.log.error).toBeCalledWith('Error')
   })
@@ -91,7 +91,6 @@ describe('/importSkillAttrackId/index.ts', () => {
     expect(result).toStrictEqual([])
     expect(fetchMock).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
     expect(context.log.info).toBeCalledWith(
       `Not Found skillAttackId: ${song.name}`
     )
@@ -109,7 +108,6 @@ describe('/importSkillAttrackId/index.ts', () => {
     expect(result).toStrictEqual([{ ...song, skillAttackId: 1 }])
     expect(fetchMock).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
     expect(context.log.info).toBeCalledWith(
       `Updated: ${song.name} { id: "${song.id}", skillAttackId: 1 }`
     )
