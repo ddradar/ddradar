@@ -4,19 +4,16 @@ import postSongInfo from '.'
 describe('POST /api/v1/admin/songs', () => {
   const validSong = { ...testSongData }
 
-  test.each([undefined])(
-    'returns "400 Bad Request" if body is %p',
-    async (body: unknown) => {
-      // Arrange
-      const req = { body }
+  test('returns "400 Bad Request" if body is empty', async () => {
+    // Arrange
+    const req = {}
 
-      // Act
-      const result = await postSongInfo(null, req)
+    // Act
+    const result = await postSongInfo(null, req)
 
-      // Assert
-      expect(result.httpResponse.status).toBe(400)
-    }
-  )
+    // Assert
+    expect(result.httpResponse.status).toBe(400)
+  })
 
   test.each([
     validSong,
@@ -24,10 +21,7 @@ describe('POST /api/v1/admin/songs', () => {
       ...validSong,
       charts: validSong.charts.sort((l, r) => l.difficulty - r.difficulty),
     },
-    {
-      ...validSong,
-      foo: 'bar',
-    },
+    { ...validSong, foo: 'bar' },
   ])('returns "200 OK" with JSON body if body is %p', async body => {
     // Arrange - Act
     const result = await postSongInfo(null, { body })

@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { SeriesList, SongSchema } from '../db/songs'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 type SongListData = Omit<SongSchema, 'charts'>
 
@@ -10,21 +10,13 @@ export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
   songs: SongListData[]
-): Promise<NotFoundResult | SuccessResult<SongListData[]>> {
-  const series = parseFloat(req.query.series)
+): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
+  const i = parseFloat(req.query.series)
+  const isValidSeries = Number.isInteger(i) && i >= 0 && i < SeriesList.length
 
-  const isValidSeries =
-    Number.isInteger(series) && series >= 0 && series < SeriesList.length
+  const body = songs.filter(s => !isValidSeries || s.series === SeriesList[i])
 
-  const body = songs.filter(
-    s => !isValidSeries || s.series === SeriesList[series]
-  )
+  if (body.length === 0) return new ErrorResult(404)
 
-  if (body.length === 0) return { status: 404 }
-
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body,
-  }
+  return new SuccessResult(body)
 }

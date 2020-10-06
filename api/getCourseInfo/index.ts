@@ -1,25 +1,17 @@
 import type { Context } from '@azure/functions'
 
 import type { CourseSchema } from '../db/songs'
-import type { NotFoundResult, SuccessResult } from '../function'
+import { ErrorResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */
 export default async function (
-  context: Pick<Context, 'bindingData'>,
+  { bindingData }: Pick<Context, 'bindingData'>,
   _req: unknown,
-  documents: CourseSchema[]
-): Promise<NotFoundResult | SuccessResult<CourseSchema>> {
-  if (!documents || documents.length !== 1) {
-    const id: string = context.bindingData.id
-    return {
-      status: 404,
-      body: `Not found course that id: "${id}"`,
-    }
+  [course]: CourseSchema[]
+): Promise<ErrorResult<404> | SuccessResult<CourseSchema>> {
+  if (!course) {
+    return new ErrorResult(404, `Not found course that id: "${bindingData.id}"`)
   }
 
-  return {
-    status: 200,
-    headers: { 'Content-type': 'application/json' },
-    body: documents[0],
-  }
+  return new SuccessResult(course)
 }

@@ -1,22 +1,12 @@
-export type BadRequestResult = {
-  status: 400
-  body?: string
+export class SuccessResult<T> {
+  status = 200 as const
+  headers = { 'Content-type': 'application/json' as const }
+  constructor(public body: T) {}
 }
 
-export type UnauthenticatedResult = {
-  status: 401
-  body?: string
-}
-
-export type NotFoundResult = {
-  status: 404
-  body?: string
-}
-
-export type SuccessResult<T> = {
-  status: 200
-  headers: { 'Content-type': 'application/json' }
-  body: T
+type ErrorCode = 400 | 401 | 404
+export class ErrorResult<T extends ErrorCode> {
+  constructor(public status: T, public body?: string) {}
 }
 
 export type NoContentResult = {
@@ -32,17 +22,4 @@ export function getBindingNumber(
   key: string
 ): number {
   return typeof bindingData[key] === 'number' ? (bindingData[key] as number) : 0
-}
-
-/**
- * Get context.bindingData[key] as string
- * workaround for https://github.com/Azure/azure-functions-host/issues/6055
- */
-export function getBindingString(
-  bindingData: { [key: string]: unknown },
-  key: string
-): string {
-  return typeof bindingData[key] === 'string'
-    ? (bindingData[key] as string)
-    : '0'
 }
