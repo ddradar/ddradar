@@ -1,6 +1,8 @@
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
+import type { UserScore } from '~/api/score'
+import type { StepChart } from '~/api/song'
 
 /**
  * Object type returned by `/api/v1/user`
@@ -22,6 +24,20 @@ export type User = {
  * @see https://github.com/ddradar/ddradar/blob/master/api/getUserInfo/README.md
  */
 export type UserListData = Omit<User, 'isPublic'>
+
+export type ClearStatus = Pick<
+  UserScore,
+  'playStyle' | 'level' | 'clearLamp'
+> & { count: number }
+
+export type ScoreStatus = Pick<UserScore, 'playStyle' | 'level' | 'rank'> & {
+  count: number
+}
+
+export type GrooveRadar = Pick<
+  StepChart,
+  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
+>
 
 export const areaList: Record<number, string> = {
   '0': '未指定',
@@ -139,6 +155,39 @@ export function getUserList(
  */
 export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
   return $http.$get<UserListData>(`${apiPrefix}/users/${id}`)
+}
+
+/**
+ * Call "Get Clear Status" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getClearStatus
+ */
+export function getClearStatus(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  id: string
+) {
+  return $http.$get<ClearStatus[]>(`${apiPrefix}/users/${id}/clear`)
+}
+
+/**
+ * Call "Get Score Status" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getScoreStatus
+ */
+export function getScoreStatus(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  id: string
+) {
+  return $http.$get<ScoreStatus[]>(`${apiPrefix}/users/${id}/score`)
+}
+
+/**
+ * Call "Get Groove Radar" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getGrooveRadar
+ */
+export function getGrooveRadar(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  id: string
+) {
+  return $http.$get<GrooveRadar[]>(`${apiPrefix}/users/${id}/radar`)
 }
 
 /**

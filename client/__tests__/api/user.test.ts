@@ -1,6 +1,9 @@
 import {
   existsUser,
+  getClearStatus,
   getCurrentUser,
+  getGrooveRadar,
+  getScoreStatus,
   getUserInfo,
   getUserList,
   postUserInfo,
@@ -84,6 +87,48 @@ describe('./api/user.ts', () => {
       expect(result).toBe(user)
       expect($http.$get.mock.calls).toHaveLength(1)
       expect($http.$get.mock.calls[0][0]).toBe('/api/v1/users/foo_user')
+    })
+  })
+  describe('getClearStatus', () => {
+    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/clear"`, async () => {
+      // Arrange
+      const $http = { $get: jest.fn<Promise<any>, [string]>() }
+      $http.$get.mockResolvedValue([])
+
+      // Act
+      const result = await getClearStatus($http, user.id)
+
+      // Assert
+      expect(result).toHaveLength(0)
+      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/clear')
+    })
+  })
+  describe('getScoreStatus', () => {
+    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/score"`, async () => {
+      // Arrange
+      const $http = { $get: jest.fn<Promise<any>, [string]>() }
+      $http.$get.mockResolvedValue([])
+
+      // Act
+      const result = await getScoreStatus($http, user.id)
+
+      // Assert
+      expect(result).toHaveLength(0)
+      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/score')
+    })
+  })
+  describe('getGrooveRadar', () => {
+    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/radar"`, async () => {
+      // Arrange
+      const $http = { $get: jest.fn<Promise<any>, [string]>() }
+      $http.$get.mockResolvedValue([])
+
+      // Act
+      const result = await getGrooveRadar($http, user.id)
+
+      // Assert
+      expect(result).toHaveLength(0)
+      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/radar')
     })
   })
   describe('postUserInfo', () => {
