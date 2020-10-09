@@ -1,11 +1,26 @@
-import { shallowMount, Wrapper } from '@vue/test-utils'
+import { mount, shallowMount, Wrapper } from '@vue/test-utils'
 
-import GrooveRadarComponent from '~/components/pages/users/GrooveRadar.vue'
+import GrooveRadar from '~/components/pages/users/GrooveRadar.vue'
 
 describe('/components/pages/users/GrooveRadar.vue', () => {
+  describe('snapshot test', () => {
+    test('renders correctly', async () => {
+      const chart = {
+        stream: 120,
+        voltage: 100,
+        air: 266,
+        freeze: 200,
+        chaos: 140,
+      }
+      const wrapper = mount(GrooveRadar, { propsData: { chart } })
+      await wrapper.vm.$nextTick()
+      expect(wrapper).toMatchSnapshot()
+    })
+  })
+
   describe('renderLabel', () => {
-    let wrapper: Wrapper<GrooveRadarComponent>
-    beforeEach(() => (wrapper = shallowMount(GrooveRadarComponent)))
+    let wrapper: Wrapper<GrooveRadar>
+    beforeEach(() => (wrapper = shallowMount(GrooveRadar)))
 
     test.each([
       [{}, {}],

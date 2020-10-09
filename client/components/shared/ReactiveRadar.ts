@@ -8,9 +8,9 @@ export default class ReactiveRadar extends Mixins(Radar, mixins.reactiveProp) {
   readonly chartData!: ChartData
 
   @Prop({ type: Object, default: null })
-  readonly chartOptions!: ChartOptions | null
+  readonly chartOptions!: ChartOptions
 
   mounted() {
-    this.renderChart(this.chartData, this.chartOptions ?? undefined)
+    this.renderChart(this.chartData, this.chartOptions)
   }
 }

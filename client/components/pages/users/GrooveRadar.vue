@@ -1,5 +1,5 @@
 <template>
-  <reactive-radar :chart-data="chartData" />
+  <reactive-radar :chart-data="chartData" :chart-options="chartOptions" />
 </template>
 
 <script lang="ts">
@@ -24,13 +24,7 @@ export default class GrooveRadarComponent extends Vue {
       legend: { display: false },
       responsive: true,
       scale: { ticks: { beginAtZero: true, max: 200, min: 0, stepSize: 20 } },
-      tooltips: {
-        enabled: true,
-        callbacks: {
-          label: (item: ChartTooltipItem, data: ChartData) =>
-            this.renderLabel(item, data),
-        },
-      },
+      tooltips: { enabled: true, callbacks: { label: this.renderLabel } },
     }
   }
 
