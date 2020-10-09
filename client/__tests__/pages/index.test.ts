@@ -45,11 +45,12 @@ describe('/pages/index.vue', () => {
   describe('fetch()', () => {
     let wrapper: Wrapper<IndexPage>
     const mocks = { $buefy: {}, $fetchState: { pending: true }, $http: {} }
+    const stubs = { NuxtLink: RouterLinkStub, TopMessage: true }
     const data = () => ({ messages: [] })
     beforeEach(() => {
       mocked(getNotificationList).mockClear()
       mocked(popup.danger).mockClear()
-      wrapper = shallowMount(IndexPage, { localVue, mocks, data, i18n })
+      wrapper = shallowMount(IndexPage, { localVue, mocks, stubs, data, i18n })
     })
 
     test('calls getNotificationList($http, true)', async () => {

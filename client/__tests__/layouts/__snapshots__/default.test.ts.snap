@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`] = `
+exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -332,8 +332,10 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`]
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
@@ -375,7 +377,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders loading 1`]
 </div>
 `;
 
-exports[`/layouts/default.vue snapshot test { locale: "en" } renders login button if not authed 1`] = `
+exports[`/layouts/default.vue { locale: "en" } snapshot test renders login button if not authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -707,8 +709,10 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders login butto
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Login</a>
           <div class="navbar-dropdown is-right">
@@ -746,7 +750,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders login butto
 </div>
 `;
 
-exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout button if authed 1`] = `
+exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout button if authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -1078,8 +1082,10 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout butt
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
@@ -1118,7 +1124,7 @@ exports[`/layouts/default.vue snapshot test { locale: "en" } renders logout butt
 </div>
 `;
 
-exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`] = `
+exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -1450,8 +1456,10 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`]
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
@@ -1493,7 +1501,7 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders loading 1`]
 </div>
 `;
 
-exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login button if not authed 1`] = `
+exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login button if not authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -1825,8 +1833,10 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login butto
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">ログイン</a>
           <div class="navbar-dropdown is-right">
@@ -1864,7 +1874,7 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders login butto
 </div>
 `;
 
-exports[`/layouts/default.vue snapshot test { locale: "ja" } renders logout button if authed 1`] = `
+exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout button if authed 1`] = `
 <div>
   <nav role="navigation" aria-label="main navigation" class="navbar is-primary">
     <div class="navbar-brand"><a class="navbar-item"><img src="~assets/logo.svg" alt="DDRadar Logo"> <b>DDRadar</b></a><a role="button" aria-label="menu" class="navbar-burger burger"><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span></a></div>
@@ -2196,8 +2206,10 @@ exports[`/layouts/default.vue snapshot test { locale: "ja" } renders logout butt
         </div>
       </div>
       <div class="navbar-end">
-        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"></a>
-          <div class="navbar-dropdown is-right" style="display: none;"></div>
+        <div class="navbar-item has-dropdown"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link"><span><span title="日本語" class="flag-icon flag-icon-jp"></span>&nbsp;日本語
+            </span></a>
+          <div class="navbar-dropdown is-right" style="display: none;"><a class="navbar-item"><span><span title="English" class="flag-icon flag-icon-us"></span>&nbsp;English
+              </span></a></div>
         </div>
         <div class="navbar-item has-dropdown is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">

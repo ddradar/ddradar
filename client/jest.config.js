@@ -13,13 +13,7 @@ module.exports = {
     '.*\\.(vue)$': 'vue-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
-  globals: {
-    'vue-jest': {
-      transform: {
-        i18n: './__tests__/i18n.js',
-      },
-    },
-  },
+  globals: { 'vue-jest': { transform: { i18n: './__tests__/i18n.js' } } },
   setupFiles: ['jest-canvas-mock'],
   snapshotSerializers: ['jest-serializer-vue'],
   collectCoverage: true,
