@@ -43,7 +43,6 @@ describe('/utils/eagate-parser.ts', () => {
         {
           I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
             {
-              songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
               songName: '朧',
               playStyle: 1,
               difficulty: 0,
@@ -52,7 +51,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'A+',
             },
             {
-              songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
               songName: '朧',
               playStyle: 1,
               difficulty: 2,
@@ -61,7 +59,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'A',
             },
             {
-              songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
               songName: '朧',
               playStyle: 1,
               difficulty: 3,
@@ -70,7 +67,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'A-',
             },
             {
-              songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
               songName: '朧',
               playStyle: 1,
               difficulty: 4,
@@ -81,7 +77,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           QIDd80o0OqobODP00ldQ1D9dl81qQi0d: [
             {
-              songId: 'QIDd80o0OqobODP00ldQ1D9dl81qQi0d',
               songName: 'きゅん×きゅんばっきゅん☆LOVE',
               playStyle: 1,
               difficulty: 0,
@@ -90,7 +85,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'B',
             },
             {
-              songId: 'QIDd80o0OqobODP00ldQ1D9dl81qQi0d',
               songName: 'きゅん×きゅんばっきゅん☆LOVE',
               playStyle: 1,
               difficulty: 1,
@@ -99,7 +93,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'B-',
             },
             {
-              songId: 'QIDd80o0OqobODP00ldQ1D9dl81qQi0d',
               songName: 'きゅん×きゅんばっきゅん☆LOVE',
               playStyle: 1,
               difficulty: 2,
@@ -108,7 +101,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'C+',
             },
             {
-              songId: 'QIDd80o0OqobODP00ldQ1D9dl81qQi0d',
               songName: 'きゅん×きゅんばっきゅん☆LOVE',
               playStyle: 1,
               difficulty: 3,
@@ -119,7 +111,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': [
             {
-              songId: '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8',
               songName: 'CHAOS',
               playStyle: 1,
               difficulty: 0,
@@ -128,7 +119,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'D',
             },
             {
-              songId: '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8',
               songName: 'CHAOS',
               playStyle: 1,
               difficulty: 1,
@@ -137,7 +127,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'C-',
             },
             {
-              songId: '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8',
               songName: 'CHAOS',
               playStyle: 1,
               difficulty: 2,
@@ -153,7 +142,6 @@ describe('/utils/eagate-parser.ts', () => {
         {
           l9lq19DdiD8qQPoPOlboi1qQii0IQI86: [
             {
-              songId: 'l9lq19DdiD8qQPoPOlboi1qQii0IQI86',
               songName: '革命',
               playStyle: 2,
               difficulty: 1,
@@ -162,7 +150,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'l9lq19DdiD8qQPoPOlboi1qQii0IQI86',
               songName: '革命',
               playStyle: 2,
               difficulty: 2,
@@ -171,7 +158,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'l9lq19DdiD8qQPoPOlboi1qQii0IQI86',
               songName: '革命',
               playStyle: 2,
               difficulty: 3,
@@ -180,7 +166,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AA+',
             },
             {
-              songId: 'l9lq19DdiD8qQPoPOlboi1qQii0IQI86',
               songName: '革命',
               playStyle: 2,
               difficulty: 4,
@@ -192,7 +177,6 @@ describe('/utils/eagate-parser.ts', () => {
           qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [],
           llo89P08I1PlID9DO8lqdbbq69O8Qiib: [
             {
-              songId: 'llo89P08I1PlID9DO8lqdbbq69O8Qiib',
               songName: '逆さま♥シンデレラパレード',
               playStyle: 2,
               difficulty: 1,
@@ -201,7 +185,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'D+',
             },
             {
-              songId: 'llo89P08I1PlID9DO8lqdbbq69O8Qiib',
               songName: '逆さま♥シンデレラパレード',
               playStyle: 2,
               difficulty: 2,
@@ -210,7 +193,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'D',
             },
             {
-              songId: 'llo89P08I1PlID9DO8lqdbbq69O8Qiib',
               songName: '逆さま♥シンデレラパレード',
               playStyle: 2,
               difficulty: 3,
@@ -226,7 +208,6 @@ describe('/utils/eagate-parser.ts', () => {
         {
           qbbOOO1QibO1861bqQII9lqlPiIoqb98: [
             {
-              songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
               songName: 'FIRST',
               playStyle: 1,
               difficulty: 0,
@@ -235,7 +216,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AA',
             },
             {
-              songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
               songName: 'FIRST',
               playStyle: 1,
               difficulty: 1,
@@ -244,7 +224,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
               songName: 'FIRST',
               playStyle: 1,
               difficulty: 2,
@@ -253,7 +232,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'A+',
             },
             {
-              songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
               songName: 'FIRST',
               playStyle: 1,
               difficulty: 3,
@@ -264,7 +242,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           '88o8Oq69ldilblP10DI0qqb6b8I0DDi9': [
             {
-              songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
               songName: 'BOUNCE',
               playStyle: 1,
               difficulty: 0,
@@ -273,7 +250,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
               songName: 'BOUNCE',
               playStyle: 1,
               difficulty: 3,
@@ -282,7 +258,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AA+',
             },
             {
-              songId: '88o8Oq69ldilblP10DI0qqb6b8I0DDi9',
               songName: 'BOUNCE',
               playStyle: 1,
               difficulty: 4,
@@ -299,7 +274,6 @@ describe('/utils/eagate-parser.ts', () => {
         {
           l1o0olodIDDiqDQ101obOD1qo81q0QOP: [
             {
-              songId: 'l1o0olodIDDiqDQ101obOD1qo81q0QOP',
               songName: 'ONE HALF',
               playStyle: 2,
               difficulty: 1,
@@ -311,7 +285,6 @@ describe('/utils/eagate-parser.ts', () => {
           O6Pi0O800b8b6d9dd9P89dD1900I1q80: [],
           dqQD9ilqIIilOQi986Ql6dd1ldiPob88: [
             {
-              songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
               songName: '☆☆☆☆',
               playStyle: 2,
               difficulty: 1,
@@ -320,7 +293,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
               songName: '☆☆☆☆',
               playStyle: 2,
               difficulty: 2,
@@ -329,7 +301,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
               songName: '☆☆☆☆',
               playStyle: 2,
               difficulty: 3,
@@ -338,7 +309,6 @@ describe('/utils/eagate-parser.ts', () => {
               rank: 'AAA',
             },
             {
-              songId: 'dqQD9ilqIIilOQi986Ql6dd1ldiPob88',
               songName: '☆☆☆☆',
               playStyle: 2,
               difficulty: 4,
@@ -349,7 +319,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           Plld00DiIO9bPqdq190li1iIPDdq6Qlb: [
             {
-              songId: 'Plld00DiIO9bPqdq190li1iIPDdq6Qlb',
               songName: 'Intelligence',
               playStyle: 2,
               difficulty: 4,
@@ -367,7 +336,6 @@ describe('/utils/eagate-parser.ts', () => {
           '6loIiOd8PP90dPOq16Q6PdPPO0DQDOPP': [],
           '91DOoD99iIq9oIdOi9QqDQ0qlQPQPOii': [
             {
-              songId: '91DOoD99iIq9oIdOi9QqDQ0qlQPQPOii',
               songName: '五段',
               playStyle: 1,
               difficulty: 4,
@@ -378,7 +346,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           '6bo6ID6l11qd6lolilI6o6q8I6ddo88i': [
             {
-              songId: '6bo6ID6l11qd6lolilI6o6q8I6ddo88i',
               songName: '初段',
               playStyle: 1,
               difficulty: 4,
@@ -389,7 +356,6 @@ describe('/utils/eagate-parser.ts', () => {
           ],
           d0l89dI9d6Di11DQ9P8D1Pl1d0Db81D9: [
             {
-              songId: 'd0l89dI9d6Di11DQ9P8D1Pl1d0Db81D9',
               songName: '二段',
               playStyle: 1,
               difficulty: 4,
@@ -405,7 +371,6 @@ describe('/utils/eagate-parser.ts', () => {
         {
           '9IliQ1O0dOQPiObPDDDblDO6oliDodlb': [
             {
-              songId: '9IliQ1O0dOQPiObPDDDblDO6oliDodlb',
               songName: '初段（A20）',
               playStyle: 2,
               difficulty: 4,
@@ -418,7 +383,6 @@ describe('/utils/eagate-parser.ts', () => {
           dib16I1b0o9OdOd1O90dO1Q6iIO9PQo9: [],
           '8OoDQb16lP0i96qiDQqo90Q6bOP1o89D': [
             {
-              songId: '8OoDQb16lP0i96qiDQqo90Q6bOP1o89D',
               songName: '四段（A20）',
               playStyle: 2,
               difficulty: 4,

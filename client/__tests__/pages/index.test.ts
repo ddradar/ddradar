@@ -3,12 +3,14 @@ import {
   mount,
   RouterLinkStub,
   shallowMount,
+  Wrapper,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getNotificationList, Notification } from '~/api/notification'
+import { notificationList } from '~/__tests__/data'
+import { getNotificationList } from '~/api/notification'
 import IndexPage from '~/pages/index.vue'
 import * as popup from '~/utils/popup'
 
@@ -20,98 +22,64 @@ localVue.use(Buefy)
 localVue.use(VueI18n)
 
 describe('/pages/index.vue', () => {
-  const messages: Omit<Notification, 'sender' | 'pinned'>[] = [
-    {
-      id: 'foo',
-      icon: 'account',
-      type: 'is-info',
-      title: 'Title 1',
-      body: 'Message Body1',
-      timeStamp: 1597244400, // 2020/8/13
-    },
-    {
-      id: 'bar',
-      icon: '',
-      type: 'is-info',
-      title: 'Title 2',
-      body: 'Message Body2',
-      timeStamp: 1597244400, // 2020/8/13
-    },
-  ]
+  const messages = [...notificationList]
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+
   describe('snapshot test', () => {
+    const data = () => ({ messages })
+    const stubs = { NuxtLink: RouterLinkStub, TopMessage: true }
+
     test('renders loading skeleton', () => {
-      const wrapper = mount(IndexPage, {
-        localVue,
-        mocks: { $fetchState: { pending: true } },
-        stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
-        data: () => ({ messages }),
-        i18n,
-      })
+      const mocks = { $fetchState: { pending: true } }
+      const wrapper = mount(IndexPage, { localVue, mocks, stubs, data, i18n })
       expect(wrapper).toMatchSnapshot()
     })
     test.each(['en', 'ja'])('renders correctly if locale is "%s"', locale => {
       const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(IndexPage, {
-        localVue,
-        mocks: { $fetchState: { pending: false } },
-        stubs: { NuxtLink: RouterLinkStub, TopMessage: true },
-        data: () => ({ messages }),
-        i18n,
-      })
+      const mocks = { $fetchState: { pending: false } }
+      const wrapper = mount(IndexPage, { localVue, mocks, stubs, data, i18n })
       expect(wrapper).toMatchSnapshot()
     })
   })
+
   describe('fetch()', () => {
-    const apiMock = mocked(getNotificationList)
-    const popupMock = mocked(popup.danger)
+    let wrapper: Wrapper<IndexPage>
+    const mocks = { $buefy: {}, $fetchState: { pending: true }, $http: {} }
+    const data = () => ({ messages: [] })
     beforeEach(() => {
-      apiMock.mockClear()
-      popupMock.mockClear()
+      mocked(getNotificationList).mockClear()
+      mocked(popup.danger).mockClear()
+      wrapper = shallowMount(IndexPage, { localVue, mocks, data, i18n })
     })
+
     test('calls getNotificationList($http, true)', async () => {
       // Arrange
-      apiMock.mockResolvedValue(messages)
-      const $http = { $get: jest.fn() }
-      const wrapper = shallowMount(IndexPage, {
-        localVue,
-        mocks: { $fetchState: { pending: true }, $http },
-        data: () => ({ messages: [] }),
-        i18n,
-      })
+      mocked(getNotificationList).mockResolvedValue(messages)
 
       // Act
       // @ts-ignore
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(apiMock).toBeCalledTimes(1)
-      expect(apiMock).toBeCalledWith($http, true)
-      expect(popupMock).not.toBeCalled()
+      expect(mocked(getNotificationList)).toBeCalledTimes(1)
+      expect(mocked(getNotificationList)).toBeCalledWith(mocks.$http, true)
+      expect(mocked(popup.danger)).not.toBeCalled()
       expect(wrapper.vm.$data.messages).toHaveLength(2)
     })
     test('calls popup.danger() if getNotificationList($http, true) throws error', async () => {
       // Arrange
       const errorMessage = 'invalid'
-      apiMock.mockRejectedValue(errorMessage)
-      const $http = { $get: jest.fn() }
-      const $buefy = {}
-      const wrapper = shallowMount(IndexPage, {
-        localVue,
-        mocks: { $buefy, $fetchState: { pending: true }, $http },
-        data: () => ({ messages: [] }),
-        i18n,
-      })
+      mocked(getNotificationList).mockRejectedValue(errorMessage)
 
       // Act
       // @ts-ignore
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(apiMock).toBeCalledTimes(1)
-      expect(apiMock).toBeCalledWith($http, true)
-      expect(popupMock).toBeCalledTimes(1)
-      expect(popupMock).toBeCalledWith($buefy, errorMessage)
+      expect(mocked(getNotificationList)).toBeCalledTimes(1)
+      expect(mocked(getNotificationList)).toBeCalledWith(mocks.$http, true)
+      expect(mocked(popup.danger)).toBeCalledTimes(1)
+      expect(mocked(popup.danger)).toBeCalledWith(mocks.$buefy, errorMessage)
       expect(wrapper.vm.$data.messages).toHaveLength(0)
     })
   })

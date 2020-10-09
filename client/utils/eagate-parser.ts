@@ -3,7 +3,7 @@ import { getDanceLevel, UserScore } from '~/api/score'
 const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
 const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
 
-type MusicScore = Omit<UserScore, 'userId' | 'userName' | 'level'>
+type MusicScore = Omit<UserScore, 'songId' | 'userId' | 'userName' | 'level'>
 
 /**
  * Convert music data to { songId: Score[] } Record.
@@ -70,7 +70,6 @@ export function musicDataToScoreList(
       const rank = isFailed ? 'E' : getDanceLevel(score)
 
       result[songId].push({
-        songId,
         songName,
         playStyle,
         difficulty,
@@ -146,7 +145,7 @@ export function musicDataToScoreList(
  */
 export function musicDetailToScore(
   sourceCode: string
-): Omit<MusicScore, 'songName'> & { topScore: number } {
+): Omit<MusicScore, 'songName'> & { songId: string; topScore: number } {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
 
   // Get songId and songName
