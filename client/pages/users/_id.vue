@@ -26,6 +26,21 @@
           {{ $t('settings') }}
         </b-button>
       </div>
+
+      <section v-if="user" class="section">
+        <div class="content columns is-multiline">
+          <play-status
+            :play-style="1"
+            :user-id="user.id"
+            class="column is-half-tablet"
+          />
+          <play-status
+            :play-style="2"
+            :user-id="user.id"
+            class="column is-half-tablet"
+          />
+        </div>
+      </section>
     </template>
   </section>
 </template>
@@ -51,8 +66,9 @@ import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getUserInfo, UserListData } from '~/api/user'
+import PlayStatus from '~/components/pages/users/PlayStatus.vue'
 
-@Component({ fetchOnServer: false })
+@Component({ components: { PlayStatus }, fetchOnServer: false })
 export default class UserPage extends Vue {
   user: UserListData | null = null
 

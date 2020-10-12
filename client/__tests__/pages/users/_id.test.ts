@@ -26,55 +26,38 @@ describe('/users/_id.vue', () => {
     code: 12345678,
   }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-  const stubs = { NuxtLink: RouterLinkStub }
-  const mocks = { $accessor: { user: null }, $fetchState: { pending: false } }
-  describe('snapshot test', () => {
-    test.each(['ja', 'en'])('{ locale: "%s" } renders correctly', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks,
-        data: () => ({ user }),
-      })
+  const stubs = { NuxtLink: RouterLinkStub, PlayStatus: true }
+  const templateMocks = {
+    $accessor: { user: null },
+    $fetchState: { pending: false },
+  }
+  const data = () => ({ user })
+
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+
+    test('renders correctly', () => {
+      const mocks = { ...templateMocks }
+      const wrapper = mount(UserPage, { localVue, i18n, stubs, mocks, data })
       expect(wrapper).toMatchSnapshot()
     })
-    test.each(['ja', 'en'])(
-      '{ locale: "%s" } renders setting button if selfPage',
-      locale => {
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = mount(UserPage, {
-          localVue,
-          i18n,
-          stubs,
-          mocks: { ...mocks, $accessor: { user: { id: user.id } } },
-          data: () => ({ user }),
-        })
-        expect(wrapper).toMatchSnapshot()
-      }
-    )
-    test.each(['ja', 'en'])('{ locale: "%s" } renders empty', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks,
-      })
+    test('renders setting button if selfPage', () => {
+      const mocks = { ...templateMocks, $accessor: { user: { id: user.id } } }
+      const wrapper = mount(UserPage, { localVue, i18n, stubs, mocks, data })
       expect(wrapper).toMatchSnapshot()
     })
-    test.each(['ja', 'en'])('{ locale: "%s" } renders loading', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks: { ...mocks, $fetchState: { pending: true } },
-      })
+    test('renders empty if no data', () => {
+      const mocks = { ...templateMocks }
+      const wrapper = mount(UserPage, { localVue, i18n, stubs, mocks })
+      expect(wrapper).toMatchSnapshot()
+    })
+    test('renders loading before fetch()', () => {
+      const mocks = { ...templateMocks, $fetchState: { pending: true } }
+      const wrapper = mount(UserPage, { localVue, i18n, stubs, mocks })
       expect(wrapper).toMatchSnapshot()
     })
   })
+
   describe('get areaName()', () => {
     test.each([
       ['ja', 0, '未指定'],
@@ -85,12 +68,11 @@ describe('/users/_id.vue', () => {
       ['en', 51, 'USA'],
     ])('{ locale: "%s", area: %i } returns "%s"', (locale, area, expected) => {
       // Arrange
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const wrapper = shallowMount(UserPage, {
         localVue,
-        i18n,
+        i18n: new VueI18n({ locale, silentFallbackWarn: true }),
         stubs,
-        mocks,
+        mocks: templateMocks,
         data: () => ({ user: { ...user, area } }),
       })
 
@@ -102,6 +84,7 @@ describe('/users/_id.vue', () => {
       '{ locale: "%s" } returns "" if user is null',
       locale => {
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const mocks = { ...templateMocks }
         const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
         // Act - Assert
@@ -110,6 +93,7 @@ describe('/users/_id.vue', () => {
       }
     )
   })
+
   describe('get ddrCode()', () => {
     test.each([
       [0, ''],
@@ -121,7 +105,7 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks,
+        mocks: templateMocks,
         data: () => ({ user: { ...user, code } }),
       })
 
@@ -131,13 +115,19 @@ describe('/users/_id.vue', () => {
     })
     test('returns "" if user is null', () => {
       const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
+      const wrapper = shallowMount(UserPage, {
+        localVue,
+        i18n,
+        stubs,
+        mocks: templateMocks,
+      })
 
       // Act - Assert
       // @ts-ignore
       expect(wrapper.vm.areaName).toBe('')
     })
   })
+
   describe('get isSelfPage()', () => {
     test('returns false if no login', () => {
       // Arrange
@@ -145,7 +135,7 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks: { ...mocks, $accessor: { user: null } },
+        mocks: { ...templateMocks, $accessor: { user: null } },
         data: () => ({ user }),
       })
 
@@ -160,7 +150,7 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks: { ...mocks, $accessor: { user: { id } } },
+        mocks: { ...templateMocks, $accessor: { user: { id } } },
         data: () => ({ user }),
       })
 
@@ -174,7 +164,7 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks: { ...mocks, $accessor: { user: { id: user.id } } },
+        mocks: { ...templateMocks, $accessor: { user: { id: user.id } } },
         data: () => ({ user }),
       })
 
@@ -184,17 +174,25 @@ describe('/users/_id.vue', () => {
     })
     test('returns false if user is null', () => {
       const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
+      const wrapper = shallowMount(UserPage, {
+        localVue,
+        i18n,
+        stubs,
+        mocks: templateMocks,
+      })
 
       // Act - Assert
       // @ts-ignore
       expect(wrapper.vm.isSelfPage).toBe(false)
     })
   })
+
   describe('validate', () => {
+    const mocks = { ...templateMocks }
+    const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
+
     test.each(['', 'FOO', 'あああ'])('({ id: "%s" }) returns false', id => {
       // Arrange
-      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
       const ctx = ({ params: { id } } as unknown) as Context
 
       // Act - Assert
@@ -202,17 +200,18 @@ describe('/users/_id.vue', () => {
     })
     test.each(['-_-', 'foo', '000'])('({ id: "%s" }) returns true', id => {
       // Arrange
-      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
       const ctx = ({ params: { id } } as unknown) as Context
 
       // Act - Assert
       expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
     })
   })
+
   describe('fetch()', () => {
     const $http = {}
     const apiMock = mocked(getUserInfo)
     beforeEach(() => apiMock.mockClear())
+
     test('/_id calls getUserInfo(this.$http, _id)', async () => {
       // Arrange
       const $route = { params: { id: 'foo' } }
@@ -221,12 +220,11 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks: { ...mocks, $http, $route },
+        mocks: { ...templateMocks, $http, $route },
       })
 
       // Act
-      // @ts-ignore
-      await wrapper.vm.$options.fetch!.call(wrapper.vm)
+      await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
       expect(apiMock).toBeCalledWith($http, $route.params.id)
@@ -240,12 +238,11 @@ describe('/users/_id.vue', () => {
         localVue,
         i18n,
         stubs,
-        mocks: { ...mocks, $http, $route },
+        mocks: { ...templateMocks, $http, $route },
       })
 
       // Act
-      // @ts-ignore
-      await wrapper.vm.$options.fetch!.call(wrapper.vm)
+      await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
       expect(apiMock).toBeCalledWith($http, $route.params.id)
