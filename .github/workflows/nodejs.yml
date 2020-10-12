@@ -66,7 +66,7 @@ jobs:
 
       - name: Deploy Azure Functions (Development)
         if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
-        uses: Azure/functions-action@v1.1.5
+        uses: Azure/functions-action@v1.1.6
         with:
           app-name: ddradar-staging
           package: ./functions/
