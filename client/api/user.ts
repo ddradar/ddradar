@@ -163,9 +163,12 @@ export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
  */
 export function getClearStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
-  id: string
+  userId: string,
+  playStyle: 1 | 2
 ) {
-  return $http.$get<ClearStatus[]>(`${apiPrefix}/users/${id}/clear`)
+  return $http.$get<ClearStatus[]>(
+    `${apiPrefix}/users/${userId}/clear?playStyle=${playStyle}`
+  )
 }
 
 /**
@@ -174,9 +177,12 @@ export function getClearStatus(
  */
 export function getScoreStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
-  id: string
+  userId: string,
+  playStyle: 1 | 2
 ) {
-  return $http.$get<ScoreStatus[]>(`${apiPrefix}/users/${id}/score`)
+  return $http.$get<ScoreStatus[]>(
+    `${apiPrefix}/users/${userId}/score?playStyle=${playStyle}`
+  )
 }
 
 /**
@@ -185,9 +191,12 @@ export function getScoreStatus(
  */
 export function getGrooveRadar(
   $http: Pick<NuxtHTTPInstance, '$get'>,
-  id: string
+  userId: string,
+  playStyle: 1 | 2
 ) {
-  return $http.$get<GrooveRadar[]>(`${apiPrefix}/users/${id}/radar`)
+  return $http.$get<GrooveRadar[]>(
+    `${apiPrefix}/users/${userId}/radar?playStyle=${playStyle}`
+  )
 }
 
 /**

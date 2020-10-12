@@ -91,45 +91,69 @@ describe('./api/user.ts', () => {
   })
 
   describe('getClearStatus', () => {
-    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/clear"`, async () => {
-      // Arrange
-      $http.$get.mockResolvedValue([])
+    test.each([
+      [1, 'playStyle=1'],
+      [2, 'playStyle=2'],
+    ])(
+      `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/clear?%s"`,
+      async (playStyle, query) => {
+        // Arrange
+        $http.$get.mockResolvedValue([])
 
-      // Act
-      const result = await getClearStatus($http, user.id)
+        // Act
+        const result = await getClearStatus($http, user.id, playStyle as 1 | 2)
 
-      // Assert
-      expect(result).toHaveLength(0)
-      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/clear')
-    })
+        // Assert
+        expect(result).toHaveLength(0)
+        expect($http.$get).toBeCalledWith(
+          `/api/v1/users/${user.id}/clear?${query}`
+        )
+      }
+    )
   })
 
   describe('getScoreStatus', () => {
-    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/score"`, async () => {
-      // Arrange
-      $http.$get.mockResolvedValue([])
+    test.each([
+      [1, 'playStyle=1'],
+      [2, 'playStyle=2'],
+    ])(
+      `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/score?%s"`,
+      async (playStyle, query) => {
+        // Arrange
+        $http.$get.mockResolvedValue([])
 
-      // Act
-      const result = await getScoreStatus($http, user.id)
+        // Act
+        const result = await getScoreStatus($http, user.id, playStyle as 1 | 2)
 
-      // Assert
-      expect(result).toHaveLength(0)
-      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/score')
-    })
+        // Assert
+        expect(result).toHaveLength(0)
+        expect($http.$get).toBeCalledWith(
+          `/api/v1/users/${user.id}/score?${query}`
+        )
+      }
+    )
   })
 
   describe('getGrooveRadar', () => {
-    test(`($http, "${user.id}") calls GET "/api/v1/users/${user.id}/radar"`, async () => {
-      // Arrange
-      $http.$get.mockResolvedValue([])
+    test.each([
+      [1, 'playStyle=1'],
+      [2, 'playStyle=2'],
+    ])(
+      `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/radar?%s"`,
+      async (playStyle, query) => {
+        // Arrange
+        $http.$get.mockResolvedValue([])
 
-      // Act
-      const result = await getGrooveRadar($http, user.id)
+        // Act
+        const result = await getGrooveRadar($http, user.id, playStyle as 1 | 2)
 
-      // Assert
-      expect(result).toHaveLength(0)
-      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/radar')
-    })
+        // Assert
+        expect(result).toHaveLength(0)
+        expect($http.$get).toBeCalledWith(
+          `/api/v1/users/${user.id}/radar?${query}`
+        )
+      }
+    )
   })
 
   describe('postUserInfo', () => {
