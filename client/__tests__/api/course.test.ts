@@ -1,6 +1,6 @@
 import { getCourseInfo, getCourseList, getCourseType } from '~/api/course'
 
-describe('api/course.ts', () => {
+describe('./api/course.ts', () => {
   describe('getCourseType', () => {
     test.each([
       [1, 'NONSTOP'],
@@ -10,12 +10,11 @@ describe('api/course.ts', () => {
       expect(getCourseType(type)).toBe(expected)
     })
   })
+
   describe('getCourseList', () => {
     type Option = { searchParams: URLSearchParams }
     const $http = {
-      $get: jest.fn<Promise<any>, [string, Option]>((_1, _2) =>
-        Promise.resolve([])
-      ),
+      $get: jest.fn<Promise<any>, [string, Option]>(() => Promise.resolve([])),
     }
     beforeEach(() => $http.$get.mockClear())
 
@@ -43,6 +42,7 @@ describe('api/course.ts', () => {
       }
     )
   })
+
   describe('getCourseInfo', () => {
     const courseInfo = { id: 'DQqi68IP1qbDiQ9li6PI1Q9Iddd6o9QQ' }
     const $http = {

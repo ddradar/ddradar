@@ -178,10 +178,7 @@ export default class ProfilePage extends Vue {
   message = ''
 
   get areaOptions() {
-    return Object.keys(areaList).map(v => ({
-      key: v,
-      value: this.$t(`area.${v}`),
-    }))
+    return areaList.map(key => ({ key, value: this.$t(`area.${key}`) }))
   }
 
   get isNewUser() {
@@ -193,7 +190,7 @@ export default class ProfilePage extends Vue {
       this.type === 'is-danger' ||
       !/^[-a-z0-9_]+$/.test(this.id) ||
       !this.name ||
-      !Object.keys(areaList).includes(`${this.area}`) ||
+      !areaList.includes(this.area) ||
       (!!this.code &&
         (!Number.isInteger(this.code) ||
           this.code < 10000000 ||

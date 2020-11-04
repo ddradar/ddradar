@@ -2,7 +2,7 @@ import { postNotification, postSongInfo } from '~/api/admin'
 import type { Notification } from '~/api/notification'
 import type { SongInfo } from '~/api/song'
 
-describe('/api/admin.ts', () => {
+describe('./api/admin.ts', () => {
   const $http = { $post: jest.fn<Promise<any>, [string]>() }
   beforeEach(() => $http.$post.mockClear())
 
@@ -46,6 +46,7 @@ describe('/api/admin.ts', () => {
       })
     })
   })
+
   describe('postSongInfo()', () => {
     const songInfo: SongInfo = {
       id: 'i0P1O6lbP1oDd6q6b08iPPoq6iPdI818',

@@ -11,6 +11,8 @@ import {
 } from '~/api/score'
 
 describe('./api/score.ts', () => {
+  const songId = '00000000000000000000000000000000'
+
   describe('getDanceLevel', () => {
     test.each([
       [0, 'D'],
@@ -33,6 +35,7 @@ describe('./api/score.ts', () => {
       expect(getDanceLevel(score)).toBe(expected)
     })
   })
+
   describe('setValidScoreFromChart', () => {
     const chart = { notes: 1000, freezeArrow: 10, shockArrow: 10 } as const
 
@@ -211,28 +214,19 @@ describe('./api/score.ts', () => {
       }
     )
   })
+
   describe('getChartScore', () => {
     const $http = { $get: jest.fn<Promise<any>, [string]>() }
     const scores: UserScore[] = []
     $http.$get.mockResolvedValue(scores)
     test.each([
-      [
-        '00000000000000000000000000000000',
-        1,
-        0,
-        undefined,
-        '/api/v1/scores/00000000000000000000000000000000/1/0',
-      ] as const,
-      [
-        '00000000000000000000000000000000',
-        2,
-        1,
-        'full',
-        '/api/v1/scores/00000000000000000000000000000000/2/1?scope=full',
-      ] as const,
+      [1, 0, undefined, `/api/v1/scores/${songId}/1/0`] as const,
+      [1, 3, 'private', `/api/v1/scores/${songId}/1/3?scope=private`] as const,
+      [1, 4, 'medium', `/api/v1/scores/${songId}/1/4?scope=medium`] as const,
+      [2, 1, 'full', `/api/v1/scores/${songId}/2/1?scope=full`] as const,
     ])(
-      '($http, %s, %i, %i, %p) calls GET "%s"',
-      async (songId, playStyle, difficulty, scope, uri) => {
+      `($http, "${songId}", %i, %i, %p) calls GET "%s"`,
+      async (playStyle, difficulty, scope, uri) => {
         // Arrange
         $http.$get.mockClear()
 
@@ -247,55 +241,39 @@ describe('./api/score.ts', () => {
 
         // Assert
         expect(result).toBe(scores)
-        expect($http.$get.mock.calls).toHaveLength(1)
-        expect($http.$get.mock.calls[0][0]).toBe(uri)
+        expect($http.$get).toBeCalledWith(uri)
       }
     )
   })
+
   describe('postChartScore', () => {
-    const songId = '00000000000000000000000000000000'
-    const playStyle = 1
-    const difficulty = 0
-    test(`($http, "${songId}", ${playStyle}, ${difficulty}, score) calls POST "/api/v1/scores/${songId}/${playStyle}/${difficulty}"`, async () => {
+    test(`($http, "${songId}", 1, 0, score) calls POST "/api/v1/scores/${songId}/1/0"`, async () => {
       // Arrange
       const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
-      const score: Score = {
-        clearLamp: 7,
-        rank: 'AAA',
-        score: 999800,
-      }
+      const score: Score = { clearLamp: 6, rank: 'AAA', score: 999800 }
 
       // Act
-      await postChartScore($http, songId, playStyle, difficulty, score)
+      await postChartScore($http, songId, 1, 0, score)
 
       // Assert
-      expect($http.$post.mock.calls).toHaveLength(1)
-      expect($http.$post.mock.calls[0][0]).toBe(
-        '/api/v1/scores/00000000000000000000000000000000/1/0'
-      )
-      expect($http.$post.mock.calls[0][1]).toBe(score)
+      expect($http.$post).toBeCalledWith(`/api/v1/scores/${songId}/1/0`, score)
     })
   })
+
   describe('deleteChartScore', () => {
-    const songId = '00000000000000000000000000000000'
-    const playStyle = 2
-    const difficulty = 1
-    test(`($http, "${songId}", ${playStyle}, ${difficulty}) calls DELETE "/api/v1/scores/${songId}/${playStyle}/${difficulty}"`, async () => {
+    test(`($http, "${songId}", 2, 1) calls DELETE "/api/v1/scores/${songId}/2/1"`, async () => {
       // Arrange
       const $http = { delete: jest.fn<any, [string]>() }
 
       // Act
-      await deleteChartScore($http, songId, playStyle, difficulty)
+      await deleteChartScore($http, songId, 2, 1)
 
       // Assert
-      expect($http.delete.mock.calls).toHaveLength(1)
-      expect($http.delete.mock.calls[0][0]).toBe(
-        '/api/v1/scores/00000000000000000000000000000000/2/1'
-      )
+      expect($http.delete).toBeCalledWith(`/api/v1/scores/${songId}/2/1`)
     })
   })
+
   describe('postSongScores', () => {
-    const songId = '00000000000000000000000000000000'
     test(`($http, "${songId}", scores) calls POST "/api/v1/scores/${songId}"`, async () => {
       // Arrange
       const $http = { $post: jest.fn<Promise<any>, [string, any]>() }
@@ -303,7 +281,7 @@ describe('./api/score.ts', () => {
         {
           playStyle: 1,
           difficulty: 0,
-          clearLamp: 7,
+          clearLamp: 6,
           rank: 'AAA',
           score: 999800,
         },
@@ -314,10 +292,7 @@ describe('./api/score.ts', () => {
 
       // Assert
       expect($http.$post).toBeCalledTimes(1)
-      expect($http.$post).toBeCalledWith(
-        '/api/v1/scores/00000000000000000000000000000000',
-        scores
-      )
+      expect($http.$post).toBeCalledWith(`/api/v1/scores/${songId}`, scores)
     })
   })
 })

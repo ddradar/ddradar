@@ -96,46 +96,43 @@ describe('pages/import.vue', () => {
     })
   })
 
+  const scoreData = [
+    {
+      songName: '朧',
+      playStyle: 1,
+      difficulty: 0,
+      score: 876000,
+      clearLamp: 2,
+      rank: 'A+',
+    } as const,
+    {
+      songName: '朧',
+      playStyle: 1,
+      difficulty: 2,
+      score: 823000,
+      clearLamp: 2,
+      rank: 'A',
+    } as const,
+    {
+      songName: '朧',
+      playStyle: 1,
+      difficulty: 3,
+      score: 798000,
+      clearLamp: 2,
+      rank: 'A-',
+    } as const,
+    {
+      songName: '朧',
+      playStyle: 1,
+      difficulty: 4,
+      score: 780000,
+      clearLamp: 2,
+      rank: 'B+',
+    } as const,
+  ]
   describe('importEageteScores()', () => {
     const scoreList: ReturnType<typeof musicDataToScoreList> = {
-      I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
-        {
-          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 0,
-          score: 876000,
-          clearLamp: 2,
-          rank: 'A+',
-        },
-        {
-          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 2,
-          score: 823000,
-          clearLamp: 2,
-          rank: 'A',
-        },
-        {
-          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 3,
-          score: 798000,
-          clearLamp: 2,
-          rank: 'A-',
-        },
-        {
-          songId: 'I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o',
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 4,
-          score: 780000,
-          clearLamp: 2,
-          rank: 'B+',
-        },
-      ],
+      I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: scoreData,
     }
     const postMock = mocked(postSongScores)
     const convertMock = mocked(musicDataToScoreList)
@@ -237,40 +234,7 @@ describe('pages/import.vue', () => {
 
   describe('importSkillAttackScores()', () => {
     const scoreList: ReturnType<typeof scoreTexttoScoreList> = {
-      '691': [
-        {
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 0,
-          score: 876000,
-          clearLamp: 2,
-          rank: 'A+',
-        },
-        {
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 2,
-          score: 823000,
-          clearLamp: 2,
-          rank: 'A',
-        },
-        {
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 3,
-          score: 798000,
-          clearLamp: 2,
-          rank: 'A-',
-        },
-        {
-          songName: '朧',
-          playStyle: 1,
-          difficulty: 4,
-          score: 780000,
-          clearLamp: 2,
-          rank: 'B+',
-        },
-      ],
+      '691': scoreData,
     }
     const postMock = mocked(postSongScores)
     const convertMock = mocked(scoreTexttoScoreList)

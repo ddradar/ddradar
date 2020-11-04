@@ -120,10 +120,7 @@ export default class UserListPage extends Vue {
 
   /** AreaCode - String mapping for <select> components */
   get areaOptions() {
-    return Object.keys(areaList).map(key => ({
-      key,
-      value: this.$t(`area.${key}`),
-    }))
+    return areaList.map(key => ({ key, value: this.$t(`area.${key}`) }))
   }
 
   get displayedUsers() {

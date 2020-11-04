@@ -4,7 +4,7 @@ import {
   Notification,
 } from '~/api/notification'
 
-describe('/api/notification.ts', () => {
+describe('./api/notification.ts', () => {
   const $http = { $get: jest.fn<Promise<any>, [string]>() }
   beforeEach(() => $http.$get.mockClear())
 
@@ -25,6 +25,7 @@ describe('/api/notification.ts', () => {
       expect($http.$get).lastCalledWith(uri)
     })
   })
+
   describe('getNotificationInfo', () => {
     const id = 'notification-id'
     const notification: Notification = {
