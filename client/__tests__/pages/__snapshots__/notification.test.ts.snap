@@ -316,7 +316,7 @@ exports[`/pages/notification.vue snapshot test renders empty if { locale: en } 1
           </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="5">
+              <td colspan="4">
                 <section class="section">
                   <div class="content has-text-grey has-text-centered">
                     <p>No data</p>
@@ -381,7 +381,7 @@ exports[`/pages/notification.vue snapshot test renders empty if { locale: ja } 1
           </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="5">
+              <td colspan="4">
                 <section class="section">
                   <div class="content has-text-grey has-text-centered">
                     <p>データがありません</p>
@@ -446,7 +446,7 @@ exports[`/pages/notification.vue snapshot test renders loading skeleton 1`] = `
           </thead>
           <tbody>
             <tr class="is-empty">
-              <td colspan="5">
+              <td colspan="4">
                 <section class="section">
                   <div class="b-skeleton is-animated">
                     <div class="b-skeleton-item is-rounded"></div>
