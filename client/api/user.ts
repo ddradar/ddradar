@@ -195,7 +195,7 @@ export function getGrooveRadar(
   playStyle: 1 | 2
 ) {
   return $http.$get<GrooveRadar[]>(
-    `${apiPrefix}/users/${userId}/radar?playStyle=${playStyle}`
+    `${apiPrefix}/users/${userId}/radar/${playStyle}`
   )
 }
 
