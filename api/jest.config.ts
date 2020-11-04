@@ -1,5 +1,6 @@
-/** @type {import('@jest/types/build/Config').InitialOptions} */
-module.exports = {
+import { Config } from '@jest/types'
+
+const config: Config.InitialOptions = {
   displayName: 'API',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
@@ -14,7 +15,9 @@ module.exports = {
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
     '!**/*.d.ts',
+    '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],
 }
+export default config

@@ -1,5 +1,6 @@
-/** @type {import('@jest/types/build/Config').InitialOptions} */
-module.exports = {
+import { Config } from '@jest/types'
+
+const config: Config.InitialOptions = {
   displayName: 'Client',
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
@@ -29,3 +30,4 @@ module.exports = {
     '!**/__tests__/**',
   ],
 }
+export default config

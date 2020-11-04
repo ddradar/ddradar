@@ -1,5 +1,6 @@
-/** @type {import('@jest/types/build/Config').InitialOptions} */
-module.exports = {
+import { Config } from '@jest/types'
+
+const config: Config.InitialOptions = {
   displayName: 'Functions',
   automock: false,
   clearMocks: true,
@@ -16,7 +17,9 @@ module.exports = {
     '<rootDir>/**/*.ts',
     '!<rootDir>/db/index.ts',
     '!**/*.d.ts',
+    '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],
 }
+export default config
