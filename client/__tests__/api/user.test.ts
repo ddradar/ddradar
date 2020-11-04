@@ -136,10 +136,10 @@ describe('./api/user.ts', () => {
 
   describe('getGrooveRadar', () => {
     test.each([
-      [1, 'playStyle=1'],
-      [2, 'playStyle=2'],
+      [1, '1'],
+      [2, '2'],
     ])(
-      `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/radar?%s"`,
+      `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/radar/%s"`,
       async (playStyle, query) => {
         // Arrange
         $http.$get.mockResolvedValue([])
@@ -150,7 +150,7 @@ describe('./api/user.ts', () => {
         // Assert
         expect(result).toHaveLength(0)
         expect($http.$get).toBeCalledWith(
-          `/api/v1/users/${user.id}/radar?${query}`
+          `/api/v1/users/${user.id}/radar/${query}`
         )
       }
     )
