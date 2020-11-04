@@ -17,6 +17,7 @@ const config: Config.InitialOptions = {
     '<rootDir>/**/*.ts',
     '!<rootDir>/db/index.ts',
     '!**/*.d.ts',
+    '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],

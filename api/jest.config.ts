@@ -15,6 +15,7 @@ const config: Config.InitialOptions = {
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
     '!**/*.d.ts',
+    '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],
