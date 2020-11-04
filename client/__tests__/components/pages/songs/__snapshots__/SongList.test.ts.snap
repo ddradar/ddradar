@@ -155,7 +155,7 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
       </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="5">
+          <td colspan="4">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
                 <p>No Data</p>
@@ -335,7 +335,7 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
       </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="5">
+          <td colspan="4">
             <section class="section">
               <div class="b-skeleton is-animated">
                 <div class="b-skeleton-item is-rounded"></div>
@@ -411,7 +411,7 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
       </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="5">
+          <td colspan="4">
             <section class="section">
               <div class="content has-text-grey has-text-centered">
                 <p>データがありません</p>
@@ -591,7 +591,7 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
       </thead>
       <tbody>
         <tr class="is-empty">
-          <td colspan="5">
+          <td colspan="4">
             <section class="section">
               <div class="b-skeleton is-animated">
                 <div class="b-skeleton-item is-rounded"></div>
