@@ -1,7 +1,7 @@
-/** @type {import('@jest/types/build/Config').InitialOptions} */
-module.exports = {
-  displayName: 'Functions',
-  automock: false,
+import { Config } from '@jest/types'
+
+const config: Config.InitialOptions = {
+  displayName: 'API',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
@@ -9,14 +9,14 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  setupFiles: ['<rootDir>/__tests__/setupJest.js'],
+  globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: [
     '<rootDir>/**/*.ts',
-    '!<rootDir>/db/index.ts',
     '!**/*.d.ts',
     '!**/__tests__/**',
     '!<rootDir>/core/**',
   ],
 }
+export default config
