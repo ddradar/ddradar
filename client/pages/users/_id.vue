@@ -87,9 +87,9 @@ export default class UserPage extends Vue {
     return !!this.user && this.user.id === loginId
   }
 
-  /** id expected [a-z], [0-9], [-], [_] */
+  /** id expected [a-z], [A-Z] [0-9], [-], [_] */
   validate({ params }: Pick<Context, 'params'>) {
-    return /^[-a-z0-9_]+$/.test(params.id)
+    return /^[-a-zA-Z0-9_]+$/.test(params.id)
   }
 
   /** Fetch User info from API */

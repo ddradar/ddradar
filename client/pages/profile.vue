@@ -217,7 +217,7 @@ export default class ProfilePage extends Vue {
     }
 
     // Pattern check
-    if (!/^[-a-z0-9_]+$/.test(this.id)) {
+    if (!/^[-a-zA-Z0-9_]+$/.test(this.id)) {
       this.type = 'is-danger'
       this.message = this.$t('message.id.invalid').toString()
       return
