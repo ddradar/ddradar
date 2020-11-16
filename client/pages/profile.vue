@@ -188,7 +188,7 @@ export default class ProfilePage extends Vue {
   get hasError() {
     return (
       this.type === 'is-danger' ||
-      !/^[-a-z0-9_]+$/.test(this.id) ||
+      !/^[-a-zA-Z0-9_]+$/.test(this.id) ||
       !this.name ||
       !areaList.includes(this.area) ||
       (!!this.code &&
@@ -209,6 +209,8 @@ export default class ProfilePage extends Vue {
   }
 
   async checkId() {
+    this.type = ''
+
     // Required check
     if (!this.id) {
       this.type = 'is-danger'
