@@ -7,7 +7,7 @@ import { searchSongByName } from '~/api/song'
 import SongByNamePage from '~/pages/name/_nameIndex.vue'
 
 jest.mock('~/api/song', () => ({
-  ...jest.genMockFromModule<object>('~/api/song'),
+  ...jest.createMockFromModule<object>('~/api/song'),
   NameIndexList: jest.requireActual('~/api/song').NameIndexList,
 }))
 const localVue = createLocalVue()

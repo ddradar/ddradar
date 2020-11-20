@@ -8,7 +8,7 @@ import ProfilePage from '~/pages/profile.vue'
 import * as popup from '~/utils/popup'
 
 jest.mock('~/api/user', () => ({
-  ...jest.genMockFromModule<object>('~/api/user'),
+  ...jest.createMockFromModule<object>('~/api/user'),
   areaList: jest.requireActual('~/api/user').areaList,
 }))
 jest.mock('~/utils/popup')

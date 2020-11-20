@@ -7,7 +7,7 @@ import { searchSongBySeries } from '~/api/song'
 import SongBySeriesPage from '~/pages/series/_seriesIndex.vue'
 
 jest.mock('~/api/song', () => ({
-  ...jest.genMockFromModule<object>('~/api/song'),
+  ...jest.createMockFromModule<object>('~/api/song'),
   SeriesList: jest.requireActual('~/api/song').SeriesList,
 }))
 const localVue = createLocalVue()
