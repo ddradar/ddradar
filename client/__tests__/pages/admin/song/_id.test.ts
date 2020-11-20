@@ -174,17 +174,14 @@ describe('pages/admin/song/_id.vue', () => {
   })
   describe('get isValidSongId()', () => {
     const wrapper = shallowMount(SongEditorPage, { localVue })
-    test.each([0, 66666666666666666666666666666666, '', 'foo'])(
-      'returns false if id is %s',
-      id => {
-        // Arrange - Act
-        wrapper.setData({ id })
+    test.each([0, '', 'foo'])('returns false if id is %s', id => {
+      // Arrange - Act
+      wrapper.setData({ id })
 
-        // Assert
-        // @ts-ignore
-        expect(wrapper.vm.isValidSongId).toBe(false)
-      }
-    )
+      // Assert
+      // @ts-ignore
+      expect(wrapper.vm.isValidSongId).toBe(false)
+    })
     test.each([
       '66666666666666666666666666666666',
       'i0P1O6lbP1oDd6q6b08iPPoq6iPdI818',
