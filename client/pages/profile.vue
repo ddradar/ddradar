@@ -227,16 +227,19 @@ export default class ProfilePage extends Vue {
 
     // Duplicate check from API
     this.loading = true
-    const exists = await existsUser(this.$http, this.id)
-    this.loading = false
-
-    if (exists) {
-      this.type = 'is-danger'
-      this.message = this.$t('message.id.duplicate').toString()
-    } else {
-      this.type = 'is-success'
-      this.message = this.$t('message.id.available').toString()
+    try {
+      const exists = await existsUser(this.$http, this.id)
+      if (exists) {
+        this.type = 'is-danger'
+        this.message = this.$t('message.id.duplicate').toString()
+      } else {
+        this.type = 'is-success'
+        this.message = this.$t('message.id.available').toString()
+      }
+    } catch (error) {
+      this.type = ''
     }
+    this.loading = false
   }
 
   async save() {
