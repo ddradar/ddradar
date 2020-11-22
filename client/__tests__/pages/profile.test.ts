@@ -70,7 +70,7 @@ describe('pages/profile.vue', () => {
   describe('get hasError()', () => {
     test.each([
       { type: 'is-danger' },
-      { id: 'FOO' },
+      { id: '@' },
       { name: null },
       { area: -1 },
       { code: 1.3 },
@@ -90,6 +90,7 @@ describe('pages/profile.vue', () => {
     })
     test.each([
       { ...user },
+      { ...user, id: 'FOO' },
       { ...user, type: 'is-success' },
       { ...user, code: null },
     ])('returns false if %p', data => {
@@ -220,7 +221,7 @@ describe('pages/profile.vue', () => {
           localVue,
           i18n,
           mocks: { $accessor },
-          data: () => ({ ...user, id: 'FOO' }),
+          data: () => ({ ...user, id: '@' }),
         })
 
         // Act

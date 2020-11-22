@@ -38,6 +38,7 @@ describe('./db/users.ts', () => {
     })
     test.each([
       validUserInfo,
+      { ...validUserInfo, id: 'UPPER-CASED' },
       { ...validUserInfo, area: 0 },
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },

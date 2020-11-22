@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "v1/users/{id:regex(^[-a-z0-9_]+$)}/radar/{playStyle:int?}"
+      "route": "v1/users/{id:regex(^[-a-zA-Z0-9_]+$)}/radar/{playStyle:int?}"
     },
     {
       "name": "users",

@@ -163,7 +163,7 @@ export const areaCodeList: AreaCode[] = [
 export function isUserSchema(obj: unknown): obj is UserSchema {
   return (
     hasStringProperty(obj, 'id', 'name') &&
-    /^[-a-z0-9_]+$/.test(obj.id) &&
+    /^[-a-zA-Z0-9_]+$/.test(obj.id) &&
     hasIntegerProperty(obj, 'area') &&
     (areaCodeList as number[]).includes(obj.area) &&
     (!hasProperty(obj, 'code') ||

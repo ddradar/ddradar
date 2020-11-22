@@ -191,20 +191,23 @@ describe('/users/_id.vue', () => {
     const mocks = { ...templateMocks }
     const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
-    test.each(['', 'FOO', 'あああ'])('({ id: "%s" }) returns false', id => {
+    test.each(['', '@', 'あああ'])('({ id: "%s" }) returns false', id => {
       // Arrange
       const ctx = ({ params: { id } } as unknown) as Context
 
       // Act - Assert
       expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
     })
-    test.each(['-_-', 'foo', '000'])('({ id: "%s" }) returns true', id => {
-      // Arrange
-      const ctx = ({ params: { id } } as unknown) as Context
+    test.each(['-_-', 'FOO', 'foo', '000'])(
+      '({ id: "%s" }) returns true',
+      id => {
+        // Arrange
+        const ctx = ({ params: { id } } as unknown) as Context
 
-      // Act - Assert
-      expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
-    })
+        // Act - Assert
+        expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
+      }
+    )
   })
 
   describe('fetch()', () => {
