@@ -23,7 +23,7 @@ English version is [here](./README.md).
 
 |名前|型|説明|
 |---|:--|---|
-|`id`|string|ユーザーID `^[-a-z0-9_]+$`|
+|`id`|string|ユーザーID `^[-a-zA-Z0-9_]+$`|
 
 ## Response
 

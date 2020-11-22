@@ -23,7 +23,7 @@ Need Authentication.
 
 |Name|Type|Description|
 |----|:--:|-----------|
-|`id`|string|User id `^[-a-z0-9_]+$`|
+|`id`|string|User id `^[-a-zA-Z0-9_]+$`|
 
 ## Response
 
