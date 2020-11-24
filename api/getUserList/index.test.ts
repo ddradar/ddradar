@@ -6,10 +6,7 @@ import { fetchUserList } from '../db/users'
 import getUserList from '.'
 
 jest.mock('../auth')
-jest.mock('../db/users', () => ({
-  ...jest.genMockFromModule<Record<string, unknown>>('../db/users'),
-  areaCodeList: jest.requireActual('../db/users').areaCodeList,
-}))
+jest.mock('../db/users')
 
 describe('GET /api/v1/users', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }

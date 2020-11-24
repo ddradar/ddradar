@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { fetchLoginUser, UserSchema } from './db/users'
+import { fetchLoginUser } from './db/users'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
@@ -33,7 +33,7 @@ export function getClientPrincipal(
 
 export async function getLoginUserInfo(
   clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
-): Promise<UserSchema | null> {
+): ReturnType<typeof fetchLoginUser> {
   if (!clientPrincipal) return null
   return fetchLoginUser(clientPrincipal.userId)
 }

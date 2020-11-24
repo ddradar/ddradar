@@ -1,19 +1,12 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
 
-import type { ScoreSchema } from '../db/scores'
+import type { ScoreSchema } from '../core/db/scores'
+import type { UserDetailsSchema } from '../core/db/user-details'
 import {
-  ClearStatusSchema,
   fetchClearAndScoreStatus,
   generateGrooveRadar,
-  GrooveRadarSchema,
-  ScoreStatusSchema,
 } from '../db/user-details'
-
-type UserDetailsSchema =
-  | GrooveRadarSchema
-  | ClearStatusSchema
-  | ScoreStatusSchema
 
 /** Import skillAttackId from Skill Attack site. */
 export default async function (

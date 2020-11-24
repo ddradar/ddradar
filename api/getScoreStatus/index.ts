@@ -1,9 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { DanceLevelList } from '../db/scores'
-import type { ScoreStatusSchema } from '../db/user-details'
-import type { UserSchema } from '../db/users'
+import { DanceLevelList } from '../core/db/scores'
+import type { ScoreStatusSchema } from '../core/db/user-details'
+import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>

@@ -1,14 +1,14 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { ItemDefinition } from '../db'
-import { ScoreSchema } from '../db/scores'
-import {
+import type { ScoreSchema } from '../core/db/scores'
+import type {
   CourseInfoSchema,
   Difficulty,
   SongSchema,
   StepChartSchema,
-} from '../db/songs'
+} from '../core/db/songs'
+import type { ItemDefinition } from '../db'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 

@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { fetchLoginUser, UserSchema } from '../db/users'
+import { fetchLoginUser } from '../db/users'
 
 jest.mock('../db/users')
 
@@ -79,10 +79,10 @@ describe('./auth.ts', () => {
 
     test('({ Registered user }) returns UserSchema', async () => {
       // Arrange
-      const userSchema: UserSchema = {
+      const userSchema = {
         id: 'registered_user',
         loginId: 'registered_user',
-        area: 0,
+        area: 0 as const,
         isPublic: false,
         name: 'Registered user',
       }

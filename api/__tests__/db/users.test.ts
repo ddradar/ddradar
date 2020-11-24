@@ -1,12 +1,6 @@
+import { AreaCode, isUserSchema, UserSchema } from '../../core/db/users'
 import { canConnectDB, getContainer } from '../../db'
-import {
-  AreaCode,
-  fetchLoginUser,
-  fetchUser,
-  fetchUserList,
-  isUserSchema,
-  UserSchema,
-} from '../../db/users'
+import { fetchLoginUser, fetchUser, fetchUserList } from '../../db/users'
 import { describeIf } from '../util'
 
 describe('./db/users.ts', () => {

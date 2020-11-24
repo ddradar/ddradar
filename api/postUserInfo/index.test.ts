@@ -2,15 +2,12 @@ import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
-import {
-  fetchLoginUser,
-  fetchUser,
-  isUserSchema,
-  UserSchema,
-} from '../db/users'
+import { isUserSchema, UserSchema } from '../core/db/users'
+import { fetchLoginUser, fetchUser } from '../db/users'
 import postUserInfo from '.'
 
 jest.mock('../auth')
+jest.mock('../core/db/users')
 jest.mock('../db/users')
 
 describe('POST /api/v1/user', () => {

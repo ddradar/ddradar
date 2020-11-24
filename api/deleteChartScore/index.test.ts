@@ -1,7 +1,7 @@
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../db'
+import type { ScoreSchema } from '../core/db/scores'
 import deleteChartScore from '.'
 
 jest.mock('../auth')

@@ -1,5 +1,6 @@
+import type { ScoreSchema } from '../../core/db/scores'
 import { canConnectDB, getContainer } from '../../db'
-import { fetchScore, ScoreSchema } from '../../db/scores'
+import { fetchScore } from '../../db/scores'
 import { testSongData } from '../data'
 import { describeIf } from '../util'
 

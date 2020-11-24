@@ -1,9 +1,13 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ItemDefinition, UserSchema } from '../db'
-import { fetchScore, ScoreSchema } from '../db/scores'
-import type { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
+import type {
+  CourseInfoSchema,
+  SongSchema,
+  StepChartSchema,
+} from '../core/db/songs'
+import type { ItemDefinition, ScoreSchema, UserSchema } from '../db'
+import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'
 import {
   calcMyGrooveRadar,

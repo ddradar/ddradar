@@ -1,9 +1,9 @@
 import { Container, CosmosClient, JSONValue, SqlParameter } from '@azure/cosmos'
 
-import type { NotificationSchema } from './notification'
-import type { ScoreSchema } from './scores'
-import type { CourseSchema, SongSchema } from './songs'
-import type { UserSchema } from './users'
+import type { NotificationSchema } from '../core/db/notification'
+import type { ScoreSchema } from '../core/db/scores'
+import type { CourseSchema, SongSchema } from '../core/db/songs'
+import type { UserSchema } from '../core/db/users'
 
 export type {
   CourseSchema,

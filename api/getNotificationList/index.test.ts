@@ -1,4 +1,4 @@
-import type { NotificationSchema } from '../db/notification'
+import type { NotificationSchema } from '../core/db/notification'
 import getNotification from '.'
 
 describe('GET /api/v1/notification', () => {

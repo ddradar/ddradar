@@ -8,7 +8,7 @@ import {
   testSongData,
 } from '../__tests__/data'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../db'
+import type { ScoreSchema } from '../core/db/scores'
 import postChartScore from '.'
 
 jest.mock('../auth')

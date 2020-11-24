@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ClearStatusSchema } from '../db/user-details'
-import type { UserSchema } from '../db/users'
+import type { ClearStatusSchema } from '../core/db/user-details'
+import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type ClearStatus = Omit<ClearStatusSchema, 'userId' | 'type'>

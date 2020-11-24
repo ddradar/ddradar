@@ -1,14 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import {
-  fetchLoginUser,
-  fetchUser,
-  isUserSchema,
-  UserSchema,
-} from '../db/users'
+import { isUserSchema } from '../core/db/users'
+import { PromiseType } from '../core/promise-type'
+import { fetchLoginUser, fetchUser } from '../db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
+type UserSchema = PromiseType<ReturnType<typeof fetchLoginUser>>
 type PostUserResult = {
   httpResponse: ErrorResult<400 | 401> | SuccessResult<UserSchema>
   document?: UserSchema

@@ -1,8 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { UserSchema } from '../db/users'
+import { PromiseType } from '../core/promise-type'
 import { ErrorResult, SuccessResult } from '../function'
+
+type UserSchema = PromiseType<ReturnType<typeof getLoginUserInfo>>
 
 /** Get information about the currently logged in user. */
 export default async function (
