@@ -1,9 +1,9 @@
 import type { Container } from '@azure/cosmos'
 import { mocked } from 'ts-jest/utils'
 
+import type { ScoreSchema } from '../core/db/scores'
+import type { SongSchema } from '../core/db/songs'
 import { getContainer } from '../db'
-import type { ScoreSchema } from '../db/scores'
-import type { SongSchema } from '../db/songs'
 import updateScores from '.'
 
 jest.mock('../db')
@@ -33,7 +33,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     context.log.error.mockClear()
     resources = []
   })
-  const song: SongSchema = {
+  const song: SongSchema & { skillAttackId: number } = {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     skillAttackId: 1,
     name: 'PARANOiA',
@@ -72,7 +72,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
       },
     ],
   }
-  const validScore: ScoreSchema = {
+  const validScore = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
     userName: 'User 1',
@@ -85,7 +85,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     clearLamp: 6,
     score: 999960,
     rank: 'AAA',
-  }
+  } as const
 
   test('returns [] if songs is empty', async () => {
     // Arrange - Act

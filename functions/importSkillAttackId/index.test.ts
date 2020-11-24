@@ -1,7 +1,7 @@
 import fetchMock from 'jest-fetch-mock'
 import { mocked } from 'ts-jest/utils'
 
-import type { SongSchema } from '../db/songs'
+import type { SongSchema } from '../core/db/songs'
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 

@@ -1,7 +1,7 @@
 import type { Logger } from '@azure/functions'
 import fetch from 'node-fetch'
 
-import type { SongSchema } from '../db/songs'
+import type { SongSchema } from '../core/db/songs'
 import { masterMusicToMap } from '../skill-attack'
 
 const masterMusicUri = 'http://skillattack.com/sa4/data/master_music.txt'
@@ -10,8 +10,8 @@ const masterMusicUri = 'http://skillattack.com/sa4/data/master_music.txt'
 export default async function (
   context: { log: Pick<Logger, 'error' | 'info'> },
   _: unknown,
-  songs: SongSchema[]
-): Promise<SongSchema[]> {
+  songs: (SongSchema & { skillAttackId?: number })[]
+): Promise<(SongSchema & { skillAttackId: number })[]> {
   if (!songs.length) return []
 
   const res = await fetch(masterMusicUri)
@@ -36,5 +36,5 @@ export default async function (
       )
       return song
     })
-    .filter(s => !!s) as SongSchema[]
+    .filter(s => !!s) as (SongSchema & { skillAttackId: number })[]
 }
