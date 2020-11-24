@@ -1,6 +1,6 @@
 import { postNotification, postSongInfo } from '~/api/admin'
-import type { Notification } from '~/api/notification'
 import type { SongInfo } from '~/api/song'
+import type { NotificationSchema } from '~/core/db/notification'
 
 describe('./api/admin.ts', () => {
   const $http = { $post: jest.fn<Promise<any>, [string]>() }
@@ -8,7 +8,7 @@ describe('./api/admin.ts', () => {
 
   describe('postNotification()', () => {
     type NotificationRequest = Omit<
-      Notification,
+      NotificationSchema,
       'id' | 'sender' | 'timeStamp'
     > & {
       id?: string

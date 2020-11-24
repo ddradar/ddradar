@@ -1,6 +1,9 @@
-import type { Notification } from '~/api/notification'
+import type { NotificationSchema } from '~/core/db/notification'
 
-export const notificationList: Omit<Notification, 'sender' | 'pinned'>[] = [
+export const notificationList: Omit<
+  NotificationSchema,
+  'sender' | 'pinned'
+>[] = [
   {
     id: 'foo',
     icon: 'account',
