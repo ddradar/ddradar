@@ -1,4 +1,4 @@
-import { isSongSchema } from '../../db/songs'
+import { isSongSchema } from '../../core/db/songs'
 import { testSongData } from '../data'
 
 describe('./db/songs.ts', () => {

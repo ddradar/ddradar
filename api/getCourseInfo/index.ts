@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import type { CourseSchema } from '../db/songs'
+import type { CourseSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get course and orders information that match the specified ID. */

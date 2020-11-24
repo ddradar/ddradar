@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { SeriesList, SongSchema } from '../db/songs'
+import { SeriesList, SongSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
 type SongListData = Omit<SongSchema, 'charts'>

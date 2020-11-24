@@ -6,7 +6,6 @@ const title = 'DDRadar'
 const description = 'DDR Score Tracker'
 
 const configuration: NuxtConfig = {
-  mode: 'universal',
   target: 'static',
   head: {
     title,
@@ -74,6 +73,9 @@ const configuration: NuxtConfig = {
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
     },
+  },
+  generate: {
+    exclude: [/^\/.auth\//],
   },
 }
 

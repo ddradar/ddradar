@@ -1,4 +1,4 @@
-import type { SongSchema } from '../db/songs'
+import type { SongSchema } from '../core/db/songs'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
 export const testSongData: SongSchema = {
