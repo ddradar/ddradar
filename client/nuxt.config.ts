@@ -6,7 +6,6 @@ const title = 'DDRadar'
 const description = 'DDR Score Tracker'
 
 const configuration: NuxtConfig = {
-  mode: 'universal',
   target: 'static',
   head: {
     title,
