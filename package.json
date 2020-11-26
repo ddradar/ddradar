@@ -33,8 +33,11 @@
     }
   },
   "lint-staged": {
-    "*.{js,ts,vue}": "eslint --fix",
-    "*.{json,yaml,yml,js,ts,vue}": "prettier --write"
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.8.2",
