@@ -20,16 +20,12 @@ describe('/_style/_level.vue', () => {
   const $fetchState = { pending: false }
   const stubs = { NuxtLink: RouterLinkStub, ChartList: true }
 
-  describe.each(['single', 'double'])('snapshot test (%s)', style => {
+  describe.each(['single', 'double'])('snapshot test (/%s/19)', style => {
     test('renders correctly', () => {
       // Arrange
-      const $route = { params: { level: '19', style } }
-      const wrapper = mount(ChartLevelPage, {
-        localVue,
-        mocks: { $route, $fetchState },
-        stubs,
-        data: () => ({ charts: [] }),
-      })
+      const mocks = { $route: { params: { level: '19', style } }, $fetchState }
+      const data = () => ({ charts: [] })
+      const wrapper = mount(ChartLevelPage, { localVue, mocks, stubs, data })
 
       // Act - Assert
       expect(wrapper).toMatchSnapshot()
@@ -39,7 +35,6 @@ describe('/_style/_level.vue', () => {
   describe('validate()', () => {
     test.each([
       ['', '1'],
-      ['foo', '1'],
       ['DOUBLE', '1'],
       ['single', ''],
       ['double', 'foo'],
@@ -90,12 +85,8 @@ describe('/_style/_level.vue', () => {
     test.each([
       ['single', '1', 1, 1],
       ['single', '9', 1, 9],
-      ['single', '19', 1, 19],
-      ['single', '20', 1, 20],
-      ['double', '1', 1, 1],
-      ['double', '9', 1, 9],
-      ['double', '19', 1, 19],
-      ['double', '20', 1, 20],
+      ['double', '19', 2, 19],
+      ['double', '20', 2, 20],
     ])(
       '/%s/%s calls searchCharts($http, %i, %i)',
       async (style, level, styleExpected, levelExpected) => {
@@ -123,10 +114,6 @@ describe('/_style/_level.vue', () => {
     test.each([
       ['single', '1', 'SINGLE 1'],
       ['single', '9', 'SINGLE 9'],
-      ['single', '19', 'SINGLE 19'],
-      ['single', '20', 'SINGLE 20'],
-      ['double', '1', 'DOUBLE 1'],
-      ['double', '9', 'DOUBLE 9'],
       ['double', '19', 'DOUBLE 19'],
       ['double', '20', 'DOUBLE 20'],
     ])('/%s/%s route returns %s', (style, level, expected) => {
