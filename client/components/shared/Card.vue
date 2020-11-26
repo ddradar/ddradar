@@ -6,7 +6,7 @@
     :aria-id="title"
     :open="open"
   >
-    <template v-slot:trigger="props">
+    <template #trigger="props">
       <header
         class="card-header"
         :class="type"

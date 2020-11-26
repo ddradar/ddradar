@@ -30,12 +30,12 @@
           </nuxt-link>
         </b-table-column>
 
-        <template v-slot:detail="props">
+        <template #detail="props">
           <!-- eslint-disable-next-line vue/no-v-html -->
           <div class="content" v-html="props.row.body" />
         </template>
 
-        <template v-slot:empty>
+        <template #empty>
           <section v-if="$fetchState.pending" class="section">
             <b-skeleton animated />
             <b-skeleton animated />
@@ -75,6 +75,13 @@ import { getNotificationList, Notification } from '~/api/notification'
 import { unixTimeToString } from '~/utils/date'
 import * as popup from '~/utils/popup'
 
+type NotificationDetail = Omit<
+  Notification,
+  'sender' | 'pinned' | 'timeStamp'
+> & {
+  date: string
+}
+
 @Component({ fetchOnServer: false })
 export default class UserListPage extends Vue {
   messages: NotificationDetail[] = []
@@ -97,10 +104,4 @@ export default class UserListPage extends Vue {
   }
 }
 
-type NotificationDetail = Omit<
-  Notification,
-  'sender' | 'pinned' | 'timeStamp'
-> & {
-  date: string
-}
 </script>

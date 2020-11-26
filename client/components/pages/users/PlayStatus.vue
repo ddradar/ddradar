@@ -30,7 +30,7 @@
               {{ props.row[clear.lamp] ? props.row[clear.lamp] : 0 }}
             </b-table-column>
 
-            <template v-slot:empty>
+            <template #empty>
               <section class="section">
                 <div class="content has-text-grey has-text-centered">
                   <p>{{ $t('noData') }}</p>
@@ -63,7 +63,7 @@
               {{ props.row[rank] ? props.row[rank] : 0 }}
             </b-table-column>
 
-            <template v-slot:empty>
+            <template #empty>
               <section class="section">
                 <div class="content has-text-grey has-text-centered">
                   <p>{{ $t('noData') }}</p>
@@ -97,12 +97,6 @@
   }
 }
 </i18n>
-
-<style scoped>
-.radar {
-  max-height: 80vh;
-}
-</style>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
@@ -181,3 +175,9 @@ export default class PlayStatusComponent extends Vue {
   }
 }
 </script>
+
+<style scoped>
+.radar {
+  max-height: 80vh;
+}
+</style>

@@ -45,7 +45,7 @@
               <span class="is-size-7">{{ props.row.exScore }}</span>
             </b-table-column>
 
-            <template v-slot:empty>
+            <template #empty>
               <section class="section">
                 <div class="content has-text-grey has-text-centered">
                   <p>{{ $t('list.noData') }}</p>

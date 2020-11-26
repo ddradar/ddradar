@@ -1,14 +1,14 @@
 <template>
   <div>
     <b-navbar type="is-primary">
-      <template v-slot:brand>
+      <template #brand>
         <b-navbar-item tag="nuxt-link" :to="{ path: '/' }">
           <img src="~assets/logo.svg" alt="DDRadar Logo" />
           <b>DDRadar</b>
         </b-navbar-item>
       </template>
 
-      <template v-slot:start>
+      <template #start>
         <b-navbar-item tag="nuxt-link" to="/users">
           {{ $t('menu.user') }}
         </b-navbar-item>
@@ -49,9 +49,9 @@
         </b-navbar-dropdown>
       </template>
 
-      <template v-slot:end>
+      <template #end>
         <b-navbar-dropdown right collapsible>
-          <template>
+          <template #default>
             <b-navbar-item
               v-for="locale in availableLocales"
               :key="locale.code"
@@ -60,7 +60,7 @@
               <flag :iso="locale.flag" :title="locale.name" />
             </b-navbar-item>
           </template>
-          <template v-slot:label>
+          <template #label>
             <flag
               v-if="selectedLocale"
               :iso="selectedLocale.flag"
@@ -123,12 +123,12 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <i18n path="footer.text" tag="p">
-          <template v-slot:twitter>
+          <template #twitter>
             <a href="https://twitter.com/nogic1008" target="_blank">
               {{ $t('footer.twitter') }}
             </a>
           </template>
-          <template v-slot:github>
+          <template #github>
             <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
               {{ $t('footer.github') }}
             </a>
