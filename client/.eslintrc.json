@@ -9,11 +9,10 @@
     "@nuxtjs/eslint-config-typescript",
     "prettier",
     "prettier/vue",
-    "plugin:prettier/recommended",
     "plugin:jest/recommended",
     "plugin:nuxt/recommended"
   ],
-  "plugins": ["jest", "prettier", "simple-import-sort"],
+  "plugins": ["jest", "simple-import-sort"],
   "settings": {
     "node": {
       "allowModules": ["buefy", "js-yaml", "@vue/test-utils"],

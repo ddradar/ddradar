@@ -52,7 +52,7 @@
           {{ props.row.area }}
         </b-table-column>
 
-        <template v-slot:empty>
+        <template #empty>
           <section v-if="loading" class="section">
             <b-skeleton animated />
             <b-skeleton animated />

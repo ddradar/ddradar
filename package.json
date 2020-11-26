@@ -20,8 +20,8 @@
     "fix:eslint": "yarn lint:eslint --fix",
     "fix:prettier": "yarn lint:prettier --write",
     "lint": "run-p lint:*",
-    "lint:eslint": "eslint --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore .",
-    "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml}\"",
+    "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
     "test:client": "yarn workspace @ddradar/client test",
@@ -33,7 +33,10 @@
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
+    "*.{js,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     "*.{json,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
@@ -43,7 +46,6 @@
     "eslint-config-prettier": "^6.15.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-simple-import-sort": "^6.0.1",
     "husky": "^4.3.0",
     "lint-staged": "^10.5.2",

@@ -25,12 +25,12 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <i18n path="content.text" tag="p">
-          <template v-slot:twitter>
+          <template #twitter>
             <a href="https://twitter.com/nogic1008" target="_blank">
               {{ $t('content.text_twitter') }}
             </a>
           </template>
-          <template v-slot:github>
+          <template #github>
             <a href="https://github.com/ddradar/ddradar/issues" target="_blank">
               {{ $t('content.text_github') }}
             </a>
