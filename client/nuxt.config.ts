@@ -6,7 +6,6 @@ const title = 'DDRadar'
 const description = 'DDR Score Tracker'
 
 const configuration: NuxtConfig = {
-  mode: 'universal',
   target: 'static',
   head: {
     title,
@@ -53,7 +52,7 @@ const configuration: NuxtConfig = {
       lang: 'ja',
     },
   },
-  /** @nuxt-i18n settings */
+  /** nuxt-i18n settings */
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
@@ -75,6 +74,7 @@ const configuration: NuxtConfig = {
       if (isClient) config.devtool = 'source-map'
     },
   },
+  generate: { exclude: [/^\/.auth\//] },
 }
 
 export default configuration
