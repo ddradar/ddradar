@@ -11353,10 +11353,10 @@ vue-i18n@^8.18.1:
   resolved "https://registry.yarnpkg.com/vue-i18n/-/vue-i18n-8.22.2.tgz#58299a5a050e67b4f799d96fee7dd8bd269e0907"
   integrity sha512-rb569fVJInPUgS/bbCxEQ9DrAoFTntuJvYoK4Fpk2VfNbA09WzdTKk57ppjz3S+ps9hW+p9H+2ASgMvojedkow==
 
-vue-jest@^4.0.0-rc.0:
-  version "4.0.0-rc.0"
-  resolved "https://registry.yarnpkg.com/vue-jest/-/vue-jest-4.0.0-rc.0.tgz#0ce263c7f923441d0eeb99841620e8e9470336f4"
-  integrity sha512-0U1osuxR8cubzwUJDWU9VNOMYMwrMayaDUH+IYhoMHyi3zaa34nvr8BrdGLqo2ufnaiOCni2JgSy8nkcOi+Awg==
+vue-jest@^4.0.0-rc.1:
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/vue-jest/-/vue-jest-4.0.0-rc.1.tgz#a465bd9ece57ad6c796104b0f5b4be5ea83055f8"
+  integrity sha512-gelt1tEYdWjb2kQVn+2NNUP0Slv6qYCdoYxScAMhJ+FEG8ACF17VczpIGioJ+NVedsTic/xgfyrjIVYnsxV6Qg==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.2.0"
     "@vue/component-compiler-utils" "^3.1.0"
