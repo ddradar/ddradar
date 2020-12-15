@@ -10,7 +10,7 @@
       "name": "songs",
       "type": "cosmosDB",
       "direction": "in",
-      "connectionStringSetting": "COSMOS_DB_CONN",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY",
       "databaseName": "DDRadar",
       "collectionName": "Songs",
       "sqlQuery": "SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)"

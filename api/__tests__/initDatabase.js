@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { CosmosClient } = require('@azure/cosmos')
 
 // eslint-disable-next-line node/no-process-env

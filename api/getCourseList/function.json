@@ -15,7 +15,7 @@
       "databaseName": "DDRadar",
       "collectionName": "Songs",
       "sqlQuery": "SELECT c.id, c.name, c.nameIndex, c.series, ARRAY(SELECT o.playStyle, o.difficulty, o.level FROM o IN c.charts) as charts FROM c WHERE (c.nameIndex = -1 OR c.nameIndex = -2) ORDER BY c.nameIndex, c.nameKana",
-      "connectionStringSetting": "COSMOS_DB_CONN"
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
     },
     {
       "type": "http",
