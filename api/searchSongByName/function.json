@@ -15,7 +15,7 @@
       "databaseName": "DDRadar",
       "collectionName": "Songs",
       "sqlQuery": "SELECT c.id, c.name, c.nameKana, c.nameIndex, c.artist, c.series, c.minBPM, c.maxBPM FROM c WHERE c.nameIndex = StringToNumber({name}) ORDER BY c.nameIndex, c.nameKana",
-      "connectionStringSetting": "COSMOS_DB_CONN"
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
     },
     {
       "type": "http",
