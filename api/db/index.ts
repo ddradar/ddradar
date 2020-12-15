@@ -20,21 +20,18 @@ type ContainerName =
   | 'Notification'
   | 'UserDetails'
 
-const connectionString =
-  // eslint-disable-next-line node/no-process-env
-  process.env.COSMOS_DB_CONN_READONLY || process.env.COSMOS_DB_CONN
+// eslint-disable-next-line node/no-process-env
+const connectionString = process.env.COSMOS_DB_CONN
 
 export function canConnectDB(): boolean {
-  // eslint-disable-next-line node/no-process-env
-  return !process.env.COSMOS_DB_CONN_READONLY && !!process.env.COSMOS_DB_CONN
+  return !!connectionString
 }
 
 let client: CosmosClient
 const containers: { [key: string]: Container } = {}
 
 export function getContainer(id: ContainerName): Container {
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  if (!client) client = new CosmosClient(connectionString!)
+  if (!client) client = new CosmosClient(connectionString ?? '')
   if (containers[id] === undefined)
     containers[id] = client.database('DDRadar').container(id)
   return containers[id]
@@ -65,9 +62,8 @@ export async function fetchOne<T>(
     .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- filtered next
-    .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
-    .filter(c => c.value !== undefined)
+    .map((c, i) => ({ name: `@param${i}`, value: c.value }))
+    .filter((c) : c is SqlParameter => c.value !== undefined)
   const query = `SELECT ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
@@ -89,9 +85,8 @@ export async function fetchList<T>(
     .map((c, i) => c.condition.replace('@', `@param${i}`))
     .join(' AND ')
   const parameters = conditions
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion -- filtered next
-    .map<SqlParameter>((c, i) => ({ name: `@param${i}`, value: c.value! }))
-    .filter(c => c.value !== undefined)
+    .map((c, i) => ({ name: `@param${i}`, value: c.value }))
+    .filter((c): c is SqlParameter => c.value !== undefined)
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
