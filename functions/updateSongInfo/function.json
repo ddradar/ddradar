@@ -5,7 +5,7 @@
       "name": "songs",
       "direction": "in",
       "leaseCollectionPrefix": "updateSong",
-      "connectionStringSetting": "COSMOS_DB_CONN",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY",
       "databaseName": "DDRadar",
       "collectionName": "Songs",
       "createLeaseCollectionIfNotExists": true
