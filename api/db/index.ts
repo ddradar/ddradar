@@ -63,7 +63,7 @@ export async function fetchOne<T>(
     .join(' AND ')
   const parameters = conditions
     .map((c, i) => ({ name: `@param${i}`, value: c.value }))
-    .filter((c) : c is SqlParameter => c.value !== undefined)
+    .filter((c): c is SqlParameter => c.value !== undefined)
   const query = `SELECT ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
