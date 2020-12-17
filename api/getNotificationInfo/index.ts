@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import type { NotificationSchema } from '../db'
+import type { NotificationSchema } from '../core/db/notification'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get notification that match the specified ID. */

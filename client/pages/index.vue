@@ -88,9 +88,10 @@
 </i18n>
 
 <script lang="ts">
+import type { NotificationSchema } from '@ddradar/core/db/notification'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getNotificationList, Notification } from '~/api/notification'
+import { getNotificationList } from '~/api/notification'
 import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
 import TopMessage from '~/components/pages/TopMessage.vue'
 import Card from '~/components/shared/Card.vue'
@@ -98,7 +99,7 @@ import * as popup from '~/utils/popup'
 
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
-  messages: Omit<Notification, 'sender' | 'pinned'>[] = []
+  messages: Omit<NotificationSchema, 'sender' | 'pinned'>[] = []
 
   get menuList() {
     return [
