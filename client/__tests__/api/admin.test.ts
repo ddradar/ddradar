@@ -1,19 +1,13 @@
 import { postNotification, postSongInfo } from '~/api/admin'
-import type { Notification } from '~/api/notification'
-import type { SongInfo } from '~/api/song'
+
+type NotificationRequest = Parameters<typeof postNotification>[1]
+type SongInfo = Parameters<typeof postSongInfo>[1]
 
 describe('./api/admin.ts', () => {
   const $http = { $post: jest.fn<Promise<any>, [string]>() }
   beforeEach(() => $http.$post.mockClear())
 
   describe('postNotification()', () => {
-    type NotificationRequest = Omit<
-      Notification,
-      'id' | 'sender' | 'timeStamp'
-    > & {
-      id?: string
-      timeStamp?: number
-    }
     const notification: NotificationRequest = {
       id: 'return-value',
       icon: 'account',

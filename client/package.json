@@ -12,6 +12,7 @@
     "test": "jest"
   },
   "dependencies": {
+    "@ddradar/core": "1.0.0-beta.2",
     "@microsoft/applicationinsights-web": "^2.5.10",
     "@nuxt/http": "^0.6.1",
     "@nuxt/typescript-runtime": "^2.0.0",

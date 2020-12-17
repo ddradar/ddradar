@@ -49,6 +49,7 @@
 </template>
 
 <script lang="ts">
+import type { NotificationType } from '@ddradar/core/db/notification'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -60,7 +61,7 @@ import * as popup from '~/utils/popup'
 export default class NotificationEditorPage extends Vue {
   id: string | null = null
   pinned: boolean = false
-  type: string = 'is-info'
+  type: NotificationType = 'is-info'
   icon: string = ''
   title: string = ''
   body: string = ''
