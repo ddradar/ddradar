@@ -1,6 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { fetchLoginUser, UserSchema } from './db/users'
+import type { UserSchema } from './core/db/users'
+import { fetchLoginUser } from './db/users'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 

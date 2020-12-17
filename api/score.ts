@@ -1,6 +1,6 @@
-import { DanceLevelList, ScoreSchema } from './db/scores'
-import type { StepChartSchema } from './db/songs'
-import { hasIntegerProperty, hasStringProperty } from './type-assert'
+import { DanceLevelList, ScoreSchema } from './core/db/scores'
+import type { StepChartSchema } from './core/db/songs'
+import { hasIntegerProperty, hasStringProperty } from './core/type-assert'
 
 export type Score = Pick<
   ScoreSchema,

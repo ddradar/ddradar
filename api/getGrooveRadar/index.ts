@@ -1,8 +1,8 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { GrooveRadarSchema } from '../db/user-details'
-import type { UserSchema } from '../db/users'
+import type { GrooveRadarSchema } from '../core/db/user-details'
+import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>

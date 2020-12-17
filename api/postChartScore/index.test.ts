@@ -1,14 +1,14 @@
 import type { Context, HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import {
   areaHiddenUser,
   privateUser,
   publicUser,
   testSongData,
-} from '../__tests__/data'
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../db'
+} from '../core/__tests__/data'
+import type { ScoreSchema } from '../core/db/scores'
 import postChartScore from '.'
 
 jest.mock('../auth')

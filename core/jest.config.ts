@@ -1,7 +1,7 @@
 import { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
-  displayName: 'API',
+  displayName: 'Core',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
@@ -14,11 +14,10 @@ const config: Config.InitialOptions = {
   coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: [
-    '<rootDir>/**/*.ts',
+    '<rootDir>/*.ts',
     '!**/*.d.ts',
     '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
-    '!<rootDir>/core/**',
   ],
 }
 export default config

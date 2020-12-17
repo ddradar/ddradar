@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
 
-import type { SongSchema } from '../db/songs'
+import type { SongSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get song and charts information that match the specified ID. */

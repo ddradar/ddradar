@@ -1,4 +1,4 @@
-import { testSongData } from '../__tests__/data'
+import { testSongData } from '../core/__tests__/data'
 import postSongInfo from '.'
 
 describe('POST /api/v1/admin/songs', () => {

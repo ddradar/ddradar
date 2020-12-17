@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import { DanceLevelList } from '../db/scores'
-import type { ScoreStatusSchema } from '../db/user-details'
+import { privateUser, publicUser } from '../core/__tests__/data'
+import { DanceLevelList } from '../core/db/scores'
+import type { ScoreStatusSchema } from '../core/db/user-details'
 import getClearStatus from '.'
 
 jest.mock('../auth')

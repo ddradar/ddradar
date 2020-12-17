@@ -1,8 +1,8 @@
 import type { Context } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { privateUser, publicUser } from '../__tests__/data'
 import { getClientPrincipal } from '../auth'
+import { privateUser, publicUser } from '../core/__tests__/data'
 import getUserInfo from '.'
 
 jest.mock('../auth')

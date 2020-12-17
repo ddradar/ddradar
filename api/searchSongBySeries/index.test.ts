@@ -1,4 +1,4 @@
-import { testSongList } from '../__tests__/data'
+import { testSongList } from '../core/__tests__/data'
 import searchSong from '.'
 
 describe('GET /api/v1/songs/series/{series}', () => {

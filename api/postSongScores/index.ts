@@ -1,9 +1,16 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ItemDefinition, UserSchema } from '../db'
-import { fetchScore, ScoreSchema } from '../db/scores'
-import type { CourseInfoSchema, SongSchema, StepChartSchema } from '../db/songs'
+import type { ScoreSchema } from '../core/db/scores'
+import type {
+  CourseInfoSchema,
+  SongSchema,
+  StepChartSchema,
+} from '../core/db/songs'
+import type { UserSchema } from '../core/db/users'
+import { hasIntegerProperty, hasProperty } from '../core/type-assert'
+import type { ItemDefinition } from '../db'
+import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'
 import {
   calcMyGrooveRadar,
@@ -13,7 +20,6 @@ import {
   mergeScore,
   Score,
 } from '../score'
-import { hasIntegerProperty, hasProperty } from '../type-assert'
 
 type ScoreBody = Score &
   Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }

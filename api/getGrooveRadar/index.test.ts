@@ -1,9 +1,9 @@
 import type { Context } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import type { GrooveRadarSchema } from '../db/user-details'
+import { privateUser, publicUser } from '../core/__tests__/data'
+import type { GrooveRadarSchema } from '../core/db/user-details'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')

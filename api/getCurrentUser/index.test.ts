@@ -1,7 +1,7 @@
 import { mocked } from 'ts-jest/utils'
 
-import { publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
+import { publicUser } from '../core/__tests__/data'
 import getCurrentUser from '.'
 
 jest.mock('../auth')

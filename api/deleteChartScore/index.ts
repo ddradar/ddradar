@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../db/scores'
+import type { ScoreSchema } from '../core/db/scores'
 import { ErrorResult, NoContentResult } from '../function'
 
 type DeleteResult = {

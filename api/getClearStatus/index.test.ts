@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import type { ClearLamp } from '../db/scores'
-import type { ClearStatusSchema } from '../db/user-details'
+import { privateUser, publicUser } from '../core/__tests__/data'
+import type { ClearLamp } from '../core/db/scores'
+import type { ClearStatusSchema } from '../core/db/user-details'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')

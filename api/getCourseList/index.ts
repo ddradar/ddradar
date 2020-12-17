@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { CourseSchema, SeriesList, StepChartSchema } from '../db/songs'
+import { CourseSchema, SeriesList, StepChartSchema } from '../core/db/songs'
 import { SuccessResult } from '../function'
 
 type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {

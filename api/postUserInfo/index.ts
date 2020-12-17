@@ -1,12 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import {
-  fetchLoginUser,
-  fetchUser,
-  isUserSchema,
-  UserSchema,
-} from '../db/users'
+import { isUserSchema, UserSchema } from '../core/db/users'
+import { fetchLoginUser, fetchUser } from '../db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type PostUserResult = {

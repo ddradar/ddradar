@@ -1,7 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { AreaCode, areaCodeList, fetchUserList, UserSchema } from '../db/users'
+import { AreaCode, areaCodeList, UserSchema } from '../core/db/users'
+import { fetchUserList } from '../db/users'
 import { SuccessResult } from '../function'
 
 const isArea = (obj: unknown): obj is AreaCode =>
