@@ -8,6 +8,7 @@
   "private": true,
   "workspaces": [
     "api",
+    "api/core",
     "client",
     "functions"
   ],

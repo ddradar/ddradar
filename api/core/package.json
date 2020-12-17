@@ -1,0 +1,13 @@
+{
+  "name": "@ddradar/core",
+  "version": "1.0.0-beta.2",
+  "description": "Core module for DDRadar",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "ts-jest": "^26.4.4",
+    "typescript": "^4.1.3"
+  }
+}
