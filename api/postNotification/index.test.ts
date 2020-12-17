@@ -1,4 +1,5 @@
-import type { NotificationSchema } from '../db'
+import type { NotificationSchema } from '@ddradar/core/db/notification'
+
 import postNotification from '.'
 
 Date.now = jest.fn(() => 1597114800000)
