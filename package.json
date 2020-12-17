@@ -8,8 +8,8 @@
   "private": true,
   "workspaces": [
     "api",
-    "api/core",
     "client",
+    "core",
     "functions"
   ],
   "scripts": {
