@@ -34,9 +34,11 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           # see: https://aka.ms/swaworkflowconfig
-          app_location: '/client'
+          app_location: '/'
+          app_build_command: 'yarn build:client'
+          app_artifact_location: 'client/dist'
           api_location: 'api'
-          app_artifact_location: 'dist'
+          api_build_command: 'yarn build && rm -rf ./core/node_modules'
           routes_location: '/'
         env:
           API_URL: '/'
