@@ -6,15 +6,13 @@ const config: Config.InitialOptions = {
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
   testMatch: ['**/*.test.ts'],
-  testPathIgnorePatterns: ['<rootDir>/core/**'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: [
-    '<rootDir>/*.ts',
+    '**/*.ts',
     '!**/*.d.ts',
     '!<rootDir>/*.config.ts',
     '!**/__tests__/**',

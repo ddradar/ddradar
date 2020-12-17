@@ -26,6 +26,7 @@
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
     "test:client": "yarn workspace @ddradar/client test",
+    "test:core": "yarn workspace @ddradar/core test",
     "test:func": "yarn workspace @ddradar/functions test"
   },
   "husky": {

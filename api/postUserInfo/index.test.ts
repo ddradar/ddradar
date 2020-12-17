@@ -7,6 +7,7 @@ import { fetchLoginUser, fetchUser } from '../db/users'
 import postUserInfo from '.'
 
 jest.mock('../auth')
+jest.mock('../core/db/users')
 jest.mock('../db/users')
 
 describe('POST /api/v1/user', () => {
