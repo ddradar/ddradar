@@ -16,7 +16,7 @@ jobs:
   test:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
+        os: [ubuntu-20.04, windows-latest]
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -42,10 +42,10 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-20.04'
         run: yarn lint
       - name: Build
-        if: matrix.os == 'ubuntu-latest'
+        if: matrix.os == 'ubuntu-20.04'
         run: yarn build
         env:
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
@@ -65,7 +65,7 @@ jobs:
         uses: codecov/codecov-action@v1.0.15
 
       - name: Deploy Azure Functions (Development)
-        if: github.event_name == 'push' && matrix.os == 'ubuntu-latest'
+        if: github.event_name == 'push' && matrix.os == 'ubuntu-20.04'
         uses: Azure/functions-action@v1.1.8
         with:
           app-name: ddradar-staging
