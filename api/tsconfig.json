@@ -6,7 +6,10 @@
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
-    "strict": true
-  },
-  "types": ["jest", "node"]
+    "strict": true,
+    "paths": {
+      "@ddradar/core*": ["./core*"]
+    },
+    "types": ["jest", "node"]
+  }
 }
