@@ -156,7 +156,7 @@ const series = new Set([
 export type Series = Unwrap<typeof series>
 export const seriesSet: ReadonlySet<Series> = series
 
-const difficulty = new Map([
+const difficulties = new Map([
   [0, 'BEGINNER'],
   [1, 'BASIC'],
   [2, 'DIFFICULT'],
@@ -170,6 +170,9 @@ const difficulty = new Map([
  * `3`: EXPERT,
  * `4`: CHALLENGE
  */
-export type Difficulty = Unwrap<typeof difficulty>[0]
-export type DifficultyName = Unwrap<typeof difficulty>[1]
-export const difficultyMap: ReadonlyMap<Difficulty, DifficultyName> = difficulty
+export type Difficulty = Unwrap<typeof difficulties>[0]
+export type DifficultyName = Unwrap<typeof difficulties>[1]
+export const difficultyMap: ReadonlyMap<
+  Difficulty,
+  DifficultyName
+> = difficulties

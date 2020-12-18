@@ -2,6 +2,7 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
+  Unwrap,
 } from '../type-assert'
 
 export type UserSchema = {
@@ -20,76 +21,22 @@ export type UserSchema = {
   isPublic: boolean
 }
 
-export type AreaCode =
-  | 0
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20
-  | 21
-  | 22
-  | 23
-  | 24
-  | 25
-  | 26
-  | 27
-  | 28
-  | 29
-  | 30
-  | 31
-  | 32
-  | 33
-  | 34
-  | 35
-  | 36
-  | 37
-  | 38
-  | 39
-  | 40
-  | 41
-  | 42
-  | 43
-  | 44
-  | 45
-  | 46
-  | 47
-  | 48
-  | 49
-  | 50
-  | 51
-  | 52
-  | 53
-  | 106
-  | 107
-  | 108
-  | 109
-  | 110
-  | 111
-  | 112
-  | 113
-  | 114
-  | 115
-  | 116
-  | 117
-  | 118
+export function isUserSchema(obj: unknown): obj is UserSchema {
+  return (
+    hasStringProperty(obj, 'id', 'name') &&
+    /^[-a-zA-Z0-9_]+$/.test(obj.id) &&
+    hasIntegerProperty(obj, 'area') &&
+    (areaCodeSet as ReadonlySet<number>).has(obj.area) &&
+    (!hasProperty(obj, 'code') ||
+      (hasIntegerProperty(obj, 'code') &&
+        obj.code >= 10000000 &&
+        obj.code <= 99999999)) &&
+    hasProperty(obj, 'isPublic') &&
+    typeof obj.isPublic === 'boolean'
+  )
+}
 
-export const areaCodeList: AreaCode[] = [
+const areaCodes = new Set([
   0,
   1,
   2,
@@ -157,19 +104,6 @@ export const areaCodeList: AreaCode[] = [
   116,
   117,
   118,
-]
-
-export function isUserSchema(obj: unknown): obj is UserSchema {
-  return (
-    hasStringProperty(obj, 'id', 'name') &&
-    /^[-a-zA-Z0-9_]+$/.test(obj.id) &&
-    hasIntegerProperty(obj, 'area') &&
-    (areaCodeList as number[]).includes(obj.area) &&
-    (!hasProperty(obj, 'code') ||
-      (hasIntegerProperty(obj, 'code') &&
-        obj.code >= 10000000 &&
-        obj.code <= 99999999)) &&
-    hasProperty(obj, 'isPublic') &&
-    typeof obj.isPublic === 'boolean'
-  )
-}
+] as const)
+export type AreaCode = Unwrap<typeof areaCodes>
+export const areaCodeSet: ReadonlySet<AreaCode> = areaCodes

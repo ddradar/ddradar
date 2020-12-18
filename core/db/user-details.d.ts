@@ -1,13 +1,10 @@
 import type { ScoreSchema } from './scores'
-import type { StepChartSchema } from './songs'
+import type { GrooveRadar, StepChartSchema } from './songs'
 
-export type GrooveRadarSchema = Pick<
-  StepChartSchema,
-  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
-> & {
+export type GrooveRadarSchema = Pick<StepChartSchema, 'playStyle'> & {
   userId: string
   type: 'radar'
-}
+} & GrooveRadar
 
 export type ClearStatusSchema = Pick<
   ScoreSchema,
