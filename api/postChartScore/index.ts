@@ -14,7 +14,7 @@ import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
-  charts: (StepChartSchema | CourseInfoSchema)[]
+  charts: ReadonlyArray<StepChartSchema | CourseInfoSchema>
 }
 
 type PostScoreResult = {

@@ -26,7 +26,7 @@ export default async function (
     series: req.body.series,
     minBPM: req.body.minBPM,
     maxBPM: req.body.maxBPM,
-    charts: req.body.charts.sort((l, r) =>
+    charts: [...req.body.charts].sort((l, r) =>
       l.playStyle === r.playStyle
         ? l.difficulty - r.difficulty
         : l.playStyle - r.playStyle

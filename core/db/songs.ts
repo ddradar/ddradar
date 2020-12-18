@@ -2,18 +2,19 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
+  Unwrap,
 } from '../type-assert'
 
-/** DB Schema of "Song" */
+/** DB Schema of Song */
 export type SongSchema = {
   /**
-   * Song id that depend on official site.
+   * ID that depend on official site.
    * @example `^([01689bdiloqDIOPQ]*){32}$`
    */
   id: string
   name: string
   /**
-   * Song furigana for sorting.
+   * Furigana for sorting.
    * @example `^([A-Z0-9 .ぁ-んー]*)$`
    */
   nameKana: string
@@ -24,7 +25,7 @@ export type SongSchema = {
   nameIndex: number
   artist: string
   /** Series title depend on official site. */
-  series: string
+  series: Series
   /**
    * Displayed min BPM (Beet Per Minutes).
    * Set to `null` if not revealed, such as "???".
@@ -35,50 +36,20 @@ export type SongSchema = {
    * Set to `null` if not revealed, such as "???".
    */
   maxBPM: number | null
-  charts: StepChartSchema[]
+  charts: ReadonlyArray<StepChartSchema>
 }
 
-export function isSongSchema(obj: unknown): obj is SongSchema {
-  return (
-    hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
-    /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
-    /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
-    (SeriesList as readonly string[]).includes(obj.series) &&
-    hasIntegerProperty(obj, 'nameIndex') &&
-    obj.nameIndex >= 0 &&
-    obj.nameIndex <= 36 &&
-    (hasIntegerProperty(obj, 'minBPM', 'maxBPM') ||
-      (hasProperty(obj, 'minBPM', 'maxBPM') &&
-        obj.minBPM === null &&
-        obj.maxBPM === null)) &&
-    hasProperty(obj, 'charts') &&
-    Array.isArray(obj.charts) &&
-    obj.charts.every(c => isStepChartSchema(c))
-  )
-}
-
-/** DB Schema of "Course" */
-export type CourseSchema = {
-  /**
-   * Course id that depend on official site.
-   * @example `^([01689bdiloqDIOPQ]*){32}$`
-   */
-  id: string
-  name: string
-  /**
-   * Course furigana for sorting.
-   * @example `^([A-Z0-9 .ぁ-んー]*)$`
-   */
-  nameKana: string
-  /** `-1`: NONSTOP, `-2`: Grade */
-  nameIndex: -1 | -2
-  /** Series title depend on official site. */
-  series: string
-  /** Displayed min BPM (Beet Per Minutes). */
-  minBPM: number
-  /** Displayed max BPM (Beet Per Minutes). */
-  maxBPM: number
-  charts: CourseInfoSchema[]
+export type GrooveRadar = {
+  /** Groove Radar STREAM */
+  stream: number
+  /** Groove Radar VOLTAGE */
+  voltage: number
+  /** Groove Radar AIR */
+  air: number
+  /** Groove Radar FREEZE */
+  freeze: number
+  /** Groove Radar CHAOS */
+  chaos: number
 }
 
 /** Song's step chart */
@@ -93,16 +64,51 @@ export type StepChartSchema = {
   freezeArrow: number
   /** Shock Arrow count. */
   shockArrow: number
-  /** Groove Radar STREAM */
-  stream: number
-  /** Groove Radar VOLTAGE */
-  voltage: number
-  /** Groove Radar AIR */
-  air: number
-  /** Groove Radar FREEZE */
-  freeze: number
-  /** Groove Radar CHAOS */
-  chaos: number
+} & GrooveRadar
+
+/** DB Schema of Course */
+export type CourseSchema = Omit<
+  SongSchema,
+  'nameIndex' | 'artist' | 'charts'
+> & {
+  /** `-1`: NONSTOP, `-2`: Grade */
+  nameIndex: -1 | -2
+  charts: ReadonlyArray<CourseInfoSchema>
+}
+
+export type CourseInfoSchema = Omit<StepChartSchema, keyof GrooveRadar> & {
+  order: ReadonlyArray<ChartOrder>
+}
+
+export type ChartOrder = Pick<
+  StepChartSchema,
+  'playStyle' | 'difficulty' | 'level'
+> & {
+  /**
+   * Song id that depend on official site.
+   * @example `^([01689bdiloqDIOPQ]*){32}$`
+   */
+  songId: string
+  songName: string
+}
+
+export function isSongSchema(obj: unknown): obj is SongSchema {
+  return (
+    hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
+    /^[01689bdiloqDIOPQ]{32}$/.test(obj.id) &&
+    /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
+    (seriesSet as ReadonlySet<string>).has(obj.series) &&
+    hasIntegerProperty(obj, 'nameIndex') &&
+    obj.nameIndex >= 0 &&
+    obj.nameIndex <= 36 &&
+    (hasIntegerProperty(obj, 'minBPM', 'maxBPM') ||
+      (hasProperty(obj, 'minBPM', 'maxBPM') &&
+        obj.minBPM === null &&
+        obj.maxBPM === null)) &&
+    hasProperty(obj, 'charts') &&
+    Array.isArray(obj.charts) &&
+    obj.charts.every(c => isStepChartSchema(c))
+  )
 }
 
 const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
@@ -126,35 +132,7 @@ const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
   obj.level >= 1 &&
   obj.level <= 20
 
-export type CourseInfoSchema = Pick<
-  StepChartSchema,
-  'playStyle' | 'difficulty' | 'level' | 'notes' | 'freezeArrow' | 'shockArrow'
-> & {
-  order: ChartOrder[]
-}
-
-export type ChartOrder = Pick<
-  StepChartSchema,
-  'playStyle' | 'difficulty' | 'level'
-> & {
-  /**
-   * Song id that depend on official site.
-   * @example `^([01689bdiloqDIOPQ]*){32}$`
-   */
-  songId: string
-  songName: string
-}
-
-/**
- * `0`: BEGINNER,
- * `1`: BASIC,
- * `2`: DIFFICULT,
- * `3`: EXPERT,
- * `4`: CHALLENGE
- */
-export type Difficulty = 0 | 1 | 2 | 3 | 4
-
-export const SeriesList = [
+const series = new Set([
   'DDR 1st',
   'DDR 2ndMIX',
   'DDR 3rdMIX',
@@ -173,4 +151,25 @@ export const SeriesList = [
   'DanceDanceRevolution A',
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
-] as const
+] as const)
+/** Series title depend on official site. */
+export type Series = Unwrap<typeof series>
+export const seriesSet: ReadonlySet<Series> = series
+
+const difficulty = new Map([
+  [0, 'BEGINNER'],
+  [1, 'BASIC'],
+  [2, 'DIFFICULT'],
+  [3, 'EXPERT'],
+  [4, 'CHALLENGE'],
+] as const)
+/**
+ * `0`: BEGINNER,
+ * `1`: BASIC,
+ * `2`: DIFFICULT,
+ * `3`: EXPERT,
+ * `4`: CHALLENGE
+ */
+export type Difficulty = Unwrap<typeof difficulty>[0]
+export type DifficultyName = Unwrap<typeof difficulty>[1]
+export const difficultyMap: ReadonlyMap<Difficulty, DifficultyName> = difficulty

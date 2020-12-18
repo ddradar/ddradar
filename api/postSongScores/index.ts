@@ -26,7 +26,7 @@ type ScoreBody = Score &
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
-  charts: (StepChartSchema | CourseInfoSchema)[]
+  charts: ReadonlyArray<StepChartSchema | CourseInfoSchema>
 }
 
 type PostSongScoresResponse = {
