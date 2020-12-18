@@ -1,13 +1,15 @@
 import type { Container } from '@azure/cosmos'
+import {
+  ClearStatusSchema,
+  GrooveRadarSchema,
+  ScoreStatusSchema,
+} from '@ddradar/core/db/user-details'
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../../db'
 import {
-  ClearStatusSchema,
   fetchClearAndScoreStatus,
   generateGrooveRadar,
-  GrooveRadarSchema,
-  ScoreStatusSchema,
 } from '../../db/user-details'
 
 jest.mock('../../db')

@@ -1,9 +1,9 @@
 import type { Container } from '@azure/cosmos'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
+import type { SongSchema } from '@ddradar/core/db/songs'
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../db'
-import type { ScoreSchema } from '../db/scores'
-import type { SongSchema } from '../db/songs'
 import updateScores from '.'
 
 jest.mock('../db')

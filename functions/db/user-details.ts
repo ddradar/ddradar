@@ -1,33 +1,10 @@
+import type {
+  ClearStatusSchema,
+  GrooveRadarSchema,
+  ScoreStatusSchema,
+} from '@ddradar/core/db/user-details'
+
 import { getContainer } from '.'
-import type { ScoreSchema } from './scores'
-import type { StepChartSchema } from './songs'
-
-export type GrooveRadarSchema = Pick<
-  StepChartSchema,
-  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
-> & {
-  id?: string
-  userId: string
-  type: 'radar'
-}
-
-export type ClearStatusSchema = Pick<
-  ScoreSchema,
-  'userId' | 'playStyle' | 'level' | 'clearLamp'
-> & {
-  id?: string
-  type: 'clear'
-  count: number
-}
-
-export type ScoreStatusSchema = Pick<
-  ScoreSchema,
-  'userId' | 'playStyle' | 'level' | 'rank'
-> & {
-  id?: string
-  type: 'score'
-  count: number
-}
 
 export async function generateGrooveRadar(
   userId: string,

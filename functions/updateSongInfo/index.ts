@@ -1,8 +1,8 @@
 import type { Logger } from '@azure/functions'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
+import type { SongSchema } from '@ddradar/core/db/songs'
 
 import { getContainer } from '../db'
-import type { ScoreSchema } from '../db/scores'
-import type { SongSchema } from '../db/songs'
 
 /**
  * Update song info of other container.
