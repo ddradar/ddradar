@@ -8,10 +8,6 @@ import type {
   StepChartSchema,
 } from '../core/db/songs'
 import type { UserSchema } from '../core/db/users'
-import { hasIntegerProperty, hasProperty } from '../core/type-assert'
-import type { ItemDefinition } from '../db'
-import { fetchScore } from '../db/scores'
-import { ErrorResult, SuccessResult } from '../function'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
@@ -19,7 +15,11 @@ import {
   isValidScore,
   mergeScore,
   Score,
-} from '../score'
+} from '../core/score'
+import { hasIntegerProperty, hasProperty } from '../core/type-assert'
+import type { ItemDefinition } from '../db'
+import { fetchScore } from '../db/scores'
+import { ErrorResult, SuccessResult } from '../function'
 
 type ScoreBody = Score &
   Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }

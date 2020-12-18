@@ -9,8 +9,8 @@ import {
   testSongData,
 } from '../core/__tests__/data'
 import type { ScoreSchema } from '../core/db/scores'
+import type { Score } from '../core/score'
 import { fetchScore } from '../db/scores'
-import type { Score } from '../score'
 import postSongScores from '.'
 
 jest.mock('../auth')

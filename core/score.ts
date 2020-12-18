@@ -1,6 +1,6 @@
-import { DanceLevel, danceLevelSet, ScoreSchema } from './core/db/scores'
-import type { StepChartSchema } from './core/db/songs'
-import { hasIntegerProperty, hasStringProperty } from './core/type-assert'
+import { DanceLevel, danceLevelSet, ScoreSchema } from './db/scores'
+import type { GrooveRadar, StepChartSchema } from './db/songs'
+import { hasIntegerProperty, hasStringProperty } from './type-assert'
 
 export type Score = Pick<
   ScoreSchema,
@@ -74,7 +74,7 @@ export function isValidScore(
 export function calcMyGrooveRadar(
   chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>,
   score: Score
-): Pick<StepChartSchema, 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'> {
+): GrooveRadar {
   const note = chart.notes + chart.shockArrow
   const isFullCombo = score.clearLamp >= 4
   const maxCombo = isFullCombo ? note : score.maxCombo ?? 0

@@ -1,12 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { AreaCode, areaCodeList, UserSchema } from '../core/db/users'
+import { AreaCode, areaCodeSet, UserSchema } from '../core/db/users'
 import { fetchUserList } from '../db/users'
 import { SuccessResult } from '../function'
 
 const isArea = (obj: unknown): obj is AreaCode =>
-  typeof obj === 'number' && (areaCodeList as number[]).includes(obj)
+  typeof obj === 'number' && (areaCodeSet as ReadonlySet<number>).has(obj)
 
 /** Get user list that match the specified conditions. */
 export default async function (

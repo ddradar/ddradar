@@ -1,4 +1,4 @@
-import type { StepChartSchema } from '../core/db/songs'
+import type { StepChartSchema } from '../db/songs'
 import {
   calcMyGrooveRadar,
   getDanceLevel,

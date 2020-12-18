@@ -8,9 +8,14 @@ import type {
   SongSchema,
   StepChartSchema,
 } from '../core/db/songs'
+import {
+  calcMyGrooveRadar,
+  isScore,
+  isValidScore,
+  mergeScore,
+} from '../core/score'
 import type { ItemDefinition } from '../db'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
-import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean

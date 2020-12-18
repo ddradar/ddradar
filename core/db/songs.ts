@@ -55,8 +55,7 @@ export type GrooveRadar = {
 
 /** Song's step chart */
 export type StepChartSchema = {
-  /** `1`: SINGLE, `2`: DOUBLE */
-  playStyle: 1 | 2
+  playStyle: PlayStyle
   difficulty: Difficulty
   level: number
   /** Normal arrow count. (Jump = 1 count) */
@@ -156,6 +155,15 @@ const series = new Set([
 /** Series title depend on official site. */
 export type Series = Unwrap<typeof series>
 export const seriesSet: ReadonlySet<Series> = series
+
+const playStyles = new Map([
+  [1, 'SINGLE'],
+  [2, 'DOUBLE'],
+] as const)
+/** `1`: SINGLE, `2`: DOUBLE */
+export type PlayStyle = Unwrap<typeof playStyles>[0]
+export type PlayStyleName = Unwrap<typeof playStyles>[1]
+export const playStyleMap: ReadonlyMap<PlayStyle, PlayStyleName> = playStyles
 
 const difficulties = new Map([
   [0, 'BEGINNER'],
