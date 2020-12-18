@@ -1,4 +1,4 @@
-import { DanceLevelList, ScoreSchema } from './core/db/scores'
+import { DanceLevel, danceLevelSet, ScoreSchema } from './core/db/scores'
 import type { StepChartSchema } from './core/db/songs'
 import { hasIntegerProperty, hasStringProperty } from './core/type-assert'
 
@@ -19,7 +19,7 @@ export function isScore(obj: unknown): obj is Score {
     (hasIntegerProperty(obj, 'maxCombo') ||
       (obj as Record<string, unknown>).maxCombo === undefined) &&
     hasStringProperty(obj, 'rank') &&
-    (DanceLevelList as readonly string[]).includes(obj.rank)
+    (danceLevelSet as ReadonlySet<string>).has(obj.rank)
   )
 }
 
@@ -100,7 +100,7 @@ export function calcMyGrooveRadar(
   }
 }
 
-export function getDanceLevel(score: number): string {
+export function getDanceLevel(score: number): DanceLevel {
   if (!isPositiveInteger(score))
     throw new RangeError(
       `Invalid parameter: score(${score}) should be positive integer or 0.`

@@ -21,3 +21,9 @@ export function hasIntegerProperty<K extends string>(
     names.every(n => typeof x[n] === 'number' && Number.isInteger(x[n]))
   )
 }
+
+export type Unwrap<T> = T extends PromiseLike<infer U>
+  ? U
+  : T extends Iterable<infer U>
+  ? U
+  : T

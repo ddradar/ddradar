@@ -1,3 +1,4 @@
+import type { Unwrap } from '../type-assert'
 import type { StepChartSchema } from './songs'
 
 export type ScoreSchema = Pick<
@@ -21,7 +22,7 @@ export type ScoreSchema = Pick<
   maxCombo?: number
   clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
-  rank: string
+  rank: DanceLevel
   /** Groove Radar */
   radar?: Pick<
     StepChartSchema,
@@ -41,7 +42,7 @@ export type ScoreSchema = Pick<
  */
 export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
-export const DanceLevelList = [
+const danceLevels = [
   'E',
   'D',
   'D+',
@@ -59,3 +60,5 @@ export const DanceLevelList = [
   'AA+',
   'AAA',
 ] as const
+export type DanceLevel = Unwrap<typeof danceLevels>
+export const danceLevelSet: ReadonlySet<DanceLevel> = new Set(danceLevels)

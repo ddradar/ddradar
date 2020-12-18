@@ -14,10 +14,7 @@ import type { Score } from '../score'
 import postSongScores from '.'
 
 jest.mock('../auth')
-jest.mock('../db/scores', () => ({
-  ...jest.genMockFromModule<Record<string, unknown>>('../db/scores'),
-  DanceLevelList: jest.requireActual('../db/scores').DanceLevelList,
-}))
+jest.mock('../db/scores')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
