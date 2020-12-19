@@ -71,3 +71,4 @@ jobs:
           app-name: ddradar-staging
           package: ./functions/
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE_STAGING }}
+          respect-funcignore: true
