@@ -1,3 +1,4 @@
+import { ItemDefinition } from '@azure/cosmos'
 import type {
   ClearStatusSchema,
   GrooveRadarSchema,
@@ -35,7 +36,7 @@ export async function generateGrooveRadar(
       ],
     })
     .fetchAll()
-  const result = resources[0] ?? {
+  const result: GrooveRadarSchema & ItemDefinition = resources[0] ?? {
     userId,
     type: 'radar',
     playStyle,

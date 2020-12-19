@@ -1,3 +1,4 @@
+import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type { SongSchema } from '@ddradar/core/db/songs'
@@ -20,7 +21,7 @@ export default async function (
     // Get scores
     const container = getContainer('Scores')
     const { resources } = await container.items
-      .query<ScoreSchema>({
+      .query<ScoreSchema & ItemDefinition>({
         query: 'SELECT * FROM c WHERE c.songId = @id',
         parameters: [{ name: '@id', value: song.id }],
       })

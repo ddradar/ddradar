@@ -5,8 +5,6 @@ export type ScoreSchema = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level'
 > & {
-  /** Auto Generated */
-  id?: string
   /** User ID */
   userId: string
   userName: string
