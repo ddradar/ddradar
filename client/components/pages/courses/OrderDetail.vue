@@ -246,7 +246,7 @@ export default class OrderDetailComponent extends Vue {
       )
       this.scores = scores.map(s => {
         const id = parseInt(s.userId, 10)
-        if (!isNaN(id) && areaList.includes(id)) {
+        if (!isNaN(id) && (areaList as number[]).includes(id)) {
           return {
             ...s,
             isArea: true,

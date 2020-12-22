@@ -1,3 +1,4 @@
+import type { UserInfo } from '@ddradar/core/api/user'
 import {
   createLocalVue,
   mount,
@@ -8,7 +9,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getUserList, UserListData } from '~/api/user'
+import { getUserList } from '~/api/user'
 import UserListPage from '~/pages/users/index.vue'
 import { danger } from '~/utils/popup'
 
@@ -23,11 +24,11 @@ localVue.use(Buefy)
 localVue.use(VueI18n)
 
 describe('pages/users/index.vue', () => {
-  const users: UserListData[] = [...Array(10).keys()].map(i => ({
+  const users = [...Array(10).keys()].map(i => ({
     id: `user_${i}`,
     name: `User ${i}`,
     area: i,
-  }))
+  })) as UserInfo[]
   const stubs = { NuxtLink: RouterLinkStub }
   describe('snapshot test', () => {
     test.each(['ja', 'en'])(

@@ -1,9 +1,10 @@
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { existsUser, User } from '~/api/user'
+import { existsUser } from '~/api/user'
 import ProfilePage from '~/pages/profile.vue'
 import * as popup from '~/utils/popup'
 
@@ -19,7 +20,7 @@ localVue.use(VueI18n)
 
 describe('pages/profile.vue', () => {
   const $accessor = { user: null }
-  const user: User = {
+  const user: CurrentUserInfo = {
     id: 'test_user',
     name: 'Test User',
     area: 13,

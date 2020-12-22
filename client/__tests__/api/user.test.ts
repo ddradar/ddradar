@@ -1,3 +1,5 @@
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
+
 import {
   existsUser,
   getClearStatus,
@@ -7,11 +9,10 @@ import {
   getUserInfo,
   getUserList,
   postUserInfo,
-  User,
 } from '~/api/user'
 
 describe('./api/user.ts', () => {
-  const user: User = {
+  const user: CurrentUserInfo = {
     id: 'foo_user',
     name: 'Foo',
     area: 13,
@@ -19,7 +20,7 @@ describe('./api/user.ts', () => {
   }
   const $http = {
     $get: jest.fn<Promise<any>, [string, any]>(),
-    $post: jest.fn<Promise<any>, [string, User]>(),
+    $post: jest.fn<Promise<any>, [string, CurrentUserInfo]>(),
   }
   beforeEach(() => {
     $http.$get.mockClear()

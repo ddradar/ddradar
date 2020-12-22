@@ -1,14 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { UserSchema } from '../core/db/users'
+import type { CurrentUserInfo } from '../core/api/user'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get information about the currently logged in user. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers'>
-): Promise<ErrorResult<404> | SuccessResult<Omit<UserSchema, 'loginId'>>> {
+): Promise<ErrorResult<404> | SuccessResult<CurrentUserInfo>> {
   const user = await getLoginUserInfo(getClientPrincipal(req))
 
   if (!user) {

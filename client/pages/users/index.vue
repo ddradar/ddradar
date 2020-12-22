@@ -104,9 +104,10 @@
 </i18n>
 
 <script lang="ts">
+import type { UserInfo } from '@ddradar/core/api/user'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, getUserList, UserListData } from '~/api/user'
+import { areaList, getUserList } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component
@@ -114,7 +115,7 @@ export default class UserListPage extends Vue {
   name: string = ''
   area: number = 0
   code: number | null = null
-  users: UserListData[] = []
+  users: UserInfo[] = []
 
   loading = false
 

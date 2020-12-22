@@ -62,15 +62,16 @@
 </i18n>
 
 <script lang="ts">
+import type { UserInfo } from '@ddradar/core/api/user'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getUserInfo, UserListData } from '~/api/user'
+import { getUserInfo } from '~/api/user'
 import PlayStatus from '~/components/pages/users/PlayStatus.vue'
 
 @Component({ components: { PlayStatus }, fetchOnServer: false })
 export default class UserPage extends Vue {
-  user: UserListData | null = null
+  user: UserInfo | null = null
 
   get areaName() {
     return this.user ? this.$t(`area.${this.user.area}`) : ''

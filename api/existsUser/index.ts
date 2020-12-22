@@ -1,8 +1,7 @@
 import type { Context } from '@azure/functions'
 
+import type { ExistsUser } from '../core/api/user'
 import { SuccessResult } from '../function'
-
-type ExistsUser = { id: string; exists: boolean }
 
 /** Returns whether the specified user exists. */
 export default async function (

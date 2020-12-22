@@ -1,7 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import { AreaCode, areaCodeSet, UserSchema } from '../core/db/users'
+import type { UserInfo } from '../core/api/user'
+import { AreaCode, areaCodeSet } from '../core/db/users'
 import { fetchUserList } from '../db/users'
 import { SuccessResult } from '../function'
 
@@ -12,7 +13,7 @@ const isArea = (obj: unknown): obj is AreaCode =>
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>
-): Promise<SuccessResult<Omit<UserSchema, 'loginId' | 'isPublic'>[]>> {
+): Promise<SuccessResult<UserInfo[]>> {
   const loginId = getClientPrincipal(req)?.userId ?? ''
   const area = parseFloat(req.query.area)
   const name = req.query.name
