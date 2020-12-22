@@ -1,7 +1,8 @@
+import type { ClientPrincipal } from '@core/api/auth'
 import type { CurrentUserInfo } from '@core/api/user'
 import { actionTree, getAccessorType, mutationTree } from 'typed-vuex'
 
-import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
+import { getClientPrincipal } from '~/api/auth'
 import { getCurrentUser, postUserInfo } from '~/api/user'
 
 export type RootState = {

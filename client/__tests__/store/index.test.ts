@@ -1,8 +1,9 @@
+import type { ClientPrincipal } from '@core/api/auth'
 import type { CurrentUserInfo } from '@core/api/user'
 import { mocked } from 'ts-jest/utils'
 import { Store } from 'vuex'
 
-import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
+import { getClientPrincipal } from '~/api/auth'
 import { getCurrentUser, postUserInfo } from '~/api/user'
 import { actions, getters, mutations, RootState, state } from '~/store'
 
@@ -21,7 +22,7 @@ const user: CurrentUserInfo = {
   area: 13,
   isPublic: true,
   code: 10000000,
-} as const
+}
 
 describe('./store/index.ts', () => {
   describe('state', () => {
