@@ -1,7 +1,7 @@
+import type { SongInfo } from '@core/api/song'
 import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 
-import type { SongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/_chart.vue'
 
 const localVue = createLocalVue()

@@ -1,8 +1,8 @@
+import type { SongListData } from '@core/api/song'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'
 
-import type { SongListData } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 const localVue = createLocalVue()

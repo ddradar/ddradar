@@ -19,10 +19,11 @@
 </template>
 
 <script lang="ts">
+import type { SongListData } from '@core/api/song'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, searchSongByName, SongListData } from '~/api/song'
+import { NameIndexList, searchSongByName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })

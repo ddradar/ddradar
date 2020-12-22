@@ -1,7 +1,7 @@
+import { StepChartSchema } from '@core/db/songs'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
-import { StepChart } from '~/api/song'
 
 /** 0: Failed, 1: Assisted Clear 2: Clear, 3: LIFE4, 4: Good FC (Full Combo), 5: Great FC, 6: PFC, 7: MFC */
 export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
@@ -90,7 +90,7 @@ export function setValidScoreFromChart(
     notes,
     freezeArrow,
     shockArrow,
-  }: Readonly<Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>>,
+  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
   partialScore: Readonly<Partial<Score>>
 ): Score {
   const objects = notes + freezeArrow + shockArrow

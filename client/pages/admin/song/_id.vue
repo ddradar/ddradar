@@ -184,11 +184,13 @@
 </template>
 
 <script lang="ts">
+import type { SongInfo } from '@core/api/song'
+import type { Series, StepChartSchema } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postSongInfo } from '~/api/admin'
-import { getSongInfo, SeriesList, SongInfo, StepChart } from '~/api/song'
+import { getSongInfo, SeriesList } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 @Component
@@ -197,10 +199,10 @@ export default class SongEditorPage extends Vue implements SongInfo {
   name: string = ''
   nameKana: string = ''
   artist: string = ''
-  series: string = ''
+  series: Series = 'DanceDanceRevolution A20 PLUS'
   minBPM: number | null = null
   maxBPM: number | null = null
-  charts: StepChart[] = []
+  charts: StepChartSchema[] = []
 
   get playStyleList() {
     return [
@@ -330,7 +332,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
         freeze: 0,
         chaos: 0,
       } as const
-      const charts: StepChart[] = [
+      const charts: StepChartSchema[] = [
         { ...chart, playStyle: 1, difficulty: 0 },
         { ...chart, playStyle: 1, difficulty: 1 },
         { ...chart, playStyle: 1, difficulty: 2 },
@@ -375,7 +377,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
     this.charts.splice(index, 1)
   }
 
-  hasDuplicateKey(chart: StepChart) {
+  hasDuplicateKey(chart: StepChartSchema) {
     return (
       this.charts.filter(
         c =>
@@ -394,7 +396,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.series = songInfo.series
       this.minBPM = songInfo.minBPM
       this.maxBPM = songInfo.maxBPM
-      this.charts = songInfo.charts
+      this.charts = [...songInfo.charts]
     } catch (error) {
       popup.danger(this.$buefy, error.message ?? error)
     }
@@ -437,7 +439,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
     this.series = songInfo.series
     this.minBPM = songInfo.minBPM
     this.maxBPM = songInfo.maxBPM
-    this.charts = songInfo.charts
+    this.charts = [...songInfo.charts]
   }
 }
 </script>

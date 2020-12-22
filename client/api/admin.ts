@@ -1,7 +1,6 @@
+import type { SongInfo } from '@core/api/song'
 import type { NotificationSchema } from '@core/db/notification'
 import type { NuxtHTTPInstance } from '@nuxt/http'
-
-import type { SongInfo } from '~/api/song'
 
 type NotificationRequest = Omit<
   NotificationSchema,

@@ -152,15 +152,12 @@
 </i18n>
 
 <script lang="ts">
+import type { SongInfo } from '@core/api/song'
+import type { StepChartSchema } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore, UserScore } from '~/api/score'
-import {
-  getDifficultyName,
-  getPlayStyleName,
-  SongInfo,
-  StepChart,
-} from '~/api/song'
+import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
@@ -175,7 +172,7 @@ export default class ChartDetailComponent extends Vue {
   readonly song!: Omit<SongInfo, 'charts'>
 
   @Prop({ required: true, type: Object })
-  readonly chart!: StepChart
+  readonly chart!: StepChartSchema
 
   @Prop({ required: false, type: Boolean, default: false })
   readonly open!: boolean

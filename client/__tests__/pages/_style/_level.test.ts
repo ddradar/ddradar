@@ -1,3 +1,4 @@
+import type { ChartInfo } from '@core/api/song'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
@@ -8,7 +9,7 @@ import {
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
-import { ChartInfo, searchCharts } from '~/api/song'
+import { searchCharts } from '~/api/song'
 import ChartLevelPage from '~/pages/_style/_level.vue'
 
 jest.mock('~/api/song')

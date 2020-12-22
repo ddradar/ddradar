@@ -1,3 +1,4 @@
+import type { SongListData } from '../api/song'
 import type { SongSchema } from '../db/songs'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
@@ -41,7 +42,7 @@ export const testSongData: SongSchema = {
 }
 
 /** PARANOiA, PARANOiA(X-Special), SP-TRIP MACHINE～JUNGLE MIX～(X-Special) */
-export const testSongList: Omit<SongSchema, 'charts'>[] = [
+export const testSongList: SongListData[] = [
   {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',

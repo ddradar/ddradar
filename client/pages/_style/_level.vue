@@ -19,10 +19,11 @@
 </template>
 
 <script lang="ts">
+import type { ChartInfo } from '@core/api/song'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { ChartInfo, searchCharts } from '~/api/song'
+import { searchCharts } from '~/api/song'
 import ChartList from '~/components/pages/charts/ChartList.vue'
 
 @Component({ fetchOnServer: false, components: { ChartList } })

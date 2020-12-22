@@ -1,7 +1,8 @@
+import type { SongInfo } from '@core/api/song'
+
 import { postNotification, postSongInfo } from '~/api/admin'
 
 type NotificationRequest = Parameters<typeof postNotification>[1]
-type SongInfo = Parameters<typeof postSongInfo>[1]
 
 describe('./api/admin.ts', () => {
   const $http = { $post: jest.fn<Promise<any>, [string]>() }
@@ -83,13 +84,13 @@ describe('./api/admin.ts', () => {
     beforeEach(() => $http.$post.mockResolvedValue(songInfo))
     test('calls POST "/api/v1/admin/songs"', async () => {
       // Arrange
-      const body = { ...songInfo, charts: songInfo.charts.reverse() }
+      const body = { ...songInfo, charts: [...songInfo.charts].reverse() }
 
       // Act
       const val = await postSongInfo($http, body)
 
       // Assert
-      expect(val).toBe(songInfo)
+      expect(val).toStrictEqual(songInfo)
       expect($http.$post).toBeCalledTimes(1)
       expect($http.$post).lastCalledWith('/api/v1/admin/songs', body)
     })

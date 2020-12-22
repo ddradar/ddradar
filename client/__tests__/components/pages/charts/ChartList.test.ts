@@ -1,8 +1,8 @@
+import type { ChartInfo } from '@core/api/song'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'
 
-import type { ChartInfo } from '~/api/song'
 import ChartListComponent from '~/components/pages/charts/ChartList.vue'
 
 const localVue = createLocalVue()

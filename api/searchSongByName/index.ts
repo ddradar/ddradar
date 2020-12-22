@@ -1,9 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { seriesSet, SongSchema } from '../core/db/songs'
+import type { SongListData } from '../core/api/song'
+import { seriesSet } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
-
-type SongListData = Omit<SongSchema, 'charts'>
 
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
