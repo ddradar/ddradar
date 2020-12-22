@@ -104,7 +104,7 @@
 </i18n>
 
 <script lang="ts">
-import type { UserInfo } from '@ddradar/core/api/user'
+import type { UserInfo } from '@core/api/user'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { areaList, getUserList } from '~/api/user'

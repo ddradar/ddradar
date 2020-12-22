@@ -1,9 +1,5 @@
-import type {
-  CurrentUserInfo,
-  ExistsUser,
-  UserInfo,
-} from '@ddradar/core/api/user'
-import { areaCodeSet } from '@ddradar/core/db/users'
+import type { CurrentUserInfo, ExistsUser, UserInfo } from '@core/api/user'
+import { areaCodeSet } from '@core/db/users'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

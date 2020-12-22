@@ -1,4 +1,4 @@
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type { NotificationSchema } from '@core/db/notification'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import type { SongInfo } from '~/api/song'

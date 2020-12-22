@@ -56,7 +56,7 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseListData } from '@ddradar/core/api/course'
+import type { CourseListData } from '@core/api/course'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getPlayStyleName, shortenSeriesName } from '~/api/song'

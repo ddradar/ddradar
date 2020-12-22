@@ -1,4 +1,4 @@
-import type { CurrentUserInfo } from '@ddradar/core/api/user'
+import type { CurrentUserInfo } from '@core/api/user'
 import { actionTree, getAccessorType, mutationTree } from 'typed-vuex'
 
 import { ClientPrincipal, getClientPrincipal } from '~/api/auth'

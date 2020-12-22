@@ -136,8 +136,8 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseInfo } from '@ddradar/core/api/course'
-import type { CourseChartSchema } from '@ddradar/core/db/songs'
+import type { CourseInfo } from '@core/api/course'
+import type { CourseChartSchema } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore, UserScore } from '~/api/score'

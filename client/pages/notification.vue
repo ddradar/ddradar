@@ -68,7 +68,7 @@
 </i18n>
 
 <script lang="ts">
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type { NotificationSchema } from '@core/db/notification'
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 

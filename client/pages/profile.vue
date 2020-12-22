@@ -160,8 +160,8 @@
 </i18n>
 
 <script lang="ts">
-import type { CurrentUserInfo } from '@ddradar/core/api/user'
-import type { AreaCode } from '@ddradar/core/db/users'
+import type { CurrentUserInfo } from '@core/api/user'
+import type { AreaCode } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { areaList, existsUser } from '~/api/user'

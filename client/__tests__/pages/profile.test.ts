@@ -1,4 +1,4 @@
-import type { CurrentUserInfo } from '@ddradar/core/api/user'
+import type { CurrentUserInfo } from '@core/api/user'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'

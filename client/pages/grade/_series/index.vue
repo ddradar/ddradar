@@ -34,7 +34,7 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseListData } from '@ddradar/core/api/course'
+import type { CourseListData } from '@core/api/course'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 

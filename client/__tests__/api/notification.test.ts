@@ -1,4 +1,4 @@
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type { NotificationSchema } from '@core/db/notification'
 
 import { getNotificationInfo, getNotificationList } from '~/api/notification'
 

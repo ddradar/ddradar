@@ -1,4 +1,4 @@
-import type { CourseInfo } from '@ddradar/core/api/course'
+import type { CourseInfo } from '@core/api/course'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { mocked } from 'ts-jest/utils'

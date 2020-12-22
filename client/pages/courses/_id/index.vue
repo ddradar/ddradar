@@ -26,7 +26,7 @@
 </template>
 
 <script lang="ts">
-import type { CourseInfo } from '@ddradar/core/api/course'
+import type { CourseInfo } from '@core/api/course'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
