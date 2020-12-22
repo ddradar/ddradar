@@ -3,7 +3,7 @@ import type { HttpRequest } from '@azure/functions'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ScoreSchema } from '../core/db/scores'
 import type {
-  CourseInfoSchema,
+  CourseChartSchema,
   SongSchema,
   StepChartSchema,
 } from '../core/db/songs'
@@ -26,7 +26,7 @@ type ScoreBody = Score &
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
-  charts: ReadonlyArray<StepChartSchema | CourseInfoSchema>
+  charts: ReadonlyArray<StepChartSchema | CourseChartSchema>
 }
 
 type PostSongScoresResponse = {
@@ -124,7 +124,7 @@ export default async function (
    * Also complement exScore and maxCombo.
    */
   function createSchema(
-    chart: Readonly<StepChartSchema | CourseInfoSchema>,
+    chart: Readonly<StepChartSchema | CourseChartSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Score>
   ) {
@@ -163,7 +163,7 @@ export default async function (
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(
-    chart: Readonly<StepChartSchema | CourseInfoSchema>,
+    chart: Readonly<StepChartSchema | CourseChartSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Score>,
     isAreaUser = true

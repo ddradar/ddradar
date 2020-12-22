@@ -1,5 +1,6 @@
 import type { Context } from '@azure/functions'
 
+import type { CourseInfo } from '../core/api/course'
 import type { CourseSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
@@ -8,7 +9,7 @@ export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   _req: unknown,
   [course]: CourseSchema[]
-): Promise<ErrorResult<404> | SuccessResult<CourseSchema>> {
+): Promise<ErrorResult<404> | SuccessResult<CourseInfo>> {
   if (!course) {
     return new ErrorResult(404, `Not found course that id: "${bindingData.id}"`)
   }

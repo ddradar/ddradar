@@ -1,8 +1,8 @@
+import type { CourseListData } from '@ddradar/core/api/course'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'
 
-import type { CourseList } from '~/api/course'
 import CourseListComponent from '~/components/pages/courses/CourseList.vue'
 
 const localVue = createLocalVue()
@@ -30,7 +30,7 @@ describe('/components/pages/courses/CourseList.vue', () => {
       async locale => {
         // Arrange - Act
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const courses: CourseList[] = [
+        const courses: CourseListData[] = [
           {
             id: '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
             name: '初段',

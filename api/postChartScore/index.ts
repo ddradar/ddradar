@@ -3,7 +3,7 @@ import type { Context, HttpRequest } from '@azure/functions'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ScoreSchema } from '../core/db/scores'
 import type {
-  CourseInfoSchema,
+  CourseChartSchema,
   Difficulty,
   SongSchema,
   StepChartSchema,
@@ -19,7 +19,7 @@ import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
-  charts: ReadonlyArray<StepChartSchema | CourseInfoSchema>
+  charts: ReadonlyArray<StepChartSchema | CourseChartSchema>
 }
 
 type PostScoreResult = {

@@ -34,10 +34,11 @@
 </i18n>
 
 <script lang="ts">
+import type { CourseListData } from '@ddradar/core/api/course'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { CourseList as CourseListData, getCourseList } from '~/api/course'
+import { getCourseList } from '~/api/course'
 import { SeriesList, shortenSeriesName } from '~/api/song'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 

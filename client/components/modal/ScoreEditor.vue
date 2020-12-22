@@ -142,9 +142,10 @@
 </i18n>
 
 <script lang="ts">
+import type { CourseInfo } from '@ddradar/core/api/course'
+import type { CourseChartSchema } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { CourseChart, CourseInfo } from '~/api/course'
 import {
   ClearLamp,
   deleteChartScore,
@@ -183,7 +184,7 @@ export default class ScoreEditorComponent extends Vue {
   maxCombo = 0
   isFailed = false
 
-  selectedChart: StepChart | CourseChart | null = null
+  selectedChart: StepChart | CourseChartSchema | null = null
 
   isLoading = true
 
@@ -229,7 +230,7 @@ export default class ScoreEditorComponent extends Vue {
   async created() {
     if (this.playStyle !== null && this.difficulty !== null) {
       this.selectedChart =
-        (this.songData.charts as (StepChart | CourseChart)[]).find(
+        (this.songData.charts as (StepChart | CourseChartSchema)[]).find(
           c =>
             c.playStyle === this.playStyle && c.difficulty === this.difficulty
         ) ?? null
@@ -242,7 +243,7 @@ export default class ScoreEditorComponent extends Vue {
     difficulty,
   }: Pick<StepChart, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
-      (this.songData.charts as (StepChart | CourseChart)[]).find(
+      (this.songData.charts as (StepChart | CourseChartSchema)[]).find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       ) ?? null
     await this.fetchScore()

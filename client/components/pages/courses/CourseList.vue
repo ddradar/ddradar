@@ -56,15 +56,15 @@
 </i18n>
 
 <script lang="ts">
+import type { CourseListData } from '@ddradar/core/api/course'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { CourseList } from '~/api/course'
 import { getPlayStyleName, shortenSeriesName } from '~/api/song'
 
 @Component
 export default class CourseListComponent extends Vue {
   @Prop({ type: Array, required: false, default: () => [] })
-  readonly courses!: CourseList[]
+  readonly courses!: CourseListData[]
 
   @Prop({ type: Boolean, required: false, default: false })
   readonly loading!: boolean

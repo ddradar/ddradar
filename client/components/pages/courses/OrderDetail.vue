@@ -136,9 +136,10 @@
 </i18n>
 
 <script lang="ts">
+import type { CourseInfo } from '@ddradar/core/api/course'
+import type { CourseChartSchema } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { CourseChart, CourseInfo } from '~/api/course'
 import { getChartScore, UserScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
@@ -155,7 +156,7 @@ export default class OrderDetailComponent extends Vue {
   readonly course!: CourseInfo
 
   @Prop({ required: true, type: Object })
-  readonly chart!: CourseChart
+  readonly chart!: CourseChartSchema
 
   loading = true
   scores: RankingScore[] = []

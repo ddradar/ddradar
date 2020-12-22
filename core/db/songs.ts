@@ -69,14 +69,14 @@ export type StepChartSchema = {
 /** DB Schema of Course */
 export type CourseSchema = Omit<
   SongSchema,
-  'nameIndex' | 'artist' | 'charts'
+  'nameIndex' | 'artist' | 'charts' | 'skillAttackId'
 > & {
   /** `-1`: NONSTOP, `-2`: Grade */
   nameIndex: -1 | -2
-  charts: ReadonlyArray<CourseInfoSchema>
+  charts: ReadonlyArray<CourseChartSchema>
 }
 
-export type CourseInfoSchema = Omit<StepChartSchema, keyof GrooveRadar> & {
+export type CourseChartSchema = Omit<StepChartSchema, keyof GrooveRadar> & {
   order: ReadonlyArray<ChartOrder>
 }
 
