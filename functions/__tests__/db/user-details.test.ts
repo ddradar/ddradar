@@ -3,7 +3,7 @@ import {
   ClearStatusSchema,
   GrooveRadarSchema,
   ScoreStatusSchema,
-} from '@ddradar/core/db/user-details'
+} from '@ddradar/core/db/userDetails'
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../../db'

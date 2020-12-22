@@ -1,6 +1,6 @@
 import { DanceLevel, danceLevelSet, ScoreSchema } from './db/scores'
 import type { GrooveRadar, StepChartSchema } from './db/songs'
-import { hasIntegerProperty, hasStringProperty } from './type-assert'
+import { hasIntegerProperty, hasStringProperty } from './typeUtils'
 
 export type Score = Pick<
   ScoreSchema,

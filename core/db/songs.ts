@@ -3,7 +3,7 @@ import {
   hasProperty,
   hasStringProperty,
   Unwrap,
-} from '../type-assert'
+} from '../typeUtils'
 
 /** DB Schema of Song */
 export type SongSchema = {

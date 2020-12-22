@@ -5,7 +5,7 @@ import type {
   ClearStatusSchema,
   GrooveRadarSchema,
   ScoreStatusSchema,
-} from '@ddradar/core/db/user-details'
+} from '@ddradar/core/db/userDetails'
 
 import {
   fetchClearAndScoreStatus,

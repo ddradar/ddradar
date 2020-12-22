@@ -16,7 +16,7 @@ import {
   mergeScore,
   Score,
 } from '../core/score'
-import { hasIntegerProperty, hasProperty } from '../core/type-assert'
+import { hasIntegerProperty, hasProperty } from '../core/typeUtils'
 import type { ItemDefinition } from '../db'
 import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'

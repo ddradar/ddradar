@@ -3,7 +3,7 @@ import {
   hasProperty,
   hasStringProperty,
   Unwrap,
-} from '../type-assert'
+} from '../typeUtils'
 
 export type UserSchema = {
   /** User ID */

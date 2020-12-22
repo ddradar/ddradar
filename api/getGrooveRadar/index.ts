@@ -1,7 +1,7 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { GrooveRadarSchema } from '../core/db/user-details'
+import type { GrooveRadarSchema } from '../core/db/userDetails'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 

@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { danceLevelSet } from '../core/db/scores'
-import type { ScoreStatusSchema } from '../core/db/user-details'
+import type { ScoreStatusSchema } from '../core/db/userDetails'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 

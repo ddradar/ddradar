@@ -4,7 +4,7 @@ import { mocked } from 'ts-jest/utils'
 import { getLoginUserInfo } from '../auth'
 import { privateUser, publicUser } from '../core/__tests__/data'
 import type { ClearLamp } from '../core/db/scores'
-import type { ClearStatusSchema } from '../core/db/user-details'
+import type { ClearStatusSchema } from '../core/db/userDetails'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')

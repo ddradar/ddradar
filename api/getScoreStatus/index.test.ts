@@ -4,7 +4,7 @@ import { mocked } from 'ts-jest/utils'
 import { getLoginUserInfo } from '../auth'
 import { privateUser, publicUser } from '../core/__tests__/data'
 import { danceLevelSet } from '../core/db/scores'
-import type { ScoreStatusSchema } from '../core/db/user-details'
+import type { ScoreStatusSchema } from '../core/db/userDetails'
 import getClearStatus from '.'
 
 jest.mock('../auth')

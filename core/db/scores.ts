@@ -1,4 +1,4 @@
-import type { Unwrap } from '../type-assert'
+import type { Unwrap } from '../typeUtils'
 import type { StepChartSchema } from './songs'
 
 export type ScoreSchema = Pick<

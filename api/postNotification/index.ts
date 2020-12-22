@@ -5,7 +5,7 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-} from '../core/type-assert'
+} from '../core/typeUtils'
 import { ErrorResult, SuccessResult } from '../function'
 
 type NotificationBody = Partial<NotificationSchema> &
