@@ -19,6 +19,8 @@ export type UserSchema = {
   code?: number
   /** `true` if this user info is public, otherwize `false`. */
   isPublic: boolean
+  /** Use for external API. */
+  password?: string
 }
 
 export function isUserSchema(obj: unknown): obj is UserSchema {
@@ -32,7 +34,8 @@ export function isUserSchema(obj: unknown): obj is UserSchema {
         obj.code >= 10000000 &&
         obj.code <= 99999999)) &&
     hasProperty(obj, 'isPublic') &&
-    typeof obj.isPublic === 'boolean'
+    typeof obj.isPublic === 'boolean' &&
+    (!hasProperty(obj, 'password') || hasStringProperty(obj, 'password'))
   )
 }
 

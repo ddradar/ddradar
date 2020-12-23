@@ -35,6 +35,7 @@ describe('GET /api/v1/user', () => {
       area: publicUser.area,
       code: publicUser.code,
       isPublic: publicUser.isPublic,
+      password: publicUser.password,
     })
   })
 })

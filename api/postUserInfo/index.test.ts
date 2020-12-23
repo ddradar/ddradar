@@ -82,7 +82,12 @@ describe('POST /api/v1/user', () => {
     expect(result.document).toStrictEqual({ ...body, loginId: '1' })
   })
 
-  test.each([{ name: 'AFRO' }, { isPublic: true }, { code: 20000000 }])(
+  test.each([
+    { name: 'AFRO' },
+    { isPublic: true },
+    { code: 20000000 },
+    { password: 'password' },
+  ])(
     'returns "200 OK" with JSON body (Update) if changed %p',
     async (diff: Partial<UserSchema>) => {
       // Arrange

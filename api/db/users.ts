@@ -13,7 +13,7 @@ export function fetchUser(id: string): Promise<UserSchema | null> {
 export function fetchLoginUser(loginId: string): Promise<UserSchema | null> {
   return fetchOne<UserSchema>(
     'Users',
-    ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
+    ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
     [{ condition: 'c.loginId = @', value: loginId }]
   )
 }
