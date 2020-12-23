@@ -1,6 +1,10 @@
-import { getDanceLevel, UserScore } from '~/api/score'
+import type { ScoreInfo } from '@core/api/score'
+import { getDanceLevel } from '@core/score'
 
-type MusicScore = Omit<UserScore, 'songId' | 'userId' | 'userName' | 'level'>
+type SkillAttackScore = Omit<
+  ScoreInfo,
+  'songId' | 'userId' | 'userName' | 'level'
+>
 
 /** Read shift-jis encoded text file asynchronously */
 export function readTextAsync(file: File) {
@@ -18,7 +22,7 @@ export function readTextAsync(file: File) {
  */
 export function scoreTexttoScoreList(text: string) {
   const rows = text.trim().split('\n')
-  const result: Record<string, MusicScore[]> = {}
+  const result: Record<string, SkillAttackScore[]> = {}
   rows.forEach(r => {
     /**
      * - [0]: skillAttackId

@@ -8,8 +8,8 @@ import {
   publicUser,
   testSongData,
 } from '../core/__tests__/data'
+import type { ScoreBody } from '../core/api/score'
 import type { ScoreSchema } from '../core/db/scores'
-import type { Score } from '../core/score'
 import { fetchScore } from '../db/scores'
 import postSongScores from '.'
 
@@ -75,7 +75,7 @@ describe('POST /api/v1/scores', () => {
     },
   }
 
-  const score: Score = {
+  const score: ScoreBody = {
     score: 1000000,
     clearLamp: 7,
     maxCombo: 138,

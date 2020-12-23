@@ -1,13 +1,9 @@
-import { DanceLevel, danceLevelSet, ScoreSchema } from './db/scores'
+import type { ScoreBody } from './api/score'
+import { DanceLevel, danceLevelSet } from './db/scores'
 import type { GrooveRadar, StepChartSchema } from './db/songs'
 import { hasIntegerProperty, hasStringProperty } from './typeUtils'
 
-export type Score = Pick<
-  ScoreSchema,
-  'score' | 'clearLamp' | 'exScore' | 'maxCombo' | 'rank'
->
-
-export function isScore(obj: unknown): obj is Score {
+export function isScore(obj: unknown): obj is ScoreBody {
   return (
     hasIntegerProperty(obj, 'score', 'clearLamp') &&
     obj.score >= 0 &&
@@ -24,10 +20,10 @@ export function isScore(obj: unknown): obj is Score {
 }
 
 export function mergeScore(
-  left: Readonly<Score>,
-  right: Readonly<Score>
-): Score {
-  const result: Score = {
+  left: Readonly<ScoreBody>,
+  right: Readonly<ScoreBody>
+): ScoreBody {
+  const result: ScoreBody = {
     score: left.score > right.score ? left.score : right.score,
     clearLamp:
       left.clearLamp > right.clearLamp ? left.clearLamp : right.clearLamp,
@@ -50,7 +46,7 @@ export function isValidScore(
     freezeArrow,
     shockArrow,
   }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
-  { clearLamp, exScore, maxCombo }: Readonly<Omit<Score, 'score' | 'rank'>>
+  { clearLamp, exScore, maxCombo }: Readonly<Omit<ScoreBody, 'score' | 'rank'>>
 ): boolean {
   const maxExScore = (notes + freezeArrow + shockArrow) * 3
   const fullCombo = notes + shockArrow
@@ -73,7 +69,7 @@ export function isValidScore(
 
 export function calcMyGrooveRadar(
   chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>,
-  score: Score
+  score: ScoreBody
 ): GrooveRadar {
   const note = chart.notes + chart.shockArrow
   const isFullCombo = score.clearLamp >= 4
@@ -100,7 +96,7 @@ export function calcMyGrooveRadar(
   }
 }
 
-export function getDanceLevel(score: number): DanceLevel {
+export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
   if (!isPositiveInteger(score))
     throw new RangeError(
       `Invalid parameter: score(${score}) should be positive integer or 0.`

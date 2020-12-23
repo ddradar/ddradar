@@ -1,3 +1,4 @@
+import type { ScoreBody } from '../api/score'
 import type { StepChartSchema } from '../db/songs'
 import {
   calcMyGrooveRadar,
@@ -5,12 +6,11 @@ import {
   isScore,
   isValidScore,
   mergeScore,
-  Score,
 } from '../score'
 
 describe('./score.ts', () => {
   describe('isScore', () => {
-    const validScore: Score = {
+    const validScore: ScoreBody = {
       clearLamp: 2,
       rank: 'AA+',
       score: 978800,
@@ -24,7 +24,7 @@ describe('./score.ts', () => {
       { ...validScore, exScore: 334 },
       { ...validScore, maxCombo: 120 },
       { ...validScore, exScore: 334, maxCombo: 120 },
-    ])('(%p) returns true', (obj: Score) => expect(isScore(obj)).toBe(true))
+    ])('(%p) returns true', (obj: ScoreBody) => expect(isScore(obj)).toBe(true))
     test.each([
       { ...validScore, score: Infinity },
       { ...validScore, score: -1 },
@@ -71,7 +71,7 @@ describe('./score.ts', () => {
       freezeArrow: 20,
       shockArrow: 10,
     } as const
-    const baseScore: Score = {
+    const baseScore: ScoreBody = {
       score: 900000,
       clearLamp: 4,
       rank: 'AA',
@@ -108,7 +108,7 @@ describe('./score.ts', () => {
       freeze: 100,
       chaos: 100,
     }
-    const score: Score = { clearLamp: 2, score: 800000, rank: 'A' }
+    const score: ScoreBody = { clearLamp: 2, score: 800000, rank: 'A' }
     test('({ freeze: 0 }, score) returns { freeze: 0 }', () =>
       expect(
         calcMyGrooveRadar(

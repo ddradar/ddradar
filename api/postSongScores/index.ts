@@ -1,6 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { ScoreBody, ScoreListBody } from '../core/api/score'
 import type { ScoreSchema } from '../core/db/scores'
 import type {
   CourseChartSchema,
@@ -14,15 +15,11 @@ import {
   isScore,
   isValidScore,
   mergeScore,
-  Score,
 } from '../core/score'
 import { hasIntegerProperty, hasProperty } from '../core/typeUtils'
 import type { ItemDefinition } from '../db'
 import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'
-
-type ScoreBody = Score &
-  Pick<ScoreSchema, 'playStyle' | 'difficulty'> & { topScore?: number }
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
@@ -82,7 +79,7 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const topScore: Score = {
+      const topScore: ScoreBody = {
         score: score.topScore,
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
@@ -103,12 +100,12 @@ export default async function (
   return { httpResponse: new SuccessResult(body), documents }
 
   /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ScoreBody[] {
+  function isValidBody(body: unknown): body is ScoreListBody[] {
     return (
       Array.isArray(body) && body.length > 0 && body.every(d => isScoreBody(d))
     )
 
-    function isScoreBody(obj: unknown): obj is ScoreBody {
+    function isScoreBody(obj: unknown): obj is ScoreListBody {
       return (
         isScore(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
@@ -126,7 +123,7 @@ export default async function (
   function createSchema(
     chart: Readonly<StepChartSchema | CourseChartSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Score>
+    score: Readonly<ScoreBody>
   ) {
     const scoreSchema: ScoreSchema = {
       userId: user.id,
@@ -165,7 +162,7 @@ export default async function (
   async function fetchMergedScore(
     chart: Readonly<StepChartSchema | CourseChartSchema>,
     user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Score>,
+    score: Readonly<ScoreBody>,
     isAreaUser = true
   ): Promise<void> {
     const scoreSchema = createSchema(chart, user, score)

@@ -99,9 +99,9 @@
 </i18n>
 
 <script lang="ts">
+import type { ClearLamp } from '@core/db/scores'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { ClearLamp } from '~/api/score'
 import {
   getClearStatus,
   getGrooveRadar,

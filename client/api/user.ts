@@ -1,17 +1,17 @@
+import type { ScoreInfo } from '@core/api/score'
 import type { CurrentUserInfo, ExistsUser, UserInfo } from '@core/api/user'
 import type { StepChartSchema } from '@core/db/songs'
 import { areaCodeSet } from '@core/db/users'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
-import type { UserScore } from '~/api/score'
 
 export type ClearStatus = Pick<
-  UserScore,
+  ScoreInfo,
   'playStyle' | 'level' | 'clearLamp'
 > & { count: number }
 
-export type ScoreStatus = Pick<UserScore, 'playStyle' | 'level' | 'rank'> & {
+export type ScoreStatus = Pick<ScoreInfo, 'playStyle' | 'level' | 'rank'> & {
   count: number
 }
 

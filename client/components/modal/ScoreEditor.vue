@@ -144,14 +144,14 @@
 <script lang="ts">
 import type { CourseInfo } from '@core/api/course'
 import type { SongInfo } from '@core/api/song'
+import type { ClearLamp } from '@core/db/scores'
 import type { CourseChartSchema, StepChartSchema } from '@core/db/songs'
+import { getDanceLevel } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import {
-  ClearLamp,
   deleteChartScore,
   getChartScore,
-  getDanceLevel,
   postChartScore,
   setValidScoreFromChart,
 } from '~/api/score'

@@ -152,11 +152,12 @@
 </i18n>
 
 <script lang="ts">
+import type { ScoreInfo } from '@core/api/score'
 import type { SongInfo } from '@core/api/song'
 import type { StepChartSchema } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { getChartScore, UserScore } from '~/api/score'
+import { getChartScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
@@ -164,7 +165,7 @@ import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-type RankingScore = UserScore & { isArea?: true }
+type RankingScore = ScoreInfo & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class ChartDetailComponent extends Vue {

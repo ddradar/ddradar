@@ -1,89 +1,9 @@
-import { StepChartSchema } from '@core/db/songs'
+import type { ScoreBody, ScoreInfo, ScoreListBody } from '@core/api/score'
+import type { StepChartSchema } from '@core/db/songs'
+import { getDanceLevel } from '@core/score'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
-
-/** 0: Failed, 1: Assisted Clear 2: Clear, 3: LIFE4, 4: Good FC (Full Combo), 5: Great FC, 6: PFC, 7: MFC */
-export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
-
-/**
- * Object type returned by `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/getChartScore/README.md
- */
-export type UserScore = {
-  userId: string
-  userName: string
-  /** Song id that depend on official site. ^([01689bdiloqDIOPQ]*){32}$ */
-  songId: string
-  songName: string
-  playStyle: 1 | 2
-  difficulty: 0 | 1 | 2 | 3 | 4
-  level: number
-  /** Normal score */
-  score: number
-  exScore?: number
-  maxCombo?: number
-  /** 0: Failed, 1: Assisted Clear 2: Clear, 3: LIFE4, 4: Good FC (Full Combo), 5: Great FC, 6: PFC, 7: MFC */
-  clearLamp: ClearLamp
-  /** Clear rank (E-AAA) */
-  rank: string
-}
-
-export const clearLampList: Record<ClearLamp, string> = {
-  '0': 'Failed',
-  '1': 'Assisted Clear',
-  '2': 'Clear',
-  '3': 'Life 4',
-  '4': 'Full Combo',
-  '5': 'Great Full Combo',
-  '6': 'Perfect Full Combo',
-  '7': 'Marvelous Full Combo',
-}
-
-/**
- * Request body to `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/postChartScore/README.md
- */
-export type Score = Pick<
-  UserScore,
-  'score' | 'exScore' | 'maxCombo' | 'clearLamp' | 'rank'
->
-
-/**
- * Request body to `/api/v1/scores/{:songId}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/postSongScores/README.md
- */
-export type ChartScore = Omit<
-  UserScore,
-  'userId' | 'userName' | 'songId' | 'songName' | 'level'
-> & { topScore?: number }
-
-/**
- * Calcurate DanceLevel from score.
- * @see https://github.com/ddradar/ddradar/blob/master/api/score.ts
- */
-export function getDanceLevel(score: number) {
-  const rankList = [
-    { border: 990000, rank: 'AAA' },
-    { border: 950000, rank: 'AA+' },
-    { border: 900000, rank: 'AA' },
-    { border: 890000, rank: 'AA-' },
-    { border: 850000, rank: 'A+' },
-    { border: 800000, rank: 'A' },
-    { border: 790000, rank: 'A-' },
-    { border: 750000, rank: 'B+' },
-    { border: 700000, rank: 'B' },
-    { border: 690000, rank: 'B-' },
-    { border: 650000, rank: 'C+' },
-    { border: 600000, rank: 'C' },
-    { border: 590000, rank: 'C-' },
-    { border: 550000, rank: 'D+' },
-  ] as const
-  for (const { border, rank } of rankList) {
-    if (score >= border) return rank
-  }
-  return 'D'
-}
 
 export function setValidScoreFromChart(
   {
@@ -91,8 +11,8 @@ export function setValidScoreFromChart(
     freezeArrow,
     shockArrow,
   }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
-  partialScore: Readonly<Partial<Score>>
-): Score {
+  partialScore: Readonly<Partial<ScoreBody>>
+): ScoreBody {
   const objects = notes + freezeArrow + shockArrow
   /** Max EX SCORE */
   const maxExScore = objects * 3
@@ -126,7 +46,7 @@ export function setValidScoreFromChart(
   if (partialScore.score === undefined)
     throw new Error('Cannot guess Score object. set score property')
 
-  const result: Score = {
+  const result: ScoreBody = {
     ...partialScore,
     score: partialScore.score,
     rank: getDanceLevel(partialScore.score),
@@ -247,7 +167,7 @@ export function setValidScoreFromChart(
     )
   }
 
-  function tryCalcFromGreatFC(): Required<Score> | null {
+  function tryCalcFromGreatFC(): Required<ScoreBody> | null {
     const dropScore = great - baseScore
 
     // Try to calc great count from score
@@ -276,7 +196,7 @@ export function setValidScoreFromChart(
   }
   /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-  function tryCalcFromExScore(): Required<Score> | null {
+  function tryCalcFromExScore(): Required<ScoreBody> | null {
     // 1 Perfect
     if (partialScore.exScore === maxExScore - 1) {
       return {
@@ -351,13 +271,13 @@ export function getChartScore(
   scope?: 'private' | 'medium' | 'full'
 ) {
   const query = scope ? `?scope=${scope}` : ''
-  return $http.$get<UserScore[]>(
+  return $http.$get<ScoreInfo[]>(
     `${apiPrefix}/scores/${songId}/${playStyle}/${difficulty}${query}`
   )
 }
 
 /**
- * Call "Get Chart Score" API.
+ * Call "Post Chart Score" API.
  * @see https://github.com/ddradar/ddradar/tree/master/api/getChartScore
  */
 export function postChartScore(
@@ -365,7 +285,7 @@ export function postChartScore(
   songId: string,
   playStyle: 1 | 2,
   difficulty: 0 | 1 | 2 | 3 | 4,
-  score: Score
+  score: ScoreBody
 ) {
   return $http.$post(
     `${apiPrefix}/scores/${songId}/${playStyle}/${difficulty}`,
@@ -393,7 +313,7 @@ export function deleteChartScore(
 export function postSongScores(
   $http: Pick<NuxtHTTPInstance, '$post'>,
   songId: string,
-  scores: ChartScore[]
+  scores: ScoreListBody[]
 ) {
-  return $http.$post<UserScore[]>(`${apiPrefix}/scores/${songId}`, scores)
+  return $http.$post<ScoreInfo[]>(`${apiPrefix}/scores/${songId}`, scores)
 }

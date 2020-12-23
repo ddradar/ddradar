@@ -18,9 +18,8 @@
 </template>
 
 <script lang="ts">
+import { ClearLamp, clearLampMap } from '@core/db/scores'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
-
-import { ClearLamp, clearLampList } from '~/api/score'
 
 @Component
 export default class ScoreBadgeComponent extends Vue {
@@ -31,7 +30,7 @@ export default class ScoreBadgeComponent extends Vue {
   readonly score!: number
 
   get clearStatus() {
-    return clearLampList[this.lamp]
+    return clearLampMap.get(this.lamp)
   }
 }
 </script>

@@ -30,6 +30,16 @@ export type ScoreSchema = Pick<
   >
 }
 
+const clearLamps = new Map([
+  [0, 'Failed'],
+  [1, 'Assisted Clear'],
+  [2, 'Clear'],
+  [3, 'Life 4'],
+  [4, 'Full Combo'],
+  [5, 'Great Full Combo'],
+  [6, 'Perfect Full Combo'],
+  [7, 'Marvelous Full Combo'],
+] as const)
 /**
  * `0`: Failed,
  * `1`: Assisted Clear,
@@ -40,7 +50,8 @@ export type ScoreSchema = Pick<
  * `6`: PFC,
  * `7`: MFC
  */
-export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+export type ClearLamp = Unwrap<typeof clearLamps>[0]
+export const clearLampMap: ReadonlyMap<ClearLamp, string> = clearLamps
 
 const danceLevels = [
   'E',

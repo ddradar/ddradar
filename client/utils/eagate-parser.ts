@@ -1,9 +1,11 @@
-import { getDanceLevel, UserScore } from '~/api/score'
+import type { ScoreInfo } from '@core/api/score'
+import type { DanceLevel } from '@core/db/scores'
+import { getDanceLevel } from '@core/score'
 
 const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
 const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
 
-type MusicScore = Omit<UserScore, 'songId' | 'userId' | 'userName' | 'level'>
+type EagateScore = Omit<ScoreInfo, 'songId' | 'userId' | 'userName' | 'level'>
 
 /**
  * Convert music data to { songId: Score[] } Record.
@@ -16,14 +18,14 @@ type MusicScore = Omit<UserScore, 'songId' | 'userId' | 'userName' | 'level'>
  */
 export function musicDataToScoreList(
   sourceCode: string
-): Record<string, MusicScore[]> {
+): Record<string, EagateScore[]> {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
   const dataTable = doc.getElementById('data_tbl')
   if (!dataTable) throw new Error('invalid html')
 
   const playStyle = getPlayStyle(dataTable)
 
-  const result: Record<string, MusicScore[]> = {}
+  const result: Record<string, EagateScore[]> = {}
 
   const songs = dataTable.getElementsByClassName('data')
   for (let i = 0; i < songs.length; i++) {
@@ -145,7 +147,7 @@ export function musicDataToScoreList(
  */
 export function musicDetailToScore(
   sourceCode: string
-): Omit<MusicScore, 'songName'> & { songId: string; topScore: number } {
+): Omit<EagateScore, 'songName'> & { songId: string; topScore: number } {
   const doc = new DOMParser().parseFromString(sourceCode, 'text/html')
 
   // Get songId and songName
@@ -174,7 +176,7 @@ export function musicDetailToScore(
 
   const rank = musicDetailTable
     .getElementsByTagName('tr')[1]
-    .getElementsByTagName('td')[0].textContent!
+    .getElementsByTagName('td')[0].textContent! as DanceLevel
   const score = parseInt(
     musicDetailTable.getElementsByTagName('tr')[1].getElementsByTagName('td')[1]
       .textContent!,
@@ -215,7 +217,7 @@ export function musicDetailToScore(
 
   function getPlayStyleAndDifficulty(
     logoUri: string
-  ): Pick<UserScore, 'playStyle' | 'difficulty'> {
+  ): Pick<ScoreInfo, 'playStyle' | 'difficulty'> {
     const fileName = logoUri.replace(srcRegex, '$1')
     if (fileName === 'songdetails0') return { playStyle: 1, difficulty: 0 }
     if (fileName === 'songdetails1') return { playStyle: 1, difficulty: 1 }
