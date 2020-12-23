@@ -1,14 +1,6 @@
+import type { NotificationBody } from '@core/api/notification'
 import type { SongInfo } from '@core/api/song'
-import type { NotificationSchema } from '@core/db/notification'
 import type { NuxtHTTPInstance } from '@nuxt/http'
-
-type NotificationRequest = Omit<
-  NotificationSchema,
-  'id' | 'sender' | 'timeStamp'
-> & {
-  id?: string
-  timeStamp?: number
-}
 
 /**
  * Call "Post Notification" API. (Admin only)
@@ -16,9 +8,9 @@ type NotificationRequest = Omit<
  */
 export function postNotification(
   $http: Pick<NuxtHTTPInstance, '$post'>,
-  body: NotificationRequest
+  body: Omit<NotificationBody, 'sender'>
 ) {
-  return $http.$post<NotificationRequest>('/api/v1/admin/notification', {
+  return $http.$post<NotificationBody>('/api/v1/admin/notification', {
     ...body,
     sender: 'SYSTEM',
   })

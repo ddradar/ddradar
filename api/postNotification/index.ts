@@ -1,15 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
 
-import type { NotificationSchema } from '../core/db/notification'
+import type { NotificationBody } from '../core/api/notification'
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
 } from '../core/typeUtils'
 import { ErrorResult, SuccessResult } from '../function'
-
-type NotificationBody = Partial<NotificationSchema> &
-  Omit<NotificationSchema, 'id' | 'timeStamp'>
 
 type PostNotificationResult = {
   httpResponse: ErrorResult<400> | SuccessResult<NotificationBody>

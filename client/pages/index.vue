@@ -88,7 +88,7 @@
 </i18n>
 
 <script lang="ts">
-import type { NotificationSchema } from '@core/db/notification'
+import type { NotificationListData } from '@core/api/notification'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getNotificationList } from '~/api/notification'
@@ -99,7 +99,7 @@ import * as popup from '~/utils/popup'
 
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
-  messages: Omit<NotificationSchema, 'sender' | 'pinned'>[] = []
+  messages: NotificationListData[] = []
 
   get menuList() {
     return [

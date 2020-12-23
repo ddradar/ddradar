@@ -1,10 +1,10 @@
-import type { NotificationSchema } from '../core/db/notification'
+import { NotificationBody } from '../core/api/notification'
 import postNotification from '.'
 
 Date.now = jest.fn(() => 1597114800000)
 
 describe('POST /api/v1/admin/notification', () => {
-  const validBody: Partial<NotificationSchema> = {
+  const validBody: NotificationBody = {
     sender: 'SYSTEM',
     pinned: true,
     type: 'is-info',
