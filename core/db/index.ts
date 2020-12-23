@@ -1,5 +1,0 @@
-export * as notification from './notification'
-export * as scores from './scores'
-export * as songs from './songs'
-export * as userDetails from './userDetails'
-export * as users from './users'
