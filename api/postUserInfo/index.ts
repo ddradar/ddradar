@@ -38,6 +38,7 @@ export default async function (
     area: oldData?.area ?? req.body.area,
     isPublic: req.body.isPublic,
     ...(req.body.code ? { code: req.body.code } : {}),
+    ...(req.body.password ? { password: req.body.password } : {}),
   }
 
   return {

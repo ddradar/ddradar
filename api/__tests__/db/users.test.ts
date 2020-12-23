@@ -11,6 +11,7 @@ describeIf(canConnectDB)('./db/users.ts', () => {
     area: (i % 50) as AreaCode,
     isPublic: i !== 0,
     code: 10000000 + i,
+    password: `pass_${i}`,
   }))
   /** System users */
   const areas: UserSchema[] = [...Array(50).keys()].map(i => ({

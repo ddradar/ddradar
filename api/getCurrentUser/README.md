@@ -35,7 +35,8 @@ Need Authentication.
   "name": "AFRO",
   "area": 13,
   "code": 10000000,
-  "isPublic": false
+  "isPublic": false,
+  "password": "********"
 }
 ```
 
@@ -48,3 +49,4 @@ Need Authentication.
 |`area`|number|[Area code](../../docs/db/users.md#area)|
 |`code`|number?|DDR CODE (optional)|
 |`isPublic`|boolean|`true` if this user info is public, otherwize `false`.|
+|`password`|string?|Use for External API (optional)|
