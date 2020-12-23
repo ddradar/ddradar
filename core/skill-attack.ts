@@ -1,5 +1,5 @@
-import type { ScoreInfo } from '@core/api/score'
-import { getDanceLevel } from '@core/score'
+import type { ScoreInfo } from './api/score'
+import { getDanceLevel } from './score'
 
 type SkillAttackScore = Omit<
   ScoreInfo,
@@ -7,7 +7,7 @@ type SkillAttackScore = Omit<
 >
 
 /** Read shift-jis encoded text file asynchronously */
-export function readTextAsync(file: File) {
+export function readTextAsync(file: File): Promise<string> {
   return new Promise<string>((resolve, reject) => {
     const reader = new FileReader()
     reader.onload = () => resolve(reader.result as string)
@@ -20,7 +20,9 @@ export function readTextAsync(file: File) {
  * Convert Skill Attack score list to ScoreList
  * - http://skillattack.com/sa4/data/dancer/{ddrCode}/score_{ddrCode}.txt
  */
-export function scoreTexttoScoreList(text: string) {
+export function scoreTexttoScoreList(
+  text: string
+): Record<string, SkillAttackScore[]> {
   const rows = text.trim().split('\n')
   const result: Record<string, SkillAttackScore[]> = {}
   rows.forEach(r => {
@@ -44,6 +46,7 @@ export function scoreTexttoScoreList(text: string) {
     const score = parseInt(cols[5], 10)
     const clearLamp =
       cols[6] === '3' ? 7 : cols[6] === '2' ? 6 : cols[6] === '1' ? 4 : 2
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const songName = unescapeHTML(cols[7])!
 
     if (result[skillAttackId] === undefined) result[skillAttackId] = []

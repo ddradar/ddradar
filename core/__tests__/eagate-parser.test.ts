@@ -2,7 +2,7 @@ import { readFile } from 'fs'
 import { join } from 'path'
 import { promisify } from 'util'
 
-import { musicDataToScoreList, musicDetailToScore } from '~/utils/eagate-parser'
+import { musicDataToScoreList, musicDetailToScore } from '../eagate-parser'
 
 const readFileAsync = (folder: string, fileName: string) =>
   promisify(readFile)(join(__dirname, 'eagate', folder, fileName), {

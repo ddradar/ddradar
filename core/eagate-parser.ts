@@ -1,6 +1,7 @@
-import type { ScoreInfo } from '@core/api/score'
-import type { DanceLevel } from '@core/db/scores'
-import { getDanceLevel } from '@core/score'
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import type { ScoreInfo } from './api/score'
+import type { DanceLevel } from './db/scores'
+import { getDanceLevel } from './score'
 
 const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
 const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
