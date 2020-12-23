@@ -22,7 +22,7 @@ export type SongSchema = {
    * Index for sorting. Associated with the "Choose by Name" folder.
    * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
    */
-  nameIndex: number
+  nameIndex: NameIndex
   artist: string
   /** Series title depend on official site. */
   series: Series
@@ -156,14 +156,56 @@ const series = new Set([
 export type Series = Unwrap<typeof series>
 export const seriesSet: ReadonlySet<Series> = series
 
+const nameIndexes = new Map([
+  [0, 'あ'],
+  [1, 'か'],
+  [2, 'さ'],
+  [3, 'た'],
+  [4, 'な'],
+  [5, 'は'],
+  [6, 'ま'],
+  [7, 'や'],
+  [8, 'ら'],
+  [9, 'わ'],
+  [10, 'A'],
+  [11, 'B'],
+  [12, 'C'],
+  [13, 'D'],
+  [14, 'E'],
+  [15, 'F'],
+  [16, 'G'],
+  [17, 'H'],
+  [18, 'I'],
+  [19, 'J'],
+  [20, 'K'],
+  [21, 'L'],
+  [22, 'M'],
+  [23, 'N'],
+  [24, 'O'],
+  [25, 'P'],
+  [26, 'Q'],
+  [27, 'R'],
+  [28, 'S'],
+  [29, 'T'],
+  [30, 'U'],
+  [31, 'V'],
+  [32, 'W'],
+  [33, 'X'],
+  [34, 'Y'],
+  [35, 'Z'],
+  [36, '数字・記号'],
+] as const)
+/** `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号 */
+export type NameIndex = Unwrap<typeof nameIndexes>[0]
+export const nameIndexMap: ReadonlyMap<NameIndex, string> = nameIndexes
+
 const playStyles = new Map([
   [1, 'SINGLE'],
   [2, 'DOUBLE'],
 ] as const)
 /** `1`: SINGLE, `2`: DOUBLE */
 export type PlayStyle = Unwrap<typeof playStyles>[0]
-export type PlayStyleName = Unwrap<typeof playStyles>[1]
-export const playStyleMap: ReadonlyMap<PlayStyle, PlayStyleName> = playStyles
+export const playStyleMap: ReadonlyMap<PlayStyle, string> = playStyles
 
 const difficulties = new Map([
   [0, 'BEGINNER'],

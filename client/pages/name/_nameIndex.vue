@@ -20,10 +20,11 @@
 
 <script lang="ts">
 import type { SongListData } from '@core/api/song'
+import { NameIndex, nameIndexMap } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, searchSongByName } from '~/api/song'
+import { searchSongByName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
@@ -37,7 +38,7 @@ export default class SongByNamePage extends Vue {
     return (
       /^\d{1,2}$/.test(params.nameIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < NameIndexList.length
+      parsedIndex < nameIndexMap.size
     )
   }
 
@@ -48,7 +49,9 @@ export default class SongByNamePage extends Vue {
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
-    return NameIndexList[parseInt(this.$route.params.nameIndex, 10)]
+    return nameIndexMap.get(
+      parseInt(this.$route.params.nameIndex, 10) as NameIndex
+    )
   }
 
   get selected() {
@@ -56,7 +59,7 @@ export default class SongByNamePage extends Vue {
   }
 
   get nameIndexList() {
-    return NameIndexList
+    return nameIndexMap.values()
   }
 }
 </script>

@@ -193,9 +193,10 @@
 </i18n>
 
 <script lang="ts">
+import { nameIndexMap, seriesSet } from '@core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
+import { shortenSeriesName } from '~/api/song'
 import Flag from '~/components/pages/Flag.vue'
 import { Locale } from '~/types/locale'
 
@@ -206,6 +207,7 @@ export default class DefaultLayout extends Vue {
   }
 
   get menuList() {
+    const seriesList = [...seriesSet]
     return [
       {
         label: this.$t('menu.single'),
@@ -223,10 +225,12 @@ export default class DefaultLayout extends Vue {
       },
       {
         label: this.$t('menu.series'),
-        items: SeriesList.map((name, i) => ({
-          name,
-          to: `/series/${i}`,
-        })).reverse(),
+        items: seriesList
+          .map((name, i) => ({
+            name,
+            to: `/series/${i}`,
+          }))
+          .reverse(),
       },
       {
         label: this.$t('menu.course'),
@@ -234,13 +238,13 @@ export default class DefaultLayout extends Vue {
           .map(i => [
             {
               name: this.$t('menu.nonstop', {
-                series: shortenSeriesName(SeriesList[i]),
+                series: shortenSeriesName(seriesList[i]),
               }),
               to: `/nonstop/${i}`,
             },
             {
               name: this.$t('menu.grade', {
-                series: shortenSeriesName(SeriesList[i]),
+                series: shortenSeriesName(seriesList[i]),
               }),
               to: `/grade/${i}`,
             },
@@ -251,7 +255,7 @@ export default class DefaultLayout extends Vue {
   }
 
   get nameIndexList() {
-    return NameIndexList
+    return nameIndexMap.values()
   }
 
   get selectedLocale() {

@@ -1,59 +1,9 @@
 import type { ChartInfo, SongInfo, SongListData } from '@core/api/song'
-import {
-  Difficulty,
-  difficultyMap,
-  PlayStyle,
-  playStyleMap,
-  seriesSet,
-  StepChartSchema,
-} from '@core/db/songs'
+import type { Difficulty, PlayStyle } from '@core/db/songs'
+import { difficultyMap, playStyleMap } from '@core/db/songs'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
-
-export type StepChart = StepChartSchema
-
-export const SeriesList: string[] = [...seriesSet]
-
-export const NameIndexList: string[] = [
-  'あ',
-  'か',
-  'さ',
-  'た',
-  'な',
-  'は',
-  'ま',
-  'や',
-  'ら',
-  'わ',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-  '数字・記号',
-]
 
 export function shortenSeriesName(series: string) {
   return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')

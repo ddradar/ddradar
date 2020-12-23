@@ -89,10 +89,11 @@
 
 <script lang="ts">
 import type { NotificationListData } from '@core/api/notification'
+import { nameIndexMap, seriesSet } from '@core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getNotificationList } from '~/api/notification'
-import { NameIndexList, SeriesList, shortenSeriesName } from '~/api/song'
+import { shortenSeriesName } from '~/api/song'
 import TopMessage from '~/components/pages/TopMessage.vue'
 import Card from '~/components/shared/Card.vue'
 import * as popup from '~/utils/popup'
@@ -102,10 +103,11 @@ export default class IndexPage extends Vue {
   messages: NotificationListData[] = []
 
   get menuList() {
+    const seriesList = [...seriesSet]
     return [
       {
         label: this.$t('search.name'),
-        items: NameIndexList.map((s, i) => ({
+        items: [...nameIndexMap.entries()].map(([i, s]) => ({
           name: s,
           to: `/name/${i}`,
         })),
@@ -126,10 +128,12 @@ export default class IndexPage extends Vue {
       },
       {
         label: this.$t('search.series'),
-        items: SeriesList.map((name, i) => ({
-          name: shortenSeriesName(name),
-          to: `/series/${i}`,
-        })).reverse(),
+        items: seriesList
+          .map((name, i) => ({
+            name: shortenSeriesName(name),
+            to: `/series/${i}`,
+          }))
+          .reverse(),
       },
       {
         label: this.$t('search.course'),
@@ -137,13 +141,13 @@ export default class IndexPage extends Vue {
           .map(i => [
             {
               name: this.$t('nonstop', {
-                series: shortenSeriesName(SeriesList[i]),
+                series: shortenSeriesName(seriesList[i]),
               }),
               to: `/nonstop/${i}`,
             },
             {
               name: this.$t('grade', {
-                series: shortenSeriesName(SeriesList[i]),
+                series: shortenSeriesName(seriesList[i]),
               }),
               to: `/grade/${i}`,
             },

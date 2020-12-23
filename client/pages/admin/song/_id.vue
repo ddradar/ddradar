@@ -185,12 +185,12 @@
 
 <script lang="ts">
 import type { SongInfo } from '@core/api/song'
-import type { Series, StepChartSchema } from '@core/db/songs'
+import { Series, seriesSet, StepChartSchema } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postSongInfo } from '~/api/admin'
-import { getSongInfo, SeriesList } from '~/api/song'
+import { getSongInfo } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 @Component
@@ -222,7 +222,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
   }
 
   get seriesList() {
-    return SeriesList
+    return [...seriesSet]
   }
 
   get nameIndex() {
@@ -311,7 +311,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       !this.name ||
       !/^[A-Z0-9 .ぁ-んー]+$/.test(this.nameKana) ||
       !this.artist ||
-      !SeriesList.includes(this.series) ||
+      !seriesSet.has(this.series) ||
       !this.minBPM !== !this.maxBPM ||
       this.charts.length === 0 ||
       this.charts.some(c => this.hasDuplicateKey(c))
