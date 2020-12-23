@@ -48,12 +48,14 @@ describeIf(canConnectDB)('./db/users.ts', () => {
     test.each([
       [users[0].id, users[0]],
       [users[1].id, users[1]],
-    ])('("%s") returns %p', async (id, expected) => {
+    ])('("%s") returns %p', async (id, user) => {
       // Arrange - Act
-      const user = await fetchUser(id)
+      const expected: UserSchema = { ...user }
+      delete expected.password
+      const result = await fetchUser(id)
 
       // Assert
-      expect(user).toStrictEqual(expected)
+      expect(result).toStrictEqual(expected)
     })
   })
 
