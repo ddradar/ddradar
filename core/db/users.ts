@@ -19,6 +19,8 @@ export type UserSchema = {
   code?: number
   /** `true` if this user info is public, otherwize `false`. */
   isPublic: boolean
+  /** Use for external API. */
+  password?: string
 }
 
 export function isUserSchema(obj: unknown): obj is UserSchema {

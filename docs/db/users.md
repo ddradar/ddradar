@@ -16,6 +16,7 @@ The collection that stores user infomation.
 |area|number|Area code ([See below](#area))|
 |code|number?|DDR CODE (optional)|
 |isPublic|boolean|`true` if this user info is public, otherwize `false`.|
+|password|string?|Use for External API (optional)|
 
 ### Area
 

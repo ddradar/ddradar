@@ -83,6 +83,7 @@ export const publicUser = {
   area: 13,
   code: 10000000,
   isPublic: true,
+  password: 'password',
 } as const
 
 /** { isPublic: true, area: 0, code: undefined } user */
@@ -92,10 +93,21 @@ export const areaHiddenUser = {
   name: 'Area Hidden User',
   area: 0,
   isPublic: true,
+  password: 'password',
 } as const
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
 export const privateUser = {
+  id: 'private_user',
+  loginId: '2',
+  name: 'Private User',
+  area: 0,
+  isPublic: false,
+  password: 'password',
+} as const
+
+/** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
+export const noPasswordUser = {
   id: 'private_user',
   loginId: '2',
   name: 'Private User',

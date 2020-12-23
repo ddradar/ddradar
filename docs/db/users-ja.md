@@ -16,6 +16,7 @@ English version is [here](./scores.md).
 |area|number|エリアコード ([下記を参照](#area))|
 |code|number?|DDR CODE (省略可)|
 |isPublic|boolean|ユーザーを一般公開する場合は`true`、本人のみ閲覧できる場合には`false`|
+|password|string?|外部APIで使用 (省略可)|
 
 ### Area
 
