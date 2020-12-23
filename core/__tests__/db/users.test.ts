@@ -23,6 +23,7 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, code: -1 },
       { ...validUserInfo, code: 100000000 },
       { ...validUserInfo, isPublic: undefined },
+      { ...validUserInfo, password: 0 },
       { id: 'new_user', name: 'New User', area: 13 },
     ])('(%p) returns false', obj => {
       expect(isUserSchema(obj)).toBe(false)
@@ -34,6 +35,7 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },
       { ...validUserInfo, loginId: 'foo' },
+      { ...validUserInfo, password: 'password' },
     ])('(%p) returns true', obj => {
       expect(isUserSchema(obj)).toBe(true)
     })
