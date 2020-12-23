@@ -146,15 +146,10 @@ import type { CourseInfo } from '@core/api/course'
 import type { SongInfo } from '@core/api/song'
 import type { ClearLamp } from '@core/db/scores'
 import type { CourseChartSchema, StepChartSchema } from '@core/db/songs'
-import { getDanceLevel } from '@core/score'
+import { getDanceLevel, setValidScoreFromChart } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import {
-  deleteChartScore,
-  getChartScore,
-  postChartScore,
-  setValidScoreFromChart,
-} from '~/api/score'
+import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import * as popup from '~/utils/popup'
 

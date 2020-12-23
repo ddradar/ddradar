@@ -4,6 +4,8 @@ import type {
 } from '@core/api/notification'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
+import { apiPrefix } from '~/api'
+
 /**
  * Call "Get Notification List" API.
  * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationList
@@ -13,7 +15,7 @@ export function getNotificationList(
   topOnly?: boolean
 ) {
   const query = topOnly ? '?scope=top' : ''
-  return $http.$get<NotificationListData[]>(`/api/v1/notification${query}`)
+  return $http.$get<NotificationListData[]>(`${apiPrefix}/notification${query}`)
 }
 
 /**
@@ -24,5 +26,5 @@ export function getNotificationInfo(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   id: string
 ) {
-  return $http.$get<NotificationInfo>(`/api/v1/notification/${id}`)
+  return $http.$get<NotificationInfo>(`${apiPrefix}/notification/${id}`)
 }

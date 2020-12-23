@@ -6,6 +6,7 @@ import {
   isScore,
   isValidScore,
   mergeScore,
+  setValidScoreFromChart,
 } from '../score'
 
 describe('./score.ts', () => {
@@ -131,6 +132,204 @@ describe('./score.ts', () => {
           freeze,
           chaos,
         })
+    )
+  })
+  describe('setValidScoreFromChart', () => {
+    const chart = { notes: 1000, freezeArrow: 10, shockArrow: 10 } as const
+
+    const mfcScore: ScoreBody = {
+      score: 1000000,
+      rank: 'AAA',
+      clearLamp: 7,
+      exScore: 3060,
+      maxCombo: 1010,
+    }
+    /** Perfect:1 Score */
+    const pfcScore: ScoreBody = {
+      ...mfcScore,
+      score: 999990,
+      clearLamp: 6,
+      exScore: 3059,
+    }
+    /** Great:1 Score */
+    const gfcScore: ScoreBody = {
+      ...pfcScore,
+      score: 999590,
+      clearLamp: 5,
+      exScore: 3058,
+    }
+    /** Good:1 Score */
+    const fcScore: ScoreBody = {
+      ...gfcScore,
+      score: 999200,
+      clearLamp: 4,
+      exScore: 3057,
+    }
+    /** 0 point falied Score */
+    const noPlayScore: ScoreBody = {
+      score: 0,
+      rank: 'E',
+      clearLamp: 0,
+      exScore: 0,
+      maxCombo: 0,
+    }
+    test.each([
+      [{ clearLamp: 7 } as Partial<ScoreBody>, mfcScore], // MFC
+      [{ score: 1000000 } as Partial<ScoreBody>, mfcScore], // MFC
+      [{ exScore: 3060 } as Partial<ScoreBody>, mfcScore], // MFC
+      [{ score: 999990 } as Partial<ScoreBody>, pfcScore], // P1
+      [{ exScore: 3059 } as Partial<ScoreBody>, pfcScore], // P1
+      [
+        // Maybe PFC (score is greater than Great:1 score)
+        { score: 999600 } as Partial<ScoreBody>,
+        { ...pfcScore, score: 999600, exScore: 3020 },
+      ],
+      [
+        // P20
+        { exScore: 3040, clearLamp: 6 } as Partial<ScoreBody>,
+        { ...pfcScore, score: 999800, exScore: 3040 },
+      ],
+      [{ exScore: 3058, clearLamp: 5 } as Partial<ScoreBody>, gfcScore], // Gr1
+      [{ score: 999590, clearLamp: 5 } as Partial<ScoreBody>, gfcScore], // Gr1
+      [
+        // Gr1 P9
+        { score: 999500, clearLamp: 5 } as Partial<ScoreBody>,
+        { ...gfcScore, score: 999500, exScore: 3049 },
+      ],
+      [
+        // Maybe Great:1 FC (score is greater than Good:1 score)
+        { score: 999210 } as Partial<ScoreBody>,
+        { ...gfcScore, score: 999210, exScore: 3020 },
+      ],
+      [
+        // Cannot guess EX SCORE
+        { score: 987600, clearLamp: 5 } as Partial<ScoreBody>,
+        {
+          score: 987600,
+          rank: 'AA+',
+          clearLamp: 5,
+          maxCombo: 1010,
+        } as ScoreBody,
+      ],
+      [{ exScore: 3057, clearLamp: 4 } as Partial<ScoreBody>, fcScore], // Gd1
+      [{ score: 999200, clearLamp: 4 } as Partial<ScoreBody>, fcScore], // Gd1
+      [
+        // Gd1 P20
+        { score: 999000, clearLamp: 4 } as Partial<ScoreBody>,
+        { ...fcScore, score: 999000, exScore: 3037 },
+      ],
+      [
+        // Maybe Full Combo (score is greater than Miss:1 score)
+        { score: 999100 } as Partial<ScoreBody>,
+        {
+          score: 999100,
+          rank: 'AAA',
+          clearLamp: 4,
+          maxCombo: 1010,
+        } as ScoreBody,
+      ],
+      [
+        // Cannot guess EX SCORE
+        { score: 987600, clearLamp: 4 } as Partial<ScoreBody>,
+        {
+          score: 987600,
+          clearLamp: 4,
+          rank: 'AA+',
+          maxCombo: 1010,
+        } as ScoreBody,
+      ],
+      [
+        // Miss1 P1
+        { score: 999000, clearLamp: 2 } as Partial<ScoreBody>,
+        {
+          score: 999000,
+          rank: 'AAA',
+          clearLamp: 2,
+          exScore: 3056,
+        } as ScoreBody,
+      ],
+      [
+        // Miss1 P1 (missed last FA)
+        { score: 999000, clearLamp: 0, maxCombo: 1010 } as Partial<ScoreBody>,
+        {
+          score: 999000,
+          rank: 'E',
+          clearLamp: 0,
+          exScore: 3056,
+          maxCombo: 1010,
+        } as ScoreBody,
+      ],
+      [
+        { score: 948260, clearLamp: 3, maxCombo: 260 } as Partial<ScoreBody>,
+        { score: 948260, rank: 'AA', clearLamp: 3, maxCombo: 260 } as ScoreBody,
+      ],
+      [
+        { score: 948260, maxCombo: 260 } as Partial<ScoreBody>,
+        { score: 948260, rank: 'AA', clearLamp: 2, maxCombo: 260 } as ScoreBody,
+      ],
+      [
+        { score: 8460, rank: 'E' } as Partial<ScoreBody>,
+        { score: 8460, rank: 'E', clearLamp: 0 } as ScoreBody,
+      ],
+      [{ score: 0, clearLamp: 0 } as Partial<ScoreBody>, noPlayScore], // 0 point
+      [{ score: 0, rank: 'E' } as Partial<ScoreBody>, noPlayScore], // 0 point
+      [
+        // 0 point clear (Maybe use Assist option)
+        { score: 0, clearLamp: 1 } as Partial<ScoreBody>,
+        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreBody,
+      ],
+      [
+        // 0 point clear (Maybe use Assist option)
+        { score: 0, clearLamp: 2 } as Partial<ScoreBody>,
+        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreBody,
+      ],
+      [
+        // 0 point clear (Maybe use Assist option)
+        { score: 0, rank: 'D' } as Partial<ScoreBody>,
+        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreBody,
+      ],
+    ])(
+      '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %p) returns %p',
+      (score: Partial<ScoreBody>, expected: ScoreBody) =>
+        expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
+    )
+    test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>
+      expect(() =>
+        setValidScoreFromChart(chart, { exScore: 800 })
+      ).toThrowError(/^Cannot guess Score object. set score property/))
+    test.each([
+      [
+        { score: 993100, clearLamp: 5 } as Partial<ScoreBody>, // Gr3 P55
+        {
+          score: 993100,
+          rank: 'AAA',
+          clearLamp: 5,
+          exScore: 509,
+          maxCombo: 180,
+        } as ScoreBody,
+      ],
+      [
+        { score: 989100, clearLamp: 5 } as Partial<ScoreBody>, // Gr5 P32
+        {
+          score: 989100,
+          rank: 'AA+',
+          clearLamp: 5,
+          exScore: 528,
+          maxCombo: 180,
+        } as ScoreBody,
+      ],
+    ])(
+      '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %p) returns %p',
+      (incompleteScore: Partial<ScoreBody>, expected: ScoreBody) => {
+        // Arrange
+        const chart = { notes: 180, freezeArrow: 10, shockArrow: 0 }
+
+        // Act
+        const actual = setValidScoreFromChart(chart, incompleteScore)
+
+        // Assert
+        expect(actual).toStrictEqual(expected)
+      }
     )
   })
   describe('getDanceLevel', () => {
