@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
-import type { ScoreSchema } from '../db/scores'
 import {
   fetchClearAndScoreStatus,
   generateGrooveRadar,
@@ -19,7 +19,7 @@ describe('/summaryUserScores/index.ts', () => {
   )
   beforeEach(() => context.log.info.mockClear())
 
-  const score: ScoreSchema = {
+  const score: ScoreSchema & ItemDefinition = {
     id: 'foo',
     userId: 'foo',
     userName: 'foo',

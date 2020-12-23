@@ -1,11 +1,11 @@
 import type { Context } from '@azure/functions'
 
-import type { NotificationSchema } from '../core/db/notification'
+import type { NotificationInfo } from '../core/api/notification'
 import getNotificationInfo from '.'
 
 describe('GET /api/v1/notification/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  const notification: NotificationSchema = {
+  const notification: NotificationInfo = {
     id: 'foo',
     sender: 'SYSTEM',
     pinned: false,

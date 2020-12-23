@@ -19,15 +19,12 @@
 </template>
 
 <script lang="ts">
+import type { SongListData } from '@core/api/song'
+import { seriesSet } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import {
-  searchSongBySeries,
-  SeriesList,
-  shortenSeriesName,
-  SongListData,
-} from '~/api/song'
+import { searchSongBySeries, shortenSeriesName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
@@ -41,7 +38,7 @@ export default class SongBySeriesPage extends Vue {
     return (
       /^\d{1,2}$/.test(params.seriesIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < SeriesList.length
+      parsedIndex < seriesSet.size
     )
   }
 
@@ -52,7 +49,7 @@ export default class SongBySeriesPage extends Vue {
 
   /** Series title */
   get title() {
-    return SeriesList[this.selected]
+    return [...seriesSet][this.selected]
   }
 
   get selected() {
@@ -60,7 +57,7 @@ export default class SongBySeriesPage extends Vue {
   }
 
   get seriesList() {
-    return SeriesList.map(s => shortenSeriesName(s))
+    return [...seriesSet].map(s => shortenSeriesName(s))
   }
 }
 </script>

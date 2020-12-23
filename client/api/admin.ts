@@ -1,15 +1,8 @@
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type { NotificationBody } from '@core/api/notification'
+import type { SongInfo } from '@core/api/song'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
-import type { SongInfo } from '~/api/song'
-
-type NotificationRequest = Omit<
-  NotificationSchema,
-  'id' | 'sender' | 'timeStamp'
-> & {
-  id?: string
-  timeStamp?: number
-}
+import { apiPrefix } from '~/api'
 
 /**
  * Call "Post Notification" API. (Admin only)
@@ -17,9 +10,9 @@ type NotificationRequest = Omit<
  */
 export function postNotification(
   $http: Pick<NuxtHTTPInstance, '$post'>,
-  body: NotificationRequest
+  body: Omit<NotificationBody, 'sender'>
 ) {
-  return $http.$post<NotificationRequest>('/api/v1/admin/notification', {
+  return $http.$post<NotificationBody>(`${apiPrefix}/admin/notification`, {
     ...body,
     sender: 'SYSTEM',
   })
@@ -33,5 +26,5 @@ export function postSongInfo(
   $http: Pick<NuxtHTTPInstance, '$post'>,
   body: SongInfo
 ) {
-  return $http.$post<SongInfo>('/api/v1/admin/songs', body)
+  return $http.$post<SongInfo>(`${apiPrefix}/admin/songs`, body)
 }

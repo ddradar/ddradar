@@ -1,4 +1,4 @@
-import { testSongData } from '../__tests__/data'
+import { testSongData } from '../core/__tests__/data'
 import postSongInfo from '.'
 
 describe('POST /api/v1/admin/songs', () => {
@@ -19,7 +19,7 @@ describe('POST /api/v1/admin/songs', () => {
     validSong,
     {
       ...validSong,
-      charts: validSong.charts.sort((l, r) => l.difficulty - r.difficulty),
+      charts: [...validSong.charts].sort((l, r) => l.difficulty - r.difficulty),
     },
     { ...validSong, foo: 'bar' },
   ])('returns "200 OK" with JSON body if body is %p', async body => {

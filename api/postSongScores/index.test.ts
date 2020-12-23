@@ -1,22 +1,20 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import {
   areaHiddenUser,
   privateUser,
   publicUser,
   testSongData,
-} from '../__tests__/data'
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { fetchScore, ScoreSchema } from '../db/scores'
-import type { Score } from '../score'
+} from '../core/__tests__/data'
+import type { ScoreBody } from '../core/api/score'
+import type { ScoreSchema } from '../core/db/scores'
+import { fetchScore } from '../db/scores'
 import postSongScores from '.'
 
 jest.mock('../auth')
-jest.mock('../db/scores', () => ({
-  ...jest.genMockFromModule<Record<string, unknown>>('../db/scores'),
-  DanceLevelList: jest.requireActual('../db/scores').DanceLevelList,
-}))
+jest.mock('../db/scores')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
@@ -77,7 +75,7 @@ describe('POST /api/v1/scores', () => {
     },
   }
 
-  const score: Score = {
+  const score: ScoreBody = {
     score: 1000000,
     clearLamp: 7,
     maxCombo: 138,

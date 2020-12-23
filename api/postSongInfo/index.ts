@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { isSongSchema, SongSchema } from '../db/songs'
+import { isSongSchema, SongSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
 type PostSongResult = {
@@ -26,7 +26,7 @@ export default async function (
     series: req.body.series,
     minBPM: req.body.minBPM,
     maxBPM: req.body.maxBPM,
-    charts: req.body.charts.sort((l, r) =>
+    charts: [...req.body.charts].sort((l, r) =>
       l.playStyle === r.playStyle
         ? l.difficulty - r.difficulty
         : l.playStyle - r.playStyle

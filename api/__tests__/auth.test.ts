@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { ClientPrincipal, getClientPrincipal, getLoginUserInfo } from '../auth'
-import { fetchLoginUser, UserSchema } from '../db/users'
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { fetchLoginUser } from '../db/users'
 
 jest.mock('../db/users')
 
@@ -37,13 +37,13 @@ describe('./auth.ts', () => {
         userDetails: 'github_user',
         userId: 'abcdef',
         userRoles: ['anonymous', 'authenticated'],
-      } as ClientPrincipal,
+      },
       {
         identityProvider: 'twitter',
         userDetails: 'twitter_admin_user',
         userId: '123456',
         userRoles: ['anonymous', 'authenticated', 'administrator'],
-      } as ClientPrincipal,
+      },
     ])(`({ ${authHeader} : toBase64(%p) }) returns same object`, expected => {
       // Arrange
       const header = toBase64(expected)
@@ -79,13 +79,13 @@ describe('./auth.ts', () => {
 
     test('({ Registered user }) returns UserSchema', async () => {
       // Arrange
-      const userSchema: UserSchema = {
+      const userSchema = {
         id: 'registered_user',
         loginId: 'registered_user',
         area: 0,
         isPublic: false,
         name: 'Registered user',
-      }
+      } as const
       mocked(fetchLoginUser).mockResolvedValueOnce(userSchema)
 
       // Act

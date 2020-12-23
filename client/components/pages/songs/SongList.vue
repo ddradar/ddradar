@@ -66,9 +66,10 @@
 </i18n>
 
 <script lang="ts">
+import type { SongListData } from '@core/api/song'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { shortenSeriesName, SongListData } from '~/api/song'
+import { shortenSeriesName } from '~/api/song'
 
 @Component
 export default class SongListComponent extends Vue {

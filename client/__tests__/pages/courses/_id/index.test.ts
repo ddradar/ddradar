@@ -1,8 +1,9 @@
+import type { CourseInfo } from '@core/api/course'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { mocked } from 'ts-jest/utils'
 
-import { CourseInfo, getCourseInfo } from '~/api/course'
+import { getCourseInfo } from '~/api/course'
 import CourseDetailPage from '~/pages/courses/_id/index.vue'
 
 jest.mock('~/api/course')

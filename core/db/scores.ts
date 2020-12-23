@@ -1,10 +1,10 @@
+import type { Unwrap } from '../typeUtils'
 import type { StepChartSchema } from './songs'
 
 export type ScoreSchema = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level'
 > & {
-  id: string
   /** User ID */
   userId: string
   userName: string
@@ -22,7 +22,7 @@ export type ScoreSchema = Pick<
   maxCombo?: number
   clearLamp: ClearLamp
   /** Clear rank (`"E"`～`"AAA"`) */
-  rank: string
+  rank: DanceLevel
   /** Groove Radar */
   radar?: Pick<
     StepChartSchema,
@@ -30,6 +30,16 @@ export type ScoreSchema = Pick<
   >
 }
 
+const clearLamps = new Map([
+  [0, 'Failed'],
+  [1, 'Assisted Clear'],
+  [2, 'Clear'],
+  [3, 'Life 4'],
+  [4, 'Full Combo'],
+  [5, 'Great Full Combo'],
+  [6, 'Perfect Full Combo'],
+  [7, 'Marvelous Full Combo'],
+] as const)
 /**
  * `0`: Failed,
  * `1`: Assisted Clear,
@@ -40,4 +50,26 @@ export type ScoreSchema = Pick<
  * `6`: PFC,
  * `7`: MFC
  */
-export type ClearLamp = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+export type ClearLamp = Unwrap<typeof clearLamps>[0]
+export const clearLampMap: ReadonlyMap<ClearLamp, string> = clearLamps
+
+const danceLevels = [
+  'E',
+  'D',
+  'D+',
+  'C-',
+  'C',
+  'C+',
+  'B-',
+  'B',
+  'B+',
+  'A-',
+  'A',
+  'A+',
+  'AA-',
+  'AA',
+  'AA+',
+  'AAA',
+] as const
+export type DanceLevel = Unwrap<typeof danceLevels>
+export const danceLevelSet: ReadonlySet<DanceLevel> = new Set(danceLevels)

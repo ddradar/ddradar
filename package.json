@@ -13,6 +13,7 @@
     "functions"
   ],
   "scripts": {
+    "prebuild": "yarn workspace @ddradar/core build",
     "build": "run-p build:*",
     "build:api": "yarn workspace @ddradar/api build",
     "build:client": "yarn workspace @ddradar/client build",
@@ -26,6 +27,7 @@
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
     "test:client": "yarn workspace @ddradar/client test",
+    "test:core": "yarn workspace @ddradar/core test",
     "test:func": "yarn workspace @ddradar/functions test"
   },
   "husky": {

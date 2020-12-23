@@ -1,17 +1,23 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { CourseSchema, SeriesList, StepChartSchema } from '../db/songs'
+import type { CourseListData } from '../core/api/course'
+import { CourseChartSchema, CourseSchema, seriesSet } from '../core/db/songs'
 import { SuccessResult } from '../function'
 
-type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
-  charts: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
+type CourseListDocument = Pick<
+  CourseSchema,
+  'id' | 'name' | 'series' | 'nameIndex'
+> & {
+  charts: ReadonlyArray<
+    Pick<CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
+  >
 }
 
 /** Get course information list. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
-  documents: (CourseListData & Pick<CourseSchema, 'nameIndex'>)[]
+  documents: ReadonlyArray<CourseListDocument>
 ): Promise<SuccessResult<CourseListData[]>> {
   // Parse search query
   const type = parseFloat(req.query.type)
@@ -23,7 +29,7 @@ export default async function (
     .filter(
       c =>
         (!isValidType || c.nameIndex === -1 * type) &&
-        (!isValidSeries || c.series === SeriesList[series])
+        (!isValidSeries || c.series === [...seriesSet][series])
     )
     .map(c => ({ id: c.id, name: c.name, series: c.series, charts: c.charts }))
 

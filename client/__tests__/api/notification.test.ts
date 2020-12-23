@@ -1,4 +1,7 @@
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type {
+  NotificationInfo,
+  NotificationListData,
+} from '@core/api/notification'
 
 import { getNotificationInfo, getNotificationList } from '~/api/notification'
 
@@ -7,7 +10,7 @@ describe('./api/notification.ts', () => {
   beforeEach(() => $http.$get.mockClear())
 
   describe('getNotificationList', () => {
-    const notificationList: Omit<NotificationSchema, 'sender' | 'pinned'>[] = []
+    const notificationList: NotificationListData[] = []
     beforeEach(() => $http.$get.mockResolvedValue(notificationList))
     test.each([
       [true, '/api/v1/notification?scope=top'],
@@ -26,7 +29,7 @@ describe('./api/notification.ts', () => {
 
   describe('getNotificationInfo', () => {
     const id = 'notification-id'
-    const notification: NotificationSchema = {
+    const notification: NotificationInfo = {
       id,
       sender: 'SYSTEM',
       pinned: true,

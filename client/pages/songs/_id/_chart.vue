@@ -37,10 +37,11 @@
 </template>
 
 <script lang="ts">
+import type { SongInfo } from '@core/api/song'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getSongInfo, SongInfo } from '~/api/song'
+import { getSongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
 
 @Component({ components: { ChartDetail } })

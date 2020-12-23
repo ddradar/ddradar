@@ -34,11 +34,13 @@
 </i18n>
 
 <script lang="ts">
-import { Context } from '@nuxt/types'
+import type { CourseListData } from '@core/api/course'
+import { seriesSet } from '@core/db/songs'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { CourseList as CourseListData, getCourseList } from '~/api/course'
-import { SeriesList, shortenSeriesName } from '~/api/song'
+import { getCourseList } from '~/api/course'
+import { shortenSeriesName } from '~/api/song'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 
 @Component({ components: { CourseList }, fetchOnServer: false })
@@ -57,22 +59,24 @@ export default class GradeListPage extends Vue {
   }
 
   get title() {
+    const seriesList = [...seriesSet]
     const series = parseInt(this.$route.params.series, 10)
-    return this.$t('title', { series: SeriesList[series] })
+    return this.$t('title', { series: seriesList[series] })
   }
 
   get pageLinks() {
+    const seriesList = [...seriesSet]
     return [16, 17]
       .map(i => [
         {
           name: this.$t('nonstop', {
-            series: shortenSeriesName(SeriesList[i]),
+            series: shortenSeriesName(seriesList[i]),
           }),
           to: `/nonstop/${i}`,
         },
         {
           name: this.$t('grade', {
-            series: shortenSeriesName(SeriesList[i]),
+            series: shortenSeriesName(seriesList[i]),
           }),
           to: `/grade/${i}`,
         },

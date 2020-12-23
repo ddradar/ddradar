@@ -1,20 +1,25 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { ItemDefinition } from '../db'
-import { ScoreSchema } from '../db/scores'
-import {
-  CourseInfoSchema,
+import type { ScoreSchema } from '../core/db/scores'
+import type {
+  CourseChartSchema,
   Difficulty,
   SongSchema,
   StepChartSchema,
-} from '../db/songs'
+} from '../core/db/songs'
+import {
+  calcMyGrooveRadar,
+  isScore,
+  isValidScore,
+  mergeScore,
+} from '../core/score'
+import type { ItemDefinition } from '../db'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
-import { calcMyGrooveRadar, isScore, isValidScore, mergeScore } from '../score'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   isCourse: boolean
-  charts: (StepChartSchema | CourseInfoSchema)[]
+  charts: ReadonlyArray<StepChartSchema | CourseChartSchema>
 }
 
 type PostScoreResult = {

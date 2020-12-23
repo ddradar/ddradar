@@ -142,23 +142,15 @@
 </i18n>
 
 <script lang="ts">
+import type { CourseInfo } from '@core/api/course'
+import type { SongInfo } from '@core/api/song'
+import type { ClearLamp } from '@core/db/scores'
+import type { CourseChartSchema, StepChartSchema } from '@core/db/songs'
+import { getDanceLevel, setValidScoreFromChart } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { CourseChart, CourseInfo } from '~/api/course'
-import {
-  ClearLamp,
-  deleteChartScore,
-  getChartScore,
-  getDanceLevel,
-  postChartScore,
-  setValidScoreFromChart,
-} from '~/api/score'
-import {
-  getDifficultyName,
-  getPlayStyleName,
-  SongInfo,
-  StepChart,
-} from '~/api/song'
+import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
+import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
@@ -183,7 +175,7 @@ export default class ScoreEditorComponent extends Vue {
   maxCombo = 0
   isFailed = false
 
-  selectedChart: StepChart | CourseChart | null = null
+  selectedChart: StepChartSchema | CourseChartSchema | null = null
 
   isLoading = true
 
@@ -214,7 +206,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get charts() {
-    return (this.songData.charts as {
+    return (this.songData.charts as readonly {
       playStyle: number
       difficulty: number
     }[]).map(c => ({
@@ -229,7 +221,7 @@ export default class ScoreEditorComponent extends Vue {
   async created() {
     if (this.playStyle !== null && this.difficulty !== null) {
       this.selectedChart =
-        (this.songData.charts as (StepChart | CourseChart)[]).find(
+        (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
           c =>
             c.playStyle === this.playStyle && c.difficulty === this.difficulty
         ) ?? null
@@ -240,9 +232,9 @@ export default class ScoreEditorComponent extends Vue {
   async onChartSelected({
     playStyle,
     difficulty,
-  }: Pick<StepChart, 'playStyle' | 'difficulty'>) {
+  }: Pick<StepChartSchema, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
-      (this.songData.charts as (StepChart | CourseChart)[]).find(
+      (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       ) ?? null
     await this.fetchScore()

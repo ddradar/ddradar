@@ -2,7 +2,7 @@ import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../db/scores'
+import type { ScoreSchema } from '../core/db/scores'
 import getChartScore from '.'
 
 jest.mock('../auth')

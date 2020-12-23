@@ -1,9 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
 
-import { SeriesList, SongSchema } from '../db/songs'
+import type { SongListData } from '../core/api/song'
+import { seriesSet } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
-
-type SongListData = Omit<SongSchema, 'charts'>
 
 /** Get a list of song information that matches the specified conditions. */
 export default async function (
@@ -12,9 +11,11 @@ export default async function (
   songs: SongListData[]
 ): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
   const i = parseFloat(req.query.series)
-  const isValidSeries = Number.isInteger(i) && i >= 0 && i < SeriesList.length
+  const isValidSeries = Number.isInteger(i) && i >= 0 && i < seriesSet.size
 
-  const body = songs.filter(s => !isValidSeries || s.series === SeriesList[i])
+  const body = songs.filter(
+    s => !isValidSeries || s.series === [...seriesSet][i]
+  )
 
   if (body.length === 0) return new ErrorResult(404)
 

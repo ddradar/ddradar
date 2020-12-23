@@ -68,7 +68,7 @@
 </i18n>
 
 <script lang="ts">
-import type { NotificationSchema } from '@ddradar/core/db/notification'
+import type { NotificationListData } from '@core/api/notification'
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -76,10 +76,7 @@ import { getNotificationList } from '~/api/notification'
 import { unixTimeToString } from '~/utils/date'
 import * as popup from '~/utils/popup'
 
-type NotificationDetail = Omit<
-  NotificationSchema,
-  'sender' | 'pinned' | 'timeStamp'
-> & {
+type NotificationDetail = Omit<NotificationListData, 'timeStamp'> & {
   date: string
 }
 

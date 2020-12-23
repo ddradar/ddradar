@@ -160,16 +160,18 @@
 </i18n>
 
 <script lang="ts">
+import type { CurrentUserInfo } from '@core/api/user'
+import type { AreaCode } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, existsUser, User } from '~/api/user'
+import { areaList, existsUser } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
 export default class ProfilePage extends Vue {
   id: string = ''
   name: string = ''
-  area: number = 0
+  area: AreaCode = 0
   code: number | null = null
   isPublic: boolean = true
 
@@ -243,7 +245,7 @@ export default class ProfilePage extends Vue {
   }
 
   async save() {
-    const user: User = {
+    const user: CurrentUserInfo = {
       id: this.id,
       name: this.name,
       area: this.area,

@@ -151,12 +151,12 @@
 </i18n>
 
 <script lang="ts">
+import { musicDataToScoreList } from '@core/eagate-parser'
+import { readTextAsync, scoreTexttoScoreList } from '@core/skill-attack'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postSongScores } from '~/api/score'
-import { musicDataToScoreList } from '~/utils/eagate-parser'
 import * as popup from '~/utils/popup'
-import { readTextAsync, scoreTexttoScoreList } from '~/utils/skill-attack'
 
 @Component
 export default class ImportPage extends Vue {

@@ -2,9 +2,9 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-} from '../type-assert'
+} from '../typeUtils'
 
-describe('./type-assert.ts', () => {
+describe('./typeUtils.ts', () => {
   const objects = [undefined, null, true, 1.5, 'foo', {}, [], { foo1: 'bar' }]
 
   describe('hasProperty', () => {

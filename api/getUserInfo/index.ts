@@ -1,10 +1,9 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal } from '../auth'
-import type { UserSchema } from '../db'
+import { UserInfo } from '../core/api/user'
+import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
-
-type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic'>
 
 /** Get user information that match the specified ID. */
 export default async function (

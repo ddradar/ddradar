@@ -1,21 +1,21 @@
 import type { HttpRequest } from '@azure/functions'
 import { mocked } from 'ts-jest/utils'
 
-import { privateUser, publicUser } from '../__tests__/data'
 import { getLoginUserInfo } from '../auth'
-import { DanceLevelList } from '../db/scores'
-import type { ScoreStatusSchema } from '../db/user-details'
+import { privateUser, publicUser } from '../core/__tests__/data'
+import { danceLevelSet } from '../core/db/scores'
+import type { ScoreStatusSchema } from '../core/db/userDetails'
 import getClearStatus from '.'
 
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/score', () => {
   const scores: Omit<ScoreStatusSchema, 'userId' | 'type'>[] = [
-    ...Array(19 * DanceLevelList.length).keys(),
+    ...Array(19 * danceLevelSet.size).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % 19) + 1,
-    rank: DanceLevelList[n % DanceLevelList.length],
+    rank: [...danceLevelSet][n % danceLevelSet.size],
     count: n,
   }))
 
@@ -46,7 +46,7 @@ describe('GET /api/v1/users/{id}/score', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * DanceLevelList.length)
+    expect(result.body).toHaveLength(19 * danceLevelSet.size)
   })
 
   test.each([
@@ -78,6 +78,6 @@ describe('GET /api/v1/users/{id}/score', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * DanceLevelList.length)
+    expect(result.body).toHaveLength(19 * danceLevelSet.size)
   })
 })

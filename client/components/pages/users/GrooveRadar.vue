@@ -3,16 +3,11 @@
 </template>
 
 <script lang="ts">
+import type { GrooveRadar } from '@core/db/songs'
 import type { ChartData, ChartTooltipItem } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import type { StepChart } from '~/api/song'
 import ReactiveRadar from '~/components/shared/ReactiveRadar'
-
-type GrooveRadar = Pick<
-  StepChart,
-  'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
->
 
 @Component({ components: { ReactiveRadar } })
 export default class GrooveRadarComponent extends Vue {

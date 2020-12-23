@@ -70,14 +70,10 @@
 </i18n>
 
 <script lang="ts">
+import type { ChartInfo } from '@core/api/song'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import {
-  ChartInfo,
-  getDifficultyName,
-  getSongInfo,
-  shortenSeriesName,
-} from '~/api/song'
+import { getDifficultyName, getSongInfo, shortenSeriesName } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 
 @Component

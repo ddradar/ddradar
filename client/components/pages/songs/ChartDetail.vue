@@ -152,22 +152,20 @@
 </i18n>
 
 <script lang="ts">
+import type { ScoreInfo } from '@core/api/score'
+import type { SongInfo } from '@core/api/song'
+import type { StepChartSchema } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { getChartScore, UserScore } from '~/api/score'
-import {
-  getDifficultyName,
-  getPlayStyleName,
-  SongInfo,
-  StepChart,
-} from '~/api/song'
+import { getChartScore } from '~/api/score'
+import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-type RankingScore = UserScore & { isArea?: true }
+type RankingScore = ScoreInfo & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class ChartDetailComponent extends Vue {
@@ -175,7 +173,7 @@ export default class ChartDetailComponent extends Vue {
   readonly song!: Omit<SongInfo, 'charts'>
 
   @Prop({ required: true, type: Object })
-  readonly chart!: StepChart
+  readonly chart!: StepChartSchema
 
   @Prop({ required: false, type: Boolean, default: false })
   readonly open!: boolean
@@ -247,7 +245,7 @@ export default class ChartDetailComponent extends Vue {
       )
       this.scores = scores.map(s => {
         const id = parseInt(s.userId, 10)
-        if (!isNaN(id) && areaList.includes(id)) {
+        if (!isNaN(id) && (areaList as number[]).includes(id)) {
           return {
             ...s,
             isArea: true,

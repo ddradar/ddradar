@@ -1,3 +1,4 @@
+import type { UserInfo } from '@core/api/user'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
@@ -9,7 +10,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getUserInfo, UserListData } from '~/api/user'
+import { getUserInfo } from '~/api/user'
 import UserPage from '~/pages/users/_id.vue'
 
 jest.mock('~/api/user')
@@ -19,7 +20,7 @@ localVue.use(Buefy)
 localVue.use(VueI18n)
 
 describe('/users/_id.vue', () => {
-  const user: UserListData = {
+  const user: UserInfo = {
     id: 'user_1',
     name: 'User 1',
     area: 13,

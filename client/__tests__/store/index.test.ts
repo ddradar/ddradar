@@ -1,8 +1,10 @@
+import type { ClientPrincipal } from '@core/api/auth'
+import type { CurrentUserInfo } from '@core/api/user'
 import { mocked } from 'ts-jest/utils'
 import { Store } from 'vuex'
 
-import { ClientPrincipal, getClientPrincipal } from '~/api/auth'
-import { getCurrentUser, postUserInfo, User } from '~/api/user'
+import { getClientPrincipal } from '~/api/auth'
+import { getCurrentUser, postUserInfo } from '~/api/user'
 import { actions, getters, mutations, RootState, state } from '~/store'
 
 jest.mock('~/api/auth')
@@ -14,13 +16,13 @@ const auth: ClientPrincipal = {
   userDetails: 'foo',
   userRoles: ['anonymous', 'authenticated'],
 }
-const user: User = {
+const user: CurrentUserInfo = {
   id: 'foo',
   name: 'Some User',
   area: 13,
   isPublic: true,
   code: 10000000,
-} as const
+}
 
 describe('./store/index.ts', () => {
   describe('state', () => {

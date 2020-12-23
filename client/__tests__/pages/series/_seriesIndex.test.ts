@@ -6,10 +6,7 @@ import { mocked } from 'ts-jest/utils'
 import { searchSongBySeries } from '~/api/song'
 import SongBySeriesPage from '~/pages/series/_seriesIndex.vue'
 
-jest.mock('~/api/song', () => ({
-  ...jest.createMockFromModule<object>('~/api/song'),
-  SeriesList: jest.requireActual('~/api/song').SeriesList,
-}))
+jest.mock('~/api/song')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 

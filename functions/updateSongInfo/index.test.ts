@@ -1,9 +1,9 @@
-import type { Container } from '@azure/cosmos'
+import type { Container, ItemDefinition } from '@azure/cosmos'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
+import type { SongSchema } from '@ddradar/core/db/songs'
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../db'
-import type { ScoreSchema } from '../db/scores'
-import type { SongSchema } from '../db/songs'
 import updateScores from '.'
 
 jest.mock('../db')
@@ -72,7 +72,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
       },
     ],
   }
-  const validScore: ScoreSchema = {
+  const validScore: ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
     userName: 'User 1',

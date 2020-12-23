@@ -1,9 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { DanceLevelList } from '../db/scores'
-import type { ScoreStatusSchema } from '../db/user-details'
-import type { UserSchema } from '../db/users'
+import { danceLevelSet } from '../core/db/scores'
+import type { ScoreStatusSchema } from '../core/db/userDetails'
+import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>
@@ -27,6 +27,7 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
+  const danceLevels = [...danceLevelSet]
   return new SuccessResult(
     scoreStatuses
       .filter(
@@ -39,8 +40,8 @@ export default async function (
           ? l.playStyle - r.playStyle
           : l.level !== r.level
           ? l.level - r.level
-          : DanceLevelList.findIndex(s => l.rank === s) -
-            DanceLevelList.findIndex(s => r.rank === s)
+          : danceLevels.findIndex(s => l.rank === s) -
+            danceLevels.findIndex(s => r.rank === s)
       ) // ORDER BY playStyle, level, rank
   )
 }

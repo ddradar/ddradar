@@ -26,10 +26,11 @@
 </template>
 
 <script lang="ts">
+import type { CourseInfo } from '@core/api/course'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { CourseInfo, getCourseInfo } from '~/api/course'
+import { getCourseInfo } from '~/api/course'
 import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
 
 @Component({ components: { OrderDetail } })
