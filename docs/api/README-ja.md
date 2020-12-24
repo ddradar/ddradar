@@ -20,7 +20,7 @@ English version is [here](./README.md).
 ## Song API
 
 - [曲情報の取得](../../api/getSongInfo/README-ja.md)
-- [曲情報の追加/更新](../../api/postSongInfo/README-ja.md) **管理者のみ*
+- [曲情報の追加/更新](../../api/admin__songs--post/README-ja.md) **管理者のみ*
 - [曲名で曲検索](../../api/searchSongByName/README-ja.md)
 - [シリーズタイトルで曲検索](../../api/searchSongBySeries/README-ja.md)
 - [譜面検索](../../api/searchCharts/README-ja.md)
