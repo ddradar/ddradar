@@ -36,7 +36,7 @@ English version is [here](./README.md).
 - [ログインユーザー情報取得](../../api/user--get/README-ja.md) **ログインユーザーのみ*
 - [ユーザー一覧の取得](../../api/users/README-ja.md)
 - [ユーザー情報の取得](../../api/users__id/README-ja.md)
-- [ユーザー情報の追加/更新](../../api/postUserInfo/README-ja.md) **ログインユーザーのみ*
+- [ユーザー情報の追加/更新](../../api/user--post/README-ja.md) **ログインユーザーのみ*
 - [クリア情報の取得](../../api/getClearStatus/README-ja.md)
 - [スコア情報の取得](../../api/getScoreStatus/README-ja.md)
 

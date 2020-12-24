@@ -113,7 +113,7 @@ export function getGrooveRadar(
 
 /**
  * Call "Post User Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/postUserInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user--post/
  */
 export function postUserInfo(
   $http: Pick<NuxtHTTPInstance, '$post'>,

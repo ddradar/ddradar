@@ -37,7 +37,7 @@ describe('POST /api/v1/user', () => {
     expect(result.httpResponse.status).toBe(401)
   })
 
-  test('returns "400 Bad Request" if body is %p', async () => {
+  test('returns "400 Bad Request" if body is not UserSchema', async () => {
     // Arrange
     req.body = {}
     mocked(getClientPrincipal).mockReturnValue({
