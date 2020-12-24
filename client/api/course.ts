@@ -9,7 +9,7 @@ export function getCourseType(type: number) {
 
 /**
  * Call "Get Course List" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getCourseList/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/courses/
  */
 export function getCourseList(
   $http: Pick<NuxtHTTPInstance, '$get'>,

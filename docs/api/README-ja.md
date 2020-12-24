@@ -28,7 +28,7 @@ English version is [here](./README.md).
 ## Course API
 
 - [コース情報の取得](../../api/courses__id/README-ja.md)
-- [コース一覧の取得](../../api/getCourseList/README-ja.md)
+- [コース一覧の取得](../../api/courses/README-ja.md)
 
 ## User API
 

@@ -8,7 +8,7 @@ export type CourseInfo = CourseSchema
 
 /**
  * Object type returned by `/api/v1/courses`
- * @see https://github.com/ddradar/ddradar/blob/master/api/getCourseList/
+ * @see https://github.com/ddradar/ddradar/blob/master/api/courses/
  */
 export type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
   charts: ReadonlyArray<
