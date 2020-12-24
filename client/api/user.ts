@@ -24,7 +24,7 @@ export const areaList = [...areaCodeSet]
 
 /**
  * Call "User Exists" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/existsUser
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user__exists__id/
  */
 export async function existsUser(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -46,7 +46,7 @@ export function getCurrentUser($http: Pick<NuxtHTTPInstance, '$get'>) {
 
 /**
  * Call "Get User List" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getUserList
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users/
  */
 export function getUserList(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -71,7 +71,7 @@ export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
 
 /**
  * Call "Get Clear Status" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getClearStatus
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__clear/
  */
 export function getClearStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -85,7 +85,7 @@ export function getClearStatus(
 
 /**
  * Call "Get Score Status" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getScoreStatus
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getScoreStatus/
  */
 export function getScoreStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -99,7 +99,7 @@ export function getScoreStatus(
 
 /**
  * Call "Get Groove Radar" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getGrooveRadar
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getGrooveRadar/
  */
 export function getGrooveRadar(
   $http: Pick<NuxtHTTPInstance, '$get'>,
