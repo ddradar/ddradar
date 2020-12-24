@@ -2,7 +2,7 @@ import type { UserSchema } from '../db/users'
 
 /**
  * Object type returned by `/api/v1/user`
- * @see https://github.com/ddradar/ddradar/blob/master/api/getCurrentUser/README.md
+ * @see https://github.com/ddradar/ddradar/blob/master/api/user--get/
  */
 export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
 

@@ -38,7 +38,7 @@ export async function existsUser(
 
 /**
  * Call "Get Current User Data" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getCurrentUser
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user--get/
  */
 export function getCurrentUser($http: Pick<NuxtHTTPInstance, '$get'>) {
   return $http.$get<CurrentUserInfo>(`${apiPrefix}/user`)
