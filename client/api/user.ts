@@ -99,7 +99,7 @@ export function getScoreStatus(
 
 /**
  * Call "Get Groove Radar" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getGrooveRadar/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__radar__style/
  */
 export function getGrooveRadar(
   $http: Pick<NuxtHTTPInstance, '$get'>,
