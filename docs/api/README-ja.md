@@ -42,7 +42,7 @@ English version is [here](./README.md).
 
 ## Score API
 
-- [スコア取得(譜面別)](../../api/getChartScore/README-ja.md)
+- [スコア取得(譜面別)](../../api/scores__id__style__difficulty--get/README-ja.md)
 - [スコア追加/更新(譜面別)](../../api/postChartScore/README-ja.md) **ログインユーザーのみ*
 - [スコア追加/更新(曲別)](../../api/postSongScores/README-ja.md) **ログインユーザーのみ*
 - [スコア削除(譜面別)](../../api/deleteChartScore/README-ja.md) **ログインユーザーのみ*

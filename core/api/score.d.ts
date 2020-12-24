@@ -2,7 +2,7 @@ import type { ScoreSchema } from '../db/scores'
 
 /**
  * Object type returned by `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/getChartScore
+ * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id__style__difficulty--get/
  */
 export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar'>
 
