@@ -34,7 +34,7 @@ English version is [here](./README.md).
 
 - [ユーザー存在チェック](../../api/existsUser/README-ja.md) **ログインユーザーのみ*
 - [ログインユーザー情報取得](../../api/getCurrentUser/README-ja.md) **ログインユーザーのみ*
-- [ユーザー一覧の取得](../../api/getUserList/README-ja.md)
+- [ユーザー一覧の取得](../../api/users/README-ja.md)
 - [ユーザー情報の取得](../../api/getUserInfo/README-ja.md)
 - [ユーザー情報の追加/更新](../../api/postUserInfo/README-ja.md) **ログインユーザーのみ*
 - [クリア情報の取得](../../api/getClearStatus/README-ja.md)
