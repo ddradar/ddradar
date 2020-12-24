@@ -85,7 +85,7 @@ export function getClearStatus(
 
 /**
  * Call "Get Score Status" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getScoreStatus/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__score/
  */
 export function getScoreStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,

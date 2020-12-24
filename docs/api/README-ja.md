@@ -38,7 +38,7 @@ English version is [here](./README.md).
 - [ユーザー情報の取得](../../api/users__id/README-ja.md)
 - [ユーザー情報の追加/更新](../../api/user--post/README-ja.md) **ログインユーザーのみ*
 - [クリア情報の取得](../../api/users__id__clear/README-ja.md)
-- [スコア情報の取得](../../api/getScoreStatus/README-ja.md)
+- [スコア情報の取得](../../api/users__id__score/README-ja.md)
 
 ## Score API
 
