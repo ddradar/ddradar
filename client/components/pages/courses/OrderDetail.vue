@@ -139,11 +139,11 @@
 import type { CourseInfo } from '@core/api/course'
 import type { ScoreInfo } from '@core/api/score'
 import type { CourseChartSchema } from '@core/db/songs'
+import { areaCodeSet } from '@core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
-import { areaList } from '~/api/user'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
@@ -248,7 +248,7 @@ export default class OrderDetailComponent extends Vue {
       )
       this.scores = scores.map(s => {
         const id = parseInt(s.userId, 10)
-        if (!isNaN(id) && (areaList as number[]).includes(id)) {
+        if (!isNaN(id) && (areaCodeSet as ReadonlySet<number>).has(id)) {
           return {
             ...s,
             isArea: true,

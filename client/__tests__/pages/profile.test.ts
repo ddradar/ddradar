@@ -8,10 +8,7 @@ import { existsUser } from '~/api/user'
 import ProfilePage from '~/pages/profile.vue'
 import * as popup from '~/utils/popup'
 
-jest.mock('~/api/user', () => ({
-  ...jest.createMockFromModule<object>('~/api/user'),
-  areaList: jest.requireActual('~/api/user').areaList,
-}))
+jest.mock('~/api/user')
 jest.mock('~/utils/popup')
 
 const localVue = createLocalVue()

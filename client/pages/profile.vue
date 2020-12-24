@@ -161,10 +161,10 @@
 
 <script lang="ts">
 import type { CurrentUserInfo } from '@core/api/user'
-import type { AreaCode } from '@core/db/users'
+import { AreaCode, areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, existsUser } from '~/api/user'
+import { existsUser } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component({ fetchOnServer: false })
@@ -180,7 +180,7 @@ export default class ProfilePage extends Vue {
   message = ''
 
   get areaOptions() {
-    return areaList.map(key => ({ key, value: this.$t(`area.${key}`) }))
+    return [...areaCodeSet].map(key => ({ key, value: this.$t(`area.${key}`) }))
   }
 
   get isNewUser() {
@@ -192,7 +192,7 @@ export default class ProfilePage extends Vue {
       this.type === 'is-danger' ||
       !/^[-a-zA-Z0-9_]+$/.test(this.id) ||
       !this.name ||
-      !areaList.includes(this.area) ||
+      !(areaCodeSet as ReadonlySet<number>).has(this.area) ||
       (!!this.code &&
         (!Number.isInteger(this.code) ||
           this.code < 10000000 ||

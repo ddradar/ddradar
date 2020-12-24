@@ -3,14 +3,14 @@ import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import { privateUser, publicUser } from '../core/__tests__/data'
-import type { GrooveRadarSchema } from '../core/db/userDetails'
+import type { GrooveRadarInfo } from '../core/api/user'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/radar', () => {
   const radar = { stream: 100, voltage: 100, air: 100, freeze: 100, chaos: 100 }
-  const radars: Omit<GrooveRadarSchema, 'userId' | 'type'>[] = [
+  const radars: GrooveRadarInfo[] = [
     { ...radar, playStyle: 2 },
     { ...radar, playStyle: 1 },
   ]

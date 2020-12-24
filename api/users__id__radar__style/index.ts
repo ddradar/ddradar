@@ -1,11 +1,9 @@
 import type { Context, HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { GrooveRadarSchema } from '../core/db/userDetails'
+import type { GrooveRadarInfo } from '../core/api/user'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
-
-type GrooveRadarInfo = Omit<GrooveRadarSchema, 'userId' | 'type'>
 
 /** Get Groove Radar that match the specified user ID and play style. */
 export default async function (

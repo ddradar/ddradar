@@ -1,12 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { ScoreStatus } from '../core/api/user'
 import { danceLevelSet } from '../core/db/scores'
-import type { ScoreStatusSchema } from '../core/db/userDetails'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
-
-type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>
 
 /** Get Score statuses that match the specified user ID, play style and level. */
 export default async function (

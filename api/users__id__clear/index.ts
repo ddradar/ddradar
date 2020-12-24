@@ -1,11 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ClearStatusSchema } from '../core/db/userDetails'
+import type { ClearStatus } from '../core/api/user'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
-
-type ClearStatus = Omit<ClearStatusSchema, 'userId' | 'type'>
 
 /** Get Clear status that match the specified user ID and play style. */
 export default async function (

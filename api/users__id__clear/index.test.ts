@@ -3,16 +3,14 @@ import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import { privateUser, publicUser } from '../core/__tests__/data'
+import type { ClearStatus } from '../core/api/user'
 import type { ClearLamp } from '../core/db/scores'
-import type { ClearStatusSchema } from '../core/db/userDetails'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/clear', () => {
-  const statuses: Omit<ClearStatusSchema, 'userId' | 'type'>[] = [
-    ...Array(19 * 8).keys(),
-  ].map(n => ({
+  const statuses: ClearStatus[] = [...Array(19 * 8).keys()].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % 19) + 1,
     clearLamp: (n % 8) as ClearLamp,

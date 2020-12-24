@@ -1,26 +1,14 @@
-import type { ScoreInfo } from '@core/api/score'
-import type { CurrentUserInfo, ExistsUser, UserInfo } from '@core/api/user'
-import type { StepChartSchema } from '@core/db/songs'
-import { areaCodeSet } from '@core/db/users'
+import type {
+  ClearStatus,
+  CurrentUserInfo,
+  ExistsUser,
+  GrooveRadarInfo,
+  ScoreStatus,
+  UserInfo,
+} from '@core/api/user'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
-
-export type ClearStatus = Pick<
-  ScoreInfo,
-  'playStyle' | 'level' | 'clearLamp'
-> & { count: number }
-
-export type ScoreStatus = Pick<ScoreInfo, 'playStyle' | 'level' | 'rank'> & {
-  count: number
-}
-
-export type GrooveRadar = Pick<
-  StepChartSchema,
-  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
->
-
-export const areaList = [...areaCodeSet]
 
 /**
  * Call "User Exists" API.
@@ -106,7 +94,7 @@ export function getGrooveRadar(
   userId: string,
   playStyle: 1 | 2
 ) {
-  return $http.$get<GrooveRadar[]>(
+  return $http.$get<GrooveRadarInfo[]>(
     `${apiPrefix}/users/${userId}/radar/${playStyle}`
   )
 }
