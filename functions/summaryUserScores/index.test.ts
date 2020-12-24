@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
+import type { ScoreSchema } from '../core/db/scores'
 import {
   fetchClearAndScoreStatus,
   generateGrooveRadar,

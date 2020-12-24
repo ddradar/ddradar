@@ -1,15 +1,15 @@
 import type { HttpRequest } from '@azure/functions'
+import { mocked } from 'ts-jest/utils'
+
 import {
   areaHiddenUser,
   noPasswordUser,
   privateUser,
   publicUser,
   testSongData,
-} from '@ddradar/core/__tests__/data'
-import type { ScoreBody } from '@ddradar/core/api/score'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import { mocked } from 'ts-jest/utils'
-
+} from '../core/__tests__/data'
+import type { ScoreBody } from '../core/api/score'
+import type { ScoreSchema } from '../core/db/scores'
 import { fetchScore } from '../db/scores'
 import postSongScores from '.'
 

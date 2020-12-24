@@ -8,5 +8,6 @@
     "sourceMap": true,
     "strict": true
   },
-  "types": ["node"]
+  "types": ["node"],
+  "exclude": ["core/dist/*", "node_modules"]
 }

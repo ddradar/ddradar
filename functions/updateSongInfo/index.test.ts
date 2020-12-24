@@ -1,8 +1,8 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import type { SongSchema } from '@ddradar/core/db/songs'
 import { mocked } from 'ts-jest/utils'
 
+import type { ScoreSchema } from '../core/db/scores'
+import type { SongSchema } from '../core/db/songs'
 import { getContainer } from '../db'
 import updateScores from '.'
 
