@@ -23,7 +23,7 @@ See also [Authentication API Docs](./authentication.md).
 - [Post Song Information](../../api/admin__songs--post/README.md) **Admin only*
 - [Search Song by Name](../../api/songs__name__id/README.md)
 - [Search Song by Series](../../api/songs__series__id/README.md)
-- [Search Charts](../../api/searchCharts/README.md)
+- [Search Charts](../../api/charts__style__level/README.md)
 
 ## Course API
 

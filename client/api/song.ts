@@ -49,7 +49,7 @@ export function searchSongBySeries(
 
 /**
  * Call "Search Charts" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/searchCharts/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/charts__style__level/
  */
 export function searchCharts(
   $http: Pick<NuxtHTTPInstance, '$get'>,
