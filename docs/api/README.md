@@ -39,6 +39,7 @@ See also [Authentication API Docs](./authentication.md).
 - [Post User Information](../../api/user--post/README.md) **Authed user only*
 - [Get Clear Status](../../api/users__id__clear/README.md)
 - [Get Score Status](../../api/users__id__score/README.md)
+- [Get Groove Radar](../../api/users__id__radar__style/README.md)
 
 ## Score API
 
