@@ -6,7 +6,7 @@ import { apiPrefix } from '~/api'
 
 /**
  * Call "Post Notification" API. (Admin only)
- * @see https://github.com/ddradar/ddradar/tree/master/api/postNotification
+ * @see https://github.com/ddradar/ddradar/tree/master/api/admin__notification--post/
  */
 export function postNotification(
   $http: Pick<NuxtHTTPInstance, '$post'>,
@@ -20,7 +20,7 @@ export function postNotification(
 
 /**
  * Call "Post Song Information" API. (Admin only)
- * @see https://github.com/ddradar/ddradar/tree/master/api/postSongInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/admin__songs--post/
  */
 export function postSongInfo(
   $http: Pick<NuxtHTTPInstance, '$post'>,

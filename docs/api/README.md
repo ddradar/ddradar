@@ -19,36 +19,37 @@ See also [Authentication API Docs](./authentication.md).
 
 ## Song API
 
-- [Get Song Information](../../api/getSongInfo/README.md)
-- [Post Song Information](../../api/postSongInfo/README.md) **Admin only*
-- [Search Song by Name](../../api/searchSongByName/README.md)
-- [Search Song by Series](../../api/searchSongBySeries/README.md)
-- [Search Charts](../../api/searchCharts/README.md)
+- [Get Song Information](../../api/songs__id/README.md)
+- [Post Song Information](../../api/admin__songs--post/README.md) **Admin only*
+- [Search Song by Name](../../api/songs__name__id/README.md)
+- [Search Song by Series](../../api/songs__series__id/README.md)
+- [Search Charts](../../api/charts__style__level/README.md)
 
 ## Course API
 
-- [Get Course Information](../../api/getCourseInfo/README.md)
-- [Get Course List](../../api/getCourseList/README.md)
+- [Get Course Information](../../api/courses__id/README.md)
+- [Get Course List](../../api/courses/README.md)
 
 ## User API
 
-- [Exists User](../../api/existsUser/README.md) **Authed user only*
-- [Get Current User Data](../../api/getCurrentUser/README.md) **Authed user only*
-- [Get User List](../../api/getUserList/README.md)
-- [Get User Information](../../api/getUserInfo/README.md)
-- [Post User Information](../../api/postUserInfo/README.md) **Authed user only*
-- [Get Clear Status](../../api/getClearStatus/README.md)
-- [Get Score Status](../../api/getScoreStatus/README.md)
+- [Exists User](../../api/users__exists__id/README.md) **Authed user only*
+- [Get Current User Data](../../api/user--get/README.md) **Authed user only*
+- [Get User List](../../api/users/README.md)
+- [Get User Information](../../api/users__id/README.md)
+- [Post User Information](../../api/user--post/README.md) **Authed user only*
+- [Get Clear Status](../../api/users__id__clear/README.md)
+- [Get Score Status](../../api/users__id__score/README.md)
+- [Get Groove Radar](../../api/users__id__radar__style/README.md)
 
 ## Score API
 
-- [Get Chart Score](../../api/getChartScore/README.md)
-- [Post Chart Score](../../api/postChartScore/README.md) **Authed user only*
-- [Post Song Scores](../../api/postSongScores/README.md) **Authed user only*
-- [Delete Chart Score](../../api/deleteChartScore/README.md) **Authed user only*
+- [Get Chart Score](../../api/scores__id__style__difficulty--get/README.md)
+- [Post Chart Score](../../api/scores__id__style__difficulty--post/README.md) **Authed user only*
+- [Post Song Scores](../../api/scores__id--post/README.md) **Authed user only*
+- [Delete Chart Score](../../api/scores__id__style__difficulty--delete/README.md) **Authed user only*
 
 ## Notification API
 
-- [Get Notification List](../../api/getNotificationList/README.md)
-- [Get Notification Info](../../api/getNotificationInfo/README.md)
-- [Post Notification](../../api/postNotification/README.md) **Admin only*
+- [Get Notification List](../../api/notification/README.md)
+- [Get Notification Info](../../api/notification__id/README.md)
+- [Post Notification](../../api/admin__notification--post/README.md) **Admin only*

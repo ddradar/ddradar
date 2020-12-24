@@ -19,36 +19,37 @@ English version is [here](./README.md).
 
 ## Song API
 
-- [曲情報の取得](../../api/getSongInfo/README-ja.md)
-- [曲情報の追加/更新](../../api/postSongInfo/README-ja.md) **管理者のみ*
-- [曲名で曲検索](../../api/searchSongByName/README-ja.md)
-- [シリーズタイトルで曲検索](../../api/searchSongBySeries/README-ja.md)
-- [譜面検索](../../api/searchCharts/README-ja.md)
+- [曲情報の取得](../../api/songs__id/README-ja.md)
+- [曲情報の追加/更新](../../api/admin__songs--post/README-ja.md) **管理者のみ*
+- [曲名で曲検索](../../api/songs__name__id/README-ja.md)
+- [シリーズタイトルで曲検索](../../api/songs__series__id/README-ja.md)
+- [譜面検索](../../api/charts__style__level/README-ja.md)
 
 ## Course API
 
-- [コース情報の取得](../../api/getCourseInfo/README-ja.md)
-- [コース一覧の取得](../../api/getCourseList/README-ja.md)
+- [コース情報の取得](../../api/courses__id/README-ja.md)
+- [コース一覧の取得](../../api/courses/README-ja.md)
 
 ## User API
 
-- [ユーザー存在チェック](../../api/existsUser/README-ja.md) **ログインユーザーのみ*
-- [ログインユーザー情報取得](../../api/getCurrentUser/README-ja.md) **ログインユーザーのみ*
-- [ユーザー一覧の取得](../../api/getUserList/README-ja.md)
-- [ユーザー情報の取得](../../api/getUserInfo/README-ja.md)
-- [ユーザー情報の追加/更新](../../api/postUserInfo/README-ja.md) **ログインユーザーのみ*
-- [クリア情報の取得](../../api/getClearStatus/README-ja.md)
-- [スコア情報の取得](../../api/getScoreStatus/README-ja.md)
+- [ユーザー存在チェック](../../api/users__exists__id/README-ja.md) **ログインユーザーのみ*
+- [ログインユーザー情報取得](../../api/user--get/README-ja.md) **ログインユーザーのみ*
+- [ユーザー一覧の取得](../../api/users/README-ja.md)
+- [ユーザー情報の取得](../../api/users__id/README-ja.md)
+- [ユーザー情報の追加/更新](../../api/user--post/README-ja.md) **ログインユーザーのみ*
+- [クリア情報の取得](../../api/users__id__clear/README-ja.md)
+- [スコア情報の取得](../../api/users__id__score/README-ja.md)
+- [グルーブレーダーの取得](../../api/users__id__radar__style/README.md)
 
 ## Score API
 
-- [スコア取得(譜面別)](../../api/getChartScore/README-ja.md)
-- [スコア追加/更新(譜面別)](../../api/postChartScore/README-ja.md) **ログインユーザーのみ*
-- [スコア追加/更新(曲別)](../../api/postSongScores/README-ja.md) **ログインユーザーのみ*
-- [スコア削除(譜面別)](../../api/deleteChartScore/README-ja.md) **ログインユーザーのみ*
+- [スコア取得(譜面別)](../../api/scores__id__style__difficulty--get/README-ja.md)
+- [スコア追加/更新(譜面別)](../../api/scores__id__style__difficulty--post/README-ja.md) **ログインユーザーのみ*
+- [スコア追加/更新(曲別)](../../api/scores__id--post/README-ja.md) **ログインユーザーのみ*
+- [スコア削除(譜面別)](../../api/scores__id__style__difficulty--delete/README-ja.md) **ログインユーザーのみ*
 
 ## Notification API
 
-- [通知一覧の取得](../../api/getNotificationList/README-ja.md)
-- [通知詳細の取得](../../api/getNotificationInfo/README-ja.md)
-- [通知の追加/更新](../../api/postNotification/README-ja.md) **管理者のみ*
+- [通知一覧の取得](../../api/notification/README-ja.md)
+- [通知詳細の取得](../../api/notification__id/README-ja.md)
+- [通知の追加/更新](../../api/admin__notification--post/README-ja.md) **管理者のみ*

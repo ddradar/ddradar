@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/notification"
+    },
+    {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Notification",
+      "sqlQuery": "SELECT c.id, c.type, c.icon, c.title, c.body, c.timeStamp, c.pinned, c.sender FROM c ORDER BY c.pinned DESC, c.timeStamp DESC",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/notification/index.js"
+}

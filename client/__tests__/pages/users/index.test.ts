@@ -13,10 +13,7 @@ import { getUserList } from '~/api/user'
 import UserListPage from '~/pages/users/index.vue'
 import { danger } from '~/utils/popup'
 
-jest.mock('~/api/user', () => ({
-  ...jest.createMockFromModule<object>('~/api/user'),
-  areaList: jest.requireActual('~/api/user').areaList,
-}))
+jest.mock('~/api/user')
 jest.mock('~/utils/popup')
 
 const localVue = createLocalVue()

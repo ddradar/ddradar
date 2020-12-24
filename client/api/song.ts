@@ -19,7 +19,7 @@ export function getDifficultyName(difficulty: number) {
 
 /**
  * Call "Get Song Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getSongInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs__id/
  */
 export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
   return $http.$get<SongInfo>(`${apiPrefix}/songs/${id}`)
@@ -27,7 +27,7 @@ export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
 
 /**
  * Call "Search Song by Name" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/searchSongByName
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs__name__id/
  */
 export function searchSongByName(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -38,7 +38,7 @@ export function searchSongByName(
 
 /**
  * Call "Search Song by Series" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/searchSongBySeries
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs__series__id/
  */
 export function searchSongBySeries(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -49,7 +49,7 @@ export function searchSongBySeries(
 
 /**
  * Call "Search Charts" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/searchCharts
+ * @see https://github.com/ddradar/ddradar/tree/master/api/charts__style__level/
  */
 export function searchCharts(
   $http: Pick<NuxtHTTPInstance, '$get'>,

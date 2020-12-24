@@ -105,9 +105,10 @@
 
 <script lang="ts">
 import type { UserInfo } from '@core/api/user'
+import { areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { areaList, getUserList } from '~/api/user'
+import { getUserList } from '~/api/user'
 import * as popup from '~/utils/popup'
 
 @Component
@@ -121,7 +122,7 @@ export default class UserListPage extends Vue {
 
   /** AreaCode - String mapping for <select> components */
   get areaOptions() {
-    return areaList.map(key => ({ key, value: this.$t(`area.${key}`) }))
+    return [...areaCodeSet].map(key => ({ key, value: this.$t(`area.${key}`) }))
   }
 
   get displayedUsers() {
