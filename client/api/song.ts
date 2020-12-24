@@ -27,7 +27,7 @@ export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
 
 /**
  * Call "Search Song by Name" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/searchSongByName/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs__name__id/
  */
 export function searchSongByName(
   $http: Pick<NuxtHTTPInstance, '$get'>,
