@@ -52,7 +52,7 @@ export function deleteChartScore(
 
 /**
  * Call "Post Song Scores" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/postSongScores
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id--post/
  */
 export function postSongScores(
   $http: Pick<NuxtHTTPInstance, '$post'>,

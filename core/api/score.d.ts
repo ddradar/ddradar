@@ -17,7 +17,7 @@ export type ScoreBody = Pick<
 
 /**
  * Request body to `/api/v1/scores/{:songId}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/postSongScores
+ * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id--post/
  */
 export type ScoreListBody = Pick<
   ScoreSchema,
