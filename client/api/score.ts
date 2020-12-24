@@ -39,7 +39,7 @@ export function postChartScore(
 
 /**
  * Call "Delete Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/deleteChartScore
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--delete/
  */
 export function deleteChartScore(
   $http: Pick<NuxtHTTPInstance, 'delete'>,
