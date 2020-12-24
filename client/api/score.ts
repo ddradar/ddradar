@@ -5,7 +5,7 @@ import { apiPrefix } from '~/api'
 
 /**
  * Call "Get Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getChartScore
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--get/
  */
 export function getChartScore(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -22,7 +22,7 @@ export function getChartScore(
 
 /**
  * Call "Post Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getChartScore
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--post/
  */
 export function postChartScore(
   $http: Pick<NuxtHTTPInstance, '$post'>,

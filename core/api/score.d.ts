@@ -8,7 +8,7 @@ export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar'>
 
 /**
  * Request body to `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/postChartScore
+ * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id__style__difficulty--post/
  */
 export type ScoreBody = Pick<
   ScoreSchema,

@@ -43,7 +43,7 @@ See also [Authentication API Docs](./authentication.md).
 ## Score API
 
 - [Get Chart Score](../../api/scores__id__style__difficulty--get/README.md)
-- [Post Chart Score](../../api/postChartScore/README.md) **Authed user only*
+- [Post Chart Score](../../api/scores__id__style__difficulty--post/README.md) **Authed user only*
 - [Post Song Scores](../../api/postSongScores/README.md) **Authed user only*
 - [Delete Chart Score](../../api/scores__id__style__difficulty--delete/README.md) **Authed user only*
 
