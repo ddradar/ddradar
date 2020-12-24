@@ -27,7 +27,7 @@ See also [Authentication API Docs](./authentication.md).
 
 ## Course API
 
-- [Get Course Information](../../api/getCourseInfo/README.md)
+- [Get Course Information](../../api/courses__id/README.md)
 - [Get Course List](../../api/getCourseList/README.md)
 
 ## User API
