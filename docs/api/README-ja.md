@@ -32,7 +32,7 @@ English version is [here](./README.md).
 
 ## User API
 
-- [ユーザー存在チェック](../../api/existsUser/README-ja.md) **ログインユーザーのみ*
+- [ユーザー存在チェック](../../api/users__exists__id/README-ja.md) **ログインユーザーのみ*
 - [ログインユーザー情報取得](../../api/user--get/README-ja.md) **ログインユーザーのみ*
 - [ユーザー一覧の取得](../../api/users/README-ja.md)
 - [ユーザー情報の取得](../../api/users__id/README-ja.md)

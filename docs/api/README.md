@@ -32,7 +32,7 @@ See also [Authentication API Docs](./authentication.md).
 
 ## User API
 
-- [Exists User](../../api/existsUser/README.md) **Authed user only*
+- [Exists User](../../api/users__exists__id/README.md) **Authed user only*
 - [Get Current User Data](../../api/user--get/README.md) **Authed user only*
 - [Get User List](../../api/users/README.md)
 - [Get User Information](../../api/users__id/README.md)

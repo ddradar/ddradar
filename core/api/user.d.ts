@@ -15,6 +15,6 @@ export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic'>
 
 /**
  * Object type returned by `/api/v1/users/exists/{:id}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/existsUser/README.md
+ * @see https://github.com/ddradar/ddradar/blob/master/api/users__exists__id/
  */
 export type ExistsUser = Pick<UserSchema, 'id'> & { exists: boolean }
