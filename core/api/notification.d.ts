@@ -14,7 +14,7 @@ export type NotificationListData = Omit<NotificationSchema, 'sender' | 'pinned'>
 
 /**
  * Request body of POST `/api/v1/notification`
- * @see https://github.com/ddradar/ddradar/tree/master/api/postNotification
+ * @see https://github.com/ddradar/ddradar/tree/master/api/admin__notification--post/
  */
 export type NotificationBody = Partial<NotificationSchema> &
   Omit<NotificationSchema, 'id' | 'timeStamp'>

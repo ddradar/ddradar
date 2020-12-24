@@ -51,4 +51,4 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Notification List](../../api/getNotificationList/README.md)
 - [Get Notification Info](../../api/getNotificationInfo/README.md)
-- [Post Notification](../../api/postNotification/README.md) **Admin only*
+- [Post Notification](../../api/admin__notification--post/README.md) **Admin only*
