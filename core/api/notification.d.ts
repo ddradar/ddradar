@@ -2,13 +2,13 @@ import type { NotificationSchema } from '../db/notification'
 
 /**
  * Object type returned by `/api/v1/notification/{:id}`
- * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/notification__id/
  */
 export type NotificationInfo = NotificationSchema
 
 /**
  * Object type returned by `/api/v1/notification`
- * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationList
+ * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationList/
  */
 export type NotificationListData = Omit<NotificationSchema, 'sender' | 'pinned'>
 
