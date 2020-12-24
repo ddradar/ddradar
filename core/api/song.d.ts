@@ -2,7 +2,7 @@ import type { SongSchema, StepChartSchema } from '../db/songs'
 
 /**
  * Object type returned by `/api/v1/songs/{:songId}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/getSongInfo/
+ * @see https://github.com/ddradar/ddradar/blob/master/api/songs__id/
  */
 export type SongInfo = Omit<SongSchema, 'skillAttackId'>
 

@@ -19,7 +19,7 @@ export function getDifficultyName(difficulty: number) {
 
 /**
  * Call "Get Song Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getSongInfo/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs__id/
  */
 export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
   return $http.$get<SongInfo>(`${apiPrefix}/songs/${id}`)
