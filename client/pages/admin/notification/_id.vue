@@ -1,7 +1,6 @@
 <template>
   <section class="section">
-    <h1 v-if="id" class="title">Update Notification</h1>
-    <h1 v-else class="title">Add Notification</h1>
+    <h1 class="title">{{ pageTitle }}</h1>
 
     <b-field label="Title">
       <b-input v-model="title" required />
@@ -50,7 +49,7 @@
 
 <script lang="ts">
 import type { NotificationType } from '@core/db/notification'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { postNotification } from '~/api/admin'
@@ -66,6 +65,10 @@ export default class NotificationEditorPage extends Vue {
   title: string = ''
   body: string = ''
   timeStamp: number | null = null
+
+  get pageTitle() {
+    return `${this.id ? 'Update' : 'Add'} Notification`
+  }
 
   get hasError() {
     return !this.title || !this.body
@@ -90,14 +93,15 @@ export default class NotificationEditorPage extends Vue {
   }
 
   async saveNotification() {
+    // istanbul ignore next
     const notification = {
-      ...{ id: this.id || undefined },
+      id: this.id || undefined,
       pinned: this.pinned,
       type: this.type,
       icon: this.icon,
       title: this.title,
       body: this.body,
-      ...{ timeStamp: this.timeStamp || undefined },
+      timeStamp: this.timeStamp || undefined,
     }
     try {
       await postNotification(this.$http, notification)
