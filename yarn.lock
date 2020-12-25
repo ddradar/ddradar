@@ -1363,16 +1363,17 @@
     html-minifier "^4.0.0"
     node-html-parser "^2.0.0"
 
-"@nuxt/http@^0.6.1":
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/@nuxt/http/-/http-0.6.1.tgz#a8ba036ada413d2078fa7dc0e3ef4b29f7a3c0d1"
-  integrity sha512-dS3/97AXWn1qH0uZ6RvrK2rkePFoI+gBkl/rG/xK6ulrlS2OzEMMI1lQLRlCvFRLQJ89J6iTb/Vh8aZtvbvZuw==
+"@nuxt/http@^0.6.2":
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/@nuxt/http/-/http-0.6.2.tgz#194002fcf037f69b1572a6439f449839154e4b6a"
+  integrity sha512-XD1w1W92iKqA5Jo7pT3AgoLsWIUy4k3Ae7zyi+sgmFLReISjvr8neXbWiwxRm0yolsAg/WM++gDKFfGTh2LH8g==
   dependencies:
-    "@nuxtjs/proxy" "^2.0.1"
+    "@nuxtjs/proxy" "^2.1.0"
     abort-controller "^3.0.0"
     consola "^2.15.0"
+    defu "^3.2.2"
     destr "^1.0.1"
-    ky "^0.25.0"
+    ky "^0.25.1"
     node-fetch "^2.6.1"
     web-streams-polyfill "^3.0.1"
 
@@ -1608,7 +1609,7 @@
     eslint-plugin-unicorn "^23.0.0"
     eslint-plugin-vue "^7.1.0"
 
-"@nuxtjs/proxy@^2.0.1":
+"@nuxtjs/proxy@^2.1.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/@nuxtjs/proxy/-/proxy-2.1.0.tgz#fa7715a11d237fa1273503c4e9e137dd1bf5575b"
   integrity sha512-/qtoeqXgZ4Mg6LRg/gDUZQrFpOlOdHrol/vQYMnKu3aN3bP90UfOUB3QSDghUUK7OISAJ0xp8Ld78aHyCTcKCQ==
@@ -7013,7 +7014,7 @@ klona@^2.0.4:
   resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.4.tgz#7bb1e3affb0cb8624547ef7e8f6708ea2e39dfc0"
   integrity sha512-ZRbnvdg/NxqzC7L9Uyqzf4psi1OM4Cuc+sJAkQPjO6XkQIJTNbfK2Rsmbw8fx1p2mkZdp2FZYo2+LwXYY/uwIA==
 
-ky@^0.25.0:
+ky@^0.25.1:
   version "0.25.1"
   resolved "https://registry.yarnpkg.com/ky/-/ky-0.25.1.tgz#0df0bd872a9cc57e31acd5dbc1443547c881bfbc"
   integrity sha512-PjpCEWlIU7VpiMVrTwssahkYXX1by6NCT0fhTUX34F3DTinARlgMpriuroolugFPcMgpPWrOW4mTb984Qm1RXA==
