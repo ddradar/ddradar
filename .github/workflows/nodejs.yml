@@ -62,7 +62,7 @@ jobs:
         run: yarn test
       - name: Report Code Coverage to codecov
         if: matrix.os == 'windows-latest'
-        uses: codecov/codecov-action@v1.1.0
+        uses: codecov/codecov-action@v1.1.1
 
       - name: Remove symlink directory
         if: github.event_name == 'push' && matrix.os == 'ubuntu-20.04'
