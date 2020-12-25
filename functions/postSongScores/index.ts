@@ -1,27 +1,27 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
+
+import type { ScoreBody, ScoreListBody } from '../core/api/score'
+import type { ScoreSchema } from '../core/db/scores'
 import type {
   CourseChartSchema,
   SongSchema,
   StepChartSchema,
-} from '@ddradar/core/db/songs'
-import { difficultyMap, playStyleMap } from '@ddradar/core/db/songs'
-import type { UserSchema } from '@ddradar/core/db/users'
+} from '../core/db/songs'
+import { difficultyMap, playStyleMap } from '../core/db/songs'
+import type { UserSchema } from '../core/db/users'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
   isScore,
   isValidScore,
   mergeScore,
-} from '@ddradar/core/score'
+} from '../core/score'
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-} from '@ddradar/core/typeUtils'
-
+} from '../core/typeUtils'
 import { fetchScore } from '../db/scores'
 
 type ImportScoreBody = {

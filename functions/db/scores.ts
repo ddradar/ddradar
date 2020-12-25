@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import type { Difficulty, PlayStyle } from '@ddradar/core/db/songs'
 
+import type { ScoreSchema } from '../core/db/scores'
+import type { Difficulty, PlayStyle } from '../core/db/songs'
 import { getContainer } from '.'
 
 export async function fetchScore(
