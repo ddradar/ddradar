@@ -1,9 +1,13 @@
 import type { SongInfo } from '@core/api/song'
+import type { Context } from '@nuxt/types'
 import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { mocked } from 'ts-jest/utils'
 
+import { getSongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/_chart.vue'
 
+jest.mock('~/api/song')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
@@ -112,25 +116,124 @@ const song: SongInfo = {
 }
 
 describe('pages/songs/_id/_chart.vue', () => {
+  const mocks = { $accessor: { isAdmin: false } }
+
   describe('snapshot test', () => {
+    const stubs = { NuxtLink: RouterLinkStub }
+    const data = () => ({ song, playStyle: 1, difficulty: 0 })
+
     test('renders correctly', () => {
-      const $accessor = { isAdmin: false, isLoggedIn: true }
-      const wrapper = shallowMount(SongPage, {
-        localVue,
-        mocks: { $accessor },
-        data: () => ({ song, playStyle: 1, difficulty: 0 }),
-      })
+      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
       expect(wrapper).toMatchSnapshot()
     })
     test('renders "Edit" button if admin', () => {
-      const $accessor = { isAdmin: true, isLoggedIn: true }
-      const wrapper = shallowMount(SongPage, {
-        localVue,
-        mocks: { $accessor },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ song, playStyle: 1, difficulty: 0 }),
-      })
+      const mocks = { $accessor: { isAdmin: true } }
+      const wrapper = shallowMount(SongPage, { localVue, mocks, stubs, data })
       expect(wrapper).toMatchSnapshot()
     })
+  })
+
+  // Computed
+  describe('get displayedBPM()', () => {
+    test('{ song: null } returns "???"', () => {
+      // Arrange
+      const data = () => ({ song: null })
+      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
+
+      // Act
+      // @ts-ignore
+      const displayedBPM = wrapper.vm.displayedBPM
+
+      // Assert
+      expect(displayedBPM).toBe('???')
+    })
+    test.each([
+      [{ minBPM: null, maxBPM: null }, '???'],
+      [{ minBPM: 100, maxBPM: null }, '???'],
+      [{ minBPM: null, maxBPM: 400 }, '???'],
+      [{ minBPM: 200, maxBPM: 200 }, '200'],
+      [{ minBPM: 100, maxBPM: 400 }, '100-400'],
+    ])('%p returns "%s"', (bpms, expected) => {
+      // Arrange
+      const data = () => ({ song: { ...song, ...bpms } })
+      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
+
+      // Act
+      // @ts-ignore
+      const displayedBPM = wrapper.vm.displayedBPM
+
+      // Assert
+      expect(displayedBPM).toBe(expected)
+    })
+  })
+
+  // LifeCycle
+  describe('validate()', () => {
+    test.each([
+      ['foo', ''],
+      [song.id, 'var'],
+      [song.id, '33'],
+      [song.id, '20'],
+    ])('/%s/%s returns false', (id, chart) => {
+      // Arrange
+      const wrapper = shallowMount(SongPage, { localVue, mocks })
+      const ctx = ({ params: { id, chart } } as unknown) as Context
+
+      // Act
+      const result = wrapper.vm.$options.validate!(ctx)
+
+      // Assert
+      expect(result).toBe(false)
+    })
+    test.each([
+      [song.id, ''],
+      [song.id, '14'],
+      [song.id, '21'],
+    ])('/%s/%s returns true', (id, chart) => {
+      // Arrange
+      const wrapper = shallowMount(SongPage, { localVue, mocks })
+      const ctx = ({ params: { id, chart } } as unknown) as Context
+
+      // Act
+      const result = wrapper.vm.$options.validate!(ctx)
+
+      // Assert
+      expect(result).toBe(true)
+    })
+  })
+  describe('asyncData()', () => {
+    beforeAll(() => mocked(getSongInfo).mockResolvedValue(song))
+    beforeEach(() => mocked(getSongInfo).mockClear())
+
+    test(`/${song.id} returns { song }`, async () => {
+      // Arrange
+      const wrapper = shallowMount(SongPage, { localVue, mocks })
+      const ctx = ({ params: { id: song.id } } as unknown) as Context
+
+      // Act
+      const result = await wrapper.vm.$options.asyncData!(ctx)
+
+      // Assert
+      expect(result).toStrictEqual({ song })
+    })
+    test.each([
+      ['10', 1, 0],
+      ['14', 1, 4],
+      ['21', 2, 1],
+      ['23', 2, 3],
+    ])(
+      `/${song.id}/%s returns { song, playStyle: %i, difficulty: %i }`,
+      async (chart, playStyle, difficulty) => {
+        // Arrange
+        const wrapper = shallowMount(SongPage, { localVue, mocks })
+        const ctx = ({ params: { id: song.id, chart } } as unknown) as Context
+
+        // Act
+        const result = await wrapper.vm.$options.asyncData!(ctx)
+
+        // Assert
+        expect(result).toStrictEqual({ song, playStyle, difficulty })
+      }
+    )
   })
 })

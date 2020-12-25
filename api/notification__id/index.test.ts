@@ -1,23 +1,11 @@
 import type { Context } from '@azure/functions'
 
-import type { NotificationInfo } from '../core/api/notification'
+import { notification } from '../core/__tests__/data'
 import getNotificationInfo from '.'
 
 describe('GET /api/v1/notification/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  const notification: NotificationInfo = {
-    id: 'foo',
-    sender: 'SYSTEM',
-    pinned: false,
-    type: 'is-info',
-    icon: 'info',
-    title: '新曲を追加しました',
-    body: '新曲2曲の譜面情報を追加しました。',
-    timeStamp: 1597028400,
-  }
-  beforeEach(() => {
-    context.bindingData = {}
-  })
+  beforeEach(() => (context.bindingData = {}))
 
   test(`returns "200 OK" with JSON if documents contain 1 notification`, async () => {
     // Arrange
