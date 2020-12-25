@@ -1,11 +1,7 @@
 <template>
   <span>
-    <span
-      v-if="iso"
-      class="flag-icon"
-      :class="flagIconClass"
-      :title="title"
-    />&nbsp;{{ title }}
+    <span class="flag-icon" :class="flagIconClass" :title="title" />
+    &nbsp;{{ title }}
   </span>
 </template>
 
