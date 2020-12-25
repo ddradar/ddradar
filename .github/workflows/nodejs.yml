@@ -66,7 +66,7 @@ jobs:
 
       - name: Remove symlink directory
         if: github.event_name == 'push' && matrix.os == 'ubuntu-20.04'
-        run:  rm -rf ./functions/core
+        run: rm -rf ./functions/core
       - name: Deploy Azure Functions (Development)
         if: github.event_name == 'push' && matrix.os == 'ubuntu-20.04'
         uses: Azure/functions-action@v1.2.1
