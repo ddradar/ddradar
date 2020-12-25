@@ -67,7 +67,7 @@ export default class SongDetailPage extends Vue {
   validate({ params }: Pick<Context, 'params'>) {
     return (
       /^[01689bdiloqDIOPQ]{32}$/.test(params.id) &&
-      (!params.chart || /^[12][0-4]$/.test(params.chart)) // [playStyle][difficulty]
+      (!params.chart || /^(1[0-4]|2[1-4])$/.test(params.chart)) // [playStyle][difficulty]
     )
   }
 
