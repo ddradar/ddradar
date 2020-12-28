@@ -1,4 +1,7 @@
 import { Container, CosmosClient } from '@azure/cosmos'
+import { config } from 'dotenv'
+
+config()
 
 type ContainerName =
   | 'Scores'
@@ -8,7 +11,8 @@ type ContainerName =
   | 'UserDetails'
 
 /** Cosmos DB connection string */
-const connectionString = ''
+// eslint-disable-next-line node/no-process-env
+const connectionString = process.env.COSMOS_DB_CONN_READONLY || ''
 
 let client: CosmosClient
 export function getContainer(id: ContainerName): Container {

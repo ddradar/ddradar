@@ -2,17 +2,20 @@
 /* eslint-disable node/no-process-env */
 import { ScoreListBody } from '@ddradar/core/api/score'
 import { difficultyMap, playStyleMap, SongSchema } from '@ddradar/core/db/songs'
+import { config } from 'dotenv'
 import fetch from 'node-fetch'
 import * as puppetter from 'puppeteer-core'
 
 import { getContainer } from './modules/cosmos'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
-// Google Chrome env (Windows)
-const executablePath = `${process.env['ProgramFiles(x86)']}\\Google\\Chrome\\Application\\chrome.exe`
-const userDataDir = `${process.env['LOCALAPPDATA']}\\Google\\Chrome\\User Data`
+// load .env file
+config()
 
-const apiBasePath = ''
+const executablePath = process.env.CHROME_EXE_PATH
+const userDataDir = process.env.CHROME_USER_PATH
+
+const apiBasePath = process.env.BASE_URI
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
@@ -22,7 +25,6 @@ async function main(userId: string, password: string) {
     headless: false,
     executablePath,
     userDataDir,
-    slowMo: 50,
   })
 
   const page = (await browser.pages())[0] || (await browser.newPage())
@@ -37,7 +39,7 @@ async function main(userId: string, password: string) {
   const { resources } = await container.items
     .query<Pick<SongSchema, 'id' | 'name' | 'charts'>>({
       query:
-        'SELECT s.id, s.name, s.charts FROM s WHERE s.nameIndex > 10 AND s.series = @series ORDER BY s.nameIndex, s.nameKana',
+        'SELECT s.id, s.name, s.charts FROM s WHERE s.nameIndex > 0 AND s.series = @series ORDER BY s.nameIndex, s.nameKana',
       parameters: [{ name: '@series', value: 'DDR 1st' }],
     })
     .fetchAll()
@@ -49,21 +51,32 @@ async function main(userId: string, password: string) {
       const chart = `${playStyleMap.get(c.playStyle)}/${difficultyMap.get(
         c.difficulty
       )}`
-      console.log(`  (${chart}) fetch start`)
+      console.log(`  (${chart}) loading score detail`)
 
-      const score = await fetchScoreDetail(
-        page,
-        s.id,
-        c.playStyle,
-        c.difficulty
-      )
-      if (score) scores.push(score)
+      try {
+        const score = await fetchScoreDetail(
+          page,
+          s.id,
+          c.playStyle,
+          c.difficulty
+        )
+        if (score) scores.push(score)
+      } catch (e) {
+        const message: string = e?.message ?? e
+        if (!/NO PLAY/.test(message)) throw e
+        console.info(`  (${chart}) NO PLAY.`)
+      }
 
-      console.log(`  (${chart}) fetch end. wait 3 seconds...`)
+      console.log(`  (${chart}) loaded. wait 3 seconds...`)
       await sleep(3000)
     }
 
-    console.log(`  Call API start`)
+    if (scores.length === 0) {
+      console.log('  No scores. skiped')
+      console.info(`[Song] ${s.name} END`)
+      continue
+    }
+    console.log('  Call API start')
     const apiUri = `${apiBasePath}/api/v1/scores/${s.id}/${userId}`
     const response = await fetch(apiUri, {
       method: 'post',
@@ -78,4 +91,5 @@ async function main(userId: string, password: string) {
   await browser.close()
 }
 
+// yarn start ./import-details.ts userId password
 main(process.argv[2], process.argv[3]).catch(e => console.error(e))
