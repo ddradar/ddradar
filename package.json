@@ -10,7 +10,8 @@
     "api",
     "client",
     "core",
-    "functions"
+    "functions",
+    "scripts"
   ],
   "scripts": {
     "prebuild": "yarn workspace @ddradar/core build",
