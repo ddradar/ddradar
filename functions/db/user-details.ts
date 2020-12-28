@@ -1,10 +1,10 @@
 import { ItemDefinition } from '@azure/cosmos'
+
 import type {
   ClearStatusSchema,
   GrooveRadarSchema,
   ScoreStatusSchema,
-} from '@ddradar/core/db/userDetails'
-
+} from '../core/db/userDetails'
 import { getContainer } from '.'
 
 export async function generateGrooveRadar(

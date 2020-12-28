@@ -1,0 +1,44 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["post"],
+      "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{userId:regex(^[-a-zA-Z0-9_]+$)}"
+    },
+    {
+      "name": "songs",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT c.id, c.name, (c.nameIndex = -1 OR c.nameIndex = -2) AS isCourse, c.charts FROM c WHERE c.id = {songId}",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+    },
+    {
+      "name": "users",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT * FROM c WHERE c.id = {userId}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "httpResponse"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "documents",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    }
+  ],
+  "scriptFile": "../dist/postSongScores/index.js"
+}

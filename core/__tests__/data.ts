@@ -1,4 +1,5 @@
 import type { SongListData } from '../api/song'
+import type { NotificationSchema } from '../db/notification'
 import type { SongSchema } from '../db/songs'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
@@ -75,6 +76,7 @@ export const testSongList: SongListData[] = [
   },
 ]
 
+//#region UserSchema
 /** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
 export const publicUser = {
   id: 'public_user',
@@ -83,6 +85,7 @@ export const publicUser = {
   area: 13,
   code: 10000000,
   isPublic: true,
+  password: 'password',
 } as const
 
 /** { isPublic: true, area: 0, code: undefined } user */
@@ -92,6 +95,7 @@ export const areaHiddenUser = {
   name: 'Area Hidden User',
   area: 0,
   isPublic: true,
+  password: 'password',
 } as const
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
@@ -101,4 +105,52 @@ export const privateUser = {
   name: 'Private User',
   area: 0,
   isPublic: false,
+  password: 'password',
 } as const
+
+/** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
+export const noPasswordUser = {
+  id: 'private_user',
+  loginId: '2',
+  name: 'Private User',
+  area: 0,
+  isPublic: false,
+} as const
+//#endregion
+
+//#region NotificationSchema
+/** Sample Notification data */
+export const notification = {
+  id: 'foo',
+  sender: 'SYSTEM',
+  pinned: false,
+  type: 'is-info',
+  icon: 'info',
+  title: '新曲を追加しました',
+  body: '下記の譜面情報を追加しました。\n\n- [新曲](/song/foo)',
+  /** 2020/8/13 0:00 (UTC) */
+  timeStamp: 1597276800,
+} as const
+
+/** Sample Notification list data */
+export const notifications: readonly NotificationSchema[] = [
+  notification,
+  {
+    ...notification,
+    id: 'bar',
+    pinned: true,
+    type: 'is-warning',
+    icon: 'warning',
+    title: 'このサイトはベータ版です',
+    body: 'このWebサイトはベータ版環境です。',
+    timeStamp: 1596250800,
+  },
+  {
+    ...notification,
+    id: 'baz',
+    title: 'v0.6.0をリリースしました',
+    body: '変更点は以下を参照してください。',
+    timeStamp: 1597114800,
+  },
+] as const
+//#endregion

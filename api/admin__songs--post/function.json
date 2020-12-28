@@ -1,0 +1,26 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["post"],
+      "route": "v1/admin/songs"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "httpResponse"
+    },
+    {
+      "type": "cosmosDB",
+      "direction": "out",
+      "name": "document",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    }
+  ],
+  "scriptFile": "../dist/admin__songs--post/index.js"
+}

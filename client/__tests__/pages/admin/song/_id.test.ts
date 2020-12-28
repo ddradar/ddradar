@@ -1,9 +1,15 @@
 import type { SongInfo } from '@core/api/song'
+import type { StepChartSchema } from '@core/db/songs'
+import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
+import { mocked } from 'ts-jest/utils'
 
+import { getSongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song/_id.vue'
 
+jest.mock('~/api/admin')
+jest.mock('~/api/song')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 const songInfo: Omit<SongInfo, 'nameIndex'> = {
@@ -117,6 +123,7 @@ describe('pages/admin/song/_id.vue', () => {
     })
     expect(wrapper).toMatchSnapshot()
   })
+
   describe('get nameIndex()', () => {
     const wrapper = shallowMount(SongEditorPage, { localVue })
     test.each([
@@ -228,6 +235,78 @@ describe('pages/admin/song/_id.vue', () => {
       // Assert
       // @ts-ignore
       expect(wrapper.vm.hasError).toBe(false)
+    })
+  })
+
+  describe('asyncData()', () => {
+    beforeAll(() =>
+      mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+    )
+    beforeEach(() => mocked(getSongInfo).mockClear())
+
+    test('/ returns default charts', async () => {
+      // Arrange
+      const wrapper = shallowMount(SongEditorPage, { localVue })
+      const ctx = { params: {} } as Context
+
+      // Act
+      const result: any = await wrapper.vm.$options.asyncData!(ctx)
+
+      // Assert
+      expect(mocked(getSongInfo)).not.toBeCalled()
+      expect(result.charts).toHaveLength(7)
+    })
+    test(`/${songInfo.id} returns songInfo`, async () => {
+      // Arrange
+      const wrapper = shallowMount(SongEditorPage, { localVue })
+      const ctx = ({ params: { id: songInfo.id } } as unknown) as Context
+
+      // Act
+      const result: any = await wrapper.vm.$options.asyncData!(ctx)
+
+      // Assert
+      expect(mocked(getSongInfo)).toBeCalled()
+      expect(result).toStrictEqual({
+        id: songInfo.id,
+        name: songInfo.name,
+        nameKana: songInfo.nameKana,
+        artist: songInfo.artist,
+        series: songInfo.series,
+        minBPM: songInfo.minBPM,
+        maxBPM: songInfo.maxBPM,
+        charts: songInfo.charts,
+      })
+    })
+  })
+
+  describe('addChart()', () => {
+    test('pushes new chart to charts', () => {
+      // Arrange
+      const charts: StepChartSchema[] = []
+      const data = () => ({ charts })
+      const wrapper = shallowMount(SongEditorPage, { localVue, data })
+
+      // Act
+      // @ts-ignore
+      wrapper.vm.addChart()
+
+      expect(charts).toHaveLength(1)
+    })
+  })
+
+  describe('removeChart()', () => {
+    test('splices chart from charts', () => {
+      // Arrange
+      const charts = [...songInfo.charts]
+      const data = () => ({ charts })
+      const wrapper = shallowMount(SongEditorPage, { localVue, data })
+
+      // Act
+      // @ts-ignore
+      wrapper.vm.removeChart(0)
+
+      expect(charts).toHaveLength(songInfo.charts.length - 1)
+      expect(charts[0]).toBe(songInfo.charts[1])
     })
   })
 })

@@ -1,3 +1,4 @@
+import { notification } from '@core/__tests__/data'
 import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
@@ -14,22 +15,17 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 
 describe('/components/pages/TopMessage.vue', () => {
-  /** 2020/8/13 0:00 (UTC) */
-  const time = 1597276800
   const propsData = {
-    type: 'is-info',
-    title: 'Title',
-    body: 'Message Body\n\n- First\n- Second',
-    time,
+    type: notification.type,
+    title: notification.title,
+    body: notification.body,
+    time: notification.timeStamp,
   } as const
 
   describe('snapshot test', () => {
     test('renders default icon if not set', () => {
       // Arrange
-      const wrapper = mount(TopMessage, {
-        localVue,
-        propsData: { ...propsData },
-      })
+      const wrapper = mount(TopMessage, { localVue, propsData })
 
       // Act - Assert
       expect(wrapper).toMatchSnapshot()

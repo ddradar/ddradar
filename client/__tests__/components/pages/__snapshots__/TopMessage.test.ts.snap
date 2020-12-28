@@ -5,17 +5,16 @@ exports[`/components/pages/TopMessage.vue snapshot test renders default icon if 
   <transition-stub name="fade">
     <article class="message is-info">
       <header class="message-header">
-        <p>Title</p><button type="button" aria-label="Close message" class="delete"></button>
+        <p>新曲を追加しました</p><button type="button" aria-label="Close message" class="delete"></button>
       </header>
       <section class="message-body">
         <div class="media">
           <div class="media-left"><span class="icon is-large is-info"><i class="mdi mdi-information mdi-48px"></i></span></div>
           <div class="media-content">
             <div class="content">
-              <p>Message Body</p>
+              <p>下記の譜面情報を追加しました。</p>
               <ul>
-                <li>First</li>
-                <li>Second</li>
+                <li><a href="/song/foo">新曲</a></li>
               </ul>
             </div>
             <div class="content is-italic has-text-weight-light has-text-right">
@@ -34,17 +33,16 @@ exports[`/components/pages/TopMessage.vue snapshot test renders specified icon 1
   <transition-stub name="fade">
     <article class="message is-info">
       <header class="message-header">
-        <p>Title</p><button type="button" aria-label="Close message" class="delete"></button>
+        <p>新曲を追加しました</p><button type="button" aria-label="Close message" class="delete"></button>
       </header>
       <section class="message-body">
         <div class="media">
           <div class="media-left"><span class="icon is-large is-info"><i class="mdi mdi-account mdi-48px"></i></span></div>
           <div class="media-content">
             <div class="content">
-              <p>Message Body</p>
+              <p>下記の譜面情報を追加しました。</p>
               <ul>
-                <li>First</li>
-                <li>Second</li>
+                <li><a href="/song/foo">新曲</a></li>
               </ul>
             </div>
             <div class="content is-italic has-text-weight-light has-text-right">

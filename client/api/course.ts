@@ -7,6 +7,10 @@ export function getCourseType(type: number) {
   return type === 1 ? 'NONSTOP' : type === 2 ? '段位認定' : ''
 }
 
+/**
+ * Call "Get Course List" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/courses/
+ */
 export function getCourseList(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   series?: 16 | 17,
@@ -18,6 +22,10 @@ export function getCourseList(
   return $http.$get<CourseListData[]>(`${apiPrefix}/courses`, { searchParams })
 }
 
+/**
+ * Call "Get Course Information" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/courses__id/
+ */
 export function getCourseInfo(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   id: string

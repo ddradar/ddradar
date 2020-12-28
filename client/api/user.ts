@@ -1,30 +1,18 @@
-import type { ScoreInfo } from '@core/api/score'
-import type { CurrentUserInfo, ExistsUser, UserInfo } from '@core/api/user'
-import type { StepChartSchema } from '@core/db/songs'
-import { areaCodeSet } from '@core/db/users'
+import type {
+  ClearStatus,
+  CurrentUserInfo,
+  ExistsUser,
+  GrooveRadarInfo,
+  ScoreStatus,
+  UserInfo,
+} from '@core/api/user'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
 
-export type ClearStatus = Pick<
-  ScoreInfo,
-  'playStyle' | 'level' | 'clearLamp'
-> & { count: number }
-
-export type ScoreStatus = Pick<ScoreInfo, 'playStyle' | 'level' | 'rank'> & {
-  count: number
-}
-
-export type GrooveRadar = Pick<
-  StepChartSchema,
-  'playStyle' | 'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
->
-
-export const areaList = [...areaCodeSet]
-
 /**
  * Call "User Exists" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/existsUser
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user__exists__id/
  */
 export async function existsUser(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -38,7 +26,7 @@ export async function existsUser(
 
 /**
  * Call "Get Current User Data" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getCurrentUser
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user--get/
  */
 export function getCurrentUser($http: Pick<NuxtHTTPInstance, '$get'>) {
   return $http.$get<CurrentUserInfo>(`${apiPrefix}/user`)
@@ -46,7 +34,7 @@ export function getCurrentUser($http: Pick<NuxtHTTPInstance, '$get'>) {
 
 /**
  * Call "Get User List" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getUserList
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users/
  */
 export function getUserList(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -63,7 +51,7 @@ export function getUserList(
 
 /**
  * Call "Get User Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getUserInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id/
  */
 export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
   return $http.$get<UserInfo>(`${apiPrefix}/users/${id}`)
@@ -71,7 +59,7 @@ export function getUserInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
 
 /**
  * Call "Get Clear Status" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getClearStatus
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__clear/
  */
 export function getClearStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -85,7 +73,7 @@ export function getClearStatus(
 
 /**
  * Call "Get Score Status" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getScoreStatus
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__score/
  */
 export function getScoreStatus(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -99,21 +87,21 @@ export function getScoreStatus(
 
 /**
  * Call "Get Groove Radar" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getGrooveRadar
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__radar__style/
  */
 export function getGrooveRadar(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   userId: string,
   playStyle: 1 | 2
 ) {
-  return $http.$get<GrooveRadar[]>(
+  return $http.$get<GrooveRadarInfo[]>(
     `${apiPrefix}/users/${userId}/radar/${playStyle}`
   )
 }
 
 /**
  * Call "Post User Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/postUserInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/user--post/
  */
 export function postUserInfo(
   $http: Pick<NuxtHTTPInstance, '$post'>,

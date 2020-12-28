@@ -100,14 +100,10 @@
 
 <script lang="ts">
 import type { ClearLamp } from '@core/db/scores'
+import type { GrooveRadar as GrooveRadarInfo } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import {
-  getClearStatus,
-  getGrooveRadar,
-  getScoreStatus,
-  GrooveRadar as GrooveRadarStatus,
-} from '~/api/user'
+import { getClearStatus, getGrooveRadar, getScoreStatus } from '~/api/user'
 import GrooveRadar from '~/components/pages/users/GrooveRadar.vue'
 import Card from '~/components/shared/Card.vue'
 
@@ -119,7 +115,7 @@ export default class PlayStatusComponent extends Vue {
   @Prop({ required: true, type: String })
   readonly userId!: string
 
-  radar: Omit<GrooveRadarStatus, 'playStyle'> | null = null
+  radar: GrooveRadarInfo | null = null
   clear: Record<ClearLamp, number>[] = []
   score: Record<string, number>[] = []
 

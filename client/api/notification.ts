@@ -8,7 +8,7 @@ import { apiPrefix } from '~/api'
 
 /**
  * Call "Get Notification List" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationList
+ * @see https://github.com/ddradar/ddradar/tree/master/api/notification/
  */
 export function getNotificationList(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -20,7 +20,7 @@ export function getNotificationList(
 
 /**
  * Call "Get Notification Info" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/getNotificationInfo
+ * @see https://github.com/ddradar/ddradar/tree/master/api/notification__id/
  */
 export function getNotificationInfo(
   $http: Pick<NuxtHTTPInstance, '$get'>,

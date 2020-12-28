@@ -1,0 +1,36 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/users/{id:regex(^[-a-zA-Z0-9_]+$)}/score"
+    },
+    {
+      "name": "users",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT c.id, c.isPublic FROM c WHERE c.id = {id}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "name": "scoreStatuses",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails",
+      "sqlQuery": "SELECT c.playStyle, c.level, c.rank, c.count FROM c WHERE c.userId = {id} AND c.type = 'score'",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/users__id__score/index.js"
+}
