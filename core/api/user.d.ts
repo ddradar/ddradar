@@ -16,7 +16,7 @@ export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
  * @see https://github.com/ddradar/ddradar/blob/master/api/users__id/
  * @see https://github.com/ddradar/ddradar/blob/master/api/users/
  */
-export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic'>
+export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
 
 /**
  * Object type returned by `/api/v1/users/exists/{:id}`
