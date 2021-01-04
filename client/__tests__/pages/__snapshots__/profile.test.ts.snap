@@ -183,6 +183,15 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
     </div>
     <!---->
   </div>
+  <div class="field"><label class="label">
+      Password for Import(optional)
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">keep it blank if you do not use external import.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
+    <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+    <!---->
+  </div>
+  <!---->
+  </div>
   <div class="field">
     <!---->
     <div class="field-body">
@@ -396,6 +405,15 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] 
       <!----><small class="help counter is-invisible"> 0 / 8 </small>
     </div>
     <!---->
+  </div>
+  <div class="field"><label class="label">
+      インポート用パスワード(任意)
+      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">外部インポートを利用しない場合は空欄にしてください。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
+  <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
+    <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+    <!---->
+  </div>
+  <!---->
   </div>
   <div class="field">
     <!---->

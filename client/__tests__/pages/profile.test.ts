@@ -23,6 +23,7 @@ describe('pages/profile.vue', () => {
     area: 13,
     isPublic: true,
     code: 10000000,
+    password: 'password',
   }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
 
