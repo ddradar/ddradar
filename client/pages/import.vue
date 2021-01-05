@@ -176,7 +176,7 @@ export default class ImportPage extends Vue {
   get bookmarklet() {
     const domain = document.domain
     const region = this.$i18n.locale
-    return `javascript:(function(d){d.body.appendChild(d.createElement('script')).src='https://${domain}/eagate.${region}.js';})(document);`
+    return `javascript:(function(d){var s=d.body.appendChild(d.createElement('script'));s.src='https://${domain}/eagate.${region}.js';s.charset='utf8';})(document);`
   }
 
   get skillAttackUri() {
