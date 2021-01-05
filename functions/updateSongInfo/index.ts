@@ -1,8 +1,8 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import type { SongSchema } from '@ddradar/core/db/songs'
 
+import type { ScoreSchema } from '../core/db/scores'
+import type { SongSchema } from '../core/db/songs'
 import { getContainer } from '../db'
 
 /**
