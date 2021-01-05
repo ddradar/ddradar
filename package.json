@@ -24,7 +24,7 @@
     "fix:prettier": "yarn lint:prettier --write",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
-    "lint:prettier": "prettier --ignore-path .gitignore -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
+    "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "run-s test:*",
     "test:api": "yarn workspace @ddradar/api test",
     "test:client": "yarn workspace @ddradar/client test",
