@@ -3,40 +3,34 @@
     <h1 class="title">{{ $t('title') }}</h1>
     <h2 id="eagate" class="subtitle">{{ $t('subtitle.eagate') }}</h2>
     <div class="content">
-      <p>
-        <i18n path="content.eagate.text_1">
-          <a
-            href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html"
-            target="_blank"
-          >
-            {{ $t('content.eagate.text_1_0') }}
-          </a>
-        </i18n>
-        <wbr />
-        <strong>{{ $t('content.eagate.text_2') }}</strong>
-      </p>
-      <b-field :label="$t('field.eagate')">
-        <b-input v-model="sourceCode" type="textarea" required />
-      </b-field>
       <b-field>
-        <b-button
-          type="is-success"
-          :disabled="!sourceCode"
-          :loading="loading"
-          @click="importEageteScores()"
-        >
-          {{ $t('submit') }}
-        </b-button>
+        <b-input v-model="bookmarklet" readonly />
+        <b-button icon-left="content-copy" @click="copyToClipboard" />
       </b-field>
-      <b-progress
-        v-if="sourceCode && loading"
-        type="is-success"
-        :value="doneCount"
-        :max="maxCount"
-        show-value
-      >
-        {{ message }}
-      </b-progress>
+      <ol>
+        <li>
+          <i18n path="content.eagate.text_1">
+            <nuxt-link to="/profile" target="_blank">
+              {{ $t('content.eagate.text_1_0') }}
+            </nuxt-link>
+          </i18n>
+        </li>
+        <li>{{ $t('content.eagate.text_2') }}</li>
+        <li>
+          <i18n path="content.eagate.text_3_1">
+            <a
+              href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html"
+              target="_blank"
+            >
+              {{ $t('content.eagate.text_3_1_0') }}
+            </a>
+          </i18n>
+          <wbr />
+          <strong>{{ $t('content.eagate.text_3_2') }}</strong>
+        </li>
+        <li>{{ $t('content.eagate.text_4') }}</li>
+        <li>{{ $t('content.eagate.text_5') }}</li>
+      </ol>
     </div>
     <h2 id="skillAttack" class="subtitle">{{ $t('subtitle.skillAttack') }}</h2>
     <div class="content">
@@ -95,9 +89,14 @@
     },
     "content": {
       "eagate": {
-        "text_1": "公式サイトの{0}より、スコアを取得します。",
-        "text_1_0": "「楽曲データ一覧」ページ",
-        "text_2": "公式サイトでのスコア閲覧には、ベーシックコースへの加入が必要です。"
+        "text_1": "{0}にて、インポート用のパスワードを登録します。",
+        "text_1_0": "「ユーザー設定」ページ",
+        "text_2": "上記のテキストをコピーして、ブックマークに登録します。",
+        "text_3_1": "公式サイトの{0}を開きます。",
+        "text_3_1_0": "「楽曲データ一覧」ページ",
+        "text_3_2": "ベーシックコースへの加入が必要です。",
+        "text_4": "登録したブックマークを開きます。",
+        "text_5": "ユーザーID、パスワードを入力します。"
       },
       "skillAttack": {
         "text_1": "{0}より、スコアをインポートします。",
@@ -105,16 +104,14 @@
         "text_2_0": "スコアデータ一覧"
       }
     },
-    "field": {
-      "eagate": "HTMLソース"
-    },
     "submit": "登録",
     "upload": "ファイルを選択",
     "progress": "登録中: {song} ({done}/{max})",
     "popup": {
       "invalidHTML": "HTMLソース文字列が不正です",
       "invalidFile": "ファイルが読み取れないか、正しい形式ではありません",
-      "success": "{n}件のスコアを登録しました"
+      "success": "{n}件のスコアを登録しました",
+      "copied": "コピーしました"
     }
   },
   "en": {
@@ -125,9 +122,14 @@
     },
     "content": {
       "eagate": {
-        "text_1": "Get scores from {0}.",
-        "text_1_0": "\"Music List\" page",
-        "text_2": "You need to subscribe \"e-amusement Basic Course\" to see scores."
+        "text_1": "Regist your password for import at {0}.",
+        "text_1_0": "\"User Settings\" page",
+        "text_2": "Copy above text and add it for bookmarklet.",
+        "text_3_1": "Open {0}.",
+        "text_3_1_0": "\"Music List\" page",
+        "text_3_2": "You need to subscribe \"e-amusement Basic Course\" to see scores.",
+        "text_4": "Launch bookmarklet.",
+        "text_5": "Enter your ID and pass."
       },
       "skillAttack": {
         "text_1": "Import your scores from {0}.",
@@ -135,23 +137,20 @@
         "text_2_0": "Score Data"
       }
     },
-    "field": {
-      "eagate": "HTML Sourse"
-    },
     "submit": "Submit",
     "upload": "Select file",
     "progress": "Uploading: {song} ({done}/{max})",
     "popup": {
       "invalidHTML": "Invalid HTML",
       "invalidFile": "Cannot read file or invalid file",
-      "success": "Uploaded: {n} song | Uploaded: {n} songs"
+      "success": "Uploaded: {n} song | Uploaded: {n} songs",
+      "copied": "Copied"
     }
   }
 }
 </i18n>
 
 <script lang="ts">
-import { musicDataToScoreList } from '@core/eagate-parser'
 import { readTextAsync, scoreTexttoScoreList } from '@core/skill-attack'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -160,21 +159,10 @@ import * as popup from '~/utils/popup'
 
 @Component
 export default class ImportPage extends Vue {
-  /**
-   * HTML source for e-amusement GATE site as below
-   * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html
-   * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_double.html
-   */
-  sourceCode = ''
-
   loading = false
-
   maxCount = 0
-
   doneCount = 0
-
   currentSong = ''
-
   file: File | null = null
 
   get message() {
@@ -185,6 +173,12 @@ export default class ImportPage extends Vue {
     })
   }
 
+  get bookmarklet() {
+    const domain = document.domain
+    const region = this.$i18n.locale
+    return `javascript:(function(d){d.body.appendChild(d.createElement('script')).src='https://${domain}/eagate.${region}.js';})(document);`
+  }
+
   get skillAttackUri() {
     const code = this.$accessor.user?.code
     return code
@@ -192,19 +186,10 @@ export default class ImportPage extends Vue {
       : ''
   }
 
-  /** Convert sourceCode to Scores and call Post Song Scores API */
-  async importEageteScores() {
-    this.loading = true
-    this.maxCount = 0
-    this.doneCount = 0
-
-    try {
-      const scoreList = musicDataToScoreList(this.sourceCode)
-      await this.callPostAPI(scoreList)
-    } catch {
-      popup.warning(this.$buefy, this.$t('popup.invalidHTML') as string)
-      this.loading = false
-    }
+  /* istanbul ignore */
+  async copyToClipboard() {
+    await navigator.clipboard.writeText(this.bookmarklet)
+    popup.success(this.$buefy, this.$t('popup.copied') as string)
   }
 
   /** Convert file to Scores and call Post Song Scores API */
@@ -226,9 +211,7 @@ export default class ImportPage extends Vue {
   }
 
   private async callPostAPI(
-    scoreList:
-      | ReturnType<typeof musicDataToScoreList>
-      | ReturnType<typeof scoreTexttoScoreList>
+    scoreList: ReturnType<typeof scoreTexttoScoreList>
   ) {
     this.maxCount = Object.keys(scoreList).length
 
@@ -258,7 +241,6 @@ export default class ImportPage extends Vue {
     this.doneCount = 0
     this.currentSong = ''
     this.loading = false
-    this.sourceCode = ''
   }
 }
 </script>
