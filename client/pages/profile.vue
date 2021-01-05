@@ -53,6 +53,20 @@
       />
     </b-field>
 
+    <b-field>
+      <template slot="label">
+        {{ $t('field.password') }}
+        <b-tooltip
+          type="is-dark"
+          position="is-right"
+          :label="$t('text.password')"
+        >
+          <b-icon size="is-small" icon="help-circle-outline" />
+        </b-tooltip>
+      </template>
+      <b-input v-model="password" type="password" password-reveal />
+    </b-field>
+
     <b-field grouped group-multiline>
       <b-switch v-model="isPublic">{{ $t('field.isPublic') }}</b-switch>
       <div class="help">
@@ -90,11 +104,13 @@
       "name": "表示名",
       "area": "所属地域",
       "ddrCode": "DDR CODE(任意)",
+      "password": "インポート用パスワード(任意)",
       "isPublic": "公開する"
     },
     "text": {
       "id": "登録後の変更はできません。",
       "area": "登録後の変更はできません。",
+      "password": "外部インポートを利用しない場合は空欄にしてください。",
       "isPublic": {
         "public_0": "ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。",
         "public_1": "これから登録するスコアはランキングに自動登録され、一般公開されます。",
@@ -127,11 +143,13 @@
       "name": "Display Name",
       "area": "Area",
       "ddrCode": "DDR CODE(optional)",
+      "password": "Password for Import(optional)",
       "isPublic": "Public"
     },
     "text": {
       "id": "can not be changed after registration.",
       "area": "can not be changed after registration.",
+      "password": "keep it blank if you do not use external import.",
       "isPublic": {
         "public_0": "You will be shown in the user search and your page will be visible to anyone.",
         "public_1": "Registered scores will be public.",
@@ -173,6 +191,7 @@ export default class ProfilePage extends Vue {
   name: string = ''
   area: AreaCode = 0
   code: number | null = null
+  password: string = ''
   isPublic: boolean = true
 
   loading = false
@@ -207,6 +226,7 @@ export default class ProfilePage extends Vue {
     this.name = this.$accessor.user?.name ?? ''
     this.area = this.$accessor.user?.area ?? 0
     this.code = this.$accessor.user?.code ?? null
+    this.password = this.$accessor.user?.password ?? ''
     this.isPublic = this.$accessor.user?.isPublic ?? true
   }
 
@@ -252,6 +272,7 @@ export default class ProfilePage extends Vue {
       isPublic: this.isPublic,
     }
     if (this.code) user.code = this.code
+    if (this.password) user.password = this.password
     try {
       await this.$accessor.saveUser(user)
       popup.success(this.$buefy, this.$t('message.success').toString())

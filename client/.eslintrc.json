@@ -33,6 +33,12 @@
       "rules": {
         "@typescript-eslint/no-var-requires": "off"
       }
+    },
+    {
+      "files": ["*.min.js"],
+      "rules": {
+        "no-undef": "off"
+      }
     }
   ]
 }
