@@ -186,7 +186,6 @@ export default class ImportPage extends Vue {
       : ''
   }
 
-  /* istanbul ignore */
   async copyToClipboard() {
     await navigator.clipboard.writeText(this.bookmarklet)
     popup.success(this.$buefy, this.$t('popup.copied') as string)
