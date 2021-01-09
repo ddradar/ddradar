@@ -19,16 +19,20 @@ describe('/components/modal/ScoreImporter.vue', () => {
   const songId = '8Il6980di8P89lil1PDIqqIbiq1QO8lQ'
   const propsData = { songId, playStyle: 1, difficulty: 1, isCourse: false }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+
   describe('snapshot test', () => {
-    test('{ sourceCode: "foo" } renders normal button', () => {
-      const wrapper = mount(ScoreImporter, {
-        localVue,
-        propsData,
-        data: () => ({ sourceCode: 'foo', loading: false }),
-        i18n,
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
+    test.each(['ja', 'en'])(
+      '{ locale: %s, sourceCode: "foo" } renders normal button',
+      locale => {
+        const wrapper = mount(ScoreImporter, {
+          localVue,
+          propsData,
+          data: () => ({ sourceCode: 'foo', loading: false }),
+          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        })
+        expect(wrapper).toMatchSnapshot()
+      }
+    )
     test('{ sourceCode: null } renders disabled button', () => {
       const wrapper = mount(ScoreImporter, {
         localVue,
@@ -47,17 +51,9 @@ describe('/components/modal/ScoreImporter.vue', () => {
       })
       expect(wrapper).toMatchSnapshot()
     })
-    test('{ sourceCode: "foo" } renders English id locale is en', () => {
-      const i18n = new VueI18n({ locale: 'en', silentFallbackWarn: true })
-      const wrapper = mount(ScoreImporter, {
-        localVue,
-        propsData,
-        data: () => ({ sourceCode: 'foo', loading: false }),
-        i18n,
-      })
-      expect(wrapper).toMatchSnapshot()
-    })
   })
+
+  // Computed
   describe('get musicDetailUri()', () => {
     test.each([
       [1, 0, false, /^.+\/music_detail\.html\?index=.{32}&diff=0$/],
@@ -97,6 +93,8 @@ describe('/components/modal/ScoreImporter.vue', () => {
       }
     )
   })
+
+  // Method
   describe('importScore()', () => {
     const score: ReturnType<typeof musicDetailToScore> = {
       songId: 'ld6P1lbb0bPO9doqbbPOoPb8qoDo8id0',
@@ -120,6 +118,16 @@ describe('/components/modal/ScoreImporter.vue', () => {
         propsData,
         i18n,
       })
+    })
+
+    test('does not call "Post Song Scores" API', async () => {
+      // Arrange - Act
+      // @ts-ignore
+      await wrapper.vm.importScore()
+
+      // Assert
+      expect(mocked(musicDetailToScore)).not.toBeCalled()
+      expect(postMock).not.toBeCalled()
     })
     test('calls "Post Song Scores" API', async () => {
       // Arrange

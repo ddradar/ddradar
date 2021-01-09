@@ -39,7 +39,7 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { loading: true } ren
 </div>
 `;
 
-exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" } renders English id locale is en 1`] = `
+exports[`/components/modal/ScoreImporter.vue snapshot test { locale: en, sourceCode: "foo" } renders normal button 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">Import Score</h1>
@@ -78,7 +78,7 @@ exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" }
 </div>
 `;
 
-exports[`/components/modal/ScoreImporter.vue snapshot test { sourceCode: "foo" } renders normal button 1`] = `
+exports[`/components/modal/ScoreImporter.vue snapshot test { locale: ja, sourceCode: "foo" } renders normal button 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">スコアのインポート</h1>
