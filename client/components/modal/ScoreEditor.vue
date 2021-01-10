@@ -142,10 +142,13 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseInfo } from '@core/api/course'
-import type { SongInfo } from '@core/api/song'
 import type { ClearLamp } from '@core/db/scores'
-import type { CourseChartSchema, StepChartSchema } from '@core/db/songs'
+import type {
+  CourseChartSchema,
+  Difficulty,
+  PlayStyle,
+  StepChartSchema,
+} from '@core/db/songs'
 import { getDanceLevel, setValidScoreFromChart } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
@@ -153,21 +156,22 @@ import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
 import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import * as popup from '~/utils/popup'
 
+type ChartSchema = Omit<StepChartSchema | CourseChartSchema, 'level'>
+type SongOrCourseInfo = { name: string; charts: ChartSchema[] }
+
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
   @Prop({ required: true, type: String })
   readonly songId!: string
 
   @Prop({ required: false, type: Number, default: null })
-  readonly playStyle!: 1 | 2 | null
+  readonly playStyle!: PlayStyle | null
 
   @Prop({ required: false, type: Number, default: null })
-  readonly difficulty!: 0 | 1 | 2 | 3 | 4 | null
+  readonly difficulty!: Difficulty | null
 
   @Prop({ required: true, type: Object })
-  readonly songData!:
-    | Pick<SongInfo, 'name' | 'charts'>
-    | Pick<CourseInfo, 'name' | 'charts'>
+  readonly songData!: SongOrCourseInfo
 
   score = 0
   exScore = 0
@@ -175,7 +179,7 @@ export default class ScoreEditorComponent extends Vue {
   maxCombo = 0
   isFailed = false
 
-  selectedChart: StepChartSchema | CourseChartSchema | null = null
+  selectedChart: ChartSchema | null = null
 
   isLoading = true
 
@@ -206,10 +210,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get charts() {
-    return (this.songData.charts as readonly {
-      playStyle: number
-      difficulty: number
-    }[]).map(c => ({
+    return this.songData.charts.map(c => ({
       playStyle: c.playStyle,
       difficulty: c.difficulty,
       label: `${getPlayStyleName(c.playStyle)}/${getDifficultyName(
@@ -221,7 +222,7 @@ export default class ScoreEditorComponent extends Vue {
   async created() {
     if (this.playStyle !== null && this.difficulty !== null) {
       this.selectedChart =
-        (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
+        this.songData.charts.find(
           c =>
             c.playStyle === this.playStyle && c.difficulty === this.difficulty
         ) ?? null
@@ -234,7 +235,7 @@ export default class ScoreEditorComponent extends Vue {
     difficulty,
   }: Pick<StepChartSchema, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
-      (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
+      this.songData.charts.find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       ) ?? null
     await this.fetchScore()
@@ -319,7 +320,7 @@ export default class ScoreEditorComponent extends Vue {
     this.isLoading = false
   }
 
-  async callDeleteAPI() {
+  private async callDeleteAPI() {
     if (!this.selectedChart) return
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
