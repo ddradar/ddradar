@@ -233,7 +233,7 @@ export default class ScoreEditorComponent extends Vue {
   async onChartSelected({
     playStyle,
     difficulty,
-  }: Pick<StepChartSchema, 'playStyle' | 'difficulty'>) {
+  }: Pick<ChartSchema, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
       this.songData.charts.find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
