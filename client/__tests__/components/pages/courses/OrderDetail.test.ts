@@ -57,12 +57,12 @@ describe('/components/pages/courses/OrderDetail.vue', () => {
   ]
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   const mocks = { $accessor, $http: {} }
-  const options = { localVue, propsData, mocks, i18n }
+  const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
+  const options = { localVue, propsData, mocks, stubs, i18n }
   const wrapper = shallowMount(OrderDetail, options)
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
     const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-    const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
     const mocks = { $accessor: { isLoggedIn: false } }
     const options = { localVue, propsData, mocks, stubs, i18n }
     const wrapper = mount(OrderDetail, options)
@@ -94,13 +94,8 @@ describe('/components/pages/courses/OrderDetail.vue', () => {
     test('renders edit button if loggedIn', async () => {
       // Arrange - Act
       const mocks = { $accessor }
-      const wrapper = mount(OrderDetail, {
-        localVue,
-        propsData,
-        mocks,
-        stubs,
-        i18n,
-      })
+      const options = { localVue, propsData, mocks, stubs, i18n }
+      const wrapper = mount(OrderDetail, options)
       await wrapper.vm.$nextTick()
 
       // Assert
@@ -127,7 +122,7 @@ describe('/components/pages/courses/OrderDetail.vue', () => {
       $accessor,
       $buefy: { modal: { open: jest.fn(_ => ({ $on: jest.fn() })) } },
     }
-    const options = { localVue, propsData, mocks, i18n }
+    const options = { localVue, propsData, mocks, stubs, i18n }
     const wrapper = shallowMount(OrderDetail, options)
     beforeEach(() => mocks.$buefy.modal.open.mockClear())
 
@@ -145,7 +140,7 @@ describe('/components/pages/courses/OrderDetail.vue', () => {
       $accessor,
       $buefy: { modal: { open: jest.fn(_ => ({ $on: jest.fn() })) } },
     }
-    const options = { localVue, propsData, mocks, i18n }
+    const options = { localVue, propsData, mocks, stubs, i18n }
     const wrapper = shallowMount(OrderDetail, options)
     beforeEach(() => mocks.$buefy.modal.open.mockClear())
 
@@ -195,7 +190,7 @@ describe('/components/pages/courses/OrderDetail.vue', () => {
       // Arrange
       const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const mocks = { $accessor, $http: {} }
-      const options = { localVue, propsData, mocks, i18n }
+      const options = { localVue, propsData, mocks, stubs, i18n }
       const wrapper = shallowMount(OrderDetail, options)
 
       // Act

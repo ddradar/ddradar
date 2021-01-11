@@ -75,10 +75,7 @@
       </template>
     </section>
 
-    <footer
-      v-if="playStyle !== null && difficulty !== null"
-      class="modal-card-foot"
-    >
+    <footer v-if="selectedChart" class="modal-card-foot">
       <b-button type="is-success" icon-left="content-save" @click="saveScore()">
         {{ $t('button.save') }}
       </b-button>
@@ -243,6 +240,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   calcScore() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     try {
       const score = setValidScoreFromChart(this.selectedChart, {
@@ -263,6 +261,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   async saveScore() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
@@ -322,6 +321,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   private async callDeleteAPI() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty

@@ -5,6 +5,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
+import { getChartScore, postChartScore } from '~/api/score'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import * as popup from '~/utils/popup'
 
@@ -24,7 +25,9 @@ describe('/components/modal/ScoreEditor.vue', () => {
     songData: testSongData,
   }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const $parent = { close: jest.fn() }
   beforeEach(() => {
+    mocked(getChartScore).mockRejectedValue('404')
     wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n })
   })
 
@@ -92,7 +95,10 @@ describe('/components/modal/ScoreEditor.vue', () => {
     })
   })
   describe('calcScore', () => {
-    beforeEach(() => mocked(setValidScoreFromChart).mockReset())
+    beforeEach(() => {
+      mocked(setValidScoreFromChart).mockReset()
+      mocked(popup.warning).mockClear()
+    })
 
     test('calls setValidScoreFromChart()', () => {
       // Arrange
@@ -111,17 +117,6 @@ describe('/components/modal/ScoreEditor.vue', () => {
       // Assert
       expect(mocked(setValidScoreFromChart)).toBeCalled()
     })
-    test('does not call setValidScoreFromChart() if { selectedChart: null }', () => {
-      // Arrange
-      wrapper.setData({ selectedChart: null })
-
-      // Act
-      // @ts-ignore
-      wrapper.vm.calcScore()
-
-      // Assert
-      expect(mocked(setValidScoreFromChart)).not.toBeCalled()
-    })
     test('calls popup.warning() if setValidScoreFromChart() throws error', () => {
       // Arrange
       mocked(setValidScoreFromChart).mockImplementation(() => {
@@ -135,6 +130,39 @@ describe('/components/modal/ScoreEditor.vue', () => {
       // Assert
       expect(mocked(setValidScoreFromChart)).toBeCalled()
       expect(mocked(popup.warning)).toBeCalled()
+    })
+  })
+  describe('saveScore', () => {
+    beforeEach(() => {
+      mocked(postChartScore).mockClear()
+      mocked(popup.success).mockClear()
+      mocked(popup.danger).mockClear()
+      // @ts-ignore
+      wrapper.vm.$parent = $parent
+    })
+    test('calls postChartScore() and close', async () => {
+      // Arrange - Act
+      // @ts-ignore
+      await wrapper.vm.saveScore()
+
+      // Assert
+      expect(mocked(postChartScore)).toBeCalled()
+      expect(mocked(popup.success)).toBeCalled()
+      expect($parent.close).toBeCalled()
+    })
+    test('calls popup.danger() if postChartScore() throws error and close', async () => {
+      // Arrange
+      mocked(postChartScore).mockRejectedValueOnce('Error')
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.saveScore()
+
+      // Assert
+      expect(mocked(postChartScore)).toBeCalled()
+      expect(mocked(popup.success)).not.toBeCalled()
+      expect(mocked(popup.danger)).toBeCalled()
+      expect($parent.close).toBeCalled()
     })
   })
 })
