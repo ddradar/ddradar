@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/nonstop/_series/index.vue snapshot test { locale: "en" } renders correctly 1`] = `
+exports[`pages/nonstop/_series/index.vue { locale: en } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - NONSTOP</h1>
   <div class="buttons">
@@ -21,7 +21,7 @@ exports[`pages/nonstop/_series/index.vue snapshot test { locale: "en" } renders 
 </section>
 `;
 
-exports[`pages/nonstop/_series/index.vue snapshot test { locale: "ja" } renders correctly 1`] = `
+exports[`pages/nonstop/_series/index.vue { locale: ja } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - NONSTOP</h1>
   <div class="buttons">
