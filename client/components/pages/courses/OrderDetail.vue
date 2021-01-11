@@ -154,7 +154,10 @@ import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-type RankingScore = ScoreInfo & { isArea?: true }
+type RankingScore = Pick<
+  ScoreInfo,
+  'userId' | 'userName' | 'score' | 'exScore' | 'clearLamp'
+> & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class OrderDetailComponent extends Vue {
@@ -190,10 +193,6 @@ export default class OrderDetailComponent extends Vue {
       chartName: this.getChartTitle(s.playStyle, s.difficulty, s.level),
       to: `/songs/${s.songId}/${s.playStyle}${s.difficulty}`,
     }))
-  }
-
-  get isLoggedIn() {
-    return !!this.$accessor.user
   }
 
   private getChartTitle(
