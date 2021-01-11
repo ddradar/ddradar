@@ -215,6 +215,7 @@ export default class ChartDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 
@@ -231,6 +232,7 @@ export default class ChartDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 

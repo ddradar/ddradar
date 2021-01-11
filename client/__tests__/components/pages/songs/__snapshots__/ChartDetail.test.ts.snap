@@ -1005,3 +1005,73 @@ exports[`/components/pages/songs/ChartDetail.vue { locale: ja } snapshot test re
   </div>
 </section>
 `;
+
+exports[`/components/pages/songs/ChartDetail.vue fetchScores sets { locale: en } areaName 1`] = `
+Array [
+  Object {
+    "clearLamp": 7,
+    "exScore": 414,
+    "isArea": true,
+    "score": 1000000,
+    "userId": "0",
+    "userName": "World Top",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "isArea": true,
+    "score": 999950,
+    "userId": "13",
+    "userName": "Tokyo Top",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "score": 999950,
+    "userId": "public_user",
+    "userName": "Public User",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "score": 999930,
+    "userId": "private_user",
+    "userName": "Private User",
+  },
+]
+`;
+
+exports[`/components/pages/songs/ChartDetail.vue fetchScores sets { locale: ja } areaName 1`] = `
+Array [
+  Object {
+    "clearLamp": 7,
+    "exScore": 414,
+    "isArea": true,
+    "score": 1000000,
+    "userId": "0",
+    "userName": "全国トップ",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "isArea": true,
+    "score": 999950,
+    "userId": "13",
+    "userName": "東京都トップ",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "score": 999950,
+    "userId": "public_user",
+    "userName": "Public User",
+  },
+  Object {
+    "clearLamp": 6,
+    "exScore": 409,
+    "score": 999930,
+    "userId": "private_user",
+    "userName": "Private User",
+  },
+]
+`;

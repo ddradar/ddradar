@@ -223,6 +223,7 @@ export default class OrderDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 
@@ -240,6 +241,7 @@ export default class OrderDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 
