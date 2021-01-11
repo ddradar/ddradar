@@ -143,17 +143,18 @@
 
 <script lang="ts">
 import type { ClearLamp } from '@core/db/scores'
-import type {
+import {
   CourseChartSchema,
   Difficulty,
+  difficultyMap,
   PlayStyle,
+  playStyleMap,
   StepChartSchema,
 } from '@core/db/songs'
 import { getDanceLevel, setValidScoreFromChart } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
-import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 type ChartSchema = Omit<StepChartSchema | CourseChartSchema, 'level'>
@@ -199,8 +200,8 @@ export default class ScoreEditorComponent extends Vue {
 
   get chartName() {
     if (!this.selectedChart) return null
-    const playStyle = getPlayStyleName(this.selectedChart.playStyle)
-    const difficulty = getDifficultyName(this.selectedChart.difficulty)
+    const playStyle = playStyleMap.get(this.selectedChart.playStyle)
+    const difficulty = difficultyMap.get(this.selectedChart.difficulty)
     return `${playStyle}/${difficulty}`
   }
 
@@ -213,7 +214,7 @@ export default class ScoreEditorComponent extends Vue {
     return this.songData.charts.map(c => ({
       playStyle: c.playStyle,
       difficulty: c.difficulty,
-      label: `${getPlayStyleName(c.playStyle)}/${getDifficultyName(
+      label: `${playStyleMap.get(c.playStyle)}/${difficultyMap.get(
         c.difficulty
       )}`,
     }))
