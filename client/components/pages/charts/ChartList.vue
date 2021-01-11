@@ -71,9 +71,10 @@
 
 <script lang="ts">
 import type { ChartInfo } from '@core/api/song'
+import { difficultyMap } from '@core/db/songs'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import { getDifficultyName, getSongInfo, shortenSeriesName } from '~/api/song'
+import { getSongInfo, shortenSeriesName } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 
 @Component
@@ -89,8 +90,8 @@ export default class ChartListComponent extends Vue {
       series: shortenSeriesName(c.series),
       name: c.name,
       link: `/songs/${c.id}/${c.playStyle}${c.difficulty}`,
-      difficultyName: getDifficultyName(c.difficulty),
-      class: `is-${getDifficultyName(c.difficulty).toLowerCase()}`,
+      difficultyName: difficultyMap.get(c.difficulty),
+      class: `is-${difficultyMap.get(c.difficulty)!.toLowerCase()}`,
       level: c.level,
       id: c.id,
       playStyle: c.playStyle,

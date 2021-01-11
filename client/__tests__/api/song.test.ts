@@ -1,6 +1,4 @@
 import {
-  getDifficultyName,
-  getPlayStyleName,
   getSongInfo,
   searchCharts,
   searchSongByName,
@@ -18,38 +16,6 @@ describe('./api/song.ts', () => {
       ['DanceDanceRevolution A20 PLUS', 'A20 PLUS'],
     ])('("%s") returns "%s"', (series, expected) =>
       expect(shortenSeriesName(series)).toBe(expected)
-    )
-  })
-
-  describe('getDifficultyName', () => {
-    test.each([
-      [NaN, 'UNKNOWN'],
-      [-1, 'UNKNOWN'],
-      [1.5, 'UNKNOWN'],
-      [5, 'UNKNOWN'],
-      [Infinity, 'UNKNOWN'],
-      [-Infinity, 'UNKNOWN'],
-      [0, 'BEGINNER'],
-      [1, 'BASIC'],
-      [2, 'DIFFICULT'],
-      [3, 'EXPERT'],
-      [4, 'CHALLENGE'],
-    ])('(%d) returns "%s"', (difficulty, expected) =>
-      expect(getDifficultyName(difficulty)).toBe(expected)
-    )
-  })
-
-  describe('getPlayStyleName', () => {
-    test.each([
-      [NaN, 'UNKNOWN'],
-      [0, 'UNKNOWN'],
-      [-1, 'UNKNOWN'],
-      [1.5, 'UNKNOWN'],
-      [3, 'UNKNOWN'],
-      [1, 'SINGLE'],
-      [2, 'DOUBLE'],
-    ])('(%d) returns "%s"', (playStyle, expected) =>
-      expect(getPlayStyleName(playStyle)).toBe(expected)
     )
   })
 

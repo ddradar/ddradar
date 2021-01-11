@@ -57,9 +57,10 @@
 
 <script lang="ts">
 import type { CourseListData } from '@core/api/course'
+import { playStyleMap } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { getPlayStyleName, shortenSeriesName } from '~/api/song'
+import { shortenSeriesName } from '~/api/song'
 
 @Component
 export default class CourseListComponent extends Vue {
@@ -75,7 +76,7 @@ export default class CourseListComponent extends Vue {
       name:
         c.charts.length > 1
           ? c.name
-          : `${c.name}(${getPlayStyleName(c.charts[0].playStyle)})`,
+          : `${c.name}(${playStyleMap.get(c.charts[0].playStyle)})`,
       series: shortenSeriesName(c.series),
       type: c.charts.length > 1 ? this.$t('nonstop') : this.$t('grade'),
     }))

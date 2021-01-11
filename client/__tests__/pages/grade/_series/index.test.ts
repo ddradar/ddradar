@@ -14,45 +14,36 @@ localVue.use(VueI18n)
 
 describe('pages/grade/_series/index.vue', () => {
   const $fetchState = { pending: false }
-  describe('snapshot test', () => {
-    test.each(['ja', 'en'])('{ locale: "%s" } renders correctly', locale => {
+  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
+    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    test('renders correctly', () => {
       // Arrange
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const $route = { params: { series: '16' }, path: '/grade/16' }
-      const wrapper = shallowMount(GradeListPage, {
-        localVue,
-        mocks: { $fetchState, $route },
-        i18n,
-      })
+      const mocks = { $fetchState, $route }
+      const wrapper = shallowMount(GradeListPage, { localVue, mocks, i18n })
 
       // Act - Assert
       expect(wrapper).toMatchSnapshot()
     })
   })
+
+  // Lifecycle
   describe('validate()', () => {
     const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
     test.each(['', 'foo', '0', '1', '10'])('/%s returns false', series => {
       // Arrange
-      const $route = { params: { series } }
-      const wrapper = shallowMount(GradeListPage, {
-        localVue,
-        mocks: { $fetchState, $route },
-        i18n,
-      })
-      const ctx = ({ params: { series } } as unknown) as Context
+      const mocks = { $fetchState, $route: { params: { series } } }
+      const wrapper = shallowMount(GradeListPage, { localVue, mocks, i18n })
+      const ctx = ({ ...mocks.$route } as unknown) as Context
 
       // Act - Assert
       expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
     })
     test.each(['16', '17'])('/%s returns true', series => {
       // Arrange
-      const $route = { params: { series } }
-      const wrapper = shallowMount(GradeListPage, {
-        localVue,
-        mocks: { $fetchState, $route },
-        i18n,
-      })
-      const ctx = ({ params: { series } } as unknown) as Context
+      const mocks = { $fetchState, $route: { params: { series } } }
+      const wrapper = shallowMount(GradeListPage, { localVue, mocks, i18n })
+      const ctx = ({ ...mocks.$route } as unknown) as Context
 
       // Act - Assert
       expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
@@ -71,13 +62,8 @@ describe('pages/grade/_series/index.vue', () => {
     ])('/%s calls getCourseList($http, %i, 2)', async (series, expected) => {
       // Arrange
       const $route = { params: { series }, path: `/grade/${series}` }
-      const $http = { $get: jest.fn() }
-      const wrapper = shallowMount(GradeListPage, {
-        localVue,
-        mocks: { $fetchState, $http, $route },
-        data: () => ({ courses: [] }),
-        i18n,
-      })
+      const mocks = { $fetchState, $http: { $get: jest.fn() }, $route }
+      const wrapper = shallowMount(GradeListPage, { localVue, mocks, i18n })
 
       // Act
       // @ts-ignore
@@ -85,9 +71,11 @@ describe('pages/grade/_series/index.vue', () => {
 
       // Assert
       expect(apiMock).toBeCalledTimes(1)
-      expect(apiMock).toBeCalledWith($http, expected, 2)
+      expect(apiMock).toBeCalledWith(mocks.$http, expected, 2)
     })
   })
+
+  // Computed
   describe('get title()', () => {
     test.each([
       ['16', 'ja', 'DanceDanceRevolution A20 - 段位認定'],
@@ -98,12 +86,8 @@ describe('pages/grade/_series/index.vue', () => {
       const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       // Arrange
       const $route = { params: { series }, path: `/grade/${series}` }
-      const wrapper = shallowMount(GradeListPage, {
-        localVue,
-        mocks: { $fetchState, $route },
-        data: () => ({ courses: [] }),
-        i18n,
-      })
+      const mocks = { $fetchState, $route }
+      const wrapper = shallowMount(GradeListPage, { localVue, mocks, i18n })
 
       // Act - Assert
       // @ts-ignore

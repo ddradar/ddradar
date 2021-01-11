@@ -154,18 +154,20 @@
 <script lang="ts">
 import type { ScoreInfo } from '@core/api/score'
 import type { SongInfo } from '@core/api/song'
-import type { StepChartSchema } from '@core/db/songs'
+import { difficultyMap, playStyleMap, StepChartSchema } from '@core/db/songs'
 import { areaCodeSet } from '@core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
-import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-type RankingScore = ScoreInfo & { isArea?: true }
+type RankingScore = Pick<
+  ScoreInfo,
+  'userId' | 'userName' | 'score' | 'exScore' | 'clearLamp'
+> & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class ChartDetailComponent extends Vue {
@@ -186,13 +188,13 @@ export default class ChartDetailComponent extends Vue {
   }
 
   get chartTitle() {
-    const shortPlayStyle = getPlayStyleName(this.chart.playStyle)[0] + 'P' // 'SP' or 'DP'
-    const difficulty = getDifficultyName(this.chart.difficulty)
+    const shortPlayStyle = playStyleMap.get(this.chart.playStyle)![0] + 'P' // 'SP' or 'DP'
+    const difficulty = difficultyMap.get(this.chart.difficulty)
     return `${shortPlayStyle}-${difficulty} (${this.chart.level})`
   }
 
   get cardType() {
-    return `is-${getDifficultyName(this.chart.difficulty).toLowerCase()}`
+    return `is-${difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
   }
 
   async fetch() {
@@ -213,6 +215,7 @@ export default class ChartDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 
@@ -229,6 +232,7 @@ export default class ChartDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 

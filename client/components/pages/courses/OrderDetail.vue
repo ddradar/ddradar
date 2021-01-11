@@ -138,18 +138,26 @@
 <script lang="ts">
 import type { CourseInfo } from '@core/api/course'
 import type { ScoreInfo } from '@core/api/score'
-import type { CourseChartSchema } from '@core/db/songs'
+import {
+  CourseChartSchema,
+  Difficulty,
+  difficultyMap,
+  PlayStyle,
+  playStyleMap,
+} from '@core/db/songs'
 import { areaCodeSet } from '@core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
-import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-type RankingScore = ScoreInfo & { isArea?: true }
+type RankingScore = Pick<
+  ScoreInfo,
+  'userId' | 'userName' | 'score' | 'exScore' | 'clearLamp'
+> & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge } })
 export default class OrderDetailComponent extends Vue {
@@ -175,7 +183,7 @@ export default class OrderDetailComponent extends Vue {
   }
 
   get cardType() {
-    return `is-${getDifficultyName(this.chart.difficulty).toLowerCase()}`
+    return `is-${difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
   }
 
   get orders() {
@@ -187,13 +195,13 @@ export default class OrderDetailComponent extends Vue {
     }))
   }
 
-  get isLoggedIn() {
-    return !!this.$accessor.user
-  }
-
-  private getChartTitle(playStyle: number, difficulty: number, level: number) {
-    const shortPlayStyle = getPlayStyleName(playStyle)[0] + 'P' // 'SP' or 'DP'
-    const difficultyName = getDifficultyName(difficulty)
+  private getChartTitle(
+    playStyle: PlayStyle,
+    difficulty: Difficulty,
+    level: number
+  ) {
+    const shortPlayStyle = playStyleMap.get(playStyle)![0] + 'P' // 'SP' or 'DP'
+    const difficultyName = difficultyMap.get(difficulty)
     return `${shortPlayStyle}-${difficultyName} (${level})`
   }
 
@@ -215,6 +223,7 @@ export default class OrderDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 
@@ -232,6 +241,7 @@ export default class OrderDetailComponent extends Vue {
         hasModalCard: true,
         trapFocus: true,
       })
+      /* istanbul ignore */
       .$on('close', async () => await this.fetchScores())
   }
 

@@ -75,10 +75,7 @@
       </template>
     </section>
 
-    <footer
-      v-if="playStyle !== null && difficulty !== null"
-      class="modal-card-foot"
-    >
+    <footer v-if="selectedChart" class="modal-card-foot">
       <b-button type="is-success" icon-left="content-save" @click="saveScore()">
         {{ $t('button.save') }}
       </b-button>
@@ -142,16 +139,23 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseInfo } from '@core/api/course'
-import type { SongInfo } from '@core/api/song'
 import type { ClearLamp } from '@core/db/scores'
-import type { CourseChartSchema, StepChartSchema } from '@core/db/songs'
+import {
+  CourseChartSchema,
+  Difficulty,
+  difficultyMap,
+  PlayStyle,
+  playStyleMap,
+  StepChartSchema,
+} from '@core/db/songs'
 import { getDanceLevel, setValidScoreFromChart } from '@core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
-import { getDifficultyName, getPlayStyleName } from '~/api/song'
 import * as popup from '~/utils/popup'
+
+type ChartSchema = Omit<StepChartSchema | CourseChartSchema, 'level'>
+type SongOrCourseInfo = { name: string; charts: ChartSchema[] }
 
 @Component({ fetchOnServer: false })
 export default class ScoreEditorComponent extends Vue {
@@ -159,15 +163,13 @@ export default class ScoreEditorComponent extends Vue {
   readonly songId!: string
 
   @Prop({ required: false, type: Number, default: null })
-  readonly playStyle!: 1 | 2 | null
+  readonly playStyle!: PlayStyle | null
 
   @Prop({ required: false, type: Number, default: null })
-  readonly difficulty!: 0 | 1 | 2 | 3 | 4 | null
+  readonly difficulty!: Difficulty | null
 
   @Prop({ required: true, type: Object })
-  readonly songData!:
-    | Pick<SongInfo, 'name' | 'charts'>
-    | Pick<CourseInfo, 'name' | 'charts'>
+  readonly songData!: SongOrCourseInfo
 
   score = 0
   exScore = 0
@@ -175,7 +177,7 @@ export default class ScoreEditorComponent extends Vue {
   maxCombo = 0
   isFailed = false
 
-  selectedChart: StepChartSchema | CourseChartSchema | null = null
+  selectedChart: ChartSchema | null = null
 
   isLoading = true
 
@@ -195,8 +197,8 @@ export default class ScoreEditorComponent extends Vue {
 
   get chartName() {
     if (!this.selectedChart) return null
-    const playStyle = getPlayStyleName(this.selectedChart.playStyle)
-    const difficulty = getDifficultyName(this.selectedChart.difficulty)
+    const playStyle = playStyleMap.get(this.selectedChart.playStyle)
+    const difficulty = difficultyMap.get(this.selectedChart.difficulty)
     return `${playStyle}/${difficulty}`
   }
 
@@ -206,13 +208,10 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get charts() {
-    return (this.songData.charts as readonly {
-      playStyle: number
-      difficulty: number
-    }[]).map(c => ({
+    return this.songData.charts.map(c => ({
       playStyle: c.playStyle,
       difficulty: c.difficulty,
-      label: `${getPlayStyleName(c.playStyle)}/${getDifficultyName(
+      label: `${playStyleMap.get(c.playStyle)}/${difficultyMap.get(
         c.difficulty
       )}`,
     }))
@@ -221,7 +220,7 @@ export default class ScoreEditorComponent extends Vue {
   async created() {
     if (this.playStyle !== null && this.difficulty !== null) {
       this.selectedChart =
-        (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
+        this.songData.charts.find(
           c =>
             c.playStyle === this.playStyle && c.difficulty === this.difficulty
         ) ?? null
@@ -232,15 +231,16 @@ export default class ScoreEditorComponent extends Vue {
   async onChartSelected({
     playStyle,
     difficulty,
-  }: Pick<StepChartSchema, 'playStyle' | 'difficulty'>) {
+  }: Pick<ChartSchema, 'playStyle' | 'difficulty'>) {
     this.selectedChart =
-      (this.songData.charts as (StepChartSchema | CourseChartSchema)[]).find(
+      this.songData.charts.find(
         c => c.playStyle === playStyle && c.difficulty === difficulty
       ) ?? null
     await this.fetchScore()
   }
 
   calcScore() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     try {
       const score = setValidScoreFromChart(this.selectedChart, {
@@ -261,6 +261,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   async saveScore() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty
@@ -319,7 +320,8 @@ export default class ScoreEditorComponent extends Vue {
     this.isLoading = false
   }
 
-  async callDeleteAPI() {
+  private async callDeleteAPI() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return
     const playStyle = this.selectedChart.playStyle
     const difficulty = this.selectedChart.difficulty

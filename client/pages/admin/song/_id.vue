@@ -377,7 +377,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
     this.charts.splice(index, 1)
   }
 
-  hasDuplicateKey(chart: StepChartSchema) {
+  hasDuplicateKey(chart: Pick<StepChartSchema, 'playStyle' | 'difficulty'>) {
     return (
       this.charts.filter(
         c =>
@@ -397,7 +397,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
       this.minBPM = songInfo.minBPM
       this.maxBPM = songInfo.maxBPM
       this.charts = [...songInfo.charts]
-    } catch (error) {
+    } catch (error) /* istanbul ignore next */ {
       popup.danger(this.$buefy, error.message ?? error)
     }
   }
@@ -409,7 +409,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
         try {
           await this.callPostAPI()
           popup.success(this.$buefy, 'Success!')
-        } catch (error) {
+        } catch (error) /* istanbul ignore next */ {
           popup.danger(this.$buefy, error.message ?? error)
         }
       },

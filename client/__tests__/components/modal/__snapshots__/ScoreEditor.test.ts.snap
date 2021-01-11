@@ -1,0 +1,207 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
+<div class="modal-card">
+  <header class="modal-card-head">
+    <h1 class="modal-card-title">PARANOiA</h1>
+  </header>
+  <section class="modal-card-body">
+    <h2 class="subtitle is-small">
+      SINGLE/BEGINNER
+    </h2>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active is-full-page">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped">
+          <!---->
+          <div class="field"><label class="label">Score</label>
+            <div class="control is-clearfix"><input type="number" autocomplete="on" required="required" placeholder="0-1000000" min="0" max="1000000" step="10" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div> <label class="b-checkbox checkbox"><input type="checkbox" true-value="true" value="false"><span class="check"></span><span class="control-label">Rank E</span></label>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">Clear Lamp</label>
+      <div class="control"><span class="select"><select><!----><option value="0">Failed</option> <option value="1">Assisted Clear</option> <option value="2">Clear</option> <option value="3">Life4 Clear</option> <option value="4">Good Full Combo</option> <option value="5">Great Full Combo</option> <option value="6">Perfect Full Combo</option> <option value="7">Marvelous Full Combo</option></select></span>
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">EX SCORE</label>
+      <div class="control is-clearfix"><input type="number" autocomplete="on" min="0" max="414" placeholder="0-414" class="input">
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">MAX COMBO</label>
+      <div class="control is-clearfix"><input type="number" autocomplete="on" min="0" max="138" placeholder="0-138" class="input">
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-calculator"></i></span><span>
+          Auto Calc
+        </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <footer class="modal-card-foot"><button type="button" class="button is-success"><span class="icon is-small"><i class="mdi mdi-content-save"></i></span><span>
+      Save
+    </span>
+      <!---->
+    </button> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span><span>
+      Delete
+    </span>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      Close
+    </span>
+      <!---->
+    </button></footer>
+</div>
+`;
+
+exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
+<div class="modal-card">
+  <header class="modal-card-head">
+    <h1 class="modal-card-title">PARANOiA</h1>
+  </header>
+  <section class="modal-card-body">
+    <div class="field"><label class="label">Select Chart</label>
+      <div class="control"><span class="select is-empty"><select><!----><option value="[object Object]">
+          SINGLE/BEGINNER
+        </option><option value="[object Object]">
+          SINGLE/BASIC
+        </option></select></span>
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <!---->
+  </section>
+  <!---->
+</div>
+`;
+
+exports[`/components/modal/ScoreEditor.vue { locale: ja } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
+<div class="modal-card">
+  <header class="modal-card-head">
+    <h1 class="modal-card-title">PARANOiA</h1>
+  </header>
+  <section class="modal-card-body">
+    <h2 class="subtitle is-small">
+      SINGLE/BEGINNER
+    </h2>
+    <transition-stub name="fade">
+      <div class="loading-overlay is-active is-full-page">
+        <div class="loading-background"></div>
+        <div class="loading-icon"></div>
+      </div>
+    </transition-stub>
+    <div class="field">
+      <!---->
+      <div class="field-body">
+        <div class="field is-grouped">
+          <!---->
+          <div class="field"><label class="label">ハイスコア</label>
+            <div class="control is-clearfix"><input type="number" autocomplete="on" required="required" placeholder="0-1000000" min="0" max="1000000" step="10" class="input">
+              <!---->
+              <!---->
+              <!---->
+            </div>
+            <!---->
+          </div> <label class="b-checkbox checkbox"><input type="checkbox" true-value="true" value="false"><span class="check"></span><span class="control-label">E判定</span></label>
+          <!---->
+        </div>
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">クリア種別</label>
+      <div class="control"><span class="select"><select><!----><option value="0">Failed</option> <option value="1">Assisted Clear</option> <option value="2">Clear</option> <option value="3">Life4 Clear</option> <option value="4">Good Full Combo</option> <option value="5">Great Full Combo</option> <option value="6">Perfect Full Combo</option> <option value="7">Marvelous Full Combo</option></select></span>
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">EXスコア</label>
+      <div class="control is-clearfix"><input type="number" autocomplete="on" min="0" max="414" placeholder="0-414" class="input">
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field"><label class="label">最大コンボ数</label>
+      <div class="control is-clearfix"><input type="number" autocomplete="on" min="0" max="138" placeholder="0-138" class="input">
+        <!---->
+        <!---->
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <div class="field">
+      <!----><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-calculator"></i></span><span>
+          自動計算
+        </span>
+        <!---->
+      </button>
+      <!---->
+    </div>
+  </section>
+  <footer class="modal-card-foot"><button type="button" class="button is-success"><span class="icon is-small"><i class="mdi mdi-content-save"></i></span><span>
+      保存
+    </span>
+      <!---->
+    </button> <button type="button" class="button is-danger"><span class="icon is-small"><i class="mdi mdi-delete"></i></span><span>
+      削除
+    </span>
+      <!---->
+    </button> <button type="button" class="button is-warning">
+      <!----><span>
+      閉じる
+    </span>
+      <!---->
+    </button></footer>
+</div>
+`;
+
+exports[`/components/modal/ScoreEditor.vue { locale: ja } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
+<div class="modal-card">
+  <header class="modal-card-head">
+    <h1 class="modal-card-title">PARANOiA</h1>
+  </header>
+  <section class="modal-card-body">
+    <div class="field"><label class="label">譜面を選択</label>
+      <div class="control"><span class="select is-empty"><select><!----><option value="[object Object]">
+          SINGLE/BEGINNER
+        </option><option value="[object Object]">
+          SINGLE/BASIC
+        </option></select></span>
+        <!---->
+      </div>
+      <!---->
+    </div>
+    <!---->
+  </section>
+  <!---->
+</div>
+`;
