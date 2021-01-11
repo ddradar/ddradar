@@ -66,11 +66,9 @@ exports[`/components/pages/songs/ChartDetail.vue { locale: en } snapshot test { 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="Name" class="">
-                        <nuxt-link to="/users/public_user" class="is-size-7">
+                      <td data-label="Name" class=""><a class="is-size-7">
                           Public User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="Score" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999950"></scorebadge-stub>
                       </td>
@@ -82,11 +80,9 @@ exports[`/components/pages/songs/ChartDetail.vue { locale: en } snapshot test { 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="Name" class="">
-                        <nuxt-link to="/users/private_user" class="is-size-7">
+                      <td data-label="Name" class=""><a class="is-size-7">
                           Private User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="Score" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999930"></scorebadge-stub>
                       </td>
@@ -569,11 +565,9 @@ exports[`/components/pages/songs/ChartDetail.vue { locale: ja } snapshot test { 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="ユーザー名" class="">
-                        <nuxt-link to="/users/public_user" class="is-size-7">
+                      <td data-label="ユーザー名" class=""><a class="is-size-7">
                           Public User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="スコア" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999950"></scorebadge-stub>
                       </td>
@@ -585,11 +579,9 @@ exports[`/components/pages/songs/ChartDetail.vue { locale: ja } snapshot test { 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="ユーザー名" class="">
-                        <nuxt-link to="/users/private_user" class="is-size-7">
+                      <td data-label="ユーザー名" class=""><a class="is-size-7">
                           Private User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="スコア" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999930"></scorebadge-stub>
                       </td>

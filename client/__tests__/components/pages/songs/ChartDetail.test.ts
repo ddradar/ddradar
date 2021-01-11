@@ -62,7 +62,7 @@ describe('/components/pages/songs/ChartDetail.vue', () => {
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
     const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-    const stubs = { NuxtRouterLink: RouterLinkStub, ScoreBadge: true }
+    const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
     const mocks = { $accessor: { isLoggedIn: false } }
     const options = { localVue, propsData, mocks, stubs, i18n }
     const wrapper = mount(ChartDetail, options)

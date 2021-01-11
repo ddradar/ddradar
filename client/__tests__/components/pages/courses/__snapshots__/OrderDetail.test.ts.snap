@@ -66,11 +66,9 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="Name" class="">
-                        <nuxt-link to="/users/public_user" class="is-size-7">
+                      <td data-label="Name" class=""><a class="is-size-7">
                           Public User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="Score" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999950"></scorebadge-stub>
                       </td>
@@ -82,11 +80,9 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="Name" class="">
-                        <nuxt-link to="/users/private_user" class="is-size-7">
+                      <td data-label="Name" class=""><a class="is-size-7">
                           Private User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="Score" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999930"></scorebadge-stub>
                       </td>
@@ -130,20 +126,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -237,20 +229,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -349,20 +337,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -462,20 +446,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: en } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -553,11 +533,9 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="ユーザー名" class="">
-                        <nuxt-link to="/users/public_user" class="is-size-7">
+                      <td data-label="ユーザー名" class=""><a class="is-size-7">
                           Public User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="スコア" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999950"></scorebadge-stub>
                       </td>
@@ -569,11 +547,9 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
                     <tr draggable="false" class="">
                       <!---->
                       <!---->
-                      <td data-label="ユーザー名" class="">
-                        <nuxt-link to="/users/private_user" class="is-size-7">
+                      <td data-label="ユーザー名" class=""><a class="is-size-7">
                           Private User
-                        </nuxt-link>
-                      </td>
+                        </a></td>
                       <td data-label="スコア" class="has-text-centered">
                         <scorebadge-stub lamp="6" score="999930"></scorebadge-stub>
                       </td>
@@ -617,20 +593,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -724,20 +696,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -836,20 +804,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
@@ -949,20 +913,16 @@ exports[`/components/pages/courses/OrderDetail.vue { locale: ja } snapshot test 
               <li><em>Shock Arrow</em>: 0</li>
             </ul>
             <ol>
-              <li>
-                <nuxt-link to="/songs/PdPdbdQ1lDI18O90Q0li8QI0bo99bidd/10">This Beat Is.....</nuxt-link>
+              <li><a>This Beat Is.....</a>
                 SP-BEGINNER (1)
               </li>
-              <li>
-                <nuxt-link to="/songs/PPQb966D6Ql6Q8iPo68810PdDiI6D0bl/10">Waiting</nuxt-link>
+              <li><a>Waiting</a>
                 SP-BEGINNER (3)
               </li>
-              <li>
-                <nuxt-link to="/songs/6iO8d9ld00I6lDIO6qbOldP99oqloqb9/10">Dead Heat</nuxt-link>
+              <li><a>Dead Heat</a>
                 SP-BEGINNER (4)
               </li>
-              <li>
-                <nuxt-link to="/songs/1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo/10">Neverland</nuxt-link>
+              <li><a>Neverland</a>
                 SP-BEGINNER (4)
               </li>
             </ol>
