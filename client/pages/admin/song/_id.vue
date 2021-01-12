@@ -185,7 +185,7 @@
 
 <script lang="ts">
 import type { SongInfo } from '@core/api/song'
-import { Series, seriesSet, StepChartSchema } from '@core/db/songs'
+import { isValidId, Series, seriesSet, StepChartSchema } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -302,7 +302,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
   }
 
   get isValidSongId() {
-    return /^[01689bdiloqDIOPQ]{32}$/.test(this.id)
+    return isValidId(this.id)
   }
 
   get hasError() {

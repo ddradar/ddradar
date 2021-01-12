@@ -38,6 +38,7 @@
 
 <script lang="ts">
 import type { SongInfo } from '@core/api/song'
+import { isValidId } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -66,7 +67,7 @@ export default class SongDetailPage extends Vue {
 
   validate({ params }: Pick<Context, 'params'>) {
     return (
-      /^[01689bdiloqDIOPQ]{32}$/.test(params.id) &&
+      isValidId(params.id) &&
       (!params.chart || /^(1[0-4]|2[1-4])$/.test(params.chart)) // [playStyle][difficulty]
     )
   }
