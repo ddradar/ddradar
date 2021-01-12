@@ -1,5 +1,6 @@
 import {
   getChartTitle,
+  getDisplayedBPM,
   getSongInfo,
   searchCharts,
   searchSongByName,
@@ -31,6 +32,20 @@ describe('./api/song.ts', () => {
       '({ playStyle: %i, difficulty: %i, level: %i }) returns "%s"',
       (playStyle, difficulty, level, expected) =>
         expect(getChartTitle({ playStyle, difficulty, level })).toBe(expected)
+    )
+  })
+
+  describe('getDisplayedBPM', () => {
+    test.each([
+      [null, null, '???'],
+      [100, null, '???'],
+      [null, 400, '???'],
+      [200, 200, '200'],
+      [100, 400, '100-400'],
+    ])(
+      '({ minBPM: %p, maxBPM: %p }) returns "%s"',
+      (minBPM, maxBPM, expected) =>
+        expect(getDisplayedBPM({ minBPM, maxBPM })).toBe(expected)
     )
   })
 

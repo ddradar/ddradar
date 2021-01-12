@@ -7,7 +7,10 @@ import { mocked } from 'ts-jest/utils'
 import { getSongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/_chart.vue'
 
-jest.mock('~/api/song')
+jest.mock('~/api/song', () => ({
+  ...(jest.requireActual('~/api/song') as object),
+  getSongInfo: jest.fn(),
+}))
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
@@ -130,40 +133,6 @@ describe('pages/songs/_id/_chart.vue', () => {
       const mocks = { $accessor: { isAdmin: true } }
       const wrapper = shallowMount(SongPage, { localVue, mocks, stubs, data })
       expect(wrapper).toMatchSnapshot()
-    })
-  })
-
-  // Computed
-  describe('get displayedBPM()', () => {
-    test('{ song: null } returns "???"', () => {
-      // Arrange
-      const data = () => ({ song: null })
-      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
-
-      // Act
-      // @ts-ignore
-      const displayedBPM = wrapper.vm.displayedBPM
-
-      // Assert
-      expect(displayedBPM).toBe('???')
-    })
-    test.each([
-      [{ minBPM: null, maxBPM: null }, '???'],
-      [{ minBPM: 100, maxBPM: null }, '???'],
-      [{ minBPM: null, maxBPM: 400 }, '???'],
-      [{ minBPM: 200, maxBPM: 200 }, '200'],
-      [{ minBPM: 100, maxBPM: 400 }, '100-400'],
-    ])('%p returns "%s"', (bpms, expected) => {
-      // Arrange
-      const data = () => ({ song: { ...song, ...bpms } })
-      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
-
-      // Act
-      // @ts-ignore
-      const displayedBPM = wrapper.vm.displayedBPM
-
-      // Assert
-      expect(displayedBPM).toBe(expected)
     })
   })
 

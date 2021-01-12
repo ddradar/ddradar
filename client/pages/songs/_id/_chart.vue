@@ -41,7 +41,7 @@ import type { SongInfo } from '@core/api/song'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getSongInfo } from '~/api/song'
+import { getDisplayedBPM, getSongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
 
 @Component({ components: { ChartDetail } })
@@ -59,9 +59,9 @@ export default class SongDetailPage extends Vue {
   }
 
   get displayedBPM() {
-    if (!this.song?.minBPM || !this.song?.maxBPM) return '???'
-    if (this.song?.minBPM === this.song?.maxBPM) return `${this.song.minBPM}`
-    return `${this.song.minBPM}-${this.song.maxBPM}`
+    return this.song
+      ? getDisplayedBPM(this.song)
+      : /* istanbul ignore next */ '???'
   }
 
   validate({ params }: Pick<Context, 'params'>) {

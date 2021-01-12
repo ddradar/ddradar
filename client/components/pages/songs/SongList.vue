@@ -64,7 +64,7 @@
 import type { SongListData } from '@core/api/song'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import { shortenSeriesName } from '~/api/song'
+import { getDisplayedBPM, shortenSeriesName } from '~/api/song'
 
 @Component
 export default class SongListComponent extends Vue {
@@ -80,12 +80,7 @@ export default class SongListComponent extends Vue {
       name: s.name,
       artist: s.artist,
       series: shortenSeriesName(s.series),
-      bpm:
-        !s.minBPM || !s.maxBPM
-          ? '???'
-          : s.minBPM === s.maxBPM
-          ? `${s.minBPM}`
-          : `${s.minBPM}-${s.maxBPM}`,
+      bpm: getDisplayedBPM(s),
     }))
   }
 }

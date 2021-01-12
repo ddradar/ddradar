@@ -18,6 +18,15 @@ export function getChartTitle({
   return `${shortPlayStyle}-${difficultyName} (${level})`
 }
 
+export function getDisplayedBPM({
+  minBPM,
+  maxBPM,
+}: Pick<SongInfo, 'minBPM' | 'maxBPM'>) {
+  if (!minBPM || !maxBPM) return '???'
+  if (minBPM === maxBPM) return `${minBPM}`
+  return `${minBPM}-${maxBPM}`
+}
+
 /**
  * Call "Get Song Information" API.
  * @see https://github.com/ddradar/ddradar/tree/master/api/songs__id/
