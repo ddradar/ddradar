@@ -6,6 +6,7 @@ import {
   areaHiddenUser,
   privateUser,
   publicUser,
+  testScores,
   testSongData,
 } from '../core/__tests__/data'
 import type { ScoreSchema } from '../core/db/scores'
@@ -135,48 +136,7 @@ describe('POST /api/v1/scores', () => {
     maxCombo: 138,
     exScore: 366,
   } as const
-  const scores: ScoreSchema[] = [
-    {
-      ...score,
-      userId: '0',
-      userName: '0',
-      isPublic: false,
-      score: 999620, // P:38
-      clearLamp: 6,
-      rank: 'AAA',
-      maxCombo: 138,
-      exScore: 376,
-    },
-    {
-      ...score,
-      userId: '13',
-      userName: '13',
-      isPublic: false,
-      score: 996720, // P:37, Gr:1
-      clearLamp: 5,
-      rank: 'AAA',
-      maxCombo: 138,
-      exScore: 375,
-    },
-    {
-      ...score,
-      userId: publicUser.id,
-      userName: publicUser.name,
-      isPublic: publicUser.isPublic,
-    },
-    {
-      ...score,
-      userId: areaHiddenUser.id,
-      userName: areaHiddenUser.name,
-      isPublic: areaHiddenUser.isPublic,
-    },
-    {
-      ...score,
-      userId: privateUser.id,
-      userName: privateUser.name,
-      isPublic: privateUser.isPublic,
-    },
-  ]
+  const scores: ScoreSchema[] = [...testScores]
 
   test(`/${song.id}/1/1 inserts World & Area Top`, async () => {
     // Arrange

@@ -1,5 +1,6 @@
 import type { SongListData } from '../api/song'
 import type { NotificationSchema } from '../db/notification'
+import type { ScoreSchema } from '../db/scores'
 import type { CourseSchema, SongSchema } from '../db/songs'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
@@ -434,4 +435,61 @@ export const notifications: readonly NotificationSchema[] = [
     timeStamp: 1597114800,
   },
 ] as const
+//#endregion
+
+//#region ScoreSchema
+const scoreTemplate = {
+  songId: testSongData.id,
+  songName: testSongData.name,
+  playStyle: testSongData.charts[0].playStyle,
+  difficulty: testSongData.charts[0].difficulty,
+  level: testSongData.charts[0].level,
+  score: 970630, // P:28, Gr:10
+  clearLamp: 5,
+  rank: 'AA+',
+  maxCombo: 138,
+  exScore: 366,
+} as const
+export const testScores: ScoreSchema[] = [
+  {
+    userId: '0',
+    userName: '0',
+    isPublic: false,
+    ...scoreTemplate,
+    score: 999620, // P:38
+    clearLamp: 6,
+    rank: 'AAA',
+    maxCombo: 138,
+    exScore: 376,
+  },
+  {
+    userId: '13',
+    userName: '13',
+    isPublic: false,
+    ...scoreTemplate,
+    score: 996720, // P:37, Gr:1
+    clearLamp: 5,
+    rank: 'AAA',
+    maxCombo: 138,
+    exScore: 375,
+  },
+  {
+    userId: publicUser.id,
+    userName: publicUser.name,
+    isPublic: publicUser.isPublic,
+    ...scoreTemplate,
+  },
+  {
+    userId: areaHiddenUser.id,
+    userName: areaHiddenUser.name,
+    isPublic: areaHiddenUser.isPublic,
+    ...scoreTemplate,
+  },
+  {
+    userId: privateUser.id,
+    userName: privateUser.name,
+    isPublic: privateUser.isPublic,
+    ...scoreTemplate,
+  },
+]
 //#endregion

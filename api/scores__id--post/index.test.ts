@@ -6,10 +6,10 @@ import {
   areaHiddenUser,
   privateUser,
   publicUser,
+  testScores,
   testSongData,
 } from '../core/__tests__/data'
 import type { ScoreBody } from '../core/api/score'
-import type { ScoreSchema } from '../core/db/scores'
 import { fetchScore } from '../db/scores'
 import postSongScores from '.'
 
@@ -20,60 +20,7 @@ describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
   const song = { ...testSongData, isCourse: false }
 
-  const scoreTemplate = {
-    songId: song.id,
-    songName: song.name,
-    playStyle: song.charts[0].playStyle,
-    difficulty: song.charts[0].difficulty,
-    level: song.charts[0].level,
-    score: 970630, // P:28, Gr:10
-    clearLamp: 5,
-    rank: 'AA+',
-    maxCombo: 138,
-    exScore: 366,
-  } as const
-  const scores: Record<string, ScoreSchema> = {
-    '0': {
-      userId: '0',
-      userName: '0',
-      isPublic: false,
-      ...scoreTemplate,
-      score: 999620, // P:38
-      clearLamp: 6,
-      rank: 'AAA',
-      maxCombo: 138,
-      exScore: 376,
-    },
-    '13': {
-      userId: '13',
-      userName: '13',
-      isPublic: false,
-      ...scoreTemplate,
-      score: 996720, // P:37, Gr:1
-      clearLamp: 5,
-      rank: 'AAA',
-      maxCombo: 138,
-      exScore: 375,
-    },
-    public_user: {
-      userId: publicUser.id,
-      userName: publicUser.name,
-      isPublic: publicUser.isPublic,
-      ...scoreTemplate,
-    },
-    area_hidden_user: {
-      userId: areaHiddenUser.id,
-      userName: areaHiddenUser.name,
-      isPublic: areaHiddenUser.isPublic,
-      ...scoreTemplate,
-    },
-    private_user: {
-      userId: privateUser.id,
-      userName: privateUser.name,
-      isPublic: privateUser.isPublic,
-      ...scoreTemplate,
-    },
-  }
+  const scores = new Map(testScores.map(d => [d.userId, d]))
 
   const score: ScoreBody = {
     score: 1000000,
@@ -94,7 +41,7 @@ describe('POST /api/v1/scores', () => {
     mocked(fetchScore).mockImplementation(
       (userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
-        return Promise.resolve(scores[userId] ?? null)
+        return Promise.resolve(scores.get(userId) ?? null)
       }
     )
   })
@@ -215,7 +162,7 @@ describe('POST /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(200)
     expect(result.httpResponse.body).toStrictEqual([
       {
-        ...scores[publicUser.id],
+        ...scores.get(publicUser.id),
         ...expected,
         radar: { stream: 55, voltage: 44, air: 18, freeze: 0, chaos: 4 },
       },
@@ -297,7 +244,7 @@ describe('POST /api/v1/scores', () => {
       expect(result.httpResponse.status).toBe(200)
       expect(result.httpResponse.body).toStrictEqual([
         {
-          ...scores[publicUser.id],
+          ...scores.get(publicUser.id),
           ...score,
           radar,
         },
@@ -329,7 +276,7 @@ describe('POST /api/v1/scores', () => {
       // Assert
       expect(result.httpResponse.status).toBe(200)
       expect(result.httpResponse.body).toStrictEqual([
-        { ...scores[user.id], ...expected, radar },
+        { ...scores.get(user.id), ...expected, radar },
       ])
       expect(result.documents).toHaveLength(length)
     }
@@ -354,7 +301,7 @@ describe('POST /api/v1/scores', () => {
     // Assert
     expect(result.httpResponse.status).toBe(200)
     expect(result.httpResponse.body).toStrictEqual([
-      { ...scores[privateUser.id], ...expected },
+      { ...scores.get(privateUser.id), ...expected },
     ])
   })
 
@@ -376,7 +323,7 @@ describe('POST /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(200)
     expect(result.httpResponse.body).toStrictEqual([
       {
-        ...scores[privateUser.id],
+        ...scores.get(privateUser.id),
         ...expected,
         radar,
       },
