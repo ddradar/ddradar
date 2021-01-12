@@ -15,7 +15,7 @@ const config: Config.InitialOptions = {
     '.*\\.(vue)$': 'vue-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
-  globals: { 'vue-jest': { transform: { i18n: './__tests__/i18n.js' } } },
+  globals: { 'vue-jest': { transform: { i18n: 'vue-i18n-jest' } } },
   setupFiles: ['jest-canvas-mock'],
   snapshotSerializers: ['jest-serializer-vue'],
   collectCoverage: true,
