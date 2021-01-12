@@ -18,7 +18,7 @@ const localVue = createLocalVue()
 localVue.use(Buefy)
 localVue.use(VueI18n)
 
-describe('/components/pages/songs/ScoreBoard.vue', () => {
+describe('/components/shared/ScoreBoard.vue', () => {
   const info = { ...testSongData, charts: undefined }
   const chart = { ...testSongData.charts[0] }
   const propsData = { info, chart }
