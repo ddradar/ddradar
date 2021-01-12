@@ -1,7 +1,7 @@
 import fetchMock from 'jest-fetch-mock'
 import { mocked } from 'ts-jest/utils'
 
-import type { SongSchema } from '../core/db/songs'
+import { testSongData } from '../core/__tests__/data'
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
@@ -17,44 +17,7 @@ describe('/importSkillAttrackId/index.ts', () => {
     context.log.error.mockClear()
     context.log.info.mockClear()
   })
-  const song: SongSchema = {
-    id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-    name: 'PARANOiA',
-    nameKana: 'PARANOIA',
-    nameIndex: 25,
-    artist: '180',
-    series: 'DDR 1st',
-    minBPM: 180,
-    maxBPM: 180,
-    charts: [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-        notes: 138,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 29,
-        voltage: 22,
-        air: 5,
-        freeze: 0,
-        chaos: 0,
-      },
-      {
-        playStyle: 1,
-        difficulty: 1,
-        level: 8,
-        notes: 264,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 56,
-        voltage: 44,
-        air: 18,
-        freeze: 0,
-        chaos: 4,
-      },
-    ],
-  }
+  const song = { ...testSongData }
 
   test('returns [] if songs is empty', async () => {
     // Arrange - Act

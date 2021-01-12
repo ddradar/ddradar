@@ -1,8 +1,8 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
 import { mocked } from 'ts-jest/utils'
 
+import { testSongData } from '../core/__tests__/data'
 import type { ScoreSchema } from '../core/db/scores'
-import type { SongSchema } from '../core/db/songs'
 import { getContainer } from '../db'
 import updateScores from '.'
 
@@ -33,45 +33,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     context.log.error.mockClear()
     resources = []
   })
-  const song: SongSchema = {
-    id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-    skillAttackId: 1,
-    name: 'PARANOiA',
-    nameKana: 'PARANOIA',
-    nameIndex: 25,
-    artist: '180',
-    series: 'DDR 1st',
-    minBPM: 180,
-    maxBPM: 180,
-    charts: [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-        notes: 138,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 29,
-        voltage: 22,
-        air: 5,
-        freeze: 0,
-        chaos: 0,
-      },
-      {
-        playStyle: 1,
-        difficulty: 1,
-        level: 8,
-        notes: 264,
-        freezeArrow: 0,
-        shockArrow: 0,
-        stream: 56,
-        voltage: 44,
-        air: 18,
-        freeze: 0,
-        chaos: 4,
-      },
-    ],
-  }
+  const song = { ...testSongData, skillAttackId: 1 }
   const validScore: ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
