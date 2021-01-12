@@ -113,11 +113,12 @@
 import type { CourseInfo } from '@core/api/course'
 import type { ScoreInfo } from '@core/api/score'
 import type { SongInfo } from '@core/api/song'
-import { difficultyMap, playStyleMap, StepChartSchema } from '@core/db/songs'
+import { difficultyMap, StepChartSchema } from '@core/db/songs'
 import { areaCodeSet } from '@core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
+import { getChartTitle } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import Card from '~/components/shared/Card.vue'
@@ -147,9 +148,7 @@ export default class OrderDetailComponent extends Vue {
   }
 
   get title() {
-    const shortPlayStyle = playStyleMap.get(this.chart.playStyle)![0] + 'P' // 'SP' or 'DP'
-    const difficultyName = difficultyMap.get(this.chart.difficulty)
-    return `${shortPlayStyle}-${difficultyName} (${this.chart.level})`
+    return getChartTitle(this.chart)
   }
 
   get cardType() {

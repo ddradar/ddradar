@@ -23,15 +23,10 @@
 
 <script lang="ts">
 import type { CourseInfo } from '@core/api/course'
-import {
-  CourseChartSchema,
-  Difficulty,
-  difficultyMap,
-  PlayStyle,
-  playStyleMap,
-} from '@core/db/songs'
+import { CourseChartSchema, difficultyMap } from '@core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
+import { getChartTitle } from '~/api/song'
 import Card from '~/components/shared/Card.vue'
 import ScoreBoard from '~/components/shared/ScoreBoard.vue'
 
@@ -51,19 +46,9 @@ export default class OrderDetailComponent extends Vue {
     return this.chart.order.map(s => ({
       id: s.songId,
       name: s.songName,
-      chartName: this.getChartTitle(s.playStyle, s.difficulty, s.level),
+      chartName: getChartTitle(s),
       to: `/songs/${s.songId}/${s.playStyle}${s.difficulty}`,
     }))
-  }
-
-  private getChartTitle(
-    playStyle: PlayStyle,
-    difficulty: Difficulty,
-    level: number
-  ) {
-    const shortPlayStyle = playStyleMap.get(playStyle)![0] + 'P' // 'SP' or 'DP'
-    const difficultyName = difficultyMap.get(difficulty)
-    return `${shortPlayStyle}-${difficultyName} (${level})`
   }
 }
 </script>

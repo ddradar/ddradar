@@ -1,11 +1,21 @@
 import type { ChartInfo, SongInfo, SongListData } from '@core/api/song'
-import type { PlayStyle } from '@core/db/songs'
+import { difficultyMap, PlayStyle, playStyleMap } from '@core/db/songs'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
 
 export function shortenSeriesName(series: string) {
   return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
+}
+
+export function getChartTitle({
+  playStyle,
+  difficulty,
+  level,
+}: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
+  const shortPlayStyle = `${playStyleMap.get(playStyle)![0]}P` as 'SP' | 'DP'
+  const difficultyName = difficultyMap.get(difficulty)!
+  return `${shortPlayStyle}-${difficultyName} (${level})`
 }
 
 /**
