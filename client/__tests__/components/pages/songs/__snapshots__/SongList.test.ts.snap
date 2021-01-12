@@ -1,129 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/songs/SongList.vue snapshot test { loading: false, songs: [songs] } renders "Edit" column if admin 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
 <div class="b-table">
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <!---->
-  <div class="table-wrapper">
-    <table class="table is-striped">
-      <thead>
-        <tr>
-          <!---->
-          <!---->
-          <th class="">
-            <div class="th-wrap"><span class="is-relative"> バージョン <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-          </th>
-          <th class="">
-            <div class="th-wrap"><span class="is-relative"> 曲名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-          </th>
-          <th class="">
-            <div class="th-wrap"><span class="is-relative"> アーティスト <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-          </th>
-          <th class="">
-            <div class="th-wrap"><span class="is-relative"> BPM <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-          </th>
-          <th class="">
-            <div class="th-wrap"><span class="is-relative"> Edit <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-          </th>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-      </thead>
-      <tbody>
-        <tr draggable="false" class="">
-          <!---->
-          <!---->
-          <td data-label="バージョン" class="">
-            1st
-          </td>
-          <td data-label="曲名" class=""><a>
-              MAKE IT BETTER
-            </a></td>
-          <td data-label="アーティスト" class="">
-            mitsu-O!
-          </td>
-          <td data-label="BPM" class="">
-            119
-          </td>
-          <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-        <tr draggable="false" class="">
-          <!---->
-          <!---->
-          <td data-label="バージョン" class="">
-            1st
-          </td>
-          <td data-label="曲名" class=""><a>
-              PARANOiA
-            </a></td>
-          <td data-label="アーティスト" class="">
-            180
-          </td>
-          <td data-label="BPM" class="">
-            180
-          </td>
-          <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-        <tr draggable="false" class="">
-          <!---->
-          <!---->
-          <td data-label="バージョン" class="">
-            1st
-          </td>
-          <td data-label="曲名" class=""><a>
-              TRIP MACHINE
-            </a></td>
-          <td data-label="アーティスト" class="">
-            DE-SIRE
-          </td>
-          <td data-label="BPM" class="">
-            160
-          </td>
-          <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-        <!---->
-      </tbody>
-      <!---->
-    </table>
-    <!---->
-  </div>
-  <div class="top level">
-    <div class="level-left"></div>
-    <div class="level-right">
-      <div class="level-item">
-        <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
-          <ul class="pagination-list">
-            <!---->
-            <!---->
-            <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
-            <!---->
-            <!---->
-          </ul>
-        </nav>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", loading: false, songs: [] } renders empty state 1`] = `
-<div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->
@@ -186,9 +64,8 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", loading: false, songs: [songs] } renders song list 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
 <div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->
@@ -226,25 +103,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
             1st
           </td>
           <td data-label="Name" class=""><a>
-              MAKE IT BETTER
-            </a></td>
-          <td data-label="Artist" class="">
-            mitsu-O!
-          </td>
-          <td data-label="BPM" class="">
-            119
-          </td>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-        <tr draggable="false" class="">
-          <!---->
-          <!---->
-          <td data-label="Version" class="">
-            1st
-          </td>
-          <td data-label="Name" class=""><a>
               PARANOiA
             </a></td>
           <td data-label="Artist" class="">
@@ -261,10 +119,29 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
           <!---->
           <!---->
           <td data-label="Version" class="">
-            1st
+            X
           </td>
           <td data-label="Name" class=""><a>
-              TRIP MACHINE
+              PARANOiA(X-Special)
+            </a></td>
+          <td data-label="Artist" class="">
+            180
+          </td>
+          <td data-label="BPM" class="">
+            180
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="Version" class="">
+            X
+          </td>
+          <td data-label="Name" class=""><a>
+              SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
             </a></td>
           <td data-label="Artist" class="">
             DE-SIRE
@@ -301,9 +178,8 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", loading: true, songs: [] } renders loading state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: true } renders loading state 1`] = `
 <div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->
@@ -377,9 +253,8 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "en", load
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", loading: false, songs: [] } renders empty state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
 <div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->
@@ -442,9 +317,8 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", loading: false, songs: [songs] } renders song list 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
 <div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->
@@ -482,25 +356,6 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
             1st
           </td>
           <td data-label="曲名" class=""><a>
-              MAKE IT BETTER
-            </a></td>
-          <td data-label="アーティスト" class="">
-            mitsu-O!
-          </td>
-          <td data-label="BPM" class="">
-            119
-          </td>
-          <!---->
-        </tr>
-        <!---->
-        <!---->
-        <tr draggable="false" class="">
-          <!---->
-          <!---->
-          <td data-label="バージョン" class="">
-            1st
-          </td>
-          <td data-label="曲名" class=""><a>
               PARANOiA
             </a></td>
           <td data-label="アーティスト" class="">
@@ -517,10 +372,29 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
           <!---->
           <!---->
           <td data-label="バージョン" class="">
-            1st
+            X
           </td>
           <td data-label="曲名" class=""><a>
-              TRIP MACHINE
+              PARANOiA(X-Special)
+            </a></td>
+          <td data-label="アーティスト" class="">
+            180
+          </td>
+          <td data-label="BPM" class="">
+            180
+          </td>
+          <!---->
+        </tr>
+        <!---->
+        <!---->
+        <tr draggable="false" class="">
+          <!---->
+          <!---->
+          <td data-label="バージョン" class="">
+            X
+          </td>
+          <td data-label="曲名" class=""><a>
+              SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
             </a></td>
           <td data-label="アーティスト" class="">
             DE-SIRE
@@ -557,9 +431,8 @@ exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", load
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue snapshot test { locale: "ja", loading: true, songs: [] } renders loading state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: true } renders loading state 1`] = `
 <div class="b-table">
-  <!---->
   <!---->
   <!---->
   <!---->

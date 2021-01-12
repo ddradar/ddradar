@@ -27,10 +27,12 @@
 
 <script lang="ts">
 import type { CourseInfo } from '@core/api/course'
+import { isValidId } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { getCourseInfo } from '~/api/course'
+import { getDisplayedBPM } from '~/api/song'
 import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
 
 @Component({ components: { OrderDetail } })
@@ -46,14 +48,13 @@ export default class CourseDetailPage extends Vue {
   }
 
   get displayedBPM() {
-    if (!this.course?.minBPM || !this.course?.maxBPM) return '???'
-    if (this.course?.minBPM === this.course?.maxBPM)
-      return `${this.course.minBPM}`
-    return `${this.course.minBPM}-${this.course.maxBPM}`
+    return this.course
+      ? getDisplayedBPM(this.course)
+      : /* istanbul ignore next */ '???'
   }
 
   validate({ params }: Pick<Context, 'params'>) {
-    return /^[01689bdiloqDIOPQ]{32}$/.test(params.id)
+    return isValidId(params.id)
   }
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
