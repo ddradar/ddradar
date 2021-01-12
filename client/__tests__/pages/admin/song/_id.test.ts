@@ -1,4 +1,4 @@
-import type { SongInfo } from '@core/api/song'
+import { testSongData } from '@core/__tests__/data'
 import type { StepChartSchema } from '@core/db/songs'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
@@ -15,108 +15,7 @@ jest.mock('~/api/song')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()
 localVue.use(Buefy)
-const songInfo: Omit<SongInfo, 'nameIndex'> = {
-  id: 'i0P1O6lbP1oDd6q6b08iPPoq6iPdI818',
-  name: '最終鬼畜妹フランドール・Ｓ',
-  nameKana: 'さいしゅうきちくいもうとふらんどーる すかーれっと',
-  artist: 'ビートまりお(COOL&CREATE)',
-  series: 'DanceDanceRevolution A20',
-  minBPM: 200,
-  maxBPM: 200,
-  charts: [
-    {
-      playStyle: 1,
-      difficulty: 0,
-      level: 4,
-      notes: 175,
-      freezeArrow: 26,
-      shockArrow: 0,
-      stream: 26,
-      voltage: 25,
-      air: 9,
-      freeze: 39,
-      chaos: 0,
-    },
-    {
-      playStyle: 1,
-      difficulty: 1,
-      level: 9,
-      notes: 405,
-      freezeArrow: 20,
-      shockArrow: 0,
-      stream: 61,
-      voltage: 58,
-      air: 27,
-      freeze: 28,
-      chaos: 8,
-    },
-    {
-      playStyle: 1,
-      difficulty: 2,
-      level: 13,
-      notes: 577,
-      freezeArrow: 50,
-      shockArrow: 0,
-      stream: 88,
-      voltage: 66,
-      air: 38,
-      freeze: 58,
-      chaos: 33,
-    },
-    {
-      playStyle: 1,
-      difficulty: 3,
-      level: 16,
-      notes: 737,
-      freezeArrow: 36,
-      shockArrow: 0,
-      stream: 123,
-      voltage: 104,
-      air: 56,
-      freeze: 42,
-      chaos: 101,
-    },
-    {
-      playStyle: 2,
-      difficulty: 1,
-      level: 9,
-      notes: 405,
-      freezeArrow: 20,
-      shockArrow: 0,
-      stream: 61,
-      voltage: 58,
-      air: 27,
-      freeze: 28,
-      chaos: 8,
-    },
-    {
-      playStyle: 2,
-      difficulty: 2,
-      level: 13,
-      notes: 562,
-      freezeArrow: 50,
-      shockArrow: 0,
-      stream: 85,
-      voltage: 66,
-      air: 36,
-      freeze: 58,
-      chaos: 31,
-    },
-    {
-      playStyle: 2,
-      difficulty: 3,
-      level: 16,
-      notes: 722,
-      freezeArrow: 30,
-      shockArrow: 0,
-      stream: 126,
-      voltage: 104,
-      air: 47,
-      freeze: 38,
-      chaos: 100,
-    },
-  ],
-}
+const songInfo = { ...testSongData, nameIndex: undefined }
 
 describe('pages/admin/song/_id.vue', () => {
   const data = () => ({ ...songInfo })

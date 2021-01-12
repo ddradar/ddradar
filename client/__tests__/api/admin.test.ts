@@ -1,10 +1,10 @@
-import type { SongInfo } from '@core/api/song'
+import { testSongData } from '@core/__tests__/data'
 
 import { postNotification, postSongInfo } from '~/api/admin'
 
 type NotificationRequest = Parameters<typeof postNotification>[1]
 
-describe('./api/admin.ts', () => {
+describe('/api/admin.ts', () => {
   const $http = { $post: jest.fn<Promise<any>, [string]>() }
   beforeEach(() => $http.$post.mockClear())
 
@@ -43,44 +43,7 @@ describe('./api/admin.ts', () => {
   })
 
   describe('postSongInfo()', () => {
-    const songInfo: SongInfo = {
-      id: 'i0P1O6lbP1oDd6q6b08iPPoq6iPdI818',
-      name: '最終鬼畜妹フランドール・Ｓ',
-      nameIndex: 2,
-      nameKana: 'さいしゅうきちくいもうとふらんどーる すかーれっと',
-      artist: 'ビートまりお(COOL&CREATE)',
-      series: 'DanceDanceRevolution A20',
-      minBPM: 200,
-      maxBPM: 200,
-      charts: [
-        {
-          playStyle: 1,
-          difficulty: 0,
-          level: 4,
-          notes: 175,
-          freezeArrow: 26,
-          shockArrow: 0,
-          stream: 26,
-          voltage: 25,
-          air: 9,
-          freeze: 39,
-          chaos: 0,
-        },
-        {
-          playStyle: 2,
-          difficulty: 1,
-          level: 9,
-          notes: 405,
-          freezeArrow: 20,
-          shockArrow: 0,
-          stream: 61,
-          voltage: 58,
-          air: 27,
-          freeze: 28,
-          chaos: 8,
-        },
-      ],
-    }
+    const songInfo = { ...testSongData }
     beforeEach(() => $http.$post.mockResolvedValue(songInfo))
     test('calls POST "/api/v1/admin/songs"', async () => {
       // Arrange
