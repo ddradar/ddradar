@@ -21,11 +21,6 @@
     <b-table-column v-slot="props" field="bpm" :label="$t('list.bpm')">
       {{ props.row.bpm }}
     </b-table-column>
-    <b-table-column v-slot="props" :visible="$accessor.isAdmin" label="Edit">
-      <nuxt-link :to="`/admin/song/${props.row.id}`">
-        <b-icon icon="pencil-box-outline" />
-      </nuxt-link>
-    </b-table-column>
 
     <template #empty>
       <section v-if="loading" class="section">
@@ -73,10 +68,10 @@ import { shortenSeriesName } from '~/api/song'
 
 @Component
 export default class SongListComponent extends Vue {
-  @Prop({ type: Array, required: true })
+  @Prop({ type: Array, required: false, default: () => [] })
   readonly songs!: Omit<SongListData, 'nameKana' | 'nameIndex'>[]
 
-  @Prop({ type: Boolean, required: true })
+  @Prop({ type: Boolean, required: false, default: false })
   readonly loading!: boolean
 
   get displayedSongs() {
