@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`/components/pages/songs/ChartDetail.vue snapshot test renders correctly 1`] = `
-<section info="[object Object]">
-  <scoreboard-stub chart="[object Object]"></scoreboard-stub>
+<section>
+  <scoreboard-stub info="[object Object]" chart="[object Object]"></scoreboard-stub>
   <div class="collapse card">
     <div class="collapse-trigger">
       <header role="button" aria-controls="Chart Info" class="card-header is-beginner">

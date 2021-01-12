@@ -4,7 +4,6 @@ import Buefy from 'buefy'
 
 import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
 
-jest.mock('~/api/score')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
