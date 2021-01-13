@@ -1,9 +1,9 @@
 {
   "bindings": [
     {
+      "name": "req",
       "type": "httpTrigger",
       "direction": "in",
-      "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
       "route": "v1/notification"
@@ -14,13 +14,13 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Notification",
-      "sqlQuery": "SELECT c.id, c.type, c.icon, c.title, c.body, c.timeStamp, c.pinned, c.sender FROM c ORDER BY c.pinned DESC, c.timeStamp DESC",
+      "sqlQuery": "SELECT c.id, c.type, c.icon, c.title, c.body, c.timeStamp FROM c WHERE ({scope} != 'top') OR c.pinned ORDER BY c.pinned DESC, c.timeStamp DESC",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {
+      "name": "$return",
       "type": "http",
-      "direction": "out",
-      "name": "$return"
+      "direction": "out"
     }
   ],
   "scriptFile": "../dist/notification/index.js"
