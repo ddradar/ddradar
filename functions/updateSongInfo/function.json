@@ -11,12 +11,38 @@
       "createLeaseCollectionIfNotExists": true
     },
     {
-      "name": "$return",
+      "name": "oldTotalCounts",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails",
+      "sqlQuery": "SELECT c.id, c.playStyle, c.level FROM c WHERE c.userId = '0'",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+    },
+    {
+      "name": "newTotalCounts",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT c.playStyle, c.difficulty, c.level, COUNT(*) FROM s JOIN c IN s.charts WHERE s.nameIndex != -1 AND s.nameIndex != -2 GROUP BY c.playStyle, c.difficulty, c.level",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+    },
+    {
+      "name": "scores",
       "type": "cosmosDB",
       "direction": "out",
       "connectionStringSetting": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
       "collectionName": "Scores"
+    },
+    {
+      "name": "details",
+      "type": "cosmosDB",
+      "direction": "out",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails"
     }
   ],
   "scriptFile": "../dist/updateSongInfo/index.js"

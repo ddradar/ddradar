@@ -3,7 +3,17 @@ import type { Logger } from '@azure/functions'
 
 import type { ScoreSchema } from '../core/db/scores'
 import type { SongSchema } from '../core/db/songs'
+import type { ClearStatusSchema } from '../core/db/userDetails'
 import { getContainer } from '../db'
+
+type TotalCount = { id?: string } & Pick<
+  ClearStatusSchema,
+  'level' | 'playStyle' | 'count'
+>
+type UpdateSongResult = {
+  scores: ScoreSchema[]
+  details: TotalCount[]
+}
 
 /**
  * Update song info of other container.
@@ -12,9 +22,11 @@ import { getContainer } from '../db'
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
-  songs: SongSchema[]
-): Promise<ScoreSchema[]> {
-  const result: ScoreSchema[] = []
+  songs: SongSchema[],
+  oldTotalCounts: Required<Omit<TotalCount, 'count'>>[],
+  newTotalCounts: Omit<TotalCount, 'id'>[]
+): Promise<UpdateSongResult> {
+  const scores: ScoreSchema[] = []
 
   for (const song of songs) {
     context.log.info(`Start: ${song.name}`)
@@ -40,10 +52,16 @@ export default async function (
       }
       if (song.name !== score.songName || chart.level !== score.level) {
         context.log.info(`Updated: ${score.id}`)
-        result.push({ ...score, songName: song.name, level: chart.level })
+        scores.push({ ...score, songName: song.name, level: chart.level })
       }
     }
   }
 
-  return result
+  const details: TotalCount[] = newTotalCounts.map(r => ({
+    ...r,
+    id: oldTotalCounts.find(
+      d => d.playStyle === r.playStyle && d.level === r.level
+    )?.id,
+  }))
+  return { scores, details }
 }
