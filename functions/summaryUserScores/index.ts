@@ -17,13 +17,13 @@ type UserDetailSchema =
   | ClearStatusSchema
   | ScoreStatusSchema
 
-/** Import skillAttackId from Skill Attack site. */
+/** Summary user scores for User details */
 export default async function (
   context: { log: Pick<Logger, 'info'> },
   scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<UserDetailSchema[]> {
   const userScores = scores.reduce((prev, s) => {
-    // Skip area top score
+    // Skip area top & course score
     if (!s.radar) return prev
 
     if (!prev[s.userId]) prev[s.userId] = []

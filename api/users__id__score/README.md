@@ -43,6 +43,12 @@ No need Authentication. Authenticated users can get their own data even if they 
   {
     "playStyle": 1,
     "level": 1,
+    "rank": "-",
+    "count": 20
+  },
+  {
+    "playStyle": 1,
+    "level": 1,
     "rank": "AA+",
     "count": 10
   },
@@ -61,5 +67,5 @@ No need Authentication. Authenticated users can get their own data even if they 
 |----|:--:|-----------|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`level`|integer|Chart level|
-|`rank`|string|Clear rank (`"E"`～`"AAA"`)|
+|`rank`|string|Clear rank (`"E"`～`"AAA"`), or `"-"`(NoPlay)|
 |`count`|integer|Chart count|

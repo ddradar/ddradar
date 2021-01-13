@@ -43,6 +43,12 @@ No need Authentication. Authenticated users can get their own data even if they 
   {
     "playStyle": 1,
     "level": 1,
+    "clearLamp": -1,
+    "count": 10
+  },
+  {
+    "playStyle": 1,
+    "level": 1,
     "clearLamp": 6,
     "count": 10
   },
@@ -61,5 +67,5 @@ No need Authentication. Authenticated users can get their own data even if they 
 |----|:--:|-----------|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`level`|integer|Chart level|
-|`clearLamp`|integer|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
+|`clearLamp`|integer|`-1`: NoPlay, `0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
 |`count`|integer|Chart count|

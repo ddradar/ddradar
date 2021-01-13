@@ -6,12 +6,15 @@ import { danceLevelSet } from '../core/db/scores'
 import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
+type TotalCount = Omit<ScoreStatus, 'rank'>
+
 /** Get Score statuses that match the specified user ID, play style and level. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
   [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
-  scoreStatuses: ScoreStatus[]
+  scoreStatuses: ScoreStatus[],
+  totalCounts: TotalCount[]
 ): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
@@ -27,12 +30,25 @@ export default async function (
 
   const danceLevels = [...danceLevelSet]
   return new SuccessResult(
-    scoreStatuses
+    totalCounts
       .filter(
         r =>
-          (!isValidPlayStyle || r.playStyle === playStyle) &&
-          (!isValidLevel || r.level === level)
+          (!isValidPlayStyle || playStyle === r.playStyle) &&
+          (!isValidLevel || level === r.level)
       )
+      .flatMap(d => {
+        const filtered = scoreStatuses.filter(
+          r => r.playStyle === d.playStyle && r.level === d.level
+        )
+        const playedCount = filtered.reduce(
+          (prev, curr) => prev + curr.count,
+          0
+        )
+        return [
+          ...filtered,
+          { ...d, rank: '-' as const, count: d.count - playedCount },
+        ]
+      })
       .sort((l, r) =>
         l.playStyle !== r.playStyle
           ? l.playStyle - r.playStyle
@@ -40,6 +56,6 @@ export default async function (
           ? l.level - r.level
           : danceLevels.findIndex(s => l.rank === s) -
             danceLevels.findIndex(s => r.rank === s)
-      ) // ORDER BY playStyle, level, rank
+      ) // ORDER BY playStyle, level, rank ASC
   )
 }

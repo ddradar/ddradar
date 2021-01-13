@@ -116,7 +116,7 @@ export default class PlayStatusComponent extends Vue {
   readonly userId!: string
 
   radar: GrooveRadarInfo | null = null
-  clear: Record<ClearLamp, number>[] = []
+  clear: Record<ClearLamp | -1, number>[] = []
   score: Record<string, number>[] = []
 
   get clearList() {
@@ -153,7 +153,7 @@ export default class PlayStatusComponent extends Vue {
           .reduce((prev, curr) => {
             prev[curr.clearLamp] = curr.count
             return prev
-          }, {} as Record<ClearLamp, number>)
+          }, {} as Record<ClearLamp | -1, number>)
       )
       this.score = levels.map(i =>
         scoreStatuses

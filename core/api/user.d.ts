@@ -1,3 +1,4 @@
+import type { ClearLamp, DanceLevel } from '../db/scores'
 import type {
   ClearStatusSchema,
   GrooveRadarSchema,
@@ -28,13 +29,23 @@ export type ExistsUser = Pick<UserSchema, 'id'> & { exists: boolean }
  * Object type returned by `/api/v1/users/{:id}/clear`
  * @see https://github.com/ddradar/ddradar/blob/master/api/users__id__clear/
  */
-export type ClearStatus = Omit<ClearStatusSchema, 'userId' | 'type'>
+export type ClearStatus = Pick<
+  ClearStatusSchema,
+  'playStyle' | 'level' | 'count'
+> & {
+  clearLamp: ClearLamp | -1
+}
 
 /**
  * Object type returned by `/api/v1/users/{:id}/score`
  * @see https://github.com/ddradar/ddradar/blob/master/api/users__id__score/
  */
-export type ScoreStatus = Omit<ScoreStatusSchema, 'userId' | 'type'>
+export type ScoreStatus = Pick<
+  ScoreStatusSchema,
+  'playStyle' | 'level' | 'count'
+> & {
+  rank: DanceLevel | '-'
+}
 
 /**
  * Object type returned by `/api/v1/users/{:id}/radar/{:playStyle}`

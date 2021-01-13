@@ -43,6 +43,12 @@ English version is [here](./README.md).
   {
     "playStyle": 1,
     "level": 1,
+    "rank": "-",
+    "count": 20
+  },
+  {
+    "playStyle": 1,
+    "level": 1,
     "rank": "AA+",
     "count": 10
   },
@@ -61,5 +67,5 @@ English version is [here](./README.md).
 |---|:--:|---|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`level`|integer|譜面のレベル|
-|`rank`|string|クリアランク (`"E"`～`"AAA"`)|
+|`rank`|string|クリアランク (`"E"`～`"AAA"`), 未プレー譜面は`"-`|
 |`count`|integer|譜面数|
