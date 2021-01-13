@@ -28,24 +28,27 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
-  const noPlays = totalCounts.map(d => ({
-    ...d,
-    rank: '-' as const,
-    count:
-      d.count -
-      scoreStatuses
-        .filter(s => s.playStyle === d.playStyle && s.level === d.level)
-        .reduce((prev, curr) => prev + curr.count, 0),
-  }))
-
   const danceLevels = [...danceLevelSet]
   return new SuccessResult(
-    [...scoreStatuses, ...noPlays]
+    totalCounts
       .filter(
         r =>
-          (!isValidPlayStyle || r.playStyle === playStyle) &&
-          (!isValidLevel || r.level === level)
+          (!isValidPlayStyle || playStyle === r.playStyle) &&
+          (!isValidLevel || level === r.level)
       )
+      .flatMap(d => {
+        const filtered = scoreStatuses.filter(
+          r => r.playStyle === d.playStyle && r.level === d.level
+        )
+        const playedCount = filtered.reduce(
+          (prev, curr) => prev + curr.count,
+          0
+        )
+        return [
+          ...filtered,
+          { ...d, rank: '-' as const, count: d.count - playedCount },
+        ]
+      })
       .sort((l, r) =>
         l.playStyle !== r.playStyle
           ? l.playStyle - r.playStyle
@@ -53,6 +56,6 @@ export default async function (
           ? l.level - r.level
           : danceLevels.findIndex(s => l.rank === s) -
             danceLevels.findIndex(s => r.rank === s)
-      ) // ORDER BY playStyle, level, rank
+      ) // ORDER BY playStyle, level, rank ASC
   )
 }

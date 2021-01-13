@@ -27,29 +27,32 @@ export default async function (
   const level = parseInt(req.query.level, 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 20
 
-  const noPlays = totalCounts.map(d => ({
-    ...d,
-    clearLamp: -1 as const,
-    count:
-      d.count -
-      clearStatuses
-        .filter(c => c.playStyle === d.playStyle && c.level === d.level)
-        .reduce((prev, curr) => prev + curr.count, 0),
-  }))
-
   return new SuccessResult(
-    [...clearStatuses, ...noPlays]
+    totalCounts
       .filter(
         r =>
           (!isValidPlayStyle || playStyle === r.playStyle) &&
           (!isValidLevel || level === r.level)
       )
+      .flatMap(d => {
+        const filtered = clearStatuses.filter(
+          r => r.playStyle === d.playStyle && r.level === d.level
+        )
+        const playedCount = filtered.reduce(
+          (prev, curr) => prev + curr.count,
+          0
+        )
+        return [
+          ...filtered,
+          { ...d, clearLamp: -1 as const, count: d.count - playedCount },
+        ]
+      })
       .sort((l, r) =>
         l.playStyle !== r.playStyle
           ? l.playStyle - r.playStyle
           : l.level !== r.level
           ? l.level - r.level
           : l.clearLamp - r.clearLamp
-      ) // ORDER BY playStyle, level, clearLamp
+      ) // ORDER BY playStyle, level, clearLamp ASC
   )
 }
