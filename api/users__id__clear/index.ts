@@ -38,10 +38,7 @@ export default async function (
         const filtered = clearStatuses.filter(
           r => r.playStyle === d.playStyle && r.level === d.level
         )
-        const playedCount = filtered.reduce(
-          (prev, curr) => prev + curr.count,
-          0
-        )
+        const playedCount = filtered.reduce((p, c) => p + c.count, 0)
         return [
           ...filtered,
           { ...d, clearLamp: -1 as const, count: d.count - playedCount },

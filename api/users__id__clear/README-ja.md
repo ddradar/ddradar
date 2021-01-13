@@ -43,6 +43,12 @@ English version is [here](./README.md).
   {
     "playStyle": 1,
     "level": 1,
+    "clearLamp": -1,
+    "count": 10
+  },
+  {
+    "playStyle": 1,
+    "level": 1,
     "clearLamp": 6,
     "count": 10
   },
@@ -61,5 +67,5 @@ English version is [here](./README.md).
 |---|:--:|---|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`level`|integer|譜面のレベル|
-|`clearLamp`|integer|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
+|`clearLamp`|integer|`-1`: 未プレー, `0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
 |`count`|integer|譜面数|
