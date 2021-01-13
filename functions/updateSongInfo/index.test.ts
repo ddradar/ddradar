@@ -34,6 +34,16 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = []
   })
   const song = { ...testSongData, skillAttackId: 1 }
+  const oldCounts = [...Array(19 * 2).keys()].map(i => ({
+    id: `id-${i}`, // id-0, id-1, ..., id-37
+    playStyle: ((i % 2) + 1) as 1 | 2,
+    level: (i % 19) + 1, // 1-19
+    count: 1000,
+  }))
+  const newCounts = oldCounts.map(d => ({
+    ...d,
+    count: 2000,
+  }))
   const validScore: ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
@@ -49,34 +59,37 @@ describe('/updateScoresSongInfo/index.ts', () => {
     rank: 'AAA',
   }
 
-  test('returns [] if songs is empty', async () => {
+  test('returns { scores: [] } if songs is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [])
+    const result = await updateScores(context, [], oldCounts, newCounts)
 
     // Assert
-    expect(result).toStrictEqual([])
+    expect(result).toStrictEqual({ scores: [], details: newCounts })
   })
 
-  test('returns [] with info if scores is empty', async () => {
+  test('returns { scores: [] } with log.info if scores is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [song])
+    const result = await updateScores(context, [song], [], newCounts)
 
     // Assert
-    expect(result).toStrictEqual([])
+    expect(result).toStrictEqual({
+      scores: [],
+      details: newCounts.map(d => ({ ...d, id: undefined })),
+    })
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
   })
 
-  test('returns [] no need to update Scores', async () => {
+  test('returns  { scores: [] } with log.info no need to update Scores', async () => {
     // Arrange
     resources = [validScore]
 
     // Act
-    const result = await updateScores(context, [song])
+    const result = await updateScores(context, [song], oldCounts, newCounts)
 
     // Assert
-    expect(result).toStrictEqual([])
+    expect(result).toStrictEqual({ scores: [], details: newCounts })
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -88,10 +101,10 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = [score]
 
     // Act
-    const result = await updateScores(context, [song])
+    const result = await updateScores(context, [song], oldCounts, newCounts)
 
     // Assert
-    expect(result).toStrictEqual([])
+    expect(result).toStrictEqual({ scores: [], details: newCounts })
     expect(context.log.error).toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -105,10 +118,10 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = [score]
 
     // Act
-    const result = await updateScores(context, [song])
+    const result = await updateScores(context, [song], oldCounts, newCounts)
 
     // Assert
-    expect(result).toStrictEqual([validScore])
+    expect(result).toStrictEqual({ scores: [validScore], details: newCounts })
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
