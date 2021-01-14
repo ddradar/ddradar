@@ -1,5 +1,5 @@
 <template>
-  <reactive-radar :chart-data="chartData" :chart-options="chartOptions" />
+  <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
 </template>
 
 <script lang="ts">
@@ -11,7 +11,7 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 import ReactiveDoughnut from '~/components/shared/ReactiveDoughnut'
 
 @Component({ components: { ReactiveDoughnut } })
-export default class ClearStatusComponent extends Vue {
+export default class ScoreStatusComponent extends Vue {
   @Prop({ type: String, default: null })
   readonly title!: string | null
 

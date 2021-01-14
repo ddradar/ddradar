@@ -1,5 +1,5 @@
 <template>
-  <reactive-radar :chart-data="chartData" :chart-options="chartOptions" />
+  <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
 </template>
 
 <script lang="ts">
