@@ -18,6 +18,17 @@ export default class ScoreStatusComponent extends Vue {
   @Prop({ type: Array, default: () => [] })
   readonly statuses!: Pick<ScoreStatus, 'rank' | 'count'>[]
 
+  get sortedStatuses() {
+    const levels: string[] = [...danceLevelSet]
+    return this.statuses
+      .filter(d => d.count)
+      .sort(
+        (l, r) =>
+          levels.findIndex(d => d === r.rank) -
+          levels.findIndex(d => d === l.rank)
+      ) // ORDER BY rank DESC
+  }
+
   get chartOptions(): ChartOptions {
     return {
       title: { display: !!this.title, text: this.title ?? '' },
@@ -26,21 +37,14 @@ export default class ScoreStatusComponent extends Vue {
   }
 
   get chartData(): ChartData {
-    const levels: string[] = [...danceLevelSet]
-    const sorted = this.statuses.sort(
-      (l, r) =>
-        levels.findIndex(d => d === r.rank) -
-        levels.findIndex(d => d === l.rank)
-    ) // ORDER BY rank DESC
-
     return {
-      labels: sorted.map(d =>
+      labels: this.sortedStatuses.map(d =>
         danceLevelSet.has(d.rank as DanceLevel) ? d.rank : 'NoPlay'
       ),
       datasets: [
         {
-          data: sorted.map(d => d.count),
-          backgroundColor: sorted.map(d => this.getBackgroundColor(d.rank)),
+          data: this.sortedStatuses.map(d => d.count),
+          backgroundColor: this.sortedStatuses.map(d => this.getBackgroundColor(d.rank)),
         },
       ],
     }
