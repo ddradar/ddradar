@@ -1,6 +1,332 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test renders graphs correctly 1`] = `
+<section>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Groove Radar" class="card-header is-primary">
+        <div class="card-header-title">Groove Radar</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Groove Radar" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <grooveradar-stub chart="[object Object]" class="radar"></grooveradar-stub>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Clear Status" class="card-header is-primary">
+        <div class="card-header-title">Clear Status</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Clear Status" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <!---->
+          <div class="carousel">
+            <!---->
+            <div class="carousel-items">
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="">
+                  <clearstatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+            </div>
+            <!---->
+            <!---->
+            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Score Status" class="card-header is-primary">
+        <div class="card-header-title">Score Status</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Score Status" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <!---->
+          <div class="carousel">
+            <!---->
+            <div class="carousel-items">
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="">
+                  <scorestatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+            </div>
+            <!---->
+            <!---->
+            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
 exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test renders loading state before fetch() 1`] = `
+<section>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Groove Radar" class="card-header is-primary">
+        <div class="card-header-title">Groove Radar</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Groove Radar" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Clear Status" class="card-header is-primary">
+        <div class="card-header-title">Clear Status</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Clear Status" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+          <div class="content has-text-grey has-text-centered">
+            <p>No Data</p>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="Score Status" class="card-header is-primary">
+        <div class="card-header-title">Score Status</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="Score Status" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+          <div class="content has-text-grey has-text-centered">
+            <p>No Data</p>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
+exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test renders no data if empty 1`] = `
 <section>
   <div class="collapse card">
     <div class="collapse-trigger">
@@ -27,79 +353,9 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test r
     <transition-stub name="slide">
       <div id="Clear Status" class="collapse-content" style="display: none;">
         <div class="card-content">
-          <div class="table-container">
-            <div class="b-table">
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <div class="table-wrapper">
-                <table class="table is-striped is-narrow">
-                  <thead>
-                    <tr>
-                      <!---->
-                      <!---->
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> MFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> PFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> GreatFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> FC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Life4 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Clear <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Assisted <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Failed <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <!---->
-                    </tr>
-                    <!---->
-                    <!---->
-                  </thead>
-                  <tbody>
-                    <tr class="is-empty">
-                      <td colspan="9">
-                        <section class="section">
-                          <div class="content has-text-grey has-text-centered">
-                            <p>No Data</p>
-                          </div>
-                        </section>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <!---->
-                </table>
-                <transition-stub name="fade">
-                  <div class="loading-overlay is-active">
-                    <div class="loading-background"></div>
-                    <div class="loading-icon"></div>
-                  </div>
-                </transition-stub>
-              </div>
-              <!---->
-            </div>
+          <!---->
+          <div class="content has-text-grey has-text-centered">
+            <p>No Data</p>
           </div>
         </div>
       </div>
@@ -114,111 +370,276 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test r
     <transition-stub name="slide">
       <div id="Score Status" class="collapse-content" style="display: none;">
         <div class="card-content">
-          <div class="table-container">
-            <div class="b-table">
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <div class="table-wrapper">
-                <table class="table is-striped is-narrow">
-                  <thead>
-                    <tr>
-                      <!---->
-                      <!---->
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AAA <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> D+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> D <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> E <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <!---->
-                    </tr>
-                    <!---->
-                    <!---->
-                  </thead>
-                  <tbody>
-                    <tr class="is-empty">
-                      <td colspan="17">
-                        <section class="section">
-                          <div class="content has-text-grey has-text-centered">
-                            <p>No Data</p>
-                          </div>
-                        </section>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <!---->
-                </table>
-                <transition-stub name="fade">
-                  <div class="loading-overlay is-active">
-                    <div class="loading-background"></div>
-                    <div class="loading-icon"></div>
-                  </div>
-                </transition-stub>
-              </div>
-              <!---->
+          <!---->
+          <div class="content has-text-grey has-text-centered">
+            <p>No Data</p>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
+exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test renders graphs correctly 1`] = `
+<section>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="グルーブレーダー" class="card-header is-primary">
+        <div class="card-header-title">グルーブレーダー</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="グルーブレーダー" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <grooveradar-stub chart="[object Object]" class="radar"></grooveradar-stub>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="クリア状況" class="card-header is-primary">
+        <div class="card-header-title">クリア状況</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="クリア状況" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <!---->
+          <div class="carousel">
+            <!---->
+            <div class="carousel-items">
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="">
+                  <clearstatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <clearstatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                </div>
+              </transition-stub>
+              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
             </div>
+            <!---->
+            <!---->
+            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <!---->
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="スコア状況" class="card-header is-primary">
+        <div class="card-header-title">スコア状況</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="スコア状況" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <!---->
+          <div class="carousel">
+            <!---->
+            <div class="carousel-items">
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="">
+                  <scorestatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <transition-stub name="slide-next">
+                <div class="carousel-item" style="display: none;">
+                  <scorestatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                </div>
+              </transition-stub>
+              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+            </div>
+            <!---->
+            <!---->
+            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <!---->
           </div>
         </div>
       </div>
@@ -228,6 +649,65 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test r
 `;
 
 exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test renders loading state before fetch() 1`] = `
+<section>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="グルーブレーダー" class="card-header is-primary">
+        <div class="card-header-title">グルーブレーダー</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="グルーブレーダー" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="クリア状況" class="card-header is-primary">
+        <div class="card-header-title">クリア状況</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="クリア状況" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+          <div class="content has-text-grey has-text-centered">
+            <p>データがありません</p>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+  <div class="collapse card">
+    <div class="collapse-trigger">
+      <header role="button" aria-controls="スコア状況" class="card-header is-primary">
+        <div class="card-header-title">スコア状況</div> <a class="card-header-icon"><span class="icon"><i class="mdi mdi-menu-up mdi-24px"></i></span></a>
+      </header>
+    </div>
+    <transition-stub name="slide">
+      <div id="スコア状況" class="collapse-content" style="display: none;">
+        <div class="card-content">
+          <transition-stub name="fade">
+            <!---->
+          </transition-stub>
+          <div class="content has-text-grey has-text-centered">
+            <p>データがありません</p>
+          </div>
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
+exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test renders no data if empty 1`] = `
 <section>
   <div class="collapse card">
     <div class="collapse-trigger">
@@ -254,79 +734,9 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test r
     <transition-stub name="slide">
       <div id="クリア状況" class="collapse-content" style="display: none;">
         <div class="card-content">
-          <div class="table-container">
-            <div class="b-table">
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <div class="table-wrapper">
-                <table class="table is-striped is-narrow">
-                  <thead>
-                    <tr>
-                      <!---->
-                      <!---->
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> MFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> PFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> GreatFC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> FC <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Life4 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Clear <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Assisted <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Failed <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <!---->
-                    </tr>
-                    <!---->
-                    <!---->
-                  </thead>
-                  <tbody>
-                    <tr class="is-empty">
-                      <td colspan="9">
-                        <section class="section">
-                          <div class="content has-text-grey has-text-centered">
-                            <p>データがありません</p>
-                          </div>
-                        </section>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <!---->
-                </table>
-                <transition-stub name="fade">
-                  <div class="loading-overlay is-active">
-                    <div class="loading-background"></div>
-                    <div class="loading-icon"></div>
-                  </div>
-                </transition-stub>
-              </div>
-              <!---->
-            </div>
+          <!---->
+          <div class="content has-text-grey has-text-centered">
+            <p>データがありません</p>
           </div>
         </div>
       </div>
@@ -341,111 +751,9 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test r
     <transition-stub name="slide">
       <div id="スコア状況" class="collapse-content" style="display: none;">
         <div class="card-content">
-          <div class="table-container">
-            <div class="b-table">
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <!---->
-              <div class="table-wrapper">
-                <table class="table is-striped is-narrow">
-                  <thead>
-                    <tr>
-                      <!---->
-                      <!---->
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> Lv <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AAA <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> AA- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> A- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> B- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> C- <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> D+ <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> D <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <th class="">
-                        <div class="th-wrap"><span class="is-relative"> E <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-                      </th>
-                      <!---->
-                    </tr>
-                    <!---->
-                    <!---->
-                  </thead>
-                  <tbody>
-                    <tr class="is-empty">
-                      <td colspan="17">
-                        <section class="section">
-                          <div class="content has-text-grey has-text-centered">
-                            <p>データがありません</p>
-                          </div>
-                        </section>
-                      </td>
-                    </tr>
-                  </tbody>
-                  <!---->
-                </table>
-                <transition-stub name="fade">
-                  <div class="loading-overlay is-active">
-                    <div class="loading-background"></div>
-                    <div class="loading-icon"></div>
-                  </div>
-                </transition-stub>
-              </div>
-              <!---->
-            </div>
+          <!---->
+          <div class="content has-text-grey has-text-centered">
+            <p>データがありません</p>
           </div>
         </div>
       </div>
