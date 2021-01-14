@@ -14,6 +14,6 @@ export default class ReactiveDoughnut extends Mixins(
   readonly chartOptions!: ChartOptions
 
   mounted() {
-    this.renderChart(this.chartData)
+    this.renderChart(this.chartData, this.chartOptions)
   }
 }

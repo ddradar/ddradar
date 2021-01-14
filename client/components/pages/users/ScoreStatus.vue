@@ -21,7 +21,6 @@ export default class ScoreStatusComponent extends Vue {
   get chartOptions(): ChartOptions {
     return {
       title: { display: !!this.title, text: this.title ?? '' },
-      legend: { display: false },
       responsive: true,
     }
   }

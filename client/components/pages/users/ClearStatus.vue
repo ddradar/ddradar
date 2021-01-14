@@ -1,5 +1,7 @@
 <template>
-  <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
+  <section>
+    <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
+  </section>
 </template>
 
 <script lang="ts">
@@ -18,24 +20,28 @@ export default class ClearStatusComponent extends Vue {
   @Prop({ type: Array, default: () => [] })
   readonly statuses!: Pick<ClearStatus, 'clearLamp' | 'count'>[]
 
+  get sortedStatuses() {
+    return this.statuses
+      .filter(d => d.count)
+      .sort((l, r) => r.clearLamp - l.clearLamp) // ORDER BY clearLamp DESC
+  }
+
   get chartOptions(): ChartOptions {
     return {
       title: { display: !!this.title, text: this.title ?? '' },
-      legend: { display: false },
       responsive: true,
     }
   }
 
   get chartData(): ChartData {
-    const sorted = this.statuses.sort((l, r) => r.clearLamp - l.clearLamp) // ORDER BY clearLamp DESC
     return {
-      labels: sorted.map(
+      labels: this.sortedStatuses.map(
         d => clearLampMap.get(d.clearLamp as ClearLamp) ?? 'NoPlay'
       ),
       datasets: [
         {
-          data: sorted.map(d => d.count),
-          backgroundColor: sorted.map(d =>
+          data: this.sortedStatuses.map(d => d.count),
+          backgroundColor: this.sortedStatuses.map(d =>
             this.getBackgroundColor(d.clearLamp)
           ),
         },
