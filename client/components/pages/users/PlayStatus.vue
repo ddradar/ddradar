@@ -142,7 +142,7 @@ export default class PlayStatusComponent extends Vue {
       this.clears = [
         {
           level: 0,
-          title: 'ALL LEVEL',
+          title: 'ALL',
           statuses: totalClear,
         },
         ...clearStatuses
@@ -153,7 +153,7 @@ export default class PlayStatusComponent extends Vue {
             } else {
               p.push({
                 level: c.level,
-                title: `LEVEL ${c.level}`,
+                title: `${c.level}`,
                 statuses: [{ clearLamp: c.clearLamp, count: c.count }],
               })
             }
@@ -164,7 +164,7 @@ export default class PlayStatusComponent extends Vue {
       this.scores = [
         {
           level: 0,
-          title: 'ALL LEVEL',
+          title: 'ALL',
           statuses: totalScore,
         },
         ...scoreStatuses
@@ -175,7 +175,7 @@ export default class PlayStatusComponent extends Vue {
             } else {
               p.push({
                 level: c.level,
-                title: `LEVEL ${c.level}`,
+                title: `${c.level}`,
                 statuses: [{ rank: c.rank, count: c.count }],
               })
             }

@@ -31,8 +31,13 @@ export default class ScoreStatusComponent extends Vue {
 
   get chartOptions(): ChartOptions {
     return {
-      title: { display: !!this.title, text: this.title ?? '' },
       responsive: true,
+      elements: {
+        // @ts-ignore
+        center: {
+          text: this.title ?? '',
+        },
+      },
     }
   }
 
@@ -44,7 +49,9 @@ export default class ScoreStatusComponent extends Vue {
       datasets: [
         {
           data: this.sortedStatuses.map(d => d.count),
-          backgroundColor: this.sortedStatuses.map(d => this.getBackgroundColor(d.rank)),
+          backgroundColor: this.sortedStatuses.map(d =>
+            this.getBackgroundColor(d.rank)
+          ),
         },
       ],
     }

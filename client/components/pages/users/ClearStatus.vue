@@ -28,8 +28,13 @@ export default class ClearStatusComponent extends Vue {
 
   get chartOptions(): ChartOptions {
     return {
-      title: { display: !!this.title, text: this.title ?? '' },
       responsive: true,
+      elements: {
+        // @ts-ignore
+        center: {
+          text: this.title ?? '',
+        },
+      },
     }
   }
 
@@ -54,7 +59,7 @@ export default class ClearStatusComponent extends Vue {
       [-1, 'hsl(0, 0%, 71%)'], // grey-light
       [0, 'hsl(0, 0%, 29%)'], // grey-dark
       [1, 'hsl(271, 100%, 71%)'], // purple
-      [2, 'hsl(14, 100%, 53%)'], // orange
+      [2, '#ff8c00'], // orange
       [3, 'hsl(348, 86%, 61%)'], // red
       [4, 'hsl(204, 71%, 53%)'], // cyan
       [5, 'hsl(141, 53%, 53%)'], // green
