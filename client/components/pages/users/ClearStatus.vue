@@ -27,14 +27,15 @@ export default class ClearStatusComponent extends Vue {
   }
 
   get chartData(): ChartData {
+    const sorted = this.statuses.sort((l, r) => r.clearLamp - l.clearLamp) // ORDER BY clearLamp DESC
     return {
-      labels: this.statuses.map(
+      labels: sorted.map(
         d => clearLampMap.get(d.clearLamp as ClearLamp) ?? 'NoPlay'
       ),
       datasets: [
         {
-          data: this.statuses.map(d => d.count),
-          backgroundColor: this.statuses.map(d =>
+          data: sorted.map(d => d.count),
+          backgroundColor: sorted.map(d =>
             this.getBackgroundColor(d.clearLamp)
           ),
         },

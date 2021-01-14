@@ -27,13 +27,20 @@ export default class ScoreStatusComponent extends Vue {
   }
 
   get chartData(): ChartData {
+    const levels: string[] = [...danceLevelSet]
+    const sorted = this.statuses.sort(
+      (l, r) =>
+        levels.findIndex(d => d === r.rank) -
+        levels.findIndex(d => d === l.rank)
+    ) // ORDER BY rank DESC
+
     return {
-      labels: this.statuses.map(d =>
+      labels: sorted.map(d =>
         danceLevelSet.has(d.rank as DanceLevel) ? d.rank : 'NoPlay'
       ),
       datasets: [
         {
-          data: this.statuses.map(d => d.count),
+          data: sorted.map(d => d.count),
         },
       ],
     }
