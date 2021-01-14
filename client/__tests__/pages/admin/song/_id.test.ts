@@ -16,6 +16,7 @@ jest.mock('~/utils/popup')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 const songInfo = { ...testSongData, nameIndex: undefined }
+delete songInfo.nameIndex
 
 describe('pages/admin/song/_id.vue', () => {
   const data = () => ({ ...songInfo })
