@@ -31,109 +31,209 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test r
             <div class="carousel-items">
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="">
-                  <clearstatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="ALL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
-              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+              <div class="carousel-arrow"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
             </div>
             <!---->
             <!---->
-            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <div class="carousel-indicator"><a class="indicator-item is-active"><button type="button" disabled="disabled" class="button is-small">
+                  <!----><span>
+            ALL
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            1
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            2
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            3
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            4
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            5
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            6
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            7
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            8
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            9
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            10
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            11
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            12
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            13
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            14
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            15
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            16
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            17
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            18
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            19
+          </span>
+                  <!---->
+                </button></a></div>
             <!---->
           </div>
         </div>
@@ -155,109 +255,209 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "en" } snapshot test r
             <div class="carousel-items">
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="">
-                  <scorestatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="ALL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
-              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+              <div class="carousel-arrow"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
             </div>
             <!---->
             <!---->
-            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <div class="carousel-indicator"><a class="indicator-item is-active"><button type="button" disabled="disabled" class="button is-small">
+                  <!----><span>
+            ALL
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            1
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            2
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            3
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            4
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            5
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            6
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            7
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            8
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            9
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            10
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            11
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            12
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            13
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            14
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            15
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            16
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            17
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            18
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            19
+          </span>
+                  <!---->
+                </button></a></div>
             <!---->
           </div>
         </div>
@@ -412,109 +612,209 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test r
             <div class="carousel-items">
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="">
-                  <clearstatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="ALL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <clearstatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
+                  <clearstatus-stub title="19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></clearstatus-stub>
                 </div>
               </transition-stub>
-              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+              <div class="carousel-arrow"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
             </div>
             <!---->
             <!---->
-            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <div class="carousel-indicator"><a class="indicator-item is-active"><button type="button" disabled="disabled" class="button is-small">
+                  <!----><span>
+            ALL
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            1
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            2
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            3
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            4
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            5
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            6
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            7
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            8
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            9
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            10
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            11
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            12
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            13
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            14
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            15
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            16
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            17
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            18
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            19
+          </span>
+                  <!---->
+                </button></a></div>
             <!---->
           </div>
         </div>
@@ -536,109 +836,209 @@ exports[`/components/pages/users/PlayStatus.vue { locale: "ja" } snapshot test r
             <div class="carousel-items">
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="">
-                  <scorestatus-stub title="ALL LEVEL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="ALL" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="1" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="2" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="3" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="4" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="5" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="6" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="7" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="8" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="9" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="10" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="11" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="12" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="13" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="14" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="15" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="16" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="17" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="18" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
               <transition-stub name="slide-next">
                 <div class="carousel-item" style="display: none;">
-                  <scorestatus-stub title="LEVEL 19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
+                  <scorestatus-stub title="19" statuses="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]"></scorestatus-stub>
                 </div>
               </transition-stub>
-              <div class="carousel-arrow is-hovered"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
+              <div class="carousel-arrow"><span class="icon has-icons-left"><i class="mdi mdi-chevron-left mdi-24px"></i></span><span class="icon has-icons-right"><i class="mdi mdi-chevron-right mdi-24px"></i></span></div>
             </div>
             <!---->
             <!---->
-            <div class="carousel-indicator is-inside is-bottom"><a class="indicator-item is-active"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a><a class="indicator-item"><span class="indicator-style is-dots"></span></a></div>
+            <div class="carousel-indicator"><a class="indicator-item is-active"><button type="button" disabled="disabled" class="button is-small">
+                  <!----><span>
+            ALL
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            1
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            2
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            3
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            4
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            5
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            6
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            7
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            8
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            9
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            10
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            11
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            12
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            13
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            14
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            15
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            16
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            17
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            18
+          </span>
+                  <!---->
+                </button></a><a class="indicator-item"><button type="button" class="button is-small">
+                  <!----><span>
+            19
+          </span>
+                  <!---->
+                </button></a></div>
             <!---->
           </div>
         </div>

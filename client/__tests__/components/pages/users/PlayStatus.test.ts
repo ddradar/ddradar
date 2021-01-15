@@ -27,7 +27,7 @@ describe('/components/pages/users/PlayStatus.vue', () => {
   }
   const clears = [...Array(20).keys()].map(i => ({
     level: i,
-    title: i === 0 ? 'ALL LEVEL' : `LEVEL ${i}`,
+    title: i === 0 ? 'ALL' : `${i}`,
     statuses: [...clearLampMap.keys(), -1 as const].map(clearLamp => ({
       clearLamp,
       count: (clearLamp + 2) * 10,
@@ -35,7 +35,7 @@ describe('/components/pages/users/PlayStatus.vue', () => {
   }))
   const scores = [...Array(20).keys()].map(i => ({
     level: i,
-    title: i === 0 ? 'ALL LEVEL' : `LEVEL ${i}`,
+    title: i === 0 ? 'ALL' : `${i}`,
     statuses: [...danceLevelSet].map((rank, j) => ({
       rank,
       count: (j + 1) * 10,

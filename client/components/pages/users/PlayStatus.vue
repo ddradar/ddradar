@@ -16,10 +16,21 @@
           v-if="clears && clears.length"
           v-model="selected"
           :autoplay="false"
+          :arrow-hover="false"
+          :indicator-inside="false"
         >
           <b-carousel-item v-for="c in clears" :key="c.level">
             <clear-status :title="c.title" :statuses="c.statuses" />
           </b-carousel-item>
+          <template #indicators="props">
+            <b-button
+              v-if="clears"
+              size="is-small"
+              :disabled="props.i === selected"
+            >
+              {{ clears[props.i].title }}
+            </b-button>
+          </template>
         </b-carousel>
         <div v-else class="content has-text-grey has-text-centered">
           <p>{{ $t('noData') }}</p>
@@ -33,10 +44,21 @@
           v-if="scores && scores.length"
           v-model="selected"
           :autoplay="false"
+          :arrow-hover="false"
+          :indicator-inside="false"
         >
           <b-carousel-item v-for="c in scores" :key="c.level">
             <score-status :title="c.title" :statuses="c.statuses" />
           </b-carousel-item>
+          <template #indicators="props">
+            <b-button
+              v-if="scores"
+              size="is-small"
+              :disabled="props.i === selected"
+            >
+              {{ scores[props.i].title }}
+            </b-button>
+          </template>
         </b-carousel>
         <div v-else class="content has-text-grey has-text-centered">
           <p>{{ $t('noData') }}</p>

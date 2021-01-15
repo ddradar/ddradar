@@ -73,7 +73,7 @@ export default class ScoreStatusComponent extends Vue {
       ['A', 'hsl(141, 53%, 67%)'],
       ['A+', 'hsl(141, 53%, 53%)'], // green
       ['AA-', 'hsl(48, 100%, 89%)'],
-      ['AA+', 'hsl(48, 100%, 78%)'],
+      ['AA', 'hsl(48, 100%, 78%)'],
       ['AA+', 'hsl(48, 100%, 67%)'], // yellow
       ['AAA', 'hsl(177, 97%, 74%)'], // light-blue
     ])
