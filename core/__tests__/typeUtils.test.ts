@@ -19,7 +19,8 @@ describe('./typeUtils.ts', () => {
       '({ foo: %p }, "foo", "bar") returns false',
       (foo: unknown) => expect(hasProperty({ foo }, 'foo', 'bar')).toBe(false)
     )
-    test.each([
+
+    const testData = [
       [undefined, undefined],
       [null, null],
       [true, false],
@@ -28,21 +29,13 @@ describe('./typeUtils.ts', () => {
       [{}, {}],
       [[], []],
       [{ foo1: 'bar' }, { foo2: 'bar' }],
-    ])(
+    ] as const
+    test.each(testData)(
       '({ foo: %p, bar: %p }, "foo", "bar") returns true',
       (foo: unknown, bar: unknown) =>
         expect(hasProperty({ foo, bar }, 'foo', 'bar')).toBe(true)
     )
-    test.each([
-      [undefined, undefined],
-      [null, null],
-      [true, false],
-      [1.5, NaN],
-      ['foo', 'bar'],
-      [{}, {}],
-      [[], []],
-      [{ foo1: 'bar' }, { foo2: 'bar' }],
-    ])(
+    test.each(testData)(
       '({ foo: %p, bar: %p }, "foo") returns true',
       (foo: unknown, bar: unknown) =>
         expect(hasProperty({ foo, bar }, 'foo')).toBe(true)
