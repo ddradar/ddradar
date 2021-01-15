@@ -4,11 +4,25 @@ import { mocked } from 'ts-jest/utils'
 import { testSongData } from '../core/__tests__/data'
 import type { ScoreSchema } from '../core/db/scores'
 import { getContainer } from '../db'
+import { fetchTotalChartCount } from '../db/songs'
 import updateScores from '.'
 
 jest.mock('../db')
+jest.mock('../db/songs')
 
 describe('/updateScoresSongInfo/index.ts', () => {
+  const song = { ...testSongData, skillAttackId: 1 }
+  const oldCounts = [...Array(19 * 2).keys()].map(i => ({
+    id: `id-${i}`, // id-0, id-1, ..., id-37
+    playStyle: ((i % 2) + 1) as 1 | 2,
+    level: (i % 19) + 1, // 1-19
+    count: 1000,
+  }))
+  const newCounts = oldCounts.map(d => ({
+    ...d,
+    count: 2000,
+  }))
+
   const context = {
     log: {
       info: jest.fn(),
@@ -24,26 +38,16 @@ describe('/updateScoresSongInfo/index.ts', () => {
       }),
     },
   }
-  beforeAll(() =>
+  beforeAll(() => {
     mocked(getContainer).mockReturnValue((container as unknown) as Container)
-  )
+    mocked(fetchTotalChartCount).mockResolvedValue(newCounts)
+  })
   beforeEach(() => {
     context.log.info.mockClear()
     context.log.warn.mockClear()
     context.log.error.mockClear()
     resources = []
   })
-  const song = { ...testSongData, skillAttackId: 1 }
-  const oldCounts = [...Array(19 * 2).keys()].map(i => ({
-    id: `id-${i}`, // id-0, id-1, ..., id-37
-    playStyle: ((i % 2) + 1) as 1 | 2,
-    level: (i % 19) + 1, // 1-19
-    count: 1000,
-  }))
-  const newCounts = oldCounts.map(d => ({
-    ...d,
-    count: 2000,
-  }))
   const validScore: ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
@@ -61,7 +65,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
 
   test('returns { scores: [] } if songs is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [], oldCounts, newCounts)
+    const result = await updateScores(context, [], oldCounts)
 
     // Assert
     expect(result).toStrictEqual({ scores: [], details: newCounts })
@@ -69,7 +73,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
 
   test('returns { scores: [] } with log.info if scores is empty', async () => {
     // Arrange - Act
-    const result = await updateScores(context, [song], [], newCounts)
+    const result = await updateScores(context, [song], [])
 
     // Assert
     expect(result).toStrictEqual({
@@ -86,7 +90,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = [validScore]
 
     // Act
-    const result = await updateScores(context, [song], oldCounts, newCounts)
+    const result = await updateScores(context, [song], oldCounts)
 
     // Assert
     expect(result).toStrictEqual({ scores: [], details: newCounts })
@@ -101,7 +105,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = [score]
 
     // Act
-    const result = await updateScores(context, [song], oldCounts, newCounts)
+    const result = await updateScores(context, [song], oldCounts)
 
     // Assert
     expect(result).toStrictEqual({ scores: [], details: newCounts })
@@ -118,7 +122,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     resources = [score]
 
     // Act
-    const result = await updateScores(context, [song], oldCounts, newCounts)
+    const result = await updateScores(context, [song], oldCounts)
 
     // Assert
     expect(result).toStrictEqual({ scores: [validScore], details: newCounts })
