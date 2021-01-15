@@ -1,9 +1,9 @@
-import Chart from 'chart.js'
-import { ChartData, ChartOptions } from 'chart.js'
+import { ChartData, ChartOptions, pluginService } from 'chart.js'
 import { Component, mixins as Mixins, Prop } from 'nuxt-property-decorator'
 import { Doughnut, mixins } from 'vue-chartjs'
 
-Chart.pluginService.register({
+/* istanbul ignore next */
+pluginService.register({
   beforeDraw(chart) {
     // @ts-ignore
     if (chart.config.options?.elements?.center) {

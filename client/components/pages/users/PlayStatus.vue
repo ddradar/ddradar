@@ -18,6 +18,7 @@
           :autoplay="false"
           :arrow-hover="false"
           :indicator-inside="false"
+          indicator-custom
         >
           <b-carousel-item v-for="c in clears" :key="c.level">
             <clear-status :title="c.title" :statuses="c.statuses" />
@@ -46,6 +47,7 @@
           :autoplay="false"
           :arrow-hover="false"
           :indicator-inside="false"
+          indicator-custom
         >
           <b-carousel-item v-for="c in scores" :key="c.level">
             <score-status :title="c.title" :statuses="c.statuses" />
