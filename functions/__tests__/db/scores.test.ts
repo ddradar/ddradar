@@ -1,9 +1,14 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
 import { mocked } from 'ts-jest/utils'
 
-import type { ScoreSchema } from '../../core/db/scores'
+import type { ClearLamp, ScoreSchema } from '../../core/db/scores'
+import { ClearStatusSchema, ScoreStatusSchema } from '../../core/db/userDetails'
 import { getContainer } from '../../db'
-import { fetchScore } from '../../db/scores'
+import {
+  fetchScore,
+  fetchSummeryClearLampCount,
+  fetchSummeryRankCount,
+} from '../../db/scores'
 
 jest.mock('../../db')
 
@@ -54,6 +59,76 @@ describe('/db/scores.ts', () => {
       // Assert
       expect(result).toBeNull()
       expect(container.items.query).toBeCalled()
+    })
+  })
+  describe('fetchSummeryClearLampCount', () => {
+    let resources: ClearStatusSchema[] = []
+    const container = {
+      items: {
+        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
+      },
+    }
+    beforeAll(() =>
+      mocked(getContainer).mockReturnValue((container as unknown) as Container)
+    )
+    beforeEach(() => {
+      container.items.query.mockClear()
+      resources = []
+    })
+    test('returns ClearStatusSchema[]', async () => {
+      // Arrange
+      const length = 19 * 8
+      resources.push(
+        ...[...Array(length).keys()].map(i => ({
+          userId: 'foo',
+          type: 'clear' as const,
+          playStyle: ((i % 2) + 1) as 1 | 2,
+          level: (i % 19) + 1,
+          clearLamp: (i % 8) as ClearLamp,
+          count: 10,
+        }))
+      )
+
+      // Act
+      const result = await fetchSummeryClearLampCount()
+
+      // Assert
+      expect(result).toHaveLength(length)
+    })
+  })
+  describe('fetchSummeryRankCount', () => {
+    let resources: ScoreStatusSchema[] = []
+    const container = {
+      items: {
+        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
+      },
+    }
+    beforeAll(() =>
+      mocked(getContainer).mockReturnValue((container as unknown) as Container)
+    )
+    beforeEach(() => {
+      container.items.query.mockClear()
+      resources = []
+    })
+    test('returns ClearStatusSchema[]', async () => {
+      // Arrange
+      const length = 19 * 8
+      resources.push(
+        ...[...Array(length).keys()].map(i => ({
+          userId: 'foo',
+          type: 'score' as const,
+          playStyle: ((i % 2) + 1) as 1 | 2,
+          level: (i % 19) + 1,
+          rank: 'AA' as const,
+          count: 10,
+        }))
+      )
+
+      // Act
+      const result = await fetchSummeryRankCount()
+
+      // Assert
+      expect(result).toHaveLength(length)
     })
   })
 })
