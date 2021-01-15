@@ -66,7 +66,7 @@ export async function fetchSummeryClearLampCount(): Promise<
   const { resources } = await container.items
     .query<ClearStatusSchema>(
       'SELECT c.userId, "clear" AS type, c.playStyle, c.level, c.clearLamp, COUNT(1) AS count FROM c ' +
-        'WHERE IS_DEFINED(c.radar) ' +
+        'WHERE IS_DEFINED(c.radar) AND NOT IS_DEFINED(c.ttl) ' +
         'GROUP BY c.userId, c.playStyle, c.level, c.clearLamp'
     )
     .fetchAll()
@@ -80,7 +80,7 @@ export async function fetchSummeryRankCount(): Promise<ScoreStatusSchema[]> {
   const { resources } = await container.items
     .query<ScoreStatusSchema>(
       'SELECT c.userId, "score" AS type, c.playStyle, c.level, c.rank, COUNT(1) AS count FROM c ' +
-        'WHERE IS_DEFINED(c.radar) ' +
+        'WHERE IS_DEFINED(c.radar) NOT IS_DEFINED(c.ttl) ' +
         'GROUP BY c.userId, c.playStyle, c.level, c.rank'
     )
     .fetchAll()
