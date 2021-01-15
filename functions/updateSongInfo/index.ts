@@ -5,6 +5,7 @@ import type { ScoreSchema } from '../core/db/scores'
 import type { SongSchema } from '../core/db/songs'
 import type { ClearStatusSchema } from '../core/db/userDetails'
 import { getContainer } from '../db'
+import { fetchTotalChartCount } from '../db/songs'
 
 type TotalCount = { id?: string } & Pick<
   ClearStatusSchema,
@@ -23,8 +24,7 @@ type UpdateSongResult = {
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
   songs: SongSchema[],
-  oldTotalCounts: Required<Omit<TotalCount, 'count'>>[],
-  newTotalCounts: Omit<TotalCount, 'id'>[]
+  oldTotalCounts: Required<Omit<TotalCount, 'count'>>[]
 ): Promise<UpdateSongResult> {
   const scores: ScoreSchema[] = []
 
@@ -57,7 +57,8 @@ export default async function (
     }
   }
 
-  const details: TotalCount[] = newTotalCounts.map(r => ({
+  const newTotalCounts = await fetchTotalChartCount()
+  const details = newTotalCounts.map(r => ({
     ...r,
     id: oldTotalCounts.find(
       d => d.playStyle === r.playStyle && d.level === r.level
