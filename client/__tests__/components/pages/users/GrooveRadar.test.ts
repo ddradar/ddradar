@@ -12,9 +12,17 @@ describe('/components/pages/users/GrooveRadar.vue', () => {
         freeze: 200,
         chaos: 140,
       }
+
+      // Act
       const wrapper = mount(GrooveRadar, { propsData: { chart } })
       await wrapper.vm.$nextTick()
-      expect(wrapper).toMatchSnapshot()
+
+      // Assert
+      const canvas = wrapper.element.getElementsByTagName('canvas')[0]
+      const ctx = canvas.getContext('2d')
+      // @ts-ignore
+      const events = ctx.__getEvents()
+      expect(events).toMatchSnapshot()
     })
   })
 

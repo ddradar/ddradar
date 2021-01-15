@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/users/GrooveRadar.vue snapshot test renders correctly 1`] = `
+exports[`/components/pages/users/ScoreStatus.vue snapshot test renders correctly 1`] = `
 Array [
   Object {
     "props": Object {
-      "value": "10px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
+      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
     },
     "transform": Array [
       1,
@@ -18,7 +18,35 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "STREAM",
+      "value": "left",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textAlign",
+  },
+  Object {
+    "props": Object {
+      "value": "middle",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "textBaseline",
+  },
+  Object {
+    "props": Object {
+      "text": "AAA",
     },
     "transform": Array [
       1,
@@ -32,7 +60,7 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "CHAOS",
+      "text": "AA+",
     },
     "transform": Array [
       1,
@@ -46,7 +74,7 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "FREEZE",
+      "text": "AA",
     },
     "transform": Array [
       1,
@@ -60,7 +88,7 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "AIR",
+      "text": "AA-",
     },
     "transform": Array [
       1,
@@ -74,7 +102,7 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "VOLTAGE",
+      "text": "A+",
     },
     "transform": Array [
       1,
@@ -86,6 +114,165 @@ Array [
     ],
     "type": "measureText",
   },
+  Object {
+    "props": Object {
+      "text": "A",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "A-",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "B+",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "B",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "B-",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "C+",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "C",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "C-",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "D+",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "D",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+  Object {
+    "props": Object {
+      "text": "NoPlay",
+    },
+    "transform": Array [
+      1,
+      0,
+      0,
+      1,
+      0,
+      0,
+    ],
+    "type": "measureText",
+  },
+]
+`;
+
+exports[`/components/pages/users/ScoreStatus.vue snapshot test renders empty 1`] = `
+Array [
   Object {
     "props": Object {
       "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
@@ -102,7 +289,7 @@ Array [
   },
   Object {
     "props": Object {
-      "text": "0",
+      "value": "left",
     },
     "transform": Array [
       1,
@@ -112,11 +299,11 @@ Array [
       0,
       0,
     ],
-    "type": "measureText",
+    "type": "textAlign",
   },
   Object {
     "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
+      "value": "middle",
     },
     "transform": Array [
       1,
@@ -126,273 +313,7 @@ Array [
       0,
       0,
     ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "20",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "40",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "60",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "80",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "100",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "120",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "140",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "160",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "180",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
-  },
-  Object {
-    "props": Object {
-      "value": "12px \\"Helvetica Neue\\", 'Helvetica', 'Arial', sans-serif",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "font",
-  },
-  Object {
-    "props": Object {
-      "text": "200",
-    },
-    "transform": Array [
-      1,
-      0,
-      0,
-      1,
-      0,
-      0,
-    ],
-    "type": "measureText",
+    "type": "textBaseline",
   },
 ]
 `;
