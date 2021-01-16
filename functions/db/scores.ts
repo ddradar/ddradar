@@ -2,6 +2,10 @@ import type { ItemDefinition } from '@azure/cosmos'
 
 import type { ScoreSchema } from '../core/db/scores'
 import type { Difficulty, PlayStyle } from '../core/db/songs'
+import type {
+  ClearStatusSchema,
+  ScoreStatusSchema,
+} from '../core/db/userDetails'
 import { getContainer } from '.'
 
 export async function fetchScore(
@@ -52,4 +56,34 @@ export async function fetchScore(
     .fetchNext()
 
   return resources[0] ?? null
+}
+
+export async function fetchSummeryClearLampCount(): Promise<
+  ClearStatusSchema[]
+> {
+  const container = getContainer('Scores')
+
+  const { resources } = await container.items
+    .query<ClearStatusSchema>(
+      'SELECT c.userId, "clear" AS type, c.playStyle, c.level, c.clearLamp, COUNT(1) AS count FROM c ' +
+        'WHERE IS_DEFINED(c.radar) AND NOT IS_DEFINED(c.ttl) ' +
+        'GROUP BY c.userId, c.playStyle, c.level, c.clearLamp'
+    )
+    .fetchAll()
+
+  return resources
+}
+
+export async function fetchSummeryRankCount(): Promise<ScoreStatusSchema[]> {
+  const container = getContainer('Scores')
+
+  const { resources } = await container.items
+    .query<ScoreStatusSchema>(
+      'SELECT c.userId, "score" AS type, c.playStyle, c.level, c.rank, COUNT(1) AS count FROM c ' +
+        'WHERE IS_DEFINED(c.radar) NOT IS_DEFINED(c.ttl) ' +
+        'GROUP BY c.userId, c.playStyle, c.level, c.rank'
+    )
+    .fetchAll()
+
+  return resources
 }

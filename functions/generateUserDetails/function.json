@@ -1,0 +1,28 @@
+{
+  "bindings": [
+    {
+      "name": "launchTimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 0 5 * * *"
+    },
+    {
+      "name": "oldSummeries",
+      "type": "cosmosDB",
+      "direction": "in",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails",
+      "sqlQuery": "SELECT * FROM c WHERE c.userId <> '0' AND c.type IN ('clear', 'score')"
+    },
+    {
+      "name": "$return",
+      "type": "cosmosDB",
+      "direction": "out",
+      "connectionStringSetting": "COSMOS_DB_CONN",
+      "databaseName": "DDRadar",
+      "collectionName": "UserDetails"
+    }
+  ],
+  "scriptFile": "../dist/generateUserDetails/index.js"
+}
