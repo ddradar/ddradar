@@ -41,7 +41,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
       isArea: true,
     },
     {
-      userId: publicUser.id,
+      userId: '1user',
       userName: publicUser.name,
       clearLamp: 6,
       score: 999950,

@@ -209,13 +209,13 @@ export default class OrderDetailComponent extends Vue {
         fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
-        const id = parseInt(s.userId, 10)
-        if (!isNaN(id) && (areaCodeSet as ReadonlySet<number>).has(id)) {
+        const areaCodes = [...areaCodeSet].map(i => `${i}`)
+        if (areaCodes.includes(s.userId)) {
           return {
             ...s,
             isArea: true,
             userName: this.$t('list.top', {
-              area: this.$t(`area.${id}`),
+              area: this.$t(`area.${s.userId}`),
             }) as string,
           }
         }
