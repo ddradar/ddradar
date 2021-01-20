@@ -59,7 +59,7 @@ export default class SongByNamePage extends Vue {
   }
 
   get nameIndexList() {
-    return nameIndexMap.values()
+    return [...nameIndexMap.values()]
   }
 }
 </script>

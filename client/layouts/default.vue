@@ -255,7 +255,7 @@ export default class DefaultLayout extends Vue {
   }
 
   get nameIndexList() {
-    return nameIndexMap.values()
+    return [...nameIndexMap.values()]
   }
 
   get selectedLocale() {
