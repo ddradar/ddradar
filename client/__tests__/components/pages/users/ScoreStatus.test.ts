@@ -21,9 +21,7 @@ describe('/components/pages/users/ScoreStatus.vue', () => {
       // Assert
       const canvas = wrapper.element.getElementsByTagName('canvas')[0]
       const ctx = canvas.getContext('2d')
-      // @ts-ignore
-      const events = ctx.__getEvents()
-      expect(events).toMatchSnapshot()
+      expect(ctx).toMatchSnapshot()
     })
     test('renders empty', async () => {
       // Arrange - Act
@@ -33,9 +31,7 @@ describe('/components/pages/users/ScoreStatus.vue', () => {
       // Assert
       const canvas = wrapper.element.getElementsByTagName('canvas')[0]
       const ctx = canvas.getContext('2d')
-      // @ts-ignore
-      const events = ctx.__getEvents()
-      expect(events).toMatchSnapshot()
+      expect(ctx).toMatchSnapshot()
     })
   })
 })
