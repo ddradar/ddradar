@@ -1,4 +1,6 @@
 import type { UserInfo } from '@core/api/user'
+import { ClearLamp, clearLampMap, danceLevelSet } from '@core/db/scores'
+import { GrooveRadar } from '@core/db/songs'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
@@ -10,7 +12,12 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getUserInfo } from '~/api/user'
+import {
+  getClearStatus,
+  getGrooveRadar,
+  getScoreStatus,
+  getUserInfo,
+} from '~/api/user'
 import UserPage from '~/pages/users/_id.vue'
 
 jest.mock('~/api/user')
@@ -26,13 +33,46 @@ describe('/users/_id.vue', () => {
     area: 13,
     code: 12345678,
   }
+  const radar: GrooveRadar = {
+    stream: 120,
+    voltage: 102,
+    air: 160,
+    freeze: 200,
+    chaos: 103,
+  }
+  const clears = [...Array(19).keys()].map(i => ({
+    level: i + 1,
+    title: `${i + 1}`,
+    statuses: [...clearLampMap.keys(), -1 as const].map(clearLamp => ({
+      clearLamp,
+      count: (clearLamp + 2) * 10,
+    })),
+  }))
+  const scores = [...Array(19).keys()].map(i => ({
+    level: i + 1,
+    title: `${i + 1}`,
+    statuses: [...danceLevelSet].map((rank, j) => ({
+      rank,
+      count: (j + 1) * 10,
+    })),
+  }))
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-  const stubs = { NuxtLink: RouterLinkStub, PlayStatus: true }
+  const stubs = {
+    NuxtLink: RouterLinkStub,
+    ClearStatus: true,
+    GrooveRadar: true,
+    ScoreStatus: true,
+  }
   const templateMocks = {
     $accessor: { user: null },
     $fetchState: { pending: false },
   }
-  const data = () => ({ user })
+  const data = () => ({
+    user,
+    radars: [radar, radar],
+    clears: [clears, clears],
+    scores: [scores, scores],
+  })
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
     const i18n = new VueI18n({ locale, silentFallbackWarn: true })
@@ -213,43 +253,56 @@ describe('/users/_id.vue', () => {
 
   describe('fetch()', () => {
     const $http = {}
-    const apiMock = mocked(getUserInfo)
-    beforeEach(() => apiMock.mockClear())
+    beforeEach(() => {
+      mocked(getUserInfo).mockClear()
+      mocked(getGrooveRadar).mockClear()
+      mocked(getClearStatus).mockClear()
+      mocked(getScoreStatus).mockClear()
+    })
 
     test('/_id calls getUserInfo(this.$http, _id)', async () => {
       // Arrange
       const $route = { params: { id: 'foo' } }
-      apiMock.mockResolvedValue(user)
-      const wrapper = shallowMount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks: { ...templateMocks, $http, $route },
-      })
+      mocked(getUserInfo).mockResolvedValue(user)
+      mocked(getGrooveRadar).mockResolvedValue([{ ...radar, playStyle: 1 }])
+      mocked(getClearStatus).mockResolvedValue(
+        [...Array(19 * (clearLampMap.size + 1)).keys()].map(i => ({
+          playStyle: 1,
+          level: (i % 19) + 1,
+          clearLamp: ((i % (clearLampMap.size + 1)) - 1) as ClearLamp | -1,
+          count: ((i % (clearLampMap.size + 1)) + 1) * 10,
+        }))
+      )
+      mocked(getScoreStatus).mockResolvedValue(
+        [...Array(19 * (danceLevelSet.size + 1)).keys()].map(i => ({
+          playStyle: 1,
+          level: (i % 19) + 1,
+          rank: [...danceLevelSet][i % (danceLevelSet.size + 1)] ?? '-',
+          count: ((i % (danceLevelSet.size + 1)) + 1) * 10,
+        }))
+      )
+      const mocks = { ...templateMocks, $http, $route }
+      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
       // Act
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(apiMock).toBeCalledWith($http, $route.params.id)
+      expect(mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
       expect(wrapper.vm.$data.user).toBe(user)
     })
     test('sets user null if cause error', async () => {
       // Arrange
       const $route = { params: { id: 'foo' } }
-      apiMock.mockRejectedValue('error')
-      const wrapper = shallowMount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks: { ...templateMocks, $http, $route },
-      })
+      mocked(getUserInfo).mockRejectedValue('error')
+      const mocks = { ...templateMocks, $http, $route }
+      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
       // Act
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(apiMock).toBeCalledWith($http, $route.params.id)
+      expect(mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
       expect(wrapper.vm.$data.user).toBeNull()
     })
   })

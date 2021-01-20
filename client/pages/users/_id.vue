@@ -1,12 +1,12 @@
 <template>
   <section class="section">
-    <template v-if="!user && !$fetchState.pending">{{ $t('empty') }}</template>
-    <template v-else>
-      <h1 v-if="user" class="title">{{ user.name }}</h1>
-      <b-skeleton v-else class="title" animated />
-
+    <template v-if="$fetchState.pending">
+      <b-skeleton class="title" animated />
+      <b-skeleton class="subtitle" animated />
+    </template>
+    <template v-else-if="user">
+      <h1 class="title">{{ user.name }}</h1>
       <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
-      <b-skeleton v-else class="subtitle" animated />
 
       <div v-if="isSelfPage" class="buttons">
         <b-button
@@ -15,7 +15,7 @@
           tag="nuxt-link"
           to="/import"
         >
-          {{ $t('import') }}
+          {{ $t('button.import') }}
         </b-button>
         <b-button
           icon-left="account-cog"
@@ -23,25 +23,141 @@
           tag="nuxt-link"
           to="/profile"
         >
-          {{ $t('settings') }}
+          {{ $t('button.settings') }}
         </b-button>
       </div>
 
       <section v-if="user" class="section">
         <div class="content columns is-multiline">
-          <play-status
-            :play-style="1"
-            :user-id="user.id"
-            class="column is-half-tablet"
-          />
-          <play-status
-            :play-style="2"
-            :user-id="user.id"
-            class="column is-half-tablet"
-          />
+          <template v-for="(style, i) in ['SP', 'DP']">
+            <card
+              :key="`radar-${style}`"
+              :title="$t('title.radar', [style])"
+              type="is-primary"
+              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              collapsible
+            >
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <groove-radar
+                  v-else-if="radars[i]"
+                  class="chart"
+                  :chart="radars[i]"
+                />
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
+                </div>
+              </div>
+            </card>
+            <card
+              :key="`clear-${style}`"
+              :title="$t('title.clear', [style])"
+              type="is-primary"
+              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              collapsible
+            >
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <clear-status
+                  v-else-if="totalClears[i]"
+                  title="ALL"
+                  class="chart"
+                  :statuses="totalClears[i]"
+                />
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
+                </div>
+              </div>
+            </card>
+            <card
+              :key="`score-${style}`"
+              :title="$t('title.score', [style])"
+              type="is-primary"
+              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              collapsible
+            >
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <score-status
+                  v-else-if="totalScores[i]"
+                  title="ALL"
+                  class="chart"
+                  :statuses="totalScores[i]"
+                />
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
+                </div>
+              </div>
+            </card>
+            <card
+              :key="`clearEach-${style}`"
+              :title="$t('title.clearEach', [style])"
+              type="is-primary"
+              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              collapsible
+            >
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <b-carousel
+                  v-if="clears[i].length"
+                  :autoplay="false"
+                  :arrow-hover="false"
+                  :indicator-inside="false"
+                  indicator-custom
+                >
+                  <b-carousel-item v-for="c in clears[i]" :key="c.level">
+                    <clear-status
+                      class="chart"
+                      :title="c.title"
+                      :statuses="c.statuses"
+                    />
+                  </b-carousel-item>
+                  <template #indicators="props">
+                    {{ clears[i][props.i].title }}
+                  </template>
+                </b-carousel>
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
+                </div>
+              </div>
+            </card>
+            <card
+              :key="`scoreEach-${style}`"
+              :title="$t('title.score', [style])"
+              type="is-primary"
+              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              collapsible
+            >
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <b-carousel
+                  v-if="scores[i].length"
+                  :autoplay="false"
+                  :arrow-hover="false"
+                  :indicator-inside="false"
+                  indicator-custom
+                >
+                  <b-carousel-item v-for="c in scores[i]" :key="c.level">
+                    <score-status
+                      :title="c.title"
+                      class="chart"
+                      :statuses="c.statuses"
+                    />
+                  </b-carousel-item>
+                  <template #indicators="props">
+                    {{ scores[i][props.i].title }}
+                  </template>
+                </b-carousel>
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
+                </div>
+              </div>
+            </card>
+          </template>
         </div>
       </section>
     </template>
+    <template v-else>{{ $t('empty') }}</template>
   </section>
 </template>
 
@@ -49,29 +165,79 @@
 <i18n>
 {
   "ja": {
+    "button": {
+      "import": "スコアのインポート",
+      "settings": "設定"
+    },
+    "title": {
+      "radar": "グルーブレーダー ({0})",
+      "clear": "クリア状況 ({0})",
+      "score": "スコア状況 ({0})",
+      "clearEach": "レベル別クリア状況 ({0})",
+      "scoreEach": "レベル別スコア状況 ({0})"
+    },
     "empty": "ユーザーが存在しないか、非公開に設定されています。",
-    "import": "スコアのインポート",
-    "settings": "設定"
+    "noData": "データがありません"
   },
   "en": {
+    "button": {
+      "import": "Import Scores",
+      "settings": "Settings"
+    },
+    "title": {
+      "radar": "Groove Radar ({0})",
+      "clear": "Clear Status ({0})",
+      "score": "Score Status ({0})",
+      "clearEach": "Clear Status by Lv ({0})",
+      "scoreEach": "Score Status by Lv ({0})"
+    },
     "empty": "User does not exist or is private",
-    "import": "Import Scores",
-    "settings": "Settings"
+    "noData": "No Data"
   }
 }
 </i18n>
 
 <script lang="ts">
-import type { UserInfo } from '@core/api/user'
-import { Context } from '@nuxt/types'
+import type {
+  ClearStatus as ClearInfo,
+  ScoreStatus as ScoreInfo,
+  UserInfo,
+} from '@core/api/user'
+import type { GrooveRadar as GrooveRadarInfo } from '@core/db/songs'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getUserInfo } from '~/api/user'
-import PlayStatus from '~/components/pages/users/PlayStatus.vue'
+import {
+  getClearStatus,
+  getGrooveRadar,
+  getScoreStatus,
+  getUserInfo,
+} from '~/api/user'
+import ClearStatus from '~/components/pages/users/ClearStatus.vue'
+import GrooveRadar from '~/components/pages/users/GrooveRadar.vue'
+import ScoreStatus from '~/components/pages/users/ScoreStatus.vue'
+import Card from '~/components/shared/Card.vue'
 
-@Component({ components: { PlayStatus }, fetchOnServer: false })
+type ScoreDoughnutProp = {
+  level: number
+  title: string
+  statuses: Pick<ScoreInfo, 'rank' | 'count'>[]
+}
+type ClearDoughnutProp = {
+  level: number
+  title: string
+  statuses: Pick<ClearInfo, 'clearLamp' | 'count'>[]
+}
+
+@Component({
+  components: { Card, ClearStatus, GrooveRadar, ScoreStatus },
+  fetchOnServer: false,
+})
 export default class UserPage extends Vue {
   user: UserInfo | null = null
+  radars: [GrooveRadarInfo | null, GrooveRadarInfo | null] = [null, null]
+  clears: [ClearDoughnutProp[], ClearDoughnutProp[]] = [[], []]
+  scores: [ScoreDoughnutProp[], ScoreDoughnutProp[]] = [[], []]
 
   get areaName() {
     return this.user ? this.$t(`area.${this.user.area}`) : ''
@@ -88,6 +254,38 @@ export default class UserPage extends Vue {
     return !!this.user && this.user.id === loginId
   }
 
+  get totalClears() {
+    return this.clears.map(arr =>
+      arr
+        .flatMap(c => c.statuses)
+        .reduce((p, c) => {
+          const matched = p.find(d => d.clearLamp === c.clearLamp)
+          if (matched) {
+            matched.count += c.count
+          } else {
+            p.push({ clearLamp: c.clearLamp, count: c.count })
+          }
+          return p
+        }, [] as Pick<ClearInfo, 'clearLamp' | 'count'>[])
+    ) as [ClearInfo[], ClearInfo[]]
+  }
+
+  get totalScores() {
+    return this.scores.map(arr =>
+      arr
+        .flatMap(c => c.statuses)
+        .reduce((p, c) => {
+          const matched = p.find(d => d.rank === c.rank)
+          if (matched) {
+            matched.count += c.count
+          } else {
+            p.push({ ...c })
+          }
+          return p
+        }, [] as Pick<ScoreInfo, 'rank' | 'count'>[])
+    ) as [ScoreInfo[], ScoreInfo[]]
+  }
+
   /** id expected [a-z], [A-Z] [0-9], [-], [_] */
   validate({ params }: Pick<Context, 'params'>) {
     return /^[-a-zA-Z0-9_]+$/.test(params.id)
@@ -97,10 +295,98 @@ export default class UserPage extends Vue {
   async fetch() {
     const id = this.$route.params.id
     try {
-      this.user = await getUserInfo(this.$http, id)
+      const [
+        user,
+        spRadar,
+        dpRadar,
+        spClears,
+        dpClears,
+        spScores,
+        dpScores,
+      ] = await Promise.all([
+        getUserInfo(this.$http, id),
+        getGrooveRadar(this.$http, id, 1),
+        getGrooveRadar(this.$http, id, 2),
+        getClearStatus(this.$http, id, 1),
+        getClearStatus(this.$http, id, 2),
+        getScoreStatus(this.$http, id, 1),
+        getScoreStatus(this.$http, id, 2),
+      ])
+      this.user = user
+      this.radars = [spRadar[0] ?? null, dpRadar[0] ?? null]
+      this.clears = [
+        spClears
+          .reduce((p, c) => {
+            const matched = p.find(d => d.level === c.level)
+            if (matched) {
+              matched.statuses.push({ clearLamp: c.clearLamp, count: c.count })
+            } else {
+              p.push({
+                level: c.level,
+                title: `${c.level}`,
+                statuses: [{ clearLamp: c.clearLamp, count: c.count }],
+              })
+            }
+            return p
+          }, [] as ClearDoughnutProp[])
+          .sort((l, r) => l.level - r.level),
+        dpClears
+          .reduce((p, c) => {
+            const matched = p.find(d => d.level === c.level)
+            if (matched) {
+              matched.statuses.push({ clearLamp: c.clearLamp, count: c.count })
+            } else {
+              p.push({
+                level: c.level,
+                title: `${c.level}`,
+                statuses: [{ clearLamp: c.clearLamp, count: c.count }],
+              })
+            }
+            return p
+          }, [] as ClearDoughnutProp[])
+          .sort((l, r) => l.level - r.level),
+      ]
+      this.scores = [
+        spScores
+          .reduce((p, c) => {
+            const matched = p.find(d => d.level === c.level)
+            if (matched) {
+              matched.statuses.push({ rank: c.rank, count: c.count })
+            } else {
+              p.push({
+                level: c.level,
+                title: `${c.level}`,
+                statuses: [{ rank: c.rank, count: c.count }],
+              })
+            }
+            return p
+          }, [] as ScoreDoughnutProp[])
+          .sort((l, r) => l.level - r.level),
+        dpScores
+          .reduce((p, c) => {
+            const matched = p.find(d => d.level === c.level)
+            if (matched) {
+              matched.statuses.push({ rank: c.rank, count: c.count })
+            } else {
+              p.push({
+                level: c.level,
+                title: `${c.level}`,
+                statuses: [{ rank: c.rank, count: c.count }],
+              })
+            }
+            return p
+          }, [] as ScoreDoughnutProp[])
+          .sort((l, r) => l.level - r.level),
+      ]
     } catch {
       this.user = null
     }
   }
 }
 </script>
+
+<style scoped>
+.chart {
+  max-height: 80vh;
+}
+</style>
