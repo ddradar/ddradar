@@ -29,11 +29,10 @@ export default class ClearStatusComponent extends Vue {
   get chartOptions(): ChartOptions {
     return {
       responsive: true,
+      legend: { display: false },
       elements: {
         // @ts-ignore
-        center: {
-          text: this.title ?? '',
-        },
+        center: { text: this.title ?? '' },
       },
     }
   }
