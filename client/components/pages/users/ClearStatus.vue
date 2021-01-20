@@ -1,7 +1,5 @@
 <template>
-  <section>
-    <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
-  </section>
+  <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
 </template>
 
 <script lang="ts">
