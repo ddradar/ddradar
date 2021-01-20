@@ -30,129 +30,144 @@
       <section v-if="user" class="section">
         <div class="content columns is-multiline">
           <template v-for="(style, i) in ['SP', 'DP']">
-            <card
+            <section
               :key="`radar-${style}`"
-              :title="$t('title.radar', [style])"
-              type="is-primary"
               class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-              collapsible
             >
-              <div class="card-content">
-                <b-loading v-if="$fetchState.pending" />
-                <groove-radar
-                  v-else-if="radars[i]"
-                  class="chart"
-                  :chart="radars[i]"
-                />
-                <div v-else class="content has-text-grey has-text-centered">
-                  <p>{{ $t('noData') }}</p>
+              <card
+                :title="$t('title.radar', [style])"
+                type="is-primary"
+                collapsible
+              >
+                <div class="card-content">
+                  <b-loading v-if="$fetchState.pending" />
+                  <groove-radar
+                    v-else-if="radars[i]"
+                    class="chart"
+                    :chart="radars[i]"
+                  />
+                  <div v-else class="content has-text-grey has-text-centered">
+                    <p>{{ $t('noData') }}</p>
+                  </div>
                 </div>
-              </div>
-            </card>
-            <card
+              </card>
+            </section>
+            <section
               :key="`clear-${style}`"
-              :title="$t('title.clear', [style])"
-              type="is-primary"
               class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-              collapsible
             >
-              <div class="card-content">
-                <b-loading v-if="$fetchState.pending" />
-                <clear-status
-                  v-else-if="totalClears[i]"
-                  title="ALL"
-                  class="chart"
-                  :statuses="totalClears[i]"
-                />
-                <div v-else class="content has-text-grey has-text-centered">
-                  <p>{{ $t('noData') }}</p>
+              <card
+                :title="$t('title.clear', [style])"
+                type="is-primary"
+                collapsible
+              >
+                <div class="card-content">
+                  <b-loading v-if="$fetchState.pending" />
+                  <clear-status
+                    v-else-if="totalClears[i]"
+                    title="ALL"
+                    class="chart"
+                    :statuses="totalClears[i]"
+                  />
+                  <div v-else class="content has-text-grey has-text-centered">
+                    <p>{{ $t('noData') }}</p>
+                  </div>
                 </div>
-              </div>
-            </card>
-            <card
+              </card>
+            </section>
+            <section
               :key="`score-${style}`"
-              :title="$t('title.score', [style])"
-              type="is-primary"
               class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-              collapsible
             >
-              <div class="card-content">
-                <b-loading v-if="$fetchState.pending" />
-                <score-status
-                  v-else-if="totalScores[i]"
-                  title="ALL"
-                  class="chart"
-                  :statuses="totalScores[i]"
-                />
-                <div v-else class="content has-text-grey has-text-centered">
-                  <p>{{ $t('noData') }}</p>
+              <card
+                :title="$t('title.score', [style])"
+                type="is-primary"
+                collapsible
+              >
+                <div class="card-content">
+                  <b-loading v-if="$fetchState.pending" />
+                  <score-status
+                    v-else-if="totalScores[i]"
+                    title="ALL"
+                    class="chart"
+                    :statuses="totalScores[i]"
+                  />
+                  <div v-else class="content has-text-grey has-text-centered">
+                    <p>{{ $t('noData') }}</p>
+                  </div>
                 </div>
-              </div>
-            </card>
-            <card
+              </card>
+            </section>
+            <section
               :key="`clearEach-${style}`"
-              :title="$t('title.clearEach', [style])"
-              type="is-primary"
               class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-              collapsible
             >
-              <div class="card-content">
-                <b-loading v-if="$fetchState.pending" />
-                <b-carousel
-                  v-if="clears[i].length"
-                  :autoplay="false"
-                  :arrow-hover="false"
-                  :indicator-inside="false"
-                  indicator-custom
-                >
-                  <b-carousel-item v-for="c in clears[i]" :key="c.level">
-                    <clear-status
-                      class="chart"
-                      :title="c.title"
-                      :statuses="c.statuses"
-                    />
-                  </b-carousel-item>
-                  <template #indicators="props">
-                    {{ clears[i][props.i].title }}
-                  </template>
-                </b-carousel>
-                <div v-else class="content has-text-grey has-text-centered">
-                  <p>{{ $t('noData') }}</p>
+              <card
+                :title="$t('title.clearEach', [style])"
+                type="is-primary"
+                collapsible
+              >
+                <div class="card-content">
+                  <b-loading v-if="$fetchState.pending" />
+                  <b-carousel
+                    v-if="clears[i].length"
+                    :autoplay="false"
+                    :arrow-hover="false"
+                    :indicator-inside="false"
+                    indicator-custom
+                  >
+                    <b-carousel-item v-for="c in clears[i]" :key="c.level">
+                      <clear-status
+                        class="chart"
+                        :title="c.title"
+                        :statuses="c.statuses"
+                      />
+                    </b-carousel-item>
+                    <template #indicators="props">
+                      {{ clears[i][props.i].title }}
+                    </template>
+                  </b-carousel>
+                  <div v-else class="content has-text-grey has-text-centered">
+                    <p>{{ $t('noData') }}</p>
+                  </div>
                 </div>
-              </div>
-            </card>
-            <card
+              </card>
+            </section>
+            <section
               :key="`scoreEach-${style}`"
-              :title="$t('title.score', [style])"
-              type="is-primary"
               class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-              collapsible
             >
-              <div class="card-content">
-                <b-loading v-if="$fetchState.pending" />
-                <b-carousel
-                  v-if="scores[i].length"
-                  :autoplay="false"
-                  :arrow-hover="false"
-                  :indicator-inside="false"
-                  indicator-custom
-                >
-                  <b-carousel-item v-for="c in scores[i]" :key="c.level">
-                    <score-status
-                      :title="c.title"
-                      class="chart"
-                      :statuses="c.statuses"
-                    />
-                  </b-carousel-item>
-                  <template #indicators="props">
-                    {{ scores[i][props.i].title }}
-                  </template>
-                </b-carousel>
-                <div v-else class="content has-text-grey has-text-centered">
-                  <p>{{ $t('noData') }}</p>
+              <card
+                :title="$t('title.score', [style])"
+                type="is-primary"
+                collapsible
+              >
+                <div class="card-content">
+                  <b-loading v-if="$fetchState.pending" />
+                  <b-carousel
+                    v-if="scores[i].length"
+                    :autoplay="false"
+                    :arrow-hover="false"
+                    :indicator-inside="false"
+                    indicator-custom
+                  >
+                    <b-carousel-item v-for="c in scores[i]" :key="c.level">
+                      <score-status
+                        :title="c.title"
+                        class="chart"
+                        :statuses="c.statuses"
+                      />
+                    </b-carousel-item>
+                    <template #indicators="props">
+                      {{ scores[i][props.i].title }}
+                    </template>
+                  </b-carousel>
+                  <div v-else class="content has-text-grey has-text-centered">
+                    <p>{{ $t('noData') }}</p>
+                  </div>
                 </div>
-              </div>
-            </card>
+              </card>
+            </section>
           </template>
         </div>
       </section>
