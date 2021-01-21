@@ -62,6 +62,7 @@ export default class ChartLevelPage extends Vue {
     )
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.title }
   }

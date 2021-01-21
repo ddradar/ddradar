@@ -56,6 +56,7 @@ export default class SongBySeriesPage extends Vue {
     )
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.title }
   }

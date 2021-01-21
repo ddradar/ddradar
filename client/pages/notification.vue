@@ -88,6 +88,7 @@ type NotificationDetail = Omit<NotificationListData, 'timeStamp'> & {
 export default class UserListPage extends Vue {
   messages: NotificationDetail[] = []
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return {
       title: this.$t('pageTitle') as string,

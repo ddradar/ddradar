@@ -304,6 +304,7 @@ export default class UserPage extends Vue {
     ) as [ScoreInfo[], ScoreInfo[]]
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return {
       title: this.user?.name ?? (this.$t('pageTitle') as string),

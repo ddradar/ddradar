@@ -70,6 +70,7 @@ export default class GradeListPage extends Vue {
     return params.series === '16' || params.series === '17'
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.title as string }
   }

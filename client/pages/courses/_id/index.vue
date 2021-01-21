@@ -58,6 +58,7 @@ export default class CourseDetailPage extends Vue {
     return isValidId(params.id)
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.course?.name }
   }

@@ -59,6 +59,7 @@ export default class SongByNamePage extends Vue {
     )
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.title }
   }

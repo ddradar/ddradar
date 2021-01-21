@@ -220,6 +220,7 @@ export default class ProfilePage extends Vue {
     )
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return {
       title: this.$t('title') as string,

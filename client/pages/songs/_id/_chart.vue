@@ -74,6 +74,7 @@ export default class SongDetailPage extends Vue {
     )
   }
 
+  /* istanbul ignore next */
   head(): MetaInfo {
     return { title: this.song?.name ?? 'Song Detail' }
   }
