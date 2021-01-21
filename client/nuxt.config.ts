@@ -12,13 +12,6 @@ const configuration: NuxtConfig = {
     titleTemplate: titleChunk =>
       titleChunk ? `${titleChunk} - ${title}` : title,
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: description,
-      },
       {
         name: 'keywords',
         content:
@@ -40,7 +33,6 @@ const configuration: NuxtConfig = {
     '@nuxtjs/pwa',
     'nuxt-i18n',
   ],
-  /** @nuxtjs/pwa settings */
   pwa: {
     manifest: {
       name: title,
@@ -49,7 +41,6 @@ const configuration: NuxtConfig = {
       theme_color: '#ff8c00',
       lang: 'ja',
       display: 'standalone',
-      scope: '/',
       start_url: '/',
     },
     meta: {
@@ -57,6 +48,7 @@ const configuration: NuxtConfig = {
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
+      twitterCard: 'summary',
     },
   },
   /** nuxt-i18n settings */
