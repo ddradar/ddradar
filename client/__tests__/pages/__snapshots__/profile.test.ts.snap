@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] = `
+exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] = `
 <section class="section">
   <transition-stub name="fade">
     <article class="message is-danger">
@@ -223,7 +223,7 @@ exports[`pages/profile.vue snapshot test renders correctly { locale: "en" } 1`] 
 </section>
 `;
 
-exports[`pages/profile.vue snapshot test renders correctly { locale: "ja" } 1`] = `
+exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] = `
 <section class="section">
   <transition-stub name="fade">
     <article class="message is-danger">
