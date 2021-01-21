@@ -108,7 +108,6 @@
     "upload": "ファイルを選択",
     "progress": "登録中: {song} ({done}/{max})",
     "popup": {
-      "invalidHTML": "HTMLソース文字列が不正です",
       "invalidFile": "ファイルが読み取れないか、正しい形式ではありません",
       "success": "{n}件のスコアを登録しました",
       "copied": "コピーしました"
@@ -141,7 +140,6 @@
     "upload": "Select file",
     "progress": "Uploading: {song} ({done}/{max})",
     "popup": {
-      "invalidHTML": "Invalid HTML",
       "invalidFile": "Cannot read file or invalid file",
       "success": "Uploaded: {n} song | Uploaded: {n} songs",
       "copied": "Copied"
@@ -153,6 +151,7 @@
 <script lang="ts">
 import { readTextAsync, scoreTexttoScoreList } from '@core/skill-attack'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { postSongScores } from '~/api/score'
 import * as popup from '~/utils/popup'
@@ -184,6 +183,10 @@ export default class ImportPage extends Vue {
     return code
       ? `http://skillattack.com/sa4/data/dancer/${code}/score_${code}.txt`
       : ''
+  }
+
+  head(): MetaInfo {
+    return { title: this.$t('title') as string }
   }
 
   async copyToClipboard() {

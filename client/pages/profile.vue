@@ -181,6 +181,7 @@
 import type { CurrentUserInfo } from '@core/api/user'
 import { AreaCode, areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { existsUser } from '~/api/user'
 import * as popup from '~/utils/popup'
@@ -217,6 +218,12 @@ export default class ProfilePage extends Vue {
           this.code < 10000000 ||
           this.code > 99999999))
     )
+  }
+
+  head(): MetaInfo {
+    return {
+      title: this.$t('title') as string,
+    }
   }
 
   /** Load user info */

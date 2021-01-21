@@ -1,5 +1,6 @@
 <template>
   <section class="section">
+    <h1 class="title">{{ $t('pageTitle') }}</h1>
     <section>
       <b-table
         :data="messages"
@@ -55,11 +56,13 @@
 <i18n>
 {
   "ja": {
+    "pageTitle": "お知らせ一覧",
     "title": "タイトル",
     "date": "投稿日時",
     "noData": "データがありません"
   },
   "en": {
+    "pageTitle": "All Notification List",
     "title": "Title",
     "date": "Date",
     "noData": "No data"
@@ -71,6 +74,7 @@
 import type { NotificationListData } from '@core/api/notification'
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { getNotificationList } from '~/api/notification'
 import { unixTimeToString } from '~/utils/date'
@@ -83,6 +87,12 @@ type NotificationDetail = Omit<NotificationListData, 'timeStamp'> & {
 @Component({ fetchOnServer: false })
 export default class UserListPage extends Vue {
   messages: NotificationDetail[] = []
+
+  head(): MetaInfo {
+    return {
+      title: this.$t('pageTitle') as string,
+    }
+  }
 
   /** Call "Get Notification API" once. */
   async fetch() {

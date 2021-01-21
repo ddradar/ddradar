@@ -41,6 +41,7 @@ import type { SongInfo } from '@core/api/song'
 import { isValidId } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { getDisplayedBPM, getSongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
@@ -65,11 +66,16 @@ export default class SongDetailPage extends Vue {
       : /* istanbul ignore next */ '???'
   }
 
+  /** `id` should be songId pattern */
   validate({ params }: Pick<Context, 'params'>) {
     return (
       isValidId(params.id) &&
       (!params.chart || /^(1[0-4]|2[1-4])$/.test(params.chart)) // [playStyle][difficulty]
     )
+  }
+
+  head(): MetaInfo {
+    return { title: this.song?.name ?? 'Song Detail' }
   }
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {

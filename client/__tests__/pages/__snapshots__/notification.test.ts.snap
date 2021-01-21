@@ -2,6 +2,7 @@
 
 exports[`/pages/notification.vue snapshot test renders Edit column if admin 1`] = `
 <section class="section">
+  <h1 class="title">お知らせ一覧</h1>
   <section>
     <div class="b-table">
       <!---->
@@ -100,6 +101,7 @@ exports[`/pages/notification.vue snapshot test renders Edit column if admin 1`] 
 
 exports[`/pages/notification.vue snapshot test renders correctly if { locale: en } 1`] = `
 <section class="section">
+  <h1 class="title">All Notification List</h1>
   <section>
     <div class="b-table">
       <!---->
@@ -193,6 +195,7 @@ exports[`/pages/notification.vue snapshot test renders correctly if { locale: en
 
 exports[`/pages/notification.vue snapshot test renders correctly if { locale: ja } 1`] = `
 <section class="section">
+  <h1 class="title">お知らせ一覧</h1>
   <section>
     <div class="b-table">
       <!---->
@@ -286,6 +289,7 @@ exports[`/pages/notification.vue snapshot test renders correctly if { locale: ja
 
 exports[`/pages/notification.vue snapshot test renders empty if { locale: en } 1`] = `
 <section class="section">
+  <h1 class="title">All Notification List</h1>
   <section>
     <div class="b-table">
       <!---->
@@ -351,6 +355,7 @@ exports[`/pages/notification.vue snapshot test renders empty if { locale: en } 1
 
 exports[`/pages/notification.vue snapshot test renders empty if { locale: ja } 1`] = `
 <section class="section">
+  <h1 class="title">お知らせ一覧</h1>
   <section>
     <div class="b-table">
       <!---->
@@ -416,6 +421,7 @@ exports[`/pages/notification.vue snapshot test renders empty if { locale: ja } 1
 
 exports[`/pages/notification.vue snapshot test renders loading skeleton 1`] = `
 <section class="section">
+  <h1 class="title">お知らせ一覧</h1>
   <section>
     <div class="b-table">
       <!---->

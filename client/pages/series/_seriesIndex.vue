@@ -23,6 +23,7 @@ import type { SongListData } from '@core/api/song'
 import { seriesSet } from '@core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { searchSongBySeries, shortenSeriesName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
@@ -31,21 +32,6 @@ import SongList from '~/components/pages/songs/SongList.vue'
 export default class SongBySeriesPage extends Vue {
   /** Song List from API */
   songs: SongListData[] = []
-
-  /** seriesIndex expected [0-16] */
-  validate({ params }: Pick<Context, 'params'>) {
-    const parsedIndex = parseInt(params.seriesIndex, 10)
-    return (
-      /^\d{1,2}$/.test(params.seriesIndex) &&
-      parsedIndex >= 0 &&
-      parsedIndex < seriesSet.size
-    )
-  }
-
-  /** Get Song List from API */
-  async fetch() {
-    this.songs = await searchSongBySeries(this.$http, this.selected)
-  }
 
   /** Series title */
   get title() {
@@ -58,6 +44,25 @@ export default class SongBySeriesPage extends Vue {
 
   get seriesList() {
     return [...seriesSet].map(s => shortenSeriesName(s))
+  }
+
+  /** seriesIndex expected [0-16] */
+  validate({ params }: Pick<Context, 'params'>) {
+    const parsedIndex = parseInt(params.seriesIndex, 10)
+    return (
+      /^\d{1,2}$/.test(params.seriesIndex) &&
+      parsedIndex >= 0 &&
+      parsedIndex < seriesSet.size
+    )
+  }
+
+  head(): MetaInfo {
+    return { title: this.title }
+  }
+
+  /** Get Song List from API */
+  async fetch() {
+    this.songs = await searchSongBySeries(this.$http, this.selected)
   }
 }
 </script>

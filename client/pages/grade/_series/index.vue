@@ -38,6 +38,7 @@ import type { CourseListData } from '@core/api/course'
 import { seriesSet } from '@core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import { MetaInfo } from 'vue-meta'
 
 import { getCourseList } from '~/api/course'
 import { shortenSeriesName } from '~/api/song'
@@ -48,16 +49,6 @@ export default class GradeListPage extends Vue {
   /** Course List from API */
   courses: CourseListData[] = []
 
-  validate({ params }: Pick<Context, 'params'>) {
-    return params.series === '16' || params.series === '17'
-  }
-
-  /** Get Course List from API */
-  async fetch() {
-    const series = parseInt(this.$route.params.series, 10) as 16 | 17
-    this.courses = await getCourseList(this.$http, series, 2)
-  }
-
   get title() {
     const seriesList = [...seriesSet]
     const series = parseInt(this.$route.params.series, 10)
@@ -67,21 +58,26 @@ export default class GradeListPage extends Vue {
   get pageLinks() {
     const seriesList = [...seriesSet]
     return [16, 17]
-      .map(i => [
-        {
-          name: this.$t('nonstop', {
-            series: shortenSeriesName(seriesList[i]),
-          }),
-          to: `/nonstop/${i}`,
-        },
-        {
-          name: this.$t('grade', {
-            series: shortenSeriesName(seriesList[i]),
-          }),
-          to: `/grade/${i}`,
-        },
-      ])
-      .flat()
+      .flatMap(i => ['nonstop', 'grade'].map(type => [i, type] as const))
+      .map(d => ({
+        name: this.$t(d[1], { series: shortenSeriesName(seriesList[d[0]]) }),
+        to: `/${d[1]}/${d[0]}`,
+      }))
+  }
+
+  /** `series` should be 16 or 17 */
+  validate({ params }: Pick<Context, 'params'>) {
+    return params.series === '16' || params.series === '17'
+  }
+
+  head(): MetaInfo {
+    return { title: this.title as string }
+  }
+
+  /** Get Course List from API */
+  async fetch() {
+    const series = parseInt(this.$route.params.series, 10) as 16 | 17
+    this.courses = await getCourseList(this.$http, series, 2)
   }
 }
 </script>
