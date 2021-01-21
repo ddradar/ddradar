@@ -9,7 +9,8 @@ const description = 'DDR Score Tracker'
 const configuration: NuxtConfig = {
   target: 'static',
   head: {
-    title,
+    titleTemplate: titleChunk =>
+      titleChunk ? `${titleChunk} - ${title}` : title,
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -17,6 +18,11 @@ const configuration: NuxtConfig = {
         hid: 'description',
         name: 'description',
         content: description,
+      },
+      {
+        name: 'keywords',
+        content:
+          'Dance Dance Revolution,DDR,ダンレボ,ダンスダンスレボリューション',
       },
     ],
     link: [
