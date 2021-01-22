@@ -18,9 +18,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@microsoft/applicationinsights-web": "^2.5.10",
+    "@microsoft/applicationinsights-web": "^2.5.11",
     "@nuxt/http": "^0.6.2",
-    "@nuxt/typescript-runtime": "^2.0.0",
+    "@nuxt/typescript-runtime": "^2.0.1",
     "@nuxtjs/pwa": "^3.3.4",
     "chart.js": "^2.9.4",
     "flag-icon-css": "^3.5.0",
@@ -28,13 +28,13 @@
     "nuxt": "^2.14.12",
     "nuxt-buefy": "^0.4.4",
     "nuxt-i18n": "^6.18.0",
-    "nuxt-property-decorator": "^2.8.8",
+    "nuxt-property-decorator": "^2.9.1",
     "nuxt-typed-vuex": "^0.1.22",
     "vue-chartjs": "^3.5.1"
   },
   "devDependencies": {
     "@nuxt/types": "^2.14.12",
-    "@nuxt/typescript-build": "^2.0.3",
+    "@nuxt/typescript-build": "^2.0.4",
     "@nuxtjs/eslint-config-typescript": "^5.0.0",
     "@types/marked": "^1.2.1",
     "@vue/test-utils": "^1.1.2",
@@ -42,7 +42,7 @@
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.3.0",
     "jest-serializer-vue": "^2.0.2",
-    "sass": "^1.32.4",
+    "sass": "^1.32.5",
     "sass-loader": "^10.1.1",
     "ts-jest": "^26.4.4",
     "vue-i18n-jest": "^1.0.0",
