@@ -1,4 +1,5 @@
-import { testSongList } from '../core/__tests__/data'
+import { testSongList } from '@ddradar/core/__tests__/data'
+
 import searchSong from '.'
 
 describe('GET /api/v1/songs/name/{name}', () => {

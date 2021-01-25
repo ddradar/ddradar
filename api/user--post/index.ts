@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import { isUserSchema, UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal } from '../auth'
-import { isUserSchema, UserSchema } from '../core/db/users'
 import { fetchLoginUser, fetchUser } from '../db/users'
 import { ErrorResult, SuccessResult } from '../function'
 

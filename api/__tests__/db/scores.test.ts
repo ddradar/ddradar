@@ -1,5 +1,6 @@
-import { testSongData } from '../../core/__tests__/data'
-import type { ScoreSchema } from '../../core/db/scores'
+import { testSongData } from '@ddradar/core/__tests__/data'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
+
 import { canConnectDB, getContainer } from '../../db'
 import { fetchScore } from '../../db/scores'
 import { describeIf } from '../util'

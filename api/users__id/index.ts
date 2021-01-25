@@ -1,8 +1,8 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import { UserInfo } from '@ddradar/core/api/user'
+import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal } from '../auth'
-import { UserInfo } from '../core/api/user'
-import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get user information that match the specified ID. */

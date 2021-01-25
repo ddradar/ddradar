@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import { privateUser } from '@ddradar/core/__tests__/data'
 
-import { privateUser } from '../core/__tests__/data'
 import existsUser from '.'
 
 describe('GET /api/v1/users/exists/{id}', () => {

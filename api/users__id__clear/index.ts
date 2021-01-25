@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
+import type { ClearStatus } from '@ddradar/core/api/user'
+import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ClearStatus } from '../core/api/user'
-import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type TotalCount = Omit<ClearStatus, 'clearLamp'>

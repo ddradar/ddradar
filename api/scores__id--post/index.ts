@@ -1,22 +1,22 @@
 import type { HttpRequest } from '@azure/functions'
-
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreBody, ScoreListBody } from '../core/api/score'
-import type { ScoreSchema } from '../core/db/scores'
+import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
   CourseChartSchema,
   SongSchema,
   StepChartSchema,
-} from '../core/db/songs'
-import type { UserSchema } from '../core/db/users'
+} from '@ddradar/core/db/songs'
+import type { UserSchema } from '@ddradar/core/db/users'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
   isScore,
   isValidScore,
   mergeScore,
-} from '../core/score'
-import { hasIntegerProperty, hasProperty } from '../core/typeUtils'
+} from '@ddradar/core/score'
+import { hasIntegerProperty, hasProperty } from '@ddradar/core/typeUtils'
+
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ItemDefinition } from '../db'
 import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'

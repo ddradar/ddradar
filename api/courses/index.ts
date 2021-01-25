@@ -1,7 +1,11 @@
 import type { HttpRequest } from '@azure/functions'
+import type { CourseListData } from '@ddradar/core/api/course'
+import {
+  CourseChartSchema,
+  CourseSchema,
+  seriesSet,
+} from '@ddradar/core/db/songs'
 
-import type { CourseListData } from '../core/api/course'
-import { CourseChartSchema, CourseSchema, seriesSet } from '../core/db/songs'
 import { SuccessResult } from '../function'
 
 type CourseListDocument = Pick<

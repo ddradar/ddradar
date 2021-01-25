@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import type { SongListData } from '@ddradar/core/api/song'
 
-import type { SongListData } from '../core/api/song'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get a list of song information that matches the specified conditions. */

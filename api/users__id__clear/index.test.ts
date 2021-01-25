@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
+import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
+import type { ClearStatus } from '@ddradar/core/api/user'
+import { ClearLamp, clearLampMap } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import { privateUser, publicUser } from '../core/__tests__/data'
-import type { ClearStatus } from '../core/api/user'
-import { ClearLamp, clearLampMap } from '../core/db/scores'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')

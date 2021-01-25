@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { CurrentUserInfo } from '../core/api/user'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get information about the currently logged in user. */

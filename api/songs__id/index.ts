@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import type { SongInfo } from '@ddradar/core/api/song'
 
-import type { SongInfo } from '../core/api/song'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get song and charts information that match the specified ID. */

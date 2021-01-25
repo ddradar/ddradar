@@ -1,5 +1,6 @@
-import type { UserInfo } from '../core/api/user'
-import type { AreaCode, UserSchema } from '../core/db/users'
+import type { UserInfo } from '@ddradar/core/api/user'
+import type { AreaCode, UserSchema } from '@ddradar/core/db/users'
+
 import { Condition, fetchList, fetchOne } from '.'
 
 export function fetchUser(id: string): Promise<UserSchema | null> {

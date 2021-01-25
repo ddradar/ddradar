@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { ClientPrincipal } from '@ddradar/core/api/auth'
+import type { UserSchema } from '@ddradar/core/db/users'
 
-import type { ClientPrincipal } from './core/api/auth'
-import type { UserSchema } from './core/db/users'
 import { fetchLoginUser } from './db/users'
 
 export function getClientPrincipal(

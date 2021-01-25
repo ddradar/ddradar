@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import { isSongSchema, SongSchema } from '@ddradar/core/db/songs'
 
-import { isSongSchema, SongSchema } from '../core/db/songs'
 import { ErrorResult, SuccessResult } from '../function'
 
 type PostSongResult = {

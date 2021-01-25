@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
+import type { ScoreInfo } from '@ddradar/core/api/score'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreInfo } from '../core/api/score'
-import type { ScoreSchema } from '../core/db/scores'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get scores that match the specified chart. */

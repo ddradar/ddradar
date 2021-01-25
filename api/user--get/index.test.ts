@@ -1,7 +1,7 @@
+import { publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import { publicUser } from '../core/__tests__/data'
 import getCurrentUser from '.'
 
 jest.mock('../auth')

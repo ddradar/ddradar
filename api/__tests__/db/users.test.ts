@@ -1,4 +1,5 @@
-import type { AreaCode, UserSchema } from '../../core/db/users'
+import type { AreaCode, UserSchema } from '@ddradar/core/db/users'
+
 import { canConnectDB, getContainer } from '../../db'
 import { fetchLoginUser, fetchUser, fetchUserList } from '../../db/users'
 import { describeIf } from '../util'

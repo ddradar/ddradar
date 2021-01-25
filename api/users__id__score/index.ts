@@ -1,9 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
+import type { ScoreStatus } from '@ddradar/core/api/user'
+import { danceLevelSet } from '@ddradar/core/db/scores'
+import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreStatus } from '../core/api/user'
-import { danceLevelSet } from '../core/db/scores'
-import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 type TotalCount = Omit<ScoreStatus, 'rank'>

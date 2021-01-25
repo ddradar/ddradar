@@ -1,8 +1,8 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { GrooveRadarInfo } from '@ddradar/core/api/user'
+import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { GrooveRadarInfo } from '../core/api/user'
-import type { UserSchema } from '../core/db/users'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get Groove Radar that match the specified user ID and play style. */
