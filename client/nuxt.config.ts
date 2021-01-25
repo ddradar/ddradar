@@ -3,14 +3,14 @@ import { join } from 'path'
 
 import type { Locale } from './types/locale'
 
-const title = 'DDRadar'
+const name = 'DDRadar'
 const description = 'DDR Score Tracker'
 
 const configuration: NuxtConfig = {
   target: 'static',
   head: {
     titleTemplate: titleChunk =>
-      titleChunk ? `${titleChunk} - ${title}` : title,
+      titleChunk ? `${titleChunk} - DDRadar` : 'DDRadar',
     meta: [
       {
         name: 'keywords',
@@ -35,8 +35,8 @@ const configuration: NuxtConfig = {
   ],
   pwa: {
     manifest: {
-      name: title,
-      short_name: title,
+      name,
+      short_name: name,
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
@@ -44,7 +44,7 @@ const configuration: NuxtConfig = {
       start_url: '/',
     },
     meta: {
-      name: title,
+      name,
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
