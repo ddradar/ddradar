@@ -104,7 +104,7 @@ export default class IndexPage extends Vue {
   messages: NotificationListData[] = []
 
   get head(): MetaInfo {
-    return { title: '' }
+    return { title: 'DDRadar - DDR Score Tracker', titleTemplate: '' }
   }
 
   get menuList() {
