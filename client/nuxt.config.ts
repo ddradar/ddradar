@@ -3,20 +3,19 @@ import { join } from 'path'
 
 import type { Locale } from './types/locale'
 
-const title = 'DDRadar'
+const name = 'DDRadar'
 const description = 'DDR Score Tracker'
 
 const configuration: NuxtConfig = {
   target: 'static',
   head: {
-    title,
+    titleTemplate: titleChunk =>
+      titleChunk ? `${titleChunk} - DDRadar` : 'DDRadar',
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       {
-        hid: 'description',
-        name: 'description',
-        content: description,
+        name: 'keywords',
+        content:
+          'Dance Dance Revolution,DDR,ダンレボ,ダンスダンスレボリューション',
       },
     ],
     link: [
@@ -34,23 +33,22 @@ const configuration: NuxtConfig = {
     '@nuxtjs/pwa',
     'nuxt-i18n',
   ],
-  /** @nuxtjs/pwa settings */
   pwa: {
     manifest: {
-      name: title,
-      short_name: title,
+      name,
+      short_name: name,
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
       display: 'standalone',
-      scope: '/',
       start_url: '/',
     },
     meta: {
-      name: title,
+      name,
       description,
       theme_color: '#ff8c00',
       lang: 'ja',
+      twitterCard: 'summary',
     },
   },
   /** nuxt-i18n settings */

@@ -107,6 +107,7 @@
 import type { UserInfo } from '@core/api/user'
 import { areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
 import { getUserList } from '~/api/user'
 import * as popup from '~/utils/popup'
@@ -131,6 +132,13 @@ export default class UserListPage extends Vue {
       name: u.name,
       area: this.$t(`area.${u.area}`),
     }))
+  }
+
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return {
+      title: this.$t('title') as string,
+    }
   }
 
   /** Load user info */

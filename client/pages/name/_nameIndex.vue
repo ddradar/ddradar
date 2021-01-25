@@ -21,8 +21,9 @@
 <script lang="ts">
 import type { SongListData } from '@core/api/song'
 import { NameIndex, nameIndexMap } from '@core/db/songs'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
 import { searchSongByName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
@@ -31,21 +32,6 @@ import SongList from '~/components/pages/songs/SongList.vue'
 export default class SongByNamePage extends Vue {
   /** Song List from API */
   songs: SongListData[] = []
-
-  /** nameIndex expected [0-36] */
-  validate({ params }: Pick<Context, 'params'>) {
-    const parsedIndex = parseInt(params.nameIndex, 10)
-    return (
-      /^\d{1,2}$/.test(params.nameIndex) &&
-      parsedIndex >= 0 &&
-      parsedIndex < nameIndexMap.size
-    )
-  }
-
-  /** Get Song List from API */
-  async fetch() {
-    this.songs = await searchSongByName(this.$http, this.selected)
-  }
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
@@ -58,8 +44,29 @@ export default class SongByNamePage extends Vue {
     return parseInt(this.$route.params.nameIndex, 10)
   }
 
+  /** "あ", ..., "A", ..., "数字・記号" */
   get nameIndexList() {
     return [...nameIndexMap.values()]
+  }
+
+  /** nameIndex should be [0-36] */
+  validate({ params }: Pick<Context, 'params'>) {
+    const parsedIndex = parseInt(params.nameIndex, 10)
+    return (
+      /^\d{1,2}$/.test(params.nameIndex) &&
+      parsedIndex >= 0 &&
+      parsedIndex < nameIndexMap.size
+    )
+  }
+
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.title }
+  }
+
+  /** Get Song List from API */
+  async fetch() {
+    this.songs = await searchSongByName(this.$http, this.selected)
   }
 }
 </script>

@@ -180,6 +180,7 @@
 <i18n>
 {
   "ja": {
+    "pageTitle": "ユーザー詳細",
     "button": {
       "import": "スコアのインポート",
       "settings": "設定"
@@ -195,6 +196,7 @@
     "noData": "データがありません"
   },
   "en": {
+    "pageTitle": "User Detail",
     "button": {
       "import": "Import Scores",
       "settings": "Settings"
@@ -221,6 +223,7 @@ import type {
 import type { GrooveRadar as GrooveRadarInfo } from '@core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
 import {
   getClearStatus,
@@ -299,6 +302,13 @@ export default class UserPage extends Vue {
           return p
         }, [] as Pick<ScoreInfo, 'rank' | 'count'>[])
     ) as [ScoreInfo[], ScoreInfo[]]
+  }
+
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return {
+      title: this.user?.name ?? (this.$t('pageTitle') as string),
+    }
   }
 
   /** id expected [a-z], [A-Z] [0-9], [-], [_] */

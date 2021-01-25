@@ -26,15 +26,13 @@ describe('pages/profile.vue', () => {
     password: 'password',
   }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const data = () => ({ ...user })
 
-  describe('snapshot test', () => {
-    test.each(['ja', 'en'])('renders correctly { locale: "%s" }', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const wrapper = mount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-      })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    test('renders correctly', () => {
+      const mocks = { $accessor }
+      const wrapper = mount(ProfilePage, { localVue, i18n, mocks })
       expect(wrapper).toMatchSnapshot()
     })
   })
@@ -42,11 +40,8 @@ describe('pages/profile.vue', () => {
   describe('get isNewUser()', () => {
     test('returns true if $accessor.user is null', () => {
       // Arrange
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor: { user: null } },
-      })
+      const mocks = { $accessor: { user: null } }
+      const wrapper = shallowMount(ProfilePage, { localVue, i18n, mocks })
 
       // Act - Assert
       // @ts-ignore
@@ -54,11 +49,8 @@ describe('pages/profile.vue', () => {
     })
     test('returns false if $accessor.user is not null', () => {
       // Arrange
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor: { user } },
-      })
+      const mocks = { $accessor: { user } }
+      const wrapper = shallowMount(ProfilePage, { localVue, i18n, mocks })
 
       // Act - Assert
       // @ts-ignore
@@ -74,14 +66,12 @@ describe('pages/profile.vue', () => {
       { area: -1 },
       { code: 1.3 },
       { code: 100000000 },
-    ])('returns true if %p', data => {
+    ])('returns true if %p', diff => {
       // Arrange
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-        data: () => ({ ...user, ...data }),
-      })
+      const mocks = { $accessor }
+      const data = () => ({ ...user, ...diff })
+      const options = { localVue, i18n, mocks, data }
+      const wrapper = shallowMount(ProfilePage, options)
 
       // Act - Assert
       // @ts-ignore
@@ -92,14 +82,12 @@ describe('pages/profile.vue', () => {
       { ...user, id: 'FOO' },
       { ...user, type: 'is-success' },
       { ...user, code: null },
-    ])('returns false if %p', data => {
+    ])('returns false if %p', userData => {
       // Arrange
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-        data: () => ({ ...data }),
-      })
+      const mocks = { $accessor }
+      const data = () => ({ ...userData })
+      const options = { localVue, i18n, mocks, data }
+      const wrapper = shallowMount(ProfilePage, options)
 
       // Act - Assert
       // @ts-ignore
@@ -110,19 +98,15 @@ describe('pages/profile.vue', () => {
   describe('fetch()', () => {
     test('calls $accessor.fetchUser()', async () => {
       // Arrange
-      const $accessor = { user, fetchUser: jest.fn() }
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-      })
+      const mocks = { $accessor: { user, fetchUser: jest.fn() } }
+      const wrapper = shallowMount(ProfilePage, { localVue, i18n, mocks })
 
       // Act
       // @ts-ignore
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect($accessor.fetchUser).toBeCalled()
+      expect(mocks.$accessor.fetchUser).toBeCalled()
       expect(wrapper.vm.$data.id).toBe(user.id)
       expect(wrapper.vm.$data.name).toBe(user.name)
       expect(wrapper.vm.$data.area).toBe(user.area)
@@ -136,11 +120,8 @@ describe('pages/profile.vue', () => {
         auth: { userDetails: 'github_user' },
         fetchUser: jest.fn(),
       }
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-      })
+      const mocks = { $accessor }
+      const wrapper = shallowMount(ProfilePage, { localVue, i18n, mocks })
 
       // Act
       // @ts-ignore
@@ -157,11 +138,8 @@ describe('pages/profile.vue', () => {
     test('sets default if no auth', async () => {
       // Arrange
       const $accessor = { fetchUser: jest.fn() }
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks: { $accessor },
-      })
+      const mocks = { $accessor }
+      const wrapper = shallowMount(ProfilePage, { localVue, i18n, mocks })
 
       // Act
       // @ts-ignore
@@ -178,6 +156,7 @@ describe('pages/profile.vue', () => {
   })
 
   describe('checkId()', () => {
+    const mocks = { $accessor }
     const existsUserMock = mocked(existsUser)
     beforeEach(() => existsUserMock.mockClear())
 
@@ -189,12 +168,9 @@ describe('pages/profile.vue', () => {
       async (locale, message) => {
         // Arrange
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks: { $accessor },
-          data: () => ({ ...user, id: '' }),
-        })
+        const data = () => ({ ...user, id: '' })
+        const options = { localVue, i18n, mocks, data }
+        const wrapper = shallowMount(ProfilePage, options)
 
         // Act
         // @ts-ignore
@@ -212,16 +188,13 @@ describe('pages/profile.vue', () => {
         'Only alphanumeric characters, hyphens, and underbars can be used for ID',
       ],
     ])(
-      '{ locale: "%s" } sets "%s" error if id is "FOO"',
+      '{ locale: "%s" } sets "%s" error if id is "@"',
       async (locale, message) => {
         // Arrange
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks: { $accessor },
-          data: () => ({ ...user, id: '@' }),
-        })
+        const data = () => ({ ...user, id: '@' })
+        const options = { localVue, i18n, mocks, data }
+        const wrapper = shallowMount(ProfilePage, options)
 
         // Act
         // @ts-ignore
@@ -241,12 +214,8 @@ describe('pages/profile.vue', () => {
         // Arrange
         existsUserMock.mockResolvedValue(true)
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks: { $accessor },
-          data: () => ({ ...user }),
-        })
+        const options = { localVue, i18n, mocks, data }
+        const wrapper = shallowMount(ProfilePage, options)
 
         // Act
         // @ts-ignore
@@ -266,12 +235,8 @@ describe('pages/profile.vue', () => {
         // Arrange
         existsUserMock.mockResolvedValue(false)
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks: { $accessor },
-          data: () => ({ ...user }),
-        })
+        const options = { localVue, i18n, mocks, data }
+        const wrapper = shallowMount(ProfilePage, options)
 
         // Act
         // @ts-ignore
@@ -282,6 +247,20 @@ describe('pages/profile.vue', () => {
         expect(wrapper.vm.$data.message).toBe(message)
       }
     )
+    test('sets type: "" if API call failed', async () => {
+      // Arrange
+      existsUserMock.mockRejectedValue('Error')
+      const options = { localVue, i18n, mocks, data }
+      const wrapper = shallowMount(ProfilePage, options)
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.checkId()
+
+      // Assert
+      expect(wrapper.vm.$data.type).toBe('')
+      expect(wrapper.vm.$data.message).toBe('')
+    })
   })
 
   describe('save()', () => {
@@ -302,12 +281,8 @@ describe('pages/profile.vue', () => {
       async (locale, message) => {
         // Arrange
         const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-        const wrapper = shallowMount(ProfilePage, {
-          localVue,
-          i18n,
-          mocks,
-          data: () => ({ ...user }),
-        })
+        const options = { localVue, i18n, mocks, data }
+        const wrapper = shallowMount(ProfilePage, options)
 
         // Act
         // @ts-ignore
@@ -323,12 +298,8 @@ describe('pages/profile.vue', () => {
       // Arrange
       const message = '500'
       mocks.$accessor.saveUser.mockRejectedValue(message)
-      const wrapper = shallowMount(ProfilePage, {
-        localVue,
-        i18n,
-        mocks,
-        data: () => ({ ...user }),
-      })
+      const options = { localVue, i18n, mocks, data }
+      const wrapper = shallowMount(ProfilePage, options)
 
       // Act
       // @ts-ignore

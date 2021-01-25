@@ -28,8 +28,9 @@
 <script lang="ts">
 import type { CourseInfo } from '@core/api/course'
 import { isValidId } from '@core/db/songs'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
 import { getCourseInfo } from '~/api/course'
 import { getDisplayedBPM } from '~/api/song'
@@ -55,6 +56,11 @@ export default class CourseDetailPage extends Vue {
 
   validate({ params }: Pick<Context, 'params'>) {
     return isValidId(params.id)
+  }
+
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.course?.name }
   }
 
   async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {

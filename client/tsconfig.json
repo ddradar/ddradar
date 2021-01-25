@@ -14,7 +14,14 @@
       "~/*": ["./*"],
       "@core/*": ["../core/*"]
     },
-    "types": ["jest", "node", "@nuxt/http", "@nuxt/types", "nuxt-i18n"]
+    "types": [
+      "jest",
+      "node",
+      "@nuxt/http",
+      "@nuxt/types",
+      "@nuxtjs/pwa",
+      "nuxt-i18n"
+    ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]
 }
