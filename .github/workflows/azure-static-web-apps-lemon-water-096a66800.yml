@@ -29,7 +29,7 @@ jobs:
       - name: Setup GitHub Packages
         run: |
           echo "registry=https://npm.pkg.github.com/ddradar" > api/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=$GITHUB_TOKEN" >> api/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build And Deploy
@@ -49,7 +49,6 @@ jobs:
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_REGISTRY_URL: https://npm.pkg.github.com/ddradar
 
   close_pull_request_job:
