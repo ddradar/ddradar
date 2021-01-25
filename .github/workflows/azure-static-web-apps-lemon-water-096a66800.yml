@@ -50,6 +50,7 @@ jobs:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_REGISTRY_URL: https://npm.pkg.github.com/ddradar
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
