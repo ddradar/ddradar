@@ -67,7 +67,7 @@ const configuration: NuxtConfig = {
     instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
   },
   build: {
-    transpile: [/typed-vuex/],
+    transpile: [/typed-vuex/, /@ddradar\/core/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
     },
