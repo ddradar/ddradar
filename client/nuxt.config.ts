@@ -1,5 +1,4 @@
 import type { NuxtConfig } from '@nuxt/types'
-import { join } from 'path'
 
 import type { Locale } from './types/locale'
 

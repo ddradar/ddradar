@@ -1,4 +1,8 @@
-import { privateUser, publicUser, testSongData } from '@ddradar/core/__tests__/data'
+import {
+  privateUser,
+  publicUser,
+  testSongData,
+} from '@ddradar/core/__tests__/data'
 import type { ScoreInfo } from '@ddradar/core/api/score'
 import {
   createLocalVue,

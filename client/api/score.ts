@@ -1,4 +1,8 @@
-import type { ScoreBody, ScoreInfo, ScoreListBody } from '@ddradar/core/api/score'
+import type {
+  ScoreBody,
+  ScoreInfo,
+  ScoreListBody,
+} from '@ddradar/core/api/score'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

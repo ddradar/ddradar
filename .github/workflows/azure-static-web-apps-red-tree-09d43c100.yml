@@ -18,7 +18,7 @@ jobs:
         with:
           submodules: true
       - name: Use GitHub Packages
-        run: echo "@ddradar:registry" "https://npm.pkg.github.com/" > /.yarnrc
+        run: echo "@ddradar:registry" "https://npm.pkg.github.com/" > .yarnrc
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
