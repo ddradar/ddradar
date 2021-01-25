@@ -19,7 +19,7 @@ jobs:
           submodules: true
       - name: Setup GitHub Packages
         run: |
-          echo "registry=https://npm.pkg.github.com/ddradar" > api/.npmrc
+          echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -40,4 +40,3 @@ jobs:
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_PRODUCTION }}
-          NPM_REGISTRY_URL: https://npm.pkg.github.com/ddradar
