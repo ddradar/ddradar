@@ -1,4 +1,4 @@
-import type { ChartInfo } from '@core/api/song'
+import type { ChartInfo } from '@ddradar/core/api/song'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,

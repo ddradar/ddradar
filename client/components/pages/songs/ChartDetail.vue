@@ -38,8 +38,8 @@
 </template>
 
 <script lang="ts">
-import type { SongInfo } from '@core/api/song'
-import { difficultyMap, StepChartSchema } from '@core/db/songs'
+import type { SongInfo } from '@ddradar/core/api/song'
+import { difficultyMap, StepChartSchema } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import Card from '~/components/shared/Card.vue'

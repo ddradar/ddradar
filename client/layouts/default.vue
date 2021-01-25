@@ -193,7 +193,7 @@
 </i18n>
 
 <script lang="ts">
-import { nameIndexMap, seriesSet } from '@core/db/songs'
+import { nameIndexMap, seriesSet } from '@ddradar/core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { shortenSeriesName } from '~/api/song'

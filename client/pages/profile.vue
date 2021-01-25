@@ -178,8 +178,8 @@
 </i18n>
 
 <script lang="ts">
-import type { CurrentUserInfo } from '@core/api/user'
-import { AreaCode, areaCodeSet } from '@core/db/users'
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
+import { AreaCode, areaCodeSet } from '@ddradar/core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 

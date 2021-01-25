@@ -1,4 +1,4 @@
-import type { CourseListData } from '@core/api/course'
+import type { CourseListData } from '@ddradar/core/api/course'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'

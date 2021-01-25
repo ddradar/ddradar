@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import type { GrooveRadar } from '@core/db/songs'
+import type { GrooveRadar } from '@ddradar/core/db/songs'
 import type { ChartData, ChartTooltipItem } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 

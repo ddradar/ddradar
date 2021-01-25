@@ -1,4 +1,4 @@
-import type { UserInfo } from '@core/api/user'
+import type { UserInfo } from '@ddradar/core/api/user'
 import {
   createLocalVue,
   mount,

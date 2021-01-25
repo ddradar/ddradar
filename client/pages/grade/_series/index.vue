@@ -34,8 +34,8 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseListData } from '@core/api/course'
-import { seriesSet } from '@core/db/songs'
+import type { CourseListData } from '@ddradar/core/api/course'
+import { seriesSet } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'

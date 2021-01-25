@@ -1,4 +1,4 @@
-import { scoreTexttoScoreList } from '@core/skill-attack'
+import { scoreTexttoScoreList } from '@ddradar/core/skill-attack'
 import {
   createLocalVue,
   mount,
@@ -16,7 +16,7 @@ import * as popup from '~/utils/popup'
 
 jest.mock('~/api/score')
 jest.mock('~/utils/popup')
-jest.mock('@core/skill-attack')
+jest.mock('@ddradar/core/skill-attack')
 
 const localVue = createLocalVue()
 localVue.use(Buefy)

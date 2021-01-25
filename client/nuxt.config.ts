@@ -71,7 +71,6 @@ const configuration: NuxtConfig = {
     transpile: [/typed-vuex/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
-      config!.resolve!.alias!['@core'] = join(__dirname, '..', 'core/dist')
     },
   },
   generate: { exclude: [/^\/.auth\//] },

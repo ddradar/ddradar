@@ -1,4 +1,4 @@
-import type { CurrentUserInfo } from '@core/api/user'
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
 
 import {
   existsUser,

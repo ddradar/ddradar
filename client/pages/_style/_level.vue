@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import type { ChartInfo } from '@core/api/song'
+import type { ChartInfo } from '@ddradar/core/api/song'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'

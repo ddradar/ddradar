@@ -71,7 +71,7 @@
 </i18n>
 
 <script lang="ts">
-import type { NotificationListData } from '@core/api/notification'
+import type { NotificationListData } from '@ddradar/core/api/notification'
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'

@@ -37,8 +37,8 @@
 </template>
 
 <script lang="ts">
-import type { SongInfo } from '@core/api/song'
-import { isValidId } from '@core/db/songs'
+import type { SongInfo } from '@ddradar/core/api/song'
+import { isValidId } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'

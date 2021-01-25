@@ -61,7 +61,7 @@
 </i18n>
 
 <script lang="ts">
-import type { SongListData } from '@core/api/song'
+import type { SongListData } from '@ddradar/core/api/song'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getDisplayedBPM, shortenSeriesName } from '~/api/song'

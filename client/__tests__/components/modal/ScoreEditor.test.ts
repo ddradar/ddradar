@@ -1,5 +1,5 @@
-import { testSongData } from '@core/__tests__/data'
-import { getDanceLevel, setValidScoreFromChart } from '@core/score'
+import { testSongData } from '@ddradar/core/__tests__/data'
+import { getDanceLevel, setValidScoreFromChart } from '@ddradar/core/score'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
@@ -9,7 +9,7 @@ import { getChartScore, postChartScore } from '~/api/score'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import * as popup from '~/utils/popup'
 
-jest.mock('@core/score')
+jest.mock('@ddradar/core/score')
 jest.mock('~/api/score')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()

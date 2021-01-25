@@ -1,4 +1,4 @@
-import type { NotificationListData } from '@core/api/notification'
+import type { NotificationListData } from '@ddradar/core/api/notification'
 
 export const notificationList: NotificationListData[] = [
   {

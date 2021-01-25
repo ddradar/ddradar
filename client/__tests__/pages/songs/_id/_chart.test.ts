@@ -1,4 +1,4 @@
-import type { SongInfo } from '@core/api/song'
+import type { SongInfo } from '@ddradar/core/api/song'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'

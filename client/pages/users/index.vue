@@ -104,8 +104,8 @@
 </i18n>
 
 <script lang="ts">
-import type { UserInfo } from '@core/api/user'
-import { areaCodeSet } from '@core/db/users'
+import type { UserInfo } from '@ddradar/core/api/user'
+import { areaCodeSet } from '@ddradar/core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 

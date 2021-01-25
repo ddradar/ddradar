@@ -1,5 +1,5 @@
-import type { ClearStatus } from '@core/api/user'
-import { ClearLamp } from '@core/db/scores'
+import type { ClearStatus } from '@ddradar/core/api/user'
+import { ClearLamp } from '@ddradar/core/db/scores'
 import { mount } from '@vue/test-utils'
 
 import Component from '~/components/pages/users/ClearStatus.vue'

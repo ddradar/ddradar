@@ -1,4 +1,4 @@
-import { notification } from '@core/__tests__/data'
+import { notification } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'

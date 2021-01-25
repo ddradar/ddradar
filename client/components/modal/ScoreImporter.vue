@@ -61,7 +61,7 @@
 </i18n>
 
 <script lang="ts">
-import { musicDetailToScore } from '@core/eagate-parser'
+import { musicDetailToScore } from '@ddradar/core/eagate-parser'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { postSongScores } from '~/api/score'

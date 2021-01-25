@@ -110,11 +110,11 @@
 </i18n>
 
 <script lang="ts">
-import type { CourseInfo } from '@core/api/course'
-import type { ScoreInfo } from '@core/api/score'
-import type { SongInfo } from '@core/api/song'
-import { difficultyMap, StepChartSchema } from '@core/db/songs'
-import { areaCodeSet } from '@core/db/users'
+import type { CourseInfo } from '@ddradar/core/api/course'
+import type { ScoreInfo } from '@ddradar/core/api/score'
+import type { SongInfo } from '@ddradar/core/api/song'
+import { difficultyMap, StepChartSchema } from '@ddradar/core/db/songs'
+import { areaCodeSet } from '@ddradar/core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
