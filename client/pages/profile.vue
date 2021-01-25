@@ -181,7 +181,7 @@
 import type { CurrentUserInfo } from '@core/api/user'
 import { AreaCode, areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { existsUser } from '~/api/user'
 import * as popup from '~/utils/popup'

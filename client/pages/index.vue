@@ -91,6 +91,7 @@
 import type { NotificationListData } from '@core/api/notification'
 import { nameIndexMap, seriesSet } from '@core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
 import { getNotificationList } from '~/api/notification'
 import { shortenSeriesName } from '~/api/song'
@@ -101,6 +102,10 @@ import * as popup from '~/utils/popup'
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
   messages: NotificationListData[] = []
+
+  get head(): MetaInfo {
+    return { title: '' }
+  }
 
   get menuList() {
     const seriesList = [...seriesSet]

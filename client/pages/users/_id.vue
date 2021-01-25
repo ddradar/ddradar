@@ -223,7 +223,7 @@ import type {
 import type { GrooveRadar as GrooveRadarInfo } from '@core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import {
   getClearStatus,

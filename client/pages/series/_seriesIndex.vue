@@ -21,7 +21,7 @@
 <script lang="ts">
 import type { SongListData } from '@core/api/song'
 import { seriesSet } from '@core/db/songs'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import { MetaInfo } from 'vue-meta'
 

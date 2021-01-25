@@ -107,7 +107,7 @@
 import type { UserInfo } from '@core/api/user'
 import { areaCodeSet } from '@core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { getUserList } from '~/api/user'
 import * as popup from '~/utils/popup'

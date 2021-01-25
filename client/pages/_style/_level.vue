@@ -20,9 +20,9 @@
 
 <script lang="ts">
 import type { ChartInfo } from '@core/api/song'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { searchCharts } from '~/api/song'
 import ChartList from '~/components/pages/charts/ChartList.vue'

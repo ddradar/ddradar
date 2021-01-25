@@ -74,7 +74,7 @@
 import type { NotificationListData } from '@core/api/notification'
 import marked from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { getNotificationList } from '~/api/notification'
 import { unixTimeToString } from '~/utils/date'

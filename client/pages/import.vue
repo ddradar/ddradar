@@ -151,7 +151,7 @@
 <script lang="ts">
 import { readTextAsync, scoreTexttoScoreList } from '@core/skill-attack'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { postSongScores } from '~/api/score'
 import * as popup from '~/utils/popup'

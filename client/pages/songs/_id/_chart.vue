@@ -39,9 +39,9 @@
 <script lang="ts">
 import type { SongInfo } from '@core/api/song'
 import { isValidId } from '@core/db/songs'
-import { Context } from '@nuxt/types'
+import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { getDisplayedBPM, getSongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
