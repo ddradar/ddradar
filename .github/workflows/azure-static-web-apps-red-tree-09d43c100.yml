@@ -35,3 +35,4 @@ jobs:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_PRODUCTION }}
           ENABLE_NODE_MONOREPO_BUILD: true
+          NPM_REGISTRY_URL: https://npm.pkg.github.com/

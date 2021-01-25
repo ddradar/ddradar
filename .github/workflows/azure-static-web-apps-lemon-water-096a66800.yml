@@ -44,6 +44,7 @@ jobs:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
           ENABLE_NODE_MONOREPO_BUILD: true
+          NPM_REGISTRY_URL: https://npm.pkg.github.com/
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
