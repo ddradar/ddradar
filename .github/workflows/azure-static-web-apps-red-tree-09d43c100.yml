@@ -34,3 +34,4 @@ jobs:
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_PRODUCTION }}
+          ENABLE_NODE_MONOREPO_BUILD: true
