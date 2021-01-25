@@ -27,7 +27,7 @@ jobs:
         with:
           submodules: true
       - name: Use GitHub Packages
-        run:
+        run: |
           echo '"@ddradar:registry" "https://npm.pkg.github.com/"' > .yarnrc
           echo '"@ddradar:registry" "https://npm.pkg.github.com/"' > ./api/.yarnrc
       - name: Build And Deploy
