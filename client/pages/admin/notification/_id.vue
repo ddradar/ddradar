@@ -48,7 +48,7 @@
 </template>
 
 <script lang="ts">
-import type { NotificationType } from '@core/db/notification'
+import type { NotificationType } from '@ddradar/core/db/notification'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 

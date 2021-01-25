@@ -1,4 +1,4 @@
-import { musicDetailToScore } from '@core/eagate-parser'
+import { musicDetailToScore } from '@ddradar/core/eagate-parser'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
@@ -9,7 +9,7 @@ import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import * as popup from '~/utils/popup'
 
 jest.mock('~/api/score')
-jest.mock('@core/eagate-parser')
+jest.mock('@ddradar/core/eagate-parser')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()
 localVue.use(Buefy)

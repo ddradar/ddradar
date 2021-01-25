@@ -1,5 +1,5 @@
-import type { ChartInfo, SongInfo, SongListData } from '@core/api/song'
-import { difficultyMap, PlayStyle, playStyleMap } from '@core/db/songs'
+import type { ChartInfo, SongInfo, SongListData } from '@ddradar/core/api/song'
+import { difficultyMap, PlayStyle, playStyleMap } from '@ddradar/core/db/songs'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

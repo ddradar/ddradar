@@ -88,8 +88,8 @@
 </i18n>
 
 <script lang="ts">
-import type { NotificationListData } from '@core/api/notification'
-import { nameIndexMap, seriesSet } from '@core/db/songs'
+import type { NotificationListData } from '@ddradar/core/api/notification'
+import { nameIndexMap, seriesSet } from '@ddradar/core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 

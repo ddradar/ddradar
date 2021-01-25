@@ -1,5 +1,6 @@
-import { ScoreSchema } from '../core/db/scores'
-import { Difficulty } from '../core/db/songs'
+import { ScoreSchema } from '@ddradar/core/db/scores'
+import { Difficulty } from '@ddradar/core/db/songs'
+
 import { fetchOne, ItemDefinition } from '.'
 
 export function fetchScore(

@@ -1,7 +1,7 @@
 import type {
   NotificationInfo,
   NotificationListData,
-} from '@core/api/notification'
+} from '@ddradar/core/api/notification'
 
 import { getNotificationInfo, getNotificationList } from '~/api/notification'
 

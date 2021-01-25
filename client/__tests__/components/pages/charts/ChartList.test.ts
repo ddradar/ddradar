@@ -1,5 +1,5 @@
-import { testSongData } from '@core/__tests__/data'
-import type { ChartInfo } from '@core/api/song'
+import { testSongData } from '@ddradar/core/__tests__/data'
+import type { ChartInfo } from '@ddradar/core/api/song'
 import {
   createLocalVue,
   mount,

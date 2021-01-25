@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import type { NotificationInfo } from '@ddradar/core/api/notification'
 
-import type { NotificationInfo } from '../core/api/notification'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get notification that match the specified ID. */

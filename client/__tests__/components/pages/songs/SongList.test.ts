@@ -1,4 +1,4 @@
-import { testSongList } from '@core/__tests__/data'
+import { testSongList } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'

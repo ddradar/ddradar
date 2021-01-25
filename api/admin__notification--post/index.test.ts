@@ -1,4 +1,5 @@
-import { NotificationBody } from '../core/api/notification'
+import { NotificationBody } from '@ddradar/core/api/notification'
+
 import postNotification from '.'
 
 Date.now = jest.fn(() => 1597114800000)

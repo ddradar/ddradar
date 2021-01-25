@@ -1,4 +1,4 @@
-import { testSongData } from '@core/__tests__/data'
+import { testSongData } from '@ddradar/core/__tests__/data'
 
 import { postNotification, postSongInfo } from '~/api/admin'
 

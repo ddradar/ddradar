@@ -11,8 +11,7 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./*"],
-      "@core/*": ["../core/*"]
+      "~/*": ["./*"]
     },
     "types": [
       "jest",

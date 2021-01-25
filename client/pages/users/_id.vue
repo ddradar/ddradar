@@ -219,8 +219,8 @@ import type {
   ClearStatus as ClearInfo,
   ScoreStatus as ScoreInfo,
   UserInfo,
-} from '@core/api/user'
-import type { GrooveRadar as GrooveRadarInfo } from '@core/db/songs'
+} from '@ddradar/core/api/user'
+import type { GrooveRadar as GrooveRadarInfo } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'

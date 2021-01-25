@@ -1,7 +1,7 @@
 import type {
   NotificationInfo,
   NotificationListData,
-} from '@core/api/notification'
+} from '@ddradar/core/api/notification'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
+import type { UserInfo } from '@ddradar/core/api/user'
+import { AreaCode, areaCodeSet } from '@ddradar/core/db/users'
 
 import { getClientPrincipal } from '../auth'
-import type { UserInfo } from '../core/api/user'
-import { AreaCode, areaCodeSet } from '../core/db/users'
 import { fetchUserList } from '../db/users'
 import { SuccessResult } from '../function'
 

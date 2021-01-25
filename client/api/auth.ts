@@ -1,4 +1,4 @@
-import type { ClientPrincipal } from '@core/api/auth'
+import type { ClientPrincipal } from '@ddradar/core/api/auth'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 type AuthResult = {

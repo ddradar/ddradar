@@ -9,5 +9,5 @@
     "strict": true,
     "types": ["jest", "node"]
   },
-  "exclude": ["core/dist/*", "node_modules"]
+  "exclude": ["node_modules"]
 }

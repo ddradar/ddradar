@@ -1,9 +1,9 @@
 import type { Context } from '@azure/functions'
+import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
+import type { GrooveRadarInfo } from '@ddradar/core/api/user'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import { privateUser, publicUser } from '../core/__tests__/data'
-import type { GrooveRadarInfo } from '../core/api/user'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')

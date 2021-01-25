@@ -22,8 +22,8 @@
 </template>
 
 <script lang="ts">
-import type { CourseInfo } from '@core/api/course'
-import { CourseChartSchema, difficultyMap } from '@core/db/songs'
+import type { CourseInfo } from '@ddradar/core/api/course'
+import { CourseChartSchema, difficultyMap } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartTitle } from '~/api/song'

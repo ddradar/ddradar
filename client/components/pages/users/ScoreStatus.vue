@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import type { ScoreStatus } from '@core/api/user'
-import { DanceLevel, danceLevelSet } from '@core/db/scores'
+import type { ScoreStatus } from '@ddradar/core/api/user'
+import { DanceLevel, danceLevelSet } from '@ddradar/core/db/scores'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 

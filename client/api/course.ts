@@ -1,4 +1,4 @@
-import type { CourseInfo, CourseListData } from '@core/api/course'
+import type { CourseInfo, CourseListData } from '@ddradar/core/api/course'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

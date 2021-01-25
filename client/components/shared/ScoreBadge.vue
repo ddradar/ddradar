@@ -18,7 +18,7 @@
 </template>
 
 <script lang="ts">
-import { ClearLamp, clearLampMap } from '@core/db/scores'
+import { ClearLamp, clearLampMap } from '@ddradar/core/db/scores'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component

@@ -139,7 +139,7 @@
 </i18n>
 
 <script lang="ts">
-import type { ClearLamp } from '@core/db/scores'
+import type { ClearLamp } from '@ddradar/core/db/scores'
 import {
   CourseChartSchema,
   Difficulty,
@@ -147,8 +147,8 @@ import {
   PlayStyle,
   playStyleMap,
   StepChartSchema,
-} from '@core/db/songs'
-import { getDanceLevel, setValidScoreFromChart } from '@core/score'
+} from '@ddradar/core/db/songs'
+import { getDanceLevel, setValidScoreFromChart } from '@ddradar/core/score'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'

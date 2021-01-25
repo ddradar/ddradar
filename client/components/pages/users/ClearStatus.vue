@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
-import type { ClearStatus } from '@core/api/user'
-import { ClearLamp, clearLampMap } from '@core/db/scores'
+import type { ClearStatus } from '@ddradar/core/api/user'
+import { ClearLamp, clearLampMap } from '@ddradar/core/db/scores'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 

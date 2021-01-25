@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import { notification } from '@ddradar/core/__tests__/data'
 
-import { notification } from '../core/__tests__/data'
 import getNotificationInfo from '.'
 
 describe('GET /api/v1/notification/{id}', () => {

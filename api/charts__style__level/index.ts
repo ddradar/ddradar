@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import type { ChartInfo } from '@ddradar/core/api/song'
 
-import type { ChartInfo } from '../core/api/song'
 import { ErrorResult, SuccessResult } from '../function'
 
 /** Get charts that match the specified conditions. */

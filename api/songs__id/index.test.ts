@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import { testSongData } from '@ddradar/core/__tests__/data'
 
-import { testSongData } from '../core/__tests__/data'
 import getSongInfo from '.'
 
 describe('GET /api/v1/songs', () => {

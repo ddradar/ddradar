@@ -1,19 +1,19 @@
 import type { Context, HttpRequest } from '@azure/functions'
-
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../core/db/scores'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
   CourseChartSchema,
   Difficulty,
   SongSchema,
   StepChartSchema,
-} from '../core/db/songs'
+} from '@ddradar/core/db/songs'
 import {
   calcMyGrooveRadar,
   isScore,
   isValidScore,
   mergeScore,
-} from '../core/score'
+} from '@ddradar/core/score'
+
+import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import type { ItemDefinition } from '../db'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 

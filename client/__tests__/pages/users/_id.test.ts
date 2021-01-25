@@ -1,6 +1,6 @@
-import type { UserInfo } from '@core/api/user'
-import { ClearLamp, clearLampMap, danceLevelSet } from '@core/db/scores'
-import { GrooveRadar } from '@core/db/songs'
+import type { UserInfo } from '@ddradar/core/api/user'
+import { ClearLamp, clearLampMap, danceLevelSet } from '@ddradar/core/db/scores'
+import { GrooveRadar } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,

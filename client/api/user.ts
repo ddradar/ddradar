@@ -5,7 +5,7 @@ import type {
   GrooveRadarInfo,
   ScoreStatus,
   UserInfo,
-} from '@core/api/user'
+} from '@ddradar/core/api/user'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

@@ -1,4 +1,4 @@
-import { testCourseData } from '@core/__tests__/data'
+import { testCourseData } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
 import Buefy from 'buefy'
 

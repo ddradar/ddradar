@@ -14,10 +14,12 @@
     "test": "jest"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.9.5"
+    "@azure/cosmos": "^3.9.5",
+    "@ddradar/core": "^1.0.0-rc.0"
   },
   "devDependencies": {
     "@azure/functions": "^1.2.2",
+    "@ddradar/core": "^1.0.0-rc.0",
     "@types/node": "^12.19.15",
     "jest": "^26.6.3",
     "ts-jest": "^26.4.4",

@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import type { ExistsUser } from '@ddradar/core/api/user'
 
-import type { ExistsUser } from '../core/api/user'
 import { SuccessResult } from '../function'
 
 /** Returns whether the specified user exists. */

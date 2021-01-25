@@ -1,4 +1,4 @@
-import { testCourseData } from '@core/__tests__/data'
+import { testCourseData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { mocked } from 'ts-jest/utils'

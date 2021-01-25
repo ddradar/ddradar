@@ -1,5 +1,5 @@
-import { ScoreStatus } from '@core/api/user'
-import { danceLevelSet } from '@core/db/scores'
+import { ScoreStatus } from '@ddradar/core/api/user'
+import { danceLevelSet } from '@ddradar/core/db/scores'
 import { mount } from '@vue/test-utils'
 
 import Component from '~/components/pages/users/ScoreStatus.vue'

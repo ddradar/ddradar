@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
-import type { SongListData } from '@core/api/song'
-import { NameIndex, nameIndexMap } from '@core/db/songs'
+import type { SongListData } from '@ddradar/core/api/song'
+import { NameIndex, nameIndexMap } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'

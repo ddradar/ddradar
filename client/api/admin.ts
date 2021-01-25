@@ -1,5 +1,5 @@
-import type { NotificationBody } from '@core/api/notification'
-import type { SongInfo } from '@core/api/song'
+import type { NotificationBody } from '@ddradar/core/api/notification'
+import type { SongInfo } from '@ddradar/core/api/song'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'

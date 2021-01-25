@@ -1,4 +1,4 @@
-import { notification } from '@core/__tests__/data'
+import { notification } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'

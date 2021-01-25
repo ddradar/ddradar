@@ -1,4 +1,5 @@
-import { notifications } from '../core/__tests__/data'
+import { notifications } from '@ddradar/core/__tests__/data'
+
 import getNotification from '.'
 
 describe('GET /api/v1/notification', () => {

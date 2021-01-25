@@ -1,5 +1,4 @@
 import type { NuxtConfig } from '@nuxt/types'
-import { join } from 'path'
 
 import type { Locale } from './types/locale'
 
@@ -68,10 +67,9 @@ const configuration: NuxtConfig = {
     instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
   },
   build: {
-    transpile: [/typed-vuex/],
+    transpile: [/typed-vuex/, /@ddradar\/core/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
-      config!.resolve!.alias!['@core'] = join(__dirname, '..', 'core/dist')
     },
   },
   generate: { exclude: [/^\/.auth\//] },

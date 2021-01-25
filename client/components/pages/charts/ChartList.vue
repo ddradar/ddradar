@@ -70,8 +70,8 @@
 </i18n>
 
 <script lang="ts">
-import type { ChartInfo } from '@core/api/song'
-import { difficultyMap } from '@core/db/songs'
+import type { ChartInfo } from '@ddradar/core/api/song'
+import { difficultyMap } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { getSongInfo, shortenSeriesName } from '~/api/song'

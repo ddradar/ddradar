@@ -1,5 +1,5 @@
-import type { ClientPrincipal } from '@core/api/auth'
-import type { CurrentUserInfo } from '@core/api/user'
+import type { ClientPrincipal } from '@ddradar/core/api/auth'
+import type { CurrentUserInfo } from '@ddradar/core/api/user'
 import { mocked } from 'ts-jest/utils'
 import { Store } from 'vuex'
 

@@ -4,7 +4,6 @@ const config: Config.InitialOptions = {
   displayName: 'Client',
   moduleNameMapper: {
     '^~/(.*)$': '<rootDir>/$1',
-    '^@core/(.*)$': '@ddradar/core/$1',
     '^vue$': 'vue/dist/vue.common.js',
   },
   testMatch: ['**/*.test.ts'],

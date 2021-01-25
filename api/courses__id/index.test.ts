@@ -1,6 +1,6 @@
 import type { Context } from '@azure/functions'
+import type { CourseSchema } from '@ddradar/core/db/songs'
 
-import type { CourseSchema } from '../core/db/songs'
 import getCourseInfo from '.'
 
 describe('GET /api/v1/courses/{id}', () => {

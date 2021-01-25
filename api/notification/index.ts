@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { NotificationListData } from '@ddradar/core/api/notification'
+import type { NotificationSchema } from '@ddradar/core/db/notification'
 
-import type { NotificationListData } from '../core/api/notification'
-import type { NotificationSchema } from '../core/db/notification'
 import { SuccessResult } from '../function'
 
 /** Get system notification list. */

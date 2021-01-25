@@ -1,8 +1,8 @@
 import type { HttpRequest } from '@azure/functions'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import type { ScoreSchema } from '../core/db/scores'
 import getChartScore from '.'
 
 jest.mock('../auth')
