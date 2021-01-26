@@ -1,9 +1,9 @@
 import type { ItemDefinition } from '@azure/cosmos'
-
 import type {
   ClearStatusSchema,
   ScoreStatusSchema,
-} from '../core/db/userDetails'
+} from '@ddradar/core/db/userDetails'
+
 import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '../db/scores'
 
 type UserDetailSchema = ClearStatusSchema | ScoreStatusSchema

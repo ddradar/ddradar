@@ -1,8 +1,8 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
+import { testSongData } from '@ddradar/core/__tests__/data'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
-import { testSongData } from '../core/__tests__/data'
-import type { ScoreSchema } from '../core/db/scores'
 import { getContainer } from '../db'
 import { fetchTotalChartCount } from '../db/songs'
 import updateScores from '.'

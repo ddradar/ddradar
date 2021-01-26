@@ -1,4 +1,5 @@
-import type { ClearStatusSchema } from '../core/db/userDetails'
+import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
+
 import { getContainer } from '.'
 
 type TotalCount = Pick<ClearStatusSchema, 'level' | 'playStyle' | 'count'>

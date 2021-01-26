@@ -1,8 +1,11 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
+import type { ClearLamp, ScoreSchema } from '@ddradar/core/db/scores'
+import type {
+  ClearStatusSchema,
+  ScoreStatusSchema,
+} from '@ddradar/core/db/userDetails'
 import { mocked } from 'ts-jest/utils'
 
-import type { ClearLamp, ScoreSchema } from '../../core/db/scores'
-import { ClearStatusSchema, ScoreStatusSchema } from '../../core/db/userDetails'
 import { getContainer } from '../../db'
 import {
   fetchScore,
