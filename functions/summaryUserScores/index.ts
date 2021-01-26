@@ -1,12 +1,12 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
-
-import type { ScoreSchema } from '../core/db/scores'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
   ClearStatusSchema,
   GrooveRadarSchema,
   ScoreStatusSchema,
-} from '../core/db/userDetails'
+} from '@ddradar/core/db/userDetails'
+
 import {
   fetchClearAndScoreStatus,
   generateGrooveRadar,

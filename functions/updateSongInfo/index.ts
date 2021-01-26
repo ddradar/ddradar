@@ -1,9 +1,9 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
+import type { ScoreSchema } from '@ddradar/core/db/scores'
+import type { SongSchema } from '@ddradar/core/db/songs'
+import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
 
-import type { ScoreSchema } from '../core/db/scores'
-import type { SongSchema } from '../core/db/songs'
-import type { ClearStatusSchema } from '../core/db/userDetails'
 import { getContainer } from '../db'
 import { fetchTotalChartCount } from '../db/songs'
 

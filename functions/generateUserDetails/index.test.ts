@@ -1,10 +1,10 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import { mocked } from 'ts-jest/utils'
-
 import type {
   ClearStatusSchema,
   ScoreStatusSchema,
-} from '../core/db/userDetails'
+} from '@ddradar/core/db/userDetails'
+import { mocked } from 'ts-jest/utils'
+
 import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '../db/scores'
 import generateUserDetails from '.'
 

@@ -1,7 +1,7 @@
+import { testSongData } from '@ddradar/core/__tests__/data'
 import fetchMock from 'jest-fetch-mock'
 import { mocked } from 'ts-jest/utils'
 
-import { testSongData } from '../core/__tests__/data'
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
