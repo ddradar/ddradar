@@ -6,6 +6,9 @@
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "yarn": "^1.22.0"
+  },
   "workspaces": [
     "api",
     "client",
