@@ -15,9 +15,9 @@ export default async function (
   req: Pick<HttpRequest, 'headers' | 'query'>
 ): Promise<SuccessResult<UserInfo[]>> {
   const loginId = getClientPrincipal(req)?.userId ?? ''
-  const area = parseFloat(req.query.area)
-  const name = req.query.name
-  const code = parseFloat(req.query.code)
+  const area = parseFloat(req.query.area ?? '')
+  const name = req.query.name ?? ''
+  const code = parseFloat(req.query.code ?? '')
 
   const body = await fetchUserList(
     loginId,

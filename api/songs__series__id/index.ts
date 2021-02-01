@@ -9,7 +9,7 @@ export default async function (
   req: Pick<HttpRequest, 'query'>,
   songs: SongListData[]
 ): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
-  const name = parseFloat(req.query.name)
+  const name = parseFloat(req.query.name ?? '')
   const isValidName = Number.isInteger(name) && name >= 0 && name <= 36
 
   const body = songs.filter(s => !isValidName || s.nameIndex === name)

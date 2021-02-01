@@ -61,9 +61,10 @@ describe('GET /api/v1/courses', () => {
   beforeEach(() => (req.query = {}))
 
   test.each([
-    [1, 16, 1],
-    [2, 17, 1],
+    ['1', '16', 1],
+    ['2', '17', 1],
     ['', '', 4],
+    [undefined, undefined, 4],
   ])('?type=%i&series=%i returns %i courses', async (type, series, length) => {
     // Arrange
     req.query = { type, series }
