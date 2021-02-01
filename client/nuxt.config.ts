@@ -70,6 +70,7 @@ const configuration: NuxtConfig = {
     transpile: [/typed-vuex/, /@ddradar\/core/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
+      config.externals = ['moment']
     },
   },
   generate: { exclude: [/^\/.auth\//] },
