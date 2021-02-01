@@ -24,8 +24,8 @@ export default async function (
   documents: ReadonlyArray<CourseListDocument>
 ): Promise<SuccessResult<CourseListData[]>> {
   // Parse search query
-  const type = parseFloat(req.query.type)
-  const series = parseFloat(req.query.series)
+  const type = parseFloat(req.query.type ?? '')
+  const series = parseFloat(req.query.series ?? '')
   const isValidType = type === 1 || type === 2
   const isValidSeries = series === 16 || series === 17
 
