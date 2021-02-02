@@ -185,12 +185,8 @@
 
 <script lang="ts">
 import type { SongInfo } from '@ddradar/core/api/song'
-import {
-  isValidId,
-  Series,
-  seriesSet,
-  StepChartSchema,
-} from '@ddradar/core/db/songs'
+import type { Series, StepChartSchema } from '@ddradar/core/db/songs'
+import { isValidId, seriesSet } from '@ddradar/core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 

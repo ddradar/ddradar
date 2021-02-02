@@ -1,4 +1,5 @@
-import { ChartData, ChartOptions, pluginService } from 'chart.js'
+import type { ChartData, ChartOptions } from 'chart.js'
+import { pluginService } from 'chart.js'
 import { Component, mixins as Mixins, Prop } from 'nuxt-property-decorator'
 import { Doughnut, mixins } from 'vue-chartjs'
 

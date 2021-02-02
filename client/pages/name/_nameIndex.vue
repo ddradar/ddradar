@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import type { SongListData } from '@ddradar/core/api/song'
-import { NameIndex, nameIndexMap } from '@ddradar/core/db/songs'
+import { nameIndexMap } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -35,9 +35,7 @@ export default class SongByNamePage extends Vue {
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
-    return nameIndexMap.get(
-      parseInt(this.$route.params.nameIndex, 10) as NameIndex
-    )
+    return (nameIndexMap as Map<number, string>).get(this.selected)
   }
 
   get selected() {

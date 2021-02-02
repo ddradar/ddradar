@@ -67,7 +67,7 @@
 </i18n>
 
 <script lang="ts">
-import { NuxtError } from '@nuxt/types'
+import type { NuxtError } from '@nuxt/types'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component({ layout: 'empty' })
