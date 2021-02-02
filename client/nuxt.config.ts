@@ -1,7 +1,5 @@
 import type { NuxtConfig } from '@nuxt/types'
 
-import type { Locale } from './types/locale'
-
 const name = 'DDRadar'
 const description = 'DDR Score Tracker'
 
@@ -55,7 +53,7 @@ const configuration: NuxtConfig = {
     locales: [
       { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
       { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
-    ] as Locale[],
+    ],
     defaultLocale: 'ja',
     strategy: 'no_prefix',
     vueI18n: { fallbackLocale: 'ja' },
@@ -70,6 +68,7 @@ const configuration: NuxtConfig = {
     transpile: [/typed-vuex/, /@ddradar\/core/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
+      config.externals = ['moment']
     },
   },
   generate: { exclude: [/^\/.auth\//] },

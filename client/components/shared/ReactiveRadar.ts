@@ -1,4 +1,4 @@
-import { ChartData, ChartOptions } from 'chart.js'
+import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, mixins as Mixins, Prop } from 'nuxt-property-decorator'
 import { mixins, Radar } from 'vue-chartjs'
 

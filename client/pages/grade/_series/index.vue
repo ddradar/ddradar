@@ -38,7 +38,7 @@ import type { CourseListData } from '@ddradar/core/api/course'
 import { seriesSet } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
-import { MetaInfo } from 'vue-meta'
+import type { MetaInfo } from 'vue-meta'
 
 import { getCourseList } from '~/api/course'
 import { shortenSeriesName } from '~/api/song'
