@@ -6,11 +6,7 @@ import type {
   GrooveRadarSchema,
   ScoreStatusSchema,
 } from '@ddradar/core/db/userDetails'
-
-import {
-  fetchClearAndScoreStatus,
-  generateGrooveRadar,
-} from '../db/user-details'
+import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
 
 type UserDetailSchema =
   | GrooveRadarSchema

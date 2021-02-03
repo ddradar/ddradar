@@ -1,9 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
 import type { UserInfo } from '@ddradar/core/api/user'
 import { AreaCode, areaCodeSet } from '@ddradar/core/db/users'
+import { fetchUserList } from '@ddradar/db'
 
 import { getClientPrincipal } from '../auth'
-import { fetchUserList } from '../db/users'
 import { SuccessResult } from '../function'
 
 const isArea = (obj: unknown): obj is AreaCode =>

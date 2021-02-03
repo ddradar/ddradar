@@ -3,12 +3,12 @@ import type {
   ClearStatusSchema,
   ScoreStatusSchema,
 } from '@ddradar/core/db/userDetails'
+import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '../db/scores'
 import generateUserDetails from '.'
 
-jest.mock('../db/scores')
+jest.mock('@ddradar/db')
 
 describe('/generateUserDetails/index.ts', () => {
   const status = {

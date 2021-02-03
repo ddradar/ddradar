@@ -1,14 +1,12 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
+import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '../db'
-import { fetchTotalChartCount } from '../db/songs'
 import updateScores from '.'
 
-jest.mock('../db')
-jest.mock('../db/songs')
+jest.mock('@ddradar/db')
 
 describe('/updateScoresSongInfo/index.ts', () => {
   const song = { ...testSongData, skillAttackId: 1 }

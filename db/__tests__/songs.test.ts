@@ -2,12 +2,12 @@ import type { Container } from '@azure/cosmos'
 import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '../../db'
-import { fetchTotalChartCount } from '../../db/songs'
+import { getContainer } from '..'
+import { fetchTotalChartCount } from '../songs'
 
-jest.mock('../../db')
+jest.mock('..')
 
-describe('/db/user-details.ts', () => {
+describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {
     let resources: Pick<
       ClearStatusSchema,

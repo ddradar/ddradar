@@ -98,3 +98,10 @@ jobs:
         working-directory: core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish @ddradar/db to GitHub Packages
+        run: |
+          yarn can-npm-publish --verbose && yarn publish || echo "Does not publish"
+        working-directory: db
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

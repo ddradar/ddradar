@@ -3,8 +3,7 @@ import type {
   ClearStatusSchema,
   ScoreStatusSchema,
 } from '@ddradar/core/db/userDetails'
-
-import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '../db/scores'
+import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '@ddradar/db'
 
 type UserDetailSchema = ClearStatusSchema | ScoreStatusSchema
 

@@ -10,26 +10,25 @@
     "api",
     "client",
     "core",
+    "db",
     "functions",
     "scripts"
   ],
   "scripts": {
-    "prebuild": "yarn workspace @ddradar/core build",
-    "build": "run-p build:*",
-    "build:api": "yarn workspace @ddradar/api build",
-    "build:client": "yarn workspace @ddradar/client build",
-    "build:func": "yarn workspace @ddradar/functions build",
+    "prebuild": "run-p \"run:core {1}\" \"run:db {1}\" -- build",
+    "build": "run-p \"run:api {1}\" \"run:client {1}\" \"run:func {1}\" -- build",
     "fix": "run-p fix:*",
-    "fix:eslint": "yarn lint:eslint --fix",
-    "fix:prettier": "yarn lint:prettier --write",
+    "fix:eslint": "run-s \"lint:eslint --fix\"",
+    "fix:prettier": "run-s \"lint:prettier --write\"",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
-    "test": "run-s test:*",
-    "test:api": "yarn workspace @ddradar/api test",
-    "test:client": "yarn workspace @ddradar/client test",
-    "test:core": "yarn workspace @ddradar/core test",
-    "test:func": "yarn workspace @ddradar/functions test"
+    "test": "run-s \"run:* test\"",
+    "run:api": "yarn workspace @ddradar/api",
+    "run:client": "yarn workspace @ddradar/client",
+    "run:core": "yarn workspace @ddradar/core",
+    "run:db": "yarn workspace @ddradar/db",
+    "run:func": "yarn workspace @ddradar/functions"
   },
   "husky": {
     "hooks": {

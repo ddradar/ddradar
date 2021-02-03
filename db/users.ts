@@ -4,15 +4,15 @@ import type { AreaCode, UserSchema } from '@ddradar/core/db/users'
 import { Condition, fetchList, fetchOne } from '.'
 
 export function fetchUser(id: string): Promise<UserSchema | null> {
-  return fetchOne<UserSchema>(
+  return fetchOne(
     'Users',
-    ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
+    ['id', 'loginId', 'name', 'area', 'code', 'isPublic'] as const,
     [{ condition: 'c.id = @', value: id }]
   )
 }
 
 export function fetchLoginUser(loginId: string): Promise<UserSchema | null> {
-  return fetchOne<UserSchema>(
+  return fetchOne(
     'Users',
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
     [{ condition: 'c.loginId = @', value: loginId }]
@@ -33,5 +33,5 @@ export function fetchUserList(
   if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (code) cond.push({ condition: 'c.code = @', value: code })
   cond.push({ condition: 'IS_DEFINED(c.loginId)' })
-  return fetchList<UserInfo>('Users', columns, cond, { name: 'ASC' })
+  return fetchList<'Users', UserInfo>('Users', columns, cond, { name: 'ASC' })
 }

@@ -1,4 +1,5 @@
-import { ItemDefinition } from '@azure/cosmos'
+import type { ItemDefinition } from '@azure/cosmos'
+import type { PlayStyle } from '@ddradar/core/db/songs'
 import type {
   ClearStatusSchema,
   GrooveRadarSchema,
@@ -9,7 +10,7 @@ import { getContainer } from '.'
 
 export async function generateGrooveRadar(
   userId: string,
-  playStyle: 1 | 2
+  playStyle: PlayStyle
 ): Promise<GrooveRadarSchema> {
   const container = getContainer('Scores')
   const columns: (keyof GrooveRadarSchema)[] = [

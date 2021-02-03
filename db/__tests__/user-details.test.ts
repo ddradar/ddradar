@@ -1,20 +1,17 @@
 import type { Container } from '@azure/cosmos'
-import {
+import type {
   ClearStatusSchema,
   GrooveRadarSchema,
   ScoreStatusSchema,
 } from '@ddradar/core/db/userDetails'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '../../db'
-import {
-  fetchClearAndScoreStatus,
-  generateGrooveRadar,
-} from '../../db/user-details'
+import { getContainer } from '..'
+import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
 
-jest.mock('../../db')
+jest.mock('..')
 
-describe('/db/user-details.ts', () => {
+describe('user-details.ts', () => {
   describe('generateGrooveRadar()', () => {
     let resources: GrooveRadarSchema[] = []
     const radar: GrooveRadarSchema = {

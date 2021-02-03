@@ -1,10 +1,10 @@
 import type { AreaCode, UserSchema } from '@ddradar/core/db/users'
 
-import { canConnectDB, getContainer } from '../../db'
-import { fetchLoginUser, fetchUser, fetchUserList } from '../../db/users'
-import { describeIf } from '../util'
+import { canConnectDB, getContainer } from '..'
+import { fetchLoginUser, fetchUser, fetchUserList } from '../users'
+import { describeIf } from './util'
 
-describeIf(canConnectDB)('./db/users.ts', () => {
+describeIf(canConnectDB)('users.ts', () => {
   const users: Required<UserSchema>[] = [...Array(100).keys()].map(i => ({
     id: `user_${i}`,
     loginId: `login_${i}`,

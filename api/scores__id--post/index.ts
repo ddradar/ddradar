@@ -1,3 +1,4 @@
+import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
 import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
@@ -15,10 +16,9 @@ import {
   mergeScore,
 } from '@ddradar/core/score'
 import { hasIntegerProperty, hasProperty } from '@ddradar/core/typeUtils'
+import { fetchScore } from '@ddradar/db'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ItemDefinition } from '../db'
-import { fetchScore } from '../db/scores'
 import { ErrorResult, SuccessResult } from '../function'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {

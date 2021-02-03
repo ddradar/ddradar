@@ -6,33 +6,21 @@ import type {
 } from '@ddradar/core/db/userDetails'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '../../db'
+import { fetchOne, getContainer } from '..'
 import {
   fetchScore,
   fetchSummeryClearLampCount,
   fetchSummeryRankCount,
-} from '../../db/scores'
+} from '../scores'
 
-jest.mock('../../db')
+jest.mock('..')
 
-describe('/db/scores.ts', () => {
+describe('scores.ts', () => {
   describe('fetchScore', () => {
-    let resources: (ScoreSchema & ItemDefinition)[] = []
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchNext: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue((container as unknown) as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
+    beforeEach(() => mocked(fetchOne).mockClear())
 
-    test('returns resources[0]', async () => {
-      // Act
+    test('returns fetchOne() value', async () => {
+      // Arrange
       const resource: ScoreSchema & ItemDefinition = {
         id: 'foo',
         songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
@@ -47,21 +35,14 @@ describe('/db/scores.ts', () => {
         clearLamp: 7,
         rank: 'AAA',
       }
-      resources = [resource]
-      const result = await fetchScore('foo', '', 1, 0)
+      mocked(fetchOne).mockResolvedValue(resource)
 
-      // Assert
-      expect(result).toBe(resource)
-      expect(container.items.query).toBeCalled()
-    })
-
-    test('returns null', async () => {
       // Act
       const result = await fetchScore('foo', '', 1, 0)
 
       // Assert
-      expect(result).toBeNull()
-      expect(container.items.query).toBeCalled()
+      expect(result).toBe(resource)
+      expect(mocked(fetchOne)).toBeCalled()
     })
   })
   describe('fetchSummeryClearLampCount', () => {

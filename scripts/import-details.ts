@@ -2,11 +2,11 @@
 /* eslint-disable node/no-process-env */
 import { ScoreListBody } from '@ddradar/core/api/score'
 import { difficultyMap, playStyleMap, SongSchema } from '@ddradar/core/db/songs'
+import { getContainer } from '@ddradar/db'
 import { config } from 'dotenv'
 import fetch from 'node-fetch'
 import * as puppetter from 'puppeteer-core'
 
-import { getContainer } from './modules/cosmos'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
 // load .env file
@@ -39,7 +39,10 @@ async function main(userId: string, password: string) {
   const { resources } = await container.items
     .query<Pick<SongSchema, 'id' | 'name' | 'charts'>>({
       query:
-        'SELECT s.id, s.name, s.charts FROM s WHERE s.nameIndex > 0 AND s.series = @series ORDER BY s.nameIndex, s.nameKana',
+        'SELECT s.id, s.name, s.charts ' +
+        'FROM s ' +
+        'WHERE s.nameIndex > 0 AND s.series = @series ' +
+        'ORDER BY s.nameIndex, s.nameKana',
       parameters: [{ name: '@series', value: 'DDR 1st' }],
     })
     .fetchAll()
