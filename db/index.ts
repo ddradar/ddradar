@@ -10,12 +10,10 @@ import type {
 } from '@ddradar/core/db/userDetails'
 import type { UserSchema } from '@ddradar/core/db/users'
 
-type ContainerName =
-  | 'Scores'
-  | 'Songs'
-  | 'Users'
-  | 'Notification'
-  | 'UserDetails'
+import * as scores from './scores'
+import * as songs from './songs'
+import * as userDetails from './user-details'
+import * as users from './users'
 
 // eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
@@ -23,6 +21,29 @@ const connectionString = process.env.COSMOS_DB_CONN
 export function canConnectDB(): boolean {
   return !!connectionString
 }
+
+//#region DB Container - Schema mapping
+type ContainerName =
+  | 'Scores'
+  | 'Songs'
+  | 'Users'
+  | 'Notification'
+  | 'UserDetails'
+
+  type ContainerValue<T> = T extends 'Scores'
+  ? ScoreSchema
+  : T extends 'Songs'
+  ? SongSchema | CourseSchema
+  : T extends 'Users'
+  ? UserSchema
+  : T extends 'Notification'
+  ? NotificationSchema
+  : T extends 'UserDetails'
+  ? ClearStatusSchema | GrooveRadarSchema | ScoreStatusSchema
+  : never
+
+type DbItem<T> = Partial<ContainerValue<T> & ItemDefinition & { _ts: number }>
+//#endregion
 
 let client: CosmosClient
 const containers: Partial<Record<ContainerName, Container>> = {}
@@ -39,20 +60,6 @@ export type Condition = {
   condition: string
   value?: JSONValue
 }
-
-type ContainerValue<T> = T extends 'Scores'
-  ? ScoreSchema
-  : T extends 'Songs'
-  ? SongSchema | CourseSchema
-  : T extends 'Users'
-  ? UserSchema
-  : T extends 'Notification'
-  ? NotificationSchema
-  : T extends 'UserDetails'
-  ? ClearStatusSchema | GrooveRadarSchema | ScoreStatusSchema
-  : never
-
-type DbItem<T> = Partial<ContainerValue<T> & ItemDefinition & { _ts: number }>
 
 export async function fetchOne<T extends ContainerName, U extends DbItem<T>>(
   containerName: T,
@@ -101,3 +108,5 @@ export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
     .fetchAll()
   return resources
 }
+
+export { scores, songs, userDetails, users }
