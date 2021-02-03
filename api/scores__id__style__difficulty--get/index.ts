@@ -11,7 +11,7 @@ export default async function (
   req: Pick<HttpRequest, 'headers' | 'query'>,
   scores: ScoreSchema[]
 ): Promise<ErrorResult<404> | SuccessResult<ScoreInfo[]>> {
-  const scope = ['private', 'medium', 'full'].includes(req.query.scope)
+  const scope = ['private', 'medium', 'full'].includes(req.query.scope ?? '')
     ? (req.query.scope as 'private' | 'medium' | 'full')
     : 'medium'
 

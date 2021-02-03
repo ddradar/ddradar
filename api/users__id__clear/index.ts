@@ -22,9 +22,9 @@ export default async function (
     return new ErrorResult(404)
   }
 
-  const playStyle = parseInt(req.query.playStyle, 10)
+  const playStyle = parseInt(req.query.playStyle ?? '', 10)
   const isValidPlayStyle = playStyle === 1 || playStyle === 2
-  const level = parseInt(req.query.level, 10)
+  const level = parseInt(req.query.level ?? '', 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 20
 
   return new SuccessResult(

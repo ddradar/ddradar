@@ -10,7 +10,7 @@ export default async function (
   req: Pick<HttpRequest, 'query'>,
   songs: SongListData[]
 ): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
-  const i = parseFloat(req.query.series)
+  const i = parseFloat(req.query.series ?? '')
   const isValidSeries = Number.isInteger(i) && i >= 0 && i < seriesSet.size
 
   const body = songs.filter(

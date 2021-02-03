@@ -49,7 +49,7 @@ export default class CardComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/css/styles.scss';
+@import '~/assets/css/_colors';
 
 .card {
   .card-header {

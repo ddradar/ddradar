@@ -67,7 +67,7 @@ describe('GET /api/v1/scores', () => {
     expect(result.status).toBe(404)
   })
 
-  test.each(['private', 'medium', 'full', ''])(
+  test.each(['private', 'medium', 'full', '', undefined])(
     '?scope=%s returns "404 Not Found" if scores is empty',
     async scope => {
       // Arrange

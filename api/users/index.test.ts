@@ -18,6 +18,7 @@ describe('GET /api/v1/users', () => {
   })
 
   test.each([
+    [undefined, undefined, undefined, undefined, '', undefined],
     ['', '', '', undefined, '', undefined],
     ['1', 'foo', '10000000', 1, 'foo', 10000000],
     ['0', 'foo', '0', undefined, 'foo', undefined],
@@ -57,7 +58,7 @@ describe('GET /api/v1/users', () => {
     expect(mocked(fetchUserList)).toBeCalledWith(
       'login_id',
       undefined,
-      undefined,
+      '',
       undefined
     )
   })
