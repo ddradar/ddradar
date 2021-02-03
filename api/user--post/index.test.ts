@@ -1,14 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
 import { isUserSchema, UserSchema } from '@ddradar/core/db/users'
+import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
-import { fetchLoginUser, fetchUser } from '../db/users'
 import postUserInfo from '.'
 
 jest.mock('../auth')
 jest.mock('@ddradar/core/db/users')
-jest.mock('../db/users')
+jest.mock('@ddradar/db')
 
 describe('POST /api/v1/user', () => {
   const req: Pick<HttpRequest, 'body' | 'headers'> = { body: {}, headers: {} }

@@ -1,12 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
+import { fetchUserList } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
-import { fetchUserList } from '../db/users'
 import getUserList from '.'
 
 jest.mock('../auth')
-jest.mock('../db/users')
+jest.mock('@ddradar/db')
 
 describe('GET /api/v1/users', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }

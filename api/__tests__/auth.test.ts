@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
+import { fetchLoginUser } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import { fetchLoginUser } from '../db/users'
 
-jest.mock('../db/users')
+jest.mock('@ddradar/db')
 
 const toBase64 = (obj: unknown) => {
   const jsonString = JSON.stringify(obj)
@@ -13,7 +13,7 @@ const toBase64 = (obj: unknown) => {
 }
 const authHeader = 'x-ms-client-principal'
 
-describe('./auth.ts', () => {
+describe('auth.ts', () => {
   describe('getClientPrincipal', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
     beforeEach(() => {

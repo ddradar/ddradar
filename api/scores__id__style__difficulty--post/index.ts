@@ -1,3 +1,4 @@
+import type { ItemDefinition } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
@@ -14,7 +15,6 @@ import {
 } from '@ddradar/core/score'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
-import type { ItemDefinition } from '../db'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {

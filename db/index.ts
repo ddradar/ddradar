@@ -10,11 +10,6 @@ import type {
 } from '@ddradar/core/db/userDetails'
 import type { UserSchema } from '@ddradar/core/db/users'
 
-import * as scores from './scores'
-import * as songs from './songs'
-import * as userDetails from './user-details'
-import * as users from './users'
-
 // eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
 
@@ -109,4 +104,7 @@ export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
   return resources
 }
 
-export { scores, songs, userDetails, users }
+export * from './scores'
+export * from './songs'
+export * from './user-details'
+export * from './users'

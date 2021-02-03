@@ -1,8 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 import type { ClientPrincipal } from '@ddradar/core/api/auth'
 import type { UserSchema } from '@ddradar/core/db/users'
-
-import { fetchLoginUser } from './db/users'
+import { fetchLoginUser } from '@ddradar/db'
 
 export function getClientPrincipal(
   req: Pick<HttpRequest, 'headers'>
