@@ -3,9 +3,7 @@ import type { Logger } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type { SongSchema } from '@ddradar/core/db/songs'
 import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
-
-import { getContainer } from '../db'
-import { fetchTotalChartCount } from '../db/songs'
+import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
   ClearStatusSchema,

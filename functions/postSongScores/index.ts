@@ -21,8 +21,7 @@ import {
   hasProperty,
   hasStringProperty,
 } from '@ddradar/core/typeUtils'
-
-import { fetchScore } from '../db/scores'
+import { fetchScore } from '@ddradar/db'
 
 type ImportScoreBody = {
   password: string

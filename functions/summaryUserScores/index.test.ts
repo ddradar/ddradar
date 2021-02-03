@@ -1,14 +1,11 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
+import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import {
-  fetchClearAndScoreStatus,
-  generateGrooveRadar,
-} from '../db/user-details'
 import summaryUserScores from '.'
 
-jest.mock('../db/user-details')
+jest.mock('@ddradar/db')
 
 describe('/summaryUserScores/index.ts', () => {
   const context = { log: { info: jest.fn() } }

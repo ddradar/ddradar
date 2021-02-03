@@ -8,12 +8,12 @@ import {
   testSongData,
 } from '@ddradar/core/__tests__/data'
 import type { ScoreBody } from '@ddradar/core/api/score'
+import { fetchScore } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchScore } from '../db/scores'
 import postSongScores from '.'
 
-jest.mock('../db/scores')
+jest.mock('@ddradar/db')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
