@@ -7,10 +7,7 @@ import type {
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '..'
-import {
-  fetchClearAndScoreStatus,
-  generateGrooveRadar,
-} from '../user-details'
+import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
 
 jest.mock('..')
 

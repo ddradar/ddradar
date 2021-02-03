@@ -30,7 +30,7 @@ type ContainerName =
   | 'Notification'
   | 'UserDetails'
 
-  type ContainerValue<T> = T extends 'Scores'
+type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
   : T extends 'Songs'
   ? SongSchema | CourseSchema
