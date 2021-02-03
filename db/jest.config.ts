@@ -1,13 +1,14 @@
 import { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
-  displayName: 'Core',
+  displayName: 'DB',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['**/*.test.ts'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  globalSetup: '<rootDir>/__tests__/initDatabase.js',
   collectCoverage: true,
   collectCoverageFrom: [
     '**/*.ts',
