@@ -6,8 +6,7 @@ import { mocked } from 'ts-jest/utils'
 
 import updateScores from '.'
 
-jest.mock('../db')
-jest.mock('../db/songs')
+jest.mock('@ddradar/db')
 
 describe('/updateScoresSongInfo/index.ts', () => {
   const song = { ...testSongData, skillAttackId: 1 }
