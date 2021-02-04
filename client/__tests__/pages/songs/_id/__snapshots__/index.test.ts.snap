@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/songs/_id/_chart.vue snapshot test renders "Edit" button if admin 1`] = `
+exports[`pages/songs/_id/index.vue snapshot test renders "Edit" button if admin 1`] = `
 <section class="section">
   <h1 class="title">MAKE IT BETTER</h1>
   <h2 class="subtitle">mitsu-O! / DDR 1st</h2>
@@ -24,7 +24,7 @@ exports[`pages/songs/_id/_chart.vue snapshot test renders "Edit" button if admin
 </section>
 `;
 
-exports[`pages/songs/_id/_chart.vue snapshot test renders correctly 1`] = `
+exports[`pages/songs/_id/index.vue snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">MAKE IT BETTER</h1>
   <h2 class="subtitle">mitsu-O! / DDR 1st</h2>

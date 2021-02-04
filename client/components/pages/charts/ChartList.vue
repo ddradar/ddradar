@@ -89,7 +89,7 @@ export default class ChartListComponent extends Vue {
     return this.charts.map(c => ({
       series: shortenSeriesName(c.series),
       name: c.name,
-      link: `/songs/${c.id}/${c.playStyle}${c.difficulty}`,
+      link: `/songs/${c.id}#${c.playStyle}${c.difficulty}`,
       difficultyName: difficultyMap.get(c.difficulty),
       class: `is-${difficultyMap.get(c.difficulty)!.toLowerCase()}`,
       level: c.level,
