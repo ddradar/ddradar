@@ -28,12 +28,8 @@
     "run:client": "yarn workspace @ddradar/client",
     "run:core": "yarn workspace @ddradar/core",
     "run:db": "yarn workspace @ddradar/db",
-    "run:func": "yarn workspace @ddradar/functions"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
+    "run:func": "yarn workspace @ddradar/functions",
+    "postinstall": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
