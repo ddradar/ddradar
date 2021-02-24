@@ -19,6 +19,11 @@
     },
     {
       "route": "/api/v1/notification",
+      "methods": ["GET"],
+      "allowedRoles": ["anonymous"]
+    },
+    {
+      "route": "/api/v1/notification",
       "methods": ["POST"],
       "allowedRoles": ["administrator"]
     },
