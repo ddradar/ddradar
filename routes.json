@@ -13,6 +13,21 @@
       "statusCode": "404"
     },
     {
+      "route": "/api/v1/scores/*",
+      "methods": ["POST", "DELETE"],
+      "allowedRoles": ["authenticated"]
+    },
+    {
+      "route": "/api/v1/notification",
+      "methods": ["POST"],
+      "allowedRoles": ["administrator"]
+    },
+    {
+      "route": "/api/v1/songs",
+      "methods": ["POST"],
+      "allowedRoles": ["administrator"]
+    },
+    {
       "route": "/api/v1/user",
       "allowedRoles": ["authenticated"]
     },
