@@ -5,7 +5,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
 import { getSongInfo } from '~/api/song'
-import SongPage from '~/pages/songs/_id/_chart.vue'
+import SongPage from '~/pages/songs/_id/index.vue'
 
 jest.mock('~/api/song', () => ({
   ...(jest.requireActual('~/api/song') as object),
@@ -118,7 +118,7 @@ const song: SongInfo = {
   ],
 }
 
-describe('pages/songs/_id/_chart.vue', () => {
+describe('pages/songs/_id/index.vue', () => {
   const mocks = { $accessor: { isAdmin: false } }
 
   describe('snapshot test', () => {
@@ -138,30 +138,24 @@ describe('pages/songs/_id/_chart.vue', () => {
 
   // LifeCycle
   describe('validate()', () => {
-    test.each([
-      ['foo', ''],
-      [song.id, 'var'],
-      [song.id, '33'],
-      [song.id, '20'],
-    ])('/%s/%s returns false', (id, chart) => {
+    test.each([undefined, '', 'foo', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'])(
+      '/%s returns false',
+      id => {
+        // Arrange
+        const wrapper = shallowMount(SongPage, { localVue, mocks })
+        const ctx = ({ params: { id } } as unknown) as Context
+
+        // Act
+        const result = wrapper.vm.$options.validate!(ctx)
+
+        // Assert
+        expect(result).toBe(false)
+      }
+    )
+    test(`/${song.id} returns true`, () => {
       // Arrange
       const wrapper = shallowMount(SongPage, { localVue, mocks })
-      const ctx = ({ params: { id, chart } } as unknown) as Context
-
-      // Act
-      const result = wrapper.vm.$options.validate!(ctx)
-
-      // Assert
-      expect(result).toBe(false)
-    })
-    test.each([
-      [song.id, ''],
-      [song.id, '14'],
-      [song.id, '21'],
-    ])('/%s/%s returns true', (id, chart) => {
-      // Arrange
-      const wrapper = shallowMount(SongPage, { localVue, mocks })
-      const ctx = ({ params: { id, chart } } as unknown) as Context
+      const ctx = ({ params: { id: song.id } } as unknown) as Context
 
       // Act
       const result = wrapper.vm.$options.validate!(ctx)
@@ -186,16 +180,19 @@ describe('pages/songs/_id/_chart.vue', () => {
       expect(result).toStrictEqual({ song })
     })
     test.each([
-      ['10', 1, 0],
-      ['14', 1, 4],
-      ['21', 2, 1],
-      ['23', 2, 3],
+      ['#10', 1, 0],
+      ['#14', 1, 4],
+      ['#21', 2, 1],
+      ['#23', 2, 3],
     ])(
-      `/${song.id}/%s returns { song, playStyle: %i, difficulty: %i }`,
-      async (chart, playStyle, difficulty) => {
+      `/${song.id}%s returns { song, playStyle: %i, difficulty: %i }`,
+      async (hash, playStyle, difficulty) => {
         // Arrange
         const wrapper = shallowMount(SongPage, { localVue, mocks })
-        const ctx = ({ params: { id: song.id, chart } } as unknown) as Context
+        const ctx = ({
+          params: { id: song.id },
+          route: { hash },
+        } as unknown) as Context
 
         // Act
         const result = await wrapper.vm.$options.asyncData!(ctx)

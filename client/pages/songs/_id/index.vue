@@ -68,10 +68,7 @@ export default class SongDetailPage extends Vue {
 
   /** `id` should be songId pattern */
   validate({ params }: Pick<Context, 'params'>) {
-    return (
-      isValidId(params.id) &&
-      (!params.chart || /^(1[0-4]|2[1-4])$/.test(params.chart)) // [playStyle][difficulty]
-    )
+    return isValidId(params.id)
   }
 
   /* istanbul ignore next */
@@ -79,13 +76,18 @@ export default class SongDetailPage extends Vue {
     return { title: this.song?.name ?? 'Song Detail' }
   }
 
-  async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
+  async asyncData({
+    params,
+    $http,
+    route,
+  }: Pick<Context, 'params' | '$http' | 'route'>) {
     // Get song info from API
     const song = await getSongInfo($http, params.id)
 
     // Set chartIndex
-    if (params.chart) {
-      const selectedChart = parseInt(params.chart)
+    const chart = route?.hash
+    if (/^#(1[0-4]|2[1-4])$/.test(chart)) {
+      const selectedChart = parseInt(chart.substring(1))
       const difficulty = selectedChart % 10
       const playStyle = (selectedChart - difficulty) / 10
       return { song, playStyle, difficulty }
