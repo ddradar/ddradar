@@ -4,6 +4,7 @@ import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
   CourseChartSchema,
   Difficulty,
+  PlayStyle,
   SongSchema,
   StepChartSchema,
 } from '@ddradar/core/db/songs'
@@ -23,7 +24,7 @@ type SongInput = Pick<SongSchema, 'id' | 'name'> & {
 }
 
 type PostScoreResult = {
-  httpResponse: ErrorResult<400 | 401 | 404> | SuccessResult<ScoreSchema>
+  httpResponse: ErrorResult<400 | 404> | SuccessResult<ScoreSchema>
   documents?: (ScoreSchema & ItemDefinition)[]
 }
 
@@ -34,20 +35,18 @@ export default async function (
   songs: SongInput[],
   scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<PostScoreResult> {
-  const clientPrincipal = getClientPrincipal(req)
-  if (!clientPrincipal) return { httpResponse: { status: 401 } }
+  const user = await getLoginUserInfo(getClientPrincipal(req))
+  if (!user) {
+    return {
+      httpResponse: new ErrorResult(404, 'User registration is not completed'),
+    }
+  }
 
   if (!isScore(req.body)) {
     return { httpResponse: new ErrorResult(400, 'body is not Score') }
   }
 
-  const user = await getLoginUserInfo(clientPrincipal)
-  if (!user) {
-    const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
-    return { httpResponse: new ErrorResult(404, body) }
-  }
-
-  const playStyle: 1 | 2 = bindingData.playStyle
+  const playStyle: PlayStyle = bindingData.playStyle
   const difficulty = getBindingNumber(bindingData, 'difficulty') as Difficulty
 
   // Get chart info

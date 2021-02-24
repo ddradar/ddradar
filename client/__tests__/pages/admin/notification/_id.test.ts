@@ -4,12 +4,10 @@ import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
-import { postNotification } from '~/api/admin'
-import { getNotificationInfo } from '~/api/notification'
+import { getNotificationInfo, postNotification } from '~/api/notification'
 import EditorPage from '~/pages/admin/notification/_id.vue'
 import * as popup from '~/utils/popup'
 
-jest.mock('~/api/admin')
 jest.mock('~/api/notification')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()

@@ -20,7 +20,7 @@ English version is [here](./README.md).
 ## Song API
 
 - [曲情報の取得](../../api/songs__id/README-ja.md)
-- [曲情報の追加/更新](../../api/admin__songs--post/README-ja.md) **管理者のみ*
+- [曲情報の追加/更新](../../api/songs--post/README-ja.md) **管理者のみ*
 - [曲名で曲検索](../../api/songs__name__id/README-ja.md)
 - [シリーズタイトルで曲検索](../../api/songs__series__id/README-ja.md)
 - [譜面検索](../../api/charts__style__level/README-ja.md)
@@ -52,4 +52,4 @@ English version is [here](./README.md).
 
 - [通知一覧の取得](../../api/notification/README-ja.md)
 - [通知詳細の取得](../../api/notification__id/README-ja.md)
-- [通知の追加/更新](../../api/admin__notification--post/README-ja.md) **管理者のみ*
+- [通知の追加/更新](../../api/notification--post/README-ja.md) **管理者のみ*

@@ -45,7 +45,6 @@ jobs:
           app_artifact_location: 'client/dist'
           api_location: 'api'
           api_build_command: yarn build
-          routes_location: '/'
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}

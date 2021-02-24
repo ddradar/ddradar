@@ -4,7 +4,7 @@ import postNotification from '.'
 
 Date.now = jest.fn(() => 1597114800000)
 
-describe('POST /api/v1/admin/notification', () => {
+describe('POST /api/v1/notification', () => {
   const validBody: NotificationBody = {
     sender: 'SYSTEM',
     pinned: true,
