@@ -2,7 +2,7 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 
 import postSongInfo from '.'
 
-describe('POST /api/v1/admin/songs', () => {
+describe('POST /api/v1/songs', () => {
   const validSong = { ...testSongData }
 
   test('returns "400 Bad Request" if body is empty', async () => {

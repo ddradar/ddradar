@@ -17,7 +17,7 @@ Add or update Notification.
 
 Need [Authentication](../../docs/api/authentication.md#login) with `administrator` role.
 
-> POST /api/v1/admin/notification
+> POST /api/v1/notification
 
 ## Parameters
 

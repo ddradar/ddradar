@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["post"],
-      "route": "v1/admin/songs"
+      "route": "v1/songs"
     },
     {
       "type": "http",
@@ -22,5 +22,5 @@
       "connectionStringSetting": "COSMOS_DB_CONN"
     }
   ],
-  "scriptFile": "../dist/admin__songs--post/index.js"
+  "scriptFile": "../dist/songs--post/index.js"
 }

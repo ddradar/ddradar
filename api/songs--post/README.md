@@ -1,29 +1,30 @@
 # Post Song Information API
 
-指定したIDで、曲と譜面の情報を追加または更新します。
+日本語版は[こちら](./README-ja.md)にあります。
 
-- [エンドポイント](#endpoint)
-- [パラメータ](#parameters)
-  - [本文](#request-body)
-- [応答](#response)
-  - [本文](#response-body)
-- リンク
-  - 実装 (index.ts)
-  - 設定 (function.json)
-  - 単体テスト (index.test.ts)
+Add or update song and charts information.
+
+- [Endpoint](#endpoint)
+- [Parameters](#parameters)
+- [Response](#response)
+  - [Response Body](#response-body)
+- Links
+  - Implements (index.ts)
+  - Settings (function.json)
+  - Unit Test (index.test.ts)
 
 ## Endpoint
 
-`administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
+Need [Authentication](../../docs/api/authentication.md#login) with `administrator` role.
 
-> POST /api/v1/admin/songs
+> POST /api/v1/songs
 
 ## Parameters
 
 ### Request Body
 
 <details>
-  <summary>サンプル</summary>
+  <summary>Sample</summary>
 
 ```json
 {
@@ -133,40 +134,40 @@
 
 </details>
 
-|名前|型|説明|
-|---|:--:|---|
-|`id`|string|曲ID (公式サイトより) `^[01689bdiloqDIOPQ]{32}$`|
-|`name`|string|曲名|
-|`nameKana`|string|曲名のふりがな (並び替え用) `^([A-Z0-9 .ぁ-んー]*)$`|
-|`nameIndex`|integer|曲名のインデックス。「曲名から探す」フォルダーと対応しています。<br />`0`: あ行, `1`: か行, ..., `9`: わ行, `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
-|`artist`|string|アーティスト名|
-|`series`|string|シリーズタイトル|
-|`minBPM`|integer \| null|表記された最小のBPM。「???」のように明らかにされていない場合は `null`。|
-|`maxBPM`|integer \| null|表記された最大のBPM。「???」のように明らかにされていない場合は `null`。|
-|`charts`|StepChart\[\]|曲の譜面一覧。 [下記参照](#stepchart)|
+|Name|Type|Description|
+|----|:--:|-----------|
+|`id`|string|Song id that depend on official site. `^[01689bdiloqDIOPQ]{32}$`|
+|`name`|string|Song name|
+|`nameKana`|string|Song furigana for sorting. `^([A-Z0-9 .ぁ-んー]*)$`|
+|`nameIndex`|integer|Index for sorting. Associated with the "Choose by Name" folder.<br />`0`: あ行, `1`: か行, ..., `9`: わ行, `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号|
+|`artist`|string|Artist name|
+|`series`|string|Series title|
+|`minBPM`|integer \| null|Displayed min BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
+|`maxBPM`|integer \| null|Displayed max BPM (Beet Per Minutes). Set to `null` if not revealed, such as "???".|
+|`charts`|StepChart\[\]|Song's step charts. [See below](#stepchart)|
 
 #### StepChart
 
-|名前|型|説明|
-|---|:--:|---|
+|Name|Type|Description|
+|----|:--:|-----------|
 |`playStyle`|integer|`1`: SINGLE, `2`: DOUBLE|
 |`difficulty`|integer|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
-|`level`|integer|譜面のレベル|
-|`notes`|integer|通常ノーツ数 (同時踏みは 1 カウント)|
-|`freezeArrow`|integer|フリーズアロー数|
-|`shockArrow`|integer|ショックアロー数|
-|`stream`|integer|グルーヴレーダー値 STREAM|
-|`voltage`|integer|グルーヴレーダー値 VOLTAGE|
-|`air`|integer|グルーヴレーダー値 AIR|
-|`freeze`|integer|グルーヴレーダー値 FREEZE|
-|`chaos`|integer|グルーヴレーダー値 CHAOS|
+|`level`|integer|Chart level|
+|`notes`|integer|Normal arrow count. (Jump = 1 count)|
+|`freezeArrow`|integer|Freeze arrow count|
+|`shockArrow`|integer|Shock arrow count|
+|`stream`|integer|Groove Radar STREAM|
+|`voltage`|integer|Groove radar VOLTAGE|
+|`air`|integer|Groove radar AIR|
+|`freeze`|integer|Groove radar FREEZE|
+|`chaos`|integer|Groove radar CHAOS|
 
 ## Response
 
-- 認証していないか、`administrator` ロールを持っていない場合は、`401 Unauthorized` を返します。
-- BODYパラメータが規定のものと一致しない場合は、`400 BadRequest` を返します。
-- 登録/更新に成功した場合は、`200 OK` と、[更新後のJSONデータ](#response-body)を返します。
+- Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
+- Returns `400 BadRequest` if body parameters are invalid.
+- Returns `200 OK` with [updated JSON data](#response-body) if succeed add or update.
 
 ### Response Body
 
-[リクエスト本文](#request-body)と同一のスキーマです。
+Response JSON schema equals to [Request Body](#request-body).

@@ -17,7 +17,7 @@
 
 `administrator` ロールを持つユーザーで[認証](../../docs/api/authentication-ja.md#login)する必要があります。
 
-> POST /api/v1/admin/notification
+> POST /api/v1/notification
 
 ## Parameters
 
