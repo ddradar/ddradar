@@ -3,11 +3,23 @@ import type {
   NotificationListData,
 } from '@ddradar/core/api/notification'
 
-import { getNotificationInfo, getNotificationList } from '~/api/notification'
+import {
+  getNotificationInfo,
+  getNotificationList,
+  postNotification,
+} from '~/api/notification'
 
-describe('./api/notification.ts', () => {
-  const $http = { $get: jest.fn<Promise<any>, [string]>() }
-  beforeEach(() => $http.$get.mockClear())
+type NotificationRequest = Parameters<typeof postNotification>[1]
+
+describe('/api/notification.ts', () => {
+  const $http = {
+    $get: jest.fn<Promise<any>, [string]>(),
+    $post: jest.fn<Promise<any>, [string]>(),
+  }
+  beforeEach(() => {
+    $http.$get.mockClear()
+    $http.$post.mockClear()
+  })
 
   describe('getNotificationList', () => {
     const notificationList: NotificationListData[] = []
@@ -48,6 +60,40 @@ describe('./api/notification.ts', () => {
       expect(val).toBe(notification)
       expect($http.$get).toBeCalledTimes(1)
       expect($http.$get).lastCalledWith(`/api/v1/notification/${id}`)
+    })
+  })
+
+  describe('postNotification', () => {
+    const notification: NotificationRequest = {
+      id: 'return-value',
+      icon: 'account',
+      pinned: true,
+      type: 'is-info',
+      title: 'Return title',
+      body: 'Return message body',
+    } as const
+    beforeEach(() => $http.$post.mockResolvedValue(notification))
+    test('calls POST "/api/v1/notification"', async () => {
+      // Arrange
+      const body: NotificationRequest = {
+        id: 'foo',
+        icon: 'account',
+        pinned: true,
+        type: 'is-info',
+        title: 'title',
+        body: 'Message body',
+      }
+
+      // Act
+      const val = await postNotification($http, body)
+
+      // Assert
+      expect(val).toBe(notification)
+      expect($http.$post).toBeCalledTimes(1)
+      expect($http.$post).lastCalledWith('/api/v1/notification', {
+        ...body,
+        sender: 'SYSTEM',
+      })
     })
   })
 })

@@ -5,12 +5,10 @@ import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
-import { postSongInfo } from '~/api/admin'
-import { getSongInfo } from '~/api/song'
+import { getSongInfo, postSongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song/_id.vue'
 import * as popup from '~/utils/popup'
 
-jest.mock('~/api/admin')
 jest.mock('~/api/song')
 jest.mock('~/utils/popup')
 const localVue = createLocalVue()

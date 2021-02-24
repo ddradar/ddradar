@@ -9,7 +9,7 @@ import {
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { getLoginUserInfo } from '../auth'
 import postChartScore from '.'
 
 jest.mock('../auth')
@@ -21,46 +21,14 @@ describe('POST /api/v1/scores', () => {
   const mfcScore = { score: 1000000, rank: 'AAA', clearLamp: 7 }
   const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
-  beforeAll(() =>
-    mocked(getClientPrincipal).mockReturnValue({
-      userId: 'some_user',
-      identityProvider: 'github',
-      userDetails: 'github_account',
-      userRoles: ['anonymous', 'authenticated'],
-    })
-  )
   beforeEach(() => {
     context = { bindingData: {} }
     req = { headers: {} }
   })
 
-  test('returns "401 Unauthenticated" if no authentication', async () => {
-    // Arrange
-    mocked(getClientPrincipal).mockReturnValueOnce(null)
-
-    // Act
-    const result = await postChartScore(context, req, [], [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(401)
-  })
-
-  test('returns "400 Bad Request" if body is not Score', async () => {
-    // Arrange
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
-    req.body = {}
-
-    // Act
-    const result = await postChartScore(context, req, [], [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(400)
-  })
-
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce(null)
     context.bindingData.songId = '00000000000000000000000000000000'
     context.bindingData.playStyle = 1
     context.bindingData.difficulty = 0
@@ -71,6 +39,21 @@ describe('POST /api/v1/scores', () => {
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
+  })
+
+  test('returns "400 Bad Request" if body is not Score', async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    context.bindingData.songId = '00000000000000000000000000000000'
+    context.bindingData.playStyle = 1
+    context.bindingData.difficulty = 0
+    req.body = {}
+
+    // Act
+    const result = await postChartScore(context, req, [], [])
+
+    // Assert
+    expect(result.httpResponse.status).toBe(400)
   })
 
   test('returns "404 Not Found" if songs is empty', async () => {

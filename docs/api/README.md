@@ -20,7 +20,7 @@ See also [Authentication API Docs](./authentication.md).
 ## Song API
 
 - [Get Song Information](../../api/songs__id/README.md)
-- [Post Song Information](../../api/admin__songs--post/README.md) **Admin only*
+- [Post Song Information](../../api/songs--post/README.md) **Admin only*
 - [Search Song by Name](../../api/songs__name__id/README.md)
 - [Search Song by Series](../../api/songs__series__id/README.md)
 - [Search Charts](../../api/charts__style__level/README.md)
@@ -52,4 +52,4 @@ See also [Authentication API Docs](./authentication.md).
 
 - [Get Notification List](../../api/notification/README.md)
 - [Get Notification Info](../../api/notification__id/README.md)
-- [Post Notification](../../api/admin__notification--post/README.md) **Admin only*
+- [Post Notification](../../api/notification--post/README.md) **Admin only*

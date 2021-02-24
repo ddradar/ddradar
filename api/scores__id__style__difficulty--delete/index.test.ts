@@ -1,7 +1,7 @@
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { getLoginUserInfo } from '../auth'
 import deleteChartScore from '.'
 
 jest.mock('../auth')
@@ -32,24 +32,7 @@ describe('DELETE /api/v1/scores', () => {
   }
 
   beforeEach(() => {
-    mocked(getClientPrincipal).mockReturnValue({
-      identityProvider: 'github',
-      userId: user.loginId,
-      userDetails: user.id,
-      userRoles: ['anonymous', 'authenticated'],
-    })
     mocked(getLoginUserInfo).mockResolvedValue(user)
-  })
-
-  test('returns "401 Unauthenticated" if no authentication', async () => {
-    // Arrange
-    mocked(getClientPrincipal).mockReturnValueOnce(null)
-
-    // Act
-    const result = await deleteChartScore(null, req, [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(401)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -63,16 +46,25 @@ describe('DELETE /api/v1/scores', () => {
     expect(result.httpResponse.status).toBe(404)
   })
 
-  test('returns "404 Not Found" if scores is empty', async () => {
-    // Arrange - Act
-    const result = await deleteChartScore(null, req, [])
+  test('returns "404 Not Found" if scores does not contain user score', async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValueOnce({
+      ...user,
+      id: 'other_user',
+    })
+
+    // Act
+    const result = await deleteChartScore(null, req, [score])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
   })
 
-  test('returns "204 No Content" if fetchDeleteTargetScores returns scores', async () => {
-    // Arrange - Act
+  test('returns "204 No Content" if scores coitains user score', async () => {
+    // Arrange
+    mocked(getLoginUserInfo).mockResolvedValue(user)
+
+    // Act
     const result = await deleteChartScore(null, req, [score])
 
     // Assert

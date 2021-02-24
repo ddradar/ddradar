@@ -5,7 +5,7 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, NoContentResult } from '../function'
 
 type DeleteResult = {
-  httpResponse: ErrorResult<401 | 404> | NoContentResult
+  httpResponse: ErrorResult<404> | NoContentResult
   documents?: ScoreSchema[]
 }
 
@@ -15,13 +15,11 @@ export default async function (
   req: Pick<HttpRequest, 'headers'>,
   scores: ScoreSchema[]
 ): Promise<DeleteResult> {
-  const clientPrincipal = getClientPrincipal(req)
-  if (!clientPrincipal) return { httpResponse: new ErrorResult(401) }
-
-  const user = await getLoginUserInfo(clientPrincipal)
+  const user = await getLoginUserInfo(getClientPrincipal(req))
   if (!user) {
-    const message = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
-    return { httpResponse: new ErrorResult(404, message) }
+    return {
+      httpResponse: new ErrorResult(404, 'User registration is not completed'),
+    }
   }
 
   const userScores = scores.filter(s => s.userId === user.id)
