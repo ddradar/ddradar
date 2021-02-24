@@ -1,14 +1,17 @@
+import { testSongData } from '@ddradar/core/__tests__/data'
+
 import {
   getChartTitle,
   getDisplayedBPM,
   getSongInfo,
+  postSongInfo,
   searchCharts,
   searchSongByName,
   searchSongBySeries,
   shortenSeriesName,
 } from '~/api/song'
 
-describe('./api/song.ts', () => {
+describe('/api/song.ts', () => {
   describe('shortenSeriesName', () => {
     test.each([
       ['DDR 1st', '1st'],
@@ -50,8 +53,14 @@ describe('./api/song.ts', () => {
   })
 
   describe('API caller', () => {
-    const $http = { $get: jest.fn<Promise<any>, [string]>() }
-    beforeEach(() => $http.$get.mockClear())
+    const $http = {
+      $get: jest.fn<Promise<any>, [string]>(),
+      $post: jest.fn<Promise<any>, [string]>(),
+    }
+    beforeEach(() => {
+      $http.$get.mockClear()
+      $http.$post.mockClear()
+    })
 
     describe('getSongInfo', () => {
       const song = { id: '00000000000000000000000000000000' }
@@ -120,6 +129,23 @@ describe('./api/song.ts', () => {
         // Assert
         expect(result).toBe(charts)
         expect($http.$get).toBeCalledWith(uri)
+      })
+    })
+
+    describe('postSongInfo()', () => {
+      const songInfo = { ...testSongData }
+      beforeEach(() => $http.$post.mockResolvedValue(songInfo))
+      test('calls POST "/api/v1/songs"', async () => {
+        // Arrange
+        const body = { ...songInfo, charts: [...songInfo.charts].reverse() }
+
+        // Act
+        const val = await postSongInfo($http, body)
+
+        // Assert
+        expect(val).toStrictEqual(songInfo)
+        expect($http.$post).toBeCalledTimes(1)
+        expect($http.$post).lastCalledWith('/api/v1/songs', body)
       })
     })
   })

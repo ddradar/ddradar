@@ -1,4 +1,5 @@
 import type {
+  NotificationBody,
   NotificationInfo,
   NotificationListData,
 } from '@ddradar/core/api/notification'
@@ -27,4 +28,18 @@ export function getNotificationInfo(
   id: string
 ) {
   return $http.$get<NotificationInfo>(`${apiPrefix}/notification/${id}`)
+}
+
+/**
+ * Call "Post Notification" API. (Admin only)
+ * @see https://github.com/ddradar/ddradar/tree/master/api/notification--post/
+ */
+export function postNotification(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  body: Omit<NotificationBody, 'sender'>
+) {
+  return $http.$post<NotificationBody>(`${apiPrefix}/notification`, {
+    ...body,
+    sender: 'SYSTEM',
+  })
 }

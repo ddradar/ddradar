@@ -52,8 +52,7 @@ import type { NotificationType } from '@ddradar/core/db/notification'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { postNotification } from '~/api/admin'
-import { getNotificationInfo } from '~/api/notification'
+import { getNotificationInfo, postNotification } from '~/api/notification'
 import * as popup from '~/utils/popup'
 
 @Component

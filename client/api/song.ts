@@ -68,3 +68,14 @@ export function searchCharts(
 ) {
   return $http.$get<ChartInfo[]>(`${apiPrefix}/charts/${playStyle}/${level}`)
 }
+
+/**
+ * Call "Post Song Information" API. (Admin only)
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs--post/
+ */
+export function postSongInfo(
+  $http: Pick<NuxtHTTPInstance, '$post'>,
+  body: SongInfo
+) {
+  return $http.$post<SongInfo>(`${apiPrefix}/songs`, body)
+}

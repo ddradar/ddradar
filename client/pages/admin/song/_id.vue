@@ -190,8 +190,7 @@ import { isValidId, seriesSet } from '@ddradar/core/db/songs'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { postSongInfo } from '~/api/admin'
-import { getSongInfo } from '~/api/song'
+import { getSongInfo, postSongInfo } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 @Component
