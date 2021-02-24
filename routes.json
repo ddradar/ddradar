@@ -38,17 +38,10 @@
     {
       "route": "/admin/*",
       "allowedRoles": ["administrator"]
-    },
-    {
-      "route": "/api/v1/admin/*",
-      "allowedRoles": ["administrator"]
     }
   ],
-  "platformErrorOverrides": [
-    {
-      "errorType": "NotFound",
-      "serve": "/200.html",
-      "statusCode": 200
-    }
-  ]
+  "navigationFallback": {
+    "rewrite": "/200.html",
+    "exclude": ["*.{png,svg}", "*.js", "/api/*"]
+  }
 }
