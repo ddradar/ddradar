@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/songs"
+    },
+    {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Songs",
+      "sqlQuery": "SELECT c.id, c.name, c.nameKana, c.nameIndex, c.artist, c.series, c.minBPM, c.maxBPM, c.charts FROM c WHERE c.nameIndex NOT IN (-1, -2)",
+      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/getSongs/index.js"
+}
