@@ -11,6 +11,6 @@ describe('GET /api/v1/songs', () => {
     const result = await getSongs(null, null, songs)
 
     // Assert
-    expect(result).toBe(songs)
+    expect(result).toStrictEqual({ status: 200, body: songs })
   })
 })
