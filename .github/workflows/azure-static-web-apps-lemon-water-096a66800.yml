@@ -48,6 +48,7 @@ jobs:
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
+          SONGS_API_URL: 'https://api.ddradar.app/api/v1/songs'
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'

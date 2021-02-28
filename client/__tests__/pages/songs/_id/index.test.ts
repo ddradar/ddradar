@@ -178,6 +178,7 @@ describe('pages/songs/_id/index.vue', () => {
 
       // Assert
       expect(result).toStrictEqual({ song })
+      expect(mocked(getSongInfo)).toBeCalled()
     })
     test.each([
       ['#10', 1, 0],
@@ -189,16 +190,14 @@ describe('pages/songs/_id/index.vue', () => {
       async (hash, playStyle, difficulty) => {
         // Arrange
         const wrapper = shallowMount(SongPage, { localVue, mocks })
-        const ctx = ({
-          params: { id: song.id },
-          route: { hash },
-        } as unknown) as Context
+        const ctx = ({ payload: song, route: { hash } } as unknown) as Context
 
         // Act
         const result = await wrapper.vm.$options.asyncData!(ctx)
 
         // Assert
         expect(result).toStrictEqual({ song, playStyle, difficulty })
+        expect(mocked(getSongInfo)).not.toBeCalled()
       }
     )
   })

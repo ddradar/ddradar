@@ -1,7 +1,16 @@
+import type { SongInfo } from '@ddradar/core/api/song'
 import type { NuxtConfig } from '@nuxt/types'
+import fetch from 'node-fetch'
 
 const name = 'DDRadar'
 const description = 'DDR Score Tracker'
+
+/* eslint-disable no-process-env */
+const {
+  APPINSIGHTS_INSTRUMENTATIONKEY: instrumentationKey,
+  SONGS_API_URL: songsApiUri,
+} = process.env
+/* eslint-enable no-process-env */
 
 const configuration: NuxtConfig = {
   target: 'static',
@@ -61,8 +70,7 @@ const configuration: NuxtConfig = {
   },
   publicRuntimeConfig: {
     /** Application Insights Instrumentation Key */
-    // eslint-disable-next-line no-process-env
-    instrumentationKey: process.env.APPINSIGHTS_INSTRUMENTATIONKEY,
+    instrumentationKey,
   },
   build: {
     transpile: [/typed-vuex/, /@ddradar\/core/],
@@ -71,7 +79,15 @@ const configuration: NuxtConfig = {
       config.externals = ['moment']
     },
   },
-  generate: { exclude: [/^\/.auth\//] },
+  generate: {
+    exclude: [/^\/.auth\//],
+    async routes() {
+      if (!songsApiUri) return []
+      const res = await fetch(songsApiUri)
+      const songs: SongInfo[] = await res.json()
+      return songs.map(s => ({ route: `/songs/${s.id}`, payload: s }))
+    },
+  },
 }
 
 export default configuration

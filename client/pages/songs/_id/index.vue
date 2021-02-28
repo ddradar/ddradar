@@ -80,9 +80,10 @@ export default class SongDetailPage extends Vue {
     params,
     $http,
     route,
-  }: Pick<Context, 'params' | '$http' | 'route'>) {
+    payload,
+  }: Pick<Context, 'params' | '$http' | 'route' | 'payload'>) {
     // Get song info from API
-    const song = await getSongInfo($http, params.id)
+    const song = (payload as SongInfo) || (await getSongInfo($http, params.id))
 
     // Set chartIndex
     const chart = route?.hash
