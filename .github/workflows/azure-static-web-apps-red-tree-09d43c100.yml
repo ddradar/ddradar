@@ -32,3 +32,4 @@ jobs:
         env:
           API_URL: '/'
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_PRODUCTION }}
+          SONGS_API_URL: 'https://api.ddradar.app/api/v1/songs'
