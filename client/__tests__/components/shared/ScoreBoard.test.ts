@@ -60,45 +60,72 @@ describe('/components/shared/ScoreBoard.vue', () => {
     },
   ]
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-  const mocks = { $accessor, $http: {} }
+  const mocks = {
+    $accessor,
+    $http: {},
+    $fetchState: { pending: false },
+    $fetch: jest.fn(),
+  }
   const options = { localVue, propsData, mocks, i18n }
-  const wrapper = shallowMount(ScoreBoard, options)
+  let wrapper: ReturnType<typeof shallowMount>
+  beforeEach(() => {
+    wrapper = shallowMount(ScoreBoard, options)
+  })
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
     const i18n = new VueI18n({ locale, silentFallbackWarn: true })
     const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
-    const mocks = { $accessor: { isLoggedIn: false } }
-    const options = { localVue, propsData, mocks, stubs, i18n }
-    const wrapper = mount(ScoreBoard, options)
+    const mocks = {
+      $accessor: { isLoggedIn: false },
+      $fetchState: { pending: false },
+    }
 
     test('{ loading: true } renders loading spin', async () => {
-      // Arrange - Act
-      wrapper.setData({ loading: true, scores: [] })
+      // Arrange
+      const mocks = {
+        $accessor: { isLoggedIn: false },
+        $fetchState: { pending: true },
+      }
+      const data = () => ({ scores: [] })
+      const options = { localVue, propsData, mocks, stubs, i18n, data }
+
+      // Act
+      const wrapper = mount(ScoreBoard, options)
       await wrapper.vm.$nextTick()
 
       // Assert
       expect(wrapper).toMatchSnapshot()
     })
     test('{ loading: false, scores: [...] } renders score list', async () => {
-      // Arrange - Act
-      wrapper.setData({ loading: false, scores })
+      // Arrange
+      const data = () => ({ scores })
+      const options = { localVue, propsData, mocks, stubs, i18n, data }
+
+      // Act
+      const wrapper = mount(ScoreBoard, options)
       await wrapper.vm.$nextTick()
 
       // Assert
       expect(wrapper).toMatchSnapshot()
     })
     test('{ loading: false, scores: [] } renders empty', async () => {
-      // Arrange - Act
-      wrapper.setData({ loading: false, scores: [] })
+      // Arrange
+      const data = () => ({ scores: [] })
+      const options = { localVue, propsData, mocks, stubs, i18n, data }
+
+      // Act
+      const wrapper = mount(ScoreBoard, options)
       await wrapper.vm.$nextTick()
 
       // Assert
       expect(wrapper).toMatchSnapshot()
     })
     test('renders edit button if loggedIn', async () => {
-      // Arrange - Act
-      const mocks = { $accessor }
+      // Arrange
+      const mocks = { $accessor, $fetchState: { pending: false } }
       const options = { localVue, propsData, mocks, stubs, i18n }
+
+      // Act
       const wrapper = mount(ScoreBoard, options)
       await wrapper.vm.$nextTick()
 
@@ -109,14 +136,51 @@ describe('/components/shared/ScoreBoard.vue', () => {
 
   // Lifecycle
   describe('fetch()', () => {
+    mocked(getChartScore).mockResolvedValue(scores as ScoreInfo[])
     beforeEach(() => mocked(getChartScore).mockClear())
-    test('calls getChartScore(medium)', async () => {
+
+    test('{ fetchAllData: false } calls getChartScore(medium)', async () => {
       // Arrange - Act
       // @ts-ignore
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(mocked(getChartScore)).toBeCalled()
+      expect(mocked(getChartScore)).toBeCalledWith(
+        mocks.$http,
+        info.id,
+        chart.playStyle,
+        chart.difficulty,
+        'medium'
+      )
+    })
+    test('{ fetchAllData: true } calls getChartScore(full)', async () => {
+      // Arrange - Act
+      wrapper.setData({ fetchAllData: true })
+      // @ts-ignore
+      await wrapper.vm.$options.fetch?.call(wrapper.vm)
+
+      // Assert
+      expect(mocked(getChartScore)).toBeCalledWith(
+        mocks.$http,
+        info.id,
+        chart.playStyle,
+        chart.difficulty,
+        'full'
+      )
+    })
+    test.each(['ja', 'en'])('sets { locale: %s } areaName', async locale => {
+      // Arrange
+      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+      const mocks = { $accessor, $http: {}, $fetchState: { pending: true } }
+      const options = { localVue, propsData, mocks, i18n }
+      const wrapper = shallowMount(ScoreBoard, options)
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.$options.fetch?.call(wrapper.vm)
+
+      // Assert
+      expect(wrapper.vm.$data.scores).toMatchSnapshot()
     })
   })
 
@@ -125,6 +189,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
     const mocks = {
       $accessor,
       $buefy: { modal: { open: jest.fn(_ => ({ $on: jest.fn() })) } },
+      $fetchState: { pending: false },
     }
     const options = { localVue, propsData, mocks, i18n }
     const wrapper = shallowMount(ScoreBoard, options)
@@ -143,6 +208,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
     const mocks = {
       $accessor,
       $buefy: { modal: { open: jest.fn(_ => ({ $on: jest.fn() })) } },
+      $fetchState: { pending: false },
     }
     const options = { localVue, propsData, mocks, i18n }
     const wrapper = shallowMount(ScoreBoard, options)
@@ -157,52 +223,18 @@ describe('/components/shared/ScoreBoard.vue', () => {
       expect(mocks.$buefy.modal.open).toBeCalled()
     })
   })
-  describe('fetchScores', () => {
+  describe('fetchAllScores()', () => {
     mocked(getChartScore).mockResolvedValue(scores as ScoreInfo[])
+    beforeEach(() => mocks.$fetch.mockClear())
 
-    beforeEach(() => mocked(getChartScore).mockClear())
-
-    test('(false) calls getChartScore(medium)', async () => {
+    test('sets { fetchAllData = true } and calls $fetch()', () => {
       // Arrange - Act
       // @ts-ignore
-      await wrapper.vm.fetchScores(false)
+      wrapper.vm.fetchAllScores()
 
       // Assert
-      expect(mocked(getChartScore)).toBeCalledWith(
-        mocks.$http,
-        info.id,
-        chart.playStyle,
-        chart.difficulty,
-        'medium'
-      )
-    })
-    test('{ locale: %s } (true) calls getChartScore(full)', async () => {
-      // Arrange - Act
-      // @ts-ignore
-      await wrapper.vm.fetchScores(true)
-
-      // Assert
-      expect(mocked(getChartScore)).toBeCalledWith(
-        mocks.$http,
-        info.id,
-        chart.playStyle,
-        chart.difficulty,
-        'full'
-      )
-    })
-    test.each(['ja', 'en'])('sets { locale: %s } areaName', async locale => {
-      // Arrange
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-      const mocks = { $accessor, $http: {} }
-      const options = { localVue, propsData, mocks, i18n }
-      const wrapper = shallowMount(ScoreBoard, options)
-
-      // Act
-      // @ts-ignore
-      await wrapper.vm.fetchScores(true)
-
-      // Assert
-      expect(wrapper.vm.$data.scores).toMatchSnapshot()
+      expect(wrapper.vm.$data.fetchAllData).toBe(true)
+      expect(mocks.$fetch).toBeCalled()
     })
   })
 })

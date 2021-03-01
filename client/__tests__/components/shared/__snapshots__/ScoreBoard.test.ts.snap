@@ -300,12 +300,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test renders 
                 </tbody>
                 <!---->
               </table>
-              <transition-stub name="fade">
-                <div class="loading-overlay is-active">
-                  <div class="loading-background"></div>
-                  <div class="loading-icon"></div>
-                </div>
-              </transition-stub>
+              <!---->
             </div>
             <!---->
           </div>
@@ -623,12 +618,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test renders 
                 </tbody>
                 <!---->
               </table>
-              <transition-stub name="fade">
-                <div class="loading-overlay is-active">
-                  <div class="loading-background"></div>
-                  <div class="loading-icon"></div>
-                </div>
-              </transition-stub>
+              <!---->
             </div>
             <!---->
           </div>
@@ -646,7 +636,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test renders 
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue fetchScores sets { locale: en } areaName 1`] = `
+exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: en } areaName 1`] = `
 Array [
   Object {
     "clearLamp": 7,
@@ -681,7 +671,7 @@ Array [
 ]
 `;
 
-exports[`/components/shared/ScoreBoard.vue fetchScores sets { locale: ja } areaName 1`] = `
+exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: ja } areaName 1`] = `
 Array [
   Object {
     "clearLamp": 7,

@@ -4,7 +4,7 @@
       <div class="table-container">
         <b-table
           :data="scores"
-          :loading="loading"
+          :loading="$fetchState.pending"
           :mobile-cards="false"
           :selected="userScore"
           narrowed
@@ -62,7 +62,7 @@
       >
         {{ $t('button.import') }}
       </a>
-      <a class="card-footer-item" @click="fetchScores(true)">
+      <a class="card-footer-item" @click="fetchAllScores">
         {{ $t('button.all') }}
       </a>
     </footer>
@@ -129,7 +129,7 @@ type RankingScore = Pick<
   'userId' | 'userName' | 'score' | 'exScore' | 'clearLamp'
 > & { isArea?: true }
 
-@Component({ components: { Card, ScoreBadge } })
+@Component({ components: { Card, ScoreBadge }, fetchOnServer: false })
 export default class OrderDetailComponent extends Vue {
   @Prop({ required: true, type: Object })
   readonly info!: CourseInfo | SongInfo
@@ -140,7 +140,7 @@ export default class OrderDetailComponent extends Vue {
   @Prop({ required: false, type: Boolean, default: false })
   readonly open!: boolean
 
-  loading = true
+  fetchAllData = false
   scores: RankingScore[] = []
 
   get userScore() {
@@ -156,7 +156,28 @@ export default class OrderDetailComponent extends Vue {
   }
 
   async fetch() {
-    await this.fetchScores()
+    try {
+      const scores = await getChartScore(
+        this.$http,
+        this.info.id,
+        this.chart.playStyle,
+        this.chart.difficulty,
+        this.fetchAllData ? 'full' : 'medium'
+      )
+      this.scores = scores.map(s => {
+        const areaCodes = [...areaCodeSet].map(i => `${i}`)
+        if (areaCodes.includes(s.userId)) {
+          return {
+            ...s,
+            isArea: true,
+            userName: this.$t('list.top', {
+              area: this.$t(`area.${s.userId}`),
+            }) as string,
+          }
+        }
+        return s
+      })
+    } catch {}
   }
 
   /** Open ScoreEditor modal */
@@ -175,7 +196,7 @@ export default class OrderDetailComponent extends Vue {
         trapFocus: true,
       })
       /* istanbul ignore */
-      .$on('close', async () => await this.fetchScores())
+      .$on('close', () => this.$fetch())
   }
 
   /** Open ScoreImporter modal */
@@ -194,35 +215,13 @@ export default class OrderDetailComponent extends Vue {
         trapFocus: true,
       })
       /* istanbul ignore */
-      .$on('close', async () => await this.fetchScores())
+      .$on('close', () => this.$fetch())
   }
 
   /** Call Get Chart Score API */
-  async fetchScores(fetchAllData: boolean = false) {
-    this.loading = true
-    try {
-      const scores = await getChartScore(
-        this.$http,
-        this.info.id,
-        this.chart.playStyle,
-        this.chart.difficulty,
-        fetchAllData ? 'full' : 'medium'
-      )
-      this.scores = scores.map(s => {
-        const areaCodes = [...areaCodeSet].map(i => `${i}`)
-        if (areaCodes.includes(s.userId)) {
-          return {
-            ...s,
-            isArea: true,
-            userName: this.$t('list.top', {
-              area: this.$t(`area.${s.userId}`),
-            }) as string,
-          }
-        }
-        return s
-      })
-    } catch {}
-    this.loading = false
+  fetchAllScores() {
+    this.fetchAllData = true
+    this.$fetch()
   }
 }
 </script>
