@@ -29,7 +29,7 @@
     "run:core": "yarn workspace @ddradar/core",
     "run:db": "yarn workspace @ddradar/db",
     "run:func": "yarn workspace @ddradar/functions",
-    "postinstall": "husky install"
+    "prepare": "husky install"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
