@@ -1,3 +1,8 @@
+import { config } from 'dotenv'
+
+// load .env file
+config()
+
 import type { ScoreListBody } from '@ddradar/core/api/score'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import {
@@ -6,14 +11,10 @@ import {
 } from '@ddradar/core/db/songs'
 import { getContainer } from '@ddradar/db'
 import consola from 'consola'
-import { config } from 'dotenv'
 import fetch from 'node-fetch'
 import * as puppetter from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
-
-// load .env file
-config()
 
 /* eslint-disable node/no-process-env */
 const {
@@ -48,7 +49,8 @@ async function main(userId: string, password: string) {
     >(
       'SELECT s.songId, s.songName, s.playStyle, s.difficulty ' +
         'FROM s ' +
-        'WHERE s.userId = "0" AND s.clearLamp != 7'
+        'WHERE s.userId = "0" AND s.clearLamp != 7 AND NOT IS_DEFINED(s.ttl) ' +
+        'ORDER BY s.songName'
     )
     .fetchAll()
 
@@ -71,7 +73,6 @@ async function main(userId: string, password: string) {
     for (const s of grp[1]) {
       const chartScope = songScope.withScope('Charts')
       const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
-      chartScope.ready(chart)
 
       try {
         const score = await fetchScoreDetail(
@@ -80,14 +81,17 @@ async function main(userId: string, password: string) {
           s.playStyle,
           s.difficulty
         )
-        if (score) scores.push(score)
+        if (score) {
+          scores.push(score)
+          chartScope.success(
+            `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
+          )
+        }
       } catch (e) {
         const message: string = e?.message ?? e
         if (!/NO PLAY/.test(message)) throw e
         chartScope.info('NO PLAY')
       }
-
-      chartScope.success(`${chart} Loaded. wait 3 seconds...`)
       await sleep(3000)
     }
 
@@ -97,7 +101,6 @@ async function main(userId: string, password: string) {
     }
 
     const apiUri = `${apiBasePath}/api/v1/scores/${grp[0]}/${userId}`
-    songScope.ready(`Call API ${apiUri}`)
     const res = await fetch(apiUri, {
       method: 'post',
       body: JSON.stringify({ password, scores }),
