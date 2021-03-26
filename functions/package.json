@@ -11,6 +11,8 @@
     "nohoist": [
       "@azure/cosmos",
       "@azure/cosmos/**",
+      "@ddradar/core",
+      "@ddradar/db",
       "iconv-lite",
       "iconv-lite/**",
       "node-fetch",
