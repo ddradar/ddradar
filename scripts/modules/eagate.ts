@@ -3,8 +3,16 @@ import {
   musicDataToScoreList,
   musicDetailToScore,
 } from '@ddradar/core/eagate-parser'
+import { config } from 'dotenv'
 import { JSDOM } from 'jsdom'
 import type { Page } from 'puppeteer-core'
+
+// load .env file
+config()
+
+/* eslint-disable node/no-process-env */
+const { KONAMI_ID: loginId, KONAMI_PASSWORD: password } = process.env
+/* eslint-enable node/no-process-env */
 
 global.DOMParser = new JSDOM().window.DOMParser
 
@@ -12,8 +20,19 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
   const mypageUri = 'https://p.eagate.573.jp/gate/p/mypage/'
   await page.goto(mypageUri)
 
-  const currentUri = await page.evaluate(() => document.location.href)
-  return mypageUri === currentUri
+  if (mypageUri === (await page.evaluate(() => document.location.href))) {
+    return true
+  }
+
+  page.type('#id_userId', loginId ?? '', { delay: 500 })
+  page.type('#id_password', password ?? '', { delay: 500 })
+  page.click('.btn-area p.btn a', { delay: 500 })
+  await page.waitForNavigation({
+    timeout: 30000,
+    waitUntil: 'domcontentloaded',
+  })
+
+  return mypageUri === (await page.evaluate(() => document.location.href))
 }
 
 const playDataUri = 'https://p.eagate.573.jp/game/ddr/ddra20/p/playdata'
