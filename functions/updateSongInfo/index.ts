@@ -1,7 +1,12 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
-import type { SongSchema } from '@ddradar/core/db/songs'
+import type {
+  CourseChartSchema,
+  CourseSchema,
+  SongSchema,
+  StepChartSchema,
+} from '@ddradar/core/db/songs'
 import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
 import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 
@@ -21,13 +26,14 @@ type UpdateSongResult = {
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
-  songs: SongSchema[],
+  songs: (SongSchema | CourseSchema)[],
   oldTotalCounts: Required<Omit<TotalCount, 'count'>>[]
 ): Promise<UpdateSongResult> {
-  const scores: ScoreSchema[] = []
+  const scores: (ScoreSchema & ItemDefinition)[] = []
 
   for (const song of songs) {
     context.log.info(`Start: ${song.name}`)
+
     // Get scores
     const container = getContainer('Scores')
     const { resources } = await container.items
@@ -37,20 +43,72 @@ export default async function (
       })
       .fetchAll()
 
+    const topScores: ScoreSchema[] = []
+    // Update exists scores
     for (const score of resources) {
-      const chart = song.charts.find(
+      const scoreText = `{ id: ${score.id}, userId: ${score.userId}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
+      const chart = (song.charts as (
+        | StepChartSchema
+        | CourseChartSchema
+      )[]).find(
         c =>
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
       )
       if (!chart) {
-        context.log.error(
-          `Invalid score: { id: ${score.id}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
-        )
+        context.log.error(`Not found chart: ${scoreText}`)
         continue
       }
+
+      if (score.userId === '0') {
+        topScores.push(score)
+      }
+
+      if (
+        score.clearLamp >= 4 &&
+        score.maxCombo &&
+        score.maxCombo !== chart.notes + chart.shockArrow
+      ) {
+        context.log.warn(
+          `maxCombo(${score.maxCombo}) is different than expected(${
+            chart.notes + chart.shockArrow
+          }): ${scoreText}`
+        )
+        context.log.warn('Make sure the chart info is correct.')
+      }
       if (song.name !== score.songName || chart.level !== score.level) {
-        context.log.info(`Updated: ${score.id}`)
-        scores.push({ ...score, songName: song.name, level: chart.level })
+        context.log.info(`Updated: ${scoreText}`)
+        scores.push({
+          ...score,
+          songName: song.name,
+          level: chart.level,
+        })
+      }
+    }
+
+    // Create empty score
+    const emptyScore: Omit<ScoreSchema, keyof StepChartSchema> = {
+      score: 0,
+      clearLamp: 0,
+      rank: 'E',
+      userId: '0',
+      userName: '0',
+      isPublic: false,
+      songId: song.id,
+      songName: song.name,
+    }
+    for (const chart of song.charts) {
+      if (
+        !topScores.find(
+          s =>
+            s.playStyle === chart.playStyle && s.difficulty === chart.difficulty
+        )
+      ) {
+        scores.push({
+          ...emptyScore,
+          playStyle: chart.playStyle,
+          difficulty: chart.difficulty,
+          level: chart.level,
+        })
       }
     }
   }
