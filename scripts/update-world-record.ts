@@ -15,6 +15,7 @@ import fetch from 'node-fetch'
 import * as puppetter from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
+import { isDeleted } from './modules/song'
 
 /* eslint-disable node/no-process-env */
 const {
@@ -56,6 +57,7 @@ async function main(userId: string, password: string) {
 
   // Grouped by song
   const scores = resources.reduce((prev, score) => {
+    if (isDeleted(score.songId)) return prev
     if (prev[score.songId]) {
       prev[score.songId].push(score)
     } else {
@@ -64,9 +66,13 @@ async function main(userId: string, password: string) {
     return prev
   }, {} as Record<string, Pick<ScoreSchema, 'songId' | 'songName' | 'playStyle' | 'difficulty'>[]>)
 
+  const totalSongCount = Object.keys(scores).length
+  let currentCount = 1
   for (const grp of Object.entries(scores)) {
     const songScope = consola.withScope('Song')
-    const songName = `${grp[1][0].songName} (${grp[0]})`
+    const songName = `(${currentCount++}/${totalSongCount}) ${
+      grp[1][0].songName
+    } (${grp[0]})`
     songScope.start(songName)
     const scores: ScoreListBody[] = []
 
