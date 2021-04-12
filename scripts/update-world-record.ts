@@ -30,7 +30,7 @@ const sleep = (msec: number) =>
 
 /** Update World Record from e-AMUSEMENT GATE */
 async function main(userId: string, password: string) {
-  const browserOptions = { headless: false, executablePath, userDataDir }
+  const browserOptions = { executablePath, userDataDir }
   const browser = await puppetter.launch(browserOptions)
 
   const page = (await browser.pages())[0] || (await browser.newPage())
@@ -46,9 +46,12 @@ async function main(userId: string, password: string) {
   const container = getContainer('Scores')
   const { resources } = await container.items
     .query<
-      Pick<ScoreSchema, 'songId' | 'songName' | 'playStyle' | 'difficulty'>
+      Pick<
+        ScoreSchema,
+        'songId' | 'songName' | 'playStyle' | 'difficulty' | 'score'
+      >
     >(
-      'SELECT s.songId, s.songName, s.playStyle, s.difficulty ' +
+      'SELECT s.songId, s.songName, s.playStyle, s.difficulty, s.score ' +
         'FROM s ' +
         'WHERE s.userId = "0" AND s.clearLamp != 7 AND NOT IS_DEFINED(s.ttl) ' +
         'ORDER BY s.songName'
@@ -64,7 +67,7 @@ async function main(userId: string, password: string) {
       prev[score.songId] = [score]
     }
     return prev
-  }, {} as Record<string, Pick<ScoreSchema, 'songId' | 'songName' | 'playStyle' | 'difficulty'>[]>)
+  }, {} as Record<string, typeof resources>)
 
   const totalSongCount = Object.keys(scores).length
   let currentCount = 1
@@ -88,10 +91,16 @@ async function main(userId: string, password: string) {
           s.difficulty
         )
         if (score) {
-          scores.push(score)
-          chartScope.success(
-            `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
-          )
+          if (score.topScore > s.score) {
+            scores.push(score)
+            chartScope.success(
+              `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
+            )
+          } else {
+            chartScope.info(
+              `${chart} WR(${score.topScore}) is not updated. Skip.`
+            )
+          }
         }
       } catch (e) {
         const message: string = e?.message ?? e
