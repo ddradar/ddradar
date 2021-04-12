@@ -139,9 +139,8 @@
 </i18n>
 
 <script lang="ts">
-import type { Database, Score } from '@ddradar/core'
-import { Song } from '@ddradar/core'
-import { getDanceLevel, setValidScoreFromChart } from '@ddradar/core/score'
+import type { Database } from '@ddradar/core'
+import { Score, Song } from '@ddradar/core'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
@@ -178,7 +177,7 @@ export default class ScoreEditorComponent extends Vue {
   isLoading = true
 
   get rank() {
-    return this.isFailed ? 'E' : getDanceLevel(this.score)
+    return this.isFailed ? 'E' : Score.getDanceLevel(this.score)
   }
 
   get exScoreMax() {
@@ -239,7 +238,7 @@ export default class ScoreEditorComponent extends Vue {
     /* istanbul ignore if */
     if (!this.selectedChart) return
     try {
-      const score = setValidScoreFromChart(this.selectedChart, {
+      const score = Score.setValidScoreFromChart(this.selectedChart, {
         score: this.score,
         exScore: this.exScore,
         maxCombo: this.maxCombo,

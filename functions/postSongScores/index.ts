@@ -5,15 +5,9 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
+  Score,
   Song,
 } from '@ddradar/core'
-import {
-  calcMyGrooveRadar,
-  getDanceLevel,
-  isScore,
-  isValidScore,
-  mergeScore,
-} from '@ddradar/core/score'
 import { fetchScore } from '@ddradar/db'
 
 type ImportScoreBody = {
@@ -59,7 +53,7 @@ export default async function (
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { httpResponse: { status: 404 } }
-    if (!isValidScore(chart, score)) {
+    if (!Score.isValidScore(chart, score)) {
       return { httpResponse: { status: 400 } }
     }
 
@@ -68,7 +62,10 @@ export default async function (
       ...(song.isCourse
         ? {}
         : {
-            radar: calcMyGrooveRadar(chart as Database.StepChartSchema, score),
+            radar: Score.calcMyGrooveRadar(
+              chart as Database.StepChartSchema,
+              score
+            ),
           }),
     })
     await fetchMergedScore(chart, user, score, false)
@@ -78,7 +75,7 @@ export default async function (
       const topScore: Api.ScoreBody = {
         score: score.topScore,
         clearLamp: 2,
-        rank: getDanceLevel(score.topScore),
+        rank: Score.getDanceLevel(score.topScore),
       }
       await fetchMergedScore(chart, topUser, topScore)
     } else if (user.isPublic) {
@@ -107,7 +104,7 @@ export default async function (
 
     function isScoreBody(obj: unknown): obj is Api.ScoreListBody {
       return (
-        isScore(obj) &&
+        Score.isScore(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
         (Song.playStyleMap as ReadonlyMap<number, string>).has(obj.playStyle) &&
         (Song.difficultyMap as ReadonlyMap<number, string>).has(
@@ -177,7 +174,7 @@ export default async function (
     )
 
     const mergedScore: Database.ScoreSchema = {
-      ...mergeScore(
+      ...Score.mergeScore(
         oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
         scoreSchema
       ),
@@ -201,7 +198,7 @@ export default async function (
     }
 
     if (!isAreaUser && !song.isCourse) {
-      mergedScore.radar = calcMyGrooveRadar(
+      mergedScore.radar = Score.calcMyGrooveRadar(
         chart as Database.StepChartSchema,
         mergedScore
       )
