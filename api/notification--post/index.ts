@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
-import type { NotificationBody } from '@ddradar/core/api/notification'
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-} from '@ddradar/core/typeUtils'
+} from '@ddradar/core'
+import type { NotificationBody } from '@ddradar/core/api/notification'
 
 import { ErrorResult, SuccessResult } from '../function'
 

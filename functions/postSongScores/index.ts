@@ -1,5 +1,10 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import {
+  hasIntegerProperty,
+  hasProperty,
+  hasStringProperty,
+} from '@ddradar/core'
 import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
 import type { ScoreSchema } from '@ddradar/core/db/scores'
 import type {
@@ -16,11 +21,6 @@ import {
   isValidScore,
   mergeScore,
 } from '@ddradar/core/score'
-import {
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from '@ddradar/core/typeUtils'
 import { fetchScore } from '@ddradar/db'
 
 type ImportScoreBody = {
