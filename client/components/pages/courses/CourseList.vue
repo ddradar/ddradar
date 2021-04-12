@@ -56,8 +56,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { CourseListData } from '@ddradar/core/api/course'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { shortenSeriesName } from '~/api/song'
@@ -65,7 +65,7 @@ import { shortenSeriesName } from '~/api/song'
 @Component
 export default class CourseListComponent extends Vue {
   @Prop({ type: Array, required: false, default: () => [] })
-  readonly courses!: CourseListData[]
+  readonly courses!: Api.CourseListData[]
 
   @Prop({ type: Boolean, required: false, default: false })
   readonly loading!: boolean

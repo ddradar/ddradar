@@ -1,13 +1,12 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
 import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
   Song,
 } from '@ddradar/core'
-import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
@@ -19,7 +18,7 @@ import { fetchScore } from '@ddradar/db'
 
 type ImportScoreBody = {
   password: string
-  scores: ScoreListBody[]
+  scores: Api.ScoreListBody[]
 }
 
 type SongInput = Pick<Database.SongSchema, 'id' | 'name'> & {
@@ -76,7 +75,7 @@ export default async function (
 
     // World Record
     if (score.topScore) {
-      const topScore: ScoreBody = {
+      const topScore: Api.ScoreBody = {
         score: score.topScore,
         clearLamp: 2,
         rank: getDanceLevel(score.topScore),
@@ -106,7 +105,7 @@ export default async function (
       body.scores.every(isScoreBody)
     )
 
-    function isScoreBody(obj: unknown): obj is ScoreListBody {
+    function isScoreBody(obj: unknown): obj is Api.ScoreListBody {
       return (
         isScore(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
@@ -126,7 +125,7 @@ export default async function (
   function createSchema(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<ScoreBody>
+    score: Readonly<Api.ScoreBody>
   ) {
     const scoreSchema: Database.ScoreSchema = {
       userId: user.id,
@@ -165,7 +164,7 @@ export default async function (
   async function fetchMergedScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<ScoreBody>,
+    score: Readonly<Api.ScoreBody>,
     isAreaUser = true
   ): Promise<void> {
     const scoreSchema = createSchema(chart, user, score)

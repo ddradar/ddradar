@@ -88,8 +88,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { NotificationListData } from '@ddradar/core/api/notification'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -101,7 +101,7 @@ import * as popup from '~/utils/popup'
 
 @Component({ components: { Card, TopMessage }, fetchOnServer: false })
 export default class IndexPage extends Vue {
-  messages: NotificationListData[] = []
+  messages: Api.NotificationListData[] = []
 
   get head(): MetaInfo {
     return { title: 'DDRadar - DDR Score Tracker', titleTemplate: '' }

@@ -178,8 +178,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Database } from '@ddradar/core'
-import type { CurrentUserInfo } from '@ddradar/core/api/user'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -276,7 +276,7 @@ export default class ProfilePage extends Vue {
   }
 
   async save() {
-    const user: CurrentUserInfo = {
+    const user: Api.CurrentUserInfo = {
       id: this.id,
       name: this.name,
       area: this.area,

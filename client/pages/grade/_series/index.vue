@@ -34,8 +34,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { CourseListData } from '@ddradar/core/api/course'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -47,7 +47,7 @@ import CourseList from '~/components/pages/courses/CourseList.vue'
 @Component({ components: { CourseList }, fetchOnServer: false })
 export default class GradeListPage extends Vue {
   /** Course List from API */
-  courses: CourseListData[] = []
+  courses: Api.CourseListData[] = []
 
   get title() {
     const seriesList = [...Song.seriesSet]

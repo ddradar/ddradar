@@ -1,5 +1,5 @@
+import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import { ScoreStatus } from '@ddradar/core/api/user'
 import { mount } from '@vue/test-utils'
 
 import Component from '~/components/pages/users/ScoreStatus.vue'
@@ -9,7 +9,7 @@ describe('/components/pages/users/ScoreStatus.vue', () => {
     test('renders correctly', async () => {
       // Arrange
       const title = 'LEVEL 10'
-      const statuses: Pick<ScoreStatus, 'rank' | 'count'>[] = [
+      const statuses: Pick<Api.ScoreStatus, 'rank' | 'count'>[] = [
         ...Score.danceLevelSet,
         '-' as const,
       ].map((rank, i) => ({ rank, count: i * 10 }))

@@ -1,15 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { Database } from '@ddradar/core'
-import { hasIntegerProperty, hasProperty } from '@ddradar/core'
-import type { ScoreBody, ScoreListBody } from '@ddradar/core/api/score'
-import {
-  calcMyGrooveRadar,
-  getDanceLevel,
-  isScore,
-  isValidScore,
-  mergeScore,
-} from '@ddradar/core/score'
+import type { Api, Database } from '@ddradar/core'
+import { hasIntegerProperty, hasProperty, Score } from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
@@ -59,7 +51,7 @@ export default async function (
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { httpResponse: new ErrorResult(404) }
-    if (!isValidScore(chart, score)) {
+    if (!Score.isValidScore(chart, score)) {
       return {
         httpResponse: new ErrorResult(400, `body[${i}] is invalid Score`),
       }
@@ -70,17 +62,20 @@ export default async function (
       ...(song.isCourse
         ? {}
         : {
-            radar: calcMyGrooveRadar(chart as Database.StepChartSchema, score),
+            radar: Score.calcMyGrooveRadar(
+              chart as Database.StepChartSchema,
+              score
+            ),
           }),
     })
     await fetchMergedScore(chart, user, score, false)
 
     // World Record
     if (score.topScore) {
-      const topScore: ScoreBody = {
+      const topScore: Api.ScoreBody = {
         score: score.topScore,
         clearLamp: 2,
-        rank: getDanceLevel(score.topScore),
+        rank: Score.getDanceLevel(score.topScore),
       }
       await fetchMergedScore(chart, topUser, topScore)
     } else if (user.isPublic) {
@@ -98,14 +93,14 @@ export default async function (
   return { httpResponse: new SuccessResult(body), documents }
 
   /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ScoreListBody[] {
+  function isValidBody(body: unknown): body is Api.ScoreListBody[] {
     return (
       Array.isArray(body) && body.length > 0 && body.every(d => isScoreBody(d))
     )
 
-    function isScoreBody(obj: unknown): obj is ScoreListBody {
+    function isScoreBody(obj: unknown): obj is Api.ScoreListBody {
       return (
-        isScore(obj) &&
+        Score.isScore(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
         [1, 2].includes(obj.playStyle) &&
         [0, 1, 2, 3, 4].includes(obj.difficulty) &&
@@ -121,7 +116,7 @@ export default async function (
   function createSchema(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<ScoreBody>
+    score: Readonly<Api.ScoreBody>
   ) {
     const scoreSchema: Database.ScoreSchema = {
       userId: user.id,
@@ -160,7 +155,7 @@ export default async function (
   async function fetchMergedScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<ScoreBody>,
+    score: Readonly<Api.ScoreBody>,
     isAreaUser = true
   ): Promise<void> {
     const scoreSchema = createSchema(chart, user, score)
@@ -173,7 +168,7 @@ export default async function (
     )
 
     const mergedScore: Database.ScoreSchema = {
-      ...mergeScore(
+      ...Score.mergeScore(
         oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
         scoreSchema
       ),
@@ -197,7 +192,7 @@ export default async function (
     }
 
     if (!isAreaUser && !song.isCourse) {
-      mergedScore.radar = calcMyGrooveRadar(
+      mergedScore.radar = Score.calcMyGrooveRadar(
         chart as Database.StepChartSchema,
         mergedScore
       )

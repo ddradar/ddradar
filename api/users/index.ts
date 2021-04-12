@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Api } from '@ddradar/core'
 import { Database } from '@ddradar/core'
-import type { UserInfo } from '@ddradar/core/api/user'
 import { fetchUserList } from '@ddradar/db'
 
 import { getClientPrincipal } from '../auth'
@@ -14,7 +14,7 @@ const isArea = (obj: unknown): obj is Database.AreaCode =>
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>
-): Promise<SuccessResult<UserInfo[]>> {
+): Promise<SuccessResult<Api.UserInfo[]>> {
   const loginId = getClientPrincipal(req)?.userId ?? ''
   const area = parseFloat(req.query.area ?? '')
   const name = req.query.name ?? ''

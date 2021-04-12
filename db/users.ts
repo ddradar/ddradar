@@ -1,5 +1,4 @@
-import type { Database } from '@ddradar/core'
-import type { UserInfo } from '@ddradar/core/api/user'
+import type { Api, Database } from '@ddradar/core'
 
 import { Condition, fetchList, fetchOne } from '.'
 
@@ -26,7 +25,7 @@ export function fetchUserList(
   area?: Database.AreaCode,
   name?: string,
   code?: number
-): Promise<UserInfo[]> {
+): Promise<Api.UserInfo[]> {
   const columns = ['id', 'name', 'area', 'code'] as const
   const cond: Condition[] = [
     { condition: '(c.isPublic = true OR c.loginId = @)', value: loginId },
@@ -35,5 +34,7 @@ export function fetchUserList(
   if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (code) cond.push({ condition: 'c.code = @', value: code })
   cond.push({ condition: 'IS_DEFINED(c.loginId)' })
-  return fetchList<'Users', UserInfo>('Users', columns, cond, { name: 'ASC' })
+  return fetchList<'Users', Api.UserInfo>('Users', columns, cond, {
+    name: 'ASC',
+  })
 }

@@ -1,8 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable node/no-process-env */
-import type { Database } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { ScoreListBody } from '@ddradar/core/api/score'
 import { getContainer } from '@ddradar/db'
 import { config } from 'dotenv'
 import fetch from 'node-fetch'
@@ -50,7 +49,7 @@ async function main(userId: string, password: string) {
 
   for (const s of resources) {
     console.info(`[Song] ${s.name} START`)
-    const scores: ScoreListBody[] = []
+    const scores: Api.ScoreListBody[] = []
     for (const c of s.charts) {
       const chart = `${Song.playStyleMap.get(
         c.playStyle

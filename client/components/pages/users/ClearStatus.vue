@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import type { ClearStatus } from '@ddradar/core/api/user'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
@@ -16,7 +16,7 @@ export default class ClearStatusComponent extends Vue {
   readonly title!: string | null
 
   @Prop({ type: Array, default: () => [] })
-  readonly statuses!: Pick<ClearStatus, 'clearLamp' | 'count'>[]
+  readonly statuses!: Pick<Api.ClearStatus, 'clearLamp' | 'count'>[]
 
   get sortedStatuses() {
     return this.statuses

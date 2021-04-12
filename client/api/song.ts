@@ -1,5 +1,5 @@
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { ChartInfo, SongInfo, SongListData } from '@ddradar/core/api/song'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
@@ -12,7 +12,7 @@ export function getChartTitle({
   playStyle,
   difficulty,
   level,
-}: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
+}: Pick<Api.ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
   const shortPlayStyle = `${Song.playStyleMap.get(playStyle)![0]}P` as
     | 'SP'
     | 'DP'
@@ -23,7 +23,7 @@ export function getChartTitle({
 export function getDisplayedBPM({
   minBPM,
   maxBPM,
-}: Pick<SongInfo, 'minBPM' | 'maxBPM'>) {
+}: Pick<Api.SongInfo, 'minBPM' | 'maxBPM'>) {
   if (!minBPM || !maxBPM) return '???'
   if (minBPM === maxBPM) return `${minBPM}`
   return `${minBPM}-${maxBPM}`
@@ -34,7 +34,7 @@ export function getDisplayedBPM({
  * @see https://github.com/ddradar/ddradar/tree/master/api/songs__id/
  */
 export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
-  return $http.$get<SongInfo>(`${apiPrefix}/songs/${id}`)
+  return $http.$get<Api.SongInfo>(`${apiPrefix}/songs/${id}`)
 }
 
 /**
@@ -45,7 +45,7 @@ export function searchSongByName(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   nameIndex: number
 ) {
-  return $http.$get<SongListData[]>(`${apiPrefix}/songs/name/${nameIndex}`)
+  return $http.$get<Api.SongListData[]>(`${apiPrefix}/songs/name/${nameIndex}`)
 }
 
 /**
@@ -56,7 +56,7 @@ export function searchSongBySeries(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   series: number
 ) {
-  return $http.$get<SongListData[]>(`${apiPrefix}/songs/series/${series}`)
+  return $http.$get<Api.SongListData[]>(`${apiPrefix}/songs/series/${series}`)
 }
 
 /**
@@ -68,7 +68,9 @@ export function searchCharts(
   playStyle: Song.PlayStyle,
   level: number
 ) {
-  return $http.$get<ChartInfo[]>(`${apiPrefix}/charts/${playStyle}/${level}`)
+  return $http.$get<Api.ChartInfo[]>(
+    `${apiPrefix}/charts/${playStyle}/${level}`
+  )
 }
 
 /**
@@ -77,7 +79,7 @@ export function searchCharts(
  */
 export function postSongInfo(
   $http: Pick<NuxtHTTPInstance, '$post'>,
-  body: SongInfo
+  body: Api.SongInfo
 ) {
-  return $http.$post<SongInfo>(`${apiPrefix}/songs`, body)
+  return $http.$post<Api.SongInfo>(`${apiPrefix}/songs`, body)
 }

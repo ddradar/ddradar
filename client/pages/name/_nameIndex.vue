@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { SongListData } from '@ddradar/core/api/song'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -31,7 +31,7 @@ import SongList from '~/components/pages/songs/SongList.vue'
 @Component({ components: { SongList }, fetchOnServer: false })
 export default class SongByNamePage extends Vue {
   /** Song List from API */
-  songs: SongListData[] = []
+  songs: Api.SongListData[] = []
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {

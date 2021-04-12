@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import type { ScoreStatus } from '@ddradar/core/api/user'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
@@ -16,7 +16,7 @@ export default class ScoreStatusComponent extends Vue {
   readonly title!: string | null
 
   @Prop({ type: Array, default: () => [] })
-  readonly statuses!: Pick<ScoreStatus, 'rank' | 'count'>[]
+  readonly statuses!: Pick<Api.ScoreStatus, 'rank' | 'count'>[]
 
   get sortedStatuses() {
     const levels: string[] = [...Score.danceLevelSet]

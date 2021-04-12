@@ -184,9 +184,8 @@
 </template>
 
 <script lang="ts">
-import type { Database } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { SongInfo } from '@ddradar/core/api/song'
 import { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 
@@ -194,7 +193,7 @@ import { getSongInfo, postSongInfo } from '~/api/song'
 import * as popup from '~/utils/popup'
 
 @Component
-export default class SongEditorPage extends Vue implements SongInfo {
+export default class SongEditorPage extends Vue implements Api.SongInfo {
   id: string = ''
   name: string = ''
   nameKana: string = ''
@@ -419,7 +418,7 @@ export default class SongEditorPage extends Vue implements SongInfo {
   }
 
   private async callPostAPI() {
-    const postData: SongInfo = {
+    const postData: Api.SongInfo = {
       id: this.id,
       name: this.name,
       nameKana: this.nameKana,

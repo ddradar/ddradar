@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { CourseInfo } from '@ddradar/core/api/course'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -38,7 +38,7 @@ import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
 
 @Component({ components: { OrderDetail } })
 export default class CourseDetailPage extends Vue {
-  course: CourseInfo | null = null
+  course: Api.CourseInfo | null = null
 
   get singleCharts() {
     return this.course?.charts.filter(c => c.playStyle === 1) ?? []

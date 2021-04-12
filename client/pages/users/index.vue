@@ -104,8 +104,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Database } from '@ddradar/core'
-import type { UserInfo } from '@ddradar/core/api/user'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -117,7 +117,7 @@ export default class UserListPage extends Vue {
   name: string = ''
   area: number = 0
   code: number | null = null
-  users: UserInfo[] = []
+  users: Api.UserInfo[] = []
 
   loading = false
 

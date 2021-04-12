@@ -110,10 +110,8 @@
 </i18n>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Database, Song } from '@ddradar/core'
-import type { CourseInfo } from '@ddradar/core/api/course'
-import type { ScoreInfo } from '@ddradar/core/api/score'
-import type { SongInfo } from '@ddradar/core/api/song'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
@@ -124,14 +122,14 @@ import Card from '~/components/shared/Card.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
 type RankingScore = Pick<
-  ScoreInfo,
+  Api.ScoreInfo,
   'userId' | 'userName' | 'score' | 'exScore' | 'clearLamp'
 > & { isArea?: true }
 
 @Component({ components: { Card, ScoreBadge }, fetchOnServer: false })
 export default class OrderDetailComponent extends Vue {
   @Prop({ required: true, type: Object })
-  readonly info!: CourseInfo | SongInfo
+  readonly info!: Api.CourseInfo | Api.SongInfo
 
   @Prop({ required: true, type: Object })
   readonly chart!: Pick<

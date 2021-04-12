@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
-import type { ClearStatus } from '@ddradar/core/api/user'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
@@ -10,7 +10,7 @@ import getGrooveRadar from '.'
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/clear', () => {
-  const statuses: ClearStatus[] = [
+  const statuses: Api.ClearStatus[] = [
     ...Array(19 * Score.clearLampMap.size).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
@@ -18,14 +18,15 @@ describe('GET /api/v1/users/{id}/clear', () => {
     clearLamp: (n % Score.clearLampMap.size) as Score.ClearLamp,
     count: n,
   }))
-  const total: Omit<ClearStatus, 'clearLamp'>[] = [...Array(19 * 2).keys()].map(
-    n => ({
-      playStyle: ((n % 2) + 1) as 1 | 2,
-      level: (n % 19) + 1,
-      count: 2000,
-    })
-  )
-  const sum = (scores: ClearStatus[]) => scores.reduce((p, c) => p + c.count, 0)
+  const total: Omit<Api.ClearStatus, 'clearLamp'>[] = [
+    ...Array(19 * 2).keys(),
+  ].map(n => ({
+    playStyle: ((n % 2) + 1) as 1 | 2,
+    level: (n % 19) + 1,
+    count: 2000,
+  }))
+  const sum = (scores: Api.ClearStatus[]) =>
+    scores.reduce((p, c) => p + c.count, 0)
 
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   beforeEach(() => (req.query = {}))
@@ -55,7 +56,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
-    expect(sum(result.body as ClearStatus[])).toBe(19 * 2 * 2000)
+    expect(sum(result.body as Api.ClearStatus[])).toBe(19 * 2 * 2000)
   })
 
   test.each([
@@ -77,7 +78,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
       // Assert
       expect(result.status).toBe(200)
       expect(result.body).toHaveLength(length)
-      expect(sum(result.body as ClearStatus[])).toBe(count)
+      expect(sum(result.body as Api.ClearStatus[])).toBe(count)
     }
   )
 
@@ -92,6 +93,6 @@ describe('GET /api/v1/users/{id}/clear', () => {
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
-    expect(sum(result.body as ClearStatus[])).toBe(19 * 2 * 2000)
+    expect(sum(result.body as Api.ClearStatus[])).toBe(19 * 2 * 2000)
   })
 })

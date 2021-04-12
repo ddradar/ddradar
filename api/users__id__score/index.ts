@@ -1,21 +1,20 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import type { ScoreStatus } from '@ddradar/core/api/user'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type TotalCount = Omit<ScoreStatus, 'rank'>
+type TotalCount = Omit<Api.ScoreStatus, 'rank'>
 
 /** Get Score statuses that match the specified user ID, play style and level. */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
   [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[],
-  scoreStatuses: ScoreStatus[],
+  scoreStatuses: Api.ScoreStatus[],
   totalCounts: TotalCount[]
-): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
+): Promise<ErrorResult<404> | SuccessResult<Api.ScoreStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private

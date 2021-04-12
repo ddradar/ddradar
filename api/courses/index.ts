@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { CourseListData } from '@ddradar/core/api/course'
 
 import { SuccessResult } from '../function'
 
@@ -19,7 +18,7 @@ export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
   documents: ReadonlyArray<CourseListDocument>
-): Promise<SuccessResult<CourseListData[]>> {
+): Promise<SuccessResult<Api.CourseListData[]>> {
   // Parse search query
   const type = parseFloat(req.query.type ?? '')
   const series = parseFloat(req.query.series ?? '')

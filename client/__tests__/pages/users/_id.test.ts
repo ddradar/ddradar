@@ -1,5 +1,5 @@
+import type { Api } from '@ddradar/core'
 import { Database, Score } from '@ddradar/core'
-import type { UserInfo } from '@ddradar/core/api/user'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
@@ -26,7 +26,7 @@ localVue.use(Buefy)
 localVue.use(VueI18n)
 
 describe('/users/_id.vue', () => {
-  const user: UserInfo = {
+  const user: Api.UserInfo = {
     id: 'user_1',
     name: 'User 1',
     area: 13,
