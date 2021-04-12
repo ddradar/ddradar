@@ -110,11 +110,10 @@
 </i18n>
 
 <script lang="ts">
+import { Database, Song } from '@ddradar/core'
 import type { CourseInfo } from '@ddradar/core/api/course'
 import type { ScoreInfo } from '@ddradar/core/api/score'
 import type { SongInfo } from '@ddradar/core/api/song'
-import { difficultyMap, StepChartSchema } from '@ddradar/core/db/songs'
-import { areaCodeSet } from '@ddradar/core/db/users'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartScore } from '~/api/score'
@@ -135,7 +134,10 @@ export default class OrderDetailComponent extends Vue {
   readonly info!: CourseInfo | SongInfo
 
   @Prop({ required: true, type: Object })
-  readonly chart!: Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
+  readonly chart!: Pick<
+    Database.StepChartSchema,
+    'playStyle' | 'difficulty' | 'level'
+  >
 
   @Prop({ required: false, type: Boolean, default: false })
   readonly open!: boolean
@@ -152,7 +154,7 @@ export default class OrderDetailComponent extends Vue {
   }
 
   get cardType() {
-    return `is-${difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
+    return `is-${Song.difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
   }
 
   async fetch() {
@@ -165,7 +167,7 @@ export default class OrderDetailComponent extends Vue {
         this.fetchAllData ? 'full' : 'medium'
       )
       this.scores = scores.map(s => {
-        const areaCodes = [...areaCodeSet].map(i => `${i}`)
+        const areaCodes = [...Database.areaCodeSet].map(i => `${i}`)
         if (areaCodes.includes(s.userId)) {
           return {
             ...s,

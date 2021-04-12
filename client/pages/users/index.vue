@@ -104,8 +104,8 @@
 </i18n>
 
 <script lang="ts">
+import { Database } from '@ddradar/core'
 import type { UserInfo } from '@ddradar/core/api/user'
-import { areaCodeSet } from '@ddradar/core/db/users'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -123,7 +123,10 @@ export default class UserListPage extends Vue {
 
   /** AreaCode - String mapping for <select> components */
   get areaOptions() {
-    return [...areaCodeSet].map(key => ({ key, value: this.$t(`area.${key}`) }))
+    return [...Database.areaCodeSet].map(key => ({
+      key,
+      value: this.$t(`area.${key}`),
+    }))
   }
 
   get displayedUsers() {

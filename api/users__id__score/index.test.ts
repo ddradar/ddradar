@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import { Score } from '@ddradar/core'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import type { ScoreStatus } from '@ddradar/core/api/user'
-import { danceLevelSet } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
@@ -10,14 +10,14 @@ import getClearStatus from '.'
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/score', () => {
-  const scores: ScoreStatus[] = [...Array(19 * danceLevelSet.size).keys()].map(
-    n => ({
-      playStyle: ((n % 2) + 1) as 1 | 2,
-      level: (n % 19) + 1,
-      rank: [...danceLevelSet][n % danceLevelSet.size],
-      count: n,
-    })
-  )
+  const scores: ScoreStatus[] = [
+    ...Array(19 * Score.danceLevelSet.size).keys(),
+  ].map(n => ({
+    playStyle: ((n % 2) + 1) as 1 | 2,
+    level: (n % 19) + 1,
+    rank: [...Score.danceLevelSet][n % Score.danceLevelSet.size],
+    count: n,
+  }))
   const total: Omit<ScoreStatus, 'rank'>[] = [...Array(19 * 2).keys()].map(
     n => ({
       playStyle: ((n % 2) + 1) as 1 | 2,
@@ -54,7 +54,7 @@ describe('GET /api/v1/users/{id}/score', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (danceLevelSet.size + 2))
+    expect(result.body).toHaveLength(19 * (Score.danceLevelSet.size + 2))
     expect(sum(result.body as ScoreStatus[])).toBe(19 * 2 * 2000)
   })
 
@@ -90,7 +90,7 @@ describe('GET /api/v1/users/{id}/score', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (danceLevelSet.size + 2))
+    expect(result.body).toHaveLength(19 * (Score.danceLevelSet.size + 2))
     expect(sum(result.body as ScoreStatus[])).toBe(19 * 2 * 2000)
   })
 })

@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Database } from '@ddradar/core'
+import { Score } from '@ddradar/core'
 import type { ScoreStatus } from '@ddradar/core/api/user'
-import { danceLevelSet } from '@ddradar/core/db/scores'
-import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
@@ -12,7 +12,7 @@ type TotalCount = Omit<ScoreStatus, 'rank'>
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
-  [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
+  [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[],
   scoreStatuses: ScoreStatus[],
   totalCounts: TotalCount[]
 ): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
@@ -28,7 +28,7 @@ export default async function (
   const level = parseInt(req.query.level ?? '', 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
-  const danceLevels = [...danceLevelSet]
+  const danceLevels = [...Score.danceLevelSet]
   return new SuccessResult(
     totalCounts
       .filter(

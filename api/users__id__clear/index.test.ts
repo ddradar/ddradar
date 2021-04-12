@@ -1,7 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
+import { Score } from '@ddradar/core'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import type { ClearStatus } from '@ddradar/core/api/user'
-import { ClearLamp, clearLampMap } from '@ddradar/core/db/scores'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
@@ -10,14 +10,14 @@ import getGrooveRadar from '.'
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}/clear', () => {
-  const statuses: ClearStatus[] = [...Array(19 * clearLampMap.size).keys()].map(
-    n => ({
-      playStyle: ((n % 2) + 1) as 1 | 2,
-      level: (n % 19) + 1,
-      clearLamp: (n % clearLampMap.size) as ClearLamp,
-      count: n,
-    })
-  )
+  const statuses: ClearStatus[] = [
+    ...Array(19 * Score.clearLampMap.size).keys(),
+  ].map(n => ({
+    playStyle: ((n % 2) + 1) as 1 | 2,
+    level: (n % 19) + 1,
+    clearLamp: (n % Score.clearLampMap.size) as Score.ClearLamp,
+    count: n,
+  }))
   const total: Omit<ClearStatus, 'clearLamp'>[] = [...Array(19 * 2).keys()].map(
     n => ({
       playStyle: ((n % 2) + 1) as 1 | 2,
@@ -54,7 +54,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (clearLampMap.size + 2))
+    expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
     expect(sum(result.body as ClearStatus[])).toBe(19 * 2 * 2000)
   })
 
@@ -91,7 +91,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (clearLampMap.size + 2))
+    expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
     expect(sum(result.body as ClearStatus[])).toBe(19 * 2 * 2000)
   })
 })

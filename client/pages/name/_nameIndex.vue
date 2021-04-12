@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
+import { Song } from '@ddradar/core'
 import type { SongListData } from '@ddradar/core/api/song'
-import { nameIndexMap } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -35,7 +35,7 @@ export default class SongByNamePage extends Vue {
 
   /** Name index title (like "あ", "A", "数字・記号") */
   get title() {
-    return (nameIndexMap as Map<number, string>).get(this.selected)
+    return (Song.nameIndexMap as Map<number, string>).get(this.selected)
   }
 
   get selected() {
@@ -44,7 +44,7 @@ export default class SongByNamePage extends Vue {
 
   /** "あ", ..., "A", ..., "数字・記号" */
   get nameIndexList() {
-    return [...nameIndexMap.values()]
+    return [...Song.nameIndexMap.values()]
   }
 
   /** nameIndex should be [0-36] */
@@ -53,7 +53,7 @@ export default class SongByNamePage extends Vue {
     return (
       /^\d{1,2}$/.test(params.nameIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < nameIndexMap.size
+      parsedIndex < Song.nameIndexMap.size
     )
   }
 

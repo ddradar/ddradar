@@ -88,8 +88,8 @@
 </i18n>
 
 <script lang="ts">
+import { Song } from '@ddradar/core'
 import type { NotificationListData } from '@ddradar/core/api/notification'
-import { nameIndexMap, seriesSet } from '@ddradar/core/db/songs'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -108,11 +108,11 @@ export default class IndexPage extends Vue {
   }
 
   get menuList() {
-    const seriesList = [...seriesSet]
+    const seriesList = [...Song.seriesSet]
     return [
       {
         label: this.$t('search.name'),
-        items: [...nameIndexMap.entries()].map(([i, s]) => ({
+        items: [...Song.nameIndexMap.entries()].map(([i, s]) => ({
           name: s,
           to: `/name/${i}`,
         })),

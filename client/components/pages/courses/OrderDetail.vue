@@ -22,8 +22,9 @@
 </template>
 
 <script lang="ts">
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import type { CourseInfo } from '@ddradar/core/api/course'
-import { CourseChartSchema, difficultyMap } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { getChartTitle } from '~/api/song'
@@ -36,10 +37,10 @@ export default class OrderDetailComponent extends Vue {
   readonly course!: CourseInfo
 
   @Prop({ required: true, type: Object })
-  readonly chart!: CourseChartSchema
+  readonly chart!: Database.CourseChartSchema
 
   get cardType() {
-    return `is-${difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
+    return `is-${Song.difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
   }
 
   get orders() {

@@ -215,12 +215,12 @@
 </i18n>
 
 <script lang="ts">
+import type { Song } from '@ddradar/core'
 import type {
   ClearStatus as ClearInfo,
   ScoreStatus as ScoreInfo,
   UserInfo,
 } from '@ddradar/core/api/user'
-import type { GrooveRadar as GrooveRadarInfo } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -253,7 +253,7 @@ type ClearDoughnutProp = {
 })
 export default class UserPage extends Vue {
   user: UserInfo | null = null
-  radars: [GrooveRadarInfo | null, GrooveRadarInfo | null] = [null, null]
+  radars: [Song.GrooveRadar | null, Song.GrooveRadar | null] = [null, null]
   clears: [ClearDoughnutProp[], ClearDoughnutProp[]] = [[], []]
   scores: [ScoreDoughnutProp[], ScoreDoughnutProp[]] = [[], []]
 

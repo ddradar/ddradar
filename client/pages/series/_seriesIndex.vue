@@ -19,8 +19,8 @@
 </template>
 
 <script lang="ts">
+import { Song } from '@ddradar/core'
 import type { SongListData } from '@ddradar/core/api/song'
-import { seriesSet } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -35,7 +35,7 @@ export default class SongBySeriesPage extends Vue {
 
   /** Series title */
   get title() {
-    return [...seriesSet][this.selected]
+    return [...Song.seriesSet][this.selected]
   }
 
   get selected() {
@@ -43,7 +43,7 @@ export default class SongBySeriesPage extends Vue {
   }
 
   get seriesList() {
-    return [...seriesSet].map(s => shortenSeriesName(s))
+    return [...Song.seriesSet].map(s => shortenSeriesName(s))
   }
 
   /** seriesIndex expected [0-16] */
@@ -52,7 +52,7 @@ export default class SongBySeriesPage extends Vue {
     return (
       /^\d{1,2}$/.test(params.seriesIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < seriesSet.size
+      parsedIndex < Song.seriesSet.size
     )
   }
 

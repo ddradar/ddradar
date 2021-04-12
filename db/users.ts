@@ -1,9 +1,9 @@
+import type { Database } from '@ddradar/core'
 import type { UserInfo } from '@ddradar/core/api/user'
-import type { AreaCode, UserSchema } from '@ddradar/core/db/users'
 
 import { Condition, fetchList, fetchOne } from '.'
 
-export function fetchUser(id: string): Promise<UserSchema | null> {
+export function fetchUser(id: string): Promise<Database.UserSchema | null> {
   return fetchOne(
     'Users',
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic'] as const,
@@ -11,7 +11,9 @@ export function fetchUser(id: string): Promise<UserSchema | null> {
   )
 }
 
-export function fetchLoginUser(loginId: string): Promise<UserSchema | null> {
+export function fetchLoginUser(
+  loginId: string
+): Promise<Database.UserSchema | null> {
   return fetchOne(
     'Users',
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
@@ -21,7 +23,7 @@ export function fetchLoginUser(loginId: string): Promise<UserSchema | null> {
 
 export function fetchUserList(
   loginId: string,
-  area?: AreaCode,
+  area?: Database.AreaCode,
   name?: string,
   code?: number
 ): Promise<UserInfo[]> {

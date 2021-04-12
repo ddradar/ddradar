@@ -3,8 +3,8 @@
 </template>
 
 <script lang="ts">
+import { Score } from '@ddradar/core'
 import type { ScoreStatus } from '@ddradar/core/api/user'
-import { DanceLevel, danceLevelSet } from '@ddradar/core/db/scores'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
@@ -19,7 +19,7 @@ export default class ScoreStatusComponent extends Vue {
   readonly statuses!: Pick<ScoreStatus, 'rank' | 'count'>[]
 
   get sortedStatuses() {
-    const levels: string[] = [...danceLevelSet]
+    const levels: string[] = [...Score.danceLevelSet]
     return this.statuses
       .filter(d => d.count)
       .sort(
@@ -43,7 +43,7 @@ export default class ScoreStatusComponent extends Vue {
   get chartData(): ChartData {
     return {
       labels: this.sortedStatuses.map(d =>
-        danceLevelSet.has(d.rank as DanceLevel) ? d.rank : 'NoPlay'
+        Score.danceLevelSet.has(d.rank as Score.DanceLevel) ? d.rank : 'NoPlay'
       ),
       datasets: [
         {
@@ -56,8 +56,8 @@ export default class ScoreStatusComponent extends Vue {
     }
   }
 
-  getBackgroundColor(rank: DanceLevel | '-') {
-    const map = new Map<DanceLevel | '-', string>([
+  getBackgroundColor(rank: Score.DanceLevel | '-') {
+    const map = new Map<Score.DanceLevel | '-', string>([
       ['-', 'hsl(0, 0%, 71%)'], // grey-light
       ['E', 'hsl(0, 0%, 29%)'], // grey-dark
       ['D', 'hsl(348, 86%, 71%)'],

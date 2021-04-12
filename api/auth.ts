@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Database } from '@ddradar/core'
 import type { ClientPrincipal } from '@ddradar/core/api/auth'
-import type { UserSchema } from '@ddradar/core/db/users'
 import { fetchLoginUser } from '@ddradar/db'
 
 export function getClientPrincipal(
@@ -20,7 +20,7 @@ export function getClientPrincipal(
 
 export async function getLoginUserInfo(
   clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
-): Promise<UserSchema | null> {
+): Promise<Database.UserSchema | null> {
   if (!clientPrincipal) return null
   return fetchLoginUser(clientPrincipal.userId)
 }

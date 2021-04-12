@@ -1,6 +1,6 @@
 import type { Container, ItemDefinition } from '@azure/cosmos'
+import type { Database } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
 import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
@@ -28,7 +28,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
       error: jest.fn(),
     },
   }
-  let resources: ScoreSchema[] = []
+  let resources: Database.ScoreSchema[] = []
   const container = {
     items: {
       query: () => ({
@@ -46,7 +46,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     context.log.error.mockClear()
     resources = []
   })
-  const validScore: ScoreSchema & ItemDefinition = {
+  const validScore: Database.ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
     userName: 'User 1',
@@ -67,7 +67,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     userName: '0',
     isPublic: false,
   }
-  const emptyScore: ScoreSchema = {
+  const emptyScore: Database.ScoreSchema = {
     clearLamp: 0,
     isPublic: false,
     rank: 'E',

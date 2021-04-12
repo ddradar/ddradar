@@ -1,19 +1,16 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import type { CourseListData } from '@ddradar/core/api/course'
-import {
-  CourseChartSchema,
-  CourseSchema,
-  seriesSet,
-} from '@ddradar/core/db/songs'
 
 import { SuccessResult } from '../function'
 
 type CourseListDocument = Pick<
-  CourseSchema,
+  Database.CourseSchema,
   'id' | 'name' | 'series' | 'nameIndex'
 > & {
   charts: ReadonlyArray<
-    Pick<CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
+    Pick<Database.CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
   >
 }
 
@@ -33,7 +30,7 @@ export default async function (
     .filter(
       c =>
         (!isValidType || c.nameIndex === -1 * type) &&
-        (!isValidSeries || c.series === [...seriesSet][series])
+        (!isValidSeries || c.series === [...Song.seriesSet][series])
     )
     .map(c => ({ id: c.id, name: c.name, series: c.series, charts: c.charts }))
 

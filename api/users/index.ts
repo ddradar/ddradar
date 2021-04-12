@@ -1,13 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
+import { Database } from '@ddradar/core'
 import type { UserInfo } from '@ddradar/core/api/user'
-import { AreaCode, areaCodeSet } from '@ddradar/core/db/users'
 import { fetchUserList } from '@ddradar/db'
 
 import { getClientPrincipal } from '../auth'
 import { SuccessResult } from '../function'
 
-const isArea = (obj: unknown): obj is AreaCode =>
-  typeof obj === 'number' && (areaCodeSet as ReadonlySet<number>).has(obj)
+const isArea = (obj: unknown): obj is Database.AreaCode =>
+  typeof obj === 'number' &&
+  (Database.areaCodeSet as ReadonlySet<number>).has(obj)
 
 /** Get user list that match the specified conditions. */
 export default async function (

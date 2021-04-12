@@ -1,4 +1,4 @@
-import type { Difficulty, PlayStyle } from '@ddradar/core/db/songs'
+import type { Song } from '@ddradar/core'
 import {
   musicDataToScoreList,
   musicDetailToScore,
@@ -21,8 +21,8 @@ const playDataUri = 'https://p.eagate.573.jp/game/ddr/ddra20/p/playdata'
 export async function fetchScoreDetail(
   page: Page,
   songId: string,
-  playStyle: PlayStyle,
-  difficulty: Difficulty
+  playStyle: Song.PlayStyle,
+  difficulty: Song.Difficulty
 ): Promise<ReturnType<typeof musicDetailToScore> | null> {
   const isCourse = [
     '19id1DO6q9Pb1681db61D8D8oQi9dlb6',
@@ -102,7 +102,7 @@ export async function fetchScoreDetail(
 export async function fetchScoreList(
   page: Page,
   pageNo: number,
-  playStyle: PlayStyle
+  playStyle: Song.PlayStyle
 ): Promise<ReturnType<typeof musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
   const detailUri = `${playDataUri}/music_data_${style}.html?offset=${pageNo}`
@@ -120,8 +120,8 @@ export async function fetchRivalScoreDetail(
   page: Page,
   ddrCode: number,
   songId: string,
-  playStyle: PlayStyle,
-  difficulty: Difficulty
+  playStyle: Song.PlayStyle,
+  difficulty: Song.Difficulty
 ): Promise<ReturnType<typeof musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
   const detailUri = `${rivalDataUri}/music_detail.html?index=${songId}&rival_id=${ddrCode}&diff=${index}`
@@ -137,7 +137,7 @@ export async function fetchRivalScoreList(
   page: Page,
   ddrCode: number,
   pageNo: number,
-  playStyle: PlayStyle
+  playStyle: Song.PlayStyle
 ): Promise<ReturnType<typeof musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
   const detailUri = `${rivalDataUri}/rival_musicdata_${style}.html?offset=${pageNo}&rival_id=${ddrCode}`

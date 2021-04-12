@@ -26,8 +26,8 @@
 </template>
 
 <script lang="ts">
+import { Song } from '@ddradar/core'
 import type { CourseInfo } from '@ddradar/core/api/course'
-import { isValidId } from '@ddradar/core/db/songs'
 import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
@@ -55,7 +55,7 @@ export default class CourseDetailPage extends Vue {
   }
 
   validate({ params }: Pick<Context, 'params'>) {
-    return isValidId(params.id)
+    return Song.isValidId(params.id)
   }
 
   /* istanbul ignore next */

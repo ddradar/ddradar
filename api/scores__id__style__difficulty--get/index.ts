@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import type { Database } from '@ddradar/core'
 import type { ScoreInfo } from '@ddradar/core/api/score'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
@@ -9,7 +9,7 @@ import { ErrorResult, SuccessResult } from '../function'
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
-  scores: ScoreSchema[]
+  scores: Database.ScoreSchema[]
 ): Promise<ErrorResult<404> | SuccessResult<ScoreInfo[]>> {
   const scope = ['private', 'medium', 'full'].includes(req.query.scope ?? '')
     ? (req.query.scope as 'private' | 'medium' | 'full')

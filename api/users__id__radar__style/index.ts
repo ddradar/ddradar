@@ -1,6 +1,6 @@
 import type { Context, HttpRequest } from '@azure/functions'
+import type { Database } from '@ddradar/core'
 import type { GrooveRadarInfo } from '@ddradar/core/api/user'
-import type { UserSchema } from '@ddradar/core/db/users'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
@@ -9,7 +9,7 @@ import { ErrorResult, SuccessResult } from '../function'
 export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>,
-  [user]: Pick<UserSchema, 'id' | 'isPublic'>[],
+  [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[],
   radars: GrooveRadarInfo[]
 ): Promise<ErrorResult<404> | SuccessResult<GrooveRadarInfo[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))

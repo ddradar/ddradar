@@ -1,6 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
+import { Song } from '@ddradar/core'
 import type { SongListData } from '@ddradar/core/api/song'
-import { seriesSet } from '@ddradar/core/db/songs'
 
 import { ErrorResult, SuccessResult } from '../function'
 
@@ -11,10 +11,10 @@ export default async function (
   songs: SongListData[]
 ): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
   const i = parseFloat(req.query.series ?? '')
-  const isValidSeries = Number.isInteger(i) && i >= 0 && i < seriesSet.size
+  const isValidSeries = Number.isInteger(i) && i >= 0 && i < Song.seriesSet.size
 
   const body = songs.filter(
-    s => !isValidSeries || s.series === [...seriesSet][i]
+    s => !isValidSeries || s.series === [...Song.seriesSet][i]
   )
 
   if (body.length === 0) return new ErrorResult(404)

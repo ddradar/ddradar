@@ -1,5 +1,5 @@
+import { Score } from '@ddradar/core'
 import { ScoreStatus } from '@ddradar/core/api/user'
-import { danceLevelSet } from '@ddradar/core/db/scores'
 import { mount } from '@vue/test-utils'
 
 import Component from '~/components/pages/users/ScoreStatus.vue'
@@ -10,7 +10,7 @@ describe('/components/pages/users/ScoreStatus.vue', () => {
       // Arrange
       const title = 'LEVEL 10'
       const statuses: Pick<ScoreStatus, 'rank' | 'count'>[] = [
-        ...danceLevelSet,
+        ...Score.danceLevelSet,
         '-' as const,
       ].map((rank, i) => ({ rank, count: i * 10 }))
 

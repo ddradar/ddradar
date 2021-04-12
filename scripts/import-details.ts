@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 /* eslint-disable node/no-process-env */
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { ScoreListBody } from '@ddradar/core/api/score'
-import { difficultyMap, playStyleMap, SongSchema } from '@ddradar/core/db/songs'
 import { getContainer } from '@ddradar/db'
 import { config } from 'dotenv'
 import fetch from 'node-fetch'
@@ -37,7 +38,7 @@ async function main(userId: string, password: string) {
 
   const container = getContainer('Songs')
   const { resources } = await container.items
-    .query<Pick<SongSchema, 'id' | 'name' | 'charts'>>({
+    .query<Pick<Database.SongSchema, 'id' | 'name' | 'charts'>>({
       query:
         'SELECT s.id, s.name, s.charts ' +
         'FROM s ' +
@@ -51,9 +52,9 @@ async function main(userId: string, password: string) {
     console.info(`[Song] ${s.name} START`)
     const scores: ScoreListBody[] = []
     for (const c of s.charts) {
-      const chart = `${playStyleMap.get(c.playStyle)}/${difficultyMap.get(
-        c.difficulty
-      )}`
+      const chart = `${Song.playStyleMap.get(
+        c.playStyle
+      )}/${Song.difficultyMap.get(c.difficulty)}`
       console.log(`  (${chart}) loading score detail`)
 
       try {

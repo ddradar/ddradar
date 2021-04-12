@@ -1,5 +1,5 @@
+import { Song } from '@ddradar/core'
 import type { ChartInfo, SongInfo, SongListData } from '@ddradar/core/api/song'
-import { difficultyMap, PlayStyle, playStyleMap } from '@ddradar/core/db/songs'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
@@ -13,8 +13,10 @@ export function getChartTitle({
   difficulty,
   level,
 }: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
-  const shortPlayStyle = `${playStyleMap.get(playStyle)![0]}P` as 'SP' | 'DP'
-  const difficultyName = difficultyMap.get(difficulty)!
+  const shortPlayStyle = `${Song.playStyleMap.get(playStyle)![0]}P` as
+    | 'SP'
+    | 'DP'
+  const difficultyName = Song.difficultyMap.get(difficulty)!
   return `${shortPlayStyle}-${difficultyName} (${level})`
 }
 
@@ -63,7 +65,7 @@ export function searchSongBySeries(
  */
 export function searchCharts(
   $http: Pick<NuxtHTTPInstance, '$get'>,
-  playStyle: PlayStyle,
+  playStyle: Song.PlayStyle,
   level: number
 ) {
   return $http.$get<ChartInfo[]>(`${apiPrefix}/charts/${playStyle}/${level}`)

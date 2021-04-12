@@ -38,8 +38,9 @@
 </template>
 
 <script lang="ts">
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import type { SongInfo } from '@ddradar/core/api/song'
-import { difficultyMap, StepChartSchema } from '@ddradar/core/db/songs'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import Card from '~/components/shared/Card.vue'
@@ -51,13 +52,13 @@ export default class ChartDetailComponent extends Vue {
   readonly song!: Omit<SongInfo, 'charts'>
 
   @Prop({ required: true, type: Object })
-  readonly chart!: StepChartSchema
+  readonly chart!: Database.StepChartSchema
 
   @Prop({ required: false, type: Boolean, default: false })
   readonly open!: boolean
 
   get cardType() {
-    return `is-${difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
+    return `is-${Song.difficultyMap.get(this.chart.difficulty)!.toLowerCase()}`
   }
 }
 </script>
