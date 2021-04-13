@@ -3,19 +3,17 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import type { ScoreListBody } from '@ddradar/core/api/score'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import {
-  difficultyMap as diff,
-  playStyleMap as style,
-} from '@ddradar/core/db/songs'
+import type { Api, Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import consola from 'consola'
+import { Consola } from 'consola'
 import fetch from 'node-fetch'
 import * as puppetter from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 import { isDeleted } from './modules/song'
+
+const consola = new Consola({})
 
 /* eslint-disable node/no-process-env */
 const {
@@ -27,6 +25,9 @@ const {
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
+
+const style = Song.playStyleMap
+const diff = Song.difficultyMap
 
 /** Update World Record from e-AMUSEMENT GATE */
 async function main(userId: string, password: string) {
@@ -47,7 +48,7 @@ async function main(userId: string, password: string) {
   const { resources } = await container.items
     .query<
       Pick<
-        ScoreSchema,
+        Database.ScoreSchema,
         'songId' | 'songName' | 'playStyle' | 'difficulty' | 'score'
       >
     >(
@@ -77,7 +78,7 @@ async function main(userId: string, password: string) {
       grp[1][0].songName
     } (${grp[0]})`
     songScope.start(songName)
-    const scores: ScoreListBody[] = []
+    const scores: Api.ScoreListBody[] = []
 
     for (const s of grp[1]) {
       const chartScope = songScope.withScope('Charts')

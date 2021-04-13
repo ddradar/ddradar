@@ -1,6 +1,6 @@
 {
   "name": "@ddradar/client",
-  "version": "1.0.0-rc.2",
+  "version": "1.0.0-rc.3",
   "description": "Client side of DDRadar",
   "private": true,
   "engines": {
@@ -18,7 +18,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ddradar/core": "^1.0.0-rc.2",
+    "@ddradar/core": "^1.0.0-rc.3",
     "@microsoft/applicationinsights-web": "^2.6.1",
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/pwa": "^3.3.5",
@@ -26,8 +26,8 @@
     "flag-icon-css": "^3.5.0",
     "marked": "^2.0.1",
     "nuxt": "^2.15.4",
-    "nuxt-buefy": "^0.4.5",
-    "nuxt-i18n": "^6.22.3",
+    "nuxt-buefy": "^0.4.6",
+    "nuxt-i18n": "^6.24.0",
     "nuxt-property-decorator": "^2.9.1",
     "nuxt-typed-vuex": "^0.1.22",
     "vue-chartjs": "^3.5.1"
