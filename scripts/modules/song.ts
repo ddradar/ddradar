@@ -93,5 +93,6 @@ export function isDeleted(songId: string): boolean {
     'qOlDPoiqibIOqod69dPilbiqD6qdO1qQ', // More One Night
     'dOblQOoDb96l00dqPlIb9DQl86q9PboI', // 回レ！雪月花
     'od66Qb16lI019I06lllII811I9ol6l0i', // ようこそジャパリパークへ
+    'PqOilI0ql6QDID6oo0Qb9iDo1doqQqPQ', // 放課後ストライド
   ].includes(songId)
 }
