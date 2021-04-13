@@ -20,8 +20,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Copy Yarn lock file
         run: |
-          cp ./yarn.lock /api
-          cp ./yarn.lock /client
+          cp yarn.lock api
+          cp yarn.lock client
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v0.0.1-preview
