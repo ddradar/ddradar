@@ -1,21 +1,14 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
-import type { ScoreSchema } from '@ddradar/core/db/scores'
-import type {
-  CourseChartSchema,
-  CourseSchema,
-  SongSchema,
-  StepChartSchema,
-} from '@ddradar/core/db/songs'
-import type { ClearStatusSchema } from '@ddradar/core/db/userDetails'
+import type { Database } from '@ddradar/core'
 import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
-  ClearStatusSchema,
+  Database.ClearStatusSchema,
   'level' | 'playStyle' | 'count'
 >
 type UpdateSongResult = {
-  scores: ScoreSchema[]
+  scores: Database.ScoreSchema[]
   details: TotalCount[]
 }
 
@@ -26,10 +19,10 @@ type UpdateSongResult = {
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
-  songs: (SongSchema | CourseSchema)[],
+  songs: (Database.SongSchema | Database.CourseSchema)[],
   oldTotalCounts: Required<Omit<TotalCount, 'count'>>[]
 ): Promise<UpdateSongResult> {
-  const scores: (ScoreSchema & ItemDefinition)[] = []
+  const scores: (Database.ScoreSchema & ItemDefinition)[] = []
 
   for (const song of songs) {
     context.log.info(`Start: ${song.name}`)
@@ -37,19 +30,19 @@ export default async function (
     // Get scores
     const container = getContainer('Scores')
     const { resources } = await container.items
-      .query<ScoreSchema & ItemDefinition>({
+      .query<Database.ScoreSchema & ItemDefinition>({
         query: 'SELECT * FROM c WHERE c.songId = @id',
         parameters: [{ name: '@id', value: song.id }],
       })
       .fetchAll()
 
-    const topScores: ScoreSchema[] = []
+    const topScores: Database.ScoreSchema[] = []
     // Update exists scores
     for (const score of resources) {
       const scoreText = `{ id: ${score.id}, userId: ${score.userId}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
       const chart = (song.charts as (
-        | StepChartSchema
-        | CourseChartSchema
+        | Database.StepChartSchema
+        | Database.CourseChartSchema
       )[]).find(
         c =>
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
@@ -86,7 +79,10 @@ export default async function (
     }
 
     // Create empty score
-    const emptyScore: Omit<ScoreSchema, keyof StepChartSchema> = {
+    const emptyScore: Omit<
+      Database.ScoreSchema,
+      keyof Database.StepChartSchema
+    > = {
       score: 0,
       clearLamp: 0,
       rank: 'E',
