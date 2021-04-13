@@ -42,9 +42,9 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           # see: https://aka.ms/swaworkflowconfig
-          app_location: client
-          app_build_command: yarn build
-          app_artifact_location: dist
+          app_location: /
+          app_build_command: yarn run-s "run:core {1}" "run:client {1}" -- build
+          app_artifact_location: client/dist
           api_location: api
           api_build_command: yarn build
         env:
