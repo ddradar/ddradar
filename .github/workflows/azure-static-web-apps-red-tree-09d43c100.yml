@@ -14,6 +14,8 @@ jobs:
         run: |
           echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
+          echo "@ddradar:registry=https://npm.pkg.github.com/" > client/.npmrc
+          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> client/.npmrc
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build And Deploy
@@ -24,10 +26,10 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           # see: https://aka.ms/swaworkflowconfig
-          app_location: '/'
-          app_build_command: yarn run:client build
-          app_artifact_location: 'client/dist'
-          api_location: 'api'
+          app_location: client
+          app_build_command: yarn build
+          app_artifact_location: dist
+          api_location: api
           api_build_command: yarn build
         env:
           API_URL: '/'
