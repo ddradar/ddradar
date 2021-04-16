@@ -23,9 +23,9 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
     return true
   }
 
-  page.type('#id_userId', loginId ?? '', { delay: 500 })
-  page.type('#id_password', password ?? '', { delay: 500 })
-  page.click('.btn-area p.btn a', { delay: 500 })
+  await page.type('#id_userId', loginId ?? '', { delay: 500 })
+  await page.type('#id_password', password ?? '', { delay: 500 })
+  await page.click('.btn-area p.btn a', { delay: 500 })
   await page.waitForNavigation({
     timeout: 30000,
     waitUntil: 'domcontentloaded',
