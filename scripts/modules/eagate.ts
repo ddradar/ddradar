@@ -23,8 +23,16 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
     return true
   }
 
-  await page.type('#id_userId', loginId ?? '', { delay: 500 })
-  await page.type('#id_password', password ?? '', { delay: 500 })
+  if (!loginId || !password) return false
+
+  if (!(await page.$eval('#id_userId', el => (el as HTMLInputElement).value))) {
+    await page.type('#id_userId', loginId)
+  }
+  if (
+    !(await page.$eval('#id_password', el => (el as HTMLInputElement).value))
+  ) {
+    await page.type('#id_password', password)
+  }
   await page.click('.btn-area p.btn a', { delay: 500 })
   await page.waitForNavigation({
     timeout: 30000,
