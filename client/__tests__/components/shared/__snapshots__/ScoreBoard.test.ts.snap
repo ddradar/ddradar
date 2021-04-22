@@ -23,13 +23,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -142,13 +142,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -209,13 +209,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -281,13 +281,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test renders 
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> Name <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> Score <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -349,13 +349,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> ユーザー名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> スコア <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -468,13 +468,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> ユーザー名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> スコア <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -535,13 +535,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> ユーザー名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> スコア <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
@@ -607,13 +607,13 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test renders 
                   <tr>
                     <!---->
                     <!---->
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap"><span class="is-relative"> ユーザー名 <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-centered"><span class="is-relative"> スコア <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
-                    <th class="">
+                    <th draggable="false" class="">
                       <div class="th-wrap is-numeric"><span class="is-relative"> EX <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
                     </th>
                     <!---->
