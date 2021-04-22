@@ -2,7 +2,7 @@
 
 English guide is [here](./README.md).
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/ddradar/ddradar/staging?label=stage%20build&logo=microsoft-azure)](https://beta.ddradar.app/)
+[![Staging Build Status](https://img.shields.io/github/workflow/status/ddradar/ddradar/staging?event=push&label=staging&logo=microsoft-azure)](https://beta.ddradar.app/)
 [![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/master)
 [![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
 [![Node.js CI](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml)
