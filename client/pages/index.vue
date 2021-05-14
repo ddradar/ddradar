@@ -33,7 +33,10 @@
         <section
           v-for="m in menuList"
           :key="m.label"
-          class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+          class="
+            column
+            is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+          "
         >
           <card :title="m.label" type="is-primary" collapsible>
             <div class="card-content">
