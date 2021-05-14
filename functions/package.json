@@ -28,7 +28,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.11.0",
+    "@azure/cosmos": "^3.11.2",
     "@ddradar/core": "^1.0.0-rc.3",
     "@ddradar/db": "^1.0.0-rc.3",
     "iconv-lite": "^0.6.2",
@@ -37,7 +37,7 @@
   "devDependencies": {
     "@azure/functions": "^1.2.3",
     "@types/jest": "^26.0.23",
-    "@types/node": "^12.20.10",
+    "@types/node": "^12.20.13",
     "@types/node-fetch": "^2.5.10",
     "jest": "^26.6.3",
     "jest-fetch-mock": "^3.0.3",
