@@ -37,7 +37,7 @@ describe('/updateScoresSongInfo/index.ts', () => {
     },
   }
   beforeAll(() => {
-    mocked(getContainer).mockReturnValue((container as unknown) as Container)
+    mocked(getContainer).mockReturnValue(container as unknown as Container)
     mocked(fetchTotalChartCount).mockResolvedValue(newCounts)
   })
   beforeEach(() => {

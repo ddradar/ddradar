@@ -227,7 +227,5 @@ const difficulties = new Map([
  */
 export type Difficulty = Unwrap<typeof difficulties>[0]
 export type DifficultyName = Unwrap<typeof difficulties>[1]
-export const difficultyMap: ReadonlyMap<
-  Difficulty,
-  DifficultyName
-> = difficulties
+export const difficultyMap: ReadonlyMap<Difficulty, DifficultyName> =
+  difficulties

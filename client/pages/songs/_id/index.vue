@@ -19,7 +19,10 @@
         :key="i"
         :song="song"
         :chart="chart"
-        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+        class="
+          column
+          is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+        "
         :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>
@@ -29,7 +32,10 @@
         :key="i"
         :song="song"
         :chart="chart"
-        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+        class="
+          column
+          is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+        "
         :open="playStyle === chart.playStyle && difficulty === chart.difficulty"
       />
     </div>

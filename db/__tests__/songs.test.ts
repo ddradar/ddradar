@@ -19,7 +19,7 @@ describe('songs.ts', () => {
       },
     }
     beforeAll(() =>
-      mocked(getContainer).mockReturnValue((container as unknown) as Container)
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
     )
     beforeEach(() => {
       container.items.query.mockClear()

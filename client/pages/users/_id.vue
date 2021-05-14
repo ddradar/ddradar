@@ -32,7 +32,10 @@
           <template v-for="(style, i) in ['SP', 'DP']">
             <section
               :key="`radar-${style}`"
-              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              class="
+                column
+                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+              "
             >
               <card
                 :title="$t('title.radar', [style])"
@@ -54,7 +57,10 @@
             </section>
             <section
               :key="`clear-${style}`"
-              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              class="
+                column
+                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+              "
             >
               <card
                 :title="$t('title.clear', [style])"
@@ -77,7 +83,10 @@
             </section>
             <section
               :key="`score-${style}`"
-              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              class="
+                column
+                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+              "
             >
               <card
                 :title="$t('title.score', [style])"
@@ -100,7 +109,10 @@
             </section>
             <section
               :key="`clearEach-${style}`"
-              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              class="
+                column
+                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+              "
             >
               <card
                 :title="$t('title.clearEach', [style])"
@@ -135,7 +147,10 @@
             </section>
             <section
               :key="`scoreEach-${style}`"
-              class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+              class="
+                column
+                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
+              "
             >
               <card
                 :title="$t('title.score', [style])"
@@ -315,23 +330,16 @@ export default class UserPage extends Vue {
   async fetch() {
     const id = this.$route.params.id
     try {
-      const [
-        user,
-        spRadar,
-        dpRadar,
-        spClears,
-        dpClears,
-        spScores,
-        dpScores,
-      ] = await Promise.all([
-        getUserInfo(this.$http, id),
-        getGrooveRadar(this.$http, id, 1),
-        getGrooveRadar(this.$http, id, 2),
-        getClearStatus(this.$http, id, 1),
-        getClearStatus(this.$http, id, 2),
-        getScoreStatus(this.$http, id, 1),
-        getScoreStatus(this.$http, id, 2),
-      ])
+      const [user, spRadar, dpRadar, spClears, dpClears, spScores, dpScores] =
+        await Promise.all([
+          getUserInfo(this.$http, id),
+          getGrooveRadar(this.$http, id, 1),
+          getGrooveRadar(this.$http, id, 2),
+          getClearStatus(this.$http, id, 1),
+          getClearStatus(this.$http, id, 2),
+          getScoreStatus(this.$http, id, 1),
+          getScoreStatus(this.$http, id, 2),
+        ])
       this.user = user
       this.radars = [spRadar[0] ?? null, dpRadar[0] ?? null]
       this.clears = [
