@@ -80,10 +80,10 @@ import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 @Component
 export default class ChartListComponent extends Vue {
   @Prop({ required: false, type: Array, default: () => [] })
-  charts!: Api.ChartInfo[]
+  readonly charts!: Api.ChartInfo[]
 
   @Prop({ required: false, type: Boolean, default: false })
-  loading!: boolean
+  readonly loading!: boolean
 
   get displayedCharts() {
     const getLowerDiffName = (d: Song.Difficulty) =>
