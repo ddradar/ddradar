@@ -86,12 +86,14 @@ export default class ChartListComponent extends Vue {
   loading!: boolean
 
   get displayedCharts() {
+    const getLowerDiffName = (d: Song.Difficulty) =>
+      Song.difficultyMap.get(d)!.toLowerCase() as Lowercase<Song.DifficultyName>
     return this.charts.map(c => ({
       series: shortenSeriesName(c.series),
       name: c.name,
-      link: `/songs/${c.id}#${c.playStyle}${c.difficulty}`,
-      difficultyName: Song.difficultyMap.get(c.difficulty),
-      class: `is-${Song.difficultyMap.get(c.difficulty)!.toLowerCase()}`,
+      link: `/songs/${c.id}#${c.playStyle}${c.difficulty}` as const,
+      difficultyName: Song.difficultyMap.get(c.difficulty)!,
+      class: `is-${getLowerDiffName(c.difficulty)}` as const,
       level: c.level,
       id: c.id,
       playStyle: c.playStyle,

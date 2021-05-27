@@ -55,8 +55,8 @@ import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
 @Component({ components: { ChartDetail } })
 export default class SongDetailPage extends Vue {
   song: Api.SongInfo | null = null
-  playStyle = 0
-  difficulty = -1
+  playStyle: Song.PlayStyle | 0 = 0
+  difficulty: Song.Difficulty | -1 = -1
 
   get singleCharts() {
     return this.song?.charts.filter(c => c.playStyle === 1) ?? []

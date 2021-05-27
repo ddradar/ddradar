@@ -273,7 +273,10 @@ export default class UserPage extends Vue {
 
   get ddrCode() {
     return this.user?.code
-      ? String(this.user.code).replace(/^(\d{4})(\d{4})$/, '$1-$2')
+      ? (String(this.user.code).replace(
+          /^(\d{4})(\d{4})$/,
+          '$1-$2'
+        ) as `${number}-${number}`)
       : ''
   }
 
