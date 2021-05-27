@@ -51,7 +51,10 @@ const clearLamps = new Map([
  * `7`: MFC
  */
 export type ClearLamp = Unwrap<typeof clearLamps>[0]
-export const clearLampMap: ReadonlyMap<ClearLamp, string> = clearLamps
+export const clearLampMap: ReadonlyMap<
+  ClearLamp,
+  Unwrap<typeof clearLamps>[1]
+> = clearLamps
 
 const danceLevels = [
   'E',
