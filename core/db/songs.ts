@@ -38,6 +38,8 @@ export type SongSchema = {
   maxBPM: number | null
   charts: ReadonlyArray<StepChartSchema>
   skillAttackId?: number
+  /** Song is deleted or not */
+  deleted?: boolean
 }
 
 export type GrooveRadar = {
