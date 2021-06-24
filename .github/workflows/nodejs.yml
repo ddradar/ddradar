@@ -13,20 +13,8 @@ on:
       - '**.md'
 
 jobs:
-  test:
+  lint:
     runs-on: ubuntu-20.04
-
-    services:
-      cosmos-db:
-        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
-        ports:
-          - 8081:8081
-          - 10251:10251
-          - 10252:10252
-          - 10253:10253
-          - 10254:10254
-          - 10255:10255
-        options: '-m 3g --cpus=2'
 
     steps:
       - name: Checkout
@@ -56,6 +44,46 @@ jobs:
         run: yarn build
         env:
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
+
+  test:
+    runs-on: ubuntu-20.04
+
+    services:
+      cosmos-db:
+        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        ports:
+          - 8081:8081
+          - 10251:10251
+          - 10252:10252
+          - 10253:10253
+          - 10254:10254
+          - 10255:10255
+        options: '-m 3g --cpus=2'
+        env:
+          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Use Node.js 12
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 12
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache Dependencies
+        uses: actions/cache@v2.1.6
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install Project Dependencies
+        run: yarn install --frozen-lockfile
+
       - name: Test
         run: yarn test --ci --testTimeout=20000
         env:
@@ -66,7 +94,7 @@ jobs:
 
   deploy:
     if: github.event_name == 'push'
-    needs: [test]
+    needs: [lint, test]
     runs-on: ubuntu-20.04
 
     steps:
