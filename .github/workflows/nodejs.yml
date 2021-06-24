@@ -14,10 +14,22 @@ on:
 
 jobs:
   test:
-    strategy:
-      matrix:
-        os: [ubuntu-20.04, windows-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-20.04
+
+    services:
+      cosmos-db:
+        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+        ports:
+          - 8081:8081
+          - 10251:10251
+          - 10252:10252
+          - 10253:10253
+          - 10254:10254
+          - 10255:10255
+        options: '-m 3g --cpus=2'
+        env:
+          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 3
+          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: false
 
     steps:
       - name: Checkout
@@ -42,26 +54,17 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint
-        if: matrix.os == 'ubuntu-20.04'
         run: yarn lint
       - name: Build
-        if: matrix.os == 'ubuntu-20.04'
         run: yarn build
         env:
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
-      - name: Launch Cosmos DB Emulator (windows only)
-        if: matrix.os == 'windows-latest'
-        shell: pwsh
-        run: |
-          Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
-          Start-CosmosDbEmulator -NoUI
-          Get-CosmosDbEmulatorStatus
-          echo "COSMOS_DB_CONN=AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "NODE_TLS_REJECT_UNAUTHORIZED=0" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Test
         run: yarn test
+        env:
+          COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
+          NODE_TLS_REJECT_UNAUTHORIZED: 0
       - name: Report Code Coverage to codecov
-        if: matrix.os == 'windows-latest'
         uses: codecov/codecov-action@v1.5.2
 
   deploy:
