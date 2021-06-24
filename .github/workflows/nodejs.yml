@@ -57,7 +57,7 @@ jobs:
         env:
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
       - name: Test
-        run: yarn test
+        run: yarn test --ci --testTimeout=20000
         env:
           COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
           NODE_TLS_REJECT_UNAUTHORIZED: 0

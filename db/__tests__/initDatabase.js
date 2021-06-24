@@ -6,8 +6,6 @@ const connectionString = process.env.COSMOS_DB_CONN
 module.exports = async () => {
   if (!connectionString) return
 
-  // eslint-disable-next-line no-undef
-  jest.setTimeout(20000)
   const client = new CosmosClient(connectionString)
 
   const { database } = await client.databases.createIfNotExists({
