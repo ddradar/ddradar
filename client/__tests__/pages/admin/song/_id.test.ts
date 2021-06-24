@@ -61,6 +61,7 @@ describe('pages/admin/song/_id.vue', () => {
         series: songInfo.series,
         minBPM: songInfo.minBPM,
         maxBPM: songInfo.maxBPM,
+        deleted: undefined,
         charts: songInfo.charts,
       })
     })
