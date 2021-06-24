@@ -28,6 +28,11 @@ export type ScoreSchema = Pick<
     StepChartSchema,
     'stream' | 'voltage' | 'air' | 'freeze' | 'chaos'
   >
+  /**
+   * Song is deleted or not.
+   * If true, this score is not counted.
+   */
+  deleted?: boolean
 }
 
 const clearLamps = new Map([
