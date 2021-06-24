@@ -5,7 +5,9 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "ts-node"
+    "build": "tsc",
+    "start": "ts-node",
+    "test": "echo \"no test\""
   },
   "dependencies": {
     "@azure/cosmos": "^3.11.5",
