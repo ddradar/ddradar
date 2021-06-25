@@ -21,7 +21,7 @@ on:
 
 jobs:
   build:
-    name: Build (Staging)
+    name: Build
     if: github.event_name == 'push' || github.event.action != 'closed'
     runs-on: ubuntu-20.04
 
@@ -61,7 +61,7 @@ jobs:
           path: client/dist
 
   deploy-swa:
-    name: Deploy to Azure Static Web Apps (Staging)
+    name: Deploy to Azure Static Web Apps
     needs: ['build']
     if: (!contains(github.actor, '[bot]'))
     runs-on: ubuntu-20.04
