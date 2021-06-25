@@ -21,9 +21,9 @@ on:
 
 jobs:
   build:
-    if: github.event.action != 'closed'
+    name: Build (Staging)
+    if: github.event_name == 'push' || github.event.action != 'closed'
     runs-on: ubuntu-20.04
-    name: Staging Build
 
     steps:
       - name: Checkout
@@ -60,11 +60,12 @@ jobs:
           name: client
           path: client/dist
 
-  deploy:
+  deploy-swa:
+    name: Deploy to Azure Static Web Apps (Staging)
     needs: ['build']
     if: (!contains(github.actor, '[bot]'))
     runs-on: ubuntu-20.04
-    name: Deploy to Staging
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
@@ -84,7 +85,6 @@ jobs:
         run: cp yarn.lock api
 
       - name: Build @ddradar/api and Deploy
-        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LEMON_WATER_096A66800 }}
@@ -97,11 +97,12 @@ jobs:
           api_build_command: yarn build
 
   close:
+    name: Close Pull Request
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-20.04
-    name: Close Pull Request
+
     steps:
-      - name: Close Pull Request
+      - name: Close Staging Environment
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_LEMON_WATER_096A66800 }}
