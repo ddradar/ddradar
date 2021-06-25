@@ -1,6 +1,9 @@
 name: production
 
-on: workflow_dispatch
+on:
+  push:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -33,9 +36,9 @@ jobs:
       - name: Build @ddradar/client
         run: yarn workspace @ddradar/client build
         env:
-          API_URL: '/'
+          API_URL: /
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_PRODUCTION }}
-          SONGS_API_URL: 'https://api.ddradar.app/api/v1/songs'
+          SONGS_API_URL: https://api.ddradar.app/api/v1/songs
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v2.2.4
