@@ -5,6 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "build": "tsc",
+    "test": "echo \"no test\"",
     "start": "ts-node"
   },
   "dependencies": {

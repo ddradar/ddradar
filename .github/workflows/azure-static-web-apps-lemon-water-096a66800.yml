@@ -47,7 +47,7 @@ jobs:
           action: 'upload'
           # see: https://aka.ms/swaworkflowconfig
           app_location: /
-          app_build_command: yarn run-s "run:core build" "run:client build"
+          app_build_command: yarn workspace @ddradar/core build && yarn workspace @ddradar/client build
           app_artifact_location: client/dist
           api_location: api
           api_build_command: yarn build

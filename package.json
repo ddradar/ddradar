@@ -15,20 +15,12 @@
     "scripts"
   ],
   "scripts": {
-    "prebuild": "run-p \"run:core {1}\" \"run:db {1}\" -- build",
-    "build": "run-p \"run:api {1}\" \"run:client {1}\" \"run:func {1}\" -- build",
-    "fix": "run-p fix:*",
-    "fix:eslint": "run-s \"lint:eslint --fix\"",
-    "fix:prettier": "run-s \"lint:prettier --write\"",
+    "build": "yarn workspaces run build",
+    "fix": "run-p \"lint:eslint --fix\" \"lint:prettier --write\"",
     "lint": "run-p lint:*",
     "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
-    "test": "run-s \"run:* test\"",
-    "run:api": "yarn workspace @ddradar/api",
-    "run:client": "yarn workspace @ddradar/client",
-    "run:core": "yarn workspace @ddradar/core",
-    "run:db": "yarn workspace @ddradar/db",
-    "run:func": "yarn workspace @ddradar/functions",
+    "test": "yarn workspaces run test",
     "prepare": "husky install"
   },
   "lint-staged": {
