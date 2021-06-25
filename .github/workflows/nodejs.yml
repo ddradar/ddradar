@@ -44,11 +44,7 @@ jobs:
       - name: Lint
         if: matrix.os == 'ubuntu-20.04'
         run: yarn lint
-      - name: Build
-        if: matrix.os == 'ubuntu-20.04'
-        run: yarn build
-        env:
-          APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY_STAGING }}
+
       - name: Launch Cosmos DB Emulator (windows only)
         if: matrix.os == 'windows-latest'
         shell: pwsh
@@ -63,6 +59,10 @@ jobs:
       - name: Report Code Coverage to codecov
         if: matrix.os == 'windows-latest'
         uses: codecov/codecov-action@v1.5.2
+
+      - name: Upload Artifact
+        if: matrix.os == 'ubuntu-20.04'
+        uses: actions/upload-artifact@v2.2.4
 
   deploy:
     if: github.event_name == 'push'
