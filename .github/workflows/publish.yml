@@ -48,6 +48,7 @@ jobs:
 
   deploy:
     name: Deploy to Azure Static Web Apps
+    needs: [build]
     runs-on: ubuntu-20.04
     environment:
       name: Production
