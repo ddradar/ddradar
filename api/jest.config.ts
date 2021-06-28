@@ -10,7 +10,6 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
-  globalSetup: '<rootDir>/__tests__/initDatabase.js',
   coverageDirectory: './coverage/',
   collectCoverage: true,
   collectCoverageFrom: [
