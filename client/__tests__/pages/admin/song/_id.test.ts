@@ -68,61 +68,6 @@ describe('pages/admin/song/_id.vue', () => {
   })
 
   // Computed
-  describe('get nameIndex()', () => {
-    const wrapper = shallowMount(SongEditorPage, { localVue })
-    test.each([
-      [0, 'あ'],
-      [1, 'ぎ'],
-      [2, 'ぞ'],
-      [3, 'っ'],
-      [4, 'ぬ'],
-      [5, 'ぽ'],
-      [6, 'み'],
-      [7, 'ゃ'],
-      [8, 'れ'],
-      [9, 'を'],
-      [9, 'ん'],
-      [10, 'A'],
-      [11, 'B'],
-      [12, 'C'],
-      [13, 'D'],
-      [14, 'E'],
-      [15, 'F'],
-      [16, 'G'],
-      [17, 'H'],
-      [18, 'I'],
-      [19, 'J'],
-      [20, 'K'],
-      [21, 'L'],
-      [22, 'M'],
-      [23, 'N'],
-      [24, 'O'],
-      [25, 'P'],
-      [26, 'Q'],
-      [27, 'R'],
-      [28, 'S'],
-      [29, 'T'],
-      [30, 'U'],
-      [31, 'V'],
-      [32, 'W'],
-      [33, 'X'],
-      [34, 'Y'],
-      [35, 'Z'],
-      [36, '.'],
-      [36, '1'],
-      [36, ''],
-      [36, 'a'],
-      [36, 'ア'],
-      [36, '亜'],
-    ])('returns %i if nameKana is %s', (expected, nameKana) => {
-      // Arrange - Act
-      wrapper.setData({ nameKana })
-
-      // Assert
-      // @ts-ignore
-      expect(wrapper.vm.nameIndex).toBe(expected)
-    })
-  })
   describe('get isValidSongId()', () => {
     const wrapper = shallowMount(SongEditorPage, { localVue })
     test.each([0, '', 'foo'])('returns false if id is %s', id => {
