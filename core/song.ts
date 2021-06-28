@@ -10,6 +10,8 @@ export {
   /* istanbul ignore next */
   difficultyMap,
   /* istanbul ignore next */
+  getNameIndex,
+  /* istanbul ignore next */
   isValidId,
   /* istanbul ignore next */
   nameIndexMap,

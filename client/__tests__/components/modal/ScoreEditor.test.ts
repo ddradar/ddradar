@@ -1,11 +1,11 @@
-import { Score } from '@ddradar/core'
+import { Api, Score } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getChartScore, postChartScore } from '~/api/score'
+import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import * as popup from '~/utils/popup'
 
@@ -24,10 +24,22 @@ describe('/components/modal/ScoreEditor.vue', () => {
     difficulty: testSongData.charts[0].difficulty,
     songData: testSongData,
   }
+  const chartScore: Api.ScoreInfo = {
+    userId: 'user',
+    userName: 'User',
+    songId: testSongData.id,
+    songName: testSongData.name,
+    playStyle: propsData.playStyle,
+    difficulty: propsData.difficulty,
+    level: testSongData.charts[0].level,
+    clearLamp: 2,
+    rank: 'AAA',
+    score: 990000,
+  }
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   const $parent = { close: jest.fn() }
   beforeEach(() => {
-    mocked(getChartScore).mockRejectedValue('404')
+    mocked(getChartScore).mockResolvedValue([chartScore])
     wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n })
   })
 
@@ -137,6 +149,7 @@ describe('/components/modal/ScoreEditor.vue', () => {
       mocked(postChartScore).mockClear()
       mocked(popup.success).mockClear()
       mocked(popup.danger).mockClear()
+      $parent.close.mockClear()
       // @ts-ignore
       wrapper.vm.$parent = $parent
     })
@@ -163,6 +176,161 @@ describe('/components/modal/ScoreEditor.vue', () => {
       expect(mocked(popup.success)).not.toBeCalled()
       expect(mocked(popup.danger)).toBeCalled()
       expect($parent.close).toBeCalled()
+    })
+  })
+  describe('deleteScore()', () => {
+    const $http = {}
+    const mocks = { $buefy: { dialog: { confirm: jest.fn() } }, $http }
+    let wrapper: Wrapper<ScoreEditor>
+    beforeEach(() => {
+      mocked(deleteChartScore).mockClear()
+      mocked(popup.success).mockClear()
+      mocked(popup.danger).mockClear()
+      $parent.close.mockClear()
+      wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n, mocks })
+      // @ts-ignore
+      wrapper.vm.$parent = $parent
+    })
+    test('calls $buefy.dialog.confirm()', async () => {
+      // Arrange - Act
+      // @ts-ignore
+      wrapper.vm.deleteScore()
+      const onConfirm = mocks.$buefy.dialog.confirm.mock.calls[0][0]
+        .onConfirm as Function
+      await onConfirm()
+
+      // Assert
+      expect(mocked(deleteChartScore)).toBeCalledWith(
+        $http,
+        propsData.songId,
+        propsData.playStyle,
+        propsData.difficulty
+      )
+      expect(mocked(popup.success)).toBeCalled()
+      expect(mocked(popup.danger)).not.toBeCalled()
+      expect($parent.close).toBeCalled()
+    })
+    test('calls popup.danger() if deleteChartScore() throws error', async () => {
+      // Arrange
+      mocked(deleteChartScore).mockRejectedValueOnce('Error')
+
+      // Act
+      // @ts-ignore
+      wrapper.vm.deleteScore()
+      const onConfirm = mocks.$buefy.dialog.confirm.mock.calls[0][0]
+        .onConfirm as Function
+      await onConfirm()
+
+      // Assert
+      expect(mocked(deleteChartScore)).toBeCalledWith(
+        $http,
+        propsData.songId,
+        propsData.playStyle,
+        propsData.difficulty
+      )
+      expect(mocked(popup.success)).not.toBeCalled()
+      expect(mocked(popup.danger)).toBeCalled()
+      expect($parent.close).toBeCalled()
+    })
+  })
+  describe('fetchScore', () => {
+    const data = {
+      score: 0,
+      exScore: 0,
+      clearLamp: 0,
+      maxCombo: 0,
+      isFailed: false,
+    }
+    beforeEach(() => {
+      mocked(getChartScore).mockClear()
+      mocked(popup.danger).mockClear()
+      wrapper.setData(data)
+    })
+    test.each([
+      [
+        data,
+        chartScore,
+        { ...data, score: 990000, clearLamp: 2, isFailed: false },
+      ],
+      [
+        {},
+        { ...chartScore, exScore: 300, maxCombo: 120 },
+        {
+          score: 990000,
+          clearLamp: 2,
+          isFailed: false,
+          exScore: 300,
+          maxCombo: 120,
+        },
+      ],
+      [
+        { score: 0, clearLamp: 6, isFailed: true, exScore: 300, maxCombo: 120 },
+        chartScore,
+        {
+          score: 990000,
+          clearLamp: 2,
+          isFailed: false,
+          exScore: 300,
+          maxCombo: 120,
+        },
+      ],
+    ])(
+      '(data: %p, getChartScore(): %p) sets %p',
+      async (data, score, expected) => {
+        // Arrange
+        mocked(getChartScore).mockResolvedValueOnce([score])
+        wrapper.setData(data)
+
+        // Act
+        // @ts-ignore
+        await wrapper.vm.fetchScore()
+
+        // Assert
+        expect(wrapper.vm.$data.score).toBe(expected.score)
+        expect(wrapper.vm.$data.exScore).toBe(expected.exScore)
+        expect(wrapper.vm.$data.clearLamp).toBe(expected.clearLamp)
+        expect(wrapper.vm.$data.maxCombo).toBe(expected.maxCombo)
+        expect(wrapper.vm.$data.isFailed).toBe(expected.isFailed)
+
+        expect(mocked(getChartScore)).toBeCalled()
+        expect(mocked(popup.danger)).not.toBeCalled()
+      }
+    )
+    test('calls popup.danger() if getChartScore() throws error', async () => {
+      // Arrange
+      mocked(getChartScore).mockRejectedValueOnce('Error')
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.fetchScore()
+
+      // Assert
+      expect(wrapper.vm.$data.score).toBe(0)
+      expect(wrapper.vm.$data.exScore).toBe(0)
+      expect(wrapper.vm.$data.clearLamp).toBe(0)
+      expect(wrapper.vm.$data.maxCombo).toBe(0)
+      expect(wrapper.vm.$data.isFailed).toBe(false)
+
+      expect(mocked(getChartScore)).toBeCalled()
+      expect(mocked(popup.danger)).toBeCalled()
+    })
+    test('does not call popup.danger() if getChartScore() throws 404', async () => {
+      // Arrange
+      mocked(getChartScore).mockRejectedValueOnce('404')
+
+      // Act
+      // @ts-ignore
+      await wrapper.vm.fetchScore()
+
+      // Assert
+      expect(wrapper.vm.$data.score).toBe(0)
+      expect(wrapper.vm.$data.exScore).toBe(0)
+      expect(wrapper.vm.$data.clearLamp).toBe(0)
+      expect(wrapper.vm.$data.maxCombo).toBe(0)
+      expect(wrapper.vm.$data.isFailed).toBe(false)
+
+      expect(mocked(getChartScore)).toBeCalled()
+      expect(mocked(popup.danger)).not.toBeCalled()
     })
   })
 })

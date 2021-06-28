@@ -207,6 +207,55 @@ export const nameIndexMap: ReadonlyMap<
   NameIndex,
   Unwrap<typeof nameIndexes>[1]
 > = nameIndexes
+/**
+ * Get NameIndex from Furigana.
+ * @param nameKana Furigana
+ * @returns NameIndex
+ */
+export function getNameIndex(nameKana: string): NameIndex {
+  const regExps = new Map<RegExp, NameIndex>([
+    [/^[ぁ-お]/, 0],
+    [/^[か-ご]/, 1],
+    [/^[さ-ぞ]/, 2],
+    [/^[た-ど]/, 3],
+    [/^[な-の]/, 4],
+    [/^[は-ぽ]/, 5],
+    [/^[ま-も]/, 6],
+    [/^[ゃ-よ]/, 7],
+    [/^[ら-ろ]/, 8],
+    [/^[ゎ-ん]/, 9],
+    [/^[aA]/, 10],
+    [/^[bB]/, 11],
+    [/^[cC]/, 12],
+    [/^[dD]/, 13],
+    [/^[eE]/, 14],
+    [/^[fF]/, 15],
+    [/^[gG]/, 16],
+    [/^[hH]/, 17],
+    [/^[iI]/, 18],
+    [/^[jJ]/, 19],
+    [/^[kK]/, 20],
+    [/^[lL]/, 21],
+    [/^[mM]/, 22],
+    [/^[nN]/, 23],
+    [/^[oO]/, 24],
+    [/^[pP]/, 25],
+    [/^[qQ]/, 26],
+    [/^[rR]/, 27],
+    [/^[sS]/, 28],
+    [/^[tT]/, 29],
+    [/^[uU]/, 30],
+    [/^[vV]/, 31],
+    [/^[wW]/, 32],
+    [/^[xX]/, 33],
+    [/^[yY]/, 34],
+    [/^[zZ]/, 35],
+  ])
+  for (const map of regExps) {
+    if (map[0].test(nameKana)) return map[1]
+  }
+  return 36
+}
 
 const playStyles = new Map([
   [1, 'SINGLE'],

@@ -7,9 +7,9 @@
   },
   "extends": [
     "@nuxtjs/eslint-config-typescript",
-    "prettier",
     "plugin:jest/recommended",
-    "plugin:nuxt/recommended"
+    "plugin:nuxt/recommended",
+    "prettier"
   ],
   "plugins": ["jest", "simple-import-sort"],
   "settings": {

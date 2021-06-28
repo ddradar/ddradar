@@ -1,4 +1,4 @@
-import { isSongSchema } from '../../db/songs'
+import { getNameIndex, isSongSchema, nameIndexMap } from '../../db/songs'
 import { testSongData } from '../data'
 
 describe('./db/songs.ts', () => {
@@ -36,6 +36,30 @@ describe('./db/songs.ts', () => {
       { ...validSong, charts: [] },
     ])('(%p) returns true', (obj: unknown) =>
       expect(isSongSchema(obj)).toBe(true)
+    )
+  })
+  describe('getNameIndex', () => {
+    test.each([
+      ['う', 0],
+      ['ぎ', 1],
+      ['ぞ', 2],
+      ['っ', 3],
+      ['ぬ', 4],
+      ['ぽ', 5],
+      ['み', 6],
+      ['ゃ', 7],
+      ['れ', 8],
+      ['を', 9],
+      ['ん', 9],
+      ['a', 10],
+      ['.', 36],
+      ['1', 36],
+      ['', 36],
+      ['ア', 36],
+      ['亜', 36],
+      ...[...nameIndexMap.entries()].map<[string, number]>(([k, v]) => [v, k]),
+    ])('(%s) returns %i', (nameKana, expected) =>
+      expect(getNameIndex(nameKana)).toBe(expected)
     )
   })
 })

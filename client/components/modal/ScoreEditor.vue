@@ -181,6 +181,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get exScoreMax() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return 0
     return (
       (this.selectedChart.notes +
@@ -191,6 +192,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get chartName() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return null
     const playStyle = Song.playStyleMap.get(this.selectedChart.playStyle)
     const difficulty = Song.difficultyMap.get(this.selectedChart.difficulty)
@@ -198,6 +200,7 @@ export default class ScoreEditorComponent extends Vue {
   }
 
   get maxComboMax() {
+    /* istanbul ignore if */
     if (!this.selectedChart) return 0
     return this.selectedChart.notes + this.selectedChart.shockArrow
   }
@@ -243,7 +246,7 @@ export default class ScoreEditorComponent extends Vue {
         exScore: this.exScore,
         maxCombo: this.maxCombo,
         clearLamp: this.clearLamp,
-        rank: this.isFailed ? 'E' : undefined,
+        rank: this.rank,
       })
       this.score = score.score
       this.exScore = score.exScore ?? this.exScore
