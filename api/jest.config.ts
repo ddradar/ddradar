@@ -6,7 +6,6 @@ const config: Config.InitialOptions = {
   moduleFileExtensions: ['js', 'ts'],
   testEnvironment: 'node',
   testMatch: ['**/*.test.ts'],
-  testPathIgnorePatterns: ['<rootDir>/core/*'],
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
@@ -17,7 +16,6 @@ const config: Config.InitialOptions = {
     '!**/*.d.ts',
     '!<rootDir>/*.config.ts',
     '!**/__tests__/**',
-    '!<rootDir>/core/**',
   ],
 }
 export default config
