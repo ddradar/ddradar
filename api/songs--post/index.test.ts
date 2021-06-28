@@ -3,7 +3,16 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 import postSongInfo from '.'
 
 describe('POST /api/v1/songs', () => {
-  const validSong = { ...testSongData }
+  const validSong: typeof testSongData = {
+    ...testSongData,
+    charts: [
+      ...testSongData.charts,
+      {
+        ...testSongData.charts[1],
+        playStyle: 2,
+      },
+    ],
+  }
 
   test('returns "400 Bad Request" if body is empty', async () => {
     // Arrange

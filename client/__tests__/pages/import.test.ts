@@ -42,6 +42,12 @@ describe('pages/import.vue', () => {
       const wrapper = mount(ImportPage, { localVue, data, mocks, i18n, stubs })
       expect(wrapper).toMatchSnapshot()
     })
+    test('does not render skill attack if no code', () => {
+      const data = () => ({ sourceCode: '<html></html>' })
+      const mocks = { $accessor: { user: {} } }
+      const wrapper = mount(ImportPage, { localVue, data, mocks, i18n, stubs })
+      expect(wrapper).toMatchSnapshot()
+    })
     test('renders uploading state', () => {
       const wrapper = mount(ImportPage, {
         localVue,

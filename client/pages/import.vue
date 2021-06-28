@@ -174,8 +174,8 @@ export default class ImportPage extends Vue {
 
   get bookmarklet() {
     const domain = process.client
-      ? document.domain
-      : /* istanbul ignore next */ 'www.ddradar.app'
+      ? /* istanbul ignore next */ document.domain
+      : 'www.ddradar.app'
     const region = this.$i18n.locale
     return `javascript:(function(d){d.body.appendChild(d.createElement('script')).src='https://${domain}/eagate.${region}.min.js';})(document);`
   }
