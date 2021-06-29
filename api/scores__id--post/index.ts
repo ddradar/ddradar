@@ -1,7 +1,13 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
-import { hasIntegerProperty, hasProperty, Score } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
+import {
+  Database,
+  hasIntegerProperty,
+  hasProperty,
+  Score,
+  Song,
+} from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
@@ -57,18 +63,15 @@ export default async function (
       }
     }
 
-    body.push({
-      ...createSchema(chart, user, score),
-      ...(song.isCourse
-        ? {}
-        : {
-            radar: Score.calcMyGrooveRadar(
-              chart as Database.StepChartSchema,
-              score
-            ),
-          }),
-    })
-    await fetchMergedScore(chart, user, score, false)
+    body.push(
+      Database.createScoreSchema(
+        song,
+        chart,
+        user,
+        Score.setValidScoreFromChart(chart, score)
+      )
+    )
+    await fetchMergedScore(chart, user, score)
 
     // World Record
     if (score.topScore) {
@@ -102,86 +105,33 @@ export default async function (
       return (
         Score.isScore(obj) &&
         hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-        [1, 2].includes(obj.playStyle) &&
-        [0, 1, 2, 3, 4].includes(obj.difficulty) &&
+        (Song.playStyleMap as ReadonlyMap<number, string>).has(obj.playStyle) &&
+        (Song.difficultyMap as ReadonlyMap<number, string>).has(
+          obj.difficulty
+        ) &&
         (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
       )
     }
-  }
-
-  /**
-   * Create ScoreSchema from chart, User and score.
-   * Also complement exScore and maxCombo.
-   */
-  function createSchema(
-    chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
-    user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Api.ScoreBody>
-  ) {
-    const scoreSchema: Database.ScoreSchema = {
-      userId: user.id,
-      userName: user.name,
-      isPublic: user.isPublic,
-      songId: song.id,
-      songName: song.name,
-      playStyle: chart.playStyle,
-      difficulty: chart.difficulty,
-      level: chart.level,
-      score: score.score,
-      clearLamp: score.clearLamp,
-      rank: score.rank,
-      ...(song.deleted ? { deleted: true } : {}),
-    }
-    if (score.exScore) scoreSchema.exScore = score.exScore
-    if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
-
-    // calc clearLamp from score
-    const baseScore =
-      1000000 / (chart.notes + chart.freezeArrow + chart.shockArrow)
-    if (score.score === 1000000) scoreSchema.clearLamp = 7
-    // Score is greater than Gr:1
-    else if (score.score > 999990 - baseScore * 0.4) scoreSchema.clearLamp = 6
-
-    if (scoreSchema.clearLamp >= 6) {
-      const exScore = (chart.notes + chart.freezeArrow + chart.shockArrow) * 3
-      scoreSchema.exScore = exScore - (1000000 - score.score) / 10
-    }
-    if (scoreSchema.clearLamp >= 4) {
-      scoreSchema.maxCombo = chart.notes + chart.shockArrow
-    }
-    return scoreSchema
   }
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Api.ScoreBody>,
-    isAreaUser = true
+    score: Readonly<Api.ScoreBody>
   ): Promise<void> {
-    const scoreSchema = createSchema(chart, user, score)
     // Get previous score
     const oldScore = await fetchScore(
-      scoreSchema.userId,
-      scoreSchema.songId,
-      scoreSchema.playStyle,
-      scoreSchema.difficulty
+      user.id,
+      song.id,
+      chart.playStyle,
+      chart.difficulty
     )
 
-    const mergedScore: Database.ScoreSchema = {
-      ...Score.mergeScore(
-        oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
-        scoreSchema
-      ),
-      userId: scoreSchema.userId,
-      userName: scoreSchema.userName,
-      isPublic: scoreSchema.isPublic,
-      songId: scoreSchema.songId,
-      songName: scoreSchema.songName,
-      playStyle: scoreSchema.playStyle,
-      difficulty: scoreSchema.difficulty,
-      level: scoreSchema.level,
-    }
+    const mergedScore = Score.mergeScore(
+      oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
+      Score.setValidScoreFromChart(chart, score)
+    )
     if (
       mergedScore.score === oldScore?.score &&
       mergedScore.clearLamp === oldScore.clearLamp &&
@@ -192,14 +142,7 @@ export default async function (
       return
     }
 
-    if (!isAreaUser && !song.isCourse) {
-      mergedScore.radar = Score.calcMyGrooveRadar(
-        chart as Database.StepChartSchema,
-        mergedScore
-      )
-    }
-
-    documents.push(mergedScore)
+    documents.push(Database.createScoreSchema(song, chart, user, mergedScore))
     if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }
