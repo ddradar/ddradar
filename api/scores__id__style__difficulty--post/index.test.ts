@@ -4,8 +4,9 @@ import {
   areaHiddenUser,
   privateUser,
   publicUser,
+  testCourseData as course,
   testScores,
-  testSongData,
+  testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
@@ -17,7 +18,6 @@ jest.mock('../auth')
 describe('POST /api/v1/scores', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'body'>
-  const song = { ...testSongData, isCourse: false }
   const mfcScore = { score: 1000000, rank: 'AAA', clearLamp: 7 }
   const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
@@ -218,32 +218,31 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if course`, async () => {
+  test(`/${course.id}/1/0 returns "200 OK" with JSON and documents[%i] if course`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    context.bindingData.songId = song.id
-    context.bindingData.playStyle = song.charts[0].playStyle
-    context.bindingData.difficulty = song.charts[0].difficulty
+    context.bindingData.songId = course.id
+    context.bindingData.playStyle = course.charts[0].playStyle
+    context.bindingData.difficulty = course.charts[0].difficulty
     req.body = mfcScore
 
     // Act
-    const result = await postChartScore(
-      context,
-      req,
-      [{ ...song, isCourse: true }],
-      scores
-    )
+    const result = await postChartScore(context, req, [course], scores)
 
     // Assert
     expect(result.httpResponse.status).toBe(200)
     expect(result.httpResponse.body).toStrictEqual({
-      ...score,
+      songId: course.id,
+      songName: course.name,
+      playStyle: course.charts[0].playStyle,
+      difficulty: course.charts[0].difficulty,
+      level: course.charts[0].level,
       userId: privateUser.id,
       userName: privateUser.name,
       isPublic: privateUser.isPublic,
       ...mfcScore,
-      maxCombo: 138,
-      exScore: 414,
+      maxCombo: 438,
+      exScore: 1392,
     })
     expect(result.documents).toHaveLength(2)
   })

@@ -1,14 +1,14 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Context, HttpRequest } from '@azure/functions'
-import type { Database, Song } from '@ddradar/core'
-import { Score } from '@ddradar/core'
+import type { Song } from '@ddradar/core'
+import { Database, Score } from '@ddradar/core'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, getBindingNumber, SuccessResult } from '../function'
 
+type Chart = Database.StepChartSchema | Database.CourseChartSchema
 type SongInput = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> & {
-  isCourse: boolean
-  charts: ReadonlyArray<Database.StepChartSchema | Database.CourseChartSchema>
+  charts: ReadonlyArray<Chart>
 }
 
 type PostScoreResult = {
@@ -52,71 +52,41 @@ export default async function (
     return { httpResponse: new ErrorResult(400, 'body is invalid Score') }
   }
 
-  const userScore: Database.ScoreSchema = {
-    userId: user.id,
-    userName: user.name,
-    isPublic: user.isPublic,
-    songId: song.id,
-    songName: song.name,
-    playStyle,
-    difficulty,
-    level: chart.level,
-    score: req.body.score,
-    clearLamp: req.body.clearLamp,
-    rank: req.body.rank,
-    ...(req.body.exScore ? { exScore: req.body.exScore } : {}),
-    ...(req.body.maxCombo ? { maxCombo: req.body.maxCombo } : {}),
-  }
+  const userScore = Database.createScoreSchema(song, chart, user, req.body)
   if (req.body.clearLamp === 7) {
     userScore.exScore = (chart.notes + chart.freezeArrow + chart.shockArrow) * 3
   }
   if (req.body.clearLamp >= 4) {
     userScore.maxCombo = chart.notes + chart.shockArrow
   }
+
   const documents: (Database.ScoreSchema & ItemDefinition)[] = [
-    {
-      ...userScore,
-      ...(song.isCourse
-        ? {}
-        : {
-            radar: Score.calcMyGrooveRadar(
-              chart as Database.StepChartSchema,
-              userScore
-            ),
-          }),
-      ...(song.deleted ? { deleted: true } : {}),
-    },
+    userScore,
     ...scores.filter(s => s.userId === user.id).map(s => ({ ...s, ttl: 3600 })),
   ]
 
   if (user.isPublic) {
-    updateAreaScore('0', userScore)
+    updateAreaScore('0', chart, userScore)
     if (user.area) {
-      updateAreaScore(`${user.area}`, userScore)
+      updateAreaScore(`${user.area}`, chart, userScore)
     }
   }
 
   return { httpResponse: new SuccessResult(documents[0]), documents }
 
   /** Add new Area Top score into documents if greater than old one. */
-  function updateAreaScore(area: string, score: Database.ScoreSchema) {
+  function updateAreaScore(
+    area: string,
+    chart: Chart,
+    score: Database.ScoreSchema
+  ) {
     // Get previous score
     const oldScore = scores.find(s => s.userId === area)
 
-    const mergedScore: Database.ScoreSchema = {
-      ...Score.mergeScore(
-        oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
-        score
-      ),
-      userId: area,
-      userName: area,
-      isPublic: false,
-      songId: score.songId,
-      songName: score.songName,
-      playStyle: score.playStyle,
-      difficulty: score.difficulty,
-      level: score.level,
-    }
+    const mergedScore = Score.mergeScore(
+      oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
+      score
+    )
     if (
       mergedScore.score === oldScore?.score &&
       mergedScore.clearLamp === oldScore.clearLamp &&
@@ -127,7 +97,14 @@ export default async function (
       return
     }
 
-    documents.push(mergedScore)
+    documents.push(
+      Database.createScoreSchema(
+        song,
+        chart,
+        { id: area, name: area, isPublic: false },
+        mergedScore
+      )
+    )
     if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }
