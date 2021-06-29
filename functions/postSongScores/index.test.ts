@@ -5,7 +5,6 @@ import {
   noPasswordUser,
   privateUser,
   publicUser,
-  testCourseData as course,
   testScores,
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
@@ -40,36 +39,6 @@ describe('POST /api/v1/scores', () => {
   })
 
   beforeEach(() => (req.body = {}))
-
-  test.each([
-    undefined,
-    {},
-    { password: 1000 },
-    { password, scores: [] },
-    { password, scores: [{ score: 50000000 }] },
-    { password, scores: [{ ...score }] },
-    {
-      password,
-      scores: [{ ...score, playStyle: 'SINGLE', difficulty: 'BEGINNER' }],
-    },
-    {
-      password,
-      scores: [{ ...score, playStyle: 1, difficulty: 5 }],
-    },
-    {
-      password: 'password',
-      scores: [{ ...score, playStyle: 3, difficulty: 0 }],
-    },
-  ])('returns "400 Bad Request" if body is %p', async body => {
-    // Arrange
-    req.body = body
-
-    // Act
-    const result = await postSongScores(null, req, [], [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(400)
-  })
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
@@ -138,9 +107,13 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${song.id} returns "400 Bad Request" if body is invalid Score`, async () => {
-    // Arrange
-    req.body = {
+  test.each([
+    undefined,
+    {},
+    { password: 1000 },
+    { password, scores: [] },
+    { password, scores: [{ score: 50000000 }] },
+    {
       password,
       scores: [
         {
@@ -152,36 +125,16 @@ describe('POST /api/v1/scores', () => {
           exScore: 1000,
         },
       ],
-    }
+    },
+  ])(`/${song.id} returns "400 Bad Request" if body is %p`, async body => {
+    // Arrange
+    req.body = body
 
     // Act
     const result = await postSongScores(null, req, [song], [publicUser])
 
     // Assert
     expect(result.httpResponse.status).toBe(400)
-  })
-
-  test(`inserts World & Area Top`, async () => {
-    // Arrange
-    const expected = {
-      playStyle: 1,
-      difficulty: 1,
-      level: 8,
-      score: 999700,
-      clearLamp: 6,
-      rank: 'AAA',
-      maxCombo: 264,
-      exScore: 762,
-    }
-    req.body = { password, scores: [{ ...expected }] }
-
-    // Act
-    const result = await postSongScores(null, req, [song], [publicUser])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(200)
-    expect(result.documents?.[1].score).toBe(expected.score)
-    expect(result.documents?.[2].score).toBe(expected.score)
   })
 
   test.each([
@@ -279,23 +232,6 @@ describe('POST /api/v1/scores', () => {
       expect(result.documents).toHaveLength(length)
     }
   )
-
-  test(`/${course.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
-    // Arrange
-    const expected = {
-      playStyle: 1,
-      difficulty: 0,
-      level: 4,
-      ...score,
-    }
-    req.body = { password, scores: [{ ...expected }] }
-
-    // Act
-    const result = await postSongScores(null, req, [course], [privateUser])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(200)
-  })
 
   test(`/${song.id} updates World Top if topScore is defined`, async () => {
     // Arrange

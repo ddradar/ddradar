@@ -1,13 +1,11 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { Api } from '@ddradar/core'
 import {
+  Api,
   Database,
-  hasIntegerProperty,
   hasProperty,
   hasStringProperty,
   Score,
-  Song,
 } from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
 
@@ -26,6 +24,17 @@ type PostSongScoresResponse = {
 }
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
+
+/** Assert request body is valid schema. */
+function isValidBody(body: unknown): body is ImportScoreBody {
+  return (
+    hasStringProperty(body, 'password') &&
+    hasProperty(body, 'scores') &&
+    Array.isArray(body.scores) &&
+    body.scores.length > 0 &&
+    body.scores.every(Api.isScoreListBody)
+  )
+}
 
 /** Add or update score that match the specified chart. */
 export default async function (
@@ -86,29 +95,6 @@ export default async function (
   }
 
   return { httpResponse: { status: 200 }, documents }
-
-  /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ImportScoreBody {
-    return (
-      hasStringProperty(body, 'password') &&
-      hasProperty(body, 'scores') &&
-      Array.isArray(body.scores) &&
-      body.scores.length > 0 &&
-      body.scores.every(isScoreBody)
-    )
-
-    function isScoreBody(obj: unknown): obj is Api.ScoreListBody {
-      return (
-        Score.isScore(obj) &&
-        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-        (Song.playStyleMap as ReadonlyMap<number, string>).has(obj.playStyle) &&
-        (Song.difficultyMap as ReadonlyMap<number, string>).has(
-          obj.difficulty
-        ) &&
-        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
-      )
-    }
-  }
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(
