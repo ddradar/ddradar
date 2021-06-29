@@ -103,21 +103,19 @@ describe('POST /api/v1/scores', () => {
   )
 
   test.each([
-    [{ score: 50000000 }],
-    [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        score: 90000,
-        clearLamp: 2,
-        rank: 'E',
-        exScore: 1000,
-      },
-    ],
-  ])(`/${song.id} returns "400 Bad Request" if body is %p`, async body => {
+    { score: 50000000 },
+    {
+      playStyle: 1,
+      difficulty: 0,
+      score: 90000,
+      clearLamp: 2,
+      rank: 'E',
+      exScore: 1000,
+    },
+  ])(`/${song.id} returns "400 Bad Request" if body is [%p]`, async score => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    req.body = body
+    mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+    req.body = [score]
 
     // Act
     const result = await postSongScores(null, req, [song])
