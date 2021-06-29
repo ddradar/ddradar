@@ -14,7 +14,6 @@ import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
 type SongInput = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> & {
-  isCourse: boolean
   charts: ReadonlyArray<Database.StepChartSchema | Database.CourseChartSchema>
 }
 

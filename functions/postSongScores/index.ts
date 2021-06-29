@@ -17,7 +17,6 @@ type ImportScoreBody = {
 }
 
 type SongInput = Pick<Database.SongSchema, 'id' | 'name'> & {
-  isCourse: boolean
   charts: ReadonlyArray<Database.StepChartSchema | Database.CourseChartSchema>
 }
 
