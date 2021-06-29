@@ -1,5 +1,14 @@
-import type { Unwrap } from '../typeUtils'
-import type { StepChartSchema } from './songs'
+import type { ScoreBody } from '../api/score'
+import { calcMyGrooveRadar } from '../score'
+import { hasIntegerProperty, Unwrap } from '../typeUtils'
+import type {
+  CourseChartSchema,
+  CourseSchema,
+  SongSchema,
+  StepChartSchema,
+} from './songs'
+import type { UserSchema } from './users'
+import { isAreaUser } from './users'
 
 export type ScoreSchema = Pick<
   StepChartSchema,
@@ -81,3 +90,40 @@ const danceLevels = [
 ] as const
 export type DanceLevel = Unwrap<typeof danceLevels>
 export const danceLevelSet: ReadonlySet<DanceLevel> = new Set(danceLevels)
+
+/**
+ * Create ScoreSchema from song, chart, user and score.
+ */
+export function createScoreSchema(
+  song: Pick<SongSchema | CourseSchema, 'id' | 'name' | 'deleted'>,
+  chart: Readonly<StepChartSchema | CourseChartSchema>,
+  user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
+  score: Readonly<ScoreBody>
+): ScoreSchema {
+  const scoreSchema: ScoreSchema = {
+    userId: user.id,
+    userName: user.name,
+    isPublic: user.isPublic,
+    songId: song.id,
+    songName: song.name,
+    playStyle: chart.playStyle,
+    difficulty: chart.difficulty,
+    level: chart.level,
+    score: score.score,
+    clearLamp: score.clearLamp,
+    rank: score.rank,
+  }
+  if (score.exScore) scoreSchema.exScore = score.exScore
+  if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
+  if (song.deleted) scoreSchema.deleted = true
+
+  if (!isAreaUser(user) && isSongChart(chart)) {
+    scoreSchema.radar = calcMyGrooveRadar(chart, score)
+  }
+
+  return scoreSchema
+
+  function isSongChart(chart: unknown): chart is StepChartSchema {
+    return hasIntegerProperty(chart, 'stream')
+  }
+}
