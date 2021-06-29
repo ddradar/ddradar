@@ -1,5 +1,5 @@
 import type { ScoreBody } from './api/score'
-import type { GrooveRadar, StepChartSchema } from './db'
+import type { ClearLamp, GrooveRadar, StepChartSchema } from './db'
 import { DanceLevel, danceLevelSet } from './db'
 import { hasIntegerProperty, hasStringProperty } from './typeUtils'
 
@@ -24,19 +24,14 @@ export function mergeScore(
   right: Readonly<ScoreBody>
 ): ScoreBody {
   const result: ScoreBody = {
-    score: left.score > right.score ? left.score : right.score,
-    clearLamp:
-      left.clearLamp > right.clearLamp ? left.clearLamp : right.clearLamp,
+    score: Math.max(left.score, right.score),
+    clearLamp: Math.max(left.clearLamp, right.clearLamp) as ClearLamp,
     rank: left.score > right.score ? left.rank : right.rank,
   }
-  const exScore =
-    (left.exScore ?? 0) > (right.exScore ?? 0) ? left.exScore : right.exScore
-  if (exScore !== undefined) result.exScore = exScore
-  const maxCombo =
-    (left.maxCombo ?? 0) > (right.maxCombo ?? 0)
-      ? left.maxCombo
-      : right.maxCombo
-  if (maxCombo !== undefined) result.maxCombo = maxCombo
+  if (left.exScore !== undefined || right.exScore !== undefined)
+    result.exScore = Math.max(left.exScore ?? 0, right.exScore ?? 0)
+  if (left.maxCombo !== undefined || right.maxCombo !== undefined)
+    result.maxCombo = Math.max(left.maxCombo ?? 0, right.maxCombo ?? 0)
   return result
 }
 
@@ -77,7 +72,7 @@ export function calcMyGrooveRadar(
 
   // Treat as miss:3 if Life 4 Clear
   const arrowCount =
-    score.clearLamp === 3 && maxCombo < note - 3 ? note - 3 : maxCombo
+    score.clearLamp === 3 ? Math.max(maxCombo, note - 3) : maxCombo
   const freezeCount = isFullCombo
     ? chart.freezeArrow
     : score.clearLamp === 3

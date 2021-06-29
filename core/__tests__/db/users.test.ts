@@ -1,4 +1,5 @@
-import { isUserSchema, UserSchema } from '../../db/users'
+import type { UserSchema } from '../../db/users'
+import { areaCodeSet, isAreaUser, isUserSchema } from '../../db/users'
 
 describe('./db/users.ts', () => {
   describe('isUserSchema', () => {
@@ -39,5 +40,15 @@ describe('./db/users.ts', () => {
     ])('(%p) returns true', obj => {
       expect(isUserSchema(obj)).toBe(true)
     })
+  })
+
+  describe('isAreaUser', () => {
+    test.each([...areaCodeSet].map(i => ({ id: `${i}` })))(
+      '(%p) returns true',
+      user => expect(isAreaUser(user)).toBe(true)
+    )
+    test.each(['000', '-1', '', 'foo'])('({ id: %s }) returns false', id =>
+      expect(isAreaUser({ id })).toBe(false)
+    )
   })
 })

@@ -4,8 +4,9 @@ import {
   areaHiddenUser,
   privateUser,
   publicUser,
+  testCourseData as course,
   testScores,
-  testSongData,
+  testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
@@ -18,7 +19,6 @@ jest.mock('@ddradar/db')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
-  const song = { ...testSongData, isCourse: false }
 
   const scores = new Map(testScores.map(d => [d.userId, d]))
 
@@ -282,26 +282,33 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${song.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
+  test(`/${course.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     const expected = {
       playStyle: 1,
       difficulty: 0,
       level: 4,
-      ...score,
+      score: 900000,
+      clearLamp: 2,
+      rank: 'AA',
     }
     req.body = [{ ...expected }]
 
     // Act
-    const result = await postSongScores(null, req, [
-      { ...song, isCourse: true },
-    ])
+    const result = await postSongScores(null, req, [course])
 
     // Assert
     expect(result.httpResponse.status).toBe(200)
     expect(result.httpResponse.body).toStrictEqual([
-      { ...scores.get(privateUser.id), ...expected },
+      {
+        ...expected,
+        userId: privateUser.id,
+        userName: privateUser.name,
+        isPublic: privateUser.isPublic,
+        songId: course.id,
+        songName: course.name,
+      },
     ])
   })
 

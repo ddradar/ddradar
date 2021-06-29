@@ -5,8 +5,9 @@ import {
   noPasswordUser,
   privateUser,
   publicUser,
+  testCourseData as course,
   testScores,
-  testSongData,
+  testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
@@ -17,7 +18,6 @@ jest.mock('@ddradar/db')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
-  const song = { ...testSongData, isCourse: false }
   const password = publicUser.password
 
   const scores = new Map(testScores.map(d => [d.userId, d]))
@@ -25,9 +25,9 @@ describe('POST /api/v1/scores', () => {
   const score: Api.ScoreBody = {
     score: 1000000,
     clearLamp: 7,
-    maxCombo: testSongData.charts[0].notes,
+    maxCombo: song.charts[0].notes,
     rank: 'AAA',
-    exScore: testSongData.charts[0].notes * 3,
+    exScore: song.charts[0].notes * 3,
   }
 
   beforeAll(async () => {
@@ -280,7 +280,7 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${song.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
+  test(`/${course.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
     // Arrange
     const expected = {
       playStyle: 1,
@@ -291,12 +291,7 @@ describe('POST /api/v1/scores', () => {
     req.body = { password, scores: [{ ...expected }] }
 
     // Act
-    const result = await postSongScores(
-      null,
-      req,
-      [{ ...song, isCourse: true }],
-      [privateUser]
-    )
+    const result = await postSongScores(null, req, [course], [privateUser])
 
     // Assert
     expect(result.httpResponse.status).toBe(200)

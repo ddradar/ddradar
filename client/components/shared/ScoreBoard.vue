@@ -168,19 +168,17 @@ export default class OrderDetailComponent extends Vue {
         this.chart.difficulty,
         this.fetchAllData ? 'full' : 'medium'
       )
-      this.scores = scores.map(s => {
-        const areaCodes = [...Database.areaCodeSet].map(i => `${i}`)
-        if (areaCodes.includes(s.userId)) {
-          return {
-            ...s,
-            isArea: true,
-            userName: this.$t('list.top', {
-              area: this.$t(`area.${s.userId}`),
-            }) as string,
-          }
-        }
-        return s
-      })
+      this.scores = scores.map(s =>
+        Database.isAreaUser({ id: s.userId })
+          ? {
+              ...s,
+              isArea: true,
+              userName: this.$t('list.top', {
+                area: this.$t(`area.${s.userId}`),
+              }) as string,
+            }
+          : s
+      )
     } catch {}
   }
 
