@@ -1,5 +1,5 @@
 import type { Api } from '@ddradar/core'
-import { Song } from '@ddradar/core'
+import { Database, Song } from '@ddradar/core'
 import {
   privateUser,
   publicUser,
@@ -70,6 +70,11 @@ describe('/components/shared/ScoreBoard.vue', () => {
   }
   const options = { localVue, propsData, mocks, i18n }
   let wrapper: ReturnType<typeof shallowMount>
+  beforeAll(() =>
+    mocked(Database.isAreaUser).mockImplementation(u =>
+      ['0', '13'].includes(u.id)
+    )
+  )
   beforeEach(() => {
     wrapper = shallowMount(ScoreBoard, options)
     mocked(Song.isDeletedOnGate).mockReturnValue(false)
