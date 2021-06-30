@@ -154,13 +154,12 @@ describe('POST /api/v1/scores', () => {
       2,
       { score: 890000, clearLamp: 4, rank: 'AA-', exScore: 200, maxCombo: 138 },
       { ...radar, stream: 25 },
-    ],
+    ], // user scores(old & new)
     [
       4,
       { score: 999620, clearLamp: 6, rank: 'AAA', exScore: 376, maxCombo: 138 },
       { ...radar, stream: 28 },
-    ],
-    [6, { ...mfcScore, maxCombo: 138, exScore: 414 }, radar],
+    ], // user scores and area top scores(old & new)
   ])(
     `/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if body is %p`,
     async (length, score, radar) => {
@@ -186,9 +185,9 @@ describe('POST /api/v1/scores', () => {
   )
 
   test.each([
-    [2, privateUser],
-    [4, areaHiddenUser],
-    [6, publicUser],
+    [2, privateUser], // privateUser scores(old & new)
+    [4, areaHiddenUser], // areaHiddenUser scores and world top scores(old & new)
+    [6, publicUser], // publicUser scores, area top scores, and world top scores(old & new)
   ])(
     `/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if user is %p`,
     async (length, user) => {
@@ -218,7 +217,7 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${course.id}/1/0 returns "200 OK" with JSON and documents[%i] if course`, async () => {
+  test(`/${course.id}/1/0 returns "200 OK" with JSON and documents if course`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     context.bindingData.songId = course.id
@@ -247,7 +246,7 @@ describe('POST /api/v1/scores', () => {
     expect(result.documents).toHaveLength(2)
   })
 
-  test(`/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if deleted song`, async () => {
+  test(`/${song.id}/1/0 returns "200 OK" with JSON and documents if deleted song`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     context.bindingData.songId = song.id
@@ -273,13 +272,7 @@ describe('POST /api/v1/scores', () => {
       ...mfcScore,
       maxCombo: 138,
       exScore: 414,
-      radar: {
-        stream: song.charts[0].stream,
-        voltage: song.charts[0].voltage,
-        air: song.charts[0].air,
-        freeze: song.charts[0].freeze,
-        chaos: song.charts[0].chaos,
-      },
+      radar,
       deleted: true,
     })
     expect(result.documents).toHaveLength(2)

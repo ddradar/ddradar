@@ -70,7 +70,7 @@ export default async function (
         Score.setValidScoreFromChart(chart, score)
       )
     )
-    await fetchMergedScore(chart, user, score)
+    await updateScore(chart, user, score)
 
     // World Record
     if (score.topScore) {
@@ -79,23 +79,22 @@ export default async function (
         clearLamp: 2,
         rank: Score.getDanceLevel(score.topScore),
       }
-      await fetchMergedScore(chart, topUser, topScore)
+      await updateScore(chart, topUser, topScore)
     } else if (user.isPublic) {
-      await fetchMergedScore(chart, topUser, score)
+      await updateScore(chart, topUser, score)
     }
 
     // Area Top
     if (user.isPublic && user.area) {
       const area = `${user.area}`
       const areaUser = { ...topUser, id: area, name: area }
-      await fetchMergedScore(chart, areaUser, score)
+      await updateScore(chart, areaUser, score)
     }
   }
 
   return { httpResponse: new SuccessResult(body), documents }
 
-  /** Merge score is merged old one. */
-  async function fetchMergedScore(
+  async function updateScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Api.ScoreBody>

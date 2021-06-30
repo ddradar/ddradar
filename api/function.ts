@@ -15,7 +15,7 @@ export type NoContentResult = {
 
 /**
  * Get context.bindingData[key] as number
- * workaround for https://github.com/Azure/azure-functions-host/issues/6055
+ * workaround for https://github.com/Azure/azure-functions-nodejs-worker/issues/377
  */
 export function getBindingNumber(
   bindingData: { [key: string]: unknown },

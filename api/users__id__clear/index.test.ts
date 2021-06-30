@@ -5,7 +5,7 @@ import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import getGrooveRadar from '.'
+import getClearCount from '.'
 
 jest.mock('../auth')
 
@@ -33,7 +33,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
 
   test('/foo/clear returns "404 Not Found"', async () => {
     // Arrange - Act
-    const result = await getGrooveRadar(null, req, [], [], total)
+    const result = await getClearCount(null, req, [], [], total)
 
     // Assert
     expect(result.status).toBe(404)
@@ -42,7 +42,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
   test(`/${privateUser.id}/clear returns "404 Not Found"`, async () => {
     // Arrange - Act
     const users = [privateUser]
-    const result = await getGrooveRadar(null, req, users, statuses, total)
+    const result = await getClearCount(null, req, users, statuses, total)
 
     // Assert
     expect(result.status).toBe(404)
@@ -51,7 +51,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
   test(`/${publicUser.id}/clear returns "200 OK" with JSON body`, async () => {
     // Arrange - Act
     const users = [publicUser]
-    const result = await getGrooveRadar(null, req, users, statuses, total)
+    const result = await getClearCount(null, req, users, statuses, total)
 
     // Assert
     expect(result.status).toBe(200)
@@ -73,7 +73,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
       const users = [publicUser]
 
       // Act
-      const result = await getGrooveRadar(null, req, users, statuses, total)
+      const result = await getClearCount(null, req, users, statuses, total)
 
       // Assert
       expect(result.status).toBe(200)
@@ -82,13 +82,13 @@ describe('GET /api/v1/users/{id}/clear', () => {
     }
   )
 
-  test(`/${privateUser.id}/radar returns "200 OK" with JSON body if loggedIn`, async () => {
+  test(`/${privateUser.id}/clear returns "200 OK" with JSON body if loggedIn`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     const users = [privateUser]
 
     // Act
-    const result = await getGrooveRadar(null, req, users, statuses, total)
+    const result = await getClearCount(null, req, users, statuses, total)
 
     // Assert
     expect(result.status).toBe(200)

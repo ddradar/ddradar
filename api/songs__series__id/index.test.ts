@@ -19,7 +19,7 @@ describe('GET /api/v1/songs/series/{series}', () => {
   test.each([
     ['25', [songs[0]]],
     ['28', [songs[1]]],
-  ])('?series=%s returns "200 OK" with %p', async (name, expected) => {
+  ])('?name=%s returns "200 OK" with %p', async (name, expected) => {
     // Arrange
     req.query.name = name
 
@@ -31,7 +31,7 @@ describe('GET /api/v1/songs/series/{series}', () => {
     expect(result.body).toStrictEqual(expected)
   })
 
-  test('?series=1 returns "404 Not Found"', async () => {
+  test('?name=1 returns "404 Not Found"', async () => {
     // Arrange
     req.query.name = '1'
 
