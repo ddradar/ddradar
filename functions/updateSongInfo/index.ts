@@ -5,7 +5,7 @@ import { fetchTotalChartCount, getContainer } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
   Database.ClearStatusSchema,
-  'level' | 'playStyle' | 'count'
+  'level' | 'playStyle' | 'count' | 'userId'
 >
 type UpdateSongResult = {
   scores: Database.ScoreSchema[]
@@ -20,7 +20,7 @@ type UpdateSongResult = {
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
   songs: (Database.SongSchema | Database.CourseSchema)[],
-  oldTotalCounts: Required<Omit<TotalCount, 'count'>>[]
+  oldTotalCounts: Required<Omit<TotalCount, 'count' | 'userId'>>[]
 ): Promise<UpdateSongResult> {
   const scores: (Database.ScoreSchema & ItemDefinition)[] = []
 
@@ -118,6 +118,7 @@ export default async function (
 
   const newTotalCounts = await fetchTotalChartCount()
   const details = newTotalCounts.map(r => ({
+    userId: '0',
     ...r,
     id: oldTotalCounts.find(
       d => d.playStyle === r.playStyle && d.level === r.level
