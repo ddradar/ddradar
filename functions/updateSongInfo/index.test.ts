@@ -86,7 +86,10 @@ describe('/updateSongInfo/index.ts', () => {
     const result = await updateSongInfo(context, [], oldCounts)
 
     // Assert
-    expect(result).toStrictEqual({ scores: [], details: newCounts })
+    expect(result).toStrictEqual({
+      scores: [],
+      details: newCounts.map(d => ({ ...d, userId: '0' })),
+    })
   })
 
   test('returns { scores: [emptyScore] } with log.info if scores is empty', async () => {
@@ -103,7 +106,7 @@ describe('/updateSongInfo/index.ts', () => {
         },
         emptyScore,
       ],
-      details: newCounts.map(d => ({ ...d, id: undefined })),
+      details: newCounts.map(d => ({ ...d, id: undefined, userId: '0' })),
     })
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
@@ -118,7 +121,7 @@ describe('/updateSongInfo/index.ts', () => {
     const result = await updateSongInfo(context, [song], oldCounts)
 
     // Assert
-    expect(result).toStrictEqual({ scores: [emptyScore], details: newCounts })
+    expect(result.scores).toStrictEqual([emptyScore])
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -132,7 +135,7 @@ describe('/updateSongInfo/index.ts', () => {
     const result = await updateSongInfo(context, [song], oldCounts)
 
     // Assert
-    expect(result).toStrictEqual({ scores: [emptyScore], details: newCounts })
+    expect(result.scores).toStrictEqual([emptyScore])
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -147,7 +150,7 @@ describe('/updateSongInfo/index.ts', () => {
     const result = await updateSongInfo(context, [song], oldCounts)
 
     // Assert
-    expect(result).toStrictEqual({ scores: [emptyScore], details: newCounts })
+    expect(result.scores).toStrictEqual([emptyScore])
     expect(context.log.error).toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -165,10 +168,7 @@ describe('/updateSongInfo/index.ts', () => {
     const result = await updateSongInfo(context, [song], oldCounts)
 
     // Assert
-    expect(result).toStrictEqual({
-      scores: [validScore, emptyScore],
-      details: newCounts,
-    })
+    expect(result.scores).toStrictEqual([validScore, emptyScore])
     expect(context.log.error).not.toBeCalled()
     expect(context.log.warn).not.toBeCalled()
     expect(context.log.info).toBeCalled()
@@ -188,14 +188,11 @@ describe('/updateSongInfo/index.ts', () => {
       )
 
       // Assert
-      expect(result).toStrictEqual({
-        scores: [
-          { ...validScore, deleted: true },
-          { ...worldScore, deleted: true },
-          { ...emptyScore, deleted: true },
-        ],
-        details: newCounts,
-      })
+      expect(result.scores).toStrictEqual([
+        { ...validScore, deleted: true },
+        { ...worldScore, deleted: true },
+        { ...emptyScore, deleted: true },
+      ])
       expect(context.log.error).not.toBeCalled()
       expect(context.log.warn).not.toBeCalled()
       expect(context.log.info).toBeCalled()
