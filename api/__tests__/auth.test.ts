@@ -1,4 +1,5 @@
 import type { HttpRequest } from '@azure/functions'
+import { publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
@@ -79,20 +80,13 @@ describe('auth.ts', () => {
 
     test('({ Registered user }) returns UserSchema', async () => {
       // Arrange
-      const userSchema = {
-        id: 'registered_user',
-        loginId: 'registered_user',
-        area: 0,
-        isPublic: false,
-        name: 'Registered user',
-      } as const
-      mocked(fetchLoginUser).mockResolvedValueOnce(userSchema)
+      mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'registered_user' })
 
       // Assert
-      expect(user).toBe(userSchema)
+      expect(user).toBe(publicUser)
     })
   })
 })

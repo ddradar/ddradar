@@ -9,18 +9,16 @@ export default async function (
   req: Pick<HttpRequest, 'query'>,
   documents: Database.NotificationSchema[]
 ): Promise<SuccessResult<Api.NotificationListData[]>> {
-  const scope = req.query.scope === 'top' ? 'top' : 'full'
-
-  const body = documents
-    .filter(n => scope === 'full' || n.pinned)
-    .map(n => ({
-      id: n.id,
-      type: n.type,
-      icon: n.icon,
-      title: n.title,
-      body: n.body,
-      timeStamp: n.timeStamp,
-    }))
-
-  return new SuccessResult(body)
+  return new SuccessResult(
+    documents
+      .filter(n => req.query.scope !== 'top' || n.pinned)
+      .map(n => ({
+        id: n.id,
+        type: n.type,
+        icon: n.icon,
+        title: n.title,
+        body: n.body,
+        timeStamp: n.timeStamp,
+      }))
+  )
 }

@@ -1,5 +1,5 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import { privateUser, testScores } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
@@ -9,30 +9,18 @@ jest.mock('../auth')
 
 describe('GET /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  const user = {
-    id: 'private_user',
-    loginId: 'private_user',
-    name: 'EMI',
-    area: 13,
-    isPublic: false,
-  } as const
-  const score = {
-    songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-    songName: 'PARANOiA',
-    playStyle: 1,
-    difficulty: 0,
-    level: 4,
-    score: 1000000,
-    clearLamp: 7,
-    rank: 'AAA',
-    isPublic: false,
-  } as const
-  const scores: Database.ScoreSchema[] = [
-    { userId: '0', userName: '0', ...score, exScore: 138 * 3, maxCombo: 138 },
-    { userId: '13', userName: '13', ...score },
-    { userId: 'public_user', userName: 'AFRO', ...score, isPublic: true },
-    { userId: 'other_user', userName: 'ZERO', ...score, isPublic: false },
-    { userId: user.id, userName: user.name, ...score, isPublic: user.isPublic },
+
+  const user = { ...privateUser, area: 13 } as const
+
+  const userScore = { ...testScores[4] }
+  delete userScore.exScore
+  delete userScore.maxCombo
+  const scores = [
+    testScores[0],
+    testScores[1],
+    testScores[2],
+    { ...userScore, userId: 'other_user', userName: 'ZERO', isPublic: false },
+    userScore,
   ]
 
   const omitScore = (i: number) => ({

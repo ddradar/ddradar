@@ -1,4 +1,7 @@
 import type { ScoreSchema } from '../db/scores'
+import { isScore } from '../score'
+import { difficultyMap, playStyleMap } from '../song'
+import { hasIntegerProperty, hasProperty } from '../typeUtils'
 
 /**
  * Object type returned by `/api/v1/scores/{:songId}/{:playStyle}/{:difficulty}`
@@ -29,3 +32,13 @@ export type ScoreListBody = Pick<
   | 'clearLamp'
   | 'rank'
 > & { topScore?: number }
+
+export function isScoreListBody(obj: unknown): obj is ScoreListBody {
+  return (
+    isScore(obj) &&
+    hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
+    (playStyleMap as ReadonlyMap<number, string>).has(obj.playStyle) &&
+    (difficultyMap as ReadonlyMap<number, string>).has(obj.difficulty) &&
+    (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
+  )
+}

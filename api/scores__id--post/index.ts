@@ -1,13 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
-import type { Api } from '@ddradar/core'
-import {
-  Database,
-  hasIntegerProperty,
-  hasProperty,
-  Score,
-  Song,
-} from '@ddradar/core'
+import { Api, Database, Score } from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
 
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
@@ -25,6 +18,13 @@ type PostSongScoresResponse = {
 }
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
+
+/** Assert request body is valid schema. */
+function isValidBody(body: unknown): body is Api.ScoreListBody[] {
+  return (
+    Array.isArray(body) && body.length > 0 && body.every(Api.isScoreListBody)
+  )
+}
 
 /** Add or update score that match the specified chart. */
 export default async function (
@@ -70,7 +70,7 @@ export default async function (
         Score.setValidScoreFromChart(chart, score)
       )
     )
-    await fetchMergedScore(chart, user, score)
+    await updateScore(chart, user, score)
 
     // World Record
     if (score.topScore) {
@@ -79,42 +79,22 @@ export default async function (
         clearLamp: 2,
         rank: Score.getDanceLevel(score.topScore),
       }
-      await fetchMergedScore(chart, topUser, topScore)
+      await updateScore(chart, topUser, topScore)
     } else if (user.isPublic) {
-      await fetchMergedScore(chart, topUser, score)
+      await updateScore(chart, topUser, score)
     }
 
     // Area Top
     if (user.isPublic && user.area) {
       const area = `${user.area}`
       const areaUser = { ...topUser, id: area, name: area }
-      await fetchMergedScore(chart, areaUser, score)
+      await updateScore(chart, areaUser, score)
     }
   }
 
   return { httpResponse: new SuccessResult(body), documents }
 
-  /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is Api.ScoreListBody[] {
-    return (
-      Array.isArray(body) && body.length > 0 && body.every(d => isScoreBody(d))
-    )
-
-    function isScoreBody(obj: unknown): obj is Api.ScoreListBody {
-      return (
-        Score.isScore(obj) &&
-        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-        (Song.playStyleMap as ReadonlyMap<number, string>).has(obj.playStyle) &&
-        (Song.difficultyMap as ReadonlyMap<number, string>).has(
-          obj.difficulty
-        ) &&
-        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
-      )
-    }
-  }
-
-  /** Merge score is merged old one. */
-  async function fetchMergedScore(
+  async function updateScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
     score: Readonly<Api.ScoreBody>

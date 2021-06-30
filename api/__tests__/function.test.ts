@@ -8,8 +8,8 @@ describe('./function.ts', () => {
       [0, 0],
       [NaN, NaN],
       [{ string: '0', data: 'string' }, 0],
-    ])('({ key: %p }, "key") returns %d', (key, num) => {
+    ])('({ key: %p }, "key") returns %d', (key, num) =>
       expect(getBindingNumber({ key }, 'key')).toBe(num)
-    })
+    )
   })
 })

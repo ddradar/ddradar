@@ -4,7 +4,6 @@ import {
   areaHiddenUser,
   privateUser,
   publicUser,
-  testCourseData as course,
   testScores,
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
@@ -46,7 +45,10 @@ describe('POST /api/v1/scores', () => {
     )
   })
 
-  beforeEach(() => (req.body = {}))
+  beforeEach(() => {
+    req.body = {}
+    mocked(getLoginUserInfo).mockReset()
+  })
 
   test('returns "401 Unauthenticated" if no authentication', async () => {
     // Arrange
@@ -57,25 +59,6 @@ describe('POST /api/v1/scores', () => {
 
     // Assert
     expect(result.httpResponse.status).toBe(401)
-  })
-
-  test.each([
-    undefined,
-    [],
-    [{ score: 50000000 }],
-    [{ ...score }],
-    [{ ...score, playStyle: 'SINGLE', difficulty: 'BEGINNER' }],
-    [{ ...score, playStyle: 1, difficulty: 5 }],
-    [{ ...score, playStyle: 3, difficulty: 0 }],
-  ])('returns "400 Bad Request" if body is %p', async body => {
-    // Arrange
-    req.body = body
-
-    // Act
-    const result = await postSongScores(null, req, [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(400)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -119,19 +102,20 @@ describe('POST /api/v1/scores', () => {
     }
   )
 
-  test(`/${song.id} returns "400 Bad Request" if body is invalid Score`, async () => {
+  test.each([
+    { score: 50000000 },
+    {
+      playStyle: 1,
+      difficulty: 0,
+      score: 90000,
+      clearLamp: 2,
+      rank: 'E',
+      exScore: 1000,
+    },
+  ])(`/${song.id} returns "400 Bad Request" if body is [%p]`, async score => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    req.body = [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        score: 90000,
-        clearLamp: 2,
-        rank: 'E',
-        exScore: 1000,
-      },
-    ]
+    mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+    req.body = [score]
 
     // Act
     const result = await postSongScores(null, req, [song])
@@ -170,37 +154,6 @@ describe('POST /api/v1/scores', () => {
     expect(result.documents?.[1].score).toBe(expected.score)
     expect(result.documents?.[2].score).toBe(expected.score)
   })
-
-  test.each([
-    [950000, 2],
-    [999510, 6],
-    [1000000, 7],
-  ])(
-    'inserts { score: %i, clearLamp: %i } for world top',
-    async (topScore, clearLamp) => {
-      // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      const expected = {
-        playStyle: 1,
-        difficulty: 1,
-        level: 8,
-        score: 900000,
-        clearLamp: 4,
-        rank: 'AA',
-        maxCombo: 264,
-        exScore: 700,
-      }
-      req.body = [{ ...expected, topScore }]
-
-      // Act
-      const result = await postSongScores(null, req, [song])
-
-      // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.documents?.[1].score).toBe(topScore)
-      expect(result.documents?.[1].clearLamp).toBe(clearLamp)
-    }
-  )
 
   test.each([
     [
@@ -281,59 +234,6 @@ describe('POST /api/v1/scores', () => {
       expect(result.documents).toHaveLength(length)
     }
   )
-
-  test(`/${course.id} returns "200 OK" with JSON and documents[%i] if course`, async () => {
-    // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    const expected = {
-      playStyle: 1,
-      difficulty: 0,
-      level: 4,
-      score: 900000,
-      clearLamp: 2,
-      rank: 'AA',
-    }
-    req.body = [{ ...expected }]
-
-    // Act
-    const result = await postSongScores(null, req, [course])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(200)
-    expect(result.httpResponse.body).toStrictEqual([
-      {
-        ...expected,
-        userId: privateUser.id,
-        userName: privateUser.name,
-        isPublic: privateUser.isPublic,
-        songId: course.id,
-        songName: course.name,
-      },
-    ])
-  })
-
-  test(`/${song.id} returns "200 OK" with JSON and documents[%i] if deleted song`, async () => {
-    // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    const expected = {
-      playStyle: 1,
-      difficulty: 0,
-      level: 4,
-      ...score,
-      deleted: true,
-      radar,
-    }
-    req.body = [{ ...expected }]
-
-    // Act
-    const result = await postSongScores(null, req, [{ ...song, deleted: true }])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(200)
-    expect(result.httpResponse.body).toStrictEqual([
-      { ...scores.get(privateUser.id), ...expected },
-    ])
-  })
 
   test(`/${song.id} updates World Top if topScore is defined`, async () => {
     // Arrange

@@ -5,7 +5,7 @@ import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
-import getClearStatus from '.'
+import getScoreCount from '.'
 
 jest.mock('../auth')
 
@@ -33,7 +33,7 @@ describe('GET /api/v1/users/{id}/score', () => {
 
   test('/not_exists_user/score returns "404 Not Found"', async () => {
     // Arrange - Act
-    const result = await getClearStatus(null, req, [], [], total)
+    const result = await getScoreCount(null, req, [], [], total)
 
     // Assert
     expect(result.status).toBe(404)
@@ -42,7 +42,7 @@ describe('GET /api/v1/users/{id}/score', () => {
   test(`/${privateUser.id}/score returns "404 Not Found"`, async () => {
     // Arrange - Act
     const users = [privateUser]
-    const result = await getClearStatus(null, req, users, scores, total)
+    const result = await getScoreCount(null, req, users, scores, total)
 
     // Assert
     expect(result.status).toBe(404)
@@ -51,7 +51,7 @@ describe('GET /api/v1/users/{id}/score', () => {
   test(`/${publicUser.id}/score returns "200 OK" with JSON body`, async () => {
     // Arrange - Act
     const users = [publicUser]
-    const result = await getClearStatus(null, req, users, scores, total)
+    const result = await getScoreCount(null, req, users, scores, total)
 
     // Assert
     expect(result.status).toBe(200)
@@ -72,7 +72,7 @@ describe('GET /api/v1/users/{id}/score', () => {
       const users = [publicUser]
 
       // Act
-      const result = await getClearStatus(null, req, users, scores, total)
+      const result = await getScoreCount(null, req, users, scores, total)
 
       // Assert
       expect(result.status).toBe(200)
@@ -87,7 +87,7 @@ describe('GET /api/v1/users/{id}/score', () => {
     const users = [privateUser]
 
     // Act
-    const result = await getClearStatus(null, req, users, scores, total)
+    const result = await getScoreCount(null, req, users, scores, total)
 
     // Assert
     expect(result.status).toBe(200)
