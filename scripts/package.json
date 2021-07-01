@@ -4,6 +4,9 @@
   "description": "Scripts for DDRadar",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=10"
+  },
   "scripts": {
     "build": "tsc",
     "test": "echo \"no test\"",
