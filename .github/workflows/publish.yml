@@ -49,3 +49,4 @@ jobs:
           skip_app_build: true
           api_location: api
           api_build_command: yarn build
+          config_file_location: /
