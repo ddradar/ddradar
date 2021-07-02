@@ -36,37 +36,27 @@ export function fetchScore(
   )
 }
 
-const sumTarget =
-  'WHERE IS_DEFINED(c.radar) AND (NOT IS_DEFINED(c.ttl)) AND NOT (IS_DEFINED(c.deleted) AND c.deleted = true) '
-
-export async function fetchSummeryClearLampCount(): Promise<
+export function fetchSummaryClearLampCount(): Promise<
   Database.ClearStatusSchema[]
 > {
-  const container = getContainer('Scores')
-
-  const { resources } = await container.items
-    .query<Database.ClearStatusSchema>(
-      'SELECT c.userId, "clear" AS type, c.playStyle, c.level, c.clearLamp, COUNT(1) AS count FROM c ' +
-        sumTarget +
-        'GROUP BY c.userId, c.playStyle, c.level, c.clearLamp'
-    )
-    .fetchAll()
-
-  return resources
+  return summaryScores<Database.ClearStatusSchema>('score', 'rank')
 }
 
-export async function fetchSummeryRankCount(): Promise<
-  Database.ScoreStatusSchema[]
-> {
-  const container = getContainer('Scores')
+export function fetchSummaryRankCount(): Promise<Database.ScoreStatusSchema[]> {
+  return summaryScores<Database.ScoreStatusSchema>('score', 'rank')
+}
 
+async function summaryScores<T>(
+  type: string,
+  groupedProp: keyof Database.ScoreSchema
+) {
+  const container = getContainer('Scores')
   const { resources } = await container.items
-    .query<Database.ScoreStatusSchema>(
-      'SELECT c.userId, "score" AS type, c.playStyle, c.level, c.rank, COUNT(1) AS count FROM c ' +
-        sumTarget +
-        'GROUP BY c.userId, c.playStyle, c.level, c.rank'
+    .query<T>(
+      `SELECT c.userId, "${type}" AS type, c.playStyle, c.level, c.${groupedProp}, COUNT(1) AS count ` +
+        'WHERE IS_DEFINED(c.radar) AND (NOT IS_DEFINED(c.ttl)) AND NOT (IS_DEFINED(c.deleted) AND c.deleted = true)' +
+        `GROUP BY c.userId, c.playStyle, c.level, c.${groupedProp}`
     )
     .fetchAll()
-
   return resources
 }
