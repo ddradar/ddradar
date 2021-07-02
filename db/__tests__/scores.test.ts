@@ -5,8 +5,8 @@ import { mocked } from 'ts-jest/utils'
 import { fetchOne, getContainer } from '../database'
 import {
   fetchScore,
-  fetchSummeryClearLampCount,
-  fetchSummeryRankCount,
+  fetchSummaryClearLampCount,
+  fetchSummaryRankCount,
 } from '../scores'
 
 jest.mock('../database')
@@ -49,7 +49,7 @@ describe('scores.ts', () => {
       expect(mocked(fetchOne)).toBeCalled()
     })
   })
-  describe('fetchSummeryClearLampCount', () => {
+  describe('fetchSummaryClearLampCount', () => {
     test('returns ClearStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
@@ -66,14 +66,14 @@ describe('scores.ts', () => {
       mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
-      const result = await fetchSummeryClearLampCount()
+      const result = await fetchSummaryClearLampCount()
 
       // Assert
       expect(result).toHaveLength(length)
     })
   })
 
-  describe('fetchSummeryRankCount()', () => {
+  describe('fetchSummaryRankCount()', () => {
     test('returns ScoreStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
@@ -90,7 +90,7 @@ describe('scores.ts', () => {
       mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
-      const result = await fetchSummeryRankCount()
+      const result = await fetchSummaryRankCount()
 
       // Assert
       expect(result).toHaveLength(length)
