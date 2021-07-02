@@ -61,7 +61,7 @@ export async function fetchOne<T extends ContainerName, U extends DbItem<T>>(
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
-  const query = `SELECT TOP 1 ${column} FROM c WHERE ${condition}`
+  const query = `SELECT ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
