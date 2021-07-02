@@ -43,7 +43,7 @@ export function fetchSummaryClearLampCount(): Promise<
 }
 
 export function fetchSummaryRankCount(): Promise<Database.ScoreStatusSchema[]> {
-  return summaryScores<Database.ScoreStatusSchema>('score', 'rank')
+  return summaryScores<Database.ScoreStatusSchema>('clear', 'clearLamp')
 }
 
 async function summaryScores<T>(
