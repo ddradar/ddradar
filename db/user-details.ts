@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { getContainer } from '.'
+import { getContainer } from './database'
 
 export async function generateGrooveRadar(
   userId: string,

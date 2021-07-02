@@ -2,10 +2,10 @@ import type { Container } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '..'
+import { getContainer } from '../database'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
 
-jest.mock('..')
+jest.mock('../database')
 
 describe('user-details.ts', () => {
   describe('generateGrooveRadar()', () => {

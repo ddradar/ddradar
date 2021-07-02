@@ -2,10 +2,10 @@ import type { Container } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '..'
+import { getContainer } from '../database'
 import { fetchTotalChartCount } from '../songs'
 
-jest.mock('..')
+jest.mock('../database')
 
 describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {

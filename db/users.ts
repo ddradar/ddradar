@@ -1,6 +1,7 @@
 import type { Api, Database } from '@ddradar/core'
 
-import { Condition, fetchList, fetchOne } from '.'
+import type { Condition } from './database'
+import { fetchList, fetchOne } from './database'
 
 export function fetchUser(id: string): Promise<Database.UserSchema | null> {
   return fetchOne(

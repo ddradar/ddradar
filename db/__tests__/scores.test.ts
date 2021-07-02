@@ -2,14 +2,14 @@ import type { Container, ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchOne, getContainer } from '..'
+import { fetchOne, getContainer } from '../database'
 import {
   fetchScore,
   fetchSummeryClearLampCount,
   fetchSummeryRankCount,
 } from '../scores'
 
-jest.mock('..')
+jest.mock('../database')
 
 describe('scores.ts', () => {
   describe('fetchScore', () => {

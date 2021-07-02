@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { fetchOne, getContainer } from '.'
+import { fetchOne, getContainer } from './database'
 
 export function fetchScore(
   userId: string,
