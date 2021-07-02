@@ -39,7 +39,7 @@ export function fetchScore(
 }
 
 const sumTarget =
-  'WHERE IS_DEFINED(c.radar) AND (NOT IS_DEFINED(c.ttl)) AND (c.deleted ?? false) != true '
+  'WHERE IS_DEFINED(c.radar) AND (NOT IS_DEFINED(c.ttl)) AND NOT (IS_DEFINED(c.deleted) AND c.deleted = true) '
 
 export async function fetchSummeryClearLampCount(): Promise<
   Database.ClearStatusSchema[]
