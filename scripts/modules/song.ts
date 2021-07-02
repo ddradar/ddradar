@@ -62,7 +62,7 @@ export function isCourse(songId: string): boolean {
     '08io99Obq06Oq6bD6Pq999PDOOb6Oo8o', // SNOW WHITE
     'DO1OqlIdi9O0IDIQ9il1IoOqI86Id0Q0', // PARTY ANTHEMS
     'qqbIDd9DoQi1i0lod19QQDi91QoiQqll', // FANTASY
-    // NIGHT DRIVE
-    // FUTURE
+    'd1Qbdol98D6Pdb9dQDOQb911i9QQO8lP', // NIGHT DRIVE
+    'PQ0bDbI9dPQQ81iPO6lo0IDobb8q66Oq', // FUTURE
   ].includes(songId)
 }
