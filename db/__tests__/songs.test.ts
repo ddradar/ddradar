@@ -36,7 +36,7 @@ describe('songs.ts', () => {
         query:
           'SELECT c.playStyle, c.level, COUNT(1) AS count ' +
           'FROM s JOIN c IN s.charts ' +
-          'WHERE s.nameIndex != -1 AND s.nameIndex != -2 AND (s.deleted ?? false != true) ' +
+          'WHERE s.nameIndex != -1 AND s.nameIndex != -2 AND NOT (IS_DEFINED(s.deleted) AND s.deleted = true) ' +
           'GROUP BY c.playStyle, c.level',
       })
     })
