@@ -1,32 +1,19 @@
 import type { Container } from '@azure/cosmos'
-import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../database'
 import { fetchTotalChartCount } from '../songs'
+import { createMockContainer } from './util'
 
 jest.mock('../database')
 
 describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {
-    let resources: Pick<
-      Database.ClearStatusSchema,
-      'level' | 'playStyle' | 'count'
-    >[] = []
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
-
     test('returns [] ', async () => {
+      // Arrange
+      const container = createMockContainer([])
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
+
       // Act
       const result = await fetchTotalChartCount()
 

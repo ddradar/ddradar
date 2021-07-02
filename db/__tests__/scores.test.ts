@@ -8,16 +8,9 @@ import {
   fetchSummaryClearLampCount,
   fetchSummaryRankCount,
 } from '../scores'
+import { createMockContainer } from './util'
 
 jest.mock('../database')
-
-function createMockContainer<T>(resources: T[]) {
-  return {
-    items: {
-      query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-    },
-  }
-}
 
 describe('scores.ts', () => {
   describe('fetchScore', () => {
