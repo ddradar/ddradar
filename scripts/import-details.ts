@@ -1,24 +1,30 @@
-/* eslint-disable no-console */
-/* eslint-disable node/no-process-env */
+import { config } from 'dotenv'
+
+// load .env file
+config()
+
 import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import { config } from 'dotenv'
+import consola from 'consola'
 import fetch from 'node-fetch'
 import { launch } from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
-// load .env file
-config()
-
-const executablePath = process.env.CHROME_EXE_PATH
-const userDataDir = process.env.CHROME_USER_PATH
-
-const apiBasePath = process.env.BASE_URI
+/* eslint-disable node/no-process-env */
+const {
+  CHROME_EXE_PATH: executablePath,
+  CHROME_USER_PATH: userDataDir,
+  BASE_URI: apiBasePath,
+} = process.env
+/* eslint-enable node/no-process-env */
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
+
+const style = Song.playStyleMap
+const diff = Song.difficultyMap
 
 async function main(userId: string, password: string) {
   const browser = await launch({ executablePath, userDataDir })
@@ -26,7 +32,7 @@ async function main(userId: string, password: string) {
   const page = (await browser.pages())[0] || (await browser.newPage())
 
   if (!(await isLoggedIn(page))) {
-    console.warn('Need Login e-AMUSEMENT GATE')
+    consola.warn('Please Login e-AMUSEMENT GATE manually')
     await browser.close()
     return
   }
@@ -43,14 +49,21 @@ async function main(userId: string, password: string) {
     })
     .fetchAll()
 
+  let count = 1
   for (const s of resources) {
-    console.info(`[Song] ${s.name} START`)
+    const songScope = consola.withScope('song')
+    const songName = `(${count++}/${resources.length + 1}) ${s.name} (${s.id})`
+    if (Song.isDeletedOnGate(s.id)) {
+      songScope.info(`${songName} Deleted on e-AMUSEMENT GATE. skiped.`)
+      continue
+    }
+    songScope.start(songName)
+
     const scores: Api.ScoreListBody[] = []
+
     for (const c of s.charts) {
-      const chart = `${Song.playStyleMap.get(
-        c.playStyle
-      )}/${Song.difficultyMap.get(c.difficulty)}`
-      console.log(`  (${chart}) loading score detail`)
+      const chartScope = songScope.withScope('chart')
+      const chart = `${style.get(c.playStyle)}/${diff.get(c.difficulty)}`
 
       try {
         const score = await fetchScoreDetail(
@@ -59,36 +72,49 @@ async function main(userId: string, password: string) {
           c.playStyle,
           c.difficulty
         )
-        if (score) scores.push(score)
+        if (score) {
+          scores.push(score)
+          chartScope.success(`${chart} loaded. wait 3 seconds...`)
+        }
       } catch (e) {
         const message: string = e?.message ?? e
-        if (!/NO PLAY/.test(message)) throw e
-        console.info(`  (${chart}) NO PLAY.`)
+        if (!/NO PLAY/.test(message)) {
+          await browser.close()
+          throw e
+        }
+        chartScope.info('NO PLAY. wait 3 seconds...')
       }
-
-      console.log(`  (${chart}) loaded. wait 3 seconds...`)
       await sleep(3000)
     }
 
     if (scores.length === 0) {
-      console.log('  No scores. skiped')
-      console.info(`[Song] ${s.name} END`)
+      songScope.info('No scores. skiped')
       continue
     }
-    console.log('  Call API start')
+
     const apiUri = `${apiBasePath}/api/v1/scores/${s.id}/${userId}`
-    const response = await fetch(apiUri, {
+    const res = await fetch(apiUri, {
       method: 'post',
       body: JSON.stringify({ password, scores }),
       headers: { 'Content-Type': 'application/json' },
     })
-    console.log(`  API returns ${response.statusText}`)
 
-    console.info(`[Song] ${s.name} END`)
+    if (!res.ok) {
+      const errorText = await res.text()
+      songScope.error(
+        'API returns %i: %s.\n%s',
+        res.status,
+        res.statusText,
+        errorText
+      )
+      continue
+    }
+    songScope.success(songName)
   }
 
+  consola.success('Finished')
   await browser.close()
 }
 
 // yarn start ./import-details.ts userId password
-main(process.argv[2], process.argv[3]).catch(e => console.error(e))
+main(process.argv[2], process.argv[3]).catch(e => consola.error(e))

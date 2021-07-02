@@ -8,17 +8,17 @@ import { getContainer } from '@ddradar/db'
 import consola from 'consola'
 
 const courseInfo = {
-  id: '00000000000000000000000000000000',
+  id: 'PQ0bDbI9dPQQ81iPO6lo0IDobb8q66Oq',
   name: 'FUTURE',
   nameKana: 'C-A20PLUS-14',
   nameIndex: -1,
   series: 'DanceDanceRevolution A20 PLUS',
 } as const
 const ids = [
-  '00000000000000000000000000000000', // 1st
-  '00000000000000000000000000000000', // 2nd
-  '00000000000000000000000000000000', // 3rd
-  '00000000000000000000000000000000', // FINAL
+  '6I0d1d8d690dl8boOb60O1Iq1Ddi6P8d', // 1st
+  'I1DiOI16Id0qdlqbQ6ObPlilDP1oiI98', // 2nd
+  'D686d06lO9IID8D0boPq0Pd8P89idO99', // 3rd
+  '6ID160b99ibbd9OoblD0DPOl98lPbq6D', // FINAL
 ]
 
 async function main() {
@@ -26,7 +26,7 @@ async function main() {
   const container = getContainer('Songs')
   const { resources } = await container.items
     .query<Database.SongSchema>({
-      query: 'SELECT * FROM c WHERE c.id IN @ids',
+      query: 'SELECT * FROM c WHERE ARRAY_CONTAINS(@ids, c.id)',
       parameters: [{ name: '@ids', value: ids }],
     })
     .fetchAll()
@@ -105,7 +105,7 @@ async function main() {
   }
 
   await container.items.create(course)
-  consola.ready(`Added ${course.name} (${course.id})`)
+  consola.success(`Added ${course.name} (${course.id})`)
 }
 
 // yarn start ./generate-course.ts
