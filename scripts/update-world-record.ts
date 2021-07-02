@@ -5,7 +5,7 @@ config()
 
 import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { getContainer } from '@ddradar/db'
+import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 import fetch from 'node-fetch'
 import { launch } from 'puppeteer-core'
@@ -42,20 +42,22 @@ async function main(userId: string, password: string) {
   }
 
   // Load no MFCed top score from DDRadar DB
-  const container = getContainer('Scores')
-  const { resources } = await container.items
-    .query<
-      Pick<
-        Database.ScoreSchema,
-        'songId' | 'songName' | 'playStyle' | 'difficulty' | 'score'
-      >
-    >(
-      'SELECT s.songId, s.songName, s.playStyle, s.difficulty, s.score ' +
-        'FROM s ' +
-        'WHERE s.userId = "0" AND s.clearLamp != 7 AND NOT IS_DEFINED(s.ttl) ' +
-        'ORDER BY s.songName'
-    )
-    .fetchAll()
+  const resources = await fetchList<
+    'Scores',
+    Pick<
+      Database.ScoreSchema,
+      'songId' | 'songName' | 'playStyle' | 'difficulty' | 'score'
+    >
+  >(
+    'Scores',
+    ['songId', 'songName', 'playStyle', 'difficulty', 'score'],
+    [
+      { condition: 'c.userId = "0"' },
+      { condition: 'c.clearLamp != 7' },
+      { condition: 'NOT IS_DEFINED(s.ttl)' },
+    ],
+    { songName: 'ASC' }
+  )
 
   // Grouped by song
   const scores = resources.reduce((prev, score) => {
