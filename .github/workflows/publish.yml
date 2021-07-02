@@ -6,10 +6,12 @@ on:
       - v*
 
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy to Azure Static Web Apps
     runs-on: ubuntu-20.04
-    environment: Production
+    environment:
+      name: Production
+      url: https://www.ddradar.app/
 
     steps:
       - name: Checkout
@@ -30,40 +32,13 @@ jobs:
           APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY }}
           SONGS_API_URL: https://api.ddradar.app/api/v1/songs
 
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2.2.4
-        with:
-          name: client
-          path: client/dist
-
-  deploy:
-    name: Deploy to Azure Static Web Apps
-    needs: [build]
-    runs-on: ubuntu-20.04
-    environment:
-      name: Production
-      url: https://ddradar.app/
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2.3.4
-      - name: Setup GitHub Packages
+      - name: Prepare to build @ddradar/api on Oryx
         run: |
           echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Download Artifact
-        uses: actions/download-artifact@v2.0.10
-        with:
-          name: client
-          path: client/dist
-      - name: Copy Yarn lock file
-        run: cp yarn.lock api
+          cp yarn.lock api
 
       - name: Build @ddradar/api And Deploy
-        id: builddeploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}

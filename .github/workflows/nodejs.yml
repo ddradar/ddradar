@@ -27,7 +27,7 @@ jobs:
           cache: yarn
 
       - name: Install Project Dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile --ignore-scripts
 
       - name: Lint
         run: yarn lint
