@@ -24,17 +24,7 @@ jobs:
         uses: actions/setup-node@v2.2.0
         with:
           node-version: 12
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache Dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
@@ -53,17 +43,7 @@ jobs:
         uses: actions/setup-node@v2.2.0
         with:
           node-version: 12
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache Dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
+          cache: yarn
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
@@ -96,18 +76,8 @@ jobs:
         uses: actions/setup-node@v2.2.0
         with:
           node-version: 12
+          cache: yarn
           registry-url: 'https://npm.pkg.github.com'
-
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - name: Cache Dependencies
-        uses: actions/cache@v2.1.6
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
