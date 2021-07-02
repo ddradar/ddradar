@@ -8,7 +8,7 @@ export function fetchScore(
   songId: string,
   playStyle: Song.PlayStyle,
   difficulty: Song.Difficulty
-): Promise<(Database.ScoreSchema & ItemDefinition) | null> {
+): Promise<(Database.ScoreSchema & Pick<ItemDefinition, 'id'>) | null> {
   return fetchOne(
     'Scores',
     [
@@ -28,13 +28,11 @@ export function fetchScore(
       'maxCombo',
       'radar',
     ],
-    [
-      { condition: 'c.userId = @', value: userId },
-      { condition: 'c.songId = @', value: songId },
-      { condition: 'c.playStyle = @', value: playStyle },
-      { condition: 'c.difficulty = @', value: difficulty },
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
-    ]
+    { condition: 'c.userId = @', value: userId },
+    { condition: 'c.songId = @', value: songId },
+    { condition: 'c.playStyle = @', value: playStyle },
+    { condition: 'c.difficulty = @', value: difficulty },
+    { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' }
   )
 }
 

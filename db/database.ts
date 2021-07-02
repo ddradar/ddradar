@@ -32,7 +32,9 @@ type ContainerValue<T> = T extends 'Scores'
       | Database.ScoreStatusSchema
   : never
 
-type DbItem<T> = Partial<ContainerValue<T> & ItemDefinition & { _ts: number }>
+type DbItem<T> = Partial<
+  ContainerValue<T> & Pick<ItemDefinition, 'id' | 'ttl'> & { _ts: number }
+>
 //#endregion
 
 let client: CosmosClient
@@ -54,17 +56,12 @@ export type Condition = {
 export async function fetchOne<T extends ContainerName, U extends DbItem<T>>(
   containerName: T,
   columns: readonly (keyof U)[],
-  conditions: readonly Condition[]
+  ...conditions: readonly Condition[]
 ): Promise<U | null> {
   // Create SQL statement
-  const column = columns.map(col => `c.${col}`).join(', ')
-  const condition = conditions
-    .map((c, i) => c.condition.replace('@', `@param${i}`))
-    .join(' AND ')
-  const parameters = conditions
-    .map((c, i) => ({ name: `@param${i}`, value: c.value }))
-    .filter((c): c is SqlParameter => c.value !== undefined)
-  const query = `SELECT ${column} FROM c WHERE ${condition}`
+  const column = columns.map(col => `c.${col}`).join(',')
+  const { condition, parameters } = createConditions(conditions)
+  const query = `SELECT TOP 1 ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
@@ -80,13 +77,9 @@ export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
   orderBy: Partial<Record<keyof U, 'ASC' | 'DESC'>>
 ): Promise<U[]> {
   // Create SQL statement
-  const column = columns.map(col => `c.${col}`).join(', ')
-  const condition = conditions
-    .map((c, i) => c.condition.replace('@', `@param${i}`))
-    .join(' AND ')
-  const parameters = conditions
-    .map((c, i) => ({ name: `@param${i}`, value: c.value }))
-    .filter((c): c is SqlParameter => c.value !== undefined)
+  const column = columns.map(col => `c.${col}`).join(',')
+  const { condition, parameters } = createConditions(conditions)
+
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
@@ -97,4 +90,15 @@ export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
     .query<U>({ query: sql, parameters })
     .fetchAll()
   return resources
+}
+
+function createConditions(conditions: readonly Condition[]) {
+  return {
+    condition: conditions
+      .map((c, i) => c.condition.replace('@', `@param${i}`))
+      .join(' AND '),
+    parameters: conditions
+      .map((c, i) => ({ name: `@param${i}`, value: c.value }))
+      .filter((c): c is SqlParameter => c.value !== undefined),
+  }
 }
