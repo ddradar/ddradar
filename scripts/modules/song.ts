@@ -62,37 +62,7 @@ export function isCourse(songId: string): boolean {
     '08io99Obq06Oq6bD6Pq999PDOOb6Oo8o', // SNOW WHITE
     'DO1OqlIdi9O0IDIQ9il1IoOqI86Id0Q0', // PARTY ANTHEMS
     'qqbIDd9DoQi1i0lod19QQDi91QoiQqll', // FANTASY
-  ].includes(songId)
-}
-
-export function isDeleted(songId: string): boolean {
-  return [
-    '19id1DO6q9Pb1681db61D8D8oQi9dlb6', // SP初段(A20)
-    'b9OboQl6d9PqQddIdQDobP0d8o6dOqob', // SP二段(A20)
-    'P986dlQP0DO0106oq0P81Qi0QQDQ666O', // SP三段(A20)
-    'o0DP6qqql9D1bDbQPOQiP8iIq81qI8O9', // SP四段(A20)
-    '880I00ODqPD1OQQPOP0Pd19Qq1qiloDP', // SP五段(A20)
-    'PbIq9b1I161P0iD18qQiOO9qIoodbDIP', // SP六段(A20)
-    '666q06q6I01loQOq0qd98IIOObIDOd8q', // SP七段(A20)
-    'l8Q1Od0d0IQOQl61l8lIlPiI80P10OQb', // SP八段(A20)
-    'ol8oiPo8iod9bDPPD1qdlbPd1ddqP6oP', // SP九段(A20)
-    'OPi8oobIDid6q0P18QdD11D6O1I6Ioqo', // SP十段(A20)
-    'qDDlD0blPO68IQiOQ8i1qPDd8IOPIIO6', // SP皆伝(A20)
-    '9IliQ1O0dOQPiObPDDDblDO6oliDodlb', // DP初段(A20)
-    'IlQodD9Dbld8QiOql68bPPQbd6bll6i1', // DP二段(A20)
-    'dib16I1b0o9OdOd1O90dO1Q6iIO9PQo9', // DP三段(A20)
-    '8OoDQb16lP0i96qiDQqo90Q6bOP1o89D', // DP四段(A20)
-    'ddql809Qo8q68918lIDOPDQ6q1liD9b6', // DP五段(A20)
-    '9D69dQo1dQqPD6l9ObiI0b0i8d9ddool', // DP六段(A20)
-    'Pbbidbl9l8IqddQOq0069oQ6Oi1DQdP1', // DP七段(A20)
-    'idiOI1Qb9D0dQI6IOlob8QbOqdDOoObP', // DP八段(A20)
-    'ID9Dqo9QQQIP9ObD0lbbi6O6PiD18oD0', // DP九段(A20)
-    'bPQDblO8Do0Oo9O0PP0b8PO1PblDioDP', // DP十段(A20)
-    'o1Q8Ol8Dol9b0dllD6P0iPQbIoP666Db', // DP皆伝(A20)
-    '91qD6DbDqi96qbIO66oboliPD8IPP6io', // 輪廻転生
-    'qOlDPoiqibIOqod69dPilbiqD6qdO1qQ', // More One Night
-    'dOblQOoDb96l00dqPlIb9DQl86q9PboI', // 回レ！雪月花
-    'od66Qb16lI019I06lllII811I9ol6l0i', // ようこそジャパリパークへ
-    'PqOilI0ql6QDID6oo0Qb9iDo1doqQqPQ', // 放課後ストライド
+    'd1Qbdol98D6Pdb9dQDOQb911i9QQO8lP', // NIGHT DRIVE
+    'PQ0bDbI9dPQQ81iPO6lo0IDobb8q66Oq', // FUTURE
   ].includes(songId)
 }

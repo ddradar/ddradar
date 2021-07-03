@@ -11,7 +11,6 @@ import fetch from 'node-fetch'
 import { launch } from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
-import { isDeleted } from './modules/song'
 
 /* eslint-disable node/no-process-env */
 const {
@@ -54,14 +53,14 @@ async function main(userId: string, password: string) {
     [
       { condition: 'c.userId = "0"' },
       { condition: 'c.clearLamp != 7' },
-      { condition: 'NOT IS_DEFINED(s.ttl)' },
+      { condition: '(NOT IS_DEFINED(c.deleted))' },
+      { condition: '(NOT IS_DEFINED(c.ttl))' },
     ],
     { songName: 'ASC' }
   )
 
   // Grouped by song
   const scores = resources.reduce((prev, score) => {
-    if (isDeleted(score.songId)) return prev
     if (prev[score.songId]) {
       prev[score.songId].push(score)
     } else {
@@ -70,18 +69,19 @@ async function main(userId: string, password: string) {
     return prev
   }, {} as Record<string, typeof resources>)
 
-  const totalSongCount = Object.keys(scores).length
-  let currentCount = 1
-  for (const grp of Object.entries(scores)) {
-    const songScope = consola.withScope('Song')
-    const songName = `(${currentCount++}/${totalSongCount}) ${
-      grp[1][0].songName
-    } (${grp[0]})`
+  const total = Object.keys(scores).length
+  let count = 1
+  const logs: string[] = []
+
+  for (const [id, score] of Object.entries(scores)) {
+    const songScope = consola.withScope('song')
+    const songName = `(${count++}/${total}) ${score[0].songName} (${id})`
     songScope.start(songName)
+
     const scores: Api.ScoreListBody[] = []
 
-    for (const s of grp[1]) {
-      const chartScope = songScope.withScope('Charts')
+    for (const s of score) {
+      const chartScope = songScope.withScope('charts')
       const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
 
       try {
@@ -94,6 +94,11 @@ async function main(userId: string, password: string) {
         if (score) {
           if (score.topScore > s.score) {
             scores.push(score)
+            logs.push(
+              `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
+                score.topScore
+              }) at ${new Date()}`
+            )
             chartScope.success(
               `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
             )
@@ -105,8 +110,14 @@ async function main(userId: string, password: string) {
         }
       } catch (e) {
         const message: string = e?.message ?? e
-        if (!/NO PLAY/.test(message)) throw e
-        chartScope.info('NO PLAY')
+        if (!/NO PLAY/.test(message)) {
+          for (const log of logs) {
+            consola.success(log)
+          }
+          await browser.close()
+          throw e
+        }
+        chartScope.info('NO PLAY. wait 3 seconds...')
       }
       await sleep(3000)
     }
@@ -116,7 +127,7 @@ async function main(userId: string, password: string) {
       continue
     }
 
-    const apiUri = `${apiBasePath}/api/v1/scores/${grp[0]}/${userId}`
+    const apiUri = `${apiBasePath}/api/v1/scores/${id}/${userId}`
     const res = await fetch(apiUri, {
       method: 'post',
       body: JSON.stringify({ password, scores }),
@@ -134,6 +145,10 @@ async function main(userId: string, password: string) {
       continue
     }
     songScope.success(songName)
+  }
+
+  for (const log of logs) {
+    consola.success(log)
   }
 
   await browser.close()

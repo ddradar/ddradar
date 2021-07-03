@@ -37,6 +37,8 @@ jobs:
           echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
           echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
           cp yarn.lock api
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build @ddradar/api And Deploy
         uses: Azure/static-web-apps-deploy@v1
@@ -49,3 +51,4 @@ jobs:
           skip_app_build: true
           api_location: api
           api_build_command: yarn build
+          config_file_location: /
