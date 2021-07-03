@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { getContainer } from '.'
+import { getContainer } from './database'
 
 export async function generateGrooveRadar(
   userId: string,
@@ -32,16 +32,17 @@ export async function generateGrooveRadar(
       ],
     })
     .fetchAll()
-  const result: Database.GrooveRadarSchema & ItemDefinition = resources[0] ?? {
-    userId,
-    type: 'radar',
-    playStyle,
-    stream: 0,
-    voltage: 0,
-    air: 0,
-    freeze: 0,
-    chaos: 0,
-  }
+  const result: Database.GrooveRadarSchema & Pick<ItemDefinition, 'id'> =
+    resources[0] ?? {
+      userId,
+      type: 'radar',
+      playStyle,
+      stream: 0,
+      voltage: 0,
+      air: 0,
+      freeze: 0,
+      chaos: 0,
+    }
   result.id = `radar-${userId}-${playStyle}`
   return result
 }

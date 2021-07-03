@@ -2,14 +2,14 @@ import type { Container } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '..'
+import { getContainer } from '../database'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
+import { createMockContainer } from './util'
 
-jest.mock('..')
+jest.mock('../database')
 
 describe('user-details.ts', () => {
   describe('generateGrooveRadar()', () => {
-    let resources: Database.GrooveRadarSchema[] = []
     const radar: Database.GrooveRadarSchema = {
       userId: 'public_user',
       type: 'radar',
@@ -21,22 +21,10 @@ describe('user-details.ts', () => {
       chaos: 100,
     }
 
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
-
     test('returns groove radar', async () => {
       // Arrange
-      resources.push({ ...radar })
+      const container = createMockContainer([{ ...radar }])
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
       const result = await generateGrooveRadar('public_user', 1)
@@ -61,7 +49,11 @@ describe('user-details.ts', () => {
     })
 
     test('returns empty groove radar if scores is empty', async () => {
-      // Arrange - Act
+      // Arrange
+      const container = createMockContainer([])
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
+
+      // Act
       const result = await generateGrooveRadar('public_user', 1)
       const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
 
@@ -75,22 +67,11 @@ describe('user-details.ts', () => {
   })
 
   describe('fetchClearAndScoreStatus()', () => {
-    let resources: (Database.ClearStatusSchema | Database.ScoreStatusSchema)[] =
-      []
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
-
     test('returns [] ', async () => {
+      // Arrange
+      const container = createMockContainer([])
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
+
       // Act
       const result = await fetchClearAndScoreStatus('foo')
 

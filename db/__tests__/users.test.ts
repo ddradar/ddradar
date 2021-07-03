@@ -1,6 +1,6 @@
 import type { Database } from '@ddradar/core'
 
-import { canConnectDB, getContainer } from '..'
+import { canConnectDB, getContainer } from '../database'
 import { fetchLoginUser, fetchUser, fetchUserList } from '../users'
 import { describeIf } from './util'
 

@@ -1,6 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
-import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '@ddradar/db'
+import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
 import generateUserDetails from '.'
@@ -55,8 +55,8 @@ describe('/generateUserDetails/index.ts', () => {
     },
   ]
   beforeAll(() => {
-    mocked(fetchSummeryClearLampCount).mockResolvedValue(newClears)
-    mocked(fetchSummeryRankCount).mockResolvedValue(newScores)
+    mocked(fetchSummaryClearLampCount).mockResolvedValue(newClears)
+    mocked(fetchSummaryRankCount).mockResolvedValue(newScores)
   })
 
   test('merges old.id & new data', async () => {

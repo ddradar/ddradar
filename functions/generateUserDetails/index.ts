@@ -1,6 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
-import { fetchSummeryClearLampCount, fetchSummeryRankCount } from '@ddradar/db'
+import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 
 type UserDetailSchema = Database.ClearStatusSchema | Database.ScoreStatusSchema
 
@@ -9,8 +9,8 @@ export default async function (
   _launchTimer: unknown,
   oldSummeries: (UserDetailSchema & ItemDefinition)[]
 ): Promise<UserDetailSchema[]> {
-  const newClearLampCounts = await fetchSummeryClearLampCount()
-  const newRankCounts = await fetchSummeryRankCount()
+  const newClearLampCounts = await fetchSummaryClearLampCount()
+  const newRankCounts = await fetchSummaryRankCount()
   const notExists = oldSummeries.filter(
     o =>
       !newClearLampCounts.find(

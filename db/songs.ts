@@ -1,6 +1,6 @@
 import type { Database } from '@ddradar/core'
 
-import { getContainer } from '.'
+import { getContainer } from './database'
 
 type TotalCount = Pick<
   Database.ClearStatusSchema,

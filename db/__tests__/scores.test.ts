@@ -2,14 +2,15 @@ import type { Container, ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchOne, getContainer } from '..'
+import { fetchOne, getContainer } from '../database'
 import {
   fetchScore,
-  fetchSummeryClearLampCount,
-  fetchSummeryRankCount,
+  fetchSummaryClearLampCount,
+  fetchSummaryRankCount,
 } from '../scores'
+import { createMockContainer } from './util'
 
-jest.mock('..')
+jest.mock('../database')
 
 describe('scores.ts', () => {
   describe('fetchScore', () => {
@@ -41,25 +42,12 @@ describe('scores.ts', () => {
       expect(mocked(fetchOne)).toBeCalled()
     })
   })
-  describe('fetchSummeryClearLampCount', () => {
-    let resources: Database.ClearStatusSchema[] = []
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
+  describe('fetchSummaryClearLampCount', () => {
     test('returns ClearStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      resources.push(
-        ...[...Array(length).keys()].map(i => ({
+      const container = createMockContainer<Database.ClearStatusSchema>(
+        [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'clear' as const,
           playStyle: ((i % 2) + 1) as 1 | 2,
@@ -68,33 +56,22 @@ describe('scores.ts', () => {
           count: 10,
         }))
       )
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
-      const result = await fetchSummeryClearLampCount()
+      const result = await fetchSummaryClearLampCount()
 
       // Assert
       expect(result).toHaveLength(length)
     })
   })
-  describe('fetchSummeryRankCount', () => {
-    let resources: Database.ScoreStatusSchema[] = []
-    const container = {
-      items: {
-        query: jest.fn(() => ({ fetchAll: async () => ({ resources }) })),
-      },
-    }
-    beforeAll(() =>
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
-    )
-    beforeEach(() => {
-      container.items.query.mockClear()
-      resources = []
-    })
-    test('returns ClearStatusSchema[]', async () => {
+
+  describe('fetchSummaryRankCount()', () => {
+    test('returns ScoreStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      resources.push(
-        ...[...Array(length).keys()].map(i => ({
+      const container = createMockContainer<Database.ScoreStatusSchema>(
+        [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'score' as const,
           playStyle: ((i % 2) + 1) as 1 | 2,
@@ -103,9 +80,10 @@ describe('scores.ts', () => {
           count: 10,
         }))
       )
+      mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
-      const result = await fetchSummeryRankCount()
+      const result = await fetchSummaryRankCount()
 
       // Assert
       expect(result).toHaveLength(length)

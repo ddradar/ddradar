@@ -1,12 +1,13 @@
 import type { Api, Database } from '@ddradar/core'
 
-import { Condition, fetchList, fetchOne } from '.'
+import type { Condition } from './database'
+import { fetchList, fetchOne } from './database'
 
 export function fetchUser(id: string): Promise<Database.UserSchema | null> {
   return fetchOne(
     'Users',
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic'] as const,
-    [{ condition: 'c.id = @', value: id }]
+    { condition: 'c.id = @', value: id }
   )
 }
 
@@ -16,7 +17,7 @@ export function fetchLoginUser(
   return fetchOne(
     'Users',
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
-    [{ condition: 'c.loginId = @', value: loginId }]
+    { condition: 'c.loginId = @', value: loginId }
   )
 }
 

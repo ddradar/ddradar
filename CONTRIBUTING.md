@@ -43,7 +43,7 @@ Thank you for your interest in this project. This project is open source, and an
   - **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
 ```text
-prefix(category): summery
+prefix(category): summary
 <blank line>
 detail
 ```

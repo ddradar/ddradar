@@ -43,7 +43,7 @@ async function main(ddrCode: string) {
   const user = await fetchOne<'Users', UserAuth>(
     'Users',
     ['id', 'name', 'password'],
-    [{ condition: 'c.code = @', value: code }]
+    { condition: 'c.code = @', value: code }
   )
   if (!user) {
     consola.warn(`Not Found DDR-Code:${code} user.`)
