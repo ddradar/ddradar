@@ -24,7 +24,7 @@ describe('/layouts/default.vue', () => {
     { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
     { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
   ]
-  const stubs = { NuxtLink: RouterLinkStub, Nuxt: true }
+  const stubs = { NuxtLink: RouterLinkStub, Nuxt: true, SearchBox: true }
   const templateMocks = {
     $accessor: {
       isLoggedIn: true,
