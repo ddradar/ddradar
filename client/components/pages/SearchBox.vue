@@ -1,11 +1,12 @@
 <template>
   <b-autocomplete
     v-model="term"
-    :loading="$fetchState.pending"
     :data="filtered"
+    :loading="$fetchState.pending"
+    :placeholder="$t('placeholder')"
     icon="search"
-    clearable
     field="name"
+    clearable
     @select="move"
   >
     <template #default="props">
@@ -13,6 +14,17 @@
     </template>
   </b-autocomplete>
 </template>
+
+<i18n>
+{
+  "ja": {
+    "placeholder": "曲名/アーティスト名から探す"
+  },
+  "en": {
+    "placeholder": "Find by Song/Artist name"
+  }
+}
+</i18n>
 
 <script lang="ts">
 import type { Api } from '@ddradar/core'
@@ -26,7 +38,7 @@ export default class SearchBoxComponent extends Vue {
   term: string = ''
 
   get filtered() {
-    return this.term
+    return this.term.trim()
       ? this.songList.filter(
           s =>
             s.name.toUpperCase().includes(this.term.toUpperCase()) ||
@@ -37,13 +49,15 @@ export default class SearchBoxComponent extends Vue {
   }
 
   async fetch() {
-    const songs = await getAllSongInfo(this.$http)
-    this.songList = songs.map(s => ({
-      id: s.id,
-      name: s.name,
-      nameKana: s.nameKana,
-      artist: s.artist,
-    }))
+    try {
+      const songs = await getAllSongInfo(this.$http)
+      this.songList = songs.map(s => ({
+        id: s.id,
+        name: s.name,
+        nameKana: s.nameKana,
+        artist: s.artist,
+      }))
+    } catch {}
   }
 
   move({ id }: Pick<Api.SongInfo, 'id'>) {
