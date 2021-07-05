@@ -29,24 +29,9 @@
             {{ i.name }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-dropdown
-          class="is-hidden-touch"
-          :label="$t('menu.name')"
-          hoverable
-          collapsible
-        >
-          <b-navbar-item tag="div" class="buttons are-small">
-            <b-button
-              v-for="(label, i) in nameIndexList"
-              :key="label"
-              type="is-text"
-              tag="nuxt-link"
-              :to="`/name/${i}`"
-            >
-              {{ label }}
-            </b-button>
-          </b-navbar-item>
-        </b-navbar-dropdown>
+        <b-navbar-item>
+          <search-box />
+        </b-navbar-item>
       </template>
 
       <template #end>
@@ -199,8 +184,9 @@ import { Component, Vue } from 'nuxt-property-decorator'
 
 import { shortenSeriesName } from '~/api/song'
 import Flag from '~/components/pages/Flag.vue'
+import SearchBox from '~/components/pages/SearchBox.vue'
 
-@Component({ components: { Flag }, fetchOnServer: false })
+@Component({ components: { Flag, SearchBox }, fetchOnServer: false })
 export default class DefaultLayout extends Vue {
   get userPage() {
     return `/users/${this.$accessor.user?.id}`
@@ -252,10 +238,6 @@ export default class DefaultLayout extends Vue {
           .flat(),
       },
     ]
-  }
-
-  get nameIndexList() {
-    return [...Song.nameIndexMap.values()]
   }
 
   get selectedLocale() {
