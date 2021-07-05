@@ -78,9 +78,7 @@ export function searchCharts(
  * @see https://github.com/ddradar/ddradar/tree/master/functions/getSongs/
  */
 export function getAllSongInfo($http: Pick<NuxtHTTPInstance, '$get'>) {
-  return $http.$get<Api.SongInfo[]>(
-    `https://api.ddradar.app/${apiPrefix}/songs`
-  )
+  return $http.$get<Api.SongInfo[]>(`https://api.ddradar.app${apiPrefix}/songs`)
 }
 
 /**

@@ -1,6 +1,7 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 
 import {
+  getAllSongInfo,
   getChartTitle,
   getDisplayedBPM,
   getSongInfo,
@@ -58,8 +59,8 @@ describe('/api/song.ts', () => {
       $post: jest.fn<Promise<any>, [string]>(),
     }
     beforeEach(() => {
-      $http.$get.mockClear()
-      $http.$post.mockClear()
+      $http.$get.mockReset()
+      $http.$post.mockReset()
     })
 
     describe('getSongInfo', () => {
@@ -129,6 +130,23 @@ describe('/api/song.ts', () => {
         // Assert
         expect(result).toBe(charts)
         expect($http.$get).toBeCalledWith(uri)
+      })
+    })
+
+    describe('getAllSongInfo()', () => {
+      test('calls GET "https://api.ddradar.app/api/v1/songs"', async () => {
+        // Arrange
+        const songs = [{ ...testSongData }]
+        $http.$get.mockResolvedValue(songs)
+
+        // Act
+        const result = await getAllSongInfo($http)
+
+        // Assert
+        expect(result).toBe(songs)
+        expect($http.$get).toBeCalledWith(
+          'https://api.ddradar.app/api/v1/songs'
+        )
       })
     })
 
