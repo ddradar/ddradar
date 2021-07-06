@@ -4,7 +4,7 @@
     :data="filtered"
     :loading="$fetchState.pending"
     :placeholder="$t('placeholder')"
-    icon="search"
+    icon="magnify"
     field="name"
     clearable
     @select="move"
