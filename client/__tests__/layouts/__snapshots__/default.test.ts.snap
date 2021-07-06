@@ -8,7 +8,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
       <div class="navbar-start"><a class="navbar-item">
           Find User
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -49,7 +49,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -90,7 +90,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -129,7 +129,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">
@@ -199,7 +199,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
       <div class="navbar-start"><a class="navbar-item">
           Find User
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -240,7 +240,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -281,7 +281,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -320,7 +320,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">
@@ -386,7 +386,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
       <div class="navbar-start"><a class="navbar-item">
           Find User
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -427,7 +427,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Lv(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -468,7 +468,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Version</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -507,7 +507,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Courses</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">
@@ -574,7 +574,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -615,7 +615,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -656,7 +656,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -695,7 +695,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コース</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">
@@ -765,7 +765,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -806,7 +806,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -847,7 +847,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -886,7 +886,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コース</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">
@@ -952,7 +952,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
         </a>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SINGLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -993,7 +993,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DOUBLE)</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(DP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
             </a><a class="navbar-item">
@@ -1034,7 +1034,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
               LEVEL 19
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">バージョン</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               DanceDanceRevolution A20 PLUS
             </a><a class="navbar-item">
@@ -1073,7 +1073,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
               DDR 1st
             </a></div>
         </div>
-        <div class="navbar-item has-dropdown is-hidden-touch is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コースデータ</a>
+        <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">コース</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               NONSTOP(A20)
             </a><a class="navbar-item">

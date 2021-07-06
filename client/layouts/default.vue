@@ -15,7 +15,7 @@
         <b-navbar-dropdown
           v-for="m in menuList"
           :key="m.label"
-          class="is-hidden-touch"
+          class="is-hidden-mobile"
           :label="m.label"
           hoverable
           collapsible
@@ -129,13 +129,12 @@
   "ja": {
     "menu": {
       "user": "ユーザーを探す",
-      "single": "レベル(SINGLE)",
-      "double": "レベル(DOUBLE)",
+      "single": "レベル(SP)",
+      "double": "レベル(DP)",
       "series": "バージョン",
-      "course": "コースデータ",
+      "course": "コース",
       "nonstop": "NONSTOP({series})",
       "grade": "段位認定({series})",
-      "name": "曲名",
       "mypage": "マイページ",
       "logout": "ログアウト",
       "login": "ログイン"
@@ -153,13 +152,12 @@
   "en": {
     "menu": {
       "user": "Find User",
-      "single": "Lv(SINGLE)",
-      "double": "Lv(DOUBLE)",
+      "single": "Level(SP)",
+      "double": "Level(DP)",
       "series": "Version",
       "course": "Courses",
       "nonstop": "NONSTOP({series})",
       "grade": "GRADE({series})",
-      "name": "Name",
       "mypage": "MyPage",
       "logout": "Logout",
       "login": "Login"
