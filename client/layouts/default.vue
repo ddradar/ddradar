@@ -29,7 +29,7 @@
             {{ i.name }}
           </b-navbar-item>
         </b-navbar-dropdown>
-        <b-navbar-item>
+        <b-navbar-item class="is-hidden-mobile">
           <search-box />
         </b-navbar-item>
       </template>
