@@ -2,9 +2,10 @@ import type { Container, ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchOne, getContainer } from '../database'
+import { fetchList, fetchOne, getContainer } from '../database'
 import {
   fetchScore,
+  fetchScoreList,
   fetchSummaryClearLampCount,
   fetchSummaryRankCount,
 } from '../scores'
@@ -39,8 +40,139 @@ describe('scores.ts', () => {
 
       // Assert
       expect(result).toBe(resource)
-      expect(mocked(fetchOne)).toBeCalled()
+      expect(mocked(fetchOne)).toBeCalledWith(
+        'Scores',
+        [
+          'id',
+          'userId',
+          'userName',
+          'isPublic',
+          'songId',
+          'songName',
+          'playStyle',
+          'difficulty',
+          'level',
+          'clearLamp',
+          'score',
+          'rank',
+          'exScore',
+          'maxCombo',
+          'radar',
+        ],
+        { condition: 'c.userId = @', value: 'foo' },
+        { condition: 'c.songId = @', value: '' },
+        { condition: 'c.playStyle = @', value: 1 },
+        { condition: 'c.difficulty = @', value: 0 },
+        { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' }
+      )
     })
+  })
+  describe('fetchScoreList', () => {
+    beforeEach(() => mocked(fetchList).mockClear())
+
+    test('("foo") calls fetchList("Scores", columns, condition, { songName: "ASC" })', async () => {
+      // Arrange
+      const resources: Omit<
+        Database.ScoreSchema,
+        'userId' | 'userName' | 'isPublic'
+      >[] = []
+      mocked(fetchList).mockResolvedValue(resources)
+
+      // Act
+      const result = await fetchScoreList('foo')
+
+      // Assert
+      expect(result).toBe(resources)
+      expect(mocked(fetchList)).toBeCalledWith(
+        'Scores',
+        [
+          'songId',
+          'songName',
+          'playStyle',
+          'difficulty',
+          'level',
+          'score',
+          'exScore',
+          'maxCombo',
+          'clearLamp',
+          'rank',
+          'radar',
+          'deleted',
+        ],
+        [
+          { condition: 'c.userId = @', value: 'foo' },
+          {
+            condition:
+              '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
+          },
+          { condition: 'IS_DEFINED(c.radar)' },
+        ],
+        { songName: 'ASC' }
+      )
+    })
+    test.each([
+      [{}, true, []],
+      [
+        {
+          playStyle: 1,
+          difficulty: 0,
+          level: 3,
+          clearLamp: 4,
+          rank: 'AAA',
+        } as const,
+        false,
+        [
+          { condition: 'c.playStyle = @', value: 1 },
+          { condition: 'c.difficulty = @', value: 0 },
+          { condition: 'c.level = @', value: 3 },
+          { condition: 'c.clearLamp = @', value: 4 },
+          { condition: 'c.rank = @', value: 'AAA' },
+          { condition: 'IS_DEFINED(c.radar)' },
+        ],
+      ],
+    ])(
+      '("foo", %p, %p) calls fetchList("Scores", columns, %p, { songName: "ASC" })',
+      async (conditions, includeCourse, additionalConditions) => {
+        // Arrange
+        const resources: Omit<
+          Database.ScoreSchema,
+          'userId' | 'userName' | 'isPublic'
+        >[] = []
+        mocked(fetchList).mockResolvedValue(resources)
+
+        // Act
+        const result = await fetchScoreList('foo', conditions, includeCourse)
+
+        // Assert
+        expect(result).toBe(resources)
+        expect(mocked(fetchList)).toBeCalledWith(
+          'Scores',
+          [
+            'songId',
+            'songName',
+            'playStyle',
+            'difficulty',
+            'level',
+            'score',
+            'exScore',
+            'maxCombo',
+            'clearLamp',
+            'rank',
+            'radar',
+            'deleted',
+          ],
+          [
+            { condition: 'c.userId = @', value: 'foo' },
+            {
+              condition:
+                '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
+            },
+            ...additionalConditions,
+          ],
+          { songName: 'ASC' }
+        )
+      }
+    )
   })
   describe('fetchSummaryClearLampCount', () => {
     test('returns ClearStatusSchema[]', async () => {

@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { fetchOne, getContainer } from './database'
+import { Condition, fetchList, fetchOne, getContainer } from './database'
 
 export function fetchScore(
   userId: string,
@@ -33,6 +33,50 @@ export function fetchScore(
     { condition: 'c.playStyle = @', value: playStyle },
     { condition: 'c.difficulty = @', value: difficulty },
     { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' }
+  )
+}
+
+export function fetchScoreList(
+  userId: string,
+  conditions: Partial<
+    Pick<
+      Database.ScoreSchema,
+      'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
+    >
+  > = {},
+  includeCourse = false
+): Promise<Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
+  const condition: Condition[] = [
+    { condition: 'c.userId = @', value: userId },
+    { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
+    ...Object.entries(conditions).map(([k, v]) => ({
+      condition: `c.${k} = @`,
+      value: v,
+    })),
+  ]
+  if (!includeCourse) condition.push({ condition: 'IS_DEFINED(c.radar)' })
+
+  return fetchList<
+    'Scores',
+    Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>
+  >(
+    'Scores',
+    [
+      'songId',
+      'songName',
+      'playStyle',
+      'difficulty',
+      'level',
+      'score',
+      'exScore',
+      'maxCombo',
+      'clearLamp',
+      'rank',
+      'radar',
+      'deleted',
+    ],
+    condition,
+    { songName: 'ASC' }
   )
 }
 
