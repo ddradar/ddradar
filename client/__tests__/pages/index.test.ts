@@ -24,10 +24,10 @@ localVue.use(VueI18n)
 describe('/pages/index.vue', () => {
   const messages = [...notificationList]
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const stubs = { NuxtLink: RouterLinkStub, SearchBox: true, TopMessage: true }
 
   describe('snapshot test', () => {
     const data = () => ({ messages })
-    const stubs = { NuxtLink: RouterLinkStub, TopMessage: true }
 
     test('renders loading skeleton', () => {
       const mocks = { $fetchState: { pending: true } }
@@ -45,7 +45,6 @@ describe('/pages/index.vue', () => {
   describe('fetch()', () => {
     let wrapper: Wrapper<IndexPage>
     const mocks = { $buefy: {}, $fetchState: { pending: true }, $http: {} }
-    const stubs = { NuxtLink: RouterLinkStub, TopMessage: true }
     const data = () => ({ messages: [] })
     beforeEach(() => {
       mocked(getNotificationList).mockClear()

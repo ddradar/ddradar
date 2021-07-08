@@ -1,5 +1,8 @@
 <template>
   <div>
+    <section class="section is-hidden-tablet">
+      <search-box />
+    </section>
     <section class="section">
       <template v-if="$fetchState.pending">
         <b-skeleton animated />
@@ -98,11 +101,15 @@ import type { MetaInfo } from 'vue-meta'
 
 import { getNotificationList } from '~/api/notification'
 import { shortenSeriesName } from '~/api/song'
+import SearchBox from '~/components/pages/SearchBox.vue'
 import TopMessage from '~/components/pages/TopMessage.vue'
 import Card from '~/components/shared/Card.vue'
 import * as popup from '~/utils/popup'
 
-@Component({ components: { Card, TopMessage }, fetchOnServer: false })
+@Component({
+  components: { Card, SearchBox, TopMessage },
+  fetchOnServer: false,
+})
 export default class IndexPage extends Vue {
   messages: Api.NotificationListData[] = []
 

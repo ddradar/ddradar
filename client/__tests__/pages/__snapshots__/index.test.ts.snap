@@ -2,6 +2,9 @@
 
 exports[`/pages/index.vue snapshot test renders correctly if locale is "en" 1`] = `
 <div>
+  <section class="section is-hidden-tablet">
+    <searchbox-stub></searchbox-stub>
+  </section>
   <section class="section">
     <topmessage-stub type="is-info" icon="account" title="Title 1" body="- Message Body1
  - Message Body2" time="1597244400"></topmessage-stub>
@@ -605,6 +608,9 @@ exports[`/pages/index.vue snapshot test renders correctly if locale is "en" 1`] 
 
 exports[`/pages/index.vue snapshot test renders correctly if locale is "ja" 1`] = `
 <div>
+  <section class="section is-hidden-tablet">
+    <searchbox-stub></searchbox-stub>
+  </section>
   <section class="section">
     <topmessage-stub type="is-info" icon="account" title="Title 1" body="- Message Body1
  - Message Body2" time="1597244400"></topmessage-stub>
@@ -1208,6 +1214,9 @@ exports[`/pages/index.vue snapshot test renders correctly if locale is "ja" 1`] 
 
 exports[`/pages/index.vue snapshot test renders loading skeleton 1`] = `
 <div>
+  <section class="section is-hidden-tablet">
+    <searchbox-stub></searchbox-stub>
+  </section>
   <section class="section">
     <div class="b-skeleton is-animated">
       <div class="b-skeleton-item is-rounded"></div>
