@@ -44,8 +44,9 @@
     "prettier": "^2.3.2"
   },
   "resolutions": {
+    "@types/babel__core": "^7.0.0",
     "@types/node": "^12.20.16",
-    "@types/webpack": "^4.41.29",
+    "@types/webpack": "^4.41.30",
     "chokidar": "^3.5.1"
   }
 }
