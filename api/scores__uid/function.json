@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/scores/{uid:regex(^[-a-zA-Z0-9_]+$)}"
+    },
+    {
+      "name": "documents",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT c.id, c.isPublic FROM c WHERE c.id = {uid}",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/scores__uid/index.js"
+}
