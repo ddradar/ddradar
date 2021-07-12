@@ -3,6 +3,7 @@ import type { Api } from '@ddradar/core'
 import {
   deleteChartScore,
   getChartScore,
+  getUserScores,
   postChartScore,
   postSongScores,
 } from '~/api/score'
@@ -37,6 +38,42 @@ describe('./api/score.ts', () => {
         // Assert
         expect(result).toBe(scores)
         expect($http.$get).toBeCalledWith(uri)
+      }
+    )
+  })
+
+  describe('getUserScores', () => {
+    const _ = undefined
+    test.each([
+      [_, _, _, _, _, ''] as const,
+      [1, _, _, _, _, 'style=1'] as const,
+      [_, 3, _, _, _, 'diff=3'] as const,
+      [_, _, 12, _, _, 'lv=12'] as const,
+      [_, _, _, 5, _, 'lamp=5'] as const,
+      [_, _, _, _, 'AA+', 'rank=AA%2B'] as const,
+      [2, 4, 12, 4, 'AAA', 'style=2&diff=4&lv=12&lamp=4&rank=AAA'] as const,
+    ])(
+      '($http, "foo", %p, %p, %p, %p, "%s") calls GET "/api/v1/scores/foo?%s"',
+      async (playStyle, difficulty, level, clearLamp, rank, query) => {
+        // Arrange
+        const $http = { $get: jest.fn<Promise<any>, [string, any]>() }
+        $http.$get.mockResolvedValue([])
+
+        // Act
+        const result = await getUserScores(
+          $http,
+          'foo',
+          playStyle,
+          difficulty,
+          level,
+          clearLamp,
+          rank
+        )
+
+        // Assert
+        expect(result).toHaveLength(0)
+        expect($http.$get.mock.calls[0][0]).toBe('/api/v1/scores/foo')
+        expect($http.$get.mock.calls[0][1].searchParams.toString()).toBe(query)
       }
     )
   })
