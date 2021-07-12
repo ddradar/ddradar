@@ -97,7 +97,7 @@ import { getSongInfo } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 
 @Component
-export default class ChartListComponent extends Vue {
+export default class ScoreListComponent extends Vue {
   @Prop({ required: false, type: Array, default: () => [] })
   readonly scores!: Api.ScoreList[]
 

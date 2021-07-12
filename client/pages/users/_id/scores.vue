@@ -86,7 +86,7 @@
       "rank": "Dance Level"
     },
     "search": "Search"
-  },
+  }
 }
 </i18n>
 
@@ -99,7 +99,7 @@ import type { MetaInfo } from 'vue-meta'
 
 import { getUserScores } from '~/api/score'
 import { getUserInfo } from '~/api/user'
-import ScoreList from '~/components/users/ScoreList.vue'
+import ScoreList from '~/components/pages/users/ScoreList.vue'
 
 @Component({ components: { ScoreList }, fetchOnServer: false })
 export default class ScorePage extends Vue {
