@@ -27,7 +27,7 @@ No need Authentication. Authenticated users can get their own data even if they 
 |`style`|integer?|`1`: SINGLE, `2`: DOUBLE|
 |`diff`|integer?|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
 |`lv`|integer?|Chart level|
-|`clearLamp`|integer?|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
+|`lamp`|integer?|`0`: Failed, `1`: Assisted Clear `2`: Clear, `3`: LIFE4, `4`: Good FC (Full Combo), `5`: Great FC, `6`: PFC, `7`: MFC|
 |`rank`|string?|Clear rank (`E`～`AAA`)|
 
 ## Response

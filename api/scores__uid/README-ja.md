@@ -27,7 +27,7 @@ English version is [here](./README.md).
 |`style`|integer?|`1`: SINGLE, `2`: DOUBLE|
 |`diff`|integer?|`0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE|
 |`lv`|integer?|譜面のレベル|
-|`clearLamp`|integer?|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
+|`lamp`|integer?|`0`: プレー済未クリア, `1`: アシストクリア, `2`: クリア, `3`: LIFE4, `4`: (Good) フルコンボ, `5`: グレートフルコンボ, `6`: PFC, `7`: MFC|
 |`rank`|string?|クリアランク (`E`～`AAA`)|
 
 ## Response
