@@ -1,4 +1,4 @@
-import type { Api } from '@ddradar/core'
+import type { Api, Score, Song } from '@ddradar/core'
 import type { NuxtHTTPInstance } from '@nuxt/http'
 
 import { apiPrefix } from '~/api'
@@ -10,8 +10,8 @@ import { apiPrefix } from '~/api'
 export function getChartScore(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   songId: string,
-  playStyle: 1 | 2,
-  difficulty: 0 | 1 | 2 | 3 | 4,
+  playStyle: Song.PlayStyle,
+  difficulty: Song.Difficulty,
   scope?: 'private' | 'medium' | 'full'
 ) {
   const query = scope ? `?scope=${scope}` : ''
@@ -21,14 +21,42 @@ export function getChartScore(
 }
 
 /**
+ * Call "Get User Scores" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__uid/
+ */
+export function getUserScores(
+  $http: Pick<NuxtHTTPInstance, '$get'>,
+  userId: string,
+  playStyle?: Song.PlayStyle,
+  difficulty?: Song.Difficulty,
+  level?: number,
+  clearLamp?: Score.ClearLamp,
+  rank?: Score.DanceLevel
+) {
+  const searchParams = new URLSearchParams()
+  addParamIfDefined('style', playStyle)
+  addParamIfDefined('diff', difficulty)
+  addParamIfDefined('lv', level)
+  addParamIfDefined('lamp', clearLamp)
+  addParamIfDefined('rank', rank)
+  return $http.$get<Api.ScoreList[]>(`${apiPrefix}/scores/${userId}`, {
+    searchParams,
+  })
+
+  function addParamIfDefined(name: string, obj: number | string | undefined) {
+    if (obj !== undefined) searchParams.set(name, obj.toString())
+  }
+}
+
+/**
  * Call "Post Chart Score" API.
  * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--post/
  */
 export function postChartScore(
   $http: Pick<NuxtHTTPInstance, '$post'>,
   songId: string,
-  playStyle: 1 | 2,
-  difficulty: 0 | 1 | 2 | 3 | 4,
+  playStyle: Song.PlayStyle,
+  difficulty: Song.Difficulty,
   score: Api.ScoreBody
 ) {
   return $http.$post(
@@ -44,8 +72,8 @@ export function postChartScore(
 export function deleteChartScore(
   $http: Pick<NuxtHTTPInstance, 'delete'>,
   songId: string,
-  playStyle: 1 | 2,
-  difficulty: 0 | 1 | 2 | 3 | 4
+  playStyle: Song.PlayStyle,
+  difficulty: Song.Difficulty
 ) {
   return $http.delete(`/api/v1/scores/${songId}/${playStyle}/${difficulty}`)
 }
