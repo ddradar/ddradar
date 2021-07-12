@@ -3,7 +3,6 @@
     :data="displayedScores"
     striped
     :loading="loading"
-    :mobile-cards="false"
     paginated
     sortable
     per-page="50"
@@ -95,8 +94,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { getCourseInfo } from '~/api/course'
 import { getSongInfo } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
+import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-@Component
+@Component({ components: { ScoreBadge } })
 export default class ScoreListComponent extends Vue {
   @Prop({ required: false, type: Array, default: () => [] })
   readonly scores!: Api.ScoreList[]
