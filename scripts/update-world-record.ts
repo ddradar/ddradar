@@ -102,10 +102,6 @@ async function main(userId: string, password: string) {
             chartScope.success(
               `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
             )
-          } else {
-            chartScope.info(
-              `${chart} WR(${score.topScore}) is not updated. Skip.`
-            )
           }
         }
       } catch (e) {
@@ -117,7 +113,6 @@ async function main(userId: string, password: string) {
           await browser.close()
           throw e
         }
-        chartScope.info('NO PLAY. wait 3 seconds...')
       }
       await sleep(3000)
     }
@@ -144,7 +139,6 @@ async function main(userId: string, password: string) {
       )
       continue
     }
-    songScope.success(songName)
   }
 
   for (const log of logs) {
