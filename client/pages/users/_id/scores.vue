@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="title">{{ $t('title') }}</h1>
+    <h1 class="title">{{ $t('title', [userName]) }}</h1>
     <section>
       <b-field grouped group-multiline>
         <b-field :label="$t('field.playStyle')">
@@ -114,11 +114,6 @@ export default class ScorePage extends Vue {
   scores: Api.ScoreList[] = []
   loading: boolean = false
 
-  get isSelfPage() {
-    const loginId = this.$accessor.user?.id
-    return !!this.user && this.user.id === loginId
-  }
-
   get playStyles() {
     return [...Song.playStyleMap].map(([value, name]) => ({ name, value }))
   }
@@ -139,10 +134,14 @@ export default class ScorePage extends Vue {
     return [...Score.danceLevelSet]
   }
 
+  get userName() {
+    return this.user?.name ?? ''
+  }
+
   /* istanbul ignore next */
   head(): MetaInfo {
     return {
-      title: this.$t('title', [this.user?.name ?? '']) as string,
+      title: this.$t('title', [this.userName]) as string,
     }
   }
 
@@ -153,7 +152,11 @@ export default class ScorePage extends Vue {
 
   async fetch() {
     const id = this.$route.params.id
-    this.user = await getUserInfo(this.$http, id)
+    try {
+      this.user = await getUserInfo(this.$http, id)
+    } catch {
+      this.user = null
+    }
   }
 
   async search() {
@@ -167,11 +170,11 @@ export default class ScorePage extends Vue {
         this.user.id,
         this.playStyle === 0 ? undefined : this.playStyle,
         this.difficulty === -1 ? undefined : this.difficulty,
-        this.level,
+        this.level === 0 ? undefined : this.level,
         this.clearLamp === -1 ? undefined : this.clearLamp,
         this.rank === '' ? undefined : this.rank
       )
-    } /* istanbul ignore next */ catch {
+    } catch {
       this.scores = []
     }
     this.loading = false
