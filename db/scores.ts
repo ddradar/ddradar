@@ -56,10 +56,7 @@ export function fetchScoreList(
   ]
   if (!includeCourse) condition.push({ condition: 'IS_DEFINED(c.radar)' })
 
-  return fetchList<
-    'Scores',
-    Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>
-  >(
+  return fetchList(
     'Scores',
     [
       'songId',
