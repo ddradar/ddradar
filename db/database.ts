@@ -99,6 +99,20 @@ export async function fetchOne<
  * @param conditions SQL WHERE conditions
  * @param orderBy Sort order
  */
+export async function fetchList<T extends ContainerName>(
+  containerName: T,
+  columns: '*',
+  conditions: readonly Condition[],
+  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
+): Promise<DbItem<T>[]>
+
+/**
+ * Calls SQL and returns list data from Container
+ * @param containerName Container name
+ * @param columns Columns
+ * @param conditions SQL WHERE conditions
+ * @param orderBy Sort order
+ */
 export async function fetchList<
   T extends ContainerName,
   U extends keyof DbItem<T>
@@ -106,10 +120,23 @@ export async function fetchList<
   containerName: T,
   columns: readonly U[],
   conditions: readonly Condition[],
+  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
+): Promise<Pick<DbItem<T>, U>[]>
+
+export async function fetchList<
+  T extends ContainerName,
+  U extends keyof DbItem<T>
+>(
+  containerName: T,
+  columns: readonly U[] | '*',
+  conditions: readonly Condition[],
   orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
-  const column = columns.map(col => `c.${col}`).join(',')
+  const column =
+    typeof columns === 'string'
+      ? columns
+      : columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
 
   const order = Object.entries(orderBy)

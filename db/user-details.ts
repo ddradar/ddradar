@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { fetchGroupedList, getContainer } from './database'
+import { fetchGroupedList, fetchList } from './database'
 
 export async function generateGrooveRadar(
   userId: string,
@@ -40,15 +40,13 @@ export async function generateGrooveRadar(
 export async function fetchClearAndScoreStatus(
   userId: string
 ): Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]> {
-  const container = getContainer('UserDetails')
-  const { resources } = await container.items
-    .query<Database.ClearStatusSchema | Database.ScoreStatusSchema>({
-      query:
-        'SELECT * FROM c ' +
-        'WHERE c.userId = @id ' +
-        'AND c.type = "clear" OR c.type = "score"',
-      parameters: [{ name: '@id', value: userId }],
-    })
-    .fetchAll()
-  return resources
+  return fetchList(
+    'UserDetails',
+    '*',
+    [
+      { condition: 'c.userId = @', value: userId },
+      { condition: 'c.type = "clear" OR c.type = "score"' },
+    ],
+    { _ts: 'DESC' }
+  ) as Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]>
 }

@@ -6,7 +6,7 @@ import { fetchList, fetchOne } from './database'
 export function fetchUser(id: string): Promise<Database.UserSchema | null> {
   return fetchOne(
     'Users',
-    ['id', 'loginId', 'name', 'area', 'code', 'isPublic'] as const,
+    ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
     { condition: 'c.id = @', value: id }
   )
 }

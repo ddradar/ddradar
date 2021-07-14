@@ -1,10 +1,8 @@
-import type { Container } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchGroupedList, getContainer } from '../database'
+import { fetchGroupedList, fetchList } from '../database'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
-import { createMockContainer } from './util'
 
 jest.mock('../database')
 
@@ -52,21 +50,16 @@ describe('user-details.ts', () => {
   })
 
   describe('fetchClearAndScoreStatus()', () => {
-    test('returns [] ', async () => {
+    test('calls fetchList("*")', async () => {
       // Arrange
-      const container = createMockContainer([])
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
+      mocked(fetchList).mockResolvedValue([])
 
       // Act
       const result = await fetchClearAndScoreStatus('foo')
 
       // Assert
       expect(result).toHaveLength(0)
-      expect(container.items.query).toBeCalledWith({
-        query:
-          'SELECT * FROM c WHERE c.userId = @id AND c.type = "clear" OR c.type = "score"',
-        parameters: [{ name: '@id', value: 'foo' }],
-      })
+      expect(mocked(fetchList)).toBeCalled()
     })
   })
 })
