@@ -12,6 +12,13 @@
         <b-navbar-item tag="nuxt-link" to="/users">
           {{ $t('menu.user') }}
         </b-navbar-item>
+        <b-navbar-item
+          v-if="$accessor.isLoggedIn"
+          tag="nuxt-link"
+          :to="`${userPage}/scores`"
+        >
+          {{ $t('menu.scores') }}
+        </b-navbar-item>
         <b-navbar-dropdown
           v-for="m in menuList"
           :key="m.label"
@@ -129,6 +136,7 @@
   "ja": {
     "menu": {
       "user": "ユーザーを探す",
+      "scores": "スコア一覧",
       "single": "レベル(SP)",
       "double": "レベル(DP)",
       "series": "バージョン",
@@ -152,6 +160,7 @@
   "en": {
     "menu": {
       "user": "Find User",
+      "scores": "Score List",
       "single": "Level(SP)",
       "double": "Level(DP)",
       "series": "Version",
