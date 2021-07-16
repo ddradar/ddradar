@@ -53,23 +53,26 @@ describeIf(canConnectDB)('scores.ts', () => {
           ] as const
       )
     )(
-      '(%s, %s, %i, %i) returns %p',
-      async (userId, songId, playStyle, difficulty, expected) =>
-        await expect(
-          fetchScore(userId, songId, playStyle, difficulty)
-        ).resolves.toStrictEqual(expected)
+      '("%s", "%s", %i, %i) returns %p',
+      async (userId, songId, playStyle, difficulty, expected) => {
+        const score = await fetchScore(userId, songId, playStyle, difficulty)
+        expect(score).toStrictEqual(expected)
+      }
     )
   })
 
   describe('fetchScoreList', () => {
     test.each(testScores.map(s => [s.userId, s] as const))(
-      '(%s) returns [%p]',
-      async (userId, expected) =>
-        await expect(fetchScoreList(userId)).resolves.toStrictEqual([expected])
+      '("%s") returns [%p]',
+      async (userId, expected) => {
+        const scores = await fetchScoreList(userId)
+        expect(scores).toStrictEqual([expected])
+      }
     )
   })
 
   test('fetchSummaryClearLampCount() returns expected', async () => {
+    // Arrange
     const template = {
       type: 'clear',
       playStyle: 1,
@@ -77,7 +80,12 @@ describeIf(canConnectDB)('scores.ts', () => {
       clearLamp: 5,
       count: 1,
     }
-    await expect(fetchSummaryClearLampCount()).resolves.toStrictEqual([
+
+    // Act
+    const clearCounts = await fetchSummaryClearLampCount()
+
+    // Assert
+    expect(clearCounts).toStrictEqual([
       { userId: areaHiddenUser.id, ...template },
       { userId: privateUser.id, ...template },
       { userId: publicUser.id, ...template },
@@ -85,6 +93,7 @@ describeIf(canConnectDB)('scores.ts', () => {
   })
 
   test('fetchSummaryRankCount() returns expected', async () => {
+    // Arrange
     const template = {
       type: 'score',
       playStyle: 1,
@@ -92,7 +101,11 @@ describeIf(canConnectDB)('scores.ts', () => {
       rank: 'AA+',
       count: 1,
     }
-    await expect(fetchSummaryRankCount()).resolves.toStrictEqual([
+    // Act
+    const ranks = await fetchSummaryRankCount()
+
+    // Assert
+    expect(ranks).toStrictEqual([
       { userId: areaHiddenUser.id, ...template },
       { userId: privateUser.id, ...template },
       { userId: publicUser.id, ...template },
