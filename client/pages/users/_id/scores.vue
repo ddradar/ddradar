@@ -47,6 +47,7 @@
       <b-field>
         <b-button
           type="is-success"
+          icon-left="magnify"
           :disabled="!user"
           :loading="loading"
           @click="search()"

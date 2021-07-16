@@ -145,8 +145,7 @@ exports[`/users/_id/scores.vue { locale: "en" } snapshot test renders correctly 
       <!---->
     </div>
     <div class="field">
-      <!----><button type="button" class="button is-success">
-        <!----><span>
+      <!----><button type="button" class="button is-success"><span class="icon is-small"><i class="mdi mdi-magnify"></i></span><span>
         Search
       </span>
         <!---->
@@ -305,8 +304,7 @@ exports[`/users/_id/scores.vue { locale: "ja" } snapshot test renders correctly 
       <!---->
     </div>
     <div class="field">
-      <!----><button type="button" class="button is-success">
-        <!----><span>
+      <!----><button type="button" class="button is-success"><span class="icon is-small"><i class="mdi mdi-magnify"></i></span><span>
         検索
       </span>
         <!---->
