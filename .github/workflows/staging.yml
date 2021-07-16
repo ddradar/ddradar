@@ -11,14 +11,12 @@ on:
       - '**.md'
   pull_request:
     types:
-      [
-        opened,
-        synchronize,
-        reopened,
-        closed,
-        ready_for_review,
-        converted_to_draft,
-      ]
+      - opened
+      - synchronize
+      - reopened
+      - closed
+      - ready_for_review
+      - converted_to_draft
     branches:
       - master
     paths-ignore:
@@ -30,7 +28,7 @@ on:
 jobs:
   build:
     name: Build
-    if: github.event_name == 'push' || !contains(['closed', 'converted_to_draft'], github.event.action)
+    if: github.event_name == 'push' || (!contains(['closed', 'converted_to_draft'], github.event.action))
     runs-on: ubuntu-20.04
 
     steps:
