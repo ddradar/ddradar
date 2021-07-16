@@ -51,6 +51,7 @@ jobs:
           SONGS_API_URL: https://api.ddradar.app/api/v1/songs
 
       - name: Upload Artifact
+        if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
         uses: actions/upload-artifact@v2.2.4
         with:
           name: client
