@@ -10,7 +10,15 @@ on:
       - scripts/**
       - '**.md'
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types:
+      [
+        opened,
+        synchronize,
+        reopened,
+        closed,
+        ready_for_review,
+        converted_to_draft,
+      ]
     branches:
       - master
     paths-ignore:
@@ -22,7 +30,7 @@ on:
 jobs:
   build:
     name: Build
-    if: github.event_name == 'push' || github.event.action != 'closed'
+    if: github.event_name == 'push' || !contains(['closed', 'converted_to_draft'], github.event.action)
     runs-on: ubuntu-20.04
 
     steps:
@@ -53,7 +61,7 @@ jobs:
   deploy-swa:
     name: Deploy to Azure Static Web Apps
     needs: [build]
-    if: (!contains(github.actor, '[bot]'))
+    if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
     runs-on: ubuntu-20.04
     environment:
       name: Staging
@@ -92,8 +100,8 @@ jobs:
           config_file_location: /
 
   close:
-    name: Close Pull Request
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    name: Close Staging Environment
+    if: github.event_name == 'pull_request' && contains(['closed', 'converted_to_draft'], github.event.action)
     runs-on: ubuntu-20.04
 
     steps:
