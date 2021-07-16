@@ -8,26 +8,36 @@
       <h1 class="title">{{ user.name }}</h1>
       <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
 
-      <div v-if="isSelfPage" class="buttons">
+      <div class="buttons">
         <b-button
-          icon-left="import"
-          type="is-primary"
+          icon-left="magnify"
+          type="is-success"
           tag="nuxt-link"
-          to="/import"
+          :to="`/users/${user.id}/scores`"
         >
-          {{ $t('button.import') }}
+          {{ $t('button.scores') }}
         </b-button>
-        <b-button
-          icon-left="account-cog"
-          type="is-info"
-          tag="nuxt-link"
-          to="/profile"
-        >
-          {{ $t('button.settings') }}
-        </b-button>
+        <template v-if="isSelfPage">
+          <b-button
+            icon-left="import"
+            type="is-primary"
+            tag="nuxt-link"
+            to="/import"
+          >
+            {{ $t('button.import') }}
+          </b-button>
+          <b-button
+            icon-left="account-cog"
+            type="is-info"
+            tag="nuxt-link"
+            to="/profile"
+          >
+            {{ $t('button.settings') }}
+          </b-button>
+        </template>
       </div>
 
-      <section v-if="user" class="section">
+      <section class="section">
         <div class="content columns is-multiline">
           <template v-for="(style, i) in ['SP', 'DP']">
             <section
@@ -197,6 +207,7 @@
   "ja": {
     "pageTitle": "ユーザー詳細",
     "button": {
+      "scores": "スコア一覧",
       "import": "スコアのインポート",
       "settings": "設定"
     },
@@ -213,6 +224,7 @@
   "en": {
     "pageTitle": "User Detail",
     "button": {
+      "scores": "Score List",
       "import": "Import Scores",
       "settings": "Settings"
     },
