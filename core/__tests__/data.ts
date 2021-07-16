@@ -450,6 +450,14 @@ const scoreTemplate = {
   maxCombo: 138,
   exScore: 366,
 } as const
+const radar = { stream: 28, voltage: 22, air: 5, freeze: 0, chaos: 0 }
+/**
+ * - [0]: World Record
+ * - [1]: Area 13(Tokyo) top score
+ * - [2]: {@link publicUser} score
+ * - [3]: {@link areaHiddenUser} score
+ * - [4]: {@link privateUser} score
+ */
 export const testScores: ScoreSchema[] = [
   {
     userId: '0',
@@ -478,18 +486,21 @@ export const testScores: ScoreSchema[] = [
     userName: publicUser.name,
     isPublic: publicUser.isPublic,
     ...scoreTemplate,
+    radar,
   },
   {
     userId: areaHiddenUser.id,
     userName: areaHiddenUser.name,
     isPublic: areaHiddenUser.isPublic,
     ...scoreTemplate,
+    radar,
   },
   {
     userId: privateUser.id,
     userName: privateUser.name,
     isPublic: privateUser.isPublic,
     ...scoreTemplate,
+    radar,
   },
 ]
 //#endregion

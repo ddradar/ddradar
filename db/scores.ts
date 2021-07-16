@@ -85,7 +85,7 @@ export function fetchSummaryClearLampCount(): Promise<
     'Scores',
     [
       'userId',
-      '"score" AS type',
+      '"clear" AS type',
       'playStyle',
       'level',
       'clearLamp',

@@ -12,15 +12,20 @@ describe('GET /api/v1/scores', () => {
 
   const user = { ...privateUser, area: 13 } as const
 
-  const userScore = { ...testScores[4] }
-  delete userScore.exScore
-  delete userScore.maxCombo
+  const privateUserScore = { ...testScores[4] }
+  delete privateUserScore.exScore
+  delete privateUserScore.maxCombo
   const scores = [
-    testScores[0],
-    testScores[1],
-    testScores[2],
-    { ...userScore, userId: 'other_user', userName: 'ZERO', isPublic: false },
-    userScore,
+    testScores[0], // WR
+    testScores[1], // Area top
+    testScores[2], // publicUser score
+    {
+      ...privateUserScore,
+      userId: 'other_user',
+      userName: 'ZERO',
+      isPublic: false,
+    },
+    privateUserScore,
   ]
 
   const omitScore = (i: number) => ({

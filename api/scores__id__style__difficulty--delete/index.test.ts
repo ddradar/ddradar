@@ -12,7 +12,7 @@ jest.mock('../auth')
 
 describe('DELETE /api/v1/scores', () => {
   const req = { headers: {} }
-  const score = { ...testScores[2] }
+  const publicUserScore = { ...testScores[2] }
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
@@ -30,7 +30,7 @@ describe('DELETE /api/v1/scores', () => {
     mocked(getLoginUserInfo).mockResolvedValue(privateUser)
 
     // Act
-    const result = await deleteChartScore(null, req, [score])
+    const result = await deleteChartScore(null, req, [publicUserScore])
 
     // Assert
     expect(result.httpResponse.status).toBe(404)
@@ -41,10 +41,10 @@ describe('DELETE /api/v1/scores', () => {
     mocked(getLoginUserInfo).mockResolvedValue(publicUser)
 
     // Act
-    const result = await deleteChartScore(null, req, [score])
+    const result = await deleteChartScore(null, req, [publicUserScore])
 
     // Assert
     expect(result.httpResponse.status).toBe(204)
-    expect(result.documents).toStrictEqual([{ ...score, ttl: 3600 }])
+    expect(result.documents).toStrictEqual([{ ...publicUserScore, ttl: 3600 }])
   })
 })
