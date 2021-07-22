@@ -4,14 +4,25 @@ exports[`pages/help/index.vue { locale: "en" } snapshot test renders correctly 1
 <section class="section">
   <h1 class="title">Guide</h1>
   <section class="section">
-    <h1 class="title">User Resistration</h1>
+    <h1 id="register" class="title">User Resistration</h1>
+    <div class="content">
+      <ol>
+        <li>Click "<a href="/.auth/login/twitter">
+            Login via Twitter
+          </a>" or "<a href="/.auth/login/github">
+            Login via GitHub
+          </a>" button in Login menu.</li>
+        <li>Authorize "Azure Static Web Apps".</li>
+        <li>Click "Grant" button.</li>
+        <li>Input your information and click "Save" button on User Settings page.</li>
+      </ol>
+    </div>
   </section>
   <section class="section">
     <h1 id="radar" class="title">Groove Radar</h1>
     <h2 id="radar-common" class="subtitle">Common</h2>
     <div class="content">
       <ul>
-        <li></li>
         <li>For more information, please see <a target="_blank" href="https://github.com/ddradar/ddradar/blob/master/core/score.ts#L65">
             Implementation
           </a>.</li>
@@ -81,14 +92,25 @@ exports[`pages/help/index.vue { locale: "ja" } snapshot test renders correctly 1
 <section class="section">
   <h1 class="title">ガイド</h1>
   <section class="section">
-    <h1 class="title">ユーザー登録</h1>
+    <h1 id="register" class="title">ユーザー登録</h1>
+    <div class="content">
+      <ol>
+        <li>「ログイン」メニューの「<a href="/.auth/login/twitter">
+            Twitterでログイン
+          </a>}」または「<a href="/.auth/login/github">
+            GitHubでログイン
+          </a>」をクリックします。</li>
+        <li>「Azure Static Web Apps」の連携を許可します。</li>
+        <li>「Azure Static Web Apps」の認証画面に移るので、「Grant」をクリックします。</li>
+        <li>ユーザー登録画面に移るので、必要事項を入力し「登録」ボタンをクリックします。</li>
+      </ol>
+    </div>
   </section>
   <section class="section">
     <h1 id="radar" class="title">グルーブレーダー</h1>
     <h2 id="radar-common" class="subtitle">共通事項</h2>
     <div class="content">
       <ul>
-        <li></li>
         <li>計算式の詳細については、<a target="_blank" href="https://github.com/ddradar/ddradar/blob/master/core/score.ts#L65">
             実装部分
           </a>もご参照ください。</li>

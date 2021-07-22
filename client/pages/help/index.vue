@@ -4,7 +4,26 @@
 
     <!-- Register -->
     <section class="section">
-      <h1 class="title">{{ $t('register.title') }}</h1>
+      <h1 id="register" class="title">{{ $t('register.title') }}</h1>
+      <div class="content">
+        <ol>
+          <i18n path="register.description.step_1" tag="li">
+            <template #twitter>
+              <a href="/.auth/login/twitter">
+                {{ $t('register.description.step_1_twitter') }}
+              </a>
+            </template>
+            <template #github>
+              <a href="/.auth/login/github">
+                {{ $t('register.description.step_1_github') }}
+              </a>
+            </template>
+          </i18n>
+          <li>{{ $t('register.description.step_2') }}</li>
+          <li>{{ $t('register.description.step_3') }}</li>
+          <li>{{ $t('register.description.step_4') }}</li>
+        </ol>
+      </div>
     </section>
 
     <!-- Calc Radar -->
@@ -14,7 +33,6 @@
       <h2 id="radar-common" class="subtitle">{{ $t('radar.common.title') }}</h2>
       <div class="content">
         <ul>
-          <li></li>
           <i18n path="radar.common.list_1" tag="li">
             <a
               target="_blank"
@@ -97,7 +115,15 @@
   "ja": {
     "title": "ガイド",
     "register": {
-      "title": "ユーザー登録"
+      "title": "ユーザー登録",
+      "description": {
+        "step_1": "「ログイン」メニューの「{twitter}}」または「{github}」をクリックします。",
+        "step_1_twitter": "Twitterでログイン",
+        "step_1_github": "GitHubでログイン",
+        "step_2": "「Azure Static Web Apps」の連携を許可します。",
+        "step_3": "「Azure Static Web Apps」の認証画面に移るので、「Grant」をクリックします。",
+        "step_4": "ユーザー登録画面に移るので、必要事項を入力し「登録」ボタンをクリックします。"
+      }
     },
     "radar": {
       "title": "グルーブレーダー",
@@ -141,7 +167,15 @@
   "en": {
     "title": "Guide",
     "register": {
-      "title": "User Resistration"
+      "title": "User Resistration",
+      "description": {
+        "step_1": "Click \"{twitter}\" or \"{github}\" button in Login menu.",
+        "step_1_twitter": "Login via Twitter",
+        "step_1_github": "Login via GitHub",
+        "step_2": "Authorize \"Azure Static Web Apps\".",
+        "step_3": "Click \"Grant\" button.",
+        "step_4": "Input your information and click \"Save\" button on User Settings page."
+      }
     },
     "radar": {
       "title": "Groove Radar",
