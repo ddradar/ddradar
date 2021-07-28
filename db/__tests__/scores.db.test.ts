@@ -1,8 +1,12 @@
 import { Database } from '@ddradar/core'
-import { testScores } from '@ddradar/core/__tests__/data'
+import {
+  publicUser,
+  testScores,
+  testSongData,
+} from '@ddradar/core/__tests__/data'
 
 import { canConnectDB, getContainer } from '../database'
-import { fetchScore } from '../scores'
+import { fetchScore, fetchScoreList } from '../scores'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('scores.ts', () => {
@@ -27,6 +31,8 @@ describeIf(canConnectDB)('scores.ts', () => {
       ttl: 3600,
     })),
   ]
+  const userId = publicUser.id
+  const songId = testSongData.id
 
   beforeAll(async () => {
     await Promise.all(scores.map(s => getContainer('Scores').items.create(s)))
@@ -39,18 +45,17 @@ describeIf(canConnectDB)('scores.ts', () => {
 
   describe('fetchScore', () => {
     test.each([
-      ['foo', scores[0].songId, scores[0].playStyle, scores[0].difficulty],
-      [scores[0].userId, 'foo', scores[0].playStyle, scores[0].difficulty],
-      [scores[0].userId, scores[0].songId, 2 as const, scores[0].difficulty],
-      [scores[0].userId, scores[0].songId, scores[0].playStyle, 3 as const],
-      [scores[0].userId, scores[0].songId, scores[0].playStyle, 1 as const],
-    ])(
+      ['not_existed_user', songId, 1, 0],
+      [userId, 'not_existed_song', 1, 0],
+      [userId, songId, 2, 0],
+      [userId, songId, 1, 3],
+      [userId, songId, 1, 1],
+    ] as const)(
       '("%s", "%s", %i, %i) returns null',
-      async (userId, songId, playStyle, difficulty) => {
+      (userId, songId, playStyle, difficulty) =>
         expect(
           fetchScore(userId, songId, playStyle, difficulty)
         ).resolves.toBeNull()
-      }
     )
     test.each(
       scores
@@ -58,11 +63,47 @@ describeIf(canConnectDB)('scores.ts', () => {
         .map(s => [s.userId, s.songId, s.playStyle, s.difficulty, s] as const)
     )(
       '("%s", "%s", %i, %i) returns %p',
-      async (userId, songId, playStyle, difficulty, expected) => {
+      (userId, songId, playStyle, difficulty, expected) =>
         expect(
           fetchScore(userId, songId, playStyle, difficulty)
         ).resolves.toStrictEqual(expected)
-      }
+    )
+  })
+
+  describe('fetchScoreList', () => {
+    test.each([
+      ['not_existed_user', {}],
+      [userId, { playStyle: 2 }],
+      [userId, { playStyle: 1, difficulty: 3 }],
+      [userId, { level: 3 }],
+      [userId, { clearLamp: 7 }],
+      [userId, { rank: 'AAA' }],
+    ] as const)('("%s", %p) returns []', (userId, conditions) =>
+      expect(fetchScoreList(userId, conditions)).resolves.toHaveLength(0)
+    )
+    test.each([
+      [userId, {}],
+      [userId, { playStyle: 1 }],
+      [userId, { difficulty: 0 }],
+      [userId, { level: 4 }],
+      [userId, { clearLamp: 5 }],
+      [userId, { rank: 'AA+' }],
+    ] as const)('("%s", %p) returns [expected]', (userId, conditions) =>
+      expect(fetchScoreList(userId, conditions)).resolves.toStrictEqual([
+        {
+          songId,
+          songName: testSongData.name,
+          playStyle: testSongData.charts[0].playStyle,
+          difficulty: testSongData.charts[0].difficulty,
+          level: testSongData.charts[0].level,
+          score: testScores[2].score,
+          exScore: testScores[2].exScore,
+          maxCombo: testScores[2].maxCombo,
+          clearLamp: testScores[2].clearLamp,
+          rank: testScores[2].rank,
+          radar,
+        },
+      ])
     )
   })
 })
