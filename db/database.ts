@@ -1,3 +1,5 @@
+/* istanbul ignore file */
+
 import type { ItemDefinition, JSONValue, SqlParameter } from '@azure/cosmos'
 import { Container, CosmosClient } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'

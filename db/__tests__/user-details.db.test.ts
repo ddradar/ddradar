@@ -1,10 +1,11 @@
 import { Database, Score } from '@ddradar/core'
 import { publicUser, testScores } from '@ddradar/core/__tests__/data'
 
-import { getContainer } from '../database'
+import { canConnectDB, getContainer } from '../database'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
+import { describeIf } from './util'
 
-describe('user-details.ts', () => {
+describeIf(canConnectDB)('user-details.ts', () => {
   describe('generateGrooveRadar()', () => {
     const radar = { stream: 28, voltage: 22, air: 5, freeze: 0, chaos: 0 }
     const scores: (Database.ScoreSchema & { id: string })[] = [
