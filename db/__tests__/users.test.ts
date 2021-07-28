@@ -1,146 +1,99 @@
 import type { Database } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/__tests__/data'
+import { mocked } from 'ts-jest/utils'
 
-import { canConnectDB, getContainer } from '../database'
+import { fetchList, fetchOne } from '../database'
 import { fetchLoginUser, fetchUser, fetchUserList } from '../users'
-import { describeIf } from './util'
 
-describeIf(canConnectDB)('users.ts', () => {
-  const users: Required<Database.UserSchema>[] = [...Array(100).keys()].map(
-    i => ({
-      id: `user_${i}`,
-      loginId: `login_${i}`,
-      name: `User ${i}`,
-      area: (i % 50) as Database.AreaCode,
-      isPublic: i !== 0,
-      code: 10000000 + i,
-      password: `pass_${i}`,
-    })
-  )
-  /** System users */
-  const areas: Database.UserSchema[] = [...Array(50).keys()].map(i => ({
-    id: `${i}`,
-    name: `User ${i}`,
-    area: (i % 50) as Database.AreaCode,
-    isPublic: true,
-  }))
-  beforeAll(async () => {
-    await Promise.all(users.map(u => getContainer('Users').items.create(u)))
-    await Promise.all(areas.map(u => getContainer('Users').items.create(u)))
-  })
-  afterAll(async () => {
-    await Promise.all(
-      users.map(u => getContainer('Users').item(u.id, u.id).delete())
-    )
-    await Promise.all(
-      areas.map(u => getContainer('Users').item(u.id, u.id).delete())
-    )
-  })
+jest.mock('../database')
 
+describe('users.ts', () => {
   describe('fetchUser', () => {
-    test.each(['', 'foo', users[0].loginId, users[1].loginId])(
-      '("%s") returns null',
-      async id => {
-        // Arrange - Act
-        const user = await fetchUser(id)
+    beforeEach(() => mocked(fetchOne).mockClear())
 
-        // Assert
-        expect(user).toBeNull()
-      }
-    )
+    test('returns fetchOne() value', async () => {
+      // Arrange
+      const resource: Database.UserSchema = { ...publicUser }
+      delete resource.password
+      mocked(fetchOne).mockResolvedValue(resource)
 
-    test.each([
-      [users[0].id, users[0]],
-      [users[1].id, users[1]],
-    ])('("%s") returns %p', async (id, user) => {
-      // Arrange - Act
-      const expected: Database.UserSchema = { ...user }
-      delete expected.password
-      const result = await fetchUser(id)
+      // Act
+      const result = await fetchUser(resource.id)
 
       // Assert
-      expect(result).toStrictEqual(expected)
+      expect(result).toBe(resource)
+      expect(mocked(fetchOne)).toBeCalledWith(
+        'Users',
+        ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
+        { condition: 'c.id = @', value: resource.id }
+      )
     })
   })
 
   describe('fetchLoginUser', () => {
-    test.each(['', 'foo', users[0].id, users[1].id])(
-      '("%s") returns null',
-      async loginId => {
-        // Arrange - Act
-        const user = await fetchLoginUser(loginId)
+    beforeEach(() => mocked(fetchOne).mockClear())
 
-        // Assert
-        expect(user).toBeNull()
-      }
-    )
+    test('returns fetchOne() value', async () => {
+      // Arrange
+      const resource = { ...publicUser }
+      mocked(fetchOne).mockResolvedValue(resource)
 
-    test.each([
-      [users[0].loginId, users[0]],
-      [users[1].loginId, users[1]],
-    ])('("%s") returns %p', async (loginId, expected) => {
-      // Arrange - Act
-      const user = await fetchLoginUser(loginId)
+      // Act
+      const result = await fetchLoginUser(resource.loginId)
 
       // Assert
-      expect(user).toStrictEqual(expected)
+      expect(result).toBe(resource)
+      expect(mocked(fetchOne)).toBeCalledWith(
+        'Users',
+        ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
+        { condition: 'c.loginId = @', value: resource.loginId }
+      )
     })
   })
 
   describe('fetchUserList', () => {
-    test('("", undefined, "0") returns 9 users', async () => {
-      // Arrange - Act
-      const result = await fetchUserList('', undefined, '0')
-
-      // Assert
-      expect(result).toHaveLength(9)
-    })
-
-    test(`("${users[0].loginId}", undefined, "0") returns 10 users`, async () => {
-      // Arrange - Act
-      const result = await fetchUserList(users[0].loginId, undefined, '0')
-
-      // Assert
-      expect(result).toHaveLength(10)
-    })
-
-    test(`("", 13) returns 1 user`, async () => {
-      // Arrange - Act
-      const result = await fetchUserList('', 13)
-
-      // Assert
-      expect(result).toHaveLength(2)
+    beforeEach(() => {
+      mocked(fetchList).mockClear()
+      mocked(fetchList).mockResolvedValue([])
     })
 
     test.each([
+      [undefined, undefined, undefined, []],
+      [0, undefined, undefined, [{ condition: 'c.area = @', value: 0 }]],
+      [0, '', 0, [{ condition: 'c.area = @', value: 0 }]],
       [
         undefined,
-        10000010,
-        {
-          id: users[10].id,
-          name: users[10].name,
-          area: users[10].area,
-          code: users[10].code,
-        },
+        'foo',
+        undefined,
+        [{ condition: 'CONTAINS(c.name, @, true)', value: 'foo' }],
       ],
       [
-        'User 2',
-        10000023,
-        {
-          id: users[23].id,
-          name: users[23].name,
-          area: users[23].area,
-          code: users[23].code,
-        },
+        undefined,
+        undefined,
+        10000000,
+        [{ condition: 'c.code = @', value: 10000000 }],
       ],
-    ])(
-      '("", undefined, "%s", %i) returns [%p]',
-      async (name, code, expected) => {
+    ] as const)(
+      '("loginId", %p, %p, %p) calls fetchList("Users", columns, %p, {name: "ASC"})',
+      async (area, name, code, cond) => {
         // Arrange - Act
-        const result = await fetchUserList('', undefined, name, code)
+        const result = await fetchUserList('loginId', area, name, code)
 
         // Assert
-        expect(result).toHaveLength(1)
-        expect(result[0]).toStrictEqual(expected)
+        expect(result).toHaveLength(0)
+        expect(mocked(fetchList)).toBeCalledWith(
+          'Users',
+          ['id', 'name', 'area', 'code'],
+          [
+            {
+              condition: '(c.isPublic = true OR c.loginId = @)',
+              value: 'loginId',
+            },
+            ...cond,
+            { condition: 'IS_DEFINED(c.loginId)' },
+          ],
+          { name: 'ASC' }
+        )
       }
     )
   })

@@ -1,0 +1,46 @@
+name: Cosmos DB Integration
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - '/db/**'
+      - '**.db.test.ts'
+      - '!**.md'
+  pull_request:
+    branches:
+      - master
+    paths:
+      - '/db/**'
+      - '**.db.test.ts'
+      - '!**.md'
+
+jobs:
+  test:
+    name: Cosmos DB Integration Test
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.3.4
+      - name: Use Node.js 12
+        uses: actions/setup-node@v2.3.0
+        with:
+          node-version: 12
+          cache: yarn
+
+      - name: Install Project Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Launch Cosmos DB Emulator
+        shell: pwsh
+        run: |
+          Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
+          Start-CosmosDbEmulator -NoUI
+          Get-CosmosDbEmulatorStatus
+          echo "COSMOS_DB_CONN=AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "NODE_TLS_REJECT_UNAUTHORIZED=0" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Test (only *.db.test.ts)
+        run: yarn test ".+\.db\.test\.ts" --passWithNoTests
