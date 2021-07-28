@@ -58,10 +58,7 @@ jobs:
           echo "NODE_TLS_REJECT_UNAUTHORIZED=0" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Test
-        run: |
-          yarn workspace @ddradar/core run build
-          yarn workspace @ddradar/db run build
-          yarn test
+        run: yarn test
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v1.5.2

@@ -51,7 +51,7 @@ describe('user-details.ts', () => {
 
   describe('fetchClearAndScoreStatus()', () => {
     const clears: (Database.ClearStatusSchema & { id: string })[] = [
-      ...Array(19 * Score.clearLampMap.size),
+      ...Array(19 * Score.clearLampMap.size).keys(),
     ].map(n => ({
       id: `clear-${publicUser.id}-${(n % 2) + 1}-${(n % 19) + 1}-${
         n % Score.clearLampMap.size
