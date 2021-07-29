@@ -123,6 +123,29 @@ export async function fetchList<
   return resources
 }
 
+export async function fetchGroupedList<T extends ContainerName, U>(
+  containerName: T,
+  columns: readonly (
+    | Extract<keyof DbItem<T>, string>
+    | `${string} AS ${Extract<keyof U, string>}`
+  )[],
+  conditions: readonly Condition<T>[],
+  groupBy: readonly (keyof DbItem<T>)[]
+): Promise<U[]> {
+  const column = columns
+    .map(col => (col.includes(' AS ') ? col : `c.${col}`))
+    .join(',')
+  const group = groupBy.map(col => `c.${col}`).join(',')
+  const { condition, parameters } = createConditions(conditions)
+  const sql = `SELECT ${column} FROM c WHERE ${condition} GROUP BY ${group}`
+
+  const container = getContainer(containerName)
+  const { resources } = await container.items
+    .query<U>({ query: sql, parameters })
+    .fetchAll()
+  return resources
+}
+
 function createConditions<T extends ContainerName>(
   conditions: readonly Condition<T>[]
 ) {

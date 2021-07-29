@@ -1,15 +1,14 @@
-import type { Container, ItemDefinition } from '@azure/cosmos'
+import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { fetchList, fetchOne, getContainer } from '../database'
+import { fetchGroupedList, fetchList, fetchOne } from '../database'
 import {
   fetchScore,
   fetchScoreList,
   fetchSummaryClearLampCount,
   fetchSummaryRankCount,
 } from '../scores'
-import { createMockContainer } from './util'
 
 jest.mock('../database')
 
@@ -181,7 +180,7 @@ describe('scores.ts', () => {
     test('returns ClearStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      const container = createMockContainer<Database.ClearStatusSchema>(
+      mocked(fetchGroupedList).mockReturnValue(
         [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'clear' as const,
@@ -189,9 +188,9 @@ describe('scores.ts', () => {
           level: (i % 19) + 1,
           clearLamp: (i % 8) as Score.ClearLamp,
           count: 10,
-        }))
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        })) as any
       )
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
       const result = await fetchSummaryClearLampCount()
@@ -205,7 +204,7 @@ describe('scores.ts', () => {
     test('returns ScoreStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      const container = createMockContainer<Database.ScoreStatusSchema>(
+      mocked(fetchGroupedList).mockReturnValue(
         [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'score' as const,
@@ -213,9 +212,9 @@ describe('scores.ts', () => {
           level: (i % 19) + 1,
           rank: 'AA' as const,
           count: 10,
-        }))
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        })) as any
       )
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
       const result = await fetchSummaryRankCount()
