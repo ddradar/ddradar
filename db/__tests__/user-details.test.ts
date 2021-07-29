@@ -2,7 +2,7 @@ import type { Container } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
 
-import { getContainer } from '../database'
+import { fetchList, getContainer } from '../database'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '../user-details'
 import { createMockContainer } from './util'
 
@@ -67,21 +67,24 @@ describe('user-details.ts', () => {
   })
 
   describe('fetchClearAndScoreStatus()', () => {
-    test('returns [] ', async () => {
+    test('calls fetchList("UserDetails")', async () => {
       // Arrange
-      const container = createMockContainer([])
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
+      mocked(fetchList).mockResolvedValue([])
 
       // Act
       const result = await fetchClearAndScoreStatus('foo')
 
       // Assert
       expect(result).toHaveLength(0)
-      expect(container.items.query).toBeCalledWith({
-        query:
-          'SELECT * FROM c WHERE c.userId = @id AND c.type = "clear" OR c.type = "score"',
-        parameters: [{ name: '@id', value: 'foo' }],
-      })
+      expect(mocked(fetchList)).toBeCalledWith(
+        'UserDetails',
+        '*',
+        [
+          { condition: 'c.userId = @', value: 'foo' },
+          { condition: 'c.type = "clear" OR c.type = "score"' },
+        ],
+        { _ts: 'ASC' }
+      )
     })
   })
 })
