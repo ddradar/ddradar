@@ -1,6 +1,11 @@
 /* istanbul ignore file */
 
-import type { ItemDefinition, JSONValue, SqlParameter } from '@azure/cosmos'
+import type {
+  ItemDefinition,
+  JSONValue,
+  Resource,
+  SqlParameter,
+} from '@azure/cosmos'
 import { Container, CosmosClient } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 
@@ -34,9 +39,7 @@ type ContainerValue<T> = T extends 'Scores'
       | Database.ScoreStatusSchema
   : never
 
-type DbItem<T> = Partial<
-  ContainerValue<T> & Pick<ItemDefinition, 'id' | 'ttl'> & { _ts: number }
->
+type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>
 //#endregion
 
 let client: CosmosClient
@@ -55,11 +58,14 @@ export type Condition = {
   value?: JSONValue
 }
 
-export async function fetchOne<T extends ContainerName, U extends DbItem<T>>(
+export async function fetchOne<
+  T extends ContainerName,
+  U extends keyof DbItem<T>
+>(
   containerName: T,
-  columns: readonly (keyof U)[],
+  columns: readonly U[],
   ...conditions: readonly Condition[]
-): Promise<U | null> {
+): Promise<Pick<DbItem<T>, U> | null> {
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
@@ -67,17 +73,20 @@ export async function fetchOne<T extends ContainerName, U extends DbItem<T>>(
 
   const container = getContainer(containerName)
   const { resources } = await container.items
-    .query<U>({ query, parameters })
+    .query<Pick<DbItem<T>, U>>({ query, parameters })
     .fetchNext()
   return resources[0] ?? null
 }
 
-export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
+export async function fetchList<
+  T extends ContainerName,
+  U extends keyof DbItem<T>
+>(
   containerName: T,
-  columns: readonly (keyof U)[],
+  columns: readonly U[],
   conditions: readonly Condition[],
-  orderBy: Partial<Record<keyof U, 'ASC' | 'DESC'>>
-): Promise<U[]> {
+  orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
+): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
@@ -89,7 +98,7 @@ export async function fetchList<T extends ContainerName, U extends DbItem<T>>(
 
   const container = getContainer(containerName)
   const { resources } = await container.items
-    .query<U>({ query: sql, parameters })
+    .query<Pick<DbItem<T>, U>>({ query: sql, parameters })
     .fetchAll()
   return resources
 }

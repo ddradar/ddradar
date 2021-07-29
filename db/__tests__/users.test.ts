@@ -15,7 +15,8 @@ describe('users.ts', () => {
       // Arrange
       const resource: Database.UserSchema = { ...publicUser }
       delete resource.password
-      mocked(fetchOne).mockResolvedValue(resource)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchUser(resource.id)
@@ -36,7 +37,8 @@ describe('users.ts', () => {
     test('returns fetchOne() value', async () => {
       // Arrange
       const resource = { ...publicUser }
-      mocked(fetchOne).mockResolvedValue(resource)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchLoginUser(resource.loginId)

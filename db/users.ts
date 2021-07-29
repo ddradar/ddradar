@@ -35,7 +35,5 @@ export function fetchUserList(
   if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (code) cond.push({ condition: 'c.code = @', value: code })
   cond.push({ condition: 'IS_DEFINED(c.loginId)' })
-  return fetchList<'Users', Api.UserInfo>('Users', columns, cond, {
-    name: 'ASC',
-  })
+  return fetchList('Users', columns, cond, { name: 'ASC' })
 }

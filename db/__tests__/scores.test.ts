@@ -33,7 +33,8 @@ describe('scores.ts', () => {
         clearLamp: 7,
         rank: 'AAA',
       }
-      mocked(fetchOne).mockResolvedValue(resource)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchScore('foo', '', 1, 0)
@@ -76,7 +77,8 @@ describe('scores.ts', () => {
         Database.ScoreSchema,
         'userId' | 'userName' | 'isPublic'
       >[] = []
-      mocked(fetchList).mockResolvedValue(resources)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchList).mockResolvedValue(resources as any)
 
       // Act
       const result = await fetchScoreList('foo')
@@ -138,7 +140,8 @@ describe('scores.ts', () => {
           Database.ScoreSchema,
           'userId' | 'userName' | 'isPublic'
         >[] = []
-        mocked(fetchList).mockResolvedValue(resources)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        mocked(fetchList).mockResolvedValue(resources as any)
 
         // Act
         const result = await fetchScoreList('foo', conditions, includeCourse)
