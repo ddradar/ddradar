@@ -46,11 +46,11 @@ export function fetchScoreList(
   > = {},
   includeCourse = false
 ): Promise<Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
-  const condition: Condition[] = [
+  const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
     { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
     ...Object.entries(conditions).map(([k, v]) => ({
-      condition: `c.${k} = @`,
+      condition: `c.${k as keyof Database.ScoreSchema} = @` as const,
       value: v,
     })),
   ]

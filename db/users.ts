@@ -28,7 +28,7 @@ export function fetchUserList(
   code?: number
 ): Promise<Api.UserInfo[]> {
   const columns = ['id', 'name', 'area', 'code'] as const
-  const cond: Condition[] = [
+  const cond: Condition<'Users'>[] = [
     { condition: '(c.isPublic = true OR c.loginId = @)', value: loginId },
   ]
   if (area !== undefined) cond.push({ condition: 'c.area = @', value: area })

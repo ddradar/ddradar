@@ -53,8 +53,8 @@ export function getContainer(id: ContainerName): Container {
   )
 }
 
-export type Condition = {
-  condition: string
+export type Condition<T extends ContainerName> = {
+  condition: `${string}c.${Extract<keyof DbItem<T>, string>}${string}`
   value?: JSONValue
 }
 
@@ -64,7 +64,7 @@ export async function fetchOne<
 >(
   containerName: T,
   columns: readonly U[],
-  ...conditions: readonly Condition[]
+  ...conditions: readonly Condition<T>[]
 ): Promise<Pick<DbItem<T>, U> | null> {
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(',')
@@ -84,7 +84,7 @@ export async function fetchList<
 >(
   containerName: T,
   columns: readonly U[],
-  conditions: readonly Condition[],
+  conditions: readonly Condition<T>[],
   orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
@@ -103,7 +103,9 @@ export async function fetchList<
   return resources
 }
 
-function createConditions(conditions: readonly Condition[]) {
+function createConditions<T extends ContainerName>(
+  conditions: readonly Condition<T>[]
+) {
   return {
     condition: conditions
       .map((c, i) => c.condition.replace('@', `@param${i}`))
