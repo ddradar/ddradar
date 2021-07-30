@@ -25,7 +25,7 @@ describe('users.ts', () => {
       expect(result).toBe(resource)
       expect(mocked(fetchOne)).toBeCalledWith(
         'Users',
-        ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
+        ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
         { condition: 'c.id = @', value: resource.id }
       )
     })
