@@ -69,14 +69,24 @@ export async function fetchOne<
   // Create SQL statement
   const column = columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
-  const query = `SELECT ${column} FROM c WHERE ${condition}`
+  const query = `SELECT TOP 1 ${column} FROM c WHERE ${condition}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
     .query<Pick<DbItem<T>, U>>({ query, parameters })
-    .fetchNext()
+    .fetchAll()
   return resources[0] ?? null
 }
+
+export async function fetchList<
+  T extends ContainerName,
+  U extends keyof DbItem<T>
+>(
+  containerName: T,
+  columns: readonly U[],
+  conditions: readonly Condition<T>[],
+  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
+): Promise<Pick<DbItem<T>, U>[]>
 
 export async function fetchList<T extends ContainerName>(
   containerName: T,
@@ -90,35 +100,23 @@ export async function fetchList<
   U extends keyof DbItem<T>
 >(
   containerName: T,
-  columns: readonly U[],
-  conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
-): Promise<Pick<DbItem<T>, U>[]>
-
-export async function fetchList<
-  T extends ContainerName,
-  U extends keyof DbItem<T>
->(
-  containerName: T,
   columns: readonly U[] | '*',
   conditions: readonly Condition<T>[],
   orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
   const column =
-    typeof columns === 'string'
-      ? columns
-      : columns.map(col => `c.${col}`).join(',')
+    columns === '*' ? columns : columns.map(col => `c.${col}`).join(',')
   const { condition, parameters } = createConditions(conditions)
 
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
     .join(', ')
-  const sql = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
+  const query = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
-    .query<Pick<DbItem<T>, U>>({ query: sql, parameters })
+    .query<Pick<DbItem<T>, U>>({ query, parameters })
     .fetchAll()
   return resources
 }
@@ -132,16 +130,14 @@ export async function fetchGroupedList<T extends ContainerName, U>(
   conditions: readonly Condition<T>[],
   groupBy: readonly (keyof DbItem<T>)[]
 ): Promise<U[]> {
-  const column = columns
-    .map(col => (col.includes(' AS ') ? col : `c.${col}`))
-    .join(',')
-  const group = groupBy.map(col => `c.${col}`).join(',')
+  const column = columns.map(s => (s.includes(' AS ') ? s : `c.${s}`)).join(',')
+  const group = groupBy.map(s => `c.${s}`).join(',')
   const { condition, parameters } = createConditions(conditions)
-  const sql = `SELECT ${column} FROM c WHERE ${condition} GROUP BY ${group}`
+  const query = `SELECT ${column} FROM c WHERE ${condition} GROUP BY ${group}`
 
   const container = getContainer(containerName)
   const { resources } = await container.items
-    .query<U>({ query: sql, parameters })
+    .query<U>({ query, parameters })
     .fetchAll()
   return resources
 }
