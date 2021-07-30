@@ -42,6 +42,10 @@ export async function generateGrooveRadar(
   return result
 }
 
+/**
+ * Returns score summaries grouped by playStyle and level.
+ * @param userId User id
+ */
 export async function fetchClearAndScoreStatus(
   userId: string
 ): Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]> {

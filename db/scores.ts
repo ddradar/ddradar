@@ -3,6 +3,23 @@ import type { Database, Song } from '@ddradar/core'
 
 import { Condition, fetchGroupedList, fetchList, fetchOne } from './database'
 
+/**
+ * Score is not deleted.
+ * (not defined {@link https://docs.microsoft.com/azure/cosmos-db/time-to-live Time to Live}.)
+ */
+const isNotObsolete = {
+  condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' as const,
+}
+/** Score is not Area user score and not Course score. */
+const isUserSongScore = { condition: 'IS_DEFINED(c.radar)' as const }
+
+/**
+ * Returns one score data that matches conditions.
+ * @param userId User id
+ * @param songId Song id
+ * @param playStyle {@link Song.PlayStyle}
+ * @param difficulty {@link Song.Difficulty}
+ */
 export function fetchScore(
   userId: string,
   songId: string,
@@ -32,10 +49,16 @@ export function fetchScore(
     { condition: 'c.songId = @', value: songId },
     { condition: 'c.playStyle = @', value: playStyle },
     { condition: 'c.difficulty = @', value: difficulty },
-    { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' }
+    isNotObsolete
   )
 }
 
+/**
+ * Returns one score data list that matches conditions.
+ * @param userId User id
+ * @param conditions WHERE conditions
+ * @param includeCourse Includes course score or not
+ */
 export function fetchScoreList(
   userId: string,
   conditions: Partial<
@@ -48,13 +71,13 @@ export function fetchScoreList(
 ): Promise<Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
   const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
-    { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
+    isNotObsolete,
     ...Object.entries(conditions).map(([k, v]) => ({
       condition: `c.${k as keyof Database.ScoreSchema} = @` as const,
       value: v,
     })),
   ]
-  if (!includeCourse) condition.push({ condition: 'IS_DEFINED(c.radar)' })
+  if (!includeCourse) condition.push(isUserSongScore)
 
   return fetchList(
     'Scores',
@@ -77,44 +100,35 @@ export function fetchScoreList(
   )
 }
 
+const isNotDeletedSong = {
+  condition: 'NOT (IS_DEFINED(c.deleted) AND c.deleted = true)' as const,
+}
+const summaryColumns = ['userId', 'playStyle', 'level'] as const
+
+/**
+ * Generates {@link Database.ClearStatusSchema} from Score data.
+ * @description This function consumes a lot of RU cost. Please call carefully.
+ */
 export function fetchSummaryClearLampCount(): Promise<
   Database.ClearStatusSchema[]
 > {
   return fetchGroupedList(
     'Scores',
-    [
-      'userId',
-      '"clear" AS type',
-      'playStyle',
-      'level',
-      'clearLamp',
-      'COUNT(1) AS count',
-    ],
-    [
-      { condition: 'IS_DEFINED(c.radar)' },
-      { condition: '(NOT IS_DEFINED(c.ttl))' },
-      { condition: 'NOT (IS_DEFINED(c.deleted) AND c.deleted = true)' },
-    ],
-    ['userId', 'playStyle', 'level', 'clearLamp']
+    [...summaryColumns, '"clear" AS type', 'clearLamp', 'COUNT(1) AS count'],
+    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [...summaryColumns, 'clearLamp']
   )
 }
 
+/**
+ * Generates {@link Database.ScoreStatusSchema} from Score data.
+ * @description This function consumes a lot of RU cost. Please call carefully.
+ */
 export function fetchSummaryRankCount(): Promise<Database.ScoreStatusSchema[]> {
   return fetchGroupedList(
     'Scores',
-    [
-      'userId',
-      '"score" AS type',
-      'playStyle',
-      'level',
-      'rank',
-      'COUNT(1) AS count',
-    ],
-    [
-      { condition: 'IS_DEFINED(c.radar)' },
-      { condition: '(NOT IS_DEFINED(c.ttl))' },
-      { condition: 'NOT (IS_DEFINED(c.deleted) AND c.deleted = true)' },
-    ],
-    ['userId', 'playStyle', 'level', 'rank']
+    [...summaryColumns, '"score" AS type', 'rank', 'COUNT(1) AS count'],
+    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [...summaryColumns, 'rank']
   )
 }
