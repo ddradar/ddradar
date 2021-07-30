@@ -3,7 +3,6 @@ import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../database'
 import { fetchTotalChartCount } from '../songs'
-import { createMockContainer } from './util'
 
 jest.mock('../database')
 
@@ -11,7 +10,11 @@ describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {
     test('returns [] ', async () => {
       // Arrange
-      const container = createMockContainer([])
+      const container = {
+        items: {
+          query: jest.fn(() => ({ fetchAll: async () => ({ resources: [] }) })),
+        },
+      }
       mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act

@@ -15,7 +15,8 @@ describe('users.ts', () => {
       // Arrange
       const resource: Database.UserSchema = { ...publicUser }
       delete resource.password
-      mocked(fetchOne).mockResolvedValue(resource)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchUser(resource.id)
@@ -24,7 +25,7 @@ describe('users.ts', () => {
       expect(result).toBe(resource)
       expect(mocked(fetchOne)).toBeCalledWith(
         'Users',
-        ['id', 'loginId', 'name', 'area', 'code', 'isPublic'],
+        ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
         { condition: 'c.id = @', value: resource.id }
       )
     })
@@ -36,7 +37,8 @@ describe('users.ts', () => {
     test('returns fetchOne() value', async () => {
       // Arrange
       const resource = { ...publicUser }
-      mocked(fetchOne).mockResolvedValue(resource)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchLoginUser(resource.loginId)
@@ -89,8 +91,8 @@ describe('users.ts', () => {
               condition: '(c.isPublic = true OR c.loginId = @)',
               value: 'loginId',
             },
-            ...cond,
             { condition: 'IS_DEFINED(c.loginId)' },
+            ...cond,
           ],
           { name: 'ASC' }
         )

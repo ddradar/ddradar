@@ -6,7 +6,7 @@ import {
 } from '@ddradar/core/__tests__/data'
 
 import { canConnectDB, getContainer } from '../database'
-import { fetchScore, fetchScoreList } from '../scores'
+import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('scores.ts', () => {
@@ -69,7 +69,6 @@ describeIf(canConnectDB)('scores.ts', () => {
         ).resolves.toStrictEqual(expected)
     )
   })
-
   describe('fetchScoreList', () => {
     test.each([
       ['not_existed_user', {}],
@@ -104,6 +103,22 @@ describeIf(canConnectDB)('scores.ts', () => {
           radar,
         },
       ])
+    )
+  })
+  describe('generateGrooveRadar', () => {
+    const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
+    test.each([
+      ['not_exist_user', 1, emptyRadar],
+      ['13', 1, emptyRadar],
+      [publicUser.id, 1, radar],
+    ] as const)('("%s", %i) returns %p', (userId, playStyle, expected) =>
+      expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
+        id: `radar-${userId}-${playStyle}`,
+        userId,
+        type: 'radar',
+        playStyle,
+        ...expected,
+      })
     )
   })
 })

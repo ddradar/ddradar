@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
 import type { Database } from '@ddradar/core'
-import { fetchTotalChartCount, getContainer } from '@ddradar/db'
+import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
   Database.ClearStatusSchema,
@@ -28,13 +28,12 @@ export default async function (
     context.log.info(`Start: ${song.name}`)
 
     // Get scores
-    const container = getContainer('Scores')
-    const { resources } = await container.items
-      .query<Database.ScoreSchema & ItemDefinition>({
-        query: 'SELECT * FROM c WHERE c.songId = @id',
-        parameters: [{ name: '@id', value: song.id }],
-      })
-      .fetchAll()
+    const resources = await fetchList(
+      'Scores',
+      '*',
+      [{ condition: 'c.songId = @', value: song.id }],
+      { _ts: 'ASC' }
+    )
 
     const topScores: Database.ScoreSchema[] = []
     // Update exists scores

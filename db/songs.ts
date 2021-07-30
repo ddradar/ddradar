@@ -7,6 +7,7 @@ type TotalCount = Pick<
   'level' | 'playStyle' | 'count'
 >
 
+/** Returns {@link Database.StepChartSchema} count grouped by playStyle, level. */
 export async function fetchTotalChartCount(): Promise<TotalCount[]> {
   const container = getContainer('Songs')
   const { resources } = await container.items

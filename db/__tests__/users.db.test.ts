@@ -51,10 +51,8 @@ describeIf(canConnectDB)('users.ts', () => {
     test.each([
       [users[0].id, users[0]],
       [users[1].id, users[1]],
-    ])('("%s") returns %p', async (id, user) => {
+    ])('("%s") returns %p', async (id, expected) => {
       // Arrange - Act
-      const expected: Database.UserSchema = { ...user }
-      delete expected.password
       const result = await fetchUser(id)
 
       // Assert
