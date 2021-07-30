@@ -91,8 +91,8 @@ describe('users.ts', () => {
               condition: '(c.isPublic = true OR c.loginId = @)',
               value: 'loginId',
             },
-            ...cond,
             { condition: 'IS_DEFINED(c.loginId)' },
+            ...cond,
           ],
           { name: 'ASC' }
         )

@@ -60,11 +60,12 @@ export function getContainer(id: ContainerName): Container {
   )
 }
 
+type Col<T> = Extract<keyof DbItem<T>, string>
 /** SQL WHERE condition */
 export type Condition<T extends ContainerName> =
   | {
       /** WHERE condition */
-      condition: `${string}c.${Extract<keyof DbItem<T>, string>}${string}`
+      condition: `${string}c.${Col<T>}${string}`
       value?: never
     }
   | {
@@ -72,10 +73,9 @@ export type Condition<T extends ContainerName> =
        * WHERE condition.
        * `"@"` replaces to `"@paramXX"`.
        */
-      condition: `${string}c.${Extract<
-        keyof DbItem<T>,
-        string
-      >}${string}@${string}`
+      condition:
+        | `${string}c.${Col<T>}${string}@${string}`
+        | `${string}@${string}c.${Col<T>}${string}`
       /** Parameter value */ value: JSONValue
     }
 
@@ -167,10 +167,7 @@ export async function fetchList<
  */
 export async function fetchGroupedList<T extends ContainerName, U>(
   containerName: T,
-  columns: readonly (
-    | Extract<keyof DbItem<T>, string>
-    | `${string} AS ${Extract<keyof U, string>}`
-  )[],
+  columns: readonly (Col<T> | `${string} AS ${Extract<keyof U, string>}`)[],
   conditions: readonly Condition<T>[],
   groupBy: readonly (keyof DbItem<T>)[]
 ): Promise<U[]> {
