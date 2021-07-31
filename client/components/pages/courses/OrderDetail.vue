@@ -51,7 +51,7 @@ export default class OrderDetailComponent extends Vue {
       id: s.songId,
       name: s.songName,
       chartName: getChartTitle(s),
-      to: `/songs/${s.songId}/${s.playStyle}${s.difficulty}` as const,
+      to: `/songs/${s.songId}#${s.playStyle}${s.difficulty}` as const,
     }))
   }
 }
