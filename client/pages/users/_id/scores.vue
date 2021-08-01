@@ -2,46 +2,48 @@
   <section class="section">
     <h1 class="title">{{ $t('title', [userName]) }}</h1>
     <section>
-      <b-field grouped group-multiline>
-        <b-field :label="$t('field.playStyle')">
-          <b-select v-model.number="playStyle" placeholder="Select">
-            <option value="0">{{ $t('field.all') }}</option>
-            <option v-for="o in playStyles" :key="o.value" :value="o.value">
-              {{ o.name }}
-            </option>
-          </b-select>
-        </b-field>
-        <b-field :label="$t('field.difficulty')">
-          <b-select v-model.number="difficulty" placeholder="Select">
-            <option value="-1">{{ $t('field.all') }}</option>
-            <option v-for="o in difficulties" :key="o.value" :value="o.value">
-              {{ o.name }}
-            </option>
-          </b-select>
-        </b-field>
-        <b-field :label="$t('field.level')">
-          <b-select v-model.number="level" placeholder="Select">
-            <option value="-1">{{ $t('field.all') }}</option>
-            <option v-for="o in levels" :key="o" :value="o">
-              {{ o }}
-            </option>
-          </b-select>
-        </b-field>
-        <b-field :label="$t('field.clearLamp')">
-          <b-select v-model.number="clearLamp" placeholder="Select">
-            <option value="-1">{{ $t('field.all') }}</option>
-            <option v-for="o in clearLamps" :key="o.value" :value="o.value">
-              {{ o.name }}
-            </option>
-          </b-select>
-        </b-field>
-        <b-field :label="$t('field.rank')">
-          <b-select v-model="rank" placeholder="Select">
-            <option value="">{{ $t('field.all') }}</option>
-            <option v-for="o in ranks" :key="o" :value="o">
-              {{ o }}
-            </option>
-          </b-select>
+      <b-field>
+        <b-field grouped group-multiline>
+          <b-field :label="$t('field.playStyle')">
+            <b-select v-model.number="playStyle" placeholder="Select">
+              <option value="0">{{ $t('field.all') }}</option>
+              <option v-for="o in playStyles" :key="o.value" :value="o.value">
+                {{ o.name }}
+              </option>
+            </b-select>
+          </b-field>
+          <b-field :label="$t('field.difficulty')">
+            <b-select v-model.number="difficulty" placeholder="Select">
+              <option value="-1">{{ $t('field.all') }}</option>
+              <option v-for="o in difficulties" :key="o.value" :value="o.value">
+                {{ o.name }}
+              </option>
+            </b-select>
+          </b-field>
+          <b-field :label="$t('field.level')">
+            <b-select v-model.number="level" placeholder="Select">
+              <option value="-1">{{ $t('field.all') }}</option>
+              <option v-for="o in levels" :key="o" :value="o">
+                {{ o }}
+              </option>
+            </b-select>
+          </b-field>
+          <b-field :label="$t('field.clearLamp')">
+            <b-select v-model.number="clearLamp" placeholder="Select">
+              <option value="-1">{{ $t('field.all') }}</option>
+              <option v-for="o in clearLamps" :key="o.value" :value="o.value">
+                {{ o.name }}
+              </option>
+            </b-select>
+          </b-field>
+          <b-field :label="$t('field.rank')">
+            <b-select v-model="rank" placeholder="Select">
+              <option value="">{{ $t('field.all') }}</option>
+              <option v-for="o in ranks" :key="o" :value="o">
+                {{ o }}
+              </option>
+            </b-select>
+          </b-field>
         </b-field>
       </b-field>
       <b-field>
