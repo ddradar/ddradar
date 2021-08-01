@@ -52,7 +52,7 @@ export async function fetchScoreDetail(
 ): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
   const detailUri = `${playDataUri}/${
-    isCourse(songId) ? 'course' : 'music'
+    (await isCourse(songId)) ? 'course' : 'music'
   }_detail.html?index=${songId}&diff=${index}`
 
   const response = await page.goto(detailUri)
