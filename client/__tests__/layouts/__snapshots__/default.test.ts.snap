@@ -7,6 +7,8 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           Find User
+        </a> <a class="navbar-item">
+          Score List
         </a>
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
@@ -199,6 +201,7 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
       <div class="navbar-start"><a class="navbar-item">
           Find User
         </a>
+        <!---->
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
@@ -385,6 +388,8 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           Find User
+        </a> <a class="navbar-item">
+          Score List
         </a>
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">Level(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
@@ -573,6 +578,8 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
+        </a> <a class="navbar-item">
+          スコア一覧
         </a>
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
@@ -765,6 +772,7 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
         </a>
+        <!---->
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
               LEVEL 1
@@ -951,6 +959,8 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
     <div class="navbar-menu">
       <div class="navbar-start"><a class="navbar-item">
           ユーザーを探す
+        </a> <a class="navbar-item">
+          スコア一覧
         </a>
         <div class="navbar-item has-dropdown is-hidden-mobile is-hoverable"><a role="menuitem" aria-haspopup="true" href="#" class="navbar-link">レベル(SP)</a>
           <div class="navbar-dropdown" style="display: none;"><a class="navbar-item">
