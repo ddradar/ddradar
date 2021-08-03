@@ -8,24 +8,40 @@ import {
 
 import { ErrorResult, SuccessResult } from '../function'
 
+type NotificationResult = Omit<Api.NotificationInfo, 'id'> &
+  Partial<Api.NotificationInfo>
+
 type PostNotificationResult = {
-  httpResponse: ErrorResult<400> | SuccessResult<Api.NotificationBody>
-  document?: Api.NotificationBody
+  /** HTTP output binding */
+  httpResponse: ErrorResult<400> | SuccessResult<NotificationResult>
+  /** Cosmos DB output binding */
+  document?: NotificationResult
 }
 
-function isNotificationBody(obj: unknown): obj is Api.NotificationBody {
-  return (
-    hasStringProperty(obj, 'sender', 'type', 'icon', 'title', 'body') &&
-    obj.sender === 'SYSTEM' &&
-    ['is-info', 'is-warning'].includes(obj.type) &&
-    hasProperty(obj, 'pinned') &&
-    typeof obj.pinned === 'boolean' &&
-    (!hasProperty(obj, 'id') || hasStringProperty(obj, 'id')) &&
-    (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
-  )
-}
-
-/** Add or update Notification. */
+/**
+ * Add or update Notification.
+ * @description
+ * - `POST /api/v1/notification`
+ * - Need Authentication with `administrator` role.
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @returns
+ * - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
+ * - Returns `400 BadRequest` if `req.body` is invalid.
+ * - Returns `200 OK` with updated JSON data if succeed add or update.
+ * @example
+ * ```json
+ * {
+ *   "sender": "SYSTEM",
+ *   "pinned": true,
+ *   "type": "is-info",
+ *   "icon": "info",
+ *   "title": "このサイトはベータ版です",
+ *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
+ *   "timeStamp": 1597024800
+ * }
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'body'>
@@ -34,7 +50,7 @@ export default async function (
     return { httpResponse: new ErrorResult(400) }
   }
 
-  const document: Api.NotificationBody = {
+  const document: NotificationResult = {
     sender: req.body.sender,
     pinned: req.body.pinned,
     type: req.body.type,
@@ -46,4 +62,17 @@ export default async function (
   }
 
   return { httpResponse: new SuccessResult(document), document }
+
+  /** Type assertion for {@link Api.NotificationBody}. */
+  function isNotificationBody(obj: unknown): obj is Api.NotificationBody {
+    return (
+      hasStringProperty(obj, 'sender', 'type', 'icon', 'title', 'body') &&
+      obj.sender === 'SYSTEM' &&
+      ['is-info', 'is-warning'].includes(obj.type) &&
+      hasProperty(obj, 'pinned') &&
+      typeof obj.pinned === 'boolean' &&
+      (!hasProperty(obj, 'id') || hasStringProperty(obj, 'id')) &&
+      (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
+    )
+  }
 }
