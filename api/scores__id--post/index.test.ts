@@ -10,7 +10,7 @@ import {
 import { fetchScore } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { getLoginUserInfo } from '../auth'
 import postSongScores from '.'
 
 jest.mock('../auth')
@@ -31,12 +31,6 @@ describe('POST /api/v1/scores', () => {
   const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
   beforeAll(async () => {
-    mocked(getClientPrincipal).mockReturnValue({
-      identityProvider: 'github',
-      userId: 'some_user',
-      userDetails: 'some_user',
-      userRoles: ['anonymous', 'authenticated'],
-    })
     mocked(fetchScore).mockImplementation(
       (userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
@@ -48,17 +42,6 @@ describe('POST /api/v1/scores', () => {
   beforeEach(() => {
     req.body = {}
     mocked(getLoginUserInfo).mockReset()
-  })
-
-  test('returns "401 Unauthenticated" if no authentication', async () => {
-    // Arrange
-    mocked(getClientPrincipal).mockReturnValueOnce(null)
-
-    // Act
-    const result = await postSongScores(null, req, [])
-
-    // Assert
-    expect(result.httpResponse.status).toBe(401)
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {

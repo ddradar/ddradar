@@ -6,7 +6,34 @@ import { fetchScoreList } from '@ddradar/db'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-/** Get user scores that match the specified conditions. */
+/**
+ * Get user scores that match the specified conditions.
+ * @description
+ * - `GET api/v1/scores/:uid?style=1&diff=1&lv=5&lamp=5&rank=AAA`
+ * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param user User visibility (from Cosmos DB input binding)
+ * @returns
+ * - Returns `404 Not Found` if no score that matches parameters.
+ * - Returns `200 OK` with JSON body otherwize.
+ * @example
+ * ```json
+ * [
+ *   {
+ *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *     "songName": "愛言葉",
+ *     "playStyle": 1,
+ *     "difficulty": 0,
+ *     "level": 3,
+ *     "score": 999950,
+ *     "clearLamp": 6,
+ *     "rank": "AAA",
+ *     "isCourse": false
+ *   }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
