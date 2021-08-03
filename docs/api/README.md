@@ -25,11 +25,6 @@ See also [Authentication API Docs](./authentication.md).
 - [Search Song by Series](../../api/songs__series__id/README.md)
 - [Search Charts](../../api/charts__style__level/README.md)
 
-## Course API
-
-- [Get Course Information](../../api/courses__id/README.md)
-- [Get Course List](../../api/courses/README.md)
-
 ## User API
 
 - [Exists User](../../api/users__exists__id/README.md) **Authed user only*

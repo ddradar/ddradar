@@ -4,23 +4,42 @@ import { Song } from '@ddradar/core'
 
 import { SuccessResult } from '../function'
 
-type CourseListDocument = Pick<
-  Database.CourseSchema,
-  'id' | 'name' | 'series' | 'nameIndex'
-> & {
-  charts: ReadonlyArray<
-    Pick<Database.CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
-  >
-}
+type CourseListDocument = Api.CourseListData &
+  Pick<Database.CourseSchema, 'nameIndex'>
 
-/** Get course information list. */
+/**
+ * Get course information list.
+ * @description
+ * - `GET api/v1/courses?series=16&type=1`
+ * - No need Authentication.
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param documents Course data (from Cosmos DB input binding)
+ * @returns `200 OK` with JSON body if found.
+ * @example
+ * ```json
+ * [
+ *   {
+ *     "id": "qbbOOO1QibO1861bqQII9lqlPiIoqb98",
+ *     "name": "FIRST",
+ *     "series": "Dance Dance Revolution A20",
+ *     "charts": [
+ *       { "playStyle": 1, "difficulty": 0, "level": 4 },
+ *       { "playStyle": 2, "difficulty": 3, "level": 11 }
+ *     ]
+ *   }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
   documents: ReadonlyArray<CourseListDocument>
 ): Promise<SuccessResult<Api.CourseListData[]>> {
   // Parse search query
+  /** `1`: NONSTOP, `2`: 段位認定 (optional) */
   const type = parseFloat(req.query.type ?? '')
+  /** `16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS (optional) */
   const series = parseFloat(req.query.series ?? '')
   const isValidType = type === 1 || type === 2
   const isValidSeries = series === 16 || series === 17

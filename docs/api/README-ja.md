@@ -25,11 +25,6 @@ English version is [here](./README.md).
 - [シリーズタイトルで曲検索](../../api/songs__series__id/README-ja.md)
 - [譜面検索](../../api/charts__style__level/README-ja.md)
 
-## Course API
-
-- [コース情報の取得](../../api/courses__id/README-ja.md)
-- [コース一覧の取得](../../api/courses/README-ja.md)
-
 ## User API
 
 - [ユーザー存在チェック](../../api/users__exists__id/README-ja.md) **ログインユーザーのみ*
