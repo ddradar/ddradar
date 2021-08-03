@@ -5,12 +5,38 @@ import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import { getClientPrincipal } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
+/** Return type of this function */
 type PostUserResult = {
+  /** HTTP output binding */
   httpResponse: ErrorResult<400 | 401> | SuccessResult<Database.UserSchema>
+  /** Cosmos DB output binding */
   document?: Database.UserSchema
 }
 
-/** Add or Update information about the currently logged in user. */
+/**
+ * Add or Update information about the currently logged in user.
+ * @description
+ * - `POST api/v1/user`
+ * - Need Authentication.
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @returns
+ * - Returns `401 Unauthorized` if you are not logged in.
+ * - Returns `400 Bad Request` if parameter is invalid.
+ * - Returns `200 OK` with JSON body if succeed.
+ * @example
+ * ```jsonc
+ * // Request Body & Response Body
+ * {
+ *   "id": "afro0001",
+ *   "name": "AFRO",
+ *   "area": 13,
+ *   "code": 10000000,
+ *   "isPublic": false,
+ *   "password": "********"
+ * }
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'body' | 'headers'>

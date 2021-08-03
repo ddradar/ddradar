@@ -4,7 +4,28 @@ import type { Api, Database } from '@ddradar/core'
 import { getClientPrincipal } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-/** Get user information that match the specified ID. */
+/**
+ * Get user information that match the specified ID.
+ * @description
+ * - `GET api/v1/users/:id`
+ * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * @param bindingData.id User id
+ * @param req HTTP Request (from HTTP trigger)
+ * @param user User data (from Cosmos DB binding)
+ * @returns
+ * - Returns `404 Not Found` if `id` is not defined.
+ * - Returns `404 Not Found` if no user that matches `id` or user is private.
+ * - Returns `200 OK` with JSON body if found.
+ * @example
+ * ```json
+ * {
+ *   "id": "afro0001",
+ *   "name": "AFRO",
+ *   "area": 13,
+ *   "code": 10000000
+ * }
+ * ```
+ */
 export default async function (
   { bindingData }: Pick<Context, 'bindingData'>,
   req: Pick<HttpRequest, 'headers'>,
