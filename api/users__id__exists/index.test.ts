@@ -7,7 +7,7 @@ describe('GET /api/v1/users/{id}/exists', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('/not_exists_user returns "200 OK" with { exists: false }', async () => {
+  test('/not_exists_user/exists returns "200 OK" with { exists: false }', async () => {
     // Arrange
     const id = 'not_exists_user'
     context.bindingData.id = id
@@ -20,7 +20,7 @@ describe('GET /api/v1/users/{id}/exists', () => {
     expect(result.body).toStrictEqual({ id, exists: false })
   })
 
-  test(`/${privateUser.id} returns "200 OK" with { exists: true }`, async () => {
+  test(`/${privateUser.id}/exists returns "200 OK" with { exists: true }`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
 

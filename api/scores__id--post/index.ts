@@ -28,8 +28,8 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * It will be merged with the previous score.
  * @description
  * - Need Authentication.
- * - `POST api/v1/scores/:songId`
- *   = `songId`: {@link SongInput.id}
+ * - `POST api/v1/scores/:id`
+ *   = `id`: {@link SongInput.id} or skillAttackId
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param song Song or Course info (from Cosmos DB input binding)

@@ -7,7 +7,7 @@ import getChartScore from '.'
 
 jest.mock('../auth')
 
-describe('GET /api/v1/scores', () => {
+describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
 
   const user = { ...privateUser, area: 13 } as const

@@ -13,7 +13,7 @@ import getUserScores from '.'
 jest.mock('@ddradar/db')
 jest.mock('../auth')
 
-describe('GET /api/v1/scores', () => {
+describe('GET /api/v1/scores/{uid}', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   beforeEach(() => mocked(getLoginUserInfo).mockResolvedValue(publicUser))
 

@@ -16,7 +16,7 @@ import postSongScores from '.'
 jest.mock('../auth')
 jest.mock('@ddradar/db')
 
-describe('POST /api/v1/scores', () => {
+describe('POST /api/v1/scores/{id}', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
 
   const scores = new Map(testScores.map(d => [d.userId, d]))

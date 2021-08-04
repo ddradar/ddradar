@@ -1,9 +1,8 @@
-import type { Context } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 
 import { ErrorResult, SuccessResult } from '../function'
 
-type CourseSchema = Database.CourseSchema
+type CourseInfo = Api.CourseInfo
 
 /**
  * Get course and orders information that match the specified ID.
@@ -11,7 +10,7 @@ type CourseSchema = Database.CourseSchema
  * - No need Authentication.
  * - `GET api/v1/courses/:id`
  *   - `id`: {@link CourseSchema.id}
- * @param bindingData.id {@link CourseSchema.id}
+ * @param _context Azure Functions context (unused)
  * @param _req HTTP Request (unused)
  * @param course Course data (from Cosmos DB binding)
  * @returns
@@ -71,13 +70,12 @@ type CourseSchema = Database.CourseSchema
  * ```
  */
 export default async function (
-  { bindingData }: Pick<Context, 'bindingData'>,
+  _context: unknown,
   _req: unknown,
-  [course]: CourseSchema[]
-): Promise<ErrorResult<404> | SuccessResult<Api.CourseInfo>> {
+  [course]: CourseInfo[]
+): Promise<ErrorResult<404> | SuccessResult<CourseInfo>> {
   if (!course) {
-    return new ErrorResult(404, `Not found course that id: "${bindingData.id}"`)
+    return new ErrorResult(404)
   }
-
   return new SuccessResult(course)
 }

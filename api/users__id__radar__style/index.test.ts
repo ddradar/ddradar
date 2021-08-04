@@ -19,7 +19,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('/foo/radar returns "404 Not Found"', async () => {
+  test('/not_exist_user/radar returns "404 Not Found"', async () => {
     // Arrange
     context.bindingData.id = 'foo'
 
@@ -58,10 +58,10 @@ describe('GET /api/v1/users/{id}/radar', () => {
     [2, radars[0]],
   ])(
     `${publicUser.id}/radar/%i returns "200 OK" with [%p]`,
-    async (playStyle, expected) => {
+    async (style, expected) => {
       // Arrange
       context.bindingData.id = publicUser.id
-      context.bindingData.playStyle = playStyle
+      context.bindingData.style = style
 
       // Act
       const result = await getGrooveRadar(context, req, [publicUser], radars)
@@ -72,7 +72,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     }
   )
 
-  test(`/${privateUser.id}/radar returns "200 OK" with JSON body`, async () => {
+  test(`/${privateUser.id}/radar returns "200 OK" with JSON body if logged in`, async () => {
     // Arrange
     context.bindingData.id = privateUser.id
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)

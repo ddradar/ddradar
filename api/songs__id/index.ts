@@ -1,4 +1,3 @@
-import type { Context } from '@azure/functions'
 import type { Api } from '@ddradar/core'
 
 import { ErrorResult, SuccessResult } from '../function'
@@ -11,7 +10,7 @@ type SongInfo = Api.SongInfo
  * - No need Authentication.
  * - `GET api/v1/songs/:id`
  *   - `id`: {@link SongInfo.id}
- * @param bindingData.id {@link SongInfo.id}
+ * @param _context Azure Functions context (unused)
  * @param _req HTTP Request (unused)
  * @param song Song data (from Cosmos DB binding)
  * @returns
@@ -47,13 +46,12 @@ type SongInfo = Api.SongInfo
  * ```
  */
 export default async function (
-  { bindingData }: Pick<Context, 'bindingData'>,
+  _context: unknown,
   _req: unknown,
   [song]: SongInfo[]
 ): Promise<ErrorResult<404> | SuccessResult<SongInfo>> {
   if (!song) {
-    return new ErrorResult(404, `Not found song that id: "${bindingData.id}"`)
+    return new ErrorResult(404)
   }
-
   return new SuccessResult(song)
 }

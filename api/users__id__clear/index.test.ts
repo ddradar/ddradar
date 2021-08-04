@@ -31,7 +31,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   beforeEach(() => (req.query = {}))
 
-  test('/foo/clear returns "404 Not Found"', async () => {
+  test('/not_exist_user/clear returns "404 Not Found"', async () => {
     // Arrange - Act
     const result = await getClearCount(null, req, [], [], total)
 
@@ -48,28 +48,18 @@ describe('GET /api/v1/users/{id}/clear', () => {
     expect(result.status).toBe(404)
   })
 
-  test(`/${publicUser.id}/clear returns "200 OK" with JSON body`, async () => {
-    // Arrange - Act
-    const users = [publicUser]
-    const result = await getClearCount(null, req, users, statuses, total)
-
-    // Assert
-    expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
-    expect(sum(result.body as Api.ClearStatus[])).toBe(19 * 2 * 2000)
-  })
-
   test.each([
-    ['1', '', 95, 19 * 2000],
+    ['', '', 19 * 2 * 5, 19 * 2 * 2000],
+    ['1', '', 19 * 5, 19 * 2000],
     ['', '10', 10, 2 * 2000],
     ['1', '1', 5, 2000],
     ['2', '2', 5, 2000],
   ])(
-    `${publicUser.id}/clear?playStyle=%s&level=%s returns "200 OK" with %i (sum:%i) statuses`,
-    async (playStyle, level, length, count) => {
+    `${publicUser.id}/clear?style=%s&lv=%s returns "200 OK" with %i (sum:%i) statuses`,
+    async (style, lv, length, count) => {
       // Arrange
-      req.query.playStyle = playStyle
-      req.query.level = level
+      if (style) req.query.style = style
+      if (lv) req.query.lv = lv
       const users = [publicUser]
 
       // Act

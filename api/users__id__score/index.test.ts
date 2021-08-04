@@ -48,27 +48,17 @@ describe('GET /api/v1/users/{id}/score', () => {
     expect(result.status).toBe(404)
   })
 
-  test(`/${publicUser.id}/score returns "200 OK" with JSON body`, async () => {
-    // Arrange - Act
-    const users = [publicUser]
-    const result = await getScoreCount(null, req, users, scores, total)
-
-    // Assert
-    expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (Score.danceLevelSet.size + 2))
-    expect(sum(result.body as Api.ScoreStatus[])).toBe(19 * 2 * 2000)
-  })
-
   test.each([
-    ['1', '', 171, 19 * 2000],
-    ['', '19', 18, 2 * 2000],
+    ['', '', 19 * 2 * 9, 19 * 2 * 2000],
+    ['1', '', 19 * 9, 19 * 2000],
+    ['', '19', 2 * 9, 2 * 2000],
     ['1', '10', 9, 2000],
     ['2', '11', 9, 2000],
   ])(
-    `${publicUser.id}/score?playStyle=%s&level=%s returns "200 OK" with %i (sum:%i) statuses`,
-    async (playStyle, level, length, count) => {
+    `/${publicUser.id}/score?style=%s&lv=%s returns "200 OK" with %i (sum:%i) statuses`,
+    async (style, lv, length, count) => {
       // Arrange
-      req.query = { playStyle, level }
+      req.query = { style, lv }
       const users = [publicUser]
 
       // Act

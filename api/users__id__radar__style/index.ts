@@ -11,10 +11,10 @@ type GrooveRadarInfo = Api.GrooveRadarInfo
  * Get Groove Radar that match the specified {@link UserVisibility.id userId} and {@link GrooveRadarInfo.playStyle playStyle}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/users/:id/radar/:playStyle?`
+ * - `GET api/v1/users/:id/radar/:style?`
  *   - `id`: {@link UserVisibility.id}
- *   - `playStyle`(optional): {@link GrooveRadarInfo.playStyle}
- * @param bindingData.playStyle {@link GrooveRadarInfo.playStyle PlayStyle} (optional)
+ *   - `style`(optional): {@link GrooveRadarInfo.playStyle}
+ * @param bindingData.style {@link GrooveRadarInfo.playStyle PlayStyle} (optional)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)
  * @param radars User Groove Radar data (from Cosmos DB binding)
@@ -56,7 +56,7 @@ export default async function (
     return new ErrorResult(404)
   }
 
-  const playStyle = bindingData.playStyle as 1 | 2 | undefined
+  const playStyle = bindingData.style
   return new SuccessResult(
     radars
       .filter(r => !playStyle || r.playStyle === playStyle)

@@ -12,10 +12,10 @@ type TotalCount = Omit<ClearStatus, 'clearLamp'>
  * Get Clear status that match the specified {@link UserVisibility.id userId}, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/users/:id/clear?playStyle=:playStyle&level=:level`
+ * - `GET api/v1/users/:id/clear?style=:style&lv=:lv`
  *   - `id`: {@link UserVisibility.id}
- *   - `playStyle`(optional): {@link ClearStatus.playStyle}
- *   - `level`(optional): {@link ClearStatus.level}
+ *   - `style`(optional): {@link ClearStatus.playStyle}
+ *   - `lv`(optional): {@link ClearStatus.level}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)
@@ -47,9 +47,9 @@ export default async function (
     return new ErrorResult(404)
   }
 
-  const playStyle = parseInt(req.query.playStyle ?? '', 10)
+  const playStyle = parseInt(req.query.style ?? '', 10)
   const isValidPlayStyle = playStyle === 1 || playStyle === 2
-  const level = parseInt(req.query.level ?? '', 10)
+  const level = parseInt(req.query.lv ?? '', 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 20
 
   return new SuccessResult(

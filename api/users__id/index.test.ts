@@ -1,4 +1,3 @@
-import type { Context } from '@azure/functions'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
@@ -8,27 +7,19 @@ import getUserInfo from '.'
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}', () => {
-  const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const req = { headers: {} }
-  beforeEach(() => (context.bindingData = {}))
 
-  test('/foo returns "404 Not Found"', async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getUserInfo(context, req, [])
+  test('/not_exist_user returns "404 Not Found"', async () => {
+    // Arrange - Act
+    const result = await getUserInfo(null, req, [])
 
     // Assert
     expect(result.status).toBe(404)
   })
 
   test(`/${publicUser.id} returns "200 OK" with JSON body`, async () => {
-    // Arrange
-    context.bindingData.id = publicUser.id
-
-    // Act
-    const result = await getUserInfo(context, req, [publicUser])
+    // Arrange - Act
+    const result = await getUserInfo(null, req, [publicUser])
 
     // Assert
     expect(result.status).toBe(200)
@@ -41,11 +32,8 @@ describe('GET /api/v1/users/{id}', () => {
   })
 
   test(`/${privateUser.id} returns "404 Not Found"`, async () => {
-    // Arrange
-    context.bindingData.id = privateUser.id
-
-    // Act
-    const result = await getUserInfo(context, req, [privateUser])
+    // Arrange - Act
+    const result = await getUserInfo(null, req, [privateUser])
 
     // Assert
     expect(result.status).toBe(404)
@@ -53,7 +41,6 @@ describe('GET /api/v1/users/{id}', () => {
 
   test(`/${privateUser.id} returns "200 OK" with JSON body if logged in`, async () => {
     // Arrange
-    context.bindingData.id = privateUser.id
     mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: privateUser.id,
@@ -62,7 +49,7 @@ describe('GET /api/v1/users/{id}', () => {
     })
 
     // Act
-    const result = await getUserInfo(context, req, [privateUser])
+    const result = await getUserInfo(null, req, [privateUser])
 
     // Assert
     expect(result.status).toBe(200)
