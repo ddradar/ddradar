@@ -65,7 +65,7 @@ describe('./api/user.ts', () => {
       [undefined, undefined, 10000000, 'code=10000000'] as const,
       ['foo', 26, 20000000, 'name=foo&area=26&code=20000000'] as const,
     ])(
-      '($http, "%s", %i, %i) calls  GET "/api/v1/users%s"',
+      '($http, "%s", %i, %i) calls  GET "/api/v1/users?%s"',
       async (name, area, code, query) => {
         // Arrange - Act
         const result = await getUserList($http, name, area, code)

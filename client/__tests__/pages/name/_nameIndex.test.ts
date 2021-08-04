@@ -3,7 +3,7 @@ import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
-import { searchSongByName } from '~/api/song'
+import { searchSong } from '~/api/song'
 import SongByNamePage from '~/pages/name/_nameIndex.vue'
 
 jest.mock('~/api/song')
@@ -12,9 +12,11 @@ localVue.use(Buefy)
 
 describe('pages/name/_nameIndex.vue', () => {
   const $fetchState = { pending: false }
+
+  // Lifecycle
   describe('validate()', () => {
     test.each(['', 'foo', '99', '-1', '1.0'])(
-      '/name/%s returns false',
+      '/%s returns false',
       nameIndex => {
         // Arrange
         const wrapper = shallowMount(SongByNamePage, {
@@ -27,30 +29,26 @@ describe('pages/name/_nameIndex.vue', () => {
         expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
       }
     )
-    test.each(['0', '1', '9', '10', '36'])(
-      '/name/%s returns true',
-      nameIndex => {
-        // Arrange
-        const wrapper = shallowMount(SongByNamePage, {
-          localVue,
-          mocks: { $route: { params: { nameIndex } }, $fetchState },
-        })
-        const ctx = { params: { nameIndex } } as unknown as Context
+    test.each(['0', '1', '9', '10', '36'])('/%s returns true', nameIndex => {
+      // Arrange
+      const wrapper = shallowMount(SongByNamePage, {
+        localVue,
+        mocks: { $route: { params: { nameIndex } }, $fetchState },
+      })
+      const ctx = { params: { nameIndex } } as unknown as Context
 
-        // Act - Assert
-        expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
-      }
-    )
+      // Act - Assert
+      expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
+    })
   })
   describe('fetch()', () => {
-    const apiMock = mocked(searchSongByName)
     beforeEach(() => {
-      apiMock.mockClear()
-      apiMock.mockResolvedValue([])
+      mocked(searchSong).mockClear()
+      mocked(searchSong).mockResolvedValue([])
     })
 
     test.each(['0', '1', '9', '10', '36'])(
-      'calls /songs/name/%s API',
+      'calls searchSong($http, %s)',
       async nameIndex => {
         // Arrange
         const $http = { $get: jest.fn() }
@@ -64,11 +62,16 @@ describe('pages/name/_nameIndex.vue', () => {
         await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
         // Assert
-        expect(apiMock).toBeCalledTimes(1)
-        expect(apiMock).toBeCalledWith($http, parseInt(nameIndex, 10))
+        expect(mocked(searchSong)).toBeCalledTimes(1)
+        expect(mocked(searchSong)).toBeCalledWith(
+          $http,
+          parseInt(nameIndex, 10)
+        )
       }
     )
   })
+
+  // Computed
   describe('get title()', () => {
     test.each([
       ['0', 'あ'],
@@ -76,12 +79,10 @@ describe('pages/name/_nameIndex.vue', () => {
       ['10', 'A'],
       ['35', 'Z'],
       ['36', '数字・記号'],
-    ])('name/%s route returns %s', (nameIndex, expected) => {
+    ])('/%s route returns "%s"', (nameIndex, expected) => {
       // Arrange
-      const wrapper = shallowMount(SongByNamePage, {
-        localVue,
-        mocks: { $route: { params: { nameIndex } }, $fetchState },
-      })
+      const mocks = { $route: { params: { nameIndex } }, $fetchState }
+      const wrapper = shallowMount(SongByNamePage, { localVue, mocks })
 
       // Act - Assert
       // @ts-ignore

@@ -25,7 +25,7 @@ import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
-import { searchSongByName } from '~/api/song'
+import { searchSong } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
 
 @Component({ components: { SongList }, fetchOnServer: false })
@@ -64,7 +64,7 @@ export default class SongByNamePage extends Vue {
 
   /** Get Song List from API */
   async fetch() {
-    this.songs = await searchSongByName(this.$http, this.selected)
+    this.songs = await searchSong(this.$http, this.selected)
   }
 }
 </script>
