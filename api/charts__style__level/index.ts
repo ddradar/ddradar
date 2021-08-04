@@ -8,8 +8,10 @@ type ChartInfo = Api.ChartInfo
 /**
  * Get charts that match the specified conditions.
  * @description
- * - `GET /api/v1/charts/:playStyle/:level`
  * - No need Authentication.
+ * - `GET /api/v1/charts/:playStyle/:level`
+ *   - `playStyle`: {@link ChartInfo.playStyle}
+ *   - `level`: {@link ChartInfo.level}
  * @param bindingData.playStyle {@link ChartInfo.playStyle}
  * @param bindingData.level {@link ChartInfo.level}
  * @param _req HTTP Request (unused)

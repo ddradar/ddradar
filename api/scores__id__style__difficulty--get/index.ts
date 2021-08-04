@@ -9,12 +9,16 @@ type ScoreSchema = Database.ScoreSchema
 /**
  * Get scores that match the specified chart.
  * @description
- * - GET api/v1/scores/:songId/:playStyle/:difficulty?scope=full
  * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/scores/:songId/:playStyle/:difficulty?scope=:scope`
+ *   - `scope`(optional): `private`: Only personal best score, `medium`(default): Personal best, area top, and world top scores, `full`: All scores
+ *   - `songId`: {@link ScoreSchema.songId}
+ *   - `playStyle`: {@link ScoreSchema.playStyle}
+ *   - `difficulty`: {@link ScoreSchema.difficulty}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param scores
- * Score data that matches {@link ScoreSchema.songId}, {@link ScoreSchema.playStyle} and {@link ScoreSchema.difficulty}. (from Cosmos DB input binding)
+ * Score data that matches {@link ScoreSchema.songId songId}, {@link ScoreSchema.playStyle playStyle} and {@link ScoreSchema.difficulty difficulty}. (from Cosmos DB input binding)
  * @returns
  * - Returns `404 Not Found` if parameters are invalid.
  * - Returns `404 Not Found` if no score that matches parameters.

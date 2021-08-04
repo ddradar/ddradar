@@ -27,8 +27,9 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * Add or update the scores of the specified songs all at once.
  * It will be merged with the previous score.
  * @description
- * - `POST api/v1/scores/:songId`
  * - Need Authentication.
+ * - `POST api/v1/scores/:songId`
+ *   = `songId`: {@link SongInput.id}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param song Song or Course info (from Cosmos DB input binding)

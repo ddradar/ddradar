@@ -10,8 +10,10 @@ type CourseListDocument = Api.CourseListData &
 /**
  * Get course information list.
  * @description
- * - `GET api/v1/courses?series=16&type=1`
  * - No need Authentication.
+ * - `GET api/v1/courses?series=:series&type=:type`
+ *   - `series`(optional): `16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS
+ *   - `type`(optional): `1`: NONSTOP, `2`: 段位認定
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param documents Course data (from Cosmos DB input binding)

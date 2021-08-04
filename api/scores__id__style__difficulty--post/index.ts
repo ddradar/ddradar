@@ -25,13 +25,16 @@ type PostScoreResult = {
 /**
  * Add or update score that match the specified chart.
  * @description
- * - `POST api/v1/scores/:songId/:playStyle/:difficulty`
  * - Need Authentication.
+ * - `POST api/v1/scores/:songId/:playStyle/:difficulty`
+ *   - `songId`: {@link ScoreSchema.songId}
+ *   - `playStyle`: {@link ScoreSchema.playStyle}
+ *   - `difficulty`: {@link ScoreSchema.difficulty}
  * @param bindingData URI parameters
  * @param req HTTP Request (from HTTP trigger)
  * @param song Song or Course info (from Cosmos DB input binding)
  * @param scores
- * Previous Score data that matches {@link ScoreSchema.songId}, {@link ScoreSchema.playStyle} and {@link ScoreSchema.difficulty}. (from Cosmos DB input binding)
+ * Previous Score data that matches {@link ScoreSchema.songId songId}, {@link ScoreSchema.playStyle playStyle} and {@link ScoreSchema.difficulty difficulty}. (from Cosmos DB input binding)
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if user registration is not completed.

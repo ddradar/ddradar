@@ -6,16 +6,20 @@ import { fetchUserList } from '@ddradar/db'
 import { getClientPrincipal } from '../auth'
 import { SuccessResult } from '../function'
 
+type UserInfo = Api.UserInfo
+
 /**
  * Get user list that match the specified conditions.
  * @description
- * - `GET api/v1/users?area=0&name=foo&code=10000000`
  * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/users?area=:area&name=:name&code=:code`
+ *   - `area`(optional): {@link UserInfo.area}
+ *   - `name`(optional): {@link UserInfo.name} (partial match)
+ *   - `code`(optional): {@link UserInfo.code}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @returns
- * - Returns `400 Bad Request` if conditions are invalid.
- * - Returns `200 OK` with JSON body otherwize.
+ * - Returns `200 OK` with JSON body.
  * @example
  * ```json
  * [
@@ -36,7 +40,7 @@ import { SuccessResult } from '../function'
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>
-): Promise<SuccessResult<Api.UserInfo[]>> {
+): Promise<SuccessResult<UserInfo[]>> {
   const loginId = getClientPrincipal(req)?.userId ?? ''
   const area = parseFloat(req.query.area ?? '')
   const name = req.query.name ?? ''

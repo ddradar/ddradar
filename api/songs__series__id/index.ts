@@ -3,11 +3,15 @@ import type { Api } from '@ddradar/core'
 
 import { ErrorResult, SuccessResult } from '../function'
 
+type SongListData = Api.SongListData
+
 /**
  * Get a list of song information that matches the specified conditions.
  * @description
- * - `GET /api/v1/songs/series/0&name=0`
  * - No need Authentication.
+ * - `GET /api/v1/songs/series/:series&name=:name`
+ *   - `series`: `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `17`: Dance Dance Revolution A20 PLUS
+ *   - `name`(optional): {@link SongListData.nameIndex}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param songs Song data (from Cosmos DB input binding)
@@ -35,8 +39,8 @@ import { ErrorResult, SuccessResult } from '../function'
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
-  songs: Api.SongListData[]
-): Promise<ErrorResult<404> | SuccessResult<Api.SongListData[]>> {
+  songs: SongListData[]
+): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
   const name = parseFloat(req.query.name ?? '')
   const isValidName = Number.isInteger(name) && name >= 0 && name <= 36
 

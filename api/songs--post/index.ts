@@ -14,8 +14,8 @@ type PostSongResult = {
 /**
  * Add or update song and charts information.
  * @description
- * - `POST /api/v1/songs`
  * - Need Authentication with `administrator` role.
+ * - `POST /api/v1/songs`
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @returns

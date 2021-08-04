@@ -14,15 +14,18 @@ type DeleteResult = {
 }
 
 /**
- * Get course and orders information that match the specified ID.
+ * Delete scores that match the specified chart.
  * @description
  * *Note: World record and area top score will not be deleted.*
- * - `DELETE api/v1/scores/:songId/:playStyle/:difficulty`
  * - Need Authentication.
+ * - `DELETE api/v1/scores/:songId/:playStyle/:difficulty`
+ *   - `songId`: {@link ScoreSchema.songId}
+ *   - `playStyle`: {@link ScoreSchema.playStyle}
+ *   - `difficulty`: {@link ScoreSchema.difficulty}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param scores
- * Score data that matches {@link ScoreSchema.songId}, {@link ScoreSchema.playStyle} and {@link ScoreSchema.difficulty}. (from Cosmos DB input binding)
+ * Score data that matches {@link ScoreSchema.songId songId}, {@link ScoreSchema.playStyle playStyle} and {@link ScoreSchema.difficulty difficulty}. (from Cosmos DB input binding)
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if user registration is not completed.

@@ -12,8 +12,11 @@ type TotalCount = Omit<Api.ScoreStatus, 'rank'>
 /**
  * Get Score statuses that match the specified {@link UserVisibility.id userId}, {@link ScoreStatus.playStyle playStyle} and {@link ScoreStatus.level level}.
  * @description
- * - `GET api/v1/users/:id/score?playStyle=:playStyle&level=:level`
  * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/users/:id/score?playStyle=:playStyle&level=:level`
+ *   - `id`: {@link UserVisibility.id}
+ *   - `playStyle`(optional): {@link ScoreStatus.playStyle}
+ *   - `level`(optional): {@link ScoreStatus.level}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)

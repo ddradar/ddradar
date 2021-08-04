@@ -16,8 +16,8 @@ type PostUserResult = {
 /**
  * Add or Update information about the currently logged in user.
  * @description
- * - `POST api/v1/user`
  * - Need Authentication.
+ * - `POST api/v1/user`
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @returns

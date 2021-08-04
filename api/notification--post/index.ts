@@ -11,6 +11,7 @@ import { ErrorResult, SuccessResult } from '../function'
 type NotificationResult = Omit<Api.NotificationInfo, 'id'> &
   Partial<Api.NotificationInfo>
 
+/** Return type of this function */
 type PostNotificationResult = {
   /** HTTP output binding */
   httpResponse: ErrorResult<400> | SuccessResult<NotificationResult>
@@ -21,8 +22,8 @@ type PostNotificationResult = {
 /**
  * Add or update Notification.
  * @description
- * - `POST /api/v1/notification`
  * - Need Authentication with `administrator` role.
+ * - `POST /api/v1/notification`
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @returns
@@ -30,7 +31,20 @@ type PostNotificationResult = {
  * - Returns `400 BadRequest` if `req.body` is invalid.
  * - Returns `200 OK` with updated JSON data if succeed add or update.
  * @example
- * ```json
+ * ```jsonc
+ * // Request Body
+ * {
+ *   "sender": "SYSTEM",
+ *   "pinned": true,
+ *   "type": "is-info",
+ *   "icon": "info",
+ *   "title": "このサイトはベータ版です",
+ *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。"
+ * }
+ * ```
+ *
+ * ```jsonc
+ * // Response Body
  * {
  *   "sender": "SYSTEM",
  *   "pinned": true,

@@ -8,8 +8,9 @@ type NotificationSchema = Database.NotificationSchema
 /**
  * Get notification that match the specified ID.
  * @description
- * - `GET api/v1/notification/:id`
  * - No need Authentication.
+ * - `GET api/v1/notification/:id`
+ *   - `id`: {@link NotificationSchema.id}
  * @param bindingData.id {@link NotificationSchema.id}
  * @param _req HTTP Request (unused)
  * @param notification Notification data (from Cosmos DB binding)

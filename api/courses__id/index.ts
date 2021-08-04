@@ -8,8 +8,9 @@ type CourseSchema = Database.CourseSchema
 /**
  * Get course and orders information that match the specified ID.
  * @description
- * - `GET api/v1/courses/:id`
  * - No need Authentication.
+ * - `GET api/v1/courses/:id`
+ *   - `id`: {@link CourseSchema.id}
  * @param bindingData.id {@link CourseSchema.id}
  * @param _req HTTP Request (unused)
  * @param course Course data (from Cosmos DB binding)

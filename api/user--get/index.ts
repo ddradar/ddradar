@@ -7,8 +7,8 @@ import { ErrorResult, SuccessResult } from '../function'
 /**
  * Get information about the currently logged in user.
  * @description
- * - `GET api/v1/user`
  * - Need Authentication.
+ * - `GET api/v1/user`
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @returns
@@ -32,11 +32,10 @@ export default async function (
   req: Pick<HttpRequest, 'headers'>
 ): Promise<ErrorResult<404> | SuccessResult<Api.CurrentUserInfo>> {
   const user = await getLoginUserInfo(getClientPrincipal(req))
-
   if (!user) {
     return new ErrorResult(404, 'User registration is not completed')
   }
-  delete user.loginId
 
+  delete user.loginId
   return new SuccessResult(user)
 }

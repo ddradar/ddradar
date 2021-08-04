@@ -3,11 +3,14 @@ import type { Api, Database } from '@ddradar/core'
 
 import { SuccessResult } from '../function'
 
+type NotificationSchema = Database.NotificationSchema
+
 /**
  * Get system notification list.
  * @description
- * - `GET api/v1/notification?scope=top`
  * - No need Authentication.
+ * - `GET api/v1/notification?scope=:scope`
+ *   - `scope`(optional): `top`: only {@link NotificationSchema.pinned pinned} notification, other: all notification
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param documents Notification data (from Cosmos DB input binding)
@@ -29,9 +32,9 @@ import { SuccessResult } from '../function'
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'query'>,
-  documents: Database.NotificationSchema[]
+  documents: NotificationSchema[]
 ): Promise<SuccessResult<Api.NotificationListData[]>> {
-  /** `top`: only pinned notification */
+  /** `top`: only pinned notification, other: all notification */
   const scope = req.query.scope
   return new SuccessResult(
     documents

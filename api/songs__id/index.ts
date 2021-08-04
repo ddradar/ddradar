@@ -8,13 +8,14 @@ type SongInfo = Api.SongInfo
 /**
  * Get song and charts information that match the specified ID.
  * @description
- * - `GET api/v1/songs/:id`
  * - No need Authentication.
+ * - `GET api/v1/songs/:id`
+ *   - `id`: {@link SongInfo.id}
  * @param bindingData.id {@link SongInfo.id}
  * @param _req HTTP Request (unused)
  * @param song Song data (from Cosmos DB binding)
  * @returns
- * - Returns `404 Not Found` if no song that matches {@link SongInfo.id}.
+ * - Returns `404 Not Found` if no song that matches {@link SongInfo.id id}.
  * - Returns `200 OK` with JSON body if found.
  * @example
  * ```json
