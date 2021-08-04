@@ -5,7 +5,7 @@ import { apiPrefix } from '~/api'
 
 /**
  * Call "Get Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--get/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__diff--get/
  */
 export function getChartScore(
   $http: Pick<NuxtHTTPInstance, '$get'>,
@@ -50,7 +50,7 @@ export function getUserScores(
 
 /**
  * Call "Post Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--post/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__diff--post/
  */
 export function postChartScore(
   $http: Pick<NuxtHTTPInstance, '$post'>,
@@ -67,7 +67,7 @@ export function postChartScore(
 
 /**
  * Call "Delete Chart Score" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__difficulty--delete/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/scores__id__style__diff--delete/
  */
 export function deleteChartScore(
   $http: Pick<NuxtHTTPInstance, 'delete'>,

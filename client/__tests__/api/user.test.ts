@@ -93,8 +93,8 @@ describe('./api/user.ts', () => {
 
   describe('getClearStatus', () => {
     test.each([
-      [1, 'playStyle=1'],
-      [2, 'playStyle=2'],
+      [1, 'style=1'],
+      [2, 'style=2'],
     ])(
       `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/clear?%s"`,
       async (playStyle, query) => {
@@ -115,8 +115,8 @@ describe('./api/user.ts', () => {
 
   describe('getScoreStatus', () => {
     test.each([
-      [1, 'playStyle=1'],
-      [2, 'playStyle=2'],
+      [1, 'style=1'],
+      [2, 'style=2'],
     ])(
       `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/score?%s"`,
       async (playStyle, query) => {

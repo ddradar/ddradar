@@ -60,7 +60,7 @@ export function getClearStatus(
   playStyle: 1 | 2
 ) {
   return $http.$get<Api.ClearStatus[]>(
-    `${apiPrefix}/users/${userId}/clear?playStyle=${playStyle}`
+    `${apiPrefix}/users/${userId}/clear?style=${playStyle}`
   )
 }
 
@@ -74,7 +74,7 @@ export function getScoreStatus(
   playStyle: 1 | 2
 ) {
   return $http.$get<Api.ScoreStatus[]>(
-    `${apiPrefix}/users/${userId}/score?playStyle=${playStyle}`
+    `${apiPrefix}/users/${userId}/score?style=${playStyle}`
   )
 }
 
