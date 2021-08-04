@@ -1,10 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
-import { getLoginUserInfo } from '../auth'
+import { canReadUserData } from '../auth'
 import getClearCount from '.'
 
 jest.mock('../auth')
@@ -31,49 +30,33 @@ describe('GET /api/v1/users/{id}/clear', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   beforeEach(() => (req.query = {}))
 
-  test('/foo/clear returns "404 Not Found"', async () => {
-    // Arrange - Act
+  test('returns "404 Not Found" if canReadUserData() returns false', async () => {
+    // Arrange
+    mocked(canReadUserData).mockReturnValue(false)
+
+    // Act
     const result = await getClearCount(null, req, [], [], total)
 
     // Assert
     expect(result.status).toBe(404)
   })
 
-  test(`/${privateUser.id}/clear returns "404 Not Found"`, async () => {
-    // Arrange - Act
-    const users = [privateUser]
-    const result = await getClearCount(null, req, users, statuses, total)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test(`/${publicUser.id}/clear returns "200 OK" with JSON body`, async () => {
-    // Arrange - Act
-    const users = [publicUser]
-    const result = await getClearCount(null, req, users, statuses, total)
-
-    // Assert
-    expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
-    expect(sum(result.body as Api.ClearStatus[])).toBe(19 * 2 * 2000)
-  })
-
   test.each([
-    ['1', '', 95, 19 * 2000],
+    ['', '', 19 * 2 * 5, 19 * 2 * 2000],
+    ['1', '', 19 * 5, 19 * 2000],
     ['', '10', 10, 2 * 2000],
     ['1', '1', 5, 2000],
     ['2', '2', 5, 2000],
   ])(
-    `${publicUser.id}/clear?playStyle=%s&level=%s returns "200 OK" with %i (sum:%i) statuses`,
-    async (playStyle, level, length, count) => {
+    `?style=%s&lv=%s returns "200 OK" with %i (sum:%i) statuses`,
+    async (style, lv, length, count) => {
       // Arrange
-      req.query.playStyle = playStyle
-      req.query.level = level
-      const users = [publicUser]
+      mocked(canReadUserData).mockReturnValue(true)
+      if (style) req.query.style = style
+      if (lv) req.query.lv = lv
 
       // Act
-      const result = await getClearCount(null, req, users, statuses, total)
+      const result = await getClearCount(null, req, [], statuses, total)
 
       // Assert
       expect(result.status).toBe(200)
@@ -81,18 +64,4 @@ describe('GET /api/v1/users/{id}/clear', () => {
       expect(sum(result.body as Api.ClearStatus[])).toBe(count)
     }
   )
-
-  test(`/${privateUser.id}/clear returns "200 OK" with JSON body if loggedIn`, async () => {
-    // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    const users = [privateUser]
-
-    // Act
-    const result = await getClearCount(null, req, users, statuses, total)
-
-    // Assert
-    expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(19 * (Score.clearLampMap.size + 2))
-    expect(sum(result.body as Api.ClearStatus[])).toBe(19 * 2 * 2000)
-  })
 })

@@ -1,7 +1,7 @@
-import type { Api, Database } from '@ddradar/core'
+import type { Database } from '@ddradar/core'
 
 import type { Condition } from './database'
-import { fetchList, fetchOne } from './database'
+import { fetchOne } from './database'
 
 /**
  * Returns {@link Database.UserSchema} that matches id.
@@ -27,29 +27,4 @@ function fetchSpecifiedUser(condition: Condition<'Users'>) {
     ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
     condition
   )
-}
-
-/**
- * Returns user data that matches conditions.
- * @param loginId User login id (Generated Id)
- * @param area {@link Database.AreaCode}
- * @param name User name (partial match)
- * @param code DDR code
- */
-export function fetchUserList(
-  loginId: string,
-  area?: Database.AreaCode,
-  name?: string,
-  code?: number
-): Promise<Api.UserInfo[]> {
-  const columns = ['id', 'name', 'area', 'code'] as const
-  const cond: Condition<'Users'>[] = [
-    { condition: '(c.isPublic = true OR c.loginId = @)', value: loginId },
-    { condition: 'IS_DEFINED(c.loginId)' },
-  ]
-  if (area !== undefined) cond.push({ condition: 'c.area = @', value: area })
-  if (name) cond.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
-  if (code) cond.push({ condition: 'c.code = @', value: code })
-
-  return fetchList('Users', columns, cond, { name: 'ASC' })
 }

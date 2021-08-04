@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { UserVisibility } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
 type ClearStatus = Api.ClearStatus
 type TotalCount = Omit<ClearStatus, 'clearLamp'>
 
@@ -12,10 +12,10 @@ type TotalCount = Omit<ClearStatus, 'clearLamp'>
  * Get Clear status that match the specified {@link UserVisibility.id userId}, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/users/:id/clear?playStyle=:playStyle&level=:level`
+ * - `GET api/v1/users/:id/clear?style=:style&lv=:lv`
  *   - `id`: {@link UserVisibility.id}
- *   - `playStyle`(optional): {@link ClearStatus.playStyle}
- *   - `level`(optional): {@link ClearStatus.level}
+ *   - `style`(optional): {@link ClearStatus.playStyle}
+ *   - `lv`(optional): {@link ClearStatus.level}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)
@@ -40,16 +40,11 @@ export default async function (
   clearStatuses: ClearStatus[],
   totalCounts: TotalCount[]
 ): Promise<ErrorResult<404> | SuccessResult<ClearStatus[]>> {
-  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
-  // User is not found or private
-  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return new ErrorResult(404)
-  }
-
-  const playStyle = parseInt(req.query.playStyle ?? '', 10)
+  const playStyle = parseInt(req.query.style ?? '', 10)
   const isValidPlayStyle = playStyle === 1 || playStyle === 2
-  const level = parseInt(req.query.level ?? '', 10)
+  const level = parseInt(req.query.lv ?? '', 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 20
 
   return new SuccessResult(

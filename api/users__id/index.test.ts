@@ -1,75 +1,52 @@
-import type { Context } from '@azure/functions'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal } from '../auth'
+import { canReadUserData } from '../auth'
 import getUserInfo from '.'
 
 jest.mock('../auth')
 
 describe('GET /api/v1/users/{id}', () => {
-  const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const req = { headers: {} }
-  beforeEach(() => (context.bindingData = {}))
 
-  test('/foo returns "404 Not Found"', async () => {
+  test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    context.bindingData.id = 'foo'
+    mocked(canReadUserData).mockReturnValue(false)
 
     // Act
-    const result = await getUserInfo(context, req, [])
+    const result = await getUserInfo(null, req, [])
 
     // Assert
     expect(result.status).toBe(404)
   })
 
-  test(`/${publicUser.id} returns "200 OK" with JSON body`, async () => {
+  test.each([
+    [
+      publicUser,
+      {
+        id: publicUser.id,
+        name: publicUser.name,
+        area: publicUser.area,
+        code: publicUser.code,
+      },
+    ],
+    [
+      privateUser,
+      {
+        id: privateUser.id,
+        name: privateUser.name,
+        area: privateUser.area,
+      },
+    ],
+  ])(`%p returns "200 OK" with %p`, async (user, expected) => {
     // Arrange
-    context.bindingData.id = publicUser.id
+    mocked(canReadUserData).mockReturnValue(true)
 
     // Act
-    const result = await getUserInfo(context, req, [publicUser])
+    const result = await getUserInfo(null, req, [user])
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toStrictEqual({
-      id: publicUser.id,
-      name: publicUser.name,
-      area: publicUser.area,
-      code: publicUser.code,
-    })
-  })
-
-  test(`/${privateUser.id} returns "404 Not Found"`, async () => {
-    // Arrange
-    context.bindingData.id = privateUser.id
-
-    // Act
-    const result = await getUserInfo(context, req, [privateUser])
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test(`/${privateUser.id} returns "200 OK" with JSON body if logged in`, async () => {
-    // Arrange
-    context.bindingData.id = privateUser.id
-    mocked(getClientPrincipal).mockReturnValueOnce({
-      identityProvider: 'github',
-      userDetails: privateUser.id,
-      userId: privateUser.loginId,
-      userRoles: ['anonymous', 'authenticated'],
-    })
-
-    // Act
-    const result = await getUserInfo(context, req, [privateUser])
-
-    // Assert
-    expect(result.status).toBe(200)
-    expect(result.body).toStrictEqual({
-      id: privateUser.id,
-      name: privateUser.name,
-      area: privateUser.area,
-    })
+    expect(result.body).toStrictEqual(expected)
   })
 })

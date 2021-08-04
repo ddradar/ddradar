@@ -10,11 +10,11 @@ type ScoreSchema = Database.ScoreSchema
  * Get scores that match the specified chart.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/scores/:songId/:playStyle/:difficulty?scope=:scope`
+ * - `GET api/v1/scores/:id/:style/:diff?scope=:scope`
  *   - `scope`(optional): `private`: Only personal best score, `medium`(default): Personal best, area top, and world top scores, `full`: All scores
- *   - `songId`: {@link ScoreSchema.songId}
- *   - `playStyle`: {@link ScoreSchema.playStyle}
- *   - `difficulty`: {@link ScoreSchema.difficulty}
+ *   - `id`: {@link ScoreSchema.songId}
+ *   - `style`: {@link ScoreSchema.playStyle}
+ *   - `diff`: {@link ScoreSchema.difficulty}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param scores

@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
 
 import { canConnectDB, getContainer } from '../database'
-import { fetchLoginUser, fetchUser, fetchUserList } from '../users'
+import { fetchLoginUser, fetchUser } from '../users'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('users.ts', () => {
@@ -82,64 +82,5 @@ describeIf(canConnectDB)('users.ts', () => {
       // Assert
       expect(user).toStrictEqual(expected)
     })
-  })
-
-  describe('fetchUserList', () => {
-    test('("", undefined, "0") returns 9 users', async () => {
-      // Arrange - Act
-      const result = await fetchUserList('', undefined, '0')
-
-      // Assert
-      expect(result).toHaveLength(9)
-    })
-
-    test(`("${users[0].loginId}", undefined, "0") returns 10 users`, async () => {
-      // Arrange - Act
-      const result = await fetchUserList(users[0].loginId, undefined, '0')
-
-      // Assert
-      expect(result).toHaveLength(10)
-    })
-
-    test(`("", 13) returns 1 user`, async () => {
-      // Arrange - Act
-      const result = await fetchUserList('', 13)
-
-      // Assert
-      expect(result).toHaveLength(2)
-    })
-
-    test.each([
-      [
-        undefined,
-        10000010,
-        {
-          id: users[10].id,
-          name: users[10].name,
-          area: users[10].area,
-          code: users[10].code,
-        },
-      ],
-      [
-        'User 2',
-        10000023,
-        {
-          id: users[23].id,
-          name: users[23].name,
-          area: users[23].area,
-          code: users[23].code,
-        },
-      ],
-    ])(
-      '("", undefined, "%s", %i) returns [%p]',
-      async (name, code, expected) => {
-        // Arrange - Act
-        const result = await fetchUserList('', undefined, name, code)
-
-        // Assert
-        expect(result).toHaveLength(1)
-        expect(result[0]).toStrictEqual(expected)
-      }
-    )
   })
 })

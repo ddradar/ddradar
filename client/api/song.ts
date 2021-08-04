@@ -38,25 +38,18 @@ export function getSongInfo($http: Pick<NuxtHTTPInstance, '$get'>, id: string) {
 }
 
 /**
- * Call "Search Song by Name" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/songs__name__id/
+ * Call "Search Song" API.
+ * @see https://github.com/ddradar/ddradar/tree/master/api/songs--get/
  */
-export function searchSongByName(
+export function searchSong(
   $http: Pick<NuxtHTTPInstance, '$get'>,
-  nameIndex: number
+  nameIndex?: number,
+  seriesIndex?: number
 ) {
-  return $http.$get<Api.SongListData[]>(`${apiPrefix}/songs/name/${nameIndex}`)
-}
-
-/**
- * Call "Search Song by Series" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/songs__series__id/
- */
-export function searchSongBySeries(
-  $http: Pick<NuxtHTTPInstance, '$get'>,
-  series: number
-) {
-  return $http.$get<Api.SongListData[]>(`${apiPrefix}/songs/series/${series}`)
+  const searchParams = new URLSearchParams()
+  if (nameIndex !== undefined) searchParams.append('name', `${nameIndex}`)
+  if (seriesIndex !== undefined) searchParams.append('series', `${seriesIndex}`)
+  return $http.$get<Api.SongListData[]>(`${apiPrefix}/songs`, { searchParams })
 }
 
 /**
@@ -71,14 +64,6 @@ export function searchCharts(
   return $http.$get<Api.ChartInfo[]>(
     `${apiPrefix}/charts/${playStyle}/${level}`
   )
-}
-
-/**
- * Call "Get All Song Information" API.
- * @see https://github.com/ddradar/ddradar/tree/master/functions/getSongs/
- */
-export function getAllSongInfo($http: Pick<NuxtHTTPInstance, '$get'>) {
-  return $http.$get<Api.SongInfo[]>(`https://api.ddradar.app${apiPrefix}/songs`)
 }
 
 /**

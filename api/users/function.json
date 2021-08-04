@@ -9,6 +9,15 @@
       "route": "v1/users"
     },
     {
+      "name": "users",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Users",
+      "sqlQuery": "SELECT c.id, c.loginId, c.name, c.area, c.code, c.isPublic FROM c WHERE IS_DEFINED(c.loginId) ORDER BY c.name",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
       "type": "http",
       "direction": "out",
       "name": "$return"

@@ -5,7 +5,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import { getAllSongInfo } from '~/api/song'
+import { searchSong } from '~/api/song'
 import SearchBox from '~/components/pages/SearchBox.vue'
 
 jest.mock('~/api/song')
@@ -93,8 +93,8 @@ describe('/components/pages/SearchBox.vue', () => {
 
   // LifeCycle
   describe('fetch()', () => {
-    mocked(getAllSongInfo).mockResolvedValue([{ ...testSongData }])
-    beforeEach(() => mocked(getAllSongInfo).mockClear())
+    mocked(searchSong).mockResolvedValue([{ ...testSongData }])
+    beforeEach(() => mocked(searchSong).mockClear())
 
     test('sets songList', async () => {
       // Arrange
@@ -106,7 +106,7 @@ describe('/components/pages/SearchBox.vue', () => {
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(mocked(getAllSongInfo)).toBeCalledWith(mocks.$http)
+      expect(mocked(searchSong)).toBeCalledWith(mocks.$http)
       expect(wrapper.vm.$data.songList).toStrictEqual([
         {
           id: testSongData.id,

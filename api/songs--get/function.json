@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "v1/songs/name/{name:int:range(0,36)}"
+      "route": "v1/songs"
     },
     {
       "name": "songs",
@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Songs",
-      "sqlQuery": "SELECT c.id, c.name, c.nameKana, c.nameIndex, c.artist, c.series, c.minBPM, c.maxBPM FROM c WHERE c.nameIndex = StringToNumber({name}) ORDER BY c.nameIndex, c.nameKana",
+      "sqlQuery": "SELECT c.id, c.name, c.nameKana, c.nameIndex, c.artist, c.series, c.minBPM, c.maxBPM FROM c WHERE c.nameIndex >= 0 ORDER BY c.nameIndex, c.nameKana",
       "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
     },
     {
@@ -23,5 +23,5 @@
       "name": "$return"
     }
   ],
-  "scriptFile": "../dist/songs__name__id/index.js"
+  "scriptFile": "../dist/songs--get/index.js"
 }

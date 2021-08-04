@@ -1,20 +1,20 @@
 import type { Context, HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { UserVisibility } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
 type GrooveRadarInfo = Api.GrooveRadarInfo
 
 /**
  * Get Groove Radar that match the specified {@link UserVisibility.id userId} and {@link GrooveRadarInfo.playStyle playStyle}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/users/:id/radar/:playStyle?`
+ * - `GET api/v1/users/:id/radar/:style?`
  *   - `id`: {@link UserVisibility.id}
- *   - `playStyle`(optional): {@link GrooveRadarInfo.playStyle}
- * @param bindingData.playStyle {@link GrooveRadarInfo.playStyle PlayStyle} (optional)
+ *   - `style`(optional): {@link GrooveRadarInfo.playStyle}
+ * @param bindingData.style {@link GrooveRadarInfo.playStyle PlayStyle} (optional)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)
  * @param radars User Groove Radar data (from Cosmos DB binding)
@@ -49,14 +49,9 @@ export default async function (
   [user]: UserVisibility[],
   radars: GrooveRadarInfo[]
 ): Promise<ErrorResult<404> | SuccessResult<GrooveRadarInfo[]>> {
-  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
-  // User is not found or private
-  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return new ErrorResult(404)
-  }
-
-  const playStyle = bindingData.playStyle as 1 | 2 | undefined
+  const playStyle = bindingData.style
   return new SuccessResult(
     radars
       .filter(r => !playStyle || r.playStyle === playStyle)

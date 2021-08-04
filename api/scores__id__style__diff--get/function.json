@@ -1,0 +1,27 @@
+{
+  "bindings": [
+    {
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "authLevel": "anonymous",
+      "methods": ["get"],
+      "route": "v1/scores/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{style:int:min(1):max(2)}/{diff:int:min(0):max(4)}"
+    },
+    {
+      "name": "scores",
+      "type": "cosmosDB",
+      "direction": "in",
+      "databaseName": "DDRadar",
+      "collectionName": "Scores",
+      "sqlQuery": "SELECT * FROM c WHERE c.songId = {id} AND c.playStyle = StringToNumber({style}) AND c.difficulty = StringToNumber({diff}) AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null) ORDER BY c.score DESC, c.clearLamp DESC, c._ts",
+      "connectionStringSetting": "COSMOS_DB_CONN"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ],
+  "scriptFile": "../dist/scores__id__style__diff--get/index.js"
+}

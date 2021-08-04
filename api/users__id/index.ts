@@ -1,7 +1,7 @@
-import type { Context, HttpRequest } from '@azure/functions'
+import type { HttpRequest } from '@azure/functions'
 import type { Api, Database } from '@ddradar/core'
 
-import { getClientPrincipal } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
 type UserInfo = Api.UserInfo
@@ -12,7 +12,7 @@ type UserInfo = Api.UserInfo
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - `GET api/v1/users/:id`
  *   - `id`: {@link UserInfo.id}
- * @param bindingData.id {@link UserInfo.id}
+ * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User data (from Cosmos DB binding)
  * @returns
@@ -30,16 +30,11 @@ type UserInfo = Api.UserInfo
  * ```
  */
 export default async function (
-  { bindingData }: Pick<Context, 'bindingData'>,
+  _context: unknown,
   req: Pick<HttpRequest, 'headers'>,
   [user]: Database.UserSchema[]
 ): Promise<ErrorResult<404> | SuccessResult<UserInfo>> {
-  const clientPrincipal = getClientPrincipal(req)
-  const loginId = clientPrincipal?.userId ?? ''
-
-  if (!user || (!user.isPublic && user.loginId !== loginId)) {
-    return new ErrorResult(404, `Not found user that id: "${bindingData.id}"`)
-  }
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
   const body: UserInfo = { id: user.id, name: user.name, area: user.area }
   if (user.code !== undefined) body.code = user.code

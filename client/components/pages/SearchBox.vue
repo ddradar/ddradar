@@ -30,7 +30,7 @@
 import type { Api } from '@ddradar/core'
 import { Component, Vue } from 'nuxt-property-decorator'
 
-import { getAllSongInfo } from '~/api/song'
+import { searchSong } from '~/api/song'
 
 @Component({ fetchOnServer: false })
 export default class SearchBoxComponent extends Vue {
@@ -50,7 +50,7 @@ export default class SearchBoxComponent extends Vue {
 
   async fetch() {
     try {
-      const songs = await getAllSongInfo(this.$http)
+      const songs = await searchSong(this.$http)
       this.songList = songs.map(s => ({
         id: s.id,
         name: s.name,

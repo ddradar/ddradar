@@ -18,10 +18,10 @@ type DeleteResult = {
  * @description
  * *Note: World record and area top score will not be deleted.*
  * - Need Authentication.
- * - `DELETE api/v1/scores/:songId/:playStyle/:difficulty`
- *   - `songId`: {@link ScoreSchema.songId}
- *   - `playStyle`: {@link ScoreSchema.playStyle}
- *   - `difficulty`: {@link ScoreSchema.difficulty}
+ * - `DELETE api/v1/scores/:id/:style/:diff`
+ *   - `id`: {@link ScoreSchema.songId}
+ *   - `style`: {@link ScoreSchema.playStyle}
+ *   - `diff`: {@link ScoreSchema.difficulty}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param scores
@@ -29,7 +29,7 @@ type DeleteResult = {
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if user registration is not completed.
- * - Returns `404 Not Found` if route parameters are invalid or no score.
+ * - Returns `404 Not Found` if parameters are invalid or no score.
  * - Returns `204 No Content` otherwize.
  */
 export default async function (

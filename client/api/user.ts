@@ -5,14 +5,14 @@ import { apiPrefix } from '~/api'
 
 /**
  * Call "User Exists" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/user__exists__id/
+ * @see https://github.com/ddradar/ddradar/tree/master/api/users__id__exists/
  */
 export async function existsUser(
   $http: Pick<NuxtHTTPInstance, '$get'>,
   id: string
 ) {
   const { exists } = await $http.$get<Api.ExistsUser>(
-    `${apiPrefix}/user/exists/${id}`
+    `${apiPrefix}/users/${id}/exists`
   )
   return exists
 }
@@ -60,7 +60,7 @@ export function getClearStatus(
   playStyle: 1 | 2
 ) {
   return $http.$get<Api.ClearStatus[]>(
-    `${apiPrefix}/users/${userId}/clear?playStyle=${playStyle}`
+    `${apiPrefix}/users/${userId}/clear?style=${playStyle}`
   )
 }
 
@@ -74,7 +74,7 @@ export function getScoreStatus(
   playStyle: 1 | 2
 ) {
   return $http.$get<Api.ScoreStatus[]>(
-    `${apiPrefix}/users/${userId}/score?playStyle=${playStyle}`
+    `${apiPrefix}/users/${userId}/score?style=${playStyle}`
   )
 }
 

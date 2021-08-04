@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["delete"],
-      "route": "v1/scores/{songId:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{playStyle:int:range(1,2)}/{difficulty:int:range(0,4)}"
+      "route": "v1/scores/{id:regex(^[01689bdiloqDIOPQ]{{32}}$)}/{style:int:range(1,2)}/{diff:int:range(0,4)}"
     },
     {
       "name": "scores",
@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Scores",
-      "sqlQuery": "SELECT * FROM c WHERE c.songId = {songId} AND c.playStyle = StringToNumber({playStyle}) AND c.difficulty = StringToNumber({difficulty})",
+      "sqlQuery": "SELECT * FROM c WHERE c.songId = {id} AND c.playStyle = StringToNumber({style}) AND c.difficulty = StringToNumber({diff})",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {
@@ -31,5 +31,5 @@
       "connectionStringSetting": "COSMOS_DB_CONN"
     }
   ],
-  "scriptFile": "../dist/scores__id__style__difficulty--delete/index.js"
+  "scriptFile": "../dist/scores__id__style__diff--delete/index.js"
 }

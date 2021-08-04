@@ -17,7 +17,7 @@ type CourseListDocument = Api.CourseListData &
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param documents Course data (from Cosmos DB input binding)
- * @returns `200 OK` with JSON body if found.
+ * @returns `200 OK` with JSON body.
  * @example
  * ```json
  * [

@@ -1,9 +1,9 @@
 import type { HttpRequest } from '@azure/functions'
-import { publicUser } from '@ddradar/core/__tests__/data'
+import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser } from '@ddradar/db'
 import { mocked } from 'ts-jest/utils'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import { canReadUserData, getClientPrincipal, getLoginUserInfo } from '../auth'
 
 jest.mock('@ddradar/db')
 
@@ -17,9 +17,7 @@ const authHeader = 'x-ms-client-principal'
 describe('auth.ts', () => {
   describe('getClientPrincipal', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
-    beforeEach(() => {
-      req.headers = {}
-    })
+    beforeEach(() => (req.headers = {}))
 
     test.each(['', 'foo'])(`({ ${authHeader} : %s }) returns null`, header => {
       // Arrange
@@ -87,6 +85,25 @@ describe('auth.ts', () => {
 
       // Assert
       expect(user).toBe(publicUser)
+    })
+  })
+
+  describe('canReadUserData', () => {
+    const req: Pick<HttpRequest, 'headers'> = { headers: {} }
+    beforeEach(() => (req.headers = {}))
+
+    test('({not login}, undefined) returns false', () =>
+      expect(canReadUserData(req, undefined)).toBe(false))
+    test('({not login}, publicUser) returns true', () =>
+      expect(canReadUserData(req, publicUser)).toBe(true))
+    test('({not login}, privateUser) returns false', () =>
+      expect(canReadUserData(req, privateUser)).toBe(false))
+    test('({login as privateUser}, privateUser) returns true', () => {
+      // Arrange
+      req.headers[authHeader] = toBase64({ userId: privateUser.loginId })
+
+      // Act - Assert
+      expect(canReadUserData(req, privateUser)).toBe(true)
     })
   })
 })

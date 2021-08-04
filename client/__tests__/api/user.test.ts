@@ -28,7 +28,7 @@ describe('./api/user.ts', () => {
   })
 
   describe('existsUser', () => {
-    test(`($http, ${user.id}) calls GET "/api/v1/user/exists/${user.id}"`, async () => {
+    test(`($http, ${user.id}) calls GET "/api/v1/users/${user.id}/exists"`, async () => {
       // Arrange
       $http.$get.mockResolvedValue({ exists: true })
 
@@ -37,7 +37,7 @@ describe('./api/user.ts', () => {
 
       // Assert
       expect(result).toBe(true)
-      expect($http.$get).toBeCalledWith('/api/v1/user/exists/foo_user')
+      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/exists')
     })
   })
 
@@ -65,7 +65,7 @@ describe('./api/user.ts', () => {
       [undefined, undefined, 10000000, 'code=10000000'] as const,
       ['foo', 26, 20000000, 'name=foo&area=26&code=20000000'] as const,
     ])(
-      '($http, "%s", %i, %i) calls  GET "/api/v1/users%s"',
+      '($http, "%s", %i, %i) calls  GET "/api/v1/users?%s"',
       async (name, area, code, query) => {
         // Arrange - Act
         const result = await getUserList($http, name, area, code)
@@ -93,8 +93,8 @@ describe('./api/user.ts', () => {
 
   describe('getClearStatus', () => {
     test.each([
-      [1, 'playStyle=1'],
-      [2, 'playStyle=2'],
+      [1, 'style=1'],
+      [2, 'style=2'],
     ])(
       `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/clear?%s"`,
       async (playStyle, query) => {
@@ -115,8 +115,8 @@ describe('./api/user.ts', () => {
 
   describe('getScoreStatus', () => {
     test.each([
-      [1, 'playStyle=1'],
-      [2, 'playStyle=2'],
+      [1, 'style=1'],
+      [2, 'style=2'],
     ])(
       `($http, "${user.id}", %i) calls GET "/api/v1/users/${user.id}/score?%s"`,
       async (playStyle, query) => {

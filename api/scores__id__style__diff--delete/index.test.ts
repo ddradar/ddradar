@@ -10,7 +10,7 @@ import deleteChartScore from '.'
 
 jest.mock('../auth')
 
-describe('DELETE /api/v1/scores', () => {
+describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
   const req = { headers: {} }
   /** {@link publicUser} score */
   const score = { ...testScores[2] }

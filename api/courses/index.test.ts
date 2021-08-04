@@ -65,7 +65,7 @@ describe('GET /api/v1/courses', () => {
     ['2', '17', 1],
     ['', '', 4],
     [undefined, undefined, 4],
-  ])('?type=%i&series=%i returns %i courses', async (type, series, length) => {
+  ])('?type=%s&series=%s returns %i courses', async (type, series, length) => {
     // Arrange
     req.query = { type, series }
 

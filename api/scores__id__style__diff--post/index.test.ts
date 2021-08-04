@@ -15,7 +15,7 @@ import postChartScore from '.'
 
 jest.mock('../auth')
 
-describe('POST /api/v1/scores', () => {
+describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   let context: Pick<Context, 'bindingData'>
   let req: Pick<HttpRequest, 'headers' | 'body'>
   const mfcScore = { score: 1000000, rank: 'AAA', clearLamp: 7 }

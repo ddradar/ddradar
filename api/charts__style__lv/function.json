@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "v1/charts/{playStyle:int:range(1,2)}/{level:int:range(1,20)}"
+      "route": "v1/charts/{style:int:range(1,2)}/{lv:int:range(1,20)}"
     },
     {
       "name": "documents",
@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Songs",
-      "sqlQuery": "SELECT s.id, s.name, s.series, c.playStyle, c.difficulty, c.level FROM s JOIN c IN s.charts WHERE s.nameIndex != -1 AND s.nameIndex != -2 AND c.playStyle = StringToNumber({playStyle}) AND c.level = StringToNumber({level}) ORDER BY s.nameIndex, s.nameKana",
+      "sqlQuery": "SELECT s.id, s.name, s.series, c.playStyle, c.difficulty, c.level FROM s JOIN c IN s.charts WHERE s.nameIndex != -1 AND s.nameIndex != -2 AND c.playStyle = StringToNumber({style}) AND c.level = StringToNumber({lv}) ORDER BY s.nameIndex, s.nameKana",
       "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
     },
     {
@@ -23,5 +23,5 @@
       "name": "$return"
     }
   ],
-  "scriptFile": "../dist/charts__style__level/index.js"
+  "scriptFile": "../dist/charts__style__lv/index.js"
 }

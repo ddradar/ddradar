@@ -26,10 +26,10 @@ type PostScoreResult = {
  * Add or update score that match the specified chart.
  * @description
  * - Need Authentication.
- * - `POST api/v1/scores/:songId/:playStyle/:difficulty`
- *   - `songId`: {@link ScoreSchema.songId}
- *   - `playStyle`: {@link ScoreSchema.playStyle}
- *   - `difficulty`: {@link ScoreSchema.difficulty}
+ * - `POST api/v1/scores/:id/:style/:diff`
+ *   - `id`: {@link ScoreSchema.songId}
+ *   - `style`: {@link ScoreSchema.playStyle}
+ *   - `diff`: {@link ScoreSchema.difficulty}
  * @param bindingData URI parameters
  * @param req HTTP Request (from HTTP trigger)
  * @param song Song or Course info (from Cosmos DB input binding)

@@ -1,11 +1,11 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { UserVisibility } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
 type ScoreStatus = Api.ScoreStatus
 type TotalCount = Omit<Api.ScoreStatus, 'rank'>
 
@@ -13,10 +13,10 @@ type TotalCount = Omit<Api.ScoreStatus, 'rank'>
  * Get Score statuses that match the specified {@link UserVisibility.id userId}, {@link ScoreStatus.playStyle playStyle} and {@link ScoreStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/users/:id/score?playStyle=:playStyle&level=:level`
+ * - `GET api/v1/users/:id/score?style=:style&lv=:lv`
  *   - `id`: {@link UserVisibility.id}
- *   - `playStyle`(optional): {@link ScoreStatus.playStyle}
- *   - `level`(optional): {@link ScoreStatus.level}
+ *   - `style`(optional): {@link ScoreStatus.playStyle}
+ *   - `lv`(optional): {@link ScoreStatus.level}
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param user User Visibility (from Cosmos DB binding)
@@ -41,16 +41,11 @@ export default async function (
   scoreStatuses: ScoreStatus[],
   totalCounts: TotalCount[]
 ): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
-  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
-  // User is not found or private
-  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return new ErrorResult(404)
-  }
-
-  const playStyle = parseInt(req.query.playStyle ?? '', 10)
+  const playStyle = parseInt(req.query.style ?? '', 10)
   const isValidPlayStyle = playStyle === 1 || playStyle === 2
-  const level = parseInt(req.query.level ?? '', 10)
+  const level = parseInt(req.query.lv ?? '', 10)
   const isValidLevel = Number.isInteger(level) && level >= 1 && level <= 19
 
   const danceLevels = [...Score.danceLevelSet]

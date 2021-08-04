@@ -3,12 +3,23 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 
 import getSongInfo from '.'
 
-describe('GET /api/v1/songs', () => {
+describe('GET /api/v1/songs/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const song = { ...testSongData }
   beforeEach(() => (context.bindingData = {}))
 
-  test(`returns "200 OK" with JSON if documents contain 1 song`, async () => {
+  test(`returns "404 Not Found" if no song that matches id.`, async () => {
+    // Arrange
+    context.bindingData.id = 'foo'
+
+    // Act
+    const result = await getSongInfo(context, null, [])
+
+    // Assert
+    expect(result.status).toBe(404)
+  })
+
+  test(`returns "200 OK" with JSON if found.`, async () => {
     // Arrange
     context.bindingData.id = song.id
 
@@ -18,17 +29,5 @@ describe('GET /api/v1/songs', () => {
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toBe(song)
-  })
-
-  test(`returns "404 Not Found" if documents is []`, async () => {
-    // Arrange
-    context.bindingData.id = 'foo'
-
-    // Act
-    const result = await getSongInfo(context, null, [])
-
-    // Assert
-    expect(result.status).toBe(404)
-    expect(result.body).toMatch(/"foo"/)
   })
 })

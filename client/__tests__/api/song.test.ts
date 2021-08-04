@@ -1,14 +1,12 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 
 import {
-  getAllSongInfo,
   getChartTitle,
   getDisplayedBPM,
   getSongInfo,
   postSongInfo,
   searchCharts,
-  searchSongByName,
-  searchSongBySeries,
+  searchSong,
   shortenSeriesName,
 } from '~/api/song'
 
@@ -55,7 +53,7 @@ describe('/api/song.ts', () => {
 
   describe('API caller', () => {
     const $http = {
-      $get: jest.fn<Promise<any>, [string]>(),
+      $get: jest.fn<Promise<any>, [string, any]>(),
       $post: jest.fn<Promise<any>, [string]>(),
     }
     beforeEach(() => {
@@ -78,37 +76,31 @@ describe('/api/song.ts', () => {
       })
     })
 
-    describe('searchSongByName', () => {
-      const song = { nameIndex: 10 }
-      test(`($http, ${song.nameIndex}) calls GET "/api/v1/songs/name/${song.nameIndex}"`, async () => {
-        // Arrange
-        const songs = [song]
-        $http.$get.mockResolvedValue(songs)
+    describe('searchSong', () => {
+      const song = { ...testSongData }
+      test.each([
+        [undefined, undefined, ''],
+        [0, undefined, 'name=0'],
+        [undefined, 0, 'series=0'],
+        [1, 1, 'name=1&series=1'],
+      ])(
+        '($http, %p, %p) calls GET "/api/v1/songs?%s"',
+        async (name, series, query) => {
+          // Arrange
+          const songs = [song]
+          $http.$get.mockResolvedValue(songs)
 
-        // Act
-        const result = await searchSongByName($http, song.nameIndex)
+          // Act
+          const result = await searchSong($http, name, series)
 
-        // Assert
-        expect(result).toBe(songs)
-        expect($http.$get).toBeCalledWith('/api/v1/songs/name/10')
-      })
-    })
-
-    describe('searchSongBySeries', () => {
-      const song = { series: 10 }
-      test(`($http, ${song.series}) calls GET "/api/v1/songs/${song.series}"`, async () => {
-        // Arrange
-        const $http = { $get: jest.fn<Promise<any>, [string]>() }
-        const songs = [song]
-        $http.$get.mockResolvedValue(songs)
-
-        // Act
-        const result = await searchSongBySeries($http, song.series)
-
-        // Assert
-        expect(result).toBe(songs)
-        expect($http.$get).toBeCalledWith('/api/v1/songs/series/10')
-      })
+          // Assert
+          expect(result).toBe(songs)
+          expect($http.$get.mock.calls[0][0]).toBe('/api/v1/songs')
+          expect($http.$get.mock.calls[0][1].searchParams.toString()).toBe(
+            query
+          )
+        }
+      )
     })
 
     describe('searchCharts', () => {
@@ -130,23 +122,6 @@ describe('/api/song.ts', () => {
         // Assert
         expect(result).toBe(charts)
         expect($http.$get).toBeCalledWith(uri)
-      })
-    })
-
-    describe('getAllSongInfo()', () => {
-      test('calls GET "https://api.ddradar.app/api/v1/songs"', async () => {
-        // Arrange
-        const songs = [{ ...testSongData }]
-        $http.$get.mockResolvedValue(songs)
-
-        // Act
-        const result = await getAllSongInfo($http)
-
-        // Assert
-        expect(result).toBe(songs)
-        expect($http.$get).toBeCalledWith(
-          'https://api.ddradar.app/api/v1/songs'
-        )
       })
     })
 
