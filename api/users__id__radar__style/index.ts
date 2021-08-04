@@ -1,10 +1,10 @@
 import type { Context, HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { UserVisibility } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
 type GrooveRadarInfo = Api.GrooveRadarInfo
 
 /**
@@ -49,12 +49,7 @@ export default async function (
   [user]: UserVisibility[],
   radars: GrooveRadarInfo[]
 ): Promise<ErrorResult<404> | SuccessResult<GrooveRadarInfo[]>> {
-  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
-
-  // User is not found or private
-  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return new ErrorResult(404)
-  }
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
   const playStyle = bindingData.style
   return new SuccessResult(

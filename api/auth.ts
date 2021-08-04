@@ -23,3 +23,19 @@ export async function getLoginUserInfo(
   if (!clientPrincipal) return null
   return fetchLoginUser(clientPrincipal.userId)
 }
+
+export type UserVisibility = Pick<Database.UserSchema, 'loginId' | 'isPublic'>
+/**
+ *
+ * @param req Http request
+ * @param user User data
+ * @returns `true` if user is public or same as login user.
+ */
+export function canReadUserData(
+  req: Pick<HttpRequest, 'headers'>,
+  user: UserVisibility | undefined
+): boolean {
+  if (!user) return false
+  const loginId = getClientPrincipal(req)?.userId ?? ''
+  return user.isPublic || user.loginId === loginId
+}

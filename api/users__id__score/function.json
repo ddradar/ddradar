@@ -14,7 +14,7 @@
       "direction": "in",
       "databaseName": "DDRadar",
       "collectionName": "Users",
-      "sqlQuery": "SELECT c.id, c.isPublic FROM c WHERE c.id = {id}",
+      "sqlQuery": "SELECT c.loginId, c.isPublic FROM c WHERE c.id = {id}",
       "connectionStringSetting": "COSMOS_DB_CONN"
     },
     {

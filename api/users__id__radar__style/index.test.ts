@@ -1,9 +1,8 @@
 import type { Context } from '@azure/functions'
 import type { Api } from '@ddradar/core'
-import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
-import { getLoginUserInfo } from '../auth'
+import { canReadUserData } from '../auth'
 import getGrooveRadar from '.'
 
 jest.mock('../auth')
@@ -19,9 +18,9 @@ describe('GET /api/v1/users/{id}/radar', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 
-  test('/not_exist_user/radar returns "404 Not Found"', async () => {
+  test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    context.bindingData.id = 'foo'
+    mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getGrooveRadar(context, req, [], [])
@@ -30,23 +29,12 @@ describe('GET /api/v1/users/{id}/radar', () => {
     expect(result.status).toBe(404)
   })
 
-  test(`/${privateUser.id}/radar returns "404 Not Found"`, async () => {
+  test(`/ returns "200 OK" with JSON body`, async () => {
     // Arrange
-    context.bindingData.id = privateUser.id
+    mocked(canReadUserData).mockReturnValue(true)
 
     // Act
-    const result = await getGrooveRadar(context, req, [privateUser], radars)
-
-    // Assert
-    expect(result.status).toBe(404)
-  })
-
-  test(`/${publicUser.id}/radar returns "200 OK" with JSON body`, async () => {
-    // Arrange
-    context.bindingData.id = publicUser.id
-
-    // Act
-    const result = await getGrooveRadar(context, req, [publicUser], radars)
+    const result = await getGrooveRadar(context, req, [], radars)
 
     // Assert
     expect(result.status).toBe(200)
@@ -56,32 +44,16 @@ describe('GET /api/v1/users/{id}/radar', () => {
   test.each([
     [1, radars[1]],
     [2, radars[0]],
-  ])(
-    `${publicUser.id}/radar/%i returns "200 OK" with [%p]`,
-    async (style, expected) => {
-      // Arrange
-      context.bindingData.id = publicUser.id
-      context.bindingData.style = style
-
-      // Act
-      const result = await getGrooveRadar(context, req, [publicUser], radars)
-
-      // Assert
-      expect(result.status).toBe(200)
-      expect(result.body).toStrictEqual([expected])
-    }
-  )
-
-  test(`/${privateUser.id}/radar returns "200 OK" with JSON body if logged in`, async () => {
+  ])(`/%i returns "200 OK" with [%p]`, async (style, expected) => {
     // Arrange
-    context.bindingData.id = privateUser.id
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    mocked(canReadUserData).mockReturnValue(true)
+    context.bindingData.style = style
 
     // Act
-    const result = await getGrooveRadar(context, req, [privateUser], radars)
+    const result = await getGrooveRadar(context, req, [], radars)
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toStrictEqual([radars[1], radars[0]])
+    expect(result.body).toStrictEqual([expected])
   })
 })

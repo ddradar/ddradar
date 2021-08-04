@@ -1,10 +1,10 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Api, Database } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
 
-import { getClientPrincipal, getLoginUserInfo } from '../auth'
+import type { UserVisibility } from '../auth'
+import { canReadUserData } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
 type ClearStatus = Api.ClearStatus
 type TotalCount = Omit<ClearStatus, 'clearLamp'>
 
@@ -40,12 +40,7 @@ export default async function (
   clearStatuses: ClearStatus[],
   totalCounts: TotalCount[]
 ): Promise<ErrorResult<404> | SuccessResult<ClearStatus[]>> {
-  const loginUser = await getLoginUserInfo(getClientPrincipal(req))
-
-  // User is not found or private
-  if (!user || (!user.isPublic && user.id !== loginUser?.id)) {
-    return new ErrorResult(404)
-  }
+  if (!canReadUserData(req, user)) return new ErrorResult(404)
 
   const playStyle = parseInt(req.query.style ?? '', 10)
   const isValidPlayStyle = playStyle === 1 || playStyle === 2
