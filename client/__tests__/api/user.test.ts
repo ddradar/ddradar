@@ -28,7 +28,7 @@ describe('./api/user.ts', () => {
   })
 
   describe('existsUser', () => {
-    test(`($http, ${user.id}) calls GET "/api/v1/user/exists/${user.id}"`, async () => {
+    test(`($http, ${user.id}) calls GET "/api/v1/users/${user.id}/exists"`, async () => {
       // Arrange
       $http.$get.mockResolvedValue({ exists: true })
 
@@ -37,7 +37,7 @@ describe('./api/user.ts', () => {
 
       // Assert
       expect(result).toBe(true)
-      expect($http.$get).toBeCalledWith('/api/v1/user/exists/foo_user')
+      expect($http.$get).toBeCalledWith('/api/v1/users/foo_user/exists')
     })
   })
 
