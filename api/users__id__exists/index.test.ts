@@ -3,7 +3,7 @@ import { privateUser } from '@ddradar/core/__tests__/data'
 
 import existsUser from '.'
 
-describe('GET /api/v1/users/exists/{id}', () => {
+describe('GET /api/v1/users/{id}/exists', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   beforeEach(() => (context.bindingData = {}))
 

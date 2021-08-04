@@ -9,7 +9,7 @@ type ExistsUser = Api.ExistsUser
  * Returns whether the specified user exists.
  * @description
  * - Need Authentication.
- * - `GET api/v1/users/exists/:id`
+ * - `GET api/v1/users/:id/exists`
  *   - `id`: {@link ExistsUser.id}
  * @param bindingData.id {@link ExistsUser.id}
  * @param _req HTTP Request (unused)

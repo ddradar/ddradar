@@ -6,7 +6,7 @@
       "name": "req",
       "authLevel": "anonymous",
       "methods": ["get"],
-      "route": "v1/users/exists/{id:regex(^[-a-zA-Z0-9_]+$)}"
+      "route": "v1/users/{id:regex(^[-a-zA-Z0-9_]+$)}/exists"
     },
     {
       "name": "documents",
@@ -23,5 +23,5 @@
       "name": "$return"
     }
   ],
-  "scriptFile": "../dist/users__exists__id/index.js"
+  "scriptFile": "../dist/users__id__exists/index.js"
 }
