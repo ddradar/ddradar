@@ -383,7 +383,7 @@ export const areaHiddenUser = {
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
 export const privateUser = {
   id: 'private_user',
-  loginId: '2',
+  loginId: 'private_user',
   name: 'Private User',
   area: 0,
   isPublic: false,
@@ -392,9 +392,9 @@ export const privateUser = {
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
 export const noPasswordUser = {
-  id: 'private_user',
-  loginId: '2',
-  name: 'Private User',
+  id: 'no_password_user',
+  loginId: 'no_password_user',
+  name: 'No password User',
   area: 0,
   isPublic: false,
 } as const

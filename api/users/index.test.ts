@@ -1,65 +1,59 @@
 import type { HttpRequest } from '@azure/functions'
-import { fetchUserList } from '@ddradar/db'
+import {
+  areaHiddenUser,
+  noPasswordUser,
+  privateUser,
+  publicUser,
+} from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
 import getUserList from '.'
 
 jest.mock('../auth')
-jest.mock('@ddradar/db')
 
 describe('GET /api/v1/users', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  beforeAll(() => mocked(fetchUserList).mockResolvedValue([]))
-  beforeEach(() => {
-    req.headers = {}
-    req.query = {}
-    mocked(fetchUserList).mockClear()
-  })
+  const users = [areaHiddenUser, noPasswordUser, privateUser, publicUser]
+  beforeEach(() => (req.query = {}))
 
   test.each([
-    [undefined, undefined, undefined, undefined, '', undefined],
-    ['', '', '', undefined, '', undefined],
-    ['1', 'foo', '10000000', 1, 'foo', 10000000],
-    ['0', 'foo', '0', undefined, 'foo', undefined],
-    ['200', 'foo', '10000000', undefined, 'foo', 10000000],
-    ['1', 'foo', '100000000', 1, 'foo', undefined],
+    [undefined, undefined, undefined, 2],
+    ['', '', '', 2],
+    ['13', '', '', 1],
+    ['', 'User', '', 2],
+    ['', '', '10000000', 1],
+    ['', '', '0', 2],
+    ['', '', '100000000', 2],
   ])(
-    '?area=%s&name=%s&code=%s calls fetchUserList("", %i, "%s", %i)',
-    async (area, name, code, arg2, arg3, arg4) => {
+    '?area=%s&name=%s&code=%s returns %i user(s)',
+    async (area, name, code, length) => {
       // Arrange
       req.query = { area, name, code }
 
       // Act
-      const result = await getUserList(null, req)
+      const result = await getUserList(null, req, users)
 
       // Assert
       expect(result.status).toBe(200)
-      expect(result.body).toHaveLength(0)
-      expect(mocked(fetchUserList)).toBeCalledWith('', arg2, arg3, arg4)
+      expect(result.body).toHaveLength(length)
     }
   )
 
-  test('calls fetchUserList(loginId, undefined, "", undefined) if loggedin', async () => {
+  test('returns 3 users if logged in privateUser', async () => {
     // Arrange
     mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: 'user',
-      userId: 'login_id',
+      userId: privateUser.loginId,
       userRoles: ['anonymous', 'authenticated'],
     })
 
     // Act
-    const result = await getUserList(null, req)
+    const result = await getUserList(null, req, users)
 
     // Assert
     expect(result.status).toBe(200)
-    expect(result.body).toHaveLength(0)
-    expect(mocked(fetchUserList)).toBeCalledWith(
-      'login_id',
-      undefined,
-      '',
-      undefined
-    )
+    expect(result.body).toHaveLength(3)
   })
 })
