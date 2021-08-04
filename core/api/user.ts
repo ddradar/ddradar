@@ -23,7 +23,10 @@ export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
  * Object type returned by `/api/v1/users/exists/{:id}`
  * @see https://github.com/ddradar/ddradar/blob/master/api/users__exists__id/
  */
-export type ExistsUser = Pick<UserSchema, 'id'> & { exists: boolean }
+export type ExistsUser = Pick<UserSchema, 'id'> & {
+  /** User exists or not */
+  exists: boolean
+}
 
 /**
  * Object type returned by `/api/v1/users/{:id}/clear`
@@ -33,6 +36,17 @@ export type ClearStatus = Pick<
   ClearStatusSchema,
   'playStyle' | 'level' | 'count'
 > & {
+  /**
+   * `-1`: No Play,
+   * `0`: Failed,
+   * `1`: Assisted Clear,
+   * `2`: Clear,
+   * `3`: LIFE4,
+   * `4`: Good FC (Full Combo),
+   * `5`: Great FC,
+   * `6`: PFC,
+   * `7`: MFC
+   */
   clearLamp: ClearLamp | -1
 }
 
@@ -44,6 +58,7 @@ export type ScoreStatus = Pick<
   ScoreStatusSchema,
   'playStyle' | 'level' | 'count'
 > & {
+  /** Dance level (`"E"` ~ `"AAA"`), `"-"`: No Play */
   rank: DanceLevel | '-'
 }
 
