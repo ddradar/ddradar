@@ -5,16 +5,42 @@ import { Score } from '@ddradar/core'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
+type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
+type ScoreStatus = Api.ScoreStatus
 type TotalCount = Omit<Api.ScoreStatus, 'rank'>
 
-/** Get Score statuses that match the specified user ID, play style and level. */
+/**
+ * Get Score statuses that match the specified {@link UserVisibility.id userId}, {@link ScoreStatus.playStyle playStyle} and {@link ScoreStatus.level level}.
+ * @description
+ * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/users/:id/score?playStyle=:playStyle&level=:level`
+ *   - `id`: {@link UserVisibility.id}
+ *   - `playStyle`(optional): {@link ScoreStatus.playStyle}
+ *   - `level`(optional): {@link ScoreStatus.level}
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param user User Visibility (from Cosmos DB binding)
+ * @param scoreStatuses User Score Statuses (from Cosmos DB binding)
+ * @param totalCounts Chart total counts (from Cosmos DB binding)
+ * @returns
+ * - Returns `404 Not Found` if no user that matches `id` or user is private.
+ * - Returns `200 OK` with JSON body if found.
+ * @example
+ * ```json
+ * [
+ *   { "playStyle": 1, "level": 1, "rank": "-", "count": 20 },
+ *   { "playStyle": 1, "level": 1, "rank": "AA+", "count": 10 },
+ *   { "playStyle": 1, "level": 1, "rank": "AAA", "count": 20 }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
-  [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[],
-  scoreStatuses: Api.ScoreStatus[],
+  [user]: UserVisibility[],
+  scoreStatuses: ScoreStatus[],
   totalCounts: TotalCount[]
-): Promise<ErrorResult<404> | SuccessResult<Api.ScoreStatus[]>> {
+): Promise<ErrorResult<404> | SuccessResult<ScoreStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private

@@ -6,43 +6,110 @@ import { fetchScore } from '@ddradar/db'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
+/** Song or Course info */
 type SongInput = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> & {
   charts: ReadonlyArray<Database.StepChartSchema | Database.CourseChartSchema>
 }
 
+/** Return type of this function */
 type PostSongScoresResponse = {
+  /** HTTP output binding */
   httpResponse:
     | ErrorResult<400 | 401 | 404>
     | SuccessResult<Database.ScoreSchema[]>
+  /** Cosmos DB output binding */
   documents?: (Database.ScoreSchema & ItemDefinition)[]
 }
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
 
-/** Assert request body is valid schema. */
-function isValidBody(body: unknown): body is Api.ScoreListBody[] {
-  return (
-    Array.isArray(body) && body.length > 0 && body.every(Api.isScoreListBody)
-  )
-}
-
-/** Add or update score that match the specified chart. */
+/**
+ * Add or update the scores of the specified songs all at once.
+ * It will be merged with the previous score.
+ * @description
+ * - Need Authentication.
+ * - `POST api/v1/scores/:songId`
+ *   = `songId`: {@link SongInput.id}
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param song Song or Course info (from Cosmos DB input binding)
+ * @returns
+ * - Returns `401 Unauthorized` if you are not logged in.
+ * - Returns `404 Not Found` if user registration is not completed.
+ * - Returns `404 Not Found` if route parameters are invalid or no song.
+ * - Returns `400 Bad Request` if parameter body is invalid.
+ * - Returns `200 OK` with JSON body otherwize.
+ * @example
+ * ```jsonc
+ * // Request Body
+ * [
+ *   {
+ *     "playStyle": 1,
+ *     "difficulty": 0,
+ *     "score": 1000000,
+ *     "clearLamp": 7,
+ *     "rank": "AAA"
+ *   },
+ *   {
+ *     "playStyle": 1,
+ *     "difficulty": 1,
+ *     "score": 999990,
+ *     "clearLamp": 6,
+ *     "rank": "AAA",
+ *     "topScore": 1000000
+ *   }
+ * ]
+ * ```
+ *
+ * ```jsonc
+ * // Response Body
+ * [
+ *   {
+ *     "userId": "public_user",
+ *     "userName": "AFRO",
+ *     "isPublic": true,
+ *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *     "songName": "愛言葉",
+ *     "playStyle": 1,
+ *     "difficulty": 0,
+ *     "level": 3,
+ *     "score": 1000000,
+ *     "exScore": 402,
+ *     "maxCombo": 122,
+ *     "clearLamp": 7,
+ *     "rank": "AAA"
+ *   },
+ *   {
+ *     "userId": "public_user",
+ *     "userName": "AFRO",
+ *     "isPublic": true,
+ *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *     "songName": "愛言葉",
+ *     "playStyle": 1,
+ *     "difficulty": 1,
+ *     "level": 5,
+ *     "score": 999990,
+ *     "exScore": 617,
+ *     "maxCombo": 194,
+ *     "clearLamp": 6,
+ *     "rank": "AAA"
+ *   }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'body'>,
   [song]: SongInput[]
 ): Promise<PostSongScoresResponse> {
-  const clientPrincipal = getClientPrincipal(req)
-  if (!clientPrincipal) return { httpResponse: { status: 401 } }
+  const user = await getLoginUserInfo(getClientPrincipal(req))
+  if (!user) {
+    const body = 'User registration is not completed'
+    return { httpResponse: new ErrorResult(404, body) }
+  }
 
   if (!isValidBody(req.body)) {
     return { httpResponse: new ErrorResult(400, 'body is not Score[]') }
-  }
-
-  const user = await getLoginUserInfo(clientPrincipal)
-  if (!user) {
-    const body = `Unregistered user: { platform: ${clientPrincipal.identityProvider}, id: ${clientPrincipal.userDetails} }`
-    return { httpResponse: new ErrorResult(404, body) }
   }
 
   // Get chart info
@@ -94,6 +161,14 @@ export default async function (
 
   return { httpResponse: new SuccessResult(body), documents }
 
+  /** Assert request body is valid schema. */
+  function isValidBody(body: unknown): body is Api.ScoreListBody[] {
+    return (
+      Array.isArray(body) && body.length > 0 && body.every(Api.isScoreListBody)
+    )
+  }
+
+  /** Create merged score and delete old one. */
   async function updateScore(
     chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
     user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,

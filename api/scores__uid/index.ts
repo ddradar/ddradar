@@ -6,12 +6,48 @@ import { fetchScoreList } from '@ddradar/db'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-/** Get user scores that match the specified conditions. */
+type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
+type ScoreList = Api.ScoreList
+
+/**
+ * Get user scores that match the specified conditions.
+ * @description
+ * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/scores/:uid?style=:style&diff=:diff&lv=5&lamp=:lamp&rank=:rank`
+ *   - `uid`: {@link UserVisibility.id}
+ *   - `style`(optional): {@link ScoreList.playStyle}
+ *   - `diff`(optional): {@link ScoreList.difficulty}
+ *   - `lv`(optional): {@link ScoreList.level}
+ *   - `lamp`(optional): {@link ScoreList.clearLamp}
+ *   - `rank`(optional): {@link ScoreList.rank}
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param user User visibility (from Cosmos DB input binding)
+ * @returns
+ * - Returns `404 Not Found` if no score that matches parameters.
+ * - Returns `200 OK` with JSON body otherwize.
+ * @example
+ * ```json
+ * [
+ *   {
+ *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *     "songName": "愛言葉",
+ *     "playStyle": 1,
+ *     "difficulty": 0,
+ *     "level": 3,
+ *     "score": 999950,
+ *     "clearLamp": 6,
+ *     "rank": "AAA",
+ *     "isCourse": false
+ *   }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
-  [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[]
-): Promise<ErrorResult<404> | SuccessResult<Api.ScoreList[]>> {
+  [user]: UserVisibility[]
+): Promise<ErrorResult<404> | SuccessResult<ScoreList[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
   if (!user || (!user.isPublic && user.id !== loginUser?.id))
     return new ErrorResult(404)

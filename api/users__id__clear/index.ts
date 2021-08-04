@@ -4,16 +4,42 @@ import type { Api, Database } from '@ddradar/core'
 import { getClientPrincipal, getLoginUserInfo } from '../auth'
 import { ErrorResult, SuccessResult } from '../function'
 
-type TotalCount = Omit<Api.ClearStatus, 'clearLamp'>
+type UserVisibility = Pick<Database.UserSchema, 'id' | 'isPublic'>
+type ClearStatus = Api.ClearStatus
+type TotalCount = Omit<ClearStatus, 'clearLamp'>
 
-/** Get Clear status that match the specified user ID and play style. */
+/**
+ * Get Clear status that match the specified {@link UserVisibility.id userId}, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
+ * @description
+ * - No need Authentication. Authenticated users can get their own data even if they are private.
+ * - `GET api/v1/users/:id/clear?playStyle=:playStyle&level=:level`
+ *   - `id`: {@link UserVisibility.id}
+ *   - `playStyle`(optional): {@link ClearStatus.playStyle}
+ *   - `level`(optional): {@link ClearStatus.level}
+ * @param _context Azure Functions context (unused)
+ * @param req HTTP Request (from HTTP trigger)
+ * @param user User Visibility (from Cosmos DB binding)
+ * @param clearStatuses User Clear Statuses (from Cosmos DB binding)
+ * @param totalCounts Chart total counts (from Cosmos DB binding)
+ * @returns
+ * - Returns `404 Not Found` if no user that matches `id` or user is private.
+ * - Returns `200 OK` with JSON body if found.
+ * @example
+ * ```json
+ * [
+ *   { "playStyle": 1, "level": 1, "clearLamp": -1, "count": 10 },
+ *   { "playStyle": 1, "level": 1, "clearLamp": 6, "count": 10 },
+ *   { "playStyle": 1, "level": 1, "clearLamp": 7, "count": 20 }
+ * ]
+ * ```
+ */
 export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'query'>,
-  [user]: Pick<Database.UserSchema, 'id' | 'isPublic'>[],
-  clearStatuses: Api.ClearStatus[],
+  [user]: UserVisibility[],
+  clearStatuses: ClearStatus[],
   totalCounts: TotalCount[]
-): Promise<ErrorResult<404> | SuccessResult<Api.ClearStatus[]>> {
+): Promise<ErrorResult<404> | SuccessResult<ClearStatus[]>> {
   const loginUser = await getLoginUserInfo(getClientPrincipal(req))
 
   // User is not found or private

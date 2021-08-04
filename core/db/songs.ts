@@ -5,13 +5,44 @@ import {
   Unwrap,
 } from '../typeUtils'
 
-/** DB Schema of Song */
+/**
+ * DB Schema of Song data (included on "Songs" container)
+ * @example
+ * ```json
+ * {
+ *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
+ *   "name": "イーディーエム・ジャンパーズ",
+ *   "nameKana": "いーでぃーえむ じゃんぱーず",
+ *   "nameIndex": 0,
+ *   "artist": "かめりあ feat. ななひら",
+ *   "series": "DanceDanceRevolution A",
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
+ *   "charts": [
+ *     {
+ *       "playStyle": 1,
+ *       "difficulty": 0,
+ *       "level": 3,
+ *       "notes": 70,
+ *       "freezeArrow": 11,
+ *       "shockArrow": 0,
+ *       "stream": 12,
+ *       "voltage": 11,
+ *       "air": 1,
+ *       "freeze": 20,
+ *       "chaos": 0
+ *     }
+ *   ]
+ * }
+ * ```
+ */
 export type SongSchema = {
   /**
    * ID that depend on official site.
    * @example `^([01689bdiloqDIOPQ]*){32}$`
    */
   id: string
+  /** Song name */
   name: string
   /**
    * Furigana for sorting.
@@ -20,6 +51,7 @@ export type SongSchema = {
   nameKana: string
   /**
    * Index for sorting. Associated with the "Choose by Name" folder.
+   * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
    * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
    */
   nameIndex: NameIndex
@@ -36,12 +68,15 @@ export type SongSchema = {
    * Set to `null` if not revealed, such as "???".
    */
   maxBPM: number | null
+  /** Song's step charts */
   charts: ReadonlyArray<StepChartSchema>
+  /** ID used by {@link http://skillattack.com/sa4/ Skill Attack}. */
   skillAttackId?: number
   /** Song is deleted or not */
   deleted?: boolean
 }
 
+/** Groove Radar value */
 export type GrooveRadar = {
   /** Groove Radar STREAM */
   stream: number
@@ -57,8 +92,11 @@ export type GrooveRadar = {
 
 /** Song's step chart */
 export type StepChartSchema = {
+  /** {@link PlayStyle} */
   playStyle: PlayStyle
+  /** {@link Difficulty} */
   difficulty: Difficulty
+  /** Chart level */
   level: number
   /** Normal arrow count. (Jump = 1 count) */
   notes: number
@@ -68,36 +106,97 @@ export type StepChartSchema = {
   shockArrow: number
 } & GrooveRadar
 
-/** DB Schema of Course */
+/**
+ * DB Schema of Course data (included on "Songs" container)
+ * @example
+ * ```json
+ * {
+ *   "id": "qbbOOO1QibO1861bqQII9lqlPiIoqb98",
+ *   "name": "FIRST",
+ *   "nameKana": "C-A20-1",
+ *   "nameIndex": -1,
+ *   "series": "DanceDanceRevolution A20",
+ *   "minBPM": 119,
+ *   "maxBPM": 180,
+ *   "charts": [
+ *     {
+ *       "playStyle": 1,
+ *       "difficulty": 0,
+ *       "level": 4,
+ *       "notes": 401,
+ *       "freezeArrow": 8,
+ *       "shockArrow": 0,
+ *       "order": [
+ *         {
+ *           "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+ *           "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+ *           "playStyle": 1,
+ *           "difficulty": 0,
+ *           "level": 2
+ *         },
+ *         {
+ *           "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+ *           "songName": "MAKE IT BETTER",
+ *           "playStyle": 1,
+ *           "difficulty": 0,
+ *           "level": 3
+ *         },
+ *         {
+ *           "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+ *           "songName": "TRIP MACHINE",
+ *           "playStyle": 1,
+ *           "difficulty": 0,
+ *           "level": 3
+ *         },
+ *         {
+ *           "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+ *           "songName": "PARANOiA",
+ *           "playStyle": 1,
+ *           "difficulty": 0,
+ *           "level": 4
+ *         }
+ *       ]
+ *     }
+ *   ]
+ * }
+ * ```
+ */
 export type CourseSchema = Omit<
   SongSchema,
   'nameIndex' | 'artist' | 'charts' | 'skillAttackId'
 > & {
-  /** `-1`: NONSTOP, `-2`: Grade */
+  /**
+   * `-1`: NONSTOP, `-2`: Grade
+   * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
+   */
   nameIndex: -1 | -2
+  /** Course difficulties */
   charts: ReadonlyArray<CourseChartSchema>
 }
 
+/** Course difficulty */
 export type CourseChartSchema = Omit<StepChartSchema, keyof GrooveRadar> & {
+  /** Course order */
   order: ReadonlyArray<ChartOrder>
 }
 
+/** Course order */
 export type ChartOrder = Pick<
   StepChartSchema,
   'playStyle' | 'difficulty' | 'level'
 > & {
-  /**
-   * Song id that depend on official site.
-   * @example `^([01689bdiloqDIOPQ]*){32}$`
-   */
+  /** {@link SongSchema.id} */
   songId: string
+  /** {@link SongSchema.name} */
   songName: string
 }
 
+/** Returns `id` is valid {@link SongSchema.id} or not. */
 export function isValidId(id: string): boolean {
   return /^[01689bdiloqDIOPQ]{32}$/.test(id)
 }
 
+/** Type assertion for {@link SongSchema} */
 export function isSongSchema(obj: unknown): obj is SongSchema {
   return (
     hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
@@ -115,28 +214,31 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
     Array.isArray(obj.charts) &&
     obj.charts.every(c => isStepChartSchema(c))
   )
-}
 
-const isStepChartSchema = (obj: unknown): obj is StepChartSchema =>
-  hasIntegerProperty(
-    obj,
-    'playStyle',
-    'difficulty',
-    'level',
-    'notes',
-    'freezeArrow',
-    'shockArrow',
-    'stream',
-    'voltage',
-    'air',
-    'freeze',
-    'chaos'
-  ) &&
-  (obj.playStyle === 1 || obj.playStyle === 2) &&
-  obj.difficulty >= 0 &&
-  obj.difficulty <= 4 &&
-  obj.level >= 1 &&
-  obj.level <= 20
+  function isStepChartSchema(obj: unknown): obj is StepChartSchema {
+    return (
+      hasIntegerProperty(
+        obj,
+        'playStyle',
+        'difficulty',
+        'level',
+        'notes',
+        'freezeArrow',
+        'shockArrow',
+        'stream',
+        'voltage',
+        'air',
+        'freeze',
+        'chaos'
+      ) &&
+      (obj.playStyle === 1 || obj.playStyle === 2) &&
+      obj.difficulty >= 0 &&
+      obj.difficulty <= 4 &&
+      obj.level >= 1 &&
+      obj.level <= 20
+    )
+  }
+}
 
 const series = new Set([
   'DDR 1st',
@@ -208,9 +310,8 @@ export const nameIndexMap: ReadonlyMap<
   Unwrap<typeof nameIndexes>[1]
 > = nameIndexes
 /**
- * Get NameIndex from Furigana.
+ * Get {@link NameIndex} from Furigana.
  * @param nameKana Furigana
- * @returns NameIndex
  */
 export function getNameIndex(nameKana: string): NameIndex {
   const regExps = new Map<RegExp, NameIndex>([

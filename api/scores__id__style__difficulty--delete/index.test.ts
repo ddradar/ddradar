@@ -12,6 +12,7 @@ jest.mock('../auth')
 
 describe('DELETE /api/v1/scores', () => {
   const req = { headers: {} }
+  /** {@link publicUser} score */
   const score = { ...testScores[2] }
 
   test('returns "404 Not Found" if unregistered user', async () => {

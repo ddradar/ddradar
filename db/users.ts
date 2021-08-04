@@ -31,7 +31,7 @@ function fetchSpecifiedUser(condition: Condition<'Users'>) {
 
 /**
  * Returns user data that matches conditions.
- * @param loginId User login id (displayed Id)
+ * @param loginId User login id (Generated Id)
  * @param area {@link Database.AreaCode}
  * @param name User name (partial match)
  * @param code DDR code

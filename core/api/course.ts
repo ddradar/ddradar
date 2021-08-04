@@ -11,6 +11,7 @@ export type CourseInfo = CourseSchema
  * @see https://github.com/ddradar/ddradar/blob/master/api/courses/
  */
 export type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
+  /** Course difficulties (omitted) */
   charts: ReadonlyArray<
     Pick<CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
   >
