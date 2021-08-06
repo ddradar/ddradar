@@ -6,9 +6,11 @@ import { fetchClearAndScoreStatus } from '../user-details'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('user-details.ts', () => {
+  const container = getContainer('UserDetails')
+
   describe('fetchClearAndScoreStatus()', () => {
     const clears: (Database.ClearStatusSchema & { id: string })[] = [
-      ...Array(19 * Score.clearLampMap.size).keys(),
+      ...Array(Score.clearLampMap.size).keys(),
     ].map(n => ({
       id: `clear-${publicUser.id}-${(n % 2) + 1}-${(n % 19) + 1}-${
         n % Score.clearLampMap.size
@@ -21,7 +23,7 @@ describeIf(canConnectDB)('user-details.ts', () => {
       count: n,
     }))
     const ranks: (Database.ScoreStatusSchema & { id: string })[] = [
-      ...Array(19 * Score.danceLevelSet.size).keys(),
+      ...Array(Score.danceLevelSet.size).keys(),
     ].map(n => ({
       id: `score-${publicUser.id}-${(n % 2) + 1}-${(n % 19) + 1}-${
         n % Score.danceLevelSet.size
@@ -35,24 +37,14 @@ describeIf(canConnectDB)('user-details.ts', () => {
     }))
 
     beforeAll(async () => {
-      await Promise.all(
-        clears.map(s => getContainer('UserDetails').items.create(s))
-      )
-      await Promise.all(
-        ranks.map(s => getContainer('UserDetails').items.create(s))
-      )
+      await Promise.all(clears.map(s => container.items.create(s)))
+      await Promise.all(ranks.map(s => container.items.create(s)))
     })
     afterAll(async () => {
       await Promise.all(
-        clears.map(s =>
-          getContainer('UserDetails').item(s.id, s.userId).delete()
-        )
+        clears.map(s => container.item(s.id, s.userId).delete())
       )
-      await Promise.all(
-        ranks.map(s =>
-          getContainer('UserDetails').item(s.id, s.userId).delete()
-        )
-      )
+      await Promise.all(ranks.map(s => container.item(s.id, s.userId).delete()))
     })
 
     test('(publicUser.id) returns clears + ranks', () =>
