@@ -1,5 +1,5 @@
-import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
+import { testScores } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../database'
@@ -19,20 +19,7 @@ describe('scores.ts', () => {
 
     test('returns fetchOne() value', async () => {
       // Arrange
-      const resource: Database.ScoreSchema & ItemDefinition = {
-        id: 'foo',
-        songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-        songName: 'PARANOiA',
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-        userId: 'foo',
-        userName: 'foo',
-        isPublic: true,
-        score: 1000000,
-        clearLamp: 7,
-        rank: 'AAA',
-      }
+      const resource = { ...testScores[2], id: 'foo' }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mocked(fetchOne).mockResolvedValue(resource as any)
 
@@ -41,31 +28,18 @@ describe('scores.ts', () => {
 
       // Assert
       expect(result).toBe(resource)
-      expect(mocked(fetchOne)).toBeCalledWith(
-        'Scores',
-        [
-          'id',
-          'userId',
-          'userName',
-          'isPublic',
-          'songId',
-          'songName',
-          'playStyle',
-          'difficulty',
-          'level',
-          'clearLamp',
-          'score',
-          'rank',
-          'exScore',
-          'maxCombo',
-          'radar',
-        ],
+      const args = [
+        mocked(fetchOne).mock.calls[0][2],
+        mocked(fetchOne).mock.calls[0][3],
+        mocked(fetchOne).mock.calls[0][4],
+        mocked(fetchOne).mock.calls[0][5],
+      ]
+      expect(args).toStrictEqual([
         { condition: 'c.userId = @', value: 'foo' },
         { condition: 'c.songId = @', value: '' },
         { condition: 'c.playStyle = @', value: 1 },
         { condition: 'c.difficulty = @', value: 0 },
-        { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' }
-      )
+      ])
     })
   })
   describe('fetchScoreList', () => {
@@ -85,32 +59,10 @@ describe('scores.ts', () => {
 
       // Assert
       expect(result).toBe(resources)
-      expect(mocked(fetchList)).toBeCalledWith(
-        'Scores',
-        [
-          'songId',
-          'songName',
-          'playStyle',
-          'difficulty',
-          'level',
-          'score',
-          'exScore',
-          'maxCombo',
-          'clearLamp',
-          'rank',
-          'radar',
-          'deleted',
-        ],
-        [
-          { condition: 'c.userId = @', value: 'foo' },
-          {
-            condition:
-              '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
-          },
-          { condition: 'IS_DEFINED(c.radar)' },
-        ],
-        { songName: 'ASC' }
-      )
+      expect(mocked(fetchList).mock.calls[0][2][0]).toStrictEqual({
+        condition: 'c.userId = @',
+        value: 'foo',
+      })
     })
     test.each([
       [{}, true, []],
@@ -148,32 +100,14 @@ describe('scores.ts', () => {
 
         // Assert
         expect(result).toBe(resources)
-        expect(mocked(fetchList)).toBeCalledWith(
-          'Scores',
-          [
-            'songId',
-            'songName',
-            'playStyle',
-            'difficulty',
-            'level',
-            'score',
-            'exScore',
-            'maxCombo',
-            'clearLamp',
-            'rank',
-            'radar',
-            'deleted',
-          ],
-          [
-            { condition: 'c.userId = @', value: 'foo' },
-            {
-              condition:
-                '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
-            },
-            ...additionalConditions,
-          ],
-          { songName: 'ASC' }
-        )
+        expect(mocked(fetchList).mock.calls[0][2]).toStrictEqual([
+          { condition: 'c.userId = @', value: 'foo' },
+          {
+            condition:
+              '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
+          },
+          ...additionalConditions,
+        ])
       }
     )
   })
@@ -244,29 +178,14 @@ describe('scores.ts', () => {
 
       // Assert
       expect(result).toStrictEqual({ ...radar, id: 'radar-public_user-1' })
-      expect(mocked(fetchGroupedList)).toBeCalledWith(
-        'Scores',
-        [
-          'userId',
-          '"radar" AS type',
-          'playStyle',
-          'MAX(c.radar.stream) AS stream',
-          'MAX(c.radar.voltage) AS voltage',
-          'MAX(c.radar.air) AS air',
-          'MAX(c.radar.freeze) AS freeze',
-          'MAX(c.radar.chaos) AS chaos',
-        ],
-        [
-          { condition: 'c.userId = @', value: 'public_user' },
-          { condition: 'c.playStyle = @', value: 1 },
-          { condition: 'IS_DEFINED(c.radar)' },
-          {
-            condition:
-              '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
-          },
-        ],
-        ['userId', 'playStyle']
-      )
+      expect(mocked(fetchGroupedList).mock.calls[0][2]).toStrictEqual([
+        { condition: 'c.userId = @', value: 'public_user' },
+        { condition: 'c.playStyle = @', value: 1 },
+        { condition: 'IS_DEFINED(c.radar)' },
+        {
+          condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
+        },
+      ])
     })
 
     test('returns empty groove radar if scores is empty', async () => {

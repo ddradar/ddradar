@@ -23,11 +23,10 @@ describe('users.ts', () => {
 
       // Assert
       expect(result).toBe(resource)
-      expect(mocked(fetchOne)).toBeCalledWith(
-        'Users',
-        ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
-        { condition: 'c.id = @', value: resource.id }
-      )
+      expect(mocked(fetchOne).mock.calls[0][2]).toStrictEqual({
+        condition: 'c.id = @',
+        value: resource.id,
+      })
     })
   })
 
@@ -45,11 +44,10 @@ describe('users.ts', () => {
 
       // Assert
       expect(result).toBe(resource)
-      expect(mocked(fetchOne)).toBeCalledWith(
-        'Users',
-        ['id', 'loginId', 'name', 'area', 'code', 'isPublic', 'password'],
-        { condition: 'c.loginId = @', value: resource.loginId }
-      )
+      expect(mocked(fetchOne).mock.calls[0][2]).toStrictEqual({
+        condition: 'c.loginId = @',
+        value: resource.loginId,
+      })
     })
   })
 })

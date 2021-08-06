@@ -16,15 +16,10 @@ describe('user-details.ts', () => {
 
       // Assert
       expect(result).toHaveLength(0)
-      expect(mocked(fetchList)).toBeCalledWith(
-        'UserDetails',
-        '*',
-        [
-          { condition: 'c.userId = @', value: 'foo' },
-          { condition: 'c.type = "clear" OR c.type = "score"' },
-        ],
-        { _ts: 'ASC' }
-      )
+      expect(mocked(fetchList).mock.calls[0][2]).toStrictEqual([
+        { condition: 'c.userId = @', value: 'foo' },
+        { condition: 'c.type = "clear" OR c.type = "score"' },
+      ])
     })
   })
 })
