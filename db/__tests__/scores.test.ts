@@ -1,5 +1,5 @@
-import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Score } from '@ddradar/core'
+import { testScores } from '@ddradar/core/__tests__/data'
 import { mocked } from 'ts-jest/utils'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../database'
@@ -19,20 +19,7 @@ describe('scores.ts', () => {
 
     test('returns fetchOne() value', async () => {
       // Arrange
-      const resource: Database.ScoreSchema & ItemDefinition = {
-        id: 'foo',
-        songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-        songName: 'PARANOiA',
-        playStyle: 1,
-        difficulty: 0,
-        level: 4,
-        userId: 'foo',
-        userName: 'foo',
-        isPublic: true,
-        score: 1000000,
-        clearLamp: 7,
-        rank: 'AAA',
-      }
+      const resource = { ...testScores[2], id: 'foo' }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       mocked(fetchOne).mockResolvedValue(resource as any)
 
