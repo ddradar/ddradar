@@ -49,7 +49,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test (only *.db.test.ts)
-        run: yarn test ".+\.db\.test\.ts" --passWithNoTests
+        run: yarn test ".+\.db\.test\.ts" --passWithNoTests --runInBand
         env:
           COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
           NODE_TLS_REJECT_UNAUTHORIZED: 0

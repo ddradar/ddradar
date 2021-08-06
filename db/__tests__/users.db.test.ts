@@ -5,7 +5,7 @@ import { fetchLoginUser, fetchUser } from '../users'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('users.ts', () => {
-  const users: Required<Database.UserSchema>[] = [...Array(100).keys()].map(
+  const users: Required<Database.UserSchema>[] = [...Array(5).keys()].map(
     i => ({
       id: `user_${i}`,
       loginId: `login_${i}`,
@@ -17,7 +17,7 @@ describeIf(canConnectDB)('users.ts', () => {
     })
   )
   /** System users */
-  const areas: Database.UserSchema[] = [...Array(50).keys()].map(i => ({
+  const areas: Database.UserSchema[] = [...Array(5).keys()].map(i => ({
     id: `${i}`,
     name: `User ${i}`,
     area: (i % 50) as Database.AreaCode,
