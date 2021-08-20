@@ -31,8 +31,8 @@
     "*.{json,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.29.1",
-    "@typescript-eslint/parser": "^4.29.1",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.0",
@@ -45,7 +45,7 @@
   },
   "resolutions": {
     "@types/babel__core": "^7.0.0",
-    "@types/node": "^12.20.16",
+    "@types/node": "^12.20.19",
     "@types/webpack": "^4.41.30",
     "chokidar": "^3.5.1"
   }
