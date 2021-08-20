@@ -37,7 +37,7 @@ const configuration: NuxtConfig = {
     ['nuxt-buefy', { css: false }],
     '@nuxt/http',
     '@nuxtjs/pwa',
-    'nuxt-i18n',
+    '@nuxtjs/i18n',
   ],
   pwa: {
     manifest: {
@@ -57,7 +57,7 @@ const configuration: NuxtConfig = {
       twitterCard: 'summary',
     },
   },
-  /** nuxt-i18n settings */
+  /** @nuxtjs/i18n settings */
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },

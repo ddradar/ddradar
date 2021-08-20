@@ -18,8 +18,8 @@
       "node",
       "@nuxt/http",
       "@nuxt/types",
-      "@nuxtjs/pwa",
-      "nuxt-i18n"
+      "@nuxtjs/i18n",
+      "@nuxtjs/pwa"
     ]
   },
   "exclude": ["node_modules", ".nuxt", "dist"]

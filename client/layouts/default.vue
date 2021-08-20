@@ -186,7 +186,7 @@
 
 <script lang="ts">
 import { Song } from '@ddradar/core'
-import type { LocaleObject } from 'nuxt-i18n'
+import type { LocaleObject } from '@nuxtjs/i18n'
 import { Component, Vue } from 'nuxt-property-decorator'
 
 import { shortenSeriesName } from '~/api/song'
