@@ -8,6 +8,7 @@ on:
       - 'db/**'
       - '**.db.test.ts'
       - '!**.md'
+      - '.github/workflows/db-integration.yml'
   pull_request:
     branches:
       - master
@@ -15,6 +16,7 @@ on:
       - 'db/**'
       - '**.db.test.ts'
       - '!**.md'
+      - '.github/workflows/db-integration.yml'
 
 jobs:
   test:
@@ -45,11 +47,11 @@ jobs:
           node-version: 12
           cache: yarn
 
-    - name: Import emulator certificate
-      run: |
-        while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
-        sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
-        sudo update-ca-certificates
+      - name: Import emulator certificate
+        run: |
+          while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
+          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+          sudo update-ca-certificates
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
