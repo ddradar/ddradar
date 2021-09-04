@@ -39,52 +39,49 @@
 
       <section class="section">
         <div class="content columns is-multiline">
-          <template v-for="(style, i) in ['SP', 'DP']">
-            <section
-              :key="`radar-${style}`"
-              class="
-                column
-                is-half-tablet is-one-third-desktop is-one-quarter-widescreen
-              "
+          <section
+            v-for="(style, i) in ['SP', 'DP']"
+            :key="`radar-${style}`"
+            class="column is-half-tablet"
+          >
+            <card
+              :title="$t('title.radar', [style])"
+              type="is-primary"
+              collapsible
             >
-              <card
-                :title="$t('title.radar', [style])"
-                type="is-primary"
-                collapsible
-              >
-                <div class="card-content">
-                  <b-loading v-if="$fetchState.pending" />
-                  <groove-radar
-                    v-else-if="radars[i]"
-                    class="chart"
-                    :chart="radars[i]"
-                  />
-                  <div v-else class="content has-text-grey has-text-centered">
-                    <p>{{ $t('noData') }}</p>
-                  </div>
+              <div class="card-content">
+                <b-loading v-if="$fetchState.pending" />
+                <groove-radar
+                  v-else-if="radars[i]"
+                  class="chart"
+                  :chart="radars[i]"
+                />
+                <div v-else class="content has-text-grey has-text-centered">
+                  <p>{{ $t('noData') }}</p>
                 </div>
-              </card>
-            </section>
-          </template>
-          <template v-for="(style, i) in ['SP', 'DP']">
-            <section
-              :key="`clear-${style}`"
-              class="column is-half-desktop is-one-third-widescreen"
+              </div>
+            </card>
+          </section>
+        </div>
+        <div class="content columns is-multiline">
+          <section
+            v-for="(style, i) in ['SP', 'DP']"
+            :key="`clear-${style}`"
+            class="column is-half-desktop"
+          >
+            <card
+              :title="$t('title.clear', [style])"
+              type="is-primary"
+              collapsible
             >
-              <card
-                :title="$t('title.clear', [style])"
-                type="is-primary"
-                collapsible
-              >
-                <div class="card-content">
-                  <clear-status
-                    :loading="$fetchState.pending"
-                    :statuses="clears[i]"
-                  />
-                </div>
-              </card>
-            </section>
-          </template>
+              <div class="card-content">
+                <clear-status
+                  :loading="$fetchState.pending"
+                  :statuses="clears[i]"
+                />
+              </div>
+            </card>
+          </section>
         </div>
       </section>
     </template>
