@@ -67,7 +67,7 @@
           <section
             v-for="(style, i) in ['SP', 'DP']"
             :key="`clear-${style}`"
-            class="column is-half-desktop"
+            class="column is-half-widescreen"
           >
             <card
               :title="$t('title.clear', [style])"

@@ -47,7 +47,7 @@ exports[`/users/_id/index.vue { locale: "en" } snapshot test renders correctly 1
       </section>
     </div>
     <div class="content columns is-multiline">
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="Clear Status (SP)" class="card-header is-primary">
@@ -63,7 +63,7 @@ exports[`/users/_id/index.vue { locale: "en" } snapshot test renders correctly 1
           </transition-stub>
         </div>
       </section>
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="Clear Status (DP)" class="card-header is-primary">
@@ -150,7 +150,7 @@ exports[`/users/_id/index.vue { locale: "en" } snapshot test renders setting but
       </section>
     </div>
     <div class="content columns is-multiline">
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="Clear Status (SP)" class="card-header is-primary">
@@ -166,7 +166,7 @@ exports[`/users/_id/index.vue { locale: "en" } snapshot test renders setting but
           </transition-stub>
         </div>
       </section>
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="Clear Status (DP)" class="card-header is-primary">
@@ -234,7 +234,7 @@ exports[`/users/_id/index.vue { locale: "ja" } snapshot test renders correctly 1
       </section>
     </div>
     <div class="content columns is-multiline">
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="クリア状況 (SP)" class="card-header is-primary">
@@ -250,7 +250,7 @@ exports[`/users/_id/index.vue { locale: "ja" } snapshot test renders correctly 1
           </transition-stub>
         </div>
       </section>
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="クリア状況 (DP)" class="card-header is-primary">
@@ -337,7 +337,7 @@ exports[`/users/_id/index.vue { locale: "ja" } snapshot test renders setting but
       </section>
     </div>
     <div class="content columns is-multiline">
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="クリア状況 (SP)" class="card-header is-primary">
@@ -353,7 +353,7 @@ exports[`/users/_id/index.vue { locale: "ja" } snapshot test renders setting but
           </transition-stub>
         </div>
       </section>
-      <section class="column is-half-desktop">
+      <section class="column is-half-widescreen">
         <div class="collapse card">
           <div class="collapse-trigger">
             <header role="button" aria-controls="クリア状況 (DP)" class="card-header is-primary">
