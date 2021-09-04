@@ -1,39 +1,41 @@
-import type { Api } from '@ddradar/core'
-import { Score } from '@ddradar/core'
-import { mount } from '@vue/test-utils'
+import type { Api, Score } from '@ddradar/core'
+import { createLocalVue, mount } from '@vue/test-utils'
+import Buefy from 'buefy'
 
 import Component from '~/components/pages/users/ClearStatus.vue'
 
+const localVue = createLocalVue()
+localVue.use(Buefy)
+
 describe('/components/pages/users/ClearStatus.vue', () => {
   describe('snapshot test', () => {
-    test('renders correctly', async () => {
+    test('({ statuses: [...] }) renders clearLamp list', async () => {
       // Arrange
-      const title = 'LEVEL 10'
-      const statuses: Pick<Api.ClearStatus, 'clearLamp' | 'count'>[] = [
-        ...Array(9).keys(),
+      const statuses: Omit<Api.ClearStatus, 'playStyle'>[] = [
+        ...Array(19 * 9).keys(),
       ].map(i => ({
-        clearLamp: (i - 1) as Score.ClearLamp | -1,
-        count: 100 - i * 10,
+        level: (i % 19) + 1,
+        clearLamp: ((i % 9) - 1) as Score.ClearLamp | -1,
+        count: (i % 9) * 10 + 10,
       }))
 
       // Act
-      const wrapper = mount(Component, { propsData: { title, statuses } })
+      const wrapper = mount(Component, { localVue, propsData: { statuses } })
       await wrapper.vm.$nextTick()
 
       // Assert
-      const canvas = wrapper.element.getElementsByTagName('canvas')[0]
-      const ctx = canvas.getContext('2d')
-      expect(ctx).toMatchSnapshot()
+      expect(wrapper).toMatchSnapshot()
     })
-    test('renders empty', async () => {
+    test('({ loading: true }) renders loading', async () => {
       // Arrange - Act
-      const wrapper = mount(Component)
+      const wrapper = mount(Component, {
+        localVue,
+        propsData: { loading: true },
+      })
       await wrapper.vm.$nextTick()
 
       // Assert
-      const canvas = wrapper.element.getElementsByTagName('canvas')[0]
-      const ctx = canvas.getContext('2d')
-      expect(ctx).toMatchSnapshot()
+      expect(wrapper).toMatchSnapshot()
     })
   })
 })

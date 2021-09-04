@@ -1,69 +1,84 @@
 <template>
-  <reactive-doughnut :chart-data="chartData" :chart-options="chartOptions" />
+  <b-table
+    narrowed
+    :data="displayedStatuses"
+    :loading="loading"
+    :mobile-cards="false"
+  >
+    <b-table-column v-slot="props" field="level" label="Lv" numeric sticky>
+      {{ props.row.level }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="7" label="MFC" numeric>
+      {{ props.row[7] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="6" label="PFC" numeric>
+      {{ props.row[6] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="5" label="GreatFC" numeric>
+      {{ props.row[5] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="4" label="FC" numeric>
+      {{ props.row[4] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="3" label="Life4" numeric>
+      {{ props.row[3] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="2" label="Clear" numeric>
+      {{ props.row[2] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="1" label="Assisted" numeric>
+      {{ props.row[1] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="0" label="Failed" numeric>
+      {{ props.row[0] }}
+    </b-table-column>
+    <b-table-column v-slot="props" field="-1" label="NoPlay" numeric>
+      {{ props.row[-1] }}
+    </b-table-column>
+  </b-table>
 </template>
 
 <script lang="ts">
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import type { ChartData, ChartOptions } from 'chart.js'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-import ReactiveDoughnut from '~/components/shared/ReactiveDoughnut'
+type ClearStatus = Pick<Api.ClearStatus, 'level'> &
+  { [key in Score.ClearLamp | -1]: number }
 
-@Component({ components: { ReactiveDoughnut } })
+@Component
 export default class ClearStatusComponent extends Vue {
-  @Prop({ type: String, default: null })
-  readonly title!: string | null
+  @Prop({ type: Boolean, default: false })
+  readonly loading!: boolean
 
   @Prop({ type: Array, default: () => [] })
-  readonly statuses!: Pick<Api.ClearStatus, 'clearLamp' | 'count'>[]
+  readonly statuses!: Omit<Api.ClearStatus, 'playStyle'>[]
 
-  get sortedStatuses() {
+  get displayedStatuses(): ClearStatus[] {
     return this.statuses
-      .filter(d => d.count)
-      .sort((l, r) => r.clearLamp - l.clearLamp) // ORDER BY clearLamp DESC
-  }
-
-  get chartOptions(): ChartOptions {
-    return {
-      responsive: true,
-      legend: { display: false },
-      elements: {
-        // @ts-ignore
-        center: { text: this.title ?? '' },
-      },
-    }
-  }
-
-  get chartData(): ChartData {
-    return {
-      labels: this.sortedStatuses.map(
-        d => Score.clearLampMap.get(d.clearLamp as Score.ClearLamp) ?? 'NoPlay'
-      ),
-      datasets: [
-        {
-          data: this.sortedStatuses.map(d => d.count),
-          backgroundColor: this.sortedStatuses.map(d =>
-            this.getBackgroundColor(d.clearLamp)
-          ),
-        },
-      ],
-    }
-  }
-
-  getBackgroundColor(lamp: Score.ClearLamp | -1) {
-    const map = new Map<Score.ClearLamp | -1, string>([
-      [-1, 'hsl(0, 0%, 71%)'], // grey-light
-      [0, 'hsl(0, 0%, 29%)'], // grey-dark
-      [1, 'hsl(271, 100%, 71%)'], // purple
-      [2, '#ff8c00'], // orange
-      [3, 'hsl(348, 86%, 61%)'], // red
-      [4, 'hsl(204, 71%, 53%)'], // cyan
-      [5, 'hsl(141, 53%, 53%)'], // green
-      [6, 'hsl(48, 100%, 67%)'], // yellow
-      [7, 'hsl(177, 97%, 74%)'], // light-blue
-    ])
-    return map.get(lamp)!
+      .reduce((p, c) => {
+        const matched = p.find(d => d.level === c.level)
+        if (matched) {
+          matched[c.clearLamp] = c.count
+        } else {
+          const status: ClearStatus = {
+            level: c.level,
+            '-1': 0,
+            '0': 0,
+            '1': 0,
+            '2': 0,
+            '3': 0,
+            '4': 0,
+            '5': 0,
+            '6': 0,
+            '7': 0,
+          }
+          status[c.clearLamp] = c.count
+          p.push(status)
+        }
+        return p
+      }, [] as ClearStatus[])
+      .sort((l, r) => l.level - r.level)
   }
 }
 </script>
