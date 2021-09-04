@@ -67,7 +67,7 @@
             </section>
           </template>
           <template v-for="(style, i) in ['SP', 'DP']">
-            <section :key="`radar-${style}`" class="column">
+            <section :key="`clear-${style}`" class="column">
               <card
                 :title="$t('title.clear', [style])"
                 type="is-primary"

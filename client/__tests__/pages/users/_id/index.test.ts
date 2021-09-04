@@ -1,5 +1,5 @@
-import type { Api } from '@ddradar/core'
-import { Database, Score } from '@ddradar/core'
+import type { Api, Database } from '@ddradar/core'
+import { Score } from '@ddradar/core'
 import type { Context } from '@nuxt/types'
 import {
   createLocalVue,
@@ -11,12 +11,7 @@ import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
-import {
-  getClearStatus,
-  getGrooveRadar,
-  getScoreStatus,
-  getUserInfo,
-} from '~/api/user'
+import { getClearStatus, getGrooveRadar, getUserInfo } from '~/api/user'
 import UserPage from '~/pages/users/_id/index.vue'
 
 jest.mock('~/api/user')
@@ -47,20 +42,11 @@ describe('/users/_id/index.vue', () => {
       count: (clearLamp + 2) * 10,
     })),
   }))
-  const scores = [...Array(19).keys()].map(i => ({
-    level: i + 1,
-    title: `${i + 1}`,
-    statuses: [...Score.danceLevelSet].map((rank, j) => ({
-      rank,
-      count: (j + 1) * 10,
-    })),
-  }))
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   const stubs = {
     NuxtLink: RouterLinkStub,
     ClearStatus: true,
     GrooveRadar: true,
-    ScoreStatus: true,
   }
   const templateMocks = {
     $accessor: { user: null },
@@ -70,7 +56,6 @@ describe('/users/_id/index.vue', () => {
     user,
     radars: [radar, radar],
     clears: [clears, clears],
-    scores: [scores, scores],
   })
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
@@ -256,7 +241,6 @@ describe('/users/_id/index.vue', () => {
       mocked(getUserInfo).mockClear()
       mocked(getGrooveRadar).mockClear()
       mocked(getClearStatus).mockClear()
-      mocked(getScoreStatus).mockClear()
     })
 
     test('/_id calls getUserInfo(this.$http, _id)', async () => {
@@ -272,15 +256,6 @@ describe('/users/_id/index.vue', () => {
             | Score.ClearLamp
             | -1,
           count: ((i % (Score.clearLampMap.size + 1)) + 1) * 10,
-        }))
-      )
-      mocked(getScoreStatus).mockResolvedValue(
-        [...Array(19 * (Score.danceLevelSet.size + 1)).keys()].map(i => ({
-          playStyle: 1,
-          level: (i % 19) + 1,
-          rank:
-            [...Score.danceLevelSet][i % (Score.danceLevelSet.size + 1)] ?? '-',
-          count: ((i % (Score.danceLevelSet.size + 1)) + 1) * 10,
         }))
       )
       const mocks = { ...templateMocks, $http, $route }

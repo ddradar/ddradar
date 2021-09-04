@@ -73,6 +73,7 @@ export default class ClearStatusComponent extends Vue {
             '6': 0,
             '7': 0,
           }
+          status[c.clearLamp] = c.count
           p.push(status)
         }
         return p
