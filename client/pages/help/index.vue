@@ -19,9 +19,29 @@
               </a>
             </template>
           </i18n>
-          <li>{{ $t('register.description.step_2') }}</li>
-          <li>{{ $t('register.description.step_3') }}</li>
-          <li>{{ $t('register.description.step_4') }}</li>
+          <li>
+            {{ $t('register.description.step_2') }}<br />
+            <img
+              src="~/assets/images/help/register_twitter.png"
+              alt="Twitter Authentication"
+            />
+          </li>
+          <li>
+            {{ $t('register.description.step_3') }}
+            <br />
+            <img
+              src="~/assets/images/help/register_swa.png"
+              alt="Static Web Apps Authentication"
+            />
+          </li>
+
+          <li>
+            {{ $t('register.description.step_4') }} <br />
+            <img
+              src="~/assets/images/help/register_ddradar.png"
+              alt="Static Web Apps Authentication"
+            />
+          </li>
         </ol>
       </div>
     </section>
@@ -30,18 +50,15 @@
     <section class="section">
       <h1 id="radar" class="title">{{ $t('radar.title') }}</h1>
 
-      <h2 id="radar-common" class="subtitle">{{ $t('radar.common.title') }}</h2>
       <div class="content">
-        <ul>
-          <i18n path="radar.common.list_1" tag="li">
-            <a
-              target="_blank"
-              href="https://github.com/ddradar/ddradar/blob/master/core/score.ts#L65"
-            >
-              {{ $t('radar.common.list_1_0') }}
-            </a>
-          </i18n>
-        </ul>
+        <i18n path="radar.common.list_1" tag="li">
+          <a
+            target="_blank"
+            href="https://github.com/ddradar/ddradar/blob/master/core/score.ts#L65"
+          >
+            {{ $t('radar.common.list_1_0') }}
+          </a>
+        </i18n>
       </div>
 
       <h2 id="radar-stream" class="subtitle">STREAM</h2>
@@ -117,11 +134,11 @@
     "register": {
       "title": "ユーザー登録",
       "description": {
-        "step_1": "「ログイン」メニューの「{twitter}}」または「{github}」をクリックします。",
+        "step_1": "「ログイン」メニューの「{twitter}」または「{github}」をクリックします。",
         "step_1_twitter": "Twitterでログイン",
         "step_1_github": "GitHubでログイン",
         "step_2": "「Azure Static Web Apps」の連携を許可します。",
-        "step_3": "「Azure Static Web Apps」の認証画面に移るので、「Grant」をクリックします。",
+        "step_3": "「Azure Static Web Apps」の認証画面に移るので、「Grant Consent」をクリックします。",
         "step_4": "ユーザー登録画面に移るので、必要事項を入力し「登録」ボタンをクリックします。"
       }
     },
@@ -173,7 +190,7 @@
         "step_1_twitter": "Login via Twitter",
         "step_1_github": "Login via GitHub",
         "step_2": "Authorize \"Azure Static Web Apps\".",
-        "step_3": "Click \"Grant\" button.",
+        "step_3": "Click \"Grant Consent\" button.",
         "step_4": "Input your information and click \"Save\" button on User Settings page."
       }
     },
