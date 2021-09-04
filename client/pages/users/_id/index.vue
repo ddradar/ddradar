@@ -67,7 +67,10 @@
             </section>
           </template>
           <template v-for="(style, i) in ['SP', 'DP']">
-            <section :key="`clear-${style}`" class="column">
+            <section
+              :key="`clear-${style}`"
+              class="column is-half-desktop is-one-third-widescreen"
+            >
               <card
                 :title="$t('title.clear', [style])"
                 type="is-primary"
