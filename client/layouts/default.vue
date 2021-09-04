@@ -115,6 +115,9 @@
     <footer class="footer">
       <div class="content has-text-centered">
         <i18n path="footer.text" tag="p">
+          <template #help>
+            <nuxt-link to="/help">{{ $t('footer.help') }}</nuxt-link>
+          </template>
           <template #twitter>
             <a href="https://twitter.com/nogic1008" target="_blank">
               {{ $t('footer.twitter') }}
@@ -152,7 +155,8 @@
       "github": "GitHubでログイン"
     },
     "footer": {
-      "text": "不具合を発見した、または新機能の要望がある場合には、{twitter}または{github}にてご報告ください。",
+      "help": "ヘルプ",
+      "text": "{help} | 不具合を発見した、または新機能の要望がある場合には、{twitter}または{github}にてご報告ください。",
       "twitter": "作者のTwitter",
       "github": "Githubのissue"
     }
@@ -176,7 +180,8 @@
       "github": "Login via GitHub"
     },
     "footer": {
-      "text": "Did you find a bug or have an idea? Please report on {twitter} or {github}.",
+      "help": "Help",
+      "text": "{help} | Did you find a bug or have an idea? Please report on {twitter} or {github}.",
       "twitter": "Twitter",
       "github": "GitHub"
     }
