@@ -52,7 +52,7 @@ jobs:
         run: yarn test
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v1.5.2
+        uses: codecov/codecov-action@v2.0.3
 
   deploy-gpr:
     name: Deploy to GitHub Packages
