@@ -12,7 +12,7 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': '@vue/vue2-jest',
+    '.*\\.(vue)$': 'vue-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
   globals: {
