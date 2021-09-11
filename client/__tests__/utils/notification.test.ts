@@ -1,4 +1,7 @@
-import { BNotificationConfig } from 'buefy/types/components'
+/**
+ * @jest-environment node
+ */
+import type { BNotificationConfig } from 'buefy/types/components'
 
 import * as popup from '~/utils/popup'
 

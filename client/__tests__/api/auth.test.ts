@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { getClientPrincipal } from '~/api/auth'
 
 describe('./api/auth.ts', () => {

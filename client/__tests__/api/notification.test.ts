@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import type { Api } from '@ddradar/core'
 
 import {
