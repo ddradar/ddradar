@@ -43,8 +43,9 @@ import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
 import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
-type ClearStatus = Pick<Api.ClearStatus, 'level'> &
-  { [key in Score.ClearLamp | -1]: number }
+type ClearStatus = Pick<Api.ClearStatus, 'level'> & {
+  [key in Score.ClearLamp | -1]: number
+}
 
 @Component
 export default class ClearStatusComponent extends Vue {
