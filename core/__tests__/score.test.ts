@@ -42,6 +42,11 @@ describe('./score.ts', () => {
   describe('mergeScore', () => {
     test.each([
       [
+        { score: 900000, clearLamp: 1, rank: 'AA' },
+        { score: 900000, clearLamp: 1, rank: 'AA' },
+        { score: 900000, clearLamp: 1, rank: 'AA' },
+      ],
+      [
         { score: 900000, clearLamp: 3, rank: 'AA' },
         { score: 850000, clearLamp: 4, exScore: 100, rank: 'A+' },
         { score: 900000, clearLamp: 4, rank: 'AA', exScore: 100 },
@@ -64,6 +69,18 @@ describe('./score.ts', () => {
       // Assert
       expect(merged1).toStrictEqual(expected)
       expect(merged2).toStrictEqual(expected)
+    })
+    test('({Assisted Clear}, {Clear}) returns {Assisted Clear}', () => {
+      // Assert
+      const assisted = { score: 900000, clearLamp: 1, rank: 'AA' } as const
+      const normal = { score: 900000, clearLamp: 2, rank: 'AA' } as const
+      // Act
+      const merged1 = mergeScore(assisted, normal)
+      const merged2 = mergeScore(normal, assisted)
+
+      // Assert
+      expect(merged1).toStrictEqual(assisted)
+      expect(merged2).toStrictEqual(assisted)
     })
   })
   describe('isValidScore', () => {
