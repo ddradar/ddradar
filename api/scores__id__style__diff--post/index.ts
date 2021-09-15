@@ -89,8 +89,8 @@ export default async function (
   if (!song) return { httpResponse: new ErrorResult(404) }
   const chart = song.charts.find(
     c =>
-      c.playStyle === bindingData.playStyle &&
-      c.difficulty === getBindingNumber(bindingData, 'difficulty')
+      c.playStyle === bindingData.style &&
+      c.difficulty === getBindingNumber(bindingData, 'diff')
   )
   if (!chart) return { httpResponse: new ErrorResult(404) }
 
