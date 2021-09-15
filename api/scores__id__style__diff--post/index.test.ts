@@ -29,9 +29,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(null)
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
+    context.bindingData.id = '00000000000000000000000000000000'
+    context.bindingData.style = 1
+    context.bindingData.diff = 0
     req.body = mfcScore
 
     // Act
@@ -44,9 +44,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test('returns "400 Bad Request" if body is not Score', async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
+    context.bindingData.id = '00000000000000000000000000000000'
+    context.bindingData.style = 1
+    context.bindingData.diff = 0
     req.body = {}
 
     // Act
@@ -59,9 +59,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test('returns "404 Not Found" if songs is empty', async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    context.bindingData.songId = '00000000000000000000000000000000'
-    context.bindingData.playStyle = 1
-    context.bindingData.difficulty = 0
+    context.bindingData.id = '00000000000000000000000000000000'
+    context.bindingData.style = 1
+    context.bindingData.diff = 0
     req.body = mfcScore
 
     // Act
@@ -79,9 +79,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     async (songId, playStyle, difficulty) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = songId
-      context.bindingData.playStyle = playStyle
-      context.bindingData.difficulty = difficulty
+      context.bindingData.id = songId
+      context.bindingData.style = playStyle
+      context.bindingData.diff = difficulty
       req.body = mfcScore
 
       // Act
@@ -95,9 +95,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test('returns "400 Bad Request" if body is invalid Score', async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    context.bindingData.songId = song.id
-    context.bindingData.playStyle = song.charts[0].playStyle
-    context.bindingData.difficulty = song.charts[0].difficulty
+    context.bindingData.id = song.id
+    context.bindingData.style = song.charts[0].playStyle
+    context.bindingData.diff = song.charts[0].difficulty
     req.body = { score: 90000, clearLamp: 2, rank: 'E', exScore: 1000 }
 
     // Act
@@ -124,9 +124,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test(`/${song.id}/1/1 inserts World & Area Top`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-    context.bindingData.songId = song.id
-    context.bindingData.playStyle = song.charts[1].playStyle
-    context.bindingData.difficulty = song.charts[1].difficulty
+    context.bindingData.id = song.id
+    context.bindingData.style = song.charts[1].playStyle
+    context.bindingData.diff = song.charts[1].difficulty
     req.body = { score: 900000, clearLamp: 3, rank: 'AA' }
 
     // Act
@@ -165,9 +165,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     async (length, score, radar) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
+      context.bindingData.id = song.id
+      context.bindingData.style = song.charts[0].playStyle
+      context.bindingData.diff = song.charts[0].difficulty
       req.body = score
 
       // Act
@@ -193,9 +193,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     async (length, user) => {
       // Arrange
       mocked(getLoginUserInfo).mockResolvedValueOnce(user)
-      context.bindingData.songId = song.id
-      context.bindingData.playStyle = song.charts[0].playStyle
-      context.bindingData.difficulty = song.charts[0].difficulty
+      context.bindingData.id = song.id
+      context.bindingData.style = song.charts[0].playStyle
+      context.bindingData.diff = song.charts[0].difficulty
       req.body = mfcScore
 
       // Act
@@ -220,9 +220,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test(`/${course.id}/1/0 returns "200 OK" with JSON and documents if course`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    context.bindingData.songId = course.id
-    context.bindingData.playStyle = course.charts[0].playStyle
-    context.bindingData.difficulty = course.charts[0].difficulty
+    context.bindingData.id = course.id
+    context.bindingData.style = course.charts[0].playStyle
+    context.bindingData.diff = course.charts[0].difficulty
     req.body = mfcScore
 
     // Act
@@ -249,9 +249,9 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
   test(`/${song.id}/1/0 returns "200 OK" with JSON and documents if deleted song`, async () => {
     // Arrange
     mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
-    context.bindingData.songId = song.id
-    context.bindingData.playStyle = song.charts[0].playStyle
-    context.bindingData.difficulty = song.charts[0].difficulty
+    context.bindingData.id = song.id
+    context.bindingData.style = song.charts[0].playStyle
+    context.bindingData.diff = song.charts[0].difficulty
     req.body = mfcScore
 
     // Act
