@@ -25,7 +25,11 @@ export function mergeScore(
 ): ScoreBody {
   const result: ScoreBody = {
     score: Math.max(left.score, right.score),
-    clearLamp: Math.max(left.clearLamp, right.clearLamp) as ClearLamp,
+    clearLamp:
+      Math.min(left.clearLamp, right.clearLamp) === 1 &&
+      Math.max(left.clearLamp, right.clearLamp) === 2
+        ? 1
+        : (Math.max(left.clearLamp, right.clearLamp) as ClearLamp),
     rank: left.score > right.score ? left.rank : right.rank,
   }
   if (left.exScore !== undefined || right.exScore !== undefined)
