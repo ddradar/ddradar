@@ -72,7 +72,7 @@ export default async function (
 
   return new SuccessResult(
     body.map(d => {
-      const r = { ...d, isCourse: !!d.radar }
+      const r = { ...d, isCourse: !d.radar }
       delete r.radar
       return r
     })
