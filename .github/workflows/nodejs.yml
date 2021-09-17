@@ -53,6 +53,8 @@ jobs:
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v2.1.0
+        with:
+          directory: ./*/coverage/
 
   deploy-gpr:
     name: Deploy to GitHub Packages
