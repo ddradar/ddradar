@@ -2656,6 +2656,17 @@
     lodash "^4.17.15"
     pretty "^2.0.0"
 
+"@vue/vue2-jest@^27.0.0-alpha.2":
+  version "27.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/@vue/vue2-jest/-/vue2-jest-27.0.0-alpha.2.tgz#0af6893b091cebaf4adb08daaae8fca0636f41bb"
+  integrity sha512-lcrdUgQuNXVd5oMbpiiuHMuZ88B55B1zHxW+KZuO/h5nnNUMjHKjKc9NZfqXYReWFytYquTGlejLFH2Vo7e4Gw==
+  dependencies:
+    "@babel/plugin-transform-modules-commonjs" "^7.2.0"
+    "@vue/component-compiler-utils" "^3.1.0"
+    chalk "^2.1.0"
+    extract-from-css "^0.4.4"
+    source-map "0.5.6"
+
 "@webassemblyjs/ast@1.9.0":
   version "1.9.0"
   resolved "https://registry.yarnpkg.com/@webassemblyjs/ast/-/ast-1.9.0.tgz#bd850604b4042459a5a41cd7d338cbed695ed964"
