@@ -8,7 +8,7 @@ import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 import fetch from 'node-fetch'
-import { launch } from 'puppeteer-core'
+import puppeteer from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
@@ -27,7 +27,7 @@ const style = Song.playStyleMap
 const diff = Song.difficultyMap
 
 async function main(userId: string, password: string) {
-  const browser = await launch({ executablePath, userDataDir })
+  const browser = await puppeteer.launch({ executablePath, userDataDir })
 
   const page = (await browser.pages())[0] || (await browser.newPage())
 
@@ -72,7 +72,8 @@ async function main(userId: string, password: string) {
           chartScope.success(`${chart} loaded. wait 3 seconds...`)
         }
       } catch (e) {
-        const message: string = e?.message ?? e
+        const message: string =
+          typeof e === 'string' ? e : (e as Error)?.message
         if (!/NO PLAY/.test(message)) {
           await browser.close()
           throw e

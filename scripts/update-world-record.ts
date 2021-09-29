@@ -8,7 +8,7 @@ import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 import fetch from 'node-fetch'
-import { launch } from 'puppeteer-core'
+import puppeteer from 'puppeteer-core'
 
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
@@ -29,7 +29,7 @@ const diff = Song.difficultyMap
 /** Update World Record from e-AMUSEMENT GATE */
 async function main(userId: string, password: string) {
   const browserOptions = { executablePath, userDataDir }
-  const browser = await launch(browserOptions)
+  const browser = await puppeteer.launch(browserOptions)
 
   const page = (await browser.pages())[0] || (await browser.newPage())
 
@@ -49,6 +49,7 @@ async function main(userId: string, password: string) {
       { condition: 'c.clearLamp != 7' },
       { condition: '(NOT IS_DEFINED(c.deleted))' },
       { condition: '(NOT IS_DEFINED(c.ttl))' },
+      { condition: 'c.songName > @', value: 'Run The Show' },
     ],
     { songName: 'ASC' }
   )
@@ -98,8 +99,9 @@ async function main(userId: string, password: string) {
             )
           }
         }
-      } catch (e) {
-        const message: string = e?.message ?? e
+      } catch (e: unknown) {
+        const message: string =
+          typeof e === 'string' ? e : (e as Error)?.message
         if (!/NO PLAY/.test(message)) {
           for (const log of logs) {
             consola.success(log)
