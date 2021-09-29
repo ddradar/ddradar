@@ -31,8 +31,8 @@
     "*.{json,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
@@ -41,12 +41,13 @@
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "npm-run-all2": "^5.0.2",
-    "prettier": "^2.4.0"
+    "prettier": "^2.4.1"
   },
   "resolutions": {
     "@types/babel__core": "^7.0.0",
-    "@types/node": "^12.20.19",
+    "@types/node": "^12.20.27",
     "@types/webpack": "^4.41.30",
-    "chokidar": "^3.5.1"
+    "chokidar": "^3.5.1",
+    "node-fetch": "^2.6.5"
   }
 }
