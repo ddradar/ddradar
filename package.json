@@ -45,7 +45,9 @@
   },
   "resolutions": {
     "@types/babel__core": "^7.0.0",
+    "@types/connect": "^3.4.34",
     "@types/node": "^12.20.27",
+    "@types/serve-static": "^1.13.9",
     "@types/webpack": "^4.41.30",
     "chokidar": "^3.5.1",
     "node-fetch": "^2.6.5"
