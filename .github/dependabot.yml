@@ -13,7 +13,7 @@ updates:
     commit-message:
       prefix: ci
       include: scope
-    milestone: 18
+    milestone: 19
     labels:
       - 'dependabot:robot:'
     reviewers:
@@ -30,7 +30,7 @@ updates:
       prefix: fix
       prefix-development: chore
       include: scope
-    milestone: 18
+    milestone: 19
     labels:
       - 'dependabot:robot:'
     reviewers:
