@@ -39,7 +39,7 @@
       <a
         @click="
           scoreEditorModal(
-            props.row.id,
+            props.row.songId,
             props.row.playStyle,
             props.row.difficulty,
             props.row.isCourse
