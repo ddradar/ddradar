@@ -16,6 +16,7 @@ const config: Config.InitialOptions = {
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
   globals: {
+    'ts-jest': {},
     'vue-jest': { transform: { i18n: 'vue-i18n-jest' } },
   },
   setupFiles: ['jest-canvas-mock'],
