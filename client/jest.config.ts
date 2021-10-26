@@ -12,11 +12,10 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest',
+    '.*\\.(vue)$': '@vue/vue2-jest',
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!typed-vuex/lib)'],
   globals: {
-    'ts-jest': {},
     'vue-jest': { transform: { i18n: 'vue-i18n-jest' } },
   },
   setupFiles: ['jest-canvas-mock'],
