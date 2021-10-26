@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { unixTimeToString } from '~/utils/date'
 
 describe('/utils/date.ts', () => {

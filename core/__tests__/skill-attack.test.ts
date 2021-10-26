@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { readTextAsync, scoreTexttoScoreList } from '../skill-attack'
 
 describe('./skill-attack.ts', () => {

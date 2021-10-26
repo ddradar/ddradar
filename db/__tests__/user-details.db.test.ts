@@ -6,8 +6,6 @@ import { fetchClearAndScoreStatus } from '../user-details'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('user-details.ts', () => {
-  const container = getContainer('UserDetails')
-
   describe('fetchClearAndScoreStatus()', () => {
     const clears: (Database.ClearStatusSchema & { id: string })[] = [
       ...Array(Score.clearLampMap.size).keys(),
@@ -37,10 +35,12 @@ describeIf(canConnectDB)('user-details.ts', () => {
     }))
 
     beforeAll(async () => {
+      const container = getContainer('UserDetails')
       await Promise.all(clears.map(s => container.items.create(s)))
       await Promise.all(ranks.map(s => container.items.create(s)))
     })
     afterAll(async () => {
+      const container = getContainer('UserDetails')
       await Promise.all(
         clears.map(s => container.item(s.id, s.userId).delete())
       )

@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
 import { mocked } from 'ts-jest/utils'
 

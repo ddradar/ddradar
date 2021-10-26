@@ -1,3 +1,6 @@
+/**
+ * @jest-environment node
+ */
 import { testSongData } from '@ddradar/core/__tests__/data'
 
 import {

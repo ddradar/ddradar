@@ -1,6 +1,9 @@
+/**
+ * @jest-environment node
+ */
 import type { Api } from '@ddradar/core'
 import { mocked } from 'ts-jest/utils'
-import { Store } from 'vuex'
+import type { Store } from 'vuex'
 
 import { getClientPrincipal } from '~/api/auth'
 import { getCurrentUser, postUserInfo } from '~/api/user'
