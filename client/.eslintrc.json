@@ -21,6 +21,7 @@
   "rules": {
     "no-process-env": "error",
     "sort-imports": "off",
+    "import/named": "off",
     "import/no-unresolved": "off",
     "import/order": "off",
     "simple-import-sort/imports": "error",
