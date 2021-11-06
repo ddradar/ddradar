@@ -8,17 +8,12 @@ import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 import fetch from 'node-fetch'
-import puppeteer from 'puppeteer-core'
 
+import Browser from './modules/browser'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
-/* eslint-disable node/no-process-env */
-const {
-  CHROME_EXE_PATH: executablePath,
-  CHROME_USER_PATH: userDataDir,
-  BASE_URI: apiBasePath,
-} = process.env
-/* eslint-enable node/no-process-env */
+// eslint-disable-next-line node/no-process-env
+const { BASE_URI: apiBasePath } = process.env
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
@@ -28,10 +23,8 @@ const diff = Song.difficultyMap
 
 /** Update World Record from e-AMUSEMENT GATE */
 async function main(userId: string, password: string) {
-  const browserOptions = { executablePath, userDataDir }
-  const browser = await puppeteer.launch(browserOptions)
-
-  const page = (await browser.pages())[0] || (await browser.newPage())
+  const browser = await Browser.create()
+  const page = await browser.createPage()
 
   // Login check
   if (!(await isLoggedIn(page))) {
