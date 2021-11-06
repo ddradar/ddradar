@@ -6,17 +6,12 @@ config()
 import { fetchOne } from '@ddradar/db'
 import consola from 'consola'
 import fetch from 'node-fetch'
-import puppeteer from 'puppeteer-core'
 
+import Browser from './modules/browser'
 import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
-/* eslint-disable node/no-process-env */
-const {
-  CHROME_EXE_PATH: executablePath,
-  CHROME_USER_PATH: userDataDir,
-  BASE_URI: apiBasePath,
-} = process.env
-/* eslint-enable node/no-process-env */
+// eslint-disable-next-line node/no-process-env
+const { BASE_URI: apiBasePath } = process.env
 
 async function main(ddrCode: string) {
   const code = parseInt(ddrCode, 10)
@@ -25,9 +20,8 @@ async function main(ddrCode: string) {
     return
   }
 
-  const browser = await puppeteer.launch({ executablePath, userDataDir })
-
-  const page = (await browser.pages())[0] || (await browser.newPage())
+  const browser = await Browser.create()
+  const page = await browser.createPage()
 
   // Login check
   if (!(await isLoggedIn(page))) {
