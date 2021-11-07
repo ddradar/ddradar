@@ -64,14 +64,6 @@ describe('/utils/eagate-parser.ts', () => {
             {
               songName: '朧',
               playStyle: 1,
-              difficulty: 3,
-              score: 798000,
-              clearLamp: 2,
-              rank: 'A-',
-            },
-            {
-              songName: '朧',
-              playStyle: 1,
               difficulty: 4,
               score: 780000,
               clearLamp: 2,

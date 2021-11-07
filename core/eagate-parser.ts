@@ -65,6 +65,8 @@ export function musicDataToScoreList(
         .getElementsByClassName('music_info')[0]
         .getElementsByTagName('img')[0]
         .src.replace(srcRegex, '$1')
+      if (rankImageFileName === 'rank_s_none') continue
+
       const isFailed = rankImageFileName === 'rank_s_e'
       const clearLamp =
         getClearLamp(fcImageUrl) ?? (isFailed ? 0 : score === 0 ? 1 : 2)
