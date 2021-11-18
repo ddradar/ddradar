@@ -13,6 +13,7 @@ exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] 
           </div>
         </div>
       </section>
+      <!---->
     </article>
   </transition-stub>
   <h1 class="title">User Settings</h1>
@@ -236,6 +237,7 @@ exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] 
           </div>
         </div>
       </section>
+      <!---->
     </article>
   </transition-stub>
   <h1 class="title">ユーザー設定</h1>
