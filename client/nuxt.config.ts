@@ -32,7 +32,11 @@ const configuration: NuxtConfig = {
   loading: { color: '#fff' },
   css: ['~/assets/css/styles.scss'],
   plugins: ['~/plugins/application-insights.client.ts'],
-  buildModules: ['@nuxt/typescript-build', 'nuxt-typed-vuex'],
+  buildModules: [
+    '@nuxt/typescript-build',
+    'nuxt-typed-vuex',
+    '@nuxtjs/composition-api/module',
+  ],
   modules: [
     ['nuxt-buefy', { css: false }],
     '@nuxt/http',
