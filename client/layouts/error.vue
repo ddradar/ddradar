@@ -68,23 +68,21 @@
 
 <script lang="ts">
 import type { NuxtError } from '@nuxt/types'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-@Component({ layout: 'empty' })
-export default class ErrorPage extends Vue {
-  @Prop({ type: Object, default: null })
-  readonly error!: NuxtError | null
+export default defineComponent({
+  layout: 'empty',
+  props: {
+    error: { type: Object as PropType<NuxtError | null>, default: null },
+  },
+  setup(props) {
+    // Computed
+    const statusCode = computed(() => props.error?.statusCode ?? 500)
+    const path = computed(() => props.error?.path ?? '')
+    const message = computed(() => props.error?.message ?? '')
 
-  get statusCode() {
-    return this.error?.statusCode ?? 500
-  }
-
-  get path() {
-    return this.error?.path ?? ''
-  }
-
-  get message() {
-    return this.error?.message ?? ''
-  }
-}
+    return { statusCode, path, message }
+  },
+})
 </script>

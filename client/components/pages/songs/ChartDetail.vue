@@ -40,28 +40,37 @@
 <script lang="ts">
 import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 import Card from '~/components/shared/Card.vue'
 import ScoreBoard from '~/components/shared/ScoreBoard.vue'
 
-@Component({ components: { Card, ScoreBoard } })
-export default class ChartDetailComponent extends Vue {
-  @Prop({ required: true, type: Object })
-  readonly song!: Omit<Api.SongInfo, 'charts'>
+export default defineComponent({
+  components: { Card, ScoreBoard },
+  props: {
+    song: {
+      type: Object as PropType<Omit<Api.SongInfo, 'charts'>>,
+      required: true,
+    },
+    chart: {
+      type: Object as PropType<Database.StepChartSchema>,
+      required: true,
+    },
+    open: { type: Boolean, default: false },
+  },
+  setup(props) {
+    // Computed
+    const cardType = computed(
+      () =>
+        `is-${
+          Song.difficultyMap
+            .get(props.chart.difficulty)!
+            .toLowerCase() as Lowercase<Song.DifficultyName>
+        }` as const
+    )
 
-  @Prop({ required: true, type: Object })
-  readonly chart!: Database.StepChartSchema
-
-  @Prop({ required: false, type: Boolean, default: false })
-  readonly open!: boolean
-
-  get cardType() {
-    return `is-${
-      Song.difficultyMap
-        .get(this.chart.difficulty)!
-        .toLowerCase() as Lowercase<Song.DifficultyName>
-    }` as const
-  }
-}
+    return { cardType }
+  },
+})
 </script>

@@ -6,20 +6,20 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-@Component
-export default class FlagComponent extends Vue {
-  @Prop({ type: String, required: true })
-  readonly iso!: string
+export default defineComponent({
+  props: {
+    iso: { type: String, required: true },
+    title: { type: String, required: true },
+  },
+  setup(props) {
+    // Computed
+    const flagIconClass = computed(() => `flag-icon-${props.iso.toLowerCase()}`)
 
-  @Prop({ type: String, required: true })
-  readonly title!: string
-
-  get flagIconClass() {
-    return `flag-icon-${this.iso.toLowerCase()}` as const
-  }
-}
+    return { flagIconClass }
+  },
+})
 </script>
 
 <style scoped lang="scss">

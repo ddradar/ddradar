@@ -41,45 +41,49 @@
 <script lang="ts">
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 type ClearStatus = Pick<Api.ClearStatus, 'level'> & {
   [key in Score.ClearLamp | -1]: number
 }
 
-@Component
-export default class ClearStatusComponent extends Vue {
-  @Prop({ type: Boolean, default: false })
-  readonly loading!: boolean
-
-  @Prop({ type: Array, default: () => [] })
-  readonly statuses!: Omit<Api.ClearStatus, 'playStyle'>[]
-
-  get displayedStatuses(): ClearStatus[] {
-    return this.statuses
-      .reduce((p, c) => {
-        const matched = p.find(d => d.level === c.level)
-        if (matched) {
-          matched[c.clearLamp] = c.count
-        } else {
-          const status: ClearStatus = {
-            level: c.level,
-            '-1': 0,
-            '0': 0,
-            '1': 0,
-            '2': 0,
-            '3': 0,
-            '4': 0,
-            '5': 0,
-            '6': 0,
-            '7': 0,
+export default defineComponent({
+  props: {
+    loading: { type: Boolean, default: false },
+    statuses: {
+      type: Array as PropType<Omit<Api.ClearStatus, 'playStyle'>[]>,
+      default: () => [],
+    },
+  },
+  setup(props) {
+    const displayedStatuses = computed(() =>
+      props.statuses
+        .reduce((p, c) => {
+          const matched = p.find(d => d.level === c.level)
+          if (matched) {
+            matched[c.clearLamp] = c.count
+          } else {
+            const status: ClearStatus = {
+              level: c.level,
+              '-1': 0,
+              '0': 0,
+              '1': 0,
+              '2': 0,
+              '3': 0,
+              '4': 0,
+              '5': 0,
+              '6': 0,
+              '7': 0,
+            }
+            status[c.clearLamp] = c.count
+            p.push(status)
           }
-          status[c.clearLamp] = c.count
-          p.push(status)
-        }
-        return p
-      }, [] as ClearStatus[])
-      .sort((l, r) => l.level - r.level)
-  }
-}
+          return p
+        }, [] as ClearStatus[])
+        .sort((l, r) => l.level - r.level)
+    )
+    return { displayedStatuses }
+  },
+})
 </script>

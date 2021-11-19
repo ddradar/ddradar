@@ -17,36 +17,27 @@
 </template>
 
 <script lang="ts">
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 import marked from 'marked'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 import { unixTimeToString } from '~/utils/date'
 
-@Component
-export default class TopMessageComponent extends Vue {
-  @Prop({ required: true, type: String })
-  readonly type!: string
+export default defineComponent({
+  props: {
+    type: { type: String, required: true },
+    icon: { type: String, default: null },
+    title: { type: String, required: true },
+    body: { type: String, required: true },
+    time: { type: Number, required: true },
+  },
+  setup(props) {
+    // Computed
+    const date = computed(() => unixTimeToString(props.time))
+    const markedContent = computed(() => marked(props.body))
 
-  @Prop({ required: false, type: String, default: null })
-  readonly icon!: string | null
-
-  @Prop({ required: true, type: String })
-  readonly title!: string
-
-  @Prop({ required: true, type: String })
-  readonly body!: string
-
-  @Prop({ required: true, type: Number })
-  readonly time!: number
-
-  get date() {
-    return unixTimeToString(this.time)
-  }
-
-  get markedContent() {
-    return marked(this.body)
-  }
-}
+    return { date, markedContent }
+  },
+})
 </script>
 
 <style scoped>

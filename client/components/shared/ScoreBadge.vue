@@ -1,36 +1,36 @@
 <template>
   <b-tooltip :label="clearStatus">
-    <span
-      class="tag is-light"
-      :class="{
-        'is-white': lamp === 7,
-        'is-basic': lamp === 6,
-        'is-expert': lamp === 5,
-        'is-beginner': lamp === 4,
-        'is-difficult': lamp === 3,
-        'is-challenge': lamp === 1,
-        'is-light': lamp === 0,
-      }"
-    >
-      {{ score }}
-    </span>
+    <span class="tag" :class="tagClass">{{ score }}</span>
   </b-tooltip>
 </template>
 
 <script lang="ts">
 import { Score } from '@ddradar/core'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-@Component
-export default class ScoreBadgeComponent extends Vue {
-  @Prop({ required: true, type: Number })
-  readonly lamp!: Score.ClearLamp
+const lampClassMap = new Map([
+  [0, 'is-dark'],
+  [1, 'is-challenge'],
+  [2, 'is-primary'],
+  [3, 'is-difficult'],
+  [4, 'is-beginner'],
+  [5, 'is-expert'],
+  [6, 'is-basic'],
+  [7, 'is-white'],
+] as const)
 
-  @Prop({ required: true, type: Number })
-  readonly score!: number
+export default defineComponent({
+  props: {
+    lamp: { type: Number as PropType<Score.ClearLamp>, required: true },
+    score: { type: Number, required: true },
+  },
+  setup(props) {
+    // Computed
+    const clearStatus = computed(() => Score.clearLampMap.get(props.lamp))
+    const tagClass = computed(() => lampClassMap.get(props.lamp))
 
-  get clearStatus() {
-    return Score.clearLampMap.get(this.lamp)
-  }
-}
+    return { clearStatus, tagClass }
+  },
+})
 </script>

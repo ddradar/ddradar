@@ -62,26 +62,31 @@
 
 <script lang="ts">
 import type { Api } from '@ddradar/core'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 import { getDisplayedBPM, shortenSeriesName } from '~/api/song'
 
-@Component
-export default class SongListComponent extends Vue {
-  @Prop({ type: Array, required: false, default: () => [] })
-  readonly songs!: Omit<Api.SongListData, 'nameKana' | 'nameIndex'>[]
+type SongListData = Omit<Api.SongListData, 'nameKana' | 'nameIndex'>
 
-  @Prop({ type: Boolean, required: false, default: false })
-  readonly loading!: boolean
+export default defineComponent({
+  props: {
+    songs: { type: Array as PropType<SongListData[]>, default: () => [] },
+    loading: { type: Boolean, default: false },
+  },
+  setup(props) {
+    // Computed
+    const displayedSongs = computed(() =>
+      props.songs.map(s => ({
+        id: s.id,
+        name: s.name,
+        artist: s.artist,
+        series: shortenSeriesName(s.series),
+        bpm: getDisplayedBPM(s),
+      }))
+    )
 
-  get displayedSongs() {
-    return this.songs.map(s => ({
-      id: s.id,
-      name: s.name,
-      artist: s.artist,
-      series: shortenSeriesName(s.series),
-      bpm: getDisplayedBPM(s),
-    }))
-  }
-}
+    return { displayedSongs }
+  },
+})
 </script>
