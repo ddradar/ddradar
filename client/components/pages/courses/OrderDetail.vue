@@ -24,35 +24,39 @@
 <script lang="ts">
 import type { Api, Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import type { PropType } from '@nuxtjs/composition-api'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 import { getChartTitle } from '~/api/song'
 import Card from '~/components/shared/Card.vue'
 import ScoreBoard from '~/components/shared/ScoreBoard.vue'
 
-@Component({ components: { Card, ScoreBoard } })
-export default class OrderDetailComponent extends Vue {
-  @Prop({ required: true, type: Object })
-  readonly course!: Api.CourseInfo
+const toOrder = (song: Database.ChartOrder) => ({
+  id: song.songId,
+  name: song.songName,
+  chartName: getChartTitle(song),
+  to: `/songs/${song.songId}#${song.playStyle}${song.difficulty}` as const,
+})
 
-  @Prop({ required: true, type: Object })
-  readonly chart!: Database.CourseChartSchema
+export default defineComponent({
+  components: { Card, ScoreBoard },
+  props: {
+    course: { type: Object as PropType<Api.CourseInfo>, required: true },
+    chart: {
+      type: Object as PropType<Database.CourseChartSchema>,
+      required: true,
+    },
+  },
+  setup(props) {
+    // Computed
+    const difficultyName = Song.difficultyMap
+      .get(props.chart.difficulty)!
+      .toLowerCase() as Lowercase<Song.DifficultyName>
 
-  get cardType() {
-    return `is-${
-      Song.difficultyMap
-        .get(this.chart.difficulty)!
-        .toLowerCase() as Lowercase<Song.DifficultyName>
-    }` as const
-  }
+    const cardType = computed(() => `is-${difficultyName}` as const)
+    const orders = computed(() => props.chart.order.map(toOrder))
 
-  get orders() {
-    return this.chart.order.map(s => ({
-      id: s.songId,
-      name: s.songName,
-      chartName: getChartTitle(s),
-      to: `/songs/${s.songId}#${s.playStyle}${s.difficulty}` as const,
-    }))
-  }
-}
+    return { cardType, orders }
+  },
+})
 </script>

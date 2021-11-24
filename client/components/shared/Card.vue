@@ -6,7 +6,7 @@
     :aria-id="title"
     :open="open"
   >
-    <template #trigger="props">
+    <template #trigger>
       <header
         class="card-header"
         :class="type"
@@ -15,7 +15,7 @@
       >
         <div class="card-header-title">{{ title }}</div>
         <a class="card-header-icon">
-          <b-icon :icon="props.open ? 'menu-down' : 'menu-up'" />
+          <b-icon :icon="icon" />
         </a>
       </header>
     </template>
@@ -30,22 +30,22 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'nuxt-property-decorator'
+import { computed, defineComponent } from '@nuxtjs/composition-api'
 
-@Component
-export default class CardComponent extends Vue {
-  @Prop({ required: true, type: String })
-  readonly title!: string
+export default defineComponent({
+  props: {
+    title: { type: String, required: true },
+    type: { type: String, required: true },
+    collapsible: { type: Boolean, default: false },
+    open: { type: Boolean, default: false },
+  },
+  setup(props) {
+    // Computed
+    const icon = computed(() => (props.open ? 'menu-down' : 'menu-up'))
 
-  @Prop({ required: true, type: String })
-  readonly type!: string
-
-  @Prop({ required: false, type: Boolean, default: false })
-  readonly collapsible!: boolean
-
-  @Prop({ required: false, type: Boolean, default: false })
-  readonly open!: boolean
-}
+    return { icon }
+  },
+})
 </script>
 
 <style lang="scss" scoped>
