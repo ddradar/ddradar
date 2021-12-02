@@ -10,10 +10,7 @@
         :key="i"
         :course="course"
         :chart="chart"
-        class="
-          column
-          is-half-tablet is-one-third-desktop is-one-quarter-widescreen
-        "
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
       />
     </div>
     <div class="content columns is-multiline">
@@ -22,10 +19,7 @@
         :key="i"
         :course="course"
         :chart="chart"
-        class="
-          column
-          is-half-tablet is-one-third-desktop is-one-quarter-widescreen
-        "
+        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
       />
     </div>
   </section>
