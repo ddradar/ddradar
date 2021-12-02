@@ -72,6 +72,7 @@ import type { PropType } from '@nuxtjs/composition-api'
 import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'ErrorPage',
   layout: 'empty',
   props: {
     error: { type: Object as PropType<NuxtError | null>, default: null },

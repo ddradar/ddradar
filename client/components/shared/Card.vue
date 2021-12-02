@@ -33,6 +33,7 @@
 import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'CardComponent',
   props: {
     title: { type: String, required: true },
     type: { type: String, required: true },
