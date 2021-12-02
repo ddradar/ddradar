@@ -9,6 +9,7 @@
 import { computed, defineComponent } from '@nuxtjs/composition-api'
 
 export default defineComponent({
+  name: 'FlagComponent',
   props: {
     iso: { type: String, required: true },
     title: { type: String, required: true },
