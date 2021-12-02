@@ -18,7 +18,7 @@
 
 <script lang="ts">
 import { computed, defineComponent } from '@nuxtjs/composition-api'
-import marked from 'marked'
+import { parse } from 'marked'
 
 import { unixTimeToString } from '~/utils/date'
 
@@ -33,7 +33,7 @@ export default defineComponent({
   setup(props) {
     // Computed
     const date = computed(() => unixTimeToString(props.time))
-    const markedContent = computed(() => marked(props.body))
+    const markedContent = computed(() => parse(props.body))
 
     return { date, markedContent }
   },

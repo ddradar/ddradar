@@ -72,7 +72,7 @@
 
 <script lang="ts">
 import type { Api } from '@ddradar/core'
-import marked from 'marked'
+import { parse } from 'marked'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
@@ -104,7 +104,7 @@ export default class UserListPage extends Vue {
         type: d.type,
         icon: d.icon,
         title: d.title,
-        body: marked(d.body),
+        body: parse(d.body),
         date: unixTimeToString(d.timeStamp),
       }))
     } catch (error) {
