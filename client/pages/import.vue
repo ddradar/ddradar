@@ -229,7 +229,7 @@ export default class ImportPage extends Vue {
         }
         this.doneCount++
       } catch (error) {
-        popup.danger(this.$buefy, error.message ?? error)
+        popup.danger(this.$buefy, error)
         this.maxCount = 0
         this.doneCount = 0
         this.currentSong = ''

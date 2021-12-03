@@ -102,7 +102,7 @@ export default class ScoreImporterComponent extends Vue {
     try {
       score = Gate.musicDetailToScore(this.sourceCode)
     } catch (error) {
-      popup.warning(this.$buefy, error.message ?? error)
+      popup.warning(this.$buefy, error)
       this.loading = false
       return
     }
@@ -111,7 +111,7 @@ export default class ScoreImporterComponent extends Vue {
       await postSongScores(this.$http, this.songId, [score])
       popup.success(this.$buefy, this.$t('success') as string)
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
       this.loading = false
       return
     }

@@ -326,7 +326,7 @@ export default class SongEditorPage extends Vue implements Api.SongInfo {
       this.deleted = deleted ?? false
       this.charts = [...charts]
     } catch (error) /* istanbul ignore next */ {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
   }
 
@@ -338,7 +338,7 @@ export default class SongEditorPage extends Vue implements Api.SongInfo {
           await this.callPostAPI()
           popup.success(this.$buefy, 'Success!')
         } catch (error) /* istanbul ignore next */ {
-          popup.danger(this.$buefy, error.message ?? error)
+          popup.danger(this.$buefy, error)
         }
       },
     })

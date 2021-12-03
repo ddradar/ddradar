@@ -288,7 +288,7 @@ export default class ProfilePage extends Vue {
       await this.$accessor.saveUser(user)
       popup.success(this.$buefy, this.$t('message.success').toString())
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
     this.type = ''
     this.message = ''

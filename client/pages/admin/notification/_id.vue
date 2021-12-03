@@ -106,7 +106,7 @@ export default class NotificationEditorPage extends Vue {
       await postNotification(this.$http, notification)
       popup.success(this.$buefy, 'Success!')
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
   }
 }

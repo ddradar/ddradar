@@ -273,7 +273,7 @@ export default class ScoreEditorComponent extends Vue {
       })
       popup.success(this.$buefy, this.$t('message.successSave') as string)
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
     this.close()
   }
@@ -310,7 +310,7 @@ export default class ScoreEditorComponent extends Vue {
       this.isFailed = scores[0].rank === 'E'
     } catch (error) {
       this.isLoading = false
-      const message = error.message ?? error
+      const message = error instanceof Error ? error.message : `${error}`
       if (message !== '404') {
         popup.danger(this.$buefy, message)
       }
@@ -327,7 +327,7 @@ export default class ScoreEditorComponent extends Vue {
       await deleteChartScore(this.$http, this.songId, playStyle, difficulty)
       popup.success(this.$buefy, this.$t('message.successDelete') as string)
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
   }
 

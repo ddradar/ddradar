@@ -155,7 +155,7 @@ export default class UserListPage extends Vue {
         this.code ?? 0
       )
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
     this.loading = false
   }
