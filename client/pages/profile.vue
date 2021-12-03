@@ -94,7 +94,7 @@
 </template>
 
 <i18n src="../i18n/area.json"></i18n>
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "newUser": "ユーザー登録は、まだ完了していません。引き続き、以下の情報を入力してください。",
@@ -288,7 +288,7 @@ export default class ProfilePage extends Vue {
       await this.$accessor.saveUser(user)
       popup.success(this.$buefy, this.$t('message.success').toString())
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
     this.type = ''
     this.message = ''

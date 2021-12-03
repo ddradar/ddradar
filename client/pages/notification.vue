@@ -53,7 +53,7 @@
   </section>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "pageTitle": "お知らせ一覧",
@@ -108,7 +108,7 @@ export default class UserListPage extends Vue {
         date: unixTimeToString(d.timeStamp),
       }))
     } catch (error) {
-      popup.danger(this.$buefy, error.message ?? error)
+      popup.danger(this.$buefy, error)
     }
   }
 }

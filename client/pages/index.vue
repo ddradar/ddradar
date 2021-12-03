@@ -9,16 +9,17 @@
         <b-skeleton animated />
         <b-skeleton animated />
       </template>
-      <top-message
-        v-for="m in messages"
-        v-else
-        :key="m.id"
-        :type="m.type"
-        :icon="m.icon"
-        :title="m.title"
-        :body="m.body"
-        :time="m.timeStamp"
-      />
+      <template v-else>
+        <top-message
+          v-for="m in messages"
+          :key="m.id"
+          :type="m.type"
+          :icon="m.icon"
+          :title="m.title"
+          :body="m.body"
+          :time="m.timeStamp"
+        />
+      </template>
       <div class="has-text-right top-notification">
         <nuxt-link to="/notification">{{ $t('old_notification') }}</nuxt-link>
       </div>
@@ -59,7 +60,7 @@
   </div>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "old_notification": "過去のお知らせ一覧",
@@ -118,28 +119,28 @@ export default class IndexPage extends Vue {
     const seriesList = [...Song.seriesSet]
     return [
       {
-        label: this.$t('search.name'),
+        label: this.$t('search.name') as string,
         items: [...Song.nameIndexMap.entries()].map(([i, s]) => ({
           name: s,
           to: `/name/${i}` as const,
         })),
       },
       {
-        label: this.$t('search.single'),
+        label: this.$t('search.single') as string,
         items: [...Array(19).keys()].map(i => ({
           name: `${i + 1}` as const,
           to: `/single/${i + 1}` as const,
         })),
       },
       {
-        label: this.$t('search.double'),
+        label: this.$t('search.double') as string,
         items: [...Array(19).keys()].map(i => ({
           name: `${i + 1}` as const,
           to: `/double/${i + 1}` as const,
         })),
       },
       {
-        label: this.$t('search.series'),
+        label: this.$t('search.series') as string,
         items: seriesList
           .map((name, i) => ({
             name: shortenSeriesName(name),
@@ -148,7 +149,7 @@ export default class IndexPage extends Vue {
           .reverse(),
       },
       {
-        label: this.$t('search.course'),
+        label: this.$t('search.course') as string,
         items: ([16, 17] as const)
           .map(i => [
             {
@@ -173,7 +174,7 @@ export default class IndexPage extends Vue {
     try {
       this.messages = await getNotificationList(this.$http, true)
     } catch (error) {
-      const message = error.message ?? error
+      const message = error instanceof Error ? error.message : `${error}`
       if (message !== '404') {
         popup.danger(this.$buefy, message)
       }

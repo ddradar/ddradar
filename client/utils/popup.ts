@@ -1,24 +1,27 @@
 import type { BuefyNamespace } from 'buefy/types'
 
-const option = { position: 'is-top', hasIcon: true } as const
+type BuefyInstance = Pick<BuefyNamespace, 'notification'>
 
-export function success(
-  $buefy: Pick<BuefyNamespace, 'notification'>,
-  message: string
-) {
-  $buefy.notification.open({ message, type: 'is-success', ...option })
+export function success($buefy: BuefyInstance, message: string) {
+  callNotification($buefy, 'is-success', message)
 }
 
-export function warning(
-  $buefy: Pick<BuefyNamespace, 'notification'>,
-  message: string
-) {
-  $buefy.notification.open({ message, type: 'is-warning', ...option })
+export function warning($buefy: BuefyInstance, errorOrMessage: unknown) {
+  callNotification($buefy, 'is-warning', convertToMessage(errorOrMessage))
 }
 
-export function danger(
-  $buefy: Pick<BuefyNamespace, 'notification'>,
+export function danger($buefy: BuefyInstance, error: unknown) {
+  callNotification($buefy, 'is-danger', convertToMessage(error))
+}
+
+function callNotification(
+  $buefy: BuefyInstance,
+  type: string,
   message: string
 ) {
-  $buefy.notification.open({ message, type: 'is-danger', ...option })
+  $buefy.notification.open({ message, type, position: 'is-top', hasIcon: true })
+}
+
+function convertToMessage(error: unknown) {
+  return error instanceof Error ? error.message : `${error}`
 }

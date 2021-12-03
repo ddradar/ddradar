@@ -64,7 +64,7 @@
   </section>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "title": "スコア詳細 - {0}",

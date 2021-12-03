@@ -151,8 +151,9 @@ describe('/components/modal/ScoreImporter.vue', () => {
       await wrapper.vm.$nextTick()
       const warningMock = mocked(popup.warning)
       const convertMock = mocked(Gate.musicDetailToScore)
+      const error = new Error('invalid')
       convertMock.mockImplementation(() => {
-        throw new Error('invalid')
+        throw error
       })
 
       // Act
@@ -161,7 +162,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
 
       // Assert
       expect(postMock).not.toBeCalled()
-      expect(warningMock).lastCalledWith($buefy, 'invalid')
+      expect(warningMock).lastCalledWith($buefy, error)
     })
     test('shows error message if API returns ErrorCode', async () => {
       // Arrange
@@ -171,14 +172,15 @@ describe('/components/modal/ScoreImporter.vue', () => {
       const dangerMock = mocked(popup.danger)
       const convertMock = mocked(Gate.musicDetailToScore)
       convertMock.mockReturnValue(score)
-      postMock.mockRejectedValue(new Error(errorMessage))
+      const error = new Error(errorMessage)
+      postMock.mockRejectedValue(error)
 
       // Act
       // @ts-ignore
       await wrapper.vm.importScore()
 
       // Assert
-      expect(dangerMock).lastCalledWith($buefy, errorMessage)
+      expect(dangerMock).lastCalledWith($buefy, error)
     })
   })
 })
