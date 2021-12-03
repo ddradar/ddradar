@@ -18,7 +18,7 @@
   </section>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "title": "{series} - NONSTOP",

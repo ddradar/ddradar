@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "notFound": "ページが見つかりません",

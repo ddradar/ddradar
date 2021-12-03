@@ -94,7 +94,7 @@
 </template>
 
 <i18n src="../i18n/area.json"></i18n>
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "newUser": "ユーザー登録は、まだ完了していません。引き続き、以下の情報を入力してください。",

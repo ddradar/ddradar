@@ -15,7 +15,7 @@
   </b-autocomplete>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "placeholder": "曲名/アーティスト名から探す"

@@ -37,7 +37,7 @@
   </b-table>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "list": {

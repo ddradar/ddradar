@@ -65,7 +65,7 @@
   </b-table>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "name": "曲名",

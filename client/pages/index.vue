@@ -60,7 +60,7 @@
   </div>
 </template>
 
-<i18n>
+<i18n lang="json">
 {
   "ja": {
     "old_notification": "過去のお知らせ一覧",
