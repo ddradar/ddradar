@@ -1,5 +1,4 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
-import { defineComponent, SetupFunction } from '@nuxtjs/composition-api'
 import { shallowMount } from '@vue/test-utils'
 
 import {
@@ -8,24 +7,13 @@ import {
   useSongList,
 } from '~/composables/useSongApi'
 
-function createMockComponent<T>(setup: SetupFunction<{}, T>) {
-  return defineComponent({
-    setup,
-    template: '<div></div>',
-  })
-}
+import { createMockComponent } from './utils'
 
-describe('/composables/useSongList.ts', () => {
+describe('/composables/useSongApi.ts', () => {
   const song = { ...testSongData }
-  const $http = {
-    $get: jest.fn<Promise<any>, [string, any]>(),
-    $post: jest.fn<Promise<any>, [string]>(),
-  }
+  const $http = { $get: jest.fn<Promise<any>, [string, any]>() }
   const mocks = { $nuxt: { context: { $http } } }
-  beforeEach(() => {
-    $http.$get.mockReset()
-    $http.$post.mockReset()
-  })
+  beforeEach(() => $http.$get.mockReset())
 
   describe('useSongList', () => {
     test.each([

@@ -1,5 +1,4 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
-import type { Context } from '@nuxt/types'
 import { ref } from '@nuxtjs/composition-api'
 import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
@@ -41,7 +40,7 @@ describe('pages/songs/_id/index.vue', () => {
       id => {
         // Arrange
         const wrapper = shallowMount(SongPage, { localVue, mocks })
-        const ctx = { params: { id } } as unknown as Context
+        const ctx = { params: { id } } as any
 
         // Act
         const result = wrapper.vm.$options.validate!(ctx)
@@ -53,7 +52,7 @@ describe('pages/songs/_id/index.vue', () => {
     test(`/${testSongData.id} returns true`, () => {
       // Arrange
       const wrapper = shallowMount(SongPage, { localVue, mocks })
-      const ctx = { params: { id: testSongData.id } } as unknown as Context
+      const ctx = { params: { id: testSongData.id } } as any
 
       // Act
       const result = wrapper.vm.$options.validate!(ctx)

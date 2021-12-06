@@ -8,23 +8,6 @@ export function getCourseType(type: number) {
 }
 
 /**
- * Call "Get Course List" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/courses/
- */
-export function getCourseList(
-  $http: Pick<NuxtHTTPInstance, '$get'>,
-  series?: 16 | 17,
-  type?: 1 | 2
-) {
-  const searchParams = new URLSearchParams()
-  if (series) searchParams.append('series', `${series}`)
-  if (type) searchParams.append('type', `${type}`)
-  return $http.$get<Api.CourseListData[]>(`${apiPrefix}/courses`, {
-    searchParams,
-  })
-}
-
-/**
  * Call "Get Course Information" API.
  * @see https://github.com/ddradar/ddradar/tree/master/api/courses__id/
  */
