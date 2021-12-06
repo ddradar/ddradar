@@ -53,20 +53,6 @@ export function searchSong(
 }
 
 /**
- * Call "Search Charts" API.
- * @see https://github.com/ddradar/ddradar/tree/master/api/charts__style__level/
- */
-export function searchCharts(
-  $http: Pick<NuxtHTTPInstance, '$get'>,
-  playStyle: Song.PlayStyle,
-  level: number
-) {
-  return $http.$get<Api.ChartInfo[]>(
-    `${apiPrefix}/charts/${playStyle}/${level}`
-  )
-}
-
-/**
  * Call "Post Song Information" API. (Admin only)
  * @see https://github.com/ddradar/ddradar/tree/master/api/songs--post/
  */
