@@ -1,5 +1,5 @@
 <template>
-  <RadarChart :chart-data="data" :chart-options="options" />
+  <RadarChart :chart-data="data" :options="options" />
 </template>
 
 <script lang="ts">
@@ -17,7 +17,7 @@ export default defineComponent({
     chart: { type: Object as PropType<Song.GrooveRadar | null>, default: null },
   },
   setup(props) {
-    const data: ChartData = {
+    const data: ChartData<'radar'> = {
       labels: ['STREAM', 'CHAOS', 'FREEZE', 'AIR', 'VOLTAGE'],
       datasets: [
         {
@@ -36,11 +36,10 @@ export default defineComponent({
         },
       ],
     }
-    const options: ChartOptions = {
+    const options: ChartOptions<'radar'> = {
       responsive: true,
       plugins: {
         legend: { display: false },
-        tooltip: { callbacks: { label: item => item.label } },
       },
       scales: {
         r: { beginAtZero: true, max: 200, min: 0, ticks: { stepSize: 20 } },
