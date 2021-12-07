@@ -31,7 +31,10 @@ const configuration: NuxtConfig = {
   },
   loading: { color: '#fff' },
   css: ['~/assets/css/styles.scss'],
-  plugins: ['~/plugins/application-insights.client.ts'],
+  plugins: [
+    '~/plugins/application-insights.client.ts',
+    { src: '~/plugins/chartjs.ts', ssr: false },
+  ],
   buildModules: [
     '@nuxt/typescript-build',
     'nuxt-typed-vuex',
@@ -80,7 +83,6 @@ const configuration: NuxtConfig = {
     transpile: [/typed-vuex/, /@ddradar\/core/],
     extend(config, { isClient }) {
       if (isClient) config.devtool = 'source-map'
-      config.externals = ['moment']
     },
     loaders: { scss: { sassOptions: { quietDeps: true } } },
   },
