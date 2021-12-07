@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+/* istanbul ignore file */
+
 import type { Song } from '@ddradar/core'
 import type { PropType } from '@nuxtjs/composition-api'
 import { defineComponent } from '@nuxtjs/composition-api'
