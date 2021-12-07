@@ -23,7 +23,7 @@ describe('plugins/application-insights.client.ts', () => {
   })
   test('calls ApplicationInsights constractor', () => {
     // Arrange - Act
-    plugin({ $config })
+    plugin({ $config } as any, jest.fn())
 
     // Assert
     expect(mocked(ApplicationInsights).mock.calls[0]).toHaveLength(1)
