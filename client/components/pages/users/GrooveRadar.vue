@@ -21,7 +21,7 @@ export default defineComponent({
       labels: ['STREAM', 'CHAOS', 'FREEZE', 'AIR', 'VOLTAGE'],
       datasets: [
         {
-          label: 'data',
+          label: '',
           backgroundColor: 'rgba(0, 255, 255, 0.2)',
           borderColor: 'rgba(0, 192, 192, 0.5)',
           data: props.chart
