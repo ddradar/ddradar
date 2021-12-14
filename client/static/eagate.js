@@ -1,4 +1,22 @@
-export default function (apiBaseUri) {
+const i18n = {
+  ja: {
+    noEagate:
+      'DDR A20PLUS\u306E\u697D\u66F2\u30C7\u30FC\u30BF\u4E00\u89A7\u30DA\u30FC\u30B8\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002',
+    userId: 'DDRadar\u306E\u30E6\u30FC\u30B6\u30FCID\u3092\u5165\u529B',
+    password:
+      '\u30A4\u30F3\u30DD\u30FC\u30C8\u7528\u306B\u8A2D\u5B9A\u3057\u305F\u30D1\u30B9\u30EF\u30FC\u30C9\u3092\u5165\u529B',
+    finished:
+      '\u30A4\u30F3\u30DD\u30FC\u30C8\u304C\u5B8C\u4E86\u3057\u307E\u3057\u305F\u3002',
+  },
+  en: {
+    noEagate: 'This is not DDR A20PLUS music detail page.',
+    userId: 'DDRadar ID:',
+    password: 'Password for import',
+    finished: 'Import is complete.',
+  },
+}
+
+export default function (apiBaseUri, lang) {
   const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
   const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
   const playStyleRegex =
@@ -70,12 +88,12 @@ export default function (apiBaseUri) {
       }
     }
   } catch {
-    alert('DDA A20PLUSの楽曲/NONSTOP/段位認定一覧ページではありません。')
+    alert(i18n[lang].noEagate)
   }
 
-  const userId = prompt('DDRadarのユーザーIDを入力')
+  const userId = prompt(i18n[lang].userId)
   if (!userId) return
-  const password = prompt('インポート用に設定したパスワードを入力')
+  const password = prompt(i18n[lang].password)
   if (!password) return
 
   Promise.all(
@@ -89,19 +107,19 @@ export default function (apiBaseUri) {
         .then(() => {
           const div = document.createElement('div')
           div.setAttribute('class', 'ddradar_added')
-          div.textContent = `「${scores[0].songName}」のインポートが完了しました。`
+          div.textContent = `Finished: ${scores[0].songName}`
           document.getElementById('container').prepend(div)
         })
         .catch(e => {
           const div = document.createElement('div')
           div.setAttribute('class', 'ddradar_added')
           div.setAttribute('style', 'color:red;font-weight:bold;')
-          div.textContent = `「${scores[0].songName}」のインポートに失敗しました。(${e})`
+          div.textContent = `Failed: ${scores[0].songName} (${e})`
           document.getElementById('container').prepend(div)
         })
     )
   ).then(() => {
-    alert('インポートが完了しました。')
+    alert(i18n[lang].finished)
     $('.ddradar_added').remove()
   })
 
