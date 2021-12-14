@@ -28,40 +28,40 @@
 
 <script lang="ts">
 import type { Api } from '@ddradar/core'
-import { Component, Vue } from 'nuxt-property-decorator'
+import {
+  computed,
+  defineComponent,
+  ref,
+  useRouter,
+} from '@nuxtjs/composition-api'
 
-import { searchSong } from '~/api/song'
+import { useSongList } from '~/composables/useSongApi'
 
-@Component({ fetchOnServer: false })
-export default class SearchBoxComponent extends Vue {
-  songList: Pick<Api.SongInfo, 'id' | 'name' | 'nameKana' | 'artist'>[] = []
-  term: string = ''
+export default defineComponent({
+  fetchOnServer: false,
+  setup() {
+    // Data
+    const term = ref('')
 
-  get filtered() {
-    return this.term.trim()
-      ? this.songList.filter(
-          s =>
-            s.name.toUpperCase().includes(this.term.toUpperCase()) ||
-            s.nameKana.includes(this.term.toUpperCase()) ||
-            s.artist.toUpperCase().includes(this.term.toUpperCase())
-        )
-      : []
-  }
+    // Computed
+    const { songs } = useSongList()
+    const filtered = computed(() =>
+      term.value.trim()
+        ? songs.value.filter(
+            s =>
+              s.name.toUpperCase().includes(term.value.toUpperCase()) ||
+              s.nameKana.includes(term.value.toUpperCase()) ||
+              s.artist.toUpperCase().includes(term.value.toUpperCase())
+          )
+        : []
+    )
 
-  async fetch() {
-    try {
-      const songs = await searchSong(this.$http)
-      this.songList = songs.map(s => ({
-        id: s.id,
-        name: s.name,
-        nameKana: s.nameKana,
-        artist: s.artist,
-      }))
-    } catch {}
-  }
+    // Method
+    const router = useRouter()
+    const move = ({ id }: Pick<Api.SongListData, 'id'>) =>
+      router.push(`/songs/${id}`)
 
-  move({ id }: Pick<Api.SongInfo, 'id'>) {
-    this.$router.push(`/songs/${id}`)
-  }
-}
+    return { term, filtered, move }
+  },
+})
 </script>

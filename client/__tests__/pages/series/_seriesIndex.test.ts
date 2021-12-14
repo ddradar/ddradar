@@ -1,17 +1,21 @@
-import type { Context } from '@nuxt/types'
+import { testSongList } from '@ddradar/core/__tests__/data'
+import { ref } from '@nuxtjs/composition-api'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
 import { mocked } from 'ts-jest/utils'
 
-import { searchSong } from '~/api/song'
+import { useSongList } from '~/composables/useSongApi'
 import SongBySeriesPage from '~/pages/series/_seriesIndex.vue'
 
-jest.mock('~/api/song')
+jest.mock('~/composables/useSongApi')
 const localVue = createLocalVue()
 localVue.use(Buefy)
 
 describe('pages/series/_seriesIndex.vue', () => {
   const $fetchState = { pending: false }
+  beforeAll(() =>
+    mocked(useSongList).mockReturnValue({ songs: ref(testSongList) } as any)
+  )
 
   // Lifecycle
   describe('validate()', () => {
@@ -21,7 +25,7 @@ describe('pages/series/_seriesIndex.vue', () => {
         // Arrange
         const mocks = { $route: { params: { seriesIndex } }, $fetchState }
         const wrapper = shallowMount(SongBySeriesPage, { localVue, mocks })
-        const ctx = { params: { seriesIndex } } as unknown as Context
+        const ctx = { params: { seriesIndex } } as any
 
         // Act - Assert
         expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
@@ -29,39 +33,28 @@ describe('pages/series/_seriesIndex.vue', () => {
     )
     test.each(['0', '1', '9', '10', '16'])('/%s returns true', seriesIndex => {
       // Arrange
-      const wrapper = shallowMount(SongBySeriesPage, {
-        localVue,
-        mocks: { $route: { params: { seriesIndex } }, $fetchState },
-      })
-      const ctx = { params: { seriesIndex } } as unknown as Context
+      const $route = { params: { seriesIndex } }
+      const mocks = { $route, $fetchState }
+      const wrapper = shallowMount(SongBySeriesPage, { localVue, mocks })
 
       // Act - Assert
-      expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
+      expect(wrapper.vm.$options.validate!($route as any)).toBe(true)
     })
   })
-  describe('fetch()', () => {
-    beforeEach(() => {
-      mocked(searchSong).mockClear()
-      mocked(searchSong).mockResolvedValue([])
-    })
-
+  describe('setup()', () => {
+    beforeEach(() => mocked(useSongList).mockClear())
     test.each(['0', '1', '9', '10', '16'])(
-      'calls searchSong($http, undefined, %s)',
-      async seriesIndex => {
-        // Arrange
-        const $http = {}
-        const $route = { params: { seriesIndex } }
-        const mocks = { $route, $http, $fetchState }
-        const wrapper = shallowMount(SongBySeriesPage, { localVue, mocks })
-
-        // Act
-        // @ts-ignore
-        await wrapper.vm.$options.fetch?.call(wrapper.vm)
+      'calls useSongList(undefined, %s)',
+      seriesIndex => {
+        // Arrange - Act
+        shallowMount(SongBySeriesPage, {
+          localVue,
+          mocks: { $route: { params: { seriesIndex } }, $fetchState },
+        })
 
         // Assert
-        expect(mocked(searchSong)).toBeCalledTimes(1)
-        expect(mocked(searchSong)).toBeCalledWith(
-          $http,
+        expect(mocked(useSongList)).toBeCalledTimes(1)
+        expect(mocked(useSongList)).toBeCalledWith(
           undefined,
           parseInt(seriesIndex, 10)
         )
@@ -76,12 +69,15 @@ describe('pages/series/_seriesIndex.vue', () => {
       ['10', 'DDR X'],
       ['16', 'DanceDanceRevolution A20'],
       ['17', 'DanceDanceRevolution A20 PLUS'],
-    ])('/%s returns "%s"', (seriesIndex, expected) => {
+    ])('/%s returns "%s"', async (seriesIndex, expected) => {
       // Arrange
       const mocks = { $route: { params: { seriesIndex } }, $fetchState }
-      const wrapper = shallowMount(SongBySeriesPage, { localVue, mocks })
 
-      // Act - Assert
+      // Act
+      const wrapper = shallowMount(SongBySeriesPage, { localVue, mocks })
+      await wrapper.vm.$nextTick()
+
+      // Assert
       // @ts-ignore
       expect(wrapper.vm.title).toBe(expected)
     })

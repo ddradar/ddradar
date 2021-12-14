@@ -26,47 +26,51 @@
 </template>
 
 <script lang="ts">
-import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { Context } from '@nuxt/types'
-import { Component, Vue } from 'nuxt-property-decorator'
-import type { MetaInfo } from 'vue-meta'
+import {
+  computed,
+  defineComponent,
+  useContext,
+  useMeta,
+} from '@nuxtjs/composition-api'
 
-import { getCourseInfo } from '~/api/course'
 import { getDisplayedBPM } from '~/api/song'
 import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
+import { useCourseInfo } from '~/composables/useCourseApi'
 
-@Component({ components: { OrderDetail } })
-export default class CourseDetailPage extends Vue {
-  course: Api.CourseInfo | null = null
+export default defineComponent({
+  name: 'CourseDetailPage',
+  components: { OrderDetail },
+  validate: ({ params }) => Song.isValidId(params.id),
+  setup() {
+    const { params } = useContext()
 
-  get singleCharts() {
-    return this.course?.charts.filter(c => c.playStyle === 1) ?? []
-  }
+    // Data
+    const { course } = useCourseInfo(params.value.id)
 
-  get doubleCharts() {
-    return this.course?.charts.filter(c => c.playStyle === 2) ?? []
-  }
+    // lifecycle
+    useMeta(() => ({ title: course.value?.name }))
 
-  get displayedBPM() {
-    return this.course
-      ? getDisplayedBPM(this.course)
-      : /* istanbul ignore next */ '???'
-  }
+    // Computed
+    const useChart = (style: Song.PlayStyle) =>
+      computed(
+        () => course.value?.charts.filter(c => c.playStyle === style) ?? []
+      )
+    const singleCharts = useChart(1)
+    const doubleCharts = useChart(2)
+    const displayedBPM = computed(() =>
+      course.value
+        ? getDisplayedBPM(course.value)
+        : /* istanbul ignore next */ '???'
+    )
 
-  validate({ params }: Pick<Context, 'params'>) {
-    return Song.isValidId(params.id)
-  }
-
-  /* istanbul ignore next */
-  head(): MetaInfo {
-    return { title: this.course?.name }
-  }
-
-  async asyncData({ params, $http }: Pick<Context, 'params' | '$http'>) {
-    // Get course info from API
-    const course = await getCourseInfo($http, params.id)
-    return { course }
-  }
-}
+    return {
+      course,
+      singleCharts,
+      doubleCharts,
+      displayedBPM,
+    }
+  },
+  head: {},
+})
 </script>

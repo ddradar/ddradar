@@ -1,22 +1,26 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
-import type { Context } from '@nuxt/types'
+import { ref } from '@nuxtjs/composition-api'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import { mocked } from 'ts-jest/utils'
 
-import { getCourseInfo } from '~/api/course'
+import { useCourseInfo } from '~/composables/useCourseApi'
 import CourseDetailPage from '~/pages/courses/_id/index.vue'
 
-jest.mock('~/api/course')
+jest.mock('~/composables/useCourseApi')
 const localVue = createLocalVue()
 
 describe('pages/courses/_id/index.vue', () => {
   const course = { ...testCourseData }
+  const mocks = { $route: { params: { id: course.id } } }
+  beforeAll(() =>
+    mocked(useCourseInfo).mockReturnValue({ course: ref(course) } as any)
+  )
 
   describe('snapshot test', () => {
     test('renders correctly', () => {
       // Arrange - Act
       const data = () => ({ course })
-      const wrapper = shallowMount(CourseDetailPage, { localVue, data })
+      const wrapper = shallowMount(CourseDetailPage, { localVue, data, mocks })
 
       // Assert
       expect(wrapper).toMatchSnapshot()
@@ -29,8 +33,8 @@ describe('pages/courses/_id/index.vue', () => {
       '/courses/%s returns false',
       id => {
         // Arrange
-        const wrapper = shallowMount(CourseDetailPage, { localVue })
-        const ctx = { params: { id } } as unknown as Context
+        const wrapper = shallowMount(CourseDetailPage, { localVue, mocks })
+        const ctx = { params: { id } } as any
 
         // Act - Assert
         expect(wrapper.vm.$options.validate!(ctx)).toBe(false)
@@ -40,33 +44,25 @@ describe('pages/courses/_id/index.vue', () => {
       '/courses/%s returns true',
       id => {
         // Arrange
-        const wrapper = shallowMount(CourseDetailPage, { localVue })
-        const ctx = { params: { id } } as unknown as Context
+        const wrapper = shallowMount(CourseDetailPage, { localVue, mocks })
+        const ctx = { params: { id } } as any
 
         // Act - Assert
         expect(wrapper.vm.$options.validate!(ctx)).toBe(true)
       }
     )
   })
-  describe('asyncData()', () => {
-    const apiMock = mocked(getCourseInfo)
-    beforeEach(() => {
-      apiMock.mockClear()
-      apiMock.mockResolvedValue(course)
-    })
-    test('calls getCourseInfo($http, params.id)', async () => {
-      // Arrange
-      const $http = { $get: jest.fn() }
-      const wrapper = shallowMount(CourseDetailPage, { localVue })
-      const ctx = { $http, params: { id: course.id } } as unknown as Context
-
-      // Act
-      const result: any = await wrapper.vm.$options.asyncData!(ctx)
+  describe('setup()', () => {
+    beforeEach(() => mocked(useCourseInfo).mockClear())
+    test('calls useCourseInfo(params.id)', async () => {
+      // Arrange - Act
+      const wrapper = shallowMount(CourseDetailPage, { localVue, mocks })
+      await wrapper.vm.$nextTick()
 
       // Assert
-      expect(result.course).toBe(course)
-      expect(apiMock).toBeCalledTimes(1)
-      expect(apiMock).toBeCalledWith($http, course.id)
+      expect(wrapper.vm.$data.course).toBe(course)
+      expect(mocked(useCourseInfo)).toBeCalledTimes(1)
+      expect(mocked(useCourseInfo)).toBeCalledWith(course.id)
     })
   })
 })
