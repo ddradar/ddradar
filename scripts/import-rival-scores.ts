@@ -59,12 +59,11 @@ async function main(ddrCode: string) {
 
     for (const [id, scores] of Object.entries(singleScores)) {
       const songScope = consola.withScope('Song')
-      const songName = `${scores[0].songName} (${id})`
-
       if (scores.length === 0) {
         songScope.info('No scores. skiped')
         continue
       }
+      const songName = `${scores[0].songName} (${id})`
 
       const apiUri = `${apiBasePath}/api/v1/scores/${id}/${user.id}`
       const res = await fetch(apiUri, {
