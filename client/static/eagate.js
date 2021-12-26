@@ -28,7 +28,7 @@ export default function (apiBaseUri, lang) {
       throw new Error('not KONAMI e-amusement site')
 
     const playStyle =
-      playStyleRegex.exec(document.location.href)[1] === 'single' ? 1 : 2
+      playStyleRegex.exec(document.location.href)[2] === 'single' ? 1 : 2
     const dataTable = document.getElementById('data_tbl')
     if (!dataTable) throw new Error('invalid html')
 
@@ -40,7 +40,7 @@ export default function (apiBaseUri, lang) {
       const songCol = songRow
         .getElementsByTagName('td')[0]
         .getElementsByClassName('music_info')[0]
-      const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP or 段位認定
+      const jacketAlt = songCol.getElementsByTagName('img')[0]?.alt // for NONSTOP or GRADE
       const songId = songCol.getAttribute('href')?.replace(idRegex, '$1')
       const songName = songCol.textContent.trim() || jacketAlt
       if (!songId || !songName) continue
@@ -87,8 +87,10 @@ export default function (apiBaseUri, lang) {
         })
       }
     }
-  } catch {
+  } catch (e) {
     alert(i18n[lang].noEagate)
+    console.debug(e)
+    return
   }
 
   const userId = prompt(i18n[lang].userId)
@@ -100,7 +102,7 @@ export default function (apiBaseUri, lang) {
     Object.entries(result).map(([songId, scores]) =>
       fetch(`${apiBaseUri}/${songId}/${userId}`, {
         method: 'post',
-        body: JSON.stringify(scores),
+        body: JSON.stringify({ password, scores }),
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
       })
