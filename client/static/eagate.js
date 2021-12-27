@@ -149,4 +149,32 @@ export default function (apiBaseUri, lang) {
     if (fileName === 'full_good') return 4
     return null
   }
+
+  /**
+   * Get Dance Level from score
+   * @param score {number}
+   * @returns Dance Level (AAA~D)
+   */
+  function getDanceLevel(score) {
+    const rankList = [
+      { border: 990000, rank: 'AAA' },
+      { border: 950000, rank: 'AA+' },
+      { border: 900000, rank: 'AA' },
+      { border: 890000, rank: 'AA-' },
+      { border: 850000, rank: 'A+' },
+      { border: 800000, rank: 'A' },
+      { border: 790000, rank: 'A-' },
+      { border: 750000, rank: 'B+' },
+      { border: 700000, rank: 'B' },
+      { border: 690000, rank: 'B-' },
+      { border: 650000, rank: 'C+' },
+      { border: 600000, rank: 'C' },
+      { border: 590000, rank: 'C-' },
+      { border: 550000, rank: 'D+' },
+    ]
+    for (const { border, rank } of rankList) {
+      if (score >= border) return rank
+    }
+    return 'D'
+  }
 }
