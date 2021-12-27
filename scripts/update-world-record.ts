@@ -72,12 +72,27 @@ async function main(userId: string, password: string) {
       const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
 
       try {
-        const score = await fetchScoreDetail(
-          page,
-          s.songId,
-          s.playStyle,
-          s.difficulty
-        )
+        let score: Awaited<ReturnType<typeof fetchScoreDetail>> = null
+        for (let retryCount = 0; retryCount < 3; retryCount++) {
+          try {
+            score = await fetchScoreDetail(
+              page,
+              s.songId,
+              s.playStyle,
+              s.difficulty
+            )
+            break
+          } catch (e: unknown) {
+            const message: string =
+              typeof e === 'string' ? e : (e as Error)?.message
+            if (/NO PLAY/.test(message)) {
+              chartScope.info(`No Play: ${chart}`)
+              break
+            }
+            if (retryCount >= 2) throw e
+            chartScope.warn(`Retry: ${retryCount + 1}`)
+          }
+        }
         if (score) {
           if (score.topScore > s.score) {
             scores.push(score)
@@ -92,15 +107,11 @@ async function main(userId: string, password: string) {
           }
         }
       } catch (e: unknown) {
-        const message: string =
-          typeof e === 'string' ? e : (e as Error)?.message
-        if (!/NO PLAY/.test(message)) {
-          for (const log of logs) {
-            consola.success(log)
-          }
-          await browser.close()
-          throw e
+        for (const log of logs) {
+          consola.success(log)
         }
+        await browser.close()
+        throw e
       }
       await sleep(3000)
     }
