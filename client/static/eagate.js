@@ -24,7 +24,7 @@ export default function (apiBaseUri, lang) {
 
   const result = {}
   try {
-    if (playStyleRegex.test(document.location.href))
+    if (!playStyleRegex.test(document.location.href))
       throw new Error('not KONAMI e-amusement site')
 
     const playStyle =
@@ -89,7 +89,6 @@ export default function (apiBaseUri, lang) {
     }
   } catch (e) {
     alert(i18n[lang].noEagate)
-    console.debug(e)
     return
   }
 
