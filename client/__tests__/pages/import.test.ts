@@ -69,8 +69,8 @@ describe('pages/import.vue', () => {
   // Computed
   describe('get bookmarklet()', () => {
     test.each([
-      ['en', /.+\/eagate\.en\.min\.js/],
-      ['ja', /.+\/eagate\.ja\.min\.js/],
+      ['en', /.+m\.default\('https:\/\/.+','en'\)\)\);$/],
+      ['ja', /.+m\.default\('https:\/\/.+','ja'\)\)\);$/],
     ])('{ locale: %s } returns %s script', (locale, expected) => {
       const i18n = new VueI18n({ locale, silentFallbackWarn: true })
       const mocks = { $accessor }
