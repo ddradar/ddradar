@@ -18,7 +18,11 @@ export default class Browser {
 
   static async create(): Promise<Browser> {
     const browser = new Browser()
-    browser.browser = await puppeteer.launch({ executablePath, userDataDir })
+    browser.browser = await puppeteer.launch({
+      executablePath,
+      userDataDir,
+      headless: false,
+    })
     return browser
   }
 
