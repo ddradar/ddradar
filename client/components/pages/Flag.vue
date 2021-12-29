@@ -1,6 +1,6 @@
 <template>
   <span>
-    <span class="flag-icon" :class="flagIconClass" :title="title" />
+    <span class="fi" :class="flagIconClass" :title="title" />
     &nbsp;{{ title }}
   </span>
 </template>
@@ -16,7 +16,7 @@ export default defineComponent({
   },
   setup(props) {
     // Computed
-    const flagIconClass = computed(() => `flag-icon-${props.iso.toLowerCase()}`)
+    const flagIconClass = computed(() => `fi-${props.iso.toLowerCase()}`)
 
     return { flagIconClass }
   },
@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-$flag-icons-path: '~flag-icon-css/flags';
+$flag-icons-path: '~flag-icons/flags';
 $include: jp, us;
-@import '~flag-icon-css/sass/flag-icons';
+@import '~flag-icons/sass/flag-icons';
 </style>
