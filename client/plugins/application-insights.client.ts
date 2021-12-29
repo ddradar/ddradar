@@ -1,7 +1,7 @@
 import { ApplicationInsights } from '@microsoft/applicationinsights-web'
-import { defineNuxtPlugin } from '@nuxtjs/composition-api'
+import type { Context } from '@nuxt/types'
 
-export default defineNuxtPlugin(({ $config }) => {
+const appInsightsPlugin = ({ $config }: Pick<Context, '$config'>) => {
   const appInsights = new ApplicationInsights({
     config: {
       instrumentationKey: $config.instrumentationKey,
@@ -10,4 +10,6 @@ export default defineNuxtPlugin(({ $config }) => {
   })
   appInsights.loadAppInsights()
   appInsights.trackPageView()
-})
+}
+
+export default appInsightsPlugin

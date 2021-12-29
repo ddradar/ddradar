@@ -39,69 +39,63 @@
 <script lang="ts">
 import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { Ref } from '@nuxtjs/composition-api'
-import {
-  computed,
-  defineComponent,
-  ref,
-  useContext,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import type { Context } from '@nuxt/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
-import { getDisplayedBPM } from '~/api/song'
+import { getDisplayedBPM, getSongInfo } from '~/api/song'
 import ChartDetail from '~/components/pages/songs/ChartDetail.vue'
-import { useSongInfo } from '~/composables/useSongApi'
 
-export default defineComponent({
-  name: 'SongDetailPage',
-  components: { ChartDetail },
-  validate: ({ params }) => Song.isValidId(params.id),
-  setup() {
-    const { params, payload, route } = useContext()
+@Component({ components: { ChartDetail } })
+export default class SongDetailPage extends Vue {
+  song: Api.SongInfo | null = null
+  playStyle: Song.PlayStyle | 0 = 0
+  difficulty: Song.Difficulty | -1 = -1
 
-    // Data
-    let song: Ref<Api.SongInfo | null>
-    if (payload) {
-      song = ref<Api.SongInfo>(payload)
-    } else {
-      const { song: songInfo } = useSongInfo(params.value.id)
-      song = songInfo
-    }
-    const playStyle = ref<Song.PlayStyle | 0>(0)
-    const difficulty = ref<Song.Difficulty | -1>(-1)
-    const chart = route.value?.hash
+  get singleCharts() {
+    return this.song?.charts.filter(c => c.playStyle === 1) ?? []
+  }
+
+  get doubleCharts() {
+    return this.song?.charts.filter(c => c.playStyle === 2) ?? []
+  }
+
+  get displayedBPM() {
+    return this.song
+      ? getDisplayedBPM(this.song)
+      : /* istanbul ignore next */ '???'
+  }
+
+  /** `id` should be songId pattern */
+  validate({ params }: Pick<Context, 'params'>) {
+    return Song.isValidId(params.id)
+  }
+
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.song?.name ?? 'Song Detail' }
+  }
+
+  async asyncData({
+    params,
+    $http,
+    route,
+    payload,
+  }: Pick<Context, 'params' | '$http' | 'route' | 'payload'>) {
+    // Get song info from API
+    const song =
+      (payload as Api.SongInfo) || (await getSongInfo($http, params.id))
+
+    // Set chartIndex
+    const chart = route?.hash
     if (/^#(1[0-4]|2[1-4])$/.test(chart)) {
       const selectedChart = parseInt(chart.substring(1))
-      difficulty.value = (selectedChart % 10) as Song.Difficulty
-      playStyle.value = ((selectedChart - (selectedChart % 10)) /
-        10) as Song.PlayStyle
+      const difficulty = selectedChart % 10
+      const playStyle = (selectedChart - difficulty) / 10
+      return { song, playStyle, difficulty }
     }
 
-    // lifecycle
-    useMeta(() => ({ title: song.value?.name }))
-
-    // Computed
-    const useChart = (style: Song.PlayStyle) =>
-      computed(
-        () => song.value?.charts.filter(c => c.playStyle === style) ?? []
-      )
-    const singleCharts = useChart(1)
-    const doubleCharts = useChart(2)
-    const displayedBPM = computed(() =>
-      song.value
-        ? getDisplayedBPM(song.value)
-        : /* istanbul ignore next */ '???'
-    )
-
-    return {
-      song,
-      playStyle,
-      difficulty,
-      singleCharts,
-      doubleCharts,
-      displayedBPM,
-    }
-  },
-  head: {},
-})
+    return { song }
+  }
+}
 </script>

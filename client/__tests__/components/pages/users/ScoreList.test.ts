@@ -85,11 +85,10 @@ describe('/components/pages/users/ScoreList.vue', () => {
 
   // Method
   describe('scoreEditorModal', () => {
-    const $http = {}
     const mocks = {
       $accessor,
       $buefy: { modal: { open: jest.fn() } },
-      $nuxt: { context: { $http } },
+      $http: {},
     }
     beforeAll(() => {
       mocked(getSongInfo).mockResolvedValue(testSongData)
@@ -116,7 +115,7 @@ describe('/components/pages/users/ScoreList.vue', () => {
       )
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalledWith($http, testSongData.id)
+      expect(mocked(getSongInfo)).toBeCalledWith(mocks.$http, testSongData.id)
       expect(mocked(getCourseInfo)).not.toBeCalled()
       expect(mocks.$buefy.modal.open).toBeCalled()
     })
@@ -137,7 +136,10 @@ describe('/components/pages/users/ScoreList.vue', () => {
 
       // Assert
       expect(mocked(getSongInfo)).not.toBeCalled()
-      expect(mocked(getCourseInfo)).toBeCalledWith($http, testCourseData.id)
+      expect(mocked(getCourseInfo)).toBeCalledWith(
+        mocks.$http,
+        testCourseData.id
+      )
       expect(mocks.$buefy.modal.open).toBeCalled()
     })
   })

@@ -19,49 +19,52 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import {
-  computed,
-  defineComponent,
-  useContext,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import type { Context } from '@nuxt/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
+import { searchSong } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
-import { useSongList } from '~/composables/useSongApi'
 
-export default defineComponent({
-  name: 'SongByNamePage',
-  components: { SongList },
-  fetchOnServer: false,
-  validate({ params }) {
+@Component({ components: { SongList }, fetchOnServer: false })
+export default class SongByNamePage extends Vue {
+  /** Song List from API */
+  songs: Api.SongListData[] = []
+
+  /** Name index title (like "あ", "A", "数字・記号") */
+  get title() {
+    return Song.nameIndexMap.get(this.selected)!
+  }
+
+  get selected() {
+    return parseInt(this.$route.params.nameIndex, 10) as Song.NameIndex
+  }
+
+  /** "あ", ..., "A", ..., "数字・記号" */
+  get nameIndexList() {
+    return [...Song.nameIndexMap.values()]
+  }
+
+  /** nameIndex should be [0-36] */
+  validate({ params }: Pick<Context, 'params'>) {
     const parsedIndex = parseInt(params.nameIndex, 10)
     return (
       /^\d{1,2}$/.test(params.nameIndex) &&
       parsedIndex >= 0 &&
       parsedIndex < Song.nameIndexMap.size
     )
-  },
-  setup() {
-    const { params } = useContext()
+  }
 
-    // Computed
-    const selected = computed(
-      () => parseInt(params.value.nameIndex, 10) as Song.NameIndex
-    )
-    /** "あ", ..., "A", ..., "数字・記号" */
-    const nameIndexList = [...Song.nameIndexMap.values()]
-    /** Name index title (like "あ", "A", "数字・記号") */
-    const title = computed(() => Song.nameIndexMap.get(selected.value))
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.title }
+  }
 
-    // Data
-    const { songs } = useSongList(selected.value)
-
-    // Lifecycle
-    useMeta(() => ({ title: title.value }))
-
-    return { songs, selected, nameIndexList, title }
-  },
-  head: {},
-})
+  /** Get Song List from API */
+  async fetch() {
+    this.songs = await searchSong(this.$http, this.selected)
+  }
+}
 </script>
