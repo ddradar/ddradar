@@ -31,22 +31,22 @@
     "*.{json,yaml,yml}": "prettier --write"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.5.0",
-    "@typescript-eslint/parser": "^5.5.0",
-    "eslint": "^8.3.0",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "husky": "^7.0.4",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^12.1.4",
     "npm-run-all2": "^5.0.2",
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.1"
   },
   "resolutions": {
     "@types/babel__core": "^7.0.0",
     "@types/connect": "^3.4.34",
-    "@types/node": "^12.20.37",
+    "@types/node": "^12.20.39",
     "@types/serve-static": "^1.13.9",
     "@types/webpack": "^4.41.30",
     "chokidar": "^3.5.1",
