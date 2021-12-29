@@ -89,66 +89,52 @@
 <script lang="ts">
 import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import type { PropType } from '@nuxtjs/composition-api'
-import {
-  computed,
-  defineComponent,
-  getCurrentInstance,
-  useContext,
-} from '@nuxtjs/composition-api'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 
 import { getCourseInfo } from '~/api/course'
 import { getSongInfo } from '~/api/song'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-export default defineComponent({
-  name: 'ScoreListComponent',
-  components: { ScoreBadge },
-  props: {
-    scores: { type: Array as PropType<Api.ScoreList[]>, default: () => [] },
-    loading: { type: Boolean, default: false },
-  },
-  setup(props) {
-    // Computed
+@Component({ components: { ScoreBadge } })
+export default class ScoreListComponent extends Vue {
+  @Prop({ required: false, type: Array, default: () => [] })
+  readonly scores!: Api.ScoreList[]
+
+  @Prop({ required: false, type: Boolean, default: false })
+  readonly loading!: boolean
+
+  get displayedScores() {
     const getLowerDiffName = (d: Song.Difficulty) =>
       Song.difficultyMap.get(d)!.toLowerCase() as Lowercase<Song.DifficultyName>
-    const displayedScores = computed(() =>
-      props.scores.map(s => ({
-        ...s,
-        link: `/${s.isCourse ? 'courses' : 'songs'}/${s.songId}#${s.playStyle}${
-          s.difficulty
-        }` as const,
-        difficultyName: `${
-          s.playStyle === 2 ? 'DP' : 'SP'
-        }/${Song.difficultyMap.get(s.difficulty)!}` as const,
-        class: `is-${getLowerDiffName(s.difficulty)}` as const,
-      }))
-    )
+    return this.scores.map(s => ({
+      ...s,
+      link: `/${s.isCourse ? 'courses' : 'songs'}/${s.songId}#${s.playStyle}${
+        s.difficulty
+      }` as const,
+      difficultyName: `${
+        s.playStyle === 2 ? 'DP' : 'SP'
+      }/${Song.difficultyMap.get(s.difficulty)!}` as const,
+      class: `is-${getLowerDiffName(s.difficulty)}` as const,
+    }))
+  }
 
-    // Method
-    const { $http } = useContext()
-    const instance = getCurrentInstance()!
-    const { $buefy } = instance.proxy
-    const scoreEditorModal = async (
-      songId: string,
-      playStyle: number,
-      difficulty: number,
-      isCourse: boolean
-    ) => {
-      const songData = isCourse
-        ? await getCourseInfo($http, songId)
-        : await getSongInfo($http, songId)
-      $buefy.modal.open({
-        parent: instance as any,
-        component: ScoreEditor,
-        props: { songId, playStyle, difficulty, songData },
-        hasModalCard: true,
-        trapFocus: true,
-      })
-    }
-
-    return { displayedScores, scoreEditorModal }
-  },
-})
+  async scoreEditorModal(
+    songId: string,
+    playStyle: number,
+    difficulty: number,
+    isCourse: boolean
+  ) {
+    const songData = isCourse
+      ? await getCourseInfo(this.$http, songId)
+      : await getSongInfo(this.$http, songId)
+    this.$buefy.modal.open({
+      parent: this,
+      component: ScoreEditor,
+      props: { songId, playStyle, difficulty, songData },
+      hasModalCard: true,
+      trapFocus: true,
+    })
+  }
+}
 </script>

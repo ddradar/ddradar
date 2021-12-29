@@ -19,49 +19,51 @@
 </template>
 
 <script lang="ts">
+import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import {
-  computed,
-  defineComponent,
-  useContext,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import type { Context } from '@nuxt/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
-import { shortenSeriesName } from '~/api/song'
+import { searchSong, shortenSeriesName } from '~/api/song'
 import SongList from '~/components/pages/songs/SongList.vue'
-import { useSongList } from '~/composables/useSongApi'
 
-const series = [...Song.seriesSet]
+@Component({ components: { SongList }, fetchOnServer: false })
+export default class SongBySeriesPage extends Vue {
+  /** Song List from API */
+  songs: Api.SongListData[] = []
 
-export default defineComponent({
-  name: 'SongBySeriesPage',
-  components: { SongList },
-  fetchOnServer: false,
-  validate({ params }) {
+  /** Series title */
+  get title() {
+    return [...Song.seriesSet][this.selected]
+  }
+
+  get selected() {
+    return parseInt(this.$route.params.seriesIndex, 10)
+  }
+
+  get seriesList() {
+    return [...Song.seriesSet].map(s => shortenSeriesName(s))
+  }
+
+  /** seriesIndex expected [0-16] */
+  validate({ params }: Pick<Context, 'params'>) {
     const parsedIndex = parseInt(params.seriesIndex, 10)
     return (
       /^\d{1,2}$/.test(params.seriesIndex) &&
       parsedIndex >= 0 &&
-      parsedIndex < series.length
+      parsedIndex < Song.seriesSet.size
     )
-  },
-  setup() {
-    const { params } = useContext()
+  }
 
-    // Computed
-    const selected = computed(() => parseInt(params.value.seriesIndex, 10))
-    const seriesList = series.map(s => shortenSeriesName(s))
-    /** Series title */
-    const title = computed(() => series[selected.value])
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.title }
+  }
 
-    // Data
-    const { songs } = useSongList(undefined, selected.value)
-
-    // Lifecycle
-    useMeta(() => ({ title: title.value }))
-
-    return { songs, selected, seriesList, title }
-  },
-  head: {},
-})
+  /** Get Song List from API */
+  async fetch() {
+    this.songs = await searchSong(this.$http, undefined, this.selected)
+  }
+}
 </script>

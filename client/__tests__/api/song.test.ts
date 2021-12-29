@@ -8,6 +8,7 @@ import {
   getDisplayedBPM,
   getSongInfo,
   postSongInfo,
+  searchCharts,
   searchSong,
   shortenSeriesName,
 } from '~/api/song'
@@ -103,6 +104,28 @@ describe('/api/song.ts', () => {
           )
         }
       )
+    })
+
+    describe('searchCharts', () => {
+      test.each([
+        [1, 1, '/api/v1/charts/1/1'] as const,
+        [1, 10, '/api/v1/charts/1/10'] as const,
+        [1, 19, '/api/v1/charts/1/19'] as const,
+        [2, 2, '/api/v1/charts/2/2'] as const,
+        [2, 15, '/api/v1/charts/2/15'] as const,
+        [2, 18, '/api/v1/charts/2/18'] as const,
+      ])('($http, %i, %i) calls GET "%s"', async (playStyle, level, uri) => {
+        // Arrange
+        const charts = [{ playStyle, difficulty: level }]
+        $http.$get.mockResolvedValue(charts)
+
+        // Act
+        const result = await searchCharts($http, playStyle, level)
+
+        // Assert
+        expect(result).toBe(charts)
+        expect($http.$get).toBeCalledWith(uri)
+      })
     })
 
     describe('postSongInfo()', () => {

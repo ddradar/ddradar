@@ -3,9 +3,9 @@
     <h1 class="title">{{ title }}</h1>
     <div class="buttons">
       <b-button
-        v-for="level in 19"
+        v-for="level in levelList"
         :key="level"
-        :to="`/${style}/${level}`"
+        :to="`/${$route.params.style}/${level}`"
         type="is-info"
         tag="nuxt-link"
         :disabled="level === selected"
@@ -19,21 +19,40 @@
 </template>
 
 <script lang="ts">
-import {
-  computed,
-  defineComponent,
-  useContext,
-  useMeta,
-} from '@nuxtjs/composition-api'
+import type { Api } from '@ddradar/core'
+import type { Context } from '@nuxt/types'
+import { Component, Vue } from 'nuxt-property-decorator'
+import type { MetaInfo } from 'vue-meta'
 
+import { searchCharts } from '~/api/song'
 import ChartList from '~/components/pages/charts/ChartList.vue'
-import { useChartList } from '~/composables/useSongApi'
 
-export default defineComponent({
-  name: 'ChartLevelPage',
-  fetchOnServer: false,
-  components: { ChartList },
-  validate({ params }) {
+@Component({ fetchOnServer: false, components: { ChartList } })
+export default class ChartLevelPage extends Vue {
+  /** Chart list */
+  charts: Api.ChartInfo[] = []
+
+  get selected() {
+    return parseInt(this.$route.params.level, 10)
+  }
+
+  get playStyle() {
+    return this.$route.params.style === 'double' ? 2 : 1
+  }
+
+  /** Page title */
+  get title() {
+    const style = this.$route.params.style.toUpperCase() as 'SINGLE' | 'DOUBLE'
+    return `${style} ${this.selected}` as const
+  }
+
+  /** 1-19 */
+  get levelList() {
+    return [...Array(19).keys()].map(i => i + 1)
+  }
+
+  /** `style` expected 'single' or 'double' & `level` expected [1-20] */
+  validate({ params }: Pick<Context, 'params'>) {
     const level = parseInt(params.level, 10)
     return (
       ['single', 'double'].includes(params.style) &&
@@ -41,28 +60,16 @@ export default defineComponent({
       level >= 1 &&
       level <= 20
     )
-  },
-  setup() {
-    const { params } = useContext()
+  }
 
-    // Computed
-    const style = computed(() => params.value.style as 'single' | 'double')
-    const selected = computed(() => parseInt(params.value.level, 10))
-    const title = computed(
-      () => `${style.value.toUpperCase()} ${selected.value}`
-    )
+  /* istanbul ignore next */
+  head(): MetaInfo {
+    return { title: this.title }
+  }
 
-    // Data
-    const { charts } = useChartList(
-      style.value === 'double' ? 2 : 1,
-      selected.value
-    )
-
-    // Lifecycle
-    useMeta(() => ({ title: title.value }))
-
-    return { charts, selected, style, title }
-  },
-  head: {},
-})
+  /** Get `charts` from API */
+  async fetch() {
+    this.charts = await searchCharts(this.$http, this.playStyle, this.selected)
+  }
+}
 </script>
