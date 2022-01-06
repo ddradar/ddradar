@@ -8,7 +8,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getClearStatus, getGrooveRadar, getUserInfo } from '~/api/user'
@@ -238,17 +237,19 @@ describe('/users/_id/index.vue', () => {
   describe('fetch()', () => {
     const $http = {}
     beforeEach(() => {
-      mocked(getUserInfo).mockClear()
-      mocked(getGrooveRadar).mockClear()
-      mocked(getClearStatus).mockClear()
+      jest.mocked(getUserInfo).mockClear()
+      jest.mocked(getGrooveRadar).mockClear()
+      jest.mocked(getClearStatus).mockClear()
     })
 
     test('/_id calls getUserInfo(this.$http, _id)', async () => {
       // Arrange
       const $route = { params: { id: 'foo' } }
-      mocked(getUserInfo).mockResolvedValue(user)
-      mocked(getGrooveRadar).mockResolvedValue([{ ...radar, playStyle: 1 }])
-      mocked(getClearStatus).mockResolvedValue(
+      jest.mocked(getUserInfo).mockResolvedValue(user)
+      jest
+        .mocked(getGrooveRadar)
+        .mockResolvedValue([{ ...radar, playStyle: 1 }])
+      jest.mocked(getClearStatus).mockResolvedValue(
         [...Array(19 * (Score.clearLampMap.size + 1)).keys()].map(i => ({
           playStyle: 1,
           level: (i % 19) + 1,
@@ -265,13 +266,13 @@ describe('/users/_id/index.vue', () => {
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
+      expect(jest.mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
       expect(wrapper.vm.$data.user).toBe(user)
     })
     test('sets user null if cause error', async () => {
       // Arrange
       const $route = { params: { id: 'foo' } }
-      mocked(getUserInfo).mockRejectedValue('error')
+      jest.mocked(getUserInfo).mockRejectedValue('error')
       const mocks = { ...templateMocks, $http, $route }
       const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
@@ -279,7 +280,7 @@ describe('/users/_id/index.vue', () => {
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
+      expect(jest.mocked(getUserInfo)).toBeCalledWith($http, $route.params.id)
       expect(wrapper.vm.$data.user).toBeNull()
     })
   })

@@ -8,7 +8,6 @@ import {
   testScores,
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import postChartScore from '.'
@@ -28,7 +27,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
     context.bindingData.id = '00000000000000000000000000000000'
     context.bindingData.style = 1
     context.bindingData.diff = 0
@@ -43,7 +42,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "400 Bad Request" if body is not Score', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     context.bindingData.id = '00000000000000000000000000000000'
     context.bindingData.style = 1
     context.bindingData.diff = 0
@@ -58,7 +57,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if songs is empty', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     context.bindingData.id = '00000000000000000000000000000000'
     context.bindingData.style = 1
     context.bindingData.diff = 0
@@ -78,7 +77,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     '/%s/%i/%i returns "404 Not Found"',
     async (songId, playStyle, difficulty) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       context.bindingData.id = songId
       context.bindingData.style = playStyle
       context.bindingData.diff = difficulty
@@ -94,7 +93,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "400 Bad Request" if body is invalid Score', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     context.bindingData.id = song.id
     context.bindingData.style = song.charts[0].playStyle
     context.bindingData.diff = song.charts[0].difficulty
@@ -123,7 +122,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test(`/${song.id}/1/1 inserts World & Area Top`, async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     context.bindingData.id = song.id
     context.bindingData.style = song.charts[1].playStyle
     context.bindingData.diff = song.charts[1].difficulty
@@ -164,7 +163,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     `/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if body is %p`,
     async (length, score, radar) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       context.bindingData.id = song.id
       context.bindingData.style = song.charts[0].playStyle
       context.bindingData.diff = song.charts[0].difficulty
@@ -192,7 +191,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
     `/${song.id}/1/0 returns "200 OK" with JSON and documents[%i] if user is %p`,
     async (length, user) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(user)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(user)
       context.bindingData.id = song.id
       context.bindingData.style = song.charts[0].playStyle
       context.bindingData.diff = song.charts[0].difficulty
@@ -219,7 +218,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test(`/${course.id}/1/0 returns "200 OK" with JSON and documents if course`, async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     context.bindingData.id = course.id
     context.bindingData.style = course.charts[0].playStyle
     context.bindingData.diff = course.charts[0].difficulty
@@ -248,7 +247,7 @@ describe('POST /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test(`/${song.id}/1/0 returns "200 OK" with JSON and documents if deleted song`, async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     context.bindingData.id = song.id
     context.bindingData.style = song.charts[0].playStyle
     context.bindingData.diff = song.charts[0].difficulty

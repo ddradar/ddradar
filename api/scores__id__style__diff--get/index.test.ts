@@ -1,6 +1,5 @@
 import type { HttpRequest } from '@azure/functions'
 import { privateUser, testScores } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import getChartScore from '.'
@@ -40,13 +39,13 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
 
   beforeEach(() => {
     req.query = {}
-    mocked(getLoginUserInfo).mockResolvedValue(user)
+    jest.mocked(getLoginUserInfo).mockResolvedValue(user)
   })
 
   test('?scope=private returns "404 Not Found" if anonymous', async () => {
     // Arrange
     req.query.scope = 'private'
-    mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
 
     // Act
     const result = await getChartScore(null, req, scores)
@@ -95,7 +94,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     '?scope=%s returns "200 OK" with %p if no authentication',
     async (scope, expected) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
       req.query.scope = scope
 
       // Act

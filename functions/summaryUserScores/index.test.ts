@@ -1,7 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import summaryUserScores from '.'
 
@@ -10,9 +9,11 @@ jest.mock('@ddradar/db')
 describe('/summaryUserScores/index.ts', () => {
   const context = { log: { info: jest.fn() } }
   beforeAll(() =>
-    mocked(generateGrooveRadar).mockImplementation((userId, playStyle) =>
-      Promise.resolve({ userId, playStyle, ...radar, type: 'radar' })
-    )
+    jest
+      .mocked(generateGrooveRadar)
+      .mockImplementation((userId, playStyle) =>
+        Promise.resolve({ userId, playStyle, ...radar, type: 'radar' })
+      )
   )
   beforeEach(() => context.log.info.mockClear())
 
@@ -52,7 +53,7 @@ describe('/summaryUserScores/index.ts', () => {
 
   test('returns [GrooveRadar(SP), GrooveRadar(DP), ClearStatus, ScoreStatus] if scores include user score', async () => {
     // Arrange
-    mocked(fetchClearAndScoreStatus).mockResolvedValueOnce([])
+    jest.mocked(fetchClearAndScoreStatus).mockResolvedValueOnce([])
     const userScore: Database.ScoreSchema = { ...score, radar }
 
     // Act
@@ -66,7 +67,7 @@ describe('/summaryUserScores/index.ts', () => {
   test('returns [GrooveRadar(SP), GrooveRadar(DP), ClearStatus(4), ScoreStatus(4), ClearStatus(8), ScoreStatus(8)] if scores include old & new score', async () => {
     // Arrange
     const detail = { userId: 'foo', playStyle: 1, level: 8, count: 1 } as const
-    mocked(fetchClearAndScoreStatus).mockResolvedValue([
+    jest.mocked(fetchClearAndScoreStatus).mockResolvedValue([
       { ...detail, type: 'clear', clearLamp: 5 },
       { ...detail, type: 'score', rank: 'AA+' },
       { ...detail, type: 'clear', clearLamp: 7 },
@@ -88,7 +89,7 @@ describe('/summaryUserScores/index.ts', () => {
 
   test('returns [GrooveRadar(SP), GrooveRadar(DP)] if scores include only old score', async () => {
     // Arrange
-    mocked(fetchClearAndScoreStatus).mockResolvedValueOnce([])
+    jest.mocked(fetchClearAndScoreStatus).mockResolvedValueOnce([])
     const userScore = { ...score, radar, ttl: 3600 }
 
     // Act

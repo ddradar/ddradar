@@ -2,7 +2,6 @@ import type { Api } from '@ddradar/core'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { getSongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/index.vue'
@@ -165,8 +164,8 @@ describe('pages/songs/_id/index.vue', () => {
     })
   })
   describe('asyncData()', () => {
-    beforeAll(() => mocked(getSongInfo).mockResolvedValue(song))
-    beforeEach(() => mocked(getSongInfo).mockClear())
+    beforeAll(() => jest.mocked(getSongInfo).mockResolvedValue(song))
+    beforeEach(() => jest.mocked(getSongInfo).mockClear())
 
     test(`/${song.id} returns { song }`, async () => {
       // Arrange
@@ -178,7 +177,7 @@ describe('pages/songs/_id/index.vue', () => {
 
       // Assert
       expect(result).toStrictEqual({ song })
-      expect(mocked(getSongInfo)).toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalled()
     })
     test.each([
       ['#10', 1, 0],
@@ -197,7 +196,7 @@ describe('pages/songs/_id/index.vue', () => {
 
         // Assert
         expect(result).toStrictEqual({ song, playStyle, difficulty })
-        expect(mocked(getSongInfo)).not.toBeCalled()
+        expect(jest.mocked(getSongInfo)).not.toBeCalled()
       }
     )
   })

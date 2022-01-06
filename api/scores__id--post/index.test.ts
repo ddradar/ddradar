@@ -8,7 +8,6 @@ import {
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import postSongScores from '.'
@@ -31,17 +30,17 @@ describe('POST /api/v1/scores/{id}', () => {
   const radar = { stream: 29, voltage: 22, air: 5, freeze: 0, chaos: 0 }
 
   beforeAll(async () => {
-    mocked(fetchScore).mockImplementation(
-      (userId, _1, playStyle, difficulty) => {
+    jest
+      .mocked(fetchScore)
+      .mockImplementation((userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
         return Promise.resolve(scores.get(userId) ?? null)
-      }
-    )
+      })
   })
 
   beforeEach(() => {
     req.body = {}
-    mocked(getLoginUserInfo).mockReset()
+    jest.mocked(getLoginUserInfo).mockReset()
   })
 
   test('returns "404 Not Found" if unregistered user', async () => {
@@ -57,7 +56,7 @@ describe('POST /api/v1/scores/{id}', () => {
 
   test('returns "404 Not Found" if songs is empty', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     req.body = [{ playStyle: 1, difficulty: 0, ...score }]
 
     // Act
@@ -74,7 +73,7 @@ describe('POST /api/v1/scores/{id}', () => {
     `/${song.id} returns "404 Not Found" if body is [{ playStyle: %i, difficulty: %i }]`,
     async (playStyle, difficulty) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       req.body = [{ ...score, playStyle, difficulty }]
 
       // Act
@@ -97,7 +96,7 @@ describe('POST /api/v1/scores/{id}', () => {
     },
   ])(`/${song.id} returns "400 Bad Request" if body is [%p]`, async score => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
     req.body = [score]
 
     // Act
@@ -109,7 +108,7 @@ describe('POST /api/v1/scores/{id}', () => {
 
   test(`inserts World & Area Top`, async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
     const expected = {
       playStyle: 1,
       difficulty: 1,
@@ -170,7 +169,7 @@ describe('POST /api/v1/scores/{id}', () => {
     `/${song.id} returns "200 OK" with JSON and documents[%i] if score is %p`,
     async (length, score, radar) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
       req.body = [{ ...score }]
 
       // Act
@@ -197,7 +196,7 @@ describe('POST /api/v1/scores/{id}', () => {
     `/${song.id} returns "200 OK" with JSON and documents[%i] if user is %p and score is MFC`,
     async (length, user) => {
       // Arrange
-      mocked(getLoginUserInfo).mockResolvedValueOnce(user)
+      jest.mocked(getLoginUserInfo).mockResolvedValueOnce(user)
       const expected = {
         playStyle: 1,
         difficulty: 0,
@@ -220,7 +219,7 @@ describe('POST /api/v1/scores/{id}', () => {
 
   test(`/${song.id} updates World Top if topScore is defined`, async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(privateUser)
     const expected = {
       playStyle: 1,
       difficulty: 0,

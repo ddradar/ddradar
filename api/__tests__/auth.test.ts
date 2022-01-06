@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import { canReadUserData, getClientPrincipal, getLoginUserInfo } from '../auth'
 
@@ -67,7 +66,7 @@ describe('auth.ts', () => {
 
     test('({ Unregistered user }) returns null', async () => {
       // Arrange
-      mocked(fetchLoginUser).mockResolvedValueOnce(null)
+      jest.mocked(fetchLoginUser).mockResolvedValueOnce(null)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'unregistered_user' })
@@ -78,7 +77,7 @@ describe('auth.ts', () => {
 
     test('({ Registered user }) returns UserSchema', async () => {
       // Arrange
-      mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
+      jest.mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'registered_user' })

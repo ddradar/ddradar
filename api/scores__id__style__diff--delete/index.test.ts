@@ -3,7 +3,6 @@ import {
   publicUser,
   testScores,
 } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import deleteChartScore from '.'
@@ -17,7 +16,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValue(null)
+    jest.mocked(getLoginUserInfo).mockResolvedValue(null)
 
     // Act
     const result = await deleteChartScore(null, req, [])
@@ -28,7 +27,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if scores does not contain user score', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValue(privateUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
 
     // Act
     const result = await deleteChartScore(null, req, [score])
@@ -39,7 +38,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "204 No Content" if scores contains user score', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
 
     // Act
     const result = await deleteChartScore(null, req, [score])

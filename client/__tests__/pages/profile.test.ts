@@ -1,7 +1,6 @@
 import type { Api } from '@ddradar/core'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { existsUser } from '~/api/user'
@@ -157,7 +156,7 @@ describe('pages/profile.vue', () => {
 
   describe('checkId()', () => {
     const mocks = { $accessor }
-    const existsUserMock = mocked(existsUser)
+    const existsUserMock = jest.mocked(existsUser)
     beforeEach(() => existsUserMock.mockClear())
 
     test.each([
@@ -264,8 +263,8 @@ describe('pages/profile.vue', () => {
   })
 
   describe('save()', () => {
-    const successMock = mocked(popup.success)
-    const dangerMock = mocked(popup.danger)
+    const successMock = jest.mocked(popup.success)
+    const dangerMock = jest.mocked(popup.danger)
     const mocks = { $accessor: { saveUser: jest.fn<any, [any]>() }, $buefy: {} }
     beforeEach(() => {
       successMock.mockClear()

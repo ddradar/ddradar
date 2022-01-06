@@ -1,7 +1,6 @@
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { searchSong } from '~/api/song'
 import SongBySeriesPage from '~/pages/series/_seriesIndex.vue'
@@ -41,8 +40,8 @@ describe('pages/series/_seriesIndex.vue', () => {
   })
   describe('fetch()', () => {
     beforeEach(() => {
-      mocked(searchSong).mockClear()
-      mocked(searchSong).mockResolvedValue([])
+      jest.mocked(searchSong).mockClear()
+      jest.mocked(searchSong).mockResolvedValue([])
     })
 
     test.each(['0', '1', '9', '10', '16'])(
@@ -59,8 +58,8 @@ describe('pages/series/_seriesIndex.vue', () => {
         await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
         // Assert
-        expect(mocked(searchSong)).toBeCalledTimes(1)
-        expect(mocked(searchSong)).toBeCalledWith(
+        expect(jest.mocked(searchSong)).toBeCalledTimes(1)
+        expect(jest.mocked(searchSong)).toBeCalledWith(
           $http,
           undefined,
           parseInt(seriesIndex, 10)

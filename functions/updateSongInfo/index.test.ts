@@ -2,7 +2,6 @@ import type { ItemDefinition } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import updateSongInfo from '.'
 
@@ -29,13 +28,13 @@ describe('/updateSongInfo/index.ts', () => {
     },
   }
   beforeAll(() => {
-    mocked(fetchTotalChartCount).mockResolvedValue(newCounts)
+    jest.mocked(fetchTotalChartCount).mockResolvedValue(newCounts)
   })
   beforeEach(() => {
     context.log.info.mockClear()
     context.log.warn.mockClear()
     context.log.error.mockClear()
-    mocked(fetchList).mockClear()
+    jest.mocked(fetchList).mockClear()
   })
   const validScore: Database.ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
@@ -74,7 +73,7 @@ describe('/updateSongInfo/index.ts', () => {
 
   test('returns { scores: [] } if songs is empty', async () => {
     // Arrange
-    mocked(fetchList).mockResolvedValue([])
+    jest.mocked(fetchList).mockResolvedValue([])
 
     // Act
     const result = await updateSongInfo(context, [], oldCounts)
@@ -88,7 +87,7 @@ describe('/updateSongInfo/index.ts', () => {
 
   test('returns { scores: [emptyScore] } with log.info if scores is empty', async () => {
     // Arrange
-    mocked(fetchList).mockResolvedValue([])
+    jest.mocked(fetchList).mockResolvedValue([])
 
     // Act
     const result = await updateSongInfo(context, [song], [])
@@ -113,7 +112,7 @@ describe('/updateSongInfo/index.ts', () => {
   test('returns  { scores: [emptyScore] } with log.info no need to update Scores', async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mocked(fetchList).mockResolvedValue([validScore, worldScore] as any)
+    jest.mocked(fetchList).mockResolvedValue([validScore, worldScore] as any)
 
     // Act
     const result = await updateSongInfo(context, [song], oldCounts)
@@ -127,7 +126,7 @@ describe('/updateSongInfo/index.ts', () => {
 
   test('returns  { scores: [emptyScore] } with log.warn if maxCombo is invalid', async () => {
     // Arrange
-    mocked(fetchList).mockResolvedValue([
+    jest.mocked(fetchList).mockResolvedValue([
       { ...validScore, maxCombo: 3 },
       worldScore,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -145,7 +144,7 @@ describe('/updateSongInfo/index.ts', () => {
 
   test('returns [emptyScore] with error if invalid Scores', async () => {
     // Arrange
-    mocked(fetchList).mockResolvedValue([
+    jest.mocked(fetchList).mockResolvedValue([
       { ...validScore, playStyle: 2, difficulty: 0 },
       worldScore,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -168,7 +167,7 @@ describe('/updateSongInfo/index.ts', () => {
   ])('returns [score] if Scores info has diff', async score => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    mocked(fetchList).mockResolvedValue([score, worldScore] as any)
+    jest.mocked(fetchList).mockResolvedValue([score, worldScore] as any)
 
     // Act
     const result = await updateSongInfo(context, [song], oldCounts)
@@ -185,7 +184,7 @@ describe('/updateSongInfo/index.ts', () => {
     async score => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mocked(fetchList).mockResolvedValue([score, worldScore] as any)
+      jest.mocked(fetchList).mockResolvedValue([score, worldScore] as any)
 
       // Act
       const result = await updateSongInfo(

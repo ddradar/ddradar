@@ -1,7 +1,6 @@
 import { Gate } from '@ddradar/core'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { postSongScores } from '~/api/score'

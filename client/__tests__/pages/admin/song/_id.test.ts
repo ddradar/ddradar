@@ -3,7 +3,6 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { getSongInfo, postSongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song/_id.vue'
@@ -28,10 +27,10 @@ describe('pages/admin/song/_id.vue', () => {
   // Lifecycle
   describe('asyncData()', () => {
     beforeAll(() =>
-      mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
     )
     const wrapper = shallowMount(SongEditorPage, { localVue })
-    beforeEach(() => mocked(getSongInfo).mockClear())
+    beforeEach(() => jest.mocked(getSongInfo).mockClear())
 
     test('/ returns default charts', async () => {
       // Arrange
@@ -174,9 +173,9 @@ describe('pages/admin/song/_id.vue', () => {
   describe('loadSongInfo()', () => {
     const wrapper = shallowMount(SongEditorPage, { localVue })
     beforeAll(() =>
-      mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
     )
-    beforeEach(() => mocked(getSongInfo).mockClear())
+    beforeEach(() => jest.mocked(getSongInfo).mockClear())
 
     test('does not call API if { isValidSongId: false }', async () => {
       // Arrange
@@ -204,7 +203,7 @@ describe('pages/admin/song/_id.vue', () => {
   describe('saveSongInfo()', () => {
     test('calls $buefy.dialog.confirm', async () => {
       // Arrange
-      mocked(postSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(postSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
       const mocks = { $buefy: { dialog: { confirm: jest.fn() } } }
       const wrapper = shallowMount(SongEditorPage, { localVue, data, mocks })
 

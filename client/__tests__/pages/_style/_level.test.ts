@@ -7,7 +7,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { searchCharts } from '~/api/song'
 import ChartLevelPage from '~/pages/_style/_level.vue'
@@ -92,7 +91,7 @@ describe('/_style/_level.vue', () => {
       '/%s/%s calls searchCharts($http, %i, %i)',
       async (style, level, styleExpected, levelExpected) => {
         // Arrange
-        const apiMock = mocked(searchCharts)
+        const apiMock = jest.mocked(searchCharts)
         const charts: Api.ChartInfo[] = []
         apiMock.mockResolvedValue(charts)
         const $route = { params: { style, level } }

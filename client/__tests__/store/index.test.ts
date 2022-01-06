@@ -2,7 +2,6 @@
  * @jest-environment node
  */
 import type { Api } from '@ddradar/core'
-import { mocked } from 'ts-jest/utils'
 import type { Store } from 'vuex'
 
 import { getClientPrincipal } from '~/api/auth'
@@ -121,8 +120,8 @@ describe('./store/index.ts', () => {
     describe('fetchUser()', () => {
       test('calls getClientPrincipal() API only if clientPrincipal is null', async () => {
         // Arrange
-        const clientMock = mocked(getClientPrincipal)
-        const userMock = mocked(getCurrentUser)
+        const clientMock = jest.mocked(getClientPrincipal)
+        const userMock = jest.mocked(getCurrentUser)
         clientMock.mockResolvedValue(null)
 
         // Act
@@ -136,8 +135,8 @@ describe('./store/index.ts', () => {
       })
       test('calls getCurrentUser() API if clientPrincipal is exists', async () => {
         // Arrange
-        const clientMock = mocked(getClientPrincipal)
-        const userMock = mocked(getCurrentUser)
+        const clientMock = jest.mocked(getClientPrincipal)
+        const userMock = jest.mocked(getCurrentUser)
         clientMock.mockResolvedValue(auth)
         userMock.mockResolvedValue(user)
 
@@ -152,8 +151,8 @@ describe('./store/index.ts', () => {
       })
       test('sets user null if getCurrentUser() API throws error', async () => {
         // Arrange
-        const clientMock = mocked(getClientPrincipal)
-        const userMock = mocked(getCurrentUser)
+        const clientMock = jest.mocked(getClientPrincipal)
+        const userMock = jest.mocked(getCurrentUser)
         clientMock.mockResolvedValue(auth)
         userMock.mockRejectedValue(new Error('error'))
 
@@ -180,7 +179,7 @@ describe('./store/index.ts', () => {
     describe('saveUser()', () => {
       test('calls postUserInfo() API', async () => {
         // Arrange
-        const postMock = mocked(postUserInfo)
+        const postMock = jest.mocked(postUserInfo)
         const updated = { ...user, id: 'bar' }
         postMock.mockResolvedValue(updated)
 

@@ -1,6 +1,5 @@
 import type { Database, Score } from '@ddradar/core'
 import { testScores } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../database'
 import {
@@ -15,13 +14,13 @@ jest.mock('../database')
 
 describe('scores.ts', () => {
   describe('fetchScore', () => {
-    beforeEach(() => mocked(fetchOne).mockClear())
+    beforeEach(() => jest.mocked(fetchOne).mockClear())
 
     test('returns fetchOne() value', async () => {
       // Arrange
       const resource = { ...testScores[2], id: 'foo' }
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mocked(fetchOne).mockResolvedValue(resource as any)
+      jest.mocked(fetchOne).mockResolvedValue(resource as any)
 
       // Act
       const result = await fetchScore('foo', '', 1, 0)
@@ -29,10 +28,10 @@ describe('scores.ts', () => {
       // Assert
       expect(result).toBe(resource)
       const args = [
-        mocked(fetchOne).mock.calls[0][2],
-        mocked(fetchOne).mock.calls[0][3],
-        mocked(fetchOne).mock.calls[0][4],
-        mocked(fetchOne).mock.calls[0][5],
+        jest.mocked(fetchOne).mock.calls[0][2],
+        jest.mocked(fetchOne).mock.calls[0][3],
+        jest.mocked(fetchOne).mock.calls[0][4],
+        jest.mocked(fetchOne).mock.calls[0][5],
       ]
       expect(args).toStrictEqual([
         { condition: 'c.userId = @', value: 'foo' },
@@ -43,7 +42,7 @@ describe('scores.ts', () => {
     })
   })
   describe('fetchScoreList', () => {
-    beforeEach(() => mocked(fetchList).mockClear())
+    beforeEach(() => jest.mocked(fetchList).mockClear())
 
     test('("foo") calls fetchList("Scores", columns, condition, { songName: "ASC" })', async () => {
       // Arrange
@@ -52,14 +51,14 @@ describe('scores.ts', () => {
         'userId' | 'userName' | 'isPublic'
       >[] = []
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      mocked(fetchList).mockResolvedValue(resources as any)
+      jest.mocked(fetchList).mockResolvedValue(resources as any)
 
       // Act
       const result = await fetchScoreList('foo')
 
       // Assert
       expect(result).toBe(resources)
-      expect(mocked(fetchList).mock.calls[0][2][0]).toStrictEqual({
+      expect(jest.mocked(fetchList).mock.calls[0][2][0]).toStrictEqual({
         condition: 'c.userId = @',
         value: 'foo',
       })
@@ -93,14 +92,14 @@ describe('scores.ts', () => {
           'userId' | 'userName' | 'isPublic'
         >[] = []
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        mocked(fetchList).mockResolvedValue(resources as any)
+        jest.mocked(fetchList).mockResolvedValue(resources as any)
 
         // Act
         const result = await fetchScoreList('foo', conditions, includeCourse)
 
         // Assert
         expect(result).toBe(resources)
-        expect(mocked(fetchList).mock.calls[0][2]).toStrictEqual([
+        expect(jest.mocked(fetchList).mock.calls[0][2]).toStrictEqual([
           { condition: 'c.userId = @', value: 'foo' },
           {
             condition:
@@ -115,7 +114,7 @@ describe('scores.ts', () => {
     test('returns ClearStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      mocked(fetchGroupedList).mockReturnValue(
+      jest.mocked(fetchGroupedList).mockReturnValue(
         [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'clear' as const,
@@ -138,7 +137,7 @@ describe('scores.ts', () => {
     test('returns ScoreStatusSchema[]', async () => {
       // Arrange
       const length = 19 * 8
-      mocked(fetchGroupedList).mockReturnValue(
+      jest.mocked(fetchGroupedList).mockReturnValue(
         [...Array(length).keys()].map(i => ({
           userId: 'foo',
           type: 'score' as const,
@@ -171,14 +170,14 @@ describe('scores.ts', () => {
 
     test('returns groove radar', async () => {
       // Arrange
-      mocked(fetchGroupedList).mockResolvedValue([{ ...radar }])
+      jest.mocked(fetchGroupedList).mockResolvedValue([{ ...radar }])
 
       // Act
       const result = await generateGrooveRadar('public_user', 1)
 
       // Assert
       expect(result).toStrictEqual({ ...radar, id: 'radar-public_user-1' })
-      expect(mocked(fetchGroupedList).mock.calls[0][2]).toStrictEqual([
+      expect(jest.mocked(fetchGroupedList).mock.calls[0][2]).toStrictEqual([
         { condition: 'c.userId = @', value: 'public_user' },
         { condition: 'c.playStyle = @', value: 1 },
         { condition: 'IS_DEFINED(c.radar)' },
@@ -190,7 +189,7 @@ describe('scores.ts', () => {
 
     test('returns empty groove radar if scores is empty', async () => {
       // Arrange
-      mocked(fetchGroupedList).mockResolvedValue([])
+      jest.mocked(fetchGroupedList).mockResolvedValue([])
 
       // Act
       const result = await generateGrooveRadar('public_user', 1)
@@ -201,7 +200,7 @@ describe('scores.ts', () => {
         ...emptyRadar,
         id: 'radar-public_user-1',
       })
-      expect(mocked(fetchGroupedList)).toBeCalled()
+      expect(jest.mocked(fetchGroupedList)).toBeCalled()
     })
   })
 })

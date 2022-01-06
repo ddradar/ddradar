@@ -1,6 +1,5 @@
 import type { Context } from '@azure/functions'
 import type { Api } from '@ddradar/core'
-import { mocked } from 'ts-jest/utils'
 
 import { canReadUserData } from '../auth'
 import getGrooveRadar from '.'
@@ -20,7 +19,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(false)
+    jest.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getGrooveRadar(context, req, [], [])
@@ -31,7 +30,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
 
   test(`/ returns "200 OK" with JSON body`, async () => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(true)
+    jest.mocked(canReadUserData).mockReturnValue(true)
 
     // Act
     const result = await getGrooveRadar(context, req, [], radars)
@@ -46,7 +45,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     [2, radars[0]],
   ])(`/%i returns "200 OK" with [%p]`, async (style, expected) => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(true)
+    jest.mocked(canReadUserData).mockReturnValue(true)
     context.bindingData.style = style
 
     // Act

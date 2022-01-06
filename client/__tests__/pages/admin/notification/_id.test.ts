@@ -2,7 +2,6 @@ import { notification } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { getNotificationInfo, postNotification } from '~/api/notification'
 import EditorPage from '~/pages/admin/notification/_id.vue'
@@ -68,8 +67,10 @@ describe('pages/admin/notification/_id.vue', () => {
 
   // LifeCycle
   describe('asyncData()', () => {
-    beforeAll(() => mocked(getNotificationInfo).mockResolvedValue(notification))
-    beforeEach(() => mocked(getNotificationInfo).mockClear())
+    beforeAll(() =>
+      jest.mocked(getNotificationInfo).mockResolvedValue(notification)
+    )
+    beforeEach(() => jest.mocked(getNotificationInfo).mockClear())
 
     test('/ does not call getNotificationInfo()', async () => {
       // Arrange
@@ -81,7 +82,7 @@ describe('pages/admin/notification/_id.vue', () => {
 
       // Assert
       expect(result).toBeUndefined()
-      expect(mocked(getNotificationInfo)).not.toBeCalled()
+      expect(jest.mocked(getNotificationInfo)).not.toBeCalled()
     })
     test(`/${notification.id} calls getNotificationInfo()`, async () => {
       // Arrange
@@ -101,7 +102,7 @@ describe('pages/admin/notification/_id.vue', () => {
         body: notification.body,
         timeStamp: notification.timeStamp,
       })
-      expect(mocked(getNotificationInfo)).toBeCalled()
+      expect(jest.mocked(getNotificationInfo)).toBeCalled()
     })
   })
 
@@ -111,35 +112,38 @@ describe('pages/admin/notification/_id.vue', () => {
     const mocks = { $buefy: {}, $http: {} }
     const wrapper = shallowMount(EditorPage, { localVue, data, mocks })
     beforeEach(() => {
-      mocked(postNotification).mockClear()
-      mocked(popup.success).mockClear()
-      mocked(popup.danger).mockClear()
+      jest.mocked(postNotification).mockClear()
+      jest.mocked(popup.success).mockClear()
+      jest.mocked(popup.danger).mockClear()
     })
 
     test('calls popup.success()', async () => {
       // Arrange
-      mocked(postNotification).mockResolvedValue({ ...notification })
+      jest.mocked(postNotification).mockResolvedValue({ ...notification })
 
       // Act
       // @ts-ignore
       await wrapper.vm.saveNotification()
 
-      expect(mocked(postNotification)).toBeCalled()
-      expect(mocked(popup.success)).toBeCalledWith(mocks.$buefy, 'Success!')
-      expect(mocked(popup.danger)).not.toBeCalled()
+      expect(jest.mocked(postNotification)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalledWith(
+        mocks.$buefy,
+        'Success!'
+      )
+      expect(jest.mocked(popup.danger)).not.toBeCalled()
     })
     test('calls popup.danger()', async () => {
       // Arrange
       const error = 'Error'
-      mocked(postNotification).mockRejectedValue(error)
+      jest.mocked(postNotification).mockRejectedValue(error)
 
       // Act
       // @ts-ignore
       await wrapper.vm.saveNotification()
 
-      expect(mocked(postNotification)).toBeCalled()
-      expect(mocked(popup.success)).not.toBeCalled()
-      expect(mocked(popup.danger)).toBeCalledWith(mocks.$buefy, error)
+      expect(jest.mocked(postNotification)).toBeCalled()
+      expect(jest.mocked(popup.success)).not.toBeCalled()
+      expect(jest.mocked(popup.danger)).toBeCalledWith(mocks.$buefy, error)
     })
   })
 })

@@ -1,5 +1,4 @@
 import { publicUser } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { getLoginUserInfo } from '../auth'
 import getCurrentUser from '.'
@@ -11,7 +10,7 @@ describe('GET /api/v1/user', () => {
 
   test('returns "404 Not Found" if getLoginUserInfo() returns null', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
 
     // Act
     const result = await getCurrentUser(null, req)
@@ -22,7 +21,7 @@ describe('GET /api/v1/user', () => {
 
   test('returns "200 OK" with JSON body if getLoginUserInfo() returns user', async () => {
     // Arrange
-    mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
 
     // Act
     const result = await getCurrentUser(null, req)

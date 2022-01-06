@@ -2,7 +2,6 @@ import { publicUser, testScores } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getUserScores } from '~/api/score'
@@ -56,28 +55,34 @@ describe('/users/_id/scores.vue', () => {
   describe('fetch()', () => {
     const mocks = { $http, $route: { params: { id: 'foo' } } }
     const wrapper = shallowMount(ScorePage, { localVue, i18n, stubs, mocks })
-    beforeEach(() => mocked(getUserInfo).mockClear())
+    beforeEach(() => jest.mocked(getUserInfo).mockClear())
 
     test('/_id calls getUserInfo(this.$http, _id)', async () => {
       // Arrange
-      mocked(getUserInfo).mockResolvedValue(publicUser)
+      jest.mocked(getUserInfo).mockResolvedValue(publicUser)
 
       // Act
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(mocked(getUserInfo)).toBeCalledWith($http, mocks.$route.params.id)
+      expect(jest.mocked(getUserInfo)).toBeCalledWith(
+        $http,
+        mocks.$route.params.id
+      )
       expect(wrapper.vm.$data.user).toBe(publicUser)
     })
     test('sets user null if cause error', async () => {
       // Arrange
-      mocked(getUserInfo).mockRejectedValue('error')
+      jest.mocked(getUserInfo).mockRejectedValue('error')
 
       // Act
       await wrapper.vm.$options.fetch!.call(wrapper.vm, null!)
 
       // Assert
-      expect(mocked(getUserInfo)).toBeCalledWith($http, mocks.$route.params.id)
+      expect(jest.mocked(getUserInfo)).toBeCalledWith(
+        $http,
+        mocks.$route.params.id
+      )
       expect(wrapper.vm.$data.user).toBeNull()
     })
   })
@@ -87,7 +92,7 @@ describe('/users/_id/scores.vue', () => {
     const mocks = { $http }
     const wrapper = shallowMount(ScorePage, { localVue, i18n, stubs, mocks })
     const scores = [{ ...testScores[0], isCourse: false }]
-    beforeEach(() => mocked(getUserScores).mockClear())
+    beforeEach(() => jest.mocked(getUserScores).mockClear())
 
     test.each([
       [{}, undefined, undefined, undefined, undefined, undefined],
@@ -103,7 +108,7 @@ describe('/users/_id/scores.vue', () => {
       `%p calls getUserScores($http, ${publicUser.id}, %p, %p, %p, %p, %p)`,
       async (data, playStyle, difficulty, level, clearLamp, rank) => {
         // Arrange
-        mocked(getUserScores).mockResolvedValue(scores)
+        jest.mocked(getUserScores).mockResolvedValue(scores)
         wrapper.setData({ user: publicUser, ...data })
 
         // Act
@@ -112,7 +117,7 @@ describe('/users/_id/scores.vue', () => {
 
         // Assert
         expect(wrapper.vm.$data.scores).toBe(scores)
-        expect(mocked(getUserScores)).toBeCalledWith(
+        expect(jest.mocked(getUserScores)).toBeCalledWith(
           $http,
           publicUser.id,
           playStyle,
@@ -125,7 +130,7 @@ describe('/users/_id/scores.vue', () => {
     )
     test('sets scores [] if getUserScores() throws error', async () => {
       // Arrange
-      mocked(getUserScores).mockRejectedValue('error')
+      jest.mocked(getUserScores).mockRejectedValue('error')
       wrapper.setData({ user: publicUser, scores })
 
       // Act
@@ -134,7 +139,7 @@ describe('/users/_id/scores.vue', () => {
 
       // Assert
       expect(wrapper.vm.$data.scores).toHaveLength(0)
-      expect(mocked(getUserScores)).toBeCalled()
+      expect(jest.mocked(getUserScores)).toBeCalled()
     })
   })
 })

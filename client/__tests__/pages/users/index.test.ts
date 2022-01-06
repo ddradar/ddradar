@@ -6,7 +6,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getUserList } from '~/api/user'
@@ -65,8 +64,8 @@ describe('pages/users/index.vue', () => {
     )
   })
   describe('search()', () => {
-    const dangerMock = mocked(danger)
-    const apiMock = mocked(getUserList)
+    const dangerMock = jest.mocked(danger)
+    const apiMock = jest.mocked(getUserList)
     const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
     const mocks = { $buefy: {}, $http: {} }
     const d = { name: 'foo', area: 13, code: 10000000 }
