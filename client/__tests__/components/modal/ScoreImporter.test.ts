@@ -108,7 +108,7 @@ describe('/components/modal/ScoreImporter.vue', () => {
     let wrapper: Wrapper<ScoreImporter>
     const $http = { $post: jest.fn() }
     const $buefy = { notification: {} }
-    const postMock = mocked(postSongScores)
+    const postMock = jest.mocked(postSongScores)
     beforeEach(() => {
       postMock.mockClear()
       wrapper = shallowMount(ScoreImporter, {
@@ -125,14 +125,14 @@ describe('/components/modal/ScoreImporter.vue', () => {
       await wrapper.vm.importScore()
 
       // Assert
-      expect(mocked(Gate.musicDetailToScore)).not.toBeCalled()
+      expect(jest.mocked(Gate.musicDetailToScore)).not.toBeCalled()
       expect(postMock).not.toBeCalled()
     })
     test('calls "Post Song Scores" API', async () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const convertMock = mocked(Gate.musicDetailToScore)
+      const convertMock = jest.mocked(Gate.musicDetailToScore)
       convertMock.mockReturnValue(score)
       // @ts-ignore
       wrapper.vm.$parent.close = jest.fn()
@@ -148,8 +148,8 @@ describe('/components/modal/ScoreImporter.vue', () => {
       // Arrange
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const warningMock = mocked(popup.warning)
-      const convertMock = mocked(Gate.musicDetailToScore)
+      const warningMock = jest.mocked(popup.warning)
+      const convertMock = jest.mocked(Gate.musicDetailToScore)
       const error = new Error('invalid')
       convertMock.mockImplementation(() => {
         throw error
@@ -168,8 +168,8 @@ describe('/components/modal/ScoreImporter.vue', () => {
       const errorMessage = '500 Server Error'
       wrapper.setData({ sourceCode: '<html></html>', loading: false })
       await wrapper.vm.$nextTick()
-      const dangerMock = mocked(popup.danger)
-      const convertMock = mocked(Gate.musicDetailToScore)
+      const dangerMock = jest.mocked(popup.danger)
+      const convertMock = jest.mocked(Gate.musicDetailToScore)
       convertMock.mockReturnValue(score)
       const error = new Error(errorMessage)
       postMock.mockRejectedValue(error)
