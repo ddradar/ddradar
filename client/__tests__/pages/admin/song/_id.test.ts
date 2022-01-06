@@ -40,7 +40,7 @@ describe('pages/admin/song/_id.vue', () => {
       const result: any = await wrapper.vm.$options.asyncData!(ctx)
 
       // Assert
-      expect(mocked(getSongInfo)).not.toBeCalled()
+      expect(jest.mocked(getSongInfo)).not.toBeCalled()
       expect(result.charts).toHaveLength(7)
     })
     test(`/${songInfo.id} returns songInfo`, async () => {
@@ -51,7 +51,7 @@ describe('pages/admin/song/_id.vue', () => {
       const result: any = await wrapper.vm.$options.asyncData!(ctx)
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalled()
       expect(result).toStrictEqual({
         id: songInfo.id,
         name: songInfo.name,
@@ -186,7 +186,7 @@ describe('pages/admin/song/_id.vue', () => {
       await wrapper.vm.loadSongInfo()
 
       // Assert
-      expect(mocked(getSongInfo)).not.toBeCalled()
+      expect(jest.mocked(getSongInfo)).not.toBeCalled()
     })
     test('calls getSongInfo()', async () => {
       // Arrange
@@ -197,7 +197,7 @@ describe('pages/admin/song/_id.vue', () => {
       await wrapper.vm.loadSongInfo()
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalled()
     })
   })
   describe('saveSongInfo()', () => {
@@ -215,8 +215,8 @@ describe('pages/admin/song/_id.vue', () => {
       await onConfirm()
 
       // Assert
-      expect(mocked(postSongInfo)).toBeCalled()
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(postSongInfo)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
     })
   })
 })
