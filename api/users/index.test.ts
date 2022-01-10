@@ -5,7 +5,6 @@ import {
   privateUser,
   publicUser,
 } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
 import getUserList from '.'
@@ -42,7 +41,7 @@ describe('GET /api/v1/users', () => {
 
   test('returns 3 users if logged in privateUser', async () => {
     // Arrange
-    mocked(getClientPrincipal).mockReturnValueOnce({
+    jest.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: 'user',
       userId: privateUser.loginId,

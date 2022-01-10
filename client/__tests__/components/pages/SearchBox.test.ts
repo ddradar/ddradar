@@ -2,7 +2,6 @@ import type { Api } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { searchSong } from '~/api/song'
@@ -93,8 +92,8 @@ describe('/components/pages/SearchBox.vue', () => {
 
   // LifeCycle
   describe('fetch()', () => {
-    mocked(searchSong).mockResolvedValue([{ ...testSongData }])
-    beforeEach(() => mocked(searchSong).mockClear())
+    jest.mocked(searchSong).mockResolvedValue([{ ...testSongData }])
+    beforeEach(() => jest.mocked(searchSong).mockClear())
 
     test('sets songList', async () => {
       // Arrange
@@ -106,7 +105,7 @@ describe('/components/pages/SearchBox.vue', () => {
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(mocked(searchSong)).toBeCalledWith(mocks.$http)
+      expect(jest.mocked(searchSong)).toBeCalledWith(mocks.$http)
       expect(wrapper.vm.$data.songList).toStrictEqual([
         {
           id: testSongData.id,

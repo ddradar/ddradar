@@ -12,7 +12,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getChartScore } from '~/api/score'
@@ -71,13 +70,13 @@ describe('/components/shared/ScoreBoard.vue', () => {
   const options = { localVue, propsData, mocks, i18n }
   let wrapper: ReturnType<typeof shallowMount>
   beforeAll(() =>
-    mocked(Database.isAreaUser).mockImplementation(u =>
-      ['0', '13'].includes(u.id)
-    )
+    jest
+      .mocked(Database.isAreaUser)
+      .mockImplementation(u => ['0', '13'].includes(u.id))
   )
   beforeEach(() => {
     wrapper = shallowMount(ScoreBoard, options)
-    mocked(Song.isDeletedOnGate).mockReturnValue(false)
+    jest.mocked(Song.isDeletedOnGate).mockReturnValue(false)
   })
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
@@ -142,7 +141,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
     })
     test('not renders import button if deleted song', async () => {
       // Arrange
-      mocked(Song.isDeletedOnGate).mockReturnValueOnce(true)
+      jest.mocked(Song.isDeletedOnGate).mockReturnValueOnce(true)
       const mocks = { $accessor, $fetchState: { pending: false } }
       const options = { localVue, propsData, mocks, stubs, i18n }
 
@@ -157,8 +156,8 @@ describe('/components/shared/ScoreBoard.vue', () => {
 
   // Lifecycle
   describe('fetch()', () => {
-    mocked(getChartScore).mockResolvedValue(scores as Api.ScoreInfo[])
-    beforeEach(() => mocked(getChartScore).mockClear())
+    jest.mocked(getChartScore).mockResolvedValue(scores as Api.ScoreInfo[])
+    beforeEach(() => jest.mocked(getChartScore).mockClear())
 
     test('{ fetchAllData: false } calls getChartScore(medium)', async () => {
       // Arrange - Act
@@ -166,7 +165,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(mocked(getChartScore)).toBeCalledWith(
+      expect(jest.mocked(getChartScore)).toBeCalledWith(
         mocks.$http,
         info.id,
         chart.playStyle,
@@ -181,7 +180,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
       await wrapper.vm.$options.fetch?.call(wrapper.vm)
 
       // Assert
-      expect(mocked(getChartScore)).toBeCalledWith(
+      expect(jest.mocked(getChartScore)).toBeCalledWith(
         mocks.$http,
         info.id,
         chart.playStyle,
@@ -245,7 +244,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
     })
   })
   describe('fetchAllScores()', () => {
-    mocked(getChartScore).mockResolvedValue(scores as Api.ScoreInfo[])
+    jest.mocked(getChartScore).mockResolvedValue(scores as Api.ScoreInfo[])
     beforeEach(() => mocks.$fetch.mockClear())
 
     test('sets { fetchAllData = true } and calls $fetch()', () => {

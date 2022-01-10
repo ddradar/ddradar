@@ -1,7 +1,6 @@
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getCourseList } from '~/api/course'
@@ -51,7 +50,7 @@ describe('pages/nonstop/_series/index.vue', () => {
   })
   describe('fetch()', () => {
     const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-    const apiMock = mocked(getCourseList)
+    const apiMock = jest.mocked(getCourseList)
     beforeEach(() => {
       apiMock.mockClear()
       apiMock.mockResolvedValue([])

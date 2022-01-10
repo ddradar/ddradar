@@ -1,7 +1,6 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, shallowMount } from '@vue/test-utils'
-import { mocked } from 'ts-jest/utils'
 
 import { getCourseInfo } from '~/api/course'
 import CourseDetailPage from '~/pages/courses/_id/index.vue'
@@ -49,7 +48,7 @@ describe('pages/courses/_id/index.vue', () => {
     )
   })
   describe('asyncData()', () => {
-    const apiMock = mocked(getCourseInfo)
+    const apiMock = jest.mocked(getCourseInfo)
     beforeEach(() => {
       apiMock.mockClear()
       apiMock.mockResolvedValue(course)

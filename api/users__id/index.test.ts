@@ -1,5 +1,4 @@
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
-import { mocked } from 'ts-jest/utils'
 
 import { canReadUserData } from '../auth'
 import getUserInfo from '.'
@@ -11,7 +10,7 @@ describe('GET /api/v1/users/{id}', () => {
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(false)
+    jest.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getUserInfo(null, req, [])
@@ -40,7 +39,7 @@ describe('GET /api/v1/users/{id}', () => {
     ],
   ])(`%p returns "200 OK" with %p`, async (user, expected) => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(true)
+    jest.mocked(canReadUserData).mockReturnValue(true)
 
     // Act
     const result = await getUserInfo(null, req, [user])

@@ -3,7 +3,6 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
 import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 
 import { getSongInfo, postSongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song/_id.vue'
@@ -28,10 +27,10 @@ describe('pages/admin/song/_id.vue', () => {
   // Lifecycle
   describe('asyncData()', () => {
     beforeAll(() =>
-      mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
     )
     const wrapper = shallowMount(SongEditorPage, { localVue })
-    beforeEach(() => mocked(getSongInfo).mockClear())
+    beforeEach(() => jest.mocked(getSongInfo).mockClear())
 
     test('/ returns default charts', async () => {
       // Arrange
@@ -41,7 +40,7 @@ describe('pages/admin/song/_id.vue', () => {
       const result: any = await wrapper.vm.$options.asyncData!(ctx)
 
       // Assert
-      expect(mocked(getSongInfo)).not.toBeCalled()
+      expect(jest.mocked(getSongInfo)).not.toBeCalled()
       expect(result.charts).toHaveLength(7)
     })
     test(`/${songInfo.id} returns songInfo`, async () => {
@@ -52,7 +51,7 @@ describe('pages/admin/song/_id.vue', () => {
       const result: any = await wrapper.vm.$options.asyncData!(ctx)
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalled()
       expect(result).toStrictEqual({
         id: songInfo.id,
         name: songInfo.name,
@@ -174,9 +173,9 @@ describe('pages/admin/song/_id.vue', () => {
   describe('loadSongInfo()', () => {
     const wrapper = shallowMount(SongEditorPage, { localVue })
     beforeAll(() =>
-      mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(getSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
     )
-    beforeEach(() => mocked(getSongInfo).mockClear())
+    beforeEach(() => jest.mocked(getSongInfo).mockClear())
 
     test('does not call API if { isValidSongId: false }', async () => {
       // Arrange
@@ -187,7 +186,7 @@ describe('pages/admin/song/_id.vue', () => {
       await wrapper.vm.loadSongInfo()
 
       // Assert
-      expect(mocked(getSongInfo)).not.toBeCalled()
+      expect(jest.mocked(getSongInfo)).not.toBeCalled()
     })
     test('calls getSongInfo()', async () => {
       // Arrange
@@ -198,13 +197,13 @@ describe('pages/admin/song/_id.vue', () => {
       await wrapper.vm.loadSongInfo()
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalled()
     })
   })
   describe('saveSongInfo()', () => {
     test('calls $buefy.dialog.confirm', async () => {
       // Arrange
-      mocked(postSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
+      jest.mocked(postSongInfo).mockResolvedValue({ ...songInfo, nameIndex: 2 })
       const mocks = { $buefy: { dialog: { confirm: jest.fn() } } }
       const wrapper = shallowMount(SongEditorPage, { localVue, data, mocks })
 
@@ -216,8 +215,8 @@ describe('pages/admin/song/_id.vue', () => {
       await onConfirm()
 
       // Assert
-      expect(mocked(postSongInfo)).toBeCalled()
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(postSongInfo)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
     })
   })
 })

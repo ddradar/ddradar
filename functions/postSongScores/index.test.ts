@@ -9,7 +9,6 @@ import {
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import postSongScores from '.'
 
@@ -30,12 +29,12 @@ describe('POST /api/v1/scores', () => {
   }
 
   beforeAll(async () => {
-    mocked(fetchScore).mockImplementation(
-      (userId, _1, playStyle, difficulty) => {
+    jest
+      .mocked(fetchScore)
+      .mockImplementation((userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
         return Promise.resolve(scores.get(userId) ?? null)
-      }
-    )
+      })
   })
 
   beforeEach(() => (req.body = {}))

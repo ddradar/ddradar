@@ -11,7 +11,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getCourseInfo } from '~/api/course'
@@ -91,13 +90,13 @@ describe('/components/pages/users/ScoreList.vue', () => {
       $http: {},
     }
     beforeAll(() => {
-      mocked(getSongInfo).mockResolvedValue(testSongData)
-      mocked(getCourseInfo).mockResolvedValue(testCourseData)
+      jest.mocked(getSongInfo).mockResolvedValue(testSongData)
+      jest.mocked(getCourseInfo).mockResolvedValue(testCourseData)
     })
     beforeEach(() => {
       mocks.$buefy.modal.open.mockClear()
-      mocked(getSongInfo).mockClear()
-      mocked(getCourseInfo).mockClear()
+      jest.mocked(getSongInfo).mockClear()
+      jest.mocked(getCourseInfo).mockClear()
     })
 
     test('(isCourse: false) calls getSongInfo()', async () => {
@@ -115,8 +114,11 @@ describe('/components/pages/users/ScoreList.vue', () => {
       )
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalledWith(mocks.$http, testSongData.id)
-      expect(mocked(getCourseInfo)).not.toBeCalled()
+      expect(jest.mocked(getSongInfo)).toBeCalledWith(
+        mocks.$http,
+        testSongData.id
+      )
+      expect(jest.mocked(getCourseInfo)).not.toBeCalled()
       expect(mocks.$buefy.modal.open).toBeCalled()
     })
 
@@ -135,8 +137,8 @@ describe('/components/pages/users/ScoreList.vue', () => {
       )
 
       // Assert
-      expect(mocked(getSongInfo)).not.toBeCalled()
-      expect(mocked(getCourseInfo)).toBeCalledWith(
+      expect(jest.mocked(getSongInfo)).not.toBeCalled()
+      expect(jest.mocked(getCourseInfo)).toBeCalledWith(
         mocks.$http,
         testCourseData.id
       )

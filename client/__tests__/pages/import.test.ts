@@ -7,7 +7,6 @@ import {
   Wrapper,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { postSongScores } from '~/api/score'
@@ -96,7 +95,7 @@ describe('pages/import.vue', () => {
       await wrapper.vm.copyToClipboard()
 
       expect(navigator.clipboard.writeText).toBeCalledWith(expected)
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
     })
   })
   describe('importSkillAttackScores()', () => {
@@ -137,20 +136,20 @@ describe('pages/import.vue', () => {
     const scoreList: ReturnType<typeof scoreTexttoScoreList> = {
       '691': scoreData,
     }
-    const postMock = mocked(postSongScores)
+    const postMock = jest.mocked(postSongScores)
     beforeEach(() => {
       postMock.mockClear()
-      mocked(scoreTexttoScoreList).mockClear()
-      mocked(popup.success).mockClear()
-      mocked(popup.warning).mockClear()
-      mocked(popup.danger).mockClear()
+      jest.mocked(scoreTexttoScoreList).mockClear()
+      jest.mocked(popup.success).mockClear()
+      jest.mocked(popup.warning).mockClear()
+      jest.mocked(popup.danger).mockClear()
     })
 
     test('calls "Post Song Scores" API', async () => {
       // Arrange
       wrapper.setData({ file: {} })
       await wrapper.vm.$nextTick()
-      mocked(scoreTexttoScoreList).mockReturnValue(scoreList)
+      jest.mocked(scoreTexttoScoreList).mockReturnValue(scoreList)
 
       // Act
       // @ts-ignore
@@ -158,35 +157,35 @@ describe('pages/import.vue', () => {
 
       // Assert
       expect(postMock).toBeCalledWith($http, '691', scoreList['691'])
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
     })
     test('does not call scoreTexttoScoreList() if file is empty', async () => {
       // Arrange
       wrapper.setData({ file: null })
       await wrapper.vm.$nextTick()
-      mocked(scoreTexttoScoreList).mockReturnValue({ foo: [] })
+      jest.mocked(scoreTexttoScoreList).mockReturnValue({ foo: [] })
 
       // Act
       // @ts-ignore
       await wrapper.vm.importSkillAttackScores()
 
       // Assert
-      expect(mocked(scoreTexttoScoreList)).not.toBeCalled()
+      expect(jest.mocked(scoreTexttoScoreList)).not.toBeCalled()
       expect(postMock).not.toBeCalled()
     })
     test('does not call "Post Song Scores" API if scores is empty', async () => {
       // Arrange
       wrapper.setData({ file: {} })
       await wrapper.vm.$nextTick()
-      mocked(scoreTexttoScoreList).mockReturnValue({ foo: [] })
+      jest.mocked(scoreTexttoScoreList).mockReturnValue({ foo: [] })
 
       // Act
       // @ts-ignore
       await wrapper.vm.importSkillAttackScores()
 
       // Assert
-      expect(mocked(scoreTexttoScoreList)).toBeCalled()
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(scoreTexttoScoreList)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
       expect(postMock).not.toBeCalled()
     })
     test.each([
@@ -196,7 +195,7 @@ describe('pages/import.vue', () => {
       '{ locale: "%s" } warns "%s" if sourceCode is invalid',
       async (locale, message) => {
         // Arrange
-        mocked(scoreTexttoScoreList).mockImplementation(() => {
+        jest.mocked(scoreTexttoScoreList).mockImplementation(() => {
           throw new Error('invalid')
         })
         const wrapper = shallowMount(ImportPage, {
@@ -212,14 +211,14 @@ describe('pages/import.vue', () => {
         await wrapper.vm.importSkillAttackScores()
 
         // Assert
-        expect(mocked(popup.warning)).toBeCalledWith($buefy, message)
+        expect(jest.mocked(popup.warning)).toBeCalledWith($buefy, message)
       }
     )
     test('calls popup.danger() if "Post Song Scores" API throws error', async () => {
       // Arrange
       wrapper.setData({ file: {} })
       await wrapper.vm.$nextTick()
-      mocked(scoreTexttoScoreList).mockReturnValue(scoreList)
+      jest.mocked(scoreTexttoScoreList).mockReturnValue(scoreList)
       postMock.mockRejectedValue('Error')
 
       // Act
@@ -228,8 +227,8 @@ describe('pages/import.vue', () => {
 
       // Assert
       expect(postMock).toBeCalledWith($http, '691', scoreList['691'])
-      expect(mocked(popup.success)).not.toBeCalled()
-      expect(mocked(popup.danger)).toBeCalledWith($buefy, 'Error')
+      expect(jest.mocked(popup.success)).not.toBeCalled()
+      expect(jest.mocked(popup.danger)).toBeCalledWith($buefy, 'Error')
     })
   })
 })

@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
-import { mocked } from 'ts-jest/utils'
 
 import { getClientPrincipal } from '../auth'
 import postUserInfo from '.'
@@ -20,9 +19,9 @@ describe('POST /api/v1/user', () => {
     isPublic: false,
   } as const
   beforeAll(() => {
-    mocked(Database.isUserSchema).mockReturnValue(true)
-    mocked(fetchUser).mockResolvedValue(null)
-    mocked(fetchLoginUser).mockResolvedValue(null)
+    jest.mocked(Database.isUserSchema).mockReturnValue(true)
+    jest.mocked(fetchUser).mockResolvedValue(null)
+    jest.mocked(fetchLoginUser).mockResolvedValue(null)
   })
   beforeEach(() => {
     req.body = {}
@@ -40,13 +39,13 @@ describe('POST /api/v1/user', () => {
   test('returns "400 Bad Request" if body is not UserSchema', async () => {
     // Arrange
     req.body = {}
-    mocked(getClientPrincipal).mockReturnValue({
+    jest.mocked(getClientPrincipal).mockReturnValue({
       identityProvider: 'github',
       userDetails: 'login_user',
       userId: '1',
       userRoles: ['anonymous', 'authenticated'],
     })
-    mocked(Database.isUserSchema).mockReturnValueOnce(false)
+    jest.mocked(Database.isUserSchema).mockReturnValueOnce(false)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -66,7 +65,7 @@ describe('POST /api/v1/user', () => {
       isPublic: true,
     }
     req.body = body
-    mocked(getClientPrincipal).mockReturnValueOnce({
+    jest.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: body.id,
       userId: '1',
@@ -99,13 +98,13 @@ describe('POST /api/v1/user', () => {
         ...diff,
       }
       req.body = body
-      mocked(getClientPrincipal).mockReturnValueOnce({
+      jest.mocked(getClientPrincipal).mockReturnValueOnce({
         identityProvider: 'github',
         userDetails: userToBeUpdated.id,
         userId: userToBeUpdated.loginId,
         userRoles: ['anonymous', 'authenticated'],
       })
-      mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+      jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
       // Act
       const result = await postUserInfo(null, req)
@@ -128,13 +127,13 @@ describe('POST /api/v1/user', () => {
       area: userToBeUpdated.area,
       isPublic: userToBeUpdated.isPublic,
     }
-    mocked(getClientPrincipal).mockReturnValueOnce({
+    jest.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: 'other_user',
       userId: '3',
       userRoles: ['anonymous', 'authenticated'],
     })
-    mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+    jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -151,13 +150,13 @@ describe('POST /api/v1/user', () => {
       area: userToBeUpdated.area,
       isPublic: userToBeUpdated.isPublic,
     }
-    mocked(getClientPrincipal).mockReturnValueOnce({
+    jest.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: userToBeUpdated.id,
       userId: userToBeUpdated.loginId,
       userRoles: ['anonymous', 'authenticated'],
     })
-    mocked(fetchLoginUser).mockResolvedValueOnce(userToBeUpdated)
+    jest.mocked(fetchLoginUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -175,13 +174,13 @@ describe('POST /api/v1/user', () => {
       isPublic: userToBeUpdated.isPublic,
     }
     req.body = { ...expected, area: 14 }
-    mocked(getClientPrincipal).mockReturnValueOnce({
+    jest.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: userToBeUpdated.id,
       userId: userToBeUpdated.loginId,
       userRoles: ['anonymous', 'authenticated'],
     })
-    mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+    jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)

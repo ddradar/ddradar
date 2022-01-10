@@ -1,6 +1,5 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 import fetchMock from 'jest-fetch-mock'
-import { mocked } from 'ts-jest/utils'
 
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
@@ -10,7 +9,7 @@ jest.mock('../skill-attack')
 describe('/importSkillAttrackId/index.ts', () => {
   const context = { log: { error: jest.fn(), info: jest.fn() } }
   const uri = 'http://skillattack.com/sa4/data/master_music.txt'
-  const mapMock = mocked(masterMusicToMap)
+  const mapMock = jest.mocked(masterMusicToMap)
   beforeEach(() => {
     fetchMock.mockClear()
     mapMock.mockClear()

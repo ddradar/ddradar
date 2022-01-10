@@ -2,7 +2,6 @@ import { Api, Score } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
@@ -39,7 +38,7 @@ describe('/components/modal/ScoreEditor.vue', () => {
   const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   const $parent = { close: jest.fn() }
   beforeEach(() => {
-    mocked(getChartScore).mockResolvedValue([chartScore])
+    jest.mocked(getChartScore).mockResolvedValue([chartScore])
     wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n })
   })
 
@@ -61,7 +60,7 @@ describe('/components/modal/ScoreEditor.vue', () => {
 
   // Computed
   describe('get rank()', () => {
-    beforeEach(() => mocked(Score.getDanceLevel).mockClear())
+    beforeEach(() => jest.mocked(Score.getDanceLevel).mockClear())
     test('{ isFailed: true } returns "E"', () => {
       // Arrange - Act
       wrapper.setData({ isFailed: true })
@@ -70,13 +69,13 @@ describe('/components/modal/ScoreEditor.vue', () => {
 
       // Assert
       expect(rank).toBe('E')
-      expect(mocked(Score.getDanceLevel)).not.toBeCalled()
+      expect(jest.mocked(Score.getDanceLevel)).not.toBeCalled()
     })
     test('{ isFailed: false } returns getDanceLevel()', () => {
       // Arrange
       const score = 800000
-      mocked(Score.getDanceLevel).mockClear()
-      mocked(Score.getDanceLevel).mockReturnValue('A')
+      jest.mocked(Score.getDanceLevel).mockClear()
+      jest.mocked(Score.getDanceLevel).mockReturnValue('A')
 
       // Act
       wrapper.setData({ isFailed: false, score })
@@ -85,7 +84,7 @@ describe('/components/modal/ScoreEditor.vue', () => {
 
       // Assert
       expect(rank).toBe('A')
-      expect(mocked(Score.getDanceLevel)).toBeCalledWith(score)
+      expect(jest.mocked(Score.getDanceLevel)).toBeCalledWith(score)
     })
   })
 
@@ -108,13 +107,13 @@ describe('/components/modal/ScoreEditor.vue', () => {
   })
   describe('calcScore', () => {
     beforeEach(() => {
-      mocked(Score.setValidScoreFromChart).mockReset()
-      mocked(popup.warning).mockClear()
+      jest.mocked(Score.setValidScoreFromChart).mockReset()
+      jest.mocked(popup.warning).mockClear()
     })
 
     test('calls setValidScoreFromChart()', () => {
       // Arrange
-      mocked(Score.setValidScoreFromChart).mockReturnValue({
+      jest.mocked(Score.setValidScoreFromChart).mockReturnValue({
         score: 0,
         exScore: 0,
         clearLamp: 0,
@@ -127,11 +126,11 @@ describe('/components/modal/ScoreEditor.vue', () => {
       wrapper.vm.calcScore()
 
       // Assert
-      expect(mocked(Score.setValidScoreFromChart)).toBeCalled()
+      expect(jest.mocked(Score.setValidScoreFromChart)).toBeCalled()
     })
     test('calls popup.warning() if setValidScoreFromChart() throws error', () => {
       // Arrange
-      mocked(Score.setValidScoreFromChart).mockImplementation(() => {
+      jest.mocked(Score.setValidScoreFromChart).mockImplementation(() => {
         throw new Error('Invalid Score')
       })
 
@@ -140,15 +139,15 @@ describe('/components/modal/ScoreEditor.vue', () => {
       wrapper.vm.calcScore()
 
       // Assert
-      expect(mocked(Score.setValidScoreFromChart)).toBeCalled()
-      expect(mocked(popup.warning)).toBeCalled()
+      expect(jest.mocked(Score.setValidScoreFromChart)).toBeCalled()
+      expect(jest.mocked(popup.warning)).toBeCalled()
     })
   })
   describe('saveScore', () => {
     beforeEach(() => {
-      mocked(postChartScore).mockClear()
-      mocked(popup.success).mockClear()
-      mocked(popup.danger).mockClear()
+      jest.mocked(postChartScore).mockClear()
+      jest.mocked(popup.success).mockClear()
+      jest.mocked(popup.danger).mockClear()
       $parent.close.mockClear()
       // @ts-ignore
       wrapper.vm.$parent = $parent
@@ -159,22 +158,22 @@ describe('/components/modal/ScoreEditor.vue', () => {
       await wrapper.vm.saveScore()
 
       // Assert
-      expect(mocked(postChartScore)).toBeCalled()
-      expect(mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(postChartScore)).toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
       expect($parent.close).toBeCalled()
     })
     test('calls popup.danger() if postChartScore() throws error and close', async () => {
       // Arrange
-      mocked(postChartScore).mockRejectedValueOnce('Error')
+      jest.mocked(postChartScore).mockRejectedValueOnce('Error')
 
       // Act
       // @ts-ignore
       await wrapper.vm.saveScore()
 
       // Assert
-      expect(mocked(postChartScore)).toBeCalled()
-      expect(mocked(popup.success)).not.toBeCalled()
-      expect(mocked(popup.danger)).toBeCalled()
+      expect(jest.mocked(postChartScore)).toBeCalled()
+      expect(jest.mocked(popup.success)).not.toBeCalled()
+      expect(jest.mocked(popup.danger)).toBeCalled()
       expect($parent.close).toBeCalled()
     })
   })
@@ -183,9 +182,9 @@ describe('/components/modal/ScoreEditor.vue', () => {
     const mocks = { $buefy: { dialog: { confirm: jest.fn() } }, $http }
     let wrapper: Wrapper<ScoreEditor>
     beforeEach(() => {
-      mocked(deleteChartScore).mockClear()
-      mocked(popup.success).mockClear()
-      mocked(popup.danger).mockClear()
+      jest.mocked(deleteChartScore).mockClear()
+      jest.mocked(popup.success).mockClear()
+      jest.mocked(popup.danger).mockClear()
       $parent.close.mockClear()
       wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n, mocks })
       // @ts-ignore
@@ -200,19 +199,19 @@ describe('/components/modal/ScoreEditor.vue', () => {
       await onConfirm()
 
       // Assert
-      expect(mocked(deleteChartScore)).toBeCalledWith(
+      expect(jest.mocked(deleteChartScore)).toBeCalledWith(
         $http,
         propsData.songId,
         propsData.playStyle,
         propsData.difficulty
       )
-      expect(mocked(popup.success)).toBeCalled()
-      expect(mocked(popup.danger)).not.toBeCalled()
+      expect(jest.mocked(popup.success)).toBeCalled()
+      expect(jest.mocked(popup.danger)).not.toBeCalled()
       expect($parent.close).toBeCalled()
     })
     test('calls popup.danger() if deleteChartScore() throws error', async () => {
       // Arrange
-      mocked(deleteChartScore).mockRejectedValueOnce('Error')
+      jest.mocked(deleteChartScore).mockRejectedValueOnce('Error')
 
       // Act
       // @ts-ignore
@@ -222,14 +221,14 @@ describe('/components/modal/ScoreEditor.vue', () => {
       await onConfirm()
 
       // Assert
-      expect(mocked(deleteChartScore)).toBeCalledWith(
+      expect(jest.mocked(deleteChartScore)).toBeCalledWith(
         $http,
         propsData.songId,
         propsData.playStyle,
         propsData.difficulty
       )
-      expect(mocked(popup.success)).not.toBeCalled()
-      expect(mocked(popup.danger)).toBeCalled()
+      expect(jest.mocked(popup.success)).not.toBeCalled()
+      expect(jest.mocked(popup.danger)).toBeCalled()
       expect($parent.close).toBeCalled()
     })
   })
@@ -242,8 +241,8 @@ describe('/components/modal/ScoreEditor.vue', () => {
       isFailed: false,
     }
     beforeEach(() => {
-      mocked(getChartScore).mockClear()
-      mocked(popup.danger).mockClear()
+      jest.mocked(getChartScore).mockClear()
+      jest.mocked(popup.danger).mockClear()
       wrapper.setData(data)
     })
     test.each([
@@ -278,7 +277,7 @@ describe('/components/modal/ScoreEditor.vue', () => {
       '(data: %p, getChartScore(): %p) sets %p',
       async (data, score, expected) => {
         // Arrange
-        mocked(getChartScore).mockResolvedValueOnce([score])
+        jest.mocked(getChartScore).mockResolvedValueOnce([score])
         wrapper.setData(data)
 
         // Act
@@ -292,13 +291,13 @@ describe('/components/modal/ScoreEditor.vue', () => {
         expect(wrapper.vm.$data.maxCombo).toBe(expected.maxCombo)
         expect(wrapper.vm.$data.isFailed).toBe(expected.isFailed)
 
-        expect(mocked(getChartScore)).toBeCalled()
-        expect(mocked(popup.danger)).not.toBeCalled()
+        expect(jest.mocked(getChartScore)).toBeCalled()
+        expect(jest.mocked(popup.danger)).not.toBeCalled()
       }
     )
     test('calls popup.danger() if getChartScore() throws error', async () => {
       // Arrange
-      mocked(getChartScore).mockRejectedValueOnce('Error')
+      jest.mocked(getChartScore).mockRejectedValueOnce('Error')
 
       // Act
       // @ts-ignore
@@ -311,12 +310,12 @@ describe('/components/modal/ScoreEditor.vue', () => {
       expect(wrapper.vm.$data.maxCombo).toBe(0)
       expect(wrapper.vm.$data.isFailed).toBe(false)
 
-      expect(mocked(getChartScore)).toBeCalled()
-      expect(mocked(popup.danger)).toBeCalled()
+      expect(jest.mocked(getChartScore)).toBeCalled()
+      expect(jest.mocked(popup.danger)).toBeCalled()
     })
     test('does not call popup.danger() if getChartScore() throws 404', async () => {
       // Arrange
-      mocked(getChartScore).mockRejectedValueOnce('404')
+      jest.mocked(getChartScore).mockRejectedValueOnce('404')
 
       // Act
       // @ts-ignore
@@ -329,8 +328,8 @@ describe('/components/modal/ScoreEditor.vue', () => {
       expect(wrapper.vm.$data.maxCombo).toBe(0)
       expect(wrapper.vm.$data.isFailed).toBe(false)
 
-      expect(mocked(getChartScore)).toBeCalled()
-      expect(mocked(popup.danger)).not.toBeCalled()
+      expect(jest.mocked(getChartScore)).toBeCalled()
+      expect(jest.mocked(popup.danger)).not.toBeCalled()
     })
   })
 })

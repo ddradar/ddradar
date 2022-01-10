@@ -1,7 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
-import { mocked } from 'ts-jest/utils'
 
 import { canReadUserData } from '../auth'
 import getScoreCount from '.'
@@ -32,7 +31,7 @@ describe('GET /api/v1/users/{id}/score', () => {
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    mocked(canReadUserData).mockReturnValue(false)
+    jest.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getScoreCount(null, req, [], [], total)
@@ -51,7 +50,7 @@ describe('GET /api/v1/users/{id}/score', () => {
     `/score?style=%s&lv=%s returns "200 OK" with %i (sum:%i) statuses`,
     async (style, lv, length, count) => {
       // Arrange
-      mocked(canReadUserData).mockReturnValue(true)
+      jest.mocked(canReadUserData).mockReturnValue(true)
       if (style) req.query.style = style
       if (lv) req.query.lv = lv
 

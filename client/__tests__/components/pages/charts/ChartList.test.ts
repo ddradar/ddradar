@@ -7,7 +7,6 @@ import {
   shallowMount,
 } from '@vue/test-utils'
 import Buefy from 'buefy'
-import { mocked } from 'ts-jest/utils'
 import VueI18n from 'vue-i18n'
 
 import { getSongInfo } from '~/api/song'
@@ -107,7 +106,7 @@ describe('/components/pages/charts/ChartList.vue', () => {
     const mocks = { $buefy: { modal: { open: jest.fn() } }, $http: {} }
     test('calls $buefy.modal.open()', async () => {
       // Arrange
-      mocked(getSongInfo).mockResolvedValue(testSongData)
+      jest.mocked(getSongInfo).mockResolvedValue(testSongData)
       const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
       const wrapper = shallowMount(ChartList, { localVue, mocks, i18n })
 
@@ -120,7 +119,10 @@ describe('/components/pages/charts/ChartList.vue', () => {
       )
 
       // Assert
-      expect(mocked(getSongInfo)).toBeCalledWith(mocks.$http, testSongData.id)
+      expect(jest.mocked(getSongInfo)).toBeCalledWith(
+        mocks.$http,
+        testSongData.id
+      )
       expect(mocks.$buefy.modal.open).toBeCalled()
     })
   })

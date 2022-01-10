@@ -1,5 +1,4 @@
 import type { Container } from '@azure/cosmos'
-import { mocked } from 'ts-jest/utils'
 
 import { getContainer } from '../database'
 import { fetchTotalChartCount } from '../songs'
@@ -15,7 +14,9 @@ describe('songs.ts', () => {
           query: jest.fn(() => ({ fetchAll: async () => ({ resources: [] }) })),
         },
       }
-      mocked(getContainer).mockReturnValue(container as unknown as Container)
+      jest
+        .mocked(getContainer)
+        .mockReturnValue(container as unknown as Container)
 
       // Act
       const result = await fetchTotalChartCount()
