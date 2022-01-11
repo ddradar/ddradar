@@ -41,8 +41,8 @@ async function main(ddrCode: string) {
   }
   consola.info(`Found User: ${user.id}: ${user.name}`)
 
-  for (let offset = 0; offset < 20; offset++) {
-    consola.start(`Song List ${offset + 1}/20`)
+  for (let offset = 0; offset < 21; offset++) {
+    consola.start(`Song List ${offset + 1}/21`)
 
     const singleScores =
       (await fetchRivalScoreList(page, code, offset, 1)) ?? {}
