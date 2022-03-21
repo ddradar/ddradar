@@ -12,7 +12,7 @@ type SongListData = Api.SongListData
  * - No need Authentication.
  * - `GET /api/v1/songs?name=:name&series=:series`
  *   - `name`(optional): {@link SongListData.nameIndex}
- *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `17`: Dance Dance Revolution A20 PLUS
+ *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
  * @param songs Song data (from Cosmos DB input binding)
@@ -42,7 +42,7 @@ export default async function (
 ): Promise<ErrorResult<404> | SuccessResult<SongListData[]>> {
   /** {@link SongListData.nameIndex} (optional) */
   const name = parseFloat(req.query.name ?? '')
-  /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `17`: Dance Dance Revolution A20 PLUS (optional) */
+  /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3 (optional) */
   const series = parseFloat(req.query.series ?? '')
   const isValidName = Number.isInteger(name) && name >= 0 && name <= 36
   const isValidSeries =
