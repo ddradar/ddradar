@@ -259,6 +259,7 @@ const series = new Set([
   'DanceDanceRevolution A',
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
+  'DanceDanceRevolution A3',
 ] as const)
 /** Series title depend on official site. */
 export type Series = Unwrap<typeof series>

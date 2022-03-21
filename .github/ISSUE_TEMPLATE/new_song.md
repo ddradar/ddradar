@@ -6,9 +6,9 @@ labels: 'enhancement:speech_balloon:, area-backend'
 ---
 ## [SONG NAME/曲名]
 - **Song Id:** [SONG_ID]
-- **Artist / アーティスト:** [ARTIST]
 - **Furigana / 読み仮名:** [FURIGANA]
-- **Series Folder / シリーズ:** DanceDanceRevolution A20 PLUS
+- **Artist / アーティスト:** [ARTIST]
+- **Series Folder / シリーズ:** DanceDanceRevolution A3
 - **BPM:** [BPM] <!-- ex. "180", "100-400", "???"  -->
 ### Charts
 <!-- Please enter the contents filled with "?".

@@ -12,7 +12,7 @@ type CourseListDocument = Api.CourseListData &
  * @description
  * - No need Authentication.
  * - `GET api/v1/courses?series=:series&type=:type`
- *   - `series`(optional): `16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS
+ *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
  *   - `type`(optional): `1`: NONSTOP, `2`: 段位認定
  * @param _context Azure Functions context (unused)
  * @param req HTTP Request (from HTTP trigger)
@@ -41,10 +41,11 @@ export default async function (
   // Parse search query
   /** `1`: NONSTOP, `2`: 段位認定 (optional) */
   const type = parseFloat(req.query.type ?? '')
-  /** `16`: Dance Dance Revolution A20, `17`: Dance Dance Revolution A20 PLUS (optional) */
+  /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3 (optional) */
   const series = parseFloat(req.query.series ?? '')
   const isValidType = type === 1 || type === 2
-  const isValidSeries = series === 16 || series === 17
+  const isValidSeries =
+    Number.isInteger(series) && series >= 0 && series < Song.seriesSet.size
 
   const courses = documents
     .filter(

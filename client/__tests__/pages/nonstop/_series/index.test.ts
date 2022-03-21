@@ -29,7 +29,7 @@ describe('pages/nonstop/_series/index.vue', () => {
   // Lifecycle
   describe('validate()', () => {
     const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-    test.each(['', 'foo', '0', '1', '10'])('/%s returns false', series => {
+    test.each(['', 'foo', '100', '-1'])('/%s returns false', series => {
       // Arrange
       const mocks = { $fetchState, $route: { params: { series } } }
       const wrapper = shallowMount(NonstopListPage, { localVue, mocks, i18n })
