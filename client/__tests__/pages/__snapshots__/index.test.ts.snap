@@ -456,6 +456,11 @@ exports[`/pages/index.vue snapshot test renders correctly if locale is "en" 1`] 
               <div class="card-content">
                 <div class="buttons"><a type="button" class="button is-text">
                     <!----><span>
+                A3
+              </span>
+                    <!---->
+                  </a><a type="button" class="button is-text">
+                    <!----><span>
                 A20 PLUS
               </span>
                     <!---->
@@ -1046,6 +1051,11 @@ exports[`/pages/index.vue snapshot test renders correctly if locale is "ja" 1`] 
             <div id="バージョンから探す" class="collapse-content" style="display: none;">
               <div class="card-content">
                 <div class="buttons"><a type="button" class="button is-text">
+                    <!----><span>
+                A3
+              </span>
+                    <!---->
+                  </a><a type="button" class="button is-text">
                     <!----><span>
                 A20 PLUS
               </span>
@@ -1643,6 +1653,11 @@ exports[`/pages/index.vue snapshot test renders loading skeleton 1`] = `
             <div id="バージョンから探す" class="collapse-content" style="display: none;">
               <div class="card-content">
                 <div class="buttons"><a type="button" class="button is-text">
+                    <!----><span>
+                A3
+              </span>
+                    <!---->
+                  </a><a type="button" class="button is-text">
                     <!----><span>
                 A20 PLUS
               </span>
