@@ -67,9 +67,14 @@ export default class NonstopListPage extends Vue {
       }))
   }
 
-  /** `series` should be 16 or 17 */
+  /** series expected [0-18] */
   validate({ params }: Pick<Context, 'params'>) {
-    return params.series === '16' || params.series === '17'
+    const seriesIndex = parseInt(params.series, 10)
+    return (
+      /^\d{1,2}$/.test(params.series) &&
+      seriesIndex >= 0 &&
+      seriesIndex < Song.seriesSet.size
+    )
   }
 
   /* istanbul ignore next */

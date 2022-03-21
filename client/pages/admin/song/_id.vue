@@ -214,7 +214,7 @@ export default class SongEditorPage extends Vue implements Api.SongInfo {
   name: string = ''
   nameKana: string = ''
   artist: string = ''
-  series: Song.Series = 'DanceDanceRevolution A20 PLUS'
+  series: Song.Series = 'DanceDanceRevolution A3'
   minBPM: number | null = null
   maxBPM: number | null = null
   deleted: boolean = false

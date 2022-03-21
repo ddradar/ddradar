@@ -46,7 +46,7 @@ export default class SongBySeriesPage extends Vue {
     return [...Song.seriesSet].map(s => shortenSeriesName(s))
   }
 
-  /** seriesIndex expected [0-16] */
+  /** seriesIndex expected [0-18] */
   validate({ params }: Pick<Context, 'params'>) {
     const parsedIndex = parseInt(params.seriesIndex, 10)
     return (
