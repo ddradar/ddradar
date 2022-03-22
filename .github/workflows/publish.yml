@@ -1,12 +1,12 @@
 name: production
 
 on:
-  push:
-    tags:
-      - v*
+  release:
+    types: [published]
 
 jobs:
   deploy:
+    if: github.event.release.prerelease == false
     name: Deploy to Azure Static Web Apps
     runs-on: ubuntu-20.04
     environment:
