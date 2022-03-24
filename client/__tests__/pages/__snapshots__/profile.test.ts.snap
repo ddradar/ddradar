@@ -19,13 +19,19 @@ exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] 
   <h1 class="title">User Settings</h1>
   <div class="field"><label class="label">
       ID
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">can not be changed after registration.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">can not be changed after registration.</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
+      <!---->
+      <!---->
+      <!---->
+    </div>
     <!---->
-    <!---->
-    <!---->
-  </div>
-  <!---->
   </div>
   <div class="field"><label class="label">Display Name</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" required="required" class="input">
@@ -37,8 +43,14 @@ exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] 
   </div>
   <div class="field"><label class="label">
       Area
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">can not be changed after registration.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control"><span class="select"><select><!----><option value="0">
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">can not be changed after registration.</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control"><span class="select"><select><!----><option value="0">
         undefined
       </option><option value="1">
         Hokkaido
@@ -173,9 +185,9 @@ exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] 
       </option><option value="118">
         Philippines
       </option></select></span>
+      <!---->
+    </div>
     <!---->
-  </div>
-  <!---->
   </div>
   <div class="field"><label class="label">DDR CODE(optional)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
@@ -186,12 +198,18 @@ exports[`pages/profile.vue { locale: "en" } snapshot test renders correctly 1`] 
   </div>
   <div class="field"><label class="label">
       Password for Import(optional)
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">keep it blank if you do not use external import.</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
-    <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">keep it blank if you do not use external import.</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
+      <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+      <!---->
+    </div>
     <!---->
-  </div>
-  <!---->
   </div>
   <div class="field">
     <!---->
@@ -243,13 +261,19 @@ exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] 
   <h1 class="title">ユーザー設定</h1>
   <div class="field"><label class="label">
       ID
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">登録後の変更はできません。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">登録後の変更はできません。</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control is-clearfix"><input type="text" autocomplete="on" placeholder="ID" class="input">
+      <!---->
+      <!---->
+      <!---->
+    </div>
     <!---->
-    <!---->
-    <!---->
-  </div>
-  <!---->
   </div>
   <div class="field"><label class="label">表示名</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" required="required" class="input">
@@ -261,8 +285,14 @@ exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] 
   </div>
   <div class="field"><label class="label">
       所属地域
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">登録後の変更はできません。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control"><span class="select"><select><!----><option value="0">
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">登録後の変更はできません。</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control"><span class="select"><select><!----><option value="0">
         未指定
       </option><option value="1">
         北海道
@@ -397,9 +427,9 @@ exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] 
       </option><option value="118">
         フィリピン
       </option></select></span>
+      <!---->
+    </div>
     <!---->
-  </div>
-  <!---->
   </div>
   <div class="field"><label class="label">DDR CODE(任意)</label>
     <div class="control is-clearfix"><input type="text" autocomplete="on" maxlength="8" placeholder="10000000" minlength="8" pattern="^\\d{8}$" class="input">
@@ -410,12 +440,18 @@ exports[`pages/profile.vue { locale: "ja" } snapshot test renders correctly 1`] 
   </div>
   <div class="field"><label class="label">
       インポート用パスワード(任意)
-      <span class="b-tooltip is-dark is-right is-medium"><transition-stub name="fade"><div class="tooltip-content" style="display: none;">外部インポートを利用しない場合は空欄にしてください。</div></transition-stub><div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div></span></label>
-  <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
-    <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+      <div class="b-tooltip is-dark is-right is-medium">
+        <transition-stub name="fade">
+          <div class="tooltip-content" style="display: none;">外部インポートを利用しない場合は空欄にしてください。</div>
+        </transition-stub>
+        <div class="tooltip-trigger"><span class="icon is-small"><i class="mdi mdi-help-circle-outline"></i></span></div>
+      </div>
+    </label>
+    <div class="control has-icons-right is-clearfix"><input type="password" autocomplete="on" class="input">
+      <!----><span class="icon is-right has-text-primary is-clickable"><i class="mdi mdi-eye mdi-24px"></i></span>
+      <!---->
+    </div>
     <!---->
-  </div>
-  <!---->
   </div>
   <div class="field">
     <!---->
