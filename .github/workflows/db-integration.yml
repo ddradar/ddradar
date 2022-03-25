@@ -34,8 +34,8 @@ jobs:
           - 10254:10254
         options: '-m 3g --cpus=2.0'
         env:
-          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
-          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: true
+          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 3
+          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: false
 
     steps:
       - name: Checkout
