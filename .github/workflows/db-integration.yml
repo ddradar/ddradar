@@ -40,6 +40,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.4
+
+      - name: Import emulator certificate
+        run: |
+          while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
+          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
+          sudo update-ca-certificates
+
       - name: Use Node.js 12
         uses: actions/setup-node@v2.5.1
         with:
@@ -52,5 +59,5 @@ jobs:
       - name: Test (only *.db.test.ts)
         run: yarn test ".+\.db\.test\.ts" --passWithNoTests
         env:
-          COSMOS_DB_CONN: AccountEndpoint=https://127.0.0.1:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
+          COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
           NODE_TLS_REJECT_UNAUTHORIZED: 0
