@@ -21,7 +21,7 @@ on:
 jobs:
   test:
     name: Cosmos DB Integration Test
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-18.04
 
     services:
       cosmos-db:
@@ -43,12 +43,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2.3.4
 
-      - name: Get IP Address
-        run: echo ipaddr="`ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' | head -n 1`" >> $GITHUB_ENV
-
       - name: Import emulator certificate
         run: |
-          while ! curl -k -f https://$ipaddr:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
+          while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
           sudo update-ca-certificates
 
@@ -64,5 +61,5 @@ jobs:
       - name: Test (only *.db.test.ts)
         run: yarn test ".+\.db\.test\.ts" --passWithNoTests
         env:
-          COSMOS_DB_CONN: AccountEndpoint=https://$ipaddr:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
+          COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
           NODE_TLS_REJECT_UNAUTHORIZED: 0
