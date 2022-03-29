@@ -12,6 +12,7 @@ import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
 // eslint-disable-next-line node/no-process-env
 const { BASE_URI: apiBasePath } = process.env
+const pageOffset = 21
 
 async function main(ddrCode: string) {
   const code = parseInt(ddrCode, 10)
@@ -41,8 +42,8 @@ async function main(ddrCode: string) {
   }
   consola.info(`Found User: ${user.id}: ${user.name}`)
 
-  for (let offset = 0; offset < 21; offset++) {
-    consola.start(`Song List ${offset + 1}/21`)
+  for (let offset = 0; offset < pageOffset; offset++) {
+    consola.start(`Song List ${offset + 1}/${pageOffset}`)
 
     const singleScores =
       (await fetchRivalScoreList(page, code, offset, 1)) ?? {}
