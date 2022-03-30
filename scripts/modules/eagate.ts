@@ -17,7 +17,7 @@ global.DOMParser = new JSDOM().window.DOMParser
 
 export async function isLoggedIn(page: Page): Promise<boolean> {
   const mypageUri = 'https://p.eagate.573.jp/gate/p/mypage/'
-  await page.goto(mypageUri)
+  await page.goto(mypageUri, { waitUntil: 'domcontentloaded' })
 
   if (mypageUri === (await page.evaluate(() => document.location.href))) {
     return true
@@ -33,11 +33,10 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
   ) {
     await page.type('#id_password', password)
   }
-  await page.click('.btn-area p.btn a', { delay: 500 })
-  await page.waitForNavigation({
-    timeout: 30000,
-    waitUntil: 'domcontentloaded',
-  })
+  await Promise.all([
+    page.waitForNavigation({ timeout: 30000, waitUntil: 'domcontentloaded' }),
+    page.click('.btn-area p.btn a', { delay: 500 }),
+  ])
 
   return mypageUri === (await page.evaluate(() => document.location.href))
 }
