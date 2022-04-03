@@ -24,6 +24,7 @@
     "node/no-unsupported-features/es-syntax": [
       "error",
       {
+        "version": ">=12",
         "ignores": ["modules"]
       }
     ],
