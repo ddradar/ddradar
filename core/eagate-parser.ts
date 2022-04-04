@@ -3,8 +3,8 @@ import type { ScoreInfo } from './api/score'
 import type { DanceLevel } from './db/scores'
 import { getDanceLevel } from './score'
 
-const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
-const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+const idRegex = /^.+\/ddr\/ddra\d+\/p.+=([01689bdiloqDIOPQ]{32}).*$/
+const srcRegex = /^.+\/ddr\/ddra\d+\/p\/images\/play_data\/(.+)\.png$/
 
 type EagateScore = Omit<ScoreInfo, 'songId' | 'userId' | 'userName' | 'level'>
 
@@ -16,6 +16,10 @@ type EagateScore = Omit<ScoreInfo, 'songId' | 'userId' | 'userName' | 'level'>
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/nonstop_data_double.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/grade_data_single.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/grade_data_double.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_single.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_double.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/nonstop_data_single.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/nonstop_data_double.html
  */
 export function musicDataToScoreList(
   sourceCode: string
