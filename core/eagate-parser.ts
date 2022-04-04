@@ -151,6 +151,8 @@ export function musicDataToScoreList(
  * Convert music detail to Score.
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_detail.html
  * - https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/course_detail.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_detail.html
+ * - https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/course_detail.html
  */
 export function musicDetailToScore(
   sourceCode: string
