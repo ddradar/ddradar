@@ -388,6 +388,289 @@ describe('/utils/eagate-parser.ts', () => {
           ],
         },
       ],
+      [
+        'music_single_a3.html',
+        {
+          I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
+            {
+              songName: '朧',
+              playStyle: 1,
+              difficulty: 0,
+              score: 876000,
+              clearLamp: 2,
+              rank: 'A+',
+            },
+            {
+              songName: '朧',
+              playStyle: 1,
+              difficulty: 2,
+              score: 823000,
+              clearLamp: 2,
+              rank: 'A',
+            },
+            {
+              songName: '朧',
+              playStyle: 1,
+              difficulty: 4,
+              score: 780000,
+              clearLamp: 2,
+              rank: 'B+',
+            },
+          ],
+          QIDd80o0OqobODP00ldQ1D9dl81qQi0d: [
+            {
+              songName: 'きゅん×きゅんばっきゅん☆LOVE',
+              playStyle: 1,
+              difficulty: 0,
+              score: 700000,
+              clearLamp: 2,
+              rank: 'B',
+            },
+            {
+              songName: 'きゅん×きゅんばっきゅん☆LOVE',
+              playStyle: 1,
+              difficulty: 1,
+              score: 690000,
+              clearLamp: 2,
+              rank: 'B-',
+            },
+            {
+              songName: 'きゅん×きゅんばっきゅん☆LOVE',
+              playStyle: 1,
+              difficulty: 2,
+              score: 650000,
+              clearLamp: 2,
+              rank: 'C+',
+            },
+            {
+              songName: 'きゅん×きゅんばっきゅん☆LOVE',
+              playStyle: 1,
+              difficulty: 3,
+              score: 620000,
+              clearLamp: 2,
+              rank: 'C',
+            },
+          ],
+          '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': [
+            {
+              songName: 'CHAOS',
+              playStyle: 1,
+              difficulty: 0,
+              score: 0,
+              clearLamp: 1,
+              rank: 'D',
+            },
+            {
+              songName: 'CHAOS',
+              playStyle: 1,
+              difficulty: 1,
+              score: 599990,
+              clearLamp: 2,
+              rank: 'C-',
+            },
+            {
+              songName: 'CHAOS',
+              playStyle: 1,
+              difficulty: 2,
+              score: 930000,
+              clearLamp: 5,
+              rank: 'E',
+            },
+          ],
+        },
+      ],
+      [
+        'music_double_a3.html',
+        {
+          l9lq19DdiD8qQPoPOlboi1qQii0IQI86: [
+            {
+              songName: '革命',
+              playStyle: 2,
+              difficulty: 1,
+              score: 1000000,
+              clearLamp: 7,
+              rank: 'AAA',
+            },
+            {
+              songName: '革命',
+              playStyle: 2,
+              difficulty: 2,
+              score: 999920,
+              clearLamp: 6,
+              rank: 'AAA',
+            },
+            {
+              songName: '革命',
+              playStyle: 2,
+              difficulty: 3,
+              score: 987600,
+              clearLamp: 5,
+              rank: 'AA+',
+            },
+            {
+              songName: '革命',
+              playStyle: 2,
+              difficulty: 4,
+              score: 945000,
+              clearLamp: 4,
+              rank: 'AA',
+            },
+          ],
+          qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [],
+          llo89P08I1PlID9DO8lqdbbq69O8Qiib: [
+            {
+              songName: '逆さま♥シンデレラパレード',
+              playStyle: 2,
+              difficulty: 1,
+              score: 573000,
+              clearLamp: 2,
+              rank: 'D+',
+            },
+            {
+              songName: '逆さま♥シンデレラパレード',
+              playStyle: 2,
+              difficulty: 2,
+              score: 498000,
+              clearLamp: 2,
+              rank: 'D',
+            },
+            {
+              songName: '逆さま♥シンデレラパレード',
+              playStyle: 2,
+              difficulty: 3,
+              score: 45310,
+              clearLamp: 0,
+              rank: 'E',
+            },
+          ],
+        },
+      ],
+      [
+        'nonstop_single_a3.html',
+        {
+          '8O8idiPlIl8oQo1liOD6i6bDl8ldqDoP': [
+            {
+              songName: 'KA・TA・KA・NA YEAH!',
+              playStyle: 1,
+              difficulty: 0,
+              score: 902500,
+              clearLamp: 4,
+              rank: 'AA',
+            },
+            {
+              songName: 'KA・TA・KA・NA YEAH!',
+              playStyle: 1,
+              difficulty: 1,
+              score: 998380,
+              clearLamp: 2,
+              rank: 'AAA',
+            },
+            {
+              songName: 'KA・TA・KA・NA YEAH!',
+              playStyle: 1,
+              difficulty: 2,
+              score: 860000,
+              clearLamp: 2,
+              rank: 'A+',
+            },
+            {
+              songName: 'KA・TA・KA・NA YEAH!',
+              playStyle: 1,
+              difficulty: 3,
+              score: 599100,
+              clearLamp: 2,
+              rank: 'C-',
+            },
+          ],
+          lqQ0d8lPDb60qd01O0o6Ql1oP0D8Pobb: [
+            {
+              songName: 'WITHSTAND',
+              playStyle: 1,
+              difficulty: 0,
+              score: 1000000,
+              clearLamp: 7,
+              rank: 'AAA',
+            },
+            {
+              songName: 'WITHSTAND',
+              playStyle: 1,
+              difficulty: 3,
+              score: 983530,
+              clearLamp: 5,
+              rank: 'AA+',
+            },
+            {
+              songName: 'WITHSTAND',
+              playStyle: 1,
+              difficulty: 4,
+              score: 664060,
+              clearLamp: 0,
+              rank: 'E',
+            },
+          ],
+          lli8bi6DoQ89i6P9PliooloD68QoDolD: [],
+        },
+      ],
+      [
+        'nonstop_double_a3.html',
+        {
+          l1o0olodIDDiqDQ101obOD1qo81q0QOP: [
+            {
+              songName: 'ONE HALF',
+              playStyle: 2,
+              difficulty: 1,
+              score: 999930,
+              clearLamp: 6,
+              rank: 'AAA',
+            },
+          ],
+          O6Pi0O800b8b6d9dd9P89dD1900I1q80: [],
+          dqQD9ilqIIilOQi986Ql6dd1ldiPob88: [
+            {
+              songName: '☆☆☆☆',
+              playStyle: 2,
+              difficulty: 1,
+              score: 999900,
+              clearLamp: 6,
+              rank: 'AAA',
+            },
+            {
+              songName: '☆☆☆☆',
+              playStyle: 2,
+              difficulty: 2,
+              score: 999700,
+              clearLamp: 6,
+              rank: 'AAA',
+            },
+            {
+              songName: '☆☆☆☆',
+              playStyle: 2,
+              difficulty: 3,
+              score: 996000,
+              clearLamp: 4,
+              rank: 'AAA',
+            },
+            {
+              songName: '☆☆☆☆',
+              playStyle: 2,
+              difficulty: 4,
+              score: 946220,
+              clearLamp: 2,
+              rank: 'AA',
+            },
+          ],
+          Plld00DiIO9bPqdq190li1iIPDdq6Qlb: [
+            {
+              songName: 'Intelligence',
+              playStyle: 2,
+              difficulty: 4,
+              score: 938020,
+              clearLamp: 2,
+              rank: 'AA',
+            },
+          ],
+        },
+      ],
     ])('(%s) returns expected ScoreList', async (fileName, expected) => {
       // Arrange
       const source = await createSource(fileName)
@@ -421,6 +704,8 @@ describe('/utils/eagate-parser.ts', () => {
       ['no_play.html', 'NO PLAY...'],
       ['not_select.html', '難易度を選択してください。'],
       ['invalid_title.html', 'Invalid HTML'],
+      ['no_play_a3.html', 'NO PLAY...'],
+      ['not_select_a3.html', '難易度を選択してください。'],
     ])('(%s) throws "%s" error', async (fileName, message) => {
       // Arrange
       const source = await readFileAsync(folder, fileName)
@@ -562,6 +847,137 @@ describe('/utils/eagate-parser.ts', () => {
         expect(musicDetailToScore(source)).toStrictEqual(expected)
       }
     )
+    test.each([
+      [
+        'diff_0_a3.html',
+        {
+          songId: aceForAces,
+          playStyle: 1,
+          difficulty: 0,
+          score: 1000000,
+          rank: 'AAA',
+          clearLamp: 7,
+          maxCombo: 116,
+          topScore: 999850,
+        } as const,
+      ],
+      [
+        'diff_1_a3.html',
+        {
+          songId: aceForAces,
+          playStyle: 1,
+          difficulty: 1,
+          score: 999990,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 311,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'diff_2_a3.html',
+        {
+          songId: aceForAces,
+          playStyle: 1,
+          difficulty: 2,
+          score: 998600,
+          rank: 'AAA',
+          clearLamp: 5,
+          maxCombo: 467,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'diff_3_a3.html',
+        {
+          songId: aceForAces,
+          playStyle: 1,
+          difficulty: 3,
+          score: 968760,
+          rank: 'AA+',
+          clearLamp: 4,
+          maxCombo: 658,
+          topScore: 999940,
+        } as const,
+      ],
+      [
+        'diff_4_a3.html',
+        {
+          songId: aceForAces,
+          playStyle: 1,
+          difficulty: 4,
+          score: 795780,
+          rank: 'A-',
+          clearLamp: 2,
+          maxCombo: 95,
+          topScore: 999940,
+        } as const,
+      ],
+      [
+        'diff_5_a3.html',
+        {
+          songId: raspberryHeart,
+          playStyle: 2,
+          difficulty: 1,
+          score: 999940,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 193,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'diff_6_a3.html',
+        {
+          songId: raspberryHeart,
+          playStyle: 2,
+          difficulty: 2,
+          score: 999990,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 240,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'diff_7_a3.html',
+        {
+          songId: raspberryHeart,
+          playStyle: 2,
+          difficulty: 3,
+          score: 999890,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 295,
+          topScore: 1000000,
+        } as const,
+      ],
+      [
+        'diff_8_a3.html',
+        {
+          songId: raspberryHeart,
+          playStyle: 2,
+          difficulty: 4,
+          score: 900000,
+          rank: 'E',
+          clearLamp: 0,
+          maxCombo: 300,
+          topScore: 1000000,
+        } as const,
+      ],
+    ])(
+      '(%s) returns %p',
+      async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
+        // Arrange
+        const source = await createSource(
+          `/game/ddr/ddra3/p/images/binary_jk.html?img=${expected.songId}&kind=1`,
+          fileName
+        )
+
+        // Act - Assert
+        expect(musicDetailToScore(source)).toStrictEqual(expected)
+      }
+    )
 
     test.each([
       [
@@ -596,6 +1012,34 @@ describe('/utils/eagate-parser.ts', () => {
         // Arrange
         const source = await createSource(
           `/game/ddr/ddra20/p/images/binary_jk_c.html?img=${expected.songId}&kind=1`,
+          fileName
+        )
+
+        // Act - Assert
+        expect(musicDetailToScore(source)).toStrictEqual(expected)
+      }
+    )
+
+    test.each([
+      [
+        'nonstop_a3.html',
+        {
+          songId: 'qbbOOO1QibO1861bqQII9lqlPiIoqb98',
+          playStyle: 1,
+          difficulty: 0,
+          score: 999850,
+          rank: 'AAA',
+          clearLamp: 6,
+          maxCombo: 401,
+          topScore: 1000000,
+        } as const,
+      ],
+    ])(
+      '(%s) returns %p',
+      async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
+        // Arrange
+        const source = await createSource(
+          `/game/ddr/ddra3/p/images/binary_jk_c.html?img=${expected.songId}&kind=1`,
           fileName
         )
 
