@@ -19,7 +19,7 @@
         <li>
           <i18n path="content.eagate.text_3_1">
             <a
-              href="https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/music_data_single.html"
+              href="https://p.eagate.573.jp/game/ddr/ddra3/p/playdata/music_data_single.html"
               target="_blank"
             >
               {{ $t('content.eagate.text_3_1_0') }}
