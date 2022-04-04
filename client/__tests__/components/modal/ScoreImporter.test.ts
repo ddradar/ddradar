@@ -1,4 +1,4 @@
-import { Gate } from '@ddradar/core'
+import { Gate, Song } from '@ddradar/core'
 import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
 import Buefy from 'buefy'
 import VueI18n from 'vue-i18n'
@@ -55,28 +55,20 @@ describe('/components/modal/ScoreImporter.vue', () => {
   // Computed
   describe('get musicDetailUri()', () => {
     test.each([
-      [1, 0, false, /^.+\/music_detail\.html\?index=.{32}&diff=0$/],
-      [1, 1, false, /^.+\/music_detail\.html\?index=.{32}&diff=1$/],
-      [1, 2, false, /^.+\/music_detail\.html\?index=.{32}&diff=2$/],
-      [1, 3, false, /^.+\/music_detail\.html\?index=.{32}&diff=3$/],
-      [1, 4, false, /^.+\/music_detail\.html\?index=.{32}&diff=4$/],
-      [2, 1, false, /^.+\/music_detail\.html\?index=.{32}&diff=5$/],
-      [2, 2, false, /^.+\/music_detail\.html\?index=.{32}&diff=6$/],
-      [2, 3, false, /^.+\/music_detail\.html\?index=.{32}&diff=7$/],
-      [2, 4, false, /^.+\/music_detail\.html\?index=.{32}&diff=8$/],
-      [1, 0, true, /^.+\/course_detail\.html\?index=.{32}&diff=0$/],
-      [1, 1, true, /^.+\/course_detail\.html\?index=.{32}&diff=1$/],
-      [1, 2, true, /^.+\/course_detail\.html\?index=.{32}&diff=2$/],
-      [1, 3, true, /^.+\/course_detail\.html\?index=.{32}&diff=3$/],
-      [1, 4, true, /^.+\/course_detail\.html\?index=.{32}&diff=4$/],
-      [2, 1, true, /^.+\/course_detail\.html\?index=.{32}&diff=5$/],
-      [2, 2, true, /^.+\/course_detail\.html\?index=.{32}&diff=6$/],
-      [2, 3, true, /^.+\/course_detail\.html\?index=.{32}&diff=7$/],
-      [2, 4, true, /^.+\/course_detail\.html\?index=.{32}&diff=8$/],
+      [false, 1, 0, false, 'ddra3', 'music_detail', 0],
+      [true, 1, 1, false, 'ddra20', 'music_detail', 1],
+      [false, 1, 2, true, 'ddra3', 'course_detail', 2],
+      [false, 1, 3, false, 'ddra3', 'music_detail', 3],
+      [false, 1, 4, false, 'ddra3', 'music_detail', 4],
+      [true, 2, 1, true, 'ddra20', 'course_detail', 5],
+      [false, 2, 2, false, 'ddra3', 'music_detail', 6],
+      [false, 2, 3, false, 'ddra3', 'music_detail', 7],
+      [false, 2, 4, false, 'ddra3', 'music_detail', 8],
     ])(
-      '{ playStyle: %i, difficulty: %i, isCourse: %p } returns "%s"',
-      (playStyle, difficulty, isCourse, pattern) => {
+      `isDeletedOnGate(songId) = %p, { playStyle: %i, difficulty: %i, isCourse: %p } returns "https://p.eagate.573.jp/game/ddr/%s/p/playdata/%s.html?index=${songId}&diff=%i"`,
+      (isDeleted, playStyle, difficulty, isCourse, series, file, diff) => {
         // Arrange
+        jest.mocked(Song.isDeletedOnGate).mockReturnValueOnce(isDeleted)
         const wrapper = shallowMount(ScoreImporter, {
           localVue,
           propsData: { songId, playStyle, difficulty, isCourse },
@@ -88,7 +80,9 @@ describe('/components/modal/ScoreImporter.vue', () => {
         const uri = wrapper.vm.musicDetailUri
 
         // Assert
-        expect(uri).toMatch(pattern)
+        expect(uri).toBe(
+          `https://p.eagate.573.jp/game/ddr/${series}/p/playdata/${file}.html?index=${songId}&diff=${diff}`
+        )
       }
     )
   })
