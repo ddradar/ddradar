@@ -14,6 +14,7 @@ import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
 // eslint-disable-next-line node/no-process-env
 const { BASE_URI: apiBasePath } = process.env
+const series = 'DanceDanceRevolution A3'
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
@@ -42,6 +43,7 @@ async function main(userId: string, password: string) {
       { condition: 'c.clearLamp != 7' },
       { condition: '(NOT IS_DEFINED(c.deleted))' },
       { condition: '(NOT IS_DEFINED(c.ttl))' },
+      { condition: 'c.songName >= @', value: 'Avenger' },
     ],
     { songName: 'ASC' }
   )
@@ -63,34 +65,42 @@ async function main(userId: string, password: string) {
   for (const [id, score] of Object.entries(scores)) {
     const songScope = consola.withScope('song')
     const songName = `(${count++}/${total}) ${score[0].songName} (${id})`
+    if (Song.isDeletedOnGate(id, series)) {
+      songScope.info(`${songName} is deleted on e-amusement site. skipped`)
+      continue
+    }
     songScope.start(songName)
 
     const scores: Api.ScoreListBody[] = []
 
     for (const s of score) {
-      const chartScope = songScope.withScope('charts')
-      const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
-
       try {
+        const chartScope = songScope.withScope('charts')
+        const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
         let score: Awaited<ReturnType<typeof fetchScoreDetail>> = null
+        const seriesTitle = series?.replace('DanceDanceRevolution ', '')
         for (let retryCount = 0; retryCount < 3; retryCount++) {
           try {
             score = await fetchScoreDetail(
               page,
               s.songId,
               s.playStyle,
-              s.difficulty
+              s.difficulty,
+              series
             )
             break
           } catch (e: unknown) {
             const message: string =
               typeof e === 'string' ? e : (e as Error)?.message
             if (/NO PLAY/.test(message)) {
-              chartScope.info(`No Play: ${chart}`)
+              chartScope.info(`No Play: ${chart} (${seriesTitle})`)
               break
             }
             if (retryCount >= 2) throw e
-            chartScope.warn(`Retry: ${retryCount + 1}`)
+            chartScope.warn(
+              `Retry: ${retryCount + 1} wait 3 seconds... (${seriesTitle})`
+            )
+            await sleep(3000)
           }
         }
         if (score) {
@@ -99,10 +109,10 @@ async function main(userId: string, password: string) {
             logs.push(
               `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
                 score.topScore
-              }) at ${new Date()}`
+              }) at ${new Date()} (${seriesTitle})`
             )
             chartScope.success(
-              `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
+              `${chart} (${score.topScore}) Loaded from ${seriesTitle}. wait 3 seconds...`
             )
           }
         }
