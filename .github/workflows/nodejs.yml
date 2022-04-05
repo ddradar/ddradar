@@ -98,20 +98,32 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
+      - name: Use Node.js 12
+        uses: actions/setup-node@v3.1.0
+        with:
+          node-version: 12
+          cache: yarn
 
-      - name: Prepare to build @ddradar/functions on Oryx
+      - name: Install Project Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Build Dependent Packages
         run: |
-          echo "@ddradar:registry=https://npm.pkg.github.com/" > functions/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> functions/.npmrc
-          cp yarn.lock functions
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          yarn workspace @ddradar/core build
+          yarn workspace @ddradar/db build
 
-      - name: Build @ddradar/functions and Deploy
+      - name: Build @ddradar/functions
+        run: yarn workspace @ddradar/functions build
+
+      - name: Remove DevDependencies
+        working-directory: ./functions
+        run: yarn install --production
+
+      - name: Deploy to Azure Functions
         uses: Azure/functions-action@v1.4.4
         with:
-          app-name: ddradar-staging
+          app-name: ddradar
+          slot-name: staging
           package: ./functions
           publish-profile: ${{ secrets.AZURE_FUNCTIONS_PUBLISH_PROFILE }}
           respect-funcignore: true
-          enable-oryx-build: true
