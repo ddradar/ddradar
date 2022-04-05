@@ -119,6 +119,7 @@ jobs:
       - name: Remove DevDependencies
         run: |
           cp yarn.lock functions
+          cp ./functions/.funcignore .
           yarn workspace @ddradar/functions install --production
 
       - name: Publish @ddradar/functions to Azure Functions
