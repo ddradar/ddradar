@@ -2,6 +2,7 @@ import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
   displayName: 'DB',
+  testTimeout: 10000,
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],
   testMatch: ['**/*.test.ts'],
