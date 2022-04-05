@@ -17,10 +17,10 @@ const i18n = {
 }
 
 export default function (apiBaseUri, lang) {
-  const idRegex = /^.+\/ddr\/ddra20\/p.+=([01689bdiloqDIOPQ]{32}).*$/
-  const srcRegex = /^.+\/ddr\/ddra20\/p\/images\/play_data\/(.+)\.png$/
+  const idRegex = /^.+\/ddr\/ddra\d+\/p.+=([01689bdiloqDIOPQ]{32}).*$/
+  const srcRegex = /^.+\/ddr\/ddra\d+\/p\/images\/play_data\/(.+)\.png$/
   const playStyleRegex =
-    /^https:\/\/p\.eagate\.573\.jp\/game\/ddr\/ddra20\/p\/playdata\/(music|nonstop|grade)_data_(double|single)\.html.*/
+    /^https:\/\/p\.eagate\.573\.jp\/game\/ddr\/ddra\d+\/p\/playdata\/(music|nonstop|grade)_data_(double|single)\.html.*/
 
   const result = {}
   try {
