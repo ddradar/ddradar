@@ -156,7 +156,7 @@ export default class OrderDetailComponent extends Vue {
   }
 
   get isDeleted() {
-    return Song.isDeletedOnGate(this.info.id)
+    return Song.isDeletedOnGate(this.info.id, 'DanceDanceRevolution A20')
   }
 
   async fetch() {

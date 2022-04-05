@@ -87,9 +87,15 @@ export default class ScoreImporterComponent extends Vue {
   get musicDetailUri() {
     /** 0 - 9 */
     const diff = (this.playStyle - 1) * 4 + this.difficulty
-    return `https://p.eagate.573.jp/game/ddr/ddra20/p/playdata/${
-      this.isCourse ? 'course' : 'music'
-    }_detail.html?index=${this.songId}&diff=${diff}` as const
+    const isDeleted = Song.isDeletedOnGate(
+      this.songId,
+      'DanceDanceRevolution A3'
+    )
+    return `https://p.eagate.573.jp/game/ddr/${
+      isDeleted ? 'ddra20' : 'ddra3'
+    }/p/playdata/${this.isCourse ? 'course' : 'music'}_detail.html?index=${
+      this.songId
+    }&diff=${diff}` as const
   }
 
   async importScore() {

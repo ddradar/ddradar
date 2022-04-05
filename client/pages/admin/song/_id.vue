@@ -21,7 +21,7 @@
             tag="a"
             type="is-info"
             :disabled="!isValidSongId"
-            :href="`https://p.eagate.573.jp/game/ddr/ddra20/p/images/binary_jk.html?img=${id}`"
+            :href="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${id}`"
             target="_blank"
           >
             See Thumbnail
