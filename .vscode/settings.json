@@ -1,11 +1,8 @@
 {
-  "azureFunctions.deploySubpath": "functions",
-  "azureFunctions.postDeployTask": "Functions: Install Dependencies",
   "azureFunctions.projectLanguage": "TypeScript",
   "azureFunctions.projectRuntime": "~3",
-  "debug.internalConsoleOptions": "neverOpen",
-  "azureFunctions.preDeployTask": "Functions: Install Dependencies (Production)",
   "azureFunctions.projectSubpath": "functions",
+  "debug.internalConsoleOptions": "neverOpen",
   "json.schemas": [
     {
       "fileMatch": ["/staticwebapp.config.json"],
