@@ -41,18 +41,25 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
   return mypageUri === (await page.evaluate(() => document.location.href))
 }
 
-const playDataUri = 'https://p.eagate.573.jp/game/ddr/ddra20/p/playdata'
+type GateSeries = Song.Series & `DanceDanceRevolution A${number}`
+const getUri = (series: GateSeries, file: string, query: string) =>
+  `https://p.eagate.573.jp/game/ddr/${
+    series === 'DanceDanceRevolution A3' ? 'ddra3' : 'ddra20'
+  }/p/playdata/${file}?${query}`
 
 export async function fetchScoreDetail(
   page: Page,
   songId: string,
   playStyle: Song.PlayStyle,
-  difficulty: Song.Difficulty
+  difficulty: Song.Difficulty,
+  series: GateSeries = 'DanceDanceRevolution A3'
 ): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
-  const detailUri = `${playDataUri}/${
-    (await isCourse(songId)) ? 'course' : 'music'
-  }_detail.html?index=${songId}&diff=${index}`
+  const detailUri = getUri(
+    series,
+    `${(await isCourse(songId)) ? 'course' : 'music'}_detail.html`,
+    `index=${songId}&diff=${index}`
+  )
 
   const response = await page.goto(detailUri)
   if (!response) return null
@@ -64,10 +71,15 @@ export async function fetchScoreDetail(
 export async function fetchScoreList(
   page: Page,
   pageNo: number,
-  playStyle: Song.PlayStyle
+  playStyle: Song.PlayStyle,
+  series: GateSeries = 'DanceDanceRevolution A3'
 ): Promise<ReturnType<typeof Gate.musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
-  const detailUri = `${playDataUri}/music_data_${style}.html?offset=${pageNo}`
+  const detailUri = getUri(
+    series,
+    `music_data_${style}.html`,
+    `offset=${pageNo}`
+  )
 
   const response = await page.goto(detailUri)
   if (!response) return null
@@ -76,7 +88,7 @@ export async function fetchScoreList(
   return Gate.musicDataToScoreList(source)
 }
 
-const rivalDataUri = 'https://p.eagate.573.jp/game/ddr/ddra20/p/rival'
+const rivalDataUri = 'https://p.eagate.573.jp/game/ddr/ddra3/p/rival'
 
 export async function fetchRivalScoreDetail(
   page: Page,
