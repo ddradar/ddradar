@@ -43,7 +43,6 @@ async function main(userId: string, password: string) {
       { condition: 'c.clearLamp != 7' },
       { condition: '(NOT IS_DEFINED(c.deleted))' },
       { condition: '(NOT IS_DEFINED(c.ttl))' },
-      { condition: 'c.songName >= @', value: 'Avenger' },
     ],
     { songName: 'ASC' }
   )

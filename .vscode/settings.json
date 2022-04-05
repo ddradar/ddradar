@@ -2,6 +2,9 @@
   "azureFunctions.projectLanguage": "TypeScript",
   "azureFunctions.projectRuntime": "~3",
   "azureFunctions.projectSubpath": "functions",
+  "azureFunctions.deploySubpath": "functions",
+  "azureFunctions.preDeployTask": "Functions: Install Dependencies (Production)",
+  "azureFunctions.postDeployTask": "Functions: Install Dependencies",
   "debug.internalConsoleOptions": "neverOpen",
   "json.schemas": [
     {

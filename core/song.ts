@@ -149,4 +149,11 @@ const deletedOnA20Plus = [
   'DQqi68IP1qbDiQ9li6PI1Q9Iddd6o9QQ', // DP九段(A20 PLUS)
   '9O0b1DddI6OiOD6PQbboPbdd8Pi1iPlb', // DP十段(A20 PLUS)
   '199ODd8l0Qld9i6DdqOdb1ll66D1I1Q9', // DP皆伝(A20 PLUS)
+  'dll9D90dq1O09oObO66Pl8l9I9l0PbPP', // B4U (The Acolyte mix) (Old Song id)
+  'qbbOOO1QibO1861bqQII9lqlPiIoqb98', // FIRST
+  'I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob', // TWENTY
+  '88o8Oq69ldilblP10DI0qqb6b8I0DDi9', // BOUNCE
+  'q6oOPqQPlOQoooq888bPI1OPDlqDIQQD', // PASSION
+  'i1DqPb01I6I1dP8qoO1qiIPDlOD9D9oQ', // PLANET
+  'DQilQP810dq8D9i11q6Oq0ooDdQQO0lI', // HARD DANCE
 ]
