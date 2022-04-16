@@ -1,20 +1,14 @@
 import type { Api } from '@ddradar/core'
 import type { Context } from '@nuxt/types'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import { searchCharts } from '~/api/song'
 import ChartLevelPage from '~/pages/_style/_level.vue'
 
 jest.mock('~/api/song')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
+const localVue = createVue()
 
 describe('/_style/_level.vue', () => {
   const $fetchState = { pending: false }
@@ -50,7 +44,7 @@ describe('/_style/_level.vue', () => {
           $route: { params: { style, level } },
           $fetchState,
         },
-        stubs: { NuxtLink: RouterLinkStub, ChartList: true },
+        stubs,
       })
       const ctx = { params: { style, level } } as unknown as Context
 

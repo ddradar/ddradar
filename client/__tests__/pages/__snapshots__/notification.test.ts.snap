@@ -1,6 +1,366 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/pages/notification.vue snapshot test renders Edit column if admin 1`] = `
+exports[`/pages/notification.vue { locale: "en" } snapshot test renders Edit column if admin 1`] = `
+<section class="section">
+  <h1 class="title">All Notification List</h1>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper has-mobile-cards">
+        <table class="table is-striped">
+          <!---->
+          <thead>
+            <tr>
+              <th width="40px"></th>
+              <!---->
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Edit <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr draggable="false" class="">
+              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
+              <!---->
+              <td class=""><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span>
+                  <!---->
+                  <!---->
+                </button></td>
+              <td data-label="Title" class="">
+                Title 1
+              </td>
+              <td data-label="Date" class="">
+                2020/8/13 0:00:00
+              </td>
+              <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+              <!---->
+            </tr>
+            <transition-stub name="">
+              <!---->
+            </transition-stub>
+            <!---->
+            <tr draggable="false" class="">
+              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
+              <!---->
+              <td class=""><button type="button" class="button is-info">
+                  <!---->
+                  <!---->
+                  <!---->
+                </button></td>
+              <td data-label="Title" class="">
+                Title 2
+              </td>
+              <td data-label="Date" class="">
+                2020/8/13 0:00:00
+              </td>
+              <td data-label="Edit" class=""><a><span class="icon"><i class="mdi mdi-pencil-box-outline mdi-24px"></i></span></a></td>
+              <!---->
+            </tr>
+            <transition-stub name="">
+              <!---->
+            </transition-stub>
+            <!---->
+            <!---->
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <div class="control pagination-input">
+                <!---->
+              </div>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`/pages/notification.vue { locale: "en" } snapshot test renders correctly 1`] = `
+<section class="section">
+  <h1 class="title">All Notification List</h1>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper has-mobile-cards">
+        <table class="table is-striped">
+          <!---->
+          <thead>
+            <tr>
+              <th width="40px"></th>
+              <!---->
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr draggable="false" class="">
+              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
+              <!---->
+              <td class=""><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span>
+                  <!---->
+                  <!---->
+                </button></td>
+              <td data-label="Title" class="">
+                Title 1
+              </td>
+              <td data-label="Date" class="">
+                2020/8/13 0:00:00
+              </td>
+              <!---->
+            </tr>
+            <transition-stub name="">
+              <!---->
+            </transition-stub>
+            <!---->
+            <tr draggable="false" class="">
+              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
+              <!---->
+              <td class=""><button type="button" class="button is-info">
+                  <!---->
+                  <!---->
+                  <!---->
+                </button></td>
+              <td data-label="Title" class="">
+                Title 2
+              </td>
+              <td data-label="Date" class="">
+                2020/8/13 0:00:00
+              </td>
+              <!---->
+            </tr>
+            <transition-stub name="">
+              <!---->
+            </transition-stub>
+            <!---->
+            <!---->
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <div class="control pagination-input">
+                <!---->
+              </div>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`/pages/notification.vue { locale: "en" } snapshot test renders empty 1`] = `
+<section class="section">
+  <h1 class="title">All Notification List</h1>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper has-mobile-cards">
+        <table class="table is-striped">
+          <!---->
+          <thead>
+            <tr>
+              <th width="40px"></th>
+              <!---->
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="is-empty">
+              <td colspan="4">
+                <section class="section">
+                  <div class="content has-text-grey has-text-centered">
+                    <p>No data</p>
+                  </div>
+                </section>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <!---->
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <div class="control pagination-input">
+                <!---->
+              </div>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`/pages/notification.vue { locale: "en" } snapshot test renders loading skeleton 1`] = `
+<section class="section">
+  <h1 class="title">All Notification List</h1>
+  <section>
+    <div class="b-table">
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <!---->
+      <div class="table-wrapper has-mobile-cards">
+        <table class="table is-striped">
+          <!---->
+          <thead>
+            <tr>
+              <th width="40px"></th>
+              <!---->
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <th draggable="false" class="">
+                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
+              </th>
+              <!---->
+            </tr>
+            <!---->
+            <!---->
+          </thead>
+          <tbody>
+            <tr class="is-empty">
+              <td colspan="4">
+                <section class="section">
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                  <div class="b-skeleton is-animated">
+                    <div class="b-skeleton-item is-rounded"></div>
+                  </div>
+                </section>
+              </td>
+            </tr>
+          </tbody>
+          <!---->
+        </table>
+        <transition-stub name="fade">
+          <div class="loading-overlay is-active">
+            <div class="loading-background"></div>
+            <div class="loading-icon"></div>
+          </div>
+        </transition-stub>
+      </div>
+      <div class="top level">
+        <div class="level-left"></div>
+        <div class="level-right">
+          <div class="level-item">
+            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
+              <div class="control pagination-input">
+                <!---->
+              </div>
+              <ul class="pagination-list">
+                <!---->
+                <!---->
+                <!---->
+                <!---->
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+`;
+
+exports[`/pages/notification.vue { locale: "ja" } snapshot test renders Edit column if admin 1`] = `
 <section class="section">
   <h1 class="title">お知らせ一覧</h1>
   <section>
@@ -107,109 +467,7 @@ exports[`/pages/notification.vue snapshot test renders Edit column if admin 1`] 
 </section>
 `;
 
-exports[`/pages/notification.vue snapshot test renders correctly if { locale: en } 1`] = `
-<section class="section">
-  <h1 class="title">All Notification List</h1>
-  <section>
-    <div class="b-table">
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div class="table-wrapper has-mobile-cards">
-        <table class="table is-striped">
-          <!---->
-          <thead>
-            <tr>
-              <th width="40px"></th>
-              <!---->
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <!---->
-            </tr>
-            <!---->
-            <!---->
-          </thead>
-          <tbody>
-            <tr draggable="false" class="">
-              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
-              <!---->
-              <td class=""><button type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span>
-                  <!---->
-                  <!---->
-                </button></td>
-              <td data-label="Title" class="">
-                Title 1
-              </td>
-              <td data-label="Date" class="">
-                2020/8/13 0:00:00
-              </td>
-              <!---->
-            </tr>
-            <transition-stub name="">
-              <!---->
-            </transition-stub>
-            <!---->
-            <tr draggable="false" class="">
-              <td class="chevron-cell"><a role="button"><span class="icon"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a></td>
-              <!---->
-              <td class=""><button type="button" class="button is-info">
-                  <!---->
-                  <!---->
-                  <!---->
-                </button></td>
-              <td data-label="Title" class="">
-                Title 2
-              </td>
-              <td data-label="Date" class="">
-                2020/8/13 0:00:00
-              </td>
-              <!---->
-            </tr>
-            <transition-stub name="">
-              <!---->
-            </transition-stub>
-            <!---->
-            <!---->
-          </tbody>
-          <!---->
-        </table>
-        <!---->
-      </div>
-      <div class="top level">
-        <div class="level-left"></div>
-        <div class="level-right">
-          <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
-              <div class="control pagination-input">
-                <!---->
-              </div>
-              <ul class="pagination-list">
-                <!---->
-                <!---->
-                <li><a role="button" href="#" aria-current="true" class="pagination-link is-current ">1</a></li>
-                <!---->
-                <!---->
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-`;
-
-exports[`/pages/notification.vue snapshot test renders correctly if { locale: ja } 1`] = `
+exports[`/pages/notification.vue { locale: "ja" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">お知らせ一覧</h1>
   <section>
@@ -311,77 +569,7 @@ exports[`/pages/notification.vue snapshot test renders correctly if { locale: ja
 </section>
 `;
 
-exports[`/pages/notification.vue snapshot test renders empty if { locale: en } 1`] = `
-<section class="section">
-  <h1 class="title">All Notification List</h1>
-  <section>
-    <div class="b-table">
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <!---->
-      <div class="table-wrapper has-mobile-cards">
-        <table class="table is-striped">
-          <!---->
-          <thead>
-            <tr>
-              <th width="40px"></th>
-              <!---->
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative">  <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative"> Title <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <th draggable="false" class="">
-                <div class="th-wrap"><span class="is-relative"> Date <span class="icon sort-icon is-small is-invisible"><i class="mdi mdi-arrow-up"></i></span></span></div>
-              </th>
-              <!---->
-            </tr>
-            <!---->
-            <!---->
-          </thead>
-          <tbody>
-            <tr class="is-empty">
-              <td colspan="4">
-                <section class="section">
-                  <div class="content has-text-grey has-text-centered">
-                    <p>No data</p>
-                  </div>
-                </section>
-              </td>
-            </tr>
-          </tbody>
-          <!---->
-        </table>
-        <!---->
-      </div>
-      <div class="top level">
-        <div class="level-left"></div>
-        <div class="level-right">
-          <div class="level-item">
-            <nav class="pagination"><a role="button" href="#" disabled="disabled" class="pagination-link pagination-previous"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-left mdi-24px"></i></span></a><a role="button" href="#" disabled="disabled" class="pagination-link pagination-next"><span class="icon" aria-hidden="true"><i class="mdi mdi-chevron-right mdi-24px"></i></span></a>
-              <div class="control pagination-input">
-                <!---->
-              </div>
-              <ul class="pagination-list">
-                <!---->
-                <!---->
-                <!---->
-                <!---->
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-</section>
-`;
-
-exports[`/pages/notification.vue snapshot test renders empty if { locale: ja } 1`] = `
+exports[`/pages/notification.vue { locale: "ja" } snapshot test renders empty 1`] = `
 <section class="section">
   <h1 class="title">お知らせ一覧</h1>
   <section>
@@ -451,7 +639,7 @@ exports[`/pages/notification.vue snapshot test renders empty if { locale: ja } 1
 </section>
 `;
 
-exports[`/pages/notification.vue snapshot test renders loading skeleton 1`] = `
+exports[`/pages/notification.vue { locale: "ja" } snapshot test renders loading skeleton 1`] = `
 <section class="section">
   <h1 class="title">お知らせ一覧</h1>
   <section>

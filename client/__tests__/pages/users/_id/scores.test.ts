@@ -1,9 +1,8 @@
 import { publicUser, testScores } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getUserScores } from '~/api/score'
 import { getUserInfo } from '~/api/user'
 import ScorePage from '~/pages/users/_id/scores.vue'
@@ -11,17 +10,15 @@ import ScorePage from '~/pages/users/_id/scores.vue'
 jest.mock('~/api/score')
 jest.mock('~/api/user')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/users/_id/scores.vue', () => {
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const stubs = { ScoreList: true }
   const $http = {}
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
 
     test('renders correctly', () => {
       const data = () => ({ user: publicUser })

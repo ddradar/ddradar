@@ -1,43 +1,57 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/nonstop/_series/index.vue { locale: en } snapshot test renders correctly 1`] = `
+exports[`pages/nonstop/_series/index.vue { locale: "en" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - NONSTOP</h1>
-  <div class="buttons">
-    <b-button-stub type="is-info" outlined="true" nativetype="button" tag="nuxt-link" to="/nonstop/16" disabled="true">
+  <div class="buttons"><button type="button" to="/nonstop/16" disabled="disabled" class="button is-info is-outlined">
+      <!----><span>
       NONSTOP(A20)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/16">
+    </span>
+      <!---->
+    </button><a type="button" class="button is-info">
+      <!----><span>
       GRADE(A20)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/17">
+    </span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       NONSTOP(A20 PLUS)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/17">
+    </span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       GRADE(A20 PLUS)
-    </b-button-stub>
-  </div>
-  <course-list-stub courses=""></course-list-stub>
+    </span>
+      <!---->
+    </a></div>
+  <courselist-stub courses=""></courselist-stub>
 </section>
 `;
 
-exports[`pages/nonstop/_series/index.vue { locale: ja } snapshot test renders correctly 1`] = `
+exports[`pages/nonstop/_series/index.vue { locale: "ja" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - NONSTOP</h1>
-  <div class="buttons">
-    <b-button-stub type="is-info" outlined="true" nativetype="button" tag="nuxt-link" to="/nonstop/16" disabled="true">
+  <div class="buttons"><button type="button" to="/nonstop/16" disabled="disabled" class="button is-info is-outlined">
+      <!----><span>
       NONSTOP(A20)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/16">
+    </span>
+      <!---->
+    </button><a type="button" class="button is-info">
+      <!----><span>
       段位認定(A20)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/nonstop/17">
+    </span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       NONSTOP(A20 PLUS)
-    </b-button-stub>
-    <b-button-stub type="is-info" nativetype="button" tag="nuxt-link" to="/grade/17">
+    </span>
+      <!---->
+    </a><a type="button" class="button is-info">
+      <!----><span>
       段位認定(A20 PLUS)
-    </b-button-stub>
-  </div>
-  <course-list-stub courses=""></course-list-stub>
+    </span>
+      <!---->
+    </a></div>
+  <courselist-stub courses=""></courselist-stub>
 </section>
 `;

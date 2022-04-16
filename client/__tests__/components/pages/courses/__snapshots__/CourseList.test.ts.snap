@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test { loading: false, courses: [...] } renders course list 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "en" } snapshot test { loading: false, courses: [...] } renders course list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -165,7 +165,7 @@ exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test {
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test { loading: false, courses: [] } renders empty 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "en" } snapshot test { loading: false, courses: [] } renders empty 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -229,7 +229,7 @@ exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test {
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "en" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -304,7 +304,7 @@ exports[`/components/pages/courses/CourseList.vue { locale: en } snapshot test {
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue { locale: ja } snapshot test { loading: false, courses: [...] } renders course list 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "ja" } snapshot test { loading: false, courses: [...] } renders course list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -469,7 +469,7 @@ exports[`/components/pages/courses/CourseList.vue { locale: ja } snapshot test {
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue { locale: ja } snapshot test { loading: false, courses: [] } renders empty 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "ja" } snapshot test { loading: false, courses: [] } renders empty 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -533,7 +533,7 @@ exports[`/components/pages/courses/CourseList.vue { locale: ja } snapshot test {
 </div>
 `;
 
-exports[`/components/pages/courses/CourseList.vue { locale: ja } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/courses/CourseList.vue { locale: "ja" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->

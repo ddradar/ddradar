@@ -1,14 +1,7 @@
 import { scoreTexttoScoreList } from '@ddradar/core'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-  Wrapper,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount, Wrapper } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { postSongScores } from '~/api/score'
 import ImportPage from '~/pages/import.vue'
 import * as popup from '~/utils/popup'
@@ -17,16 +10,14 @@ jest.mock('~/api/score')
 jest.mock('~/utils/popup')
 jest.mock('@ddradar/core')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('pages/import.vue', () => {
   let wrapper: Wrapper<ImportPage>
   const $accessor = { user: { code: 10000000 } }
   const $http = {}
   const $buefy = {}
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const stubs = { NuxtLink: RouterLinkStub }
   beforeEach(() => {
     const mocks = { $accessor, $http, $buefy }
@@ -34,7 +25,7 @@ describe('pages/import.vue', () => {
   })
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
     test('renders correctly', () => {
       const data = () => ({ sourceCode: '<html></html>' })
       const mocks = { $accessor }
@@ -70,8 +61,8 @@ describe('pages/import.vue', () => {
     test.each([
       ['en', /.+m\.default\('https:\/\/.+','en'\)\)\);$/],
       ['ja', /.+m\.default\('https:\/\/.+','ja'\)\)\);$/],
-    ])('{ locale: %s } returns %s script', (locale, expected) => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    ])('{ locale: "%s" } returns %s script', (locale, expected) => {
+      const i18n = createI18n(locale)
       const mocks = { $accessor }
       const wrapper = shallowMount(ImportPage, { localVue, mocks, i18n, stubs })
 
@@ -201,7 +192,7 @@ describe('pages/import.vue', () => {
         const wrapper = shallowMount(ImportPage, {
           localVue,
           mocks: { $accessor, $http, $buefy },
-          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+          i18n: createI18n(locale),
           data: () => ({ file: {} }),
           stubs,
         })

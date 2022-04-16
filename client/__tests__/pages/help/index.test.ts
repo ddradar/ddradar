@@ -1,16 +1,13 @@
-import { createLocalVue, mount } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import HelpPage from '~/pages/help/index.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('pages/help/index.vue', () => {
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
     test('renders correctly', () => {
       const wrapper = mount(HelpPage, { localVue, i18n })
       expect(wrapper).toMatchSnapshot()

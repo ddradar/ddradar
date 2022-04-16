@@ -4,15 +4,9 @@ import {
   testScores,
   testSongData,
 } from '@ddradar/core/__tests__/data'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getCourseInfo } from '~/api/course'
 import { getSongInfo } from '~/api/song'
 import ScoreList from '~/components/pages/users/ScoreList.vue'
@@ -20,9 +14,7 @@ import ScoreList from '~/components/pages/users/ScoreList.vue'
 jest.mock('~/api/course')
 jest.mock('~/api/song')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 const score: Api.ScoreList & Partial<Database.ScoreSchema> = {
   ...testScores[0],
@@ -35,14 +27,14 @@ delete score.isPublic
 describe('/components/pages/users/ScoreList.vue', () => {
   const $accessor = { isLoggedIn: false }
 
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
     const scores: Api.ScoreList[] = [
       score,
       { ...score, playStyle: 2, difficulty: 1 },
       { ...score, isCourse: true },
     ]
     const mocks = { $accessor }
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
     const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
     const wrapper = mount(ScoreList, { localVue, stubs, i18n, mocks })
 
@@ -101,7 +93,7 @@ describe('/components/pages/users/ScoreList.vue', () => {
 
     test('(isCourse: false) calls getSongInfo()', async () => {
       // Arrange
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+      const i18n = createI18n()
       const wrapper = shallowMount(ScoreList, { localVue, mocks, i18n })
 
       // Act
@@ -124,7 +116,7 @@ describe('/components/pages/users/ScoreList.vue', () => {
 
     test('(isCourse: true) calls getCourseInfo()', async () => {
       // Arrange
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+      const i18n = createI18n()
       const wrapper = shallowMount(ScoreList, { localVue, mocks, i18n })
 
       // Act

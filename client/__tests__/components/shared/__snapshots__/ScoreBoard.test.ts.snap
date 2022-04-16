@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "en" } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -120,7 +120,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loading: false, scores: [] } renders empty 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "en" } snapshot test { loading: false, scores: [] } renders empty 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -188,7 +188,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "en" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -261,7 +261,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test not renders import button if deleted song 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "en" } snapshot test not renders import button if deleted song 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -330,7 +330,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test not rend
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test renders edit button if loggedIn 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "en" } snapshot test renders edit button if loggedIn 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -399,7 +399,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: en } snapshot test renders 
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "ja" } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -519,7 +519,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loading: false, scores: [] } renders empty 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "ja" } snapshot test { loading: false, scores: [] } renders empty 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -587,7 +587,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "ja" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -660,7 +660,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test { loadin
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test not renders import button if deleted song 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "ja" } snapshot test not renders import button if deleted song 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -729,7 +729,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test not rend
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test renders edit button if loggedIn 1`] = `
+exports[`/components/shared/ScoreBoard.vue { locale: "ja" } snapshot test renders edit button if loggedIn 1`] = `
 <div class="collapse card">
   <div class="collapse-trigger">
     <header role="button" aria-controls="SP-BEGINNER (4)" class="card-header is-beginner">
@@ -798,7 +798,7 @@ exports[`/components/shared/ScoreBoard.vue { locale: ja } snapshot test renders 
 </div>
 `;
 
-exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: en } areaName 1`] = `
+exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: "en" } areaName 1`] = `
 Array [
   Object {
     "clearLamp": 7,
@@ -833,7 +833,7 @@ Array [
 ]
 `;
 
-exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: ja } areaName 1`] = `
+exports[`/components/shared/ScoreBoard.vue fetch() sets { locale: "ja" } areaName 1`] = `
 Array [
   Object {
     "clearLamp": 7,

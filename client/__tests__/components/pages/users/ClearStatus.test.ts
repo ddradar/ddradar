@@ -1,11 +1,10 @@
 import type { Api, Score } from '@ddradar/core'
-import { createLocalVue, mount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import Component from '~/components/pages/users/ClearStatus.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
+const localVue = createVue()
 
 describe('/components/pages/users/ClearStatus.vue', () => {
   describe('snapshot test', () => {

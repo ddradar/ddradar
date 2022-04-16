@@ -1,23 +1,15 @@
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-  Wrapper,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount, Wrapper } from '@vue/test-utils'
 
 import { notificationList } from '~/__tests__/data'
+import { createI18n, createVue } from '~/__tests__/util'
 import { getNotificationList } from '~/api/notification'
-import NotificationPage from '~/pages/notification.vue'
+import Page from '~/pages/notification.vue'
 import * as popup from '~/utils/popup'
 
 jest.mock('~/api/notification')
 jest.mock('~/utils/popup')
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('/pages/notification.vue', () => {
   const messages = notificationList.map(d => ({
@@ -27,65 +19,69 @@ describe('/pages/notification.vue', () => {
   const $accessor = { isAdmin: false }
   const $fetchState = { pending: false }
 
-  describe('snapshot test', () => {
+  describe.each(['en', 'ja'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
+    const stubs = { NuxtLink: RouterLinkStub }
     test('renders loading skeleton', async () => {
-      const wrapper = mount(NotificationPage, {
-        localVue,
-        mocks: { $fetchState: { pending: true }, $accessor },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ messages: [] }),
-        i18n: new VueI18n({ locale: 'ja', silentFallbackWarn: true }),
-      })
+      // Arrange
+      const mocks = { $fetchState: { pending: true }, $accessor }
+      const data = () => ({ messages: [] })
+
+      // Act
+      const wrapper = mount(Page, { localVue, mocks, stubs, data, i18n })
       await wrapper.vm.$nextTick()
+
+      // Assert
       expect(wrapper).toMatchSnapshot()
     })
-    test.each(['en', 'ja'])(
-      'renders correctly if { locale: %s }',
-      async locale => {
-        const wrapper = mount(NotificationPage, {
-          localVue,
-          mocks: { $fetchState, $accessor },
-          stubs: { NuxtLink: RouterLinkStub },
-          data: () => ({ messages }),
-          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
-        })
-        await wrapper.vm.$nextTick()
-        expect(wrapper).toMatchSnapshot()
-      }
-    )
-    test.each(['en', 'ja'])('renders empty if { locale: %s }', async locale => {
-      const wrapper = mount(NotificationPage, {
-        localVue,
-        mocks: { $fetchState, $accessor },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ messages: [] }),
-        i18n: new VueI18n({ locale, silentFallbackWarn: true }),
-      })
+    test('renders correctly', async () => {
+      // Arrange
+      const mocks = { $fetchState, $accessor }
+      const data = () => ({ messages })
+
+      // Act
+      const wrapper = mount(Page, { localVue, mocks, stubs, data, i18n })
       await wrapper.vm.$nextTick()
+
+      // Assert
+      expect(wrapper).toMatchSnapshot()
+    })
+    test('renders empty', async () => {
+      // Arrange
+      const mocks = { $fetchState, $accessor }
+      const data = () => ({ messages: [] })
+
+      // Act
+      const wrapper = mount(Page, { localVue, mocks, stubs, data, i18n })
+      await wrapper.vm.$nextTick()
+
+      // Assert
       expect(wrapper).toMatchSnapshot()
     })
     test('renders Edit column if admin', async () => {
-      const wrapper = mount(NotificationPage, {
-        localVue,
-        mocks: { $fetchState, $accessor: { isAdmin: true } },
-        stubs: { NuxtLink: RouterLinkStub },
-        data: () => ({ messages }),
-        i18n: new VueI18n({ locale: 'ja', silentFallbackWarn: true }),
-      })
+      // Arrange
+      const mocks = { $fetchState, $accessor: { isAdmin: true } }
+      const data = () => ({ messages })
+
+      // Act
+      const wrapper = mount(Page, { localVue, mocks, stubs, data, i18n })
       await wrapper.vm.$nextTick()
+
+      // Assert
       expect(wrapper).toMatchSnapshot()
     })
   })
 
+  // Lifecycle
   describe('fetch()', () => {
-    let wrapper: Wrapper<NotificationPage>
-    const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+    let wrapper: Wrapper<Page>
+    const i18n = createI18n()
     const mocks = { $accessor, $buefy: {}, $fetchState, $http: {} }
     const data = () => ({ messages: [] })
     beforeEach(() => {
       jest.mocked(getNotificationList).mockClear()
       jest.mocked(popup.danger).mockClear()
-      wrapper = shallowMount(NotificationPage, { localVue, mocks, data, i18n })
+      wrapper = shallowMount(Page, { localVue, mocks, data, i18n })
     })
 
     test('calls getNotificationList($http)', async () => {

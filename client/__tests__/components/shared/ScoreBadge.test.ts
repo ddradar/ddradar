@@ -1,10 +1,9 @@
-import { createLocalVue, mount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import ScoreBadge from '~/components/shared/ScoreBadge.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
+const localVue = createVue()
 
 describe('/components/shared/ScoreBadge.vue', () => {
   test.each([

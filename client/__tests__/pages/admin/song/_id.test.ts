@@ -1,17 +1,18 @@
 import type { Database } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount, shallowMount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import { getSongInfo, postSongInfo } from '~/api/song'
 import SongEditorPage from '~/pages/admin/song/_id.vue'
 import * as popup from '~/utils/popup'
 
 jest.mock('~/api/song')
 jest.mock('~/utils/popup')
-const localVue = createLocalVue()
-localVue.use(Buefy)
+
+const localVue = createVue()
+
 const songInfo = { ...testSongData, nameIndex: undefined }
 delete songInfo.nameIndex
 
