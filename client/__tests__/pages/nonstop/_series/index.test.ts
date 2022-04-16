@@ -1,25 +1,24 @@
 import type { Context } from '@nuxt/types'
-import { createLocalVue, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getCourseList } from '~/api/course'
 import NonstopListPage from '~/pages/nonstop/_series/index.vue'
 
 jest.mock('~/api/course')
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('pages/nonstop/_series/index.vue', () => {
   const $fetchState = { pending: false }
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     test('renders correctly', () => {
       // Arrange - Act
       const $route = { params: { series: '16' }, path: '/nonstop/16' }
       const mocks = { $fetchState, $route }
-      const wrapper = shallowMount(NonstopListPage, { localVue, mocks, i18n })
+      const stubs = { NuxtLink: RouterLinkStub, CourseList: true }
+      const wrapper = mount(NonstopListPage, { localVue, mocks, stubs, i18n })
 
       // Assert
       expect(wrapper).toMatchSnapshot()
@@ -28,7 +27,7 @@ describe('pages/nonstop/_series/index.vue', () => {
 
   // Lifecycle
   describe('validate()', () => {
-    const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+    const i18n = createI18n()
     test.each(['', 'foo', '100', '-1'])('/%s returns false', series => {
       // Arrange
       const mocks = { $fetchState, $route: { params: { series } } }
@@ -49,7 +48,7 @@ describe('pages/nonstop/_series/index.vue', () => {
     })
   })
   describe('fetch()', () => {
-    const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+    const i18n = createI18n()
     const apiMock = jest.mocked(getCourseList)
     beforeEach(() => {
       apiMock.mockClear()
@@ -83,7 +82,7 @@ describe('pages/nonstop/_series/index.vue', () => {
       ['17', 'en', 'DanceDanceRevolution A20 PLUS - NONSTOP'],
     ])('/%s (locale:%s) returns "%s"', (series, locale, expected) => {
       // Arrange
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+      const i18n = createI18n(locale)
       const $route = { params: { series }, path: `/nonstop/${series}` }
       const mocks = { $fetchState, $route }
       const wrapper = shallowMount(NonstopListPage, { localVue, mocks, i18n })

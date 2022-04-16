@@ -1,8 +1,7 @@
 import { Gate, Song } from '@ddradar/core'
-import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, shallowMount, Wrapper } from '@vue/test-utils'
 
+import { createI18n, createVue, mockMatchMedia } from '~/__tests__/util'
 import { postSongScores } from '~/api/score'
 import ScoreImporter from '~/components/modal/ScoreImporter.vue'
 import * as popup from '~/utils/popup'
@@ -10,24 +9,24 @@ import * as popup from '~/utils/popup'
 jest.mock('@ddradar/core')
 jest.mock('~/api/score')
 jest.mock('~/utils/popup')
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('/components/modal/ScoreImporter.vue', () => {
   const songId = '8Il6980di8P89lil1PDIqqIbiq1QO8lQ'
   const propsData = { songId, playStyle: 1, difficulty: 1, isCourse: false }
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
+  beforeAll(() => mockMatchMedia())
 
   describe('snapshot test', () => {
     test.each(['ja', 'en'])(
-      '{ locale: %s, sourceCode: "foo" } renders normal button',
+      '{ locale: "%s", sourceCode: "foo" } renders normal button',
       locale => {
         const wrapper = mount(ScoreImporter, {
           localVue,
           propsData,
           data: () => ({ sourceCode: 'foo', loading: false }),
-          i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+          i18n: createI18n(locale),
         })
         expect(wrapper).toMatchSnapshot()
       }

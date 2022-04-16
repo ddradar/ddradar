@@ -1,8 +1,7 @@
 import type { Api } from '@ddradar/core'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { existsUser } from '~/api/user'
 import ProfilePage from '~/pages/profile.vue'
 import * as popup from '~/utils/popup'
@@ -10,9 +9,7 @@ import * as popup from '~/utils/popup'
 jest.mock('~/api/user')
 jest.mock('~/utils/popup')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('pages/profile.vue', () => {
   const $accessor = { user: null }
@@ -24,11 +21,11 @@ describe('pages/profile.vue', () => {
     code: 10000000,
     password: 'password',
   }
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const data = () => ({ ...user })
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
     test('renders correctly', () => {
       const mocks = { $accessor }
       const wrapper = mount(ProfilePage, { localVue, i18n, mocks })
@@ -166,7 +163,7 @@ describe('pages/profile.vue', () => {
       '{ locale: "%s" } sets "%s" error if id is ""',
       async (locale, message) => {
         // Arrange
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const data = () => ({ ...user, id: '' })
         const options = { localVue, i18n, mocks, data }
         const wrapper = shallowMount(ProfilePage, options)
@@ -190,7 +187,7 @@ describe('pages/profile.vue', () => {
       '{ locale: "%s" } sets "%s" error if id is "@"',
       async (locale, message) => {
         // Arrange
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const data = () => ({ ...user, id: '@' })
         const options = { localVue, i18n, mocks, data }
         const wrapper = shallowMount(ProfilePage, options)
@@ -212,7 +209,7 @@ describe('pages/profile.vue', () => {
       async (locale, message) => {
         // Arrange
         existsUserMock.mockResolvedValue(true)
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const options = { localVue, i18n, mocks, data }
         const wrapper = shallowMount(ProfilePage, options)
 
@@ -233,7 +230,7 @@ describe('pages/profile.vue', () => {
       async (locale, message) => {
         // Arrange
         existsUserMock.mockResolvedValue(false)
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const options = { localVue, i18n, mocks, data }
         const wrapper = shallowMount(ProfilePage, options)
 
@@ -279,7 +276,7 @@ describe('pages/profile.vue', () => {
       '{ locale: "%s" } calls popup.success($buefy, "%s")',
       async (locale, message) => {
         // Arrange
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const options = { localVue, i18n, mocks, data }
         const wrapper = shallowMount(ProfilePage, options)
 

@@ -1,18 +1,19 @@
 import { notification } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
-import { createLocalVue, mount, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount, shallowMount } from '@vue/test-utils'
 
+import { createVue, mockMatchMedia } from '~/__tests__/util'
 import { getNotificationInfo, postNotification } from '~/api/notification'
 import EditorPage from '~/pages/admin/notification/_id.vue'
 import * as popup from '~/utils/popup'
 
 jest.mock('~/api/notification')
 jest.mock('~/utils/popup')
-const localVue = createLocalVue()
-localVue.use(Buefy)
+
+const localVue = createVue()
 
 describe('pages/admin/notification/_id.vue', () => {
+  beforeAll(() => mockMatchMedia())
   describe('snapshot test', () => {
     test('renders correctly', () => {
       // Arrange

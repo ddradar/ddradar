@@ -1,29 +1,11 @@
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import DefaultLayout from '~/layouts/default.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.mixin({
-  methods: {
-    localePath: (obj: object) => obj,
-    switchLocalePath: (code: string) => code,
-  },
-})
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/layouts/default.vue', () => {
-  const locales = [
-    { code: 'en', iso: 'en-US', flag: 'us', name: 'English' },
-    { code: 'ja', iso: 'ja-JP', flag: 'jp', name: '日本語' },
-  ]
   const stubs = { NuxtLink: RouterLinkStub, Nuxt: true, SearchBox: true }
   const templateMocks = {
     $accessor: {
@@ -36,9 +18,7 @@ describe('/layouts/default.vue', () => {
   }
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
-    // @ts-ignore
-    i18n.locales = locales
+    const i18n = createI18n(locale)
 
     test('renders loading', () => {
       const mocks = { ...templateMocks, $fetchState: { pending: true } }
@@ -60,9 +40,7 @@ describe('/layouts/default.vue', () => {
   describe('fetch()', () => {
     const fetchUser = jest.fn()
     const $router = { push: jest.fn() }
-    const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-    // @ts-ignore
-    i18n.locales = locales
+    const i18n = createI18n()
     beforeEach(() => {
       fetchUser.mockClear()
       $router.push.mockClear()

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { isLoggedIn : true } renders "Edit" button 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "en" } snapshot test { isLoggedIn : true } renders "Edit" button 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -134,7 +134,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { is
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "en" } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -262,7 +262,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { lo
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { loading: false, scores: [] } renders empty 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "en" } snapshot test { loading: false, scores: [] } renders empty 1`] = `
 <div class="b-table" charts="">
   <!---->
   <!---->
@@ -390,7 +390,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { lo
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "en" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -470,7 +470,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: en } snapshot test { lo
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { isLoggedIn : true } renders "Edit" button 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "ja" } snapshot test { isLoggedIn : true } renders "Edit" button 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -604,7 +604,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { is
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "ja" } snapshot test { loading: false, scores: [...] } renders score list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -732,7 +732,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { lo
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { loading: false, scores: [] } renders empty 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "ja" } snapshot test { loading: false, scores: [] } renders empty 1`] = `
 <div class="b-table" charts="">
   <!---->
   <!---->
@@ -860,7 +860,7 @@ exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { lo
 </div>
 `;
 
-exports[`/components/pages/users/ScoreList.vue { locale: ja } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/users/ScoreList.vue { locale: "ja" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->

@@ -1,12 +1,13 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
 import type { Context } from '@nuxt/types'
-import { createLocalVue, shallowMount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import { getCourseInfo } from '~/api/course'
 import CourseDetailPage from '~/pages/courses/_id/index.vue'
 
 jest.mock('~/api/course')
-const localVue = createLocalVue()
+const localVue = createVue()
 
 describe('pages/courses/_id/index.vue', () => {
   const course = { ...testCourseData }

@@ -1,9 +1,8 @@
 import { Api, Score } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
-import { createLocalVue, mount, shallowMount, Wrapper } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, shallowMount, Wrapper } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { deleteChartScore, getChartScore, postChartScore } from '~/api/score'
 import ScoreEditor from '~/components/modal/ScoreEditor.vue'
 import * as popup from '~/utils/popup'
@@ -11,9 +10,8 @@ import * as popup from '~/utils/popup'
 jest.mock('@ddradar/core')
 jest.mock('~/api/score')
 jest.mock('~/utils/popup')
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('/components/modal/ScoreEditor.vue', () => {
   let wrapper: Wrapper<ScoreEditor>
@@ -35,15 +33,15 @@ describe('/components/modal/ScoreEditor.vue', () => {
     rank: 'AAA',
     score: 990000,
   }
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const $parent = { close: jest.fn() }
   beforeEach(() => {
     jest.mocked(getChartScore).mockResolvedValue([chartScore])
     wrapper = shallowMount(ScoreEditor, { localVue, propsData, i18n })
   })
 
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     test('{ selectedChart: null } renders chart dropdown', () => {
       const wrapper = mount(ScoreEditor, {
         localVue,

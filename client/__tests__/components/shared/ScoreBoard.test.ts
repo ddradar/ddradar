@@ -5,23 +5,16 @@ import {
   publicUser,
   testSongData,
 } from '@ddradar/core/__tests__/data'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getChartScore } from '~/api/score'
 import ScoreBoard from '~/components/shared/ScoreBoard.vue'
 
 jest.mock('~/api/score')
 jest.mock('@ddradar/core')
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('/components/shared/ScoreBoard.vue', () => {
   const info = { ...testSongData, charts: undefined }
@@ -60,7 +53,7 @@ describe('/components/shared/ScoreBoard.vue', () => {
       exScore: chart.notes * 3 - 5,
     },
   ]
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const mocks = {
     $accessor,
     $http: {},
@@ -79,8 +72,8 @@ describe('/components/shared/ScoreBoard.vue', () => {
     jest.mocked(Song.isDeletedOnGate).mockReturnValue(false)
   })
 
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     const stubs = { NuxtLink: RouterLinkStub, ScoreBadge: true }
     const mocks = {
       $accessor: { isLoggedIn: false },
@@ -188,9 +181,9 @@ describe('/components/shared/ScoreBoard.vue', () => {
         'full'
       )
     })
-    test.each(['ja', 'en'])('sets { locale: %s } areaName', async locale => {
+    test.each(['ja', 'en'])('sets { locale: "%s" } areaName', async locale => {
       // Arrange
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+      const i18n = createI18n(locale)
       const mocks = { $accessor, $http: {}, $fetchState: { pending: true } }
       const options = { localVue, propsData, mocks, i18n }
       const wrapper = shallowMount(ScoreBoard, options)

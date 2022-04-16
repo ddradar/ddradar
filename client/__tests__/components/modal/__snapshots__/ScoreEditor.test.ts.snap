@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
+exports[`/components/modal/ScoreEditor.vue { locale: "en" } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">PARANOiA</h1>
@@ -81,7 +81,7 @@ exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { select
 </div>
 `;
 
-exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
+exports[`/components/modal/ScoreEditor.vue { locale: "en" } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">PARANOiA</h1>
@@ -103,7 +103,7 @@ exports[`/components/modal/ScoreEditor.vue { locale: en } snapshot test { select
 </div>
 `;
 
-exports[`/components/modal/ScoreEditor.vue { locale: ja } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
+exports[`/components/modal/ScoreEditor.vue { locale: "ja" } snapshot test { selectedChart: charts[0] } renders edit fields 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">PARANOiA</h1>
@@ -184,7 +184,7 @@ exports[`/components/modal/ScoreEditor.vue { locale: ja } snapshot test { select
 </div>
 `;
 
-exports[`/components/modal/ScoreEditor.vue { locale: ja } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
+exports[`/components/modal/ScoreEditor.vue { locale: "ja" } snapshot test { selectedChart: null } renders chart dropdown 1`] = `
 <div class="modal-card">
   <header class="modal-card-head">
     <h1 class="modal-card-title">PARANOiA</h1>

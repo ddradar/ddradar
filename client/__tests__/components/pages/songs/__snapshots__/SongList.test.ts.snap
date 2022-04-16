@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "en" } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -68,7 +68,7 @@ exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loa
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "en" } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -192,7 +192,7 @@ exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loa
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loading: true } renders loading state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "en" } snapshot test { loading: true } renders loading state 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -271,7 +271,7 @@ exports[`/components/pages/songs/SongList.vue { locale: en } snapshot test { loa
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "ja" } snapshot test { loading: false, songs: [] } renders empty state 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -339,7 +339,7 @@ exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loa
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "ja" } snapshot test { loading: false, songs: [songs] } renders song list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -463,7 +463,7 @@ exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loa
 </div>
 `;
 
-exports[`/components/pages/songs/SongList.vue { locale: ja } snapshot test { loading: true } renders loading state 1`] = `
+exports[`/components/pages/songs/SongList.vue { locale: "ja" } snapshot test { loading: true } renders loading state 1`] = `
 <div class="b-table">
   <!---->
   <!---->

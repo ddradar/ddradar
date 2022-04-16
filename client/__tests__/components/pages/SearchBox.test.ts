@@ -1,17 +1,14 @@
 import type { Api } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
-import { createLocalVue, mount } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { searchSong } from '~/api/song'
 import SearchBox from '~/components/pages/SearchBox.vue'
 
 jest.mock('~/api/song')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/components/pages/SearchBox.vue', () => {
   const songList: Pick<Api.SongInfo, 'id' | 'name' | 'nameKana' | 'artist'>[] =
@@ -20,11 +17,11 @@ describe('/components/pages/SearchBox.vue', () => {
       { id: 'bar', name: 'bar', nameKana: 'BAR', artist: 'Alpha' },
       { id: 'foo-foo', name: 'foo foo', nameKana: 'FOO FOO', artist: 'Beta' },
     ]
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const $fetchState = { pending: true }
 
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
 
     test('{ loading: true } renders loading spin', async () => {
       // Arrange
@@ -55,11 +52,8 @@ describe('/components/pages/SearchBox.vue', () => {
   describe('get filtered()', () => {
     let wrapper: ReturnType<typeof mount>
     beforeEach(() => {
-      wrapper = mount(SearchBox, {
-        i18n,
-        localVue,
-        mocks: { $fetchState },
-      })
+      const mocks = { $fetchState }
+      wrapper = mount(SearchBox, { i18n, localVue, mocks })
     })
 
     test('{ songList: [] } returns []', () => {

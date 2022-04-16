@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { loading: false, charts: [...] } renders chart list 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "en" } snapshot test { loading: false, charts: [...] } renders chart list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -185,7 +185,7 @@ exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { l
 </div>
 `;
 
-exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { loading: false, charts: [] } renders empty 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "en" } snapshot test { loading: false, charts: [] } renders empty 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -257,7 +257,7 @@ exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { l
 </div>
 `;
 
-exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "en" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -340,7 +340,7 @@ exports[`/components/pages/charts/ChartList.vue { locale: en } snapshot test { l
 </div>
 `;
 
-exports[`/components/pages/charts/ChartList.vue { locale: ja } snapshot test { loading: false, charts: [...] } renders chart list 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "ja" } snapshot test { loading: false, charts: [...] } renders chart list 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -525,7 +525,7 @@ exports[`/components/pages/charts/ChartList.vue { locale: ja } snapshot test { l
 </div>
 `;
 
-exports[`/components/pages/charts/ChartList.vue { locale: ja } snapshot test { loading: false, charts: [] } renders empty 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "ja" } snapshot test { loading: false, charts: [] } renders empty 1`] = `
 <div class="b-table">
   <!---->
   <!---->
@@ -597,7 +597,7 @@ exports[`/components/pages/charts/ChartList.vue { locale: ja } snapshot test { l
 </div>
 `;
 
-exports[`/components/pages/charts/ChartList.vue { locale: ja } snapshot test { loading: true } renders loading spin 1`] = `
+exports[`/components/pages/charts/ChartList.vue { locale: "ja" } snapshot test { loading: true } renders loading spin 1`] = `
 <div class="b-table">
   <!---->
   <!---->

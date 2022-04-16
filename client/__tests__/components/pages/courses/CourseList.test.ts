@@ -1,17 +1,14 @@
 import type { Api } from '@ddradar/core'
-import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/components/pages/courses/CourseList.vue', () => {
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     const stubs = { NuxtLink: RouterLinkStub }
     const wrapper = mount(CourseList, { localVue, stubs, i18n })
     test('{ loading: true } renders loading spin', async () => {

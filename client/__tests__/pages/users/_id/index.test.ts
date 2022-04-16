@@ -1,23 +1,15 @@
 import type { Api, Database } from '@ddradar/core'
 import { Score } from '@ddradar/core'
 import type { Context } from '@nuxt/types'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getClearStatus, getGrooveRadar, getUserInfo } from '~/api/user'
 import UserPage from '~/pages/users/_id/index.vue'
 
 jest.mock('~/api/user')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/users/_id/index.vue', () => {
   const user: Api.UserInfo = {
@@ -41,7 +33,7 @@ describe('/users/_id/index.vue', () => {
       count: (clearLamp + 2) * 10,
     })),
   }))
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+  const i18n = createI18n()
   const stubs = {
     NuxtLink: RouterLinkStub,
     ClearStatus: true,
@@ -58,7 +50,7 @@ describe('/users/_id/index.vue', () => {
   })
 
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    const i18n = createI18n(locale)
 
     test('renders correctly', () => {
       const mocks = { ...templateMocks }
@@ -94,7 +86,7 @@ describe('/users/_id/index.vue', () => {
       // Arrange
       const wrapper = shallowMount(UserPage, {
         localVue,
-        i18n: new VueI18n({ locale, silentFallbackWarn: true }),
+        i18n: createI18n(locale),
         stubs,
         mocks: templateMocks,
         data: () => ({ user: { ...user, area } }),
@@ -107,7 +99,7 @@ describe('/users/_id/index.vue', () => {
     test.each(['ja', 'en'])(
       '{ locale: "%s" } returns "" if user is null',
       locale => {
-        const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+        const i18n = createI18n(locale)
         const mocks = { ...templateMocks }
         const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
@@ -138,13 +130,9 @@ describe('/users/_id/index.vue', () => {
       expect(wrapper.vm.ddrCode).toBe(expected)
     })
     test('returns "" if user is null', () => {
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-      const wrapper = shallowMount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks: templateMocks,
-      })
+      // Arrange
+      const mocks = templateMocks
+      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
       // Act - Assert
       // @ts-ignore
@@ -197,13 +185,9 @@ describe('/users/_id/index.vue', () => {
       expect(wrapper.vm.isSelfPage).toBe(true)
     })
     test('returns false if user is null', () => {
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
-      const wrapper = shallowMount(UserPage, {
-        localVue,
-        i18n,
-        stubs,
-        mocks: templateMocks,
-      })
+      // Arrange
+      const mocks = templateMocks
+      const wrapper = shallowMount(UserPage, { localVue, i18n, stubs, mocks })
 
       // Act - Assert
       // @ts-ignore

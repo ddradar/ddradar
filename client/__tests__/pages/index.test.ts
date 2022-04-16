@@ -1,14 +1,7 @@
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-  Wrapper,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount, Wrapper } from '@vue/test-utils'
 
 import { notificationList } from '~/__tests__/data'
+import { createI18n, createVue } from '~/__tests__/util'
 import { getNotificationList } from '~/api/notification'
 import IndexPage from '~/pages/index.vue'
 import * as popup from '~/utils/popup'
@@ -16,16 +9,14 @@ import * as popup from '~/utils/popup'
 jest.mock('~/api/notification')
 jest.mock('~/utils/popup')
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+const localVue = createVue()
 
 describe('/pages/index.vue', () => {
   const messages = [...notificationList]
-  const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
   const stubs = { NuxtLink: RouterLinkStub, SearchBox: true, TopMessage: true }
 
-  describe('snapshot test', () => {
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     const data = () => ({ messages })
 
     test('renders loading skeleton', () => {
@@ -33,8 +24,7 @@ describe('/pages/index.vue', () => {
       const wrapper = mount(IndexPage, { localVue, mocks, stubs, data, i18n })
       expect(wrapper).toMatchSnapshot()
     })
-    test.each(['en', 'ja'])('renders correctly if locale is "%s"', locale => {
-      const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+    test('renders correctly', () => {
       const mocks = { $fetchState: { pending: false } }
       const wrapper = mount(IndexPage, { localVue, mocks, stubs, data, i18n })
       expect(wrapper).toMatchSnapshot()
@@ -43,6 +33,7 @@ describe('/pages/index.vue', () => {
 
   describe('fetch()', () => {
     let wrapper: Wrapper<IndexPage>
+    const i18n = createI18n()
     const mocks = { $buefy: {}, $fetchState: { pending: true }, $http: {} }
     const data = () => ({ messages: [] })
     beforeEach(() => {

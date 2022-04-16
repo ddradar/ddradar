@@ -1,7 +1,7 @@
 import { notification } from '@ddradar/core/__tests__/data'
-import { createLocalVue, mount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import TopMessage from '~/components/pages/TopMessage.vue'
 import { unixTimeToString } from '~/utils/date'
 
@@ -10,8 +10,7 @@ jest
   .mocked(unixTimeToString)
   .mockImplementation(unixTime => new Date(unixTime * 1000).toUTCString())
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
+const localVue = createVue()
 
 describe('/components/pages/TopMessage.vue', () => {
   const propsData = {

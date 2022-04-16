@@ -1,14 +1,8 @@
 import type { Api } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/__tests__/data'
-import {
-  createLocalVue,
-  mount,
-  RouterLinkStub,
-  shallowMount,
-} from '@vue/test-utils'
-import Buefy from 'buefy'
-import VueI18n from 'vue-i18n'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createI18n, createVue } from '~/__tests__/util'
 import { getSongInfo } from '~/api/song'
 import ChartList from '~/components/pages/charts/ChartList.vue'
 
@@ -16,13 +10,12 @@ jest.mock('~/api/song', () => ({
   ...(jest.requireActual('~/api/song') as object),
   getSongInfo: jest.fn(),
 }))
-const localVue = createLocalVue()
-localVue.use(Buefy)
-localVue.use(VueI18n)
+
+const localVue = createVue()
 
 describe('/components/pages/charts/ChartList.vue', () => {
-  describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
-    const i18n = new VueI18n({ locale, silentFallbackWarn: true })
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n(locale)
     const stubs = { NuxtLink: RouterLinkStub }
     const wrapper = mount(ChartList, { localVue, stubs, i18n })
     test('{ loading: true } renders loading spin', async () => {
@@ -107,7 +100,7 @@ describe('/components/pages/charts/ChartList.vue', () => {
     test('calls $buefy.modal.open()', async () => {
       // Arrange
       jest.mocked(getSongInfo).mockResolvedValue(testSongData)
-      const i18n = new VueI18n({ locale: 'ja', silentFallbackWarn: true })
+      const i18n = createI18n()
       const wrapper = shallowMount(ChartList, { localVue, mocks, i18n })
 
       // Act

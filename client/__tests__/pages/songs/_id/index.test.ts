@@ -1,8 +1,8 @@
 import type { Api } from '@ddradar/core'
 import type { Context } from '@nuxt/types'
-import { createLocalVue, RouterLinkStub, shallowMount } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount, RouterLinkStub, shallowMount } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import { getSongInfo } from '~/api/song'
 import SongPage from '~/pages/songs/_id/index.vue'
 
@@ -10,8 +10,8 @@ jest.mock('~/api/song', () => ({
   ...(jest.requireActual('~/api/song') as object),
   getSongInfo: jest.fn(),
 }))
-const localVue = createLocalVue()
-localVue.use(Buefy)
+
+const localVue = createVue()
 
 const song: Api.SongInfo = {
   id: '8Il6980di8P89lil1PDIqqIbiq1QO8lQ',
@@ -121,16 +121,16 @@ describe('pages/songs/_id/index.vue', () => {
   const mocks = { $accessor: { isAdmin: false } }
 
   describe('snapshot test', () => {
-    const stubs = { NuxtLink: RouterLinkStub }
+    const stubs = { NuxtLink: RouterLinkStub, ChartDetail: true }
     const data = () => ({ song, playStyle: 1, difficulty: 0 })
 
     test('renders correctly', () => {
-      const wrapper = shallowMount(SongPage, { localVue, mocks, data })
+      const wrapper = mount(SongPage, { localVue, mocks, stubs, data })
       expect(wrapper).toMatchSnapshot()
     })
     test('renders "Edit" button if admin', () => {
       const mocks = { $accessor: { isAdmin: true } }
-      const wrapper = shallowMount(SongPage, { localVue, mocks, stubs, data })
+      const wrapper = mount(SongPage, { localVue, mocks, stubs, data })
       expect(wrapper).toMatchSnapshot()
     })
   })

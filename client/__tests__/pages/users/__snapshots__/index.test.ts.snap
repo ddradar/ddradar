@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 1`] = `
+exports[`pages/users/index.vue { locale: "en" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
@@ -241,7 +241,7 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders correctly 
 </section>
 `;
 
-exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`] = `
+exports[`pages/users/index.vue { locale: "en" } snapshot test renders loading 1`] = `
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
@@ -493,7 +493,7 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders loading 1`
 </section>
 `;
 
-exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 1`] = `
+exports[`pages/users/index.vue { locale: "en" } snapshot test renders user list 1`] = `
 <section class="section">
   <h1 class="title">Search User</h1>
   <section>
@@ -877,7 +877,7 @@ exports[`pages/users/index.vue snapshot test { locale: "en" } renders user list 
 </section>
 `;
 
-exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 1`] = `
+exports[`pages/users/index.vue { locale: "ja" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>
@@ -1118,7 +1118,7 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders correctly 
 </section>
 `;
 
-exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`] = `
+exports[`pages/users/index.vue { locale: "ja" } snapshot test renders loading 1`] = `
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>
@@ -1370,7 +1370,7 @@ exports[`pages/users/index.vue snapshot test { locale: "ja" } renders loading 1`
 </section>
 `;
 
-exports[`pages/users/index.vue snapshot test { locale: "ja" } renders user list 1`] = `
+exports[`pages/users/index.vue { locale: "ja" } snapshot test renders user list 1`] = `
 <section class="section">
   <h1 class="title">ユーザーを探す</h1>
   <section>

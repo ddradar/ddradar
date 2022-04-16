@@ -1,11 +1,10 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
-import { createLocalVue, mount, RouterLinkStub } from '@vue/test-utils'
-import Buefy from 'buefy'
+import { mount, RouterLinkStub } from '@vue/test-utils'
 
+import { createVue } from '~/__tests__/util'
 import OrderDetail from '~/components/pages/courses/OrderDetail.vue'
 
-const localVue = createLocalVue()
-localVue.use(Buefy)
+const localVue = createVue()
 
 describe('/components/pages/courses/OrderDetail.vue', () => {
   const course = { ...testCourseData }
