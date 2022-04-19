@@ -12,6 +12,7 @@ on:
   pull_request:
     branches:
       - master
+      - 'develop/**'
     paths:
       - 'db/**'
       - '**.db.test.ts'
