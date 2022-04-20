@@ -5,16 +5,19 @@ import {
   privateUser,
   publicUser,
 } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { getClientPrincipal } from '../auth'
 import getUserList from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('GET /api/v1/users', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   const users = [areaHiddenUser, noPasswordUser, privateUser, publicUser]
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test.each([
     [undefined, undefined, undefined, 2],
@@ -41,7 +44,7 @@ describe('GET /api/v1/users', () => {
 
   test('returns 3 users if logged in privateUser', async () => {
     // Arrange
-    jest.mocked(getClientPrincipal).mockReturnValueOnce({
+    vi.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: 'user',
       userId: privateUser.loginId,

@@ -3,11 +3,12 @@ import {
   publicUser,
   testScores,
 } from '@ddradar/core/__tests__/data'
+import { describe, expect, test, vi } from 'vitest'
 
 import { getLoginUserInfo } from '../auth'
 import deleteChartScore from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
   const req = { headers: {} }
@@ -16,7 +17,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValue(null)
+    vi.mocked(getLoginUserInfo).mockResolvedValue(null)
 
     // Act
     const result = await deleteChartScore(null, req, [])
@@ -27,7 +28,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "404 Not Found" if scores does not contain user score', async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
+    vi.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
 
     // Act
     const result = await deleteChartScore(null, req, [score])
@@ -38,7 +39,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
 
   test('returns "204 No Content" if scores contains user score', async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+    vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
 
     // Act
     const result = await deleteChartScore(null, req, [score])

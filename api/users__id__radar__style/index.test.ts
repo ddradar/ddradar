@@ -1,10 +1,11 @@
 import type { Context } from '@azure/functions'
 import type { Api } from '@ddradar/core'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { canReadUserData } from '../auth'
 import getGrooveRadar from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('GET /api/v1/users/{id}/radar', () => {
   const radar = { stream: 100, voltage: 100, air: 100, freeze: 100, chaos: 100 }
@@ -15,11 +16,13 @@ describe('GET /api/v1/users/{id}/radar', () => {
 
   const req = { headers: {} }
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  beforeEach(() => (context.bindingData = {}))
+  beforeEach(() => {
+    context.bindingData = {}
+  })
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(false)
+    vi.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getGrooveRadar(context, req, [], [])
@@ -30,7 +33,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
 
   test(`/ returns "200 OK" with JSON body`, async () => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(true)
+    vi.mocked(canReadUserData).mockReturnValue(true)
 
     // Act
     const result = await getGrooveRadar(context, req, [], radars)
@@ -45,7 +48,7 @@ describe('GET /api/v1/users/{id}/radar', () => {
     [2, radars[0]],
   ])(`/%i returns "200 OK" with [%p]`, async (style, expected) => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(true)
+    vi.mocked(canReadUserData).mockReturnValue(true)
     context.bindingData.style = style
 
     // Act

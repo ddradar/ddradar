@@ -1,10 +1,11 @@
 import type { HttpRequest } from '@azure/functions'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser } from '@ddradar/db'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { canReadUserData, getClientPrincipal, getLoginUserInfo } from '../auth'
 
-jest.mock('@ddradar/db')
+vi.mock('@ddradar/db')
 
 const toBase64 = (obj: unknown) => {
   const jsonString = JSON.stringify(obj)
@@ -16,7 +17,9 @@ const authHeader = 'x-ms-client-principal'
 describe('auth.ts', () => {
   describe('getClientPrincipal', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
-    beforeEach(() => (req.headers = {}))
+    beforeEach(() => {
+      req.headers = {}
+    })
 
     test.each(['', 'foo'])(`({ ${authHeader} : %s }) returns null`, header => {
       // Arrange
@@ -66,7 +69,7 @@ describe('auth.ts', () => {
 
     test('({ Unregistered user }) returns null', async () => {
       // Arrange
-      jest.mocked(fetchLoginUser).mockResolvedValueOnce(null)
+      vi.mocked(fetchLoginUser).mockResolvedValueOnce(null)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'unregistered_user' })
@@ -77,7 +80,7 @@ describe('auth.ts', () => {
 
     test('({ Registered user }) returns UserSchema', async () => {
       // Arrange
-      jest.mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
+      vi.mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
 
       // Act
       const user = await getLoginUserInfo({ userId: 'registered_user' })
@@ -89,7 +92,9 @@ describe('auth.ts', () => {
 
   describe('canReadUserData', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
-    beforeEach(() => (req.headers = {}))
+    beforeEach(() => {
+      req.headers = {}
+    })
 
     test('({not login}, undefined) returns false', () =>
       expect(canReadUserData(req, undefined)).toBe(false))

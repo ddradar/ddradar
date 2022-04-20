@@ -1,8 +1,9 @@
 import { Api } from '@ddradar/core'
+import { describe, expect, test, vi } from 'vitest'
 
 import postNotification from '.'
 
-Date.now = jest.fn(() => 1597114800000)
+Date.now = vi.fn(() => 1597114800000)
 
 describe('POST /api/v1/notification', () => {
   const validBody: Api.NotificationBody = {

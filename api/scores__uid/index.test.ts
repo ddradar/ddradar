@@ -5,16 +5,17 @@ import {
   testScores,
 } from '@ddradar/core/__tests__/data'
 import { fetchScoreList } from '@ddradar/db'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { getLoginUserInfo } from '../auth'
 import getUserScores from '.'
 
-jest.mock('@ddradar/db')
-jest.mock('../auth')
+vi.mock('@ddradar/db')
+vi.mock('../auth')
 
 describe('GET /api/v1/scores/{uid}', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  beforeEach(() => jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser))
+  beforeEach(() => vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser))
 
   test('/not_found_user returns "404 Not Found"', async () => {
     // Arrange - Act
@@ -28,7 +29,7 @@ describe('GET /api/v1/scores/{uid}', () => {
     `/${privateUser.id} returns "404 Not Found" if login as %p`,
     async user => {
       // Arrange
-      jest.mocked(getLoginUserInfo).mockResolvedValue(user)
+      vi.mocked(getLoginUserInfo).mockResolvedValue(user)
 
       // Act
       const result = await getUserScores(null, req, [privateUser])
@@ -40,7 +41,7 @@ describe('GET /api/v1/scores/{uid}', () => {
 
   test(`/${publicUser.id} returns "404 Not Found" if no score`, async () => {
     // Arrange
-    jest.mocked(fetchScoreList).mockResolvedValue([])
+    vi.mocked(fetchScoreList).mockResolvedValue([])
 
     // Act
     const result = await getUserScores(null, req, [publicUser])
@@ -60,7 +61,7 @@ describe('GET /api/v1/scores/{uid}', () => {
     `/${publicUser.id} (query: %p) calls fetchScoreList("${publicUser.id}", %p)`,
     async (query, expected) => {
       // Arrange
-      jest.mocked(fetchScoreList).mockResolvedValue([...testScores])
+      vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
       const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query }
 
       // Act
@@ -69,17 +70,14 @@ describe('GET /api/v1/scores/{uid}', () => {
       // Assert
       expect(result.status).toBe(200)
       expect(result.body).toHaveLength(testScores.length)
-      expect(jest.mocked(fetchScoreList)).toBeCalledWith(
-        publicUser.id,
-        expected
-      )
+      expect(vi.mocked(fetchScoreList)).toBeCalledWith(publicUser.id, expected)
     }
   )
 
   test(`/${privateUser.id} returns "200 OK" with body if login as privateUser`, async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
-    jest.mocked(fetchScoreList).mockResolvedValue([...testScores])
+    vi.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
+    vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
 
     // Act
     const result = await getUserScores(null, req, [privateUser])
@@ -87,6 +85,6 @@ describe('GET /api/v1/scores/{uid}', () => {
     // Assert
     expect(result.status).toBe(200)
     expect(result.body).toHaveLength(testScores.length)
-    expect(jest.mocked(fetchScoreList)).toBeCalledWith(privateUser.id, {})
+    expect(vi.mocked(fetchScoreList)).toBeCalledWith(privateUser.id, {})
   })
 })
