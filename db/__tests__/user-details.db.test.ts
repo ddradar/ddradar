@@ -1,5 +1,6 @@
 import { Database, Score } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchClearAndScoreStatus } from '../user-details'

@@ -1,4 +1,5 @@
 import type { Database } from '@ddradar/core'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchLoginUser, fetchUser } from '../users'

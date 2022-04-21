@@ -4,6 +4,7 @@ import {
   testScores,
   testSongData,
 } from '@ddradar/core/__tests__/data'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
