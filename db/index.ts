@@ -1,4 +1,4 @@
-/* istanbul ignore file */
+/* c8 ignore file */
 
 export * from './database'
 export * from './scores'

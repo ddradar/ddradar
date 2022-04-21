@@ -8,6 +8,7 @@ export default defineConfig({
     },
   },
   test: {
+    maxThreads: 1,
     setupFiles: '/__tests__/setup-database.ts',
     testTimeout: 20000,
     coverage: {
