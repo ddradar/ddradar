@@ -13,7 +13,12 @@ export default defineConfig({
       reporter: 'json',
       reportsDirectory: './coverage/',
       include: ['**/*.ts'],
-      exclude: ['**/*.d.ts', '<rootDir>/*.config.ts', '**/__tests__/**'],
+      exclude: [
+        '**/*.d.ts',
+        '**/*.test.ts',
+        '**/*.config.ts',
+        '**/__tests__/**',
+      ],
     },
   },
 })

@@ -9,11 +9,17 @@ export default defineConfig({
   },
   test: {
     setupFiles: '/__tests__/setup-database.ts',
+    testTimeout: 20000,
     coverage: {
       reporter: 'json',
       reportsDirectory: './coverage/',
       include: ['**/*.ts'],
-      exclude: ['**/*.d.ts', '<rootDir>/*.config.ts', '**/__tests__/**'],
+      exclude: [
+        '**/*.d.ts',
+        '**/*.test.ts',
+        '**/*.config.ts',
+        '**/__tests__/**',
+      ],
     },
   },
 })
