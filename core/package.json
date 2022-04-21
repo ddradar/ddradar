@@ -20,13 +20,12 @@
   "scripts": {
     "prepublish": "tsc",
     "build": "tsc",
-    "test": "jest"
+    "test": "vitest run --coverage"
   },
   "devDependencies": {
-    "@types/jest": "^27.4.1",
+    "c8": "^7.11.0",
     "can-npm-publish": "^1.3.6",
-    "jest": "^27.5.1",
-    "ts-jest": "^27.1.4",
-    "typescript": "^4.6.3"
+    "typescript": "^4.6.3",
+    "vitest": "^0.9.3"
   }
 }

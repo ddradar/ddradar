@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import { getNameIndex, isSongSchema, nameIndexMap } from '../../db/songs'
 import { testSongData } from '../data'
 
