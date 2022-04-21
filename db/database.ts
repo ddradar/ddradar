@@ -1,3 +1,4 @@
+/* c8 ignore start */
 import type {
   ItemDefinition,
   JSONValue,
@@ -193,3 +194,4 @@ function createConditions<T extends ContainerName>(
       .filter((c): c is SqlParameter => c.value !== undefined),
   }
 }
+/* c8 ignore stop */
