@@ -37,12 +37,12 @@ describeIf(canConnectDB)('scores.ts', () => {
 
   beforeAll(async () => {
     await Promise.all(scores.map(s => getContainer('Scores').items.create(s)))
-  })
+  }, 20000)
   afterAll(async () => {
     await Promise.all(
       scores.map(s => getContainer('Scores').item(s.id, s.userId).delete())
     )
-  })
+  }, 20000)
 
   describe('fetchScore', () => {
     test.each([
