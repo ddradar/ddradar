@@ -10,7 +10,7 @@ export default defineConfig({
   test: {
     setupFiles: '/__tests__/setup-database.ts',
     coverage: {
-      reporter: 'lcov',
+      reporter: 'json',
       reportsDirectory: './coverage/',
       include: ['**/*.ts'],
       exclude: ['**/*.d.ts', '<rootDir>/*.config.ts', '**/__tests__/**'],
