@@ -9,7 +9,7 @@ export default defineConfig({
   },
   test: {
     threads: false,
-    setupFiles: '/__tests__/setup-database.ts',
+    globalSetup: '/__tests__/setup-database.ts',
     testTimeout: 20000,
     hookTimeout: 20000,
     coverage: {

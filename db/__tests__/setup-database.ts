@@ -1,7 +1,6 @@
 import { CosmosClient } from '@azure/cosmos'
-import { beforeAll } from 'vitest'
 
-beforeAll(async () => {
+export default async function () {
   // eslint-disable-next-line node/no-process-env
   const connectionString = process.env.COSMOS_DB_CONN
 
@@ -80,4 +79,4 @@ beforeAll(async () => {
     id: 'UserDetails',
     partitionKey: { paths: ['/userId'] },
   })
-}, 30000)
+}
