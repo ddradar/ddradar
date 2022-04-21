@@ -3,7 +3,7 @@ import { CosmosClient } from '@azure/cosmos'
 // eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
 
-async function setup() {
+export default async function () {
   if (!connectionString) return
 
   const client = new CosmosClient(connectionString)
@@ -80,6 +80,3 @@ async function setup() {
     partitionKey: { paths: ['/userId'] },
   })
 }
-setup().catch(e => {
-  throw e
-})

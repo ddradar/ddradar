@@ -8,7 +8,7 @@ export default defineConfig({
     },
   },
   test: {
-    maxThreads: 1,
+    threads: false,
     setupFiles: '/__tests__/setup-database.ts',
     testTimeout: 20000,
     coverage: {
@@ -16,6 +16,7 @@ export default defineConfig({
       reportsDirectory: './coverage/',
       include: ['**/*.ts'],
       exclude: [
+        './database.ts',
         '**/*.d.ts',
         '**/*.test.ts',
         '**/*.config.ts',

@@ -1,5 +1,3 @@
-/* c8 ignore file */
-
 import type {
   ItemDefinition,
   JSONValue,
