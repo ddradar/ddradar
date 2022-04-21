@@ -11,6 +11,7 @@ export default defineConfig({
     threads: false,
     setupFiles: '/__tests__/setup-database.ts',
     testTimeout: 20000,
+    hookTimeout: 20000,
     coverage: {
       reporter: 'json',
       reportsDirectory: './coverage/',
