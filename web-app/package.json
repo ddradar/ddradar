@@ -11,6 +11,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "pretest": "nuxt prepare",
     "test": "vitest run --coverage"
   },
   "devDependencies": {
