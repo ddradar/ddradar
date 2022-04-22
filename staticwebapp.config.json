@@ -1,22 +1,14 @@
 {
+  "platform": { "apiRuntime": "node:16" },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "https://p.eagate.573.jp",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
     "Access-Control-Allow-Credentials": "true"
   },
   "routes": [
-    {
-      "route": "/.auth/login/aad",
-      "statusCode": 404
-    },
-    {
-      "route": "/.auth/login/facebook",
-      "statusCode": 404
-    },
-    {
-      "route": "/.auth/login/google",
-      "statusCode": 404
-    },
+    { "route": "/.auth/login/aad", "statusCode": 404 },
+    { "route": "/.auth/login/facebook", "statusCode": 404 },
+    { "route": "/.auth/login/google", "statusCode": 404 },
     {
       "route": "/api/v1/scores/*",
       "methods": ["POST", "DELETE"],
@@ -32,21 +24,11 @@
       "methods": ["POST"],
       "allowedRoles": ["administrator"]
     },
-    {
-      "route": "/api/v1/user",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/api/v1/users/exists/*",
-      "allowedRoles": ["authenticated"]
-    },
-    {
-      "route": "/admin/*",
-      "allowedRoles": ["administrator"]
-    }
+    { "route": "/api/v1/user", "allowedRoles": ["authenticated"] },
+    { "route": "/api/v1/users/exists/*", "allowedRoles": ["authenticated"] },
+    { "route": "/admin/*", "allowedRoles": ["administrator"] },
+    { "route": "/index.html", "redirect": "/" },
+    { "route": "/", "rewrite": "/api/server" }
   ],
-  "navigationFallback": {
-    "rewrite": "/200.html",
-    "exclude": ["*.{png,svg}", "*.js", "/api/*"]
-  }
+  "navigationFallback": { "rewrite": "/api/server" }
 }
