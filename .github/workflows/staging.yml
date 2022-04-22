@@ -57,8 +57,8 @@ jobs:
         if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
         uses: actions/upload-artifact@v3.0.0
         with:
-          name: client
-          path: client/dist
+          name: web-app
+          path: web-app/.output
 
   deploy-swa:
     name: Deploy to Azure Static Web Apps
@@ -76,30 +76,22 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3.0.0
         with:
-          name: client
-          path: client/dist
+          name: web-app
+          path: web-app/.output
 
-      - name: Prepare to build @ddradar/api on Oryx
-        run: |
-          echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
-          cp yarn.lock api
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build @ddradar/api and Deploy
+      - name: Deploy
         id: swa-deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
-          # see: https://aka.ms/swaworkflowconfig
-          app_location: client/dist
-          skip_app_build: true
-          api_location: api
-          api_build_command: yarn build
           config_file_location: /
+          app_location: web-app/
+          api_location: .output/server
+          output_location: .output/public
+          skip_app_build: true
+          skip_api_build: true
 
   close:
     name: Close Staging Environment
