@@ -10,8 +10,7 @@ export default defineConfig({
   },
   test: {
     coverage: {
-      reporter: 'json',
-      reportsDirectory: './coverage/',
+      reporter: ['json', 'text'],
       include: ['**/*.ts'],
       exclude: [
         '**/*.d.ts',
