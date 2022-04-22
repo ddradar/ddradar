@@ -6,14 +6,6 @@
   "engines": {
     "node": ">=14.0.0"
   },
-  "workspaces": {
-    "nohoist": [
-      "@vue/test-utils",
-      "@vue/test-utils/**",
-      "nuxt",
-      "nuxt/**"
-    ]
-  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
