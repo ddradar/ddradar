@@ -9,7 +9,9 @@
   "workspaces": {
     "nohoist": [
       "@nuxt/typescript-build",
-      "@nuxt/typescript-build/**"
+      "@nuxt/typescript-build/**",
+      "@vue/test-utils",
+      "@vue/test-utils/**"
     ]
   },
   "scripts": {
