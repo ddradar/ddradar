@@ -17,7 +17,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "test": "echo \"no test\""
+    "test": "vitest run --coverage"
   },
   "devDependencies": {
     "@nuxt/test-utils": "^3.0.0-rc.1",
