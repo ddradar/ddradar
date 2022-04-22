@@ -12,7 +12,8 @@
     "core",
     "db",
     "functions",
-    "scripts"
+    "scripts",
+    "web-app"
   ],
   "scripts": {
     "build": "yarn workspaces run build",
