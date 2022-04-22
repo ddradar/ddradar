@@ -58,7 +58,7 @@ jobs:
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v2.1.0
         with:
-          files: ./api/coverage/coverage-final.json,./client/coverage/coverage-final.json,./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json
+          files: ./api/coverage/coverage-final.json,./web-app/coverage/coverage-final.json,./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json
 
   deploy-gpr:
     name: Deploy to GitHub Packages

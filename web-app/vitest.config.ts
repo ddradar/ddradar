@@ -11,7 +11,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     coverage: {
-      reporter: ['cobertura', 'text'],
+      reporter: ['json', 'text'],
       include: ['**/*.ts', '**/*.vue'],
       exclude: ['*.config.ts', '**/*.d.ts', '**/__tests__/**'],
     },
