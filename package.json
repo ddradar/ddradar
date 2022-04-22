@@ -8,11 +8,11 @@
   "private": true,
   "workspaces": [
     "api",
-    "client",
     "core",
     "db",
     "functions",
-    "scripts"
+    "scripts",
+    "web-app"
   ],
   "scripts": {
     "build": "yarn workspaces run build",
@@ -49,7 +49,6 @@
     "@types/node": "^12.20.47",
     "@types/serve-static": "^1.13.9",
     "@types/webpack": "^4.41.30",
-    "chokidar": "^3.5.2",
-    "node-fetch": "^2.6.6"
+    "chokidar": "^3.5.2"
   }
 }

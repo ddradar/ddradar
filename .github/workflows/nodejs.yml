@@ -13,6 +13,9 @@ on:
     paths-ignore:
       - '**.md'
 
+env:
+  NODE_VERSION: 14
+
 jobs:
   lint:
     name: Lint & Format Check
@@ -21,10 +24,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.1.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
       - name: Install Project Dependencies
@@ -40,22 +43,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.1.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: yarn test --colors
+        run: yarn test
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v2.1.0
         with:
-          files: ./api/coverage/coverage-final.json,./client/coverage/coverage-final.json,./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json
+          files: ./api/coverage/coverage-final.json,./web-app/coverage/coverage-final.json,./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json
 
   deploy-gpr:
     name: Deploy to GitHub Packages
@@ -66,10 +69,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.1.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
           registry-url: 'https://npm.pkg.github.com'
 

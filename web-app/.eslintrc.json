@@ -1,0 +1,29 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "plugin:vue/vue3-recommended",
+    "prettier"
+  ],
+  "plugins": ["simple-import-sort"],
+  "settings": {
+    "node": {
+      "allowModules": ["vitest"],
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
+  "rules": {
+    "no-process-env": "error",
+    "sort-imports": "off",
+    "import/named": "off",
+    "import/no-unresolved": "off",
+    "import/order": "off",
+    "simple-import-sort/imports": "error",
+    "unicorn/number-literal-case": "off"
+  }
+}

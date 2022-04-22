@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+env:
+  NODE_VERSION: 14
+
 jobs:
   deploy-swa:
     if: github.event.release.prerelease == false
@@ -16,10 +19,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.0
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.1.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
       - name: Install Project Dependencies

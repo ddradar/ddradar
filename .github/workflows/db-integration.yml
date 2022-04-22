@@ -19,6 +19,9 @@ on:
       - '.github/workflows/db-integration.yml'
       - '!**.md'
 
+env:
+  NODE_VERSION: 14
+
 jobs:
   test:
     name: Cosmos DB Integration Test
@@ -50,17 +53,17 @@ jobs:
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
           sudo update-ca-certificates
 
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.1.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
       - name: Install Project Dependencies
         run: yarn install --frozen-lockfile
 
       - name: Test (only *.db.test.ts)
-        run: yarn test ".+\.db\.test\.ts" --passWithNoTests --colors --testTimeout=20000
+        run: yarn test ".+\.db\.test\.ts" --passWithNoTests --testTimeout=20000
         env:
           COSMOS_DB_CONN: AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==
           NODE_TLS_REJECT_UNAUTHORIZED: 0
