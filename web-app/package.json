@@ -2,10 +2,16 @@
   "name": "@ddradar/web-app",
   "version": "2.0.0",
   "description": "DDRadar Web App (for Azure Static Web Apps)",
+  "private": true,
   "engines": {
     "node": ">=14.0.0"
   },
-  "private": true,
+  "workspaces": {
+    "nohoist": [
+      "nuxt",
+      "nuxt/**"
+    ]
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
