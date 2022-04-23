@@ -14,7 +14,8 @@ import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
 // eslint-disable-next-line node/no-process-env
 const { BASE_URI: apiBasePath } = process.env
-const series = 'DanceDanceRevolution A3'
+const series: 'DanceDanceRevolution A3' | 'DanceDanceRevolution A20' =
+  'DanceDanceRevolution A20'
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
@@ -47,6 +48,16 @@ async function main(userId: string, password: string) {
     { songName: 'ASC' }
   )
 
+  const a3Songs =
+    series === 'DanceDanceRevolution A3'
+      ? []
+      : await fetchList(
+          'Songs',
+          ['id'],
+          [{ condition: 'c.series = @', value: 'DanceDanceRevolution A3' }],
+          { nameIndex: 'ASC' }
+        )
+
   // Grouped by song
   const scores = resources.reduce((prev, score) => {
     if (prev[score.songId]) {
@@ -64,7 +75,12 @@ async function main(userId: string, password: string) {
   for (const [id, score] of Object.entries(scores)) {
     const songScope = consola.withScope('song')
     const songName = `(${count++}/${total}) ${score[0].songName} (${id})`
-    if (Song.isDeletedOnGate(id, series)) {
+    if (
+      Song.isDeletedOnGate(id, series) ||
+      (series === 'DanceDanceRevolution A20' &&
+        (a3Songs.some(s => s.id === id) ||
+          id === '01lbO69qQiP691ll6DIiqPbIdd9O806o'))
+    ) {
       songScope.info(`${songName} is deleted on e-amusement site. skipped`)
       continue
     }
