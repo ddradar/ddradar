@@ -85,7 +85,7 @@ async function main(ddrCode: string) {
       }
       songScope.success(songName)
     }
-    consola.success(`End Song List ${offset + 1}/20`)
+    consola.success(`End Song List ${offset + 1}/${pageOffset}`)
   }
 
   consola.info(`Done.`)
