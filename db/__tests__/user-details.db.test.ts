@@ -1,7 +1,6 @@
-import type { CreateOperationInput, DeleteOperationInput } from '@azure/cosmos'
 import { Database, Score } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
-import { afterAll, beforeAll, describe, expect, test } from 'vitest'
+import { beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchClearAndScoreStatus } from '../user-details'
@@ -38,27 +37,13 @@ describeIf(canConnectDB)('user-details.ts', () => {
 
     beforeAll(async () => {
       await getContainer('UserDetails').items.batch([
-        ...clears.map<CreateOperationInput>(s => ({
-          operationType: 'Create',
+        ...clears.map(s => ({
+          operationType: 'Upsert' as const,
           resourceBody: s,
         })),
-        ...ranks.map<CreateOperationInput>(s => ({
-          operationType: 'Create',
+        ...ranks.map(s => ({
+          operationType: 'Upsert' as const,
           resourceBody: s,
-        })),
-      ])
-    }, 40000)
-    afterAll(async () => {
-      await getContainer('UserDetails').items.batch([
-        ...clears.map<DeleteOperationInput>(({ id, userId }) => ({
-          operationType: 'Delete',
-          id,
-          partitionKey: userId,
-        })),
-        ...ranks.map<DeleteOperationInput>(({ id, userId }) => ({
-          operationType: 'Delete',
-          id,
-          partitionKey: userId,
         })),
       ])
     }, 40000)
