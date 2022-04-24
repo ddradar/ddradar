@@ -38,7 +38,7 @@ describeIf(canConnectDB)('user-details.ts', () => {
     )
 
     beforeAll(async () => {
-      await getContainer('UserDetails').items.batch([
+      await getContainer('UserDetails').items.bulk([
         ...clears.map(
           s => ({ operationType: 'Upsert', resourceBody: s } as const)
         ),
@@ -48,7 +48,7 @@ describeIf(canConnectDB)('user-details.ts', () => {
       ])
     }, 40000)
     afterAll(async () => {
-      await getContainer('UserDetails').items.batch([
+      await getContainer('UserDetails').items.bulk([
         ...clears.map(
           ({ id, userId }) =>
             ({ operationType: 'Delete', id, partitionKey: userId } as const)

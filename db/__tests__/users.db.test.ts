@@ -29,7 +29,7 @@ describeIf(canConnectDB)('users.ts', () => {
       } as const)
   )
   beforeAll(async () => {
-    await getContainer('Users').items.batch([
+    await getContainer('Users').items.bulk([
       ...users.map(
         u => ({ operationType: 'Upsert', resourceBody: u } as const)
       ),
@@ -39,7 +39,7 @@ describeIf(canConnectDB)('users.ts', () => {
     ])
   }, 40000)
   afterAll(async () => {
-    await getContainer('Users').items.batch([
+    await getContainer('Users').items.bulk([
       ...users.map(({ id }) => ({ operationType: 'Delete', id } as const)),
       ...areas.map(({ id }) => ({ operationType: 'Delete', id } as const)),
     ])
