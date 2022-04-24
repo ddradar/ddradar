@@ -5,19 +5,19 @@ on:
     branches:
       - master
     paths:
-      - "db/**"
-      - "**.db.test.ts"
-      - ".github/workflows/db-integration.yml"
-      - "!**.md"
+      - 'db/**'
+      - '**.db.test.ts'
+      - .github/workflows/db-integration.yml
+      - '!**.md'
   pull_request:
     branches:
       - master
-      - "develop/**"
+      - 'develop/**'
     paths:
-      - "db/**"
-      - "**.db.test.ts"
-      - ".github/workflows/db-integration.yml"
-      - "!**.md"
+      - 'db/**'
+      - '**.db.test.ts'
+      - .github/workflows/db-integration.yml
+      - '!**.md'
 
 env:
   NODE_VERSION: 14
