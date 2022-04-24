@@ -4,7 +4,7 @@ import {
   testScores,
   testSongData,
 } from '@ddradar/core/__tests__/data'
-import { beforeAll, describe, expect, test } from 'vitest'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
@@ -38,6 +38,11 @@ describeIf(canConnectDB)('scores.ts', () => {
   beforeAll(async () => {
     await getContainer('Scores').items.batch(
       scores.map(s => ({ operationType: 'Upsert', resourceBody: s }))
+    )
+  }, 40000)
+  afterAll(async () => {
+    await Promise.all(
+      scores.map(s => getContainer('Scores').item(s.id, s.userId).delete())
     )
   }, 40000)
 

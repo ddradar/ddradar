@@ -1,39 +1,47 @@
 import type { Database } from '@ddradar/core'
-import { beforeAll, describe, expect, test } from 'vitest'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchLoginUser, fetchUser } from '../users'
 import { describeIf } from './util'
 
 describeIf(canConnectDB)('users.ts', () => {
-  const users: Required<Database.UserSchema>[] = [...Array(5).keys()].map(
-    i => ({
-      id: `user_${i}`,
-      loginId: `login_${i}`,
-      name: `User ${i}`,
-      area: (i % 50) as Database.AreaCode,
-      isPublic: i !== 0,
-      code: 10000000 + i,
-      password: `pass_${i}`,
-    })
+  const users = [...Array(5).keys()].map(
+    i =>
+      ({
+        id: `user_${i}`,
+        loginId: `login_${i}`,
+        name: `User ${i}`,
+        area: (i % 50) as Database.AreaCode,
+        isPublic: i !== 0,
+        code: 10000000 + i,
+        password: `pass_${i}`,
+      } as const)
   )
   /** System users */
-  const areas: Database.UserSchema[] = [...Array(5).keys()].map(i => ({
-    id: `${i}`,
-    name: `User ${i}`,
-    area: (i % 50) as Database.AreaCode,
-    isPublic: true,
-  }))
+  const areas = [...Array(5).keys()].map(
+    i =>
+      ({
+        id: `${i}`,
+        name: `User ${i}`,
+        area: (i % 50) as Database.AreaCode,
+        isPublic: true,
+      } as const)
+  )
   beforeAll(async () => {
     await getContainer('Users').items.batch([
-      ...users.map(u => ({
-        operationType: 'Upsert' as const,
-        resourceBody: u,
-      })),
-      ...areas.map(u => ({
-        operationType: 'Upsert' as const,
-        resourceBody: u,
-      })),
+      ...users.map(
+        u => ({ operationType: 'Upsert', resourceBody: u } as const)
+      ),
+      ...areas.map(
+        u => ({ operationType: 'Upsert', resourceBody: u } as const)
+      ),
+    ])
+  }, 40000)
+  afterAll(async () => {
+    await getContainer('Users').items.batch([
+      ...users.map(({ id }) => ({ operationType: 'Delete', id } as const)),
+      ...areas.map(({ id }) => ({ operationType: 'Delete', id } as const)),
     ])
   }, 40000)
 

@@ -10,8 +10,8 @@ export default defineConfig({
   test: {
     threads: false,
     globalSetup: './__tests__/setup-database.ts',
-    testTimeout: 20000,
-    hookTimeout: 50000,
+    testTimeout: 30000,
+    hookTimeout: 60000,
     coverage: {
       reporter: ['json', 'text'],
       include: ['**/*.ts'],

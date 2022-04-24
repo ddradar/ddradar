@@ -55,11 +55,7 @@ export async function setup() {
     } as object,
     throughput: 400,
   })
-  await database.containers.createIfNotExists({
-    id: 'Users',
-    partitionKey: { paths: ['/id'] },
-    throughput: 400,
-  })
+  await database.containers.createIfNotExists({ id: 'Users', throughput: 400 })
   await database.containers.createIfNotExists({
     id: 'Notification',
     partitionKey: { paths: ['/sender'] },
