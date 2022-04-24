@@ -9,10 +9,11 @@ import {
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
+import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import postSongScores from '.'
 
-jest.mock('@ddradar/db')
+vi.mock('@ddradar/db')
 
 describe('POST /api/v1/scores', () => {
   const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
@@ -29,15 +30,17 @@ describe('POST /api/v1/scores', () => {
   }
 
   beforeAll(async () => {
-    jest
-      .mocked(fetchScore)
-      .mockImplementation((userId, _1, playStyle, difficulty) => {
+    vi.mocked(fetchScore).mockImplementation(
+      (userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
         return Promise.resolve(scores.get(userId) ?? null)
-      })
+      }
+    )
   })
 
-  beforeEach(() => (req.body = {}))
+  beforeEach(() => {
+    req.body = {}
+  })
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange

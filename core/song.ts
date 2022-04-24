@@ -8,20 +8,16 @@ export type {
   PlayStyle,
   Series,
 } from './db'
+/* c8 ignore start */
 export {
-  /* istanbul ignore next */
   difficultyMap,
-  /* istanbul ignore next */
   getNameIndex,
-  /* istanbul ignore next */
   isValidId,
-  /* istanbul ignore next */
   nameIndexMap,
-  /* istanbul ignore next */
   playStyleMap,
-  /* istanbul ignore next */
   seriesSet,
 } from './db'
+/* c8 ignore stop */
 
 type GateSeries = Series & `DanceDanceRevolution A${string}`
 /**

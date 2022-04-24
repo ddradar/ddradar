@@ -1,16 +1,17 @@
 import { publicUser } from '@ddradar/core/__tests__/data'
+import { describe, expect, test, vi } from 'vitest'
 
 import { getLoginUserInfo } from '../auth'
 import getCurrentUser from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('GET /api/v1/user', () => {
   const req = { headers: {} }
 
   test('returns "404 Not Found" if getLoginUserInfo() returns null', async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+    vi.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
 
     // Act
     const result = await getCurrentUser(null, req)
@@ -21,7 +22,7 @@ describe('GET /api/v1/user', () => {
 
   test('returns "200 OK" with JSON body if getLoginUserInfo() returns user', async () => {
     // Arrange
-    jest.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
+    vi.mocked(getLoginUserInfo).mockResolvedValueOnce(publicUser)
 
     // Act
     const result = await getCurrentUser(null, req)

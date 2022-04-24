@@ -1,11 +1,12 @@
 import type { HttpRequest } from '@azure/functions'
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { canReadUserData } from '../auth'
 import getClearCount from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('GET /api/v1/users/{id}/clear', () => {
   const statuses: Api.ClearStatus[] = [
@@ -27,11 +28,13 @@ describe('GET /api/v1/users/{id}/clear', () => {
     scores.reduce((p, c) => p + c.count, 0)
 
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(false)
+    vi.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getClearCount(null, req, [], [], total)
@@ -50,7 +53,7 @@ describe('GET /api/v1/users/{id}/clear', () => {
     `?style=%s&lv=%s returns "200 OK" with %i (sum:%i) statuses`,
     async (style, lv, length, count) => {
       // Arrange
-      jest.mocked(canReadUserData).mockReturnValue(true)
+      vi.mocked(canReadUserData).mockReturnValue(true)
       if (style) req.query.style = style
       if (lv) req.query.lv = lv
 

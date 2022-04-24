@@ -1,16 +1,17 @@
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
+import { describe, expect, test, vi } from 'vitest'
 
 import { canReadUserData } from '../auth'
 import getUserInfo from '.'
 
-jest.mock('../auth')
+vi.mock('../auth')
 
 describe('GET /api/v1/users/{id}', () => {
   const req = { headers: {} }
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(false)
+    vi.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
     const result = await getUserInfo(null, req, [])
@@ -39,7 +40,7 @@ describe('GET /api/v1/users/{id}', () => {
     ],
   ])(`%p returns "200 OK" with %p`, async (user, expected) => {
     // Arrange
-    jest.mocked(canReadUserData).mockReturnValue(true)
+    vi.mocked(canReadUserData).mockReturnValue(true)
 
     // Act
     const result = await getUserInfo(null, req, [user])

@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import type { ScoreBody } from '../api/score'
 import type { StepChartSchema } from '../db/songs'
 import {

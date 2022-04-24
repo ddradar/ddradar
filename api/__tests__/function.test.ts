@@ -1,3 +1,5 @@
+import { describe, expect, test } from 'vitest'
+
 import { getBindingNumber } from '../function'
 
 describe('./function.ts', () => {

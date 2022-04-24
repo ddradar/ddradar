@@ -1,13 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
+import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { getClientPrincipal } from '../auth'
 import postUserInfo from '.'
 
-jest.mock('../auth')
-jest.mock('@ddradar/core')
-jest.mock('@ddradar/db')
+vi.mock('../auth')
+vi.mock('@ddradar/core')
+vi.mock('@ddradar/db')
 
 describe('POST /api/v1/user', () => {
   const req: Pick<HttpRequest, 'body' | 'headers'> = { body: {}, headers: {} }
@@ -19,9 +20,9 @@ describe('POST /api/v1/user', () => {
     isPublic: false,
   } as const
   beforeAll(() => {
-    jest.mocked(Database.isUserSchema).mockReturnValue(true)
-    jest.mocked(fetchUser).mockResolvedValue(null)
-    jest.mocked(fetchLoginUser).mockResolvedValue(null)
+    vi.mocked(Database.isUserSchema).mockReturnValue(true)
+    vi.mocked(fetchUser).mockResolvedValue(null)
+    vi.mocked(fetchLoginUser).mockResolvedValue(null)
   })
   beforeEach(() => {
     req.body = {}
@@ -39,13 +40,13 @@ describe('POST /api/v1/user', () => {
   test('returns "400 Bad Request" if body is not UserSchema', async () => {
     // Arrange
     req.body = {}
-    jest.mocked(getClientPrincipal).mockReturnValue({
+    vi.mocked(getClientPrincipal).mockReturnValue({
       identityProvider: 'github',
       userDetails: 'login_user',
       userId: '1',
       userRoles: ['anonymous', 'authenticated'],
     })
-    jest.mocked(Database.isUserSchema).mockReturnValueOnce(false)
+    vi.mocked(Database.isUserSchema).mockReturnValueOnce(false)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -65,7 +66,7 @@ describe('POST /api/v1/user', () => {
       isPublic: true,
     }
     req.body = body
-    jest.mocked(getClientPrincipal).mockReturnValueOnce({
+    vi.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: body.id,
       userId: '1',
@@ -98,13 +99,13 @@ describe('POST /api/v1/user', () => {
         ...diff,
       }
       req.body = body
-      jest.mocked(getClientPrincipal).mockReturnValueOnce({
+      vi.mocked(getClientPrincipal).mockReturnValueOnce({
         identityProvider: 'github',
         userDetails: userToBeUpdated.id,
         userId: userToBeUpdated.loginId,
         userRoles: ['anonymous', 'authenticated'],
       })
-      jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+      vi.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
       // Act
       const result = await postUserInfo(null, req)
@@ -127,13 +128,13 @@ describe('POST /api/v1/user', () => {
       area: userToBeUpdated.area,
       isPublic: userToBeUpdated.isPublic,
     }
-    jest.mocked(getClientPrincipal).mockReturnValueOnce({
+    vi.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: 'other_user',
       userId: '3',
       userRoles: ['anonymous', 'authenticated'],
     })
-    jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+    vi.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -150,13 +151,13 @@ describe('POST /api/v1/user', () => {
       area: userToBeUpdated.area,
       isPublic: userToBeUpdated.isPublic,
     }
-    jest.mocked(getClientPrincipal).mockReturnValueOnce({
+    vi.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: userToBeUpdated.id,
       userId: userToBeUpdated.loginId,
       userRoles: ['anonymous', 'authenticated'],
     })
-    jest.mocked(fetchLoginUser).mockResolvedValueOnce(userToBeUpdated)
+    vi.mocked(fetchLoginUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)
@@ -174,13 +175,13 @@ describe('POST /api/v1/user', () => {
       isPublic: userToBeUpdated.isPublic,
     }
     req.body = { ...expected, area: 14 }
-    jest.mocked(getClientPrincipal).mockReturnValueOnce({
+    vi.mocked(getClientPrincipal).mockReturnValueOnce({
       identityProvider: 'github',
       userDetails: userToBeUpdated.id,
       userId: userToBeUpdated.loginId,
       userRoles: ['anonymous', 'authenticated'],
     })
-    jest.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
+    vi.mocked(fetchUser).mockResolvedValueOnce(userToBeUpdated)
 
     // Act
     const result = await postUserInfo(null, req)
