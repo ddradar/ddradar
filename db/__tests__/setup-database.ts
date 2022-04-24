@@ -1,6 +1,6 @@
 import { CosmosClient } from '@azure/cosmos'
 
-export default async function () {
+export async function setup() {
   // eslint-disable-next-line node/no-process-env
   const connectionString = process.env.COSMOS_DB_CONN
 
