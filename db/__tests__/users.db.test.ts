@@ -1,3 +1,4 @@
+import type { CreateOperationInput, DeleteOperationInput } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
@@ -25,10 +26,30 @@ describeIf(canConnectDB)('users.ts', () => {
     isPublic: true,
   }))
   beforeAll(async () => {
-    await Promise.all(users.map(u => getContainer('Users').items.create(u)))
-    await Promise.all(areas.map(u => getContainer('Users').items.create(u)))
+    await getContainer('Users').items.batch([
+      ...users.map<CreateOperationInput>(u => ({
+        operationType: 'Create',
+        resourceBody: u,
+      })),
+      ...areas.map<CreateOperationInput>(u => ({
+        operationType: 'Create',
+        resourceBody: u,
+      })),
+    ])
   }, 40000)
   afterAll(async () => {
+    await getContainer('Users').items.batch([
+      ...users.map<DeleteOperationInput>(({ id }) => ({
+        operationType: 'Delete',
+        id,
+        partitionKey: id,
+      })),
+      ...areas.map<DeleteOperationInput>(({ id }) => ({
+        operationType: 'Delete',
+        id,
+        partitionKey: id,
+      })),
+    ])
     await Promise.all(
       users.map(u => getContainer('Users').item(u.id, u.id).delete())
     )

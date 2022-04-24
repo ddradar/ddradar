@@ -1,3 +1,4 @@
+import type { CreateOperationInput, DeleteOperationInput } from '@azure/cosmos'
 import { Database, Score } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
@@ -36,16 +37,30 @@ describeIf(canConnectDB)('user-details.ts', () => {
     }))
 
     beforeAll(async () => {
-      const container = getContainer('UserDetails')
-      await Promise.all(clears.map(s => container.items.create(s)))
-      await Promise.all(ranks.map(s => container.items.create(s)))
+      await getContainer('UserDetails').items.batch([
+        ...clears.map<CreateOperationInput>(s => ({
+          operationType: 'Create',
+          resourceBody: s,
+        })),
+        ...ranks.map<CreateOperationInput>(s => ({
+          operationType: 'Create',
+          resourceBody: s,
+        })),
+      ])
     }, 40000)
     afterAll(async () => {
-      const container = getContainer('UserDetails')
-      await Promise.all(
-        clears.map(s => container.item(s.id, s.userId).delete())
-      )
-      await Promise.all(ranks.map(s => container.item(s.id, s.userId).delete()))
+      await getContainer('UserDetails').items.batch([
+        ...clears.map<DeleteOperationInput>(({ id, userId }) => ({
+          operationType: 'Delete',
+          id,
+          partitionKey: userId,
+        })),
+        ...ranks.map<DeleteOperationInput>(({ id, userId }) => ({
+          operationType: 'Delete',
+          id,
+          partitionKey: userId,
+        })),
+      ])
     }, 40000)
 
     test('(publicUser.id) returns clears + ranks', () =>

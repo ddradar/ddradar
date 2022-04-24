@@ -36,11 +36,17 @@ describeIf(canConnectDB)('scores.ts', () => {
   const songId = testSongData.id
 
   beforeAll(async () => {
-    await Promise.all(scores.map(s => getContainer('Scores').items.create(s)))
+    await getContainer('Scores').items.batch(
+      scores.map(s => ({ operationType: 'Create', resourceBody: s }))
+    )
   }, 40000)
   afterAll(async () => {
-    await Promise.all(
-      scores.map(s => getContainer('Scores').item(s.id, s.userId).delete())
+    await getContainer('Scores').items.batch(
+      scores.map(({ id, userId }) => ({
+        operationType: 'Delete',
+        id,
+        partitionKey: userId,
+      }))
     )
   }, 40000)
 
