@@ -34,6 +34,7 @@ export async function setup() {
       ],
     } as object,
     defaultTtl: -1,
+    throughput: 400,
   })
   await database.containers.createIfNotExists({
     id: 'Songs',
@@ -52,10 +53,12 @@ export async function setup() {
         ],
       ],
     } as object,
+    throughput: 400,
   })
   await database.containers.createIfNotExists({
     id: 'Users',
     partitionKey: { paths: ['/id'] },
+    throughput: 400,
   })
   await database.containers.createIfNotExists({
     id: 'Notification',
@@ -74,9 +77,11 @@ export async function setup() {
         ],
       ],
     } as object,
+    throughput: 400,
   })
   await database.containers.createIfNotExists({
     id: 'UserDetails',
     partitionKey: { paths: ['/userId'] },
+    throughput: 400,
   })
 }
