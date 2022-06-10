@@ -1,5 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { fetchOne } from '../database'
 import { fetchLoginUser, fetchUser } from '../users'
@@ -8,7 +9,9 @@ jest.mock('../database')
 
 describe('users.ts', () => {
   describe('fetchUser', () => {
-    beforeEach(() => jest.mocked(fetchOne).mockClear())
+    beforeEach(() => {
+      jest.mocked(fetchOne).mockClear()
+    })
 
     test('returns fetchOne() value', async () => {
       // Arrange
@@ -30,7 +33,9 @@ describe('users.ts', () => {
   })
 
   describe('fetchLoginUser', () => {
-    beforeEach(() => jest.mocked(fetchOne).mockClear())
+    beforeEach(() => {
+      jest.mocked(fetchOne).mockClear()
+    })
 
     test('returns fetchOne() value', async () => {
       // Arrange

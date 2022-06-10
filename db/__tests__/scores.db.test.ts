@@ -4,6 +4,7 @@ import {
   testScores,
   testSongData,
 } from '@ddradar/core/__tests__/data'
+import { afterAll, beforeAll, describe, expect, test } from '@jest/globals'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
@@ -45,17 +46,18 @@ describeIf(canConnectDB)('scores.ts', () => {
 
   describe('fetchScore', () => {
     test.each([
-      ['not_existed_user', songId, 1, 0],
-      [userId, 'not_existed_song', 1, 0],
-      [userId, songId, 2, 0],
-      [userId, songId, 1, 3],
-      [userId, songId, 1, 1],
-    ] as const)(
+      ['not_existed_user', songId, 1 as const, 0 as const],
+      [userId, 'not_existed_song', 1 as const, 0 as const],
+      [userId, songId, 2 as const, 0 as const],
+      [userId, songId, 1 as const, 3 as const],
+      [userId, songId, 1 as const, 1 as const],
+    ])(
       '("%s", "%s", %i, %i) returns null',
-      (userId, songId, playStyle, difficulty) =>
+      (userId, songId, playStyle, difficulty) => {
         expect(
           fetchScore(userId, songId, playStyle, difficulty)
         ).resolves.toBeNull()
+      }
     )
     test.each(
       scores
@@ -72,22 +74,22 @@ describeIf(canConnectDB)('scores.ts', () => {
   describe('fetchScoreList', () => {
     test.each([
       ['not_existed_user', {}],
-      [userId, { playStyle: 2 }],
-      [userId, { playStyle: 1, difficulty: 3 }],
+      [userId, { playStyle: 2 as const }],
+      [userId, { playStyle: 1 as const, difficulty: 3 as const }],
       [userId, { level: 3 }],
-      [userId, { clearLamp: 7 }],
-      [userId, { rank: 'AAA' }],
-    ] as const)('("%s", %p) returns []', (userId, conditions) =>
+      [userId, { clearLamp: 7 as const }],
+      [userId, { rank: 'AAA' as const }],
+    ])('("%s", %p) returns []', (userId, conditions) => {
       expect(fetchScoreList(userId, conditions)).resolves.toHaveLength(0)
-    )
+    })
     test.each([
       [userId, {}],
-      [userId, { playStyle: 1 }],
-      [userId, { difficulty: 0 }],
+      [userId, { playStyle: 1 as const }],
+      [userId, { difficulty: 0 as const }],
       [userId, { level: 4 }],
-      [userId, { clearLamp: 5 }],
-      [userId, { rank: 'AA+' }],
-    ] as const)('("%s", %p) returns [expected]', (userId, conditions) =>
+      [userId, { clearLamp: 5 as const }],
+      [userId, { rank: 'AA+' as const }],
+    ])('("%s", %p) returns [expected]', (userId, conditions) => {
       expect(fetchScoreList(userId, conditions)).resolves.toStrictEqual([
         {
           songId,
@@ -103,22 +105,22 @@ describeIf(canConnectDB)('scores.ts', () => {
           radar,
         },
       ])
-    )
+    })
   })
   describe('generateGrooveRadar', () => {
     const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
     test.each([
-      ['not_exist_user', 1, emptyRadar],
-      ['13', 1, emptyRadar],
-      [publicUser.id, 1, radar],
-    ] as const)('("%s", %i) returns %p', (userId, playStyle, expected) =>
-      expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
+      ['not_exist_user', 1 as const, emptyRadar],
+      ['13', 1 as const, emptyRadar],
+      [publicUser.id, 1 as const, radar],
+    ])('("%s", %i) returns %p', (userId, playStyle, expected) =>
+      {expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
         id: `radar-${userId}-${playStyle}`,
         userId,
         type: 'radar',
         playStyle,
         ...expected,
-      })
+      })}
     )
   })
 })

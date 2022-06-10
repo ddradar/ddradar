@@ -1,6 +1,7 @@
 import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
+  injectGlobals: false,
   displayName: 'DB',
   maxWorkers: 1,
   clearMocks: true,
