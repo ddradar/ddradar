@@ -1,5 +1,6 @@
 import type { Context } from '@azure/functions'
 import type { Api } from '@ddradar/core'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { canReadUserData } from '../auth'
 import getGrooveRadar from '.'
@@ -15,7 +16,9 @@ describe('GET /api/v1/users/{id}/radar', () => {
 
   const req = { headers: {} }
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  beforeEach(() => (context.bindingData = {}))
+  beforeEach(() => {
+    context.bindingData = {}
+  })
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange

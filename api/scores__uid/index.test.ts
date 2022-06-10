@@ -5,6 +5,7 @@ import {
   testScores,
 } from '@ddradar/core/__tests__/data'
 import { fetchScoreList } from '@ddradar/db'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { getLoginUserInfo } from '../auth'
 import getUserScores from '.'
@@ -14,7 +15,9 @@ jest.mock('../auth')
 
 describe('GET /api/v1/scores/{uid}', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  beforeEach(() => jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser))
+  beforeEach(() => {
+    jest.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
+  })
 
   test('/not_found_user returns "404 Not Found"', async () => {
     // Arrange - Act

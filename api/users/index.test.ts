@@ -5,6 +5,7 @@ import {
   privateUser,
   publicUser,
 } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { getClientPrincipal } from '../auth'
 import getUserList from '.'
@@ -14,7 +15,9 @@ jest.mock('../auth')
 describe('GET /api/v1/users', () => {
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
   const users = [areaHiddenUser, noPasswordUser, privateUser, publicUser]
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test.each([
     [undefined, undefined, undefined, 2],

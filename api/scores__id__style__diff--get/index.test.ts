@@ -1,5 +1,6 @@
 import type { HttpRequest } from '@azure/functions'
 import { privateUser, testScores } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { getLoginUserInfo } from '../auth'
 import getChartScore from '.'

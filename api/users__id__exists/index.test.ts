@@ -1,11 +1,14 @@
 import type { Context } from '@azure/functions'
 import { privateUser } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, test } from '@jest/globals'
 
 import existsUser from '.'
 
 describe('GET /api/v1/users/{id}/exists', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  beforeEach(() => (context.bindingData = {}))
+  beforeEach(() => {
+    context.bindingData = {}
+  })
 
   test('/not_exists_user/exists returns "200 OK" with { exists: false }', async () => {
     // Arrange
