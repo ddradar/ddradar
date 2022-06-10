@@ -113,14 +113,14 @@ describeIf(canConnectDB)('scores.ts', () => {
       ['not_exist_user', 1 as const, emptyRadar],
       ['13', 1 as const, emptyRadar],
       [publicUser.id, 1 as const, radar],
-    ])('("%s", %i) returns %p', (userId, playStyle, expected) =>
-      {expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
+    ])('("%s", %i) returns %p', (userId, playStyle, expected) => {
+      expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
         id: `radar-${userId}-${playStyle}`,
         userId,
         type: 'radar',
         playStyle,
         ...expected,
-      })}
-    )
+      })
+    })
   })
 })

@@ -8,7 +8,14 @@ import {
   testSongData as song,
 } from '@ddradar/core/__tests__/data'
 import { fetchScore } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, jest, test } from '@jest/globals'
+import {
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  jest,
+  test,
+} from '@jest/globals'
 
 import { getLoginUserInfo } from '../auth'
 import postSongScores from '.'
