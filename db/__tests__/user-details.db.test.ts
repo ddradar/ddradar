@@ -39,14 +39,14 @@ describeIf(canConnectDB)('user-details.ts', () => {
       const container = getContainer('UserDetails')
       await Promise.all(clears.map(s => container.items.create(s)))
       await Promise.all(ranks.map(s => container.items.create(s)))
-    })
+    }, 20000)
     afterAll(async () => {
       const container = getContainer('UserDetails')
       await Promise.all(
         clears.map(s => container.item(s.id, s.userId).delete())
       )
       await Promise.all(ranks.map(s => container.item(s.id, s.userId).delete()))
-    })
+    }, 20000)
 
     test('(publicUser.id) returns clears + ranks', () =>
       expect(fetchClearAndScoreStatus(publicUser.id)).resolves.toHaveLength(
