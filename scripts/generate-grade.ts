@@ -35,6 +35,10 @@ const order = [
 ]
 
 async function main() {
+  if (!Song.isValidId(grade.id)) {
+    consola.warn(`Invalid ID: ${grade.id}`)
+    return
+  }
   const playStyle = Song.playStyleMap.get(grade.playStyle)
   const name = gradeMap.get(grade.index) as string
   consola.ready(`Add ${name}(${playStyle}) (${grade.id})`)

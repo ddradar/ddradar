@@ -4,6 +4,7 @@ import { config } from 'dotenv'
 config()
 
 import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
 import consola from 'consola'
 
@@ -20,6 +21,10 @@ const ids = [
 ]
 
 async function main() {
+  if (!Song.isValidId(courseInfo.id)) {
+    consola.warn(`Invalid ID: ${courseInfo.id}`)
+    return
+  }
   consola.ready(`Add ${courseInfo.name} (${courseInfo.id})`)
   const resources = await fetchList(
     'Songs',
