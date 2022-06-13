@@ -8,17 +8,15 @@ import { fetchList, getContainer } from '@ddradar/db'
 import consola from 'consola'
 
 const courseInfo = {
-  id: 'PQ0bDbI9dPQQ81iPO6lo0IDobb8q66Oq',
-  name: 'FUTURE',
-  nameKana: 'C-A20PLUS-14',
-  nameIndex: -1,
-  series: 'DanceDanceRevolution A20 PLUS',
+  id: '',
+  name: '',
+  index: 1,
 } as const
 const ids = [
-  '6I0d1d8d690dl8boOb60O1Iq1Ddi6P8d', // 1st
-  'I1DiOI16Id0qdlqbQ6ObPlilDP1oiI98', // 2nd
-  'D686d06lO9IID8D0boPq0Pd8P89idO99', // 3rd
-  '6ID160b99ibbd9OoblD0DPOl98lPbq6D', // FINAL
+  '', // 1st
+  '', // 2nd
+  '', // 3rd
+  '', // FINAL
 ]
 
 async function main() {
@@ -32,6 +30,7 @@ async function main() {
 
   if (resources.length !== 4 || resources.some(d => d.nameIndex < 0)) {
     consola.warn('Not found 4 songs. Please check has been registered.')
+    return
   }
 
   const songs = resources.sort((l, r) => ids.indexOf(l.id) - ids.indexOf(r.id))
@@ -63,8 +62,15 @@ async function main() {
         : l.playStyle - r.playStyle
     )
 
+  const zeroPadding = new Intl.NumberFormat(undefined, {
+    minimumIntegerDigits: 2,
+  })
   const course: Database.CourseSchema = {
-    ...courseInfo,
+    id: courseInfo.id,
+    name: courseInfo.name,
+    nameIndex: -1,
+    nameKana: `C-A3-${zeroPadding.format(courseInfo.index)}`,
+    series: 'DanceDanceRevolution A3',
     minBPM: Math.min(...songs.map(s => s.minBPM ?? 0)),
     maxBPM: Math.max(...songs.map(s => s.maxBPM ?? 0)),
     charts: chartKind.map(key => {
