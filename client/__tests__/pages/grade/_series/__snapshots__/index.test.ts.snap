@@ -3,7 +3,7 @@
 exports[`pages/grade/_series/index.vue { locale: "en" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - GRADE</h1>
-  <div class="buttons"><a type="button" class="button is-info">
+  <div class="buttons"><a class="button is-info">
       <!----><span>
       NONSTOP(A20)
     </span>
@@ -13,12 +13,12 @@ exports[`pages/grade/_series/index.vue { locale: "en" } snapshot test renders co
       GRADE(A20)
     </span>
       <!---->
-    </button><a type="button" class="button is-info">
+    </button><a class="button is-info">
       <!----><span>
       NONSTOP(A20 PLUS)
     </span>
       <!---->
-    </a><a type="button" class="button is-info">
+    </a><a class="button is-info">
       <!----><span>
       GRADE(A20 PLUS)
     </span>
@@ -31,7 +31,7 @@ exports[`pages/grade/_series/index.vue { locale: "en" } snapshot test renders co
 exports[`pages/grade/_series/index.vue { locale: "ja" } snapshot test renders correctly 1`] = `
 <section class="section">
   <h1 class="title">DanceDanceRevolution A20 - 段位認定</h1>
-  <div class="buttons"><a type="button" class="button is-info">
+  <div class="buttons"><a class="button is-info">
       <!----><span>
       NONSTOP(A20)
     </span>
@@ -41,12 +41,12 @@ exports[`pages/grade/_series/index.vue { locale: "ja" } snapshot test renders co
       段位認定(A20)
     </span>
       <!---->
-    </button><a type="button" class="button is-info">
+    </button><a class="button is-info">
       <!----><span>
       NONSTOP(A20 PLUS)
     </span>
       <!---->
-    </a><a type="button" class="button is-info">
+    </a><a class="button is-info">
       <!----><span>
       段位認定(A20 PLUS)
     </span>

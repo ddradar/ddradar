@@ -158,11 +158,11 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders loading 1`]
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
+              <div class="buttons"><a class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               MyPage
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/logout" class="button is-warning">
+                </a> <a href="/.auth/logout" class="button is-warning">
                   <!----><span>
               Logout
             </span>
@@ -352,11 +352,11 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders login butto
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">Login</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
+              <div class="buttons"><a href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
               Login via Twitter
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
+                </a> <a href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
               Login via GitHub
             </span>
                   <!---->
@@ -546,11 +546,11 @@ exports[`/layouts/default.vue { locale: "en" } snapshot test renders logout butt
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
+              <div class="buttons"><a class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               MyPage
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/logout" class="button is-warning">
+                </a> <a href="/.auth/logout" class="button is-warning">
                   <!----><span>
               Logout
             </span>
@@ -741,11 +741,11 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders loading 1`]
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
+              <div class="buttons"><a class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               マイページ
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/logout" class="button is-warning">
+                </a> <a href="/.auth/logout" class="button is-warning">
                   <!----><span>
               ログアウト
             </span>
@@ -935,11 +935,11 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders login butto
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">ログイン</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
+              <div class="buttons"><a href="/.auth/login/twitter?post_login_redirect_uri=/" class="button is-info"><span class="icon is-small"><i class="mdi mdi-twitter"></i></span><span>
               Twitterでログイン
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
+                </a> <a href="/.auth/login/github?post_login_redirect_uri=/" class="button is-dark"><span class="icon is-small"><i class="mdi mdi-github"></i></span><span>
               GitHubでログイン
             </span>
                   <!---->
@@ -1129,11 +1129,11 @@ exports[`/layouts/default.vue { locale: "ja" } snapshot test renders logout butt
         <div class="navbar-item has-dropdown is-hoverable"><a aria-haspopup="true" tabindex="0" class="navbar-link">User 1</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
-              <div class="buttons"><a type="button" class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
+              <div class="buttons"><a class="button is-info"><span class="icon is-small"><i class="mdi mdi-account"></i></span><span>
               マイページ
             </span>
                   <!---->
-                </a> <a type="button" href="/.auth/logout" class="button is-warning">
+                </a> <a href="/.auth/logout" class="button is-warning">
                   <!----><span>
               ログアウト
             </span>
