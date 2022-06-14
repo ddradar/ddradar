@@ -77,7 +77,9 @@ async function main() {
     consola.info(`${i + 1}: ${songs[i].name} (${playStyle}-${diff})`)
   }
 
-  const zeroPadding = new Intl.NumberFormat(undefined, { minimumIntegerDigits: 2 })
+  const zeroPadding = new Intl.NumberFormat(undefined, {
+    minimumIntegerDigits: 2,
+  })
   const course: Database.CourseSchema = {
     id: grade.id,
     name,
