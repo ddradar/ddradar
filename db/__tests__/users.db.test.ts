@@ -33,7 +33,11 @@ describeIf(canConnectDB)('users.ts', () => {
   }, 50000)
   afterAll(async () => {
     await getContainer('Users').items.bulk(
-      dbUsers.map(({id}) => ({ operationType: 'Delete', id, partitionKey: id }))
+      dbUsers.map(({ id }) => ({
+        operationType: 'Delete',
+        id,
+        partitionKey: id,
+      }))
     )
   }, 50000)
 
