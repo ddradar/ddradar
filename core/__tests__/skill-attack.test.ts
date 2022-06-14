@@ -1,6 +1,8 @@
 /**
  * @jest-environment jsdom
  */
+import { describe, expect, test } from '@jest/globals'
+
 import { readTextAsync, scoreTexttoScoreList } from '../skill-attack'
 
 describe('./skill-attack.ts', () => {

@@ -1,6 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser } from '@ddradar/db'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { canReadUserData, getClientPrincipal, getLoginUserInfo } from '../auth'
 
@@ -16,7 +17,9 @@ const authHeader = 'x-ms-client-principal'
 describe('auth.ts', () => {
   describe('getClientPrincipal', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
-    beforeEach(() => (req.headers = {}))
+    beforeEach(() => {
+      req.headers = {}
+    })
 
     test.each(['', 'foo'])(`({ ${authHeader} : %s }) returns null`, header => {
       // Arrange
@@ -89,7 +92,9 @@ describe('auth.ts', () => {
 
   describe('canReadUserData', () => {
     const req: Pick<HttpRequest, 'headers'> = { headers: {} }
-    beforeEach(() => (req.headers = {}))
+    beforeEach(() => {
+      req.headers = {}
+    })
 
     test('({not login}, undefined) returns false', () =>
       expect(canReadUserData(req, undefined)).toBe(false))

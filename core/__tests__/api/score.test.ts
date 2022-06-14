@@ -1,3 +1,5 @@
+import { describe, expect, test } from '@jest/globals'
+
 import type { ScoreBody } from '../../api/score'
 import { isScoreListBody } from '../../api/score'
 

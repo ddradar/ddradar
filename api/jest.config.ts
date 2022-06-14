@@ -1,6 +1,7 @@
 import { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
+  injectGlobals: false,
   displayName: 'API',
   clearMocks: true,
   moduleFileExtensions: ['js', 'ts'],

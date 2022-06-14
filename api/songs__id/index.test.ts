@@ -1,12 +1,15 @@
 import type { Context } from '@azure/functions'
 import { testSongData } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, test } from '@jest/globals'
 
 import getSongInfo from '.'
 
 describe('GET /api/v1/songs/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
   const song = { ...testSongData }
-  beforeEach(() => (context.bindingData = {}))
+  beforeEach(() => {
+    context.bindingData = {}
+  })
 
   test(`returns "404 Not Found" if no song that matches id.`, async () => {
     // Arrange

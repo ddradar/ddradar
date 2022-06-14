@@ -1,11 +1,14 @@
 import type { Context } from '@azure/functions'
 import { testCourseData as course } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, test } from '@jest/globals'
 
 import getCourseInfo from '.'
 
 describe('GET /api/v1/courses/{id}', () => {
   const context: Pick<Context, 'bindingData'> = { bindingData: {} }
-  beforeEach(() => (context.bindingData = {}))
+  beforeEach(() => {
+    context.bindingData = {}
+  })
 
   test(`returns "404 Not Found" if no course that matches id.`, async () => {
     // Arrange

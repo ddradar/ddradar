@@ -1,3 +1,5 @@
+import { describe, expect, test } from '@jest/globals'
+
 import { isDeletedOnGate } from '../song'
 
 /** PARANOiA */
@@ -19,28 +21,28 @@ describe('./song.ts', () => {
       songId => expect(isDeletedOnGate(songId)).toBe(false)
     )
     test.each([
-      [deletedOnA, 'DanceDanceRevolution A20'],
-      [deletedOnA, 'DanceDanceRevolution A20 PLUS'],
-      [deletedOnA, 'DanceDanceRevolution A3'],
-      [deletedOnA20, 'DanceDanceRevolution A3'],
-      [deletedOnA20Plus, 'DanceDanceRevolution A3'],
-    ] as const)('(%s, %s) returns true', (songId, series) =>
+      [deletedOnA, 'DanceDanceRevolution A20' as const],
+      [deletedOnA, 'DanceDanceRevolution A20 PLUS' as const],
+      [deletedOnA, 'DanceDanceRevolution A3' as const],
+      [deletedOnA20, 'DanceDanceRevolution A3' as const],
+      [deletedOnA20Plus, 'DanceDanceRevolution A3' as const],
+    ])('(%s, %s) returns true', (songId, series) => {
       expect(isDeletedOnGate(songId, series)).toBe(true)
-    )
+    })
     test.each([
-      [existsId, 'DanceDanceRevolution A'],
-      [existsId, 'DanceDanceRevolution A20'],
-      [existsId, 'DanceDanceRevolution A20 PLUS'],
-      [existsId, 'DanceDanceRevolution A3'],
-      [deletedOnA, 'DanceDanceRevolution A'],
-      [deletedOnA20, 'DanceDanceRevolution A'],
-      [deletedOnA20, 'DanceDanceRevolution A20'],
-      [deletedOnA20, 'DanceDanceRevolution A20 PLUS'],
-      [deletedOnA20Plus, 'DanceDanceRevolution A'],
-      [deletedOnA20Plus, 'DanceDanceRevolution A20'],
-      [deletedOnA20Plus, 'DanceDanceRevolution A20 PLUS'],
-    ] as const)('(%s, %s) returns false', (songId, series) =>
+      [existsId, 'DanceDanceRevolution A' as const],
+      [existsId, 'DanceDanceRevolution A20' as const],
+      [existsId, 'DanceDanceRevolution A20 PLUS' as const],
+      [existsId, 'DanceDanceRevolution A3' as const],
+      [deletedOnA, 'DanceDanceRevolution A' as const],
+      [deletedOnA20, 'DanceDanceRevolution A' as const],
+      [deletedOnA20, 'DanceDanceRevolution A20' as const],
+      [deletedOnA20, 'DanceDanceRevolution A20 PLUS' as const],
+      [deletedOnA20Plus, 'DanceDanceRevolution A' as const],
+      [deletedOnA20Plus, 'DanceDanceRevolution A20' as const],
+      [deletedOnA20Plus, 'DanceDanceRevolution A20 PLUS' as const],
+    ])('(%s, %s) returns false', (songId, series) => {
       expect(isDeletedOnGate(songId, series)).toBe(false)
-    )
+    })
   })
 })

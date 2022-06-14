@@ -1,6 +1,7 @@
 import type { HttpRequest } from '@azure/functions'
 import type { Api } from '@ddradar/core'
 import { Score } from '@ddradar/core'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { canReadUserData } from '../auth'
 import getScoreCount from '.'
@@ -27,7 +28,9 @@ describe('GET /api/v1/users/{id}/score', () => {
     scores.reduce((p, c) => p + c.count, 0)
 
   const req: Pick<HttpRequest, 'headers' | 'query'> = { headers: {}, query: {} }
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test('returns "404 Not Found" if canReadUserData() returns false', async () => {
     // Arrange

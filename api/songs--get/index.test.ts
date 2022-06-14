@@ -1,11 +1,14 @@
 import { testSongList } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, test } from '@jest/globals'
 
 import searchSong from '.'
 
 describe('GET /api/v1/songs', () => {
   const req: { query: Record<string, string> } = { query: {} }
   const songs = [...testSongList]
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test.each([
     ['', '', [songs[0], songs[1], songs[2]]],

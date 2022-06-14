@@ -1,3 +1,5 @@
+import { describe, expect, test } from '@jest/globals'
+
 import {
   hasIntegerProperty,
   hasProperty,
@@ -29,16 +31,18 @@ describe('./typeUtils.ts', () => {
       [{}, {}],
       [[], []],
       [{ foo1: 'bar' }, { foo2: 'bar' }],
-    ] as const
+    ] as [unknown, unknown][]
     test.each(testData)(
       '({ foo: %p, bar: %p }, "foo", "bar") returns true',
-      (foo: unknown, bar: unknown) =>
+      (foo, bar) => {
         expect(hasProperty({ foo, bar }, 'foo', 'bar')).toBe(true)
+      }
     )
     test.each(testData)(
       '({ foo: %p, bar: %p }, "foo") returns true',
-      (foo: unknown, bar: unknown) =>
+      (foo, bar) => {
         expect(hasProperty({ foo, bar }, 'foo')).toBe(true)
+      }
     )
   })
 

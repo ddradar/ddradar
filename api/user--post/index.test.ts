@@ -1,6 +1,14 @@
 import type { HttpRequest } from '@azure/functions'
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
+import {
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  jest,
+  test,
+} from '@jest/globals'
 
 import { getClientPrincipal } from '../auth'
 import postUserInfo from '.'

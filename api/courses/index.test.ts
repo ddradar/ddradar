@@ -1,3 +1,5 @@
+import { beforeEach, describe, expect, test } from '@jest/globals'
+
 import getCourseList from '.'
 
 describe('GET /api/v1/courses', () => {
@@ -58,7 +60,9 @@ describe('GET /api/v1/courses', () => {
       ],
     },
   ] as const
-  beforeEach(() => (req.query = {}))
+  beforeEach(() => {
+    req.query = {}
+  })
 
   test.each([
     ['1', '16', 1],

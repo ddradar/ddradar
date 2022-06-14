@@ -1,3 +1,5 @@
+import { beforeAll, describe, expect, jest, test } from '@jest/globals'
+
 import type { ScoreBody } from '../../api/score'
 import { createScoreSchema } from '../../db/scores'
 import { calcMyGrooveRadar } from '../../score'
@@ -18,7 +20,9 @@ describe('./db/scores.ts', () => {
       freeze: 100,
       chaos: 100,
     }
-    beforeAll(() => jest.mocked(calcMyGrooveRadar).mockReturnValue(radar))
+    beforeAll(() => {
+      jest.mocked(calcMyGrooveRadar).mockReturnValue(radar)
+    })
 
     const scores: ScoreBody[] = [
       { score: 1000000, clearLamp: 7, rank: 'AAA' },

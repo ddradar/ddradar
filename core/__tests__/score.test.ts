@@ -1,3 +1,5 @@
+import { describe, expect, test } from '@jest/globals'
+
 import type { ScoreBody } from '../api/score'
 import type { StepChartSchema } from '../db/songs'
 import {
@@ -42,26 +44,26 @@ describe('./score.ts', () => {
   describe('mergeScore', () => {
     test.each([
       [
-        { score: 900000, clearLamp: 1, rank: 'AA' },
-        { score: 900000, clearLamp: 1, rank: 'AA' },
-        { score: 900000, clearLamp: 1, rank: 'AA' },
+        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
+        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
+        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' },
-        { score: 850000, clearLamp: 4, exScore: 100, rank: 'A+' },
-        { score: 900000, clearLamp: 4, rank: 'AA', exScore: 100 },
+        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
+        { score: 850000, clearLamp: 4, exScore: 100, rank: 'A+' } as const,
+        { score: 900000, clearLamp: 4, rank: 'AA', exScore: 100 } as const,
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' },
-        { score: 920000, clearLamp: 0, rank: 'E' },
-        { score: 920000, clearLamp: 3, rank: 'E' },
+        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
+        { score: 920000, clearLamp: 0, rank: 'E' } as const,
+        { score: 920000, clearLamp: 3, rank: 'E' } as const,
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' },
-        { score: 850000, clearLamp: 4, maxCombo: 100, rank: 'A+' },
-        { score: 900000, clearLamp: 4, rank: 'AA', maxCombo: 100 },
+        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
+        { score: 850000, clearLamp: 4, maxCombo: 100, rank: 'A+' } as const,
+        { score: 900000, clearLamp: 4, rank: 'AA', maxCombo: 100 } as const,
       ],
-    ] as const)('(%p, %p) returns %p', (left, right, expected) => {
+    ])('(%p, %p) returns %p', (left, right, expected) => {
       // Assert - Act
       const merged1 = mergeScore(left, right)
       const merged2 = mergeScore(right, left)

@@ -1,5 +1,6 @@
 import type { Database, Score } from '@ddradar/core'
 import { testScores } from '@ddradar/core/__tests__/data'
+import { beforeEach, describe, expect, jest, test } from '@jest/globals'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../database'
 import {
@@ -14,7 +15,9 @@ jest.mock('../database')
 
 describe('scores.ts', () => {
   describe('fetchScore', () => {
-    beforeEach(() => jest.mocked(fetchOne).mockClear())
+    beforeEach(() => {
+      jest.mocked(fetchOne).mockClear()
+    })
 
     test('returns fetchOne() value', async () => {
       // Arrange
@@ -42,7 +45,9 @@ describe('scores.ts', () => {
     })
   })
   describe('fetchScoreList', () => {
-    beforeEach(() => jest.mocked(fetchList).mockClear())
+    beforeEach(() => {
+      jest.mocked(fetchList).mockClear()
+    })
 
     test('("foo") calls fetchList("Scores", columns, condition, { songName: "ASC" })', async () => {
       // Arrange
