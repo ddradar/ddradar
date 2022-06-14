@@ -34,23 +34,26 @@ describeIf(canConnectDB)('user-details.ts', () => {
       rank: [...Score.danceLevelSet][n % Score.danceLevelSet.size],
       count: n,
     }))
+    const userDetails = [...clears, ...ranks]
 
     beforeAll(async () => {
-      const container = getContainer('UserDetails')
-      await Promise.all(clears.map(s => container.items.create(s)))
-      await Promise.all(ranks.map(s => container.items.create(s)))
-    }, 20000)
-    afterAll(async () => {
-      const container = getContainer('UserDetails')
-      await Promise.all(
-        clears.map(s => container.item(s.id, s.userId).delete())
+      await getContainer('UserDetails').items.bulk(
+        userDetails.map(s => ({ operationType: 'Create', resourceBody: s }))
       )
-      await Promise.all(ranks.map(s => container.item(s.id, s.userId).delete()))
-    }, 20000)
+    }, 50000)
+    afterAll(async () => {
+      await getContainer('UserDetails').items.bulk(
+        userDetails.map(s => ({
+          operationType: 'Delete',
+          id: s.id,
+          partitionKey: s.userId,
+        }))
+      )
+    }, 50000)
 
     test('(publicUser.id) returns clears + ranks', () =>
       expect(fetchClearAndScoreStatus(publicUser.id)).resolves.toHaveLength(
-        clears.length + ranks.length
+        userDetails.length
       ))
   })
 })

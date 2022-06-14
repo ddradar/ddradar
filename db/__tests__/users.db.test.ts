@@ -24,18 +24,18 @@ describeIf(canConnectDB)('users.ts', () => {
     area: (i % 50) as Database.AreaCode,
     isPublic: true,
   }))
+  const dbUsers = [...users, ...areas]
+
   beforeAll(async () => {
-    await Promise.all(users.map(u => getContainer('Users').items.create(u)))
-    await Promise.all(areas.map(u => getContainer('Users').items.create(u)))
-  }, 20000)
+    await getContainer('Users').items.bulk(
+      dbUsers.map(s => ({ operationType: 'Create', resourceBody: s }))
+    )
+  }, 50000)
   afterAll(async () => {
-    await Promise.all(
-      users.map(u => getContainer('Users').item(u.id, u.id).delete())
+    await getContainer('Users').items.bulk(
+      dbUsers.map(({id}) => ({ operationType: 'Delete', id, partitionKey: id }))
     )
-    await Promise.all(
-      areas.map(u => getContainer('Users').item(u.id, u.id).delete())
-    )
-  }, 20000)
+  }, 50000)
 
   describe('fetchUser', () => {
     test.each(['', 'foo', users[0].loginId, users[1].loginId])(
