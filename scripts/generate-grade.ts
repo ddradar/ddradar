@@ -47,7 +47,7 @@ async function main() {
   const resources = await fetchList(
     'Songs',
     ['id', 'name', 'nameIndex', 'charts', 'minBPM', 'maxBPM'],
-    [{ condition: 'ARRAY_CONTAINS(@, c.id)', value: ids.map(d => d[0]) }],
+    [{ condition: 'ARRAY_CONTAINS(@, c.id)', value: ids }],
     { _ts: 'ASC' }
   )
 
@@ -111,5 +111,5 @@ async function main() {
   consola.success(`Added ${name}(${playStyle}) (${grade.id})`)
 }
 
-// yarn start ./generate-course.ts
+// yarn start ./generate-grade.ts
 main().catch(e => consola.error(e))
