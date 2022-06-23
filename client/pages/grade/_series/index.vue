@@ -40,7 +40,7 @@ import type { Context } from '@nuxt/types'
 import { Component, Vue } from 'nuxt-property-decorator'
 import type { MetaInfo } from 'vue-meta'
 
-import { getCourseList } from '~/api/course'
+import { courceSeries, getCourseList } from '~/api/course'
 import { shortenSeriesName } from '~/api/song'
 import CourseList from '~/components/pages/courses/CourseList.vue'
 
@@ -57,7 +57,7 @@ export default class GradeListPage extends Vue {
 
   get pageLinks() {
     const seriesList = [...Song.seriesSet]
-    return [16, 17]
+    return courceSeries
       .flatMap(i => ['nonstop', 'grade'].map(type => [i, type] as const))
       .map(d => ({
         name: this.$t(d[1], { series: shortenSeriesName(seriesList[d[0]]) }),
@@ -82,7 +82,7 @@ export default class GradeListPage extends Vue {
 
   /** Get Course List from API */
   async fetch() {
-    const series = parseInt(this.$route.params.series, 10) as 16 | 17
+    const series = parseInt(this.$route.params.series, 10)
     this.courses = await getCourseList(this.$http, series, 2)
   }
 }

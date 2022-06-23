@@ -23,6 +23,16 @@ exports[`pages/nonstop/_series/index.vue { locale: "en" } snapshot test renders 
       GRADE(A20 PLUS)
     </span>
       <!---->
+    </a><a class="button is-info">
+      <!----><span>
+      NONSTOP(A3)
+    </span>
+      <!---->
+    </a><a class="button is-info">
+      <!----><span>
+      GRADE(A3)
+    </span>
+      <!---->
     </a></div>
   <courselist-stub courses=""></courselist-stub>
 </section>
@@ -49,6 +59,16 @@ exports[`pages/nonstop/_series/index.vue { locale: "ja" } snapshot test renders 
     </a><a class="button is-info">
       <!----><span>
       段位認定(A20 PLUS)
+    </span>
+      <!---->
+    </a><a class="button is-info">
+      <!----><span>
+      NONSTOP(A3)
+    </span>
+      <!---->
+    </a><a class="button is-info">
+      <!----><span>
+      段位認定(A3)
     </span>
       <!---->
     </a></div>

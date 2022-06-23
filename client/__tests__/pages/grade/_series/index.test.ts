@@ -5,7 +5,10 @@ import { createI18n, createVue } from '~/__tests__/util'
 import { getCourseList } from '~/api/course'
 import GradeListPage from '~/pages/grade/_series/index.vue'
 
-jest.mock('~/api/course')
+jest.mock('~/api/course', () => ({
+  ...(jest.requireActual('~/api/course') as object),
+  getCourseList: jest.fn(),
+}))
 
 const localVue = createVue()
 
