@@ -14,8 +14,7 @@ import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
 // eslint-disable-next-line node/no-process-env
 const { BASE_URI: apiBasePath } = process.env
-const series: 'DanceDanceRevolution A3' | 'DanceDanceRevolution A20' =
-  'DanceDanceRevolution A20'
+const series = 'DanceDanceRevolution A3'
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
@@ -48,16 +47,6 @@ async function main(userId: string, password: string) {
     { songName: 'ASC' }
   )
 
-  const a3Songs =
-    series === 'DanceDanceRevolution A3'
-      ? []
-      : await fetchList(
-          'Songs',
-          ['id'],
-          [{ condition: 'c.series = @', value: 'DanceDanceRevolution A3' }],
-          { nameIndex: 'ASC' }
-        )
-
   // Grouped by song
   const scores = resources.reduce((prev, score) => {
     if (prev[score.songId]) {
@@ -75,12 +64,7 @@ async function main(userId: string, password: string) {
   for (const [id, score] of Object.entries(scores)) {
     const songScope = consola.withScope('song')
     const songName = `(${count++}/${total}) ${score[0].songName} (${id})`
-    if (
-      Song.isDeletedOnGate(id, series) ||
-      (series === 'DanceDanceRevolution A20' &&
-        (a3Songs.some(s => s.id === id) ||
-          id === '01lbO69qQiP691ll6DIiqPbIdd9O806o'))
-    ) {
+    if (Song.isDeletedOnGate(id, series)) {
       songScope.info(`${songName} is deleted on e-amusement site. skipped`)
       continue
     }
@@ -93,7 +77,7 @@ async function main(userId: string, password: string) {
         const chartScope = songScope.withScope('charts')
         const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
         let score: Awaited<ReturnType<typeof fetchScoreDetail>> = null
-        const seriesTitle = series?.replace('DanceDanceRevolution ', '')
+
         for (let retryCount = 0; retryCount < 3; retryCount++) {
           try {
             score = await fetchScoreDetail(
@@ -108,13 +92,11 @@ async function main(userId: string, password: string) {
             const message: string =
               typeof e === 'string' ? e : (e as Error)?.message
             if (/NO PLAY/.test(message)) {
-              chartScope.info(`No Play: ${chart} (${seriesTitle})`)
+              chartScope.info(`No Play: ${chart}`)
               break
             }
             if (retryCount >= 2) throw e
-            chartScope.warn(
-              `Retry: ${retryCount + 1} wait 3 seconds... (${seriesTitle})`
-            )
+            chartScope.warn(`Retry: ${retryCount + 1} wait 3 seconds...`)
             await sleep(3000)
           }
         }
@@ -124,10 +106,10 @@ async function main(userId: string, password: string) {
             logs.push(
               `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
                 score.topScore
-              }) at ${new Date()} (${seriesTitle})`
+              }) at ${new Date()}`
             )
             chartScope.success(
-              `${chart} (${score.topScore}) Loaded from ${seriesTitle}. wait 3 seconds...`
+              `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
             )
           }
         }
