@@ -23,6 +23,9 @@ on:
       - scripts/**
       - '**.md'
 
+env:
+  NODE_VERSION: 16
+
 jobs:
   build:
     name: Build
@@ -32,10 +35,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.0.2
-      - name: Use Node.js 12
+      - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.2.0
         with:
-          node-version: 12
+          node-version: ${{ env.NODE_VERSION }}
           cache: yarn
 
       - name: Install Project Dependencies
@@ -43,17 +46,13 @@ jobs:
 
       - name: Build
         run: yarn build
-        env:
-          API_URL: /
-          APPINSIGHTS_INSTRUMENTATIONKEY: ${{ secrets.APPINSIGHTS_INSTRUMENTATIONKEY }}
-          SONGS_API_URL: https://api.ddradar.app/api/v1/songs
 
       - name: Upload Artifact
         if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
         uses: actions/upload-artifact@v3.1.0
         with:
-          name: client
-          path: client/dist
+          name: web
+          path: web/.output
 
   deploy-swa:
     name: Deploy to Azure Static Web Apps
@@ -71,18 +70,10 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v3.0.0
         with:
-          name: client
-          path: client/dist
+          name: web
+          path: web/.output
 
-      - name: Prepare to build @ddradar/api on Oryx
-        run: |
-          echo "@ddradar:registry=https://npm.pkg.github.com/" > api/.npmrc
-          echo "//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}" >> api/.npmrc
-          cp yarn.lock api
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build @ddradar/api and Deploy
+      - name: Deploy
         id: swa-deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
@@ -90,10 +81,10 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           # see: https://aka.ms/swaworkflowconfig
-          app_location: client/dist
+          app_location: 'web/.output/public'
           skip_app_build: true
-          api_location: api
-          api_build_command: yarn build
+          api_location: 'web/.output/server'
+          skip_api_build: true
           config_file_location: /
           deployment_environment: v2
 
@@ -103,7 +94,7 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
-      - name: Close Staging Environment
+      - name: Close
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}

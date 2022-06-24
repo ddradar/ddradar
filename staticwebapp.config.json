@@ -1,4 +1,5 @@
 {
+  "platform": { "apiRuntime": "node:16" },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "https://p.eagate.573.jp",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
@@ -43,10 +44,9 @@
     {
       "route": "/admin/*",
       "allowedRoles": ["administrator"]
-    }
+    },
+    { "route": "/index.html", "redirect": "/" },
+    { "route": "/", "rewrite": "/api/server" }
   ],
-  "navigationFallback": {
-    "rewrite": "/200.html",
-    "exclude": ["*.{png,svg}", "*.js", "/api/*"]
-  }
+  "navigationFallback": { "rewrite": "/api/server" }
 }
