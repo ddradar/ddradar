@@ -94,7 +94,7 @@ export async function fetchOne<
   ...conditions: readonly Condition<T>[]
 ): Promise<Pick<DbItem<T>, U> | null> {
   // Create SQL statement
-  const column = columns.map(s => `c.${s}`).join(',')
+  const column = columns.map(s => `c.${s.toString()}`).join(',')
   const { condition, parameters } = createConditions(conditions)
   const query = `SELECT TOP 1 ${column} FROM c WHERE ${condition}`
 
@@ -145,7 +145,8 @@ export async function fetchList<
   orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
-  const column = columns === '*' ? '*' : columns.map(s => `c.${s}`).join(',')
+  const column =
+    columns === '*' ? '*' : columns.map(s => `c.${s.toString()}`).join(',')
   const { condition, parameters } = createConditions(conditions)
   const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
@@ -173,7 +174,7 @@ export async function fetchGroupedList<T extends ContainerName, U>(
 ): Promise<U[]> {
   // Create SQL statement
   const column = columns.map(s => (s.includes(' AS ') ? s : `c.${s}`)).join(',')
-  const group = groupBy.map(s => `c.${s}`).join(',')
+  const group = groupBy.map(s => `c.${s.toString()}`).join(',')
   const { condition, parameters } = createConditions(conditions)
   const query = `SELECT ${column} FROM c WHERE ${condition} GROUP BY ${group}`
 
