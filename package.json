@@ -12,7 +12,8 @@
     "core",
     "db",
     "functions",
-    "scripts"
+    "scripts",
+    "web"
   ],
   "scripts": {
     "build": "yarn workspaces run build",
@@ -43,14 +44,5 @@
     "lint-staged": "^12.5.0",
     "npm-run-all2": "^5.0.2",
     "prettier": "^2.7.1"
-  },
-  "resolutions": {
-    "@types/babel__core": "^7.0.0",
-    "@types/connect": "^3.4.34",
-    "@types/node": "^12.20.55",
-    "@types/serve-static": "^1.13.9",
-    "@types/webpack": "^4.41.30",
-    "chokidar": "^3.5.2",
-    "node-fetch": "^2.6.7"
   }
 }
