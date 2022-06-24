@@ -1,21 +1,21 @@
-name: Cosmos DB Integration
+name: Cosmos DB Integration (develop)
 
 on:
   push:
     branches:
-      - master
+      - 'develop/**'
     paths:
       - 'db/**'
       - '**.db.test.ts'
-      - '.github/workflows/db-integration.yml'
+      - '.github/workflows/cosmos-db.yml'
       - '!**.md'
   pull_request:
     branches:
-      - master
+      - 'develop/**'
     paths:
       - 'db/**'
       - '**.db.test.ts'
-      - '.github/workflows/db-integration.yml'
+      - '.github/workflows/cosmos-db.yml'
       - '!**.md'
 
 jobs:
