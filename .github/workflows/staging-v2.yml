@@ -81,8 +81,7 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: upload
           # see: https://aka.ms/swaworkflowconfig
-          app_location: 'web/'
-          output_location: '.output/public'
+          app_location: 'web/.output/public'
           skip_app_build: true
           api_location: 'web/.output/server'
           skip_api_build: true
