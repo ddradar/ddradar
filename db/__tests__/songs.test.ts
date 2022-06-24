@@ -8,7 +8,7 @@ jest.mock('../database')
 
 describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {
-    test('returns [] ', async () => {
+    test('returns []', async () => {
       // Arrange
       const container = {
         items: {

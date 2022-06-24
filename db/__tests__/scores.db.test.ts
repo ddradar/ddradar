@@ -62,10 +62,10 @@ describeIf(canConnectDB)('scores.ts', () => {
       [userId, songId, 1 as const, 1 as const],
     ])(
       '("%s", "%s", %i, %i) returns null',
-      (userId, songId, playStyle, difficulty) => {
+      async (userId, songId, playStyle, difficulty) => {
         expect(
-          fetchScore(userId, songId, playStyle, difficulty)
-        ).resolves.toBeNull()
+          await fetchScore(userId, songId, playStyle, difficulty)
+        ).toBeNull()
       }
     )
     test.each(
@@ -74,10 +74,10 @@ describeIf(canConnectDB)('scores.ts', () => {
         .map(s => [s.userId, s.songId, s.playStyle, s.difficulty, s] as const)
     )(
       '("%s", "%s", %i, %i) returns %p',
-      (userId, songId, playStyle, difficulty, expected) =>
+      async (userId, songId, playStyle, difficulty, expected) =>
         expect(
-          fetchScore(userId, songId, playStyle, difficulty)
-        ).resolves.toStrictEqual(expected)
+          await fetchScore(userId, songId, playStyle, difficulty)
+        ).toStrictEqual(expected)
     )
   })
   describe('fetchScoreList', () => {
@@ -88,8 +88,8 @@ describeIf(canConnectDB)('scores.ts', () => {
       [userId, { level: 3 }],
       [userId, { clearLamp: 7 as const }],
       [userId, { rank: 'AAA' as const }],
-    ])('("%s", %p) returns []', (userId, conditions) => {
-      expect(fetchScoreList(userId, conditions)).resolves.toHaveLength(0)
+    ])('("%s", %p) returns []', async (userId, conditions) => {
+      expect(await fetchScoreList(userId, conditions)).toHaveLength(0)
     })
     test.each([
       [userId, {}],
@@ -98,8 +98,8 @@ describeIf(canConnectDB)('scores.ts', () => {
       [userId, { level: 4 }],
       [userId, { clearLamp: 5 as const }],
       [userId, { rank: 'AA+' as const }],
-    ])('("%s", %p) returns [expected]', (userId, conditions) => {
-      expect(fetchScoreList(userId, conditions)).resolves.toStrictEqual([
+    ])('("%s", %p) returns [expected]', async (userId, conditions) => {
+      expect(await fetchScoreList(userId, conditions)).toStrictEqual([
         {
           songId,
           songName: testSongData.name,
@@ -122,8 +122,8 @@ describeIf(canConnectDB)('scores.ts', () => {
       ['not_exist_user', 1 as const, emptyRadar],
       ['13', 1 as const, emptyRadar],
       [publicUser.id, 1 as const, radar],
-    ])('("%s", %i) returns %p', (userId, playStyle, expected) => {
-      expect(generateGrooveRadar(userId, playStyle)).resolves.toStrictEqual({
+    ])('("%s", %i) returns %p', async (userId, playStyle, expected) => {
+      expect(await generateGrooveRadar(userId, playStyle)).toStrictEqual({
         id: `radar-${userId}-${playStyle}`,
         userId,
         type: 'radar',
