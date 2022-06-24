@@ -169,7 +169,7 @@ export async function fetchGroupedList<T extends ContainerName, U>(
   containerName: T,
   columns: readonly (Col<T> | `${string} AS ${Extract<keyof U, string>}`)[],
   conditions: readonly Condition<T>[],
-  groupBy: readonly (KeysOfUnion<DbItem<T>>)[]
+  groupBy: readonly KeysOfUnion<DbItem<T>>[]
 ): Promise<U[]> {
   // Create SQL statement
   const column = columns.map(s => (s.includes(' AS ') ? s : `c.${s}`)).join(',')
