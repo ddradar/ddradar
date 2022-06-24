@@ -1,14 +1,14 @@
-name: Node.js CI
+name: Node.js CI (develop)
 
 on:
   push:
     branches:
-      - master
+      - 'develop/**'
     paths-ignore:
       - '**.md'
   pull_request:
     branches:
-      - master
+      - 'develop/**'
     paths-ignore:
       - '**.md'
 
