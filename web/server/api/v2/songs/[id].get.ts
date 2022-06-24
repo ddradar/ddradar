@@ -1,5 +1,7 @@
-import { Api, Song } from '@ddradar/core'
+import type { Api } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import type { CompatibilityEvent } from 'h3'
 
 export type SongInfo = Api.SongInfo
 
@@ -9,9 +11,7 @@ export type SongInfo = Api.SongInfo
  * - No need Authentication.
  * - `GET api/v2/songs/:id`
  *   - `id`: {@link SongInfo.id}
- * @param _context Azure Functions context (unused)
- * @param _req HTTP Request (unused)
- * @param song Song data (from Cosmos DB binding)
+ * @param event HTTP Event
  * @returns
  * - Returns `400 Bad Request` if {@link SongInfo.id id} is invalid.
  * - Returns `404 Not Found` if no song that matches {@link SongInfo.id id}.
@@ -45,14 +45,14 @@ export type SongInfo = Api.SongInfo
  * }
  * ```
  */
-export default defineEventHandler(async event => {
+export default async (event: CompatibilityEvent) => {
   const id: unknown = event.context.params.id
-  if (typeof id !== 'string' || Song.isValidId(id)) {
+  if (typeof id !== 'string' || !Song.isValidId(id)) {
     event.res.statusCode = 400
     return null
   }
 
-  const song = await fetchOne(
+  const song = (await fetchOne(
     'Songs',
     [
       'id',
@@ -69,11 +69,11 @@ export default defineEventHandler(async event => {
     { condition: 'c.id = @', value: id },
     { condition: 'c.nameIndex != -1' },
     { condition: 'c.nameIndex != -2' }
-  ) as SongInfo
+  )) as SongInfo
 
   if (!song) {
     event.res.statusCode = 404
     return null
   }
   return song
-})
+}
