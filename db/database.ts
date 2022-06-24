@@ -58,7 +58,8 @@ export function getContainer(id: ContainerName): Container {
   )
 }
 
-type Col<T> = Extract<keyof DbItem<T>, string>
+type KeysOfUnion<T> = T extends T ? keyof T : never
+type Col<T> = Extract<KeysOfUnion<DbItem<T>>, string>
 /** SQL WHERE condition */
 export type Condition<T extends ContainerName> =
   | {
@@ -85,7 +86,7 @@ export type Condition<T extends ContainerName> =
  */
 export async function fetchOne<
   T extends ContainerName,
-  U extends keyof DbItem<T>
+  U extends KeysOfUnion<DbItem<T>>
 >(
   containerName: T,
   columns: readonly U[],
@@ -111,12 +112,12 @@ export async function fetchOne<
  */
 export async function fetchList<
   T extends ContainerName,
-  U extends keyof DbItem<T>
+  U extends KeysOfUnion<DbItem<T>>
 >(
   containerName: T,
   columns: readonly U[],
   conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
+  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]>
 
 /**
@@ -130,12 +131,12 @@ export async function fetchList<T extends ContainerName>(
   containerName: T,
   columns: '*',
   conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<keyof DbItem<T>, 'ASC' | 'DESC'>>
+  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
 ): Promise<DbItem<T>[]>
 
 export async function fetchList<
   T extends ContainerName,
-  U extends keyof DbItem<T>
+  U extends KeysOfUnion<DbItem<T>>
 >(
   containerName: T,
   columns: readonly U[] | '*',
@@ -168,7 +169,7 @@ export async function fetchGroupedList<T extends ContainerName, U>(
   containerName: T,
   columns: readonly (Col<T> | `${string} AS ${Extract<keyof U, string>}`)[],
   conditions: readonly Condition<T>[],
-  groupBy: readonly (keyof DbItem<T>)[]
+  groupBy: readonly (KeysOfUnion<DbItem<T>>)[]
 ): Promise<U[]> {
   // Create SQL statement
   const column = columns.map(s => (s.includes(' AS ') ? s : `c.${s}`)).join(',')
