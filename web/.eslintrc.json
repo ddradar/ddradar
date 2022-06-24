@@ -1,0 +1,18 @@
+{
+  "root": true,
+  "extends": [
+    "../.eslintrc.json",
+    "@nuxtjs/eslint-config-typescript",
+    "prettier"
+  ],
+  "settings": {
+    "node": {
+      "allowModules": ["nuxt"],
+      "tryExtensions": [".ts", ".js", ".json", ".node"]
+    }
+  },
+  "rules": {
+    "import/no-unresolved": "off",
+    "node/no-unpublished-import": "off"
+  }
+}
