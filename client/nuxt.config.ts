@@ -93,7 +93,7 @@ const configuration: NuxtConfig = {
       const res = await fetch(songsApiUri)
       const songs: Api.SongInfo[] = await res.json()
       return songs
-        .slice(0, 300)
+        .slice(0, 200)
         .map(s => ({ route: `/songs/${s.id}`, payload: s }))
     },
   },
