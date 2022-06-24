@@ -1,6 +1,6 @@
 {
   "name": "@ddradar/client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Client side of DDRadar",
   "private": true,
   "engines": {
@@ -18,7 +18,7 @@
     "test": "jest"
   },
   "dependencies": {
-    "@ddradar/core": "^1.1.0",
+    "@ddradar/core": "^1.1.1",
     "@microsoft/applicationinsights-web": "^2.8.4",
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/composition-api": "^0.32.0",
