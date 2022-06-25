@@ -8,7 +8,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "test": "echo \"no test\""
+    "test": "vitest run"
   },
   "dependencies": {
     "@azure/cosmos": "^3.16.1",

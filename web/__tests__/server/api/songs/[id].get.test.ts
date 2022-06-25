@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from 'vitest'
 
 import getSongInfo from '~/server/api/v2/songs/[id].get'
 
-import { createEvent } from '../test-util'
+import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
 
