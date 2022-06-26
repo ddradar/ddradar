@@ -20,7 +20,7 @@
   "scripts": {
     "prepublish": "tsc",
     "build": "tsc",
-    "test": "jest"
+    "test": "vitest run"
   },
   "devDependencies": {
     "c8": "^7.11.3",
