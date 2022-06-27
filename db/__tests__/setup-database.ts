@@ -1,9 +1,8 @@
-const { CosmosClient } = require('@azure/cosmos')
+import { CosmosClient } from '@azure/cosmos'
 
-// eslint-disable-next-line node/no-process-env
-const connectionString = process.env.COSMOS_DB_CONN
-
-module.exports = async () => {
+export async function setup() {
+  // eslint-disable-next-line node/no-process-env
+  const connectionString = process.env.COSMOS_DB_CONN
   if (!connectionString) return
 
   const client = new CosmosClient(connectionString)
@@ -32,7 +31,7 @@ module.exports = async () => {
           },
         ],
       ],
-    },
+    } as object,
     defaultTtl: -1,
   })
   await database.containers.createIfNotExists({
@@ -51,7 +50,7 @@ module.exports = async () => {
           },
         ],
       ],
-    },
+    } as object,
   })
   await database.containers.createIfNotExists({
     id: 'Users',
@@ -73,7 +72,7 @@ module.exports = async () => {
           },
         ],
       ],
-    },
+    } as object,
   })
   await database.containers.createIfNotExists({
     id: 'UserDetails',

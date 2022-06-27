@@ -1,9 +1,26 @@
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 
-import { getNameIndex, isSongSchema, nameIndexMap } from '../../db/songs'
+import {
+  getNameIndex,
+  isSongSchema,
+  isValidId,
+  nameIndexMap,
+} from '../../db/songs'
 import { testSongData } from '../data'
 
 describe('./db/songs.ts', () => {
+  describe('isValidId', () => {
+    test.each([
+      '',
+      '01689bdiloqDIOPQ',
+      '0000000000000000000000000000000000000000',
+    ])('("%s") returns false', id => expect(isValidId(id)).toBe(false))
+    test.each([
+      '00000000000000000000000000000000',
+      '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+      '01689bdiloqDIOPQ01689bdiloqDIOPQ',
+    ])('("%s") returns true', id => expect(isValidId(id)).toBe(true))
+  })
   describe('isSongSchema', () => {
     const validSong = { ...testSongData }
     test.each([undefined, null, true, 1.5, 'foo', [], {}])(

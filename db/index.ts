@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 export * from './database'
 export * from './scores'
 export * from './songs'

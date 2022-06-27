@@ -1,10 +1,10 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
-import { beforeAll, describe, expect, test } from '@jest/globals'
 import { readFile } from 'fs'
 import { join } from 'path'
 import { promisify } from 'util'
+import { beforeAll, describe, expect, test } from 'vitest'
 
 import { musicDataToScoreList, musicDetailToScore } from '../eagate-parser'
 
@@ -17,9 +17,9 @@ describe('/utils/eagate-parser.ts', () => {
   describe('musicDataToScoreList', () => {
     let template: string
     const folder = 'music_data'
-    beforeAll(
-      async () => (template = await readFileAsync(folder, 'template.html'))
-    )
+    beforeAll(async () => {
+      template = await readFileAsync(folder, 'template.html')
+    })
     const createSource = async (fileName: string) =>
       template.replace('{{ contents }}', await readFileAsync(folder, fileName))
 
@@ -684,9 +684,9 @@ describe('/utils/eagate-parser.ts', () => {
   describe('musicDetailToScore', () => {
     let template: string
     const folder = 'music_detail'
-    beforeAll(
-      async () => (template = await readFileAsync(folder, 'template.html'))
-    )
+    beforeAll(async () => {
+      template = await readFileAsync(folder, 'template.html')
+    })
     const createSource = async (imgSrc: string, fileName: string) =>
       template
         .replace('{{ imgSrc }}', imgSrc)

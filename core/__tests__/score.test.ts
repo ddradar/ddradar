@@ -1,4 +1,4 @@
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 
 import type { ScoreBody } from '../api/score'
 import type { StepChartSchema } from '../db/songs'

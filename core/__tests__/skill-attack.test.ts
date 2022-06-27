@@ -1,7 +1,7 @@
 /**
- * @jest-environment jsdom
+ * @vitest-environment jsdom
  */
-import { describe, expect, test } from '@jest/globals'
+import { describe, expect, test } from 'vitest'
 
 import { readTextAsync, scoreTexttoScoreList } from '../skill-attack'
 

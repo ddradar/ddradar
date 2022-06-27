@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, jest, test } from '@jest/globals'
+import { beforeAll, describe, expect, test, vi } from 'vitest'
 
 import type { ScoreBody } from '../../api/score'
 import { createScoreSchema } from '../../db/scores'
@@ -9,7 +9,7 @@ import {
   testSongData as song,
 } from '../data'
 
-jest.mock('../../score')
+vi.mock('../../score')
 
 describe('./db/scores.ts', () => {
   describe('createScoreSchema', () => {
@@ -21,7 +21,7 @@ describe('./db/scores.ts', () => {
       chaos: 100,
     }
     beforeAll(() => {
-      jest.mocked(calcMyGrooveRadar).mockReturnValue(radar)
+      vi.mocked(calcMyGrooveRadar).mockReturnValue(radar)
     })
 
     const scores: ScoreBody[] = [
