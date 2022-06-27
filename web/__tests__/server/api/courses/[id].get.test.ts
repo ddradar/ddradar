@@ -1,26 +1,26 @@
-import { testSongData } from '@ddradar/core/__tests__/data'
+import { testCourseData } from '@ddradar/core/__tests__/data'
 import { fetchOne } from '@ddradar/db'
 import { describe, expect, test, vi } from 'vitest'
 
-import getSongInfo from '~/server/api/v1/songs/[id].get'
+import getCourseInfo from '~/server/api/v1/courses/[id].get'
 
 import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
 
-describe('GET /api/v1/songs', () => {
-  test(`/${testSongData.id} (exist song) returns SongInfo`, async () => {
+describe('GET /api/v1/courses', () => {
+  test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
-    const event = createEvent({ id: testSongData.id })
+    vi.mocked(fetchOne).mockResolvedValue(testCourseData as any)
+    const event = createEvent({ id: testCourseData.id })
 
     // Act
-    const song = await getSongInfo(event)
+    const course = await getCourseInfo(event)
 
     // Assert
     expect(event.res.statusCode).toBe(200)
-    expect(song).toBe(testSongData)
+    expect(course).toBe(testCourseData)
   })
 
   test(`/00000000000000000000000000000000 (not exist song) returns 404`, async () => {
@@ -29,11 +29,11 @@ describe('GET /api/v1/songs', () => {
     const event = createEvent({ id: `00000000000000000000000000000000` })
 
     // Act
-    const song = await getSongInfo(event)
+    const course = await getCourseInfo(event)
 
     // Assert
     expect(event.res.statusCode).toBe(404)
-    expect(song).toBeNull()
+    expect(course).toBeNull()
   })
 
   test(`/ returns 400`, async () => {
@@ -42,11 +42,11 @@ describe('GET /api/v1/songs', () => {
     const event = createEvent({})
 
     // Act
-    const song = await getSongInfo(event)
+    const course = await getCourseInfo(event)
 
     // Assert
     expect(event.res.statusCode).toBe(400)
-    expect(song).toBeNull()
+    expect(course).toBeNull()
   })
 
   test(`/invalid-id returns 400`, async () => {
@@ -55,10 +55,10 @@ describe('GET /api/v1/songs', () => {
     const event = createEvent({ id: 'invalid-id' })
 
     // Act
-    const song = await getSongInfo(event)
+    const course = await getCourseInfo(event)
 
     // Assert
     expect(event.res.statusCode).toBe(400)
-    expect(song).toBeNull()
+    expect(course).toBeNull()
   })
 })
