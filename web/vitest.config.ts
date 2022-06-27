@@ -17,11 +17,11 @@ export const alias: Record<string, string> = {
   '@ddradar/db': '@ddradar/db/index.ts',
 }
 
-Object.entries(tsConfigFormated.compilerOptions.paths).forEach(
-  ([key, value]) => {
-    alias[key] = resolve(__dirname, value[0])
-  }
-)
+Object.entries(
+  tsConfigFormated.compilerOptions.paths as Record<string, string[]>
+).forEach(([key, value]) => {
+  alias[key] = resolve(__dirname, value[0])
+})
 
 export default defineConfig({
   root: '.',
@@ -31,7 +31,10 @@ export default defineConfig({
     environment: 'jsdom',
     coverage: {
       enabled: true,
-      reporter: ['text', 'lcov'],
+      all: true,
+      reporter: ['json', 'text'],
+      include: ['**/*.ts'],
+      exclude: ['**.config.ts', '**.d.ts', '**/__tests__/**', '.nuxt/**'],
     },
   },
 })
