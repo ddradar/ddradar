@@ -14,7 +14,7 @@ export default defineConfig({
       enabled: true,
       all: true,
       reporter: ['json', 'text'],
-      exclude: ['database.ts'],
+      exclude: ['index.ts', '*.config.ts', '*.d.ts', '**/__tests__/**'],
     },
   },
 })

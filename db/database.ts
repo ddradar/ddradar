@@ -1,5 +1,3 @@
-/* istanbul ignore file */
-
 import type {
   ItemDefinition,
   JSONValue,
