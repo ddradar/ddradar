@@ -924,7 +924,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.29.0":
+"@typescript-eslint/utils@5.29.0", "@typescript-eslint/utils@^5.17.0":
   version "5.29.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.29.0.tgz#775046effd5019667bd086bcf326acbe32cd0082"
   integrity sha512-3Eos6uP1nyLOBayc/VUdKZikV90HahXE5Dx9L5YlSd/7ylQPXhLk1BYb29SDgnBnTp+jmSZUU0QxUiyHgW4p7A==
@@ -2629,6 +2629,13 @@ eslint-plugin-unicorn@^42.0.0:
     safe-regex "^2.1.1"
     semver "^7.3.5"
     strip-indent "^3.0.0"
+
+eslint-plugin-vitest@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.8.tgz#3c04ae5fa53b284e42ea48463b70582bec0f2f4c"
+  integrity sha512-6xn2b4Cspn7Qc0v/ZMCq13fmsucnkEeUeKCna57M5vayvreshHEUFVgjtsksnyODlHIm9oyVfNfSFkToYz/dJg==
+  dependencies:
+    "@typescript-eslint/utils" "^5.17.0"
 
 eslint-plugin-vue@^8.5.0, eslint-plugin-vue@^8.7.1:
   version "8.7.1"
