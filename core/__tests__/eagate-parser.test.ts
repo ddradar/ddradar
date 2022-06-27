@@ -1,3 +1,6 @@
+/**
+ * @vitest-environment jsdom
+ */
 import { readFile } from 'fs'
 import { join } from 'path'
 import { promisify } from 'util'
