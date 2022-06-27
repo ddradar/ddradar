@@ -2,7 +2,7 @@ import { testSongData } from '@ddradar/core/__tests__/data'
 import { fetchOne } from '@ddradar/db'
 import { describe, expect, test, vi } from 'vitest'
 
-import getSongInfo from '~/server/api/v2/songs/[id].get'
+import getSongInfo from '~/server/api/v1/songs/[id].get'
 
 import { createEvent } from '../../test-util'
 

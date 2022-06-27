@@ -1,7 +1,7 @@
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { describe, expect, test, vi } from 'vitest'
 
-import getCurrentUser from '~/server/api/v2/user.get'
+import getCurrentUser from '~/server/api/v1/user.get'
 import { getLoginUserInfo } from '~/server/auth'
 
 import { createEvent } from '../test-util'
