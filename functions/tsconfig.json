@@ -1,14 +1,10 @@
 {
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es2019",
-    "lib": ["es2019"],
     "outDir": "dist",
     "rootDir": ".",
     "sourceMap": true,
-    "strict": true,
-    "esModuleInterop": true,
     "types": ["node"]
   },
-  "exclude": ["node_modules", "__tests__/**.js"]
+  "exclude": ["node_modules"]
 }
