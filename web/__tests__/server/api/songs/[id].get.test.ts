@@ -8,7 +8,7 @@ import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
 
-describe('GET /api/v2/songs', () => {
+describe('GET /api/v1/songs', () => {
   test(`/${testSongData.id} (exist song) returns SongInfo`, async () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)

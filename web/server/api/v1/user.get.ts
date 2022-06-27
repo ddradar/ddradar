@@ -6,7 +6,7 @@ import { getLoginUserInfo, useClientPrincipal } from '../../auth'
  * Get information about the currently logged in user.
  * @description
  * - Need Authentication.
- * - `GET api/v2/user`
+ * - `GET api/v1/user`
  * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.

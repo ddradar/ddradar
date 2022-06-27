@@ -9,7 +9,7 @@ export type SongInfo = Api.SongInfo
  * Get song and charts information that match the specified ID.
  * @description
  * - No need Authentication.
- * - `GET api/v2/songs/:id`
+ * - `GET api/v1/songs/:id`
  *   - `id`: {@link SongInfo.id}
  * @param event HTTP Event
  * @returns
