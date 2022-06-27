@@ -4,13 +4,12 @@ import {
   testScores,
   testSongData,
 } from '@ddradar/core/__tests__/data'
-import { afterAll, beforeAll, describe, expect, test } from '@jest/globals'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
-import { describeIf } from './util'
 
-describeIf(canConnectDB)('scores.ts', () => {
+describe.runIf(canConnectDB())('scores.ts', () => {
   const radar = { stream: 28, voltage: 22, air: 5, freeze: 0, chaos: 0 }
   const scores: (Database.ScoreSchema & { id: string })[] = [
     ...testScores.map(d => ({

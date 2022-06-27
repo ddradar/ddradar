@@ -1,10 +1,10 @@
 import type { Container } from '@azure/cosmos'
-import { describe, expect, jest, test } from '@jest/globals'
+import { describe, expect, test, vi } from 'vitest'
 
 import { getContainer } from '../database'
 import { fetchTotalChartCount } from '../songs'
 
-jest.mock('../database')
+vi.mock('../database')
 
 describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {
@@ -12,12 +12,10 @@ describe('songs.ts', () => {
       // Arrange
       const container = {
         items: {
-          query: jest.fn(() => ({ fetchAll: async () => ({ resources: [] }) })),
+          query: vi.fn(() => ({ fetchAll: async () => ({ resources: [] }) })),
         },
       }
-      jest
-        .mocked(getContainer)
-        .mockReturnValue(container as unknown as Container)
+      vi.mocked(getContainer).mockReturnValue(container as unknown as Container)
 
       // Act
       const result = await fetchTotalChartCount()
