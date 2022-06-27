@@ -1,10 +1,11 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
+import { beforeAll, describe, expect, test, vi } from 'vitest'
 
 import generateUserDetails from '.'
 
-jest.mock('@ddradar/db')
+vi.mock('@ddradar/db')
 
 describe('/generateUserDetails/index.ts', () => {
   const status = {
@@ -54,8 +55,8 @@ describe('/generateUserDetails/index.ts', () => {
     },
   ]
   beforeAll(() => {
-    jest.mocked(fetchSummaryClearLampCount).mockResolvedValue(newClears)
-    jest.mocked(fetchSummaryRankCount).mockResolvedValue(newScores)
+    vi.mocked(fetchSummaryClearLampCount).mockResolvedValue(newClears)
+    vi.mocked(fetchSummaryRankCount).mockResolvedValue(newScores)
   })
 
   test('merges old.id & new data', async () => {

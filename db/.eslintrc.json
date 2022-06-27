@@ -3,7 +3,6 @@
   "extends": ["../.eslintrc.json"],
   "settings": {
     "node": {
-      "allowModules": ["@jest/globals", "@jest/types"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
   },

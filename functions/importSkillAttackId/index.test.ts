@@ -1,17 +1,19 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
-import fetchMock from 'jest-fetch-mock'
+import fetch from 'node-fetch'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
-jest.mock('../skill-attack')
+vi.mock('node-fetch')
+vi.mock('../skill-attack')
 
 describe('/importSkillAttrackId/index.ts', () => {
-  const context = { log: { error: jest.fn(), info: jest.fn() } }
+  const context = { log: { error: vi.fn(), info: vi.fn() } }
   const uri = 'http://skillattack.com/sa4/data/master_music.txt'
-  const mapMock = jest.mocked(masterMusicToMap)
+  const mapMock = vi.mocked(masterMusicToMap)
   beforeEach(() => {
-    fetchMock.mockClear()
+    vi.mocked(fetch).mockClear()
     mapMock.mockClear()
     context.log.error.mockClear()
     context.log.info.mockClear()
@@ -24,26 +26,36 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(fetchMock).not.toBeCalled()
+    expect(vi.mocked(fetch)).not.toBeCalled()
   })
 
   test('returns [] with error if fetch() returns 404', async () => {
     // Arrange
-    fetchMock.mockResponse('Error', { status: 404, statusText: 'Not Found' })
+    vi.mocked(fetch).mockResolvedValue({
+      ok: false,
+      status: 404,
+      statusText: 'Not Found',
+      text: () => Promise.resolve('Error'),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any)
 
     // Act
     const result = await importSkillAttrackId(context, null, [song])
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(fetchMock).toBeCalledWith(uri)
+    expect(vi.mocked(fetch)).toBeCalledWith(uri)
     expect(context.log.error).toBeCalledWith('404: Not Found')
     expect(context.log.error).toBeCalledWith('Error')
   })
 
   test('returns [] if does not match songId', async () => {
     // Arrange
-    fetchMock.mockResponse('Success', { status: 200 })
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      arrayBuffer: () => Promise.resolve(new ArrayBuffer(1)),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any)
     mapMock.mockReturnValue(new Map())
 
     // Act
@@ -51,7 +63,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(fetchMock).toBeCalledWith(uri)
+    expect(vi.mocked(fetch)).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
     expect(context.log.info).toBeCalledWith(
       `Not Found skillAttackId: ${song.name}`
@@ -60,7 +72,11 @@ describe('/importSkillAttrackId/index.ts', () => {
 
   test('returns [song] if match songId', async () => {
     // Arrange
-    fetchMock.mockResponse('Success', { status: 200 })
+    vi.mocked(fetch).mockResolvedValue({
+      ok: true,
+      arrayBuffer: () => Promise.resolve(new ArrayBuffer(1)),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any)
     mapMock.mockReturnValue(new Map([[song.id, 1]]))
 
     // Act
@@ -68,7 +84,7 @@ describe('/importSkillAttrackId/index.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([{ ...song, skillAttackId: 1 }])
-    expect(fetchMock).toBeCalledWith(uri)
+    expect(vi.mocked(fetch)).toBeCalledWith(uri)
     expect(context.log.error).not.toBeCalled()
     expect(context.log.info).toBeCalledWith(
       `Updated: ${song.name} { id: "${song.id}", skillAttackId: 1 }`

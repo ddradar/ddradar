@@ -1,12 +1,11 @@
 import { Database, Score } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
-import { afterAll, beforeAll, describe, expect, test } from '@jest/globals'
+import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../database'
 import { fetchClearAndScoreStatus } from '../user-details'
-import { describeIf } from './util'
 
-describeIf(canConnectDB)('user-details.ts', () => {
+describe.runIf(canConnectDB())('user-details.ts', () => {
   describe('fetchClearAndScoreStatus()', () => {
     const clears: (Database.ClearStatusSchema & { id: string })[] = [
       ...Array(Score.clearLampMap.size).keys(),
