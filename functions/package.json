@@ -16,16 +16,14 @@
       "iconv-lite",
       "iconv-lite/**",
       "node-fetch",
-      "node-fetch/**",
-      "jest-fetch-mock",
-      "jest-fetch-mock/**"
+      "node-fetch/**"
     ]
   },
   "scripts": {
     "build": "tsc",
     "prestart": "tsc",
     "start": "func start",
-    "test": "jest"
+    "test": "vitest run"
   },
   "dependencies": {
     "@azure/cosmos": "^3.16.1",
