@@ -12,6 +12,7 @@ export default defineConfig({
     globalSetup: './__tests__/setup-database.ts',
     coverage: {
       enabled: true,
+      all: true,
       reporter: ['json', 'text'],
       exclude: ['database.ts'],
     },

@@ -9,6 +9,6 @@ export default defineConfig({
     },
   },
   test: {
-    coverage: { enabled: true, reporter: ['json', 'text'] },
+    coverage: { enabled: true, all: true, reporter: ['json', 'text'] },
   },
 })
