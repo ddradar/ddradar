@@ -1,15 +1,15 @@
-import type { Api } from '@ddradar/core'
+import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
-export type SongInfo = Api.SongInfo
+export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
 
 /**
  * Get song and charts information that match the specified ID.
  * @description
  * - No need Authentication.
- * - `GET api/v1/songs/:id`
+ * - GET `api/v1/songs/:id`
  *   - `id`: {@link SongInfo.id}
  * @param event HTTP Event
  * @returns
