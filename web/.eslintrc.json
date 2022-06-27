@@ -1,18 +1,18 @@
 {
   "root": true,
+  "plugins": ["simple-import-sort"],
   "extends": [
-    "../.eslintrc.json",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
     "@nuxtjs/eslint-config-typescript",
     "prettier"
   ],
-  "settings": {
-    "node": {
-      "allowModules": ["nuxt"],
-      "tryExtensions": [".ts", ".js", ".json", ".node"]
-    }
-  },
   "rules": {
-    "import/no-unresolved": "off",
-    "node/no-unpublished-import": "off"
+    "import/order": "off",
+    "no-console": "error",
+    "simple-import-sort/imports": "error",
+    "sort-imports": "off",
+    "unicorn/prefer-node-protocol": "error"
   }
 }
