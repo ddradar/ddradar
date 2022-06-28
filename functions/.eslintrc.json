@@ -3,12 +3,11 @@
   "extends": ["../.eslintrc.json"],
   "settings": {
     "node": {
-      "allowModules": ["@azure/functions"],
+      "allowModules": ["@azure/functions", "vitest"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
   },
   "rules": {
-    "import/no-unresolved": "off",
-    "node/no-unpublished-import": "off"
+    "import/no-unresolved": "off"
   }
 }
