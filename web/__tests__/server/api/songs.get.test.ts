@@ -11,23 +11,21 @@ vi.mock('@ddradar/db')
 vi.mock('h3')
 
 describe('GET /api/v1/songs', () => {
-  let query: Record<string, string | string[]> = {}
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue([...testSongList] as any)
   })
   beforeEach(() => {
-    query = {}
     vi.mocked(fetchList).mockClear()
   })
 
   const defaultCond = { condition: 'c.nameIndex >= 0' }
   test.each([
-    ['', '', []],
+    [undefined, undefined, []],
     ['-1', '-1', []],
     ['0.5', '0.5', []],
-    ['25', '', [{ condition: 'c.nameIndex = @', value: 25 }]],
-    ['', '10', [{ condition: 'c.series = @', value: 'DDR X' }]],
+    ['25', undefined, [{ condition: 'c.nameIndex = @', value: 25 }]],
+    [undefined, '10', [{ condition: 'c.series = @', value: 'DDR X' }]],
     [
       ['25'],
       '0',
@@ -42,9 +40,7 @@ describe('GET /api/v1/songs', () => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue([...testSongList] as any)
-      if (name) query.name = name
-      if (series) query.series = series
-      vi.mocked(useQuery).mockReturnValue(query)
+      vi.mocked(useQuery).mockReturnValue({ name, series })
       const event = createEvent()
 
       // Act

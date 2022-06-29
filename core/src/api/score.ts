@@ -16,12 +16,6 @@ export type ScoreList = Omit<
 }
 
 /**
- * Object type returned by "/api/v1/scores/{@link ScoreSchema.songId :songId}/{@link ScoreSchema.playStyle :playStyle}/{@link ScoreSchema.difficulty :difficulty}"
- * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id__style__difficulty--get/
- */
-export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
-
-/**
  * Request body to "/api/v1/scores/{@link ScoreSchema.songId :songId}/{@link ScoreSchema.playStyle :playStyle}/{@link ScoreSchema.difficulty :difficulty}"
  * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id__style__difficulty--post/
  */
