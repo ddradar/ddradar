@@ -13,6 +13,8 @@ export {
   difficultyMap,
   getNameIndex,
   isValidId,
+  isPlayStyle,
+  isDifficulty,
   nameIndexMap,
   playStyleMap,
   seriesSet,

@@ -196,6 +196,16 @@ export function isValidId(id: string): boolean {
   return /^[01689bdiloqDIOPQ]{32}$/.test(id)
 }
 
+/** Type assertion for {@link PlayStyle} */
+export function isPlayStyle(obj: unknown): obj is PlayStyle {
+  return typeof obj === 'number' && playStyleMap.has(obj as PlayStyle)
+}
+
+/** Type assertion for {@link Difficulty} */
+export function isDifficulty(obj: unknown): obj is Difficulty {
+  return typeof obj === 'number' && difficultyMap.has(obj as Difficulty)
+}
+
 /** Type assertion for {@link SongSchema} */
 export function isSongSchema(obj: unknown): obj is SongSchema {
   return (
@@ -231,9 +241,8 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
         'freeze',
         'chaos'
       ) &&
-      (obj.playStyle === 1 || obj.playStyle === 2) &&
-      obj.difficulty >= 0 &&
-      obj.difficulty <= 4 &&
+      isPlayStyle(obj.playStyle) &&
+      isDifficulty(obj.difficulty) &&
       obj.level >= 1 &&
       obj.level <= 20
     )
