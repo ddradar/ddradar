@@ -71,7 +71,7 @@ export type CourseInfo = Database.CourseSchema
  */
 export default async (event: CompatibilityEvent) => {
   const id: unknown = event.context.params.id
-  if (typeof id !== 'string' || !Song.isValidId(id)) {
+  if (typeof id !== 'string' || !Song.isValidSongId(id)) {
     event.res.statusCode = 400
     return null
   }

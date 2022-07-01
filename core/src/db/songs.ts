@@ -192,7 +192,7 @@ export type ChartOrder = Pick<
 }
 
 /** Returns `id` is valid {@link SongSchema.id} or not. */
-export function isValidId(id: string): boolean {
+export function isValidSongId(id: string): boolean {
   return /^[01689bdiloqDIOPQ]{32}$/.test(id)
 }
 
@@ -210,7 +210,7 @@ export function isDifficulty(obj: unknown): obj is Difficulty {
 export function isSongSchema(obj: unknown): obj is SongSchema {
   return (
     hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
-    isValidId(obj.id) &&
+    isValidSongId(obj.id) &&
     /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
     (seriesSet as ReadonlySet<string>).has(obj.series) &&
     hasIntegerProperty(obj, 'nameIndex') &&

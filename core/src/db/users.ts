@@ -40,11 +40,16 @@ export type UserSchema = {
   password?: string
 }
 
+/** Returns `id` is valid {@link UserSchema.id} or not. */
+export function isValidUserId(id: string) {
+  return /^[-a-zA-Z0-9_]+$/.test(id)
+}
+
 /** Type assertion for {@link UserSchema} */
 export function isUserSchema(obj: unknown): obj is UserSchema {
   return (
     hasStringProperty(obj, 'id', 'name') &&
-    /^[-a-zA-Z0-9_]+$/.test(obj.id) &&
+    isValidUserId(obj.id) &&
     hasIntegerProperty(obj, 'area') &&
     (areaCodeSet as ReadonlySet<number>).has(obj.area) &&
     (!hasProperty(obj, 'code') ||

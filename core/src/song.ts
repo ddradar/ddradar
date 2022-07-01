@@ -12,7 +12,7 @@ export type {
 export {
   difficultyMap,
   getNameIndex,
-  isValidId,
+  isValidSongId,
   isPlayStyle,
   isDifficulty,
   nameIndexMap,

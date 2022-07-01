@@ -72,7 +72,7 @@ export default async (event: CompatibilityEvent) => {
   const style = parseFloat(event.context.params.style)
   const diff = parseFloat(event.context.params.diff)
   if (
-    !Song.isValidId(id) ||
+    !Song.isValidSongId(id) ||
     !Song.isPlayStyle(style) ||
     !Song.isDifficulty(diff)
   ) {
