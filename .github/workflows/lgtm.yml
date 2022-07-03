@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     if: (!contains(github.actor, '[bot]'))
     steps:
-      - uses: ddradar/lgtm-action@v2.0.0
+      - uses: ddradar/lgtm-action@v2.0.1
         with:
           image-url: 'https://user-images.githubusercontent.com/24802730/74030931-9a21ac00-49f3-11ea-872e-374d5bd3e586.jpg'
           search-pattern: |
