@@ -1,6 +1,6 @@
 import { publicUser as user, testScores } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
-import { useQuery } from 'h3'
+import { createError, sendError,useQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -23,6 +23,8 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     vi.mocked(fetchList).mockResolvedValue([])
   })
   beforeEach(() => {
+    vi.mocked(createError).mockClear()
+    vi.mocked(sendError).mockClear()
     vi.mocked(fetchList).mockClear()
   })
 
@@ -54,8 +56,9 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     const scores = await fetchChartScores(event)
 
     // Assert
-    expect(event.res.statusCode).toBe(404)
     expect(scores).toHaveLength(0)
+    expect(vi.mocked(sendError)).toBeCalled()
+    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 404 })
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -70,8 +73,9 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     const scores = await fetchChartScores(event)
 
     // Assert
-    expect(event.res.statusCode).toBe(404)
     expect(scores).toHaveLength(0)
+    expect(vi.mocked(sendError)).toBeCalled()
+    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 404 })
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
@@ -86,9 +90,11 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     const scores = await fetchChartScores(event)
 
     // Assert
-    expect(event.res.statusCode).toBe(404)
     expect(scores).toHaveLength(0)
-    expect(vi.mocked(fetchList).mock.calls[0][2]).toStrictEqual([
+    expect(vi.mocked(sendError)).toBeCalled()
+    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 404 })
+    expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
       { condition: 'c.songId = @', value: testScores[0].songId },
       { condition: 'c.playStyle = @', value: testScores[0].playStyle },
       { condition: 'c.difficulty = @', value: testScores[0].difficulty },
@@ -128,7 +134,9 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
       // Assert
       expect(event.res.statusCode).toBe(200)
       expect(scores).toBe(dbScores)
-      expect(vi.mocked(fetchList).mock.calls[0][2][3]).toStrictEqual({
+      expect(vi.mocked(sendError)).not.toBeCalled()
+      expect(vi.mocked(createError)).not.toBeCalled()
+        expect(vi.mocked(fetchList).mock.lastCall?.[2][4]).toStrictEqual({
         condition,
         value,
       })

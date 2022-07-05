@@ -1,6 +1,6 @@
 import { Database, Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { CompatibilityEvent, useQuery } from 'h3'
+import { CompatibilityEvent, createError, sendError, useQuery } from 'h3'
 
 import { getLoginUserInfo, useClientPrincipal } from '~/server/auth'
 
@@ -76,7 +76,7 @@ export default async (event: CompatibilityEvent) => {
     !Song.isPlayStyle(style) ||
     !Song.isDifficulty(diff)
   ) {
-    event.res.statusCode = 404
+    sendError(event, createError({ statusCode: 404 }))
     return []
   }
 
@@ -95,7 +95,7 @@ export default async (event: CompatibilityEvent) => {
 
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (scope === 'private' && !user) {
-    event.res.statusCode = 404
+    sendError(event, createError({ statusCode: 404 }))
     return []
   }
 
@@ -125,6 +125,7 @@ export default async (event: CompatibilityEvent) => {
       'exScore',
     ],
     [
+      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
       { condition: 'c.songId = @', value: id },
       { condition: 'c.playStyle = @', value: style },
       { condition: 'c.difficulty = @', value: diff },
@@ -139,7 +140,7 @@ export default async (event: CompatibilityEvent) => {
   )
 
   if (scores.length === 0) {
-    event.res.statusCode = 404
+    sendError(event, createError({ statusCode: 404 }))
     return []
   }
   return scores
