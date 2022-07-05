@@ -2,12 +2,8 @@ import { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import { CompatibilityEvent, createError, sendError } from 'h3'
 
+import type { UserInfo } from '~/server/api/v1/users/index.get'
 import { useClientPrincipal } from '~/server/auth'
-
-export type UserInfo = Omit<
-  Database.UserSchema,
-  'loginId' | 'isPublic' | 'password'
->
 
 /**
  * Get user information that match the specified ID.
