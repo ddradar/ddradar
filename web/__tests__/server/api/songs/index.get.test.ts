@@ -1,51 +1,46 @@
-import { testCourseData } from '@ddradar/core/__tests__/data'
+import { testSongList } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
 import { useQuery } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import searchCourses from '~/server/api/v1/courses.get'
-
-import { createEvent } from '../test-util'
+import { createEvent } from '~/__tests__/server/test-util'
+import searchSongs from '~/server/api/v1/songs/index.get'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
 
-describe('GET /api/v1/courses', () => {
+describe('GET /api/v1/songs', () => {
   beforeEach(() => {
     vi.mocked(fetchList).mockClear()
   })
 
-  const defaultCond = { condition: 'c.nameIndex < 0' }
+  const defaultCond = { condition: 'c.nameIndex >= 0' }
   test.each([
     [undefined, undefined, []],
     ['-1', '-1', []],
-    ['100', '100', []],
     ['0.5', '0.5', []],
-    ['1', undefined, [{ condition: 'c.nameIndex = @', value: -1 }]],
+    ['100', '100', []],
+    ['25', undefined, [{ condition: 'c.nameIndex = @', value: 25 }]],
+    [undefined, '10', [{ condition: 'c.series = @', value: 'DDR X' }]],
     [
-      undefined,
-      '17',
-      [{ condition: 'c.series = @', value: 'DanceDanceRevolution A20 PLUS' }],
-    ],
-    [
-      '2',
-      '18',
+      ['25'],
+      '0',
       [
-        { condition: 'c.nameIndex = @', value: -2 },
-        { condition: 'c.series = @', value: 'DanceDanceRevolution A3' },
+        { condition: 'c.nameIndex = @', value: 25 },
+        { condition: 'c.series = @', value: 'DDR 1st' },
       ],
     ],
   ])(
     '?name=%s&series=%s calls fetchList(..., ..., %o)',
-    async (type, series, expected) => {
+    async (name, series, expected) => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(fetchList).mockResolvedValue([testCourseData] as any)
-      vi.mocked(useQuery).mockReturnValue({ type, series })
+      vi.mocked(fetchList).mockResolvedValue([...testSongList] as any)
+      vi.mocked(useQuery).mockReturnValue({ name, series })
       const event = createEvent()
 
       // Act
-      const songs = await searchCourses(event)
+      const songs = await searchSongs(event)
 
       // Assert
       expect(event.res.statusCode).toBe(200)
@@ -61,7 +56,7 @@ describe('GET /api/v1/courses', () => {
     const event = createEvent()
 
     // Act
-    const songs = await searchCourses(event)
+    const songs = await searchSongs(event)
 
     // Assert
     expect(event.res.statusCode).toBe(404)
