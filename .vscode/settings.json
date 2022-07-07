@@ -4,7 +4,7 @@
   "azureFunctions.projectSubpath": "functions",
   "azureFunctions.deploySubpath": "functions",
   "azureFunctions.preDeployTask": "Functions: Install Dependencies (Production)",
-  "azureFunctions.postDeployTask": "Functions: Install Dependencies",
+  "azureFunctions.postDeployTask": "Install Dependencies",
   "debug.internalConsoleOptions": "neverOpen",
   "json.schemas": [
     {
