@@ -52,7 +52,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: yarn test --colors
+        run: yarn test
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v3.1.0
