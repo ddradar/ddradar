@@ -3,6 +3,7 @@ export class SuccessResult<T> {
   headers = {
     'Content-type': 'application/json' as const,
     'Access-Control-Allow-Origin': 'https://p.eagate.573.jp',
+    'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Credentials': 'true',
   }
