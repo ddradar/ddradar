@@ -1,6 +1,7 @@
 const i18n = {
   ja: {
-    noLogin: '\u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u6709\u52b9\u671f\u9650\u304c\u5207\u308c\u307e\u3057\u305f\u3002DDRadar\u30b5\u30a4\u30c8\u306b\u518d\u5ea6\u30ed\u30b0\u30a4\u30f3\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
+    noLogin:
+      '\u30BB\u30C3\u30B7\u30E7\u30F3\u306E\u6709\u52B9\u671F\u9650\u304C\u5207\u308C\u307E\u3057\u305F\u3002DDRadar\u30B5\u30A4\u30C8\u306B\u518D\u5EA6\u30ED\u30B0\u30A4\u30F3\u3057\u3066\u304F\u3060\u3055\u3044\u3002',
     noEagate:
       'DDR A20PLUS\u306E\u697D\u66F2\u30C7\u30FC\u30BF\u4E00\u89A7\u30DA\u30FC\u30B8\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002',
     userId: 'DDRadar\u306E\u30E6\u30FC\u30B6\u30FCID\u3092\u5165\u529B',
@@ -26,8 +27,15 @@ export default function (apiBaseUri, lang) {
 
   const result = {}
   let userId = ''
-  fetch(`${apiBaseUri}/user`, { method: 'get', mode: 'cors', credentials: 'include' })
-    .then(res => res.json().then(user => userId = user.id))
+  fetch(`${apiBaseUri}/user`, {
+    method: 'get',
+    mode: 'cors',
+    credentials: 'include',
+  }).then(res => {
+    res.json().then(user => {
+      userId = user.id
+    })
+  })
 
   if (!userId) {
     alert(i18n[lang].noLogin)
