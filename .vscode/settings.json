@@ -11,5 +11,6 @@
       "fileMatch": ["/staticwebapp.config.json"],
       "url": "https://json.schemastore.org/staticwebapp.config.json"
     }
-  ]
+  ],
+  "githubPullRequests.ignoredPullRequestBranches": ["master", "develop/v2"]
 }
