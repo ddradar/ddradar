@@ -7,6 +7,7 @@ export default defineConfig({
       all: true,
       reporter: ['json', 'text'],
       exclude: [
+        'dist/**',
         'index.ts',
         '*.config.ts',
         '*.d.ts',
