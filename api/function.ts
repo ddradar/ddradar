@@ -1,6 +1,11 @@
 export class SuccessResult<T> {
   status = 200 as const
-  headers = { 'Content-type': 'application/json' as const }
+  headers = {
+    'Content-type': 'application/json' as const,
+    'Access-Control-Allow-Origin': 'https://p.eagate.573.jp',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Allow-Credentials': 'true',
+  }
   constructor(public body: T) {}
 }
 
