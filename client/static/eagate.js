@@ -1,5 +1,6 @@
 const i18n = {
   ja: {
+    noLogin: '\u30bb\u30c3\u30b7\u30e7\u30f3\u306e\u6709\u52b9\u671f\u9650\u304c\u5207\u308c\u307e\u3057\u305f\u3002DDRadar\u30b5\u30a4\u30c8\u306b\u518d\u5ea6\u30ed\u30b0\u30a4\u30f3\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
     noEagate:
       'DDR A20PLUS\u306E\u697D\u66F2\u30C7\u30FC\u30BF\u4E00\u89A7\u30DA\u30FC\u30B8\u3067\u306F\u3042\u308A\u307E\u305B\u3093\u3002',
     userId: 'DDRadar\u306E\u30E6\u30FC\u30B6\u30FCID\u3092\u5165\u529B',
@@ -9,6 +10,7 @@ const i18n = {
       '\u30A4\u30F3\u30DD\u30FC\u30C8\u304C\u5B8C\u4E86\u3057\u307E\u3057\u305F\u3002',
   },
   en: {
+    noLogin: 'Session has expired. Please log in DDRadar site again.',
     noEagate: 'This is not DDR A20PLUS music detail page.',
     userId: 'DDRadar ID:',
     password: 'Password for import',
@@ -23,6 +25,15 @@ export default function (apiBaseUri, lang) {
     /^https:\/\/p\.eagate\.573\.jp\/game\/ddr\/ddra\d+\/p\/playdata\/(music|nonstop|grade)_data_(double|single)\.html.*/
 
   const result = {}
+  let userId = ''
+  fetch(`${apiBaseUri}/user`, { method: 'get', mode: 'cors', credentials: 'include' })
+    .then(res => res.json().then(user => userId = user.id))
+
+  if (!userId) {
+    alert(i18n[lang].noLogin)
+    return
+  }
+
   try {
     if (!playStyleRegex.test(document.location.href))
       throw new Error('not KONAMI e-amusement site')
@@ -92,18 +103,14 @@ export default function (apiBaseUri, lang) {
     return
   }
 
-  const userId = prompt(i18n[lang].userId)
-  if (!userId) return
-  const password = prompt(i18n[lang].password)
-  if (!password) return
-
   Promise.all(
     Object.entries(result).map(([songId, scores]) =>
-      fetch(`${apiBaseUri}/${songId}/${userId}`, {
+      fetch(`${apiBaseUri}/scores/${songId}`, {
         method: 'post',
-        body: JSON.stringify({ password, scores }),
+        body: JSON.stringify(scores),
         headers: { 'Content-Type': 'application/json' },
         mode: 'cors',
+        credentials: 'include',
       })
         .then(() => {
           const div = document.createElement('div')

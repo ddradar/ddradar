@@ -177,7 +177,7 @@ export default class ImportPage extends Vue {
       ? /* istanbul ignore next */ document.domain
       : 'www.ddradar.app'
     const region = this.$i18n.locale
-    return `javascript:void (import('https://${domain}/eagate.js').then(m => m.default('https://api.ddradar.app/api/v1/scores','${region}')));`
+    return `javascript:void (import('https://${domain}/eagate.js').then(m => m.default('https://www.ddradar.app/api/v1','${region}')));`
   }
 
   get skillAttackUri() {
