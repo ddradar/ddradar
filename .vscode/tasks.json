@@ -2,64 +2,10 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "API: Launch",
-      "type": "func",
-      "command": "start --cors http://localhost:3000/",
-      "problemMatcher": "$func-watch",
-      "isBackground": true,
-      "dependsOn": "API: Build",
-      "options": {
-        "cwd": "${workspaceFolder}/api"
-      }
-    },
-    {
-      "label": "API: Build",
-      "type": "shell",
-      "group": "build",
-      "command": "yarn",
-      "args": ["build"],
-      "dependsOn": "API: Install Dependencies",
-      "problemMatcher": "$tsc",
-      "options": {
-        "cwd": "${workspaceFolder}/api"
-      }
-    },
-    {
-      "label": "API: Install Dependencies",
+      "label": "Install Dependencies",
       "type": "shell",
       "command": "yarn",
-      "options": {
-        "cwd": "${workspaceFolder}/api"
-      }
-    },
-    {
-      "label": "Client: Launch",
-      "type": "shell",
-      "isBackground": true,
-      "command": "yarn dev",
-      "dependsOn": "Client: Install Dependencies",
-      "options": {
-        "cwd": "${workspaceFolder}/client"
-      },
-      "problemMatcher": {
-        "owner": "nuxt",
-        "pattern": {
-          "regexp": "^$"
-        },
-        "background": {
-          "activeOnStart": true,
-          "beginsPattern": "yarn run.*",
-          "endsPattern": ".*Waiting for file changes.*"
-        }
-      }
-    },
-    {
-      "label": "Client: Install Dependencies",
-      "type": "shell",
-      "command": "yarn",
-      "options": {
-        "cwd": "${workspaceFolder}/client"
-      }
+      "args": ["install", "--frozen-lockfile"]
     },
     {
       "label": "Functions: Launch",
@@ -78,7 +24,7 @@
       "group": "build",
       "command": "yarn",
       "args": ["build"],
-      "dependsOn": "Functions: Install Dependencies",
+      "dependsOn": "Install Dependencies",
       "problemMatcher": "$tsc",
       "options": {
         "cwd": "${workspaceFolder}/functions"
@@ -88,16 +34,8 @@
       "label": "Functions: Install Dependencies (Production)",
       "type": "shell",
       "command": "yarn",
-      "args": ["--production"],
+      "args": ["install", "--production", " --pure-lockfile"],
       "dependsOn": "Functions: Build",
-      "options": {
-        "cwd": "${workspaceFolder}/functions"
-      }
-    },
-    {
-      "label": "Functions: Install Dependencies",
-      "type": "shell",
-      "command": "yarn",
       "options": {
         "cwd": "${workspaceFolder}/functions"
       }

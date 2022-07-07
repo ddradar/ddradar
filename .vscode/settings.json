@@ -4,12 +4,13 @@
   "azureFunctions.projectSubpath": "functions",
   "azureFunctions.deploySubpath": "functions",
   "azureFunctions.preDeployTask": "Functions: Install Dependencies (Production)",
-  "azureFunctions.postDeployTask": "Functions: Install Dependencies",
+  "azureFunctions.postDeployTask": "Install Dependencies",
   "debug.internalConsoleOptions": "neverOpen",
   "json.schemas": [
     {
       "fileMatch": ["/staticwebapp.config.json"],
       "url": "https://json.schemastore.org/staticwebapp.config.json"
     }
-  ]
+  ],
+  "githubPullRequests.ignoredPullRequestBranches": ["master"]
 }

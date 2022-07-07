@@ -4,13 +4,9 @@ on:
   push:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
   pull_request:
     branches:
       - master
-    paths-ignore:
-      - '**.md'
 
 env:
   NODE_VERSION: 16
@@ -52,9 +48,9 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Test
-        run: yarn test --colors
+        run: yarn test
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v3.1.0
         with:
-          files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json
+          files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json,./web/coverage/coverage-final.json
