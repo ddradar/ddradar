@@ -1,17 +1,10 @@
-import { config } from 'dotenv'
-
-// load .env file
-config()
-
 import { fetchOne } from '@ddradar/db'
 import consola from 'consola'
-import fetch from 'node-fetch'
 
+import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
 import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
-// eslint-disable-next-line node/no-process-env
-const { BASE_URI: apiBasePath } = process.env
 const pageOffset = 21
 
 async function main(ddrCode: string) {
@@ -64,27 +57,16 @@ async function main(ddrCode: string) {
         songScope.info('No scores. skiped')
         continue
       }
-      const songName = `${scores[0].songName} (${id})`
 
-      const apiUri = `${apiBasePath}/api/v1/scores/${id}/${user.id}`
-      const res = await fetch(apiUri, {
-        method: 'post',
-        body: JSON.stringify({ password: user.password, scores }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!res.ok) {
-        const errorText = await res.text()
-        songScope.error(
-          'API returns %i: %s.\n%s',
-          res.status,
-          res.statusText,
-          errorText
-        )
+      try {
+        await postSongScores(id, user.id, user.password ?? "", scores)
+      } catch (error) {
+        songScope.error(error)
         continue
       }
-      songScope.success(songName)
+      songScope.success(`${scores[0].songName} (${id})`)
     }
+
     consola.success(`End Song List ${offset + 1}/${pageOffset}`)
   }
 

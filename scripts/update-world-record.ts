@@ -1,19 +1,12 @@
-import { config } from 'dotenv'
-
-// load .env file
-config()
-
 import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
-import fetch from 'node-fetch'
 
+import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
-// eslint-disable-next-line node/no-process-env
-const { BASE_URI: apiBasePath } = process.env
 const series = 'DanceDanceRevolution A3'
 
 const sleep = (msec: number) =>
@@ -100,18 +93,16 @@ async function main(userId: string, password: string) {
             await sleep(3000)
           }
         }
-        if (score) {
-          if (score.topScore > s.score) {
-            scores.push(score)
-            logs.push(
-              `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
-                score.topScore
-              }) at ${new Date()}`
-            )
-            chartScope.success(
-              `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
-            )
-          }
+        if (score && score.topScore > s.score) {
+          scores.push(score)
+          logs.push(
+            `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
+              score.topScore
+            }) at ${new Date()}`
+          )
+          chartScope.success(
+            `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
+          )
         }
       } catch (e: unknown) {
         for (const log of logs) {
@@ -128,22 +119,10 @@ async function main(userId: string, password: string) {
       continue
     }
 
-    const apiUri = `${apiBasePath}/api/v1/scores/${id}/${userId}`
-    const res = await fetch(apiUri, {
-      method: 'post',
-      body: JSON.stringify({ password, scores }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    if (!res.ok) {
-      const errorText = await res.text()
-      songScope.error(
-        'API returns %i: %s.\n%s',
-        res.status,
-        res.statusText,
-        errorText
-      )
-      continue
+    try {
+      await postSongScores(id, userId, password, scores)
+    } catch (error) {
+      songScope.error(error)
     }
   }
 
