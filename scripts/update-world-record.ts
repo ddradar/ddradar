@@ -1,10 +1,10 @@
-import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 
 import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
+import { fetchUser } from './modules/database'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
 const series = 'DanceDanceRevolution A3'
@@ -16,7 +16,13 @@ const style = Song.playStyleMap
 const diff = Song.difficultyMap
 
 /** Update World Record from e-AMUSEMENT GATE */
-async function main(userId: string, password: string) {
+async function main(ddrCode: string) {
+  const code = parseInt(ddrCode, 10)
+  if (!Number.isInteger(code) || code < 10000000 || code > 99999999) {
+    consola.warn(`Invalid DDR Code (${ddrCode}).`)
+    return
+  }
+
   const browser = await Browser.create()
   const page = await browser.createPage()
 
@@ -26,6 +32,14 @@ async function main(userId: string, password: string) {
     await browser.close()
     return
   }
+
+  // Fetch user info
+  const user = await fetchUser(code)
+  if (!user) {
+    consola.warn(`Not Found DDR-Code:${code} user.`)
+    return
+  }
+  consola.info(`Found User: ${user.id}: ${user.name}`)
 
   // Load no MFCed top score from DDRadar DB
   const resources = await fetchList(
@@ -63,7 +77,7 @@ async function main(userId: string, password: string) {
     }
     songScope.start(songName)
 
-    const scores: Api.ScoreListBody[] = []
+    const scores: Parameters<typeof postSongScores>[3] = []
 
     for (const s of score) {
       try {
@@ -120,7 +134,7 @@ async function main(userId: string, password: string) {
     }
 
     try {
-      await postSongScores(id, userId, password, scores)
+      await postSongScores(id, user.id, user.password, scores)
     } catch (error) {
       songScope.error(error)
     }
@@ -133,5 +147,5 @@ async function main(userId: string, password: string) {
   await browser.close()
 }
 
-// yarn start ./update-world-record.ts userId password
-main(process.argv[2], process.argv[3]).catch(e => consola.error(e))
+// yarn start ./update-world-record.ts 10000000
+main(process.argv[2]).catch(e => consola.error(e))

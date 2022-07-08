@@ -1,8 +1,8 @@
-import { fetchOne } from '@ddradar/db'
 import consola from 'consola'
 
 import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
+import { fetchUser } from './modules/database'
 import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
 const pageOffset = 21
@@ -25,10 +25,7 @@ async function main(ddrCode: string) {
   }
 
   // Fetch user info
-  const user = await fetchOne('Users', ['id', 'name', 'password'], {
-    condition: 'c.code = @',
-    value: code,
-  })
+  const user = await fetchUser(code)
   if (!user) {
     consola.warn(`Not Found DDR-Code:${code} user.`)
     return
@@ -59,7 +56,7 @@ async function main(ddrCode: string) {
       }
 
       try {
-        await postSongScores(id, user.id, user.password ?? "", scores)
+        await postSongScores(id, user.id, user.password, scores)
       } catch (error) {
         songScope.error(error)
         continue

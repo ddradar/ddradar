@@ -4,7 +4,7 @@ import { config } from 'dotenv'
 import { JSDOM } from 'jsdom'
 import type { Page } from 'puppeteer-core'
 
-import { isCourse } from './song'
+import { isCourse } from './database'
 
 // load .env file
 config()
