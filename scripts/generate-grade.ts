@@ -5,8 +5,10 @@ config()
 
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { fetchList, getContainer } from '@ddradar/db'
+import { getContainer } from '@ddradar/db'
 import consola from 'consola'
+
+import { fetchSongs } from './modules/database'
 
 const gradeMap = new Map([
   [1, '初段'],
@@ -23,10 +25,14 @@ const gradeMap = new Map([
 ] as const)
 
 const grade = {
+  /** Course id */
   id: '',
+  /** Course index (1:初段, 2:二段, ..., 11:皆伝) */
   index: 1,
+  /** PlayStyle */
   playStyle: 1,
 } as const
+/** Course order (pair of songId & difficulty) */
 const order = [
   { id: '', difficulty: 1 as Song.Difficulty }, // 1st
   { id: '', difficulty: 1 as Song.Difficulty }, // 2nd
@@ -34,6 +40,7 @@ const order = [
   { id: '', difficulty: 1 as Song.Difficulty }, // FINAL
 ]
 
+/** Generate 段位認定 course data from each songs info. */
 async function main() {
   if (!Song.isValidId(grade.id)) {
     consola.warn(`Invalid ID: ${grade.id}`)
@@ -43,20 +50,7 @@ async function main() {
   const name = gradeMap.get(grade.index) as string
   consola.ready(`Add ${name}(${playStyle}) (${grade.id})`)
 
-  const ids = order.map(d => d.id)
-  const resources = await fetchList(
-    'Songs',
-    ['id', 'name', 'nameIndex', 'charts', 'minBPM', 'maxBPM'],
-    [{ condition: 'ARRAY_CONTAINS(@, c.id)', value: ids }],
-    { _ts: 'ASC' }
-  )
-
-  if (resources.length !== 4 || resources.some(d => d.nameIndex < 0)) {
-    consola.warn('Not found 4 songs. Please check has been registered.')
-    return
-  }
-
-  const songs = resources.sort((l, r) => ids.indexOf(l.id) - ids.indexOf(r.id))
+  const songs = await fetchSongs(order.map(d => d.id))
   const charts = songs
     .map((s, i) =>
       (s.charts as Database.StepChartSchema[]).find(

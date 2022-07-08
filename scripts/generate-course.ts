@@ -5,14 +5,20 @@ config()
 
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { fetchList, getContainer } from '@ddradar/db'
+import { getContainer } from '@ddradar/db'
 import consola from 'consola'
 
+import { fetchSongs } from './modules/database'
+
 const courseInfo = {
+  /** Course id */
   id: '',
+  /** Course name */
   name: '',
+  /** Course order (1-start) */
   index: 1,
 } as const
+/** Course song order */
 const ids = [
   '', // 1st
   '', // 2nd
@@ -20,25 +26,15 @@ const ids = [
   '', // FINAL
 ]
 
+/** Generate NONSTOP course data from each songs info. */
 async function main() {
   if (!Song.isValidId(courseInfo.id)) {
     consola.warn(`Invalid ID: ${courseInfo.id}`)
     return
   }
   consola.ready(`Add ${courseInfo.name} (${courseInfo.id})`)
-  const resources = await fetchList(
-    'Songs',
-    ['id', 'name', 'nameIndex', 'charts', 'minBPM', 'maxBPM'],
-    [{ condition: 'ARRAY_CONTAINS(@, c.id)', value: ids }],
-    { _ts: 'ASC' }
-  )
 
-  if (resources.length !== 4 || resources.some(d => d.nameIndex < 0)) {
-    consola.warn('Not found 4 songs. Please check has been registered.')
-    return
-  }
-
-  const songs = resources.sort((l, r) => ids.indexOf(l.id) - ids.indexOf(r.id))
+  const songs = await fetchSongs(ids)
   consola.info(`1st: ${songs[0].name}`)
   consola.info(`2nd: ${songs[1].name}`)
   consola.info(`3rd: ${songs[2].name}`)

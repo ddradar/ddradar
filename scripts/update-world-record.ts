@@ -3,17 +3,15 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import type { Api } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
-import fetch from 'node-fetch'
 
+import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
+import { fetchUser } from './modules/database'
 import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 
-// eslint-disable-next-line node/no-process-env
-const { BASE_URI: apiBasePath } = process.env
 const series = 'DanceDanceRevolution A3'
 
 const sleep = (msec: number) =>
@@ -22,8 +20,10 @@ const sleep = (msec: number) =>
 const style = Song.playStyleMap
 const diff = Song.difficultyMap
 
-/** Update World Record from e-AMUSEMENT GATE */
-async function main(userId: string, password: string) {
+const code = 11173996
+
+/** Update World Record from e-AMUSEMENT GATE. */
+async function main() {
   const browser = await Browser.create()
   const page = await browser.createPage()
 
@@ -31,6 +31,12 @@ async function main(userId: string, password: string) {
   if (!(await isLoggedIn(page))) {
     consola.warn('Please Login e-AMUSEMENT GATE manually')
     await browser.close()
+    return
+  }
+
+  // Fetch user info
+  const user = await fetchUser(code)
+  if (!user) {
     return
   }
 
@@ -70,7 +76,7 @@ async function main(userId: string, password: string) {
     }
     songScope.start(songName)
 
-    const scores: Api.ScoreListBody[] = []
+    const scores: Parameters<typeof postSongScores>[3] = []
 
     for (const s of score) {
       try {
@@ -100,18 +106,16 @@ async function main(userId: string, password: string) {
             await sleep(3000)
           }
         }
-        if (score) {
-          if (score.topScore > s.score) {
-            scores.push(score)
-            logs.push(
-              `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
-                score.topScore
-              }) at ${new Date()}`
-            )
-            chartScope.success(
-              `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
-            )
-          }
+        if (score && score.topScore > s.score) {
+          scores.push(score)
+          logs.push(
+            `${s.songName}(${s.songId}) [${chart}] (${s.score} -> ${
+              score.topScore
+            }) at ${new Date()}`
+          )
+          chartScope.success(
+            `${chart} (${score.topScore}) Loaded. wait 3 seconds...`
+          )
         }
       } catch (e: unknown) {
         for (const log of logs) {
@@ -128,22 +132,10 @@ async function main(userId: string, password: string) {
       continue
     }
 
-    const apiUri = `${apiBasePath}/api/v1/scores/${id}/${userId}`
-    const res = await fetch(apiUri, {
-      method: 'post',
-      body: JSON.stringify({ password, scores }),
-      headers: { 'Content-Type': 'application/json' },
-    })
-
-    if (!res.ok) {
-      const errorText = await res.text()
-      songScope.error(
-        'API returns %i: %s.\n%s',
-        res.status,
-        res.statusText,
-        errorText
-      )
-      continue
+    try {
+      await postSongScores(id, user.id, user.password, scores)
+    } catch (error) {
+      songScope.error(error)
     }
   }
 
@@ -154,5 +146,5 @@ async function main(userId: string, password: string) {
   await browser.close()
 }
 
-// yarn start ./update-world-record.ts userId password
-main(process.argv[2], process.argv[3]).catch(e => consola.error(e))
+// yarn start ./update-world-record.ts
+main().catch(e => consola.error(e))

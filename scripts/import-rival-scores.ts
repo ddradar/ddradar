@@ -3,17 +3,19 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import { fetchOne } from '@ddradar/db'
 import consola from 'consola'
-import fetch from 'node-fetch'
 
+import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
+import { fetchUser } from './modules/database'
 import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
-// eslint-disable-next-line node/no-process-env
-const { BASE_URI: apiBasePath } = process.env
 const pageOffset = 21
 
+/**
+ * Import other user scores from e-AMUSEMENT GATE via RIVAL score list page.
+ * @param ddrCode Target DDR Code (should be public on e-AMUSEMENT GATE and set import password)
+ */
 async function main(ddrCode: string) {
   const code = parseInt(ddrCode, 10)
   if (!Number.isInteger(code) || code < 10000000 || code > 99999999) {
@@ -32,10 +34,7 @@ async function main(ddrCode: string) {
   }
 
   // Fetch user info
-  const user = await fetchOne('Users', ['id', 'name', 'password'], {
-    condition: 'c.code = @',
-    value: code,
-  })
+  const user = await fetchUser(code)
   if (!user) {
     consola.warn(`Not Found DDR-Code:${code} user.`)
     return
@@ -64,27 +63,16 @@ async function main(ddrCode: string) {
         songScope.info('No scores. skiped')
         continue
       }
-      const songName = `${scores[0].songName} (${id})`
 
-      const apiUri = `${apiBasePath}/api/v1/scores/${id}/${user.id}`
-      const res = await fetch(apiUri, {
-        method: 'post',
-        body: JSON.stringify({ password: user.password, scores }),
-        headers: { 'Content-Type': 'application/json' },
-      })
-
-      if (!res.ok) {
-        const errorText = await res.text()
-        songScope.error(
-          'API returns %i: %s.\n%s',
-          res.status,
-          res.statusText,
-          errorText
-        )
+      try {
+        await postSongScores(id, user.id, user.password, scores)
+      } catch (error) {
+        songScope.error(error)
         continue
       }
-      songScope.success(songName)
+      songScope.success(`${scores[0].songName} (${id})`)
     }
+
     consola.success(`End Song List ${offset + 1}/${pageOffset}`)
   }
 
