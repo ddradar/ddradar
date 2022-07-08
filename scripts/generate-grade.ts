@@ -5,8 +5,10 @@ config()
 
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
-import { fetchList, getContainer } from '@ddradar/db'
+import { getContainer } from '@ddradar/db'
 import consola from 'consola'
+
+import { fetchSongs } from './modules/database'
 
 const gradeMap = new Map([
   [1, '初段'],
@@ -43,20 +45,7 @@ async function main() {
   const name = gradeMap.get(grade.index) as string
   consola.ready(`Add ${name}(${playStyle}) (${grade.id})`)
 
-  const ids = order.map(d => d.id)
-  const resources = await fetchList(
-    'Songs',
-    ['id', 'name', 'nameIndex', 'charts', 'minBPM', 'maxBPM'],
-    [{ condition: 'ARRAY_CONTAINS(@, c.id)', value: ids }],
-    { _ts: 'ASC' }
-  )
-
-  if (resources.length !== 4 || resources.some(d => d.nameIndex < 0)) {
-    consola.warn('Not found 4 songs. Please check has been registered.')
-    return
-  }
-
-  const songs = resources.sort((l, r) => ids.indexOf(l.id) - ids.indexOf(r.id))
+  const songs = await fetchSongs(order.map(d => d.id))
   const charts = songs
     .map((s, i) =>
       (s.charts as Database.StepChartSchema[]).find(

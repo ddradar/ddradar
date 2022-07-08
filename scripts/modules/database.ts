@@ -25,3 +25,22 @@ export async function fetchUser(code: number) {
   })) as Required<Pick<Database.UserSchema, 'id' | 'name' | 'password'>>
   return user?.password ? user : null
 }
+
+export async function fetchSongs(songIds: string[]) {
+  const resources = await fetchList(
+    'Songs',
+    ['id', 'name', 'nameIndex', 'charts', 'minBPM', 'maxBPM'],
+    [
+      { condition: 'ARRAY_CONTAINS(@, c.id)', value: songIds },
+      { condition: 'c.nameIndex >= 0' },
+    ],
+    { _ts: 'ASC' }
+  )
+
+  if (resources.length !== songIds.length) {
+    throw new RangeError(
+      `Not found ${songIds.length} songs. Please check has been registered.`
+    )
+  }
+  return resources.sort((l, r) => songIds.indexOf(l.id) - songIds.indexOf(r.id))
+}
