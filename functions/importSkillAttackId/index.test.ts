@@ -1,11 +1,11 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
-import fetch from 'node-fetch'
+import { fetch } from 'node-fetch-native'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
-vi.mock('node-fetch')
+vi.mock('node-fetch-native')
 vi.mock('../skill-attack')
 
 describe('/importSkillAttrackId/index.ts', () => {
