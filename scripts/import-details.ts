@@ -18,6 +18,10 @@ const sleep = (msec: number) =>
 const style = Song.playStyleMap
 const diff = Song.difficultyMap
 
+/**
+ * Import all scores from e-AMUSEMENT GATE score detail pages.
+ * @param ddrCode DDR Code (should be equal with e-AMUSEMENT GATE user)
+ */
 async function main(ddrCode: string) {
   const code = parseInt(ddrCode, 10)
   if (!Number.isInteger(code) || code < 10000000 || code > 99999999) {

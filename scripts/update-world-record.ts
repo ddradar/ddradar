@@ -15,14 +15,10 @@ const sleep = (msec: number) =>
 const style = Song.playStyleMap
 const diff = Song.difficultyMap
 
-/** Update World Record from e-AMUSEMENT GATE */
-async function main(ddrCode: string) {
-  const code = parseInt(ddrCode, 10)
-  if (!Number.isInteger(code) || code < 10000000 || code > 99999999) {
-    consola.warn(`Invalid DDR Code (${ddrCode}).`)
-    return
-  }
+const code = 11173996
 
+/** Update World Record from e-AMUSEMENT GATE. */
+async function main() {
   const browser = await Browser.create()
   const page = await browser.createPage()
 
@@ -36,10 +32,8 @@ async function main(ddrCode: string) {
   // Fetch user info
   const user = await fetchUser(code)
   if (!user) {
-    consola.warn(`Not Found DDR-Code:${code} user.`)
     return
   }
-  consola.info(`Found User: ${user.id}: ${user.name}`)
 
   // Load no MFCed top score from DDRadar DB
   const resources = await fetchList(
@@ -147,5 +141,5 @@ async function main(ddrCode: string) {
   await browser.close()
 }
 
-// yarn start ./update-world-record.ts 10000000
-main(process.argv[2]).catch(e => consola.error(e))
+// yarn start ./update-world-record.ts
+main().catch(e => consola.error(e))

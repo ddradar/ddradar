@@ -7,6 +7,10 @@ import { fetchRivalScoreList, isLoggedIn } from './modules/eagate'
 
 const pageOffset = 21
 
+/**
+ * Import other user scores from e-AMUSEMENT GATE via RIVAL score list page.
+ * @param ddrCode Target DDR Code (should be public on e-AMUSEMENT GATE and set import password)
+ */
 async function main(ddrCode: string) {
   const code = parseInt(ddrCode, 10)
   if (!Number.isInteger(code) || code < 10000000 || code > 99999999) {

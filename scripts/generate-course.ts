@@ -11,10 +11,14 @@ import consola from 'consola'
 import { fetchSongs } from './modules/database'
 
 const courseInfo = {
+  /** Course id */
   id: '',
+  /** Course name */
   name: '',
+  /** Course order (1-start) */
   index: 1,
 } as const
+/** Course song order */
 const ids = [
   '', // 1st
   '', // 2nd
@@ -22,6 +26,7 @@ const ids = [
   '', // FINAL
 ]
 
+/** Generate NONSTOP course data from each songs info. */
 async function main() {
   if (!Song.isValidId(courseInfo.id)) {
     consola.warn(`Invalid ID: ${courseInfo.id}`)
