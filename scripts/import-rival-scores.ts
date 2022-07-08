@@ -1,3 +1,8 @@
+import { config } from 'dotenv'
+
+// load .env file
+config()
+
 import consola from 'consola'
 
 import { postSongScores } from './modules/api'

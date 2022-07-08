@@ -1,3 +1,8 @@
+import { config } from 'dotenv'
+
+// load .env file
+config()
+
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
