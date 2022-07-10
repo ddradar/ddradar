@@ -3,9 +3,9 @@ import { getContainer } from '@ddradar/db'
 import { createError, sendError, useBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import postSongInfo from '~/server/api/v1/songs.post'
+import postSongInfo from '~/server/api/v1/songs/index.post'
 
-import { createEvent } from '../test-util'
+import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')

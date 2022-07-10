@@ -3,9 +3,9 @@ import { fetchList } from '@ddradar/db'
 import { useQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import searchSongs from '~/server/api/v1/songs.get'
+import searchSongs from '~/server/api/v1/songs/index.get'
 
-import { createEvent } from '../test-util'
+import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
