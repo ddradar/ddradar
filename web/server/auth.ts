@@ -40,7 +40,7 @@ export function canReadUserData(
   return user.isPublic || user.loginId === loginId
 }
 
-const allowedOrigin = 'https://p.eagate.573.jp'
+export const allowedOrigin = 'https://p.eagate.573.jp'
 /**
  * Add Response header for CORS.
  * @param event HTTP Event

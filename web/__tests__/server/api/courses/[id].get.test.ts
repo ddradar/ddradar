@@ -1,14 +1,20 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
 import { fetchOne } from '@ddradar/db'
-import { describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import getCourseInfo from '~/server/api/v1/courses/[id].get'
+import { addCORSHeader } from '~/server/auth'
 
 import { createEvent } from '../../test-util'
 
 vi.mock('@ddradar/db')
+vi.mock('~/server/auth')
 
 describe('GET /api/v1/courses', () => {
+  beforeEach(() => {
+    vi.mocked(addCORSHeader).mockClear()
+  })
+
   test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,6 +25,7 @@ describe('GET /api/v1/courses', () => {
     const course = await getCourseInfo(event)
 
     // Assert
+    expect(vi.mocked(addCORSHeader)).toBeCalledWith(event)
     expect(event.res.statusCode).toBe(200)
     expect(course).toBe(testCourseData)
   })
@@ -32,6 +39,7 @@ describe('GET /api/v1/courses', () => {
     const course = await getCourseInfo(event)
 
     // Assert
+    expect(vi.mocked(addCORSHeader)).toBeCalledWith(event)
     expect(event.res.statusCode).toBe(404)
     expect(course).toBeNull()
   })
@@ -45,6 +53,7 @@ describe('GET /api/v1/courses', () => {
     const course = await getCourseInfo(event)
 
     // Assert
+    expect(vi.mocked(addCORSHeader)).toBeCalledWith(event)
     expect(event.res.statusCode).toBe(400)
     expect(course).toBeNull()
   })
@@ -58,6 +67,7 @@ describe('GET /api/v1/courses', () => {
     const course = await getCourseInfo(event)
 
     // Assert
+    expect(vi.mocked(addCORSHeader)).toBeCalledWith(event)
     expect(event.res.statusCode).toBe(400)
     expect(course).toBeNull()
   })
