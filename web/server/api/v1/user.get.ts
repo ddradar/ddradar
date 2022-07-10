@@ -1,7 +1,11 @@
 import type { Database } from '@ddradar/core'
 import type { CompatibilityEvent } from 'h3'
 
-import { getLoginUserInfo, useClientPrincipal } from '../../auth'
+import {
+  addCORSHeader,
+  getLoginUserInfo,
+  useClientPrincipal,
+} from '~/server/auth'
 
 export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
 
@@ -28,6 +32,7 @@ export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
  * ```
  */
 export default async (event: CompatibilityEvent) => {
+  addCORSHeader(event)
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (!user) {
     event.res.statusCode = 404
