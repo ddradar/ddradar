@@ -3,6 +3,8 @@ import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
+import { addCORSHeader } from '~/server/auth'
+
 export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
 
 /**
@@ -46,6 +48,7 @@ export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
  * ```
  */
 export default async (event: CompatibilityEvent) => {
+  addCORSHeader(event)
   const id: unknown = event.context.params.id
   if (typeof id !== 'string' || !Song.isValidId(id)) {
     event.res.statusCode = 400

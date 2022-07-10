@@ -2,6 +2,8 @@ import { Database, Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
+import { addCORSHeader } from '~/server/auth'
+
 export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
 
 const maxNameIndex = Song.nameIndexMap.size
@@ -36,6 +38,7 @@ const seriesNames = [...Song.seriesSet]
  * ```
  */
 export default async (event: CompatibilityEvent) => {
+  addCORSHeader(event)
   const query = useQuery(event)
   const getQueryInteger = (key: string) => {
     const queryValue = query[key]
