@@ -35,7 +35,11 @@
     },
     {
       "route": "/api/v1/user",
-      "allowedRoles": ["authenticated"]
+      "headers": {
+        "Access-Control-Allow-Origin": "https://p.eagate.573.jp",
+        "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
+        "Access-Control-Allow-Credentials": "true"
+      }
     },
     {
       "route": "/api/v1/users/exists/*",
