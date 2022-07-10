@@ -42,8 +42,10 @@ export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
   const getQueryInteger = (key: string) => {
     const queryValue = query[key]
-    if (typeof queryValue !== 'string') return NaN
-    const num = parseFloat(queryValue)
+    if (!queryValue) return NaN
+    const num = parseFloat(
+      Array.isArray(queryValue) ? queryValue[0] : queryValue
+    )
     return Number.isInteger(num) ? num : NaN
   }
   const nameIndex = getQueryInteger('name')
