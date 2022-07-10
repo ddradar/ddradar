@@ -1,6 +1,7 @@
 import type { Api, Database } from '@ddradar/core'
 import { fetchLoginUser } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
+import { appendHeader } from 'h3'
 
 export function useClientPrincipal(
   event: Pick<CompatibilityEvent, 'req'>
@@ -37,4 +38,14 @@ export function canReadUserData(
   if (!user) return false
   const loginId = useClientPrincipal(event)?.userId ?? ''
   return user.isPublic || user.loginId === loginId
+}
+
+/**
+ * Add Response header for CORS.
+ * @param event HTTP Event
+ */
+export function addCORSHeader(event: CompatibilityEvent) {
+  appendHeader(event, 'Access-Control-Allow-Origin', 'https://p.eagate.573.jp')
+  appendHeader(event, 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+  appendHeader(event, 'Access-Control-Allow-Credentials', 'true')
 }
