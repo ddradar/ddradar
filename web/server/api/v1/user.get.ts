@@ -32,7 +32,7 @@ export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
  * ```
  */
 export default async (event: CompatibilityEvent) => {
-  addCORSHeader(event)
+  addCORSHeader(event, true)
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (!user) {
     event.res.statusCode = 404

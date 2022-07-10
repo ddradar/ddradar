@@ -40,12 +40,20 @@ export function canReadUserData(
   return user.isPublic || user.loginId === loginId
 }
 
+const allowedOrigin = 'https://p.eagate.573.jp'
 /**
  * Add Response header for CORS.
  * @param event HTTP Event
+ * @param needsCredentials Add Access-Control-Allow-Credentials or not
  */
-export function addCORSHeader(event: CompatibilityEvent) {
-  appendHeader(event, 'Access-Control-Allow-Origin', 'https://p.eagate.573.jp')
+export function addCORSHeader(
+  event: CompatibilityEvent,
+  needsCredentials = false
+) {
+  const origin = needsCredentials ? allowedOrigin : '*'
+  appendHeader(event, 'Access-Control-Allow-Origin', origin)
   appendHeader(event, 'Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
-  appendHeader(event, 'Access-Control-Allow-Credentials', 'true')
+  if (needsCredentials) {
+    appendHeader(event, 'Access-Control-Allow-Credentials', 'true')
+  }
 }
