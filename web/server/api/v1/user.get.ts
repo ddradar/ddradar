@@ -1,5 +1,6 @@
 import type { Database } from '@ddradar/core'
 import type { CompatibilityEvent } from 'h3'
+import { createError, sendError } from 'h3'
 
 import {
   addCORSHeader,
@@ -35,8 +36,9 @@ export default async (event: CompatibilityEvent) => {
   addCORSHeader(event, true)
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (!user) {
-    event.res.statusCode = 404
-    throw new Error('User registration is not completed')
+    const message = 'User registration is not completed'
+    sendError(event, createError({ statusCode: 404, message }))
+    return null
   }
 
   delete user.loginId

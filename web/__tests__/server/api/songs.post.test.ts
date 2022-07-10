@@ -1,6 +1,6 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { createError, sendError, useBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import postSongInfo from '~/server/api/v1/songs.post'
@@ -27,16 +27,26 @@ describe('POST /api/v1/songs', () => {
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
+    vi.mocked(createError).mockClear()
+    vi.mocked(sendError).mockClear()
     mockedContainer.items.upsert.mockClear()
   })
 
-  test('returns "400 Bad Request" if body is empty', () => {
+  test('returns "400 Bad Request" if body is empty', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(null)
 
-    // Act - Assert
-    expect(postSongInfo(event)).rejects.toThrowError('Invalid Body')
+    // Act
+    const song = await postSongInfo(event)
+
+    // Assert
+    expect(song).toBeNull()
+    expect(vi.mocked(sendError)).toBeCalled()
+    expect(vi.mocked(createError)).toBeCalledWith({
+      statusCode: 400,
+      message: 'Invalid Body',
+    })
   })
 
   test.each([
@@ -56,7 +66,7 @@ describe('POST /api/v1/songs', () => {
     const result = await postSongInfo(event)
 
     // Assert
-    expect(event.res.statusCode).toBe(200)
+    expect(vi.mocked(sendError)).not.toBeCalled()
     expect(result).toStrictEqual(validSong)
     expect(mockedContainer.items.upsert).toBeCalledWith(validSong)
   })
@@ -78,7 +88,7 @@ describe('POST /api/v1/songs', () => {
     const result = await postSongInfo(event)
 
     // Assert
-    expect(event.res.statusCode).toBe(200)
+    expect(vi.mocked(sendError)).not.toBeCalled()
     const expected = { ...validSong, deleted: true }
     expect(result).toStrictEqual(expected)
     expect(mockedContainer.items.upsert).toBeCalledWith(expected)

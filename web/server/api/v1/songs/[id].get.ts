@@ -2,6 +2,7 @@ import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
+import { createError, sendError } from 'h3'
 
 import { addCORSHeader } from '~/server/auth'
 
@@ -51,7 +52,7 @@ export default async (event: CompatibilityEvent) => {
   addCORSHeader(event)
   const id: unknown = event.context.params.id
   if (typeof id !== 'string' || !Song.isValidId(id)) {
-    event.res.statusCode = 400
+    sendError(event, createError({ statusCode: 400 }))
     return null
   }
 
@@ -75,8 +76,7 @@ export default async (event: CompatibilityEvent) => {
   )) as SongInfo
 
   if (!song) {
-    event.res.statusCode = 404
-    return null
+    sendError(event, createError({ statusCode: 404 }))
   }
   return song
 }
