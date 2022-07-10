@@ -3,6 +3,12 @@
   "version": "2.0.0",
   "description": "DDRadar web site (powered by Azure Static Wep Apps)",
   "private": true,
+  "workspaces": {
+    "nohoist": [
+      "@ddradar/core",
+      "@ddradar/db"
+    ]
+  },
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
