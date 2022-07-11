@@ -39,9 +39,9 @@ const seriesNames = [...Song.seriesSet]
 export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
   const getQueryInteger = (key: string) => {
-    const queryValue = query[key]
-    if (typeof queryValue !== 'string') return NaN
-    const num = parseFloat(queryValue)
+    const value = query[key]
+    if (!value) return NaN
+    const num = parseFloat(Array.isArray(value) ? value[0] : value)
     return Number.isInteger(num) ? num : NaN
   }
   const nameIndex = getQueryInteger('name')
