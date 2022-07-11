@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { isDeletedOnGate } from '../song'
+import { isDeletedOnGate } from '../src/song'
 
 /** PARANOiA */
 const existsId = '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI'

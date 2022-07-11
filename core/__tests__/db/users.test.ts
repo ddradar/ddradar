@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
-import type { UserSchema } from '../../db/users'
-import { areaCodeSet, isAreaUser, isUserSchema } from '../../db/users'
+import type { UserSchema } from '../../src/db/users'
+import { areaCodeSet, isAreaUser, isUserSchema } from '../../src/db/users'
 
 describe('./db/users.ts', () => {
   describe('isUserSchema', () => {

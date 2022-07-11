@@ -4,7 +4,7 @@ import {
   hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-} from '../typeUtils'
+} from '../src/typeUtils'
 
 describe('./typeUtils.ts', () => {
   const objects = [undefined, null, true, 1.5, 'foo', {}, [], { foo1: 'bar' }]

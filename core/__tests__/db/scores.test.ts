@@ -1,15 +1,15 @@
 import { beforeAll, describe, expect, test, vi } from 'vitest'
 
-import type { ScoreBody } from '../../api/score'
-import { createScoreSchema } from '../../db/scores'
-import { calcMyGrooveRadar } from '../../score'
+import type { ScoreBody } from '../../src/api/score'
+import { createScoreSchema } from '../../src/db/scores'
+import { calcMyGrooveRadar } from '../../src/score'
 import {
   publicUser as user,
   testCourseData as course,
   testSongData as song,
 } from '../data'
 
-vi.mock('../../score')
+vi.mock('../../src/score')
 
 describe('./db/scores.ts', () => {
   describe('createScoreSchema', () => {
