@@ -9,6 +9,7 @@
   },
   "rules": {
     "import/no-unresolved": "off",
-    "node/no-unpublished-import": "off"
+    "node/no-unpublished-import": "off",
+    "node/no-missing-import": "off"
   }
 }
