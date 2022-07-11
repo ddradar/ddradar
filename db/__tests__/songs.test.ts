@@ -4,7 +4,7 @@ import { describe, expect, test, vi } from 'vitest'
 import { getContainer } from '../src/database'
 import { fetchTotalChartCount } from '../src/songs'
 
-vi.mock('../database')
+vi.mock('../src/database')
 
 describe('songs.ts', () => {
   describe('fetchTotalChartCount()', () => {

@@ -11,7 +11,7 @@ import {
   generateGrooveRadar,
 } from '../src/scores'
 
-vi.mock('../database')
+vi.mock('../src/database')
 
 describe('scores.ts', () => {
   beforeEach(() => {

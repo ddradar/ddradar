@@ -1,6 +1,6 @@
 import type { ScoreBody } from './api/score'
-import type { ClearLamp, GrooveRadar, StepChartSchema } from './db/index'
-import { DanceLevel, danceLevelSet } from './db/index'
+import type { ClearLamp, GrooveRadar, StepChartSchema } from './db'
+import { DanceLevel, danceLevelSet } from './db'
 import { hasIntegerProperty, hasStringProperty } from './typeUtils'
 
 export function isScore(obj: unknown): obj is ScoreBody {
@@ -382,5 +382,5 @@ export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
 
 const isPositiveInteger = (num: number) => Number.isInteger(num) && num >= 0
 
-export type { ClearLamp, DanceLevel } from './db/index'
-export { clearLampMap, danceLevelSet } from './db/index'
+export type { ClearLamp, DanceLevel } from './db'
+export { clearLampMap, danceLevelSet } from './db'

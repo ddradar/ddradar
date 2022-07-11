@@ -4,11 +4,11 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   resolve: {
     alias: {
-      '@ddradar/core': resolve(__dirname, '../core/index.ts'),
       '@ddradar/core/__tests__/data': resolve(
         __dirname,
         '../core/__tests__/data.ts'
       ),
+      '@ddradar/core': resolve(__dirname, '../core/src'),
     },
   },
   test: {
@@ -20,8 +20,8 @@ export default defineConfig({
       reporter: ['json', 'text'],
       exclude: [
         'dist/**',
-        'index.ts',
-        'database.ts',
+        '**/index.ts',
+        '**/database.ts',
         '*.config.ts',
         '*.d.ts',
         '**/__tests__/**',

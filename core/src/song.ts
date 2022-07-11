@@ -1,4 +1,4 @@
-import type { Series } from './db/index'
+import type { Series } from './db'
 
 export type {
   Difficulty,
@@ -7,7 +7,7 @@ export type {
   NameIndex,
   PlayStyle,
   Series,
-} from './db/index'
+} from './db'
 /* c8 ignore next */
 export {
   difficultyMap,
@@ -16,7 +16,7 @@ export {
   nameIndexMap,
   playStyleMap,
   seriesSet,
-} from './db/index'
+} from './db'
 
 type GateSeries = Series & `DanceDanceRevolution A${string}`
 /**

@@ -5,7 +5,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { fetchOne } from '../src/database'
 import { fetchLoginUser, fetchUser } from '../src/users'
 
-vi.mock('../database')
+vi.mock('../src/database')
 
 describe('users.ts', () => {
   describe('fetchUser', () => {
