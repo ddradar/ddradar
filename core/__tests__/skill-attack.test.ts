@@ -3,7 +3,7 @@
  */
 import { describe, expect, test } from 'vitest'
 
-import { readTextAsync, scoreTexttoScoreList } from '../skill-attack'
+import { readTextAsync, scoreTexttoScoreList } from '../src/skill-attack'
 
 describe('./skill-attack.ts', () => {
   describe('readTextAsync', () => {

@@ -6,8 +6,8 @@ import {
 } from '@ddradar/core/__tests__/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
-import { canConnectDB, getContainer } from '../database'
-import { fetchScore, fetchScoreList, generateGrooveRadar } from '../scores'
+import { canConnectDB, getContainer } from '../src/database'
+import { fetchScore, fetchScoreList, generateGrooveRadar } from '../src/scores'
 
 describe.runIf(canConnectDB())('scores.ts', () => {
   const radar = { stream: 28, voltage: 22, air: 5, freeze: 0, chaos: 0 }

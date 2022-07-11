@@ -6,8 +6,5 @@
       "allowModules": ["@azure/functions", "vitest"],
       "tryExtensions": [".ts", ".js", ".json", ".node"]
     }
-  },
-  "rules": {
-    "import/no-unresolved": "off"
   }
 }

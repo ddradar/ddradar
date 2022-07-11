@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
-import type { ScoreBody } from '../api/score'
-import type { StepChartSchema } from '../db/songs'
+import type { ScoreBody } from '../src/api/score'
+import type { StepChartSchema } from '../src/db/songs'
 import {
   calcMyGrooveRadar,
   getDanceLevel,
@@ -9,7 +9,7 @@ import {
   isValidScore,
   mergeScore,
   setValidScoreFromChart,
-} from '../score'
+} from '../src/score'
 
 describe('./score.ts', () => {
   describe('isScore', () => {

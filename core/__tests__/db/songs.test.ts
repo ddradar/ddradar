@@ -5,7 +5,7 @@ import {
   isSongSchema,
   isValidId,
   nameIndexMap,
-} from '../../db/songs'
+} from '../../src/db/songs'
 import { testSongData } from '../data'
 
 describe('./db/songs.ts', () => {

@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 
-import type { ScoreBody } from '../../api/score'
-import { isScoreListBody } from '../../api/score'
+import type { ScoreBody } from '../../src/api/score'
+import { isScoreListBody } from '../../src/api/score'
 
 describe('/api/score.ts', () => {
   describe('isScoreListBody', () => {

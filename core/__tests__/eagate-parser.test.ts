@@ -6,9 +6,9 @@ import { join } from 'path'
 import { promisify } from 'util'
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { musicDataToScoreList, musicDetailToScore } from '../eagate-parser'
-import type { ClearLamp, DanceLevel } from '../score'
-import type { Difficulty, PlayStyle } from '../song'
+import { musicDataToScoreList, musicDetailToScore } from '../src/eagate-parser'
+import type { ClearLamp, DanceLevel } from '../src/score'
+import type { Difficulty, PlayStyle } from '../src/song'
 
 const readFileAsync = (folder: string, fileName: string) =>
   promisify(readFile)(join(__dirname, 'eagate', folder, fileName), {

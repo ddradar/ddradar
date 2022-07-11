@@ -11,7 +11,7 @@ vi.mock('@ddradar/db')
 vi.mock('h3')
 
 describe('GET /api/v1/songs', () => {
-  let query: Record<string, string> = {}
+  let query: Record<string, string | string[]> = {}
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue([...testSongList] as any)
@@ -29,7 +29,7 @@ describe('GET /api/v1/songs', () => {
     ['25', '', [{ condition: 'c.nameIndex = @', value: 25 }]],
     ['', '10', [{ condition: 'c.series = @', value: 'DDR X' }]],
     [
-      '25',
+      ['25'],
       '0',
       [
         { condition: 'c.nameIndex = @', value: 25 },

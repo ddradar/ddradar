@@ -19,6 +19,7 @@
     "prettier"
   ],
   "rules": {
+    "import/no-unresolved": "off",
     "import/order": "off",
     "node/no-process-env": "error",
     "node/no-unsupported-features/es-syntax": [

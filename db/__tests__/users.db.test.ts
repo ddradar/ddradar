@@ -1,8 +1,8 @@
 import type { Database } from '@ddradar/core'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
-import { canConnectDB, getContainer } from '../database'
-import { fetchLoginUser, fetchUser } from '../users'
+import { canConnectDB, getContainer } from '../src/database'
+import { fetchLoginUser, fetchUser } from '../src/users'
 
 describe.runIf(canConnectDB())('users.ts', () => {
   const users: Required<Database.UserSchema>[] = [...Array(5).keys()].map(
