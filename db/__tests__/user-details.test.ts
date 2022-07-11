@@ -1,7 +1,7 @@
 import { describe, expect, test, vi } from 'vitest'
 
-import { fetchList } from '../database'
-import { fetchClearAndScoreStatus } from '../user-details'
+import { fetchList } from '../src/database'
+import { fetchClearAndScoreStatus } from '../src/user-details'
 
 vi.mock('../database')
 

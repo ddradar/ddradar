@@ -2,14 +2,14 @@ import type { Database, Score } from '@ddradar/core'
 import { testScores } from '@ddradar/core/__tests__/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { fetchGroupedList, fetchList, fetchOne } from '../database'
+import { fetchGroupedList, fetchList, fetchOne } from '../src/database'
 import {
   fetchScore,
   fetchScoreList,
   fetchSummaryClearLampCount,
   fetchSummaryRankCount,
   generateGrooveRadar,
-} from '../scores'
+} from '../src/scores'
 
 vi.mock('../database')
 

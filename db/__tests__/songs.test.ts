@@ -1,8 +1,8 @@
 import type { Container } from '@azure/cosmos'
 import { describe, expect, test, vi } from 'vitest'
 
-import { getContainer } from '../database'
-import { fetchTotalChartCount } from '../songs'
+import { getContainer } from '../src/database'
+import { fetchTotalChartCount } from '../src/songs'
 
 vi.mock('../database')
 

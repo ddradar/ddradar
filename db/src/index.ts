@@ -1,4 +1,4 @@
-export * from './database'
+export * from './src/database'
 export * from './scores'
 export * from './songs'
 export * from './user-details'

@@ -2,8 +2,8 @@ import type { Database } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { fetchOne } from '../database'
-import { fetchLoginUser, fetchUser } from '../users'
+import { fetchOne } from '../src/database'
+import { fetchLoginUser, fetchUser } from '../src/users'
 
 vi.mock('../database')
 

@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Database, Song } from '@ddradar/core'
 
-import { Condition, fetchGroupedList, fetchList, fetchOne } from './database'
+import { Condition, fetchGroupedList, fetchList, fetchOne } from './src/database'
 
 /**
  * Score is not deleted.
