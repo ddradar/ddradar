@@ -52,15 +52,15 @@ export default async (event: CompatibilityEvent) => {
   const area = getQueryInteger('area')
   const code = getQueryInteger('code')
 
-  const conditions: Condition<'Users'>[] = [{ condition: '(c.isPublic OR c.loginId = @)', value: loginId }]
-  if (name) conditions.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
+  const conditions: Condition<'Users'>[] = [
+    { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
+  ]
+  if (name)
+    conditions.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   if (!isNaN(area)) conditions.push({ condition: 'c.area = @', value: area })
   if (!isNaN(code)) conditions.push({ condition: 'c.code = @', value: code })
 
-  return await fetchList(
-    'Users',
-    ['id', 'name', 'area', 'code'],
-    conditions,
-    { name: 'ASC' }
-  ) as UserInfo[]
+  return (await fetchList('Users', ['id', 'name', 'area', 'code'], conditions, {
+    name: 'ASC',
+  })) as UserInfo[]
 }

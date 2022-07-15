@@ -35,12 +35,12 @@ export default async (event: CompatibilityEvent) => {
 
   const loginId = useClientPrincipal(event)?.userId ?? null
 
-  const user = (await fetchOne(
+  const user = await fetchOne(
     'Users',
     ['id', 'name', 'area', 'code'],
     { condition: 'c.id = @', value: id },
-    { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
-  ))
+    { condition: '(c.isPublic OR c.loginId = @)', value: loginId }
+  )
 
   if (!user) {
     sendError(event, createError({ statusCode: 404 }))

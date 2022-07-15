@@ -1,6 +1,6 @@
 import { publicUser as user, testScores } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
-import { createError, sendError,useQuery } from 'h3'
+import { createError, sendError, useQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -136,7 +136,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
       expect(scores).toBe(dbScores)
       expect(vi.mocked(sendError)).not.toBeCalled()
       expect(vi.mocked(createError)).not.toBeCalled()
-        expect(vi.mocked(fetchList).mock.lastCall?.[2][4]).toStrictEqual({
+      expect(vi.mocked(fetchList).mock.lastCall?.[2][4]).toStrictEqual({
         condition,
         value,
       })
