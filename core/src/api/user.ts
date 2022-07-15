@@ -4,16 +4,6 @@ import type {
   GrooveRadarSchema,
   ScoreStatusSchema,
 } from '../db/userDetails'
-import type { UserSchema } from '../db/users'
-
-/**
- * Object type returned by `/api/v1/users/exists/{:id}`
- * @see https://github.com/ddradar/ddradar/blob/master/api/users__exists__id/
- */
-export type ExistsUser = Pick<UserSchema, 'id'> & {
-  /** User exists or not */
-  exists: boolean
-}
 
 /**
  * Object type returned by `/api/v1/users/{:id}/clear`
