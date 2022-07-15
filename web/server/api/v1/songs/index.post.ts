@@ -1,6 +1,9 @@
 import { Database } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import { CompatibilityEvent, useBody } from 'h3'
+import type { CompatibilityEvent } from 'h3'
+import { useBody } from 'h3'
+
+import { sendNullWithError } from '~/server/utils'
 
 /**
  * Add or update song and charts information.
@@ -45,8 +48,7 @@ import { CompatibilityEvent, useBody } from 'h3'
 export default async (event: CompatibilityEvent) => {
   const body = await useBody(event)
   if (!Database.isSongSchema(body)) {
-    event.res.statusCode = 400
-    throw new Error('Invalid Body')
+    return sendNullWithError(event, 400, 'Invalid Body')
   }
 
   const song: Database.SongSchema = {

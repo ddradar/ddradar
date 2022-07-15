@@ -1,20 +1,19 @@
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
+import { Database, Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
-export type CourseInfo = Database.CourseSchema
+import { sendNullWithError } from '~/server/utils'
 
 /**
  * Get course and orders information that match the specified ID.
  * @description
  * - No need Authentication.
  * - GET `api/v1/courses/:id`
- *   - `id`: {@link CourseInfo.id}
+ *   - `id`: {@link Database.CourseSchema.id}
  * @param event HTTP Event
  * @returns
- * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
- * - Returns `404 Not Found` if no song that matches {@link CourseInfo.id id}.
+ * - Returns `400 Bad Request` if {@link Database.CourseSchema.id id} is invalid.
+ * - Returns `404 Not Found` if no song that matches {@link Database.CourseSchema.id id}.
  * - Returns `200 OK` with JSON body if found.
  * @example
  * ```json
@@ -70,11 +69,8 @@ export type CourseInfo = Database.CourseSchema
  * ```
  */
 export default async (event: CompatibilityEvent) => {
-  const id: unknown = event.context.params.id
-  if (typeof id !== 'string' || !Song.isValidSongId(id)) {
-    event.res.statusCode = 400
-    return null
-  }
+  const id: string = event.context.params.id
+  if (!Song.isValidSongId(id)) return sendNullWithError(event, 400)
 
   const course = (await fetchOne(
     'Songs',
@@ -91,11 +87,8 @@ export default async (event: CompatibilityEvent) => {
     ],
     { condition: 'c.id = @', value: id },
     { condition: 'c.nameIndex <= 0' }
-  )) as CourseInfo
+  )) as Database.CourseSchema | null
 
-  if (!course) {
-    event.res.statusCode = 404
-    return null
-  }
+  if (!course) return sendNullWithError(event, 404)
   return course
 }

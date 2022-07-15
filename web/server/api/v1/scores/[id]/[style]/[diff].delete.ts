@@ -1,8 +1,9 @@
 import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
-import { CompatibilityEvent, createError, sendError } from 'h3'
+import type { CompatibilityEvent } from 'h3'
 
 import { getLoginUserInfo, useClientPrincipal } from '~/server/auth'
+import { sendNullWithError } from '~/server/utils'
 
 /**
  * Delete scores that match the specified chart.
@@ -30,13 +31,13 @@ export default async (event: CompatibilityEvent) => {
     !Song.isPlayStyle(style) ||
     !Song.isDifficulty(diff)
   ) {
-    sendError(event, createError({ statusCode: 404 }))
+    sendNullWithError(event, 404)
     return
   }
 
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (!user) {
-    sendError(event, createError({ statusCode: 401 }))
+    sendNullWithError(event, 401)
     return
   }
 
@@ -53,7 +54,7 @@ export default async (event: CompatibilityEvent) => {
   )
 
   if (scores.length === 0) {
-    sendError(event, createError({ statusCode: 404 }))
+    sendNullWithError(event, 404)
     return
   }
   for (const score of scores) {

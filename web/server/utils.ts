@@ -1,3 +1,4 @@
+import { createError, sendError } from 'h3'
 import type { QueryObject } from 'ufo'
 
 /**
@@ -22,4 +23,20 @@ export function getQueryInteger(query: QueryObject, key: string) {
   if (value === undefined) return NaN
   const num = parseFloat(value)
   return Number.isInteger(num) ? num : NaN
+}
+
+/**
+ * Returns null and send H3Error.
+ * @param event HTTP Event
+ * @param statusCode HTTP Status code
+ * @param message Error message (optional)
+ * @returns Integer value or NaN
+ */
+export function sendNullWithError(
+  event: Parameters<typeof sendError>[0],
+  statusCode: number,
+  message?: string
+) {
+  sendError(event, createError({ statusCode, message }))
+  return null
 }

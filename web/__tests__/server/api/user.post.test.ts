@@ -1,16 +1,18 @@
 import type { Database } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import { createError, sendError, useBody } from 'h3'
+import { useBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import postUserInfo from '~/server/api/v1/user.post'
 import { useClientPrincipal } from '~/server/auth'
+import { sendNullWithError } from '~/server/utils'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
 vi.mock('~/server/auth')
+vi.mock('~/server/utils')
 
 describe('POST /api/v1/user', () => {
   const user: Database.UserSchema = { ...publicUser }
@@ -25,11 +27,11 @@ describe('POST /api/v1/user', () => {
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
+    vi.mocked(sendNullWithError).mockReturnValue(null)
   })
   beforeEach(() => {
     mockedContainer.items.upsert.mockClear()
-    vi.mocked(createError).mockClear()
-    vi.mocked(sendError).mockClear()
+    vi.mocked(sendNullWithError).mockClear()
   })
 
   test('returns "401 Unauthenticated" if not logged in', async () => {
@@ -42,8 +44,7 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 401 })
-    expect(vi.mocked(sendError)).toBeCalledTimes(1)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
   })
 
   test('returns "400 Bad Request" if body is not UserSchema', async () => {
@@ -57,11 +58,11 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(createError)).toBeCalledWith({
-      statusCode: 400,
-      message: 'Invalid Body',
-    })
-    expect(vi.mocked(sendError)).toBeCalledTimes(1)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      400,
+      'Invalid Body'
+    )
   })
 
   test('returns "200 OK" with JSON body (Create)', async () => {
@@ -77,7 +78,7 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(event.res.statusCode).toBe(200)
+    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(mockedContainer.items.upsert).toBeCalledWith({
       ...user,
       loginId: '1',
@@ -111,7 +112,7 @@ describe('POST /api/v1/user', () => {
 
       // Assert
       expect(result).toStrictEqual(body)
-      expect(event.res.statusCode).toBe(200)
+      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
       expect(mockedContainer.items.upsert).toBeCalledWith({
         ...body,
         loginId: publicUser.loginId,
@@ -132,11 +133,11 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(createError)).toBeCalledWith({
-      statusCode: 400,
-      message: 'Duplicated Id',
-    })
-    expect(vi.mocked(sendError)).toBeCalledTimes(1)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      400,
+      'Duplicated Id'
+    )
   })
 
   test('returns "400 BadRequest" if changed id', async () => {
@@ -152,11 +153,11 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(createError)).toBeCalledWith({
-      statusCode: 400,
-      message: 'Duplicated Id',
-    })
-    expect(vi.mocked(sendError)).toBeCalledTimes(1)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      400,
+      'Duplicated Id'
+    )
   })
 
   test('returns "200 OK" but does not update if changed area', async () => {
@@ -172,7 +173,7 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(event.res.statusCode).toBe(200)
+    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(mockedContainer.items.upsert).toBeCalledWith(publicUser)
   })
 })

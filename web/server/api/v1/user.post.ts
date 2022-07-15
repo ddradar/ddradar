@@ -1,8 +1,10 @@
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import { CompatibilityEvent, createError, sendError, useBody } from 'h3'
+import type { CompatibilityEvent } from 'h3'
+import { useBody } from 'h3'
 
 import { useClientPrincipal } from '~/server/auth'
+import { sendNullWithError } from '~/server/utils'
 
 /**
  * Add or Update information about the currently logged in user.
@@ -29,24 +31,19 @@ import { useClientPrincipal } from '~/server/auth'
  */
 export default async (event: CompatibilityEvent) => {
   const clientPrincipal = useClientPrincipal(event)
-  if (!clientPrincipal) {
-    sendError(event, createError({ statusCode: 401 }))
-    return null
-  }
+  if (!clientPrincipal) return sendNullWithError(event, 401)
   const loginId = clientPrincipal.userId
 
   const body = await useBody(event)
   if (!Database.isUserSchema(body)) {
-    sendError(event, createError({ statusCode: 400, message: 'Invalid Body' }))
-    return null
+    return sendNullWithError(event, 400, 'Invalid Body')
   }
 
   // Read existing data
   const oldData = (await fetchUser(body.id)) ?? (await fetchLoginUser(loginId))
 
   if (oldData && (oldData.id !== body.id || oldData.loginId !== loginId)) {
-    sendError(event, createError({ statusCode: 400, message: 'Duplicated Id' }))
-    return null
+    return sendNullWithError(event, 400, 'Duplicated Id')
   }
 
   // Merge existing data with new data

@@ -1,8 +1,10 @@
 import { Database, Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { CompatibilityEvent, createError, sendError, useQuery } from 'h3'
+import type { CompatibilityEvent } from 'h3'
+import { useQuery } from 'h3'
 
 import { getLoginUserInfo, useClientPrincipal } from '~/server/auth'
+import { getQueryString, sendNullWithError } from '~/server/utils'
 
 export type ScoreInfo = Omit<
   Database.ScoreSchema,
@@ -76,26 +78,24 @@ export default async (event: CompatibilityEvent) => {
     !Song.isPlayStyle(style) ||
     !Song.isDifficulty(diff)
   ) {
-    sendError(event, createError({ statusCode: 404 }))
+    sendNullWithError(event, 404)
     return []
   }
 
   // query
-  const query = useQuery(event)
+  const queryValue = getQueryString(useQuery(event), 'scope') ?? 'medium'
   /**
    * `private`: Only personal best score
    * `medium`(default): Personal best, area top, and world top scores
    * `full`: All scores
    */
-  const scope = ['private', 'medium', 'full'].includes(
-    query.scope?.toString() ?? ''
-  )
-    ? (query.scope as 'private' | 'medium' | 'full')
+  const scope = ['private', 'medium', 'full'].includes(queryValue)
+    ? (queryValue as 'private' | 'medium' | 'full')
     : 'medium'
 
   const user = await getLoginUserInfo(useClientPrincipal(event))
   if (scope === 'private' && !user) {
-    sendError(event, createError({ statusCode: 404 }))
+    sendNullWithError(event, 404)
     return []
   }
 
@@ -140,7 +140,7 @@ export default async (event: CompatibilityEvent) => {
   )
 
   if (scores.length === 0) {
-    sendError(event, createError({ statusCode: 404 }))
+    sendNullWithError(event, 404)
     return []
   }
   return scores

@@ -1,20 +1,21 @@
 import { publicUser as user, testScores } from '@ddradar/core/__tests__/data'
 import { fetchList, getContainer } from '@ddradar/db'
-import { createError, sendError } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import deleteChartScore from '~/server/api/v1/scores/[id]/[style]/[diff].delete'
 import { getLoginUserInfo } from '~/server/auth'
+import { sendNullWithError } from '~/server/utils'
 
 vi.mock('@ddradar/db')
 vi.mock('~/server/auth')
-vi.mock('h3')
+vi.mock('~/server/utils')
 
 describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
   const mockedContainer = { item: vi.fn() }
   const mockedItem = { patch: vi.fn() }
   beforeAll(() => {
+    vi.mocked(sendNullWithError).mockReturnValue(null)
     vi.mocked(fetchList).mockResolvedValue([])
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
@@ -22,8 +23,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
   })
   beforeEach(() => {
     mockedItem.patch.mockClear()
-    vi.mocked(createError).mockClear()
-    vi.mocked(sendError).mockClear()
+    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchList).mockClear()
   })
   const score = testScores[0]
@@ -47,8 +47,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
     await deleteChartScore(event)
 
     // Assert
-    expect(vi.mocked(sendError)).toBeCalled()
-    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 404 })
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -64,8 +63,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
     await deleteChartScore(event)
 
     // Assert
-    expect(vi.mocked(sendError)).toBeCalled()
-    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 401 })
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
@@ -79,8 +77,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
     await deleteChartScore(event)
 
     // Assert
-    expect(vi.mocked(sendError)).toBeCalled()
-    expect(vi.mocked(createError)).toBeCalledWith({ statusCode: 404 })
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
     expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
       { condition: 'c.songId = @', value: score.songId },
       { condition: 'c.playStyle = @', value: score.playStyle },
@@ -100,8 +97,7 @@ describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
     await deleteChartScore(event)
 
     // Assert
-    expect(vi.mocked(sendError)).not.toBeCalled()
-    expect(vi.mocked(createError)).not.toBeCalled()
+    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
       { condition: 'c.songId = @', value: score.songId },
       { condition: 'c.playStyle = @', value: score.playStyle },
