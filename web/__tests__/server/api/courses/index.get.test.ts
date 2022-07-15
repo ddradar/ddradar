@@ -47,23 +47,9 @@ describe('GET /api/v1/courses', () => {
       const songs = await searchCourses(event)
 
       // Assert
-      expect(event.res.statusCode).toBe(200)
       expect(songs).not.toHaveLength(0)
       const conditions = vi.mocked(fetchList).mock.calls[0][2]
       expect(conditions).toStrictEqual([defaultCond, ...expected])
     }
   )
-
-  test('returns 404 Not Found if fetchList(...) returns empty', async () => {
-    // Arrange
-    vi.mocked(fetchList).mockResolvedValue([])
-    const event = createEvent()
-
-    // Act
-    const songs = await searchCourses(event)
-
-    // Assert
-    expect(event.res.statusCode).toBe(404)
-    expect(songs).toHaveLength(0)
-  })
 })

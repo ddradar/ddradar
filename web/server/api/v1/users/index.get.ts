@@ -48,8 +48,9 @@ export default async (event: CompatibilityEvent) => {
   const conditions: Condition<'Users'>[] = [
     { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
   ]
-  if (name)
+  if (name) {
     conditions.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
+  }
   if (!isNaN(area)) conditions.push({ condition: 'c.area = @', value: area })
   if (!isNaN(code)) conditions.push({ condition: 'c.code = @', value: code })
 

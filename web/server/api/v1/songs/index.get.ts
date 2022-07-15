@@ -19,9 +19,7 @@ const seriesNames = [...Song.seriesSet]
  *   - `name`(optional): {@link SongListData.nameIndex}
  *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
  * @param event HTTP Event
- * @returns
- * - Returns `404 Not Found` if no song that matches conditions.
- * - Returns `200 OK` with JSON body if found.
+ * @returns `200 OK` with JSON body.
  * @example
  * ```json
  * [
@@ -40,20 +38,17 @@ const seriesNames = [...Song.seriesSet]
  */
 export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
-  const nameIndex = getQueryInteger(query, 'name')
-  const seriesIndex = getQueryInteger(query, 'series')
+  const name = getQueryInteger(query, 'name')
+  const series = getQueryInteger(query, 'series')
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex >= 0' }]
-  if (nameIndex >= 0 && nameIndex < maxNameIndex)
-    conditions.push({ condition: 'c.nameIndex = @', value: nameIndex })
-  if (seriesIndex >= 0 && seriesIndex < maxSeriesIndex) {
-    conditions.push({
-      condition: 'c.series = @',
-      value: seriesNames[seriesIndex],
-    })
+  if (name >= 0 && name < maxNameIndex)
+    conditions.push({ condition: 'c.nameIndex = @', value: name })
+  if (series >= 0 && series < maxSeriesIndex) {
+    conditions.push({ condition: 'c.series = @', value: seriesNames[series] })
   }
 
-  const songs = (await fetchList(
+  return (await fetchList(
     'Songs',
     [
       'id',
@@ -65,12 +60,8 @@ export default async (event: CompatibilityEvent) => {
       'minBPM',
       'maxBPM',
       'deleted',
-    ] as const,
+    ],
     conditions,
     { nameIndex: 'ASC', nameKana: 'ASC' }
   )) as SongListData[]
-
-  if (songs.length === 0) event.res.statusCode = 404
-
-  return songs
 }

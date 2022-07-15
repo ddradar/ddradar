@@ -4,7 +4,6 @@ import { CompatibilityEvent, useQuery } from 'h3'
 
 import { getQueryInteger } from '~/server/utils'
 
-export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
 export type CourseListData = Pick<
   Database.CourseSchema,
   'id' | 'name' | 'series'
@@ -45,16 +44,13 @@ const seriesNames = [...Song.seriesSet]
 export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
   const type = getQueryInteger(query, 'type')
-  const seriesIndex = getQueryInteger(query, 'series')
+  const series = getQueryInteger(query, 'series')
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex < 0' }]
   if (type === 1 || type === 2)
     conditions.push({ condition: 'c.nameIndex = @', value: type * -1 })
-  if (seriesIndex >= 0 && seriesIndex < maxSeriesIndex) {
-    conditions.push({
-      condition: 'c.series = @',
-      value: seriesNames[seriesIndex],
-    })
+  if (series >= 0 && series < maxSeriesIndex) {
+    conditions.push({ condition: 'c.series = @', value: seriesNames[series] })
   }
 
   const courses = await fetchList(
@@ -63,8 +59,6 @@ export default async (event: CompatibilityEvent) => {
     conditions,
     { nameIndex: 'ASC', nameKana: 'ASC' }
   )
-
-  if (courses.length === 0) event.res.statusCode = 404
 
   return courses.map<CourseListData>(c => ({
     id: c.id,
