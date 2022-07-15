@@ -1,9 +1,26 @@
 import { describe, expect, test } from 'vitest'
 
 import type { UserSchema } from '../../src/db/users'
-import { areaCodeSet, isAreaUser, isUserSchema } from '../../src/db/users'
+import {
+  areaCodeSet,
+  isAreaUser,
+  isUserSchema,
+  isValidUserId,
+} from '../../src/db/users'
 
 describe('./db/users.ts', () => {
+  describe('isValidUserId', () => {
+    test.each(['foo', 'foo-1234', '1', 'foo_bar'])(
+      '("%s") returns true',
+      id => {
+        expect(isValidUserId(id)).toBe(true)
+      }
+    )
+    test.each(['', ' ', '#'])('("%s") returns false', id => {
+      expect(isValidUserId(id)).toBe(false)
+    })
+  })
+
   describe('isUserSchema', () => {
     const validUserInfo: UserSchema = {
       id: 'new_user',
