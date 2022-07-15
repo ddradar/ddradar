@@ -1,31 +1,5 @@
-import type { ClearLamp, DanceLevel } from '../db/scores'
-import type {
-  ClearStatusSchema,
-  GrooveRadarSchema,
-  ScoreStatusSchema,
-} from '../db/userDetails'
-
-/**
- * Object type returned by `/api/v1/users/{:id}/clear`
- * @see https://github.com/ddradar/ddradar/blob/master/api/users__id__clear/
- */
-export type ClearStatus = Pick<
-  ClearStatusSchema,
-  'playStyle' | 'level' | 'count'
-> & {
-  /**
-   * `-1`: No Play,
-   * `0`: Failed,
-   * `1`: Assisted Clear,
-   * `2`: Clear,
-   * `3`: LIFE4,
-   * `4`: Good FC (Full Combo),
-   * `5`: Great FC,
-   * `6`: PFC,
-   * `7`: MFC
-   */
-  clearLamp: ClearLamp | -1
-}
+import type { DanceLevel } from '../db/scores'
+import type { GrooveRadarSchema, ScoreStatusSchema } from '../db/userDetails'
 
 /**
  * Object type returned by `/api/v1/users/{:id}/score`
