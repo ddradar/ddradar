@@ -3,6 +3,7 @@ import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
 import { useClientPrincipal } from '~/server/auth'
+import { getQueryInteger, getQueryString } from '~/server/utils'
 
 export type UserInfo = Omit<
   Database.UserSchema,
@@ -40,17 +41,9 @@ export type UserInfo = Omit<
 export default async (event: CompatibilityEvent) => {
   const loginId = useClientPrincipal(event)?.userId ?? null
   const query = useQuery(event)
-  const getQueryString = (key: string) => {
-    const queryValue = query[key]
-    return typeof queryValue !== 'string' ? '' : queryValue
-  }
-  const getQueryInteger = (key: string) => {
-    const num = parseFloat(getQueryString(key))
-    return Number.isInteger(num) ? num : NaN
-  }
-  const name = getQueryString('name')
-  const area = getQueryInteger('area')
-  const code = getQueryInteger('code')
+  const name = getQueryString(query, 'name')
+  const area = getQueryInteger(query, 'area')
+  const code = getQueryInteger(query, 'code')
 
   const conditions: Condition<'Users'>[] = [
     { condition: '(c.isPublic OR c.loginId = @)', value: loginId },

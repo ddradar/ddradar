@@ -3,6 +3,8 @@ import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
+import { getQueryInteger } from '~/server/utils'
+
 export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
 
 const maxNameIndex = Song.nameIndexMap.size
@@ -38,14 +40,8 @@ const seriesNames = [...Song.seriesSet]
  */
 export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
-  const getQueryInteger = (key: string) => {
-    const value = query[key]
-    if (!value) return NaN
-    const num = parseFloat(Array.isArray(value) ? value[0] : value)
-    return Number.isInteger(num) ? num : NaN
-  }
-  const nameIndex = getQueryInteger('name')
-  const seriesIndex = getQueryInteger('series')
+  const nameIndex = getQueryInteger(query, 'name')
+  const seriesIndex = getQueryInteger(query, 'series')
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex >= 0' }]
   if (nameIndex >= 0 && nameIndex < maxNameIndex)

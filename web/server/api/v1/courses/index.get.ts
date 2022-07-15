@@ -2,6 +2,8 @@ import { Database, Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
+import { getQueryInteger } from '~/server/utils'
+
 export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
 export type CourseListData = Pick<
   Database.CourseSchema,
@@ -42,14 +44,8 @@ const seriesNames = [...Song.seriesSet]
  */
 export default async (event: CompatibilityEvent) => {
   const query = useQuery(event)
-  const getQueryInteger = (key: string) => {
-    const queryValue = query[key]
-    if (typeof queryValue !== 'string') return NaN
-    const num = parseFloat(queryValue)
-    return Number.isInteger(num) ? num : NaN
-  }
-  const type = getQueryInteger('type')
-  const seriesIndex = getQueryInteger('series')
+  const type = getQueryInteger(query, 'type')
+  const seriesIndex = getQueryInteger(query, 'series')
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex < 0' }]
   if (type === 1 || type === 2)
