@@ -5,7 +5,7 @@ import { useBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
-import postUserInfo from '~/server/api/v1/user.post'
+import postUserInfo from '~/server/api/v1/user/index.post'
 import { useClientPrincipal } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
 
@@ -58,11 +58,8 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Invalid Body'
-    )
+    const message = 'Invalid Body'
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
   test('returns "200 OK" with JSON body (Create)', async () => {
@@ -133,11 +130,8 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Duplicated Id'
-    )
+    const message = 'Duplicated Id'
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
   test('returns "400 BadRequest" if changed id', async () => {
@@ -153,11 +147,8 @@ describe('POST /api/v1/user', () => {
 
     // Assert
     expect(result).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Duplicated Id'
-    )
+    const message = 'Duplicated Id'
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
   test('returns "200 OK" but does not update if changed area', async () => {
