@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
-import { fetchLoginUser } from '@ddradar/db'
+import { Database } from '@ddradar/core'
+import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
@@ -49,17 +49,20 @@ export async function getLoginUserInfo(
   return await fetchLoginUser(clientPrincipal.userId)
 }
 
-export type UserVisibility = Pick<Database.UserSchema, 'loginId' | 'isPublic'>
 /**
+ * Check user visibility
  * @param event HTTP Event
- * @param user User data
- * @returns `true` if user is public or same as login user.
+ * @returns Database.UserSchema if user is public or same as login user. otherwise null.
  */
-export function canReadUserData(
-  event: Pick<CompatibilityEvent, 'req'>,
-  user: UserVisibility | undefined
-): boolean {
-  if (!user) return false
+export async function tryFetchUser(
+  event: Pick<CompatibilityEvent, 'req' | 'context'>
+): Promise<Database.UserSchema | null> {
+  const id: string = event.context.params.id
+  if (!Database.isValidUserId(id)) return null
+
+  const user = await fetchUser(id)
+  if (!user) return null
+
   const loginId = useClientPrincipal(event)?.userId ?? ''
-  return user.isPublic || user.loginId === loginId
+  return user.isPublic || user.loginId === loginId ? user : null
 }

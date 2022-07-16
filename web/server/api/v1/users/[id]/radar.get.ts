@@ -1,9 +1,9 @@
 import { Database, Song } from '@ddradar/core'
-import { Condition, fetchList, fetchOne } from '@ddradar/db'
+import { Condition, fetchList } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
-import { canReadUserData } from '~/server/auth'
+import { tryFetchUser } from '~/server/auth'
 import { getQueryInteger, sendNullWithError } from '~/server/utils'
 
 export type GrooveRadarInfo = Omit<
@@ -45,23 +45,14 @@ export type GrooveRadarInfo = Omit<
  * ```
  */
 export default async (event: CompatibilityEvent) => {
-  const id: string = event.context.params.id
-  if (!Database.isValidUserId(id)) return sendNullWithError(event, 404)
-
-  // Check user visibility
-  const user = await fetchOne('Users', ['loginId', 'isPublic'], {
-    condition: 'c.id = @',
-    value: id,
-  })
-  if (!user || !canReadUserData(event, user)) {
-    return sendNullWithError(event, 404)
-  }
+  const user = await tryFetchUser(event)
+  if (!user) return sendNullWithError(event, 404)
 
   const query = useQuery(event)
   const style = getQueryInteger(query, 'style')
 
   const conditions: Condition<'UserDetails'>[] = [
-    { condition: 'c.userId = @', value: id },
+    { condition: 'c.userId = @', value: user.id },
     { condition: 'c.type = "radar"' },
   ]
   if (Song.isPlayStyle(style)) {
