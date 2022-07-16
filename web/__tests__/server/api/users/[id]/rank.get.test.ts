@@ -4,8 +4,8 @@ import { fetchList, fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
-import type { ClearStatus } from '~/server/api/v1/users/[id]/clear.get'
-import getClearCount from '~/server/api/v1/users/[id]/clear.get'
+import type { RankStatus } from '~/server/api/v1/users/[id]/rank.get'
+import getDanceLevels from '~/server/api/v1/users/[id]/rank.get'
 import { canReadUserData } from '~/server/auth'
 import { getQueryInteger, sendNullWithError } from '~/server/utils'
 
@@ -17,22 +17,22 @@ vi.mock('~/server/utils')
 describe('GET /api/v1/users/[id]/clear', () => {
   const levelLimit = 19
   const totalCount = 2000
-  const statuses: ClearStatus[] = [
-    ...Array(levelLimit * Score.clearLampMap.size).keys(),
+  const ranks: RankStatus[] = [
+    ...Array(levelLimit * Score.danceLevelSet.size).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % levelLimit) + 1,
-    clearLamp: (n % Score.clearLampMap.size) as Score.ClearLamp,
+    rank: [...Score.danceLevelSet][n % Score.danceLevelSet.size],
     count: n,
   }))
-  const total: Omit<ClearStatus, 'clearLamp'>[] = [
+  const total: Omit<RankStatus, 'rank'>[] = [
     ...Array(levelLimit * 2).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % levelLimit) + 1,
     count: totalCount,
   }))
-  const sum = (scores: ClearStatus[]) => scores.reduce((p, c) => p + c.count, 0)
+  const sum = (scores: RankStatus[]) => scores.reduce((p, c) => p + c.count, 0)
 
   beforeAll(() => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
@@ -49,7 +49,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
     const event = createEvent({ id: invalidId })
 
     // Act
-    const result = await getClearCount(event)
+    const result = await getDanceLevels(event)
 
     // Assert
     expect(result).toBeNull()
@@ -63,7 +63,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
     vi.mocked(fetchOne).mockResolvedValue(null)
 
     // Act
-    const result = await getClearCount(event)
+    const result = await getDanceLevels(event)
 
     // Assert
     expect(result).toBeNull()
@@ -78,7 +78,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
     vi.mocked(canReadUserData).mockReturnValue(false)
 
     // Act
-    const result = await getClearCount(event)
+    const result = await getDanceLevels(event)
 
     // Assert
     expect(result).toBeNull()
@@ -107,21 +107,21 @@ describe('GET /api/v1/users/[id]/clear', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(fetchOne).mockResolvedValue(privateUser as any)
     vi.mocked(fetchList).mockImplementation((_1, col, _3, _4): any =>
-      col.includes('clearLamp') ? statuses : total
+      col.includes('rank') ? ranks : total
     )
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
-    const result = await getClearCount(event)
+    const result = await getDanceLevels(event)
 
     // Assert
     expect(result).toHaveLength(
-      levelLimit * (Score.clearLampMap.size + /* SP/DP No play */ 2)
+      levelLimit * (Score.danceLevelSet.size + /* SP/DP No play */ 2)
     )
-    expect(sum(result as ClearStatus[])).toBe(levelLimit * 2 * totalCount)
+    expect(sum(result as RankStatus[])).toBe(levelLimit * 2 * totalCount)
     expect(vi.mocked(fetchList).mock.calls[0][2]).toStrictEqual([
       { condition: 'c.userId = @', value: privateUser.id },
-      { condition: 'c.type = "clear"' },
+      { condition: 'c.type = "score"' },
       ...conditions,
     ])
     expect(vi.mocked(fetchList).mock.calls[1][2]).toStrictEqual([
