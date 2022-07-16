@@ -64,7 +64,7 @@ type Col<T> = Extract<KeysOfUnion<DbItem<T>>, string>
 export type Condition<T extends ContainerName> =
   | {
       /** WHERE condition */
-      condition: `${string}c.${Col<T>}${string}`
+      condition: `${Exclude<string, '@'>}c.${Col<T>}${Exclude<string, '@'>}`
       value?: never
     }
   | {
@@ -159,6 +159,38 @@ export async function fetchList<
 }
 
 /**
+ * Returns joined items that matches conditions from container.
+ * @param containerName Container name
+ * @param columns Columns
+ * @param joinColumn JOIN array
+ * @param conditions SQL WHERE conditions
+ * @param orderBy Sort order
+ */
+export async function fetchJoinedList<T extends ContainerName, U>(
+  containerName: T,
+  columns: readonly (
+    | `c.${KeysOfUnion<DbItem<T>>}`
+    | `i.${Exclude<KeysOfUnion<U>, symbol | KeysOfUnion<DbItem<T>>>}`
+  )[],
+  joinColumn: KeysOfUnion<DbItem<T>>,
+  conditions: readonly (Condition<T> | SqlCondition)[],
+  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
+): Promise<U[]> {
+  // Create SQL statement
+  const column = columns.join(',')
+  const order = Object.entries(orderBy)
+    .map(([c, a]) => `c.${c} ${a}`)
+    .join(',')
+  const { condition, parameters } = createConditions(conditions)
+  const query = `SELECT ${column} FROM c JOIN i IN c.${joinColumn} WHERE ${condition} ORDER BY ${order}`
+
+  const { resources } = await getContainer(containerName)
+    .items.query<U>({ query, parameters })
+    .fetchAll()
+  return resources
+}
+
+/**
  * Returns grouped items that matches conditions from container.
  * @param containerName Container name
  * @param columns Columns
@@ -183,9 +215,8 @@ export async function fetchGroupedList<T extends ContainerName, U>(
   return resources
 }
 
-function createConditions<T extends ContainerName>(
-  conditions: readonly Condition<T>[]
-) {
+type SqlCondition = { condition: string; value?: JSONValue }
+function createConditions(conditions: readonly SqlCondition[]) {
   return {
     condition: conditions
       .map((c, i) => c.condition.replace('@', `@param${i}`))
