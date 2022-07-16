@@ -9,7 +9,7 @@ import { sendNullWithError } from '~/server/utils'
 vi.mock('@ddradar/db')
 vi.mock('~/server/utils')
 
-describe('GET /api/v1/songs', () => {
+describe('GET /api/v1/songs/[id]', () => {
   beforeAll(() => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
   })

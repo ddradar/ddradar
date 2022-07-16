@@ -12,7 +12,7 @@ vi.mock('h3')
 vi.mock('~/server/auth')
 vi.mock('~/server/utils')
 
-describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
+describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
   const id = testScores[0].songId
   const params = {
     id,
@@ -49,7 +49,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     { ...params, id: '0' },
     { ...params, style: '3' },
     { ...params, diff: '-1' },
-  ])('%p returns "404 Not Found"', async params => {
+  ])('(%o) returns 404', async params => {
     // Arrange
     const event = createEvent(params)
 
@@ -63,7 +63,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
-  test(`?scope=private returns "404 Not Found" if anonymous`, async () => {
+  test(`?scope=private returns 404 if anonymous`, async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
     vi.mocked(getQueryString).mockReturnValue('private')
@@ -78,7 +78,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
-  test('returns "404 Not Found" if no score', async () => {
+  test('returns 404 if no score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
     vi.mocked(getQueryString).mockReturnValue(undefined)
@@ -118,7 +118,7 @@ describe('GET /api/v1/scores/{id}/{style}/{diff}', () => {
       [user.id, '0', `${user.area}`],
     ],
   ])(
-    '?scope=%s (user: %p) returns "200 OK" with Scores',
+    '?scope=%s (user: %o) returns 200 with Scores',
     async (scope, user, condition, value) => {
       // Arrange
       vi.mocked(getLoginUserInfo).mockResolvedValue(user)

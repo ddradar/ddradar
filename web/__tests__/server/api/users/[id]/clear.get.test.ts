@@ -44,7 +44,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
   })
 
   const invalidId = 'ユーザー'
-  test(`(id: "${invalidId}") returns "404 Not Found"`, async () => {
+  test(`(id: "${invalidId}") returns 404`, async () => {
     // Arrange
     const event = createEvent({ id: invalidId })
 
@@ -57,7 +57,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
-  test('(id: "not_exists_user") returns "404 Not Found"', async () => {
+  test('(id: "not_exists_user") returns 404', async () => {
     // Arrange
     const event = createEvent({ id: 'not_exists_user' })
     vi.mocked(fetchOne).mockResolvedValue(null)
@@ -70,7 +70,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
-  test(`returns "404 Not Found" if canReadUserData() returns false`, async () => {
+  test(`returns 404 if canReadUserData() returns false`, async () => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -97,7 +97,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
         { condition: 'c.level = @', value: 1 },
       ],
     ],
-  ])(`?style=%s&lv=%s returns "200 OK"`, async (style, lv, conditions) => {
+  ])(`?style=%s&lv=%s returns 200`, async (style, lv, conditions) => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
     vi.mocked(canReadUserData).mockReturnValue(true)

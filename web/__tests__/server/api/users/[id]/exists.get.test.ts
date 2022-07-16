@@ -22,7 +22,7 @@ describe('GET /api/v1/users/[id]/exists', () => {
   })
 
   const invalidId = 'ユーザー'
-  test(`(id: "${invalidId}") returns "404 Not Found"`, async () => {
+  test(`(id: "${invalidId}") returns 404`, async () => {
     // Arrange
     const event = createEvent({ id: invalidId })
 
@@ -35,7 +35,7 @@ describe('GET /api/v1/users/[id]/exists', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
-  test('(id: "not_exists_user") returns "200 OK" with { exists: false }', async () => {
+  test('(id: "not_exists_user") returns 200 with { exists: false }', async () => {
     // Arrange
     const id = 'not_exists_user'
     vi.mocked(fetchOne).mockResolvedValue(null)
@@ -53,7 +53,7 @@ describe('GET /api/v1/users/[id]/exists', () => {
     expect(vi.mocked(sendNullWithError)).not.toBeCalled()
   })
 
-  test(`(id: "${dbUser.id}") returns "200 OK" with { exists: true }`, async () => {
+  test(`(id: "${dbUser.id}") returns 200 with { exists: true }`, async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValue(dbUser as any)

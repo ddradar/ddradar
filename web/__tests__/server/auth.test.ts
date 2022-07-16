@@ -48,7 +48,7 @@ describe('server/auth.ts', () => {
         userId: '123456',
         userRoles: ['anonymous', 'authenticated', 'administrator'],
       },
-    ])(`({ ${authHeader} : toBase64(%p) }) returns same object`, expected => {
+    ])(`({ ${authHeader} : toBase64(%o) }) returns same object`, expected => {
       // Arrange
       const header = toBase64(expected)
       event.req.headers[authHeader] = header

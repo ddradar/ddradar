@@ -15,7 +15,7 @@ vi.mock('~/server/utils')
 const timeStamp = 1597114800
 Date.now = vi.fn(() => timeStamp * 1000)
 
-describe('POST /api/v1/songs', () => {
+describe('POST /api/v1/notification', () => {
   const validBody: NotificationBody = {
     sender: 'SYSTEM',
     pinned: true,
@@ -49,7 +49,7 @@ describe('POST /api/v1/songs', () => {
     { ...validBody, title: 1 },
     { ...validBody, body: [] },
     { ...validBody, timeStamp: [] },
-  ])('(%p) returns "400 Bad Request"', async (body: unknown) => {
+  ])('(%o) returns 400', async (body: unknown) => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(body)
@@ -59,11 +59,8 @@ describe('POST /api/v1/songs', () => {
 
     // Assert
     expect(notification).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Invalid Body'
-    )
+    const message = 'Invalid Body'
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
   test.each([
@@ -76,7 +73,7 @@ describe('POST /api/v1/songs', () => {
       { ...validBody, timeStamp },
       { ...validBody, timeStamp },
     ],
-  ])('(%p) returns "200 OK" with JSON body %p', async (body, expected) => {
+  ])('(%o) returns 200 with %o', async (body, expected) => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(body)

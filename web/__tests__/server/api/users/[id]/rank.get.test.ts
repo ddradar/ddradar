@@ -14,7 +14,7 @@ vi.mock('h3')
 vi.mock('~/server/auth')
 vi.mock('~/server/utils')
 
-describe('GET /api/v1/users/[id]/clear', () => {
+describe('GET /api/v1/users/[id]/rank', () => {
   const levelLimit = 19
   const totalCount = 2000
   const ranks: RankStatus[] = [

@@ -17,10 +17,10 @@ export type RankStatus = Pick<
 }
 
 /**
- * Get Clear status that match the specified {@link Database.UserSchema.id userId}, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
+ * Get Score statuses that match the specified {@link Database.UserSchema.id userId}, {@link ScoreStatus.playStyle playStyle} and {@link RankStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - GET `api/v1/users/:id/rank?style=:style&lv=:lv`
+ * - GET `api/v1/users/:id/score?style=:style&lv=:lv`
  *   - `id`: {@link Database.UserSchema.id}
  *   - `style`(optional): {@link RankStatus.playStyle}
  *   - `lv`(optional): {@link RankStatus.level}
@@ -31,9 +31,9 @@ export type RankStatus = Pick<
  * @example
  * ```json
  * [
- *   { "playStyle": 1, "level": 1, "rank": "-", "count": 10 },
- *   { "playStyle": 1, "level": 1, "rank": 6, "count": 10 },
- *   { "playStyle": 1, "level": 1, "rank": 7, "count": 20 }
+ *   { "playStyle": 1, "level": 1, "rank": "-", "count": 20 },
+ *   { "playStyle": 1, "level": 1, "rank": "AA+", "count": 10 },
+ *   { "playStyle": 1, "level": 1, "rank": "AAA", "count": 20 }
  * ]
  * ```
  */
@@ -98,5 +98,5 @@ export default async (event: CompatibilityEvent) => {
         : l.level !== r.level
         ? l.level - r.level
         : danceLevels.indexOf(l.rank) - danceLevels.indexOf(r.rank)
-    ) // ORDER BY playStyle, level, clearLamp ASC
+    ) // ORDER BY playStyle, level, rank ASC
 }

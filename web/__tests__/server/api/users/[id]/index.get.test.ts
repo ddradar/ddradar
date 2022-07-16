@@ -11,7 +11,7 @@ vi.mock('@ddradar/db')
 vi.mock('~/server/auth')
 vi.mock('~/server/utils')
 
-describe('GET /api/v1/users', () => {
+describe('GET /api/v1/users/[id]', () => {
   const dbUser = {
     id: publicUser.id,
     name: publicUser.name,
@@ -27,7 +27,7 @@ describe('GET /api/v1/users', () => {
   })
 
   const invalidId = 'ユーザー'
-  test(`/${invalidId} returns "404 Not Found"`, async () => {
+  test(`/${invalidId} returns 404`, async () => {
     // Arrange
     vi.mocked(useClientPrincipal).mockReturnValue(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,10 +39,11 @@ describe('GET /api/v1/users', () => {
 
     // Assert
     expect(user).toBeNull()
+    expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
-  test(`/not_exists_user returns "404 Not Found"`, async () => {
+  test(`/not_exists_user returns 404`, async () => {
     // Arrange
     vi.mocked(useClientPrincipal).mockReturnValue(null)
     vi.mocked(fetchOne).mockResolvedValue(null)
@@ -60,7 +61,7 @@ describe('GET /api/v1/users', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
-  test(`${dbUser.id} returns "200 OK" with JSON body`, async () => {
+  test(`${dbUser.id} returns 200 with JSON`, async () => {
     // Arrange
     vi.mocked(useClientPrincipal).mockReturnValue({
       identityProvider: 'github',

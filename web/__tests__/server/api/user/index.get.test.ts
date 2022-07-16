@@ -17,7 +17,7 @@ describe('GET /api/v1/user', () => {
     vi.mocked(sendNullWithError).mockClear()
   })
 
-  test('returns "404 Not Found" if getLoginUserInfo() returns null', async () => {
+  test('returns 404 if getLoginUserInfo() returns null', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
@@ -31,7 +31,7 @@ describe('GET /api/v1/user', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404, message)
   })
 
-  test('returns "200 OK" with JSON body if getLoginUserInfo() returns user', async () => {
+  test('returns 200 with JSON if getLoginUserInfo() returns user', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(getLoginUserInfo).mockResolvedValueOnce({ ...publicUser })

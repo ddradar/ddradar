@@ -34,7 +34,7 @@ describe('POST /api/v1/user', () => {
     vi.mocked(sendNullWithError).mockClear()
   })
 
-  test('returns "401 Unauthenticated" if not logged in', async () => {
+  test('returns 401 if not logged in', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useClientPrincipal).mockReturnValue(null)
@@ -47,7 +47,7 @@ describe('POST /api/v1/user', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
   })
 
-  test('returns "400 Bad Request" if body is not UserSchema', async () => {
+  test('returns 400 if body is not UserSchema', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useClientPrincipal).mockReturnValue(principal)
@@ -62,7 +62,7 @@ describe('POST /api/v1/user', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
-  test('returns "200 OK" with JSON body (Create)', async () => {
+  test('returns 200 with JSON (Create)', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(user)
@@ -117,7 +117,7 @@ describe('POST /api/v1/user', () => {
     }
   )
 
-  test('returns "400 BadRequest" if changed loginId', async () => {
+  test('returns 400 if changed loginId', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(user)
@@ -134,7 +134,7 @@ describe('POST /api/v1/user', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
-  test('returns "400 BadRequest" if changed id', async () => {
+  test('returns 400 if changed id', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue({ ...user, id: 'update' })
@@ -151,7 +151,7 @@ describe('POST /api/v1/user', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
-  test('returns "200 OK" but does not update if changed area', async () => {
+  test('returns 200 but does not update if changed area', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue({ ...user, area: 14 })

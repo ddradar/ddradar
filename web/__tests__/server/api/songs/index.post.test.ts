@@ -33,7 +33,7 @@ describe('POST /api/v1/songs', () => {
     mockedContainer.items.upsert.mockClear()
   })
 
-  test('returns "400 Bad Request" if body is empty', async () => {
+  test('returns 400 if body is empty', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(null)
@@ -43,11 +43,8 @@ describe('POST /api/v1/songs', () => {
 
     // Assert
     expect(song).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Invalid Body'
-    )
+    const message = 'Invalid Body'
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
   })
 
   const inversedCharts = [...validSong.charts].sort(
@@ -61,7 +58,7 @@ describe('POST /api/v1/songs', () => {
     [{ ...validSong }, validSong],
     [deleted, deleted],
     [{ ...deleted, foo: 'bar' }, deleted],
-  ])('(body: %o) returns "200 OK" with %o', async (body, expected) => {
+  ])('(body: %o) returns 200 with %o', async (body, expected) => {
     // Arrange
     const event = createEvent()
     vi.mocked(useBody).mockResolvedValue(body)

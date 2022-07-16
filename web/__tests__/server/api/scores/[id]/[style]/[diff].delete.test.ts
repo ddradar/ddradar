@@ -11,7 +11,7 @@ vi.mock('@ddradar/db')
 vi.mock('~/server/auth')
 vi.mock('~/server/utils')
 
-describe('DELETE /api/v1/scores/{id}/{style}/{diff}', () => {
+describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
   const mockedContainer = { item: vi.fn() }
   const mockedItem = { patch: vi.fn() }
   beforeAll(() => {
