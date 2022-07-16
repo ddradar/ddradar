@@ -70,14 +70,14 @@ export default async (event: CompatibilityEvent) => {
       { condition: 'c.type = "clear"' },
       ...conditions,
     ],
-    { playStyle: 'ASC', level: 'ASC', clearLamp: 'ASC' }
+    { playStyle: 'ASC' }
   )) as ClearStatus[]
   /** Chart total counts */
   const total = (await fetchList(
     'UserDetails',
     ['playStyle', 'level', 'count'],
     [{ condition: 'c.userId = "0"' }, ...conditions],
-    { playStyle: 'ASC', level: 'ASC', clearLamp: 'ASC' }
+    { playStyle: 'ASC' }
   )) as Omit<ClearStatus, 'clearLamp'>[]
 
   return total

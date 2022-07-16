@@ -62,14 +62,14 @@ export default async (event: CompatibilityEvent) => {
       { condition: 'c.type = "score"' },
       ...conditions,
     ],
-    { playStyle: 'ASC', level: 'ASC', clearLamp: 'ASC' }
+    { playStyle: 'ASC' }
   )) as RankStatus[]
   /** Chart total counts */
   const total = (await fetchList(
     'UserDetails',
     ['playStyle', 'level', 'count'],
     [{ condition: 'c.userId = "0"' }, ...conditions],
-    { playStyle: 'ASC', level: 'ASC', clearLamp: 'ASC' }
+    { playStyle: 'ASC' }
   )) as Omit<RankStatus, 'rank'>[]
 
   return total
