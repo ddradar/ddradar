@@ -4,18 +4,6 @@ import { difficultyMap, playStyleMap } from '../song'
 import { hasIntegerProperty, hasProperty } from '../typeUtils'
 
 /**
- * Object type returned by "/api/v1/scores/{@link ScoreSchema.userId :uid}"
- * @see https://github.com/ddradar/ddradar/blob/master/api/scores__uid/
- */
-export type ScoreList = Omit<
-  ScoreSchema,
-  'userId' | 'userName' | 'isPublic' | 'radar'
-> & {
-  /** Course score or not */
-  isCourse: boolean
-}
-
-/**
  * Request body to "/api/v1/scores/{@link ScoreSchema.songId :songId}/{@link ScoreSchema.playStyle :playStyle}/{@link ScoreSchema.difficulty :difficulty}"
  * @see https://github.com/ddradar/ddradar/blob/master/api/scores__id__style__difficulty--post/
  */

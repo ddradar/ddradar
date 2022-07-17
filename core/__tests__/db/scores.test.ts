@@ -1,7 +1,11 @@
 import { beforeAll, describe, expect, test, vi } from 'vitest'
 
 import type { ScoreBody } from '../../src/api/score'
-import { createScoreSchema } from '../../src/db/scores'
+import {
+  createScoreSchema,
+  isClearLamp,
+  isDanceLevel,
+} from '../../src/db/scores'
 import { calcMyGrooveRadar } from '../../src/score'
 import {
   publicUser as user,
@@ -12,6 +16,24 @@ import {
 vi.mock('../../src/score')
 
 describe('./db/scores.ts', () => {
+  describe('isClearLamp', () => {
+    test.each([undefined, null, '1', {}, -1])('(%o) returns false', obj => {
+      expect(isClearLamp(obj)).toBe(false)
+    })
+    test.each([0, 1, 7])('(%o) returns true', obj => {
+      expect(isClearLamp(obj)).toBe(true)
+    })
+  })
+
+  describe('isDanceLevel', () => {
+    test.each([undefined, null, '1', {}, -1])('(%o) returns false', obj => {
+      expect(isDanceLevel(obj)).toBe(false)
+    })
+    test.each(['E', 'A-', 'AA+', 'AAA'])('(%o) returns true', obj => {
+      expect(isDanceLevel(obj)).toBe(true)
+    })
+  })
+
   describe('createScoreSchema', () => {
     const radar = {
       stream: 100,

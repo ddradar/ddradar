@@ -17,7 +17,7 @@ export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
  *   - `level`: {@link ChartInfo.level}
  * @param event HTTP Event
  * @returns
- * - Returns `200 OK` with JSON body if found.
+ * - Returns `200 OK` with JSON body.
  * @example
  * ```json
  * [

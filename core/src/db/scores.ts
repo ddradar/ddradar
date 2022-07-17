@@ -103,6 +103,11 @@ export const clearLampMap: ReadonlyMap<
   Unwrap<typeof clearLamps>[1]
 > = clearLamps
 
+/** Type assertion for {@link ClearLamp} */
+export function isClearLamp(obj: unknown): obj is ClearLamp {
+  return typeof obj === 'number' && (clearLamps as Map<number, string>).has(obj)
+}
+
 const danceLevels = [
   'E',
   'D',
@@ -124,6 +129,11 @@ const danceLevels = [
 /** Dance level (`"E"` ~ `"AAA"`) */
 export type DanceLevel = Unwrap<typeof danceLevels>
 export const danceLevelSet: ReadonlySet<DanceLevel> = new Set(danceLevels)
+
+/** Type assertion for {@link DanceLevel} */
+export function isDanceLevel(obj: unknown): obj is DanceLevel {
+  return typeof obj === 'string' && (danceLevelSet as Set<string>).has(obj)
+}
 
 /**
  * Create {@link ScoreSchema} from song, chart, user and score.

@@ -17,7 +17,7 @@ export type RankStatus = Pick<
 }
 
 /**
- * Get Score statuses that match the specified {@link Database.UserSchema.id userId}, {@link ScoreStatus.playStyle playStyle} and {@link RankStatus.level level}.
+ * Get Score statuses that match the specified {@link Database.UserSchema.id userId}, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - GET `api/v1/users/:id/score?style=:style&lv=:lv`
