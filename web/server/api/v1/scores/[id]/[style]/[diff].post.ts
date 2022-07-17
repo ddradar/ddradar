@@ -1,4 +1,4 @@
-import { OperationInput, PatchOperationInput } from '@azure/cosmos'
+import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
 import { Database, Score, Song } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
@@ -15,9 +15,9 @@ type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
  * @description
  * - Need Authentication.
  * - POST `api/v1/scores/[id]/[style]/[diff]`
- *   - `id`: {@link ScoreSchema.songId}
- *   - `style`: {@link ScoreSchema.playStyle}
- *   - `diff`: {@link ScoreSchema.difficulty}
+ *   - `id`: {@link Database.ScoreSchema.songId}
+ *   - `style`: {@link Database.ScoreSchema.playStyle}
+ *   - `diff`: {@link Database.ScoreSchema.difficulty}
  * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
@@ -107,7 +107,7 @@ export default async (event: CompatibilityEvent) => {
     return sendNullWithError(event, 400, 'body is invalid Score')
   }
 
-  const scores = await fetchList('Scores', '*', [
+  const oldScores = await fetchList('Scores', '*', [
     { condition: 'c.songId = @', value: id },
     { condition: 'c.playStyle = @', value: style },
     { condition: 'c.difficulty = @', value: diff },
@@ -122,7 +122,7 @@ export default async (event: CompatibilityEvent) => {
 
   const operations: OperationInput[] = [
     { operationType: 'Create', resourceBody: userScore },
-    ...scores
+    ...oldScores
       .filter(d => d.userId === user.id)
       .map<PatchOperationInput>(d => ({
         operationType: 'Patch',
@@ -152,7 +152,7 @@ export default async (event: CompatibilityEvent) => {
     score: Database.ScoreSchema
   ) {
     // Get previous score
-    const oldScore = scores.find(s => s.userId === area)
+    const oldScore = oldScores.find(s => s.userId === area)
 
     const mergedScore = Score.mergeScore(
       oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
