@@ -37,7 +37,7 @@ jobs:
           - 10253:10253
           - 10254:10254
           - 10255:10255
-        options: -m 4g --cpus=4
+        options: -m 4g --cpus=2.0
         env:
           AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
           AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: false
