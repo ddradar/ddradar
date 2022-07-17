@@ -14,6 +14,8 @@ export default defineConfig({
   test: {
     threads: false,
     globalSetup: './__tests__/setup-database.ts',
+    hookTimeout: 20000,
+    testTimeout: 10000,
     coverage: {
       enabled: true,
       all: true,
