@@ -42,7 +42,7 @@ const order = [
 
 /** Generate 段位認定 course data from each songs info. */
 async function main() {
-  if (!Song.isValidId(grade.id)) {
+  if (!Song.isValidSongId(grade.id)) {
     consola.warn(`Invalid ID: ${grade.id}`)
     return
   }

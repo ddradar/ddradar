@@ -9,13 +9,8 @@ import { fetchList } from './database'
 export async function fetchClearAndScoreStatus(
   userId: string
 ): Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]> {
-  return fetchList(
-    'UserDetails',
-    '*',
-    [
-      { condition: 'c.userId = @', value: userId },
-      { condition: 'c.type = "clear" OR c.type = "score"' },
-    ],
-    { _ts: 'ASC' }
-  ) as Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]>
+  return fetchList('UserDetails', '*', [
+    { condition: 'c.userId = @', value: userId },
+    { condition: 'c.type = "clear" OR c.type = "score"' },
+  ]) as Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]>
 }

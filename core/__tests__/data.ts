@@ -1,4 +1,3 @@
-import type { SongListData } from '../src/api/song'
 import type { NotificationSchema } from '../src/db/notification'
 import type { ScoreSchema } from '../src/db/scores'
 import type { CourseSchema, SongSchema } from '../src/db/songs'
@@ -44,7 +43,7 @@ export const testSongData: SongSchema = {
 }
 
 /** PARANOiA, PARANOiA(X-Special), SP-TRIP MACHINE～JUNGLE MIX～(X-Special) */
-export const testSongList: SongListData[] = [
+export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
   {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',

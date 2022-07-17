@@ -1,9 +1,9 @@
-import type { ScoreInfo } from './api/score'
+import type { ScoreSchema } from './db/scores'
 import { getDanceLevel } from './score'
 
 type SkillAttackScore = Omit<
-  ScoreInfo,
-  'songId' | 'userId' | 'userName' | 'level'
+  ScoreSchema,
+  'isPublic' | 'radar' | 'deleted' | 'songId' | 'userId' | 'userName' | 'level'
 >
 
 /** Read shift-jis encoded text file asynchronously */

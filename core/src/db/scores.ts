@@ -103,6 +103,11 @@ export const clearLampMap: ReadonlyMap<
   Unwrap<typeof clearLamps>[1]
 > = clearLamps
 
+/** Type assertion for {@link ClearLamp} */
+export function isClearLamp(obj: unknown): obj is ClearLamp {
+  return typeof obj === 'number' && (clearLamps as Map<number, string>).has(obj)
+}
+
 const danceLevels = [
   'E',
   'D',
@@ -125,16 +130,22 @@ const danceLevels = [
 export type DanceLevel = Unwrap<typeof danceLevels>
 export const danceLevelSet: ReadonlySet<DanceLevel> = new Set(danceLevels)
 
+/** Type assertion for {@link DanceLevel} */
+export function isDanceLevel(obj: unknown): obj is DanceLevel {
+  return typeof obj === 'string' && (danceLevelSet as Set<string>).has(obj)
+}
+
 /**
  * Create {@link ScoreSchema} from song, chart, user and score.
- * @param song Song or Course data (partial)
- * @param chart Chart data (partial)
+ * @param song Song & Chart info (from "Songs" container)
  * @param user User info (if area score, use mock user)
  * @param score Score data
  */
 export function createScoreSchema(
-  song: Pick<SongSchema, 'id' | 'name' | 'deleted'>,
-  chart: Readonly<StepChartSchema | CourseChartSchema>,
+  song: Readonly<
+    Pick<SongSchema, 'id' | 'name' | 'deleted'> &
+      (StepChartSchema | CourseChartSchema)
+  >,
   user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
   score: Readonly<ScoreBody>
 ): ScoreSchema {
@@ -144,9 +155,9 @@ export function createScoreSchema(
     isPublic: user.isPublic,
     songId: song.id,
     songName: song.name,
-    playStyle: chart.playStyle,
-    difficulty: chart.difficulty,
-    level: chart.level,
+    playStyle: song.playStyle,
+    difficulty: song.difficulty,
+    level: song.level,
     score: score.score,
     clearLamp: score.clearLamp,
     rank: score.rank,
@@ -154,14 +165,20 @@ export function createScoreSchema(
   if (score.exScore) scoreSchema.exScore = score.exScore
   if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
   if (song.deleted) scoreSchema.deleted = true
+  if (score.clearLamp === 7) {
+    scoreSchema.exScore = (song.notes + song.freezeArrow + song.shockArrow) * 3
+  }
+  if (score.clearLamp >= 4) {
+    scoreSchema.maxCombo = song.notes + song.shockArrow
+  }
 
-  if (!isAreaUser(user) && isSongChart(chart)) {
-    scoreSchema.radar = calcMyGrooveRadar(chart, score)
+  if (!isAreaUser(user) && isSongInfo(song)) {
+    scoreSchema.radar = calcMyGrooveRadar(song, score)
   }
 
   return scoreSchema
 
-  function isSongChart(chart: unknown): chart is StepChartSchema {
+  function isSongInfo(chart: unknown): chart is StepChartSchema {
     return hasIntegerProperty(chart, 'stream')
   }
 }

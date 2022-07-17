@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { ScoreInfo } from './api/score'
-import type { DanceLevel } from './db/scores'
+import type { DanceLevel, ScoreSchema } from './db/scores'
 import { getDanceLevel } from './score'
 
 const idRegex = /^.+\/ddr\/ddra\d+\/p.+=([01689bdiloqDIOPQ]{32}).*$/
 const srcRegex = /^.+\/ddr\/ddra\d+\/p\/images\/play_data\/(.+)\.png$/
 
-type EagateScore = Omit<ScoreInfo, 'songId' | 'userId' | 'userName' | 'level'>
+type EagateScore = Omit<
+  ScoreSchema,
+  'isPublic' | 'radar' | 'deleted' | 'songId' | 'userId' | 'userName' | 'level'
+>
 
 /**
  * Convert music data to { songId: Score[] } Record.
@@ -226,7 +228,7 @@ export function musicDetailToScore(
 
   function getPlayStyleAndDifficulty(
     logoUri: string
-  ): Pick<ScoreInfo, 'playStyle' | 'difficulty'> {
+  ): Pick<ScoreSchema, 'playStyle' | 'difficulty'> {
     const fileName = logoUri.replace(srcRegex, '$1')
     if (fileName === 'songdetails0') return { playStyle: 1, difficulty: 0 }
     if (fileName === 'songdetails1') return { playStyle: 1, difficulty: 1 }

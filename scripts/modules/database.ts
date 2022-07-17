@@ -11,9 +11,7 @@ let courseIds: string[] = []
 export async function isCourse(songId: string): Promise<boolean> {
   if (courseIds.length === 0)
     courseIds = (
-      await fetchList('Songs', ['id'], [{ condition: 'c.nameIndex < 0' }], {
-        _ts: 'ASC',
-      })
+      await fetchList('Songs', ['id'], [{ condition: 'c.nameIndex < 0' }])
     ).map(d => d.id)
   return courseIds.includes(songId)
 }
@@ -33,8 +31,7 @@ export async function fetchSongs(songIds: string[]) {
     [
       { condition: 'ARRAY_CONTAINS(@, c.id)', value: songIds },
       { condition: 'c.nameIndex >= 0' },
-    ],
-    { _ts: 'ASC' }
+    ]
   )
 
   if (resources.length !== songIds.length) {

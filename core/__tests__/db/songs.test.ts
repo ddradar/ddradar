@@ -2,25 +2,46 @@ import { describe, expect, test } from 'vitest'
 
 import {
   getNameIndex,
+  isDifficulty,
+  isPlayStyle,
   isSongSchema,
-  isValidId,
+  isValidSongId,
   nameIndexMap,
 } from '../../src/db/songs'
 import { testSongData } from '../data'
 
 describe('./db/songs.ts', () => {
-  describe('isValidId', () => {
+  describe('isValidSongId', () => {
     test.each([
       '',
       '01689bdiloqDIOPQ',
       '0000000000000000000000000000000000000000',
-    ])('("%s") returns false', id => expect(isValidId(id)).toBe(false))
+    ])('("%s") returns false', id => expect(isValidSongId(id)).toBe(false))
     test.each([
       '00000000000000000000000000000000',
       '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
       '01689bdiloqDIOPQ01689bdiloqDIOPQ',
-    ])('("%s") returns true', id => expect(isValidId(id)).toBe(true))
+    ])('("%s") returns true', id => expect(isValidSongId(id)).toBe(true))
   })
+
+  describe('isPlayStyle', () => {
+    test.each(['1', 0, -1, NaN])('(%j) returns false', obj =>
+      expect(isPlayStyle(obj)).toBe(false)
+    )
+    test.each([1, 2])('(%j) returns true', obj =>
+      expect(isPlayStyle(obj)).toBe(true)
+    )
+  })
+
+  describe('isDifficulty', () => {
+    test.each(['0', -1, 5, NaN])('(%j) returns false', id =>
+      expect(isDifficulty(id)).toBe(false)
+    )
+    test.each([0, 1, 2, 3, 4])('(%j) returns true', id =>
+      expect(isDifficulty(id)).toBe(true)
+    )
+  })
+
   describe('isSongSchema', () => {
     const validSong = { ...testSongData }
     test.each([undefined, null, true, 1.5, 'foo', [], {}])(
@@ -57,6 +78,7 @@ describe('./db/songs.ts', () => {
       expect(isSongSchema(obj)).toBe(true)
     )
   })
+
   describe('getNameIndex', () => {
     test.each([
       ['う', 0],

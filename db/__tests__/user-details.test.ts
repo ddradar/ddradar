@@ -16,7 +16,7 @@ describe('user-details.ts', () => {
 
       // Assert
       expect(result).toHaveLength(0)
-      expect(vi.mocked(fetchList).mock.calls[0][2]).toStrictEqual([
+      expect(vi.mocked(fetchList)).toBeCalledWith('UserDetails', '*', [
         { condition: 'c.userId = @', value: 'foo' },
         { condition: 'c.type = "clear" OR c.type = "score"' },
       ])

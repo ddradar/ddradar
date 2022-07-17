@@ -28,7 +28,7 @@ const ids = [
 
 /** Generate NONSTOP course data from each songs info. */
 async function main() {
-  if (!Song.isValidId(courseInfo.id)) {
+  if (!Song.isValidSongId(courseInfo.id)) {
     consola.warn(`Invalid ID: ${courseInfo.id}`)
     return
   }

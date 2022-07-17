@@ -12,27 +12,15 @@ export type {
 export {
   difficultyMap,
   getNameIndex,
-  isValidId,
+  isValidSongId,
+  isPlayStyle,
+  isDifficulty,
   nameIndexMap,
   playStyleMap,
   seriesSet,
 } from './db'
 
 type GateSeries = Series & `DanceDanceRevolution A${string}`
-/**
- * Returns whether the song has been deleted on the e-amusement GATE site.
- * @param songId Song Id
- * @returns true if deleted at DDR A version.
- */
-export function isDeletedOnGate(songId: string): boolean
-
-/**
- * Returns whether the song has been deleted on the e-amusement GATE site.
- * @param songId Song Id
- * @param series e-amusement GATE version
- * @returns true if deleted at provided version.
- */
-export function isDeletedOnGate(songId: string, series: GateSeries): boolean
 
 /**
  * Returns whether the song has been deleted on the e-amusement GATE site.

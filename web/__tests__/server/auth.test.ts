@@ -1,15 +1,15 @@
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
-import { fetchLoginUser } from '@ddradar/db'
+import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
-  canReadUserData,
   getLoginUserInfo,
+  tryFetchUser,
   useClientPrincipal,
 } from '~/server/auth'
 
-import { createEvent } from './test-util'
+import { createClientPrincipal, createEvent } from './test-util'
 
 vi.mock('@ddradar/db')
 
@@ -27,13 +27,16 @@ describe('server/auth.ts', () => {
       event.req.headers = {}
     })
 
-    test.each(['', 'foo'])(`({ ${authHeader} : %s }) returns null`, header => {
-      // Arrange
-      event.req.headers[authHeader] = header
+    test.each(['', 'foo', undefined, []])(
+      `({ ${authHeader} : %o }) returns null`,
+      header => {
+        // Arrange
+        event.req.headers[authHeader] = header
 
-      // Act - Assert
-      expect(useClientPrincipal(event)).toBe(null)
-    })
+        // Act - Assert
+        expect(useClientPrincipal(event)).toBe(null)
+      }
+    )
 
     test.each([
       {
@@ -48,7 +51,7 @@ describe('server/auth.ts', () => {
         userId: '123456',
         userRoles: ['anonymous', 'authenticated', 'administrator'],
       },
-    ])(`({ ${authHeader} : toBase64(%p) }) returns same object`, expected => {
+    ])(`({ ${authHeader} : toBase64(%o) }) returns same object`, expected => {
       // Arrange
       const header = toBase64(expected)
       event.req.headers[authHeader] = header
@@ -59,55 +62,118 @@ describe('server/auth.ts', () => {
   })
 
   describe('getLoginUserInfo', () => {
-    test('(null) returns null', async () => {
-      // Arrange - Act
-      const user = await getLoginUserInfo(null)
-
-      // Assert
-      expect(user).toBeNull()
-    })
-
-    test('({ Unregistered user }) returns null', async () => {
-      // Arrange
-      vi.mocked(fetchLoginUser).mockResolvedValueOnce(null)
-
-      // Act
-      const user = await getLoginUserInfo({ userId: 'unregistered_user' })
-
-      // Assert
-      expect(user).toBeNull()
-    })
-
-    test('({ Registered user }) returns UserSchema', async () => {
-      // Arrange
-      vi.mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
-
-      // Act
-      const user = await getLoginUserInfo({ userId: 'registered_user' })
-
-      // Assert
-      expect(user).toBe(publicUser)
-    })
-  })
-
-  describe('canReadUserData', () => {
     const event: Pick<CompatibilityEvent, 'req'> = createEvent()
     beforeEach(() => {
       event.req.headers = {}
+      vi.mocked(fetchLoginUser).mockClear()
     })
 
-    test('({not login}, undefined) returns false', () =>
-      expect(canReadUserData(event, undefined)).toBe(false))
-    test('({not login}, publicUser) returns true', () =>
-      expect(canReadUserData(event, publicUser)).toBe(true))
-    test('({not login}, privateUser) returns false', () =>
-      expect(canReadUserData(event, privateUser)).toBe(false))
-    test('({login as privateUser}, privateUser) returns true', () => {
+    test(`({ ${authHeader} : '' }) returns null`, async () => {
       // Arrange
-      event.req.headers[authHeader] = toBase64({ userId: privateUser.loginId })
+      event.req.headers[authHeader] = ''
 
-      // Act - Assert
-      expect(canReadUserData(event, privateUser)).toBe(true)
+      // Act
+      const user = await getLoginUserInfo(event)
+
+      // Assert
+      expect(user).toBeNull()
+      expect(vi.mocked(fetchLoginUser)).not.toBeCalled()
+    })
+
+    test(`({ ${authHeader} : <Unregistered User Token> }) returns null`, async () => {
+      // Arrange
+      event.req.headers[authHeader] = toBase64(
+        createClientPrincipal('id', 'loginId')
+      )
+      vi.mocked(fetchLoginUser).mockResolvedValue(null)
+
+      // Act
+      const user = await getLoginUserInfo(event)
+
+      // Assert
+      expect(user).toBeNull()
+      expect(vi.mocked(fetchLoginUser)).toBeCalledWith('loginId')
+    })
+
+    test(`({ ${authHeader} : <Registered User Token> }) returns UserSchema`, async () => {
+      // Arrange
+      event.req.headers[authHeader] = toBase64(
+        createClientPrincipal(publicUser.id, publicUser.loginId)
+      )
+      vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
+
+      // Act
+      const user = await getLoginUserInfo(event)
+
+      // Assert
+      expect(user).toBe(publicUser)
+      expect(vi.mocked(fetchLoginUser)).toBeCalledWith(publicUser.loginId)
+    })
+  })
+
+  describe('tryFetchUser', () => {
+    const event: Parameters<typeof tryFetchUser>[0] = createEvent({
+      id: '',
+    })
+    beforeEach(() => {
+      event.req.headers = {}
+      event.context.params.id = ''
+      vi.mocked(fetchUser).mockClear()
+    })
+
+    test.each(['', '#user', 'ユーザー'])(
+      '({ id: "%s" }) returns null',
+      async id => {
+        // Arrange
+        event.context.params.id = id
+
+        // Act
+        const user = await tryFetchUser(event)
+
+        // Assert
+        expect(user).toBeNull()
+        expect(vi.mocked(fetchUser)).not.toBeCalled()
+      }
+    )
+
+    test.each([
+      [publicUser, null],
+      [publicUser, 'foo'],
+      [privateUser, privateUser.loginId],
+    ])(
+      `({ id: %o, header: "%s" }) returns UserSchema`,
+      async (dbUser, loginId) => {
+        // Arrange
+        event.context.params.id = dbUser.id
+        event.req.headers[authHeader] = toBase64({ userId: loginId })
+        vi.mocked(fetchUser).mockResolvedValue(dbUser)
+
+        // Act
+        const user = await tryFetchUser(event)
+
+        // Assert
+        expect(user).toStrictEqual(dbUser)
+        expect(vi.mocked(fetchUser)).toBeCalledWith(dbUser.id)
+      }
+    )
+
+    test.each([
+      [null, null],
+      [privateUser, null],
+      [privateUser, 'foo'],
+    ])(`({ id: %o, header: "%s" }) returns null`, async (dbUser, loginId) => {
+      // Arrange
+      const id = dbUser?.id ?? 'foo'
+      event.context.params.id = id
+      event.req.headers[authHeader] = toBase64({ userId: loginId })
+      vi.mocked(fetchUser).mockResolvedValue(dbUser)
+
+      // Act
+      const user = await tryFetchUser(event)
+
+      // Assert
+      expect(user).toBeNull()
+      expect(vi.mocked(fetchUser)).toBeCalledWith(id)
     })
   })
 })
