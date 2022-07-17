@@ -1,9 +1,7 @@
-import { Database } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
 import type { UserInfo } from '~/server/api/v1/users/index.get'
-import { useClientPrincipal } from '~/server/auth'
+import { tryFetchUser } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
 
 /**
@@ -28,17 +26,14 @@ import { sendNullWithError } from '~/server/utils'
  * ```
  */
 export default async (event: CompatibilityEvent) => {
-  const id: string = event.context.params.id
-  if (!Database.isValidUserId(id)) return sendNullWithError(event, 404)
+  const user = await tryFetchUser(event)
+  if (!user) return sendNullWithError(event, 404)
 
-  const loginId = useClientPrincipal(event)?.userId ?? null
-
-  const user = await fetchOne(
-    'Users',
-    ['id', 'name', 'area', 'code'],
-    { condition: 'c.id = @', value: id },
-    { condition: '(c.isPublic OR c.loginId = @)', value: loginId }
-  )
-
-  return (user as UserInfo) ?? sendNullWithError(event, 404)
+  const userInfo: UserInfo = {
+    id: user.id,
+    name: user.name,
+    area: user.area,
+    code: user.code,
+  }
+  return userInfo
 }

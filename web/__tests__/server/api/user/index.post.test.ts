@@ -4,7 +4,10 @@ import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { useBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
+import {
+  createClientPrincipal,
+  createEvent,
+} from '~/__tests__/server/test-util'
 import postUserInfo from '~/server/api/v1/user/index.post'
 import { useClientPrincipal } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -17,12 +20,7 @@ vi.mock('~/server/utils')
 describe('POST /api/v1/user', () => {
   const user: Database.UserSchema = { ...publicUser }
   delete user.loginId
-  const principal = {
-    identityProvider: 'github',
-    userDetails: user.id,
-    userId: publicUser.loginId,
-    userRoles: ['anonymous', 'authenticated'],
-  } as const
+  const principal = createClientPrincipal(user.id, publicUser.loginId)
   const mockedContainer = { items: { upsert: vi.fn() } }
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -3,7 +3,7 @@ import { fetchList } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
-import { getLoginUserInfo, useClientPrincipal } from '~/server/auth'
+import { getLoginUserInfo } from '~/server/auth'
 import { getQueryString, sendNullWithError } from '~/server/utils'
 
 export type ScoreInfo = Omit<
@@ -93,7 +93,7 @@ export default async (event: CompatibilityEvent) => {
     ? (queryValue as 'private' | 'medium' | 'full')
     : 'medium'
 
-  const user = await getLoginUserInfo(useClientPrincipal(event))
+  const user = await getLoginUserInfo(event)
   if (scope === 'private' && !user) {
     sendNullWithError(event, 404)
     return []

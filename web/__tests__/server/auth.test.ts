@@ -9,7 +9,7 @@ import {
   useClientPrincipal,
 } from '~/server/auth'
 
-import { createEvent } from './test-util'
+import { createClientPrincipal, createEvent } from './test-util'
 
 vi.mock('@ddradar/db')
 
@@ -62,34 +62,52 @@ describe('server/auth.ts', () => {
   })
 
   describe('getLoginUserInfo', () => {
-    test('(null) returns null', async () => {
-      // Arrange - Act
-      const user = await getLoginUserInfo(null)
+    const event: Pick<CompatibilityEvent, 'req'> = createEvent()
+    beforeEach(() => {
+      event.req.headers = {}
+      vi.mocked(fetchLoginUser).mockClear()
+    })
+
+    test(`({ ${authHeader} : '' }) returns null`, async () => {
+      // Arrange
+      event.req.headers[authHeader] = ''
+
+      // Act
+      const user = await getLoginUserInfo(event)
 
       // Assert
       expect(user).toBeNull()
+      expect(vi.mocked(fetchLoginUser)).not.toBeCalled()
     })
 
-    test('({ Unregistered user }) returns null', async () => {
+    test(`({ ${authHeader} : <Unregistered User Token> }) returns null`, async () => {
       // Arrange
-      vi.mocked(fetchLoginUser).mockResolvedValueOnce(null)
+      event.req.headers[authHeader] = toBase64(
+        createClientPrincipal('id', 'loginId')
+      )
+      vi.mocked(fetchLoginUser).mockResolvedValue(null)
 
       // Act
-      const user = await getLoginUserInfo({ userId: 'unregistered_user' })
+      const user = await getLoginUserInfo(event)
 
       // Assert
       expect(user).toBeNull()
+      expect(vi.mocked(fetchLoginUser)).toBeCalledWith('loginId')
     })
 
-    test('({ Registered user }) returns UserSchema', async () => {
+    test(`({ ${authHeader} : <Registered User Token> }) returns UserSchema`, async () => {
       // Arrange
-      vi.mocked(fetchLoginUser).mockResolvedValueOnce(publicUser)
+      event.req.headers[authHeader] = toBase64(
+        createClientPrincipal(publicUser.id, publicUser.loginId)
+      )
+      vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
       // Act
-      const user = await getLoginUserInfo({ userId: 'registered_user' })
+      const user = await getLoginUserInfo(event)
 
       // Assert
       expect(user).toBe(publicUser)
+      expect(vi.mocked(fetchLoginUser)).toBeCalledWith(publicUser.loginId)
     })
   })
 

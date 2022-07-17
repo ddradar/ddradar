@@ -2,7 +2,7 @@ import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 
-import { getLoginUserInfo, useClientPrincipal } from '~/server/auth'
+import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
 
 /**
@@ -35,7 +35,7 @@ export default async (event: CompatibilityEvent) => {
     return
   }
 
-  const user = await getLoginUserInfo(useClientPrincipal(event))
+  const user = await getLoginUserInfo(event)
   if (!user) {
     sendNullWithError(event, 401)
     return

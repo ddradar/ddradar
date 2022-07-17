@@ -43,15 +43,16 @@ export function useClientPrincipal(
 }
 
 export async function getLoginUserInfo(
-  clientPrincipal: Pick<ClientPrincipal, 'userId'> | null
+  event: Pick<CompatibilityEvent, 'req'>
 ): Promise<Database.UserSchema | null> {
+  const clientPrincipal = useClientPrincipal(event)
   if (!clientPrincipal) return null
   return await fetchLoginUser(clientPrincipal.userId)
 }
 
 /**
  * Check user visibility
- * @param event HTTP Event
+ * @param event HTTP Event (needs [id] context)
  * @returns Database.UserSchema if user is public or same as login user. otherwise null.
  */
 export async function tryFetchUser(

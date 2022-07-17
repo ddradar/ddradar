@@ -3,7 +3,10 @@ import { fetchList } from '@ddradar/db'
 import { useQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
+import {
+  createClientPrincipal,
+  createEvent,
+} from '~/__tests__/server/test-util'
 import getUserList from '~/server/api/v1/users/index.get'
 import { useClientPrincipal } from '~/server/auth'
 
@@ -53,12 +56,9 @@ describe('GET /api/v1/users', () => {
 
   test('calls fetchList(%o) (login user)', async () => {
     // Arrange
-    vi.mocked(useClientPrincipal).mockReturnValue({
-      identityProvider: 'github',
-      userDetails: publicUser.id,
-      userId: publicUser.loginId,
-      userRoles: ['anonymous', 'authenticated'],
-    })
+    vi.mocked(useClientPrincipal).mockReturnValue(
+      createClientPrincipal(publicUser.id, publicUser.loginId)
+    )
     vi.mocked(useQuery).mockReturnValue({})
 
     // Act
