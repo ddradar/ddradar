@@ -68,8 +68,7 @@ export default async function (
 
     body.push(
       Database.createScoreSchema(
-        song,
-        chart,
+        { ...song, ...chart },
         user,
         Score.setValidScoreFromChart(chart, score)
       )
@@ -124,7 +123,9 @@ export default async function (
       return
     }
 
-    documents.push(Database.createScoreSchema(song, chart, user, mergedScore))
+    documents.push(
+      Database.createScoreSchema({ ...song, ...chart }, user, mergedScore)
+    )
     if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }

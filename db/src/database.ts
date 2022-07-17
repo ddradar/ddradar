@@ -117,7 +117,7 @@ export async function fetchList<
   containerName: T,
   columns: readonly U[],
   conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
+  orderBy?: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
 ): Promise<Pick<DbItem<T>, U>[]>
 
 /**
@@ -131,7 +131,7 @@ export async function fetchList<T extends ContainerName>(
   containerName: T,
   columns: '*',
   conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
+  orderBy?: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
 ): Promise<DbItem<T>[]>
 
 export async function fetchList<
@@ -141,16 +141,16 @@ export async function fetchList<
   containerName: T,
   columns: readonly U[] | '*',
   conditions: readonly Condition<T>[],
-  orderBy: Partial<Record<U, 'ASC' | 'DESC'>>
+  orderBy: Partial<Record<U, 'ASC' | 'DESC'>> = {}
 ): Promise<Pick<DbItem<T>, U>[]> {
   // Create SQL statement
   const column =
     columns === '*' ? '*' : columns.map(s => `c.${s.toString()}`).join(',')
   const { condition, parameters } = createConditions(conditions)
-  const order = Object.entries(orderBy)
+  const order = `ORDER BY ${Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
-    .join(',')
-  const query = `SELECT ${column} FROM c WHERE ${condition} ORDER BY ${order}`
+    .join(',')}`
+  const query = `SELECT ${column} FROM c WHERE ${condition} ${order}`
 
   const { resources } = await getContainer(containerName)
     .items.query<Pick<DbItem<T>, U>>({ query, parameters })
@@ -174,15 +174,15 @@ export async function fetchJoinedList<T extends ContainerName, U>(
   )[],
   joinColumn: KeysOfUnion<DbItem<T>>,
   conditions: readonly (Condition<T> | SqlCondition)[],
-  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>
+  orderBy: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>> = {}
 ): Promise<U[]> {
   // Create SQL statement
   const column = columns.join(',')
-  const order = Object.entries(orderBy)
+  const order = `ORDER BY ${Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
-    .join(',')
+    .join(',')}`
   const { condition, parameters } = createConditions(conditions)
-  const query = `SELECT ${column} FROM c JOIN i IN c.${joinColumn} WHERE ${condition} ORDER BY ${order}`
+  const query = `SELECT ${column} FROM c JOIN i IN c.${joinColumn} WHERE ${condition} ${order}`
 
   const { resources } = await getContainer(containerName)
     .items.query<U>({ query, parameters })

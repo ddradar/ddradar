@@ -12,19 +12,17 @@ vi.mock('~/server/auth')
 vi.mock('~/server/utils')
 
 describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
-  const mockedContainer = { item: vi.fn() }
-  const mockedItem = { patch: vi.fn() }
+  const mockedContainer = { items: { batch: vi.fn() } }
   beforeAll(() => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
     vi.mocked(fetchList).mockResolvedValue([])
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
-    vi.mocked(mockedContainer.item).mockReturnValue(mockedItem)
   })
   beforeEach(() => {
-    mockedItem.patch.mockClear()
     vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchList).mockClear()
+    mockedContainer.items.batch.mockClear()
   })
   const score = testScores[0]
   const params = {
@@ -39,7 +37,7 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
     { ...params, id: '0' },
     { ...params, style: '3' },
     { ...params, diff: '-1' },
-  ])('%o returns "404 Not Found"', async params => {
+  ])('%o returns 404', async params => {
     // Arrange
     const event = createEvent(params)
 
@@ -52,7 +50,7 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
-  test('returns "401 Unauthorized" if anonymous', async () => {
+  test('returns 401 if anonymous', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,7 +65,7 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
-  test('returns "404 Not Found" if no score', async () => {
+  test('returns 404 if no score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(user)
     vi.mocked(fetchList).mockResolvedValue([])
@@ -84,9 +82,10 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
       { condition: 'c.difficulty = @', value: score.difficulty },
       { condition: 'c.userId = @', value: user.id },
     ])
+    expect(mockedContainer.items.batch).not.toBeCalled()
   })
 
-  test('returns "204 No Content" and calls item.patch()', async () => {
+  test('returns 204 and calls item.batch(<Patch Operations>)', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(user)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -104,9 +103,15 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
       { condition: 'c.difficulty = @', value: score.difficulty },
       { condition: 'c.userId = @', value: user.id },
     ])
-    expect(mockedContainer.item).toBeCalledWith(score.userId, score.userId)
-    expect(mockedItem.patch).toBeCalledWith([
-      { op: 'add', path: '/ttl', value: 3600 },
+    expect(mockedContainer.items.batch).toBeCalledWith([
+      {
+        operationType: 'Patch',
+        id: score.userId,
+        partitionKey: score.userId,
+        resourceBody: {
+          operations: [{ op: 'add', path: '/ttl', value: 3600 }],
+        },
+      },
     ])
   })
 })

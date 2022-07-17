@@ -17,7 +17,6 @@ import { sendNullWithError } from '~/server/utils'
  * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
- * - Returns `404 Not Found` if user registration is not completed.
  * - Returns `404 Not Found` if parameters are invalid or no score.
  * - Returns `204 No Content` otherwize.
  */
@@ -49,17 +48,20 @@ export default async (event: CompatibilityEvent) => {
       { condition: 'c.playStyle = @', value: style },
       { condition: 'c.difficulty = @', value: diff },
       { condition: 'c.userId = @', value: user.id },
-    ],
-    { _ts: 'DESC' }
+    ]
   )
 
   if (scores.length === 0) {
     sendNullWithError(event, 404)
     return
   }
-  for (const score of scores) {
-    await getContainer('Scores')
-      .item(score.id, score.userId)
-      .patch([{ op: 'add', path: '/ttl', value: 3600 }])
-  }
+
+  await getContainer('Scores').items.batch(
+    scores.map(d => ({
+      operationType: 'Patch',
+      id: d.id,
+      partitionKey: d.userId,
+      resourceBody: { operations: [{ op: 'add', path: '/ttl', value: 3600 }] },
+    }))
+  )
 }

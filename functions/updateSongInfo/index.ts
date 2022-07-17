@@ -28,12 +28,9 @@ export default async function (
     context.log.info(`Start: ${song.name}`)
 
     // Get scores
-    const resources = await fetchList(
-      'Scores',
-      '*',
-      [{ condition: 'c.songId = @', value: song.id }],
-      { _ts: 'ASC' }
-    )
+    const resources = await fetchList('Scores', '*', [
+      { condition: 'c.songId = @', value: song.id },
+    ])
 
     const topScores: Database.ScoreSchema[] = []
     // Update exists scores
