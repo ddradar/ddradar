@@ -147,10 +147,12 @@ export async function fetchList<
   const column =
     columns === '*' ? '*' : columns.map(s => `c.${s.toString()}`).join(',')
   const { condition, parameters } = createConditions(conditions)
-  const order = `ORDER BY ${Object.entries(orderBy)
+  const order = Object.entries(orderBy)
     .map(([c, a]) => `c.${c} ${a}`)
-    .join(',')}`
-  const query = `SELECT ${column} FROM c WHERE ${condition} ${order}`
+    .join(',')
+  const query = `SELECT ${column} FROM c WHERE ${condition}${
+    order ? ` ORDER BY ${order}` : ''
+  }`
 
   const { resources } = await getContainer(containerName)
     .items.query<Pick<DbItem<T>, U>>({ query, parameters })
