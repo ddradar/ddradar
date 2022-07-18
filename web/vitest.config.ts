@@ -36,8 +36,15 @@ export default defineConfig({
       enabled: true,
       all: true,
       reporter: ['json', 'text'],
-      include: ['**/*.ts'],
-      exclude: ['**.config.ts', '**.d.ts', '**/__tests__/**', '.nuxt/**'],
+      include: ['**/*.ts', '**/*.vue'],
+      exclude: [
+        '**.config.ts',
+        '**.d.ts',
+        '**/__tests__/**',
+        '.nuxt/**',
+        'plugins/**',
+        'app.vue',
+      ],
     },
   },
 })
