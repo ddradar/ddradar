@@ -7,6 +7,6 @@
 <script lang="ts" setup>
 const siteTitle = 'DDRadar'
 useHead({
-  titleTemplate: t => t ? `${t} - ${siteTitle}` : siteTitle
+  titleTemplate: t => (t ? `${t} - ${siteTitle}` : siteTitle),
 })
 </script>
