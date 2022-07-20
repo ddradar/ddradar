@@ -28,7 +28,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 export interface CardProps {
   /** Card title */
