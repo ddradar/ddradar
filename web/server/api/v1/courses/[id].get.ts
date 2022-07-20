@@ -4,16 +4,18 @@ import type { CompatibilityEvent } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
 
+export type CourseInfo = Database.CourseSchema
+
 /**
  * Get course and orders information that match the specified ID.
  * @description
  * - No need Authentication.
  * - GET `api/v1/courses/:id`
- *   - `id`: {@link Database.CourseSchema.id}
+ *   - `id`: {@link CourseInfo.id}
  * @param event HTTP Event
  * @returns
- * - Returns `400 Bad Request` if {@link Database.CourseSchema.id id} is invalid.
- * - Returns `404 Not Found` if no song that matches {@link Database.CourseSchema.id id}.
+ * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
+ * - Returns `404 Not Found` if no song that matches {@link CourseInfo.id id}.
  * - Returns `200 OK` with JSON body if found.
  * @example
  * ```json
@@ -87,7 +89,7 @@ export default async (event: CompatibilityEvent) => {
     ],
     { condition: 'c.id = @', value: id },
     { condition: 'c.nameIndex <= 0' }
-  )) as Database.CourseSchema | null
+  )) as CourseInfo | null
 
   if (!course) return sendNullWithError(event, 404)
   return course
