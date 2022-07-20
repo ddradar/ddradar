@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section v-if="song" class="section">
     <h1 class="title">{{ song.name }}</h1>
     <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
     <h2 class="subtitle">BPM {{ displayedBPM }}</h2>

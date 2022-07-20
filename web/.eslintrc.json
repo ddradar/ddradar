@@ -6,6 +6,7 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "@nuxtjs/eslint-config-typescript",
+    "plugin:vue/vue3-recommended",
     "prettier"
   ],
   "rules": {
@@ -14,6 +15,7 @@
     "simple-import-sort/imports": "error",
     "sort-imports": "off",
     "unicorn/prefer-node-protocol": "error",
-    "vue/multi-word-component-names": "off"
+    "vue/multi-word-component-names": "off",
+    "vue/no-v-model-argument": "off"
   }
 }

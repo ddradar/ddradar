@@ -1,5 +1,5 @@
 <template>
-  <section class="section">
+  <section v-if="course" class="section">
     <h1 class="title">{{ course.name }}</h1>
     <h2 class="subtitle">{{ course.series }}</h2>
     <h2 class="subtitle">BPM {{ displayedBPM }}</h2>

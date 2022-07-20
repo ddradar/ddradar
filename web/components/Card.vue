@@ -1,10 +1,10 @@
 <template>
   <o-collapse
     v-if="collapsible"
+    v-model:open="openState"
     class="card"
     animation="slide"
     :aria-id="title"
-    :open="open"
   >
     <template #trigger>
       <header
@@ -45,7 +45,8 @@ const props = withDefaults(defineProps<CardProps>(), {
   collapsible: false,
   open: false,
 })
-const icon = computed(() => (props.open ? 'menu-down' : 'menu-up'))
+const openState = ref(props.open)
+const icon = computed(() => (openState.value ? 'menu-up' : 'menu-down'))
 const color = computed(() => `is-${props.variant}`)
 </script>
 
