@@ -1,0 +1,120 @@
+// Vitest Snapshot v1
+
+exports[`components/Card.vue > ({ title: 'title', variant: 'danger', collapsible: true, open: false }) snapshot test 1`] = `
+<div
+  class="o-clps card"
+  data-v-f883d62a=""
+>
+  <div
+    class="o-clps__trigger"
+  >
+    <header
+      aria-controls="title"
+      class="card-header is-danger"
+      data-v-f883d62a=""
+      role="button"
+    >
+      <div
+        class="card-header-title"
+        data-v-f883d62a=""
+      >
+        title
+      </div>
+      <a
+        class="card-header-icon"
+        data-v-f883d62a=""
+      >
+        <span
+          class="icon"
+          data-v-f883d62a=""
+        >
+          <i
+            class="mdi mdi-menu-up mdi-24px"
+          />
+        </span>
+      </a>
+    </header>
+  </div>
+  <transition-stub>
+    <div
+      class="o-clps__content"
+      id="title"
+      style="display: none;"
+    >
+      
+      
+    </div>
+  </transition-stub>
+</div>
+`;
+
+exports[`components/Card.vue > ({ title: 'title', variant: 'info', collapsible: true, open: true }) snapshot test 1`] = `
+<div
+  class="o-clps card"
+  data-v-f883d62a=""
+>
+  <div
+    class="o-clps__trigger"
+  >
+    <header
+      aria-controls="title"
+      class="card-header is-info"
+      data-v-f883d62a=""
+      role="button"
+    >
+      <div
+        class="card-header-title"
+        data-v-f883d62a=""
+      >
+        title
+      </div>
+      <a
+        class="card-header-icon"
+        data-v-f883d62a=""
+      >
+        <span
+          class="icon"
+          data-v-f883d62a=""
+        >
+          <i
+            class="mdi mdi-menu-down mdi-24px"
+          />
+        </span>
+      </a>
+    </header>
+  </div>
+  <transition-stub>
+    <div
+      class="o-clps__content"
+      id="title"
+    >
+      
+      
+    </div>
+  </transition-stub>
+</div>
+`;
+
+exports[`components/Card.vue > ({ title: 'title', variant: 'primary' }) snapshot test 1`] = `
+<div
+  animation="slide"
+  aria-id="title"
+  class="card"
+  data-v-f883d62a=""
+>
+  <header
+    aria-controls="title"
+    class="card-header is-primary"
+    data-v-f883d62a=""
+  >
+    <div
+      class="card-header-title"
+      data-v-f883d62a=""
+    >
+      title
+    </div>
+  </header>
+  
+  
+</div>
+`;
