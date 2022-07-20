@@ -1,0 +1,253 @@
+// Vitest Snapshot v1
+
+exports[`components/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] = `
+<section
+  class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+>
+  <div
+    class="o-clps card"
+    data-v-f883d62a=""
+  >
+    <div
+      class="o-clps__trigger"
+    >
+      <header
+        aria-controls="Chart Info"
+        class="card-header is-basic"
+        data-v-f883d62a=""
+        role="button"
+      >
+        <div
+          class="card-header-title"
+          data-v-f883d62a=""
+        >
+          Chart Info
+        </div>
+        <a
+          class="card-header-icon"
+          data-v-f883d62a=""
+        >
+          <span
+            class="icon"
+            data-v-f883d62a=""
+          >
+            <i
+              class="mdi mdi-menu-up mdi-24px"
+            />
+          </span>
+        </a>
+      </header>
+    </div>
+    <transition-stub>
+      <div
+        class="o-clps__content"
+        id="Chart Info"
+        style="display: none;"
+      >
+        
+        <div
+          class="card-content"
+        >
+          <div
+            class="content"
+          >
+            <ul>
+              <li>
+                <em>
+                  Notes
+                </em>
+                : 782
+              </li>
+              <li>
+                <em>
+                  Freeze Arrow
+                </em>
+                : 36
+              </li>
+              <li>
+                <em>
+                  Shock Arrow
+                </em>
+                : 0
+              </li>
+            </ul>
+            <ol>
+              
+              <li>
+                <a>
+                  This Beat Is.....
+                </a>
+                 SP-BASIC (4)
+              </li>
+              <li>
+                <a>
+                  Waiting
+                </a>
+                 SP-BASIC (6)
+              </li>
+              <li>
+                <a>
+                  Dead Heat
+                </a>
+                 SP-BASIC (6)
+              </li>
+              <li>
+                <a>
+                  Neverland
+                </a>
+                 SP-BASIC (8)
+              </li>
+              
+            </ol>
+          </div>
+          <!--v-if-->
+        </div>
+        
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
+exports[`components/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1`] = `
+<section
+  class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+>
+  <div
+    class="o-clps card"
+    data-v-f883d62a=""
+  >
+    <div
+      class="o-clps__trigger"
+    >
+      <header
+        aria-controls="Chart Info"
+        class="card-header is-beginner"
+        data-v-f883d62a=""
+        role="button"
+      >
+        <div
+          class="card-header-title"
+          data-v-f883d62a=""
+        >
+          Chart Info
+        </div>
+        <a
+          class="card-header-icon"
+          data-v-f883d62a=""
+        >
+          <span
+            class="icon"
+            data-v-f883d62a=""
+          >
+            <i
+              class="mdi mdi-menu-up mdi-24px"
+            />
+          </span>
+        </a>
+      </header>
+    </div>
+    <transition-stub>
+      <div
+        class="o-clps__content"
+        id="Chart Info"
+        style="display: none;"
+      >
+        
+        <div
+          class="card-content"
+        >
+          <div
+            class="content"
+          >
+            <ul>
+              <li>
+                <em>
+                  Notes
+                </em>
+                : 138
+              </li>
+              <li>
+                <em>
+                  Freeze Arrow
+                </em>
+                : 0
+              </li>
+              <li>
+                <em>
+                  Shock Arrow
+                </em>
+                : 0
+              </li>
+            </ul>
+            <!--v-if-->
+          </div>
+          <div
+            class="table-container"
+          >
+            <table
+              class="table"
+            >
+              <thead>
+                <tr>
+                  <th>
+                    <abbr
+                      title="STREAM"
+                    >
+                      STR
+                    </abbr>
+                  </th>
+                  <th>
+                    <abbr
+                      title="VOLTAGE"
+                    >
+                      VOL
+                    </abbr>
+                  </th>
+                  <th>
+                    AIR
+                  </th>
+                  <th>
+                    <abbr
+                      title="FREEZE"
+                    >
+                      FRE
+                    </abbr>
+                  </th>
+                  <th>
+                    <abbr
+                      title="CHAOS"
+                    >
+                      CHA
+                    </abbr>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    29
+                  </td>
+                  <td>
+                    22
+                  </td>
+                  <td>
+                    5
+                  </td>
+                  <td>
+                    0
+                  </td>
+                  <td>
+                    0
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
