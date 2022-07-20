@@ -1,6 +1,6 @@
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
-import { useFetch, useRequestHeaders, useState } from '#app'
+import { useRequestHeaders } from '#app'
 import type { CurrentUserInfo } from '~/server/api/v1/user/index.get'
 import type { ClientPrincipal } from '~/server/auth'
 
@@ -17,17 +17,19 @@ export default async function useAuth() {
     useRequestHeaders(['cookie']) as Record<string, string>
 
   // Inner variables
-  const headers = useState('headers', getClientCookies)
-  const { data: authInner, refresh: reloadAuth } = await useFetch<AuthResult>(
-    '/.auth/me',
-    { headers: headers.value }
-  )
-  const { data: userInner, refresh: reloadUser } = await useFetch(
-    '/api/v1/user',
-    { headers: headers.value }
-  )
+  const authInner = ref<ClientPrincipal | null>()
+  const userInner = ref<CurrentUserInfo | null>()
 
-  const auth = computed(() => authInner.value.clientPrincipal)
+  const refresh = async () => {
+    const headers = getClientCookies()
+    authInner.value = (
+      await $fetch<AuthResult>('/.auth/me', { headers })
+    ).clientPrincipal
+    userInner.value = await $fetch('/api/v1/user', { headers })
+  }
+  await refresh()
+
+  const auth = computed(() => authInner.value)
   const user = computed(() => userInner.value as CurrentUserInfo | null)
   const name = computed(() => user.value?.name)
   const isLoggedIn = computed(() => !!user.value)
@@ -35,10 +37,6 @@ export default async function useAuth() {
     () => auth.value?.userRoles.includes('administrator') ?? false
   )
 
-  const refresh = async () => {
-    headers.value = getClientCookies()
-    await Promise.all([reloadAuth(), reloadUser()])
-  }
   const updateUser = async (body: CurrentUserInfo) => {
     userInner.value = await $fetch<CurrentUserInfo>('/api/v1/user', {
       headers: getClientCookies(),
