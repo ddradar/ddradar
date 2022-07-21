@@ -1,4 +1,5 @@
-import { Database, Song } from '@ddradar/core'
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'

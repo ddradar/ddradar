@@ -1,5 +1,5 @@
 import type { OperationInput } from '@azure/cosmos'
-import { Api, Database, Score, Song } from '@ddradar/core'
+import { Api, Database, Score } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useBody } from 'h3'
@@ -85,7 +85,7 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
 export default async (event: CompatibilityEvent) => {
   // route params
   const id: string = event.context.params.id
-  if (!Song.isValidSongId(id)) return sendNullWithError(event, 404)
+  if (!Database.isValidSongId(id)) return sendNullWithError(event, 404)
 
   // body
   const body = await useBody(event)
