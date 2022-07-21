@@ -4,28 +4,26 @@ import { useRequestHeaders } from '#app'
 import type { CurrentUserInfo } from '~/server/api/v1/user/index.get'
 import type { ClientPrincipal } from '~/server/auth'
 
-/**
- * GET `/.auth/me` response body
- * @see https://docs.microsoft.com/azure/static-web-apps/user-information?tabs=javascript#direct-access-endpoint
- */
-type AuthResult = {
-  clientPrincipal: ClientPrincipal | null
-}
-
 export default async function useAuth() {
   const getClientCookies = () =>
-    useRequestHeaders(['cookie']) as Record<string, string>
+    useRequestHeaders(['cookie', 'x-ms-client-principal']) as Record<
+      string,
+      string
+    >
 
   // Inner variables
-  const authInner = ref<ClientPrincipal | null>()
-  const userInner = ref<CurrentUserInfo | null>()
+  const authInner = ref<ClientPrincipal | null>(null)
+  const userInner = ref<CurrentUserInfo | null>(null)
 
   const refresh = async () => {
     const headers = getClientCookies()
-    authInner.value = (
-      await $fetch<AuthResult>('/.auth/me', { headers })
-    ).clientPrincipal
-    userInner.value = await $fetch('/api/v1/user', { headers })
+    try {
+      authInner.value = await $fetch('/api/v1/principal', { headers })
+      userInner.value = await $fetch('/api/v1/user', { headers })
+    } catch {
+      authInner.value = null
+      userInner.value = null
+    }
   }
   await refresh()
 
