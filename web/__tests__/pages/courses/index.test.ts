@@ -12,7 +12,7 @@ import Page from '~/pages/courses/index.vue'
 vi.mock('#app')
 
 describe('Page /courses', () => {
-  const query = { kind: 'nonstop', series: '16' }
+  const query = { type: '1', series: '16' }
   const courses = [
     {
       id: course.id,
@@ -27,13 +27,14 @@ describe('Page /courses', () => {
   ]
 
   test.each([
-    [undefined, '16', 'NONSTOP (A20)'],
-    ['nonstop', '17', 'NONSTOP (A20 PLUS)'],
-    ['grade', '18', '段位認定 (A3)'],
-  ])('?kind=%s&series=%s renders "%s" title', async (kind, series, title) => {
+    [undefined, undefined, 'COURSES'],
+    [undefined, '16', 'COURSES (A20)'],
+    ['1', '17', 'NONSTOP (A20 PLUS)'],
+    ['2', '18', '段位認定 (A3)'],
+  ])('?type=%s&series=%s renders "%s" title', async (type, series, title) => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(useRoute).mockReturnValue({ query: { kind, series } } as any)
+    vi.mocked(useRoute).mockReturnValue({ query: { type, series } } as any)
     vi.mocked(useFetch).mockResolvedValue({
       pending: ref(true),
       data: ref([]),

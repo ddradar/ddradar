@@ -1,6 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="title">{{ getTitle(type, series) }}</h1>
+    <h1 class="title">{{ title }}</h1>
 
     <div class="buttons">
       <OButton
@@ -9,8 +9,8 @@
         tag="nuxt-link"
         :to="l.to"
         variant="info"
-        :disabled="l.to === route.path"
-        :outlined="l.to === route.path"
+        :disabled="type === l.type && series === l.series"
+        :outlined="type === l.type && series === l.series"
       >
         {{ l.name }}
       </OButton>
@@ -47,30 +47,35 @@
 </template>
 
 <script lang="ts" setup>
+import type { SearchParams } from 'ohmyfetch'
+
 import { useFetch, useRoute } from '#app'
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { getQueryInteger } from '~/src/path'
 import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
 
-const _kinds = ['nonstop', 'grade']
-const _kindToType = (kind: string) => _kinds.indexOf(kind) + 1
-const getTitle = (type: number, series: number) =>
-  `${type <= 1 ? 'NONSTOP' : '段位認定'} (${shortenSeriesName(
-    seriesNames[series]
-  )})`
+const _kinds = ['NONSTOP', '段位認定']
 
 const route = useRoute()
-const type = _kindToType(getQueryString(route.query, 'kind') ?? 'nonstop')
+const type = getQueryInteger(route.query, 'type')
 const series = getQueryInteger(route.query, 'series')
 
+const _params: SearchParams = {}
+if (!isNaN(type)) _params.type = type
+if (!isNaN(series)) _params.series = series
 const { data: courses, pending: isLoading } = await useFetch(
   '/api/v1/courses',
-  { params: { type, series } }
+  { params: _params }
 )
 
-const pages = courseSeriesIndexes.flatMap(i =>
+const title = `${_kinds[type - 1] ?? 'COURSES'}${
+  isNaN(series) ? '' : ` (${shortenSeriesName(seriesNames[series])})`
+}`
+const pages = courseSeriesIndexes.flatMap(series =>
   _kinds.map(kind => ({
-    to: `/courses?kind=${kind}&type=${i}`,
-    name: getTitle(_kindToType(kind), i),
+    type: _kinds.indexOf(kind) + 1,
+    series,
+    to: `/courses?type=${_kinds.indexOf(kind) + 1}&series=${series}`,
+    name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
 </script>
