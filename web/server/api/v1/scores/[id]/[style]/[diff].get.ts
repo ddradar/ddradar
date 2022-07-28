@@ -5,7 +5,8 @@ import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
-import { getQueryString, sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryString } from '~/src/path'
 
 export type ScoreInfo = Omit<
   Database.ScoreSchema,

@@ -2,7 +2,7 @@ import { Database, Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
-import { getQueryInteger } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 export type CourseListData = Pick<
   Database.CourseSchema,

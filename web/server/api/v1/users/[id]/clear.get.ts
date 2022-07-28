@@ -5,7 +5,8 @@ import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
-import { getQueryInteger, sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 export type ClearStatus = Pick<
   Database.ClearStatusSchema,
