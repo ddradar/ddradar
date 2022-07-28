@@ -4,13 +4,12 @@
 
     <div class="buttons">
       <OButton
-        v-for="l in pages"
-        :key="l.to"
-        tag="nuxt-link"
-        :to="l.to"
+        v-for="(l, i) in pages"
+        :key="i"
         variant="info"
         :disabled="type === l.type && series === l.series"
         :outlined="type === l.type && series === l.series"
+        @click="changeQueries(l.type, l.series)"
       >
         {{ l.name }}
       </OButton>
@@ -24,7 +23,7 @@
       paginated
     >
       <OTableColumn v-slot="props" field="series" label="Series">
-        {{ props.row.series }}
+        {{ shortenSeriesName(props.row.series) }}
       </OTableColumn>
       <OTableColumn v-slot="props" field="name" label="Name">
         <NuxtLink :to="`/courses/${props.row.id}`">
@@ -47,35 +46,47 @@
 </template>
 
 <script lang="ts" setup>
-import type { SearchParams } from 'ohmyfetch'
+import { computed, ref } from 'vue'
 
-import { useFetch, useRoute } from '#app'
+import { useFetch, useRoute, useRouter } from '#app'
 import { getQueryInteger } from '~/src/path'
 import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
 
 const _kinds = ['NONSTOP', '段位認定']
 
 const route = useRoute()
-const type = getQueryInteger(route.query, 'type')
-const series = getQueryInteger(route.query, 'series')
+const { replace } = useRouter()
+const type = ref(getQueryInteger(route.query, 'type'))
+const series = ref(getQueryInteger(route.query, 'series'))
 
-const _params: SearchParams = {}
-if (!isNaN(type)) _params.type = type
-if (!isNaN(series)) _params.series = series
-const { data: courses, pending: isLoading } = await useFetch(
-  '/api/v1/courses',
-  { params: _params }
+const {
+  data: courses,
+  pending: isLoading,
+  refresh,
+} = await useFetch(
+  () => `/api/v1/courses?type=${type.value}&series=${series.value}`
 )
 
-const title = `${_kinds[type - 1] ?? 'COURSES'}${
-  isNaN(series) ? '' : ` (${shortenSeriesName(seriesNames[series])})`
-}`
+const title = computed(
+  () =>
+    `${_kinds[type.value - 1] ?? 'COURSES'}${
+      isNaN(series.value)
+        ? ''
+        : ` (${shortenSeriesName(seriesNames[series.value])})`
+    }`
+)
 const pages = courseSeriesIndexes.flatMap(series =>
   _kinds.map(kind => ({
     type: _kinds.indexOf(kind) + 1,
     series,
-    to: `/courses?type=${_kinds.indexOf(kind) + 1}&series=${series}`,
     name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
+
+const changeQueries = async (t: number, s: number) => {
+  type.value = t
+  series.value = s
+  await replace(`${route.path}?type=${t}&series=${s}`)
+  await refresh()
+}
 </script>

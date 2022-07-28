@@ -12,6 +12,9 @@ export default defineNuxtConfig({
       },
     },
   },
+  build: {
+    transpile: [/@oruga-ui\/oruga-next/],
+  },
   meta: {
     link: [
       {
