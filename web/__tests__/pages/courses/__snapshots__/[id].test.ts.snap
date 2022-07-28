@@ -1,0 +1,122 @@
+// Vitest Snapshot v1
+
+exports[`Page /courses/[id] > { isLoading: false, course: <Data> } renders course info 1`] = `
+<section
+  class="section"
+>
+  
+  <h1
+    class="title"
+  >
+    TWENTY
+  </h1>
+  <h2
+    class="subtitle"
+  >
+    DanceDanceRevolution A20
+  </h2>
+  <h2
+    class="subtitle"
+  >
+    BPM 128-180
+  </h2>
+  <div
+    class="content columns is-multiline"
+  >
+    
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    
+  </div>
+  <div
+    class="content columns is-multiline"
+  >
+    
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    
+  </div>
+  
+</section>
+`;
+
+exports[`Page /courses/[id] > { isLoading: true } renders loading state 1`] = `
+<section
+  class="section"
+>
+  
+  <transition-stub
+    v-model:active="true"
+  >
+    <!--v-if-->
+  </transition-stub>
+  <h1
+    class="title"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h1>
+  <h2
+    class="subtitle"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h2>
+  <h2
+    class="subtitle"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h2>
+  <div
+    class="content columns is-multiline"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </div>
+  
+</section>
+`;

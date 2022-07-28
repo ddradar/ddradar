@@ -1,24 +1,25 @@
 <template>
-  <section v-if="song" class="section">
-    <h1 class="title">{{ song.name }}</h1>
-    <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
-    <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
-    <div v-if="isAdmin" class="buttons">
-      <o-button
-        variant="info"
-        icon-left="pencil-box"
-        tag="nuxt-link"
-        :to="`/admin/song/${song.id}`"
-      >
-        編集
-      </o-button>
-    </div>
-    <div class="content columns is-multiline">
-      <ChartInfo v-for="(chart, i) in singleCharts" :key="i" :chart="chart" />
-    </div>
-    <div class="content columns is-multiline">
-      <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
-    </div>
+  <section class="section">
+    <template v-if="isLoading">
+      <OLoading :v-model:active="isLoading" />
+      <h1 class="title"><o-skeleton animated /></h1>
+      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <div class="content columns is-multiline">
+        <o-skeleton animated size="large" :count="3" />
+      </div>
+    </template>
+    <template v-else>
+      <h1 class="title">{{ song.name }}</h1>
+      <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
+      <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
+      <div class="content columns is-multiline">
+        <ChartInfo v-for="(chart, i) in singleCharts" :key="i" :chart="chart" />
+      </div>
+      <div class="content columns is-multiline">
+        <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
+      </div>
+    </template>
   </section>
 </template>
 
@@ -26,14 +27,13 @@
 import { computed } from 'vue'
 
 import { useFetch, useRoute } from '#app'
-import useAuth from '~/composables/useAuth'
+import ChartInfo from '~/components/ChartInfo.vue'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
 import { getDisplayedBPM } from '~/src/song'
 
-const route = useRoute()
-const { isAdmin } = await useAuth()
-const { data: song } = await useFetch<SongInfo>(
-  `/api/v1/songs/${route.params.id}`
+const _route = useRoute()
+const { data: song, pending: isLoading } = await useFetch<SongInfo>(
+  `/api/v1/songs/${_route.params.id}`
 )
 
 const displayedBPM = computed(() => getDisplayedBPM(song.value))
