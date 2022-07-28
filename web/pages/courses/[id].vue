@@ -2,11 +2,11 @@
   <section class="section">
     <template v-if="isLoading">
       <OLoading :v-model:active="isLoading" />
-      <h1 class="title"><o-skeleton animated /></h1>
-      <h2 class="subtitle"><o-skeleton animated /></h2>
-      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <h1 class="title"><OSkeleton animated /></h1>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
       <div class="content columns is-multiline">
-        <o-skeleton animated size="large" :count="3" />
+        <OSkeleton animated size="large" :count="3" />
       </div>
     </template>
     <template v-else>
@@ -31,9 +31,9 @@ import ChartInfo from '~/components/ChartInfo.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
 import { getDisplayedBPM } from '~/src/song'
 
-const route = useRoute()
+const _route = useRoute()
 const { data: course, pending: isLoading } = await useFetch<CourseInfo>(
-  `/api/v1/courses/${route.params.id}`
+  `/api/v1/courses/${_route.params.id}`
 )
 
 const displayedBPM = computed(() => getDisplayedBPM(course.value))

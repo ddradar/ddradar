@@ -32,6 +32,7 @@ export default defineConfig({
   resolve: { alias },
   test: {
     environment: 'jsdom',
+    setupFiles: './__tests__/setup.ts',
     coverage: {
       enabled: true,
       all: true,
