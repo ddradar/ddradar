@@ -21,7 +21,4 @@ export default defineNuxtConfig({
     ],
   },
   css: ['@/assets/css/main.scss'],
-  router: {
-    routes: [{ path: '/.auth/*' }],
-  },
 })
