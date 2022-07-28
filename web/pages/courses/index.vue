@@ -54,16 +54,17 @@ import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
 
 const _kinds = ['NONSTOP', '段位認定']
 
-const route = useRoute()
+const _route = useRoute()
 const { replace } = useRouter()
-const type = ref(getQueryInteger(route.query, 'type'))
-const series = ref(getQueryInteger(route.query, 'series'))
+const type = ref(getQueryInteger(_route.query, 'type'))
+const series = ref(getQueryInteger(_route.query, 'series'))
 
 const {
   data: courses,
   pending: isLoading,
   refresh,
 } = await useFetch(
+  /* c8 ignore next 2 */
   () => `/api/v1/courses?type=${type.value}&series=${series.value}`
 )
 
@@ -86,7 +87,7 @@ const pages = courseSeriesIndexes.flatMap(series =>
 const changeQueries = async (t: number, s: number) => {
   type.value = t
   series.value = s
-  await replace(`${route.path}?type=${t}&series=${s}`)
+  await replace(`${_route.path}?type=${t}&series=${s}`)
   await refresh()
 }
 </script>

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`Page /courses > { isLoading: false, courses: <Data> } renders course list 1`] = `
+exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } renders course list 1`] = `
 <section
   class="section"
 >
@@ -16,7 +16,7 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
     <button
       class="button is-info is-outlined"
       disabled=""
-      to="/courses?type=1&series=16"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -32,8 +32,9 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         <!--v-if-->
       </span>
     </button>
-    <a
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -48,9 +49,10 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -65,9 +67,10 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -82,9 +85,10 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -99,9 +103,10 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -116,7 +121,7 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
         </span>
         <!--v-if-->
       </span>
-    </a>
+    </button>
     
   </div>
   <div
@@ -214,7 +219,7 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
               data-label="Series"
               scoped=""
             >
-              DanceDanceRevolution A20
+              A20
             </td>
             <td
               class=""
@@ -325,7 +330,7 @@ exports[`Page /courses > { isLoading: false, courses: <Data> } renders course li
 </section>
 `;
 
-exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] = `
+exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } renders no data 1`] = `
 <section
   class="section"
 >
@@ -341,7 +346,7 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
     <button
       class="button is-info is-outlined"
       disabled=""
-      to="/courses?type=1&series=16"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -357,8 +362,9 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         <!--v-if-->
       </span>
     </button>
-    <a
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -373,9 +379,10 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -390,9 +397,10 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -407,9 +415,10 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -424,9 +433,10 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -441,7 +451,7 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
         </span>
         <!--v-if-->
       </span>
-    </a>
+    </button>
     
   </div>
   <div
@@ -624,7 +634,7 @@ exports[`Page /courses > { isLoading: false, courses: [] } renders no data 1`] =
 </section>
 `;
 
-exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
+exports[`Page /courses > snapshot tests > { isLoading: true } renders loading state 1`] = `
 <section
   class="section"
 >
@@ -640,7 +650,7 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
     <button
       class="button is-info is-outlined"
       disabled=""
-      to="/courses?type=1&series=16"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -656,8 +666,9 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         <!--v-if-->
       </span>
     </button>
-    <a
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -672,9 +683,10 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -689,9 +701,10 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -706,9 +719,10 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -723,9 +737,10 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         </span>
         <!--v-if-->
       </span>
-    </a>
-    <a
+    </button>
+    <button
       class="button is-info"
+      type="button"
     >
       <span
         class="button-wrapper"
@@ -740,7 +755,7 @@ exports[`Page /courses > { isLoading: true } renders loading state 1`] = `
         </span>
         <!--v-if-->
       </span>
-    </a>
+    </button>
     
   </div>
   <div
