@@ -11,17 +11,17 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.16.2",
+    "@azure/cosmos": "^3.16.3",
     "@ddradar/core": "^1.1.1",
     "@ddradar/db": "^1.1.1"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config-typescript": "^10.0.0",
     "@vue/test-utils": "^2.0.2",
-    "c8": "^7.11.3",
+    "c8": "^7.12.0",
     "eslint-plugin-nuxt": "^3.2.0",
     "jsdom": "^20.0.0",
-    "nuxt": "^3.0.0-rc.5",
-    "vitest": "^0.18.0"
+    "nuxt": "^3.0.0-rc.6",
+    "vitest": "^0.19.1"
   }
 }
