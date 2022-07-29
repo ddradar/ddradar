@@ -6,6 +6,8 @@ import { SongInfo } from '~/server/api/v1/songs/[id].get'
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)
 
+export const nameIndexMap: ReadonlyMap<number, string> = Song.nameIndexMap
+
 export const seriesNames = [...Song.seriesSet]
 
 /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3 */

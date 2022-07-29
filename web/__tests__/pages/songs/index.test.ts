@@ -1,4 +1,4 @@
-import { testCourseData as course } from '@ddradar/core/__tests__/data'
+import { testSongList as songs } from '@ddradar/core/__tests__/data'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
@@ -7,24 +7,12 @@ import { ref } from 'vue'
 
 import { useFetch, useRoute } from '#app'
 import { mountAsync } from '~/__tests__/test-utils'
-import Page from '~/pages/courses/index.vue'
+import Page from '~/pages/songs/index.vue'
 
 vi.mock('#app')
 
-describe('Page /courses', () => {
-  const query = { type: '1', series: '16' }
-  const courses = [
-    {
-      id: course.id,
-      name: course.name,
-      series: course.series,
-      charts: course.charts.map(c => ({
-        playStyle: c.playStyle,
-        difficulty: c.difficulty,
-        level: c.level,
-      })),
-    },
-  ]
+describe('Page /songs', () => {
+  const query = { series: '10' }
 
   describe('snapshot tests', () => {
     test('{ isLoading: true } renders loading state', async () => {
@@ -48,13 +36,13 @@ describe('Page /courses', () => {
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
-    test('{ isLoading: false, courses: <Data> } renders course list', async () => {
+    test('{ isLoading: false, songs: <Data> } renders song list', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockResolvedValue({
         pending: ref(false),
-        data: ref(courses),
+        data: ref(songs),
       } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -93,14 +81,13 @@ describe('Page /courses', () => {
   })
 
   test.each([
-    [undefined, undefined, 'COURSES'],
-    [undefined, '16', 'COURSES (A20)'],
-    ['1', '17', 'NONSTOP (A20 PLUS)'],
-    ['2', '18', '段位認定 (A3)'],
-  ])('?type=%s&series=%s renders "%s" title', async (type, series, title) => {
+    [undefined, undefined, 'すべての楽曲を表示'],
+    [undefined, '18', 'DanceDanceRevolution A3'],
+    ['1', undefined, 'か'],
+  ])('?name=%s&series=%s renders "%s" title', async (name, series, title) => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(useRoute).mockReturnValue({ query: { type, series } } as any)
+    vi.mocked(useRoute).mockReturnValue({ query: { name, series } } as any)
     vi.mocked(useFetch).mockResolvedValue({
       pending: ref(true),
       data: ref([]),

@@ -29,9 +29,28 @@
 
 <script lang="ts" setup>
 import Card from '~/components/Card.vue'
-import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
+import {
+  courseSeriesIndexes,
+  nameIndexMap,
+  seriesNames,
+  shortenSeriesName,
+} from '~/src/song'
 
 const menuList = [
+  {
+    title: '曲名から探す',
+    items: [...nameIndexMap.entries()].map(([i, name]) => ({
+      name,
+      to: `/songs?name=${i}`,
+    })),
+  },
+  {
+    title: 'シリーズから探す',
+    items: seriesNames.map((s, i) => ({
+      name: shortenSeriesName(s),
+      to: `/songs?series=${i}`,
+    })),
+  },
   {
     title: 'コースから探す',
     items: courseSeriesIndexes.flatMap(series =>
