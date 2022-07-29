@@ -19,7 +19,7 @@ describe('Page /songs/[id]', () => {
     vi.mocked(useRoute).mockReturnValue({ params } as any)
     vi.mocked(useFetch).mockResolvedValue({
       pending: ref(true),
-      data: ref(null),
+      data: ref(testSongData),
     } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 

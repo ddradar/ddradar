@@ -24,6 +24,7 @@
 </template>
 
 <script lang="ts" setup>
+import { createError } from 'h3'
 import { computed } from 'vue'
 
 import { useFetch, useRoute } from '#app'
@@ -35,6 +36,10 @@ const _route = useRoute()
 const { data: course, pending: isLoading } = await useFetch<CourseInfo>(
   `/api/v1/courses/${_route.params.id}`
 )
+/* c8 ignore next 4 */
+if (!course.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
 
 const displayedBPM = computed(() => getDisplayedBPM(course.value))
 const singleCharts = computed(() =>
