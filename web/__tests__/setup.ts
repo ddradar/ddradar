@@ -13,3 +13,5 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: vi.fn(),
   })),
 })
+
+vi.stubGlobal('definePageMeta', vi.fn())

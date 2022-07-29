@@ -3,16 +3,15 @@
     <h1 class="title">{{ title }}</h1>
 
     <div class="buttons">
-      <OButton
+      <NuxtLink
         v-for="(l, i) in pages"
         :key="i"
-        variant="info"
-        :disabled="type === l.type && series === l.series"
-        :outlined="type === l.type && series === l.series"
-        @click="changeQueries(l.type, l.series)"
+        class="button is-info"
+        :class="{ 'is-disabled': type === l.type && series === l.series }"
+        :to="{ path: '/courses', query: { type: l.type, series: l.series } }"
       >
         {{ l.name }}
-      </OButton>
+      </NuxtLink>
     </div>
 
     <OTable
@@ -48,22 +47,20 @@
 <script lang="ts" setup>
 import { computed, ref } from 'vue'
 
-import { useFetch, useRoute, useRouter } from '#app'
+import { useFetch, useRoute } from '#app'
 import { getQueryInteger } from '~/src/path'
 import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
+
+/* c8 ignore next */
+definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['NONSTOP', '段位認定']
 
 const _route = useRoute()
-const { replace } = useRouter()
 const type = ref(getQueryInteger(_route.query, 'type'))
 const series = ref(getQueryInteger(_route.query, 'series'))
 
-const {
-  data: courses,
-  pending: isLoading,
-  refresh,
-} = await useFetch(
+const { data: courses, pending: isLoading } = await useFetch(
   /* c8 ignore next 2 */
   () => `/api/v1/courses?type=${type.value}&series=${series.value}`
 )
@@ -77,17 +74,10 @@ const title = computed(
     }`
 )
 const pages = courseSeriesIndexes.flatMap(series =>
-  _kinds.map(kind => ({
-    type: _kinds.indexOf(kind) + 1,
+  _kinds.map((kind, i) => ({
+    type: i + 1,
     series,
     name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
-
-const changeQueries = async (t: number, s: number) => {
-  type.value = t
-  series.value = s
-  await replace(`${_route.path}?type=${t}&series=${s}`)
-  await refresh()
-}
 </script>

@@ -13,115 +13,36 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
     class="buttons"
   >
     
-    <button
-      class="button is-info is-outlined"
-      disabled=""
-      type="button"
+    <a
+      class="button is-info is-disabled"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A3)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
+      段位認定 (A3)
+    </a>
     
   </div>
   <div
@@ -343,115 +264,36 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
     class="buttons"
   >
     
-    <button
-      class="button is-info is-outlined"
-      disabled=""
-      type="button"
+    <a
+      class="button is-info is-disabled"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A3)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
+      段位認定 (A3)
+    </a>
     
   </div>
   <div
@@ -647,115 +489,36 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
     class="buttons"
   >
     
-    <button
-      class="button is-info is-outlined"
-      disabled=""
-      type="button"
+    <a
+      class="button is-info is-disabled"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A20 PLUS)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      段位認定 (A20 PLUS)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          NONSTOP (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
-    <button
+      NONSTOP (A3)
+    </a>
+    <a
       class="button is-info"
-      type="button"
     >
-      <span
-        class="button-wrapper"
-      >
-        <!--v-if-->
-        <span
-          class=""
-        >
-          
-          段位認定 (A3)
-          
-        </span>
-        <!--v-if-->
-      </span>
-    </button>
+      段位認定 (A3)
+    </a>
     
   </div>
   <div

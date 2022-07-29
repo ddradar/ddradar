@@ -127,30 +127,4 @@ describe('Page /courses', () => {
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
   })
-
-  test('changeQueries() calls useRouter.replace() and useFetch.refresh()', async () => {
-    // Arrange
-    const refresh = vi.fn()
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(useRoute).mockReturnValue({ query, path: '/courses' } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(false),
-      data: ref([]),
-      refresh,
-    } as any)
-    /* eslint-enable @typescript-eslint/no-explicit-any */
-
-    // Act
-    const wrapper = await mountAsync(Page, {
-      global: {
-        plugins: [[Oruga, bulmaConfig]],
-        stubs: { NuxtLink: RouterLinkStub },
-      },
-    })
-    await wrapper.findAll('button')[1].trigger('click')
-
-    // Assert
-    expect(refresh).toBeCalled()
-    expect(replaceMock).toBeCalledWith('/courses?type=2&series=16')
-  })
 })
