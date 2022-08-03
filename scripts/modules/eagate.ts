@@ -35,7 +35,7 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
   }
   await Promise.all([
     page.waitForNavigation({ timeout: 30000, waitUntil: 'domcontentloaded' }),
-    page.click('.btn-area p.btn', { delay: 500 }),
+    page.click('.btn-area p.btn a span', { delay: 500 }),
   ])
 
   return mypageUri === (await page.evaluate(() => document.location.href))
