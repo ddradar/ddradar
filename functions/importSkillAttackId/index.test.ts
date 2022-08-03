@@ -5,7 +5,12 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { masterMusicToMap } from '../skill-attack'
 import importSkillAttrackId from '.'
 
-vi.mock('node-fetch-native')
+vi.mock('node-fetch-native', async () => ({
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore mock
+  ...(await vi.importActual('node-fetch-native')),
+  fetch: vi.fn(),
+}))
 vi.mock('../skill-attack')
 
 describe('/importSkillAttrackId/index.ts', () => {
