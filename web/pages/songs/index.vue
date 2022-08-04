@@ -8,7 +8,7 @@
         :key="i"
         class="button is-info"
         :class="{ 'is-disabled': name === l.key || series === l.key }"
-        :to="l.to"
+        :to="{ path: '/songs', query: l.query }"
       >
         {{ l.name }}
       </NuxtLink>
@@ -52,7 +52,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { watch } from 'vue'
 
 import { useFetch, useRoute } from '#app'
 import { getQueryInteger } from '~/src/path'
@@ -64,37 +64,38 @@ definePageMeta({ key: route => route.fullPath })
 const _kinds = ['name', 'series'] as const
 
 const _route = useRoute()
-const name = ref(getQueryInteger(_route.query, _kinds[0]))
-const series = ref(getQueryInteger(_route.query, _kinds[1]))
+const name = getQueryInteger(_route.query, _kinds[0])
+const series = getQueryInteger(_route.query, _kinds[1])
 
-const { data: songs, pending: isLoading } = await useFetch(
-  /* c8 ignore next 2 */
-  () => `/api/v1/songs?name=${name.value}&series=${series.value}`
+const {
+  data: songs,
+  pending: isLoading,
+  refresh,
+} = await useFetch(`/api/v1/songs?name=${name}&series=${series}`)
+watch(
+  () => _route.query,
+  () => refresh()
 )
 
-const _pageKind = computed(() =>
-  !isNaN(name.value) ? _kinds[0] : !isNaN(series.value) ? _kinds[1] : 'all'
-)
-const title = computed(() =>
-  _pageKind.value === 'name'
-    ? nameIndexMap.get(name.value)
-    : _pageKind.value === 'series'
-    ? seriesNames[series.value]
+const _pageKind = !isNaN(name) ? _kinds[0] : !isNaN(series) ? _kinds[1] : 'all'
+const title =
+  _pageKind === 'name'
+    ? nameIndexMap.get(name)
+    : _pageKind === 'series'
+    ? seriesNames[series]
     : 'すべての楽曲を表示'
-)
-const pages = computed(() =>
-  _pageKind.value === 'name'
+const pages =
+  _pageKind === 'name'
     ? [...nameIndexMap.entries()].map(([key, name]) => ({
         name,
         key,
-        to: `/songs?name=${key}`,
+        query: { name: key },
       }))
-    : _pageKind.value === 'series'
+    : _pageKind === 'series'
     ? seriesNames.map((name, key) => ({
         name,
         key,
-        to: `/songs?series=${key}`,
+        query: { series: key },
       }))
     : []
-)
 </script>

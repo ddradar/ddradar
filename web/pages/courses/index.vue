@@ -7,8 +7,10 @@
         v-for="(l, i) in pages"
         :key="i"
         class="button is-info"
-        :class="{ 'is-disabled': type === l.type && series === l.series }"
-        :to="{ path: '/courses', query: { type: l.type, series: l.series } }"
+        :class="{
+          'is-disabled': type === l.query.type && series === l.query.series,
+        }"
+        :to="{ path: '/courses', query: l.query }"
       >
         {{ l.name }}
       </NuxtLink>
@@ -45,7 +47,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, watch } from 'vue'
 
 import { useFetch, useRoute } from '#app'
 import { getQueryInteger } from '~/src/path'
@@ -57,26 +59,28 @@ definePageMeta({ key: route => route.fullPath })
 const _kinds = ['NONSTOP', '段位認定']
 
 const _route = useRoute()
-const type = ref(getQueryInteger(_route.query, 'type'))
-const series = ref(getQueryInteger(_route.query, 'series'))
+const type = getQueryInteger(_route.query, 'type')
+const series = getQueryInteger(_route.query, 'series')
 
-const { data: courses, pending: isLoading } = await useFetch(
-  /* c8 ignore next 2 */
-  () => `/api/v1/courses?type=${type.value}&series=${series.value}`
+const {
+  data: courses,
+  pending: isLoading,
+  refresh,
+} = await useFetch(`/api/v1/courses?type=${type}&series=${series}`)
+watch(
+  () => _route.query,
+  () => refresh()
 )
 
 const title = computed(
   () =>
-    `${_kinds[type.value - 1] ?? 'COURSES'}${
-      isNaN(series.value)
-        ? ''
-        : ` (${shortenSeriesName(seriesNames[series.value])})`
+    `${_kinds[type - 1] ?? 'COURSES'}${
+      isNaN(series) ? '' : ` (${shortenSeriesName(seriesNames[series])})`
     }`
 )
 const pages = courseSeriesIndexes.flatMap(series =>
   _kinds.map((kind, i) => ({
-    type: i + 1,
-    series,
+    query: { type: i + 1, series },
     name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
