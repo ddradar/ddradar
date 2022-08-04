@@ -18,11 +18,7 @@ export default class Browser {
 
   static async create(): Promise<Browser> {
     const browser = new Browser()
-    browser.browser = await puppeteer.launch({
-      executablePath,
-      userDataDir,
-      headless: false,
-    })
+    browser.browser = await puppeteer.launch({ executablePath, userDataDir })
     return browser
   }
 
@@ -30,6 +26,9 @@ export default class Browser {
     const page =
       (await this.browser.pages())[0] || (await this.browser.newPage())
 
+    await page.setUserAgent(
+      'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+    )
     await page.setRequestInterception(true)
     page.on('request', req => {
       if (['image', 'stylesheet', 'font'].includes(req.resourceType())) {
