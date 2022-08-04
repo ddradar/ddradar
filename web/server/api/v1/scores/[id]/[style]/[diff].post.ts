@@ -1,5 +1,5 @@
 import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
-import { Database, Score, Song } from '@ddradar/core'
+import { Database, Score } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useBody } from 'h3'
@@ -58,9 +58,9 @@ export default async (event: CompatibilityEvent) => {
   const style = parseFloat(event.context.params.style)
   const diff = parseFloat(event.context.params.diff)
   if (
-    !Song.isValidSongId(id) ||
-    !Song.isPlayStyle(style) ||
-    !Song.isDifficulty(diff)
+    !Database.isValidSongId(id) ||
+    !Database.isPlayStyle(style) ||
+    !Database.isDifficulty(diff)
   ) {
     return sendNullWithError(event, 404)
   }

@@ -3,7 +3,7 @@ import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
-import { getQueryInteger } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
 

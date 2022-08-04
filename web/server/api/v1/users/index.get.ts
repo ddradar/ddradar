@@ -3,7 +3,7 @@ import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
 import { useClientPrincipal } from '~/server/auth'
-import { getQueryInteger, getQueryString } from '~/server/utils'
+import { getQueryInteger, getQueryString } from '~/src/path'
 
 export type UserInfo = Omit<
   Database.UserSchema,

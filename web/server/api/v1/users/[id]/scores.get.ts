@@ -4,11 +4,8 @@ import { fetchScoreList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
-import {
-  getQueryInteger,
-  getQueryString,
-  sendNullWithError,
-} from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryInteger, getQueryString } from '~/src/path'
 
 export type ScoreList = Omit<
   Database.ScoreSchema,

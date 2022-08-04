@@ -1,10 +1,12 @@
-import { Database, Song } from '@ddradar/core'
+import type { Database } from '@ddradar/core'
+import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
-import { getQueryInteger, sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 export type GrooveRadarInfo = Omit<
   Database.GrooveRadarSchema,

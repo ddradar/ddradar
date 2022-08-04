@@ -1,4 +1,4 @@
-import { Database } from '@ddradar/core'
+import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 

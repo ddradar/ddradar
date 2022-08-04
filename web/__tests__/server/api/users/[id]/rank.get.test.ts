@@ -7,12 +7,14 @@ import { createEvent } from '~/__tests__/server/test-util'
 import type { RankStatus } from '~/server/api/v1/users/[id]/rank.get'
 import getDanceLevels from '~/server/api/v1/users/[id]/rank.get'
 import { tryFetchUser } from '~/server/auth'
-import { getQueryInteger, sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
 vi.mock('~/server/auth')
 vi.mock('~/server/utils')
+vi.mock('~/src/path')
 
 describe('GET /api/v1/users/[id]/rank', () => {
   const levelLimit = 19

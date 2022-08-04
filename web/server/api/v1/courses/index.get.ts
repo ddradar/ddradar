@@ -1,8 +1,8 @@
-import { Database, Song } from '@ddradar/core'
+import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { CompatibilityEvent, useQuery } from 'h3'
 
-import { getQueryInteger } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 export type CourseListData = Pick<
   Database.CourseSchema,
@@ -14,8 +14,8 @@ export type CourseListData = Pick<
   >
 }
 
-const maxSeriesIndex = Song.seriesSet.size
-const seriesNames = [...Song.seriesSet]
+const maxSeriesIndex = Database.seriesSet.size
+const seriesNames = [...Database.seriesSet]
 
 /**
  * Get course information list.

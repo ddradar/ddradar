@@ -1,0 +1,51 @@
+<template>
+  <section class="section">
+    <template v-if="isLoading">
+      <OLoading :v-model:active="isLoading" />
+      <h1 class="title"><o-skeleton animated /></h1>
+      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <div class="content columns is-multiline">
+        <o-skeleton animated size="large" :count="3" />
+      </div>
+    </template>
+    <template v-else>
+      <h1 class="title">{{ song.name }}</h1>
+      <h2 class="subtitle">{{ song.artist }} / {{ song.series }}</h2>
+      <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
+      <div class="content columns is-multiline">
+        <ChartInfo v-for="(chart, i) in singleCharts" :key="i" :chart="chart" />
+      </div>
+      <div class="content columns is-multiline">
+        <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
+      </div>
+    </template>
+  </section>
+</template>
+
+<script lang="ts" setup>
+import { createError } from 'h3'
+import { computed } from 'vue'
+
+import { useFetch, useRoute } from '#app'
+import ChartInfo from '~/components/ChartInfo.vue'
+import type { SongInfo } from '~/server/api/v1/songs/[id].get'
+import { getDisplayedBPM } from '~/src/song'
+
+const _route = useRoute()
+const { data: song, pending: isLoading } = await useFetch<SongInfo>(
+  `/api/v1/songs/${_route.params.id}`
+)
+/* c8 ignore next 4 */
+if (!song.value) {
+  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
+}
+
+const displayedBPM = computed(() => getDisplayedBPM(song.value))
+const singleCharts = computed(() =>
+  song.value.charts.filter(c => c.playStyle === 1)
+)
+const doubleCharts = computed(() =>
+  song.value.charts.filter(c => c.playStyle === 2)
+)
+</script>

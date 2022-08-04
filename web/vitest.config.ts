@@ -32,12 +32,20 @@ export default defineConfig({
   resolve: { alias },
   test: {
     environment: 'jsdom',
+    setupFiles: './__tests__/setup.ts',
     coverage: {
       enabled: true,
       all: true,
       reporter: ['json', 'text'],
-      include: ['**/*.ts'],
-      exclude: ['**.config.ts', '**.d.ts', '**/__tests__/**', '.nuxt/**'],
+      include: ['**/*.ts', '**/*.vue'],
+      exclude: [
+        '**.config.ts',
+        '**.d.ts',
+        '**/__tests__/**',
+        '.nuxt/**',
+        'plugins/**',
+        'app.vue',
+      ],
     },
   },
 })

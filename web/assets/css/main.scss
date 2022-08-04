@@ -1,0 +1,8 @@
+@import 'colors';
+@import 'bulma/sass/utilities/mixins';
+@import 'bulma/sass/utilities/controls';
+@import 'bulma/sass/utilities/extends';
+
+// Import Bulma and Oruga styles
+@import 'bulma/bulma';
+@import '@oruga-ui/theme-bulma/dist/scss/bulma';

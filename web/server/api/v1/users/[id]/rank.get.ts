@@ -1,10 +1,11 @@
-import { Database, Song } from '@ddradar/core'
+import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import type { CompatibilityEvent } from 'h3'
 import { useQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
-import { getQueryInteger, sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~/server/utils'
+import { getQueryInteger } from '~/src/path'
 
 const danceLevels: string[] = [...Database.danceLevelSet]
 
@@ -46,7 +47,7 @@ export default async (event: CompatibilityEvent) => {
   const lv = getQueryInteger(query, 'lv')
 
   const conditions: Condition<'UserDetails'>[] = []
-  if (Song.isPlayStyle(style)) {
+  if (Database.isPlayStyle(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
   if (lv >= 1 && lv <= 20) {
