@@ -4,10 +4,11 @@
 
     <div class="buttons">
       <NuxtLink
-        v-for="(l, i) in pages"
-        :key="i"
+        v-for="l in pages"
+        :key="l.key"
         class="button is-info"
-        :class="{ 'is-disabled': name === l.key || series === l.key }"
+        :class="{ 'is-outlined': isButtonDisabled(l.key) }"
+        :disabled="isButtonDisabled(l.key)"
         :to="{ path: '/songs', query: l.query }"
       >
         {{ l.name }}
@@ -67,11 +68,12 @@ const _route = useRoute()
 const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
 
+const uri = `/api/v1/songs?name=${name}&series=${series}`
 const {
   data: songs,
   pending: isLoading,
   refresh,
-} = await useFetch(`/api/v1/songs?name=${name}&series=${series}`)
+} = await useFetch(uri, { key: uri })
 watch(
   () => _route.query,
   () => refresh()
@@ -98,4 +100,5 @@ const pages =
         query: { series: key },
       }))
     : []
+const isButtonDisabled = (key: number) => name === key || series === key || null
 </script>
