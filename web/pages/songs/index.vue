@@ -35,7 +35,7 @@
         {{ props.row.artist }}
       </OTableColumn>
       <OTableColumn v-slot="props" field="bpm" label="BPM">
-        {{ props.row.bpm }}
+        {{ getDisplayedBPM(props.row) }}
       </OTableColumn>
 
       <template #empty>
@@ -57,7 +57,12 @@ import { watch } from 'vue'
 
 import { useFetch, useRoute } from '#app'
 import { getQueryInteger } from '~/src/path'
-import { nameIndexMap, seriesNames, shortenSeriesName } from '~/src/song'
+import {
+  getDisplayedBPM,
+  nameIndexMap,
+  seriesNames,
+  shortenSeriesName,
+} from '~/src/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })
