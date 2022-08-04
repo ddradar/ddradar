@@ -64,7 +64,8 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
       DDR SuperNOVA2
     </a>
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       DDR X
     </a>
@@ -404,7 +405,8 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
       DDR SuperNOVA2
     </a>
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       DDR X
     </a>
@@ -618,7 +620,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
               data-label="BPM"
               scoped=""
             >
-              
+              180
             </td>
             
             <!--v-if-->
@@ -664,7 +666,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
               data-label="BPM"
               scoped=""
             >
-              
+              180
             </td>
             
             <!--v-if-->
@@ -710,7 +712,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
               data-label="BPM"
               scoped=""
             >
-              
+              160
             </td>
             
             <!--v-if-->
@@ -876,7 +878,8 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
       DDR SuperNOVA2
     </a>
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       DDR X
     </a>

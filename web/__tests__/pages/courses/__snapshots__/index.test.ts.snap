@@ -14,7 +14,8 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
   >
     
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       NONSTOP (A20)
     </a>
@@ -265,7 +266,8 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
   >
     
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       NONSTOP (A20)
     </a>
@@ -490,7 +492,8 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
   >
     
     <a
-      class="button is-info is-disabled"
+      class="button is-info is-outlined"
+      disabled="true"
     >
       NONSTOP (A20)
     </a>
