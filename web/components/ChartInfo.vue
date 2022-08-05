@@ -55,7 +55,7 @@ import { computed } from 'vue'
 import Card from '~/components/Card.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
-import { getChartTitle } from '~/src/song'
+import { difficultyMap, getChartTitle } from '~/src/song'
 
 type CourseChart = CourseInfo['charts'][number]
 type Chart = SongInfo['charts'][number] | CourseChart
@@ -69,7 +69,7 @@ const props = defineProps<ChartInfoProps>()
 const cardType = computed(
   () =>
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    Song.difficultyMap
+    difficultyMap
       .get(props.chart.difficulty)!
       .toLowerCase() as Lowercase<Song.DifficultyName>
 )

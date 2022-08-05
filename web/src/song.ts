@@ -16,6 +16,8 @@ export const seriesIndexes = [...Array(Song.seriesSet.size).keys()]
 /** seriesIndexes that has NONSTOP/GRADE course */
 export const courseSeriesIndexes = [16, 17, 18]
 
+export const difficultyMap: ReadonlyMap<number, string> = Song.difficultyMap
+
 export function getDisplayedBPM({
   minBPM,
   maxBPM,
@@ -32,7 +34,7 @@ export function getChartTitle({
 }: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
   const playStyleText = Song.playStyleMap.get(playStyle)!
-  const difficultyName = Song.difficultyMap.get(difficulty)!
+  const difficultyName = difficultyMap.get(difficulty)!
   /* eslint-enable @typescript-eslint/no-non-null-assertion */
   const shortPlayStyle = `${playStyleText[0]}P` as 'SP' | 'DP'
   return `${shortPlayStyle}-${difficultyName} (${level})` as const
