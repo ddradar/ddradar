@@ -13,8 +13,7 @@
               <NuxtLink
                 v-for="i in m.items"
                 :key="i.name"
-                class="button"
-                type="is-text"
+                class="button is-text"
                 :to="i.to"
               >
                 {{ i.name }}
@@ -31,6 +30,7 @@
 import Card from '~/components/Card.vue'
 import {
   courseSeriesIndexes,
+  levels,
   nameIndexMap,
   seriesNames,
   shortenSeriesName,
@@ -49,6 +49,20 @@ const menuList = [
     items: seriesNames.map((s, i) => ({
       name: shortenSeriesName(s),
       to: `/songs?series=${i}`,
+    })),
+  },
+  {
+    title: 'レベルから探す(SINGLE)',
+    items: levels.map(name => ({
+      name,
+      to: `/charts?style=1&level=${name}`,
+    })),
+  },
+  {
+    title: 'レベルから探す(DOUBLE)',
+    items: levels.map(name => ({
+      name,
+      to: `/charts?style=2&level=${name}`,
     })),
   },
   {
