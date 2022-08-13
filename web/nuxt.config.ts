@@ -15,13 +15,15 @@ export default defineNuxtConfig({
   build: {
     transpile: [/@oruga-ui\/oruga-next/],
   },
-  meta: {
-    link: [
-      {
-        rel: 'stylesheet',
-        href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css',
-      },
-    ],
+  app: {
+    head: {
+      link: [
+        {
+          rel: 'stylesheet',
+          href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css',
+        },
+      ],
+    },
   },
   css: ['@/assets/css/main.scss'],
 })
