@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
+    "build:swa": "nuxt build && rm -rf ./staticwebapp.config.json",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "pretest": "nuxt prepare",
