@@ -1,4 +1,4 @@
-name: staging
+name: Build & Deploy
 
 on:
   push:
@@ -9,19 +9,8 @@ on:
       - scripts/**
       - '**.md'
   pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - closed
-      - ready_for_review
-      - converted_to_draft
-    branches:
-      - master
-    paths-ignore:
-      - functions/**
-      - scripts/**
-      - '**.md'
+  release:
+    types: [published]
 
 env:
   NODE_VERSION: 16
@@ -29,7 +18,6 @@ env:
 jobs:
   build:
     name: Build
-    if: github.event_name == 'push' || (github.event.action != 'closed' && github.event.action != 'converted_to_draft')
     runs-on: ubuntu-20.04
 
     steps:
@@ -48,19 +36,19 @@ jobs:
         run: yarn build
 
       - name: Upload Artifact
-        if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
+        if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v3.1.0
         with:
           name: web
           path: web/.output
 
-  deploy-swa:
+  deploy:
     name: Deploy to Azure Static Web Apps
     needs: [build]
-    if: (!contains(github.actor, '[bot]')) && (github.event_name == 'push' || !github.event.pull_request.draft)
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-20.04
     environment:
-      name: Staging
+      name: ${{ (github.event_name == 'release' && 'Production') || 'Staging' }}
       url: ${{ steps.swa-deploy.outputs.static_web_app_url }}
 
     steps:
@@ -86,16 +74,4 @@ jobs:
           api_location: 'web/.output/server'
           skip_api_build: true
           config_file_location: /
-          deployment_environment: v2
-
-  close:
-    name: Close Staging Environment
-    if: github.event_name == 'pull_request' && (github.event.action == 'closed' || github.event.action == 'converted_to_draft')
-    runs-on: ubuntu-20.04
-
-    steps:
-      - name: Close
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: close
+          deployment_environment: ${{ (github.event_name == 'release' && '') || 'beta' }}
