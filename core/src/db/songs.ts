@@ -211,7 +211,7 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
   return (
     hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
     isValidSongId(obj.id) &&
-    /^([A-Z0-9 .ぁ-んー]*)$/.test(obj.nameKana) &&
+    /^([A-Z0-9 .\u3040-\u309Fー]*)$/.test(obj.nameKana) &&
     (seriesSet as ReadonlySet<string>).has(obj.series) &&
     hasIntegerProperty(obj, 'nameIndex') &&
     obj.nameIndex >= 0 &&
@@ -325,16 +325,16 @@ export const nameIndexMap: ReadonlyMap<
  */
 export function getNameIndex(nameKana: string): NameIndex {
   const regExps = new Map<RegExp, NameIndex>([
-    [/^[ぁ-お]/, 0],
-    [/^[か-ご]/, 1],
-    [/^[さ-ぞ]/, 2],
-    [/^[た-ど]/, 3],
-    [/^[な-の]/, 4],
-    [/^[は-ぽ]/, 5],
-    [/^[ま-も]/, 6],
-    [/^[ゃ-よ]/, 7],
-    [/^[ら-ろ]/, 8],
-    [/^[ゎ-ん]/, 9],
+    [/^[\u3041-\u304A\u3094]/, 0], // ぁ-おゔ
+    [/^[\u304B-\u3054\u3095-\u3096]/, 1], // か-ごゕ-ゖ
+    [/^[\u3055-\u305E]/, 2], // さ-ぞ
+    [/^[\u305F-\u3069]/, 3], // た-ど
+    [/^[\u306A-\u306E]/, 4], // な-の
+    [/^[\u306F-\u307D]/, 5], // は-ぽ
+    [/^[\u307E-\u3082]/, 6], // ま-も
+    [/^[\u3083-\u3088]/, 7], // ゃ-よ
+    [/^[\u3089-\u308D]/, 8], // ら-ろ
+    [/^[\u308E-\u3093]/, 9], // ゎ-ん
     [/^[aA]/, 10],
     [/^[bB]/, 11],
     [/^[cC]/, 12],
