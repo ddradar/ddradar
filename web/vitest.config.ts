@@ -1,6 +1,7 @@
-import vue from '@vitejs/plugin-vue'
 import fs from 'node:fs'
 import { resolve } from 'node:path'
+
+import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vitest/config'
 
 const NuxtTsConfig = fs.readFileSync('./.nuxt/tsconfig.json').toString()
