@@ -14,4 +14,7 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 })
 
+// Nuxt 3
+vi.stubGlobal('useFetch', vi.fn())
+vi.stubGlobal('useRoute', vi.fn())
 vi.stubGlobal('definePageMeta', vi.fn())

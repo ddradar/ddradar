@@ -27,7 +27,6 @@
 import { createError } from 'h3'
 import { computed } from 'vue'
 
-import { useFetch, useRoute } from '#app'
 import ChartInfo from '~/components/ChartInfo.vue'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
 import { getDisplayedBPM } from '~/src/song'

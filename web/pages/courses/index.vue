@@ -50,7 +50,6 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 
-import { useFetch, useRoute } from '#app'
 import { getQueryInteger } from '~/src/path'
 import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
 
