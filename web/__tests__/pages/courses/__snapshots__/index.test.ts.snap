@@ -155,7 +155,12 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -166,7 +171,12 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -404,7 +414,12 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -636,7 +651,12 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <div
           class="o-load loading"
         >

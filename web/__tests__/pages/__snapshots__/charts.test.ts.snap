@@ -297,7 +297,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -347,7 +352,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -358,7 +368,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -720,7 +735,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: [] } renders
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -1076,7 +1096,12 @@ exports[`Page /charts > snapshot tests > { isLoading: true } renders loading sta
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <div
           class="o-load loading"
         >
