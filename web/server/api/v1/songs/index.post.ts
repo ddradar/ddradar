@@ -1,7 +1,7 @@
 import { Database } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
-import { useBody } from 'h3'
+import type { H3Event } from 'h3'
+import { readBody } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
 
@@ -45,8 +45,8 @@ import { sendNullWithError } from '~/server/utils'
  * }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
-  const body = await useBody(event)
+export default async (event: H3Event) => {
+  const body = await readBody(event)
   if (!Database.isSongSchema(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
   }

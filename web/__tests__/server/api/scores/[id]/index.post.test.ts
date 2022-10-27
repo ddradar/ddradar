@@ -7,7 +7,7 @@ import {
   testSongData,
 } from '@ddradar/core/__tests__/data'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -34,7 +34,7 @@ describe('POST /api/v1/scores/[id]', () => {
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
-    vi.mocked(useBody).mockClear()
+    vi.mocked(readBody).mockClear()
     vi.mocked(fetchList).mockClear()
     vi.mocked(fetchOne).mockClear()
     vi.mocked(sendNullWithError).mockClear()
@@ -63,14 +63,14 @@ describe('POST /api/v1/scores/[id]', () => {
     // Assert
     expect(userScores).toBeNull()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(useBody)).not.toBeCalled()
+    expect(vi.mocked(readBody)).not.toBeCalled()
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchOne)).not.toBeCalled()
   })
 
   test.each(['', [], ['foo']])('(body: %o) returns 400', async body => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue(body)
+    vi.mocked(readBody).mockResolvedValue(body)
     const event = createEvent({ id: testSongData.id })
 
     // Act
@@ -90,7 +90,7 @@ describe('POST /api/v1/scores/[id]', () => {
 
   test('(user: <anonymous>) returns 401', async () => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue([
+    vi.mocked(readBody).mockResolvedValue([
       { ...score, playStyle: 1, difficulty: 0 },
     ])
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
@@ -108,7 +108,7 @@ describe('POST /api/v1/scores/[id]', () => {
 
   test('(id: <not exist song id>) returns 404', async () => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue([
+    vi.mocked(readBody).mockResolvedValue([
       { ...score, playStyle: 1, difficulty: 0 },
     ])
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
@@ -131,7 +131,7 @@ describe('POST /api/v1/scores/[id]', () => {
     '(body: [{ ...scores, playStyle: %i, difficulty: %i }]) returns 404',
     async (playStyle, difficulty) => {
       // Arrange
-      vi.mocked(useBody).mockResolvedValue([
+      vi.mocked(readBody).mockResolvedValue([
         { ...score, playStyle, difficulty },
       ])
       vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
@@ -161,7 +161,7 @@ describe('POST /api/v1/scores/[id]', () => {
     },
   ])('(body: [%o]) returns 400', async score => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue([score])
+    vi.mocked(readBody).mockResolvedValue([score])
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
@@ -191,7 +191,7 @@ describe('POST /api/v1/scores/[id]', () => {
       maxCombo: 264,
       exScore: 762,
     } as const
-    vi.mocked(useBody).mockResolvedValue([score])
+    vi.mocked(readBody).mockResolvedValue([score])
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
@@ -241,7 +241,7 @@ describe('POST /api/v1/scores/[id]', () => {
     ],
   ])('(user: publicUser, body: [%o]) calls %i batch', async (score, length) => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue([score])
+    vi.mocked(readBody).mockResolvedValue([score])
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
@@ -270,7 +270,7 @@ describe('POST /api/v1/scores/[id]', () => {
     [publicUser, 6], // publicUser scores, area top scores, and world top scores(old & new)
   ])('(user: %o, body: [<MFC score>]) calls %i batch', async (user, length) => {
     // Arrange
-    vi.mocked(useBody).mockResolvedValue([score])
+    vi.mocked(readBody).mockResolvedValue([score])
     vi.mocked(getLoginUserInfo).mockResolvedValue(user)
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
@@ -308,7 +308,7 @@ describe('POST /api/v1/scores/[id]', () => {
       rank: 'E',
       topScore: 1000000,
     } as const
-    vi.mocked(useBody).mockResolvedValue([score])
+    vi.mocked(readBody).mockResolvedValue([score])
     vi.mocked(getLoginUserInfo).mockResolvedValue(privateUser)
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(fetchOne).mockResolvedValue(testSongData as any)

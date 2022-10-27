@@ -5,11 +5,8 @@ import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { useFetch, useRoute } from '#app'
 import { mountAsync } from '~/__tests__/test-utils'
 import Page from '~/pages/courses/index.vue'
-
-vi.mock('#app')
 
 describe('Page /courses', () => {
   const query = { type: '1', series: '16' }

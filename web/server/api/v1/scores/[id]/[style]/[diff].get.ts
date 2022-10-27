@@ -1,8 +1,8 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
-import { useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -70,7 +70,7 @@ export type ScoreInfo = Omit<
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   // route params
   const id: string = event.context.params.id
   const style = parseFloat(event.context.params.style)
@@ -85,7 +85,7 @@ export default async (event: CompatibilityEvent) => {
   }
 
   // query
-  const queryValue = getQueryString(useQuery(event), 'scope') ?? 'medium'
+  const queryValue = getQueryString(getQuery(event), 'scope') ?? 'medium'
   /**
    * `private`: Only personal best score
    * `medium`(default): Personal best, area top, and world top scores

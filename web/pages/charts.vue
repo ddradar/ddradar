@@ -64,7 +64,6 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 
-import { useFetch, useRoute } from '#app'
 import DifficultyBadge from '~/components/DifficultyBadge.vue'
 import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
 import { getQueryInteger } from '~/src/path'

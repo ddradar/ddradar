@@ -1,6 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import { sendNullWithError } from '~~/server/utils'
 
@@ -28,7 +28,7 @@ import { sendNullWithError } from '~~/server/utils'
  * }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const id: string = event.context.params.id
 
   const notification = (await fetchOne(

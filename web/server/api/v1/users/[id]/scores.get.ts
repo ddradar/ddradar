@@ -1,7 +1,8 @@
 import type { Database } from '@ddradar/core'
 import { Score, Song } from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
-import { CompatibilityEvent, useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -46,11 +47,11 @@ export type ScoreList = Omit<
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = useQuery(event)
+  const query = getQuery(event)
   const playStyle = getQueryInteger(query, 'style')
   const difficulty = getQueryInteger(query, 'diff')
   const level = getQueryInteger(query, 'level')

@@ -1,6 +1,6 @@
 import { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
 
@@ -25,7 +25,7 @@ export type ExistsUser = Pick<Database.UserSchema, 'id'> & {
  * { "id": "afro0001", "exists": true }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const id: string = event.context.params.id
   if (!Database.isValidUserId(id)) return sendNullWithError(event, 404)
 

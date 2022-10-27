@@ -1,8 +1,8 @@
 import type { OperationInput } from '@azure/cosmos'
 import { Api, Database, Score } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
-import { useBody } from 'h3'
+import type { H3Event } from 'h3'
+import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -82,13 +82,13 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   // route params
   const id: string = event.context.params.id
   if (!Database.isValidSongId(id)) return sendNullWithError(event, 404)
 
   // body
-  const body = await useBody(event)
+  const body = await readBody(event)
   if (!isValidBody(body)) {
     return sendNullWithError(event, 400, 'body is not Score[]')
   }

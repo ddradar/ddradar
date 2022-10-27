@@ -1,4 +1,4 @@
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import type { UserInfo } from '~/server/api/v1/users/index.get'
 import { tryFetchUser } from '~/server/auth'
@@ -25,7 +25,7 @@ import { sendNullWithError } from '~/server/utils'
  * }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 

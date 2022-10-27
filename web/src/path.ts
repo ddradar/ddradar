@@ -1,4 +1,4 @@
-import type { useQuery } from 'h3'
+import type { getQuery } from 'h3'
 import type { LocationQuery } from 'vue-router'
 
 /**
@@ -8,7 +8,7 @@ import type { LocationQuery } from 'vue-router'
  * @returns String value (if multiple query, returns last value)
  */
 export function getQueryString(
-  query: ReturnType<typeof useQuery> | LocationQuery,
+  query: ReturnType<typeof getQuery> | LocationQuery,
   key: string
 ) {
   const value = query[key]
@@ -22,7 +22,7 @@ export function getQueryString(
  * @returns Integer value or NaN
  */
 export function getQueryInteger(
-  query: ReturnType<typeof useQuery> | LocationQuery,
+  query: ReturnType<typeof getQuery> | LocationQuery,
   key: string
 ) {
   const value = getQueryString(query, key)

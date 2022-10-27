@@ -1,6 +1,6 @@
 import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -20,7 +20,7 @@ import { sendNullWithError } from '~/server/utils'
  * - Returns `404 Not Found` if parameters are invalid or no score.
  * - Returns `204 No Content` otherwize.
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   // route params
   const id: string = event.context.params.id
   const style = parseFloat(event.context.params.style)

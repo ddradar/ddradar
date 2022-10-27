@@ -1,6 +1,6 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -36,7 +36,7 @@ describe('POST /api/v1/songs', () => {
   test('returns 400 if body is empty', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(null)
+    vi.mocked(readBody).mockResolvedValue(null)
 
     // Act
     const song = await postSongInfo(event)
@@ -61,7 +61,7 @@ describe('POST /api/v1/songs', () => {
   ])('(body: %o) returns 200 with %o', async (body, expected) => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(body)
+    vi.mocked(readBody).mockResolvedValue(body)
 
     // Act
     const result = await postSongInfo(event)

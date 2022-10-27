@@ -1,5 +1,5 @@
 import type { Database } from '@ddradar/core'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -28,7 +28,7 @@ export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
  * }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const user = await getLoginUserInfo(event)
   if (!user) {
     return sendNullWithError(event, 404, 'User registration is not completed')

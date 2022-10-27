@@ -1,6 +1,6 @@
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
@@ -22,7 +22,7 @@ const authHeader = 'x-ms-client-principal'
 
 describe('server/auth.ts', () => {
   describe('useClientPrincipal', () => {
-    const event: Pick<CompatibilityEvent, 'req'> = createEvent()
+    const event: Pick<H3Event, 'req'> = createEvent()
     beforeEach(() => {
       event.req.headers = {}
     })
@@ -62,7 +62,7 @@ describe('server/auth.ts', () => {
   })
 
   describe('getLoginUserInfo', () => {
-    const event: Pick<CompatibilityEvent, 'req'> = createEvent()
+    const event: Pick<H3Event, 'req'> = createEvent()
     beforeEach(() => {
       event.req.headers = {}
       vi.mocked(fetchLoginUser).mockClear()

@@ -6,7 +6,7 @@ import {
   testSongData,
 } from '@ddradar/core/__tests__/data'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -33,7 +33,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
-    vi.mocked(useBody).mockClear()
+    vi.mocked(readBody).mockClear()
     vi.mocked(fetchList).mockClear()
     vi.mocked(fetchJoinedList).mockClear()
     vi.mocked(sendNullWithError).mockClear()
@@ -63,7 +63,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     // Assert
     expect(userScore).toBeNull()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(useBody)).not.toBeCalled()
+    expect(vi.mocked(readBody)).not.toBeCalled()
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchJoinedList)).not.toBeCalled()
   })
@@ -71,7 +71,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 400 if body is not Score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(useBody).mockResolvedValue({})
+    vi.mocked(readBody).mockResolvedValue({})
     const event = createEvent(params)
 
     // Act
@@ -91,7 +91,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 401 if anonymous', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(useBody).mockResolvedValue(mfcScore)
+    vi.mocked(readBody).mockResolvedValue(mfcScore)
     const event = createEvent(params)
 
     // Act
@@ -107,7 +107,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 404 if not found SongChart data', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(useBody).mockResolvedValue(mfcScore)
+    vi.mocked(readBody).mockResolvedValue(mfcScore)
     vi.mocked(fetchJoinedList).mockResolvedValue([])
     const event = createEvent(params)
 
@@ -122,7 +122,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 400 if body is invalid Score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(useBody).mockResolvedValue({
+    vi.mocked(readBody).mockResolvedValue({
       score: 90000,
       clearLamp: 2,
       rank: 'E',
@@ -148,7 +148,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     // Arrange
     const body = { score: 900000, clearLamp: 3, rank: 'AA' } as const
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(useBody).mockResolvedValue(body)
+    vi.mocked(readBody).mockResolvedValue(body)
     vi.mocked(fetchJoinedList).mockResolvedValue([song])
     vi.mocked(fetchList).mockResolvedValue([])
     const event = createEvent(params)
@@ -200,7 +200,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     async (body, length) => {
       // Arrange
       vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-      vi.mocked(useBody).mockResolvedValue(body)
+      vi.mocked(readBody).mockResolvedValue(body)
       vi.mocked(fetchJoinedList).mockResolvedValue([song])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue(dbScores as any)
@@ -235,7 +235,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   ])('(user: %o, score: <MFC score>) calls %i batch', async (user, length) => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(user)
-    vi.mocked(useBody).mockResolvedValue(mfcScore)
+    vi.mocked(readBody).mockResolvedValue(mfcScore)
     vi.mocked(fetchJoinedList).mockResolvedValue([song])
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue(dbScores as any)

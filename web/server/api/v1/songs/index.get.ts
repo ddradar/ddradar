@@ -1,7 +1,8 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { CompatibilityEvent, useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~/src/path'
 
@@ -36,8 +37,8 @@ const seriesNames = [...Song.seriesSet]
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
-  const query = useQuery(event)
+export default async (event: H3Event) => {
+  const query = getQuery(event)
   const name = getQueryInteger(query, 'name')
   const series = getQueryInteger(query, 'series')
 

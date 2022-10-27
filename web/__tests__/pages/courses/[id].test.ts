@@ -4,11 +4,8 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { useFetch, useRoute } from '#app'
 import { mountAsync } from '~/__tests__/test-utils'
 import Page from '~/pages/courses/[id].vue'
-
-vi.mock('#app')
 
 describe('Page /courses/[id]', () => {
   const params = { id: testCourseData.id }
