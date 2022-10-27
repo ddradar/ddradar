@@ -1,6 +1,6 @@
 import { notifications } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
-import { useQuery } from 'h3'
+import { getQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -34,7 +34,7 @@ describe('GET /api/v1/notification', () => {
     ['TOP', []],
   ])('?scope=%s calls fetchList(..., ..., %o)', async (scope, expected) => {
     // Arrange
-    vi.mocked(useQuery).mockReturnValue({ scope })
+    vi.mocked(getQuery).mockReturnValue({ scope })
     const event = createEvent()
 
     // Act

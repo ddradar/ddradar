@@ -1,6 +1,6 @@
 import { Database } from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
 
@@ -31,7 +31,7 @@ export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const style: number = parseInt(event.context.params.style, 10)
   const level: number = parseInt(event.context.params.level, 10)
 

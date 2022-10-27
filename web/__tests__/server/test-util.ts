@@ -1,10 +1,8 @@
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 import type { ClientPrincipal } from '~/server/auth'
 
-export function createEvent(
-  params?: Record<string, string>
-): CompatibilityEvent {
+export function createEvent(params?: Record<string, string>): H3Event {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   return { req: {}, context: { params }, res: { statusCode: 200 } } as any
 }

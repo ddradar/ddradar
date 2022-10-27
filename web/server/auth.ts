@@ -1,6 +1,6 @@
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
+import type { H3Event } from 'h3'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'
 
@@ -28,7 +28,7 @@ export interface ClientPrincipal {
  * @description https://docs.microsoft.com/azure/static-web-apps/user-information?tabs=javascript#api-functions
  */
 export function useClientPrincipal(
-  event: Pick<CompatibilityEvent, 'req'>
+  event: Pick<H3Event, 'req'>
 ): ClientPrincipal | null {
   const header = event.req.headers['x-ms-client-principal']
   if (typeof header !== 'string') return null
@@ -43,7 +43,7 @@ export function useClientPrincipal(
 }
 
 export async function getLoginUserInfo(
-  event: Pick<CompatibilityEvent, 'req'>
+  event: Pick<H3Event, 'req'>
 ): Promise<Database.UserSchema | null> {
   const clientPrincipal = useClientPrincipal(event)
   if (!clientPrincipal) return null
@@ -56,7 +56,7 @@ export async function getLoginUserInfo(
  * @returns Database.UserSchema if user is public or same as login user. otherwise null.
  */
 export async function tryFetchUser(
-  event: Pick<CompatibilityEvent, 'req' | 'context'>
+  event: Pick<H3Event, 'req' | 'context'>
 ): Promise<Database.UserSchema | null> {
   const id: string = event.context.params.id
   if (!Database.isValidUserId(id)) return null

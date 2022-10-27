@@ -1,5 +1,5 @@
 import { getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -52,7 +52,7 @@ describe('POST /api/v1/notification', () => {
   ])('(%o) returns 400', async (body: unknown) => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(body)
+    vi.mocked(readBody).mockResolvedValue(body)
 
     // Arrange - Act
     const notification = await postNotification(event)
@@ -76,7 +76,7 @@ describe('POST /api/v1/notification', () => {
   ])('(%o) returns 200 with %o', async (body, expected) => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(body)
+    vi.mocked(readBody).mockResolvedValue(body)
 
     // Arrange - Act
     const notification = await postNotification(event)

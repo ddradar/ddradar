@@ -1,6 +1,6 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
-import { useQuery } from 'h3'
+import { getQuery } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
@@ -40,7 +40,7 @@ describe('GET /api/v1/courses', () => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue([testCourseData] as any)
-      vi.mocked(useQuery).mockReturnValue({ type, series })
+      vi.mocked(getQuery).mockReturnValue({ type, series })
       const event = createEvent()
 
       // Act

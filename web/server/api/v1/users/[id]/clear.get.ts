@@ -1,8 +1,8 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
-import { useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -47,11 +47,11 @@ export type ClearStatus = Pick<
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = useQuery(event)
+  const query = getQuery(event)
   const style = getQueryInteger(query, 'style')
   const lv = getQueryInteger(query, 'lv')
 

@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import { useBody } from 'h3'
+import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
@@ -49,7 +49,7 @@ describe('POST /api/v1/user', () => {
     // Arrange
     const event = createEvent()
     vi.mocked(useClientPrincipal).mockReturnValue(principal)
-    vi.mocked(useBody).mockResolvedValue(null)
+    vi.mocked(readBody).mockResolvedValue(null)
 
     // Act
     const result = await postUserInfo(event)
@@ -63,7 +63,7 @@ describe('POST /api/v1/user', () => {
   test('returns 200 with JSON (Create)', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(user)
+    vi.mocked(readBody).mockResolvedValue(user)
     vi.mocked(useClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(null)
     vi.mocked(fetchLoginUser).mockResolvedValue(null)
@@ -97,7 +97,7 @@ describe('POST /api/v1/user', () => {
         isPublic: user.isPublic,
         ...diff,
       }
-      vi.mocked(useBody).mockResolvedValue(body)
+      vi.mocked(readBody).mockResolvedValue(body)
       vi.mocked(useClientPrincipal).mockReturnValue(principal)
       vi.mocked(fetchUser).mockResolvedValue(publicUser)
       vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
@@ -118,7 +118,7 @@ describe('POST /api/v1/user', () => {
   test('returns 400 if changed loginId', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue(user)
+    vi.mocked(readBody).mockResolvedValue(user)
     vi.mocked(useClientPrincipal).mockReturnValue({ ...principal, userId: '3' })
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
@@ -135,7 +135,7 @@ describe('POST /api/v1/user', () => {
   test('returns 400 if changed id', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue({ ...user, id: 'update' })
+    vi.mocked(readBody).mockResolvedValue({ ...user, id: 'update' })
     vi.mocked(useClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
@@ -152,7 +152,7 @@ describe('POST /api/v1/user', () => {
   test('returns 200 but does not update if changed area', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useBody).mockResolvedValue({ ...user, area: 14 })
+    vi.mocked(readBody).mockResolvedValue({ ...user, area: 14 })
     vi.mocked(useClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)

@@ -1,6 +1,6 @@
 import { publicUser } from '@ddradar/core/__tests__/data'
 import { fetchList } from '@ddradar/db'
-import { useQuery } from 'h3'
+import { getQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
@@ -40,7 +40,7 @@ describe('GET /api/v1/users', () => {
     async (name, area, code, conditions) => {
       // Arrange
       vi.mocked(useClientPrincipal).mockReturnValue(null)
-      vi.mocked(useQuery).mockReturnValue({ name, area, code })
+      vi.mocked(getQuery).mockReturnValue({ name, area, code })
 
       // Act
       const users = await getUserList(createEvent())
@@ -59,7 +59,7 @@ describe('GET /api/v1/users', () => {
     vi.mocked(useClientPrincipal).mockReturnValue(
       createClientPrincipal(publicUser.id, publicUser.loginId)
     )
-    vi.mocked(useQuery).mockReturnValue({})
+    vi.mocked(getQuery).mockReturnValue({})
 
     // Act
     const users = await getUserList(createEvent())

@@ -1,6 +1,7 @@
 import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { CompatibilityEvent, useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { getQueryString } from '~/src/path'
 
@@ -28,8 +29,8 @@ type Notification = Omit<Database.NotificationSchema, 'sender' | 'pinned'>
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent): Promise<Notification[]> => {
-  const pinnedOnly = getQueryString(useQuery(event), 'scope') === 'top'
+export default async (event: H3Event): Promise<Notification[]> => {
+  const pinnedOnly = getQueryString(getQuery(event), 'scope') === 'top'
 
   const conditions: Condition<'Notification'>[] = [
     { condition: 'c.sender = "SYSTEM"' },

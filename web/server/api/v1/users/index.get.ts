@@ -1,6 +1,7 @@
 import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { CompatibilityEvent, useQuery } from 'h3'
+import type { H3Event } from 'h3'
+import { getQuery } from 'h3'
 
 import { useClientPrincipal } from '~/server/auth'
 import { getQueryInteger, getQueryString } from '~/src/path'
@@ -38,9 +39,9 @@ export type UserInfo = Omit<
  * ]
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   const loginId = useClientPrincipal(event)?.userId ?? null
-  const query = useQuery(event)
+  const query = getQuery(event)
   const name = getQueryString(query, 'name')
   const area = getQueryInteger(query, 'area')
   const code = getQueryInteger(query, 'code')

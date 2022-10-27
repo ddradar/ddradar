@@ -1,8 +1,8 @@
 import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
 import { Database, Score } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import type { CompatibilityEvent } from 'h3'
-import { useBody } from 'h3'
+import type { H3Event } from 'h3'
+import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -52,7 +52,7 @@ type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
  * }
  * ```
  */
-export default async (event: CompatibilityEvent) => {
+export default async (event: H3Event) => {
   // route params
   const id: string = event.context.params.id
   const style = parseFloat(event.context.params.style)
@@ -66,7 +66,7 @@ export default async (event: CompatibilityEvent) => {
   }
 
   // body
-  const body = await useBody(event)
+  const body = await readBody(event)
   if (!Score.isScore(body)) {
     return sendNullWithError(event, 400, 'body is not Score')
   }
