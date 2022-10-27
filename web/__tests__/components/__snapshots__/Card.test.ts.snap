@@ -35,7 +35,12 @@ exports[`components/Card.vue > ({ title: 'title', variant: 'danger', collapsible
       </a>
     </header>
   </div>
-  <transition-stub>
+  <transition-stub
+    appear="false"
+    css="true"
+    name="slide"
+    persisted="false"
+  >
     <div
       class="o-clps__content"
       id="title"
@@ -83,7 +88,12 @@ exports[`components/Card.vue > ({ title: 'title', variant: 'info', collapsible: 
       </a>
     </header>
   </div>
-  <transition-stub>
+  <transition-stub
+    appear="false"
+    css="true"
+    name="slide"
+    persisted="false"
+  >
     <div
       class="o-clps__content"
       id="title"

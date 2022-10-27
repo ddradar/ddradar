@@ -267,7 +267,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -625,7 +630,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -671,7 +681,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -717,7 +732,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             
             <!--v-if-->
           </tr>
-          <transition-stub>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
             <!--v-if-->
           </transition-stub>
           <!--v-if-->
@@ -728,7 +748,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <!--v-if-->
       </transition-stub>
       
@@ -1087,7 +1112,12 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
         <!--v-if-->
       </table>
       
-      <transition-stub>
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
         <div
           class="o-load loading"
         >

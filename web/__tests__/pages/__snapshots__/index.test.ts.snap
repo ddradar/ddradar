@@ -50,7 +50,12 @@ exports[`Page / > renders expected menu 1`] = `
             </a>
           </header>
         </div>
-        <transition-stub>
+        <transition-stub
+          appear="false"
+          css="true"
+          name="slide"
+          persisted="false"
+        >
           <div
             class="o-clps__content"
             id="曲名から探す"
@@ -294,7 +299,12 @@ exports[`Page / > renders expected menu 1`] = `
             </a>
           </header>
         </div>
-        <transition-stub>
+        <transition-stub
+          appear="false"
+          css="true"
+          name="slide"
+          persisted="false"
+        >
           <div
             class="o-clps__content"
             id="シリーズから探す"
@@ -448,7 +458,12 @@ exports[`Page / > renders expected menu 1`] = `
             </a>
           </header>
         </div>
-        <transition-stub>
+        <transition-stub
+          appear="false"
+          css="true"
+          name="slide"
+          persisted="false"
+        >
           <div
             class="o-clps__content"
             id="レベルから探す(SINGLE)"
@@ -602,7 +617,12 @@ exports[`Page / > renders expected menu 1`] = `
             </a>
           </header>
         </div>
-        <transition-stub>
+        <transition-stub
+          appear="false"
+          css="true"
+          name="slide"
+          persisted="false"
+        >
           <div
             class="o-clps__content"
             id="レベルから探す(DOUBLE)"
@@ -756,7 +776,12 @@ exports[`Page / > renders expected menu 1`] = `
             </a>
           </header>
         </div>
-        <transition-stub>
+        <transition-stub
+          appear="false"
+          css="true"
+          name="slide"
+          persisted="false"
+        >
           <div
             class="o-clps__content"
             id="コースから探す"

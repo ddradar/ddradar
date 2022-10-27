@@ -38,7 +38,12 @@ exports[`components/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] =
         </a>
       </header>
     </div>
-    <transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="slide"
+      persisted="false"
+    >
       <div
         class="o-clps__content"
         id="Chart Info"
@@ -147,7 +152,12 @@ exports[`components/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1`] = `
         </a>
       </header>
     </div>
-    <transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="slide"
+      persisted="false"
+    >
       <div
         class="o-clps__content"
         id="Chart Info"
