@@ -24,7 +24,7 @@ env:
 jobs:
   test:
     name: Cosmos DB Integration Test
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     services:
       cosmos-db:
@@ -47,6 +47,7 @@ jobs:
         uses: actions/checkout@v3.0.2
 
       - name: Import DB Emulator Certificate
+        timeout-minutes: 10
         run: |
           while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
           sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
