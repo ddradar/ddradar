@@ -2675,10 +2675,10 @@ eslint-plugin-unicorn@^44.0.2:
     semver "^7.3.7"
     strip-indent "^3.0.0"
 
-eslint-plugin-vitest@^0.0.20:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.20.tgz#875f1bb086e66bdd12b7c60f59ddd1dfa28252d7"
-  integrity sha512-c4Rap+L5L9jkjwo9EubiLaJn0gp1bDQD7kyVR8IU6gUONtBba/hC/zlpd85svWKPuU4Ko6OOk/4AUtYfaGCHzA==
+eslint-plugin-vitest@^0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.21.tgz#216558d1eaf508eaf033804b19dedcfccf5f761f"
+  integrity sha512-eer/eS0T9MW8X9CKHg6M9URKgSEOJ8I24CKQlz1WhD68Hz2Uuwepb61OHZ+33Fcuzp4YXl/qqd7XSSq+p8BJAw==
   dependencies:
     "@typescript-eslint/utils" "^5.42.1"
 
