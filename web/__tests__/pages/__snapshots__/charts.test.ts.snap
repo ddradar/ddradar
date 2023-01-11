@@ -263,14 +263,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               1st
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 PARANOiA
@@ -279,7 +277,6 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Difficulty"
-              scoped=""
             >
               <span
                 class="tag is-beginner"
@@ -290,7 +287,6 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Level"
-              scoped=""
             >
               4
             </td>
@@ -318,14 +314,12 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               1st
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 PARANOiA
@@ -334,7 +328,6 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Difficulty"
-              scoped=""
             >
               <span
                 class="tag is-basic"
@@ -345,7 +338,6 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
             <td
               class=""
               data-label="Level"
-              scoped=""
             >
               8
             </td>
@@ -389,7 +381,7 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -756,7 +748,7 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: [] } renders
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -1132,7 +1124,7 @@ exports[`Page /charts > snapshot tests > { isLoading: true } renders loading sta
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
