@@ -139,14 +139,12 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               A20
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 TWENTY
@@ -192,7 +190,7 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -435,7 +433,7 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -687,7 +685,7 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"

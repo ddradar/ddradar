@@ -288,7 +288,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -600,14 +600,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               1st
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 PARANOiA
@@ -616,14 +614,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Artist"
-              scoped=""
             >
               180
             </td>
             <td
               class=""
               data-label="BPM"
-              scoped=""
             >
               180
             </td>
@@ -651,14 +647,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               X
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 PARANOiA(X-Special)
@@ -667,14 +661,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Artist"
-              scoped=""
             >
               180
             </td>
             <td
               class=""
               data-label="BPM"
-              scoped=""
             >
               180
             </td>
@@ -702,14 +694,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Series"
-              scoped=""
             >
               X
             </td>
             <td
               class=""
               data-label="Name"
-              scoped=""
             >
               <a>
                 SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
@@ -718,14 +708,12 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
             <td
               class=""
               data-label="Artist"
-              scoped=""
             >
               DE-SIRE
             </td>
             <td
               class=""
               data-label="BPM"
-              scoped=""
             >
               160
             </td>
@@ -769,7 +757,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
@@ -1148,7 +1136,7 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
       <div>
         <div>
           <nav
-            class="pagination"
+            class="pagination is-right"
           >
             <a
               aria-current="false"
