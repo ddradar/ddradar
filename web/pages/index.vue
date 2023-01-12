@@ -7,7 +7,7 @@
         :key="m.title"
         class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
       >
-        <Card :title="m.title" variant="primary" collapsible>
+        <CollapsibleCard :title="m.title" variant="primary" collapsible>
           <div class="card-content">
             <div class="buttons">
               <NuxtLink
@@ -20,14 +20,14 @@
               </NuxtLink>
             </div>
           </div>
-        </Card>
+        </CollapsibleCard>
       </section>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
-import Card from '~/components/Card.vue'
+import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import {
   courseSeriesIndexes,
   levels,

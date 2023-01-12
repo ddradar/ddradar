@@ -2,7 +2,7 @@
   <section
     class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
   >
-    <Card title="Chart Info" :variant="cardType" collapsible>
+    <CollapsibleCard title="Chart Info" :variant="cardType" collapsible>
       <div class="card-content">
         <div class="content">
           <ul>
@@ -44,7 +44,7 @@
           </table>
         </div>
       </div>
-    </Card>
+    </CollapsibleCard>
   </section>
 </template>
 
@@ -52,7 +52,7 @@
 import { Song } from '@ddradar/core'
 import { computed } from 'vue'
 
-import Card from '~/components/Card.vue'
+import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
 import { difficultyMap, getChartTitle } from '~/src/song'
