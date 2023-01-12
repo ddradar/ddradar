@@ -82,6 +82,6 @@ const pages = courseSeriesIndexes.flatMap(series =>
     name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
-const isButtonDisabled = (query: typeof pages[number]['query']) =>
+const isButtonDisabled = (query: (typeof pages)[number]['query']) =>
   (type === query.type && series === query.series) || null
 </script>
