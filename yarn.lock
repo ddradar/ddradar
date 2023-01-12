@@ -2579,10 +2579,10 @@ eslint-plugin-simple-import-sort@^8.0.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-simple-import-sort/-/eslint-plugin-simple-import-sort-8.0.0.tgz#9d9a2372b0606e999ea841b10458a370a6ccc160"
   integrity sha512-bXgJQ+lqhtQBCuWY/FUWdB27j4+lqcvXv5rUARkzbeWLwea+S5eBZEQrhnO+WgX3ZoJHVj0cn943iyXwByHHQw==
 
-eslint-plugin-vitest@^0.0.21:
-  version "0.0.21"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.21.tgz#216558d1eaf508eaf033804b19dedcfccf5f761f"
-  integrity sha512-eer/eS0T9MW8X9CKHg6M9URKgSEOJ8I24CKQlz1WhD68Hz2Uuwepb61OHZ+33Fcuzp4YXl/qqd7XSSq+p8BJAw==
+eslint-plugin-vitest@^0.0.28:
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.28.tgz#2e96d93bf8e854f21ec8e08ed3830a7168262237"
+  integrity sha512-xjlcrFo/qRjObHW1yOLwWPRzJapJu0NiaR8B1DHP8tPzCwxnHiX+x0dTl6OKOqpkOpTrRHQBiN6nM9JRIv5Gwg==
   dependencies:
     "@typescript-eslint/utils" "^5.42.1"
 
