@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import puppeteer from 'puppeteer-core'
+import { Browser as PuppeteerBrowser, launch, Page } from 'puppeteer-core'
 
 /* eslint-disable node/no-process-env */
 const { CHROME_EXE_PATH: executablePath, CHROME_USER_PATH: userDataDir } =
@@ -11,18 +11,18 @@ const { CHROME_EXE_PATH: executablePath, CHROME_USER_PATH: userDataDir } =
 /* eslint-enable node/no-process-env */
 
 export default class Browser {
-  private browser!: puppeteer.Browser
+  private browser!: PuppeteerBrowser
 
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
   static async create(): Promise<Browser> {
     const browser = new Browser()
-    browser.browser = await puppeteer.launch({ executablePath, userDataDir })
+    browser.browser = await launch({ executablePath, userDataDir })
     return browser
   }
 
-  async createPage(): Promise<puppeteer.Page> {
+  async createPage(): Promise<Page> {
     const page =
       (await this.browser.pages())[0] || (await this.browser.newPage())
 
