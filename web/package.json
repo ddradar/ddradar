@@ -19,6 +19,7 @@
     "@oruga-ui/theme-bulma": "^0.2.8"
   },
   "devDependencies": {
+    "@nuxt/eslint-config": "^0.1.1",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@vue/test-utils": "^2.2.0",
     "eslint-plugin-nuxt": "^4.0.0",
