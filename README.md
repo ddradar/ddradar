@@ -2,7 +2,7 @@
 
 日本語版のガイドは[こちら](README-ja.md)です。
 
-[![GitHub deployments](https://img.shields.io/github/deployments/ddradar/ddradar/staging?label=staging&logo=microsoft-azure)](https://lemon-water-096a66800.azurestaticapps.net/)
+[![GitHub deployments](https://img.shields.io/github/deployments/ddradar/ddradar/staging?label=staging&logo=microsoft-azure)](https://red-tree-09d43c100-beta.eastasia.azurestaticapps.net/)
 [![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/master)
 [![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
 [![Node.js CI](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml)
