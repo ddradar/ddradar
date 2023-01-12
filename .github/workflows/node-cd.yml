@@ -18,7 +18,7 @@ env:
 jobs:
   build:
     name: Build
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -46,7 +46,7 @@ jobs:
     name: Deploy to Azure Static Web Apps
     needs: [build]
     if: github.event_name != 'pull_request'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     environment:
       name: ${{ (github.event_name == 'release' && 'Production') || 'Staging' }}
       url: ${{ steps.swa-deploy.outputs.static_web_app_url }}
