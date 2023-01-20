@@ -249,20 +249,24 @@ const removeChart = (index: number) => charts.value.splice(index, 1)
 /** Set nameKana from upper-cased name. */
 const setNameKana = () => (nameKana.value = name.value.toUpperCase())
 
+const _setSongData = (song: SongInfo) => {
+  name.value = song.name
+  nameKana.value = song.nameKana
+  artist.value = song.artist
+  series.value = song.series
+  minBPM.value = song.minBPM
+  maxBPM.value = song.maxBPM
+  deleted.value = song.deleted
+  charts.value = song.charts
+}
+
+/** GET /api/v1/songs/:id */
 const fetchSongInfo = async () => {
   if (!id.value) return
   const { data: song } = await $fetch(`/api/v1/songs/${id.value}`)
-  if (song) {
-    name.value = song.name
-    nameKana.value = song.nameKana
-    artist.value = song.artist
-    series.value = song.series
-    minBPM.value = song.minBPM
-    maxBPM.value = song.maxBPM
-    deleted.value = song.deleted
-    charts.value = song.charts
-  }
+  if (song) _setSongData(song)
 }
+/** POST /api/v1/songs/:id */
 const saveSongInfo = async () => {
   const instance = oruga.modal.open({
     component: DialogModal,
@@ -282,11 +286,12 @@ const saveSongInfo = async () => {
     deleted: deleted.value,
     charts: charts.value,
   }
+  const { song } = await $fetch('/api/v1/songs', { method: 'POST', body })
+  _setSongData(song)
   oruga.notification.open({
     message: 'Saved Successfully!',
     variant: 'success',
     position: 'top',
   })
-  await fetchSongInfo()
 }
 </script>
