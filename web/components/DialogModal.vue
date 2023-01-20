@@ -11,12 +11,10 @@
     <div class="modal-card" style="width: auto">
       <header class="modal-card-head" :class="themeClass">
         <p class="modal-card-title">{{ title }}</p>
-        <OIcon
-          clickable
-          native-type="button"
+        <OButton
           icon="delete"
-          class="modal-card-icon"
-          @click.native="emits('close', 'canceled')"
+          :variant="variant"
+          @click="emits('close', 'canceled')"
         />
       </header>
       <section class="modal-card-body">

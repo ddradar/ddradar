@@ -185,7 +185,7 @@ import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~/components/DialogModal.vue'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
-import { difficultyMap, getDisplayedBPM, seriesNames } from '~/src/song'
+import { difficultyMap, seriesNames } from '~/src/song'
 
 const _chart = {
   level: 1,
@@ -282,7 +282,6 @@ const saveSongInfo = async () => {
     deleted: deleted.value,
     charts: charts.value,
   }
-  const { song } = await $fetch('/api/v1/songs', { method: 'POST', body })
   oruga.notification.open({
     message: 'Saved Successfully!',
     variant: 'success',
