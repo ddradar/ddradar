@@ -183,15 +183,9 @@
 import { Song } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
-import type { SongInfo } from '~/server/api/v1/songs/[id].get'
-import {
-  difficultyMap,
-  getDisplayedBPM,
-  nameIndexMap,
-  seriesNames,
-  shortenSeriesName,
-} from '~/src/song'
 import DialogModal from '~/components/DialogModal.vue'
+import type { SongInfo } from '~/server/api/v1/songs/[id].get'
+import { difficultyMap, getDisplayedBPM, seriesNames } from '~/src/song'
 
 const _chart = {
   level: 1,
@@ -272,10 +266,7 @@ const fetchSongInfo = async () => {
 const saveSongInfo = async () => {
   const instance = oruga.modal.open({
     component: DialogModal,
-    props: {
-      message: 'Add or update this?',
-      variant: 'info',
-    },
+    props: { message: 'Add or update this?', variant: 'info' },
     trapFocus: true,
   })
 
