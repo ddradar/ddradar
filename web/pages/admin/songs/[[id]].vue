@@ -79,7 +79,7 @@
         </OSelect>
         <OSelect v-model.number="chart.difficulty" placeholder="Difficulty">
           <option
-            v-for="(value, label) in difficultyMap"
+            v-for="[value, label] in difficultyMap"
             :key="value"
             :value="value"
           >
@@ -203,18 +203,18 @@ const _route = useRoute()
 const { oruga } = useProgrammatic()
 
 // SongInfo properties
-const id = ref<SongInfo['id']>(_route.params.id)
+const id = ref<SongInfo['id']>(_route.params.id as string)
 const name = ref<SongInfo['name']>('')
 const nameKana = ref<SongInfo['nameKana']>('')
 const nameIndex = computed<SongInfo['nameIndex']>(() =>
   Song.getNameIndex(nameKana.value)
 )
 const artist = ref<SongInfo['artist']>('')
-const series = ref<SongInfo['series']>(seriesNames.slice(-1))
+const series = ref<SongInfo['series']>(seriesNames.slice(-1)[0])
 const minBPM = ref<SongInfo['minBPM']>(null)
 const maxBPM = ref<SongInfo['maxBPM']>(null)
 const deleted = ref<SongInfo['deleted']>(false)
-const charts = ref<SongInfo['charts']>([
+const charts = ref<SongInfo['charts'][0][]>([
   { playStyle: 1, difficulty: 0, ..._chart },
   { playStyle: 1, difficulty: 1, ..._chart },
   { playStyle: 1, difficulty: 2, ..._chart },
@@ -225,7 +225,7 @@ const charts = ref<SongInfo['charts']>([
 ])
 
 // Validator
-const isValidSongId = computed(() => Song.isValidId(id.value))
+const isValidSongId = computed(() => Song.isValidSongId(id.value))
 const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
   charts.value.filter(
     c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
@@ -238,7 +238,7 @@ const hasError = computed(
     !series.value ||
     !minBPM.value !== !maxBPM.value ||
     charts.value.length === 0 ||
-    charts.value.some(c => hasDuplicatedCharty(c))
+    charts.value.some(c => hasDuplicatedChart(c))
 )
 
 /** Add empty chart in charts. */
@@ -257,13 +257,13 @@ const _setSongData = (song: SongInfo) => {
   minBPM.value = song.minBPM
   maxBPM.value = song.maxBPM
   deleted.value = song.deleted
-  charts.value = song.charts
+  charts.value = [...song.charts]
 }
 
 /** GET /api/v1/songs/:id */
 const fetchSongInfo = async () => {
   if (!id.value) return
-  const { data: song } = await $fetch(`/api/v1/songs/${id.value}`)
+  const song = await $fetch(`/api/v1/songs/${id.value}`)
   if (song) _setSongData(song)
 }
 /** POST /api/v1/songs/:id */
@@ -276,6 +276,7 @@ const saveSongInfo = async () => {
 
   if ((await instance.promise) !== 'yes') return
   const body: SongInfo = {
+    id: id.value,
     name: name.value,
     nameKana: nameKana.value,
     nameIndex: nameIndex.value,
@@ -286,8 +287,8 @@ const saveSongInfo = async () => {
     deleted: deleted.value,
     charts: charts.value,
   }
-  const { song } = await $fetch('/api/v1/songs', { method: 'POST', body })
-  _setSongData(song)
+  const song = await $fetch('/api/v1/songs', { method: 'POST', body })
+  _setSongData(song as SongInfo)
   oruga.notification.open({
     message: 'Saved Successfully!',
     variant: 'success',
