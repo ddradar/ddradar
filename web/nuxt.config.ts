@@ -16,6 +16,10 @@ export default defineNuxtConfig({
   build: {
     transpile: [/@oruga-ui\/oruga-next/],
   },
+  routeRules: {
+    '/.auth/**': { ssr: false },
+    '/admin/**': { ssr: false },
+  },
   app: {
     head: {
       link: [

@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "build:swa": "nuxt build && rm -rf ./staticwebapp.config.json",
+    "build:swa": "nuxt build && node -e fs.rmSync('./staticwebapp.config.json',{force:true})",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "pretest": "nuxt prepare",
