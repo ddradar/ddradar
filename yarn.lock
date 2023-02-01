@@ -947,7 +947,7 @@
     semver "^7.3.7"
     tsutils "^3.21.0"
 
-"@typescript-eslint/utils@5.50.0", "@typescript-eslint/utils@^5.42.1":
+"@typescript-eslint/utils@5.50.0", "@typescript-eslint/utils@^5.48.1":
   version "5.50.0"
   resolved "https://registry.yarnpkg.com/@typescript-eslint/utils/-/utils-5.50.0.tgz#807105f5ffb860644d30d201eefad7017b020816"
   integrity sha512-v/AnUFImmh8G4PH0NDkf6wA8hujNNcrwtecqW4vtQ1UOSNBaZl49zP1SHoZ/06e+UiwzHpgb5zP5+hwlYYWYAw==
@@ -2672,12 +2672,12 @@ eslint-plugin-simple-import-sort@^10.0.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-simple-import-sort/-/eslint-plugin-simple-import-sort-10.0.0.tgz#cc4ceaa81ba73252427062705b64321946f61351"
   integrity sha512-AeTvO9UCMSNzIHRkg8S6c3RPy5YEwKWSQPx3DYghLedo2ZQxowPFLGDN1AZ2evfg6r6mjBSZSLxLFsWSu3acsw==
 
-eslint-plugin-vitest@^0.0.28:
-  version "0.0.28"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.28.tgz#2e96d93bf8e854f21ec8e08ed3830a7168262237"
-  integrity sha512-xjlcrFo/qRjObHW1yOLwWPRzJapJu0NiaR8B1DHP8tPzCwxnHiX+x0dTl6OKOqpkOpTrRHQBiN6nM9JRIv5Gwg==
+eslint-plugin-vitest@^0.0.32:
+  version "0.0.32"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vitest/-/eslint-plugin-vitest-0.0.32.tgz#3a4846ab3ee89ae63ebf6ae874f62e4755287f59"
+  integrity sha512-mRr3HLEvOCAlAaxXybp2Sg/2xdV6/yfsC0QEjpdFS1AOHy5I7eHkD+ES9V7OQBnTAM9O+UInDLHn5aUV3ZjAeQ==
   dependencies:
-    "@typescript-eslint/utils" "^5.42.1"
+    "@typescript-eslint/utils" "^5.48.1"
 
 eslint-plugin-vue@^9.4.0, eslint-plugin-vue@^9.8.0:
   version "9.8.0"
