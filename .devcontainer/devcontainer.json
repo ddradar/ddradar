@@ -1,13 +1,6 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.241.1/containers/typescript-node
 {
-  "name": "Node.js & TypeScript",
-  "build": {
-    "dockerfile": "Dockerfile",
-    "args": {
-      "VARIANT": "16-bullseye"
-    }
-  },
+  "name": "Node.js 16 with Azure Static Web Apps CLI",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:16",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -22,5 +15,11 @@
     }
   },
   "forwardPorts": [3000],
-  "remoteUser": "node"
+  "remoteUser": "node",
+  "features": {
+    "ghcr.io/devcontainers-contrib/features/npm-package:1": {
+      "package": "@azure/static-web-apps-cli"
+    },
+    "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
+  }
 }
