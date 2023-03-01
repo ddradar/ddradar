@@ -1,5 +1,5 @@
 {
-  "name": "Node.js 16 with Azure Static Web Apps CLI",
+  "name": "Node.js 16 with Azure Functions Core Tools",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:16",
   "customizations": {
     "vscode": {
@@ -17,9 +17,6 @@
   "forwardPorts": [3000],
   "remoteUser": "node",
   "features": {
-    "ghcr.io/devcontainers-contrib/features/npm-package:1": {
-      "package": "@azure/static-web-apps-cli"
-    },
     "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
   }
 }
