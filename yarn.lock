@@ -211,10 +211,10 @@
     jsonwebtoken "^9.0.0"
     uuid "^8.3.0"
 
-"@azure/static-web-apps-cli@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@azure/static-web-apps-cli/-/static-web-apps-cli-1.0.6.tgz#671d37a706b3a0162d6f3ddab6c521ef57705f2e"
-  integrity sha512-U7YA++cBkJ4C8IfjGi1ihWdbqwpZQv6rIZ0QqKVbj5wjqSTgT/ypRliZcNrTIsF1dvbO8qgjEF+F5huYZUQJUQ==
+"@azure/static-web-apps-cli@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@azure/static-web-apps-cli/-/static-web-apps-cli-1.1.1.tgz#bdc30862a945648a4af9941c029e00fa41fdcf88"
+  integrity sha512-8WLR+3fpnRpmMNRHhBi9uBtKYP69IOhK6lZLWDD7yVN5/ILVAvI5ukhY81Y1GnEgf7jT5jbqtG4sPXyqlaFIjg==
   dependencies:
     "@azure/arm-appservice" "^12.0.0"
     "@azure/arm-resources" "^5.0.1"
