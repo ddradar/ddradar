@@ -6,7 +6,7 @@
       "database": "DDRadar",
       "schema": "staticwebapp.database.schema.gql"
     },
-    "connection-string": ""
+    "connection-string": "@env('COSMOS_DB_CONN')"
   },
   "runtime": {
     "graphql": {
@@ -17,7 +17,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": [],
+        "origins": [ "http://localhost:4280", "https://p.eagate.573.jp" ],
         "allow-credentials": false
       },
       "authentication": {
@@ -25,5 +25,15 @@
       }
     }
   },
-  "entities": {}
+  "entities": {
+    "Song": {
+      "source": "Songs",
+      "permissions": [
+        {
+          "actions": [ "read" ],
+          "role": "anonymous"
+        }
+      ]
+    }
+  }
 }

@@ -5,6 +5,7 @@
       "swaConfigLocation": "./",
       "appLocation": "./web",
       "apiLocation": "./web/.output/server",
+      "dataApiLocation": "./swa-db-connections",
       "outputLocation": ".output/public",
       "appBuildCommand": "yarn build:swa"
     }

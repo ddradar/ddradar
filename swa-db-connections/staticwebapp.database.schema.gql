@@ -1,12 +1,56 @@
-
-"""
-Add your CosmosDB NoSQL database schema in this file
-
-For example:
-
-type Book @model {
+type Song @model {
   id: ID
-  title: String
+  name: String!
+  nameKana: String!
+  nameIndex: Int!
+  artist: String!
+  series: String!
+  minBPM: Int
+  maxBPM: Int
+  charts: [StepChart]
+  skillAttackId: Int
+  deleted: Boolean
 }
 
-"""
+type StepChart {
+  playStyle: Int!
+  difficulty: Int!
+  level: Int!
+  notes: Int!
+  freezeArrow: Int!
+  shockArrow: Int!
+  stream: Int!
+  voltage: Int!
+  air: Int!
+  freeze: Int!
+  chaos: Int!
+}
+
+type Course {
+  id: ID
+  name: String!
+  nameKana: String!
+  nameIndex: Int!
+  series: String!
+  minBPM: Int
+  maxBPM: Int
+  charts: [StepChart]
+  deleted: Boolean
+}
+
+type CourseChart {
+  playStyle: Int!
+  difficulty: Int!
+  level: Int!
+  notes: Int!
+  freezeArrow: Int!
+  shockArrow: Int!
+}
+
+type CourseOrder {
+  songId: String
+  songName: String
+  playStyle: Int!
+  difficulty: Int!
+  level: Int!
+}
