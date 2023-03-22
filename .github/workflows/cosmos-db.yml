@@ -24,34 +24,17 @@ env:
 jobs:
   test:
     name: Cosmos DB Integration Test
-    runs-on: ubuntu-18.04
-
-    services:
-      cosmos-db:
-        image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
-        ports:
-          - 8081:8081
-          - 10250:10250
-          - 10251:10251
-          - 10252:10252
-          - 10253:10253
-          - 10254:10254
-          - 10255:10255
-        options: -m 4g --cpus=2.0
-        env:
-          AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 5
-          AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: false
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v3.3.0
 
-      - name: Import DB Emulator Certificate
-        timeout-minutes: 10
+      - name: Start Cosmos DB Emulator
+        shell: pwsh
         run: |
-          while ! curl -k -f https://localhost:8081/_explorer/emulator.pem > ~/emulatorcert.crt; do sleep 5; done
-          sudo cp ~/emulatorcert.crt /usr/local/share/ca-certificates/
-          sudo update-ca-certificates
+          Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
+          Start-CosmosDbEmulator -PartitionCount 5 -NoUI
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
         uses: actions/setup-node@v3.6.0

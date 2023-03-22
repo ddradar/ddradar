@@ -26,7 +26,7 @@ jobs:
   analyze:
     if: github.event_name == 'pull_request' || !contains(github.actor, '[bot]')
     name: Analyze
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
