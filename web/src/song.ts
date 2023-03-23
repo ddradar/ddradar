@@ -1,7 +1,7 @@
 import { Song } from '@ddradar/core'
 
 import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
-import { SongInfo } from '~/server/api/v1/songs/[id].get'
+import type { SongInfo } from '~~/composables/useSongInfo'
 
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)

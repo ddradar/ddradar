@@ -1,13 +1,5 @@
 <template>
   <form action="">
-    <div class="message">
-      <div class="message-header">
-        <p>{{ title }}</p>
-      </div>
-      <div class="message-body">
-        {{ message }}
-      </div>
-    </div>
     <div class="modal-card" style="width: auto">
       <header class="modal-card-head" :class="themeClass">
         <p class="modal-card-title">{{ title }}</p>

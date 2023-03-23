@@ -17,7 +17,7 @@
     "host": {
       "mode": "production",
       "cors": {
-        "origins": [ "http://localhost:4280", "https://p.eagate.573.jp" ],
+        "origins": ["*"],
         "allow-credentials": false
       },
       "authentication": {
@@ -30,8 +30,12 @@
       "source": "Songs",
       "permissions": [
         {
-          "actions": [ "read" ],
+          "actions": ["read"],
           "role": "anonymous"
+        },
+        {
+          "actions": ["*"],
+          "role": "administrator"
         }
       ]
     }

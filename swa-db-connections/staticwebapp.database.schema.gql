@@ -7,7 +7,7 @@ type Song @model {
   series: String!
   minBPM: Int
   maxBPM: Int
-  charts: [StepChart]
+  charts: [StepChart!]!
   skillAttackId: Int
   deleted: Boolean
 }
@@ -34,7 +34,7 @@ type Course {
   series: String!
   minBPM: Int
   maxBPM: Int
-  charts: [StepChart]
+  charts: [StepChart!]!
   deleted: Boolean
 }
 
@@ -48,8 +48,8 @@ type CourseChart {
 }
 
 type CourseOrder {
-  songId: String
-  songName: String
+  songId: String!
+  songName: String!
   playStyle: Int!
   difficulty: Int!
   level: Int!
