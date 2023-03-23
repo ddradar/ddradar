@@ -1,4 +1,4 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`Page /songs/[id] > { isLoading: false, song: <Data> } renders song info 1`] = `
 <section
@@ -55,6 +55,130 @@ exports[`Page /songs/[id] > { isLoading: true } renders loading state 1`] = `
     v-model:active="true"
   >
     <!--v-if-->
+  </transition-stub>
+  <h1
+    class="title"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h1>
+  <h2
+    class="subtitle"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h2>
+  <h2
+    class="subtitle"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </h2>
+  <div
+    class="content columns is-multiline"
+  >
+    <div
+      class="b-skeleton is-animated"
+    >
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+      <div
+        class="b-skeleton-item is-rounded"
+      />
+    </div>
+  </div>
+  
+</section>
+`;
+
+exports[`Page /songs/[id] > { song: <Data> } renders song info 1`] = `
+<section
+  class="section"
+>
+  
+  <h1
+    class="title"
+  >
+    PARANOiA
+  </h1>
+  <h2
+    class="subtitle"
+  >
+    180 / DDR 1st
+  </h2>
+  <h2
+    class="subtitle"
+  >
+    BPM 180
+  </h2>
+  <div
+    class="content columns is-multiline"
+  >
+    
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    <chart-info-stub
+      chart="[object Object]"
+    />
+    
+  </div>
+  <div
+    class="content columns is-multiline"
+  >
+    
+    
+  </div>
+  
+</section>
+`;
+
+exports[`Page /songs/[id] > { song: null } renders loading state 1`] = `
+<section
+  class="section"
+>
+  
+  <transition-stub
+    appear="false"
+    css="true"
+    name="fade"
+    persisted="false"
+  >
+    <div
+      class="o-load loading o-load--fullpage is-full-page"
+    >
+      <div
+        class="o-load__overlay loading-overlay"
+      />
+      
+      <span
+        class="icon is-spin is-medium o-load__icon icon"
+      >
+        <i
+          class="mdi mdi-loading mdi-36px"
+        />
+      </span>
+      
+    </div>
   </transition-stub>
   <h1
     class="title"

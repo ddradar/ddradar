@@ -185,12 +185,7 @@ import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~/components/DialogModal.vue'
 import { difficultyMap, seriesNames } from '~/src/song'
-import {
-  createMutation,
-  getByPKQuery,
-  SongInfo,
-  updateMutation,
-} from '~~/composables/useSongInfo'
+import { getByPKQuery, SongInfo } from '~~/composables/useSongInfo'
 
 const _chart = {
   level: 1,

@@ -5,7 +5,7 @@
  * @param variables GraphQL variables
  * @returns Result data
  */
-export function callGraphQL<T>(query: string, variables: {}) {
+export function callGraphQL<T>(query: string, variables: object) {
   return $fetch<{ data: T }>('/data-api/graphql', {
     method: 'POST',
     body: { query, variables },

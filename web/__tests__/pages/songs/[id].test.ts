@@ -10,14 +10,11 @@ import Page from '~/pages/songs/[id].vue'
 describe('Page /songs/[id]', () => {
   const params = { id: testSongData.id }
 
-  test('{ isLoading: true } renders loading state', async () => {
+  test('{ song: null } renders loading state', async () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(true),
-      data: ref(testSongData),
-    } as any)
+    vi.mocked(useSongInfo).mockResolvedValue({ data: ref(null) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -29,14 +26,11 @@ describe('Page /songs/[id]', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  test('{ isLoading: false, song: <Data> } renders song info', async () => {
+  test('{ song: <Data> } renders song info', async () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(false),
-      data: ref(testSongData),
-    } as any)
+    vi.mocked(useSongInfo).mockResolvedValue({ data: ref(testSongData) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
