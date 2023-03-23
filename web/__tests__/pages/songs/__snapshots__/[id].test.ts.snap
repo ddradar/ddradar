@@ -1,6 +1,6 @@
-// Vitest Snapshot v1
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Page /songs/[id] > { isLoading: false, song: <Data> } renders song info 1`] = `
+exports[`Page /songs/[id] > { song: <Data> } renders song info 1`] = `
 <section
   class="section"
 >
@@ -42,7 +42,7 @@ exports[`Page /songs/[id] > { isLoading: false, song: <Data> } renders song info
 </section>
 `;
 
-exports[`Page /songs/[id] > { isLoading: true } renders loading state 1`] = `
+exports[`Page /songs/[id] > { song: null } renders loading state 1`] = `
 <section
   class="section"
 >
@@ -52,9 +52,23 @@ exports[`Page /songs/[id] > { isLoading: true } renders loading state 1`] = `
     css="true"
     name="fade"
     persisted="false"
-    v-model:active="true"
   >
-    <!--v-if-->
+    <div
+      class="o-load loading o-load--fullpage is-full-page"
+    >
+      <div
+        class="o-load__overlay loading-overlay"
+      />
+      
+      <span
+        class="icon is-spin is-medium o-load__icon icon"
+      >
+        <i
+          class="mdi mdi-loading mdi-36px"
+        />
+      </span>
+      
+    </div>
   </transition-stub>
   <h1
     class="title"

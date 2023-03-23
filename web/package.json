@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "build:swa": "nuxt build && node -e fs.rmSync('./staticwebapp.config.json',{force:true})",
+    "build:swa": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "pretest": "nuxt prepare",
@@ -24,7 +24,7 @@
     "eslint-plugin-nuxt": "^4.0.0",
     "flush-promises": "^1.0.2",
     "jsdom": "^21.1.0",
-    "nuxt": "^3.2.3",
+    "nuxt": "^3.3.1",
     "sass": "^1.58.3",
     "vitest": "^0.29.2"
   }

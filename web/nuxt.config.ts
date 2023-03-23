@@ -19,6 +19,7 @@ export default defineNuxtConfig({
   routeRules: {
     '/.auth/**': { ssr: false },
     '/admin/**': { ssr: false },
+    '/data-api/**': { ssr: false },
   },
   app: {
     head: {

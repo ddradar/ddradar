@@ -4,7 +4,7 @@
     <OField label="Song ID">
       <OField grouped>
         <OInput
-          v-model="id"
+          v-model="song!.id"
           maxlength="32"
           required
           pattern="^[01689bdiloqDIOPQ]{32}$"
@@ -12,7 +12,7 @@
         <OButton
           variant="primary"
           :disabled="!isValidSongId"
-          @click="fetchSongInfo()"
+          @click="refresh()"
         >
           Load
         </OButton>
@@ -29,12 +29,12 @@
     </OField>
 
     <OField label="Name">
-      <OInput v-model="name" required />
+      <OInput v-model="song!.name" required />
     </OField>
 
     <OField label="Furigana">
       <OInput
-        v-model="nameKana"
+        v-model="song!.nameKana"
         required
         pattern="^[A-Z0-9 .ぁ-んー]+$"
         placeholder="A-Z 0-9 . あ-ん ー"
@@ -43,11 +43,11 @@
     </OField>
 
     <OField label="Artist">
-      <OInput v-model="artist" />
+      <OInput v-model="song!.artist" />
     </OField>
 
     <OField label="Series">
-      <OSelect v-model="series" placeholder="Series">
+      <OSelect v-model="song!.series" placeholder="Series">
         <option v-for="n in seriesNames" :key="n" :value="n">
           {{ n }}
         </option>
@@ -56,17 +56,17 @@
 
     <OField label="BPM">
       <OField grouped>
-        <OInput v-model.number="minBPM" type="number" placeholder="min" />
+        <OInput v-model.number="song!.minBPM" type="number" placeholder="min" />
         <span class="control">-</span>
-        <OInput v-model.number="maxBPM" type="number" placeholder="max" />
+        <OInput v-model.number="song!.maxBPM" type="number" placeholder="max" />
       </OField>
     </OField>
 
     <OField>
-      <OCheckbox v-model="deleted">Deleted</OCheckbox>
+      <OCheckbox v-model="song!.deleted">Deleted</OCheckbox>
     </OField>
 
-    <OField v-for="(chart, i) in charts" :key="i" grouped group-multiline>
+    <OField v-for="(chart, i) in song!.charts" :key="i" grouped group-multiline>
       <OField
         :variant="{ danger: hasDuplicatedChart(chart) }"
         :message="{
@@ -184,8 +184,8 @@ import { Song } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~/components/DialogModal.vue'
-import type { SongInfo } from '~/server/api/v1/songs/[id].get'
 import { difficultyMap, seriesNames } from '~/src/song'
+import { getByPKQuery, SongInfo } from '~~/composables/useSongInfo'
 
 const _chart = {
   level: 1,
@@ -201,72 +201,66 @@ const _chart = {
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()
-
-// SongInfo properties
-const id = ref<SongInfo['id']>(_route.params.id as string)
-const name = ref<SongInfo['name']>('')
-const nameKana = ref<SongInfo['nameKana']>('')
-const nameIndex = computed<SongInfo['nameIndex']>(() =>
-  Song.getNameIndex(nameKana.value)
+const id = _route.params.id as string
+const { data: song, refresh } = await useAsyncData(
+  `/songs/${id}`,
+  () => callGraphQL<{ song_by_pk: SongInfo }>(getByPKQuery, { id }),
+  { transform: s => s.data.song_by_pk, server: false }
 )
-const artist = ref<SongInfo['artist']>('')
-const series = ref<SongInfo['series']>(seriesNames.slice(-1)[0])
-const minBPM = ref<SongInfo['minBPM']>(null)
-const maxBPM = ref<SongInfo['maxBPM']>(null)
-const deleted = ref<SongInfo['deleted']>(false)
-const charts = ref<SongInfo['charts'][0][]>([
-  { playStyle: 1, difficulty: 0, ..._chart },
-  { playStyle: 1, difficulty: 1, ..._chart },
-  { playStyle: 1, difficulty: 2, ..._chart },
-  { playStyle: 1, difficulty: 3, ..._chart },
-  { playStyle: 2, difficulty: 1, ..._chart },
-  { playStyle: 2, difficulty: 2, ..._chart },
-  { playStyle: 2, difficulty: 3, ..._chart },
-])
+song.value ??= {
+  id,
+  name: '',
+  nameKana: '',
+  nameIndex: 0,
+  artist: '',
+  series: seriesNames.slice(-1)[0],
+  minBPM: null,
+  maxBPM: null,
+  deleted: false,
+  charts: [
+    { playStyle: 1, difficulty: 0, ..._chart },
+    { playStyle: 1, difficulty: 1, ..._chart },
+    { playStyle: 1, difficulty: 2, ..._chart },
+    { playStyle: 1, difficulty: 3, ..._chart },
+    { playStyle: 2, difficulty: 1, ..._chart },
+    { playStyle: 2, difficulty: 2, ..._chart },
+    { playStyle: 2, difficulty: 3, ..._chart },
+  ],
+}
 
 // Validator
-const isValidSongId = computed(() => Song.isValidSongId(id.value))
+const isValidSongId = computed(() => Song.isValidSongId(song.value!.id))
 const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
-  charts.value.filter(
+  song.value!.charts.filter(
     c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
   ).length !== 1
 const hasError = computed(
   () =>
     !isValidSongId.value ||
-    !name.value ||
-    !/^[A-Z0-9 .ぁ-んー]+$/.test(nameKana.value) ||
-    !series.value ||
-    !minBPM.value !== !maxBPM.value ||
-    charts.value.length === 0 ||
-    charts.value.some(c => hasDuplicatedChart(c))
+    !song.value!.name ||
+    !/^[A-Z0-9 .ぁ-んー]+$/.test(song.value!.nameKana) ||
+    !song.value!.series ||
+    !song.value!.minBPM !== !song.value!.maxBPM ||
+    song.value!.charts.length === 0 ||
+    song.value!.charts.some(c => hasDuplicatedChart(c))
 )
 
+// Methods
 /** Add empty chart in charts. */
 const addChart = () =>
-  charts.value.push({ playStyle: 1, difficulty: 0, ..._chart })
+  (song.value!.charts as SongInfo['charts'][0][]).push({
+    playStyle: 1,
+    difficulty: 0,
+    ..._chart,
+  })
 /** Remove specific chart in charts. */
-const removeChart = (index: number) => charts.value.splice(index, 1)
+const removeChart = (index: number) =>
+  (song.value!.charts as SongInfo['charts'][0][]).splice(index, 1)
 /** Set nameKana from upper-cased name. */
-const setNameKana = () => (nameKana.value = name.value.toUpperCase())
+const setNameKana = () =>
+  (song.value!.nameKana = song.value!.name.toUpperCase())
 
-const _setSongData = (song: SongInfo) => {
-  name.value = song.name
-  nameKana.value = song.nameKana
-  artist.value = song.artist
-  series.value = song.series
-  minBPM.value = song.minBPM
-  maxBPM.value = song.maxBPM
-  deleted.value = song.deleted
-  charts.value = [...song.charts]
-}
-
-/** GET /api/v1/songs/:id */
-const fetchSongInfo = async () => {
-  if (!id.value) return
-  const song = await $fetch(`/api/v1/songs/${id.value}`)
-  if (song) _setSongData(song)
-}
-/** POST /api/v1/songs/:id */
+/** Save song data. */
 const saveSongInfo = async () => {
   const instance = oruga.modal.open({
     component: DialogModal,
@@ -275,20 +269,11 @@ const saveSongInfo = async () => {
   })
 
   if ((await instance.promise) !== 'yes') return
-  const body: SongInfo = {
-    id: id.value,
-    name: name.value,
-    nameKana: nameKana.value,
-    nameIndex: nameIndex.value,
-    artist: artist.value,
-    series: series.value,
-    minBPM: minBPM.value,
-    maxBPM: maxBPM.value,
-    deleted: deleted.value,
-    charts: charts.value,
-  }
-  const song = await $fetch('/api/v1/songs', { method: 'POST', body })
-  _setSongData(song as SongInfo)
+
+  const nameIndex = Song.getNameIndex(song.value!.nameKana)
+  const body: SongInfo = { ...song.value!, nameIndex }
+  song.value = await $fetch('/api/v1/songs', { method: 'POST', body })
+
   oruga.notification.open({
     message: 'Saved Successfully!',
     variant: 'success',
