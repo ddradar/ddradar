@@ -1,12 +1,12 @@
 import { testCourseData } from '@ddradar/core/__tests__/data'
-import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import getCourseInfo from '~/server/api/v1/courses/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
+import { callGraphQL } from '~~/utils/graphQL'
 
-vi.mock('@ddradar/db')
+vi.mock('~~/utils/graphQL')
 vi.mock('~~/server/utils/http')
 
 describe('GET /api/v1/courses/[id]', () => {
@@ -19,8 +19,9 @@ describe('GET /api/v1/courses/[id]', () => {
 
   test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
     // Arrange
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValue(testCourseData as any)
+    vi.mocked(callGraphQL).mockResolvedValue({
+      data: { course_by_pk: testCourseData },
+    })
     const event = createEvent({ id: testCourseData.id })
 
     // Act
@@ -33,7 +34,7 @@ describe('GET /api/v1/courses/[id]', () => {
 
   test(`/00000000000000000000000000000000 (not exist song) returns 404`, async () => {
     // Arrange
-    vi.mocked(fetchOne).mockResolvedValue(null)
+    vi.mocked(callGraphQL).mockResolvedValue({ data: { course_by_pk: null } })
     const event = createEvent({ id: `00000000000000000000000000000000` })
 
     // Act
@@ -46,7 +47,7 @@ describe('GET /api/v1/courses/[id]', () => {
 
   test(`/invalid-id returns 400`, async () => {
     // Arrange
-    vi.mocked(fetchOne).mockResolvedValue(null)
+    vi.mocked(callGraphQL).mockResolvedValue({ data: { course_by_pk: null } })
     const event = createEvent({ id: 'invalid-id' })
 
     // Act

@@ -43,3 +43,5 @@ export function getChartTitle({
 export function shortenSeriesName(series: string) {
   return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
 }
+
+export const isValidSongId = Song.isValidSongId
