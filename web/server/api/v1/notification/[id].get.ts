@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 
-import { sendNullWithError } from '~~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Get notification that match the specified ID.

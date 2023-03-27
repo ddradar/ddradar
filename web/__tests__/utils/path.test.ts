@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 describe('server/utils.ts', () => {
   describe('getQueryString', () => {

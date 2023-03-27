@@ -1,6 +1,6 @@
 import type { UserInfo } from '~/server/api/v1/users/index.get'
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Get user information that match the specified ID.

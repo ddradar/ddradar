@@ -26,7 +26,7 @@
 <script lang="ts" setup>
 import ChartInfo from '~/components/ChartInfo.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
-import { getDisplayedBPM } from '~/src/song'
+import { getDisplayedBPM } from '~~/utils/song'
 
 const _route = useRoute()
 const { data: course } = await useFetch<CourseInfo>(

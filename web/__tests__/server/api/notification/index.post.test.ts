@@ -6,11 +6,11 @@ import { createEvent } from '~/__tests__/server/test-util'
 import postNotification, {
   NotificationBody,
 } from '~/server/api/v1/notification/index.post'
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/http')
 
 const timeStamp = 1597114800
 Date.now = vi.fn(() => timeStamp * 1000)

@@ -50,8 +50,12 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 
-import { getQueryInteger } from '~/src/path'
-import { courseSeriesIndexes, seriesNames, shortenSeriesName } from '~/src/song'
+import { getQueryInteger } from '~~/utils/path'
+import {
+  courseSeriesIndexes,
+  seriesNames,
+  shortenSeriesName,
+} from '~~/utils/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })

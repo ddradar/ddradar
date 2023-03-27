@@ -2,7 +2,7 @@ import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
-import { getQueryString } from '~/src/path'
+import { getQueryString } from '~~/utils/path'
 
 type Notification = Omit<Database.NotificationSchema, 'sender' | 'pinned'>
 

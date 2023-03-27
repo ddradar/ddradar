@@ -2,8 +2,8 @@ import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
-import { useClientPrincipal } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { useClientPrincipal } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Add or Update information about the currently logged in user.

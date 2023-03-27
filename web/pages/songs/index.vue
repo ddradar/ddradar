@@ -55,13 +55,13 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 
-import { getQueryInteger } from '~/src/path'
+import { getQueryInteger } from '~~/utils/path'
 import {
   getDisplayedBPM,
   nameIndexMap,
   seriesNames,
   shortenSeriesName,
-} from '~/src/song'
+} from '~~/utils/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })

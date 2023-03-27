@@ -7,7 +7,7 @@ import {
   getLoginUserInfo,
   tryFetchUser,
   useClientPrincipal,
-} from '~/server/auth'
+} from '~~/server/utils/auth'
 
 import { createClientPrincipal, createEvent } from './test-util'
 

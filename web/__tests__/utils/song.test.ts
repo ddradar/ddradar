@@ -1,6 +1,10 @@
 import { describe, expect, test } from 'vitest'
 
-import { getChartTitle, getDisplayedBPM, shortenSeriesName } from '~/src/song'
+import {
+  getChartTitle,
+  getDisplayedBPM,
+  shortenSeriesName,
+} from '~~/utils/song'
 
 describe('src/song.ts', () => {
   describe('shortenSeriesName', () => {

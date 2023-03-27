@@ -3,8 +3,8 @@ import { Api, Database, Score } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 type ChartInfo = Database.StepChartSchema | Database.CourseChartSchema
 

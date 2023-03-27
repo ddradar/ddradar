@@ -68,7 +68,22 @@ exports[`Page /courses/[id] > { course: null } renders loading state 1`] = `
     name="fade"
     persisted="false"
   >
-    <!--v-if-->
+    <div
+      class="o-load loading o-load--fullpage is-full-page"
+    >
+      <div
+        class="o-load__overlay loading-overlay"
+      />
+      
+      <span
+        class="icon is-spin is-medium o-load__icon icon"
+      >
+        <i
+          class="mdi mdi-loading mdi-36px"
+        />
+      </span>
+      
+    </div>
   </transition-stub>
   <h1
     class="title"

@@ -185,7 +185,7 @@ import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~~/components/DialogModal.vue'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { difficultyMap, seriesNames } from '~~/src/song'
+import { difficultyMap, seriesNames } from '~~/utils/song'
 
 const _chart = {
   level: 1,
@@ -201,7 +201,7 @@ const _chart = {
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()
-const id = ref(_route.params.id as string ?? '')
+const id = ref((_route.params.id as string) ?? '')
 const { data: song, refresh } = await useFetch<SongInfo>(
   `/api/v1/songs/${id.value}`
 )

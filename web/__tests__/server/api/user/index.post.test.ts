@@ -9,13 +9,13 @@ import {
   createEvent,
 } from '~/__tests__/server/test-util'
 import postUserInfo from '~/server/api/v1/user/index.post'
-import { useClientPrincipal } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { useClientPrincipal } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/auth')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/auth')
+vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/user', () => {
   const user: Database.UserSchema = { ...publicUser }

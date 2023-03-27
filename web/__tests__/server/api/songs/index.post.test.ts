@@ -5,11 +5,11 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import postSongInfo from '~/server/api/v1/songs/index.post'
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/songs', () => {
   const validSong: typeof testSongData = {

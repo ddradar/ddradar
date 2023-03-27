@@ -1,7 +1,7 @@
 import { Database } from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
   Pick<Database.StepChartSchema, 'playStyle' | 'difficulty' | 'level'>

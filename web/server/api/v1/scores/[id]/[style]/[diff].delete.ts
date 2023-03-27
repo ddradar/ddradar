@@ -1,8 +1,8 @@
 import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Delete scores that match the specified chart.

@@ -3,8 +3,8 @@ import { Database, Score } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
   (Database.StepChartSchema | Database.CourseChartSchema)

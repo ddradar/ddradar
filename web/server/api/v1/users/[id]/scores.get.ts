@@ -3,9 +3,9 @@ import { Score, Song } from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
+import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type ScoreList = Omit<
   Database.ScoreSchema,

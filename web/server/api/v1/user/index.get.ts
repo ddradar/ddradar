@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
 

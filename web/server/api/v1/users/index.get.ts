@@ -2,8 +2,8 @@ import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
-import { useClientPrincipal } from '~/server/auth'
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { useClientPrincipal } from '~~/server/utils/auth'
+import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type UserInfo = Omit<
   Database.UserSchema,

@@ -11,14 +11,14 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import postChartScore from '~/server/api/v1/scores/[id]/[style]/[diff].post'
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
 import { calcMyGrooveRadar } from '~~/../core/src/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/auth')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/auth')
+vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   const song = {

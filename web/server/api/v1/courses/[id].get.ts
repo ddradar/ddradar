@@ -2,7 +2,7 @@ import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type CourseInfo = Database.CourseSchema
 

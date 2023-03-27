@@ -2,7 +2,7 @@ import { Database } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Add or update song and charts information.

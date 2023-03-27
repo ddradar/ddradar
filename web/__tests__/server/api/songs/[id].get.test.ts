@@ -4,10 +4,10 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import getSongInfo from '~/server/api/v1/songs/[id].get'
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/http')
 
 describe('GET /api/v1/songs/[id]', () => {
   beforeAll(() => {

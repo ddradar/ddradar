@@ -4,12 +4,12 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import deleteChartScore from '~/server/api/v1/scores/[id]/[style]/[diff].delete'
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
-vi.mock('~/server/auth')
-vi.mock('~/server/utils')
+vi.mock('~~/server/utils/auth')
+vi.mock('~~/server/utils/http')
 
 describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
   const mockedContainer = { items: { batch: vi.fn() } }

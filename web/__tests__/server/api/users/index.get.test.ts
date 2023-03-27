@@ -8,11 +8,11 @@ import {
   createEvent,
 } from '~/__tests__/server/test-util'
 import getUserList from '~/server/api/v1/users/index.get'
-import { useClientPrincipal } from '~/server/auth'
+import { useClientPrincipal } from '~~/server/utils/auth'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/auth')
+vi.mock('~~/server/utils/auth')
 
 describe('GET /api/v1/users', () => {
   beforeAll(() => {

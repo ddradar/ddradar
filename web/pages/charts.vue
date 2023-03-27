@@ -66,8 +66,8 @@ import { watch } from 'vue'
 
 import DifficultyBadge from '~/components/DifficultyBadge.vue'
 import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
-import { getQueryInteger } from '~/src/path'
-import { levels, shortenSeriesName } from '~/src/song'
+import { getQueryInteger } from '~~/utils/path'
+import { levels, shortenSeriesName } from '~~/utils/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })

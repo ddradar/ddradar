@@ -2,7 +2,7 @@ import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
-import { getQueryInteger } from '~/src/path'
+import { getQueryInteger } from '~~/utils/path'
 
 export type CourseListData = Pick<
   Database.CourseSchema,

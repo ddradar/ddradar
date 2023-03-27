@@ -7,7 +7,7 @@ import {
 import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type NotificationBody = Partial<Database.NotificationSchema> &
   Omit<Database.NotificationSchema, 'id' | 'timeStamp'>
