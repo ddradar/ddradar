@@ -13,18 +13,18 @@
     "start": "ts-node"
   },
   "dependencies": {
-    "@azure/cosmos": "^3.17.2",
+    "@azure/cosmos": "^3.17.3",
     "@ddradar/core": "^1.1.1",
     "@ddradar/db": "^1.1.1",
     "consola": "^2.15.3",
     "dotenv": "^16.0.3",
-    "jsdom": "^21.1.0",
+    "jsdom": "^21.1.1",
     "node-fetch-native": "^1.0.2",
-    "puppeteer-core": "^19.7.2"
+    "puppeteer-core": "^19.8.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
-    "@types/jsdom": "^21.1.0",
+    "@types/jsdom": "^21.1.1",
     "@types/node": "^16.18.11",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.4"
