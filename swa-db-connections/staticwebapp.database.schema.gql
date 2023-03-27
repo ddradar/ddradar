@@ -26,7 +26,7 @@ type StepChart {
   chaos: Int!
 }
 
-type Course {
+type Course @model {
   id: ID
   name: String!
   nameKana: String!
@@ -34,7 +34,7 @@ type Course {
   series: String!
   minBPM: Int
   maxBPM: Int
-  charts: [StepChart!]!
+  charts: [CourseChart!]!
   deleted: Boolean
 }
 
@@ -45,6 +45,7 @@ type CourseChart {
   notes: Int!
   freezeArrow: Int!
   shockArrow: Int!
+  order: [CourseOrder!]!
 }
 
 type CourseOrder {
@@ -53,4 +54,15 @@ type CourseOrder {
   playStyle: Int!
   difficulty: Int!
   level: Int!
+}
+
+type Notification @model {
+  id: ID
+  sender: String!
+  pinned: Boolean!
+  type: String!
+  icon: String!
+  title: String!
+  body: String!
+  timeStamp: Int!
 }

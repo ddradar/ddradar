@@ -38,6 +38,32 @@
           "role": "administrator"
         }
       ]
+    },
+    "Course": {
+      "source": "Songs",
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        },
+        {
+          "actions": ["*"],
+          "role": "administrator"
+        }
+      ]
+    },
+    "Notification": {
+      "source": "Notification",
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        },
+        {
+          "actions": ["*"],
+          "role": "administrator"
+        }
+      ]
     }
   }
 }
