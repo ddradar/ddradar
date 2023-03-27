@@ -49,7 +49,6 @@ export default defineEventHandler(async event => {
   const id: string = event.context.params!.id
   if (!isValidSongId(id)) return sendNullWithError(event, 400)
 
-
   /* GraphQL */
   const query = `
   query getById($id: ID!) {
