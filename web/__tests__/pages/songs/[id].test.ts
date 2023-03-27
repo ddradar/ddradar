@@ -14,7 +14,7 @@ describe('Page /songs/[id]', () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useSongInfo).mockResolvedValue({ data: ref(null) } as any)
+    vi.mocked(useFetch).mockResolvedValue({ data: ref(null) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -30,7 +30,7 @@ describe('Page /songs/[id]', () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useSongInfo).mockResolvedValue({ data: ref(testSongData) } as any)
+    vi.mocked(useFetch).mockResolvedValue({ data: ref(testSongData) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act

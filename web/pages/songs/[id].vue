@@ -26,11 +26,14 @@
 <script lang="ts" setup>
 import { computed } from 'vue'
 
-import ChartInfo from '~/components/ChartInfo.vue'
-import { getDisplayedBPM } from '~/src/song'
+import ChartInfo from '~~/components/ChartInfo.vue'
+import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import { getDisplayedBPM } from '~~/src/song'
 
 const _route = useRoute()
-const { data: song } = await useSongInfo(_route.params.id as string)
+const { data: song } = await useFetch<SongInfo>(
+  `/api/v1/songs/${_route.params.id}`
+)
 
 const displayedBPM = computed(() =>
   song.value ? getDisplayedBPM(song.value) : '???'
