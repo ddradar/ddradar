@@ -1,15 +1,15 @@
-import { testCourseData } from '@ddradar/core/__tests__/data'
+import { testSongData } from '@ddradar/core/__tests__/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
-import getCourseInfo from '~/server/api/v1/courses/[id].get'
+import getSongInfo from '~/server/api/v1/songs/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
 import { callGraphQL } from '~~/utils/graphQL'
 
 vi.mock('~~/utils/graphQL')
 vi.mock('~~/server/utils/http')
 
-describe('GET /api/v1/courses/[id]', () => {
+describe('GET /api/v1/songs/[id]', () => {
   beforeAll(() => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
   })
@@ -17,44 +17,44 @@ describe('GET /api/v1/courses/[id]', () => {
     vi.mocked(sendNullWithError).mockClear()
   })
 
-  test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
+  test(`/${testSongData.id} (exist song) returns SongInfo`, async () => {
     // Arrange
     vi.mocked(callGraphQL).mockResolvedValue({
-      data: { course_by_pk: testCourseData },
+      data: { song_by_pk: testSongData },
     })
-    const event = createEvent({ id: testCourseData.id })
+    const event = createEvent({ id: testSongData.id })
 
     // Act
-    const course = await getCourseInfo(event)
+    const song = await getSongInfo(event)
 
     // Assert
-    expect(course).toBe(testCourseData)
+    expect(song).toBe(testSongData)
     expect(vi.mocked(sendNullWithError)).not.toBeCalled()
   })
 
   test(`/00000000000000000000000000000000 (not exist song) returns 404`, async () => {
     // Arrange
-    vi.mocked(callGraphQL).mockResolvedValue({ data: { course_by_pk: null } })
+    vi.mocked(callGraphQL).mockResolvedValue({ data: { song_by_pk: null } })
     const event = createEvent({ id: `00000000000000000000000000000000` })
 
     // Act
-    const course = await getCourseInfo(event)
+    const song = await getSongInfo(event)
 
     // Assert
-    expect(course).toBeNull()
+    expect(song).toBeNull()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
   test(`/invalid-id returns 400`, async () => {
     // Arrange
-    vi.mocked(callGraphQL).mockResolvedValue({ data: { course_by_pk: null } })
+    vi.mocked(callGraphQL).mockResolvedValue({ data: { song_by_pk: null } })
     const event = createEvent({ id: 'invalid-id' })
 
     // Act
-    const course = await getCourseInfo(event)
+    const song = await getSongInfo(event)
 
     // Assert
-    expect(course).toBeNull()
+    expect(song).toBeNull()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400)
   })
 })

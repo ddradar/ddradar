@@ -1,11 +1,10 @@
 import type { OperationInput } from '@azure/cosmos'
 import { Api, Database, Score } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { readBody } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 type ChartInfo = Database.StepChartSchema | Database.CourseChartSchema
 
@@ -18,7 +17,6 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * - Need Authentication.
  * - POST `api/v1/scores/[id]`
  *   - `id`: {@link SongInput.id} or skillAttackId
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if route parameters are invalid or no song.
@@ -82,9 +80,9 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   // route params
-  const id: string = event.context.params.id
+  const id: string = event.context.params!.id
   if (!Database.isValidSongId(id)) return sendNullWithError(event, 404)
 
   // body
@@ -209,4 +207,4 @@ export default async (event: H3Event) => {
       Array.isArray(body) && body.length > 0 && body.every(Api.isScoreListBody)
     )
   }
-}
+})

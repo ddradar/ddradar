@@ -1,12 +1,11 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
-import { getQueryString } from '~/src/path'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
+import { getQueryString } from '~~/utils/path'
 
 export type ScoreInfo = Omit<
   Database.ScoreSchema,
@@ -22,7 +21,6 @@ export type ScoreInfo = Omit<
  *   - `id`: {@link ScoreInfo.songId}
  *   - `style`: {@link ScoreInfo.playStyle}
  *   - `diff`: {@link ScoreInfo.difficulty}
- * @param event HTTP Event
  * @returns
  * - Returns `404 Not Found` if parameters are invalid.
  * - Returns `404 Not Found` if no score that matches parameters.
@@ -70,11 +68,11 @@ export type ScoreInfo = Omit<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   // route params
-  const id: string = event.context.params.id
-  const style = parseFloat(event.context.params.style)
-  const diff = parseFloat(event.context.params.diff)
+  const id: string = event.context.params!.id
+  const style = parseFloat(event.context.params!.style)
+  const diff = parseFloat(event.context.params!.diff)
   if (
     !Song.isValidSongId(id) ||
     !Song.isPlayStyle(style) ||
@@ -146,4 +144,4 @@ export default async (event: H3Event) => {
     return []
   }
   return scores
-}
+})

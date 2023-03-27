@@ -1,8 +1,7 @@
 import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { H3Event } from 'h3'
 
-import { sendNullWithError } from '~~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Get notification that match the specified ID.
@@ -10,7 +9,6 @@ import { sendNullWithError } from '~~/server/utils'
  * - No need Authentication.
  * - GET `api/v1/notification/:id`
  *   - `id`: {@link Database.NotificationSchema.id}
- * @param event HTTP Event
  * @returns
  * - Returns `404 Not Found` if no data that matches `id`.
  * - Returns `200 OK` with JSON body if found.
@@ -28,8 +26,8 @@ import { sendNullWithError } from '~~/server/utils'
  * }
  * ```
  */
-export default async (event: H3Event) => {
-  const id: string = event.context.params.id
+export default defineEventHandler(async event => {
+  const id: string = event.context.params!.id
 
   const notification = (await fetchOne(
     'Notification',
@@ -38,4 +36,4 @@ export default async (event: H3Event) => {
   )) as Database.NotificationSchema | null
 
   return notification ?? sendNullWithError(event, 404)
-}
+})

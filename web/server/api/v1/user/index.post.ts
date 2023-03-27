@@ -1,17 +1,15 @@
 import { Database } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { readBody } from 'h3'
 
-import { useClientPrincipal } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { useClientPrincipal } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Add or Update information about the currently logged in user.
  * @description
  * - Need Authentication.
  * - POST `api/v1/user`
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `400 Bad Request` if parameter is invalid.
@@ -29,7 +27,7 @@ import { sendNullWithError } from '~/server/utils'
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const clientPrincipal = useClientPrincipal(event)
   if (!clientPrincipal) return sendNullWithError(event, 401)
   const loginId = clientPrincipal.userId
@@ -62,4 +60,4 @@ export default async (event: H3Event) => {
   })
 
   return user
-}
+})

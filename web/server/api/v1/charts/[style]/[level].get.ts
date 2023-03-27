@@ -1,8 +1,7 @@
 import { Database } from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
   Pick<Database.StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
@@ -14,7 +13,6 @@ export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
  * - GET `/api/v1/charts/[style]/[level]`
  *   - `style`: {@link ChartInfo.playStyle}
  *   - `level`: {@link ChartInfo.level}
- * @param event HTTP Event
  * @returns
  * - Returns `200 OK` with JSON body.
  * @example
@@ -31,9 +29,9 @@ export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
  * ]
  * ```
  */
-export default async (event: H3Event) => {
-  const style: number = parseInt(event.context.params.style, 10)
-  const level: number = parseInt(event.context.params.level, 10)
+export default defineEventHandler(async event => {
+  const style: number = parseInt(event.context.params!.style, 10)
+  const level: number = parseInt(event.context.params!.level, 10)
 
   if (!Database.isPlayStyle(style) || !(level >= 1 && level <= 20)) {
     return sendNullWithError(event, 404)
@@ -50,4 +48,4 @@ export default async (event: H3Event) => {
     ],
     { nameIndex: 'ASC', nameKana: 'ASC' }
   )
-}
+})

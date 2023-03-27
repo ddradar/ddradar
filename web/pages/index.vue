@@ -34,7 +34,7 @@ import {
   nameIndexMap,
   seriesNames,
   shortenSeriesName,
-} from '~/src/song'
+} from '~~/utils/song'
 
 const menuList = [
   {

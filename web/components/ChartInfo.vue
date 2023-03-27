@@ -50,12 +50,11 @@
 
 <script lang="ts" setup>
 import { Song } from '@ddradar/core'
-import { computed } from 'vue'
 
 import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
-import { difficultyMap, getChartTitle } from '~/src/song'
+import { difficultyMap, getChartTitle } from '~~/utils/song'
 
 type CourseChart = CourseInfo['charts'][number]
 type Chart = SongInfo['charts'][number] | CourseChart

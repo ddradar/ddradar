@@ -10,14 +10,11 @@ import Page from '~/pages/courses/[id].vue'
 describe('Page /courses/[id]', () => {
   const params = { id: testCourseData.id }
 
-  test('{ isLoading: true } renders loading state', async () => {
+  test('{ course: null } renders loading state', async () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(true),
-      data: ref(testCourseData),
-    } as any)
+    vi.mocked(useFetch).mockResolvedValue({ data: ref(null) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -29,14 +26,11 @@ describe('Page /courses/[id]', () => {
     expect(wrapper.element).toMatchSnapshot()
   })
 
-  test('{ isLoading: false, course: <Data> } renders course info', async () => {
+  test('{ course: <Data> } renders course info', async () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(false),
-      data: ref(testCourseData),
-    } as any)
+    vi.mocked(useFetch).mockResolvedValue({ data: ref(testCourseData) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act

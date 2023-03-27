@@ -1,9 +1,8 @@
 import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
-import type { H3Event } from 'h3'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
+import { callGraphQL } from '~~/utils/graphQL'
+import { isValidSongId } from '~~/utils/song'
 
 export type CourseInfo = Database.CourseSchema
 
@@ -13,7 +12,6 @@ export type CourseInfo = Database.CourseSchema
  * - No need Authentication.
  * - GET `api/v1/courses/:id`
  *   - `id`: {@link CourseInfo.id}
- * @param event HTTP Event
  * @returns
  * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
  * - Returns `404 Not Found` if no song that matches {@link CourseInfo.id id}.
@@ -71,27 +69,40 @@ export type CourseInfo = Database.CourseSchema
  * }
  * ```
  */
-export default async (event: H3Event) => {
-  const id: string = event.context.params.id
-  if (!Song.isValidSongId(id)) return sendNullWithError(event, 400)
+export default defineEventHandler(async event => {
+  const id: string = event.context.params!.id
+  if (!isValidSongId(id)) return sendNullWithError(event, 400)
 
-  const course = (await fetchOne(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-      'charts',
-    ],
-    { condition: 'c.id = @', value: id },
-    { condition: 'c.nameIndex <= 0' }
-  )) as CourseInfo | null
+  /* GraphQL */
+  const query = `
+  query getById($id: ID!) {
+    course_by_pk(id: $id) {
+      id
+      name
+      nameKana
+      nameIndex
+      series
+      minBPM
+      maxBPM
+      charts {
+        playStyle
+        difficulty
+        level
+        notes
+        freezeArrow
+        shockArrow
+        order {
+          songId
+          songName
+          playStyle
+          difficulty
+          level
+        }
+      }
+      deleted
+    }
+  }`
+  const course = await callGraphQL<{ course_by_pk: CourseInfo }>(query, { id })
 
-  if (!course) return sendNullWithError(event, 404)
-  return course
-}
+  return course.data?.course_by_pk ?? sendNullWithError(event, 404)
+})

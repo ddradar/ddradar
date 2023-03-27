@@ -1,11 +1,10 @@
 import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
-import { getQueryInteger } from '~/src/path'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
+import { getQueryInteger } from '~~/utils/path'
 
 const danceLevels: string[] = [...Database.danceLevelSet]
 
@@ -25,7 +24,6 @@ export type RankStatus = Pick<
  *   - `id`: {@link Database.UserSchema.id}
  *   - `style`(optional): {@link RankStatus.playStyle}
  *   - `lv`(optional): {@link RankStatus.level}
- * @param event HTTP Event
  * @returns
  * - Returns `404 Not Found` if no user that matches `id` or user is private.
  * - Returns `200 OK` with JSON body if found.
@@ -38,7 +36,7 @@ export type RankStatus = Pick<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
@@ -91,4 +89,4 @@ export default async (event: H3Event) => {
         ? l.level - r.level
         : danceLevels.indexOf(l.rank) - danceLevels.indexOf(r.rank)
     ) // ORDER BY playStyle, level, rank ASC
-}
+})

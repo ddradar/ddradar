@@ -1,16 +1,14 @@
 import { Database } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { readBody } from 'h3'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Add or update song and charts information.
  * @description
  * - Need Authentication with `administrator` role.
  * - POST `/api/v1/songs`
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
  * - Returns `400 BadRequest` if body parameters are invalid.
@@ -45,7 +43,7 @@ import { sendNullWithError } from '~/server/utils'
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const body = await readBody(event)
   if (!Database.isSongSchema(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
@@ -70,4 +68,4 @@ export default async (event: H3Event) => {
   await getContainer('Songs').items.upsert(song)
 
   return song
-}
+})

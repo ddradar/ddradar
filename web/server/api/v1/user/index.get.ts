@@ -1,8 +1,7 @@
 import type { Database } from '@ddradar/core'
-import type { H3Event } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
 
@@ -11,7 +10,6 @@ export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
  * @description
  * - Need Authentication.
  * - GET `api/v1/user`
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if user registration is not completed.
@@ -28,7 +26,7 @@ export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await getLoginUserInfo(event)
   if (!user) {
     return sendNullWithError(event, 404, 'User registration is not completed')
@@ -36,4 +34,4 @@ export default async (event: H3Event) => {
 
   delete user.loginId
   return user as CurrentUserInfo
-}
+})

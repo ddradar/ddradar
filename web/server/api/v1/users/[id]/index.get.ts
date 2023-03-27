@@ -1,8 +1,6 @@
-import type { H3Event } from 'h3'
-
 import type { UserInfo } from '~/server/api/v1/users/index.get'
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Get user information that match the specified ID.
@@ -10,7 +8,6 @@ import { sendNullWithError } from '~/server/utils'
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - GET `api/v1/users/:id`
  *   - `id`: {@link UserInfo.id}
- * @param event HTTP Event
  * @returns
  * - Returns `404 Not Found` if `id` is not defined.
  * - Returns `404 Not Found` if no user that matches `id` or user is private.
@@ -25,7 +22,7 @@ import { sendNullWithError } from '~/server/utils'
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
@@ -36,4 +33,4 @@ export default async (event: H3Event) => {
     code: user.code,
   }
   return userInfo
-}
+})

@@ -1,11 +1,10 @@
 import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
 import { Database, Score } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { readBody } from 'h3'
 
-import { getLoginUserInfo } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
 
 type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
   (Database.StepChartSchema | Database.CourseChartSchema)
@@ -18,7 +17,6 @@ type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
  *   - `id`: {@link Database.ScoreSchema.songId}
  *   - `style`: {@link Database.ScoreSchema.playStyle}
  *   - `diff`: {@link Database.ScoreSchema.difficulty}
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `400 Bad Request` if parameter body is invalid.
@@ -52,11 +50,11 @@ type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   // route params
-  const id: string = event.context.params.id
-  const style = parseFloat(event.context.params.style)
-  const diff = parseFloat(event.context.params.diff)
+  const id: string = event.context.params!.id
+  const style = parseFloat(event.context.params!.style)
+  const diff = parseFloat(event.context.params!.diff)
   if (
     !Database.isValidSongId(id) ||
     !Database.isPlayStyle(style) ||
@@ -187,4 +185,4 @@ export default async (event: H3Event) => {
       })
     }
   }
-}
+})

@@ -1,6 +1,6 @@
 import type { H3Event } from 'h3'
 
-import type { ClientPrincipal } from '~/server/auth'
+import type { ClientPrincipal } from '~~/server/utils/auth'
 
 export function createEvent(params?: Record<string, string>): H3Event {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

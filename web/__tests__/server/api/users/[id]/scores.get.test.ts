@@ -4,15 +4,15 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'
 import getUserScores from '~/server/api/v1/users/[id]/scores.get'
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
+import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
-vi.mock('~/server/auth')
-vi.mock('~/server/utils')
-vi.mock('~/src/path')
+vi.mock('~~/server/utils/auth')
+vi.mock('~~/server/utils/http')
+vi.mock('~~/utils/path')
 
 describe('GET /api/v1/users/[id]/scores', () => {
   beforeAll(() => {

@@ -1,13 +1,13 @@
 import { createError, sendError } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { sendNullWithError } from '~/server/utils'
+import { sendNullWithError } from '~~/server/utils/http'
 
-import { createEvent } from './test-util'
+import { createEvent } from '../test-util'
 
 vi.mock('h3')
 
-describe('server/utils.ts', () => {
+describe('server/utils/http.ts', () => {
   describe('sendNullWithError', () => {
     beforeEach(() => {
       vi.mocked(createError).mockClear()

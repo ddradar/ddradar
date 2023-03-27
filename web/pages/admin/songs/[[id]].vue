@@ -4,7 +4,7 @@
     <OField label="Song ID">
       <OField grouped>
         <OInput
-          v-model="song!.id"
+          v-model="id"
           maxlength="32"
           required
           pattern="^[01689bdiloqDIOPQ]{32}$"
@@ -183,9 +183,9 @@
 import { Song } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
-import DialogModal from '~/components/DialogModal.vue'
-import { difficultyMap, seriesNames } from '~/src/song'
-import { getByPKQuery, SongInfo } from '~~/composables/useSongInfo'
+import DialogModal from '~~/components/DialogModal.vue'
+import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import { difficultyMap, seriesNames } from '~~/utils/song'
 
 const _chart = {
   level: 1,
@@ -201,14 +201,12 @@ const _chart = {
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()
-const id = _route.params.id as string
-const { data: song, refresh } = await useAsyncData(
-  `/songs/${id}`,
-  () => callGraphQL<{ song_by_pk: SongInfo }>(getByPKQuery, { id }),
-  { transform: s => s.data.song_by_pk, server: false }
+const id = ref((_route.params.id as string) ?? '')
+const { data: song, refresh } = await useFetch<SongInfo>(
+  `/api/v1/songs/${id.value}`
 )
 song.value ??= {
-  id,
+  id: id.value,
   name: '',
   nameKana: '',
   nameIndex: 0,
@@ -229,7 +227,7 @@ song.value ??= {
 }
 
 // Validator
-const isValidSongId = computed(() => Song.isValidSongId(song.value!.id))
+const isValidSongId = computed(() => Song.isValidSongId(id.value))
 const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
   song.value!.charts.filter(
     c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
@@ -271,8 +269,8 @@ const saveSongInfo = async () => {
   if ((await instance.promise) !== 'yes') return
 
   const nameIndex = Song.getNameIndex(song.value!.nameKana)
-  const body: SongInfo = { ...song.value!, nameIndex }
-  song.value = await $fetch('/api/v1/songs', { method: 'POST', body })
+  const body: SongInfo = { ...song.value!, id: id.value, nameIndex }
+  song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
 
   oruga.notification.open({
     message: 'Saved Successfully!',

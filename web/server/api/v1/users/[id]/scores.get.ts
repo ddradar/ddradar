@@ -1,12 +1,11 @@
 import type { Database } from '@ddradar/core'
 import { Score, Song } from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
-import { tryFetchUser } from '~/server/auth'
-import { sendNullWithError } from '~/server/utils'
-import { getQueryInteger, getQueryString } from '~/src/path'
+import { tryFetchUser } from '~~/server/utils/auth'
+import { sendNullWithError } from '~~/server/utils/http'
+import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type ScoreList = Omit<
   Database.ScoreSchema,
@@ -47,7 +46,7 @@ export type ScoreList = Omit<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
@@ -71,4 +70,4 @@ export default async (event: H3Event) => {
     delete r.radar
     return r
   })
-}
+})

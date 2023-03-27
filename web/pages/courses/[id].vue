@@ -1,15 +1,6 @@
 <template>
   <section class="section">
-    <template v-if="isLoading">
-      <OLoading :v-model:active="isLoading" />
-      <h1 class="title"><OSkeleton animated /></h1>
-      <h2 class="subtitle"><OSkeleton animated /></h2>
-      <h2 class="subtitle"><OSkeleton animated /></h2>
-      <div class="content columns is-multiline">
-        <OSkeleton animated size="large" :count="3" />
-      </div>
-    </template>
-    <template v-else>
+    <template v-if="course">
       <h1 class="title">{{ course.name }}</h1>
       <h2 class="subtitle">{{ course.series }}</h2>
       <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
@@ -20,31 +11,33 @@
         <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
       </div>
     </template>
+    <template v-else>
+      <OLoading active />
+      <h1 class="title"><OSkeleton animated /></h1>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
+      <div class="content columns is-multiline">
+        <OSkeleton animated size="large" :count="3" />
+      </div>
+    </template>
   </section>
 </template>
 
 <script lang="ts" setup>
-import { createError } from 'h3'
-import { computed } from 'vue'
-
 import ChartInfo from '~/components/ChartInfo.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
-import { getDisplayedBPM } from '~/src/song'
+import { getDisplayedBPM } from '~~/utils/song'
 
 const _route = useRoute()
-const { data: course, pending: isLoading } = await useFetch<CourseInfo>(
+const { data: course } = await useFetch<CourseInfo>(
   `/api/v1/courses/${_route.params.id}`
 )
-/* c8 ignore next 4 */
-if (!course.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Page Not Found' })
-}
 
-const displayedBPM = computed(() => getDisplayedBPM(course.value))
+const displayedBPM = computed(() => getDisplayedBPM(course.value!))
 const singleCharts = computed(() =>
-  course.value.charts.filter(c => c.playStyle === 1)
+  course.value!.charts.filter(c => c.playStyle === 1)
 )
 const doubleCharts = computed(() =>
-  course.value.charts.filter(c => c.playStyle === 2)
+  course.value!.charts.filter(c => c.playStyle === 2)
 )
 </script>

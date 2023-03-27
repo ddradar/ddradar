@@ -1,8 +1,12 @@
 import { describe, expect, test } from 'vitest'
 
-import { getChartTitle, getDisplayedBPM, shortenSeriesName } from '~/src/song'
+import {
+  getChartTitle,
+  getDisplayedBPM,
+  shortenSeriesName,
+} from '~~/utils/song'
 
-describe('src/song.ts', () => {
+describe('utils/song.ts', () => {
   describe('shortenSeriesName', () => {
     test.each([
       ['DDR 1st', '1st'],

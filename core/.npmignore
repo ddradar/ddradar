@@ -1,9 +1,0 @@
-# TypeScript Files
-tsconfig.json
-**.ts
-!dist/**.d.ts
-
-# Test & Lint Files
-.eslintrc.json
-*.config.**
-/__tests__/**

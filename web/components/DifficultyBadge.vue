@@ -6,9 +6,8 @@
 
 <script lang="ts" setup>
 import type { Song } from '@ddradar/core'
-import { computed } from 'vue'
 
-import { difficultyMap } from '~/src/song'
+import { difficultyMap } from '~~/utils/song'
 
 interface ChartInfoProps {
   difficulty: Song.Difficulty

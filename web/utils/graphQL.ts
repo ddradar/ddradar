@@ -6,7 +6,8 @@
  * @returns Result data
  */
 export function callGraphQL<T>(query: string, variables: object) {
-  return $fetch<{ data: T }>('/data-api/graphql', {
+  const config = useRuntimeConfig()
+  return $fetch<{ data: T }>(`${config.public.apiBase}/data-api/graphql`, {
     method: 'POST',
     body: { query, variables },
   })
