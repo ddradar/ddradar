@@ -1,7 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
@@ -47,7 +46,7 @@ export type ClearStatus = Pick<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
@@ -100,4 +99,4 @@ export default async (event: H3Event) => {
         ? l.level - r.level
         : l.clearLamp - r.clearLamp
     ) // ORDER BY playStyle, level, clearLamp ASC
-}
+})

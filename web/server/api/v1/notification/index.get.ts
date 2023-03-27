@@ -1,6 +1,5 @@
 import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { getQueryString } from '~/src/path'
@@ -13,7 +12,6 @@ type Notification = Omit<Database.NotificationSchema, 'sender' | 'pinned'>
  * - No need Authentication.
  * - GET `api/v1/notification?scope=:scope`
  *   - `scope`(optional): `top`: only {@link Database.NotificationSchema.pinned pinned} notification, other: all notification
- * @param event HTTP Event
  * @returns `200 OK` with JSON body.
  * @example
  * ```json
@@ -29,7 +27,7 @@ type Notification = Omit<Database.NotificationSchema, 'sender' | 'pinned'>
  * ]
  * ```
  */
-export default async (event: H3Event): Promise<Notification[]> => {
+export default defineEventHandler(async event => {
   const pinnedOnly = getQueryString(getQuery(event), 'scope') === 'top'
 
   const conditions: Condition<'Notification'>[] = [
@@ -37,10 +35,10 @@ export default async (event: H3Event): Promise<Notification[]> => {
   ]
   if (pinnedOnly) conditions.push({ condition: 'c.pinned = true' })
 
-  return await fetchList(
+  return (await fetchList(
     'Notification',
     ['id', 'type', 'icon', 'title', 'body', 'timeStamp'],
     conditions,
     { pinned: 'DESC', timeStamp: 'DESC' }
-  )
-}
+  )) as Notification[]
+})

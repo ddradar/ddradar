@@ -58,7 +58,7 @@ export async function getLoginUserInfo(
 export async function tryFetchUser(
   event: Pick<H3Event, 'req' | 'context'>
 ): Promise<Database.UserSchema | null> {
-  const id: string = event.context.params.id
+  const id: string = event.context.params!.id
   if (!Database.isValidUserId(id)) return null
 
   const user = await fetchUser(id)

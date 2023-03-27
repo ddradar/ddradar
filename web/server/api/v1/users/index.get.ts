@@ -1,6 +1,5 @@
 import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { useClientPrincipal } from '~/server/auth'
@@ -19,7 +18,6 @@ export type UserInfo = Omit<
  *   - `name`(optional): {@link UserInfo.name} (partial match, ignore case)
  *   - `area`(optional): {@link UserInfo.area}
  *   - `code`(optional): {@link UserInfo.code}
- * @param event HTTP Event
  * @returns
  * - Returns `200 OK` with JSON body.
  * @example
@@ -39,7 +37,7 @@ export type UserInfo = Omit<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const loginId = useClientPrincipal(event)?.userId ?? null
   const query = getQuery(event)
   const name = getQueryString(query, 'name')
@@ -58,4 +56,4 @@ export default async (event: H3Event) => {
   return (await fetchList('Users', ['id', 'name', 'area', 'code'], conditions, {
     name: 'ASC',
   })) as UserInfo[]
-}
+})

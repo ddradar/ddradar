@@ -1,7 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~/server/auth'
@@ -20,7 +19,6 @@ export type GrooveRadarInfo = Omit<
  * - GET `api/v1/users/:id/radar?style=:style`
  *   - `id`: {@link Database.UserSchema.id}
  *   - `style`(optional): {@link GrooveRadarInfo.playStyle}
- * @param event HTTP Event
  * @returns
  * - Returns `404 Not Found` if no user that matches `id` or user is private.
  * - Returns `200 OK` with JSON body if found.
@@ -46,7 +44,7 @@ export type GrooveRadarInfo = Omit<
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
@@ -67,4 +65,4 @@ export default async (event: H3Event) => {
     conditions,
     { playStyle: 'ASC' }
   )) as GrooveRadarInfo[]
-}
+})

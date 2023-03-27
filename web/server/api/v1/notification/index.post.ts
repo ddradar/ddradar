@@ -5,7 +5,6 @@ import {
   hasStringProperty,
 } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { readBody } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
@@ -18,7 +17,6 @@ export type NotificationBody = Partial<Database.NotificationSchema> &
  * @description
  * - Need Authentication with `administrator` role.
  * - POST `/api/v1/notification`
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
  * - Returns `400 BadRequest` if body is invalid.
@@ -49,7 +47,7 @@ export type NotificationBody = Partial<Database.NotificationSchema> &
  * }
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const body = await readBody(event)
   if (!isNotificationBody(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
@@ -81,4 +79,4 @@ export default async (event: H3Event) => {
       (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
     )
   }
-}
+})

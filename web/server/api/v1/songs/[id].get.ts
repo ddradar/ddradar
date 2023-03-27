@@ -12,7 +12,6 @@ export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
  * - No need Authentication.
  * - GET `api/v1/songs/:id`
  *   - `id`: {@link SongInfo.id}
- * @param event HTTP Event
  * @returns
  * - Returns `400 Bad Request` if {@link SongInfo.id id} is invalid.
  * - Returns `404 Not Found` if no song that matches {@link SongInfo.id id}.

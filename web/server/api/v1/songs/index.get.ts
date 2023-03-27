@@ -1,7 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~/src/path'
@@ -37,7 +36,7 @@ const seriesNames = [...Song.seriesSet]
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const query = getQuery(event)
   const name = getQueryInteger(query, 'name')
   const series = getQueryInteger(query, 'series')
@@ -65,4 +64,4 @@ export default async (event: H3Event) => {
     conditions,
     { nameIndex: 'ASC', nameKana: 'ASC' }
   )) as SongListData[]
-}
+})

@@ -1,7 +1,6 @@
 import type { Database } from '@ddradar/core'
 import { Song } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { H3Event } from 'h3'
 
 import { sendNullWithError } from '~/server/utils'
 
@@ -13,7 +12,6 @@ export type CourseInfo = Database.CourseSchema
  * - No need Authentication.
  * - GET `api/v1/courses/:id`
  *   - `id`: {@link CourseInfo.id}
- * @param event HTTP Event
  * @returns
  * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
  * - Returns `404 Not Found` if no song that matches {@link CourseInfo.id id}.
@@ -71,8 +69,8 @@ export type CourseInfo = Database.CourseSchema
  * }
  * ```
  */
-export default async (event: H3Event) => {
-  const id: string = event.context.params.id
+export default defineEventHandler(async event => {
+  const id: string = event.context.params!.id
   if (!Song.isValidSongId(id)) return sendNullWithError(event, 400)
 
   const course = (await fetchOne(
@@ -94,4 +92,4 @@ export default async (event: H3Event) => {
 
   if (!course) return sendNullWithError(event, 404)
   return course
-}
+})

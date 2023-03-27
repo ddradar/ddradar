@@ -1,6 +1,5 @@
 import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~/src/path'
@@ -25,7 +24,6 @@ const seriesNames = [...Database.seriesSet]
  * - `GET api/v1/courses?series=:series&type=:type`
  *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
  *   - `type`(optional): `1`: NONSTOP, `2`: 段位認定
- * @param event HTTP Event
  * @returns `200 OK` with JSON body.
  * @example
  * ```json
@@ -42,7 +40,7 @@ const seriesNames = [...Database.seriesSet]
  * ]
  * ```
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   const query = getQuery(event)
   const type = getQueryInteger(query, 'type')
   const series = getQueryInteger(query, 'series')
@@ -71,4 +69,4 @@ export default async (event: H3Event) => {
       level: s.level,
     })),
   }))
-}
+})

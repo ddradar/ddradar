@@ -1,6 +1,5 @@
 import { Song } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
-import type { H3Event } from 'h3'
 
 import { getLoginUserInfo } from '~/server/auth'
 import { sendNullWithError } from '~/server/utils'
@@ -14,17 +13,16 @@ import { sendNullWithError } from '~/server/utils'
  *   - `id`: {@link ScoreSchema.songId}
  *   - `style`: {@link ScoreSchema.playStyle}
  *   - `diff`: {@link ScoreSchema.difficulty}
- * @param event HTTP Event
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `404 Not Found` if parameters are invalid or no score.
  * - Returns `204 No Content` otherwize.
  */
-export default async (event: H3Event) => {
+export default defineEventHandler(async event => {
   // route params
-  const id: string = event.context.params.id
-  const style = parseFloat(event.context.params.style)
-  const diff = parseFloat(event.context.params.diff)
+  const id: string = event.context.params!.id
+  const style = parseFloat(event.context.params!.style)
+  const diff = parseFloat(event.context.params!.diff)
   if (
     !Song.isValidSongId(id) ||
     !Song.isPlayStyle(style) ||
@@ -64,4 +62,4 @@ export default async (event: H3Event) => {
       resourceBody: { operations: [{ op: 'add', path: '/ttl', value: 3600 }] },
     }))
   )
-}
+})
