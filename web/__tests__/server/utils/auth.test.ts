@@ -9,7 +9,7 @@ import {
   useClientPrincipal,
 } from '~~/server/utils/auth'
 
-import { createClientPrincipal, createEvent } from './test-util'
+import { createClientPrincipal, createEvent } from '../test-util'
 
 vi.mock('@ddradar/db')
 
@@ -20,7 +20,7 @@ const toBase64 = (obj: unknown) => {
 }
 const authHeader = 'x-ms-client-principal'
 
-describe('server/auth.ts', () => {
+describe('server/utils/auth.ts', () => {
   describe('useClientPrincipal', () => {
     const event: Pick<H3Event, 'req'> = createEvent()
     beforeEach(() => {

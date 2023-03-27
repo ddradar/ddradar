@@ -2,7 +2,7 @@ import { describe, expect, test } from 'vitest'
 
 import { getQueryInteger, getQueryString } from '~~/utils/path'
 
-describe('server/utils.ts', () => {
+describe('utils/path.ts', () => {
   describe('getQueryString', () => {
     test.each([
       [{ key: 'foo' }, 'key', 'foo'],

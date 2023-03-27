@@ -6,7 +6,7 @@ import {
   shortenSeriesName,
 } from '~~/utils/song'
 
-describe('src/song.ts', () => {
+describe('utils/song.ts', () => {
   describe('shortenSeriesName', () => {
     test.each([
       ['DDR 1st', '1st'],
