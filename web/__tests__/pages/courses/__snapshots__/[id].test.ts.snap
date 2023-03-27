@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Page /courses/[id] > { isLoading: false, course: <Data> } renders course info 1`] = `
+exports[`Page /courses/[id] > { course: <Data> } renders course info 1`] = `
 <section
   class="section"
 >
@@ -57,7 +57,7 @@ exports[`Page /courses/[id] > { isLoading: false, course: <Data> } renders cours
 </section>
 `;
 
-exports[`Page /courses/[id] > { isLoading: true } renders loading state 1`] = `
+exports[`Page /courses/[id] > { course: null } renders loading state 1`] = `
 <section
   class="section"
 >
@@ -67,7 +67,6 @@ exports[`Page /courses/[id] > { isLoading: true } renders loading state 1`] = `
     css="true"
     name="fade"
     persisted="false"
-    v-model:active="true"
   >
     <!--v-if-->
   </transition-stub>

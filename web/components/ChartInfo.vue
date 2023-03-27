@@ -50,7 +50,6 @@
 
 <script lang="ts" setup>
 import { Song } from '@ddradar/core'
-import { computed } from 'vue'
 
 import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'

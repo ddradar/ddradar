@@ -28,8 +28,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-
 export interface CardProps {
   /** Card title */
   title: string

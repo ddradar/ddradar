@@ -24,8 +24,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-
 import ChartInfo from '~~/components/ChartInfo.vue'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getDisplayedBPM } from '~~/src/song'
