@@ -23,5 +23,6 @@ vi.stubGlobal('computed', computed)
 // Nuxt 3
 vi.stubGlobal('useFetch', vi.fn())
 vi.stubGlobal('useRoute', vi.fn())
+vi.stubGlobal('useRuntimeConfig', vi.fn())
 vi.stubGlobal('definePageMeta', vi.fn())
 vi.stubGlobal('defineEventHandler', defineEventHandler)
