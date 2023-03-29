@@ -38,7 +38,7 @@ export type UserInfo = Omit<
  * ```
  */
 export default defineEventHandler(async event => {
-  const loginId = useClientPrincipal(event)?.userId ?? null
+  const loginId = useClientPrincipal(event.node.req.headers)?.userId ?? null
   const query = getQuery(event)
   const name = getQueryString(query, 'name')
   const area = getQueryInteger(query, 'area')

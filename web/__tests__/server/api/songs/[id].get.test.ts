@@ -6,7 +6,7 @@ import getSongInfo from '~~/server/api/v1/songs/[id].get'
 import { callGraphQL } from '~~/server/utils/graphQL'
 import { sendNullWithError } from '~~/server/utils/http'
 
-vi.mock('~~/utils/graphQL')
+vi.mock('~~/server/utils/graphQL')
 vi.mock('~~/server/utils/http')
 
 describe('GET /api/v1/songs/[id]', () => {

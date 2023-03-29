@@ -4,9 +4,6 @@ import useAuth from '~~/composables/useAuth'
 import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
 import type { ClientPrincipal } from '~~/server/utils/auth'
 
-const apiBase = 'http://example.com/'
-vi.mocked(useRuntimeConfig).mockReturnValue({ public: { apiBase } } as any)
-
 describe('composables/useAuth', () => {
   const generalAuth: ClientPrincipal = {
     identityProvider: 'github',
@@ -32,21 +29,15 @@ describe('composables/useAuth', () => {
     auth: ClientPrincipal | null,
     user: CurrentUserInfo | null
   ) => {
-    vi.mocked(useFetch).mockClear()
-    vi.mocked(useFetch).mockImplementation(
-      s =>
-        ({
-          data:
-            typeof s === 'string' && s.startsWith(apiBase)
-              ? ref(auth)
-              : ref(user),
-        } as any)
+    vi.mocked($fetch).mockClear()
+    vi.mocked($fetch).mockImplementation(s =>
+      Promise.resolve(s === '/.auth/me' ? auth : user)
     )
   }
 
   // Computed
   test.each([null, generalAuth, adminAuth])(
-    '.auth returns %p (equals GET "/.auth/me" result)',
+    '.auth returns %o (equals GET "/.auth/me" result)',
     async auth => {
       // Arrange
       mockFetch(auth, null)
@@ -59,7 +50,7 @@ describe('composables/useAuth', () => {
     }
   )
   test.each([null, generalUser])(
-    '.user returns %p (equals GET "/api/v1/user" result)',
+    '.user returns %o (equals GET "/api/v1/user" result)',
     async user => {
       // Arrange
       mockFetch(generalAuth, user)
@@ -74,7 +65,7 @@ describe('composables/useAuth', () => {
   test.each([
     [undefined, null],
     [generalUser.name, generalUser],
-  ])('.name returns %s if .user is %p', async (name, user) => {
+  ])('.name returns %s if .user is %o', async (name, user) => {
     // Arrange
     mockFetch(generalAuth, user)
 
@@ -87,7 +78,7 @@ describe('composables/useAuth', () => {
   test.each([
     [false, null],
     [true, generalUser],
-  ])('.isLoggedIn returns %p if .user is %p', async (isLoggedIn, user) => {
+  ])('.isLoggedIn returns %o if .user is %o', async (isLoggedIn, user) => {
     // Arrange
     mockFetch(generalAuth, user)
 
@@ -101,7 +92,7 @@ describe('composables/useAuth', () => {
     [false, null],
     [false, generalAuth],
     [true, adminAuth],
-  ])('.isAdmin returns %p if .auth is %p', async (isAdmin, auth) => {
+  ])('.isAdmin returns %o if .auth is %o', async (isAdmin, auth) => {
     // Arrange
     mockFetch(auth, null)
 
@@ -124,7 +115,7 @@ describe('composables/useAuth', () => {
     expect(user.value).toBeNull()
     await saveUser(generalUser)
     expect(user.value).toStrictEqual(generalUser)
-    expect(vi.mocked(useFetch)).toBeCalledWith('/api/v1/user', {
+    expect(vi.mocked($fetch)).toBeCalledWith('/api/v1/user', {
       method: 'POST',
       body: generalUser,
     })
@@ -139,7 +130,10 @@ describe('composables/useAuth', () => {
     // Assert
     expect(auth.value).toStrictEqual(generalAuth)
     expect(user.value).toStrictEqual(generalUser)
-    logout()
+    await logout()
+    expect(vi.mocked(navigateTo)).toBeCalledWith('/.auth/logout', {
+      external: true,
+    })
     expect(auth.value).toBeNull()
     expect(user.value).toBeNull()
   })
