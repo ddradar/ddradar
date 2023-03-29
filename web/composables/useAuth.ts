@@ -2,7 +2,7 @@ import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
 import { ClientPrincipal, useClientPrincipal } from '~~/server/utils/auth'
 
 export default async function useAuth() {
-  const auth = ref<ReturnType<typeof useClientPrincipal>>(null)
+  const auth = ref<ClientPrincipal | null>(null)
   const user = ref<CurrentUserInfo | null>(null)
 
   auth.value = process.server
@@ -22,6 +22,11 @@ export default async function useAuth() {
     () => !!auth.value?.userRoles.includes('administrator')
   )
 
+  const login = async (provider: ClientPrincipal['identityProvider']) => {
+    const { path } = useRoute()
+    const loginUri = `/.auth/login/${provider}?post_login_redirect_uri=${path}`
+    await navigateTo(loginUri, { external: true })
+  }
   const saveUser = async (body: CurrentUserInfo) => {
     user.value = await $fetch('/api/v1/user', { method: 'POST', body })
   }
@@ -37,6 +42,7 @@ export default async function useAuth() {
     name,
     isLoggedIn,
     isAdmin,
+    login,
     saveUser,
     logout,
   }
