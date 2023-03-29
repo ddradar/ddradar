@@ -1,10 +1,10 @@
 import { testSongData } from '@ddradar/core/__tests__/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import getSongInfo from '~/server/api/v1/songs/[id].get'
+import { createEvent } from '~~/__tests__/server/test-util'
+import getSongInfo from '~~/server/api/v1/songs/[id].get'
+import { callGraphQL } from '~~/server/utils/graphQL'
 import { sendNullWithError } from '~~/server/utils/http'
-import { callGraphQL } from '~~/utils/graphQL'
 
 vi.mock('~~/utils/graphQL')
 vi.mock('~~/server/utils/http')

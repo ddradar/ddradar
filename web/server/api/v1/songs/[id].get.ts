@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
 
+import { callGraphQL } from '~~/server/utils/graphQL'
 import { sendNullWithError } from '~~/server/utils/http'
-import { callGraphQL } from '~~/utils/graphQL'
 import { isValidSongId } from '~~/utils/song'
 
 export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
