@@ -19,11 +19,11 @@ describe('/api/score.ts', () => {
       [{ ...score, playStyle: 1, difficulty: 5 }],
       [{ ...score, playStyle: 3, difficulty: 0 }],
       [{ ...score, playStyle: 1, difficulty: 4, topScore: 'foo' }],
-    ])('(%p) returns false', body => expect(isScoreListBody(body)).toBe(false))
+    ])('(%o) returns false', body => expect(isScoreListBody(body)).toBe(false))
     test.each([
       [{ ...score, playStyle: 2, difficulty: 1 }],
       [{ ...score, maxCombo: 138, exScore: 414, playStyle: 1, difficulty: 3 }],
       [{ ...score, playStyle: 1, difficulty: 4, topScore: 1000000 }],
-    ])('(%p) returns true', body => expect(isScoreListBody(body)).toBe(true))
+    ])('(%o) returns true', body => expect(isScoreListBody(body)).toBe(true))
   })
 })

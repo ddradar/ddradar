@@ -15,7 +15,7 @@ describe('./skill-attack.ts', () => {
       [[0x74, 0x65, 0x73, 0x74], 'test'],
       [[0x83, 0x65, 0x83, 0x58, 0x83, 0x67], 'テスト'],
       [[0x95, 0x88, 0x96, 0xca], '譜面'],
-    ])('(%p) returns "%s"', async (byte, expected) => {
+    ])('(%o) returns "%s"', async (byte, expected) => {
       // Arrange
       const file = new File([Buffer.from(byte)], 'test.txt')
 

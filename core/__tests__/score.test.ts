@@ -19,7 +19,7 @@ describe('./score.ts', () => {
       score: 978800,
     }
     test.each([undefined, null, true, 1.5, 'foo', {}])(
-      '(%p) returns false',
+      '(%o) returns false',
       (obj: unknown) => expect(isScore(obj)).toBe(false)
     )
     test.each([
@@ -27,7 +27,7 @@ describe('./score.ts', () => {
       { ...validScore, exScore: 334 },
       { ...validScore, maxCombo: 120 },
       { ...validScore, exScore: 334, maxCombo: 120 },
-    ])('(%p) returns true', (obj: ScoreBody) => expect(isScore(obj)).toBe(true))
+    ])('(%o) returns true', (obj: ScoreBody) => expect(isScore(obj)).toBe(true))
     test.each([
       { ...validScore, score: Infinity },
       { ...validScore, score: -1 },
@@ -39,7 +39,7 @@ describe('./score.ts', () => {
       { ...validScore, maxCombo: true },
       { ...validScore, exScore: 334, maxCombo: {} },
       { ...validScore, exScore: NaN, maxCombo: 120 },
-    ])('(%p) returns false', (obj: unknown) => expect(isScore(obj)).toBe(false))
+    ])('(%o) returns false', (obj: unknown) => expect(isScore(obj)).toBe(false))
   })
   describe('mergeScore', () => {
     test.each([
@@ -63,7 +63,7 @@ describe('./score.ts', () => {
         { score: 850000, clearLamp: 4, maxCombo: 100, rank: 'A+' } as const,
         { score: 900000, clearLamp: 4, rank: 'AA', maxCombo: 100 } as const,
       ],
-    ])('(%p, %p) returns %p', (left, right, expected) => {
+    ])('(%o, %o) returns %o', (left, right, expected) => {
       // Assert - Act
       const merged1 = mergeScore(left, right)
       const merged2 = mergeScore(right, left)
@@ -102,7 +102,7 @@ describe('./score.ts', () => {
       { ...baseScore, exScore: 390 },
       { ...baseScore, exScore: 389 },
       { ...baseScore, exScore: 388 },
-    ])('(chart, %p) returns false', score => {
+    ])('(chart, %o) returns false', score => {
       expect(isValidScore(chart, score)).toBe(false)
     })
     test.each([
@@ -113,7 +113,7 @@ describe('./score.ts', () => {
       { ...baseScore, clearLamp: 5, exScore: 388 },
       { ...baseScore, maxCombo: 110 },
       { ...baseScore, clearLamp: 3, maxCombo: 110 },
-    ] as const)('(chart, %p) returns true', score => {
+    ] as const)('(chart, %o) returns true', score => {
       expect(isValidScore(chart, score)).toBe(true)
     })
   })
@@ -142,7 +142,7 @@ describe('./score.ts', () => {
       [{ ...score, clearLamp: 3 } as const, 80, 0, 98, 94, 98],
       [{ ...score, clearLamp: 4 } as const, 80, 100, 100, 100, 100],
     ])(
-      '(chart, %p) returns { %i, %i, %i, %i, %i }',
+      '(chart, %o) returns { %i, %i, %i, %i, %i }',
       (score, stream, voltage, air, freeze, chaos) =>
         expect(calcMyGrooveRadar(chart, score)).toStrictEqual({
           stream,
@@ -308,7 +308,7 @@ describe('./score.ts', () => {
         { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreBody,
       ],
     ])(
-      '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %p) returns %p',
+      '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
       (score: Partial<ScoreBody>, expected: ScoreBody) =>
         expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
     )
@@ -338,7 +338,7 @@ describe('./score.ts', () => {
         } as ScoreBody,
       ],
     ])(
-      '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %p) returns %p',
+      '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %o) returns %o',
       (incompleteScore: Partial<ScoreBody>, expected: ScoreBody) => {
         // Arrange
         const chart = { notes: 180, freezeArrow: 10, shockArrow: 0 }

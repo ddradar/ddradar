@@ -41,7 +41,7 @@ describe('utils/song.ts', () => {
       [200, 200, '200'],
       [100, 400, '100-400'],
     ])(
-      '({ minBPM: %p, maxBPM: %p }) returns "%s"',
+      '({ minBPM: %o, maxBPM: %o }) returns "%s"',
       (minBPM, maxBPM, expected) =>
         expect(getDisplayedBPM({ minBPM, maxBPM })).toBe(expected)
     )

@@ -128,7 +128,7 @@ describe('POST /api/v1/scores', () => {
         },
       ],
     },
-  ])(`/${song.id} returns "400 Bad Request" if body is %p`, async body => {
+  ])(`/${song.id} returns "400 Bad Request" if body is %o`, async body => {
     // Arrange
     req.body = body
 
@@ -196,7 +196,7 @@ describe('POST /api/v1/scores', () => {
       },
     ],
   ])(
-    `/${song.id} returns "200 OK" with JSON and documents[%i] if score is %p`,
+    `/${song.id} returns "200 OK" with JSON and documents[%i] if score is %o`,
     async (length, score) => {
       // Arrange
       req.body = { password, scores: [{ ...score }] }
@@ -215,7 +215,7 @@ describe('POST /api/v1/scores', () => {
     [4, areaHiddenUser],
     [6, publicUser],
   ])(
-    `/${song.id} returns "200 OK" with JSON and documents[%i] if user is %p and score is MFC`,
+    `/${song.id} returns "200 OK" with JSON and documents[%i] if user is %o and score is MFC`,
     async (length, user) => {
       // Arrange
       const expected = {
