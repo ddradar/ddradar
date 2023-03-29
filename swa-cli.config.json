@@ -7,7 +7,7 @@
       "apiLocation": "./web/.output/server",
       "dataApiLocation": "./swa-db-connections",
       "outputLocation": ".output/public",
-      "appBuildCommand": "yarn build:swa"
+      "appBuildCommand": "yarn build"
     }
   }
 }
