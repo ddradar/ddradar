@@ -12,19 +12,19 @@
       "name": "songs",
       "type": "cosmosDB",
       "direction": "in",
+      "connection": "COSMOS_DB_CONN_READONLY",
       "databaseName": "DDRadar",
-      "collectionName": "Songs",
-      "sqlQuery": "SELECT c.id, c.name, c.charts FROM c WHERE c.id = {songId} OR ({songId} = 'dll9D90dq1O09oObO66Pl8l9I9l0PbPP' AND c.id = '01lbO69qQiP691ll6DIiqPbIdd9O806o')",
-      "connectionStringSetting": "COSMOS_DB_CONN_READONLY"
+      "containerName": "Songs",
+      "sqlQuery": "SELECT c.id, c.name, c.charts FROM c WHERE c.id = {songId} OR ({songId} = 'dll9D90dq1O09oObO66Pl8l9I9l0PbPP' AND c.id = '01lbO69qQiP691ll6DIiqPbIdd9O806o')"
     },
     {
       "name": "users",
       "type": "cosmosDB",
       "direction": "in",
+      "connection": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
-      "collectionName": "Users",
-      "sqlQuery": "SELECT * FROM c WHERE c.id = {userId}",
-      "connectionStringSetting": "COSMOS_DB_CONN"
+      "containerName": "Users",
+      "sqlQuery": "SELECT * FROM c WHERE c.id = {userId}"
     },
     {
       "type": "http",
@@ -35,9 +35,9 @@
       "type": "cosmosDB",
       "direction": "out",
       "name": "documents",
+      "connection": "COSMOS_DB_CONN",
       "databaseName": "DDRadar",
-      "collectionName": "Scores",
-      "connectionStringSetting": "COSMOS_DB_CONN"
+      "containerName": "Scores"
     }
   ],
   "scriptFile": "../dist/postSongScores/index.js"
