@@ -19,5 +19,6 @@
   "remoteUser": "node",
   "features": {
     "ghcr.io/jlaundry/devcontainer-features/azure-functions-core-tools:1": {}
-  }
+  },
+  "postCreateCommand": "yarn install"
 }

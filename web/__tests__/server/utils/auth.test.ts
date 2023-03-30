@@ -1,6 +1,5 @@
 import { privateUser, publicUser } from '@ddradar/core/__tests__/data'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
-import type { H3Event } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import {
@@ -22,19 +21,14 @@ const authHeader = 'x-ms-client-principal'
 
 describe('server/utils/auth.ts', () => {
   describe('useClientPrincipal', () => {
-    const event: Pick<H3Event, 'req'> = createEvent()
-    beforeEach(() => {
-      event.req.headers = {}
-    })
-
     test.each(['', 'foo', undefined, []])(
       `({ ${authHeader} : %o }) returns null`,
       header => {
         // Arrange
-        event.req.headers[authHeader] = header
+        const headers = { [authHeader]: header }
 
         // Act - Assert
-        expect(useClientPrincipal(event)).toBe(null)
+        expect(useClientPrincipal(headers)).toBe(null)
       }
     )
 
@@ -54,23 +48,21 @@ describe('server/utils/auth.ts', () => {
     ])(`({ ${authHeader} : toBase64(%o) }) returns same object`, expected => {
       // Arrange
       const header = toBase64(expected)
-      event.req.headers[authHeader] = header
+      const headers = { [authHeader]: header }
 
       // Act - Assert
-      expect(useClientPrincipal(event)).toStrictEqual(expected)
+      expect(useClientPrincipal(headers)).toStrictEqual(expected)
     })
   })
 
   describe('getLoginUserInfo', () => {
-    const event: Pick<H3Event, 'req'> = createEvent()
     beforeEach(() => {
-      event.req.headers = {}
       vi.mocked(fetchLoginUser).mockClear()
     })
 
     test(`({ ${authHeader} : '' }) returns null`, async () => {
       // Arrange
-      event.req.headers[authHeader] = ''
+      const event = { node: { req: { headers: { [authHeader]: '' } } } }
 
       // Act
       const user = await getLoginUserInfo(event)
@@ -82,9 +74,15 @@ describe('server/utils/auth.ts', () => {
 
     test(`({ ${authHeader} : <Unregistered User Token> }) returns null`, async () => {
       // Arrange
-      event.req.headers[authHeader] = toBase64(
-        createClientPrincipal('id', 'loginId')
-      )
+      const event = {
+        node: {
+          req: {
+            headers: {
+              [authHeader]: toBase64(createClientPrincipal('id', 'loginId')),
+            },
+          },
+        },
+      }
       vi.mocked(fetchLoginUser).mockResolvedValue(null)
 
       // Act
@@ -97,9 +95,17 @@ describe('server/utils/auth.ts', () => {
 
     test(`({ ${authHeader} : <Registered User Token> }) returns UserSchema`, async () => {
       // Arrange
-      event.req.headers[authHeader] = toBase64(
-        createClientPrincipal(publicUser.id, publicUser.loginId)
-      )
+      const event = {
+        node: {
+          req: {
+            headers: {
+              [authHeader]: toBase64(
+                createClientPrincipal(publicUser.id, publicUser.loginId)
+              ),
+            },
+          },
+        },
+      }
       vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
       // Act
@@ -116,8 +122,8 @@ describe('server/utils/auth.ts', () => {
       id: '',
     })
     beforeEach(() => {
-      event.req.headers = {}
-      event.context.params.id = ''
+      event.node.req.headers = {}
+      event.context.params!.id = ''
       vi.mocked(fetchUser).mockClear()
     })
 
@@ -125,7 +131,7 @@ describe('server/utils/auth.ts', () => {
       '({ id: "%s" }) returns null',
       async id => {
         // Arrange
-        event.context.params.id = id
+        event.context.params!.id = id
 
         // Act
         const user = await tryFetchUser(event)
@@ -144,8 +150,8 @@ describe('server/utils/auth.ts', () => {
       `({ id: %o, header: "%s" }) returns UserSchema`,
       async (dbUser, loginId) => {
         // Arrange
-        event.context.params.id = dbUser.id
-        event.req.headers[authHeader] = toBase64({ userId: loginId })
+        event.context.params!.id = dbUser.id
+        event.node.req.headers[authHeader] = toBase64({ userId: loginId })
         vi.mocked(fetchUser).mockResolvedValue(dbUser)
 
         // Act
@@ -164,8 +170,8 @@ describe('server/utils/auth.ts', () => {
     ])(`({ id: %o, header: "%s" }) returns null`, async (dbUser, loginId) => {
       // Arrange
       const id = dbUser?.id ?? 'foo'
-      event.context.params.id = id
-      event.req.headers[authHeader] = toBase64({ userId: loginId })
+      event.context.params!.id = id
+      event.node.req.headers[authHeader] = toBase64({ userId: loginId })
       vi.mocked(fetchUser).mockResolvedValue(dbUser)
 
       // Act

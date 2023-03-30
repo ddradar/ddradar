@@ -331,7 +331,7 @@ describe('/utils/eagate-parser.ts', () => {
         createScore(raspberryHeart, 2, 4, 900000, 'E', 0, 300, 1000000),
       ],
     ])(
-      '(%s) returns %p',
+      '(%s) returns %o',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
         const source = await createSource(
@@ -381,7 +381,7 @@ describe('/utils/eagate-parser.ts', () => {
         createScore(raspberryHeart, 2, 4, 900000, 'E', 0, 300, 1000000),
       ],
     ])(
-      '(%s) returns %p',
+      '(%s) returns %o',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
         const source = await createSource(
@@ -406,7 +406,7 @@ describe('/utils/eagate-parser.ts', () => {
         createScore(nonstopId, 1, 0, 999850, 'AAA', 6, 401, 1000000),
       ],
     ])(
-      '(%s) returns %p',
+      '(%s) returns %o',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
         const source = await createSource(
@@ -425,7 +425,7 @@ describe('/utils/eagate-parser.ts', () => {
         createScore(nonstopId, 1, 0, 999850, 'AAA', 6, 401, 1000000),
       ],
     ])(
-      '(%s) returns %p',
+      '(%s) returns %o',
       async (fileName, expected: ReturnType<typeof musicDetailToScore>) => {
         // Arrange
         const source = await createSource(

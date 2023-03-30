@@ -45,7 +45,7 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, isPublic: undefined },
       { ...validUserInfo, password: 0 },
       { id: 'new_user', name: 'New User', area: 13 },
-    ])('(%p) returns false', obj => {
+    ])('(%o) returns false', obj => {
       expect(isUserSchema(obj)).toBe(false)
     })
     test.each([
@@ -56,14 +56,14 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, isPublic: false },
       { ...validUserInfo, loginId: 'foo' },
       { ...validUserInfo, password: 'password' },
-    ])('(%p) returns true', obj => {
+    ])('(%o) returns true', obj => {
       expect(isUserSchema(obj)).toBe(true)
     })
   })
 
   describe('isAreaUser', () => {
     test.each([...areaCodeSet].map(i => ({ id: `${i}` })))(
-      '(%p) returns true',
+      '(%o) returns true',
       user => expect(isAreaUser(user)).toBe(true)
     )
     test.each(['000', '-1', '', 'foo'])('({ id: %s }) returns false', id =>

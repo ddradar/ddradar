@@ -55,7 +55,7 @@ describe.runIf(canConnectDB())('users.ts', () => {
     test.each([
       [users[0].id, users[0]],
       [users[1].id, users[1]],
-    ])('("%s") returns %p', async (id, expected) => {
+    ])('("%s") returns %o', async (id, expected) => {
       // Arrange - Act
       const result = await fetchUser(id)
 
@@ -79,7 +79,7 @@ describe.runIf(canConnectDB())('users.ts', () => {
     test.each([
       [users[0].loginId, users[0]],
       [users[1].loginId, users[1]],
-    ])('("%s") returns %p', async (loginId, expected) => {
+    ])('("%s") returns %o', async (loginId, expected) => {
       // Arrange - Act
       const user = await fetchLoginUser(loginId)
 

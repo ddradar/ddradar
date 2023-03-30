@@ -90,7 +90,7 @@ describe('scores.ts', () => {
         ],
       ],
     ])(
-      '("foo", %p, %p) calls fetchList("Scores", columns, %p, { songName: "ASC" })',
+      '("foo", %o, %o) calls fetchList("Scores", columns, %o, { songName: "ASC" })',
       async (conditions, includeCourse, additionalConditions) => {
         // Arrange
         const resources: Omit<

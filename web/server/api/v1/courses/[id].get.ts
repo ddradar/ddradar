@@ -1,7 +1,7 @@
 import type { Database } from '@ddradar/core'
+import { fetchOne } from '@ddradar/db'
 
 import { sendNullWithError } from '~~/server/utils/http'
-import { callGraphQL } from '~~/utils/graphQL'
 import { isValidSongId } from '~~/utils/song'
 
 export type CourseInfo = Database.CourseSchema
@@ -73,36 +73,21 @@ export default defineEventHandler(async event => {
   const id: string = event.context.params!.id
   if (!isValidSongId(id)) return sendNullWithError(event, 400)
 
-  /* GraphQL */
-  const query = `
-  query getById($id: ID!) {
-    course_by_pk(id: $id) {
-      id
-      name
-      nameKana
-      nameIndex
-      series
-      minBPM
-      maxBPM
-      charts {
-        playStyle
-        difficulty
-        level
-        notes
-        freezeArrow
-        shockArrow
-        order {
-          songId
-          songName
-          playStyle
-          difficulty
-          level
-        }
-      }
-      deleted
-    }
-  }`
-  const course = await callGraphQL<{ course_by_pk: CourseInfo }>(query, { id })
-
-  return course.data?.course_by_pk ?? sendNullWithError(event, 404)
+  const course = await fetchOne(
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'deleted',
+      'charts',
+    ],
+    { condition: 'c.id = @', value: id },
+    { condition: 'c.nameIndex <= 0' }
+  )
+  return (course as CourseInfo) ?? sendNullWithError(event, 404)
 })

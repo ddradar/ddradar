@@ -28,9 +28,9 @@ export interface ClientPrincipal {
  * @description https://docs.microsoft.com/azure/static-web-apps/user-information?tabs=javascript#api-functions
  */
 export function useClientPrincipal(
-  event: Pick<H3Event, 'req'>
+  headers: Pick<H3Event, 'node'>['node']['req']['headers']
 ): ClientPrincipal | null {
-  const header = event.req.headers['x-ms-client-principal']
+  const header = headers['x-ms-client-principal']
   if (typeof header !== 'string') return null
 
   try {
@@ -42,10 +42,12 @@ export function useClientPrincipal(
   }
 }
 
-export async function getLoginUserInfo(
-  event: Pick<H3Event, 'req'>
-): Promise<Database.UserSchema | null> {
-  const clientPrincipal = useClientPrincipal(event)
+export async function getLoginUserInfo(event: {
+  node: {
+    req: Pick<Pick<Pick<H3Event, 'node'>['node'], 'req'>['req'], 'headers'>
+  }
+}): Promise<Database.UserSchema | null> {
+  const clientPrincipal = useClientPrincipal(event.node.req.headers)
   if (!clientPrincipal) return null
   return await fetchLoginUser(clientPrincipal.userId)
 }
@@ -56,7 +58,7 @@ export async function getLoginUserInfo(
  * @returns Database.UserSchema if user is public or same as login user. otherwise null.
  */
 export async function tryFetchUser(
-  event: Pick<H3Event, 'req' | 'context'>
+  event: Pick<H3Event, 'node' | 'context'>
 ): Promise<Database.UserSchema | null> {
   const id: string = event.context.params!.id
   if (!Database.isValidUserId(id)) return null
@@ -64,6 +66,6 @@ export async function tryFetchUser(
   const user = await fetchUser(id)
   if (!user) return null
 
-  const loginId = useClientPrincipal(event)?.userId ?? ''
+  const loginId = useClientPrincipal(event.node.req.headers)?.userId ?? ''
   return user.isPublic || user.loginId === loginId ? user : null
 }

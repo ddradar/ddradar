@@ -4,8 +4,7 @@
   "description": "DDRadar web site (powered by Azure Static Wep Apps)",
   "private": true,
   "scripts": {
-    "build": "nuxt build",
-    "build:swa": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
+    "build": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "pretest": "nuxt prepare",

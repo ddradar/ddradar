@@ -3,8 +3,12 @@ import type { H3Event } from 'h3'
 import type { ClientPrincipal } from '~~/server/utils/auth'
 
 export function createEvent(params?: Record<string, string>): H3Event {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  return { req: {}, context: { params }, res: { statusCode: 200 } } as any
+  return {
+    node: { req: {} },
+    context: { params },
+    res: { statusCode: 200 },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } as any
 }
 
 export function createClientPrincipal(

@@ -28,7 +28,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  * ```
  */
 export default defineEventHandler(async event => {
-  const clientPrincipal = useClientPrincipal(event)
+  const clientPrincipal = useClientPrincipal(event.node.req.headers)
   if (!clientPrincipal) return sendNullWithError(event, 401)
   const loginId = clientPrincipal.userId
 

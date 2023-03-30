@@ -45,7 +45,7 @@ describe('./db/songs.ts', () => {
   describe('isSongSchema', () => {
     const validSong = { ...testSongData }
     test.each([undefined, null, true, 1.5, 'foo', [], {}])(
-      '(%p) returns false',
+      '(%o) returns false',
       (obj: unknown) => expect(isSongSchema(obj)).toBe(false)
     )
     test.each([
@@ -65,7 +65,7 @@ describe('./db/songs.ts', () => {
       { ...validSong, charts: [{ ...validSong.charts[0], difficulty: 5 }] },
       { ...validSong, charts: [{ ...validSong.charts[0], level: 0 }] },
       { ...validSong, charts: [{ ...validSong.charts[0], level: 21 }] },
-    ])('(%p) returns false', (obj: unknown) =>
+    ])('(%o) returns false', (obj: unknown) =>
       expect(isSongSchema(obj)).toBe(false)
     )
 
@@ -74,7 +74,7 @@ describe('./db/songs.ts', () => {
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
       { ...validSong, minBPM: null, maxBPM: null },
       { ...validSong, charts: [] },
-    ])('(%p) returns true', (obj: unknown) =>
+    ])('(%o) returns true', (obj: unknown) =>
       expect(isSongSchema(obj)).toBe(true)
     )
   })
