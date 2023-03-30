@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": "16.x"
+    "node": "18.x"
   },
   "workspaces": {
     "nohoist": [
@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@azure/functions": "^3.5.1",
-    "@tsconfig/node16": "^1.0.3",
-    "@types/node": "^16.18.21",
+    "@tsconfig/node18": "^1.0.1",
+    "@types/node": "^18.15.11",
     "typescript": "^4.9.4",
     "vitest": "^0.29.7"
   }
