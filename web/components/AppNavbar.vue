@@ -49,7 +49,7 @@
       <div class="navbar-end">
         <div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">{{ name }}</a>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown is-right">
             <div class="buttons">
               <OButton
                 icon-left="account"
@@ -67,7 +67,7 @@
         </div>
         <div v-else class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">ログイン</a>
-          <div class="navbar-dropdown">
+          <div class="navbar-dropdown is-right">
             <div class="buttons">
               <OButton
                 icon-left="twitter"
