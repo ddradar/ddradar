@@ -6,6 +6,9 @@ import { ref } from 'vue'
 
 import { mountAsync } from '~/__tests__/test-utils'
 import Page from '~/pages/songs/[id].vue'
+import useAuth from '~~/composables/useAuth'
+
+vi.mock('~~/composables/useAuth')
 
 describe('Page /songs/[id]', () => {
   const params = { id: testSongData.id }
@@ -15,6 +18,7 @@ describe('Page /songs/[id]', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
     vi.mocked(useFetch).mockResolvedValue({ data: ref(null) } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(false) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -31,6 +35,24 @@ describe('Page /songs/[id]', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ params } as any)
     vi.mocked(useFetch).mockResolvedValue({ data: ref(testSongData) } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(false) } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+
+    // Act
+    const wrapper = await mountAsync(Page, {
+      global: { plugins: [[Oruga, bulmaConfig]], stubs: { ChartInfo: true } },
+    })
+
+    // Assert
+    expect(wrapper.element).toMatchSnapshot()
+  })
+
+  test('{ isAdmin: true } renders edit button', async () => {
+    // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useRoute).mockReturnValue({ params } as any)
+    vi.mocked(useFetch).mockResolvedValue({ data: ref(testSongData) } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(true) } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
