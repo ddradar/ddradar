@@ -1,6 +1,6 @@
 {
-  "name": "Node.js 16 with Azure Functions Core Tools",
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:16",
+  "name": "Node.js 18 with Azure Functions Core Tools",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
   "customizations": {
     "vscode": {
       "extensions": [
