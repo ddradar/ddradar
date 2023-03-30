@@ -22,16 +22,13 @@ yarn
 
 ### Required
 
-- Node.js `>=12`
+- Node.js `18.x`
 - Yarn `>=1.22.4`
-- [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) `>=3`
+- [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) `4.x`
 
 - API開発やテストに[Azure Cosmos Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)を使う場合は、下記の環境変数を設定してください。
   - `COSMOS_DB_CONN`: `AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==`
   - `NODE_TLS_REJECT_UNAUTHORIZED`: `0`
-
-- クライアントとAPIの統合開発を行う場合は、下記の環境変数を設定してください。
-  - `API_URL`: `http://localhost:7071/api/v1`
 
 ## Develop Command
 
