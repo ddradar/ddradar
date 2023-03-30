@@ -27,7 +27,7 @@ yarn
 - [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) `4.x`
 
 - If you want to use [Azure Cosmos Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator) for API development and test, install it and set env below.
-  - `COSMOS_DB_CONN`: `AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==`
+  - `COSMOS_DB_CONN`: `AccountEndpoint=https://127.0.0.1:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==`
   - `NODE_TLS_REJECT_UNAUTHORIZED`: `0`
 
 ## Develop Command
