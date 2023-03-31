@@ -1,15 +1,15 @@
 {
   "compilerOptions": {
-    "module": "node16",
-    "target": "es2018",
+    "module": "ESNext",
+    "target": "ESNext",
     "lib": ["es2018", "dom"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
     "outDir": "dist",
-    "rootDir": "src",
     "declaration": true,
     "sourceMap": true,
     "strict": true,
-    "skipLibCheck": true,
-    "types": ["node"]
+    "skipLibCheck": true
   },
-  "exclude": ["node_modules", "test", "coverage", "dist"]
+  "exclude": ["node_modules", "test", "coverage", "dist", "*.config.ts"]
 }

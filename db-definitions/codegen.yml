@@ -3,3 +3,5 @@ generates:
   src/graphql.ts:
     plugins:
       - 'typescript'
+    config:
+      skipTypename: true
