@@ -1,4 +1,5 @@
 import type { Song, StepChart } from './graphql'
+import type { Strict } from './type-assert'
 import {
   hasIntegerProperty,
   hasProperty,
@@ -36,27 +37,38 @@ import {
  * }
  * ```
  */
-export type SongSchema = Omit<Song, 'nameIndex' | 'series'> & {
-  /**
-   * Index for sorting. Associated with the "Choose by Name" folder.
-   * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
-   * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
-   */
-  nameIndex: NameIndex
-  /** Series title depend on official site. */
-  series: Series
-}
-export type StepChartSchema = Omit<StepChart, 'playStyle' | 'difficulty'> & {
-  playStyle: PlayStyle
-  difficulty: Difficulty
-}
+export type SongSchema = Strict<
+  Song,
+  {
+    /**
+     * Index for sorting. Associated with the "Choose by Name" folder.
+     * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
+     * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
+     */
+    nameIndex: NameIndex
+    /** Series title depend on official site. */
+    series: Series
+    /** Song's step charts */
+    charts: StepChartSchema[]
+  }
+>
+/** Song's step chart */
+export type StepChartSchema = Strict<
+  StepChart,
+  {
+    /** {@link PlayStyle} */
+    playStyle: PlayStyle
+    /** {@link Difficulty} */
+    difficulty: Difficulty
+  }
+>
 /** Type assertion for {@link SongSchema} */
 export function isSongSchema(obj: unknown): obj is SongSchema {
   return (
     hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
     isValidSongId(obj.id) &&
     /^([A-Z0-9 .\u3040-\u309Fー]*)$/.test(obj.nameKana) &&
-    (seriesSet as ReadonlySet<string>).has(obj.series) &&
+    seriesSet.has(obj.series) &&
     hasIntegerProperty(obj, 'nameIndex') &&
     obj.nameIndex >= 0 &&
     obj.nameIndex <= 36 &&
@@ -69,7 +81,7 @@ export function isSongSchema(obj: unknown): obj is SongSchema {
     obj.charts.every(c => isStepChartSchema(c))
   )
 
-  function isStepChartSchema(obj: unknown): obj is StepChart {
+  function isStepChartSchema(obj: unknown): obj is StepChartSchema {
     return (
       hasIntegerProperty(
         obj,
@@ -190,7 +202,7 @@ export function getNameIndex(nameKana: string): NameIndex {
   return 36
 }
 
-const series = new Set([
+const series = [
   'DDR 1st',
   'DDR 2ndMIX',
   'DDR 3rdMIX',
@@ -210,11 +222,11 @@ const series = new Set([
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
   'DanceDanceRevolution A3',
-] as const)
+] as const
 /** Series title depend on official site. */
-export type Series = Parameters<typeof series.add>[0]
+export type Series = (typeof series)[number]
 /** Set for {@link Series} */
-export const seriesSet: ReadonlySet<string> = series
+export const seriesSet: ReadonlySet<string> = new Set(series)
 
 const playStyles = new Map([
   [1, 'SINGLE'],

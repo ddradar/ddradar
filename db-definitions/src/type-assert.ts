@@ -12,12 +12,18 @@ export function hasStringProperty<K extends string>(
   return hasProperty(x, ...names) && names.every(n => typeof x[n] === 'string')
 }
 
+export function hasBooleanProperty<K extends string>(
+  x: unknown,
+  ...names: K[]
+): x is { [M in K]: number } {
+  return hasProperty(x, ...names) && names.every(n => typeof x[n] === 'boolean')
+}
+
 export function hasIntegerProperty<K extends string>(
   x: unknown,
   ...names: K[]
 ): x is { [M in K]: number } {
-  return (
-    hasProperty(x, ...names) &&
-    names.every(n => typeof x[n] === 'number' && Number.isInteger(x[n]))
-  )
+  return hasProperty(x, ...names) && names.every(n => Number.isInteger(x[n]))
 }
+
+export type Strict<T, U> = Omit<T, keyof U> & U
