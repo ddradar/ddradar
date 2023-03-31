@@ -4,5 +4,22 @@
   "description": "Cosmos DB definitions for DDRadar",
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
   "repository": "https://github.com/ddradar/ddradar",
-  "license": "MIT"
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prepare": "graphql-codegen",
+    "build": "tsc",
+    "prebuild": "node -e \"fs.rmSync('./dist',{force:true,recursive:true})\""
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^3.2.2",
+    "@graphql-codegen/typescript": "^3.0.2",
+    "graphql": "^16.6.0",
+    "typescript": "^4.9.4",
+    "vitest": "^0.29.7"
+  }
 }

@@ -1,63 +1,205 @@
+"DB Schema of Song data (included on 'Songs' container)"
 type Song @model {
-  id: ID
+  """
+  ID that depend on official site.
+  @example `^([01689bdiloqDIOPQ]*){32}$`
+  """
+  id: ID!
   name: String!
+  """
+  Furigana for sorting.
+  @example `^([A-Z0-9 .ぁ-んー]*)$`
+  """
   nameKana: String!
+  """
+  Index for sorting. Associated with the "Choose by Name" folder.
+  @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
+  @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
+  """
   nameIndex: Int!
   artist: String!
+  "Series title depend on official site."
   series: String!
+  """
+  Displayed min BPM (Beet Per Minutes).
+  Set to `null` if not revealed, such as "???".
+  """
   minBPM: Int
+  """
+  Displayed max BPM (Beet Per Minutes).
+  Set to `null` if not revealed, such as "???".
+  """
   maxBPM: Int
+  "Song's step charts"
   charts: [StepChart!]!
+  "ID used by {@link http://skillattack.com/sa4/ Skill Attack}."
   skillAttackId: Int
+  "Song is deleted or not"
   deleted: Boolean
 }
 
+"Song's step chart"
 type StepChart {
+  "`1`: SINGLE, `2`: DOUBLE"
   playStyle: Int!
+  """
+  `0`: BEGINNER,
+  `1`: BASIC,
+  `2`: DIFFICULT,
+  `3`: EXPERT,
+  `4`: CHALLENGE
+  """
   difficulty: Int!
+  "Chart level"
   level: Int!
+  "Normal arrow count. (Jump = 1 count)"
   notes: Int!
+  "Freeze Arrow count."
   freezeArrow: Int!
+  "Shock Arrow count."
   shockArrow: Int!
+  "Groove Radar STREAM"
   stream: Int!
+  "Groove Radar VOLTAGE"
   voltage: Int!
+  "Groove Radar AIR"
   air: Int!
+  "Groove Radar FREEZE"
   freeze: Int!
+  "Groove Radar CHAOS"
   chaos: Int!
 }
 
+"""
+DB Schema of Course data (included on "Songs" container)
+@example
+```json
+{
+  "id": "qbbOOO1QibO1861bqQII9lqlPiIoqb98",
+  "name": "FIRST",
+  "nameKana": "C-A20-1",
+  "nameIndex": -1,
+  "series": "DanceDanceRevolution A20",
+  "minBPM": 119,
+  "maxBPM": 180,
+  "charts": [
+    {
+      "playStyle": 1,
+      "difficulty": 0,
+      "level": 4,
+      "notes": 401,
+      "freezeArrow": 8,
+      "shockArrow": 0,
+      "order": [
+        {
+          "songId": "lIlQ8DbPP6Iil1DOlQ6d8IPQblDQ8IiI",
+          "songName": "HAVE YOU NEVER BEEN MELLOW (20th Anniversary Mix)",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 2
+        },
+        {
+          "songId": "b1do8OI6qDDlQO0PI16868ql6bdbI886",
+          "songName": "MAKE IT BETTER",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 3
+        },
+        {
+          "songId": "Pb9II0oiI9ODQ8OP8IqIPQP9P68biqIi",
+          "songName": "TRIP MACHINE",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 3
+        },
+        {
+          "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+          "songName": "PARANOiA",
+          "playStyle": 1,
+          "difficulty": 0,
+          "level": 4
+        }
+      ]
+    }
+  ]
+}
+```
+"""
 type Course @model {
-  id: ID
+  """
+  ID that depend on official site.
+  @example `^([01689bdiloqDIOPQ]*){32}$`
+  """
+  id: ID!
   name: String!
+  """
+  ID for sorting.
+  @example `^([A-Z0-9 .ぁ-んー]*)$`
+  """
   nameKana: String!
+  """
+  `-1`: NONSTOP, `-2`: Grade
+  @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
+  """
   nameIndex: Int!
+  "Series title depend on official site."
   series: String!
+  "Displayed min BPM (Beet Per Minutes)."
   minBPM: Int
+  "Displayed max BPM (Beet Per Minutes)."
   maxBPM: Int
+  "Course difficulties"
   charts: [CourseChart!]!
+  "Course is deleted or not"
   deleted: Boolean
 }
 
+"Course difficulty"
 type CourseChart {
+  "`1`: SINGLE, `2`: DOUBLE"
   playStyle: Int!
+  """
+  `0`: BEGINNER,
+  `1`: BASIC,
+  `2`: DIFFICULT,
+  `3`: EXPERT,
+  `4`: CHALLENGE
+  """
   difficulty: Int!
+  "level (equals to highest order's level)"
   level: Int!
+  "Normal arrow count. (Jump = 1 count)"
   notes: Int!
+  "Freeze Arrow count."
   freezeArrow: Int!
+  "Shock Arrow count."
   shockArrow: Int!
+  "Course order"
   order: [CourseOrder!]!
 }
 
+"Course order"
 type CourseOrder {
+  "{@link Song.id}"
   songId: String!
+  "{@link Song.name}"
   songName: String!
+  "`1`: SINGLE, `2`: DOUBLE"
   playStyle: Int!
+  """
+  `0`: BEGINNER,
+  `1`: BASIC,
+  `2`: DIFFICULT,
+  `3`: EXPERT,
+  `4`: CHALLENGE
+  """
   difficulty: Int!
+  "Chart level"
   level: Int!
 }
 
 type Notification @model {
-  id: ID
+  id: ID!
   sender: String!
   pinned: Boolean!
   type: String!

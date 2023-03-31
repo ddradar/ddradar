@@ -1,0 +1,5 @@
+schema: staticwebapp.database.schema.gql
+generates:
+  src/graphql.ts:
+    plugins:
+      - 'typescript'
