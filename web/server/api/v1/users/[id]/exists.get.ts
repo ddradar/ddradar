@@ -1,9 +1,10 @@
-import { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import type { UserSchema } from '@ddradar/db-definitions'
+import { isValidUserId } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
-export type ExistsUser = Pick<Database.UserSchema, 'id'> & {
+export type ExistsUser = Pick<UserSchema, 'id'> & {
   /** User exists or not */
   exists: boolean
 }
@@ -25,7 +26,7 @@ export type ExistsUser = Pick<Database.UserSchema, 'id'> & {
  */
 export default defineEventHandler(async event => {
   const id: string = event.context.params!.id
-  if (!Database.isValidUserId(id)) return sendNullWithError(event, 404)
+  if (!isValidUserId(id)) return sendNullWithError(event, 404)
 
   const condition = { condition: 'c.id = @', value: id } as const
   const user = await fetchOne('Users', ['id'], condition)

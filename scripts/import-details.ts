@@ -5,6 +5,7 @@ config()
 
 import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
+import { difficultyMap, playStyleMap } from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { postSongScores } from './modules/api'
@@ -15,8 +16,8 @@ import { fetchScoreDetail, isLoggedIn } from './modules/eagate'
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
 
-const style = Song.playStyleMap
-const diff = Song.difficultyMap
+const style = playStyleMap
+const diff = difficultyMap
 
 /**
  * Import all scores from e-AMUSEMENT GATE score detail pages.
@@ -99,7 +100,7 @@ async function main(ddrCode: string) {
     }
 
     try {
-      await postSongScores(s.id, user.id, user.password, scores)
+      await postSongScores(s.id, user.id, user.password as string, scores)
     } catch (error) {
       songScope.error(error)
       continue

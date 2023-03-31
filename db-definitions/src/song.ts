@@ -236,10 +236,6 @@ const playStyles = new Map([
 export type PlayStyle = Parameters<typeof playStyles.get>[0]
 /** Map for {@link PlayStyle} */
 export const playStyleMap: ReadonlyMap<number, string> = playStyles
-/** Type assertion for {@link PlayStyle} */
-export function isPlayStyle(obj: unknown): obj is PlayStyle {
-  return typeof obj === 'number' && playStyles.has(obj as PlayStyle)
-}
 
 const difficulties = new Map([
   [0, 'BEGINNER'],

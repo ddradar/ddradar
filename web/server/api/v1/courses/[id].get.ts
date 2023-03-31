@@ -1,10 +1,10 @@
-import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import type { CourseSchema } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 import { isValidSongId } from '~~/utils/song'
 
-export type CourseInfo = Database.CourseSchema
+export type CourseInfo = CourseSchema
 
 /**
  * Get course and orders information that match the specified ID.

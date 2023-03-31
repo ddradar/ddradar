@@ -1,27 +1,28 @@
-import { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
+import type { DanceLevel, UserRankSchema } from '@ddradar/db-definitions'
+import { danceLevelSet, isPlayStyle } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryInteger } from '~~/utils/path'
 
-const danceLevels: string[] = [...Database.danceLevelSet]
+const danceLevels: string[] = [...danceLevelSet]
 
 export type RankStatus = Pick<
-  Database.ScoreStatusSchema,
+  UserRankSchema,
   'playStyle' | 'level' | 'count'
 > & {
   /** Dance level (`"E"` ~ `"AAA"`), `"-"`: No Play */
-  rank: Database.DanceLevel | '-'
+  rank: DanceLevel | '-'
 }
 
 /**
- * Get Score statuses that match the specified {@link Database.UserSchema.id userId}, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
+ * Get Score statuses that match the specified userId, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - GET `api/v1/users/:id/score?style=:style&lv=:lv`
- *   - `id`: {@link Database.UserSchema.id}
+ *   - `id`: UserSchema.id
  *   - `style`(optional): {@link RankStatus.playStyle}
  *   - `lv`(optional): {@link RankStatus.level}
  * @returns
@@ -45,7 +46,7 @@ export default defineEventHandler(async event => {
   const lv = getQueryInteger(query, 'lv')
 
   const conditions: Condition<'UserDetails'>[] = []
-  if (Database.isPlayStyle(style)) {
+  if (isPlayStyle(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
   if (lv >= 1 && lv <= 20) {

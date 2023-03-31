@@ -1,6 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Database } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
+import type { ScoreSchema } from '@ddradar/db-definitions'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import summaryUserScores from '.'
@@ -16,7 +16,7 @@ describe('/summaryUserScores/index.ts', () => {
   })
   beforeEach(() => context.log.info.mockClear())
 
-  const score: Database.ScoreSchema & ItemDefinition = {
+  const score: ScoreSchema & ItemDefinition = {
     id: 'foo',
     userId: 'foo',
     userName: 'foo',
@@ -36,7 +36,7 @@ describe('/summaryUserScores/index.ts', () => {
 
   test('returns [] if scores only include Area top', async () => {
     // Arrange
-    const areaScores: Database.ScoreSchema[] = [...Array(10).keys()].map(n => ({
+    const areaScores = [...Array(10).keys()].map(n => ({
       ...score,
       id: `area-${n}`,
       userId: `${n}`,
@@ -53,7 +53,7 @@ describe('/summaryUserScores/index.ts', () => {
   test('returns [GrooveRadar(SP), GrooveRadar(DP), ClearStatus, ScoreStatus] if scores include user score', async () => {
     // Arrange
     vi.mocked(fetchClearAndScoreStatus).mockResolvedValueOnce([])
-    const userScore: Database.ScoreSchema = { ...score, radar }
+    const userScore = { ...score, radar }
 
     // Act
     const result = await summaryUserScores(context, [userScore])
@@ -72,7 +72,7 @@ describe('/summaryUserScores/index.ts', () => {
       { ...detail, type: 'clear', clearLamp: 7 },
       { ...detail, type: 'score', rank: 'AAA' },
     ])
-    const userScores: (Database.ScoreSchema & ItemDefinition)[] = [
+    const userScores: (ScoreSchema & ItemDefinition)[] = [
       { ...score, radar, clearLamp: 5, score: 980000, rank: 'AA+', ttl: 3600 },
       { ...score, radar, ttl: -1 },
       { ...score, radar, difficulty: 0, level: 4 },

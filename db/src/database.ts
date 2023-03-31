@@ -5,7 +5,16 @@ import type {
   SqlParameter,
 } from '@azure/cosmos'
 import { Container, CosmosClient } from '@azure/cosmos'
-import type { Database } from '@ddradar/core'
+import type {
+  CourseSchema,
+  NotificationSchema,
+  ScoreSchema,
+  SongSchema,
+  UserClearLampSchema,
+  UserGrooveRadarSchema,
+  UserRankSchema,
+  UserSchema,
+} from '@ddradar/db-definitions'
 
 // eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
@@ -24,18 +33,15 @@ type ContainerName =
   | 'UserDetails'
 
 type ContainerValue<T> = T extends 'Scores'
-  ? Database.ScoreSchema
+  ? ScoreSchema
   : T extends 'Songs'
-  ? Database.SongSchema | Database.CourseSchema
+  ? SongSchema | CourseSchema
   : T extends 'Users'
-  ? Database.UserSchema
+  ? UserSchema
   : T extends 'Notification'
-  ? Database.NotificationSchema
+  ? NotificationSchema
   : T extends 'UserDetails'
-  ?
-      | Database.ClearStatusSchema
-      | Database.GrooveRadarSchema
-      | Database.ScoreStatusSchema
+  ? UserGrooveRadarSchema | UserClearLampSchema | UserRankSchema
   : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>

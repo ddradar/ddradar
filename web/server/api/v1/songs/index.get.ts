@@ -1,15 +1,14 @@
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
+import { nameIndexMap, seriesSet, SongSchema } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~~/utils/path'
 
-export type SongListData = Omit<Database.SongSchema, 'skillAttackId' | 'charts'>
+export type SongListData = Omit<SongSchema, 'skillAttackId' | 'charts'>
 
-const maxNameIndex = Song.nameIndexMap.size
-const maxSeriesIndex = Song.seriesSet.size
-const seriesNames = [...Song.seriesSet]
+const maxNameIndex = nameIndexMap.size
+const maxSeriesIndex = seriesSet.size
+const seriesNames = [...seriesSet]
 
 /**
  * Get a list of song information that matches the specified conditions.

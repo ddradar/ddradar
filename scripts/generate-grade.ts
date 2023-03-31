@@ -3,9 +3,17 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
+import type {
+  CourseSchema,
+  Difficulty,
+  StepChartSchema,
+} from '@ddradar/db-definitions'
+import {
+  difficultyMap,
+  isValidSongId,
+  playStyleMap,
+} from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { fetchSongs } from './modules/database'
@@ -34,32 +42,32 @@ const grade = {
 } as const
 /** Course order (pair of songId & difficulty) */
 const order = [
-  { id: '', difficulty: 1 as Song.Difficulty }, // 1st
-  { id: '', difficulty: 1 as Song.Difficulty }, // 2nd
-  { id: '', difficulty: 1 as Song.Difficulty }, // 3rd
-  { id: '', difficulty: 1 as Song.Difficulty }, // FINAL
+  { id: '', difficulty: 1 as Difficulty }, // 1st
+  { id: '', difficulty: 1 as Difficulty }, // 2nd
+  { id: '', difficulty: 1 as Difficulty }, // 3rd
+  { id: '', difficulty: 1 as Difficulty }, // FINAL
 ]
 
 /** Generate 段位認定 course data from each songs info. */
 async function main() {
-  if (!Song.isValidSongId(grade.id)) {
+  if (!isValidSongId(grade.id)) {
     consola.warn(`Invalid ID: ${grade.id}`)
     return
   }
-  const playStyle = Song.playStyleMap.get(grade.playStyle)
+  const playStyle = playStyleMap.get(grade.playStyle)
   const name = gradeMap.get(grade.index) as string
   consola.ready(`Add ${name}(${playStyle}) (${grade.id})`)
 
   const songs = await fetchSongs(order.map(d => d.id))
   const charts = songs
     .map((s, i) =>
-      (s.charts as Database.StepChartSchema[]).find(
+      (s.charts as StepChartSchema[]).find(
         c =>
           c.playStyle === grade.playStyle &&
           c.difficulty === order[i].difficulty
       )
     )
-    .filter((d): d is Database.StepChartSchema => !!d)
+    .filter((d): d is StepChartSchema => !!d)
 
   if (charts.length !== 4) {
     consola.warn('Not found 4 charts. Please check has been registered.')
@@ -67,14 +75,14 @@ async function main() {
   }
 
   for (let i = 0; i < 4; i++) {
-    const diff = Song.difficultyMap.get(order[i].difficulty)
+    const diff = difficultyMap.get(order[i].difficulty)
     consola.info(`${i + 1}: ${songs[i].name} (${playStyle}-${diff})`)
   }
 
   const zeroPadding = new Intl.NumberFormat(undefined, {
     minimumIntegerDigits: 2,
   })
-  const course: Database.CourseSchema = {
+  const course: CourseSchema = {
     id: grade.id,
     name,
     nameIndex: -2,

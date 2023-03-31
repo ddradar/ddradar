@@ -1,16 +1,17 @@
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
+import type { ScoreSchema } from '@ddradar/db-definitions'
+import {
+  difficultyMap,
+  isValidSongId,
+  playStyleMap,
+} from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryString } from '~~/utils/path'
 
-export type ScoreInfo = Omit<
-  Database.ScoreSchema,
-  'isPublic' | 'radar' | 'deleted'
->
+export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
 
 /**
  * Get scores that match the specified chart.
@@ -74,9 +75,9 @@ export default defineEventHandler(async event => {
   const style = parseFloat(event.context.params!.style)
   const diff = parseFloat(event.context.params!.diff)
   if (
-    !Song.isValidSongId(id) ||
-    !Song.isPlayStyle(style) ||
-    !Song.isDifficulty(diff)
+    !isValidSongId(id) ||
+    !playStyleMap.has(style) ||
+    !difficultyMap.has(diff)
   ) {
     sendNullWithError(event, 404)
     return []

@@ -1,5 +1,11 @@
-import { Database, Score } from '@ddradar/core'
-import { publicUser } from '@ddradar/core/__tests__/data'
+import type {
+  ClearLamp,
+  DanceLevel,
+  UserClearLampSchema,
+  UserRankSchema,
+} from '@ddradar/db-definitions'
+import { clearLampMap, danceLevelSet } from '@ddradar/db-definitions'
+import { publicUser } from '@ddradar/db-definitions/test/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'
@@ -7,30 +13,30 @@ import { fetchClearAndScoreStatus } from '../src/user-details'
 
 describe.runIf(canConnectDB())('user-details.ts', () => {
   describe('fetchClearAndScoreStatus()', () => {
-    const clears: (Database.ClearStatusSchema & { id: string })[] = [
-      ...Array(Score.clearLampMap.size).keys(),
+    const clears: (UserClearLampSchema & { id: string })[] = [
+      ...Array(clearLampMap.size).keys(),
     ].map(n => ({
       id: `clear-${publicUser.id}-${(n % 2) + 1}-${(n % 19) + 1}-${
-        n % Score.clearLampMap.size
+        n % clearLampMap.size
       }`,
       userId: publicUser.id,
       type: 'clear',
       playStyle: ((n % 2) + 1) as 1 | 2,
       level: (n % 19) + 1,
-      clearLamp: (n % Score.clearLampMap.size) as Score.ClearLamp,
+      clearLamp: (n % clearLampMap.size) as ClearLamp,
       count: n,
     }))
-    const ranks: (Database.ScoreStatusSchema & { id: string })[] = [
-      ...Array(Score.danceLevelSet.size).keys(),
+    const ranks: (UserRankSchema & { id: string })[] = [
+      ...Array(danceLevelSet.size).keys(),
     ].map(n => ({
       id: `score-${publicUser.id}-${(n % 2) + 1}-${(n % 19) + 1}-${
-        n % Score.danceLevelSet.size
+        n % danceLevelSet.size
       }`,
       userId: publicUser.id,
       type: 'score',
       playStyle: ((n % 2) + 1) as 1 | 2,
       level: (n % 19) + 1,
-      rank: [...Score.danceLevelSet][n % Score.danceLevelSet.size],
+      rank: [...danceLevelSet][n % danceLevelSet.size] as DanceLevel,
       count: n,
     }))
     const userDetails = [...clears, ...ranks]

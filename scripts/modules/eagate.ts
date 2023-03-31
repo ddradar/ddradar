@@ -1,5 +1,5 @@
-import type { Song } from '@ddradar/core'
 import { Gate } from '@ddradar/core'
+import type { Difficulty, PlayStyle, Series } from '@ddradar/db-definitions'
 import { config } from 'dotenv'
 import { JSDOM } from 'jsdom'
 import type { Page } from 'puppeteer-core'
@@ -41,7 +41,7 @@ export async function isLoggedIn(page: Page): Promise<boolean> {
   return mypageUri === (await page.evaluate(() => document.location.href))
 }
 
-type GateSeries = Song.Series & `DanceDanceRevolution A${number}`
+type GateSeries = Series & `DanceDanceRevolution A${number}`
 const getUri = (series: GateSeries, file: string, query: string) =>
   `https://p.eagate.573.jp/game/ddr/${
     series === 'DanceDanceRevolution A3' ? 'ddra3' : 'ddra20'
@@ -50,8 +50,8 @@ const getUri = (series: GateSeries, file: string, query: string) =>
 export async function fetchScoreDetail(
   page: Page,
   songId: string,
-  playStyle: Song.PlayStyle,
-  difficulty: Song.Difficulty,
+  playStyle: PlayStyle,
+  difficulty: Difficulty,
   series: GateSeries = 'DanceDanceRevolution A3'
 ): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
@@ -71,7 +71,7 @@ export async function fetchScoreDetail(
 export async function fetchScoreList(
   page: Page,
   pageNo: number,
-  playStyle: Song.PlayStyle,
+  playStyle: PlayStyle,
   series: GateSeries = 'DanceDanceRevolution A3'
 ): Promise<ReturnType<typeof Gate.musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
@@ -94,8 +94,8 @@ export async function fetchRivalScoreDetail(
   page: Page,
   ddrCode: number,
   songId: string,
-  playStyle: Song.PlayStyle,
-  difficulty: Song.Difficulty
+  playStyle: PlayStyle,
+  difficulty: Difficulty
 ): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
   const detailUri = `${rivalDataUri}/music_detail.html?index=${songId}&rival_id=${ddrCode}&diff=${index}`
@@ -111,7 +111,7 @@ export async function fetchRivalScoreList(
   page: Page,
   ddrCode: number,
   pageNo: number,
-  playStyle: Song.PlayStyle
+  playStyle: PlayStyle
 ): Promise<ReturnType<typeof Gate.musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
   const detailUri = `${rivalDataUri}/rival_musicdata_${style}.html?offset=${pageNo}&rival_id=${ddrCode}`

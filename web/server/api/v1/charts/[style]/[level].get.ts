@@ -1,10 +1,11 @@
-import { Database } from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
+import type { SongSchema, StepChartSchema } from '@ddradar/db-definitions'
+import { playStyleMap } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
-export type ChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'series'> &
-  Pick<Database.StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
+export type ChartInfo = Pick<SongSchema, 'id' | 'name' | 'series'> &
+  Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
 
 /**
  * Get charts that match the specified conditions.
@@ -33,7 +34,7 @@ export default defineEventHandler(async event => {
   const style: number = parseInt(event.context.params!.style, 10)
   const level: number = parseInt(event.context.params!.level, 10)
 
-  if (!Database.isPlayStyle(style) || !(level >= 1 && level <= 20)) {
+  if (!playStyleMap.has(style) || !(level >= 1 && level <= 20)) {
     return sendNullWithError(event, 404)
   }
 

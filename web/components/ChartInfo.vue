@@ -49,12 +49,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Song } from '@ddradar/core'
+import { difficultyMap } from '@ddradar/db-definitions'
 
 import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~/server/api/v1/songs/[id].get'
-import { difficultyMap, getChartTitle } from '~~/utils/song'
+import { getChartTitle } from '~~/utils/song'
 
 type CourseChart = CourseInfo['charts'][number]
 type Chart = SongInfo['charts'][number] | CourseChart
@@ -65,12 +65,9 @@ interface ChartInfoProps {
 
 const props = defineProps<ChartInfoProps>()
 
-const cardType = computed(
-  () =>
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    difficultyMap
-      .get(props.chart.difficulty)!
-      .toLowerCase() as Lowercase<Song.DifficultyName>
+const cardType = computed(() =>
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  difficultyMap.get(props.chart.difficulty)!.toLowerCase()
 )
 
 const isCourse = (chart: Chart): chart is CourseChart =>

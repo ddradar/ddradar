@@ -1,4 +1,5 @@
-import { Song } from '@ddradar/core'
+import type { Series } from '@ddradar/db-definitions'
+import { playStyleMap, seriesSet } from '@ddradar/db-definitions'
 
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
@@ -6,17 +7,13 @@ import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)
 
-export const nameIndexMap: ReadonlyMap<number, string> = Song.nameIndexMap
-
-export const seriesNames = [...Song.seriesSet]
+export const seriesNames = [...seriesSet] as Series[]
 
 /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3 */
-export const seriesIndexes = [...Array(Song.seriesSet.size).keys()]
+export const seriesIndexes = [...Array(seriesSet.size).keys()]
 
 /** seriesIndexes that has NONSTOP/GRADE course */
 export const courseSeriesIndexes = [16, 17, 18]
-
-export const difficultyMap: ReadonlyMap<number, string> = Song.difficultyMap
 
 export function getDisplayedBPM({
   minBPM,
@@ -33,7 +30,7 @@ export function getChartTitle({
   level,
 }: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
-  const playStyleText = Song.playStyleMap.get(playStyle)!
+  const playStyleText = playStyleMap.get(playStyle)!
   const difficultyName = difficultyMap.get(difficulty)!
   /* eslint-enable @typescript-eslint/no-non-null-assertion */
   const shortPlayStyle = `${playStyleText[0]}P` as 'SP' | 'DP'
@@ -43,5 +40,3 @@ export function getChartTitle({
 export function shortenSeriesName(series: string) {
   return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
 }
-
-export const isValidSongId = Song.isValidSongId

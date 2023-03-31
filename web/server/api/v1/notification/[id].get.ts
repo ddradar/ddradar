@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import type { NotificationSchema } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
@@ -8,7 +8,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  * @description
  * - No need Authentication.
  * - GET `api/v1/notification/:id`
- *   - `id`: {@link Database.NotificationSchema.id}
+ *   - `id`: {@link NotificationSchema.id}
  * @returns
  * - Returns `404 Not Found` if no data that matches `id`.
  * - Returns `200 OK` with JSON body if found.
@@ -33,7 +33,7 @@ export default defineEventHandler(async event => {
     'Notification',
     ['id', 'sender', 'pinned', 'type', 'icon', 'title', 'body', 'timeStamp'],
     { condition: 'c.id = @', value: id }
-  )) as Database.NotificationSchema | null
+  )) as NotificationSchema | null
 
   return notification ?? sendNullWithError(event, 404)
 })

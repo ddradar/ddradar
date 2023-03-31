@@ -1,10 +1,10 @@
-import type { Database } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import type { SongSchema } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 import { isValidSongId } from '~~/utils/song'
 
-export type SongInfo = Omit<Database.SongSchema, 'skillAttackId'>
+export type SongInfo = Omit<SongSchema, 'skillAttackId'>
 
 /**
  * Get song and charts information that match the specified ID.

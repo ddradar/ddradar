@@ -1,26 +1,24 @@
-import type { Database } from '@ddradar/core'
+import type { AreaCode, UserSchema } from '@ddradar/db-definitions'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'
 import { fetchLoginUser, fetchUser } from '../src/users'
 
 describe.runIf(canConnectDB())('users.ts', () => {
-  const users: Required<Database.UserSchema>[] = [...Array(5).keys()].map(
-    i => ({
-      id: `user_${i}`,
-      loginId: `login_${i}`,
-      name: `User ${i}`,
-      area: (i % 50) as Database.AreaCode,
-      isPublic: i !== 0,
-      code: 10000000 + i,
-      password: `pass_${i}`,
-    })
-  )
+  const users = [...Array(5).keys()].map(i => ({
+    id: `user_${i}`,
+    loginId: `login_${i}`,
+    name: `User ${i}`,
+    area: (i % 50) as AreaCode,
+    isPublic: i !== 0,
+    code: 10000000 + i,
+    password: `pass_${i}`,
+  }))
   /** System users */
-  const areas: Database.UserSchema[] = [...Array(5).keys()].map(i => ({
+  const areas: UserSchema[] = [...Array(5).keys()].map(i => ({
     id: `${i}`,
     name: `User ${i}`,
-    area: (i % 50) as Database.AreaCode,
+    area: (i % 50) as AreaCode,
     isPublic: true,
   }))
   const dbUsers = [...users, ...areas]

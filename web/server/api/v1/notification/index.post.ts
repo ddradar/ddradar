@@ -1,16 +1,12 @@
-import type { Database } from '@ddradar/core'
-import {
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
+import type { NotificationSchema } from '@ddradar/db-definitions'
+import { isNotificationSchema } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
-export type NotificationBody = Partial<Database.NotificationSchema> &
-  Omit<Database.NotificationSchema, 'id' | 'timeStamp'>
+export type NotificationBody = Partial<NotificationSchema> &
+  Omit<NotificationSchema, 'id' | 'timeStamp'>
 
 /**
  * Add or update Notification.
@@ -49,7 +45,7 @@ export type NotificationBody = Partial<Database.NotificationSchema> &
  */
 export default defineEventHandler(async event => {
   const body = await readBody(event)
-  if (!isNotificationBody(body)) {
+  if (!isNotificationSchema(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
   }
 
@@ -66,17 +62,4 @@ export default defineEventHandler(async event => {
   await getContainer('Notification').items.upsert(notification)
 
   return notification
-
-  /** Type assertion for {@link NotificationBody}. */
-  function isNotificationBody(obj: unknown): obj is NotificationBody {
-    return (
-      hasStringProperty(obj, 'sender', 'type', 'icon', 'title', 'body') &&
-      obj.sender === 'SYSTEM' &&
-      ['is-info', 'is-warning'].includes(obj.type) &&
-      hasProperty(obj, 'pinned') &&
-      typeof obj.pinned === 'boolean' &&
-      (!hasProperty(obj, 'id') || hasStringProperty(obj, 'id')) &&
-      (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
-    )
-  }
 })

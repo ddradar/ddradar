@@ -1,13 +1,10 @@
-import type { Database } from '@ddradar/core'
+import type { UserClearLampSchema } from '@ddradar/db-definitions'
 
 import { getContainer } from './database'
 
-type TotalCount = Pick<
-  Database.ClearStatusSchema,
-  'level' | 'playStyle' | 'count'
->
+type TotalCount = Pick<UserClearLampSchema, 'level' | 'playStyle' | 'count'>
 
-/** Returns {@link Database.StepChartSchema} count grouped by playStyle, level. */
+/** Returns StepChart count grouped by playStyle, level. */
 export async function fetchTotalChartCount(): Promise<TotalCount[]> {
   const container = getContainer('Songs')
   const { resources } = await container.items

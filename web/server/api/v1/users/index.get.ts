@@ -1,12 +1,12 @@
-import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
+import type { UserSchema } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type UserInfo = Omit<
-  Database.UserSchema,
+  UserSchema,
   'loginId' | 'isPublic' | 'password'
 >
 

@@ -3,9 +3,9 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
+import type { CourseSchema, StepChartSchema } from '@ddradar/db-definitions'
+import { isValidSongId } from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { fetchSongs } from './modules/database'
@@ -28,7 +28,7 @@ const ids = [
 
 /** Generate NONSTOP course data from each songs info. */
 async function main() {
-  if (!Song.isValidSongId(courseInfo.id)) {
+  if (!isValidSongId(courseInfo.id)) {
     consola.warn(`Invalid ID: ${courseInfo.id}`)
     return
   }
@@ -56,7 +56,7 @@ async function main() {
           })
       }
       return prev
-    }, [] as Pick<Database.StepChartSchema, 'playStyle' | 'difficulty'>[])
+    }, [] as Pick<StepChartSchema, 'playStyle' | 'difficulty'>[])
     .sort((l, r) =>
       l.playStyle === r.playStyle
         ? l.difficulty - r.difficulty
@@ -66,7 +66,7 @@ async function main() {
   const zeroPadding = new Intl.NumberFormat(undefined, {
     minimumIntegerDigits: 2,
   })
-  const course: Database.CourseSchema = {
+  const course: CourseSchema = {
     id: courseInfo.id,
     name: courseInfo.name,
     nameIndex: -1,
@@ -93,7 +93,7 @@ async function main() {
       }
 
       function getChart(i: number) {
-        const charts = songs[i].charts as Database.StepChartSchema[]
+        const charts = songs[i].charts as StepChartSchema[]
         const chart =
           charts.find(
             c =>

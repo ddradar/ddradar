@@ -1,5 +1,6 @@
-import { Database } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
+import type { SongSchema } from '@ddradar/db-definitions'
+import { isSongSchema } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { sendNullWithError } from '~~/server/utils/http'
@@ -45,11 +46,11 @@ import { sendNullWithError } from '~~/server/utils/http'
  */
 export default defineEventHandler(async event => {
   const body = await readBody(event)
-  if (!Database.isSongSchema(body)) {
+  if (!isSongSchema(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
   }
 
-  const song: Database.SongSchema = {
+  const song: SongSchema = {
     id: body.id,
     name: body.name,
     nameKana: body.nameKana,

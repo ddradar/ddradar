@@ -1,17 +1,17 @@
-import type { Database } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
+import type { NotificationSchema } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getQueryString } from '~~/utils/path'
 
-type Notification = Omit<Database.NotificationSchema, 'sender' | 'pinned'>
+type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
 
 /**
  * Get system notification list.
  * @description
  * - No need Authentication.
  * - GET `api/v1/notification?scope=:scope`
- *   - `scope`(optional): `top`: only {@link Database.NotificationSchema.pinned pinned} notification, other: all notification
+ *   - `scope`(optional): `top`: only {@link NotificationSchema.pinned pinned} notification, other: all notification
  * @returns `200 OK` with JSON body.
  * @example
  * ```json

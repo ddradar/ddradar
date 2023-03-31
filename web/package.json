@@ -4,16 +4,17 @@
   "description": "DDRadar web site (powered by Azure Static Wep Apps)",
   "private": true,
   "scripts": {
+    "prepare": "nuxt prepare",
     "build": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
-    "pretest": "nuxt prepare",
     "test": "vitest run"
   },
   "dependencies": {
     "@azure/cosmos": "^3.17.3",
     "@ddradar/core": "^1.1.1",
     "@ddradar/db": "^1.1.1",
+    "@ddradar/db-definitions": "^1.0.0",
     "@oruga-ui/oruga-next": "^0.5.10",
     "@oruga-ui/theme-bulma": "^0.2.9"
   },

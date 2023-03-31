@@ -1,12 +1,19 @@
 import type { OperationInput } from '@azure/cosmos'
-import { Api, Database, Score } from '@ddradar/core'
+import { Api, Score } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
+import type {
+  CourseChartSchema,
+  ScoreSchema,
+  StepChartSchema,
+  UserSchema,
+} from '@ddradar/db-definitions'
+import { createScoreSchema, isValidSongId } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
-type ChartInfo = Database.StepChartSchema | Database.CourseChartSchema
+type ChartInfo = StepChartSchema | CourseChartSchema
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
 
@@ -83,7 +90,7 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
 export default defineEventHandler(async event => {
   // route params
   const id: string = event.context.params!.id
-  if (!Database.isValidSongId(id)) return sendNullWithError(event, 404)
+  if (!isValidSongId(id)) return sendNullWithError(event, 404)
 
   // body
   const body = await readBody(event)
@@ -111,7 +118,7 @@ export default defineEventHandler(async event => {
     { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
   ])
 
-  const result: Database.ScoreSchema[] = []
+  const result: ScoreSchema[] = []
   const operations: OperationInput[] = []
   for (let i = 0; i < body.length; i++) {
     const score = body[i]
@@ -157,7 +164,7 @@ export default defineEventHandler(async event => {
 
   function upsertScore(
     chart: ChartInfo,
-    user: Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>,
+    user: Pick<UserSchema, 'id' | 'name' | 'isPublic'>,
     score: Api.ScoreListBody,
     isUser = false
   ) {
@@ -180,7 +187,7 @@ export default defineEventHandler(async event => {
     ) {
       return
     }
-    const newScore = Database.createScoreSchema(
+    const newScore = createScoreSchema(
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       { ...song!, ...chart },
       user,
