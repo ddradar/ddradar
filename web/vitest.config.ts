@@ -14,7 +14,6 @@ const tsConfigFormated = JSON.parse(
 
 export const alias: Record<string, string> = {
   '@ddradar/core/test/data': resolve(__dirname, '../core/test/data.ts'),
-  '@ddradar/db': resolve(__dirname, '../db/src'),
 }
 
 Object.entries(

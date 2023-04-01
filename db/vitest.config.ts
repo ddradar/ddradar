@@ -6,7 +6,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@ddradar/core/test/data': resolve(__dirname, '../core/test/data.ts'),
-      '@ddradar/core': resolve(__dirname, '../core/src'),
     },
   },
   test: {

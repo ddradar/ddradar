@@ -1,16 +1,7 @@
-import { resolve } from 'node:path'
-
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   nitro: { preset: 'azure' },
-  vite: {
-    resolve: {
-      alias: {
-        '@ddradar/db': resolve(__dirname, '../db/src'),
-      },
-    },
-  },
   build: {
     transpile: [/@oruga-ui\/oruga-next/],
   },
