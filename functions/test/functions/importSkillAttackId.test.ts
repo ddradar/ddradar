@@ -2,8 +2,8 @@ import { testSongData } from '@ddradar/core/test/data'
 import { fetch } from 'node-fetch-native'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { masterMusicToMap } from '../skill-attack'
-import importSkillAttrackId from '.'
+import { masterMusicToMap } from '../../skill-attack'
+import importSkillAttrackId from '../../src/functions/importSkillAttackId'
 
 vi.mock('node-fetch-native', async () => ({
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

@@ -1,4 +1,3 @@
-import type { Logger } from '@azure/functions'
 import type { SongSchema } from '@ddradar/core'
 import { fetch } from 'node-fetch-native'
 
@@ -8,7 +7,7 @@ const masterMusicUri = 'http://skillattack.com/sa4/data/master_music.txt'
 
 /** Import skillAttackId from Skill Attack site. */
 export default async function (
-  context: { log: Pick<Logger, 'error' | 'info'> },
+  context: any,
   _: unknown,
   songs: SongSchema[]
 ): Promise<SongSchema[]> {

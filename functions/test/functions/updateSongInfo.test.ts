@@ -4,7 +4,7 @@ import { testSongData } from '@ddradar/core/test/data'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import updateSongInfo from '.'
+import updateSongInfo from '../../src/functions/updateSongInfo'
 
 vi.mock('@ddradar/db')
 

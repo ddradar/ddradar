@@ -4,10 +4,11 @@
 .git*
 .vscode
 .eslintrc*
-__tests__
+test
 *.config.js
 coverage
 local.settings.json
 tsconfig.json
 *.md
 yarn.lock
+test

@@ -1,5 +1,4 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Logger } from '@azure/functions'
 import type {
   ScoreSchema,
   UserClearLampSchema,
@@ -15,7 +14,7 @@ type UserDetailSchema =
 
 /** Summary user scores for User details */
 export default async function (
-  context: { log: Pick<Logger, 'info'> },
+  context: any,
   scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<UserDetailSchema[]> {
   const userScores = scores.reduce((prev, s) => {

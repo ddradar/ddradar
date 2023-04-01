@@ -1,4 +1,3 @@
-import type { Logger } from '@azure/functions'
 import type {
   CourseChartSchema,
   CourseSchema,
@@ -24,7 +23,7 @@ type UpdateSongResult = {
  * @param songs Change feed of "Songs" container
  */
 export default async function (
-  context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
+  context: any,
   songs: (SongSchema | CourseSchema)[],
   oldTotalCounts: Required<Omit<TotalCount, 'count' | 'userId'>>[]
 ): Promise<UpdateSongResult> {

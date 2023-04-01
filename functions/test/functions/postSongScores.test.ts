@@ -11,7 +11,7 @@ import {
 import { fetchScore } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import postSongScores from '.'
+import postSongScores from '../../src/functions/postSongScores'
 
 vi.mock('@ddradar/db')
 

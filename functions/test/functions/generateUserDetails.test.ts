@@ -3,7 +3,7 @@ import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 import { beforeAll, describe, expect, test, vi } from 'vitest'
 
-import generateUserDetails from '.'
+import generateUserDetails from '../../src/functions/generateUserDetails'
 
 vi.mock('@ddradar/db')
 

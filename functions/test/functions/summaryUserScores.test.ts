@@ -3,7 +3,7 @@ import type { ScoreSchema } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import summaryUserScores from '.'
+import summaryUserScores from '../../src/functions/summaryUserScores'
 
 vi.mock('@ddradar/db')
 
