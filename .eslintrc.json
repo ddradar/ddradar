@@ -24,10 +24,7 @@
     "node/no-process-env": "error",
     "node/no-unsupported-features/es-syntax": [
       "error",
-      {
-        "version": ">=12",
-        "ignores": ["modules"]
-      }
+      { "ignores": ["modules"] }
     ],
     "no-console": "error",
     "simple-import-sort/imports": "error",
@@ -36,15 +33,7 @@
   "overrides": [
     {
       "files": "*.ts",
-      "rules": {
-        "node/no-missing-import": "off"
-      }
-    },
-    {
-      "files": "*.js",
-      "rules": {
-        "@typescript-eslint/no-var-requires": "off"
-      }
+      "rules": { "node/no-missing-import": "off" }
     }
   ]
 }
