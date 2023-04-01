@@ -1,8 +1,11 @@
 {
   "name": "@ddradar/web",
   "version": "2.0.0",
-  "description": "DDRadar web site (powered by Azure Static Wep Apps)",
+  "description": "DDRadar web site (powered by Azure Static Web Apps)",
   "private": true,
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "prepare": "nuxt prepare",
     "build": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
@@ -19,6 +22,7 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
+    "@types/node": "^18.15.11",
     "@vue/test-utils": "^2.3.2",
     "eslint-plugin-nuxt": "^4.0.0",
     "jsdom": "^21.1.1",
