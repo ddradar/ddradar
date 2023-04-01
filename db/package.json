@@ -8,18 +8,20 @@
     "node": ">=16"
   },
   "license": "MIT",
-  "type": "commonjs",
-  "main": "./dist/index.js",
+  "type": "module",
   "exports": {
-    "import": "./dist/index.mjs",
-    "default": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
   },
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://npm.pkg.github.com/"
-  },
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "tsc",
+    "build": "unbuild",
     "test": "vitest run"
   },
   "peerDependencies": {
@@ -30,7 +32,7 @@
   "devDependencies": {
     "@azure/cosmos": "^3.17.3",
     "@ddradar/core": "^1.1.1",
-    "typescript": "^4.9.4",
+    "unbuild": "^1.2.0",
     "vitest": "^0.29.7"
   }
 }
