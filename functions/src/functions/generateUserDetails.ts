@@ -1,14 +1,50 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type {
+  CosmosDBInput,
+  CosmosDBOutput,
+  InvocationContext,
+} from '@azure/functions'
+import { app } from '@azure/functions'
 import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 
-type UserDetailSchema = UserClearLampSchema | UserRankSchema
+const input: CosmosDBInput = {
+  name: 'oldSummeries',
+  type: 'cosmosDB',
+  direction: 'in',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'UserDetails',
+  sqlQuery:
+    "SELECT * FROM c WHERE c.userId <> '0' AND c.type IN ('clear', 'score')",
+}
+const $return: CosmosDBOutput = {
+  name: '$return',
+  type: 'cosmosDB',
+  direction: 'out',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'UserDetails',
+}
+app.timer('generateUserDetails', {
+  schedule: '0 0 20 * * *',
+  extraInputs: [input],
+  return: $return,
+  handler,
+})
 
-export default async function (
-  _context: unknown,
-  _launchTimer: unknown,
-  oldSummeries: (UserDetailSchema & ItemDefinition)[]
+type UserDetailSchema = (UserClearLampSchema | UserRankSchema) & ItemDefinition
+
+/**
+ * Update "UserDetails" container from "Scores" data summaries.
+ * @param _ Timer object (not use)
+ * @param ctx Function context
+ */
+export async function handler(
+  _: unknown,
+  ctx: InvocationContext
 ): Promise<UserDetailSchema[]> {
+  const oldSummeries = ctx.extraInputs.get(input) as UserDetailSchema[]
   const newClearLampCounts = await fetchSummaryClearLampCount()
   const newRankCounts = await fetchSummaryRankCount()
   const notExists = oldSummeries.filter(

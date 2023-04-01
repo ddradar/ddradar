@@ -2,9 +2,8 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
     "outDir": "dist",
-    "rootDir": ".",
-    "sourceMap": true,
+    "rootDir": "src",
     "types": ["node"]
   },
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "test", "coverage", "dist", "*.config.ts"]
 }

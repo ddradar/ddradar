@@ -1,13 +1,14 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import { InvocationContext } from '@azure/functions'
 import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 import { beforeAll, describe, expect, test, vi } from 'vitest'
 
-import generateUserDetails from '.'
+import { handler } from '../../src/functions/generateUserDetails'
 
 vi.mock('@ddradar/db')
 
-describe('/generateUserDetails/index.ts', () => {
+describe('/functions/generateUserDetails.ts', () => {
   const status = {
     userId: 'foo',
     playStyle: 1,
@@ -60,6 +61,7 @@ describe('/generateUserDetails/index.ts', () => {
   })
 
   test('merges old.id & new data', async () => {
+    // Arrange
     const deletedClear: UserClearLampSchema & ItemDefinition = {
       ...oldClear,
       id: 'deleted_clear',
@@ -71,13 +73,16 @@ describe('/generateUserDetails/index.ts', () => {
       id: 'deleted_score',
       rank: 'AA',
     }
-    // Arrange - Act
-    const result = await generateUserDetails(null, null, [
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldSummeries', [
       oldScore,
       oldClear,
       deletedClear,
       deletedScore,
     ])
+
+    // Act
+    const result = await handler(null, ctx)
 
     // Assert
     expect(result).toHaveLength(6)

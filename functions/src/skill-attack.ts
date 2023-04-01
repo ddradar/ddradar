@@ -1,11 +1,11 @@
-import iconv from 'iconv-lite'
+import { decode } from 'iconv-lite'
 
 /**
  * Convert master_music to {id - skillAttackId} mapper.
  * @param buffer master_music.txt (Shift JIS, LF)
  */
 export function masterMusicToMap(buffer: Buffer): Map<string, number> {
-  const text = iconv.decode(buffer, 'shift_jis')
+  const text = decode(buffer, 'shift_jis')
   return new Map(
     text
       .trim()

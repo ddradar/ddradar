@@ -1,5 +1,5 @@
 // eslint-disable-next-line node/no-extraneous-import
-import type { ScoreListBody } from '@ddradar/functions/postSongScores'
+import type { ScoreListBody } from '@ddradar/functions/src/functions/postSongScores'
 import { config } from 'dotenv'
 import { fetch } from 'node-fetch-native'
 

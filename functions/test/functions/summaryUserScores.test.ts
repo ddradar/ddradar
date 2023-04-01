@@ -1,20 +1,19 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import { InvocationContext } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeAll, describe, expect, test, vi } from 'vitest'
 
-import summaryUserScores from '.'
+import { handler } from '../../src/functions/summaryUserScores'
 
 vi.mock('@ddradar/db')
 
-describe('/summaryUserScores/index.ts', () => {
-  const context = { log: { info: vi.fn() } }
+describe('/functions/summaryUserScores.ts', () => {
   beforeAll(() => {
     vi.mocked(generateGrooveRadar).mockImplementation((userId, playStyle) =>
       Promise.resolve({ userId, playStyle, ...radar, type: 'radar' })
     )
   })
-  beforeEach(() => context.log.info.mockClear())
 
   const score: ScoreSchema & ItemDefinition = {
     id: 'foo',
@@ -43,11 +42,10 @@ describe('/summaryUserScores/index.ts', () => {
     }))
 
     // Act
-    const result = await summaryUserScores(context, areaScores)
+    const result = await handler(areaScores, new InvocationContext())
 
     // Assert
     expect(result).toHaveLength(0)
-    expect(context.log.info).not.toBeCalled()
   })
 
   test('returns [GrooveRadar(SP), GrooveRadar(DP), ClearStatus, ScoreStatus] if scores include user score', async () => {
@@ -56,11 +54,10 @@ describe('/summaryUserScores/index.ts', () => {
     const userScore = { ...score, radar }
 
     // Act
-    const result = await summaryUserScores(context, [userScore])
+    const result = await handler([userScore], new InvocationContext())
 
     // Assert
     expect(result).toHaveLength(4)
-    expect(context.log.info).toBeCalledTimes(3)
   })
 
   test('returns [GrooveRadar(SP), GrooveRadar(DP), ClearStatus(4), ScoreStatus(4), ClearStatus(8), ScoreStatus(8)] if scores include old & new score', async () => {
@@ -79,11 +76,10 @@ describe('/summaryUserScores/index.ts', () => {
     ]
 
     // Act
-    const result = await summaryUserScores(context, userScores)
+    const result = await handler(userScores, new InvocationContext())
 
     // Assert
     expect(result).toHaveLength(8)
-    expect(context.log.info).toBeCalledTimes(3)
   })
 
   test('returns [GrooveRadar(SP), GrooveRadar(DP)] if scores include only old score', async () => {
@@ -92,10 +88,9 @@ describe('/summaryUserScores/index.ts', () => {
     const userScore = { ...score, radar, ttl: 3600 }
 
     // Act
-    const result = await summaryUserScores(context, [userScore])
+    const result = await handler([userScore], new InvocationContext())
 
     // Assert
     expect(result).toHaveLength(2)
-    expect(context.log.info).toBeCalledTimes(1)
   })
 })

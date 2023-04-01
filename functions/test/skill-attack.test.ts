@@ -3,7 +3,7 @@ import { join } from 'node:path'
 
 import { describe, expect, test } from 'vitest'
 
-import { masterMusicToMap } from '../skill-attack'
+import { masterMusicToMap } from '../src/skill-attack'
 
 describe('/skill-attack.ts', () => {
   describe('masterMusicToMap', () => {
