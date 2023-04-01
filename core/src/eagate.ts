@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import type { DanceLevel, ScoreSchema } from './db/scores'
+import type { DanceLevel, ScoreSchema } from './score'
 import { getDanceLevel } from './score'
 
 const idRegex = /^.+\/ddr\/ddra\d+\/p.+=([01689bdiloqDIOPQ]{32}).*$/

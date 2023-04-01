@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
-import { publicUser } from '@ddradar/core/__tests__/data'
+import type { UserSchema } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/test/data'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -7,8 +7,8 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 import {
   createClientPrincipal,
   createEvent,
-} from '~/__tests__/server/test-util'
-import postUserInfo from '~/server/api/v1/user/index.post'
+} from '~~/__tests__/server/test-util'
+import postUserInfo from '~~/server/api/v1/user/index.post'
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
@@ -18,7 +18,7 @@ vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/user', () => {
-  const user: Database.UserSchema = { ...publicUser }
+  const user: UserSchema = { ...publicUser }
   delete user.loginId
   const principal = createClientPrincipal(user.id, publicUser.loginId)
   const mockedContainer = { items: { upsert: vi.fn() } }
@@ -87,10 +87,10 @@ describe('POST /api/v1/user', () => {
     { password: 'changed' },
   ])(
     'returns "200 OK" with JSON body (Update) if changed %o',
-    async (diff: Partial<Database.UserSchema>) => {
+    async (diff: Partial<UserSchema>) => {
       // Arrange
       const event = createEvent()
-      const body: Database.UserSchema = {
+      const body: UserSchema = {
         id: user.id,
         name: user.name,
         area: user.area,

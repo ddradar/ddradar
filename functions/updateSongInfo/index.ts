@@ -1,14 +1,20 @@
-import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import type {
+  CourseChartSchema,
+  CourseSchema,
+  ScoreSchema,
+  SongSchema,
+  StepChartSchema,
+  UserClearLampSchema,
+} from '@ddradar/core'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
-  Database.ClearStatusSchema,
+  UserClearLampSchema,
   'level' | 'playStyle' | 'count' | 'userId'
 >
 type UpdateSongResult = {
-  scores: Database.ScoreSchema[]
+  scores: ScoreSchema[]
   details: TotalCount[]
 }
 
@@ -19,10 +25,10 @@ type UpdateSongResult = {
  */
 export default async function (
   context: { log: Pick<Logger, 'info' | 'warn' | 'error'> },
-  songs: (Database.SongSchema | Database.CourseSchema)[],
+  songs: (SongSchema | CourseSchema)[],
   oldTotalCounts: Required<Omit<TotalCount, 'count' | 'userId'>>[]
 ): Promise<UpdateSongResult> {
-  const scores: (Database.ScoreSchema & ItemDefinition)[] = []
+  const scores: ScoreSchema[] = []
 
   for (const song of songs) {
     context.log.info(`Start: ${song.name}`)
@@ -32,12 +38,12 @@ export default async function (
       { condition: 'c.songId = @', value: song.id },
     ])
 
-    const topScores: Database.ScoreSchema[] = []
+    const topScores: ScoreSchema[] = []
     // Update exists scores
     for (const score of resources) {
       const scoreText = `{ id: ${score.id}, userId: ${score.userId}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
       const chart = (
-        song.charts as (Database.StepChartSchema | Database.CourseChartSchema)[]
+        song.charts as (StepChartSchema | CourseChartSchema)[]
       ).find(
         c =>
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
@@ -81,10 +87,7 @@ export default async function (
     }
 
     // Create empty score
-    const emptyScore: Omit<
-      Database.ScoreSchema,
-      keyof Database.StepChartSchema
-    > = {
+    const emptyScore: Omit<ScoreSchema, keyof StepChartSchema> = {
       score: 0,
       clearLamp: 0,
       rank: 'E',

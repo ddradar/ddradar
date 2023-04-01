@@ -1,18 +1,19 @@
-import type { Api } from '@ddradar/core'
+import { calcMyGrooveRadar } from '@ddradar/core'
 import {
   areaHiddenUser,
   privateUser,
   publicUser,
   testScores,
   testSongData,
-} from '@ddradar/core/__tests__/data'
+} from '@ddradar/core/test/data'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import postSongScores from '~/server/api/v1/scores/[id]/index.post'
-import { calcMyGrooveRadar } from '~~/../core/src/score'
+import { createEvent } from '~~/__tests__/server/test-util'
+import postSongScores, {
+  ScoreListBody,
+} from '~~/server/api/v1/scores/[id]/index.post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
@@ -42,7 +43,7 @@ describe('POST /api/v1/scores/[id]', () => {
   })
 
   const scores = new Map(testScores.map(d => [d.userId, d]))
-  const score: Api.ScoreListBody = {
+  const score: ScoreListBody = {
     playStyle: 1,
     difficulty: 0,
     score: 1000000,

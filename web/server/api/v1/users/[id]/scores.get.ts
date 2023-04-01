@@ -1,5 +1,10 @@
-import type { Database } from '@ddradar/core'
-import { Score, Song } from '@ddradar/core'
+import type { ScoreSchema } from '@ddradar/core'
+import {
+  clearLampMap,
+  danceLevelSet,
+  difficultyMap,
+  playStyleMap,
+} from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
@@ -8,7 +13,7 @@ import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type ScoreList = Omit<
-  Database.ScoreSchema,
+  ScoreSchema,
   'userId' | 'userName' | 'isPublic' | 'radar'
 > & {
   /** Course score or not */
@@ -20,7 +25,7 @@ export type ScoreList = Omit<
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - GET `api/v1/users/[id]/scores?style=:style&diff=:diff&level=:level&lamp=:lamp&rank=:rank`
- *   - `id`: {@link Database.UserSchema.id}
+ *   - `id`: {@link ScoreSchema.userId}
  *   - `style`(optional): {@link ScoreList.playStyle}
  *   - `diff`(optional): {@link ScoreList.difficulty}
  *   - `level`(optional): {@link ScoreList.level}
@@ -58,12 +63,17 @@ export default defineEventHandler(async event => {
   const rank = getQueryString(query, 'rank')
 
   const conditions = {
-    ...(Song.isPlayStyle(playStyle) ? { playStyle } : {}),
-    ...(Song.isDifficulty(difficulty) ? { difficulty } : {}),
+    ...(playStyleMap.has(playStyle) ? { playStyle } : {}),
+    ...(difficultyMap.has(difficulty) ? { difficulty } : {}),
     ...(level >= 1 && level <= 20 ? { level } : {}),
-    ...(Score.isClearLamp(clearLamp) ? { clearLamp } : {}),
-    ...(Score.isDanceLevel(rank) ? { rank } : {}),
-  }
+    ...(clearLampMap.has(clearLamp) ? { clearLamp } : {}),
+    ...(danceLevelSet.has(rank) ? { rank } : {}),
+  } as Partial<
+    Pick<
+      ScoreSchema,
+      'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
+    >
+  >
 
   return (await fetchScoreList(user.id, conditions)).map<ScoreList>(d => {
     const r = { ...d, isCourse: !d.radar }

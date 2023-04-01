@@ -1,4 +1,4 @@
-import { Database } from '@ddradar/core'
+import { isValidUserId, UserSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { H3Event } from 'h3'
 
@@ -46,7 +46,7 @@ export async function getLoginUserInfo(event: {
   node: {
     req: Pick<Pick<Pick<H3Event, 'node'>['node'], 'req'>['req'], 'headers'>
   }
-}): Promise<Database.UserSchema | null> {
+}): Promise<UserSchema | null> {
   const clientPrincipal = useClientPrincipal(event.node.req.headers)
   if (!clientPrincipal) return null
   return await fetchLoginUser(clientPrincipal.userId)
@@ -55,13 +55,13 @@ export async function getLoginUserInfo(event: {
 /**
  * Check user visibility
  * @param event HTTP Event (needs [id] context)
- * @returns Database.UserSchema if user is public or same as login user. otherwise null.
+ * @returns UserSchema if user is public or same as login user. otherwise null.
  */
 export async function tryFetchUser(
   event: Pick<H3Event, 'node' | 'context'>
-): Promise<Database.UserSchema | null> {
+): Promise<UserSchema | null> {
   const id: string = event.context.params!.id
-  if (!Database.isValidUserId(id)) return null
+  if (!isValidUserId(id)) return null
 
   const user = await fetchUser(id)
   if (!user) return null

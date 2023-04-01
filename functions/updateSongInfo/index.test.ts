@@ -1,6 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Database } from '@ddradar/core'
-import { testSongData } from '@ddradar/core/__tests__/data'
+import type { ScoreSchema } from '@ddradar/core'
+import { testSongData } from '@ddradar/core/test/data'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -37,7 +37,7 @@ describe('/updateSongInfo/index.ts', () => {
     context.log.error.mockClear()
     vi.mocked(fetchList).mockClear()
   })
-  const validScore: Database.ScoreSchema & ItemDefinition = {
+  const validScore: ScoreSchema & ItemDefinition = {
     id: `user1-${song.name}-${song.charts[0].playStyle}-${song.charts[0].difficulty}`,
     userId: 'user1',
     userName: 'User 1',
@@ -58,7 +58,7 @@ describe('/updateSongInfo/index.ts', () => {
     userName: '0',
     isPublic: false,
   }
-  const emptyScore: Database.ScoreSchema = {
+  const emptyScore: ScoreSchema = {
     clearLamp: 0,
     isPublic: false,
     rank: 'E',

@@ -1,4 +1,4 @@
-import { Song } from '@ddradar/core'
+import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
@@ -24,9 +24,9 @@ export default defineEventHandler(async event => {
   const style = parseFloat(event.context.params!.style)
   const diff = parseFloat(event.context.params!.diff)
   if (
-    !Song.isValidSongId(id) ||
-    !Song.isPlayStyle(style) ||
-    !Song.isDifficulty(diff)
+    !isValidSongId(id) ||
+    !playStyleMap.has(style) ||
+    !difficultyMap.has(diff)
   ) {
     sendNullWithError(event, 404)
     return

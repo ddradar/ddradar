@@ -71,5 +71,5 @@ jobs:
           api_location: 'web/.output/server'
           skip_api_build: true
           config_file_location: /
-          data_api_location: 'swa-db-connections'
+          data_api_location: 'core'
           deployment_environment: ${{ (github.event_name == 'release' && '') || 'beta' }}

@@ -1,17 +1,22 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import type { Logger } from '@azure/functions'
-import type { Database } from '@ddradar/core'
+import type {
+  ScoreSchema,
+  UserClearLampSchema,
+  UserGrooveRadarSchema,
+  UserRankSchema,
+} from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
 
 type UserDetailSchema =
-  | Database.GrooveRadarSchema
-  | Database.ClearStatusSchema
-  | Database.ScoreStatusSchema
+  | UserGrooveRadarSchema
+  | UserClearLampSchema
+  | UserRankSchema
 
 /** Summary user scores for User details */
 export default async function (
   context: { log: Pick<Logger, 'info'> },
-  scores: (Database.ScoreSchema & ItemDefinition)[]
+  scores: (ScoreSchema & ItemDefinition)[]
 ): Promise<UserDetailSchema[]> {
   const userScores = scores.reduce((prev, s) => {
     // Skip area top & course score
@@ -20,7 +25,7 @@ export default async function (
     if (!prev[s.userId]) prev[s.userId] = []
     prev[s.userId].push(s)
     return prev
-  }, {} as Record<string, (Database.ScoreSchema & ItemDefinition)[]>)
+  }, {} as Record<string, (ScoreSchema & ItemDefinition)[]>)
 
   const result: UserDetailSchema[] = []
   for (const [userId, scores] of Object.entries(userScores)) {

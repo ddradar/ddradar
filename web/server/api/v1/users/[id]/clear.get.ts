@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
+import type { ClearLamp, UserClearLampSchema } from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
@@ -8,7 +8,7 @@ import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryInteger } from '~~/utils/path'
 
 export type ClearStatus = Pick<
-  Database.ClearStatusSchema,
+  UserClearLampSchema,
   'playStyle' | 'level' | 'count'
 > & {
   /**
@@ -22,7 +22,7 @@ export type ClearStatus = Pick<
    * `6`: PFC,
    * `7`: MFC
    */
-  clearLamp: Database.ClearLamp | -1
+  clearLamp: ClearLamp | -1
 }
 
 /**
@@ -55,7 +55,7 @@ export default defineEventHandler(async event => {
   const lv = getQueryInteger(query, 'lv')
 
   const conditions: Condition<'UserDetails'>[] = []
-  if (Song.isPlayStyle(style)) {
+  if (playStyleMap.has(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
   if (lv >= 1 && lv <= 20) {

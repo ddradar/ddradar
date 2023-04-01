@@ -1,5 +1,9 @@
-import type { Database, Score } from '@ddradar/core'
-import { testScores } from '@ddradar/core/__tests__/data'
+import type {
+  ClearLamp,
+  ScoreSchema,
+  UserGrooveRadarSchema,
+} from '@ddradar/core'
+import { testScores } from '@ddradar/core/test/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../src/database'
@@ -52,10 +56,8 @@ describe('scores.ts', () => {
 
     test('("foo") calls fetchList("Scores", columns, condition, { songName: "ASC" })', async () => {
       // Arrange
-      const resources: Omit<
-        Database.ScoreSchema,
-        'userId' | 'userName' | 'isPublic'
-      >[] = []
+      const resources: Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>[] =
+        []
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue(resources as any)
 
@@ -94,7 +96,7 @@ describe('scores.ts', () => {
       async (conditions, includeCourse, additionalConditions) => {
         // Arrange
         const resources: Omit<
-          Database.ScoreSchema,
+          ScoreSchema,
           'userId' | 'userName' | 'isPublic'
         >[] = []
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -126,7 +128,7 @@ describe('scores.ts', () => {
           type: 'clear' as const,
           playStyle: ((i % 2) + 1) as 1 | 2,
           level: (i % 19) + 1,
-          clearLamp: (i % 8) as Score.ClearLamp,
+          clearLamp: (i % 8) as ClearLamp,
           count: 10,
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
         })) as any
@@ -163,7 +165,7 @@ describe('scores.ts', () => {
     })
   })
   describe('generateGrooveRadar()', () => {
-    const radar: Database.GrooveRadarSchema = {
+    const radar: UserGrooveRadarSchema = {
       userId: 'public_user',
       type: 'radar',
       playStyle: 1,

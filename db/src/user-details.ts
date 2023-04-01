@@ -1,4 +1,4 @@
-import type { Database } from '@ddradar/core'
+import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 
 import { fetchList } from './database'
 
@@ -8,9 +8,9 @@ import { fetchList } from './database'
  */
 export async function fetchClearAndScoreStatus(
   userId: string
-): Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]> {
+): Promise<(UserClearLampSchema | UserRankSchema)[]> {
   return fetchList('UserDetails', '*', [
     { condition: 'c.userId = @', value: userId },
     { condition: 'c.type = "clear" OR c.type = "score"' },
-  ]) as Promise<(Database.ClearStatusSchema | Database.ScoreStatusSchema)[]>
+  ]) as Promise<(UserClearLampSchema | UserRankSchema)[]>
 }

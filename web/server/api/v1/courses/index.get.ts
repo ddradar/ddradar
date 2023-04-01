@@ -1,21 +1,17 @@
-import { Database } from '@ddradar/core'
+import type { CourseChartSchema, CourseSchema } from '@ddradar/core'
+import { seriesSet } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~~/utils/path'
 
-export type CourseListData = Pick<
-  Database.CourseSchema,
-  'id' | 'name' | 'series'
-> & {
+export type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
   /** Course difficulties (omitted) */
-  charts: ReadonlyArray<
-    Pick<Database.CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>
-  >
+  charts: Pick<CourseChartSchema, 'playStyle' | 'difficulty' | 'level'>[]
 }
 
-const maxSeriesIndex = Database.seriesSet.size
-const seriesNames = [...Database.seriesSet]
+const maxSeriesIndex = seriesSet.size
+const seriesNames = [...seriesSet]
 
 /**
  * Get course information list.

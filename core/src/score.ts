@@ -1,33 +1,169 @@
-import type { ScoreBody } from './api/score'
-import type { ClearLamp, DanceLevel, GrooveRadar, StepChartSchema } from './db'
-import { isClearLamp, isDanceLevel } from './db'
-import { hasIntegerProperty, hasStringProperty } from './typeUtils'
+import type { CourseChartSchema } from './course'
+import type { GrooveRadar, Score as RawScoreSchema } from './graphql'
+import type { Difficulty, PlayStyle, SongSchema, StepChartSchema } from './song'
+import type { Strict } from './type-assert'
+import { hasIntegerProperty, hasStringProperty } from './type-assert'
+import type { UserSchema } from './user'
+import { isAreaUser } from './user'
 
-export function isScore(obj: unknown): obj is ScoreBody {
+/**
+ * DB schema of "Scores" container
+ * @example
+ * ```json
+ * {
+ *   "userId": "some_user1",
+ *   "userName": "User1",
+ *   "isPublic": true,
+ *   "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *   "songName": "愛言葉",
+ *   "playStyle": 1,
+ *   "difficulty": 0,
+ *   "level": 3,
+ *   "score": 1000000,
+ *   "exScore": 402,
+ *   "maxCombo": 122,
+ *   "clearLamp": 7,
+ *   "rank": "AAA",
+ *   "radar": {
+ *     "stream": 21,
+ *     "voltage": 22,
+ *     "air": 7,
+ *     "freeze": 26,
+ *     "chaos": 0
+ *   }
+ * }
+ * ```
+ */
+export type ScoreSchema = Strict<
+  RawScoreSchema,
+  {
+    /** {@link PlayStyle} */
+    playStyle: PlayStyle
+    /** {@link Difficulty} */
+    difficulty: Difficulty
+    /** Highest {@link ClearLamp} */
+    clearLamp: ClearLamp
+    /** {@link DanceLevel} at the highest score */
+    rank: DanceLevel
+  }
+>
+/** Primitive score */
+export type Score = Pick<
+  ScoreSchema,
+  'score' | 'exScore' | 'maxCombo' | 'clearLamp' | 'rank'
+>
+/** Type assertion for {@link Score} */
+export function isScore(obj: unknown): obj is Score {
   return (
     hasIntegerProperty(obj, 'score', 'clearLamp') &&
     obj.score >= 0 &&
     obj.score <= 1000000 &&
-    isClearLamp(obj.clearLamp) &&
+    clearLampMap.has(obj.clearLamp) &&
     (hasIntegerProperty(obj, 'exScore') ||
       (obj as Record<string, unknown>).exScore === undefined) &&
     (hasIntegerProperty(obj, 'maxCombo') ||
       (obj as Record<string, unknown>).maxCombo === undefined) &&
     hasStringProperty(obj, 'rank') &&
-    isDanceLevel(obj.rank)
+    danceLevelSet.has(obj.rank)
   )
 }
 
+const clearLamps = new Map([
+  [0, 'Failed'],
+  [1, 'Assisted Clear'],
+  [2, 'Clear'],
+  [3, 'Life 4'],
+  [4, 'Full Combo'],
+  [5, 'Great Full Combo'],
+  [6, 'Perfect Full Combo'],
+  [7, 'Marvelous Full Combo'],
+] as const)
+/**
+ * `0`: Failed,
+ * `1`: Assisted Clear,
+ * `2`: Clear,
+ * `3`: LIFE4,
+ * `4`: Good FC (Full Combo),
+ * `5`: Great FC,
+ * `6`: PFC,
+ * `7`: MFC
+ */
+export type ClearLamp = Parameters<typeof clearLamps.set>[0]
+/** Map for {@link ClearLamp} */
+export const clearLampMap: ReadonlyMap<number, string> = clearLamps
+
+const danceLevels = [
+  'E',
+  'D',
+  'D+',
+  'C-',
+  'C',
+  'C+',
+  'B-',
+  'B',
+  'B+',
+  'A-',
+  'A',
+  'A+',
+  'AA-',
+  'AA',
+  'AA+',
+  'AAA',
+] as const
+/** Dance level (`"E"` ~ `"AAA"`) */
+export type DanceLevel = (typeof danceLevels)[number]
+/** Set for {@link DanceLevel} */
+export const danceLevelSet: ReadonlySet<string> = new Set(danceLevels)
+/**
+ * Get {@link DanceLevel} from score.
+ * @param score {@link ScoreSchema.score}
+ */
+export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
+  if (!isPositiveInteger(score))
+    throw new RangeError(
+      `Invalid parameter: score(${score}) should be positive integer or 0.`
+    )
+  if (score > 1000000)
+    throw new RangeError(
+      `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
+    )
+  const rankList = [
+    { border: 990000, rank: 'AAA' },
+    { border: 950000, rank: 'AA+' },
+    { border: 900000, rank: 'AA' },
+    { border: 890000, rank: 'AA-' },
+    { border: 850000, rank: 'A+' },
+    { border: 800000, rank: 'A' },
+    { border: 790000, rank: 'A-' },
+    { border: 750000, rank: 'B+' },
+    { border: 700000, rank: 'B' },
+    { border: 690000, rank: 'B-' },
+    { border: 650000, rank: 'C+' },
+    { border: 600000, rank: 'C' },
+    { border: 590000, rank: 'C-' },
+    { border: 550000, rank: 'D+' },
+  ] as const
+  for (const { border, rank } of rankList) {
+    if (score >= border) return rank
+  }
+  return 'D'
+}
+
+/**
+ * Returns merged max score.
+ * @param left one side of score
+ * @param right other side of score
+ */
 export function mergeScore(
-  left: Readonly<ScoreBody>,
-  right: Readonly<ScoreBody>
-): ScoreBody {
-  const result: ScoreBody = {
+  left: Readonly<Score>,
+  right: Readonly<Score>
+): Score {
+  const result: Score = {
     score: Math.max(left.score, right.score),
     clearLamp:
       Math.min(left.clearLamp, right.clearLamp) === 1 &&
       Math.max(left.clearLamp, right.clearLamp) === 2
-        ? 1
+        ? 1 // Keep "Assisted Clear"
         : (Math.max(left.clearLamp, right.clearLamp) as ClearLamp),
     rank: left.score > right.score ? left.rank : right.rank,
   }
@@ -38,13 +174,18 @@ export function mergeScore(
   return result
 }
 
+/**
+ * Returns {@link Score} is compliant chart or not.
+ * @param param0 {@link StepChartSchema}
+ * @param param1 {@link Score}
+ */
 export function isValidScore(
   {
     notes,
     freezeArrow,
     shockArrow,
   }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
-  { clearLamp, exScore, maxCombo }: Readonly<Omit<ScoreBody, 'score' | 'rank'>>
+  { clearLamp, exScore, maxCombo }: Readonly<Omit<Score, 'score' | 'rank'>>
 ): boolean {
   const maxExScore = (notes + freezeArrow + shockArrow) * 3
   const fullCombo = notes + shockArrow
@@ -65,9 +206,63 @@ export function isValidScore(
   return !maxCombo || (isPositiveInteger(maxCombo) && maxCombo <= fullCombo)
 }
 
+/**
+ * Create {@link ScoreSchema} from song, chart, user and score.
+ * @param song Song & Chart info (from "Songs" container)
+ * @param user User info (if area score, use mock user)
+ * @param score Score data
+ */
+export function createScoreSchema(
+  song: Readonly<
+    Pick<SongSchema, 'id' | 'name' | 'deleted'> &
+      (StepChartSchema | CourseChartSchema)
+  >,
+  user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
+  score: Readonly<Score>
+): ScoreSchema {
+  const scoreSchema: ScoreSchema = {
+    userId: user.id,
+    userName: user.name,
+    isPublic: user.isPublic,
+    songId: song.id,
+    songName: song.name,
+    playStyle: song.playStyle,
+    difficulty: song.difficulty,
+    level: song.level,
+    score: score.score,
+    clearLamp: score.clearLamp,
+    rank: score.rank,
+  }
+  if (score.exScore) scoreSchema.exScore = score.exScore
+  if (score.maxCombo) scoreSchema.maxCombo = score.maxCombo
+  if (song.deleted) scoreSchema.deleted = true
+  if (score.clearLamp === 7) {
+    scoreSchema.exScore = (song.notes + song.freezeArrow + song.shockArrow) * 3
+  }
+  if (score.clearLamp >= 4) {
+    scoreSchema.maxCombo = song.notes + song.shockArrow
+  }
+
+  if (!isAreaUser(user) && isSongInfo(song)) {
+    scoreSchema.radar = calcMyGrooveRadar(song, score)
+  }
+
+  return scoreSchema
+
+  function isSongInfo(chart: unknown): chart is StepChartSchema {
+    return hasIntegerProperty(chart, 'stream')
+  }
+}
+
+/**
+ * Calcurate My Groove Radar from score.
+ * @param chart Target chart
+ * @param score Target score
+ * @returns Groove Radar value
+ */
 export function calcMyGrooveRadar(
   chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>,
-  score: ScoreBody
+  score: Score
 ): GrooveRadar {
   const note = chart.notes + chart.shockArrow
   const isFullCombo = score.clearLamp >= 4
@@ -94,14 +289,19 @@ export function calcMyGrooveRadar(
   }
 }
 
+/**
+ * Fill missing {@link Score} property from {@link StepChartSchema}.
+ * @param param0 {@link StepChartSchema}
+ * @param partialScore {@link Score}
+ */
 export function setValidScoreFromChart(
   {
     notes,
     freezeArrow,
     shockArrow,
   }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
-  partialScore: Readonly<Partial<ScoreBody>>
-): ScoreBody {
+  partialScore: Readonly<Partial<Score>>
+): Score {
   const objects = notes + freezeArrow + shockArrow
   /** Max EX SCORE */
   const maxExScore = objects * 3
@@ -135,7 +335,7 @@ export function setValidScoreFromChart(
   if (partialScore.score === undefined)
     throw new Error('Cannot guess Score object. set score property')
 
-  const result: ScoreBody = {
+  const result: Score = {
     ...partialScore,
     score: partialScore.score,
     rank: getDanceLevel(partialScore.score),
@@ -256,7 +456,7 @@ export function setValidScoreFromChart(
     )
   }
 
-  function tryCalcFromGreatFC(): Required<ScoreBody> | null {
+  function tryCalcFromGreatFC(): Required<Score> | null {
     const dropScore = great - baseScore
 
     // Try to calc great count from score
@@ -285,7 +485,7 @@ export function setValidScoreFromChart(
   }
   /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
-  function tryCalcFromExScore(): Required<ScoreBody> | null {
+  function tryCalcFromExScore(): Required<Score> | null {
     // 1 Perfect
     if (partialScore.exScore === maxExScore - 1) {
       return {
@@ -304,7 +504,7 @@ export function setValidScoreFromChart(
         score: 1000000 - dropCount * 10,
         rank: 'AAA',
         clearLamp: 6,
-        exScore: maxExScore - dropCount,
+        exScore: Math.max(maxExScore - dropCount, partialScore.exScore ?? 0),
         maxCombo,
       }
     }
@@ -348,38 +548,4 @@ export function setValidScoreFromChart(
   }
 }
 
-export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
-  if (!isPositiveInteger(score))
-    throw new RangeError(
-      `Invalid parameter: score(${score}) should be positive integer or 0.`
-    )
-  if (score > 1000000)
-    throw new RangeError(
-      `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
-    )
-  const rankList = [
-    { border: 990000, rank: 'AAA' },
-    { border: 950000, rank: 'AA+' },
-    { border: 900000, rank: 'AA' },
-    { border: 890000, rank: 'AA-' },
-    { border: 850000, rank: 'A+' },
-    { border: 800000, rank: 'A' },
-    { border: 790000, rank: 'A-' },
-    { border: 750000, rank: 'B+' },
-    { border: 700000, rank: 'B' },
-    { border: 690000, rank: 'B-' },
-    { border: 650000, rank: 'C+' },
-    { border: 600000, rank: 'C' },
-    { border: 590000, rank: 'C-' },
-    { border: 550000, rank: 'D+' },
-  ] as const
-  for (const { border, rank } of rankList) {
-    if (score >= border) return rank
-  }
-  return 'D'
-}
-
-const isPositiveInteger = (num: number) => Number.isInteger(num) && num >= 0
-
-export type { ClearLamp, DanceLevel } from './db'
-export { clearLampMap, danceLevelSet, isDanceLevel, isClearLamp } from './db'
+const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0

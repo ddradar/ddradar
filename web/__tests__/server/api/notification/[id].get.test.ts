@@ -1,4 +1,4 @@
-import { notification } from '@ddradar/core/__tests__/data'
+import { notification } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 

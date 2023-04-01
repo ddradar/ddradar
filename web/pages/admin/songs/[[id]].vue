@@ -9,17 +9,13 @@
           required
           pattern="^[01689bdiloqDIOPQ]{32}$"
         />
-        <OButton
-          variant="primary"
-          :disabled="!isValidSongId"
-          @click="refresh()"
-        >
+        <OButton variant="primary" :disabled="!isValidId" @click="refresh()">
           Load
         </OButton>
         <OButton
           tag="a"
           variant="info"
-          :disabled="!isValidSongId"
+          :disabled="!isValidId"
           :href="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${id}`"
           target="_blank"
         >
@@ -180,12 +176,12 @@
 </template>
 
 <script lang="ts" setup>
-import { Song } from '@ddradar/core'
+import { getNameIndex, isValidSongId } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~~/components/DialogModal.vue'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { difficultyMap, seriesNames } from '~~/utils/song'
+import { seriesNames } from '~~/utils/song'
 
 const _chart = {
   level: 1,
@@ -227,14 +223,14 @@ song.value ??= {
 }
 
 // Validator
-const isValidSongId = computed(() => Song.isValidSongId(id.value))
+const isValidId = computed(() => isValidSongId(id.value))
 const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
   song.value!.charts.filter(
     c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
   ).length !== 1
 const hasError = computed(
   () =>
-    !isValidSongId.value ||
+    !isValidId.value ||
     !song.value!.name ||
     !/^[A-Z0-9 .ぁ-んー]+$/.test(song.value!.nameKana) ||
     !song.value!.series ||
@@ -268,7 +264,7 @@ const saveSongInfo = async () => {
 
   if ((await instance.promise) !== 'yes') return
 
-  const nameIndex = Song.getNameIndex(song.value!.nameKana)
+  const nameIndex = getNameIndex(song.value!.nameKana)
   const body: SongInfo = { ...song.value!, id: id.value, nameIndex }
   song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
 

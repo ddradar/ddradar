@@ -5,12 +5,11 @@
 </template>
 
 <script lang="ts" setup>
-import type { Song } from '@ddradar/core'
-
-import { difficultyMap } from '~~/utils/song'
+import type { Difficulty } from '@ddradar/core'
+import { difficultyMap } from '@ddradar/core'
 
 interface ChartInfoProps {
-  difficulty: Song.Difficulty
+  difficulty: Difficulty
 }
 
 const props = defineProps<ChartInfoProps>()

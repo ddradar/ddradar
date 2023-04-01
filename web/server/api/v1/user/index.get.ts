@@ -1,9 +1,9 @@
-import type { Database } from '@ddradar/core'
+import type { UserSchema } from '@ddradar/core'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
-export type CurrentUserInfo = Omit<Database.UserSchema, 'loginId'>
+export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
 
 /**
  * Get information about the currently logged in user.

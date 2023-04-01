@@ -1,4 +1,4 @@
-import { testSongData } from '@ddradar/core/__tests__/data'
+import { testSongData } from '@ddradar/core/test/data'
 import { fetch } from 'node-fetch-native'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 

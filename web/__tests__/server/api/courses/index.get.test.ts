@@ -1,4 +1,4 @@
-import { testCourseData } from '@ddradar/core/__tests__/data'
+import { testCourseData } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'

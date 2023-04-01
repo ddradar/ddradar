@@ -1,26 +1,52 @@
-import type { ItemDefinition } from '@azure/cosmos'
 import type { HttpRequest } from '@azure/functions'
+import type {
+  CourseChartSchema,
+  Score,
+  ScoreSchema,
+  SongSchema,
+  StepChartSchema,
+  UserSchema,
+} from '@ddradar/core'
 import {
-  Api,
-  Database,
+  createScoreSchema,
+  difficultyMap,
+  hasIntegerProperty,
   hasProperty,
   hasStringProperty,
-  Score,
+  isScore,
+  isValidScore,
+  mergeScore,
+  playStyleMap,
+  setValidScoreFromChart,
 } from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
 
-type ImportScoreBody = {
-  password: string
-  scores: Api.ScoreListBody[]
+export type ScoreListBody = Pick<
+  ScoreSchema,
+  | 'playStyle'
+  | 'difficulty'
+  | 'score'
+  | 'exScore'
+  | 'maxCombo'
+  | 'clearLamp'
+  | 'rank'
+> & {
+  /** World Record {@link ScoreSchema.score score}. */
+  topScore?: number
 }
 
-type SongInput = Pick<Database.SongSchema, 'id' | 'name'> & {
-  charts: ReadonlyArray<Database.StepChartSchema | Database.CourseChartSchema>
+type ImportScoreBody = {
+  password: string
+  scores: ScoreListBody[]
+}
+
+type SongInput = Pick<SongSchema, 'id' | 'name'> & {
+  charts: ReadonlyArray<StepChartSchema | CourseChartSchema>
 }
 
 type PostSongScoresResponse = {
   httpResponse: { status: number }
-  documents?: (Database.ScoreSchema & ItemDefinition)[]
+  documents?: (ScoreSchema & { ttl?: number })[]
 }
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
@@ -32,8 +58,18 @@ function isValidBody(body: unknown): body is ImportScoreBody {
     hasProperty(body, 'scores') &&
     Array.isArray(body.scores) &&
     body.scores.length > 0 &&
-    body.scores.every(Api.isScoreListBody)
+    body.scores.every(isScoreListBody)
   )
+
+  function isScoreListBody(obj: unknown): obj is ScoreListBody {
+    return (
+      isScore(obj) &&
+      hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
+      playStyleMap.has(obj.playStyle) &&
+      difficultyMap.has(obj.difficulty) &&
+      (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
+    )
+  }
 }
 
 /** Add or update score that match the specified chart. */
@@ -41,7 +77,7 @@ export default async function (
   _context: unknown,
   req: Pick<HttpRequest, 'headers' | 'body'>,
   [song]: SongInput[],
-  [user]: Database.UserSchema[]
+  [user]: UserSchema[]
 ): Promise<PostSongScoresResponse> {
   if (!isValidBody(req.body)) {
     return { httpResponse: { status: 400 } }
@@ -54,23 +90,23 @@ export default async function (
   // Get chart info
   if (!song) return { httpResponse: { status: 404 } }
 
-  const documents: (Database.ScoreSchema & ItemDefinition)[] = []
-  const body: Database.ScoreSchema[] = []
+  const documents: (ScoreSchema & { ttl?: number })[] = []
+  const body: ScoreSchema[] = []
   for (let i = 0; i < req.body.scores.length; i++) {
     const score = req.body.scores[i]
     const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { httpResponse: { status: 404 } }
-    if (!Score.isValidScore(chart, score)) {
+    if (!isValidScore(chart, score)) {
       return { httpResponse: { status: 400 } }
     }
 
     body.push(
-      Database.createScoreSchema(
+      createScoreSchema(
         { ...song, ...chart },
         user,
-        Score.setValidScoreFromChart(chart, score)
+        setValidScoreFromChart(chart, score)
       )
     )
     await fetchMergedScore(chart, user, score)
@@ -97,9 +133,9 @@ export default async function (
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(
-    chart: Readonly<Database.StepChartSchema | Database.CourseChartSchema>,
-    user: Readonly<Pick<Database.UserSchema, 'id' | 'name' | 'isPublic'>>,
-    score: Readonly<Partial<Api.ScoreBody>>
+    chart: Readonly<StepChartSchema | CourseChartSchema>,
+    user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
+    score: Readonly<Partial<Score>>
   ): Promise<void> {
     // Get previous score
     const oldScore = await fetchScore(
@@ -109,9 +145,9 @@ export default async function (
       chart.difficulty
     )
 
-    const mergedScore = Score.mergeScore(
+    const mergedScore = mergeScore(
       oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
-      Score.setValidScoreFromChart(chart, score)
+      setValidScoreFromChart(chart, score)
     )
     if (
       mergedScore.score === oldScore?.score &&
@@ -123,9 +159,7 @@ export default async function (
       return
     }
 
-    documents.push(
-      Database.createScoreSchema({ ...song, ...chart }, user, mergedScore)
-    )
+    documents.push(createScoreSchema({ ...song, ...chart }, user, mergedScore))
     if (oldScore) documents.push({ ...oldScore, ttl: 3600 })
   }
 }

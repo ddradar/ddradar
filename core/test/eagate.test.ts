@@ -1,21 +1,21 @@
 /**
  * @vitest-environment jsdom
  */
-import { readFile } from 'fs'
-import { join } from 'path'
-import { promisify } from 'util'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { musicDataToScoreList, musicDetailToScore } from '../src/eagate-parser'
+import { musicDataToScoreList, musicDetailToScore } from '../src/eagate'
 import type { ClearLamp, DanceLevel } from '../src/score'
 import type { Difficulty, PlayStyle } from '../src/song'
 
 const readFileAsync = (folder: string, fileName: string) =>
-  promisify(readFile)(join(__dirname, 'eagate', folder, fileName), {
+  readFile(join(__dirname, 'eagate', folder, fileName), {
     encoding: 'utf8',
   })
 
-describe('/utils/eagate-parser.ts', () => {
+describe('/eagate.ts', () => {
   describe('musicDataToScoreList', () => {
     let template: string
     const folder = 'music_data'

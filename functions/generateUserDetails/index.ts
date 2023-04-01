@@ -1,8 +1,8 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Database } from '@ddradar/core'
+import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
 
-type UserDetailSchema = Database.ClearStatusSchema | Database.ScoreStatusSchema
+type UserDetailSchema = UserClearLampSchema | UserRankSchema
 
 export default async function (
   _context: unknown,
@@ -44,7 +44,7 @@ export default async function (
               o.clearLamp === d.clearLamp
           )?.id,
           ...d,
-        } as Database.ClearStatusSchema)
+        } as UserClearLampSchema)
     ),
     ...newRankCounts.map(
       d =>
@@ -58,7 +58,7 @@ export default async function (
               o.rank === d.rank
           )?.id,
           ...d,
-        } as Database.ScoreStatusSchema)
+        } as UserRankSchema)
     ),
     ...notExists.map(d => ({ ...d, count: 0 })),
   ]

@@ -13,10 +13,7 @@ const tsConfigFormated = JSON.parse(
 )
 
 export const alias: Record<string, string> = {
-  '@ddradar/core/__tests__/data': resolve(
-    __dirname,
-    '../core/__tests__/data.ts'
-  ),
+  '@ddradar/core/test/data': resolve(__dirname, '../core/test/data.ts'),
   '@ddradar/core': resolve(__dirname, '../core/src'),
   '@ddradar/db': resolve(__dirname, '../db/src'),
 }

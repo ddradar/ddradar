@@ -1,5 +1,6 @@
-import { Score } from '@ddradar/core'
-import { privateUser } from '@ddradar/core/__tests__/data'
+import type { ClearLamp } from '@ddradar/core'
+import { clearLampMap } from '@ddradar/core'
+import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -20,11 +21,11 @@ describe('GET /api/v1/users/[id]/clear', () => {
   const levelLimit = 19
   const totalCount = 2000
   const statuses: ClearStatus[] = [
-    ...Array(levelLimit * Score.clearLampMap.size).keys(),
+    ...Array(levelLimit * clearLampMap.size).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % levelLimit) + 1,
-    clearLamp: (n % Score.clearLampMap.size) as Score.ClearLamp,
+    clearLamp: (n % clearLampMap.size) as ClearLamp,
     count: n,
   }))
   const total: Omit<ClearStatus, 'clearLamp'>[] = [
@@ -88,7 +89,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
 
       // Assert
       expect(result).toHaveLength(
-        levelLimit * (Score.clearLampMap.size + /* SP/DP No play */ 2)
+        levelLimit * (clearLampMap.size + /* SP/DP No play */ 2)
       )
       expect(sum(result as ClearStatus[])).toBe(levelLimit * 2 * totalCount)
       expect(vi.mocked(fetchList).mock.calls[0][2]).toStrictEqual([

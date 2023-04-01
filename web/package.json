@@ -1,9 +1,13 @@
 {
   "name": "@ddradar/web",
   "version": "2.0.0",
-  "description": "DDRadar web site (powered by Azure Static Wep Apps)",
+  "description": "DDRadar web site (powered by Azure Static Web Apps)",
   "private": true,
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
+    "prepare": "nuxt prepare",
     "build": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
@@ -12,13 +16,14 @@
   },
   "dependencies": {
     "@azure/cosmos": "^3.17.3",
-    "@ddradar/core": "^1.1.1",
-    "@ddradar/db": "^1.1.1",
+    "@ddradar/core": "^2.0.0",
+    "@ddradar/db": "^2.0.0",
     "@oruga-ui/oruga-next": "^0.5.10",
     "@oruga-ui/theme-bulma": "^0.2.9"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
+    "@types/node": "^18.15.11",
     "@vue/test-utils": "^2.3.2",
     "eslint-plugin-nuxt": "^4.0.0",
     "jsdom": "^21.1.1",

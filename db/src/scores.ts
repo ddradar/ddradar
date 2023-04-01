@@ -1,5 +1,12 @@
 import type { ItemDefinition } from '@azure/cosmos'
-import type { Database, Song } from '@ddradar/core'
+import type {
+  Difficulty,
+  PlayStyle,
+  ScoreSchema,
+  UserClearLampSchema,
+  UserGrooveRadarSchema,
+  UserRankSchema,
+} from '@ddradar/core'
 
 import { Condition, fetchGroupedList, fetchList, fetchOne } from './database'
 
@@ -17,15 +24,15 @@ const isUserSongScore = { condition: 'IS_DEFINED(c.radar)' as const }
  * Returns one score data that matches conditions.
  * @param userId User id
  * @param songId Song id
- * @param playStyle {@link Song.PlayStyle}
- * @param difficulty {@link Song.Difficulty}
+ * @param playStyle {@link PlayStyle}
+ * @param difficulty {@link Difficulty}
  */
 export function fetchScore(
   userId: string,
   songId: string,
-  playStyle: Song.PlayStyle,
-  difficulty: Song.Difficulty
-): Promise<(Database.ScoreSchema & Pick<ItemDefinition, 'id'>) | null> {
+  playStyle: PlayStyle,
+  difficulty: Difficulty
+): Promise<(ScoreSchema & Pick<ItemDefinition, 'id'>) | null> {
   return fetchOne(
     'Scores',
     [
@@ -63,17 +70,17 @@ export function fetchScoreList(
   userId: string,
   conditions: Partial<
     Pick<
-      Database.ScoreSchema,
+      ScoreSchema,
       'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
     >
   > = {},
   includeCourse = false
-): Promise<Omit<Database.ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
+): Promise<Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
   const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
     isNotObsolete,
     ...Object.entries(conditions).map(([k, v]) => ({
-      condition: `c.${k as keyof Database.ScoreSchema} = @` as const,
+      condition: `c.${k as keyof ScoreSchema} = @` as const,
       value: v,
     })),
   ]
@@ -106,12 +113,10 @@ const isNotDeletedSong = {
 const summaryColumns = ['userId', 'playStyle', 'level'] as const
 
 /**
- * Generates {@link Database.ClearStatusSchema} from Score data.
+ * Generates {@link UserClearLampSchema} from Score data.
  * @description This function consumes a lot of RU cost. Please call carefully.
  */
-export function fetchSummaryClearLampCount(): Promise<
-  Database.ClearStatusSchema[]
-> {
+export function fetchSummaryClearLampCount(): Promise<UserClearLampSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"clear" AS type', 'clearLamp', 'COUNT(1) AS count'],
@@ -121,10 +126,10 @@ export function fetchSummaryClearLampCount(): Promise<
 }
 
 /**
- * Generates {@link Database.ScoreStatusSchema} from Score data.
+ * Generates {@link UserRankSchema} from Score data.
  * @description This function consumes a lot of RU cost. Please call carefully.
  */
-export function fetchSummaryRankCount(): Promise<Database.ScoreStatusSchema[]> {
+export function fetchSummaryRankCount(): Promise<UserRankSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"score" AS type', 'rank', 'COUNT(1) AS count'],
@@ -134,15 +139,15 @@ export function fetchSummaryRankCount(): Promise<Database.ScoreStatusSchema[]> {
 }
 
 /**
- * Generates {@link Database.GrooveRadarSchema} from Score data.
+ * Generates {@link UserGrooveRadarSchema} from Score data.
  * @param userId User id
- * @param playStyle {@link Song.PlayStyle}
+ * @param playStyle {@link PlayStyle}
  */
 export async function generateGrooveRadar(
   userId: string,
-  playStyle: Song.PlayStyle
-): Promise<Database.GrooveRadarSchema> {
-  const [resource]: Database.GrooveRadarSchema[] = await fetchGroupedList(
+  playStyle: PlayStyle
+): Promise<UserGrooveRadarSchema> {
+  const [resource]: UserGrooveRadarSchema[] = await fetchGroupedList(
     'Scores',
     [
       'userId',
@@ -162,7 +167,7 @@ export async function generateGrooveRadar(
     ],
     ['userId', 'playStyle']
   )
-  const result: Database.GrooveRadarSchema & Pick<ItemDefinition, 'id'> =
+  const result: UserGrooveRadarSchema & Pick<ItemDefinition, 'id'> =
     resource ?? {
       userId,
       type: 'radar',

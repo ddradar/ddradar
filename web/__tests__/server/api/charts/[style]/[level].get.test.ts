@@ -1,4 +1,4 @@
-import { testSongData } from '@ddradar/core/__tests__/data'
+import { testSongData } from '@ddradar/core/test/data'
 import { fetchJoinedList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 

@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
-import { publicUser } from '@ddradar/core/__tests__/data'
+import type { UserSchema } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/test/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { fetchOne } from '../src/database'
@@ -15,7 +15,7 @@ describe('users.ts', () => {
 
     test('returns fetchOne() value', async () => {
       // Arrange
-      const resource: Database.UserSchema = { ...publicUser }
+      const resource: UserSchema = { ...publicUser }
       delete resource.password
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchOne).mockResolvedValue(resource as any)

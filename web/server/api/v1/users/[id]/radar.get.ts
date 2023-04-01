@@ -1,5 +1,5 @@
-import type { Database } from '@ddradar/core'
-import { Song } from '@ddradar/core'
+import type { UserGrooveRadarSchema } from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
@@ -7,17 +7,14 @@ import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryInteger } from '~~/utils/path'
 
-export type GrooveRadarInfo = Omit<
-  Database.GrooveRadarSchema,
-  'userId' | 'type'
->
+export type GrooveRadarInfo = Omit<UserGrooveRadarSchema, 'userId' | 'type'>
 
 /**
- * Get Groove Radar that match the specified {@link Database.UserSchema.id userId} and {@link GrooveRadarInfo.playStyle playStyle}.
+ * Get Groove Radar that match the specified userId and playStyle.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
  * - GET `api/v1/users/:id/radar?style=:style`
- *   - `id`: {@link Database.UserSchema.id}
+ *   - `id`: UserSchema.id
  *   - `style`(optional): {@link GrooveRadarInfo.playStyle}
  * @returns
  * - Returns `404 Not Found` if no user that matches `id` or user is private.
@@ -55,7 +52,7 @@ export default defineEventHandler(async event => {
     { condition: 'c.userId = @', value: user.id },
     { condition: 'c.type = "radar"' },
   ]
-  if (Song.isPlayStyle(style)) {
+  if (playStyleMap.has(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
 

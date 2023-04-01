@@ -1,4 +1,4 @@
-import { privateUser } from '@ddradar/core/__tests__/data'
+import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 

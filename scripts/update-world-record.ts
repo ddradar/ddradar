@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import { Song } from '@ddradar/core'
+import { difficultyMap, isPageDeletedOnGate, playStyleMap } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
 import consola from 'consola'
 
@@ -16,9 +16,6 @@ const series = 'DanceDanceRevolution A3'
 
 const sleep = (msec: number) =>
   new Promise(resolve => setTimeout(resolve, msec))
-
-const style = Song.playStyleMap
-const diff = Song.difficultyMap
 
 const code = 11173996
 
@@ -36,7 +33,7 @@ async function main() {
 
   // Fetch user info
   const user = await fetchUser(code)
-  if (!user) {
+  if (!user || !user.password) {
     return
   }
 
@@ -70,7 +67,7 @@ async function main() {
   for (const [id, score] of Object.entries(scores)) {
     const songScope = consola.withScope('song')
     const songName = `(${count++}/${total}) ${score[0].songName} (${id})`
-    if (Song.isDeletedOnGate(id, series)) {
+    if (isPageDeletedOnGate(id, series)) {
       songScope.info(`${songName} is deleted on e-amusement site. skipped`)
       continue
     }
@@ -81,7 +78,9 @@ async function main() {
     for (const s of score) {
       try {
         const chartScope = songScope.withScope('charts')
-        const chart = `${style.get(s.playStyle)}/${diff.get(s.difficulty)}`
+        const chart = `${playStyleMap.get(s.playStyle)}/${difficultyMap.get(
+          s.difficulty
+        )}`
         let score: Awaited<ReturnType<typeof fetchScoreDetail>> = null
 
         for (let retryCount = 0; retryCount < 3; retryCount++) {

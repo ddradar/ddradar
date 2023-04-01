@@ -1,6 +1,7 @@
-import type { NotificationSchema } from '../src/db/notification'
-import type { ScoreSchema } from '../src/db/scores'
-import type { CourseSchema, SongSchema } from '../src/db/songs'
+import type { CourseSchema } from '../src/course'
+import type { NotificationSchema } from '../src/notification'
+import type { ScoreSchema } from '../src/score'
+import type { SongSchema } from '../src/song'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
 export const testSongData: SongSchema = {

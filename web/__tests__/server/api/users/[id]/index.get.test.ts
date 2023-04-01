@@ -1,4 +1,4 @@
-import { publicUser } from '@ddradar/core/__tests__/data'
+import { publicUser } from '@ddradar/core/test/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createEvent } from '~/__tests__/server/test-util'

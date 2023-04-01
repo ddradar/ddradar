@@ -1,14 +1,11 @@
-import type { Database } from '@ddradar/core'
+import type { UserSchema } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { getQueryInteger, getQueryString } from '~~/utils/path'
 
-export type UserInfo = Omit<
-  Database.UserSchema,
-  'loginId' | 'isPublic' | 'password'
->
+export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
 
 /**
  * Get user list that match the specified conditions.

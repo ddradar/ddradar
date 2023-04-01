@@ -1,4 +1,5 @@
-import { Database } from '@ddradar/core'
+import type { UserSchema } from '@ddradar/core'
+import { isUserSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
@@ -33,7 +34,7 @@ export default defineEventHandler(async event => {
   const loginId = clientPrincipal.userId
 
   const body = await readBody(event)
-  if (!Database.isUserSchema(body)) {
+  if (!isUserSchema(body)) {
     return sendNullWithError(event, 400, 'Invalid Body')
   }
 
@@ -45,7 +46,7 @@ export default defineEventHandler(async event => {
   }
 
   // Merge existing data with new data
-  const user: Database.UserSchema = {
+  const user: UserSchema = {
     id: oldData?.id ?? body.id,
     name: body.name,
     area: oldData?.area ?? body.area,

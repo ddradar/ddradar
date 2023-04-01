@@ -1,21 +1,9 @@
-import type { CourseSchema } from '@ddradar/core'
-import { isValidSongId } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
-
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type CourseInfo = CourseSchema
+import type { Course, CourseChart, CourseOrder } from './graphql'
+import type { Difficulty, PlayStyle, Series } from './song'
+import type { Strict } from './type-assert'
 
 /**
- * Get course and orders information that match the specified ID.
- * @description
- * - No need Authentication.
- * - GET `api/v1/courses/:id`
- *   - `id`: {@link CourseInfo.id}
- * @returns
- * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
- * - Returns `404 Not Found` if no song that matches {@link CourseInfo.id id}.
- * - Returns `200 OK` with JSON body if found.
+ * DB Schema of Course data (included on 'Songs' container)
  * @example
  * ```json
  * {
@@ -69,25 +57,41 @@ export type CourseInfo = CourseSchema
  * }
  * ```
  */
-export default defineEventHandler(async event => {
-  const id: string = event.context.params!.id
-  if (!isValidSongId(id)) return sendNullWithError(event, 400)
+export type CourseSchema = Strict<
+  Course,
+  {
+    /**
+     * `-1`: NONSTOP, `-2`: Grade
+     * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
+     */
+    nameIndex: -1 | -2
+    /** Series title depend on official site. */
+    series: Series
+    /** Course difficulties */
+    charts: CourseChartSchema[]
+  }
+>
 
-  const course = await fetchOne(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-      'charts',
-    ],
-    { condition: 'c.id = @', value: id },
-    { condition: 'c.nameIndex <= 0' }
-  )
-  return (course as CourseInfo) ?? sendNullWithError(event, 404)
-})
+/** Course difficulty */
+export type CourseChartSchema = Strict<
+  CourseChart,
+  {
+    /** {@link PlayStyle} */
+    playStyle: PlayStyle
+    /** {@link Difficulty} */
+    difficulty: Difficulty
+    /** Course order */
+    order: CourseOrderSchema[]
+  }
+>
+
+/** Course order */
+export type CourseOrderSchema = Strict<
+  CourseOrder,
+  {
+    /** {@link PlayStyle} */
+    playStyle: PlayStyle
+    /** {@link Difficulty} */
+    difficulty: Difficulty
+  }
+>

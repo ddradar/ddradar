@@ -27,11 +27,12 @@
 </template>
 
 <script lang="ts" setup>
-import CollapsibleCard from '~/components/CollapsibleCard.vue'
+import { nameIndexMap } from '@ddradar/core'
+
+import CollapsibleCard from '~~/components/CollapsibleCard.vue'
 import {
   courseSeriesIndexes,
   levels,
-  nameIndexMap,
   seriesNames,
   shortenSeriesName,
 } from '~~/utils/song'
