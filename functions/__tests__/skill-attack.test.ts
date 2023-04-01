@@ -1,17 +1,15 @@
-import { readFile } from 'fs'
-import { join } from 'path'
-import { promisify } from 'util'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
+
 import { describe, expect, test } from 'vitest'
 
 import { masterMusicToMap } from '../skill-attack'
-
-const readFileAsync = promisify(readFile)
 
 describe('/skill-attack.ts', () => {
   describe('masterMusicToMap', () => {
     test('(master_music.txt) returns Map', async () => {
       // Arrange
-      const buffer = await readFileAsync(join(__dirname, 'master_music.txt'))
+      const buffer = await readFile(join(__dirname, 'master_music.txt'))
       const expected: [string, number][] = [
         '8Il6980di8P89lil1PDIqqIbiq1QO8lQ',
         '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
