@@ -1,4 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type { CosmosDBOutput, InvocationContext } from '@azure/functions'
+import { app } from '@azure/functions'
 import type {
   ScoreSchema,
   UserClearLampSchema,
@@ -7,16 +9,39 @@ import type {
 } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
 
+const $return: CosmosDBOutput = {
+  name: '$return',
+  type: 'cosmosDB',
+  direction: 'out',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'UserDetails',
+}
+app.cosmosDB('summaryUserScores', {
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'Scores',
+  leaseCollectionPrefix: 'updateScores',
+  createLeaseCollectionIfNotExists: true,
+  return: $return,
+  handler,
+})
+
 type UserDetailSchema =
   | UserGrooveRadarSchema
   | UserClearLampSchema
   | UserRankSchema
 
-/** Summary user scores for User details */
-export default async function (
-  context: any,
-  scores: (ScoreSchema & ItemDefinition)[]
+/**
+ * Summary user scores for User details.
+ * @param documents Change feed from "Scores" container.
+ * @param ctx Function context
+ */
+export async function handler(
+  documents: unknown[],
+  ctx: Pick<InvocationContext, 'info'>
 ): Promise<UserDetailSchema[]> {
+  const scores = documents as (ScoreSchema & ItemDefinition)[]
   const userScores = scores.reduce((prev, s) => {
     // Skip area top & course score
     if (!s.radar) return prev
@@ -33,7 +58,7 @@ export default async function (
       await generateGrooveRadar(userId, 1),
       await generateGrooveRadar(userId, 2)
     )
-    context.log.info(`Generated: { userId: "${userId}" } Groove Radar`)
+    ctx.info(`Generated: { userId: "${userId}" } Groove Radar`)
 
     const summaries = await fetchClearAndScoreStatus(userId)
     // Count up/down Clear/Score status
@@ -62,7 +87,7 @@ export default async function (
       // Added Score
       if (clear) clear.count++
       else {
-        context.log.info(
+        ctx.info(
           `Created: { userId: "${userId}", playStyle: ${score.playStyle}, level: ${score.level}, clearLamp: ${score.clearLamp} }`
         )
         summaries.push({
@@ -76,7 +101,7 @@ export default async function (
       }
       if (rank) rank.count++
       else {
-        context.log.info(
+        ctx.info(
           `Created: { userId: "${userId}", playStyle: ${score.playStyle}, level: ${score.level}, rank: ${score.rank} }`
         )
         summaries.push({

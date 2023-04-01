@@ -4,11 +4,12 @@
 .git*
 .vscode
 .eslintrc*
-test
-*.config.js
-coverage
 local.settings.json
-tsconfig.json
-*.md
+*.config.js
 yarn.lock
 test
+coverage
+*.md
+node_modules/@types/
+node_modules/azure-functions-core-tools/
+node_modules/typescript/

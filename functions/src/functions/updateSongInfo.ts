@@ -1,4 +1,10 @@
 import type {
+  CosmosDBInput,
+  CosmosDBOutput,
+  InvocationContext,
+} from '@azure/functions'
+import { app } from '@azure/functions'
+import type {
   CourseChartSchema,
   CourseSchema,
   ScoreSchema,
@@ -7,6 +13,42 @@ import type {
   UserClearLampSchema,
 } from '@ddradar/core'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
+
+const input: CosmosDBInput = {
+  name: 'oldDetails',
+  type: 'cosmosDB',
+  direction: 'in',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'UserDetails',
+  sqlQuery: "SELECT c.id, c.playStyle, c.level FROM c WHERE c.userId = '0'",
+}
+const scoreOutput: CosmosDBOutput = {
+  name: 'scores',
+  type: 'cosmosDB',
+  direction: 'out',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'Scores',
+}
+const detailsOutput: CosmosDBOutput = {
+  name: 'details',
+  type: 'cosmosDB',
+  direction: 'out',
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'UserDetails',
+}
+app.cosmosDB('updateSongInfo', {
+  connectionStringSetting: 'COSMOS_DB_CONN',
+  databaseName: 'DDRadar',
+  collectionName: 'Songs',
+  leaseCollectionPrefix: 'updateSong',
+  createLeaseCollectionIfNotExists: true,
+  extraInputs: [input],
+  extraOutputs: [scoreOutput, detailsOutput],
+  handler,
+})
 
 type TotalCount = { id?: string } & Pick<
   UserClearLampSchema,
@@ -19,18 +61,22 @@ type UpdateSongResult = {
 
 /**
  * Update song info of other container.
- * @param context Function context
- * @param songs Change feed of "Songs" container
+ * @param documents Change feed of "Songs" container
+ * @param ctx Function context
  */
-export default async function (
-  context: any,
-  songs: (SongSchema | CourseSchema)[],
-  oldTotalCounts: Required<Omit<TotalCount, 'count' | 'userId'>>[]
+export async function handler(
+  documents: unknown[],
+  ctx: InvocationContext
 ): Promise<UpdateSongResult> {
+  const songs = documents as (SongSchema | CourseSchema)[]
+  const oldTotalCounts = ctx.extraInputs.get('') as Required<
+    Omit<TotalCount, 'count' | 'userId'>
+  >[]
+
   const scores: ScoreSchema[] = []
 
   for (const song of songs) {
-    context.log.info(`Start: ${song.name}`)
+    ctx.info(`Start: ${song.name}`)
 
     // Get scores
     const resources = await fetchList('Scores', '*', [
@@ -48,7 +94,7 @@ export default async function (
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
       )
       if (!chart) {
-        context.log.error(`Not found chart: ${scoreText}`)
+        ctx.error(`Not found chart: ${scoreText}`)
         continue
       }
 
@@ -61,19 +107,19 @@ export default async function (
         score.maxCombo &&
         score.maxCombo !== chart.notes + chart.shockArrow
       ) {
-        context.log.warn(
+        ctx.warn(
           `maxCombo(${score.maxCombo}) is different than expected(${
             chart.notes + chart.shockArrow
           }): ${scoreText}`
         )
-        context.log.warn('Make sure the chart info is correct.')
+        ctx.warn('Make sure the chart info is correct.')
       }
       if (
         song.name !== score.songName ||
         chart.level !== score.level ||
         song.deleted !== score.deleted
       ) {
-        context.log.info(`Updated: ${scoreText}`)
+        ctx.info(`Updated: ${scoreText}`)
         const oldScore = { ...score }
         delete oldScore.deleted
         scores.push({
