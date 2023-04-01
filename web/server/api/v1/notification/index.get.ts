@@ -1,5 +1,5 @@
+import type { NotificationSchema } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { NotificationSchema } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getQueryString } from '~~/utils/path'

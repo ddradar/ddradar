@@ -1,17 +1,17 @@
+import { calcMyGrooveRadar } from '@ddradar/core'
 import {
   areaHiddenUser,
   privateUser,
   publicUser,
   testScores,
   testSongData,
-} from '@ddradar/core/__tests__/data'
+} from '@ddradar/core/test/data'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import postChartScore from '~/server/api/v1/scores/[id]/[style]/[diff].post'
-import { calcMyGrooveRadar } from '~~/../core/src/score'
+import { createEvent } from '~~/__tests__/server/test-util'
+import postChartScore from '~~/server/api/v1/scores/[id]/[style]/[diff].post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 

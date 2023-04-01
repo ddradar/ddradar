@@ -3,8 +3,8 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
+import type { UserSchema } from '@ddradar/core'
 import { fetchList, fetchOne } from '@ddradar/db'
-import type { UserSchema } from '@ddradar/db-definitions'
 
 let courseIds: string[] = []
 
@@ -20,7 +20,7 @@ export async function fetchUser(code: number) {
   const user = (await fetchOne('Users', ['id', 'name', 'password'], {
     condition: 'c.code = @',
     value: code,
-  })) as Required<Pick<UserSchema, 'id' | 'name' | 'password'>>
+  })) as Required<Pick<UserSchema, 'id' | 'name'> & { password: string }>
   return user?.password ? user : null
 }
 

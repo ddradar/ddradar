@@ -3,9 +3,9 @@ import type {
   DanceLevel,
   UserClearLampSchema,
   UserRankSchema,
-} from '@ddradar/db-definitions'
-import { clearLampMap, danceLevelSet } from '@ddradar/db-definitions'
-import { publicUser } from '@ddradar/db-definitions/test/data'
+} from '@ddradar/core'
+import { clearLampMap, danceLevelSet } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/test/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'

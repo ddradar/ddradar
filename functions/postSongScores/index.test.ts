@@ -1,5 +1,5 @@
 import type { HttpRequest } from '@azure/functions'
-import type { Api } from '@ddradar/core'
+import { Score } from '@ddradar/core'
 import {
   areaHiddenUser,
   noPasswordUser,
@@ -7,7 +7,7 @@ import {
   publicUser,
   testScores,
   testSongData as song,
-} from '@ddradar/core/__tests__/data'
+} from '@ddradar/core/test/data'
 import { fetchScore } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -21,7 +21,7 @@ describe('POST /api/v1/scores', () => {
 
   const scores = new Map(testScores.map(d => [d.userId, d]))
 
-  const score: Api.ScoreBody = {
+  const score: Score = {
     score: 1000000,
     clearLamp: 7,
     maxCombo: song.charts[0].notes,
@@ -33,7 +33,8 @@ describe('POST /api/v1/scores', () => {
     vi.mocked(fetchScore).mockImplementation(
       (userId, _1, playStyle, difficulty) => {
         if (playStyle !== 1 || difficulty !== 0) return Promise.resolve(null)
-        return Promise.resolve(scores.get(userId) ?? null)
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        return Promise.resolve((scores.get(userId) as any) ?? null)
       }
     )
   })

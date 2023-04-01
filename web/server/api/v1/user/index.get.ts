@@ -1,4 +1,4 @@
-import type { UserSchema } from '@ddradar/db-definitions'
+import type { UserSchema } from '@ddradar/core'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'

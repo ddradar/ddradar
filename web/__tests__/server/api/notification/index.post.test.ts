@@ -2,10 +2,10 @@ import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
+import { createEvent } from '~~/__tests__/server/test-util'
 import postNotification, {
   NotificationBody,
-} from '~/server/api/v1/notification/index.post'
+} from '~~/server/api/v1/notification/index.post'
 import { sendNullWithError } from '~~/server/utils/http'
 
 vi.mock('@ddradar/db')
@@ -44,7 +44,6 @@ describe('POST /api/v1/notification', () => {
     {},
     { ...validBody, sender: 'USER' },
     { ...validBody, pinned: 'false' },
-    { ...validBody, type: 'is-dark' },
     { ...validBody, icon: false },
     { ...validBody, title: 1 },
     { ...validBody, body: [] },
@@ -65,6 +64,10 @@ describe('POST /api/v1/notification', () => {
 
   test.each([
     [validBody, { ...validBody, timeStamp }],
+    [
+      { ...validBody, type: 'is-dark' },
+      { ...validBody, type: 'is-dark', timeStamp },
+    ],
     [
       { ...validBody, id: 'foo' },
       { ...validBody, id: 'foo', timeStamp },

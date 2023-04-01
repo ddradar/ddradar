@@ -5,10 +5,7 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   resolve: {
     alias: {
-      '@ddradar/core/__tests__/data': resolve(
-        __dirname,
-        '../core/__tests__/data.ts'
-      ),
+      '@ddradar/core/test/data': resolve(__dirname, '../core/test/data.ts'),
       '@ddradar/core': resolve(__dirname, '../core/src'),
     },
   },

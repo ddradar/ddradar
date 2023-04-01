@@ -1,4 +1,4 @@
-import type { UserSchema } from '@ddradar/db-definitions'
+import type { UserSchema } from '@ddradar/core'
 
 import type { Condition } from './database'
 import { fetchOne } from './database'

@@ -8,7 +8,6 @@ export default defineNuxtConfig({
   vite: {
     resolve: {
       alias: {
-        '@ddradar/core': resolve(__dirname, '../core/src'),
         '@ddradar/db': resolve(__dirname, '../db/src'),
       },
     },

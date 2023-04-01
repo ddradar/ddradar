@@ -1,4 +1,4 @@
-import { testCourseData } from '@ddradar/core/__tests__/data'
+import { testCourseData } from '@ddradar/core/test/data'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { describe, expect, test, vi } from 'vitest'

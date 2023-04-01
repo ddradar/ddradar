@@ -3,9 +3,9 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
+import type { CourseSchema, StepChartSchema } from '@ddradar/core'
+import { isValidSongId } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { CourseSchema, StepChartSchema } from '@ddradar/db-definitions'
-import { isValidSongId } from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { fetchSongs } from './modules/database'

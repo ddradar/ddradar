@@ -1,9 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
-import type {
-  UserClearLampSchema,
-  UserRankSchema,
-} from '@ddradar/db-definitions'
 
 type UserDetailSchema = UserClearLampSchema | UserRankSchema
 

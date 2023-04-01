@@ -1,13 +1,24 @@
 import type { OperationInput } from '@azure/cosmos'
-import { Api, Score } from '@ddradar/core'
-import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import type {
   CourseChartSchema,
   ScoreSchema,
   StepChartSchema,
   UserSchema,
-} from '@ddradar/db-definitions'
-import { createScoreSchema, isValidSongId } from '@ddradar/db-definitions'
+} from '@ddradar/core'
+import {
+  createScoreSchema,
+  difficultyMap,
+  getDanceLevel,
+  hasIntegerProperty,
+  hasProperty,
+  isScore,
+  isValidScore,
+  isValidSongId,
+  mergeScore,
+  playStyleMap,
+  setValidScoreFromChart,
+} from '@ddradar/core'
+import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
@@ -16,6 +27,20 @@ import { sendNullWithError } from '~~/server/utils/http'
 type ChartInfo = StepChartSchema | CourseChartSchema
 
 const topUser = { id: '0', name: '0', isPublic: false } as const
+
+export type ScoreListBody = Pick<
+  ScoreSchema,
+  | 'playStyle'
+  | 'difficulty'
+  | 'score'
+  | 'exScore'
+  | 'maxCombo'
+  | 'clearLamp'
+  | 'rank'
+> & {
+  /** World Record {@link ScoreSchema.score score}. */
+  topScore?: number
+}
 
 /**
  * Add or update the scores of the specified songs all at once.
@@ -128,7 +153,7 @@ export default defineEventHandler(async event => {
     )
     if (!chart) return sendNullWithError(event, 404)
 
-    if (!Score.isValidScore(chart, score)) {
+    if (!isValidScore(chart, score)) {
       return sendNullWithError(event, 400, `body[${i}] is invalid Score`)
     }
 
@@ -141,7 +166,7 @@ export default defineEventHandler(async event => {
         difficulty: score.difficulty,
         score: score.topScore,
         clearLamp: 2 as const,
-        rank: Score.getDanceLevel(score.topScore),
+        rank: getDanceLevel(score.topScore),
       }
       upsertScore(chart, topUser, topScore)
     } else if (user.isPublic) {
@@ -165,7 +190,7 @@ export default defineEventHandler(async event => {
   function upsertScore(
     chart: ChartInfo,
     user: Pick<UserSchema, 'id' | 'name' | 'isPublic'>,
-    score: Api.ScoreListBody,
+    score: ScoreListBody,
     isUser = false
   ) {
     const oldScore = oldScores.find(
@@ -174,9 +199,9 @@ export default defineEventHandler(async event => {
         d.playStyle === chart.playStyle &&
         d.difficulty === chart.difficulty
     )
-    const mergedScore = Score.mergeScore(
+    const mergedScore = mergeScore(
       oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
-      Score.setValidScoreFromChart(chart, score)
+      setValidScoreFromChart(chart, score)
     )
     if (
       mergedScore.score === oldScore?.score &&
@@ -209,9 +234,17 @@ export default defineEventHandler(async event => {
   }
 
   /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is Api.ScoreListBody[] {
-    return (
-      Array.isArray(body) && body.length > 0 && body.every(Api.isScoreListBody)
-    )
+  function isValidBody(body: unknown): body is ScoreListBody[] {
+    return Array.isArray(body) && body.length > 0 && body.every(isScoreListBody)
+
+    function isScoreListBody(obj: unknown): obj is ScoreListBody {
+      return (
+        isScore(obj) &&
+        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
+        playStyleMap.has(obj.playStyle) &&
+        difficultyMap.has(obj.difficulty) &&
+        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
+      )
+    }
   }
 })

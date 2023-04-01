@@ -53,15 +53,11 @@
 </template>
 
 <script lang="ts" setup>
+import { nameIndexMap } from '@ddradar/core'
 import { watch } from 'vue'
 
 import { getQueryInteger } from '~~/utils/path'
-import {
-  getDisplayedBPM,
-  nameIndexMap,
-  seriesNames,
-  shortenSeriesName,
-} from '~~/utils/song'
+import { getDisplayedBPM, seriesNames, shortenSeriesName } from '~~/utils/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })

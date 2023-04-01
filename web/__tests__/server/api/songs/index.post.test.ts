@@ -1,4 +1,4 @@
-import { testSongData } from '@ddradar/core/__tests__/data'
+import { testSongData } from '@ddradar/core/test/data'
 import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'

@@ -1,5 +1,5 @@
-import { Gate } from '@ddradar/core'
-import type { Difficulty, PlayStyle, Series } from '@ddradar/db-definitions'
+import type { Difficulty, PlayStyle, Series } from '@ddradar/core'
+import { musicDataToScoreList, musicDetailToScore } from '@ddradar/core'
 import { config } from 'dotenv'
 import { JSDOM } from 'jsdom'
 import type { Page } from 'puppeteer-core'
@@ -53,7 +53,7 @@ export async function fetchScoreDetail(
   playStyle: PlayStyle,
   difficulty: Difficulty,
   series: GateSeries = 'DanceDanceRevolution A3'
-): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
+): Promise<ReturnType<typeof musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
   const detailUri = getUri(
     series,
@@ -65,7 +65,7 @@ export async function fetchScoreDetail(
   if (!response) return null
   const source = await response.text()
 
-  return Gate.musicDetailToScore(source)
+  return musicDetailToScore(source)
 }
 
 export async function fetchScoreList(
@@ -73,7 +73,7 @@ export async function fetchScoreList(
   pageNo: number,
   playStyle: PlayStyle,
   series: GateSeries = 'DanceDanceRevolution A3'
-): Promise<ReturnType<typeof Gate.musicDataToScoreList> | null> {
+): Promise<ReturnType<typeof musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
   const detailUri = getUri(
     series,
@@ -85,7 +85,7 @@ export async function fetchScoreList(
   if (!response) return null
   const source = await response.text()
 
-  return Gate.musicDataToScoreList(source)
+  return musicDataToScoreList(source)
 }
 
 const rivalDataUri = 'https://p.eagate.573.jp/game/ddr/ddra3/p/rival'
@@ -96,7 +96,7 @@ export async function fetchRivalScoreDetail(
   songId: string,
   playStyle: PlayStyle,
   difficulty: Difficulty
-): Promise<ReturnType<typeof Gate.musicDetailToScore> | null> {
+): Promise<ReturnType<typeof musicDetailToScore> | null> {
   const index = (playStyle - 1) * 4 + difficulty
   const detailUri = `${rivalDataUri}/music_detail.html?index=${songId}&rival_id=${ddrCode}&diff=${index}`
 
@@ -104,7 +104,7 @@ export async function fetchRivalScoreDetail(
   if (!response) return null
   const source = await response.text()
 
-  return Gate.musicDetailToScore(source)
+  return musicDetailToScore(source)
 }
 
 export async function fetchRivalScoreList(
@@ -112,7 +112,7 @@ export async function fetchRivalScoreList(
   ddrCode: number,
   pageNo: number,
   playStyle: PlayStyle
-): Promise<ReturnType<typeof Gate.musicDataToScoreList> | null> {
+): Promise<ReturnType<typeof musicDataToScoreList> | null> {
   const style = playStyle === 1 ? 'single' : 'double'
   const detailUri = `${rivalDataUri}/rival_musicdata_${style}.html?offset=${pageNo}&rival_id=${ddrCode}`
 
@@ -120,5 +120,5 @@ export async function fetchRivalScoreList(
   if (!response) return null
   const source = await response.text()
 
-  return Gate.musicDataToScoreList(source)
+  return musicDataToScoreList(source)
 }

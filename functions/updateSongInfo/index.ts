@@ -1,5 +1,4 @@
 import type { Logger } from '@azure/functions'
-import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 import type {
   CourseChartSchema,
   CourseSchema,
@@ -7,7 +6,8 @@ import type {
   SongSchema,
   StepChartSchema,
   UserClearLampSchema,
-} from '@ddradar/db-definitions'
+} from '@ddradar/core'
+import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 
 type TotalCount = { id?: string } & Pick<
   UserClearLampSchema,

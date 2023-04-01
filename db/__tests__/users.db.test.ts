@@ -1,4 +1,4 @@
-import type { AreaCode, UserSchema } from '@ddradar/db-definitions'
+import type { AreaCode, UserSchema } from '@ddradar/core'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'

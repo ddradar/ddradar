@@ -1,6 +1,6 @@
+import type { SongSchema, StepChartSchema } from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
-import type { SongSchema, StepChartSchema } from '@ddradar/db-definitions'
-import { playStyleMap } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 

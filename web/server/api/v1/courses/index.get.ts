@@ -1,6 +1,6 @@
+import type { CourseChartSchema, CourseSchema } from '@ddradar/core'
+import { seriesSet } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { CourseChartSchema, CourseSchema } from '@ddradar/db-definitions'
-import { seriesSet } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~~/utils/path'

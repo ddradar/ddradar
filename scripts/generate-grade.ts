@@ -3,17 +3,9 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
+import type { CourseSchema, Difficulty, StepChartSchema } from '@ddradar/core'
+import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type {
-  CourseSchema,
-  Difficulty,
-  StepChartSchema,
-} from '@ddradar/db-definitions'
-import {
-  difficultyMap,
-  isValidSongId,
-  playStyleMap,
-} from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { fetchSongs } from './modules/database'

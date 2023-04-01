@@ -1,11 +1,12 @@
-import { Score } from '@ddradar/core'
-import { privateUser } from '@ddradar/core/__tests__/data'
+import type { DanceLevel } from '@ddradar/core'
+import { danceLevelSet } from '@ddradar/core'
+import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import type { RankStatus } from '~/server/api/v1/users/[id]/rank.get'
-import getDanceLevels from '~/server/api/v1/users/[id]/rank.get'
+import { createEvent } from '~~/__tests__/server/test-util'
+import type { RankStatus } from '~~/server/api/v1/users/[id]/rank.get'
+import getDanceLevels from '~~/server/api/v1/users/[id]/rank.get'
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { getQueryInteger } from '~~/utils/path'
@@ -20,11 +21,11 @@ describe('GET /api/v1/users/[id]/rank', () => {
   const levelLimit = 19
   const totalCount = 2000
   const ranks: RankStatus[] = [
-    ...Array(levelLimit * Score.danceLevelSet.size).keys(),
+    ...Array(levelLimit * danceLevelSet.size).keys(),
   ].map(n => ({
     playStyle: ((n % 2) + 1) as 1 | 2,
     level: (n % levelLimit) + 1,
-    rank: [...Score.danceLevelSet][n % Score.danceLevelSet.size],
+    rank: [...danceLevelSet][n % danceLevelSet.size] as DanceLevel,
     count: n,
   }))
   const total: Omit<RankStatus, 'rank'>[] = [
@@ -88,7 +89,7 @@ describe('GET /api/v1/users/[id]/rank', () => {
 
       // Assert
       expect(result).toHaveLength(
-        levelLimit * (Score.danceLevelSet.size + /* SP/DP No play */ 2)
+        levelLimit * (danceLevelSet.size + /* SP/DP No play */ 2)
       )
       expect(sum(result as RankStatus[])).toBe(levelLimit * 2 * totalCount)
       expect(vi.mocked(fetchList).mock.calls[0][2]).toStrictEqual([

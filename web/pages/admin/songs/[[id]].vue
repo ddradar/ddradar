@@ -176,7 +176,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getNameIndex, isValidSongId } from '@ddradar/db-definitions'
+import { getNameIndex, isValidSongId } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~~/components/DialogModal.vue'

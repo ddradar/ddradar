@@ -1,9 +1,5 @@
+import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
-import {
-  difficultyMap,
-  isValidSongId,
-  playStyleMap,
-} from '@ddradar/db-definitions'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'

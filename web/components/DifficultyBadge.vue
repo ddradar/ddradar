@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import type { Difficulty } from '@ddradar/db-definitions'
-import { difficultyMap } from '@ddradar/db-definitions'
+import type { Difficulty } from '@ddradar/core'
+import { difficultyMap } from '@ddradar/core'
 
 interface ChartInfoProps {
   difficulty: Difficulty

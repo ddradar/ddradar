@@ -2,8 +2,8 @@ import type {
   ClearLamp,
   ScoreSchema,
   UserGrooveRadarSchema,
-} from '@ddradar/db-definitions'
-import { testScores } from '@ddradar/db-definitions/test/data'
+} from '@ddradar/core'
+import { testScores } from '@ddradar/core/test/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { fetchGroupedList, fetchList, fetchOne } from '../src/database'

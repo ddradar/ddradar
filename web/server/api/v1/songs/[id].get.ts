@@ -1,8 +1,8 @@
+import type { SongSchema } from '@ddradar/core'
+import { isValidSongId } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { SongSchema } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
-import { isValidSongId } from '~~/utils/song'
 
 export type SongInfo = Omit<SongSchema, 'skillAttackId'>
 

@@ -1,5 +1,5 @@
-import type { Series } from '@ddradar/db-definitions'
-import { playStyleMap, seriesSet } from '@ddradar/db-definitions'
+import type { Series } from '@ddradar/core'
+import { difficultyMap, playStyleMap, seriesSet } from '@ddradar/core'
 
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'

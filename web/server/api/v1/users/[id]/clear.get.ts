@@ -1,6 +1,6 @@
+import type { ClearLamp, UserClearLampSchema } from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { ClearLamp, UserClearLampSchema } from '@ddradar/db-definitions'
-import { playStyleMap } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~~/server/utils/auth'

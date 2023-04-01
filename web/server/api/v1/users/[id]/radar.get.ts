@@ -1,6 +1,6 @@
+import type { UserGrooveRadarSchema } from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { UserGrooveRadarSchema } from '@ddradar/db-definitions'
-import { isPlayStyle } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~~/server/utils/auth'
@@ -52,7 +52,7 @@ export default defineEventHandler(async event => {
     { condition: 'c.userId = @', value: user.id },
     { condition: 'c.type = "radar"' },
   ]
-  if (isPlayStyle(style)) {
+  if (playStyleMap.has(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
 

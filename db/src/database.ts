@@ -14,7 +14,7 @@ import type {
   UserGrooveRadarSchema,
   UserRankSchema,
   UserSchema,
-} from '@ddradar/db-definitions'
+} from '@ddradar/core'
 
 // eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN

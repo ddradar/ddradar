@@ -1,6 +1,6 @@
+import type { DanceLevel, UserRankSchema } from '@ddradar/core'
+import { danceLevelSet, playStyleMap } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import type { DanceLevel, UserRankSchema } from '@ddradar/db-definitions'
-import { danceLevelSet, isPlayStyle } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~~/server/utils/auth'
@@ -46,7 +46,7 @@ export default defineEventHandler(async event => {
   const lv = getQueryInteger(query, 'lv')
 
   const conditions: Condition<'UserDetails'>[] = []
-  if (isPlayStyle(style)) {
+  if (playStyleMap.has(style)) {
     conditions.push({ condition: 'c.playStyle = @', value: style })
   }
   if (lv >= 1 && lv <= 20) {

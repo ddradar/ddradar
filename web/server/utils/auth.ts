@@ -1,5 +1,5 @@
+import { isValidUserId, UserSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
-import { isValidUserId, UserSchema } from '@ddradar/db-definitions'
 import type { H3Event } from 'h3'
 
 type Role = 'anonymous' | 'authenticated' | 'administrator'

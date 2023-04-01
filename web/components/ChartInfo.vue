@@ -49,7 +49,7 @@
 </template>
 
 <script lang="ts" setup>
-import { difficultyMap } from '@ddradar/db-definitions'
+import { difficultyMap } from '@ddradar/core'
 
 import CollapsibleCard from '~/components/CollapsibleCard.vue'
 import type { CourseInfo } from '~/server/api/v1/courses/[id].get'

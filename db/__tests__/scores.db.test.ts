@@ -1,9 +1,5 @@
-import { isAreaUser, ScoreSchema } from '@ddradar/db-definitions'
-import {
-  publicUser,
-  testScores,
-  testSongData,
-} from '@ddradar/db-definitions/test/data'
+import { isAreaUser, ScoreSchema } from '@ddradar/core'
+import { publicUser, testScores, testSongData } from '@ddradar/core/test/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'

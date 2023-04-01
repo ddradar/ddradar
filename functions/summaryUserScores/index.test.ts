@@ -1,6 +1,6 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type { ScoreSchema } from '@ddradar/core'
 import { fetchClearAndScoreStatus, generateGrooveRadar } from '@ddradar/db'
-import type { ScoreSchema } from '@ddradar/db-definitions'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import summaryUserScores from '.'

@@ -1,4 +1,4 @@
-import type { UserClearLampSchema } from '@ddradar/db-definitions'
+import type { UserClearLampSchema } from '@ddradar/core'
 
 import { getContainer } from './database'
 

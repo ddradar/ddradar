@@ -1,10 +1,6 @@
+import type { ScoreSchema } from '@ddradar/core'
+import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import type { ScoreSchema } from '@ddradar/db-definitions'
-import {
-  difficultyMap,
-  isValidSongId,
-  playStyleMap,
-} from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'

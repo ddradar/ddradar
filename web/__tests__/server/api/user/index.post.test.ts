@@ -1,6 +1,6 @@
+import type { UserSchema } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/test/data'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import type { UserSchema } from '@ddradar/db-definitions'
-import { publicUser } from '@ddradar/db-definitions/test/data'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 

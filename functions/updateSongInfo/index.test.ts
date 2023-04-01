@@ -1,7 +1,7 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import type { ScoreSchema } from '@ddradar/core'
+import { testSongData } from '@ddradar/core/test/data'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
-import type { ScoreSchema } from '@ddradar/db-definitions'
-import { testSongData } from '@ddradar/db-definitions/test/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import updateSongInfo from '.'

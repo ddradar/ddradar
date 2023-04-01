@@ -6,7 +6,7 @@ import type {
   UserClearLampSchema,
   UserGrooveRadarSchema,
   UserRankSchema,
-} from '@ddradar/db-definitions'
+} from '@ddradar/core'
 
 import { Condition, fetchGroupedList, fetchList, fetchOne } from './database'
 

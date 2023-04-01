@@ -1,24 +1,21 @@
 import { describe, expect, test } from 'vitest'
 
-import type { UserSchema } from '../../src/db/users'
 import {
   areaCodeSet,
   isAreaUser,
   isUserSchema,
   isValidUserId,
-} from '../../src/db/users'
+  UserSchema,
+} from '../src/user'
 
-describe('./db/users.ts', () => {
+describe('user.ts', () => {
   describe('isValidUserId', () => {
-    test.each(['foo', 'foo-1234', '1', 'foo_bar'])(
-      '("%s") returns true',
-      id => {
-        expect(isValidUserId(id)).toBe(true)
-      }
+    test.each(['foo', 'foo-1234', '1', 'foo_bar'])('("%s") returns true', id =>
+      expect(isValidUserId(id)).toBe(true)
     )
-    test.each(['', ' ', '#'])('("%s") returns false', id => {
+    test.each(['', ' ', '#'])('("%s") returns false', id =>
       expect(isValidUserId(id)).toBe(false)
-    })
+    )
   })
 
   describe('isUserSchema', () => {
@@ -45,9 +42,7 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, isPublic: undefined },
       { ...validUserInfo, password: 0 },
       { id: 'new_user', name: 'New User', area: 13 },
-    ])('(%o) returns false', obj => {
-      expect(isUserSchema(obj)).toBe(false)
-    })
+    ])('(%o) returns false', o => expect(isUserSchema(o)).toBe(false))
     test.each([
       validUserInfo,
       { ...validUserInfo, id: 'UPPER-CASED' },
@@ -56,9 +51,7 @@ describe('./db/users.ts', () => {
       { ...validUserInfo, isPublic: false },
       { ...validUserInfo, loginId: 'foo' },
       { ...validUserInfo, password: 'password' },
-    ])('(%o) returns true', obj => {
-      expect(isUserSchema(obj)).toBe(true)
-    })
+    ])('(%o) returns true', o => expect(isUserSchema(o)).toBe(true))
   })
 
   describe('isAreaUser', () => {

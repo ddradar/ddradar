@@ -1,6 +1,6 @@
+import type { UserSchema } from '@ddradar/core'
+import { isValidUserId } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { UserSchema } from '@ddradar/db-definitions'
-import { isValidUserId } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 

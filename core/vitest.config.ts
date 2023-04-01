@@ -9,11 +9,10 @@ export default defineConfig({
       exclude: [
         'dist/**',
         '**/index.ts',
+        '**/graphql.ts',
         '*.config.ts',
         '*.d.ts',
-        '**/__tests__/**',
-        '**/api/*.ts',
-        '!**/api/score.ts',
+        '**/test/**',
       ],
     },
   },

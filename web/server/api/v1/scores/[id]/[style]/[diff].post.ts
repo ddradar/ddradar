@@ -1,22 +1,36 @@
 import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
-import { Database, Score } from '@ddradar/core'
+import type {
+  CourseChartSchema,
+  ScoreSchema,
+  SongSchema,
+  StepChartSchema,
+} from '@ddradar/core'
+import {
+  createScoreSchema,
+  difficultyMap,
+  isScore,
+  isValidScore,
+  isValidSongId,
+  mergeScore,
+  playStyleMap,
+} from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
-type SongChartInfo = Pick<Database.SongSchema, 'id' | 'name' | 'deleted'> &
-  (Database.StepChartSchema | Database.CourseChartSchema)
+type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
+  (StepChartSchema | CourseChartSchema)
 
 /**
  * Add or update score that match the specified chart.
  * @description
  * - Need Authentication.
  * - POST `api/v1/scores/[id]/[style]/[diff]`
- *   - `id`: {@link Database.ScoreSchema.songId}
- *   - `style`: {@link Database.ScoreSchema.playStyle}
- *   - `diff`: {@link Database.ScoreSchema.difficulty}
+ *   - `id`: {@link ScoreSchema.songId}
+ *   - `style`: {@link ScoreSchema.playStyle}
+ *   - `diff`: {@link ScoreSchema.difficulty}
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
  * - Returns `400 Bad Request` if parameter body is invalid.
@@ -56,16 +70,16 @@ export default defineEventHandler(async event => {
   const style = parseFloat(event.context.params!.style)
   const diff = parseFloat(event.context.params!.diff)
   if (
-    !Database.isValidSongId(id) ||
-    !Database.isPlayStyle(style) ||
-    !Database.isDifficulty(diff)
+    !isValidSongId(id) ||
+    !playStyleMap.has(style) ||
+    !difficultyMap.has(diff)
   ) {
     return sendNullWithError(event, 404)
   }
 
   // body
   const body = await readBody(event)
-  if (!Score.isScore(body)) {
+  if (!isScore(body)) {
     return sendNullWithError(event, 400, 'body is not Score')
   }
 
@@ -101,7 +115,7 @@ export default defineEventHandler(async event => {
   )
   if (!chart) return sendNullWithError(event, 404)
 
-  if (!Score.isValidScore(chart, body)) {
+  if (!isValidScore(chart, body)) {
     return sendNullWithError(event, 400, 'body is invalid Score')
   }
 
@@ -116,7 +130,7 @@ export default defineEventHandler(async event => {
     { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
   ])
 
-  const userScore = Database.createScoreSchema(chart, user, body)
+  const userScore = createScoreSchema(chart, user, body)
 
   const operations: OperationInput[] = [
     { operationType: 'Create', resourceBody: userScore },
@@ -147,12 +161,12 @@ export default defineEventHandler(async event => {
   function updateAreaScore(
     area: string,
     chart: SongChartInfo,
-    score: Database.ScoreSchema
+    score: ScoreSchema
   ) {
     // Get previous score
     const oldScore = oldScores.find(s => s.userId === area)
 
-    const mergedScore = Score.mergeScore(
+    const mergedScore = mergeScore(
       oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
       score
     )
@@ -168,7 +182,7 @@ export default defineEventHandler(async event => {
 
     operations.push({
       operationType: 'Create',
-      resourceBody: Database.createScoreSchema(
+      resourceBody: createScoreSchema(
         chart,
         { id: area, name: area, isPublic: false },
         mergedScore

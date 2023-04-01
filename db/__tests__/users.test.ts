@@ -1,5 +1,5 @@
-import type { UserSchema } from '@ddradar/db-definitions'
-import { publicUser } from '@ddradar/db-definitions/test/data'
+import type { UserSchema } from '@ddradar/core'
+import { publicUser } from '@ddradar/core/test/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { fetchOne } from '../src/database'

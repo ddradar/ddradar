@@ -1,6 +1,6 @@
+import type { UserSchema } from '@ddradar/core'
+import { isUserSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import type { UserSchema } from '@ddradar/db-definitions'
-import { isUserSchema } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { useClientPrincipal } from '~~/server/utils/auth'

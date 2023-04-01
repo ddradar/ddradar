@@ -1,4 +1,5 @@
-import type { Api } from '@ddradar/core'
+// eslint-disable-next-line node/no-extraneous-import
+import type { ScoreListBody } from '@ddradar/functions/postSongScores'
 import { config } from 'dotenv'
 import { fetch } from 'node-fetch-native'
 
@@ -13,7 +14,7 @@ export async function postSongScores(
   songId: string,
   userId: string,
   password: string,
-  scores: Api.ScoreListBody[]
+  scores: ScoreListBody[]
 ) {
   const apiUri = `${apiBasePath}/api/v1/scores/${songId}/${userId}`
   const res = await fetch(apiUri, {

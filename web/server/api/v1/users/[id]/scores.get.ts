@@ -1,11 +1,11 @@
-import { fetchScoreList } from '@ddradar/db'
-import type { ScoreSchema } from '@ddradar/db-definitions'
+import type { ScoreSchema } from '@ddradar/core'
 import {
   clearLampMap,
   danceLevelSet,
   difficultyMap,
   playStyleMap,
-} from '@ddradar/db-definitions'
+} from '@ddradar/core'
+import { fetchScoreList } from '@ddradar/db'
 import { getQuery } from 'h3'
 
 import { tryFetchUser } from '~~/server/utils/auth'

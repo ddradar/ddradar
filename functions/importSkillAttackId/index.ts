@@ -1,5 +1,5 @@
 import type { Logger } from '@azure/functions'
-import type { SongSchema } from '@ddradar/db-definitions'
+import type { SongSchema } from '@ddradar/core'
 import { fetch } from 'node-fetch-native'
 
 import { masterMusicToMap } from '../skill-attack'

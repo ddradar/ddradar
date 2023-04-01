@@ -1,6 +1,6 @@
+import type { NotificationSchema } from '@ddradar/core'
+import { isNotificationSchema } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { NotificationSchema } from '@ddradar/db-definitions'
-import { isNotificationSchema } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { sendNullWithError } from '~~/server/utils/http'

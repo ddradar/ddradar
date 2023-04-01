@@ -1,7 +1,4 @@
-import type {
-  UserClearLampSchema,
-  UserRankSchema,
-} from '@ddradar/db-definitions'
+import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
 
 import { fetchList } from './database'
 

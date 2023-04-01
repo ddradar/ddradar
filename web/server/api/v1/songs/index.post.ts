@@ -1,6 +1,6 @@
+import type { SongSchema } from '@ddradar/core'
+import { isSongSchema } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import type { SongSchema } from '@ddradar/db-definitions'
-import { isSongSchema } from '@ddradar/db-definitions'
 import { readBody } from 'h3'
 
 import { sendNullWithError } from '~~/server/utils/http'

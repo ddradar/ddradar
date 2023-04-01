@@ -1,5 +1,5 @@
+import { nameIndexMap, seriesSet, SongSchema } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { nameIndexMap, seriesSet, SongSchema } from '@ddradar/db-definitions'
 import { getQuery } from 'h3'
 
 import { getQueryInteger } from '~~/utils/path'

@@ -1,5 +1,5 @@
+import type { NotificationSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import type { NotificationSchema } from '@ddradar/db-definitions'
 
 import { sendNullWithError } from '~~/server/utils/http'
 

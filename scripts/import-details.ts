@@ -3,9 +3,8 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import { Song } from '@ddradar/core'
+import { difficultyMap, isPageDeletedOnGate, playStyleMap } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { difficultyMap, playStyleMap } from '@ddradar/db-definitions'
 import consola from 'consola'
 
 import { postSongScores } from './modules/api'
@@ -59,7 +58,7 @@ async function main(ddrCode: string) {
   for (const s of resources) {
     const songScope = consola.withScope('song')
     const songName = `(${count++}/${resources.length + 1}) ${s.name} (${s.id})`
-    if (Song.isDeletedOnGate(s.id)) {
+    if (isPageDeletedOnGate(s.id)) {
       songScope.info(`${songName} Deleted on e-AMUSEMENT GATE. skiped.`)
       continue
     }
