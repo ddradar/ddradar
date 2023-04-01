@@ -69,7 +69,7 @@ export async function handler(
   ctx: InvocationContext
 ): Promise<UpdateSongResult> {
   const songs = documents as (SongSchema | CourseSchema)[]
-  const oldTotalCounts = ctx.extraInputs.get('') as Required<
+  const oldTotalCounts = ctx.extraInputs.get(input) as Required<
     Omit<TotalCount, 'count' | 'userId'>
   >[]
 

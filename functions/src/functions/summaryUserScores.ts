@@ -39,7 +39,7 @@ type UserDetailSchema =
  */
 export async function handler(
   documents: unknown[],
-  ctx: Pick<InvocationContext, 'info'>
+  ctx: InvocationContext
 ): Promise<UserDetailSchema[]> {
   const scores = documents as (ScoreSchema & ItemDefinition)[]
   const userScores = scores.reduce((prev, s) => {

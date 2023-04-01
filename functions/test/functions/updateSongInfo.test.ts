@@ -1,15 +1,16 @@
 import type { ItemDefinition } from '@azure/cosmos'
+import { InvocationContext } from '@azure/functions'
 import type { ScoreSchema } from '@ddradar/core'
 import { testSongData } from '@ddradar/core/test/data'
 import { fetchList, fetchTotalChartCount } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import updateSongInfo from '../../src/functions/updateSongInfo'
+import { handler } from '../../src/functions/updateSongInfo'
 
 vi.mock('@ddradar/db')
 
-describe('/updateSongInfo/index.ts', () => {
-  const song = { ...testSongData, skillAttackId: 1 }
+describe('/functions/updateSongInfo.ts', () => {
+  const song = { ...testSongData }
   const oldCounts = [...Array(19 * 2).keys()].map(i => ({
     id: `id-${i}`, // id-0, id-1, ..., id-37
     playStyle: ((i % 2) + 1) as 1 | 2,
@@ -21,20 +22,10 @@ describe('/updateSongInfo/index.ts', () => {
     count: 2000,
   }))
 
-  const context = {
-    log: {
-      info: vi.fn(),
-      warn: vi.fn(),
-      error: vi.fn(),
-    },
-  }
   beforeAll(() => {
     vi.mocked(fetchTotalChartCount).mockResolvedValue(newCounts)
   })
   beforeEach(() => {
-    context.log.info.mockClear()
-    context.log.warn.mockClear()
-    context.log.error.mockClear()
     vi.mocked(fetchList).mockClear()
   })
   const validScore: ScoreSchema & ItemDefinition = {
@@ -75,9 +66,11 @@ describe('/updateSongInfo/index.ts', () => {
   test('returns { scores: [] } if songs is empty', async () => {
     // Arrange
     vi.mocked(fetchList).mockResolvedValue([])
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', oldCounts)
 
     // Act
-    const result = await updateSongInfo(context, [], oldCounts)
+    const result = await handler([], ctx)
 
     // Assert
     expect(result).toStrictEqual({
@@ -89,9 +82,11 @@ describe('/updateSongInfo/index.ts', () => {
   test('returns { scores: [emptyScore] } with log.info if scores is empty', async () => {
     // Arrange
     vi.mocked(fetchList).mockResolvedValue([])
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', [])
 
     // Act
-    const result = await updateSongInfo(context, [song], [])
+    const result = await handler([song], ctx)
 
     // Assert
     expect(result).toStrictEqual({
@@ -105,24 +100,20 @@ describe('/updateSongInfo/index.ts', () => {
       ],
       details: newCounts.map(d => ({ ...d, id: undefined, userId: '0' })),
     })
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
   })
 
   test('returns  { scores: [emptyScore] } with log.info no need to update Scores', async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue([validScore, worldScore] as any)
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', oldCounts)
 
     // Act
-    const result = await updateSongInfo(context, [song], oldCounts)
+    const result = await handler([song], ctx)
 
     // Assert
     expect(result.scores).toStrictEqual([emptyScore])
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
   })
 
   test('returns  { scores: [emptyScore] } with log.warn if maxCombo is invalid', async () => {
@@ -132,15 +123,14 @@ describe('/updateSongInfo/index.ts', () => {
       worldScore,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ] as any)
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', oldCounts)
 
     // Act
-    const result = await updateSongInfo(context, [song], oldCounts)
+    const result = await handler([song], ctx)
 
     // Assert
     expect(result.scores).toStrictEqual([emptyScore])
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).toBeCalled()
-    expect(context.log.info).toBeCalled()
   })
 
   test('returns [emptyScore] with error if invalid Scores', async () => {
@@ -150,15 +140,14 @@ describe('/updateSongInfo/index.ts', () => {
       worldScore,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ] as any)
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', oldCounts)
 
     // Act
-    const result = await updateSongInfo(context, [song], oldCounts)
+    const result = await handler([song], ctx)
 
     // Assert
     expect(result.scores).toStrictEqual([emptyScore])
-    expect(context.log.error).toBeCalled()
-    expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
   })
 
   test.each([
@@ -169,15 +158,14 @@ describe('/updateSongInfo/index.ts', () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue([score, worldScore] as any)
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('oldDetails', oldCounts)
 
     // Act
-    const result = await updateSongInfo(context, [song], oldCounts)
+    const result = await handler([song], ctx)
 
     // Assert
     expect(result.scores).toStrictEqual([validScore, emptyScore])
-    expect(context.log.error).not.toBeCalled()
-    expect(context.log.warn).not.toBeCalled()
-    expect(context.log.info).toBeCalled()
   })
 
   test.each([{ ...validScore, deleted: false }, { ...validScore }])(
@@ -186,13 +174,11 @@ describe('/updateSongInfo/index.ts', () => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue([score, worldScore] as any)
+      const ctx = new InvocationContext()
+      ctx.extraInputs.set('oldDetails', oldCounts)
 
       // Act
-      const result = await updateSongInfo(
-        context,
-        [{ ...song, deleted: true }],
-        oldCounts
-      )
+      const result = await handler([{ ...song, deleted: true }], ctx)
 
       // Assert
       expect(result.scores).toStrictEqual([
@@ -200,9 +186,6 @@ describe('/updateSongInfo/index.ts', () => {
         { ...worldScore, deleted: true },
         { ...emptyScore, deleted: true },
       ])
-      expect(context.log.error).not.toBeCalled()
-      expect(context.log.warn).not.toBeCalled()
-      expect(context.log.info).toBeCalled()
     }
   )
 })

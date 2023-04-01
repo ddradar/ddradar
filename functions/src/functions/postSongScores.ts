@@ -90,35 +90,28 @@ const topUser = { id: '0', name: '0', isPublic: false } as const
  * @param ctx Function context
  */
 export async function handler(
-  req: Pick<HttpRequest, 'headers' | 'body'>,
+  req: Pick<HttpRequest, 'json'>,
   ctx: InvocationContext
 ): Promise<HttpResponseInit> {
   const [song] = ctx.extraInputs.get(songInput) as SongInput[]
   const [user] = ctx.extraInputs.get(userInput) as UserSchema[]
-  if (!isValidBody(req.body)) return { status: 400 }
+  const body = await req.json()
+  if (!isValidBody(body)) return { status: 400 }
 
-  if (user?.password !== req.body.password) return { status: 404 }
+  if (user?.password !== body.password) return { status: 404 }
 
   // Get chart info
   if (!song) return { status: 404 }
 
   const documents: (ScoreSchema & { ttl?: number })[] = []
-  const body: ScoreSchema[] = []
-  for (let i = 0; i < req.body.scores.length; i++) {
-    const score = req.body.scores[i]
+  for (let i = 0; i < body.scores.length; i++) {
+    const score = body.scores[i]
     const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) return { status: 404 }
     if (!isValidScore(chart, score)) return { status: 400 }
 
-    body.push(
-      createScoreSchema(
-        { ...song, ...chart },
-        user,
-        setValidScoreFromChart(chart, score)
-      )
-    )
     await fetchMergedScore(chart, user, score)
 
     // World Record

@@ -1,5 +1,5 @@
-import type { HttpRequest } from '@azure/functions'
-import { Score } from '@ddradar/core'
+import { HttpRequest, InvocationContext } from '@azure/functions'
+import { Score, ScoreSchema } from '@ddradar/core'
 import {
   areaHiddenUser,
   noPasswordUser,
@@ -11,12 +11,13 @@ import {
 import { fetchScore } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import postSongScores from '../../src/functions/postSongScores'
+import { handler } from '../../src/functions/postSongScores'
 
 vi.mock('@ddradar/db')
 
-describe('POST /api/v1/scores', () => {
-  const req: Pick<HttpRequest, 'headers' | 'body'> = { headers: {}, body: {} }
+describe('/functions/postSongScores.ts', () => {
+  const json = vi.fn()
+  const req: Pick<HttpRequest, 'json'> = { json }
   const password = publicUser.password
 
   const scores = new Map(testScores.map(d => [d.userId, d]))
@@ -38,59 +39,74 @@ describe('POST /api/v1/scores', () => {
       }
     )
   })
-
-  beforeEach(() => {
-    req.body = {}
-  })
+  beforeEach(() => json.mockClear())
 
   test('returns "404 Not Found" if unregistered user', async () => {
     // Arrange
-    req.body = { password, scores: [{ ...score, playStyle: 1, difficulty: 0 }] }
+    json.mockResolvedValue({
+      password,
+      scores: [{ ...score, playStyle: 1, difficulty: 0 }],
+    })
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [])
+    ctx.extraInputs.set('users', [])
 
     // Act
-    const result = await postSongScores(null, req, [], [])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test('returns "404 Not Found" if wrong password', async () => {
     // Arrange
-    req.body = {
+    json.mockResolvedValue({
       password: 'wrong',
       scores: [{ ...score, playStyle: 1, difficulty: 0 }],
-    }
+    })
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [])
+    ctx.extraInputs.set('users', [publicUser])
 
     // Act
-    const result = await postSongScores(null, req, [], [publicUser])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test('returns "404 Not Found" if no password user', async () => {
     // Arrange
-    req.body = {
+    json.mockResolvedValue({
       password: '',
       scores: [{ ...score, playStyle: 1, difficulty: 0 }],
-    }
+    })
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [])
+    ctx.extraInputs.set('users', [noPasswordUser])
 
     // Act
-    const result = await postSongScores(null, req, [], [noPasswordUser])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test('returns "404 Not Found" if songs is empty', async () => {
     // Arrange
-    req.body = { password, scores: [{ playStyle: 1, difficulty: 0, ...score }] }
+    json.mockResolvedValue({
+      password,
+      scores: [{ playStyle: 1, difficulty: 0, ...score }],
+    })
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [])
+    ctx.extraInputs.set('users', [publicUser])
 
     // Act
-    const result = await postSongScores(null, req, [], [publicUser])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(404)
+    expect(result.status).toBe(404)
   })
 
   test.each([
@@ -100,13 +116,19 @@ describe('POST /api/v1/scores', () => {
     `/${song.id} returns "404 Not Found" if body is [{ playStyle: %i, difficulty: %i }]`,
     async (playStyle, difficulty) => {
       // Arrange
-      req.body = { password, scores: [{ ...score, playStyle, difficulty }] }
+      json.mockResolvedValue({
+        password,
+        scores: [{ ...score, playStyle, difficulty }],
+      })
+      const ctx = new InvocationContext()
+      ctx.extraInputs.set('songs', [song])
+      ctx.extraInputs.set('users', [publicUser])
 
       // Act
-      const result = await postSongScores(null, req, [song], [publicUser])
+      const result = await handler(req, ctx)
 
       // Assert
-      expect(result.httpResponse.status).toBe(404)
+      expect(result.status).toBe(404)
     }
   )
 
@@ -131,13 +153,16 @@ describe('POST /api/v1/scores', () => {
     },
   ])(`/${song.id} returns "400 Bad Request" if body is %o`, async body => {
     // Arrange
-    req.body = body
+    json.mockResolvedValue(body)
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [song])
+    ctx.extraInputs.set('users', [publicUser])
 
     // Act
-    const result = await postSongScores(null, req, [song], [publicUser])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(400)
+    expect(result.status).toBe(400)
   })
 
   test.each([
@@ -158,15 +183,19 @@ describe('POST /api/v1/scores', () => {
         maxCombo: 264,
         exScore: 700,
       }
-      req.body = { password, scores: [{ ...expected, topScore }] }
+      json.mockResolvedValue({ password, scores: [{ ...expected, topScore }] })
+      const ctx = new InvocationContext()
+      ctx.extraInputs.set('songs', [song])
+      ctx.extraInputs.set('users', [publicUser])
 
       // Act
-      const result = await postSongScores(null, req, [song], [publicUser])
+      const result = await handler(req, ctx)
 
       // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.documents?.[1].score).toBe(topScore)
-      expect(result.documents?.[1].clearLamp).toBe(clearLamp)
+      expect(result.status).toBe(200)
+      const documents = ctx.extraOutputs.get('documents') as ScoreSchema[]
+      expect(documents?.[1].score).toBe(topScore)
+      expect(documents?.[1].clearLamp).toBe(clearLamp)
     }
   )
 
@@ -200,14 +229,18 @@ describe('POST /api/v1/scores', () => {
     `/${song.id} returns "200 OK" with JSON and documents[%i] if score is %o`,
     async (length, score) => {
       // Arrange
-      req.body = { password, scores: [{ ...score }] }
+      json.mockResolvedValue({ password, scores: [{ ...score }] })
+      const ctx = new InvocationContext()
+      ctx.extraInputs.set('songs', [song])
+      ctx.extraInputs.set('users', [publicUser])
 
       // Act
-      const result = await postSongScores(null, req, [song], [publicUser])
+      const result = await handler(req, ctx)
 
       // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.documents).toHaveLength(length)
+      expect(result.status).toBe(200)
+      const documents = ctx.extraOutputs.get('documents') as []
+      expect(documents).toHaveLength(length)
     }
   )
 
@@ -225,14 +258,18 @@ describe('POST /api/v1/scores', () => {
         level: 4,
         ...score,
       }
-      req.body = { password, scores: [{ ...expected }] }
+      json.mockResolvedValue({ password, scores: [{ ...expected }] })
+      const ctx = new InvocationContext()
+      ctx.extraInputs.set('songs', [song])
+      ctx.extraInputs.set('users', [user])
 
       // Act
-      const result = await postSongScores(null, req, [song], [user])
+      const result = await handler(req, ctx)
 
       // Assert
-      expect(result.httpResponse.status).toBe(200)
-      expect(result.documents).toHaveLength(length)
+      expect(result.status).toBe(200)
+      const documents = ctx.extraOutputs.get('documents') as []
+      expect(documents).toHaveLength(length)
     }
   )
 
@@ -244,13 +281,20 @@ describe('POST /api/v1/scores', () => {
       level: 4,
       ...score,
     }
-    req.body = { password, scores: [{ ...expected, topScore: 999700 }] }
+    json.mockResolvedValue({
+      password,
+      scores: [{ ...expected, topScore: 999700 }],
+    })
+    const ctx = new InvocationContext()
+    ctx.extraInputs.set('songs', [song])
+    ctx.extraInputs.set('users', [privateUser])
 
     // Act
-    const result = await postSongScores(null, req, [song], [privateUser])
+    const result = await handler(req, ctx)
 
     // Assert
-    expect(result.httpResponse.status).toBe(200)
-    expect(result.documents).toHaveLength(4)
+    expect(result.status).toBe(200)
+    const documents = ctx.extraOutputs.get('documents') as []
+    expect(documents).toHaveLength(4)
   })
 })
