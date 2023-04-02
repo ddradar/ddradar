@@ -3073,10 +3073,10 @@ chownr@^2.0.0:
   resolved "https://registry.yarnpkg.com/chownr/-/chownr-2.0.0.tgz#15bfbe53d2eab4cf70f18a8cd68ebe5b3cb1dece"
   integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
 
-chromium-bidi@0.4.5:
-  version "0.4.5"
-  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-0.4.5.tgz#a352e755536dde609bd2c77e4b1f0906bff8784e"
-  integrity sha512-rkav9YzRfAshSTG3wNXF7P7yNiI29QAo1xBXElPoCoSQR5n20q3cOyVhDv6S7+GlF/CJ/emUxlQiR0xOPurkGg==
+chromium-bidi@0.4.6:
+  version "0.4.6"
+  resolved "https://registry.yarnpkg.com/chromium-bidi/-/chromium-bidi-0.4.6.tgz#a082151834083ed002624f12fa35e748817b2ee5"
+  integrity sha512-TQOkWRaLI/IWvoP8XC+7jO4uHTIiAUiklXU1T0qszlUFEai9LgKXIBXy3pOS3EnQZ3bQtMbKUPkug0fTAEHCSw==
   dependencies:
     mitt "3.0.0"
 
@@ -7723,12 +7723,12 @@ pupa@^2.1.1:
   dependencies:
     escape-goat "^2.0.0"
 
-puppeteer-core@^19.8.0:
-  version "19.8.0"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-19.8.0.tgz#0152f652a64274f93f681b52ed03baf7de7905dd"
-  integrity sha512-5gBkLR9nae7chWDhI3mpj5QA+hPmjEOW29qw5ap5g51Uo5Lxe5Yip1uyQwZSjg5Wn/eyE9grh2Lyx3m8rPK90A==
+puppeteer-core@^19.8.1:
+  version "19.8.1"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-19.8.1.tgz#c592db9c524d418c91b9dd6d3f3dac00b9834901"
+  integrity sha512-7yPMzusYRvJ/laLaMFIQ01E9WakKkJJXLsMAymH6y5EKqYe5hhn68/SbvF+1YJMb843GftU7gT86Fw8y5jkn3w==
   dependencies:
-    chromium-bidi "0.4.5"
+    chromium-bidi "0.4.6"
     cross-fetch "3.1.5"
     debug "4.3.4"
     devtools-protocol "0.0.1107588"
