@@ -16,6 +16,7 @@ export default async function useAuth() {
 
   const computedAuth = computed(() => auth.value)
   const computedUser = computed(() => user.value)
+  const id = computed(() => user.value?.id)
   const name = computed(() => user.value?.name)
   const isLoggedIn = computed(() => !!user.value)
   const isAdmin = computed(
@@ -39,6 +40,7 @@ export default async function useAuth() {
   return {
     auth: computedAuth,
     user: computedUser,
+    id,
     name,
     isLoggedIn,
     isAdmin,

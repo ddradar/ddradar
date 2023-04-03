@@ -23,7 +23,7 @@
         <NuxtLink
           v-if="isLoggedIn"
           class="navbar-item"
-          :to="`/users/${user?.id}/scores`"
+          :to="`/users/${id}/scores`"
         >
           スコア一覧
         </NuxtLink>
@@ -55,7 +55,7 @@
                 icon-left="account"
                 variant="info"
                 tag="NuxtLink"
-                :to="`/users/${user?.id}`"
+                :to="`/users/${id}`"
               >
                 マイページ
               </OButton>
@@ -99,7 +99,7 @@ import {
   shortenSeriesName,
 } from '~~/utils/song'
 
-const { user, isLoggedIn, name, login, logout } = await useAuth()
+const { id, isLoggedIn, name, login, logout } = await useAuth()
 
 const dropdownMenuList = [
   {

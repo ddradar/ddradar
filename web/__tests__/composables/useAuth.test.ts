@@ -36,36 +36,23 @@ describe('composables/useAuth', () => {
   }
 
   // Computed
-  test.each([null, generalAuth, adminAuth])(
-    '.auth returns %o (equals GET "/.auth/me" result)',
-    async auth => {
-      // Arrange
-      mockFetch(auth, null)
+  test.each([
+    [undefined, null],
+    [generalUser.id, generalUser],
+  ])('.id returns %s if user is %o', async (id, user) => {
+    // Arrange
+    mockFetch(generalAuth, user)
 
-      // Act
-      const { auth: result } = await useAuth()
+    // Act
+    const { id: result } = await useAuth()
 
-      // Assert
-      expect(result.value).toStrictEqual(auth)
-    }
-  )
-  test.each([null, generalUser])(
-    '.user returns %o (equals GET "/api/v1/user" result)',
-    async user => {
-      // Arrange
-      mockFetch(generalAuth, user)
-
-      // Act
-      const { user: result } = await useAuth()
-
-      // Assert
-      expect(result.value).toStrictEqual(user)
-    }
-  )
+    // Assert
+    expect(result.value).toBe(id)
+  })
   test.each([
     [undefined, null],
     [generalUser.name, generalUser],
-  ])('.name returns %s if .user is %o', async (name, user) => {
+  ])('.name returns %s if user is %o', async (name, user) => {
     // Arrange
     mockFetch(generalAuth, user)
 
@@ -78,7 +65,7 @@ describe('composables/useAuth', () => {
   test.each([
     [false, null],
     [true, generalUser],
-  ])('.isLoggedIn returns %o if .user is %o', async (isLoggedIn, user) => {
+  ])('.isLoggedIn returns %o if user is %o', async (isLoggedIn, user) => {
     // Arrange
     mockFetch(generalAuth, user)
 
@@ -92,7 +79,7 @@ describe('composables/useAuth', () => {
     [false, null],
     [false, generalAuth],
     [true, adminAuth],
-  ])('.isAdmin returns %o if .auth is %o', async (isAdmin, auth) => {
+  ])('.isAdmin returns %o if auth is %o', async (isAdmin, auth) => {
     // Arrange
     mockFetch(auth, null)
 
@@ -104,6 +91,27 @@ describe('composables/useAuth', () => {
   })
 
   // Method
+  test.each(['github', 'twitter'] as const)(
+    'login("%s") calls navigateTo("/.auth/login")',
+    async provider => {
+      // Arrange
+      mockFetch(generalAuth, generalUser)
+      vi.mocked(navigateTo).mockClear()
+      vi.mocked(useRoute).mockReturnValue({ path: 'path' } as any)
+
+      // Act
+      const { login } = await useAuth()
+      await login(provider)
+
+      // Assert
+      expect(vi.mocked(navigateTo)).toBeCalledWith(
+        `/.auth/login/${provider}?post_login_redirect_uri=path`,
+        {
+          external: true,
+        }
+      )
+    }
+  )
   test('saveUser() calls POST "/api/v1/user"', async () => {
     // Arrange
     mockFetch(null, generalUser)
@@ -123,6 +131,7 @@ describe('composables/useAuth', () => {
   test('logout() sets null', async () => {
     // Arrange
     mockFetch(generalAuth, generalUser)
+    vi.mocked(navigateTo).mockClear()
 
     // Act
     const { user, auth, logout } = await useAuth()
