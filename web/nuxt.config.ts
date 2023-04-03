@@ -21,4 +21,5 @@ export default defineNuxtConfig({
     },
   },
   css: ['@/assets/css/main.scss'],
+  modules: ['@nuxtjs/i18n'],
 })
