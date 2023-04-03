@@ -1,4 +1,4 @@
-import { testSongData } from '@ddradar/core/__tests__/data'
+import { testSongData } from '@ddradar/core/test/data'
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
