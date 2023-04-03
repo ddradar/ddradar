@@ -12,6 +12,7 @@ declare module 'vue' {
     OField: typeof import('@oruga-ui/oruga-next/src/components/field/Field.vue').default
     OInput: typeof import('@oruga-ui/oruga-next/src/components/input/Input.vue').default
     OSelect: typeof import('@oruga-ui/oruga-next/src/components/select/Select.vue').default
+    OSkeleton: typeof import('@oruga-ui/oruga-next/src/components/skeleton/Skeleton.vue').default
     OTable: typeof import('@oruga-ui/oruga-next/src/components/table/Table.vue').default
     OTableColumn: typeof import('@oruga-ui/oruga-next/src/components/table/TableColumn.vue').default
   }

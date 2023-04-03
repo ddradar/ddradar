@@ -1,9 +1,9 @@
 <template>
   <section class="section">
-    <h1 class="title">ユーザーを探す</h1>
+    <h1 class="title">{{ t('title') }}</h1>
     <section>
       <OField grouped group-multiline>
-        <OField label="所属地域">
+        <OField :label="t('field.area')">
           <OSelect v-model="area" placeholder="Select">
             <option v-for="a in areaOptions" :key="a.key" :value="a.value">
               {{ a.key }}
@@ -24,8 +24,43 @@
         </OField>
       </OField>
       <OField>
-        <OButton variant="success">{{ t('search') }}</OButton>
+        <OButton variant="success" icon-left="magnify" @click="search()">
+          {{ t('search') }}
+        </OButton>
       </OField>
+    </section>
+
+    <section>
+      <OTable
+        :data="users"
+        striped
+        :loading="loading"
+        :mobile-cards="false"
+        paginated
+        per-page="50"
+      >
+        <OTableColumn v-slot="props" field="name" :label="t('list.name')">
+          <NuxtLink :to="`/users/${props.row.id}`">
+            {{ props.row.name }}
+          </NuxtLink>
+        </OTableColumn>
+        <OTableColumn v-slot="props" field="area" :label="t('list.area')">
+          {{ t(`area.${props.row.area}`) }}
+        </OTableColumn>
+
+        <template #empty>
+          <section v-if="loading" class="section">
+            <OSkeleton animated />
+            <OSkeleton animated />
+            <OSkeleton animated />
+          </section>
+          <section v-else class="section">
+            <div class="content has-text-grey has-text-centered">
+              <p>{{ t('list.empty') }}</p>
+            </div>
+          </section>
+        </template>
+      </OTable>
     </section>
   </section>
 </template>
@@ -63,19 +98,31 @@
   }
 }
 </i18n>
+
 <script lang="ts" setup>
 import type { AreaCode } from '@ddradar/core'
 import { areaCodeSet } from '@ddradar/core'
 
 import { useI18n } from '#i18n'
+import type { UserInfo } from '~~/server/api/v1/users/index.get'
 
 const { t } = useI18n()
 
 const area = ref<AreaCode>(0)
 const name = ref('')
 const code = ref<number>()
+const loading = ref(false)
+const users = ref<UserInfo[]>([])
 
 const areaOptions = computed(() =>
   [...areaCodeSet].map(key => ({ key, value: t(`area.${key}`) }))
 )
+
+const search = async () => {
+  loading.value = true
+  users.value = await $fetch('/api/v1/users', {
+    query: { area: area.value, name: name.value, code: code.value },
+  })
+  loading.value = false
+}
 </script>
