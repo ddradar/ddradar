@@ -4,9 +4,9 @@
     <section>
       <OField grouped group-multiline>
         <OField :label="t('field.area')">
-          <OSelect v-model="area" placeholder="Select">
-            <option v-for="a in areaOptions" :key="a.key" :value="a.value">
-              {{ a.key }}
+          <OSelect v-model.number="area" placeholder="Select">
+            <option v-for="a in areaOptions" :key="a.key" :value="a.key">
+              {{ a.value }}
             </option>
           </OSelect>
         </OField>
@@ -102,8 +102,8 @@
 <script lang="ts" setup>
 import type { AreaCode } from '@ddradar/core'
 import { areaCodeSet } from '@ddradar/core'
+import { useI18n } from 'vue-i18n'
 
-import { useI18n } from '#i18n'
 import type { UserInfo } from '~~/server/api/v1/users/index.get'
 
 const { t } = useI18n()
