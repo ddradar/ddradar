@@ -2,6 +2,7 @@
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <NuxtLink class="navbar-item" to="/">
+        <img src="~/assets/logo.svg" alt="DDRadar Logo" />
         <b>DDRadar</b>
       </NuxtLink>
       <a
@@ -19,13 +20,15 @@
 
     <div id="navbarBasic" class="navbar-menu">
       <div class="navbar-start">
-        <NuxtLink class="navbar-item" to="/users">ユーザーを探す</NuxtLink>
+        <NuxtLink class="navbar-item" to="/users">
+          {{ t('menu.user') }}
+        </NuxtLink>
         <NuxtLink
           v-if="isLoggedIn"
           class="navbar-item"
-          :to="`/users/${user?.id}/scores`"
+          :to="`/users/${id}/scores`"
         >
-          スコア一覧
+          {{ t('menu.scores') }}
         </NuxtLink>
         <div
           v-for="m in dropdownMenuList"
@@ -55,18 +58,18 @@
                 icon-left="account"
                 variant="info"
                 tag="NuxtLink"
-                :to="`/users/${user?.id}`"
+                :to="`/users/${id}`"
               >
-                マイページ
+                {{ t('menu.mypage') }}
               </OButton>
               <OButton variant="warning" @click="logout()">
-                ログアウト
+                {{ t('menu.logout') }}
               </OButton>
             </div>
           </div>
         </div>
         <div v-else class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">ログイン</a>
+          <a class="navbar-link">{{ t('menu.login') }}</a>
           <div class="navbar-dropdown is-right">
             <div class="buttons">
               <OButton
@@ -74,14 +77,14 @@
                 variant="info"
                 @click="login('twitter')"
               >
-                Twitterでログイン
+                {{ t('menu.login_via', { provider: 'Twitter' }) }}
               </OButton>
               <OButton
                 icon-left="github"
                 variant="dark"
                 @click="login('github')"
               >
-                GitHubでログイン
+                {{ t('menu.login_via', { provider: 'GitHub' }) }}
               </OButton>
             </div>
           </div>
@@ -91,7 +94,44 @@
   </nav>
 </template>
 
+<i18n lang="json">
+{
+  "ja": {
+    "menu": {
+      "user": "ユーザーを探す",
+      "scores": "スコア一覧",
+      "level": "レベル({style})",
+      "series": "バージョン",
+      "course": "コース",
+      "nonstop": "NONSTOP({series})",
+      "grade": "段位認定({series})",
+      "mypage": "マイページ",
+      "logout": "ログアウト",
+      "login": "ログイン",
+      "login_via": "{provider}でログイン"
+    }
+  },
+  "en": {
+    "menu": {
+      "user": "Find User",
+      "scores": "Score List",
+      "level": "Level({style})",
+      "series": "Version",
+      "course": "Courses",
+      "nonstop": "NONSTOP({series})",
+      "grade": "GRADE({series})",
+      "mypage": "MyPage",
+      "logout": "Logout",
+      "login": "Login",
+      "login_via": "Login via {provider}"
+    }
+  }
+}
+</i18n>
+
 <script lang="ts" setup>
+import { useI18n } from 'vue-i18n'
+
 import useAuth from '~~/composables/useAuth'
 import {
   courseSeriesIndexes,
@@ -99,36 +139,37 @@ import {
   shortenSeriesName,
 } from '~~/utils/song'
 
-const { user, isLoggedIn, name, login, logout } = await useAuth()
+const { t } = useI18n()
+const { id, isLoggedIn, name, login, logout } = await useAuth()
 
 const dropdownMenuList = [
   {
-    title: 'レベル(SP)',
+    title: t('menu.level', { style: 'SP' }),
     menu: [...Array(19).keys()].map(i => ({
       name: `LEVEL ${i + 1}`,
       to: `/charts?style=1&level=${i + 1}`,
     })),
   },
   {
-    title: 'レベル(DP)',
+    title: t('menu.level', { style: 'DP' }),
     menu: [...Array(19).keys()].map(i => ({
       name: `LEVEL ${i + 1}`,
       to: `/charts?style=2&level=${i + 1}`,
     })),
   },
   {
-    title: 'シリーズ',
+    title: t('menu.series'),
     menu: seriesNames.map((name, i) => ({ name, to: `/songs?series=${i}` })),
   },
   {
-    title: 'コース',
+    title: t('menu.course'),
     menu: courseSeriesIndexes.flatMap(i => [
       {
-        name: `NONSTOP(${shortenSeriesName(seriesNames[i])})`,
+        name: t('menu.nonstop', { series: shortenSeriesName(seriesNames[i]) }),
         to: `/courses?type=1&series=${i}`,
       },
       {
-        name: `段位認定(${shortenSeriesName(seriesNames[i])})`,
+        name: t('menu.grade', { series: shortenSeriesName(seriesNames[i]) }),
         to: `/courses?type=2&series=${i}`,
       },
     ]),

@@ -19,15 +19,18 @@
     "@ddradar/core": "^2.0.0",
     "@ddradar/db": "^2.0.0",
     "@oruga-ui/oruga-next": "^0.5.10",
-    "@oruga-ui/theme-bulma": "^0.2.9"
+    "@oruga-ui/theme-bulma": "^0.2.9",
+    "chart.js": "^4.2.1",
+    "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
+    "@nuxtjs/i18n": "^8.0.0-beta.10",
     "@types/node": "^18.15.11",
     "@vue/test-utils": "^2.3.2",
     "eslint-plugin-nuxt": "^4.0.0",
     "jsdom": "^21.1.1",
-    "nuxt": "^3.3.2",
+    "nuxt": "^3.3.3",
     "sass": "^1.60.0",
     "vitest": "^0.29.8"
   }

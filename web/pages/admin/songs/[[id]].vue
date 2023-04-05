@@ -64,10 +64,8 @@
 
     <OField v-for="(chart, i) in song!.charts" :key="i" grouped group-multiline>
       <OField
-        :variant="{ danger: hasDuplicatedChart(chart) }"
-        :message="{
-          'Already Exists': hasDuplicatedChart(chart),
-        }"
+        :variant="hasDuplicatedChart(chart) ? 'danger' : ''"
+        :message="hasDuplicatedChart(chart) ? 'Already Exists' : ''"
       >
         <OSelect v-model.number="chart.playStyle" placeholder="PlayStyle">
           <option value="1">SINGLE</option>
@@ -176,7 +174,7 @@
 </template>
 
 <script lang="ts" setup>
-import { getNameIndex, isValidSongId } from '@ddradar/core'
+import { difficultyMap, getNameIndex, isValidSongId } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~~/components/DialogModal.vue'
@@ -197,7 +195,7 @@ const _chart = {
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()
-const id = ref((_route.params.id as string) ?? '')
+const id = useState(() => (_route.params.id as string) ?? '')
 const { data: song, refresh } = await useFetch<SongInfo>(
   `/api/v1/songs/${id.value}`
 )

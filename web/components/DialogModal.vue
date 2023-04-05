@@ -4,6 +4,7 @@
       <header class="modal-card-head" :class="themeClass">
         <p class="modal-card-title">{{ title }}</p>
         <OButton
+          id="canceled"
           icon="delete"
           :variant="variant"
           @click="emits('close', 'canceled')"
@@ -13,8 +14,10 @@
         <p>{{ message }}</p>
       </section>
       <footer class="modal-card-foot">
-        <OButton variant="primary" @click="emits('close', 'yes')">Yes</OButton>
-        <OButton @click="emits('close', 'no')">No</OButton>
+        <OButton id="yes" variant="primary" @click="emits('close', 'yes')">
+          Yes
+        </OButton>
+        <OButton id="no" @click="emits('close', 'no')">No</OButton>
       </footer>
     </div>
   </form>
@@ -34,7 +37,7 @@ const props = withDefaults(defineProps<DialogModalProps>(), {
 const themeClass = computed(() => `is-${props.variant}`)
 
 const emits = defineEmits<{
-  (e: 'close', action: string): void
+  (e: 'close', action: 'yes' | 'no' | 'canceled'): void
 }>()
 </script>
 

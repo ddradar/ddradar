@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] = `
+exports[`components/songs/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] = `
 <section
   class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 >
@@ -114,7 +114,7 @@ exports[`components/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] =
 </section>
 `;
 
-exports[`components/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1`] = `
+exports[`components/songs/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1`] = `
 <section
   class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 >

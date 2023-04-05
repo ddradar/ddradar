@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import { resolve } from 'node:path'
 
+import VueI18nPlugin from '@intlify/unplugin-vue-i18n/vite'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vitest/config'
 
@@ -26,7 +27,7 @@ Object.entries(
 
 export default defineConfig({
   root: '.',
-  plugins: [vue()],
+  plugins: [vue(), VueI18nPlugin({ compositionOnly: true })],
   resolve: { alias },
   test: {
     environment: 'jsdom',

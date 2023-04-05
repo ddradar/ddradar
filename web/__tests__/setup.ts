@@ -26,5 +26,12 @@ vi.stubGlobal('$fetch', vi.fn())
 vi.stubGlobal('useFetch', vi.fn())
 vi.stubGlobal('useRoute', vi.fn())
 vi.stubGlobal('useRuntimeConfig', vi.fn())
+vi.stubGlobal('useState', <T>(funcOrKey: string | (() => T), func?: () => T) =>
+  typeof funcOrKey !== 'string'
+    ? ref(funcOrKey())
+    : func
+    ? ref(func())
+    : ref<T>()
+)
 vi.stubGlobal('definePageMeta', vi.fn())
 vi.stubGlobal('defineEventHandler', defineEventHandler)

@@ -26,7 +26,7 @@
     </div>
 
     <OTable
-      :data="charts"
+      :data="charts!"
       striped
       :loading="isLoading"
       :mobile-cards="false"
@@ -64,8 +64,8 @@
 <script lang="ts" setup>
 import { watch } from 'vue'
 
-import DifficultyBadge from '~/components/DifficultyBadge.vue'
-import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
+import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
+import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
 import { getQueryInteger } from '~~/utils/path'
 import { levels, shortenSeriesName } from '~~/utils/song'
 

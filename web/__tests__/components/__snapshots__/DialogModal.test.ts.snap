@@ -1,0 +1,282 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`components/DialogModal.vue > snapshot test > { message: 'Information', variant: 'info' } rendars collectly 1`] = `
+<form
+  action=""
+  data-v-83f02827=""
+>
+  <div
+    class="modal-card"
+    data-v-83f02827=""
+    style="width: auto;"
+  >
+    <header
+      class="modal-card-head is-info"
+      data-v-83f02827=""
+    >
+      <p
+        class="modal-card-title"
+        data-v-83f02827=""
+      />
+      <button
+        class="button is-info"
+        data-v-83f02827=""
+        icon="delete"
+        id="canceled"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <!--v-if-->
+          <!--v-if-->
+        </span>
+      </button>
+    </header>
+    <section
+      class="modal-card-body"
+      data-v-83f02827=""
+    >
+      <p
+        data-v-83f02827=""
+      >
+        Information
+      </p>
+    </section>
+    <footer
+      class="modal-card-foot"
+      data-v-83f02827=""
+    >
+      <button
+        class="button is-primary"
+        data-v-83f02827=""
+        id="yes"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+             Yes 
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+      <button
+        class="button"
+        data-v-83f02827=""
+        id="no"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+            No
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+    </footer>
+  </div>
+</form>
+`;
+
+exports[`components/DialogModal.vue > snapshot test > { message: 'Message Only' } rendars collectly 1`] = `
+<form
+  action=""
+  data-v-83f02827=""
+>
+  <div
+    class="modal-card"
+    data-v-83f02827=""
+    style="width: auto;"
+  >
+    <header
+      class="modal-card-head is-primary"
+      data-v-83f02827=""
+    >
+      <p
+        class="modal-card-title"
+        data-v-83f02827=""
+      />
+      <button
+        class="button is-primary"
+        data-v-83f02827=""
+        icon="delete"
+        id="canceled"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <!--v-if-->
+          <!--v-if-->
+        </span>
+      </button>
+    </header>
+    <section
+      class="modal-card-body"
+      data-v-83f02827=""
+    >
+      <p
+        data-v-83f02827=""
+      >
+        Message Only
+      </p>
+    </section>
+    <footer
+      class="modal-card-foot"
+      data-v-83f02827=""
+    >
+      <button
+        class="button is-primary"
+        data-v-83f02827=""
+        id="yes"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+             Yes 
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+      <button
+        class="button"
+        data-v-83f02827=""
+        id="no"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+            No
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+    </footer>
+  </div>
+</form>
+`;
+
+exports[`components/DialogModal.vue > snapshot test > { title: 'Error!', message: 'Description', variant: 'error' } rendars collectly 1`] = `
+<form
+  action=""
+  data-v-83f02827=""
+>
+  <div
+    class="modal-card"
+    data-v-83f02827=""
+    style="width: auto;"
+  >
+    <header
+      class="modal-card-head is-error"
+      data-v-83f02827=""
+    >
+      <p
+        class="modal-card-title"
+        data-v-83f02827=""
+      >
+        Error!
+      </p>
+      <button
+        class="button is-error"
+        data-v-83f02827=""
+        icon="delete"
+        id="canceled"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <!--v-if-->
+          <!--v-if-->
+        </span>
+      </button>
+    </header>
+    <section
+      class="modal-card-body"
+      data-v-83f02827=""
+    >
+      <p
+        data-v-83f02827=""
+      >
+        Description
+      </p>
+    </section>
+    <footer
+      class="modal-card-foot"
+      data-v-83f02827=""
+    >
+      <button
+        class="button is-primary"
+        data-v-83f02827=""
+        id="yes"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+             Yes 
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+      <button
+        class="button"
+        data-v-83f02827=""
+        id="no"
+        type="button"
+      >
+        <span
+          class="button-wrapper"
+        >
+          <!--v-if-->
+          <span
+            class=""
+          >
+            
+            No
+            
+          </span>
+          <!--v-if-->
+        </span>
+      </button>
+    </footer>
+  </div>
+</form>
+`;
