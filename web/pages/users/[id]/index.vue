@@ -46,7 +46,7 @@
           >
             <Card
               :title="t('title.radar', [style])"
-              type="is-primary"
+              variant="primary"
               collapsible
             >
               <div class="card-content">
@@ -59,23 +59,6 @@
                 <div v-else class="content has-text-grey has-text-centered">
                   <p>{{ t('noData') }}</p>
                 </div>
-              </div>
-            </Card>
-          </section>
-        </div>
-        <div class="content columns is-multiline">
-          <section
-            v-for="(style, i) in ['SP', 'DP']"
-            :key="`clear-${style}`"
-            class="column is-half-widescreen"
-          >
-            <Card
-              :title="t('title.clear', [style])"
-              type="is-primary"
-              collapsible
-            >
-              <div class="card-content">
-                <ClearStatus :loading="loading" :statuses="clears![i]" />
               </div>
             </Card>
           </section>
@@ -123,9 +106,8 @@
 <script lang="ts" setup>
 import { useI18n } from 'vue-i18n'
 
-import ClearStatus from '~~/components/pages/users/ClearStatus.vue'
+import Card from '~~/components/CollapsibleCard.vue'
 import GrooveRadar from '~~/components/pages/users/GrooveRadar.vue'
-import Card from '~~/components/shared/Card.vue'
 import useAuth from '~~/composables/useAuth'
 
 const { t } = useI18n()
