@@ -2,34 +2,34 @@
   <section class="section">
     <template v-if="user">
       <h1 class="title">{{ user.name }}</h1>
-      <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
+      <h2 class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
 
       <div class="buttons">
-        <b-button
+        <OButton
           icon-left="magnify"
-          type="is-success"
+          variant="success"
           tag="nuxt-link"
           :to="`/users/${user.id}/scores`"
         >
           {{ t('button.scores') }}
-        </b-button>
+        </OButton>
         <template v-if="isSelfPage">
-          <b-button
+          <OButton
             icon-left="import"
-            type="is-primary"
+            variant="primary"
             tag="nuxt-link"
             to="/import"
           >
             {{ t('button.import') }}
-          </b-button>
-          <b-button
+          </OButton>
+          <OButton
             icon-left="account-cog"
-            type="is-info"
+            variant="info"
             tag="nuxt-link"
             to="/profile"
           >
             {{ t('button.settings') }}
-          </b-button>
+          </OButton>
         </template>
       </div>
 
@@ -83,7 +83,7 @@
   </section>
 </template>
 
-<i18n src="../../../i18n/area.json"></i18n>
+<i18n src="~/i18n/area.json"></i18n>
 <i18n lang="json">
 {
   "ja": {

@@ -13,16 +13,13 @@ import { createI18n } from 'vue-i18n'
 import Page from '~/pages/users/index.vue'
 import type { UserInfo } from '~~/server/api/v1/users/index.get'
 
-vi.mock('#i18n')
-vi.mock('#imports')
-
 describe('Page /users', () => {
   const users: UserInfo[] = [publicUser, areaHiddenUser, privateUser]
   const stubs = { NuxtLink: RouterLinkStub }
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
     const i18n = createI18n({ legacy: false, locale })
-    test('{ users: [] } renders empty', async () => {
+    test('{ users: [] } renders empty', () => {
       // Arrange - Act
       const wrapper = mount(Page, {
         global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
@@ -38,7 +35,7 @@ describe('Page /users', () => {
       })
 
       // Act
-      const vm = wrapper.vm as { loading: boolean }
+      const vm = wrapper.vm as unknown as { loading: boolean }
       vm.loading = true
       await nextTick()
 
@@ -52,7 +49,7 @@ describe('Page /users', () => {
       })
 
       // Act
-      const vm = wrapper.vm as { users: UserInfo[] }
+      const vm = wrapper.vm as unknown as { users: UserInfo[] }
       vm.users = users
       await nextTick()
 
@@ -71,7 +68,7 @@ describe('Page /users', () => {
       })
 
       // Act
-      await (wrapper.vm as { search(): Promise<void> }).search()
+      await (wrapper.vm as unknown as { search(): Promise<void> }).search()
 
       // Assert
       expect(vi.mocked($fetch)).toBeCalledWith('/api/v1/users', {

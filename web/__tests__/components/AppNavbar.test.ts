@@ -15,6 +15,7 @@ describe('components/AppNavbar.vue', () => {
 
   test('({ isLoggedin: false }) renders login button', async () => {
     // Arrange
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
 
     // Act
@@ -28,11 +29,13 @@ describe('components/AppNavbar.vue', () => {
   })
   test('({ isLoggedin: true }) renders user name & logout button', async () => {
     // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useAuth).mockResolvedValue({
       isLoggedIn: ref(true),
-      user: ref(publicUser),
+      id: ref(publicUser.id),
       name: ref(publicUser.name),
     } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
     const wrapper = await mountAsync(AppNavbar, {
