@@ -14,9 +14,9 @@
         <p>{{ message }}</p>
       </section>
       <footer class="modal-card-foot">
-        <OButton id="yes" variant="primary" @click="emits('close', 'yes')"
-          >Yes</OButton
-        >
+        <OButton id="yes" variant="primary" @click="emits('close', 'yes')">
+          Yes
+        </OButton>
         <OButton id="no" @click="emits('close', 'no')">No</OButton>
       </footer>
     </div>
