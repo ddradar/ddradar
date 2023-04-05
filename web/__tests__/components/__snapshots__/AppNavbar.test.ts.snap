@@ -1,6 +1,1007 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button 1`] = `
+exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin: false }) renders login button 1`] = `
+<nav
+  aria-label="main navigation"
+  class="navbar is-primary"
+  role="navigation"
+>
+  <div
+    class="navbar-brand"
+  >
+    <a
+      class="navbar-item"
+    >
+      <img
+        alt="DDRadar Logo"
+        src="/assets/logo.svg"
+      />
+      <b>
+        DDRadar
+      </b>
+    </a>
+    <a
+      aria-expanded="false"
+      aria-label="menu"
+      class="navbar-burger"
+      data-target="navbarBasic"
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+  <div
+    class="navbar-menu"
+    id="navbarBasic"
+  >
+    <div
+      class="navbar-start"
+    >
+      <a
+        class="navbar-item"
+      >
+        Find User
+      </a>
+      <!--v-if-->
+      
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Level(SP)
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            LEVEL 1
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 3
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 4
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 5
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 6
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 7
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 8
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 9
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 10
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 11
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 12
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 13
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 14
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 15
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 16
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 17
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 18
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 19
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Level(DP)
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            LEVEL 1
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 3
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 4
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 5
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 6
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 7
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 8
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 9
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 10
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 11
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 12
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 13
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 14
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 15
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 16
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 17
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 18
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 19
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Version
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            DDR 1st
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 2ndMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 3rdMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 4thMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 5thMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDRMAX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDRMAX2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR EXTREME
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR SuperNOVA
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR SuperNOVA2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X3 VS 2ndMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution (2013)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution (2014)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A20
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A20 PLUS
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A3
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Courses
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A20)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A20)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A20 PLUS)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A20 PLUS)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A3)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A3)
+          </a>
+          
+        </div>
+      </div>
+      
+    </div>
+    <div
+      class="navbar-end"
+    >
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Login
+        </a>
+        <div
+          class="navbar-dropdown is-right"
+        >
+          <div
+            class="buttons"
+          >
+            <button
+              class="button is-info"
+              type="button"
+            >
+              <span
+                class="button-wrapper"
+              >
+                <span
+                  class="icon"
+                >
+                  <i
+                    class="mdi mdi-twitter mdi-24px"
+                  />
+                </span>
+                <span
+                  class=""
+                >
+                  
+                  Login via Twitter
+                  
+                </span>
+                <!--v-if-->
+              </span>
+            </button>
+            <button
+              class="button is-dark"
+              type="button"
+            >
+              <span
+                class="button-wrapper"
+              >
+                <span
+                  class="icon"
+                >
+                  <i
+                    class="mdi mdi-github mdi-24px"
+                  />
+                </span>
+                <span
+                  class=""
+                >
+                  
+                  Login via GitHub
+                  
+                </span>
+                <!--v-if-->
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin: true }) renders user name & logout button 1`] = `
+<nav
+  aria-label="main navigation"
+  class="navbar is-primary"
+  role="navigation"
+>
+  <div
+    class="navbar-brand"
+  >
+    <a
+      class="navbar-item"
+    >
+      <img
+        alt="DDRadar Logo"
+        src="/assets/logo.svg"
+      />
+      <b>
+        DDRadar
+      </b>
+    </a>
+    <a
+      aria-expanded="false"
+      aria-label="menu"
+      class="navbar-burger"
+      data-target="navbarBasic"
+      role="button"
+    >
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+      <span
+        aria-hidden="true"
+      />
+    </a>
+  </div>
+  <div
+    class="navbar-menu"
+    id="navbarBasic"
+  >
+    <div
+      class="navbar-start"
+    >
+      <a
+        class="navbar-item"
+      >
+        Find User
+      </a>
+      <a
+        class="navbar-item"
+      >
+        Score List
+      </a>
+      
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Level(SP)
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            LEVEL 1
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 3
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 4
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 5
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 6
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 7
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 8
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 9
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 10
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 11
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 12
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 13
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 14
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 15
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 16
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 17
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 18
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 19
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Level(DP)
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            LEVEL 1
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 3
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 4
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 5
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 6
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 7
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 8
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 9
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 10
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 11
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 12
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 13
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 14
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 15
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 16
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 17
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 18
+          </a>
+          <a
+            class="navbar-item"
+          >
+            LEVEL 19
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Version
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            DDR 1st
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 2ndMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 3rdMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 4thMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR 5thMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDRMAX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDRMAX2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR EXTREME
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR SuperNOVA
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR SuperNOVA2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X2
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DDR X3 VS 2ndMIX
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution (2013)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution (2014)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A20
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A20 PLUS
+          </a>
+          <a
+            class="navbar-item"
+          >
+            DanceDanceRevolution A3
+          </a>
+          
+        </div>
+      </div>
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Courses
+        </a>
+        <div
+          class="navbar-dropdown"
+        >
+          
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A20)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A20)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A20 PLUS)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A20 PLUS)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            NONSTOP(A3)
+          </a>
+          <a
+            class="navbar-item"
+          >
+            GRADE(A3)
+          </a>
+          
+        </div>
+      </div>
+      
+    </div>
+    <div
+      class="navbar-end"
+    >
+      <div
+        class="navbar-item has-dropdown is-hoverable"
+      >
+        <a
+          class="navbar-link"
+        >
+          Public User
+        </a>
+        <div
+          class="navbar-dropdown is-right"
+        >
+          <div
+            class="buttons"
+          >
+            <a
+              class="button is-info"
+            >
+              <span
+                class="button-wrapper"
+              >
+                <span
+                  class="icon"
+                >
+                  <i
+                    class="mdi mdi-account mdi-24px"
+                  />
+                </span>
+                <span
+                  class=""
+                >
+                  
+                  MyPage
+                  
+                </span>
+                <!--v-if-->
+              </span>
+            </a>
+            <button
+              class="button is-warning"
+              type="button"
+            >
+              <span
+                class="button-wrapper"
+              >
+                <!--v-if-->
+                <span
+                  class=""
+                >
+                  
+                  Logout
+                  
+                </span>
+                <!--v-if-->
+              </span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin: false }) renders login button 1`] = `
 <nav
   aria-label="main navigation"
   class="navbar is-primary"
@@ -278,7 +1279,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button
         <a
           class="navbar-link"
         >
-          シリーズ
+          バージョン
         </a>
         <div
           class="navbar-dropdown"
@@ -464,7 +1465,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button
                   class=""
                 >
                   
-                   Twitterでログイン 
+                  Twitterでログイン
                   
                 </span>
                 <!--v-if-->
@@ -488,7 +1489,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button
                   class=""
                 >
                   
-                   GitHubでログイン 
+                  GitHubでログイン
                   
                 </span>
                 <!--v-if-->
@@ -502,7 +1503,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button
 </nav>
 `;
 
-exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & logout button 1`] = `
+exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin: true }) renders user name & logout button 1`] = `
 <nav
   aria-label="main navigation"
   class="navbar is-primary"
@@ -555,7 +1556,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & l
       <a
         class="navbar-item"
       >
-         スコア一覧 
+        スコア一覧
       </a>
       
       <div
@@ -784,7 +1785,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & l
         <a
           class="navbar-link"
         >
-          シリーズ
+          バージョン
         </a>
         <div
           class="navbar-dropdown"
@@ -969,7 +1970,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & l
                   class=""
                 >
                   
-                   マイページ 
+                  マイページ
                   
                 </span>
                 <!--v-if-->
@@ -987,7 +1988,7 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & l
                   class=""
                 >
                   
-                   ログアウト 
+                  ログアウト
                   
                 </span>
                 <!--v-if-->
