@@ -195,7 +195,7 @@ const _chart = {
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()
-const id = ref((_route.params.id as string) ?? '')
+const id = useState(() => (_route.params.id as string) ?? '')
 const { data: song, refresh } = await useFetch<SongInfo>(
   `/api/v1/songs/${id.value}`
 )

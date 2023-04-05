@@ -2,14 +2,14 @@ import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
 import { ClientPrincipal, useClientPrincipal } from '~~/server/utils/auth'
 
 export default async function useAuth() {
-  const auth = ref<ClientPrincipal | null>(null)
-  const user = ref<CurrentUserInfo | null>(null)
+  const auth = useState<ClientPrincipal | null>('auth')
+  const user = useState<CurrentUserInfo | null>('user')
 
   auth.value = process.server
     ? useClientPrincipal(useRequestHeaders())
     : await $fetch<ClientPrincipal>('/.auth/me')
   try {
-    if (auth.value) user.value = await $fetch<CurrentUserInfo>('/api/v1/user')
+    user.value = auth.value ? await $fetch<CurrentUserInfo>('/api/v1/user') : null
   } catch (error) {
     user.value = null
   }

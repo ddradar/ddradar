@@ -43,9 +43,9 @@ const props = withDefaults(defineProps<CardProps>(), {
   collapsible: false,
   open: false,
 })
-const openState = ref(props.open)
+const openState = useState(() => props.open)
 const icon = computed(() => (openState.value ? 'menu-up' : 'menu-down'))
-const color = computed(() => `is-${props.variant}`)
+const color = `is-${props.variant}`
 </script>
 
 <style lang="scss" scoped>

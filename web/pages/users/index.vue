@@ -108,11 +108,11 @@ import type { UserInfo } from '~~/server/api/v1/users/index.get'
 
 const { t } = useI18n()
 
-const area = ref<AreaCode>(0)
-const name = ref('')
-const code = ref<number>()
-const loading = ref(false)
-const users = ref<UserInfo[]>([])
+const area = useState(() => 0 as AreaCode)
+const name = useState(() => '')
+const code = useState(() => undefined as number | undefined)
+const loading = useState(() => false)
+const users = useState(() => [] as UserInfo[])
 
 const areaOptions = computed(() =>
   [...areaCodeSet].map(key => ({ key, value: t(`area.${key}`) }))
