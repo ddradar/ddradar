@@ -12,6 +12,10 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: false }) renders login button
     <a
       class="navbar-item"
     >
+      <img
+        alt="DDRadar Logo"
+        src="/assets/logo.svg"
+      />
       <b>
         DDRadar
       </b>
@@ -510,6 +514,10 @@ exports[`components/AppNavbar.vue > ({ isLoggedin: true }) renders user name & l
     <a
       class="navbar-item"
     >
+      <img
+        alt="DDRadar Logo"
+        src="/assets/logo.svg"
+      />
       <b>
         DDRadar
       </b>

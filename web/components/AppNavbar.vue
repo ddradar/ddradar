@@ -2,6 +2,7 @@
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <NuxtLink class="navbar-item" to="/">
+        <img src="~/assets/logo.svg" alt="DDRadar Logo" />
         <b>DDRadar</b>
       </NuxtLink>
       <a
@@ -91,6 +92,60 @@
   </nav>
 </template>
 
+<i18n lang="json">
+{
+  "ja": {
+    "menu": {
+      "user": "ユーザーを探す",
+      "scores": "スコア一覧",
+      "single": "レベル(SP)",
+      "double": "レベル(DP)",
+      "series": "バージョン",
+      "course": "コース",
+      "nonstop": "NONSTOP({series})",
+      "grade": "段位認定({series})",
+      "mypage": "マイページ",
+      "logout": "ログアウト",
+      "login": "ログイン"
+    },
+    "login": {
+      "twitter": "Twitterでログイン",
+      "github": "GitHubでログイン"
+    },
+    "footer": {
+      "help": "ヘルプ",
+      "text": "{help} | 不具合を発見した、または新機能の要望がある場合には、{twitter}または{github}にてご報告ください。",
+      "twitter": "作者のTwitter",
+      "github": "Githubのissue"
+    }
+  },
+  "en": {
+    "menu": {
+      "user": "Find User",
+      "scores": "Score List",
+      "single": "Level(SP)",
+      "double": "Level(DP)",
+      "series": "Version",
+      "course": "Courses",
+      "nonstop": "NONSTOP({series})",
+      "grade": "GRADE({series})",
+      "mypage": "MyPage",
+      "logout": "Logout",
+      "login": "Login"
+    },
+    "login": {
+      "twitter": "Login via Twitter",
+      "github": "Login via GitHub"
+    },
+    "footer": {
+      "help": "Help",
+      "text": "{help} | Did you find a bug or have an idea? Please report on {twitter} or {github}.",
+      "twitter": "Twitter",
+      "github": "GitHub"
+    }
+  }
+}
+</i18n>
 <script lang="ts" setup>
 import useAuth from '~~/composables/useAuth'
 import {
