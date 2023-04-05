@@ -1,10 +1,6 @@
 <template>
   <section class="section">
-    <template v-if="loading">
-      <b-skeleton class="title" animated />
-      <b-skeleton class="subtitle" animated />
-    </template>
-    <template v-else-if="user">
+    <template v-if="user">
       <h1 class="title">{{ user.name }}</h1>
       <h2 v-if="user" class="subtitle">{{ areaName }} / {{ ddrCode }}</h2>
 
@@ -50,15 +46,31 @@
               collapsible
             >
               <div class="card-content">
-                <b-loading v-if="loading" />
                 <GrooveRadar
-                  v-else-if="radars && radars[i]"
+                  v-if="radars && radars[i]"
                   class="chart"
                   :chart="radars[i]"
                 />
                 <div v-else class="content has-text-grey has-text-centered">
                   <p>{{ t('noData') }}</p>
                 </div>
+              </div>
+            </Card>
+          </section>
+        </div>
+        <div class="content columns is-multiline">
+          <section
+            v-for="(style, i) in ['SP', 'DP']"
+            :key="`clear-${style}`"
+            class="column is-half-widescreen"
+          >
+            <Card
+              :title="t('title.clear', [style])"
+              variant="primary"
+              collapsible
+            >
+              <div class="card-content">
+                <ClearStatus v-if="clears && clears[i]" :statuses="clears[i]" />
               </div>
             </Card>
           </section>
@@ -107,18 +119,18 @@
 import { useI18n } from 'vue-i18n'
 
 import Card from '~~/components/CollapsibleCard.vue'
-import GrooveRadar from '~~/components/pages/users/GrooveRadar.vue'
+import ClearStatus from '~~/components/users/ClearStatus.vue'
+import GrooveRadar from '~~/components/users/GrooveRadar.vue'
 import useAuth from '~~/composables/useAuth'
 
 const { t } = useI18n()
 const _route = useRoute()
 const { id } = await useAuth()
-const [{ data: user, pending: loading }, { data: radars }, { data: clears }] =
-  await Promise.all([
-    useFetch(`/api/v1/users/${_route.params.id}`),
-    useFetch(`/api/v1/users/${_route.params.id}/radar`),
-    useFetch(`/api/v1/users/${_route.params.id}/clear`),
-  ])
+const [{ data: user }, { data: radars }, { data: clears }] = await Promise.all([
+  useFetch(`/api/v1/users/${_route.params.id}`),
+  useFetch(`/api/v1/users/${_route.params.id}/radar`),
+  useFetch(`/api/v1/users/${_route.params.id}/clear`),
+])
 
 const areaName = computed(() =>
   user.value ? t(`area.${user.value.area}`) : ''
