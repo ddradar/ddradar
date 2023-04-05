@@ -51,9 +51,9 @@
 <script lang="ts" setup>
 import { difficultyMap } from '@ddradar/core'
 
-import CollapsibleCard from '~/components/CollapsibleCard.vue'
-import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
-import type { SongInfo } from '~/server/api/v1/songs/[id].get'
+import CollapsibleCard from '~~/components/CollapsibleCard.vue'
+import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
+import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getChartTitle } from '~~/utils/song'
 
 type CourseChart = CourseInfo['charts'][number]

@@ -24,8 +24,8 @@
 </template>
 
 <script lang="ts" setup>
-import ChartInfo from '~/components/ChartInfo.vue'
-import type { CourseInfo } from '~/server/api/v1/courses/[id].get'
+import ChartInfo from '~~/components/songs/ChartInfo.vue'
+import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
 import { getDisplayedBPM } from '~~/utils/song'
 
 const _route = useRoute()

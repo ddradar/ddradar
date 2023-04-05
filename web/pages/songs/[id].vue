@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import ChartInfo from '~~/components/ChartInfo.vue'
+import ChartInfo from '~~/components/songs/ChartInfo.vue'
 import useAuth from '~~/composables/useAuth'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getDisplayedBPM } from '~~/utils/song'

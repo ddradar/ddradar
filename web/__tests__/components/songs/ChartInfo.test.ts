@@ -4,9 +4,9 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { mount, RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
-import ChartInfo from '~/components/ChartInfo.vue'
+import ChartInfo from '~~/components/songs/ChartInfo.vue'
 
-describe('components/ChartInfo.vue', () => {
+describe('components/songs/ChartInfo.vue', () => {
   const testProps = {
     SongChart: testSongData.charts[0],
     CourseChart: testCourseData.charts[1],
