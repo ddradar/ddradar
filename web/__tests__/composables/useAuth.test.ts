@@ -97,6 +97,7 @@ describe('composables/useAuth', () => {
       // Arrange
       mockFetch(generalAuth, generalUser)
       vi.mocked(navigateTo).mockClear()
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(useRoute).mockReturnValue({ path: 'path' } as any)
 
       // Act

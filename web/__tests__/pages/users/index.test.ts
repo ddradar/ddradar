@@ -32,24 +32,28 @@ describe('Page /users', () => {
       expect(wrapper.element).toMatchSnapshot()
     })
     test('{ loading: true } renders loading state', async () => {
-      // Arrange - Act
+      // Arrange
       const wrapper = mount(Page, {
         global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
       })
-      // @ts-ignore
-      wrapper.vm.loading = true
+
+      // Act
+      const vm = wrapper.vm as { loading: boolean }
+      vm.loading = true
       await nextTick()
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
     test('{ users: [...] } renders user list', async () => {
-      // Arrange - Act
+      // Arrange
       const wrapper = mount(Page, {
         global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
       })
-      // @ts-ignore
-      wrapper.vm.users = users
+
+      // Act
+      const vm = wrapper.vm as { users: UserInfo[] }
+      vm.users = users
       await nextTick()
 
       // Assert
@@ -67,8 +71,7 @@ describe('Page /users', () => {
       })
 
       // Act
-      // @ts-ignore
-      await wrapper.vm.search()
+      await (wrapper.vm as { search(): Promise<void> }).search()
 
       // Assert
       expect(vi.mocked($fetch)).toBeCalledWith('/api/v1/users', {
