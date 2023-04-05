@@ -49,7 +49,7 @@
                 <GrooveRadar
                   v-if="radars && radars[i]"
                   class="chart"
-                  :chart="radars[i]"
+                  :radar="radars[i]"
                 />
                 <div v-else class="content has-text-grey has-text-centered">
                   <p>{{ t('noData') }}</p>
@@ -70,7 +70,9 @@
               collapsible
             >
               <div class="card-content">
-                <ClearStatus v-if="clears && clears[i]" :statuses="clears[i]" />
+                <ClearStatus
+                  :statuses="clears?.filter(d => d.playStyle === i + 1)"
+                />
               </div>
             </Card>
           </section>

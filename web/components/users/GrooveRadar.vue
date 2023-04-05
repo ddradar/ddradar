@@ -3,11 +3,12 @@
 </template>
 
 <script lang="ts" setup>
-import type { Database } from '@ddradar/core'
+import type { ScoreSchema } from '@ddradar/core'
 import type { ChartData, ChartOptions } from 'chart.js'
 import { Radar } from 'vue-chartjs'
 
-const props = defineProps<{ radar: Database.GrooveRadar }>()
+type GrooveRadar = Exclude<ScoreSchema['radar'], undefined | null>
+const props = defineProps<{ radar: GrooveRadar }>()
 
 const chartData: ChartData<'radar'> = {
   labels: ['STREAM', 'CHAOS', 'FREEZE', 'AIR', 'VOLTAGE'],
