@@ -1165,7 +1165,7 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
     class="subtitle"
     data-v-1b8b1d83=""
   >
-    Tokyo / 1000-0000
+    Tokyo / 
   </h2>
   <div
     class="buttons"
@@ -1261,11 +1261,16 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                 class="card-content"
                 data-v-1b8b1d83=""
               >
-                <groove-radar-stub
-                  class="chart"
+                <div
+                  class="content has-text-grey has-text-centered"
                   data-v-1b8b1d83=""
-                  radar="[object Object]"
-                />
+                >
+                  <p
+                    data-v-1b8b1d83=""
+                  >
+                    No Data
+                  </p>
+                </div>
               </div>
               
             </div>
@@ -1327,11 +1332,16 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                 class="card-content"
                 data-v-1b8b1d83=""
               >
-                <groove-radar-stub
-                  class="chart"
+                <div
+                  class="content has-text-grey has-text-centered"
                   data-v-1b8b1d83=""
-                  radar="[object Object]"
-                />
+                >
+                  <p
+                    data-v-1b8b1d83=""
+                  >
+                    No Data
+                  </p>
+                </div>
               </div>
               
             </div>
@@ -1466,7 +1476,7 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                     class="table-wrapper table-container"
                   >
                     <table
-                      class="table is-narrow"
+                      class="table is-narrow is-empty"
                       tabindex="false"
                     >
                       <!--v-if-->
@@ -1684,88 +1694,14 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                       <tbody>
                         
                         
-                        <tr
-                          class=""
-                          draggable="false"
-                        >
-                          <!--v-if-->
-                          <!--v-if-->
-                          
+                        <tr>
                           <td
-                            class=""
-                            data-label="Lv"
+                            colspan="10"
                           >
-                            1
+                            
+                            
                           </td>
-                          <td
-                            class=""
-                            data-label="MFC"
-                          >
-                            20
-                          </td>
-                          <td
-                            class=""
-                            data-label="PFC"
-                          >
-                            10
-                          </td>
-                          <td
-                            class=""
-                            data-label="GreatFC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="FC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Life4"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Clear"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Assisted"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Failed"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="NoPlay"
-                          >
-                            10
-                          </td>
-                          
-                          <!--v-if-->
                         </tr>
-                        <transition-stub
-                          appear="false"
-                          css="true"
-                          name=""
-                          persisted="false"
-                        >
-                          <!--v-if-->
-                        </transition-stub>
-                        <!--v-if-->
-                        
-                        
-                        <!--v-if-->
                       </tbody>
                       <!--v-if-->
                     </table>
@@ -1909,7 +1845,7 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                     class="table-wrapper table-container"
                   >
                     <table
-                      class="table is-narrow"
+                      class="table is-narrow is-empty"
                       tabindex="false"
                     >
                       <!--v-if-->
@@ -2127,88 +2063,14 @@ exports[`Page /users/[id] > { locale: en } snapshot test > { user: publicUser } 
                       <tbody>
                         
                         
-                        <tr
-                          class=""
-                          draggable="false"
-                        >
-                          <!--v-if-->
-                          <!--v-if-->
-                          
+                        <tr>
                           <td
-                            class=""
-                            data-label="Lv"
+                            colspan="10"
                           >
-                            1
+                            
+                            
                           </td>
-                          <td
-                            class=""
-                            data-label="MFC"
-                          >
-                            20
-                          </td>
-                          <td
-                            class=""
-                            data-label="PFC"
-                          >
-                            10
-                          </td>
-                          <td
-                            class=""
-                            data-label="GreatFC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="FC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Life4"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Clear"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Assisted"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Failed"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="NoPlay"
-                          >
-                            10
-                          </td>
-                          
-                          <!--v-if-->
                         </tr>
-                        <transition-stub
-                          appear="false"
-                          css="true"
-                          name=""
-                          persisted="false"
-                        >
-                          <!--v-if-->
-                        </transition-stub>
-                        <!--v-if-->
-                        
-                        
-                        <!--v-if-->
                       </tbody>
                       <!--v-if-->
                     </table>
@@ -3403,7 +3265,7 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
     class="subtitle"
     data-v-1b8b1d83=""
   >
-    東京都 / 1000-0000
+    東京都 / 
   </h2>
   <div
     class="buttons"
@@ -3499,11 +3361,16 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                 class="card-content"
                 data-v-1b8b1d83=""
               >
-                <groove-radar-stub
-                  class="chart"
+                <div
+                  class="content has-text-grey has-text-centered"
                   data-v-1b8b1d83=""
-                  radar="[object Object]"
-                />
+                >
+                  <p
+                    data-v-1b8b1d83=""
+                  >
+                    データがありません
+                  </p>
+                </div>
               </div>
               
             </div>
@@ -3565,11 +3432,16 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                 class="card-content"
                 data-v-1b8b1d83=""
               >
-                <groove-radar-stub
-                  class="chart"
+                <div
+                  class="content has-text-grey has-text-centered"
                   data-v-1b8b1d83=""
-                  radar="[object Object]"
-                />
+                >
+                  <p
+                    data-v-1b8b1d83=""
+                  >
+                    データがありません
+                  </p>
+                </div>
               </div>
               
             </div>
@@ -3704,7 +3576,7 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                     class="table-wrapper table-container"
                   >
                     <table
-                      class="table is-narrow"
+                      class="table is-narrow is-empty"
                       tabindex="false"
                     >
                       <!--v-if-->
@@ -3922,88 +3794,14 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                       <tbody>
                         
                         
-                        <tr
-                          class=""
-                          draggable="false"
-                        >
-                          <!--v-if-->
-                          <!--v-if-->
-                          
+                        <tr>
                           <td
-                            class=""
-                            data-label="Lv"
+                            colspan="10"
                           >
-                            1
+                            
+                            
                           </td>
-                          <td
-                            class=""
-                            data-label="MFC"
-                          >
-                            20
-                          </td>
-                          <td
-                            class=""
-                            data-label="PFC"
-                          >
-                            10
-                          </td>
-                          <td
-                            class=""
-                            data-label="GreatFC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="FC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Life4"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Clear"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Assisted"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Failed"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="NoPlay"
-                          >
-                            10
-                          </td>
-                          
-                          <!--v-if-->
                         </tr>
-                        <transition-stub
-                          appear="false"
-                          css="true"
-                          name=""
-                          persisted="false"
-                        >
-                          <!--v-if-->
-                        </transition-stub>
-                        <!--v-if-->
-                        
-                        
-                        <!--v-if-->
                       </tbody>
                       <!--v-if-->
                     </table>
@@ -4147,7 +3945,7 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                     class="table-wrapper table-container"
                   >
                     <table
-                      class="table is-narrow"
+                      class="table is-narrow is-empty"
                       tabindex="false"
                     >
                       <!--v-if-->
@@ -4365,88 +4163,14 @@ exports[`Page /users/[id] > { locale: ja } snapshot test > { user: publicUser } 
                       <tbody>
                         
                         
-                        <tr
-                          class=""
-                          draggable="false"
-                        >
-                          <!--v-if-->
-                          <!--v-if-->
-                          
+                        <tr>
                           <td
-                            class=""
-                            data-label="Lv"
+                            colspan="10"
                           >
-                            1
+                            
+                            
                           </td>
-                          <td
-                            class=""
-                            data-label="MFC"
-                          >
-                            20
-                          </td>
-                          <td
-                            class=""
-                            data-label="PFC"
-                          >
-                            10
-                          </td>
-                          <td
-                            class=""
-                            data-label="GreatFC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="FC"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Life4"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Clear"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Assisted"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="Failed"
-                          >
-                            0
-                          </td>
-                          <td
-                            class=""
-                            data-label="NoPlay"
-                          >
-                            10
-                          </td>
-                          
-                          <!--v-if-->
                         </tr>
-                        <transition-stub
-                          appear="false"
-                          css="true"
-                          name=""
-                          persisted="false"
-                        >
-                          <!--v-if-->
-                        </transition-stub>
-                        <!--v-if-->
-                        
-                        
-                        <!--v-if-->
                       </tbody>
                       <!--v-if-->
                     </table>

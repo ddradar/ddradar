@@ -22,7 +22,6 @@ describe('Page /users/[id]', () => {
     { playStyle: 2, level: 1, clearLamp: 6, count: 10 },
     { playStyle: 2, level: 1, clearLamp: 7, count: 20 },
   ]
-
   const radars: [GrooveRadarInfo, GrooveRadarInfo] = [
     {
       playStyle: 1,
@@ -72,10 +71,10 @@ describe('Page /users/[id]', () => {
           ({
             data: ref(
               (uri as string).endsWith('radar')
-                ? radars
+                ? null
                 : (uri as string).endsWith('clear')
-                ? clears
-                : publicUser
+                ? null
+                : { ...publicUser, code: undefined }
             ),
           } as any)
       )
