@@ -29,7 +29,7 @@ Thank you for your interest in this project. This project is open source, and an
 
 ## Making Changes
 
-- Checkout your topic branch from `master` branch to create code or documents. (ex. `issue_99`, `hotfix/song-page`)
+- Checkout your topic branch from `main` branch to create code or documents. (ex. `issue_99`, `hotfix/song-page`)
 - Add or Change test if you need.
 - Commit should be logical units. Do not include extra code changes.
 - Add prefix to commit message (inherits [angular.js/DEVELOPERS.md](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type))
@@ -65,9 +65,9 @@ detail
 - Title should include a clear summary of the changes.
 - Add related issue number to your description.(ex. ref #199)
 - If PR is in progress, add `[WIP]` prefix and send as Draft Pull Request. And remove `[WIP]` and Draft when we can review.
-  - Resolve conflict to `master` before you remove `[WIP]` prefix.
+  - Resolve conflict to `main` before you remove `[WIP]` prefix.
   - To reserve the work, You may submit a Pull Request with `[WIP]` first. However, if there is no activity for a long time, it may be closed.
 
 ## Thanks
 
-ref. [MMP/CONTRIBUTING.md · sn0w75/MMP](https://github.com/sn0w75/MMP/blob/master/CONTRIBUTING.md)
+ref. [MMP/CONTRIBUTING.md · sn0w75/MMP](https://github.com/sn0w75/MMP/blob/master/CONTRIBUTING.md) (Deleted)
