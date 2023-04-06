@@ -3,15 +3,13 @@ name: Cosmos DB Integration
 on:
   push:
     branches:
-      - master
+      - main
     paths:
       - 'db/**'
       - '**.db.test.ts'
       - .github/workflows/cosmos-db.yml
       - '!**.md'
   pull_request:
-    branches:
-      - master
     paths:
       - 'db/**'
       - '**.db.test.ts'

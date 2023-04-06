@@ -3,11 +3,11 @@
 日本語版のガイドは[こちら](README-ja.md)です。
 
 [![GitHub deployments](https://img.shields.io/github/deployments/ddradar/ddradar/staging?label=staging&logo=microsoft-azure)](https://red-tree-09d43c100-beta.eastasia.azurestaticapps.net/)
-[![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/master)
+[![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/main)
 [![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
 [![Node.js CI](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/ddradar/ddradar/badge "CodeFactor")](https://www.codefactor.io/repository/github/ddradar/ddradar)
-[![codecov](https://codecov.io/gh/ddradar/ddradar/branch/master/graph/badge.svg?token=ynbl5vBONK "codecov")](https://codecov.io/gh/ddradar/ddradar)
+[![codecov](https://codecov.io/gh/ddradar/ddradar/branch/main/graph/badge.svg?token=ynbl5vBONK "codecov")](https://codecov.io/gh/ddradar/ddradar)
 [![dependabot](https://img.shields.io/static/v1?label=dependabot&message=enabled&color=green&logo=dependabot "dependabot")](https://github.com/ddradar/ddradar/network/updates)
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
