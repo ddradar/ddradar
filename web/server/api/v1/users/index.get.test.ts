@@ -3,12 +3,12 @@ import { fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import getUserList from '~~/server/api/v1/users/index.get'
+import { useClientPrincipal } from '~~/server/utils/auth'
 import {
   createClientPrincipal,
   createEvent,
-} from '~/__tests__/server/test-util'
-import getUserList from '~/server/api/v1/users/index.get'
-import { useClientPrincipal } from '~~/server/utils/auth'
+} from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')

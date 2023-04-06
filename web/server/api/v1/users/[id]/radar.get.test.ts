@@ -2,11 +2,11 @@ import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import type { GrooveRadarInfo } from '~/server/api/v1/users/[id]/radar.get'
-import getGrooveRadars from '~/server/api/v1/users/[id]/radar.get'
+import type { GrooveRadarInfo } from '~~/server/api/v1/users/[id]/radar.get'
+import getGrooveRadars from '~~/server/api/v1/users/[id]/radar.get'
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createEvent } from '~~/test/test-utils-server'
 import { getQueryInteger } from '~~/utils/path'
 
 vi.mock('@ddradar/db')

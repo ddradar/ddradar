@@ -1,10 +1,10 @@
 import { publicUser } from '@ddradar/core/test/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import getCurrentUser from '~/server/api/v1/user/index.get'
+import getCurrentUser from '~~/server/api/v1/user/index.get'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')

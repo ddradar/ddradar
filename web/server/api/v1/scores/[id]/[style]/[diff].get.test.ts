@@ -2,10 +2,10 @@ import { publicUser as user, testScores } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import fetchChartScores from '~/server/api/v1/scores/[id]/[style]/[diff].get'
+import fetchChartScores from '~~/server/api/v1/scores/[id]/[style]/[diff].get'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createEvent } from '~~/test/test-utils-server'
 import { getQueryString } from '~~/utils/path'
 
 vi.mock('@ddradar/db')

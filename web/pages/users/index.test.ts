@@ -10,7 +10,7 @@ import { describe, expect, test, vi } from 'vitest'
 import { nextTick } from 'vue'
 import { createI18n } from 'vue-i18n'
 
-import Page from '~/pages/users/index.vue'
+import Page from '~~/pages/users/index.vue'
 import type { UserInfo } from '~~/server/api/v1/users/index.get'
 
 describe('Page /users', () => {

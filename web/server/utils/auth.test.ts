@@ -7,8 +7,7 @@ import {
   tryFetchUser,
   useClientPrincipal,
 } from '~~/server/utils/auth'
-
-import { createClientPrincipal, createEvent } from '../test-util'
+import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 

@@ -3,8 +3,8 @@ import { fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~/__tests__/server/test-util'
-import searchSongs from '~/server/api/v1/songs/index.get'
+import searchSongs from '~~/server/api/v1/songs/index.get'
+import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
