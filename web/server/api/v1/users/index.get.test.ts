@@ -5,10 +5,7 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import getUserList from '~~/server/api/v1/users/index.get'
 import { useClientPrincipal } from '~~/server/utils/auth'
-import {
-  createClientPrincipal,
-  createEvent,
-} from '~~/test/test-utils-server'
+import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')

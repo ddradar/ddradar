@@ -2,9 +2,9 @@ import { testCourseData } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~~/__tests__/server/test-util'
 import getCourseInfo from '~~/server/api/v1/courses/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('~~/server/utils/http')

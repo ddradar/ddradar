@@ -4,13 +4,10 @@ import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import {
-  createClientPrincipal,
-  createEvent,
-} from '~~/__tests__/server/test-util'
 import postUserInfo from '~~/server/api/v1/user/index.post'
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')

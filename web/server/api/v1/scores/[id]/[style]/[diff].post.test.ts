@@ -10,10 +10,10 @@ import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { createEvent } from '~~/__tests__/server/test-util'
 import postChartScore from '~~/server/api/v1/scores/[id]/[style]/[diff].post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
