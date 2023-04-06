@@ -24,7 +24,6 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
       aria-expanded="false"
       aria-label="menu"
       class="navbar-burger"
-      data-target="navbarBasic"
       role="button"
     >
       <span
@@ -40,7 +39,6 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
   </div>
   <div
     class="navbar-menu"
-    id="navbarBasic"
   >
     <div
       class="navbar-start"
@@ -526,7 +524,6 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
       aria-expanded="false"
       aria-label="menu"
       class="navbar-burger"
-      data-target="navbarBasic"
       role="button"
     >
       <span
@@ -542,7 +539,6 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
   </div>
   <div
     class="navbar-menu"
-    id="navbarBasic"
   >
     <div
       class="navbar-start"
@@ -1025,7 +1021,6 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
       aria-expanded="false"
       aria-label="menu"
       class="navbar-burger"
-      data-target="navbarBasic"
       role="button"
     >
       <span
@@ -1041,7 +1036,6 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
   </div>
   <div
     class="navbar-menu"
-    id="navbarBasic"
   >
     <div
       class="navbar-start"
@@ -1527,7 +1521,6 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
       aria-expanded="false"
       aria-label="menu"
       class="navbar-burger"
-      data-target="navbarBasic"
       role="button"
     >
       <span
@@ -1543,7 +1536,6 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
   </div>
   <div
     class="navbar-menu"
-    id="navbarBasic"
   >
     <div
       class="navbar-start"
