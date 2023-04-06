@@ -31,7 +31,7 @@ describe('composables/useAuth', () => {
   ) => {
     vi.mocked($fetch).mockClear()
     vi.mocked($fetch).mockImplementation(s =>
-      Promise.resolve(s === '/.auth/me' ? auth : user)
+      Promise.resolve(s === '/.auth/me' ? { clientPrincipal: auth } : user)
     )
   }
 

@@ -7,7 +7,8 @@ export default async function useAuth() {
 
   auth.value = process.server
     ? useClientPrincipal(useRequestHeaders())
-    : await $fetch<ClientPrincipal>('/.auth/me')
+    : (await $fetch<{ clientPrincipal: ClientPrincipal | null }>('/.auth/me'))
+        .clientPrincipal
   try {
     user.value = auth.value
       ? await $fetch<CurrentUserInfo>('/api/v1/user')
