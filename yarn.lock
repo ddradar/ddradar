@@ -6614,10 +6614,17 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
-minimatch@^5.0.0, minimatch@^5.0.1, minimatch@^5.1.0:
+minimatch@^5.0.1, minimatch@^5.1.0:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.6.tgz#1cfcb8cf5522ea69952cd2af95ae09477f122a96"
   integrity sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==
+  dependencies:
+    brace-expansion "^2.0.1"
+
+minimatch@^8.0.2:
+  version "8.0.3"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-8.0.3.tgz#0415cb9bb0c1d8ac758c8a673eb1d288e13f5e75"
+  integrity sha512-tEEvU9TkZgnFDCtpnrEYnPsjT7iUx42aXfs4bzmQ5sMA09/6hZY0jeZcGkXyDagiBOvkUjNo8Viom+Me6+2x7g==
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -6957,15 +6964,15 @@ normalize-url@^4.1.0:
   resolved "https://registry.yarnpkg.com/normalize-url/-/normalize-url-4.5.1.tgz#0dd90cf1288ee1d1313b87081c9a5932ee48518a"
   integrity sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==
 
-npm-run-all2@^6.0.4:
-  version "6.0.4"
-  resolved "https://registry.yarnpkg.com/npm-run-all2/-/npm-run-all2-6.0.4.tgz#2623097fcc8b43d051a364146f060978d3e36baa"
-  integrity sha512-/St+bDHysVO4CtXKpWDFP0oscvx3sp/Fmf5UddtF3QIfA4Rf6S5qoyOepLGyFXtky/i9PRj4n/TkA4OTUpwMFw==
+npm-run-all2@^6.0.5:
+  version "6.0.5"
+  resolved "https://registry.yarnpkg.com/npm-run-all2/-/npm-run-all2-6.0.5.tgz#decbcea351d14d9a7863facdece351281e3c8c1c"
+  integrity sha512-YfYsybLmMLeHK00shmIrArZbbqSov/0o692j8PAJTqZGpWy2bJMnMO00Xrex8S0ziePJUZy14CueF7rVMYAg/w==
   dependencies:
     ansi-styles "^5.0.0"
     cross-spawn "^7.0.3"
     memorystream "^0.3.1"
-    minimatch "^5.0.0"
+    minimatch "^8.0.2"
     pidtree "^0.6.0"
     read-pkg "^5.2.0"
     shell-quote "^1.7.3"
