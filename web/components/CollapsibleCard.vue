@@ -1,5 +1,5 @@
 <template>
-  <o-collapse
+  <OCollapse
     v-if="collapsible"
     v-model:open="openState"
     class="card"
@@ -14,11 +14,11 @@
         :aria-controls="title"
       >
         <div class="card-header-title">{{ title }}</div>
-        <a class="card-header-icon"><o-icon :icon="icon" /></a>
+        <a class="card-header-icon"><OIcon :icon="icon" /></a>
       </header>
     </template>
     <slot />
-  </o-collapse>
+  </OCollapse>
   <div v-else class="card" animation="slide" :aria-id="title">
     <header class="card-header" :class="color" :aria-controls="title">
       <div class="card-header-title">{{ title }}</div>
@@ -43,7 +43,7 @@ const props = withDefaults(defineProps<CardProps>(), {
   collapsible: false,
   open: false,
 })
-const openState = useState(() => props.open)
+const openState = ref(props.open)
 const icon = computed(() => (openState.value ? 'menu-up' : 'menu-down'))
 const color = `is-${props.variant}`
 </script>
