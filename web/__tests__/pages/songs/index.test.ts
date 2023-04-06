@@ -5,8 +5,8 @@ import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { mountAsync } from '~/__tests__/test-utils'
-import Page from '~/pages/songs/index.vue'
+import Page from '~~/pages/songs/index.vue'
+import { mountAsync } from '~~/test/test-utils'
 
 describe('Page /songs', () => {
   const query = { series: '10' }

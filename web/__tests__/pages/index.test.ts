@@ -3,8 +3,8 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
-import { mountAsync } from '~/__tests__/test-utils'
-import Page from '~/pages/index.vue'
+import Page from '~~/pages/index.vue'
+import { mountAsync } from '~~/test/test-utils'
 
 describe('Page /', () => {
   test('renders expected menu', async () => {

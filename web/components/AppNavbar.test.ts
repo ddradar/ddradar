@@ -5,9 +5,9 @@ import { RouterLinkStub } from '@vue/test-utils'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
-import { mountAsync } from '~~/__tests__/test-utils'
 import AppNavbar from '~~/components/AppNavbar.vue'
 import useAuth from '~~/composables/useAuth'
+import { mountAsync } from '~~/test/test-utils'
 
 vi.mock('~~/composables/useAuth')
 

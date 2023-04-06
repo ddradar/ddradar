@@ -5,11 +5,11 @@ import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
-import Page from '~/pages/users/[id]/index.vue'
-import { mountAsync } from '~~/__tests__/test-utils'
 import useAuth from '~~/composables/useAuth'
+import Page from '~~/pages/users/[id]/index.vue'
 import type { ClearStatus } from '~~/server/api/v1/users/[id]/clear.get'
 import type { GrooveRadarInfo } from '~~/server/api/v1/users/[id]/radar.get'
+import { mountAsync } from '~~/test/test-utils'
 
 vi.mock('~~/composables/useAuth')
 

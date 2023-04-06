@@ -3,7 +3,7 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
-import Card from '~/components/CollapsibleCard.vue'
+import Card from '~~/components/CollapsibleCard.vue'
 
 describe('components/CollapsibleCard.vue', () => {
   test.each([

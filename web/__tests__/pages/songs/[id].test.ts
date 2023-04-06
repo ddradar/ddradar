@@ -4,9 +4,9 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 
-import { mountAsync } from '~/__tests__/test-utils'
-import Page from '~/pages/songs/[id].vue'
 import useAuth from '~~/composables/useAuth'
+import Page from '~~/pages/songs/[id].vue'
+import { mountAsync } from '~~/test/test-utils'
 
 vi.mock('~~/composables/useAuth')
 
