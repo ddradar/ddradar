@@ -12,11 +12,11 @@ import useAuth from '~~/composables/useAuth'
 vi.mock('~~/composables/useAuth')
 
 describe('components/AppNavbar.vue', () => {
+  const stubs = { NuxtLink: RouterLinkStub }
   beforeEach(() => vi.mocked(useAuth).mockClear())
 
   describe.each(['ja', 'en'])('{ locale: %s } snapshot test', locale => {
     const i18n = createI18n({ legacy: false, locale })
-    const stubs = { NuxtLink: RouterLinkStub }
 
     test('({ isLoggedin: false }) renders login button', async () => {
       // Arrange
@@ -27,6 +27,8 @@ describe('components/AppNavbar.vue', () => {
       const wrapper = await mountAsync(AppNavbar, {
         global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
       })
+
+      // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
     test('({ isLoggedin: true }) renders user name & logout button', async () => {
@@ -46,6 +48,25 @@ describe('components/AppNavbar.vue', () => {
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
+    })
+  })
+
+  describe('events', () => {
+    test('.navbar-burger@click sets "is-active" class', async () => {
+      // Arrange
+      const i18n = createI18n({ legacy: false, locale: 'ja' })
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
+
+      // Act
+      const wrapper = await mountAsync(AppNavbar, {
+        global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
+      })
+      await wrapper.find('a.navbar-burger').trigger('click')
+
+      // Assert
+      expect(wrapper.find('a.navbar-burger').classes()).toContain('is-active')
+      expect(wrapper.find('div.navbar-menu').classes()).toContain('is-active')
     })
   })
 })
