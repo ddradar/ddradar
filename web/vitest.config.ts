@@ -43,7 +43,7 @@ export default defineConfig({
         'test/**',
         '**.config.ts',
         '**.d.ts',
-        '**.test.ts',
+        '**/*.test.ts',
         'app.vue',
       ],
     },
