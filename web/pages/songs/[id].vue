@@ -23,11 +23,11 @@
     </template>
     <template v-else>
       <OLoading active />
-      <h1 class="title"><o-skeleton animated /></h1>
-      <h2 class="subtitle"><o-skeleton animated /></h2>
-      <h2 class="subtitle"><o-skeleton animated /></h2>
+      <h1 class="title"><OSkeleton animated /></h1>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
+      <h2 class="subtitle"><OSkeleton animated /></h2>
       <div class="content columns is-multiline">
-        <o-skeleton animated size="large" :count="3" />
+        <OSkeleton animated size="large" :count="3" />
       </div>
     </template>
   </section>
