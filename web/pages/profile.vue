@@ -195,7 +195,7 @@ const loading = useState(() => false)
 const variant = useState((): '' | 'success' | 'danger' => '')
 const message = useState(() => '')
 
-const isNewUser = computed(() => !!user.value)
+const isNewUser = computed(() => !user.value)
 const areaOptions = computed(() =>
   [...areaCodeSet].map(key => ({ key, value: t(`area.${key}`) }))
 )

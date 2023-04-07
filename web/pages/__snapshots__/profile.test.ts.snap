@@ -4,7 +4,38 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
 <section
   class="section"
 >
-  <!--v-if-->
+  <transition-stub
+    appear="false"
+    css="true"
+    name="fade"
+    persisted="false"
+  >
+    <article
+      class="notification is-danger"
+    >
+      <!--v-if-->
+      <!--v-if-->
+      <div
+        class="media"
+      >
+        <span
+          aria-hidden=""
+          class="icon is-large media-left"
+        >
+          <i
+            class="mdi mdi-alert-circle mdi-48px"
+          />
+        </span>
+        <div
+          class="media-content"
+        >
+          
+          User registration has not been completed yet. Please continue to enter the following information.
+          
+        </div>
+      </div>
+    </article>
+  </transition-stub>
   <h1
     class="title"
   >
@@ -64,7 +95,6 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
       <input
         autocomplete="off"
         class="input"
-        disabled=""
         loading="false"
         placeholder="ID"
         type="text"
@@ -158,7 +188,6 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
     >
       <select
         class=""
-        disabled=""
         modelmodifiers="[object Object]"
       >
         
@@ -712,7 +741,38 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
 <section
   class="section"
 >
-  <!--v-if-->
+  <transition-stub
+    appear="false"
+    css="true"
+    name="fade"
+    persisted="false"
+  >
+    <article
+      class="notification is-danger"
+    >
+      <!--v-if-->
+      <!--v-if-->
+      <div
+        class="media"
+      >
+        <span
+          aria-hidden=""
+          class="icon is-large media-left"
+        >
+          <i
+            class="mdi mdi-alert-circle mdi-48px"
+          />
+        </span>
+        <div
+          class="media-content"
+        >
+          
+          ユーザー登録は、まだ完了していません。引き続き、以下の情報を入力してください。
+          
+        </div>
+      </div>
+    </article>
+  </transition-stub>
   <h1
     class="title"
   >
@@ -772,7 +832,6 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
       <input
         autocomplete="off"
         class="input"
-        disabled=""
         loading="false"
         placeholder="ID"
         type="text"
@@ -866,7 +925,6 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
     >
       <select
         class=""
-        disabled=""
         modelmodifiers="[object Object]"
       >
         
