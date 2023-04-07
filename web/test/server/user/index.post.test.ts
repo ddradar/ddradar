@@ -1,3 +1,4 @@
+// @vitest-environment node
 import type { UserSchema } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/test/data'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'

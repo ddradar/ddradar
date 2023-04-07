@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { notification } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'

@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { testCourseData } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { getQuery } from 'h3'

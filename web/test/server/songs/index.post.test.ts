@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { testSongData } from '@ddradar/core/test/data'
 import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'

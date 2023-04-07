@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { calcMyGrooveRadar } from '@ddradar/core'
 import {
   areaHiddenUser,

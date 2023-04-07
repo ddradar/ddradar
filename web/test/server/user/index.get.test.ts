@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { publicUser } from '@ddradar/core/test/data'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 

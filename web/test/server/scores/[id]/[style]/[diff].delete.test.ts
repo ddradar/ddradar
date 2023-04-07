@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { publicUser as user, testScores } from '@ddradar/core/test/data'
 import { fetchList, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'

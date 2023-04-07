@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'

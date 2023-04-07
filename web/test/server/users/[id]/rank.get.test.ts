@@ -1,3 +1,4 @@
+// @vitest-environment node
 import type { DanceLevel } from '@ddradar/core'
 import { danceLevelSet } from '@ddradar/core'
 import { privateUser } from '@ddradar/core/test/data'
