@@ -30,7 +30,7 @@ export default defineConfig({
   plugins: [vue(), VueI18nPlugin({ compositionOnly: true })],
   resolve: { alias },
   test: {
-    environment: 'jsdom',
+    environment: 'happy-dom',
     setupFiles: './test/setup.ts',
     coverage: {
       enabled: true,

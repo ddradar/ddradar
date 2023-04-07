@@ -49,7 +49,7 @@
         :placeholder="t('placeholder.ddrCode')"
         minlength="8"
         maxlength="8"
-        pattern="^\d{8}$"
+        pattern="^[1-9]\d{7}$"
       />
     </OField>
 
