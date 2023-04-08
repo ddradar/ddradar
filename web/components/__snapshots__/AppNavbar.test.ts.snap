@@ -442,56 +442,76 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
           class="navbar-dropdown is-right"
         >
           <div
-            class="buttons"
+            class="navbar-item"
           >
-            <button
-              class="button is-info"
-              type="button"
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <button
+                  class="button is-info"
+                  type="button"
                 >
-                  <i
-                    class="mdi mdi-twitter mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  Login via Twitter
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
-            <button
-              class="button is-dark"
-              type="button"
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-twitter mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      Login via Twitter
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <button
+                  class="button is-dark"
+                  type="button"
                 >
-                  <i
-                    class="mdi mdi-github mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  Login via GitHub
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-github mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      Login via GitHub
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -946,49 +966,69 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
           class="navbar-dropdown is-right"
         >
           <div
-            class="buttons"
+            class="navbar-item"
           >
-            <a
-              class="button is-info"
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <a
+                  class="button is-info"
                 >
-                  <i
-                    class="mdi mdi-account mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  MyPage
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </a>
-            <button
-              class="button is-warning"
-              type="button"
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-account mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      MyPage
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <!--v-if-->
-                <span
-                  class=""
+                <button
+                  class="button is-warning"
+                  type="button"
                 >
-                  
-                  Logout
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
+                  <span
+                    class="button-wrapper"
+                  >
+                    <!--v-if-->
+                    <span
+                      class=""
+                    >
+                      
+                      Logout
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1439,56 +1479,76 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
           class="navbar-dropdown is-right"
         >
           <div
-            class="buttons"
+            class="navbar-item"
           >
-            <button
-              class="button is-info"
-              type="button"
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <button
+                  class="button is-info"
+                  type="button"
                 >
-                  <i
-                    class="mdi mdi-twitter mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  Twitterでログイン
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
-            <button
-              class="button is-dark"
-              type="button"
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-twitter mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      Twitterでログイン
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <button
+                  class="button is-dark"
+                  type="button"
                 >
-                  <i
-                    class="mdi mdi-github mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  GitHubでログイン
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-github mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      GitHubでログイン
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1943,49 +2003,69 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
           class="navbar-dropdown is-right"
         >
           <div
-            class="buttons"
+            class="navbar-item"
           >
-            <a
-              class="button is-info"
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <span
-                  class="icon"
+                <a
+                  class="button is-info"
                 >
-                  <i
-                    class="mdi mdi-account mdi-24px"
-                  />
-                </span>
-                <span
-                  class=""
-                >
-                  
-                  マイページ
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </a>
-            <button
-              class="button is-warning"
-              type="button"
+                  <span
+                    class="button-wrapper"
+                  >
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-account mdi-24px"
+                      />
+                    </span>
+                    <span
+                      class=""
+                    >
+                      
+                      マイページ
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
             >
-              <span
-                class="button-wrapper"
+              <div
+                class="control"
               >
-                <!--v-if-->
-                <span
-                  class=""
+                <button
+                  class="button is-warning"
+                  type="button"
                 >
-                  
-                  ログアウト
-                  
-                </span>
-                <!--v-if-->
-              </span>
-            </button>
+                  <span
+                    class="button-wrapper"
+                  >
+                    <!--v-if-->
+                    <span
+                      class=""
+                    >
+                      
+                      ログアウト
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
