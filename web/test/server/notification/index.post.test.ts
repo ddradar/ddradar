@@ -1,3 +1,4 @@
+// @vitest-environment node
 import { getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'

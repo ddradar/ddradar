@@ -1,3 +1,4 @@
+// @vitest-environment node
 import type { ClearLamp } from '@ddradar/core'
 import { clearLampMap } from '@ddradar/core'
 import { privateUser } from '@ddradar/core/test/data'

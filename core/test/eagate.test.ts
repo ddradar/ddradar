@@ -1,6 +1,4 @@
-/**
- * @vitest-environment jsdom
- */
+// @vitest-environment happy-dom
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -34,6 +32,39 @@ describe('/eagate.ts', () => {
       rank: DanceLevel
     ) => ({ songName, playStyle, difficulty, score, clearLamp, rank })
 
+    /** 朧 SINGLE scores */
+    const I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o = [
+      createScore('朧', 1, 0, 876000, 2, 'A+'),
+      createScore('朧', 1, 2, 823000, 2, 'A'),
+      createScore('朧', 1, 4, 780000, 2, 'B+'),
+    ]
+    /** きゅん×きゅんばっきゅん☆LOVE SINGLE scores */
+    const QIDd80o0OqobODP00ldQ1D9dl81qQi0d = [
+      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 0, 700000, 2, 'B'),
+      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 1, 690000, 2, 'B-'),
+      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 2, 650000, 2, 'C+'),
+      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 3, 620000, 2, 'C'),
+    ]
+    /** CHAOS SINGLE scores */
+    const chaosScores = [
+      createScore('CHAOS', 1, 0, 0, 1, 'D'),
+      createScore('CHAOS', 1, 1, 599990, 2, 'C-'),
+      createScore('CHAOS', 1, 2, 930000, 5, 'E'),
+    ]
+    /** 革命 DOUBLE scores */
+    const l9lq19DdiD8qQPoPOlboi1qQii0IQI86 = [
+      createScore('革命', 2, 1, 1000000, 7, 'AAA'),
+      createScore('革命', 2, 2, 999920, 6, 'AAA'),
+      createScore('革命', 2, 3, 987600, 5, 'AA+'),
+      createScore('革命', 2, 4, 945000, 4, 'AA'),
+    ]
+    /** 逆さま♥シンデレラパレード DOUBLE scores */
+    const llo89P08I1PlID9DO8lqdbbq69O8Qiib = [
+      createScore('逆さま&hearts;シンデレラパレード', 2, 1, 573000, 2, 'D+'),
+      createScore('逆さま&hearts;シンデレラパレード', 2, 2, 498000, 2, 'D'),
+      createScore('逆さま&hearts;シンデレラパレード', 2, 3, 45310, 0, 'E'),
+    ]
+
     test.each([
       '',
       'foo',
@@ -56,39 +87,17 @@ describe('/eagate.ts', () => {
       [
         'music_single.html',
         {
-          I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
-            createScore('朧', 1, 0, 876000, 2, 'A+'),
-            createScore('朧', 1, 2, 823000, 2, 'A'),
-            createScore('朧', 1, 4, 780000, 2, 'B+'),
-          ],
-          QIDd80o0OqobODP00ldQ1D9dl81qQi0d: [
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 0, 700000, 2, 'B'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 1, 690000, 2, 'B-'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 2, 650000, 2, 'C+'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 3, 620000, 2, 'C'),
-          ],
-          '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': [
-            createScore('CHAOS', 1, 0, 0, 1, 'D'),
-            createScore('CHAOS', 1, 1, 599990, 2, 'C-'),
-            createScore('CHAOS', 1, 2, 930000, 5, 'E'),
-          ],
+          I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o,
+          QIDd80o0OqobODP00ldQ1D9dl81qQi0d,
+          '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': chaosScores,
         },
       ],
       [
         'music_double.html',
         {
-          l9lq19DdiD8qQPoPOlboi1qQii0IQI86: [
-            createScore('革命', 2, 1, 1000000, 7, 'AAA'),
-            createScore('革命', 2, 2, 999920, 6, 'AAA'),
-            createScore('革命', 2, 3, 987600, 5, 'AA+'),
-            createScore('革命', 2, 4, 945000, 4, 'AA'),
-          ],
+          l9lq19DdiD8qQPoPOlboi1qQii0IQI86,
           qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [],
-          llo89P08I1PlID9DO8lqdbbq69O8Qiib: [
-            createScore('逆さま♥シンデレラパレード', 2, 1, 573000, 2, 'D+'),
-            createScore('逆さま♥シンデレラパレード', 2, 2, 498000, 2, 'D'),
-            createScore('逆さま♥シンデレラパレード', 2, 3, 45310, 0, 'E'),
-          ],
+          llo89P08I1PlID9DO8lqdbbq69O8Qiib,
         },
       ],
       [
@@ -158,39 +167,17 @@ describe('/eagate.ts', () => {
       [
         'music_single_a3.html',
         {
-          I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o: [
-            createScore('朧', 1, 0, 876000, 2, 'A+'),
-            createScore('朧', 1, 2, 823000, 2, 'A'),
-            createScore('朧', 1, 4, 780000, 2, 'B+'),
-          ],
-          QIDd80o0OqobODP00ldQ1D9dl81qQi0d: [
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 0, 700000, 2, 'B'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 1, 690000, 2, 'B-'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 2, 650000, 2, 'C+'),
-            createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 3, 620000, 2, 'C'),
-          ],
-          '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': [
-            createScore('CHAOS', 1, 0, 0, 1, 'D'),
-            createScore('CHAOS', 1, 1, 599990, 2, 'C-'),
-            createScore('CHAOS', 1, 2, 930000, 5, 'E'),
-          ],
+          I96dOqqqQIi9oiqbqDPbQ8I8PQbqOb1o,
+          QIDd80o0OqobODP00ldQ1D9dl81qQi0d,
+          '8o1iQPiId8P6Db9Iqo1Oo119QDoq8qQ8': chaosScores,
         },
       ],
       [
         'music_double_a3.html',
         {
-          l9lq19DdiD8qQPoPOlboi1qQii0IQI86: [
-            createScore('革命', 2, 1, 1000000, 7, 'AAA'),
-            createScore('革命', 2, 2, 999920, 6, 'AAA'),
-            createScore('革命', 2, 3, 987600, 5, 'AA+'),
-            createScore('革命', 2, 4, 945000, 4, 'AA'),
-          ],
+          l9lq19DdiD8qQPoPOlboi1qQii0IQI86,
           qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb: [],
-          llo89P08I1PlID9DO8lqdbbq69O8Qiib: [
-            createScore('逆さま♥シンデレラパレード', 2, 1, 573000, 2, 'D+'),
-            createScore('逆さま♥シンデレラパレード', 2, 2, 498000, 2, 'D'),
-            createScore('逆さま♥シンデレラパレード', 2, 3, 45310, 0, 'E'),
-          ],
+          llo89P08I1PlID9DO8lqdbbq69O8Qiib,
         },
       ],
       [

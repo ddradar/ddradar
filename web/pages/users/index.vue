@@ -120,7 +120,7 @@ const areaOptions = computed(() =>
 
 const search = async () => {
   loading.value = true
-  users.value = await $fetch('/api/v1/users', {
+  users.value = await $fetch<UserInfo[]>('/api/v1/users', {
     query: { area: area.value, name: name.value, code: code.value },
   })
   loading.value = false

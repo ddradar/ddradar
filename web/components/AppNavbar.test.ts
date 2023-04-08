@@ -20,8 +20,12 @@ describe('components/AppNavbar.vue', () => {
 
     test('({ isLoggedin: false }) renders login button', async () => {
       // Arrange
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useAuth).mockResolvedValue({
+        auth: ref(null),
+        isLoggedIn: ref(false),
+      } as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
       const wrapper = await mountAsync(AppNavbar, {
@@ -35,6 +39,7 @@ describe('components/AppNavbar.vue', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useAuth).mockResolvedValue({
+        auth: ref({}),
         isLoggedIn: ref(true),
         id: ref(publicUser.id),
         name: ref(publicUser.name),
@@ -51,12 +56,36 @@ describe('components/AppNavbar.vue', () => {
     })
   })
 
+  test('({ auth: {...}, isLoggedin: false }) redirects to /profile', async () => {
+    // Arrange
+    const i18n = createI18n({ legacy: false, locale: 'ja' })
+    vi.mocked(navigateTo).mockClear()
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useAuth).mockResolvedValue({
+      auth: ref({}),
+      isLoggedIn: ref(false),
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+
+    // Act
+    await mountAsync(AppNavbar, {
+      global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
+    })
+
+    // Assert
+    expect(vi.mocked(navigateTo)).toBeCalledWith('/profile')
+  })
+
   describe('events', () => {
     test('.navbar-burger@click sets "is-active" class', async () => {
       // Arrange
       const i18n = createI18n({ legacy: false, locale: 'ja' })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useAuth).mockResolvedValue({
+        auth: ref(null),
+        isLoggedIn: ref(false),
+      } as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
       const wrapper = await mountAsync(AppNavbar, {
