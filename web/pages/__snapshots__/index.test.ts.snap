@@ -1,6 +1,36 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Page / > { locale: "en" } snapshot test > renders collectly 1`] = `
+exports[`Page / > { locale: "en" } snapshot test > ({ loading: true }) renders loading state 1`] = `
+<section
+  class="section"
+>
+  
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  
+</section>
+`;
+
+exports[`Page / > { locale: "en" } snapshot test > ({ messages: [...] }) renders notification 1`] = `
 <section>
   <section
     class="hero"
@@ -23,6 +53,195 @@ exports[`Page / > { locale: "en" } snapshot test > renders collectly 1`] = `
         </p>
       </div>
     </div>
+  </section>
+  <section
+    class="section"
+  >
+    
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-info"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-info mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              新曲を追加しました
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                下記の譜面情報を追加しました。
+              </p>
+              
+
+              <ul>
+                
+
+                <li>
+                  <a
+                    href="/song/foo"
+                  >
+                    新曲
+                  </a>
+                </li>
+                
+
+              </ul>
+              
+
+            </div>
+            <div>
+              2020/8/13 9:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-warning"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-warning mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              このサイトはベータ版です
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                このWebサイトはベータ版環境です。
+              </p>
+              
+
+            </div>
+            <div>
+              2020/8/1 12:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-info"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-info mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              v0.6.0をリリースしました
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                変更点は以下を参照してください。
+              </p>
+              
+
+            </div>
+            <div>
+              2020/8/11 12:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    
   </section>
   <section
     class="section"
@@ -857,7 +1076,46 @@ exports[`Page / > { locale: "en" } snapshot test > renders collectly 1`] = `
 </section>
 `;
 
-exports[`Page / > { locale: "ja" } snapshot test > renders collectly 1`] = `
+exports[`Page / > { locale: "en" } snapshot test > ({ messages: [] }) renders no notification 1`] = `
+<section
+  class="section"
+>
+  
+  
+</section>
+`;
+
+exports[`Page / > { locale: "ja" } snapshot test > ({ loading: true }) renders loading state 1`] = `
+<section
+  class="section"
+>
+  
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  <div
+    class="b-skeleton is-animated"
+  >
+    <div
+      class="b-skeleton-item is-rounded"
+    />
+  </div>
+  
+</section>
+`;
+
+exports[`Page / > { locale: "ja" } snapshot test > ({ messages: [...] }) renders notification 1`] = `
 <section>
   <section
     class="hero"
@@ -880,6 +1138,195 @@ exports[`Page / > { locale: "ja" } snapshot test > renders collectly 1`] = `
         </p>
       </div>
     </div>
+  </section>
+  <section
+    class="section"
+  >
+    
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-info"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-info mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              新曲を追加しました
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                下記の譜面情報を追加しました。
+              </p>
+              
+
+              <ul>
+                
+
+                <li>
+                  <a
+                    href="/song/foo"
+                  >
+                    新曲
+                  </a>
+                </li>
+                
+
+              </ul>
+              
+
+            </div>
+            <div>
+              2020/8/13 9:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-warning"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-warning mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              このサイトはベータ版です
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                このWebサイトはベータ版環境です。
+              </p>
+              
+
+            </div>
+            <div>
+              2020/8/1 12:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="fade"
+      persisted="false"
+    >
+      <article
+        class="notification is-info"
+      >
+        <button
+          class="delete"
+          type="button"
+        >
+          <span
+            class="icon is-clickable is-small"
+          >
+            <i
+              class="mdi mdi-close"
+            />
+          </span>
+        </button>
+        <!--v-if-->
+        <div
+          class="media"
+        >
+          <span
+            aria-hidden=""
+            class="icon is-large media-left"
+          >
+            <i
+              class="mdi mdi-info mdi-48px"
+            />
+          </span>
+          <div
+            class="media-content"
+          >
+            
+            <h2>
+              v0.6.0をリリースしました
+            </h2>
+            <!--eslint-disable-next-line vue/no-v-html-->
+            <div>
+              <p>
+                変更点は以下を参照してください。
+              </p>
+              
+
+            </div>
+            <div>
+              2020/8/11 12:00:00
+            </div>
+            
+          </div>
+        </div>
+      </article>
+    </transition-stub>
+    
   </section>
   <section
     class="section"
@@ -1711,5 +2158,14 @@ exports[`Page / > { locale: "ja" } snapshot test > renders collectly 1`] = `
       
     </div>
   </section>
+</section>
+`;
+
+exports[`Page / > { locale: "ja" } snapshot test > ({ messages: [] }) renders no notification 1`] = `
+<section
+  class="section"
+>
+  
+  
 </section>
 `;

@@ -10,6 +10,28 @@
     </section>
 
     <section class="section">
+      <template v-if="loading">
+        <OSkeleton animated />
+        <OSkeleton animated />
+        <OSkeleton animated />
+      </template>
+      <template v-else-if="messages">
+        <ONotification
+          v-for="(m, i) in messages"
+          :key="i"
+          closable
+          :icon="m.icon"
+          :variant="m.type"
+        >
+          <h2>{{ m.title }}</h2>
+          <!--eslint-disable-next-line vue/no-v-html-->
+          <div v-html="parser.render(m.body)"></div>
+          <div>{{ new Date(m.timeStamp * 1000).toLocaleString() }}</div>
+        </ONotification>
+      </template>
+    </section>
+
+    <section class="section">
       <div class="columns is-multiline">
         <section
           v-for="m in menuList"
@@ -67,6 +89,7 @@
 
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
+import MarkdownIt from 'markdown-it'
 import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
@@ -78,6 +101,11 @@ import {
 } from '~~/utils/song'
 
 const { t } = useI18n()
+const { data: messages, pending: loading } = await useLazyFetch(
+  '/api/v1/notification',
+  { query: { scope: 'top' } }
+)
+const parser = new MarkdownIt()
 
 const menuList = [
   {
