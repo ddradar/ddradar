@@ -1,7 +1,7 @@
 import type { Difficulty, PlayStyle, Series } from '@ddradar/core'
 import { musicDataToScoreList, musicDetailToScore } from '@ddradar/core'
+import { GlobalRegistrator } from '@happy-dom/global-registrator'
 import { config } from 'dotenv'
-import { JSDOM } from 'jsdom'
 import type { Page } from 'puppeteer-core'
 
 import { isCourse } from './database'
@@ -13,7 +13,7 @@ config()
 const { KONAMI_ID: loginId, KONAMI_PASSWORD: password } = process.env
 /* eslint-enable node/no-process-env */
 
-global.DOMParser = new JSDOM().window.DOMParser
+GlobalRegistrator.register()
 
 export async function isLoggedIn(page: Page): Promise<boolean> {
   const mypageUri = 'https://p.eagate.573.jp/gate/p/mypage/'
