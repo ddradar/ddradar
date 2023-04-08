@@ -141,7 +141,8 @@ import {
 } from '~~/utils/song'
 
 const { t } = useI18n()
-const { id, isLoggedIn, name, login, logout } = await useAuth()
+const { auth, id, isLoggedIn, name, login, logout } = await useAuth()
+if (auth.value && !isLoggedIn.value) await navigateTo('/profile')
 
 const isActive = useState(() => false)
 
