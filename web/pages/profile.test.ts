@@ -1,14 +1,25 @@
 import { publicUser } from '@ddradar/core/test/data'
-import Oruga from '@oruga-ui/oruga-next'
+import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
-import { describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
+import { CurrentUserInfo } from '~/server/api/v1/user/index.get'
 import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/profile.vue'
 import { mountAsync } from '~~/test/test-utils'
 
+const open = vi.fn()
 vi.mock('~~/composables/useAuth')
+vi.mock('@oruga-ui/oruga-next', async () => {
+  const actual = (await vi.importActual(
+    '@oruga-ui/oruga-next'
+  )) as typeof import('@oruga-ui/oruga-next')
+  return { ...actual, useProgrammatic: vi.fn() }
+})
+vi.mocked(useProgrammatic).mockReturnValue({
+  oruga: { notification: { open } },
+})
 
 describe('Page /profile', () => {
   const i18n = createI18n({ legacy: false, locale: 'ja' })
@@ -162,6 +173,53 @@ describe('Page /profile', () => {
 
       // Assert
       expect(vm.variant).toBe('')
+    })
+  })
+  describe('save()', async () => {
+    const saveUser = vi.fn<[CurrentUserInfo], Promise<void>>()
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useAuth).mockResolvedValue({
+      user: ref(publicUser),
+      saveUser,
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    const wrapper = await mountAsync(Page, {
+      global: { plugins: [[Oruga, bulmaConfig], i18n] },
+    })
+    const vm = wrapper.getComponent(Page).vm as unknown as {
+      save(): Promise<void>
+      id: string
+      variant: string
+      message: string
+    }
+
+    beforeEach(() => open.mockClear())
+
+    test('calls saveUser() and notifies Success', async () => {
+      // Arrange - Act
+      await vm.save()
+
+      // Assert
+      expect(saveUser).toBeCalled()
+      expect(open).toBeCalledWith({
+        message: '保存しました',
+        variant: 'success',
+        position: 'top',
+      })
+    })
+    test('notifies Error if saveUser() throws error', async () => {
+      // Arrange
+      saveUser.mockRejectedValue('Error')
+      // Act
+      await vm.save()
+
+      // Assert
+      expect(saveUser).toBeCalled()
+      expect(open).toBeCalledWith({
+        message: 'Error',
+        variant: 'danger',
+        position: 'top',
+      })
     })
   })
 })
