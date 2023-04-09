@@ -25,7 +25,7 @@
         >
           <h2>{{ m.title }}</h2>
           <!--eslint-disable-next-line vue/no-v-html-->
-          <div v-html="parser.render(m.body)"></div>
+          <div v-html="markdownToHTML(m.body)"></div>
           <div>{{ unixTimeToString(m.timeStamp) }}</div>
         </ONotification>
       </template>
@@ -89,11 +89,10 @@
 
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
-import MarkdownIt from 'markdown-it'
 import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
-import { unixTimeToString } from '~~/utils/date'
+import { markdownToHTML, unixTimeToString } from '~~/utils/format'
 import {
   courseSeriesIndexes,
   levels,
@@ -106,7 +105,6 @@ const { data: messages, pending: loading } = await useLazyFetch(
   '/api/v1/notification',
   { query: { scope: 'top' } }
 )
-const parser = new MarkdownIt()
 
 const menuList = [
   {

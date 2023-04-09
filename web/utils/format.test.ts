@@ -1,9 +1,9 @@
 // @vitest-environment node
 import { describe, expect, test } from 'vitest'
 
-import { unixTimeToString } from '~~/utils/date'
+import { unixTimeToString } from '~~/utils/format'
 
-describe('utils/date.ts', () => {
+describe('utils/format.ts', () => {
   describe('unixTimeToString', () => {
     test.each(
       [
