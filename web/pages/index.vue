@@ -26,7 +26,7 @@
           <h2>{{ m.title }}</h2>
           <!--eslint-disable-next-line vue/no-v-html-->
           <div v-html="parser.render(m.body)"></div>
-          <div>{{ new Date(m.timeStamp * 1000).toLocaleString() }}</div>
+          <div>{{ unixTimeToString(m.timeStamp) }}</div>
         </ONotification>
       </template>
     </section>
@@ -93,6 +93,7 @@ import MarkdownIt from 'markdown-it'
 import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
+import { unixTimeToString } from '~~/utils/date'
 import {
   courseSeriesIndexes,
   levels,
