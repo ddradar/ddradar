@@ -37,11 +37,13 @@ describe('Page /admin/notification', () => {
 
   // Method
   describe('saveNotification', () => {
-    test('calls POST /api/v1/notification', () => {
-      // Arrange
+    beforeEach(() => {
       vi.mocked(useProgrammatic).mockClear()
       vi.mocked($fetch).mockClear()
+    })
 
+    test('calls POST /api/v1/notification', async () => {
+      // Arrange
       const modalOpen = vi.fn()
       modalOpen.mockReturnValue({ promise: Promise.resolve('yes') })
       /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -73,5 +75,34 @@ describe('Page /admin/notification', () => {
         },
       })
     })
+    test.each(['no', 'canceled'])(
+      'does not call API if pressed "%s"',
+      async close => {
+        // Arrange
+        const modalOpen = vi.fn()
+        modalOpen.mockReturnValue({ promise: Promise.resolve(close) })
+        /* eslint-disable @typescript-eslint/no-explicit-any */
+        vi.mocked(useProgrammatic).mockReturnValue({
+          oruga: {
+            modal: { open: modalOpen },
+            notification: { open: vi.fn() },
+          },
+        } as any)
+        vi.mocked($fetch).mockResolvedValue({ ...notification } as any)
+        /* eslint-enable @typescript-eslint/no-explicit-any */
+
+        // Act
+        const wrapper = await mountAsync(Page, {
+          global: { plugins: [[Oruga, bulmaConfig]] },
+        })
+        const vm = wrapper.getComponent(Page).vm as unknown as {
+          saveNotification(): Promise<void>
+        }
+        await vm.saveNotification()
+
+        // Assert
+        vi.mocked($fetch).not.toBeCalled()
+      }
+    )
   })
 })
