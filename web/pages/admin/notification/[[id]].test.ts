@@ -1,7 +1,7 @@
 import { notification } from '@ddradar/core/test/data'
 import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
-import { describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import Page from '~~/pages/admin/notification/[[id]].vue'
 import { mountAsync } from '~~/test/test-utils'
