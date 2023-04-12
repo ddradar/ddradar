@@ -68,7 +68,7 @@ describe('Page /admin/notification', () => {
       await vm.saveNotification()
 
       // Assert
-      vi.mocked($fetch).toBeCalledWith('/api/v1/notification', {
+      expect(vi.mocked($fetch)).toBeCalledWith('/api/v1/notification', {
         method: 'POST',
         body: {
           sender: 'SYSTEM',
@@ -99,7 +99,7 @@ describe('Page /admin/notification', () => {
         await vm.saveNotification()
 
         // Assert
-        vi.mocked($fetch).not.toBeCalled()
+        expect(vi.mocked($fetch)).not.toBeCalled()
       }
     )
   })
