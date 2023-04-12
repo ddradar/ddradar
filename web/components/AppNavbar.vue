@@ -54,39 +54,59 @@
         <div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">{{ name }}</a>
           <div class="navbar-dropdown is-right">
-            <div class="buttons">
-              <OButton
-                icon-left="account"
-                variant="info"
-                tag="NuxtLink"
-                :to="`/users/${id}`"
-              >
-                {{ t('menu.mypage') }}
-              </OButton>
-              <OButton variant="warning" @click="logout()">
-                {{ t('menu.logout') }}
-              </OButton>
+            <div class="navbar-item">
+              <div class="field">
+                <div class="control">
+                  <OButton
+                    icon-left="account"
+                    variant="info"
+                    tag="NuxtLink"
+                    :to="`/users/${id}`"
+                  >
+                    {{ t('menu.mypage') }}
+                  </OButton>
+                </div>
+              </div>
+            </div>
+            <div class="navbar-item">
+              <div class="field">
+                <div class="control">
+                  <OButton variant="warning" @click="logout()">
+                    {{ t('menu.logout') }}
+                  </OButton>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div v-else class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">{{ t('menu.login') }}</a>
           <div class="navbar-dropdown is-right">
-            <div class="buttons">
-              <OButton
-                icon-left="twitter"
-                variant="info"
-                @click="login('twitter')"
-              >
-                {{ t('menu.login_via', { provider: 'Twitter' }) }}
-              </OButton>
-              <OButton
-                icon-left="github"
-                variant="dark"
-                @click="login('github')"
-              >
-                {{ t('menu.login_via', { provider: 'GitHub' }) }}
-              </OButton>
+            <div class="navbar-item">
+              <div class="field">
+                <div class="control">
+                  <OButton
+                    icon-left="twitter"
+                    variant="info"
+                    @click="login('twitter')"
+                  >
+                    {{ t('menu.login_via', { provider: 'Twitter' }) }}
+                  </OButton>
+                </div>
+              </div>
+            </div>
+            <div class="navbar-item">
+              <div class="field">
+                <div class="control">
+                  <OButton
+                    icon-left="github"
+                    variant="dark"
+                    @click="login('github')"
+                  >
+                    {{ t('menu.login_via', { provider: 'GitHub' }) }}
+                  </OButton>
+                </div>
+              </div>
             </div>
           </div>
         </div>

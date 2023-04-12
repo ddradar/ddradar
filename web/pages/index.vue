@@ -1,35 +1,98 @@
 <template>
-  <section class="section">
-    <h2 class="subtitle">曲/譜面を探す</h2>
-    <div class="columns is-multiline">
-      <section
-        v-for="m in menuList"
-        :key="m.title"
-        class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-      >
-        <CollapsibleCard :title="m.title" variant="primary" collapsible>
-          <div class="card-content">
-            <div class="buttons">
-              <NuxtLink
-                v-for="i in m.items"
-                :key="i.name"
-                class="button is-text"
-                :to="i.to"
-              >
-                {{ i.name }}
-              </NuxtLink>
+  <section>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+          <h1 class="title">DDRadar</h1>
+          <p class="subtitle">{{ t('subtitle') }}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <template v-if="loading">
+        <OSkeleton animated />
+        <OSkeleton animated />
+        <OSkeleton animated />
+      </template>
+      <template v-else-if="messages">
+        <ONotification
+          v-for="(m, i) in messages"
+          :key="i"
+          closable
+          :icon="m.icon"
+          :variant="m.type"
+        >
+          <h2>{{ m.title }}</h2>
+          <!--eslint-disable-next-line vue/no-v-html-->
+          <div v-html="markdownToHTML(m.body)"></div>
+          <div>{{ unixTimeToString(m.timeStamp) }}</div>
+        </ONotification>
+      </template>
+    </section>
+
+    <section class="section">
+      <div class="columns is-multiline">
+        <section
+          v-for="m in menuList"
+          :key="m.title"
+          class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+        >
+          <CollapsibleCard :title="m.title" variant="primary" collapsible>
+            <div class="card-content">
+              <div class="buttons">
+                <NuxtLink
+                  v-for="i in m.items"
+                  :key="i.name"
+                  class="button is-text"
+                  :to="i.to"
+                >
+                  {{ i.name }}
+                </NuxtLink>
+              </div>
             </div>
-          </div>
-        </CollapsibleCard>
-      </section>
-    </div>
+          </CollapsibleCard>
+        </section>
+      </div>
+    </section>
   </section>
 </template>
 
+<i18n lang="json">
+{
+  "ja": {
+    "old_notification": "過去のお知らせ一覧",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "曲名から探す",
+      "series": "バージョンから探す",
+      "level": "レベルから探す({style})",
+      "course": "コースから探す"
+    },
+    "grade": "段位認定({series})",
+    "nonstop": "NONSTOP({series})"
+  },
+  "en": {
+    "old_notification": "Old Notification",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "Choose by Name",
+      "series": "Choose by Version",
+      "level": "Choose by LV ({style})",
+      "course": "Choose by Courses"
+    },
+    "grade": "GRADE({series})",
+    "nonstop": "NONSTOP({series})"
+  }
+}
+</i18n>
+
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
+import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
+import { markdownToHTML, unixTimeToString } from '~~/utils/format'
 import {
   courseSeriesIndexes,
   levels,
@@ -37,40 +100,39 @@ import {
   shortenSeriesName,
 } from '~~/utils/song'
 
+const { t } = useI18n()
+const { data: messages, pending: loading } = await useLazyFetch(
+  '/api/v1/notification',
+  { query: { scope: 'top' } }
+)
+
 const menuList = [
   {
-    title: '曲名から探す',
+    title: t('search.name'),
     items: [...nameIndexMap.entries()].map(([i, name]) => ({
       name,
       to: `/songs?name=${i}`,
     })),
   },
   {
-    title: 'シリーズから探す',
+    title: t('search.series'),
     items: seriesNames.map((s, i) => ({
       name: shortenSeriesName(s),
       to: `/songs?series=${i}`,
     })),
   },
-  {
-    title: 'レベルから探す(SINGLE)',
+  ...['SINGLE', 'DOUBLE'].map((style, i) => ({
+    title: t('search.level', { style }),
     items: levels.map(name => ({
       name,
-      to: `/charts?style=1&level=${name}`,
+      to: `/charts?style=${i + 1}&level=${name}`,
     })),
-  },
+  })),
   {
-    title: 'レベルから探す(DOUBLE)',
-    items: levels.map(name => ({
-      name,
-      to: `/charts?style=2&level=${name}`,
-    })),
-  },
-  {
-    title: 'コースから探す',
+    title: t('search.course'),
     items: courseSeriesIndexes.flatMap(series =>
-      ['NONSTOP', '段位認定'].map((s, i) => ({
-        name: `${s} (${shortenSeriesName(seriesNames[series])})`,
+      ['nonstop', 'grade'].map((s, i) => ({
+        name: t(s, { series: shortenSeriesName(seriesNames[series]) }),
         to: `/courses?type=${i + 1}&series=${series}`,
       }))
     ),

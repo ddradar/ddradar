@@ -11,10 +11,8 @@ import { mountAsync } from '~~/test/test-utils'
 
 const open = vi.fn()
 vi.mock('~~/composables/useAuth')
-vi.mock('@oruga-ui/oruga-next', async () => {
-  const actual = (await vi.importActual(
-    '@oruga-ui/oruga-next'
-  )) as typeof import('@oruga-ui/oruga-next')
+vi.mock('@oruga-ui/oruga-next', async origin => {
+  const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
   return { ...actual, useProgrammatic: vi.fn() }
 })
 vi.mocked(useProgrammatic).mockReturnValue({

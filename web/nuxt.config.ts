@@ -22,4 +22,12 @@ export default defineNuxtConfig({
   },
   css: ['@/assets/css/main.scss'],
   modules: ['@nuxtjs/i18n'],
+  i18n: {
+    locales: [
+      { code: 'en', iso: 'en-US', name: 'English' },
+      { code: 'ja', iso: 'ja-JP', name: '日本語' },
+    ],
+    defaultLocale: 'ja',
+    strategy: 'no_prefix',
+  },
 })

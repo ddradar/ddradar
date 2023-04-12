@@ -10,6 +10,7 @@ vi.stubGlobal('computed', computed)
 vi.stubGlobal('navigateTo', vi.fn())
 vi.stubGlobal('$fetch', vi.fn())
 vi.stubGlobal('useFetch', vi.fn())
+vi.stubGlobal('useLazyFetch', vi.fn())
 vi.stubGlobal('useRoute', vi.fn())
 vi.stubGlobal('useRuntimeConfig', vi.fn())
 vi.stubGlobal('useState', <T>(funcOrKey: string | (() => T), func?: () => T) =>
