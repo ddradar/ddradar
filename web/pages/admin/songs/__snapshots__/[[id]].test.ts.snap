@@ -1,0 +1,1130 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Page /admin/songs > snapshot tests > renders correctly 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    Add/Update Song
+  </h1>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      Song ID
+      
+    </label>
+    
+    
+    <div
+      class="field"
+    >
+      
+      <!--v-if-->
+      
+      <div
+        class="control"
+      >
+        <div
+          class="field is-grouped"
+        >
+          
+          <div
+            class="control"
+          >
+            <input
+              autocomplete="off"
+              class="input"
+              maxlength="32"
+              pattern="^[01689bdiloqDIOPQ]{32}$"
+              required=""
+              type="text"
+            />
+            <!--v-if-->
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <button
+            class="button is-primary"
+            type="button"
+          >
+            <span
+              class="button-wrapper"
+            >
+              <!--v-if-->
+              <span
+                class=""
+              >
+                
+                 Load 
+                
+              </span>
+              <!--v-if-->
+            </span>
+          </button>
+          <a
+            class="button is-info"
+            href="https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+            target="_blank"
+          >
+            <span
+              class="button-wrapper"
+            >
+              <!--v-if-->
+              <span
+                class=""
+              >
+                
+                 See Thumbnail 
+                
+              </span>
+              <!--v-if-->
+            </span>
+          </a>
+          
+        </div>
+      </div>
+      <!--v-if-->
+    </div>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      Name
+      
+    </label>
+    
+    
+    <div
+      class="control"
+    >
+      <input
+        autocomplete="off"
+        class="input"
+        required=""
+        type="text"
+      />
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      Furigana
+      
+    </label>
+    
+    <div
+      class="control"
+    >
+      <div
+        class="field has-addons"
+      >
+        
+        <div
+          class="control"
+        >
+          <input
+            autocomplete="off"
+            class="input"
+            pattern="^[A-Z0-9 .ぁ-んー]+$"
+            placeholder="A-Z 0-9 . あ-ん ー"
+            required=""
+            type="text"
+          />
+          <!--v-if-->
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <button
+          class="button"
+          type="button"
+        >
+          <span
+            class="button-wrapper"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                class="mdi mdi-pencil mdi-24px"
+              />
+            </span>
+            <span
+              class=""
+            >
+              
+              Auto Set
+              
+            </span>
+            <!--v-if-->
+          </span>
+        </button>
+        
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      Artist
+      
+    </label>
+    
+    
+    <div
+      class="control"
+    >
+      <input
+        autocomplete="off"
+        class="input"
+        type="text"
+      />
+      <!--v-if-->
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      Series
+      
+    </label>
+    
+    
+    <div
+      class="control select"
+    >
+      <select
+        class=""
+      >
+        
+        <!--v-if-->
+        
+        
+        
+        <option
+          value="DDR 1st"
+        >
+          DDR 1st
+        </option>
+        <option
+          value="DDR 2ndMIX"
+        >
+          DDR 2ndMIX
+        </option>
+        <option
+          value="DDR 3rdMIX"
+        >
+          DDR 3rdMIX
+        </option>
+        <option
+          value="DDR 4thMIX"
+        >
+          DDR 4thMIX
+        </option>
+        <option
+          value="DDR 5thMIX"
+        >
+          DDR 5thMIX
+        </option>
+        <option
+          value="DDRMAX"
+        >
+          DDRMAX
+        </option>
+        <option
+          value="DDRMAX2"
+        >
+          DDRMAX2
+        </option>
+        <option
+          value="DDR EXTREME"
+        >
+          DDR EXTREME
+        </option>
+        <option
+          value="DDR SuperNOVA"
+        >
+          DDR SuperNOVA
+        </option>
+        <option
+          value="DDR SuperNOVA2"
+        >
+          DDR SuperNOVA2
+        </option>
+        <option
+          value="DDR X"
+        >
+          DDR X
+        </option>
+        <option
+          value="DDR X2"
+        >
+          DDR X2
+        </option>
+        <option
+          value="DDR X3 VS 2ndMIX"
+        >
+          DDR X3 VS 2ndMIX
+        </option>
+        <option
+          value="DanceDanceRevolution (2013)"
+        >
+          DanceDanceRevolution (2013)
+        </option>
+        <option
+          value="DanceDanceRevolution (2014)"
+        >
+          DanceDanceRevolution (2014)
+        </option>
+        <option
+          value="DanceDanceRevolution A"
+        >
+          DanceDanceRevolution A
+        </option>
+        <option
+          value="DanceDanceRevolution A20"
+        >
+          DanceDanceRevolution A20
+        </option>
+        <option
+          value="DanceDanceRevolution A20 PLUS"
+        >
+          DanceDanceRevolution A20 PLUS
+        </option>
+        <option
+          value="DanceDanceRevolution A3"
+        >
+          DanceDanceRevolution A3
+        </option>
+        
+        
+      </select>
+      <!--v-if-->
+      <!--v-if-->
+    </div>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <label
+      class="label"
+    >
+      
+      BPM
+      
+    </label>
+    
+    
+    <div
+      class="field"
+    >
+      
+      <!--v-if-->
+      
+      <div
+        class="control"
+      >
+        <div
+          class="field is-grouped"
+        >
+          
+          <div
+            class="control"
+          >
+            <input
+              autocomplete="off"
+              class="input"
+              modelmodifiers="[object Object]"
+              placeholder="min"
+              type="number"
+            />
+            <!--v-if-->
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <span
+            class="control"
+          >
+            -
+          </span>
+          <div
+            class="control"
+          >
+            <input
+              autocomplete="off"
+              class="input"
+              modelmodifiers="[object Object]"
+              placeholder="max"
+              type="number"
+            />
+            <!--v-if-->
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          
+        </div>
+      </div>
+      <!--v-if-->
+    </div>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <!--v-if-->
+    
+    
+    <label
+      class="b-checkbox checkbox"
+    >
+      <input
+        class="check"
+        false-value="false"
+        true-value="true"
+        type="checkbox"
+        value="false"
+      />
+      <span
+        class="control-label"
+      >
+        
+        Deleted
+        
+      </span>
+    </label>
+    
+    <!--v-if-->
+  </div>
+  
+  <div
+    class="field"
+  >
+    
+    <!--v-if-->
+    
+    <div
+      class="control"
+    >
+      <div
+        class="field is-grouped-multiline is-grouped"
+      >
+        
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control select"
+              >
+                <select
+                  class=""
+                  modelmodifiers="[object Object]"
+                >
+                  
+                  <!--v-if-->
+                  
+                  
+                  <option
+                    value="1"
+                  >
+                    SINGLE
+                  </option>
+                  <option
+                    value="2"
+                  >
+                    DOUBLE
+                  </option>
+                  
+                </select>
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control select"
+              >
+                <select
+                  class=""
+                  modelmodifiers="[object Object]"
+                >
+                  
+                  <!--v-if-->
+                  
+                  
+                  
+                  <option
+                    value="0"
+                  >
+                    BEGINNER
+                  </option>
+                  <option
+                    value="1"
+                  >
+                    BASIC
+                  </option>
+                  <option
+                    value="2"
+                  >
+                    DIFFICULT
+                  </option>
+                  <option
+                    value="3"
+                  >
+                    EXPERT
+                  </option>
+                  <option
+                    value="4"
+                  >
+                    CHALLENGE
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="20"
+                  min="1"
+                  modelmodifiers="[object Object]"
+                  placeholder="Level"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Notes"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="FA"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="SA"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Str"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Vol"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Air"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Fre"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Cha"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <button
+          class="button is-danger"
+          type="button"
+        >
+          <span
+            class="button-wrapper"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                class="mdi mdi-delete mdi-24px"
+              />
+            </span>
+            <!--v-if-->
+            <!--v-if-->
+          </span>
+        </button>
+        
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <!--v-if-->
+    
+    <div
+      class="control"
+    >
+      <div
+        class="field is-grouped-multiline is-grouped"
+      >
+        
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control select"
+              >
+                <select
+                  class=""
+                  modelmodifiers="[object Object]"
+                >
+                  
+                  <!--v-if-->
+                  
+                  
+                  <option
+                    value="1"
+                  >
+                    SINGLE
+                  </option>
+                  <option
+                    value="2"
+                  >
+                    DOUBLE
+                  </option>
+                  
+                </select>
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control select"
+              >
+                <select
+                  class=""
+                  modelmodifiers="[object Object]"
+                >
+                  
+                  <!--v-if-->
+                  
+                  
+                  
+                  <option
+                    value="0"
+                  >
+                    BEGINNER
+                  </option>
+                  <option
+                    value="1"
+                  >
+                    BASIC
+                  </option>
+                  <option
+                    value="2"
+                  >
+                    DIFFICULT
+                  </option>
+                  <option
+                    value="3"
+                  >
+                    EXPERT
+                  </option>
+                  <option
+                    value="4"
+                  >
+                    CHALLENGE
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="20"
+                  min="1"
+                  modelmodifiers="[object Object]"
+                  placeholder="Level"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Notes"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="FA"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="9999"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="SA"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="field"
+        >
+          
+          <!--v-if-->
+          
+          <div
+            class="control"
+          >
+            <div
+              class="field has-addons"
+            >
+              
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Str"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Vol"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Air"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Fre"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              <div
+                class="control"
+              >
+                <input
+                  autocomplete="off"
+                  class="input"
+                  max="300"
+                  min="0"
+                  modelmodifiers="[object Object]"
+                  placeholder="Cha"
+                  required=""
+                  type="number"
+                />
+                <!--v-if-->
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <button
+          class="button is-danger"
+          type="button"
+        >
+          <span
+            class="button-wrapper"
+          >
+            <span
+              class="icon"
+            >
+              <i
+                class="mdi mdi-delete mdi-24px"
+              />
+            </span>
+            <!--v-if-->
+            <!--v-if-->
+          </span>
+        </button>
+        
+      </div>
+    </div>
+    <!--v-if-->
+  </div>
+  
+  <div
+    class="field"
+  >
+    
+    <!--v-if-->
+    
+    
+    <button
+      class="button is-info"
+      type="button"
+    >
+      <span
+        class="button-wrapper"
+      >
+        <span
+          class="icon"
+        >
+          <i
+            class="mdi mdi-plus mdi-24px"
+          />
+        </span>
+        <span
+          class=""
+        >
+          
+           Add Chart 
+          
+        </span>
+        <!--v-if-->
+      </span>
+    </button>
+    
+    <!--v-if-->
+  </div>
+  <div
+    class="field"
+  >
+    
+    <!--v-if-->
+    
+    
+    <button
+      class="button is-success"
+      type="button"
+    >
+      <span
+        class="button-wrapper"
+      >
+        <!--v-if-->
+        <span
+          class=""
+        >
+          
+           Save 
+          
+        </span>
+        <!--v-if-->
+      </span>
+    </button>
+    
+    <!--v-if-->
+  </div>
+</section>
+`;
