@@ -1,7 +1,7 @@
 import { notification } from '@ddradar/core/test/data'
 import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import Page from '~~/pages/admin/notification/[[id]].vue'
 import { mountAsync } from '~~/test/test-utils'
@@ -15,6 +15,15 @@ vi.mock('@oruga-ui/oruga-next', async origin => {
 })
 
 describe('Page /admin/notification', () => {
+  const modalOpen = vi.fn()
+  beforeAll(() => {
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useProgrammatic).mockReturnValue({
+      oruga: { modal: { open: modalOpen }, notification: { open: vi.fn() } },
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  })
+
   describe('snapshot tests', () => {
     test('renders correctly', async () => {
       // Arrange
@@ -44,12 +53,8 @@ describe('Page /admin/notification', () => {
 
     test('calls POST /api/v1/notification', async () => {
       // Arrange
-      const modalOpen = vi.fn()
       modalOpen.mockReturnValue({ promise: Promise.resolve('yes') })
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useProgrammatic).mockReturnValue({
-        oruga: { modal: { open: modalOpen }, notification: { open: vi.fn() } },
-      } as any)
       vi.mocked($fetch).mockResolvedValue({ ...notification } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -79,15 +84,8 @@ describe('Page /admin/notification', () => {
       'does not call API if pressed "%s"',
       async close => {
         // Arrange
-        const modalOpen = vi.fn()
         modalOpen.mockReturnValue({ promise: Promise.resolve(close) })
         /* eslint-disable @typescript-eslint/no-explicit-any */
-        vi.mocked(useProgrammatic).mockReturnValue({
-          oruga: {
-            modal: { open: modalOpen },
-            notification: { open: vi.fn() },
-          },
-        } as any)
         vi.mocked($fetch).mockResolvedValue({ ...notification } as any)
         /* eslint-enable @typescript-eslint/no-explicit-any */
 
