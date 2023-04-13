@@ -66,7 +66,7 @@ const _route = useRoute()
 const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
 
-const uri = `/api/v1/courses?type=${type}&series=${series}`
+const uri = `/api/v1/courses?type=${type}&series=${series}` as const
 const {
   data: courses,
   pending: isLoading,
