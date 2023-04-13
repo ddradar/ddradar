@@ -44,6 +44,31 @@ describe('Page /admin/notification', () => {
     })
   })
 
+  // Computed
+  describe('pageTitle', () => {
+    test.each([
+      [notification.id, 'Update Notification'],
+      ['', 'Add Notification'],
+    ])('{ id: "%s" } returns "%s"', async (id, title) => {
+      // Arrange
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useRoute).mockReturnValue({ params: { id } } as any)
+      vi.mocked(useFetch).mockResolvedValue({ data: ref(notification) } as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
+
+      // Act
+      const wrapper = await mountAsync(Page, {
+        global: { plugins: [[Oruga, bulmaConfig]] },
+      })
+      const vm = wrapper.getComponent(Page).vm as unknown as {
+        pageTitle: string
+      }
+
+      // Assert
+      expect(vm.pageTitle).toBe(title)
+    })
+  })
+
   // Method
   describe('saveNotification', () => {
     beforeEach(() => {
@@ -55,6 +80,7 @@ describe('Page /admin/notification', () => {
       // Arrange
       modalOpen.mockReturnValue({ promise: Promise.resolve('yes') })
       /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useRoute).mockReturnValue({ params: { id: '' } } as any)
       vi.mocked($fetch).mockResolvedValue({ ...notification } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -86,6 +112,7 @@ describe('Page /admin/notification', () => {
         // Arrange
         modalOpen.mockReturnValue({ promise: Promise.resolve(close) })
         /* eslint-disable @typescript-eslint/no-explicit-any */
+        vi.mocked(useRoute).mockReturnValue({ params: { id: '' } } as any)
         vi.mocked($fetch).mockResolvedValue({ ...notification } as any)
         /* eslint-enable @typescript-eslint/no-explicit-any */
 

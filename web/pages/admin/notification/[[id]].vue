@@ -3,19 +3,19 @@
     <h1 class="title">{{ pageTitle }}</h1>
 
     <OField label="Title">
-      <OInput v-model="notification!.title" required />
+      <OInput v-model="notification.title" required />
     </OField>
 
     <OField label="Body">
-      <OInput v-model="notification!.body" required type="textarea" />
+      <OInput v-model="notification.body" required type="textarea" />
     </OField>
 
     <OField>
-      <OSwitch v-model="notification!.pinned">ピン留めする</OSwitch>
+      <OSwitch v-model="notification.pinned">ピン留めする</OSwitch>
     </OField>
 
     <OField label="Type">
-      <OSelect v-model="notification!.type" placeholder="Type">
+      <OSelect v-model="notification.type" placeholder="Type">
         <option value="info">情報</option>
         <option value="warning">警告</option>
         <option value="danger">エラー</option>
@@ -24,7 +24,7 @@
 
     <OField label="Icon">
       <OField grouped>
-        <OInput v-model="notification!.icon" :icon-right="notification!.icon" />
+        <OInput v-model="notification.icon" :icon-right="notification.icon" />
         <OButton variant="text" tag="a" href="https://materialdesignicons.com/">
           参考ページ
         </OButton>
@@ -53,21 +53,24 @@ const _route = useRoute()
 const { oruga } = useProgrammatic()
 
 const id = _route.params.id as string
-const { data: notification } = await useFetch<NotificationBody>(
-  `/api/v1/notification/${id}`
-)
-notification.value ??= {
+const notification = useState<NotificationBody>(() => ({
   sender: 'SYSTEM',
   pinned: false,
   type: 'info',
   icon: '',
   title: '',
   body: '',
+}))
+if (id) {
+  const _fetchData = await useFetch<NotificationBody>(
+    `/api/v1/notification/${id}`
+  )
+  notification.value = _fetchData.data.value!
 }
 
 const pageTitle = computed(() => `${id ? 'Update' : 'Add'} Notification`)
 const hasError = computed(
-  () => !notification.value!.title || !notification.value!.body
+  () => !notification.value.title || !notification.value.body
 )
 
 const saveNotification = async () => {
