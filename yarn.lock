@@ -5176,10 +5176,10 @@ h3@^1.5.0, h3@^1.6.2, h3@^1.6.4:
     ufo "^1.1.1"
     uncrypto "^0.1.2"
 
-happy-dom@^9.1.9:
-  version "9.1.9"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.1.9.tgz#d369f0086c67a8acdac8756cd3d4edf6054ac98d"
-  integrity sha512-OMbnoknA7iNNG/5fwt1JckCKc53QLLFo2ljzit1pCV9SC1TYwcQj0obq0QUTeqIf2p2skbFG69bo19YoSj/1DA==
+happy-dom@^9.1.9, happy-dom@^9.10.2:
+  version "9.10.2"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.10.2.tgz#2590b3ec47f3f7a6118b5584c5e1b66ed2432979"
+  integrity sha512-PZ+UzoU7S8/has8Zw7tr8WGPAAr1QVrAc9o2Llhtuf6aewnR4DDmhPU1Z8KzWwSjXOE+d+b38qNfwHU35PSMIw==
   dependencies:
     css.escape "^1.5.1"
     he "^1.2.0"
