@@ -8,7 +8,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
     appear="false"
     css="true"
     name="fade"
-    persisted="false"
+    persisted="true"
   >
     <article
       class="notification is-danger"
@@ -57,7 +57,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -151,7 +151,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -588,7 +588,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -660,6 +660,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
           <input
             class=""
             false-value="false"
+            role="switch"
             true-value="true"
             type="checkbox"
             value="false"
@@ -745,7 +746,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
     appear="false"
     css="true"
     name="fade"
-    persisted="false"
+    persisted="true"
   >
     <article
       class="notification is-danger"
@@ -794,7 +795,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -888,7 +889,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -1325,7 +1326,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
           appear="false"
           css="true"
           name="fade"
-          persisted="false"
+          persisted="true"
         >
           <div
             class="tooltip-content is-right is-dark"
@@ -1397,6 +1398,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
           <input
             class=""
             false-value="false"
+            role="switch"
             true-value="true"
             type="checkbox"
             value="false"

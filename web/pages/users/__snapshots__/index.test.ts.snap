@@ -520,10 +520,11 @@ exports[`Page /users > { locale: en } snapshot test > { loading: true } renders 
       >
         <table
           class="table is-striped is-empty"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <!--v-if-->
               <!--v-if-->
@@ -1229,10 +1230,11 @@ exports[`Page /users > { locale: en } snapshot test > { users: [...] } renders u
       >
         <table
           class="table is-striped"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <!--v-if-->
               <!--v-if-->
@@ -2008,7 +2010,6 @@ exports[`Page /users > { locale: en } snapshot test > { users: [] } renders empt
       >
         <table
           class="table is-striped is-empty"
-          tabindex="false"
         >
           <!--v-if-->
           <!--v-if-->
@@ -2638,10 +2639,11 @@ exports[`Page /users > { locale: ja } snapshot test > { loading: true } renders 
       >
         <table
           class="table is-striped is-empty"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <!--v-if-->
               <!--v-if-->
@@ -3347,10 +3349,11 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [...] } renders u
       >
         <table
           class="table is-striped"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <!--v-if-->
               <!--v-if-->
@@ -4126,7 +4129,6 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [] } renders empt
       >
         <table
           class="table is-striped is-empty"
-          tabindex="false"
         >
           <!--v-if-->
           <!--v-if-->

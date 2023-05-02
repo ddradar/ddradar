@@ -147,10 +147,11 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -493,10 +494,11 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
     >
       <table
         class="table is-striped"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -974,10 +976,11 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->

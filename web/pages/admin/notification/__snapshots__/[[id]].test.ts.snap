@@ -78,6 +78,7 @@ exports[`Page /admin/notification > snapshot tests > renders correctly 1`] = `
       <input
         class=""
         false-value="false"
+        role="switch"
         true-value="true"
         type="checkbox"
         value="false"

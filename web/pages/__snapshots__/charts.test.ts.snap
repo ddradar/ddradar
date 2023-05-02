@@ -156,10 +156,11 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: <Data> } ren
     >
       <table
         class="table is-striped"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -607,10 +608,11 @@ exports[`Page /charts > snapshot tests > { isLoading: false, songs: [] } renders
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -962,10 +964,11 @@ exports[`Page /charts > snapshot tests > { isLoading: true } renders loading sta
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
