@@ -6,7 +6,7 @@ config()
 import type { CourseSchema, Difficulty, StepChartSchema } from '@ddradar/core'
 import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import consola from 'consola'
+import { consola } from 'consola'
 
 import { fetchSongs } from './modules/database'
 

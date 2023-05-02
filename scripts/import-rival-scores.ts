@@ -3,7 +3,7 @@ import { config } from 'dotenv'
 // load .env file
 config()
 
-import consola from 'consola'
+import { consola } from 'consola'
 
 import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
@@ -58,7 +58,7 @@ async function main(ddrCode: string) {
     }, singleScores)
 
     for (const [id, scores] of Object.entries(singleScores)) {
-      const songScope = consola.withScope('Song')
+      const songScope = consola.withTag('Song')
       if (scores.length === 0) {
         songScope.info('No scores. skiped')
         continue
