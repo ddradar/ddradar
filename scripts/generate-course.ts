@@ -6,7 +6,7 @@ config()
 import type { CourseSchema, StepChartSchema } from '@ddradar/core'
 import { isValidSongId } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import consola from 'consola'
+import { consola } from 'consola'
 
 import { fetchSongs } from './modules/database'
 

@@ -5,7 +5,7 @@ config()
 
 import { difficultyMap, isPageDeletedOnGate, playStyleMap } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import consola from 'consola'
+import { consola } from 'consola'
 
 import { postSongScores } from './modules/api'
 import Browser from './modules/browser'
@@ -56,7 +56,7 @@ async function main(ddrCode: string) {
 
   let count = 1
   for (const s of resources) {
-    const songScope = consola.withScope('song')
+    const songScope = consola.withTag('song')
     const songName = `(${count++}/${resources.length + 1}) ${s.name} (${s.id})`
     if (isPageDeletedOnGate(s.id)) {
       songScope.info(`${songName} Deleted on e-AMUSEMENT GATE. skiped.`)
@@ -67,7 +67,7 @@ async function main(ddrCode: string) {
     const scores: Parameters<typeof postSongScores>[3] = []
 
     for (const c of s.charts) {
-      const chartScope = songScope.withScope('chart')
+      const chartScope = songScope.withTag('chart')
       const chart = `${style.get(c.playStyle)}/${diff.get(c.difficulty)}`
 
       try {
