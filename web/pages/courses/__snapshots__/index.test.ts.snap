@@ -72,10 +72,11 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
     >
       <table
         class="table is-striped"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -332,10 +333,11 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->
@@ -563,10 +565,11 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
     >
       <table
         class="table is-striped is-empty"
-        tabindex="false"
       >
         <!--v-if-->
         <thead>
+          
+          
           <tr>
             <!--v-if-->
             <!--v-if-->

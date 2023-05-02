@@ -62,7 +62,7 @@ exports[`Page / > { locale: "en" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-info"
@@ -133,7 +133,7 @@ exports[`Page / > { locale: "en" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-warning"
@@ -189,7 +189,7 @@ exports[`Page / > { locale: "en" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-info"
@@ -1147,7 +1147,7 @@ exports[`Page / > { locale: "ja" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-info"
@@ -1218,7 +1218,7 @@ exports[`Page / > { locale: "ja" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-warning"
@@ -1274,7 +1274,7 @@ exports[`Page / > { locale: "ja" } snapshot test > ({ messages: [...] }) renders
       appear="false"
       css="true"
       name="fade"
-      persisted="false"
+      persisted="true"
     >
       <article
         class="notification is-info"

@@ -72,10 +72,11 @@ exports[`Page /notification > { locale: "en" } snapshot test > ({ messages: [...
       >
         <table
           class="table is-striped"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <th
                 class="th-chevron-cell"
@@ -532,10 +533,11 @@ exports[`Page /notification > { locale: "ja" } snapshot test > ({ messages: [...
       >
         <table
           class="table is-striped"
-          tabindex="false"
         >
           <!--v-if-->
           <thead>
+            
+            
             <tr>
               <th
                 class="th-chevron-cell"
