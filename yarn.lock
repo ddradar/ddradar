@@ -1306,12 +1306,12 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@happy-dom/global-registrator@^9.10.4":
-  version "9.10.4"
-  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-9.10.4.tgz#25d8a158835b8274fc573ed64c2413a4f6a32973"
-  integrity sha512-eI7DlbakpelWp8JihNU1vWJRSeBy+MXnK2JOCmyA85JfuBefRRSHCbX+GI0zfkwQnFtsrPcFa8Df3D3yIDbKJA==
+"@happy-dom/global-registrator@^9.20.3":
+  version "9.20.3"
+  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-9.20.3.tgz#f6e92fede18f2a4d20346b4f83a759054640eb4c"
+  integrity sha512-B0QBs7KNa6QnypXUMSFZLf38Lttwqtfw2fWG+BiJfzn93rITQxDTxwHMIYIWJIYUmmidjITOCEwYbA0O0Vjgjg==
   dependencies:
-    happy-dom "^9.10.4"
+    happy-dom "^9.20.3"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -4167,6 +4167,11 @@ entities@^4.2.0:
   resolved "https://registry.yarnpkg.com/entities/-/entities-4.4.0.tgz#97bdaba170339446495e653cfd2db78962900174"
   integrity sha512-oYp7156SP8LkeGD0GF85ad1X9Ai79WtRsZ2gxJqtBuzH+98YUV6jkHEKlZkMbcrjJjIVJNIDP/3WL9wQkoPbWA==
 
+entities@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/entities/-/entities-4.5.0.tgz#5d268ea5e7113ec74c4d033b79ea5a35a488fb48"
+  integrity sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==
+
 entities@~3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/entities/-/entities-3.0.1.tgz#2b887ca62585e96db3903482d336c1006c3001d4"
@@ -5290,13 +5295,13 @@ h3@^1.6.6:
     ufo "^1.1.2"
     uncrypto "^0.1.2"
 
-happy-dom@^9.10.4:
-  version "9.10.4"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.10.4.tgz#6a8125aedbdf0c11a7413a0bfb75e26592902e7c"
-  integrity sha512-x/IrqzXkVqrYsRwRIZMEFAea4mduFzJd0AFo+K/f2R/H9dPxwhBpaSFUbXZK60xm+lqxmRzUFFUiatGoA8A6Rw==
+happy-dom@^9.10.4, happy-dom@^9.20.3:
+  version "9.20.3"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.20.3.tgz#4b097e889b33ef553d1c62b25a797ff05f7528e3"
+  integrity sha512-eBsgauT435fXFvQDNcmm5QbGtYzxEzOaX35Ia+h6yP/wwa4xSWZh1CfP+mGby8Hk6Xu59mTkpyf72rUXHNxY7A==
   dependencies:
     css.escape "^1.5.1"
-    he "^1.2.0"
+    entities "^4.5.0"
     iconv-lite "^0.6.3"
     webidl-conversions "^7.0.0"
     whatwg-encoding "^2.0.0"
@@ -5362,11 +5367,6 @@ hash-sum@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/hash-sum/-/hash-sum-2.0.0.tgz#81d01bb5de8ea4a214ad5d6ead1b523460b0b45a"
   integrity sha512-WdZTbAByD+pHfl/g9QSsBIIwy8IT+EsPiKDs0KNX+zSHhdDLFKdZu0BQHljvO+0QI/BasbMSUa8wYNCZTvhslg==
-
-he@^1.2.0:
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
-  integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
 header-case@^2.0.4:
   version "2.0.4"
