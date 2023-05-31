@@ -40,10 +40,10 @@ describe('/eagate.ts', () => {
     ]
     /** きゅん×きゅんばっきゅん☆LOVE SINGLE scores */
     const QIDd80o0OqobODP00ldQ1D9dl81qQi0d = [
-      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 0, 700000, 2, 'B'),
-      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 1, 690000, 2, 'B-'),
-      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 2, 650000, 2, 'C+'),
-      createScore('きゅん&times;きゅんばっきゅん☆LOVE', 1, 3, 620000, 2, 'C'),
+      createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 0, 700000, 2, 'B'),
+      createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 1, 690000, 2, 'B-'),
+      createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 2, 650000, 2, 'C+'),
+      createScore('きゅん×きゅんばっきゅん☆LOVE', 1, 3, 620000, 2, 'C'),
     ]
     /** CHAOS SINGLE scores */
     const chaosScores = [
@@ -60,9 +60,9 @@ describe('/eagate.ts', () => {
     ]
     /** 逆さま♥シンデレラパレード DOUBLE scores */
     const llo89P08I1PlID9DO8lqdbbq69O8Qiib = [
-      createScore('逆さま&hearts;シンデレラパレード', 2, 1, 573000, 2, 'D+'),
-      createScore('逆さま&hearts;シンデレラパレード', 2, 2, 498000, 2, 'D'),
-      createScore('逆さま&hearts;シンデレラパレード', 2, 3, 45310, 0, 'E'),
+      createScore('逆さま♥シンデレラパレード', 2, 1, 573000, 2, 'D+'),
+      createScore('逆さま♥シンデレラパレード', 2, 2, 498000, 2, 'D'),
+      createScore('逆さま♥シンデレラパレード', 2, 3, 45310, 0, 'E'),
     ]
 
     test.each([
