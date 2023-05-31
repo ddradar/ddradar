@@ -1306,12 +1306,12 @@
   dependencies:
     "@hapi/hoek" "^9.0.0"
 
-"@happy-dom/global-registrator@^9.10.4":
-  version "9.10.4"
-  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-9.10.4.tgz#25d8a158835b8274fc573ed64c2413a4f6a32973"
-  integrity sha512-eI7DlbakpelWp8JihNU1vWJRSeBy+MXnK2JOCmyA85JfuBefRRSHCbX+GI0zfkwQnFtsrPcFa8Df3D3yIDbKJA==
+"@happy-dom/global-registrator@^9.20.3":
+  version "9.20.3"
+  resolved "https://registry.yarnpkg.com/@happy-dom/global-registrator/-/global-registrator-9.20.3.tgz#f6e92fede18f2a4d20346b4f83a759054640eb4c"
+  integrity sha512-B0QBs7KNa6QnypXUMSFZLf38Lttwqtfw2fWG+BiJfzn93rITQxDTxwHMIYIWJIYUmmidjITOCEwYbA0O0Vjgjg==
   dependencies:
-    happy-dom "^9.10.4"
+    happy-dom "^9.20.3"
 
 "@humanwhocodes/config-array@^0.11.8":
   version "0.11.8"
@@ -5290,7 +5290,7 @@ h3@^1.6.6:
     ufo "^1.1.2"
     uncrypto "^0.1.2"
 
-happy-dom@^9.10.4, happy-dom@^9.20.3:
+happy-dom@^9.20.3:
   version "9.20.3"
   resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-9.20.3.tgz#4b097e889b33ef553d1c62b25a797ff05f7528e3"
   integrity sha512-eBsgauT435fXFvQDNcmm5QbGtYzxEzOaX35Ia+h6yP/wwa4xSWZh1CfP+mGby8Hk6Xu59mTkpyf72rUXHNxY7A==
