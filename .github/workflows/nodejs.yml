@@ -46,6 +46,6 @@ jobs:
         run: yarn test
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v3.1.3
+        uses: codecov/codecov-action@v3.1.4
         with:
           files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json,./web/coverage/coverage-final.json
