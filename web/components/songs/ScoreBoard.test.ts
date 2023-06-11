@@ -20,7 +20,7 @@ vi.mock('~~/composables/useAuth')
 
 describe('components/songs/ScoreBoard.vue', () => {
   const props = {
-    info: { ...testSongData, charts: undefined },
+    songId: testSongData.id,
     chart: { ...testSongData.charts[0] },
   }
   const scores = testScores.map(s =>

@@ -56,7 +56,7 @@
         {{ t('button.edit') }}
       </a>
       <a
-        v-if="isLoggedIn && !isPageDeletedOnGate(info.id)"
+        v-if="isLoggedIn && !isPageDeletedOnGate(songId)"
         class="card-footer-item"
       >
         {{ t('button.import') }}
@@ -115,16 +115,12 @@ import { useI18n } from 'vue-i18n'
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
 import ScoreBadge from '~~/components/songs/ScoreBadge.vue'
 import useAuth from '~~/composables/useAuth'
-import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getChartTitle } from '~~/utils/song'
 
-type CourseChart = CourseInfo['charts'][number]
-type Chart = SongInfo['charts'][number] | CourseChart
-
 interface ScoreBoardProps {
-  info: SongInfo | CourseInfo
-  chart: Chart
+  songId: SongInfo['id']
+  chart: Pick<SongInfo['charts'][number], 'playStyle' | 'difficulty' | 'level'>
 }
 
 const props = defineProps<ScoreBoardProps>()
@@ -136,7 +132,7 @@ const {
   pending,
   refresh,
 } = await useFetch(
-  `/api/v1/scores/${props.info.id}/${props.chart.playStyle}/${props.chart.difficulty}`,
+  `/api/v1/scores/${props.songId}/${props.chart.playStyle}/${props.chart.difficulty}`,
   {
     query: computed(() => ({ scope: fetchAllData.value ? 'full' : 'medium' })),
     /** c8 ignore next */

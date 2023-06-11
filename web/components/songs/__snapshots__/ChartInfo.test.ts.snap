@@ -1,123 +1,28 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/songs/ChartInfo.vue > ({ chart: CourseChart }) snapshot test 1`] = `
+exports[`components/songs/ChartInfo.vue > ({
+  songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
+  chart: {
+    playStyle: 1,
+    difficulty: 0,
+    level: 4,
+    notes: 138,
+    freezeArrow: 0,
+    shockArrow: 0,
+    stream: 29,
+    voltage: 22,
+    air: 5,
+    freeze: 0,
+    chaos: 0
+  }
+}) snapshot test 1`] = `
 <section
   class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 >
-  <div
-    class="o-clps card"
-    data-v-a8d65a31=""
-  >
-    <div
-      class="o-clps__trigger"
-    >
-      <header
-        aria-controls="Chart Info"
-        class="card-header is-basic"
-        data-v-a8d65a31=""
-        role="button"
-      >
-        <div
-          class="card-header-title"
-          data-v-a8d65a31=""
-        >
-          Chart Info
-        </div>
-        <a
-          class="card-header-icon"
-          data-v-a8d65a31=""
-        >
-          <span
-            class="icon"
-            data-v-a8d65a31=""
-          >
-            <i
-              class="mdi mdi-menu-down mdi-24px"
-            />
-          </span>
-        </a>
-      </header>
-    </div>
-    <transition-stub
-      appear="false"
-      css="true"
-      name="slide"
-      persisted="false"
-    >
-      <div
-        class="o-clps__content"
-        id="Chart Info"
-        style="display: none;"
-      >
-        
-        <div
-          class="card-content"
-        >
-          <div
-            class="content"
-          >
-            <ul>
-              <li>
-                <em>
-                  Notes
-                </em>
-                : 782
-              </li>
-              <li>
-                <em>
-                  Freeze Arrow
-                </em>
-                : 36
-              </li>
-              <li>
-                <em>
-                  Shock Arrow
-                </em>
-                : 0
-              </li>
-            </ul>
-            <ol>
-              
-              <li>
-                <a>
-                  This Beat Is.....
-                </a>
-                 SP-BASIC (4)
-              </li>
-              <li>
-                <a>
-                  Waiting
-                </a>
-                 SP-BASIC (6)
-              </li>
-              <li>
-                <a>
-                  Dead Heat
-                </a>
-                 SP-BASIC (6)
-              </li>
-              <li>
-                <a>
-                  Neverland
-                </a>
-                 SP-BASIC (8)
-              </li>
-              
-            </ol>
-          </div>
-          <!--v-if-->
-        </div>
-        
-      </div>
-    </transition-stub>
-  </div>
-</section>
-`;
-
-exports[`components/songs/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1`] = `
-<section
-  class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
->
+  <score-board-stub
+    chart="[object Object]"
+    songid="06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+  />
   <div
     class="o-clps card"
     data-v-a8d65a31=""
@@ -254,6 +159,165 @@ exports[`components/songs/ChartInfo.vue > ({ chart: SongChart }) snapshot test 1
               </tbody>
             </table>
           </div>
+        </div>
+        
+      </div>
+    </transition-stub>
+  </div>
+</section>
+`;
+
+exports[`components/songs/ChartInfo.vue > ({
+  songId: 'I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob',
+  chart: {
+    playStyle: 1,
+    difficulty: 1,
+    level: 8,
+    notes: 782,
+    freezeArrow: 36,
+    shockArrow: 0,
+    order: [
+      {
+        songId: 'PdPdbdQ1lDI18O90Q0li8QI0bo99bidd',
+        songName: 'This Beat Is.....',
+        playStyle: 1,
+        difficulty: 1,
+        level: 4
+      },
+      {
+        songId: 'PPQb966D6Ql6Q8iPo68810PdDiI6D0bl',
+        songName: 'Waiting',
+        playStyle: 1,
+        difficulty: 1,
+        level: 6
+      },
+      {
+        songId: '6iO8d9ld00I6lDIO6qbOldP99oqloqb9',
+        songName: 'Dead Heat',
+        playStyle: 1,
+        difficulty: 1,
+        level: 6
+      },
+      {
+        songId: '1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo',
+        songName: 'Neverland',
+        playStyle: 1,
+        difficulty: 1,
+        level: 8
+      },
+      [length]: 4
+    ]
+  }
+}) snapshot test 1`] = `
+<section
+  class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
+>
+  <score-board-stub
+    chart="[object Object]"
+    songid="I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob"
+  />
+  <div
+    class="o-clps card"
+    data-v-a8d65a31=""
+  >
+    <div
+      class="o-clps__trigger"
+    >
+      <header
+        aria-controls="Chart Info"
+        class="card-header is-basic"
+        data-v-a8d65a31=""
+        role="button"
+      >
+        <div
+          class="card-header-title"
+          data-v-a8d65a31=""
+        >
+          Chart Info
+        </div>
+        <a
+          class="card-header-icon"
+          data-v-a8d65a31=""
+        >
+          <span
+            class="icon"
+            data-v-a8d65a31=""
+          >
+            <i
+              class="mdi mdi-menu-down mdi-24px"
+            />
+          </span>
+        </a>
+      </header>
+    </div>
+    <transition-stub
+      appear="false"
+      css="true"
+      name="slide"
+      persisted="false"
+    >
+      <div
+        class="o-clps__content"
+        id="Chart Info"
+        style="display: none;"
+      >
+        
+        <div
+          class="card-content"
+        >
+          <div
+            class="content"
+          >
+            <ul>
+              <li>
+                <em>
+                  Notes
+                </em>
+                : 782
+              </li>
+              <li>
+                <em>
+                  Freeze Arrow
+                </em>
+                : 36
+              </li>
+              <li>
+                <em>
+                  Shock Arrow
+                </em>
+                : 0
+              </li>
+            </ul>
+            <ol>
+              
+              <li>
+                <a>
+                  This Beat Is.....
+                </a>
+                 SP-BASIC (4)
+              </li>
+              <li>
+                <a>
+                  Waiting
+                </a>
+                 SP-BASIC (6)
+              </li>
+              <li>
+                <a>
+                  Dead Heat
+                </a>
+                 SP-BASIC (6)
+              </li>
+              <li>
+                <a>
+                  Neverland
+                </a>
+                 SP-BASIC (8)
+              </li>
+              
+            </ol>
+          </div>
+          <!--v-if-->
         </div>
         
       </div>

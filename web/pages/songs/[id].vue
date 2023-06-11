@@ -15,10 +15,20 @@
         </OButton>
       </div>
       <div class="content columns is-multiline">
-        <ChartInfo v-for="(chart, i) in singleCharts" :key="i" :chart="chart" />
+        <ChartInfo
+          v-for="(chart, i) in singleCharts"
+          :key="i"
+          :song-id="song.id"
+          :chart="chart"
+        />
       </div>
       <div class="content columns is-multiline">
-        <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
+        <ChartInfo
+          v-for="(chart, i) in doubleCharts"
+          :key="i"
+          :song-id="song.id"
+          :chart="chart"
+        />
       </div>
     </template>
     <template v-else>

@@ -7,21 +7,17 @@ import { describe, expect, test } from 'vitest'
 import ChartInfo from '~~/components/songs/ChartInfo.vue'
 
 describe('components/songs/ChartInfo.vue', () => {
-  const testProps = {
-    SongChart: testSongData.charts[0],
-    CourseChart: testCourseData.charts[1],
-  }
-  test.each(['SongChart', 'CourseChart'] as const)(
-    '({ chart: %s }) snapshot test',
-    key => {
-      const wrapper = mount(ChartInfo, {
-        props: { chart: testProps[key] },
-        global: {
-          plugins: [[Oruga, bulmaConfig]],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
-      expect(wrapper.element).toMatchSnapshot()
-    }
-  )
+  test.each([
+    { songId: testSongData.id, chart: testSongData.charts[0] },
+    { songId: testCourseData.id, chart: testCourseData.charts[1] },
+  ])('(%o) snapshot test', props => {
+    const wrapper = mount(ChartInfo, {
+      props,
+      global: {
+        plugins: [[Oruga, bulmaConfig]],
+        stubs: { NuxtLink: RouterLinkStub, ScoreBoard: true },
+      },
+    })
+    expect(wrapper.element).toMatchSnapshot()
+  })
 })
