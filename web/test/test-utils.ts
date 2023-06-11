@@ -10,7 +10,7 @@ export const mountAsync = async (
     defineComponent({
       render() {
         return h(Suspense, null, {
-          default: h(component),
+          default: h(component, options?.props),
           fallback: h('div', 'fallback'),
         })
       },
