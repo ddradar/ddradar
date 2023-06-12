@@ -1,11 +1,5 @@
-import { difficultyMap, isAreaUser, isPageDeletedOnGate } from '@ddradar/core'
-import {
-  privateUser,
-  publicUser,
-  testCourseData,
-  testScores,
-  testSongData,
-} from '@ddradar/core/test/data'
+import { isAreaUser } from '@ddradar/core'
+import { privateUser, testScores, testSongData } from '@ddradar/core/test/data'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
@@ -29,7 +23,7 @@ describe('components/songs/ScoreBoard.vue', () => {
   describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
     const i18n = createI18n({ legacy: false, locale })
 
-    test('{ pending: true } renders loading state', async () => {
+    test('{ loading: true } renders loading state', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useFetch).mockResolvedValue({
@@ -79,6 +73,38 @@ describe('components/songs/ScoreBoard.vue', () => {
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
+    })
+  })
+
+  describe('reloadAll()', () => {
+    test('calls refresh()', async () => {
+      // Arrange
+      const i18n = createI18n({ legacy: false, locale: 'en' })
+      const refresh = vi.fn()
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useFetch).mockResolvedValue({
+        pending: ref(false),
+        data: ref(scores),
+        refresh,
+      } as any)
+      vi.mocked(useAuth).mockResolvedValue({
+        id: ref(null),
+        isLoggedIn: ref(false),
+      } as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
+
+      // Act
+      const wrapper = await mountAsync(ScoreBoard, {
+        props,
+        global: {
+          plugins: [[Oruga, bulmaConfig], i18n],
+          stubs: { NuxtLink: RouterLinkStub },
+        },
+      })
+      await wrapper.find('a.card-footer-item').trigger('click')
+
+      // Assert
+      expect(refresh).toBeCalled()
     })
   })
 })

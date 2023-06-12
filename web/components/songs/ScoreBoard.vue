@@ -8,7 +8,7 @@
       <div class="table-container">
         <OTable
           :data="scores"
-          :loading="pending"
+          :loading="loading"
           :mobile-cards="false"
           :selected="userScore"
         >
@@ -61,7 +61,7 @@
       >
         {{ t('button.import') }}
       </a>
-      <a class="card-footer-item" @click="refresh()">
+      <a class="card-footer-item" @click="reloadAll()">
         {{ t('button.all') }}
       </a>
     </footer>
@@ -129,7 +129,7 @@ const { id, isLoggedIn } = await useAuth()
 const fetchAllData = useState(() => false)
 const {
   data: scores,
-  pending,
+  pending: loading,
   refresh,
 } = await useFetch(
   `/api/v1/scores/${props.songId}/${props.chart.playStyle}/${props.chart.difficulty}`,
@@ -148,4 +148,9 @@ const cardType = computed(() =>
   difficultyMap.get(props.chart.difficulty)!.toLowerCase()
 )
 const userScore = computed(() => scores.value?.find(s => s.userId === id.value))
+
+const reloadAll = async () => {
+  fetchAllData.value = true
+  await refresh()
+}
 </script>

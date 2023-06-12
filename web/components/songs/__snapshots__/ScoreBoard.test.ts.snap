@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/songs/ScoreBoard.vue > { locale: "en" } snapshot test > { pending: true } renders loading state 1`] = `
+exports[`components/songs/ScoreBoard.vue > { locale: "en" } snapshot test > { loading: true } renders loading state 1`] = `
 <div
   class="o-clps card"
   data-v-a8d65a31=""
@@ -834,7 +834,7 @@ exports[`components/songs/ScoreBoard.vue > { locale: "en" } snapshot test > { sc
 </div>
 `;
 
-exports[`components/songs/ScoreBoard.vue > { locale: "ja" } snapshot test > { pending: true } renders loading state 1`] = `
+exports[`components/songs/ScoreBoard.vue > { locale: "ja" } snapshot test > { loading: true } renders loading state 1`] = `
 <div
   class="o-clps card"
   data-v-a8d65a31=""
