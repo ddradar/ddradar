@@ -2,6 +2,7 @@
   <section
     class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
   >
+    <ScoreBoard :song-id="songId" :chart="chart" />
     <CollapsibleCard title="Chart Info" :variant="cardType" collapsible>
       <div class="card-content">
         <div class="content">
@@ -52,6 +53,7 @@
 import { difficultyMap } from '@ddradar/core'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
+import ScoreBoard from '~~/components/songs/ScoreBoard.vue'
 import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getChartTitle } from '~~/utils/song'
@@ -60,6 +62,7 @@ type CourseChart = CourseInfo['charts'][number]
 type Chart = SongInfo['charts'][number] | CourseChart
 
 interface ChartInfoProps {
+  songId: SongInfo['id']
   chart: Chart
 }
 

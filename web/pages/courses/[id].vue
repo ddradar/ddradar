@@ -5,10 +5,20 @@
       <h2 class="subtitle">{{ course.series }}</h2>
       <h2 class="subtitle">BPM {{ displayedBPM }}</h2>
       <div class="content columns is-multiline">
-        <ChartInfo v-for="(chart, i) in singleCharts" :key="i" :chart="chart" />
+        <ChartInfo
+          v-for="(chart, i) in singleCharts"
+          :key="i"
+          :song-id="course.id"
+          :chart="chart"
+        />
       </div>
       <div class="content columns is-multiline">
-        <ChartInfo v-for="(chart, i) in doubleCharts" :key="i" :chart="chart" />
+        <ChartInfo
+          v-for="(chart, i) in doubleCharts"
+          :key="i"
+          :song-id="course.id"
+          :chart="chart"
+        />
       </div>
     </template>
     <template v-else>
