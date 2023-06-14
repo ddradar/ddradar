@@ -46,7 +46,7 @@
 <script lang="ts" setup>
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
-import DialogModal from '~~/components/DialogModal.vue'
+import DialogModal from '~~/components/modal/DialogModal.vue'
 import { NotificationBody } from '~~/server/api/v1/notification/index.post'
 
 const _route = useRoute()

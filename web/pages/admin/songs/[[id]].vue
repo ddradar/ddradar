@@ -177,7 +177,7 @@
 import { difficultyMap, getNameIndex, isValidSongId } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
-import DialogModal from '~~/components/DialogModal.vue'
+import DialogModal from '~~/components/modal/DialogModal.vue'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { seriesNames } from '~~/utils/song'
 
