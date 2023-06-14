@@ -20,7 +20,6 @@ export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
  *   - `diff`: {@link ScoreInfo.difficulty}
  * @returns
  * - Returns `404 Not Found` if parameters are invalid.
- * - Returns `404 Not Found` if no score that matches parameters.
  * - Returns `200 OK` with JSON body otherwize.
  * @example
  * ```json
@@ -75,7 +74,7 @@ export default defineEventHandler(async event => {
     !playStyleMap.has(style) ||
     !difficultyMap.has(diff)
   ) {
-    sendNullWithError(event, 404)
+    sendNullWithError(event, 404, 'Invalid param')
     return []
   }
 
@@ -92,7 +91,7 @@ export default defineEventHandler(async event => {
 
   const user = await getLoginUserInfo(event)
   if (scope === 'private' && !user) {
-    sendNullWithError(event, 404)
+    sendNullWithError(event, 404, '"private" scope must be logged in')
     return []
   }
 
@@ -136,9 +135,5 @@ export default defineEventHandler(async event => {
     { score: 'DESC', clearLamp: 'DESC', _ts: 'ASC' }
   )
 
-  if (scores.length === 0) {
-    sendNullWithError(event, 404)
-    return []
-  }
   return scores
 })

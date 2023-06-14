@@ -61,7 +61,11 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
 
     // Assert
     expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      404,
+      'Invalid param'
+    )
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -77,30 +81,12 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
 
     // Assert
     expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      404,
+      '"private" scope must be logged in'
+    )
     expect(vi.mocked(fetchList)).not.toBeCalled()
-  })
-
-  test('returns 404 if no score', async () => {
-    // Arrange
-    vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(getQueryString).mockReturnValue(undefined)
-    vi.mocked(fetchList).mockResolvedValue([])
-    const event = createEvent(params)
-
-    // Act
-    const scores = await fetchChartScores(event)
-
-    // Assert
-    expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
-      { condition: 'c.songId = @', value: testScores[0].songId },
-      { condition: 'c.playStyle = @', value: testScores[0].playStyle },
-      { condition: 'c.difficulty = @', value: testScores[0].difficulty },
-      { condition: '(ARRAY_CONTAINS(@, c.userId))', value: ['0'] },
-    ])
   })
 
   test.each([
