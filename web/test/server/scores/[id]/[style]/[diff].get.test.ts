@@ -61,7 +61,11 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
 
     // Assert
     expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      404,
+      'Invalid param'
+    )
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -77,7 +81,11 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
 
     // Assert
     expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
+      event,
+      404,
+      '"private" scope must be logged in'
+    )
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
