@@ -37,7 +37,7 @@
         :loading="loading"
         :mobile-cards="false"
         paginated
-        per-page="50"
+        :per-page="50"
       >
         <OTableColumn v-slot="props" field="name" :label="t('list.name')">
           <NuxtLink :to="`/users/${props.row.id}`">
