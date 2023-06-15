@@ -1,7 +1,7 @@
 import type { CourseChartSchema } from './course'
 import type { GrooveRadar, Score as RawScoreSchema } from './graphql'
 import type { Difficulty, PlayStyle, SongSchema, StepChartSchema } from './song'
-import type { Strict } from './type-assert'
+import type { DeepNonNullable, Strict } from './type-assert'
 import { hasIntegerProperty, hasStringProperty } from './type-assert'
 import type { UserSchema } from './user'
 import { isAreaUser } from './user'
@@ -148,6 +148,25 @@ export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
   }
   return 'D'
 }
+/**
+ * Calculate MAX score from chart info.
+ * @param param0 {@link StepChartSchema}
+ */
+export function calcMaxScore({
+  notes,
+  freezeArrow,
+  shockArrow,
+}: Readonly<
+  Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>
+>): DeepNonNullable<Score> {
+  return {
+    score: 1000000,
+    exScore: (notes + freezeArrow + shockArrow) * 3,
+    maxCombo: notes + shockArrow,
+    clearLamp: 7,
+    rank: 'AAA',
+  }
+}
 
 /**
  * Returns merged max score.
@@ -187,8 +206,11 @@ export function isValidScore(
   }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
   { clearLamp, exScore, maxCombo }: Readonly<Omit<Score, 'score' | 'rank'>>
 ): boolean {
-  const maxExScore = (notes + freezeArrow + shockArrow) * 3
-  const fullCombo = notes + shockArrow
+  const { exScore: maxExScore, maxCombo: fullCombo } = calcMaxScore({
+    notes,
+    freezeArrow,
+    shockArrow,
+  })
 
   if (exScore) {
     if (
