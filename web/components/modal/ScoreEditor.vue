@@ -10,8 +10,8 @@
       </h2>
       <OField v-else :label="t('label.selectChart')">
         <OSelect :disabled="selectedChart" @input="onChartSelected">
-          <option v-for="c in charts" :key="c.label" :value="c">
-            {{ c.label }}
+          <option v-for="(c, i) in info.charts" :key="i" :value="c">
+            {{ getChartTitle(c) }}
           </option>
         </OSelect>
       </OField>
@@ -31,7 +31,7 @@
               step="10"
             />
           </OField>
-          <OCheckBox v-model="isFailed">{{ t('label.rankE') }}</OCheckBox>
+          <OCheckbox v-model="isFailed">{{ t('label.rankE') }}</OCheckbox>
         </OField>
 
         <OField :label="t('label.clear')">
@@ -149,6 +149,7 @@ import DialogModal from '~~/components/modal/DialogModal.vue'
 import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
 import type { ScoreInfo } from '~~/server/api/v1/scores/[id]/[style]/[diff].get'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import { getChartTitle } from '~~/utils/song'
 
 type ChartSchema = SongInfo['charts'][number] | CourseInfo['charts'][number]
 
@@ -177,6 +178,7 @@ const { pending, refresh } = await useFetch(
   }`,
   {
     query: { scope: 'private' },
+    /* c8 ignore */
     onResponse({ response }) {
       const [userScore] = response._data as ScoreInfo[]
       if (userScore) {
@@ -187,6 +189,7 @@ const { pending, refresh } = await useFetch(
         isFailed.value = userScore.rank === 'E'
       }
     },
+    /* c8 ignore */
     onResponseError({ error }) {
       oruga.notification.open({
         message: error?.message,
@@ -205,13 +208,6 @@ const selectedChart = computed(() =>
     c => c.playStyle === playStyle.value && c.difficulty === difficulty.value
   )
 )
-const charts = computed(() =>
-  (props.info.charts as ChartSchema[]).map(c => ({
-    playStyle: c.playStyle,
-    difficulty: c.difficulty,
-    label: getChartTitle(c),
-  }))
-)
 const maxScore = computed(() =>
   calcMaxScore(
     selectedChart.value ?? /* c8 ignore next */ {
@@ -222,7 +218,7 @@ const maxScore = computed(() =>
   )
 )
 
-const onChartSelected = async (c: (typeof charts)['value'][number]) => {
+const onChartSelected = async (c: (typeof props)['info']['charts'][number]) => {
   playStyle.value = c.playStyle
   difficulty.value = c.difficulty
   await refresh()

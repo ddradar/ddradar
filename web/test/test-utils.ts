@@ -7,17 +7,18 @@ export async function mountAsync<T>(
   component: T,
   options?: ComponentMountingOptions<T>
 ) {
+  const { props, ..._options } = options ?? {}
   const wrapper = mount(
     defineComponent({
       render() {
         return h(Suspense, null, {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          default: h(component as DefineComponent<any, any>, options?.props),
+          default: h(component as DefineComponent<any, any>, props),
           fallback: h('div', 'fallback'),
         })
       },
     }),
-    options
+    _options
   )
 
   await flushPromises()
