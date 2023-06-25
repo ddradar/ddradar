@@ -1,7 +1,7 @@
 <template>
   <div class="modal-card">
     <header class="modal-card-head">
-      <h1 class="modal-card-title">{{ info.name }}</h1>
+      <h1 class="modal-card-title">{{ info!.name }}</h1>
     </header>
     <section class="modal-card-body">
       <!-- Select chart -->
@@ -10,7 +10,7 @@
       </h2>
       <OField v-else :label="t('label.selectChart')">
         <OSelect :disabled="selectedChart" @input="onChartSelected">
-          <option v-for="(c, i) in info.charts" :key="i" :value="c">
+          <option v-for="(c, i) in info!.charts" :key="i" :value="c">
             {{ getChartTitle(c) }}
           </option>
         </OSelect>
@@ -154,7 +154,8 @@ import { getChartTitle } from '~~/utils/song'
 type ChartSchema = SongInfo['charts'][number] | CourseInfo['charts'][number]
 
 interface ScoreEditorProps {
-  info: SongInfo | CourseInfo
+  songId: SongInfo['id']
+  isCourse: boolean
   playStyle?: SongInfo['charts'][number]['playStyle']
   difficulty?: SongInfo['charts'][number]['difficulty']
 }
@@ -172,8 +173,11 @@ const difficulty = useState(() => props.difficulty)
 
 const { t } = useI18n()
 const { oruga } = useProgrammatic()
+const { data: info } = await useFetch(
+  `/api/v1/${props.isCourse ? 'courses' : 'songs'}/${props.songId}`
+)
 const { pending, refresh } = await useFetch(
-  `/api/v1/scores/${props.info.id}/${playStyle.value ?? 0}/${
+  `/api/v1/scores/${props.songId}/${playStyle.value ?? 0}/${
     difficulty.value ?? 0
   }`,
   {
@@ -204,7 +208,7 @@ const rank = computed<ScoreInfo['rank']>(() =>
   isFailed.value ? 'E' : getDanceLevel(score.value)
 )
 const selectedChart = computed(() =>
-  (props.info.charts as ChartSchema[]).find(
+  (info.value!.charts as ChartSchema[]).find(
     c => c.playStyle === playStyle.value && c.difficulty === difficulty.value
   )
 )
@@ -218,7 +222,9 @@ const maxScore = computed(() =>
   )
 )
 
-const onChartSelected = async (c: (typeof props)['info']['charts'][number]) => {
+const onChartSelected = async (
+  c: Exclude<(typeof selectedChart)['value'], undefined>
+) => {
   playStyle.value = c.playStyle
   difficulty.value = c.difficulty
   await refresh()
@@ -265,7 +271,7 @@ const saveAsync = async () => {
 
   try {
     await $fetch(
-      `/api/v1/scores/${props.info.id}/${playStyle.value}/${difficulty.value}`,
+      `/api/v1/scores/${props.songId}/${playStyle.value}/${difficulty.value}`,
       { method: 'POST', body }
     )
     oruga.notification.open({
@@ -292,7 +298,7 @@ const deleteAsync = async () => {
 
   try {
     await $fetch(
-      `/api/v1/scores/${props.info.id}/${playStyle.value}/${difficulty.value}`,
+      `/api/v1/scores/${props.songId}/${playStyle.value}/${difficulty.value}`,
       { method: 'DELETE' }
     )
     oruga.notification.open({

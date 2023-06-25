@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { info: {...} } renders label.selectChart 1`] = `
+exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { songId: "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI", isCourse: false } renders label.selectChart 1`] = `
 <div
   class="modal-card"
 >
@@ -65,7 +65,7 @@ exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { i
 </div>
 `;
 
-exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { info: {...}, playstyle: 1, difficulty: 0 } renders score input form 1`] = `
+exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { songId: "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI", isCourse: false, playstyle: 1, difficulty: 0 } renders score input form 1`] = `
 <div
   class="modal-card"
 >
@@ -414,7 +414,7 @@ exports[`components/modal/ScoreEditor.vue > { locale: "en" } snapshot test > { i
 </div>
 `;
 
-exports[`components/modal/ScoreEditor.vue > { locale: "ja" } snapshot test > { info: {...} } renders label.selectChart 1`] = `
+exports[`components/modal/ScoreEditor.vue > { locale: "ja" } snapshot test > { songId: "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI", isCourse: false } renders label.selectChart 1`] = `
 <div
   class="modal-card"
 >
@@ -479,7 +479,7 @@ exports[`components/modal/ScoreEditor.vue > { locale: "ja" } snapshot test > { i
 </div>
 `;
 
-exports[`components/modal/ScoreEditor.vue > { locale: "ja" } snapshot test > { info: {...}, playstyle: 1, difficulty: 0 } renders score input form 1`] = `
+exports[`components/modal/ScoreEditor.vue > { locale: "ja" } snapshot test > { songId: "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI", isCourse: false, playstyle: 1, difficulty: 0 } renders score input form 1`] = `
 <div
   class="modal-card"
 >

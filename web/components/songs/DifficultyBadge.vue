@@ -8,11 +8,11 @@
 import type { Difficulty } from '@ddradar/core'
 import { difficultyMap } from '@ddradar/core'
 
-interface ChartInfoProps {
+interface DifficultyBadgeProps {
   difficulty: Difficulty
 }
 
-const props = defineProps<ChartInfoProps>()
+const props = defineProps<DifficultyBadgeProps>()
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const name = computed(() => difficultyMap.get(props.difficulty)!)
