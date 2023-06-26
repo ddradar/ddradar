@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } renders course list 1`] = `
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: false, courses: <Data> } renders course list 1`] = `
 <section
   class="section"
 >
@@ -262,7 +262,7 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: <Data> } 
 </section>
 `;
 
-exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } renders no data 1`] = `
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
 <section
   class="section"
 >
@@ -495,7 +495,7 @@ exports[`Page /courses > snapshot tests > { isLoading: false, courses: [] } rend
 </section>
 `;
 
-exports[`Page /courses > snapshot tests > { isLoading: true } renders loading state 1`] = `
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: true } renders loading state 1`] = `
 <section
   class="section"
 >
@@ -749,7 +749,7 @@ exports[`Page /courses > snapshot tests > { isLoading: true } renders loading st
 </section>
 `;
 
-exports[`Page /courses > snapshot tests > { isLoggedIn: true } renders score edit button 1`] = `
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
 <section
   class="section"
 >
@@ -815,7 +815,7 @@ exports[`Page /courses > snapshot tests > { isLoggedIn: true } renders score edi
       <span
         data-id="3"
       >
-        Score
+        Edit Score
       </span>
       
     </div>
@@ -880,7 +880,7 @@ exports[`Page /courses > snapshot tests > { isLoggedIn: true } renders score edi
               draggable="false"
             >
               <span>
-                Score 
+                Edit Score 
                 <span
                   class="th-wrap sort-icon"
                   style="display: none;"
@@ -927,7 +927,1065 @@ exports[`Page /courses > snapshot tests > { isLoggedIn: true } renders score edi
             </td>
             <td
               class=""
-              data-label="Score"
+              data-label="Edit Score"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li>
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
+                >
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: false, courses: <Data> } renders course list 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    NONSTOP (A20)
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      NONSTOP (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A3)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A3)
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        コース名
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                コース名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              A20
+            </td>
+            <td
+              class=""
+              data-label="コース名"
+            >
+              <a>
+                TWENTY
+              </a>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li>
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
+                >
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    NONSTOP (A20)
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      NONSTOP (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A3)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A3)
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        コース名
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped is-empty"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                コース名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td
+              colspan="2"
+            >
+              
+              <section
+                class="section"
+              >
+                <div
+                  class="content has-text-grey has-text-centered"
+                >
+                  <p>
+                    データがありません
+                  </p>
+                </div>
+              </section>
+              
+            </td>
+          </tr>
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: true } renders loading state 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    NONSTOP (A20)
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      NONSTOP (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A3)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A3)
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        コース名
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped is-empty"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                コース名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td
+              colspan="2"
+            >
+              
+              <section
+                class="section"
+              >
+                <div
+                  class="b-skeleton is-animated"
+                >
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                </div>
+              </section>
+              
+            </td>
+          </tr>
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <div
+          class="o-load loading"
+        >
+          <div
+            class="o-load__overlay loading-overlay"
+          />
+          
+          <span
+            class="icon is-spin is-medium o-load__icon icon"
+          >
+            <i
+              class="mdi mdi-loading mdi-36px"
+            />
+          </span>
+          
+        </div>
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    NONSTOP (A20)
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      NONSTOP (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A20 PLUS)
+    </a>
+    <a
+      class="button is-info"
+    >
+      NONSTOP (A3)
+    </a>
+    <a
+      class="button is-info"
+    >
+      段位認定 (A3)
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        コース名
+      </span>
+      <span
+        data-id="3"
+      >
+        スコア編集
+      </span>
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                コース名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                スコア編集 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              A20
+            </td>
+            <td
+              class=""
+              data-label="コース名"
+            >
+              <a>
+                TWENTY
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="スコア編集"
             >
               <button
                 class="button"

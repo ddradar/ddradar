@@ -3,7 +3,7 @@
     <h1 class="title">{{ t('pageTitle') }}</h1>
     <section>
       <OTable
-        :data="messages!"
+        :data="messages ?? []"
         paginated
         :per-page="20"
         striped
@@ -33,7 +33,7 @@
         </template>
 
         <template #empty>
-          <section v-if="loading" class="section">
+          <section v-if="pending" class="section">
             <OSkeleton animated />
             <OSkeleton animated />
             <OSkeleton animated />
@@ -61,7 +61,7 @@
     "pageTitle": "All Notification List",
     "title": "Title",
     "date": "Date",
-    "noData": "No data"
+    "noData": "No Data"
   }
 }
 </i18n>

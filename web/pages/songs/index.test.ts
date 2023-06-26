@@ -4,6 +4,7 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
+import { createI18n } from 'vue-i18n'
 
 import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/songs/index.vue'
@@ -22,7 +23,9 @@ vi.mocked(useProgrammatic).mockReturnValue({
 describe('Page /songs', () => {
   const query = { series: '10' }
 
-  describe('snapshot tests', () => {
+  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
+    const i18n = createI18n({ legacy: false, locale })
+
     test('{ isLoading: true } renders loading state', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
@@ -37,7 +40,7 @@ describe('Page /songs', () => {
       // Act
       const wrapper = await mountAsync(Page, {
         global: {
-          plugins: [[Oruga, bulmaConfig]],
+          plugins: [[Oruga, bulmaConfig], i18n],
           stubs: { NuxtLink: RouterLinkStub },
         },
       })
@@ -59,7 +62,7 @@ describe('Page /songs', () => {
       // Act
       const wrapper = await mountAsync(Page, {
         global: {
-          plugins: [[Oruga, bulmaConfig]],
+          plugins: [[Oruga, bulmaConfig], i18n],
           stubs: { NuxtLink: RouterLinkStub },
         },
       })
@@ -81,7 +84,7 @@ describe('Page /songs', () => {
       // Act
       const wrapper = await mountAsync(Page, {
         global: {
-          plugins: [[Oruga, bulmaConfig]],
+          plugins: [[Oruga, bulmaConfig], i18n],
           stubs: { NuxtLink: RouterLinkStub },
         },
       })
@@ -103,7 +106,7 @@ describe('Page /songs', () => {
       // Act
       const wrapper = await mountAsync(Page, {
         global: {
-          plugins: [[Oruga, bulmaConfig]],
+          plugins: [[Oruga, bulmaConfig], i18n],
           stubs: { NuxtLink: RouterLinkStub },
         },
       })
@@ -120,6 +123,7 @@ describe('Page /songs', () => {
     ['1', undefined, 'か'],
   ])('?name=%s&series=%s renders "%s" title', async (name, series, title) => {
     // Arrange
+    const i18n = createI18n({ legacy: false, locale: 'en' })
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { name, series } } as any)
     vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
@@ -132,7 +136,7 @@ describe('Page /songs', () => {
     // Act
     const wrapper = await mountAsync(Page, {
       global: {
-        plugins: [[Oruga, bulmaConfig]],
+        plugins: [[Oruga, bulmaConfig], i18n],
         stubs: { NuxtLink: RouterLinkStub },
       },
     })
@@ -144,6 +148,7 @@ describe('Page /songs', () => {
   // Method
   test('score edit button calls modal open', async () => {
     // Arrange
+    const i18n = createI18n({ legacy: false, locale: 'en' })
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query } as any)
     vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
@@ -158,7 +163,7 @@ describe('Page /songs', () => {
     // Act
     const wrapper = await mountAsync(Page, {
       global: {
-        plugins: [[Oruga, bulmaConfig]],
+        plugins: [[Oruga, bulmaConfig], i18n],
         stubs: { NuxtLink: RouterLinkStub },
       },
     })

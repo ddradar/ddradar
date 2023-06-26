@@ -24,15 +24,15 @@
       :mobile-cards="false"
       paginated
     >
-      <OTableColumn v-slot="props" field="series" label="Series">
+      <OTableColumn v-slot="props" field="series" :label="t('column.series')">
         {{ shortenSeriesName(props.row.series) }}
       </OTableColumn>
-      <OTableColumn v-slot="props" field="name" label="Name">
+      <OTableColumn v-slot="props" field="name" :label="t('column.name')">
         <NuxtLink :to="`/courses/${props.row.id}`">
           {{ props.row.name }}
         </NuxtLink>
       </OTableColumn>
-      <OTableColumn v-if="isLoggedIn" v-slot="props" label="Score">
+      <OTableColumn v-if="isLoggedIn" v-slot="props" :label="t('column.score')">
         <OButton
           icon-right="pencil-box-outline"
           @click="editScore(props.row.id)"
@@ -45,7 +45,7 @@
         </section>
         <section v-else class="section">
           <div class="content has-text-grey has-text-centered">
-            <p>No Data</p>
+            <p>{{ t('noData') }}</p>
           </div>
         </section>
       </template>
@@ -53,8 +53,30 @@
   </section>
 </template>
 
+<i18n lang="json">
+{
+  "ja": {
+    "column": {
+      "series": "シリーズ",
+      "name": "コース名",
+      "score": "スコア編集"
+    },
+    "noData": "データがありません"
+  },
+  "en": {
+    "column": {
+      "series": "Series",
+      "name": "Name",
+      "score": "Edit Score"
+    },
+    "noData": "No Data"
+  }
+}
+</i18n>
+
 <script lang="ts" setup>
 import { useProgrammatic } from '@oruga-ui/oruga-next'
+import { useI18n } from 'vue-i18n'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import useAuth from '~~/composables/useAuth'
@@ -75,6 +97,7 @@ const _route = useRoute()
 const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
 const { oruga } = useProgrammatic()
+const { t } = useI18n()
 const { isLoggedIn } = await useAuth()
 const { data: courses, pending } = await useFetch('/api/v1/courses', {
   query: { type, series },

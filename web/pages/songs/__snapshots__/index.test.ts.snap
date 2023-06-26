@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } renders no data 1`] = `
+exports[`Page /songs > { locale: "en" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
 <section
   class="section"
 >
@@ -348,7 +348,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
 </section>
 `;
 
-exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } renders song list 1`] = `
+exports[`Page /songs > { locale: "en" } snapshot test > { isLoading: false, songs: <Data> } renders song list 1`] = `
 <section
   class="section"
 >
@@ -831,7 +831,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
 </section>
 `;
 
-exports[`Page /songs > snapshot tests > { isLoading: true } renders loading state 1`] = `
+exports[`Page /songs > { locale: "en" } snapshot test > { isLoading: true } renders loading state 1`] = `
 <section
   class="section"
 >
@@ -1200,7 +1200,7 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
 </section>
 `;
 
-exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit button 1`] = `
+exports[`Page /songs > { locale: "en" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
 <section
   class="section"
 >
@@ -1341,7 +1341,7 @@ exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit 
       <span
         data-id="5"
       >
-        Score
+        Edit Score
       </span>
       
     </div>
@@ -1446,7 +1446,7 @@ exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit 
               draggable="false"
             >
               <span>
-                Score 
+                Edit Score 
                 <span
                   class="th-wrap sort-icon"
                   style="display: none;"
@@ -1505,7 +1505,7 @@ exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit 
             </td>
             <td
               class=""
-              data-label="Score"
+              data-label="Edit Score"
             >
               <button
                 class="button"
@@ -1575,7 +1575,7 @@ exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit 
             </td>
             <td
               class=""
-              data-label="Score"
+              data-label="Edit Score"
             >
               <button
                 class="button"
@@ -1645,7 +1645,1783 @@ exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit 
             </td>
             <td
               class=""
-              data-label="Score"
+              data-label="Edit Score"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li>
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
+                >
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /songs > { locale: "ja" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    DDR X
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info"
+    >
+      DDR 1st
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 3rdMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 4thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 5thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR EXTREME
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA2
+    </a>
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      DDR X
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X3 VS 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2013)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2014)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20 PLUS
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A3
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        曲名
+      </span>
+      <span
+        data-id="3"
+      >
+        アーティスト
+      </span>
+      <span
+        data-id="4"
+      >
+        BPM
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped is-empty"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                曲名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                アーティスト 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                BPM 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td
+              colspan="4"
+            >
+              
+              <section
+                class="section"
+              >
+                <div
+                  class="content has-text-grey has-text-centered"
+                >
+                  <p>
+                    データがありません
+                  </p>
+                </div>
+              </section>
+              
+            </td>
+          </tr>
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /songs > { locale: "ja" } snapshot test > { isLoading: false, songs: <Data> } renders song list 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    DDR X
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info"
+    >
+      DDR 1st
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 3rdMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 4thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 5thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR EXTREME
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA2
+    </a>
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      DDR X
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X3 VS 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2013)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2014)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20 PLUS
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A3
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        曲名
+      </span>
+      <span
+        data-id="3"
+      >
+        アーティスト
+      </span>
+      <span
+        data-id="4"
+      >
+        BPM
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                曲名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                アーティスト 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                BPM 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              1st
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                PARANOiA
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                PARANOiA(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              DE-SIRE
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              160
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li>
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
+                >
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /songs > { locale: "ja" } snapshot test > { isLoading: true } renders loading state 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    DDR X
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info"
+    >
+      DDR 1st
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 3rdMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 4thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 5thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR EXTREME
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA2
+    </a>
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      DDR X
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X3 VS 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2013)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2014)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20 PLUS
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A3
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        曲名
+      </span>
+      <span
+        data-id="3"
+      >
+        アーティスト
+      </span>
+      <span
+        data-id="4"
+      >
+        BPM
+      </span>
+      <!--v-if-->
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped is-empty"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                曲名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                アーティスト 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                BPM 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td
+              colspan="4"
+            >
+              
+              <section
+                class="section"
+              >
+                <div
+                  class="b-skeleton is-animated"
+                >
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                  <div
+                    class="b-skeleton-item is-rounded"
+                  />
+                </div>
+              </section>
+              
+            </td>
+          </tr>
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <div
+          class="o-load loading"
+        >
+          <div
+            class="o-load__overlay loading-overlay"
+          />
+          
+          <span
+            class="icon is-spin is-medium o-load__icon icon"
+          >
+            <i
+              class="mdi mdi-loading mdi-36px"
+            />
+          </span>
+          
+        </div>
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /songs > { locale: "ja" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    DDR X
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info"
+    >
+      DDR 1st
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 3rdMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 4thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 5thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR EXTREME
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA2
+    </a>
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      DDR X
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X3 VS 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2013)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2014)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20 PLUS
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A3
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        シリーズ
+      </span>
+      <span
+        data-id="2"
+      >
+        曲名
+      </span>
+      <span
+        data-id="3"
+      >
+        アーティスト
+      </span>
+      <span
+        data-id="4"
+      >
+        BPM
+      </span>
+      <span
+        data-id="5"
+      >
+        スコア編集
+      </span>
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                シリーズ 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                曲名 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                アーティスト 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                BPM 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                スコア編集 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              1st
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                PARANOiA
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="スコア編集"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                PARANOiA(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="スコア編集"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="シリーズ"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="曲名"
+            >
+              <a>
+                SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="アーティスト"
+            >
+              DE-SIRE
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              160
+            </td>
+            <td
+              class=""
+              data-label="スコア編集"
             >
               <button
                 class="button"

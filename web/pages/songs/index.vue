@@ -23,21 +23,21 @@
       paginated
       :per-page="50"
     >
-      <OTableColumn v-slot="props" field="series" label="Series">
+      <OTableColumn v-slot="props" field="series" :label="t('column.series')">
         {{ shortenSeriesName(props.row.series) }}
       </OTableColumn>
-      <OTableColumn v-slot="props" field="name" label="Name">
+      <OTableColumn v-slot="props" field="name" :label="t('column.name')">
         <NuxtLink :to="`/songs/${props.row.id}`">
           {{ props.row.name }}
         </NuxtLink>
       </OTableColumn>
-      <OTableColumn v-slot="props" field="artist" label="Artist">
+      <OTableColumn v-slot="props" field="artist" :label="t('column.artist')">
         {{ props.row.artist }}
       </OTableColumn>
-      <OTableColumn v-slot="props" field="bpm" label="BPM">
+      <OTableColumn v-slot="props" field="bpm" :label="t('column.bpm')">
         {{ getDisplayedBPM(props.row) }}
       </OTableColumn>
-      <OTableColumn v-if="isLoggedIn" v-slot="props" label="Score">
+      <OTableColumn v-if="isLoggedIn" v-slot="props" :label="t('column.score')">
         <OButton
           icon-right="pencil-box-outline"
           @click="editScore(props.row.id)"
@@ -50,7 +50,7 @@
         </section>
         <section v-else class="section">
           <div class="content has-text-grey has-text-centered">
-            <p>No Data</p>
+            <p>{{ t('noData') }}</p>
           </div>
         </section>
       </template>
@@ -58,9 +58,35 @@
   </section>
 </template>
 
+<i18n lang="json">
+{
+  "ja": {
+    "column": {
+      "series": "シリーズ",
+      "name": "曲名",
+      "artist": "アーティスト",
+      "bpm": "BPM",
+      "score": "スコア編集"
+    },
+    "noData": "データがありません"
+  },
+  "en": {
+    "column": {
+      "series": "Series",
+      "name": "Name",
+      "artist": "Artist",
+      "bpm": "BPM",
+      "score": "Edit Score"
+    },
+    "noData": "No Data"
+  }
+}
+</i18n>
+
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
+import { useI18n } from 'vue-i18n'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import useAuth from '~~/composables/useAuth'
@@ -77,6 +103,7 @@ const _route = useRoute()
 const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
 const { oruga } = useProgrammatic()
+const { t } = useI18n()
 const { isLoggedIn } = await useAuth()
 const { data: songs, pending } = await useFetch('/api/v1/songs', {
   query: { name, series },
