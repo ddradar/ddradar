@@ -46,6 +46,12 @@
       <OTableColumn v-slot="props" field="level" label="Level" numeric>
         {{ props.row.level }}
       </OTableColumn>
+      <OTableColumn v-if="isLoggedIn" v-slot="props" label="Score">
+        <OButton
+          icon-right="pencil-box-outline"
+          @click="editScore(props.row)"
+        />
+      </OTableColumn>
 
       <template #empty>
         <section v-if="isLoading" class="section">
@@ -62,9 +68,12 @@
 </template>
 
 <script lang="ts" setup>
+import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { watch } from 'vue'
 
+import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
+import useAuth from '~~/composables/useAuth'
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
 import { getQueryInteger } from '~~/utils/path'
 import { levels, shortenSeriesName } from '~~/utils/song'
@@ -74,9 +83,12 @@ definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['SINGLE', 'DOUBLE']
 
+// Data & Hook
 const _route = useRoute()
 const style = getQueryInteger(_route.query, 'style')
 const level = getQueryInteger(_route.query, 'level')
+const { oruga } = useProgrammatic()
+const { isLoggedIn } = await useAuth()
 
 const uri = `/api/v1/charts/${style}/${level}` as const
 const {
@@ -89,7 +101,19 @@ watch(
   () => refresh()
 )
 
+// Computed
 const title = `${_kinds[style - 1]} ${level}`
 const otherStyle = style === 2 ? 1 : 2
 const isButtonDisabled = (i: number) => level === i || null
+
+// Method
+/** Open ScoreEditor modal. */
+const editScore = async ({ id, playStyle, difficulty }: ChartInfo) => {
+  const instance = oruga.modal.open({
+    component: ScoreEditor,
+    props: { songId: id, isCourse: false, playStyle, difficulty },
+    trapFocus: true,
+  })
+  await instance.promise
+}
 </script>

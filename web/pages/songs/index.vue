@@ -37,6 +37,12 @@
       <OTableColumn v-slot="props" field="bpm" label="BPM">
         {{ getDisplayedBPM(props.row) }}
       </OTableColumn>
+      <OTableColumn v-if="isLoggedIn" v-slot="props" label="Score">
+        <OButton
+          icon-right="pencil-box-outline"
+          @click="editScore(props.row.id)"
+        />
+      </OTableColumn>
 
       <template #empty>
         <section v-if="isLoading" class="section">
@@ -54,8 +60,11 @@
 
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
+import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { watch } from 'vue'
 
+import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
+import useAuth from '~~/composables/useAuth'
 import { getQueryInteger } from '~~/utils/path'
 import { getDisplayedBPM, seriesNames, shortenSeriesName } from '~~/utils/song'
 
@@ -64,9 +73,12 @@ definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['name', 'series'] as const
 
+// Data & Hook
 const _route = useRoute()
 const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
+const { oruga } = useProgrammatic()
+const { isLoggedIn } = await useAuth()
 
 const uri = `/api/v1/songs?name=${name}&series=${series}`
 const {
@@ -79,6 +91,7 @@ watch(
   () => refresh()
 )
 
+// Computed
 const _pageKind = !isNaN(name) ? _kinds[0] : !isNaN(series) ? _kinds[1] : 'all'
 const title =
   _pageKind === 'name'
@@ -100,5 +113,16 @@ const pages =
         query: { series: key },
       }))
     : []
+
+// Method
 const isButtonDisabled = (key: number) => name === key || series === key || null
+/** Open ScoreEditor modal. */
+const editScore = async (songId: string) => {
+  const instance = oruga.modal.open({
+    component: ScoreEditor,
+    props: { songId, isCourse: false },
+    trapFocus: true,
+  })
+  await instance.promise
+}
 </script>

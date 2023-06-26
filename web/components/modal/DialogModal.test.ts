@@ -3,9 +3,9 @@ import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { mount } from '@vue/test-utils'
 import { describe, expect, test } from 'vitest'
 
-import DialogModal from '~~/components/DialogModal.vue'
+import DialogModal from '~~/components/modal/DialogModal.vue'
 
-describe('components/DialogModal.vue', () => {
+describe('components/modal/DialogModal.vue', () => {
   describe('snapshot test', () => {
     test.each([
       { message: 'Message Only' },

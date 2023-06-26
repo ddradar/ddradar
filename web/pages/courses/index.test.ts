@@ -1,12 +1,23 @@
 import { testCourseData as course } from '@ddradar/core/test/data'
-import Oruga from '@oruga-ui/oruga-next'
+import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 
+import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/courses/index.vue'
 import { mountAsync } from '~~/test/test-utils'
+
+const open = vi.fn()
+vi.mock('~~/composables/useAuth')
+vi.mock('@oruga-ui/oruga-next', async origin => {
+  const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
+  return { ...actual, useProgrammatic: vi.fn() }
+})
+vi.mocked(useProgrammatic).mockReturnValue({
+  oruga: { modal: { open } },
+})
 
 describe('Page /courses', () => {
   const query = { type: '1', series: '16' }
@@ -28,6 +39,7 @@ describe('Page /courses', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
+      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
       vi.mocked(useFetch).mockResolvedValue({
         pending: ref(true),
         data: ref([]),
@@ -49,6 +61,29 @@ describe('Page /courses', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
+      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
+      vi.mocked(useFetch).mockResolvedValue({
+        pending: ref(false),
+        data: ref(courses),
+      } as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
+
+      // Act
+      const wrapper = await mountAsync(Page, {
+        global: {
+          plugins: [[Oruga, bulmaConfig]],
+          stubs: { NuxtLink: RouterLinkStub },
+        },
+      })
+
+      // Assert
+      expect(wrapper.element).toMatchSnapshot()
+    })
+    test('{ isLoggedIn: true } renders score edit button', async () => {
+      // Arrange
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(useRoute).mockReturnValue({ query } as any)
+      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
       vi.mocked(useFetch).mockResolvedValue({
         pending: ref(false),
         data: ref(courses),
@@ -70,6 +105,7 @@ describe('Page /courses', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
+      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
       vi.mocked(useFetch).mockResolvedValue({
         pending: ref(false),
         data: ref([]),
@@ -89,6 +125,7 @@ describe('Page /courses', () => {
     })
   })
 
+  // Computed
   test.each([
     [undefined, undefined, 'COURSES'],
     [undefined, '16', 'COURSES (A20)'],
@@ -98,6 +135,7 @@ describe('Page /courses', () => {
     // Arrange
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { type, series } } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
     vi.mocked(useFetch).mockResolvedValue({
       pending: ref(true),
       data: ref([]),
@@ -114,5 +152,32 @@ describe('Page /courses', () => {
 
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
+  })
+
+  // Method
+  test('score edit button calls modal open', async () => {
+    // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useRoute).mockReturnValue({ query } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
+    vi.mocked(useFetch).mockResolvedValue({
+      pending: ref(false),
+      data: ref(courses),
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    open.mockClear()
+    open.mockReturnValue({ promise: Promise.resolve() })
+
+    // Act
+    const wrapper = await mountAsync(Page, {
+      global: {
+        plugins: [[Oruga, bulmaConfig]],
+        stubs: { NuxtLink: RouterLinkStub },
+      },
+    })
+    await wrapper.find('i.mdi-pencil-box-outline').trigger('click')
+
+    // Assert
+    expect(open).toBeCalled()
   })
 })

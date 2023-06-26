@@ -7,7 +7,7 @@
     <div class="card-content">
       <div class="table-container">
         <OTable
-          :data="scores"
+          :data="scores!"
           :loading="loading"
           :mobile-cards="false"
           :selected="userScore"
@@ -20,9 +20,9 @@
             >
               {{ r.row.userName }}
             </NuxtLink>
-            <span v-else class="is-size-7">{{
-              t(`area.${r.row.userId}`)
-            }}</span>
+            <span v-else class="is-size-7">
+              {{ t(`area.${r.row.userId}`) }}
+            </span>
           </OTableColumn>
           <OTableColumn
             v-slot="r"
@@ -52,7 +52,7 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a v-if="isLoggedIn" class="card-footer-item">
+      <a v-if="isLoggedIn" class="card-footer-item" @click="editScore()">
         {{ t('button.edit') }}
       </a>
       <a
@@ -110,9 +110,11 @@
 
 <script lang="ts" setup>
 import { difficultyMap, isAreaUser, isPageDeletedOnGate } from '@ddradar/core'
+import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
+import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import ScoreBadge from '~~/components/songs/ScoreBadge.vue'
 import useAuth from '~~/composables/useAuth'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
@@ -120,8 +122,11 @@ import { getChartTitle } from '~~/utils/song'
 
 interface ScoreBoardProps {
   songId: SongInfo['id']
+  isCourse: boolean
   chart: Pick<SongInfo['charts'][number], 'playStyle' | 'difficulty' | 'level'>
 }
+
+const { oruga } = useProgrammatic()
 
 const props = defineProps<ScoreBoardProps>()
 const { t } = useI18n()
@@ -135,7 +140,6 @@ const {
   `/api/v1/scores/${props.songId}/${props.chart.playStyle}/${props.chart.difficulty}`,
   {
     query: computed(() => ({ scope: fetchAllData.value ? 'full' : 'medium' })),
-    /** c8 ignore next */
     transform: rawScores =>
       rawScores.map(s =>
         isAreaUser({ id: s.userId }) ? { ...s, isArea: true } : s
@@ -149,6 +153,22 @@ const cardType = computed(() =>
 )
 const userScore = computed(() => scores.value?.find(s => s.userId === id.value))
 
+/** Open ScoreEditor modal. */
+const editScore = async () => {
+  const instance = oruga.modal.open({
+    component: ScoreEditor,
+    props: {
+      songId: props.songId,
+      isCourse: props.isCourse,
+      playStyle: props.chart.playStyle,
+      difficulty: props.chart.difficulty,
+    },
+    trapFocus: true,
+  })
+  await instance.promise
+  await refresh()
+}
+/** Reload scores with scope=full option. */
 const reloadAll = async () => {
   fetchAllData.value = true
   await refresh()

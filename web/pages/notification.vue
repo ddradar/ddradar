@@ -5,7 +5,7 @@
       <OTable
         :data="messages ?? []"
         paginated
-        per-page="20"
+        :per-page="20"
         striped
         :loading="loading"
         detailed
