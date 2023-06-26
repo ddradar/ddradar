@@ -140,7 +140,6 @@ const {
   `/api/v1/scores/${props.songId}/${props.chart.playStyle}/${props.chart.difficulty}`,
   {
     query: computed(() => ({ scope: fetchAllData.value ? 'full' : 'medium' })),
-    /** c8 ignore next */
     transform: rawScores =>
       rawScores.map(s =>
         isAreaUser({ id: s.userId }) ? { ...s, isArea: true } : s
