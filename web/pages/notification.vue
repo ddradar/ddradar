@@ -3,11 +3,11 @@
     <h1 class="title">{{ t('pageTitle') }}</h1>
     <section>
       <OTable
-        :data="messages ?? []"
+        :data="messages!"
         paginated
         :per-page="20"
         striped
-        :loading="loading"
+        :loading="pending"
         detailed
         detail-key="id"
         show-detail-icon
@@ -72,9 +72,8 @@ import { useI18n } from 'vue-i18n'
 import useAuth from '~~/composables/useAuth'
 import { markdownToHTML, unixTimeToString } from '~~/utils/format'
 
+// Data & Hook
 const { t } = useI18n()
 const { isAdmin } = await useAuth()
-const { data: messages, pending: loading } = await useLazyFetch(
-  '/api/v1/notification'
-)
+const { data: messages, pending } = await useLazyFetch('/api/v1/notification')
 </script>

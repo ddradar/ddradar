@@ -20,7 +20,7 @@
     <OTable
       :data="courses!"
       striped
-      :loading="isLoading"
+      :loading="pending"
       :mobile-cards="false"
       paginated
     >
@@ -40,7 +40,7 @@
       </OTableColumn>
 
       <template #empty>
-        <section v-if="isLoading" class="section">
+        <section v-if="pending" class="section">
           <OSkeleton animated size="large" :count="3" />
         </section>
         <section v-else class="section">
@@ -55,7 +55,6 @@
 
 <script lang="ts" setup>
 import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { watch } from 'vue'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import useAuth from '~~/composables/useAuth'
@@ -77,17 +76,10 @@ const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
 const { oruga } = useProgrammatic()
 const { isLoggedIn } = await useAuth()
-
-const uri = `/api/v1/courses?type=${type}&series=${series}` as const
-const {
-  data: courses,
-  pending: isLoading,
-  refresh,
-} = await useFetch(uri, { key: uri })
-watch(
-  () => _route.query,
-  () => refresh()
-)
+const { data: courses, pending } = await useFetch('/api/v1/courses', {
+  query: { type, series },
+  watch: [_route.query],
+})
 
 // Computed
 const title = `${_kinds[type - 1] ?? 'COURSES'}${

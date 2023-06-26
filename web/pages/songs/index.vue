@@ -16,9 +16,9 @@
     </div>
 
     <OTable
-      :data="songs"
+      :data="songs!"
       striped
-      :loading="isLoading"
+      :loading="pending"
       :mobile-cards="false"
       paginated
       :per-page="50"
@@ -45,7 +45,7 @@
       </OTableColumn>
 
       <template #empty>
-        <section v-if="isLoading" class="section">
+        <section v-if="pending" class="section">
           <OSkeleton animated size="large" :count="3" />
         </section>
         <section v-else class="section">
@@ -61,7 +61,6 @@
 <script lang="ts" setup>
 import { nameIndexMap } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { watch } from 'vue'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import useAuth from '~~/composables/useAuth'
@@ -79,17 +78,10 @@ const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
 const { oruga } = useProgrammatic()
 const { isLoggedIn } = await useAuth()
-
-const uri = `/api/v1/songs?name=${name}&series=${series}`
-const {
-  data: songs,
-  pending: isLoading,
-  refresh,
-} = await useFetch(uri, { key: uri })
-watch(
-  () => _route.query,
-  () => refresh()
-)
+const { data: songs, pending } = await useFetch('/api/v1/songs', {
+  query: { name, series },
+  watch: [_route.query],
+})
 
 // Computed
 const _pageKind = !isNaN(name) ? _kinds[0] : !isNaN(series) ? _kinds[1] : 'all'

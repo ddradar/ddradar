@@ -28,7 +28,7 @@
     <OTable
       :data="charts!"
       striped
-      :loading="isLoading"
+      :loading="pending"
       :mobile-cards="false"
       paginated
     >
@@ -54,7 +54,7 @@
       </OTableColumn>
 
       <template #empty>
-        <section v-if="isLoading" class="section">
+        <section v-if="pending" class="section">
           <OSkeleton animated size="large" :count="3" />
         </section>
         <section v-else class="section">
@@ -69,7 +69,6 @@
 
 <script lang="ts" setup>
 import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { watch } from 'vue'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
@@ -89,24 +88,17 @@ const style = getQueryInteger(_route.query, 'style')
 const level = getQueryInteger(_route.query, 'level')
 const { oruga } = useProgrammatic()
 const { isLoggedIn } = await useAuth()
-
-const uri = `/api/v1/charts/${style}/${level}` as const
-const {
-  data: charts,
-  pending: isLoading,
-  refresh,
-} = await useFetch<ChartInfo[]>(uri, { key: uri })
-watch(
-  () => _route.query,
-  () => refresh()
+const { data: charts, pending } = await useFetch(
+  `/api/v1/charts/${style}/${level}`,
+  { watch: [_route.query] }
 )
 
 // Computed
 const title = `${_kinds[style - 1]} ${level}`
 const otherStyle = style === 2 ? 1 : 2
-const isButtonDisabled = (i: number) => level === i || null
 
 // Method
+const isButtonDisabled = (i: number) => level === i || null
 /** Open ScoreEditor modal. */
 const editScore = async ({ id, playStyle, difficulty }: ChartInfo) => {
   const instance = oruga.modal.open({
