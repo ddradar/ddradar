@@ -138,6 +138,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, courses: [] } render
       >
         BPM
       </span>
+      <!--v-if-->
       
     </div>
     <!--v-if-->
@@ -485,6 +486,7 @@ exports[`Page /songs > snapshot tests > { isLoading: false, songs: <Data> } rend
       >
         BPM
       </span>
+      <!--v-if-->
       
     </div>
     <!--v-if-->
@@ -967,6 +969,7 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
       >
         BPM
       </span>
+      <!--v-if-->
       
     </div>
     <!--v-if-->
@@ -1183,6 +1186,582 @@ exports[`Page /songs > snapshot tests > { isLoading: true } renders loading stat
               <!--v-if-->
               <!--Pages-->
               
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+`;
+
+exports[`Page /songs > snapshot tests > { isLoggedIn: true } renders score edit button 1`] = `
+<section
+  class="section"
+>
+  <h1
+    class="title"
+  >
+    DDR X
+  </h1>
+  <div
+    class="buttons"
+  >
+    
+    <a
+      class="button is-info"
+    >
+      DDR 1st
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 3rdMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 4thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR 5thMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDRMAX2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR EXTREME
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR SuperNOVA2
+    </a>
+    <a
+      class="button is-info is-outlined"
+      disabled="true"
+    >
+      DDR X
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X2
+    </a>
+    <a
+      class="button is-info"
+    >
+      DDR X3 VS 2ndMIX
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2013)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution (2014)
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A20 PLUS
+    </a>
+    <a
+      class="button is-info"
+    >
+      DanceDanceRevolution A3
+    </a>
+    
+  </div>
+  <div
+    class="b-table"
+  >
+    <div
+      style="display: none;"
+    >
+      
+      <span
+        data-id="1"
+      >
+        Series
+      </span>
+      <span
+        data-id="2"
+      >
+        Name
+      </span>
+      <span
+        data-id="3"
+      >
+        Artist
+      </span>
+      <span
+        data-id="4"
+      >
+        BPM
+      </span>
+      <span
+        data-id="5"
+      >
+        Score
+      </span>
+      
+    </div>
+    <!--v-if-->
+    <!--v-if-->
+    <div
+      class="table-wrapper"
+    >
+      <table
+        class="table is-striped"
+      >
+        <!--v-if-->
+        <thead>
+          
+          
+          <tr>
+            <!--v-if-->
+            <!--v-if-->
+            
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                Series 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                Name 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                Artist 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                BPM 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            <th
+              class=""
+              draggable="false"
+            >
+              <span>
+                Score 
+                <span
+                  class="th-wrap sort-icon"
+                  style="display: none;"
+                >
+                  <span
+                    class="icon is-small"
+                  >
+                    <i
+                      class="mdi mdi-arrow-up"
+                    />
+                  </span>
+                </span>
+              </span>
+            </th>
+            
+            <!--v-if-->
+          </tr>
+          <!--v-if-->
+          <!--v-if-->
+        </thead>
+        <tbody>
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="Series"
+            >
+              1st
+            </td>
+            <td
+              class=""
+              data-label="Name"
+            >
+              <a>
+                PARANOiA
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="Artist"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="Score"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="Series"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="Name"
+            >
+              <a>
+                PARANOiA(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="Artist"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              180
+            </td>
+            <td
+              class=""
+              data-label="Score"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <tr
+            class=""
+            draggable="false"
+          >
+            <!--v-if-->
+            <!--v-if-->
+            
+            <td
+              class=""
+              data-label="Series"
+            >
+              X
+            </td>
+            <td
+              class=""
+              data-label="Name"
+            >
+              <a>
+                SP-TRIP MACHINE～JUNGLE MIX～(X-Special)
+              </a>
+            </td>
+            <td
+              class=""
+              data-label="Artist"
+            >
+              DE-SIRE
+            </td>
+            <td
+              class=""
+              data-label="BPM"
+            >
+              160
+            </td>
+            <td
+              class=""
+              data-label="Score"
+            >
+              <button
+                class="button"
+                type="button"
+              >
+                <span
+                  class="button-wrapper"
+                >
+                  <!--v-if-->
+                  <!--v-if-->
+                  <span
+                    class="icon"
+                  >
+                    <i
+                      class="mdi mdi-pencil-box-outline mdi-24px"
+                    />
+                  </span>
+                </span>
+              </button>
+            </td>
+            
+            <!--v-if-->
+          </tr>
+          <transition-stub
+            appear="false"
+            css="true"
+            name=""
+            persisted="false"
+          >
+            <!--v-if-->
+          </transition-stub>
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+        </tbody>
+        <!--v-if-->
+      </table>
+      
+      <transition-stub
+        appear="false"
+        css="true"
+        name="fade"
+        persisted="false"
+      >
+        <!--v-if-->
+      </transition-stub>
+      
+    </div>
+    
+    <div
+      class="level"
+    >
+      <div>
+        
+        
+      </div>
+      <div>
+        <div>
+          <nav
+            class="pagination is-right"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li>
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
+                >
+                  
+                  1
+                  
+                </a>
+              </li>
               
               <!--Last-->
               <!--v-if-->

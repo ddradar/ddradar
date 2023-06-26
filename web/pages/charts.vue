@@ -69,6 +69,7 @@
 
 <script lang="ts" setup>
 import { useProgrammatic } from '@oruga-ui/oruga-next'
+import { watch } from 'vue'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
