@@ -164,9 +164,9 @@ const props = defineProps<ScoreEditorProps>()
 const emits = defineEmits<{ (e: 'close'): void }>()
 
 const score = useState<ScoreInfo['score']>(() => 0)
-const exScore = useState<ScoreInfo['exScore']>(() => 0)
+const exScore = useState<Exclude<ScoreInfo['exScore'], null>>(() => 0)
 const clearLamp = useState<ScoreInfo['clearLamp']>(() => 0 as const)
-const maxCombo = useState<ScoreInfo['maxCombo']>(() => 0)
+const maxCombo = useState<Exclude<ScoreInfo['maxCombo'], null>>(() => 0)
 const isFailed = useState(() => false)
 const playStyle = useState(() => props.playStyle)
 const difficulty = useState(() => props.difficulty)
@@ -187,9 +187,9 @@ const { pending, refresh } = await useFetch(
       const [userScore] = response._data as ScoreInfo[]
       if (userScore) {
         score.value = userScore.score
-        exScore.value ??= userScore.exScore
+        exScore.value ??= userScore.exScore!
         clearLamp.value = userScore.clearLamp
-        maxCombo.value ??= userScore.maxCombo
+        maxCombo.value ??= userScore.maxCombo!
         isFailed.value = userScore.rank === 'E'
       }
     },
@@ -246,8 +246,8 @@ const calcScore = () => {
       setValidScoreFromChart(selectedChart.value, currentScore)
     )
     score.value = calcedScore.score
-    exScore.value = calcedScore.exScore
-    maxCombo.value = calcedScore.maxCombo
+    exScore.value = calcedScore.exScore!
+    maxCombo.value = calcedScore.maxCombo!
     clearLamp.value = calcedScore.clearLamp
     isFailed.value = calcedScore.rank === 'E'
   } catch {

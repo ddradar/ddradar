@@ -7,7 +7,7 @@
     <div class="card-content">
       <div class="table-container">
         <OTable
-          :data="scores"
+          :data="scores!"
           :loading="loading"
           :mobile-cards="false"
           :selected="userScore"
@@ -154,15 +154,22 @@ const cardType = computed(() =>
 )
 const userScore = computed(() => scores.value?.find(s => s.userId === id.value))
 
+/** Open ScoreEditor modal. */
 const editScore = async () => {
   const instance = oruga.modal.open({
     component: ScoreEditor,
-    props: { songId: props.songId, isCourse: props.isCourse },
+    props: {
+      songId: props.songId,
+      isCourse: props.isCourse,
+      playStyle: props.chart.playStyle,
+      difficulty: props.chart.difficulty,
+    },
     trapFocus: true,
   })
   await instance.promise
   await refresh()
 }
+/** Reload scores with scope=full option. */
 const reloadAll = async () => {
   fetchAllData.value = true
   await refresh()

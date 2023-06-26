@@ -18,7 +18,7 @@
     </div>
 
     <OTable
-      :data="courses"
+      :data="courses!"
       striped
       :loading="isLoading"
       :mobile-cards="false"
@@ -31,6 +31,12 @@
         <NuxtLink :to="`/courses/${props.row.id}`">
           {{ props.row.name }}
         </NuxtLink>
+      </OTableColumn>
+      <OTableColumn v-if="isLoggedIn" v-slot="props" label="Score">
+        <OButton
+          icon-right="pencil-box-outline"
+          @click="editScore(props.row.id)"
+        />
       </OTableColumn>
 
       <template #empty>
@@ -48,8 +54,11 @@
 </template>
 
 <script lang="ts" setup>
+import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { watch } from 'vue'
 
+import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
+import useAuth from '~~/composables/useAuth'
 import { getQueryInteger } from '~~/utils/path'
 import {
   courseSeriesIndexes,
@@ -65,6 +74,8 @@ const _kinds = ['NONSTOP', '段位認定']
 const _route = useRoute()
 const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
+const { oruga } = useProgrammatic()
+const { isLoggedIn } = await useAuth()
 
 const uri = `/api/v1/courses?type=${type}&series=${series}` as const
 const {
@@ -88,4 +99,14 @@ const pages = courseSeriesIndexes.flatMap(series =>
 )
 const isButtonDisabled = (query: (typeof pages)[number]['query']) =>
   (type === query.type && series === query.series) || null
+
+/** Open ScoreEditor modal. */
+const editScore = async (songId: string) => {
+  const instance = oruga.modal.open({
+    component: ScoreEditor,
+    props: { songId, isCourse: true },
+    trapFocus: true,
+  })
+  await instance.promise
+}
 </script>
