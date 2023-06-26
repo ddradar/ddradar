@@ -73,6 +73,7 @@ definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['name', 'series'] as const
 
+// Data & Hook
 const _route = useRoute()
 const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
@@ -90,6 +91,7 @@ watch(
   () => refresh()
 )
 
+// Computed
 const _pageKind = !isNaN(name) ? _kinds[0] : !isNaN(series) ? _kinds[1] : 'all'
 const title =
   _pageKind === 'name'
@@ -111,8 +113,9 @@ const pages =
         query: { series: key },
       }))
     : []
-const isButtonDisabled = (key: number) => name === key || series === key || null
 
+// Method
+const isButtonDisabled = (key: number) => name === key || series === key || null
 /** Open ScoreEditor modal. */
 const editScore = async (songId: string) => {
   const instance = oruga.modal.open({

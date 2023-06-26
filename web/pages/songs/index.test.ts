@@ -113,6 +113,7 @@ describe('Page /songs', () => {
     })
   })
 
+  // Computed
   test.each([
     [undefined, undefined, 'すべての楽曲を表示'],
     [undefined, '18', 'DanceDanceRevolution A3'],
@@ -138,5 +139,32 @@ describe('Page /songs', () => {
 
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
+  })
+
+  // Method
+  test('score edit button calls modal open', async () => {
+    // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useRoute).mockReturnValue({ query } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
+    vi.mocked(useFetch).mockResolvedValue({
+      pending: ref(false),
+      data: ref(songs),
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    open.mockClear()
+    open.mockReturnValue({ promise: Promise.resolve() })
+
+    // Act
+    const wrapper = await mountAsync(Page, {
+      global: {
+        plugins: [[Oruga, bulmaConfig]],
+        stubs: { NuxtLink: RouterLinkStub },
+      },
+    })
+    await wrapper.find('i.mdi-pencil-box-outline').trigger('click')
+
+    // Assert
+    expect(open).toBeCalled()
   })
 })

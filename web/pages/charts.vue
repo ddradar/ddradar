@@ -83,6 +83,7 @@ definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['SINGLE', 'DOUBLE']
 
+// Data & Hook
 const _route = useRoute()
 const style = getQueryInteger(_route.query, 'style')
 const level = getQueryInteger(_route.query, 'level')
@@ -100,10 +101,12 @@ watch(
   () => refresh()
 )
 
+// Computed
 const title = `${_kinds[style - 1]} ${level}`
 const otherStyle = style === 2 ? 1 : 2
 const isButtonDisabled = (i: number) => level === i || null
 
+// Method
 /** Open ScoreEditor modal. */
 const editScore = async ({ id, playStyle, difficulty }: ChartInfo) => {
   const instance = oruga.modal.open({

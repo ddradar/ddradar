@@ -71,6 +71,7 @@ definePageMeta({ key: route => route.fullPath })
 
 const _kinds = ['NONSTOP', '段位認定']
 
+// Data & Hook
 const _route = useRoute()
 const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
@@ -88,6 +89,7 @@ watch(
   () => refresh()
 )
 
+// Computed
 const title = `${_kinds[type - 1] ?? 'COURSES'}${
   isNaN(series) ? '' : ` (${shortenSeriesName(seriesNames[series])})`
 }`
@@ -97,9 +99,10 @@ const pages = courseSeriesIndexes.flatMap(series =>
     name: `${kind} (${shortenSeriesName(seriesNames[series])})`,
   }))
 )
+
+// Method
 const isButtonDisabled = (query: (typeof pages)[number]['query']) =>
   (type === query.type && series === query.series) || null
-
 /** Open ScoreEditor modal. */
 const editScore = async (songId: string) => {
   const instance = oruga.modal.open({

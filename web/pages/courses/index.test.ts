@@ -125,6 +125,7 @@ describe('Page /courses', () => {
     })
   })
 
+  // Computed
   test.each([
     [undefined, undefined, 'COURSES'],
     [undefined, '16', 'COURSES (A20)'],
@@ -151,5 +152,32 @@ describe('Page /courses', () => {
 
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
+  })
+
+  // Method
+  test('score edit button calls modal open', async () => {
+    // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useRoute).mockReturnValue({ query } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
+    vi.mocked(useFetch).mockResolvedValue({
+      pending: ref(false),
+      data: ref(courses),
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    open.mockClear()
+    open.mockReturnValue({ promise: Promise.resolve() })
+
+    // Act
+    const wrapper = await mountAsync(Page, {
+      global: {
+        plugins: [[Oruga, bulmaConfig]],
+        stubs: { NuxtLink: RouterLinkStub },
+      },
+    })
+    await wrapper.find('i.mdi-pencil-box-outline').trigger('click')
+
+    // Assert
+    expect(open).toBeCalled()
   })
 })

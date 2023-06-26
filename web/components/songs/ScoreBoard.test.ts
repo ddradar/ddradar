@@ -15,6 +15,7 @@ vi.mock('~~/composables/useAuth')
 describe('components/songs/ScoreBoard.vue', () => {
   const props = {
     songId: testSongData.id,
+    isCourse: false,
     chart: { ...testSongData.charts[0] },
   }
   const scores = testScores.map(s =>

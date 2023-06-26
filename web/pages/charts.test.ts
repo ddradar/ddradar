@@ -121,6 +121,7 @@ describe('Page /charts', () => {
     })
   })
 
+  // Computed
   test.each([
     ['1', '6', 'SINGLE 6'],
     ['2', '18', 'DOUBLE 18'],
@@ -145,5 +146,32 @@ describe('Page /charts', () => {
 
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
+  })
+
+  // Method
+  test('score edit button calls modal open', async () => {
+    // Arrange
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useRoute).mockReturnValue({ query } as any)
+    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
+    vi.mocked(useFetch).mockResolvedValue({
+      pending: ref(false),
+      data: ref(charts),
+    } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+    open.mockClear()
+    open.mockReturnValue({ promise: Promise.resolve() })
+
+    // Act
+    const wrapper = await mountAsync(Page, {
+      global: {
+        plugins: [[Oruga, bulmaConfig]],
+        stubs: { NuxtLink: RouterLinkStub },
+      },
+    })
+    await wrapper.find('i.mdi-pencil-box-outline').trigger('click')
+
+    // Assert
+    expect(open).toBeCalled()
   })
 })
