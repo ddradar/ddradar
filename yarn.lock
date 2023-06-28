@@ -3552,10 +3552,10 @@ configstore@^5.0.1:
     write-file-atomic "^3.0.0"
     xdg-basedir "^4.0.0"
 
-consola@^3.0.1, consola@^3.0.2, consola@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/consola/-/consola-3.1.0.tgz#dfdfa62ceb68bc1f06e4a76ad688566bd8813baf"
-  integrity sha512-rrrJE6rP0qzl/Srg+C9x/AE5Kxfux7reVm1Wh0wCjuXvih6DqZgqDZe8auTD28fzJ9TF0mHlSDrPpWlujQRo1Q==
+consola@^3.0.1, consola@^3.0.2, consola@^3.1.0, consola@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/consola/-/consola-3.2.1.tgz#e5176be3d131d468340a52a2e7bb1d8d1e7bac4a"
+  integrity sha512-p4cjcr/NHr2pbmXcTBcdNwIWEyQIzavKkZt6d0rDPQXta+oilM9j9Folao2REulksBZhYX39vF+HlIm7QRTeWA==
 
 console-control-strings@^1.0.0, console-control-strings@^1.1.0:
   version "1.1.0"
