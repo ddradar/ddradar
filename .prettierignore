@@ -59,4 +59,7 @@ sw.*
 # Minified files
 *.min.js
 
+# pnpm lock file
+pnpm-lock.yaml
+
 core/src/graphql.ts

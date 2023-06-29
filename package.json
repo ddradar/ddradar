@@ -8,22 +8,17 @@
   "private": true,
   "engines": {
     "node": ">=16",
-    "yarn": ">=1.22.4"
+    "pnpm": "8.x"
   },
-  "workspaces": [
-    "core",
-    "db",
-    "functions",
-    "scripts",
-    "web"
-  ],
   "scripts": {
-    "build": "yarn workspaces run build",
-    "fix": "run-p \"lint:eslint --fix\" \"lint:prettier --write\"",
-    "lint": "run-p lint:*",
+    "build": "pnpm -r --workspace-concurrency 1 build",
+    "fix": "pnpm run \"/^fix:.*/\"",
+    "fix:eslint": "pnpm lint:eslint --fix",
+    "fix:prettier": "pnpm lint:prettier --write",
+    "lint": "pnpm run \"/^lint:.*/\"",
     "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
-    "test": "yarn workspaces run test",
+    "test": "pnpm -r test",
     "prepare": "husky install"
   },
   "lint-staged": {
