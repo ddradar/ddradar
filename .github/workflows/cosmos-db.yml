@@ -31,6 +31,10 @@ jobs:
           Import-Module "$env:ProgramFiles\Azure Cosmos DB Emulator\PSModules\Microsoft.Azure.CosmosDB.Emulator"
           Start-CosmosDbEmulator -PartitionCount 5 -NoUI
 
+      - name: Use pnpm ${{ vars.PNPM_VERSION }}
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: ${{ vars.PNPM_VERSION }}
       - name: Use Node.js ${{ vars.NODE_VERSION }}
         uses: actions/setup-node@v3.6.0
         with:
