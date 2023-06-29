@@ -19,6 +19,7 @@
     "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "pnpm -r test",
+    "test:db": "pnpm -r test:db",
     "prepare": "husky install"
   },
   "lint-staged": {
@@ -41,7 +42,6 @@
     "eslint-plugin-vitest": "^0.2.6",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
-    "npm-run-all2": "^6.0.5",
     "prettier": "^2.8.8"
   }
 }

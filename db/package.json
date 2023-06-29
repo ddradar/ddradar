@@ -22,7 +22,8 @@
   ],
   "scripts": {
     "build": "unbuild",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:db": "vitest run \"db.test\""
   },
   "peerDependencies": {
     "@azure/cosmos": "^3.17.3",
