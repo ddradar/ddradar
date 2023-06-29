@@ -7,7 +7,7 @@
         paginated
         :per-page="20"
         striped
-        :loading="loading"
+        :loading="pending"
         detailed
         detail-key="id"
         show-detail-icon
@@ -33,7 +33,7 @@
         </template>
 
         <template #empty>
-          <section v-if="loading" class="section">
+          <section v-if="pending" class="section">
             <OSkeleton animated />
             <OSkeleton animated />
             <OSkeleton animated />
@@ -61,7 +61,7 @@
     "pageTitle": "All Notification List",
     "title": "Title",
     "date": "Date",
-    "noData": "No data"
+    "noData": "No Data"
   }
 }
 </i18n>
@@ -72,9 +72,8 @@ import { useI18n } from 'vue-i18n'
 import useAuth from '~~/composables/useAuth'
 import { markdownToHTML, unixTimeToString } from '~~/utils/format'
 
+// Data & Hook
 const { t } = useI18n()
 const { isAdmin } = await useAuth()
-const { data: messages, pending: loading } = await useLazyFetch(
-  '/api/v1/notification'
-)
+const { data: messages, pending } = await useLazyFetch('/api/v1/notification')
 </script>
