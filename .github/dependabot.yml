@@ -19,7 +19,7 @@ updates:
     reviewers:
       - ddradar/developer
 
-  # npm/yarn (/**/package.json)
+  # Node.js (/**/package.json)
   - package-ecosystem: npm
     directory: /
     schedule:

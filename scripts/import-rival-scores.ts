@@ -80,5 +80,5 @@ async function main(ddrCode: string) {
   await browser.close()
 }
 
-// yarn start ./import-rival-scores.ts 10000000
+// pnpm start ./import-rival-scores.ts 10000000
 main(process.argv[2]).catch(e => consola.error(e))

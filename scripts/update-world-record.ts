@@ -145,5 +145,5 @@ async function main() {
   await browser.close()
 }
 
-// yarn start ./update-world-record.ts
+// pnpm start ./update-world-record.ts
 main().catch(e => consola.error(e))

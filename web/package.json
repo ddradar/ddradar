@@ -16,8 +16,8 @@
   },
   "dependencies": {
     "@azure/cosmos": "^3.17.3",
-    "@ddradar/core": "^2.0.0",
-    "@ddradar/db": "^2.0.0",
+    "@ddradar/core": "workspace:*",
+    "@ddradar/db": "workspace:*",
     "@oruga-ui/oruga-next": "^0.6.0",
     "@oruga-ui/theme-bulma": "^0.2.11",
     "chart.js": "^4.3.0",

@@ -7,7 +7,7 @@
       "apiLocation": "./web/.output/server",
       "dataApiLocation": "./core",
       "outputLocation": ".output/public",
-      "appBuildCommand": "yarn build"
+      "appBuildCommand": "pnpm build"
     }
   }
 }
