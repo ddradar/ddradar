@@ -4,7 +4,7 @@
     {
       "label": "Install Dependencies",
       "type": "shell",
-      "command": "yarn",
+      "command": "pnpm",
       "args": ["install", "--frozen-lockfile"]
     },
     {
@@ -22,7 +22,7 @@
       "label": "Functions: Build",
       "type": "shell",
       "group": "build",
-      "command": "yarn",
+      "command": "pnpm",
       "args": ["build"],
       "dependsOn": "Install Dependencies",
       "problemMatcher": "$tsc",
@@ -33,8 +33,8 @@
     {
       "label": "Functions: Install Dependencies (Production)",
       "type": "shell",
-      "command": "yarn",
-      "args": ["install", "--production", " --pure-lockfile"],
+      "command": "pnpm",
+      "args": ["install", "--prod"],
       "dependsOn": "Functions: Build",
       "options": {
         "cwd": "${workspaceFolder}/functions"

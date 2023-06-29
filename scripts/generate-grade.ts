@@ -105,5 +105,5 @@ async function main() {
   consola.success(`Added ${name}(${playStyle}) (${grade.id})`)
 }
 
-// yarn start ./generate-grade.ts
+// pnpm start ./generate-grade.ts
 main().catch(e => consola.error(e))

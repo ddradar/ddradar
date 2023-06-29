@@ -22,7 +22,7 @@
   ],
   "scripts": {
     "prepare": "graphql-codegen",
-    "prebuild": "yarn prepare",
+    "prebuild": "pnpm prepare",
     "build": "unbuild",
     "test": "vitest run"
   },

@@ -18,13 +18,13 @@ jobs:
         uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ vars.NODE_VERSION }}
-          cache: yarn
+          cache: pnpm
 
       - name: Install Project Dependencies
-        run: yarn install --frozen-lockfile --ignore-scripts
+        run: pnpm install --frozen-lockfile --ignore-scripts
 
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
 
   test:
     name: Unit Test
@@ -37,13 +37,13 @@ jobs:
         uses: actions/setup-node@v3.6.0
         with:
           node-version: ${{ vars.NODE_VERSION }}
-          cache: yarn
+          cache: pnpm
 
       - name: Install Project Dependencies
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Test
-        run: yarn test
+        run: pnpm test
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v3.1.4

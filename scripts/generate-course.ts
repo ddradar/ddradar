@@ -113,5 +113,5 @@ async function main() {
   consola.success(`Added ${course.name} (${course.id})`)
 }
 
-// yarn start ./generate-course.ts
+// pnpm start ./generate-course.ts
 main().catch(e => consola.error(e))

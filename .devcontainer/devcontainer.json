@@ -17,5 +17,5 @@
   },
   "forwardPorts": [4280],
   "remoteUser": "node",
-  "postCreateCommand": "yarn install"
+  "postCreateCommand": "pnpm install"
 }

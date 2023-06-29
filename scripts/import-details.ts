@@ -112,5 +112,5 @@ async function main(ddrCode: string) {
   await browser.close()
 }
 
-// yarn start ./import-details.ts 10000000
+// pnpm start ./import-details.ts 10000000
 main(process.argv[2]).catch(e => consola.error(e))

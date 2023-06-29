@@ -17,13 +17,13 @@ DDR Score Tracker
 
 ```bash
 # 依存関係のインストール
-yarn
+pnpm install
 ```
 
 ### Required
 
 - Node.js `18.x`
-- Yarn `>=1.22.4`
+- pnpm `8.x`
 - [Azure Functions Core Tools](https://github.com/Azure/azure-functions-core-tools) `4.x`
 
 - API開発やテストに[Azure Cosmos Emulator](https://docs.microsoft.com/azure/cosmos-db/local-emulator)を使う場合は、下記の環境変数を設定してください。
@@ -34,15 +34,15 @@ yarn
 
 ```bash
 # 依存関係のインストール
-yarn
+pnpm install
 # Lintツールの実行
-yarn lint
+pnpm lint
 # Lintツールの実行&自動修正
-yarn fix
+pnpm fix
 # 単体テスト
-yarn test
+pnpm test
 # 本番ビルド
-yarn build
+pnpm build
 ```
 
 ## Contributing
