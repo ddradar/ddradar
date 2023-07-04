@@ -38,6 +38,20 @@ describe('server/utils/score.ts', () => {
         0,
         0,
       ],
+      [
+        privateUser,
+        [
+          {
+            ...oldScore,
+            userId: privateUser.id,
+            userName: privateUser.name,
+            isPublic: privateUser.isPublic,
+          },
+        ],
+        { ...score, score: 1000000 },
+        1,
+        1,
+      ],
     ])(
       '(chartInfo, %o, %o, %o, result, operations) sets %i object on result & %i object sets on operations',
       (
