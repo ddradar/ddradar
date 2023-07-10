@@ -1,6 +1,6 @@
 // @vitest-environment node
 import type { OperationInput } from '@azure/cosmos'
-import { Score, ScoreSchema } from '@ddradar/core'
+import type { Score, ScoreSchema } from '@ddradar/core'
 import { privateUser, testSongData } from '@ddradar/core/test/data'
 import { describe, expect, test } from 'vitest'
 
@@ -50,7 +50,7 @@ describe('server/utils/score.ts', () => {
         ],
         { ...score, score: 1000000 },
         1,
-        1,
+        2,
       ],
     ])(
       '(chartInfo, %o, %o, %o, result, operations) sets %i object on result & %i object sets on operations',
