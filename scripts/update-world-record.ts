@@ -51,14 +51,17 @@ async function main() {
   )
 
   // Grouped by song
-  const scores = resources.reduce((prev, score) => {
-    if (prev[score.songId]) {
-      prev[score.songId].push(score)
-    } else {
-      prev[score.songId] = [score]
-    }
-    return prev
-  }, {} as Record<string, typeof resources>)
+  const scores = resources.reduce(
+    (prev, score) => {
+      if (prev[score.songId]) {
+        prev[score.songId].push(score)
+      } else {
+        prev[score.songId] = [score]
+      }
+      return prev
+    },
+    {} as Record<string, typeof resources>
+  )
 
   const total = Object.keys(scores).length
   let count = 1

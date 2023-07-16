@@ -80,7 +80,7 @@ export async function handler(
               o.clearLamp === d.clearLamp
           )?.id,
           ...d,
-        } as UserClearLampSchema)
+        }) as UserClearLampSchema
     ),
     ...newRankCounts.map(
       d =>
@@ -94,7 +94,7 @@ export async function handler(
               o.rank === d.rank
           )?.id,
           ...d,
-        } as UserRankSchema)
+        }) as UserRankSchema
     ),
     ...notExists.map(d => ({ ...d, count: 0 })),
   ]

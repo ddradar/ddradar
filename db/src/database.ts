@@ -92,7 +92,7 @@ export type Condition<T extends ContainerName> =
  */
 export async function fetchOne<
   T extends ContainerName,
-  U extends KeysOfUnion<DbItem<T>>
+  U extends KeysOfUnion<DbItem<T>>,
 >(
   containerName: T,
   columns: readonly U[],
@@ -118,7 +118,7 @@ export async function fetchOne<
  */
 export async function fetchList<
   T extends ContainerName,
-  U extends KeysOfUnion<DbItem<T>>
+  U extends KeysOfUnion<DbItem<T>>,
 >(
   containerName: T,
   columns: readonly U[],
@@ -142,7 +142,7 @@ export async function fetchList<T extends ContainerName>(
 
 export async function fetchList<
   T extends ContainerName,
-  U extends KeysOfUnion<DbItem<T>>
+  U extends KeysOfUnion<DbItem<T>>,
 >(
   containerName: T,
   columns: readonly U[] | '*',

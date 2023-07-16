@@ -76,7 +76,7 @@ describe('Page /users/[id]', () => {
                 ? null
                 : { ...publicUser, code: undefined }
             ),
-          } as any)
+          }) as any
       )
       vi.mocked(useAuth).mockResolvedValue({ id: ref(null) } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
@@ -103,7 +103,7 @@ describe('Page /users/[id]', () => {
                 ? clears
                 : publicUser
             ),
-          } as any)
+          }) as any
       )
       vi.mocked(useAuth).mockResolvedValue({ id: ref(publicUser.id) } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */

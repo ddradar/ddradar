@@ -58,10 +58,10 @@ const { isAdmin } = await useAuth()
 const displayedBPM = computed(() =>
   song.value ? getDisplayedBPM(song.value) : '???'
 )
-const singleCharts = computed(() =>
-  song.value?.charts.filter(c => c.playStyle === 1)
+const singleCharts = computed(
+  () => song.value?.charts.filter(c => c.playStyle === 1)
 )
-const doubleCharts = computed(() =>
-  song.value?.charts.filter(c => c.playStyle === 2)
+const doubleCharts = computed(
+  () => song.value?.charts.filter(c => c.playStyle === 2)
 )
 </script>
