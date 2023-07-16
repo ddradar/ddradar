@@ -41,22 +41,25 @@ async function main() {
   consola.info(`Fin: ${songs[3].name}`)
 
   const chartKind = songs
-    .reduce((prev, curr) => {
-      for (const chart of curr.charts) {
-        if (
-          !prev.find(
-            c =>
-              c.playStyle === chart.playStyle &&
-              c.difficulty === chart.difficulty
+    .reduce(
+      (prev, curr) => {
+        for (const chart of curr.charts) {
+          if (
+            !prev.find(
+              c =>
+                c.playStyle === chart.playStyle &&
+                c.difficulty === chart.difficulty
+            )
           )
-        )
-          prev.push({
-            playStyle: chart.playStyle,
-            difficulty: chart.difficulty,
-          })
-      }
-      return prev
-    }, [] as Pick<StepChartSchema, 'playStyle' | 'difficulty'>[])
+            prev.push({
+              playStyle: chart.playStyle,
+              difficulty: chart.difficulty,
+            })
+        }
+        return prev
+      },
+      [] as Pick<StepChartSchema, 'playStyle' | 'difficulty'>[]
+    )
     .sort((l, r) =>
       l.playStyle === r.playStyle
         ? l.difficulty - r.difficulty

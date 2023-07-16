@@ -42,14 +42,17 @@ export async function handler(
   ctx: InvocationContext
 ): Promise<UserDetailSchema[]> {
   const scores = documents as (ScoreSchema & ItemDefinition)[]
-  const userScores = scores.reduce((prev, s) => {
-    // Skip area top & course score
-    if (!s.radar) return prev
+  const userScores = scores.reduce(
+    (prev, s) => {
+      // Skip area top & course score
+      if (!s.radar) return prev
 
-    if (!prev[s.userId]) prev[s.userId] = []
-    prev[s.userId].push(s)
-    return prev
-  }, {} as Record<string, (ScoreSchema & ItemDefinition)[]>)
+      if (!prev[s.userId]) prev[s.userId] = []
+      prev[s.userId].push(s)
+      return prev
+    },
+    {} as Record<string, (ScoreSchema & ItemDefinition)[]>
+  )
 
   const result: UserDetailSchema[] = []
   for (const [userId, scores] of Object.entries(userScores)) {
