@@ -61,49 +61,52 @@ export default defineEventHandler(async event => {
   const scoresMap = decode(Buffer.from(await arrayBuffer()), 'shift_jis')
     .trim()
     .split('\n')
-    .reduce((prev, s) => {
-      /**
-       * - \[0\]: skillAttackId
-       * - \[1\]: 0:SP, 1:DP
-       * - \[2\]: 0:BEGINNER, 1:BASIC, ..., 4:CHALLENGE
-       * - \[3\]: DDR CODE
-       * - \[4\]: UNIX Time
-       * - \[5\]: score
-       * - \[6\]: 0:Played(Failed,Assisted,Clear), 1:FC(include GreatFC), 2:PFC, 3:MFC
-       * - \[7\]: Song Name (HTML escaped)
-       * - \[8\]: blank
-       */
-      const cols = s.split('\t')
-      if (cols.length < 8) return prev
+    .reduce(
+      (prev, s) => {
+        /**
+         * - \[0\]: skillAttackId
+         * - \[1\]: 0:SP, 1:DP
+         * - \[2\]: 0:BEGINNER, 1:BASIC, ..., 4:CHALLENGE
+         * - \[3\]: DDR CODE
+         * - \[4\]: UNIX Time
+         * - \[5\]: score
+         * - \[6\]: 0:Played(Failed,Assisted,Clear), 1:FC(include GreatFC), 2:PFC, 3:MFC
+         * - \[7\]: Song Name (HTML escaped)
+         * - \[8\]: blank
+         */
+        const cols = s.split('\t')
+        if (cols.length < 8) return prev
 
-      const id = parseInt(cols[0], 10)
-      const playStyle = (parseInt(cols[1], 10) + 1) as 1 | 2
-      const difficulty = parseInt(cols[2], 10) as 0 | 1 | 2 | 3 | 4
-      const score = parseInt(cols[5], 10)
-      const clearLamp =
-        cols[6] === '3' ? 7 : cols[6] === '2' ? 6 : cols[6] === '1' ? 4 : 2
+        const id = parseInt(cols[0], 10)
+        const playStyle = (parseInt(cols[1], 10) + 1) as 1 | 2
+        const difficulty = parseInt(cols[2], 10) as 0 | 1 | 2 | 3 | 4
+        const score = parseInt(cols[5], 10)
+        const clearLamp =
+          cols[6] === '3' ? 7 : cols[6] === '2' ? 6 : cols[6] === '1' ? 4 : 2
 
-      if (prev[id] === undefined) prev[id] = []
+        if (prev[id] === undefined) prev[id] = []
 
-      const scores = prev[id]
-      const oldScore = scores.find(
-        s => s.playStyle === playStyle && s.difficulty === difficulty
-      )
-      if (oldScore === undefined) {
-        scores.push({
-          playStyle,
-          difficulty,
-          clearLamp,
-          score,
-          rank: getDanceLevel(score),
-        })
-      } else {
-        oldScore.clearLamp = clearLamp
-        oldScore.score = score
-        oldScore.rank = getDanceLevel(score)
-      }
-      return prev
-    }, {} as Record<number, SkillAttackScore[]>)
+        const scores = prev[id]
+        const oldScore = scores.find(
+          s => s.playStyle === playStyle && s.difficulty === difficulty
+        )
+        if (oldScore === undefined) {
+          scores.push({
+            playStyle,
+            difficulty,
+            clearLamp,
+            score,
+            rank: getDanceLevel(score),
+          })
+        } else {
+          oldScore.clearLamp = clearLamp
+          oldScore.score = score
+          oldScore.rank = getDanceLevel(score)
+        }
+        return prev
+      },
+      {} as Record<number, SkillAttackScore[]>
+    )
 
   const result: ScoreSchema[] = []
   const operations: OperationInput[] = []
