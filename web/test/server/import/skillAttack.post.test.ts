@@ -97,51 +97,27 @@ describe('POST /api/v1/import/skillAttack', () => {
               id: 'o068b00O6QD8lo9O1i9PbQlqO6IQOidD',
               name: 'New Century',
               charts: [
-                {
-                  playStyle: 1,
-                  difficulty: 0,
-                },
-                {
-                  playStyle: 1,
-                  difficulty: 1,
-                },
-                {
-                  playStyle: 1,
-                  difficulty: 2,
-                },
-                {
-                  playStyle: 1,
-                  difficulty: 3,
-                },
-                {
-                  playStyle: 1,
-                  difficulty: 4,
-                },
+                { playStyle: 1, difficulty: 0 },
+                { playStyle: 1, difficulty: 1 },
+                { playStyle: 1, difficulty: 2 },
+                { playStyle: 1, difficulty: 3 },
+                { playStyle: 1, difficulty: 4 },
               ],
             }
           : condition.value === 455
           ? {
               id: 'lo6bOoq86d9od6qQ9PiPibOioOQb96lP',
               name: 'TWINKLE♥HEART',
-              charts: [
-                {
-                  playStyle: 2,
-                  difficulty: 1,
-                },
-              ],
+              charts: [{ playStyle: 2, difficulty: 1 }],
             }
           : condition.value === '700'
           ? {
               id: '80PdqQ0iiOQb9i91lIliodiO9PI8O609',
               name: 'エキサイティング！！も・ちゃ・ちゃ☆',
-              charts: [
-                {
-                  playStyle: 1,
-                  difficulty: 0,
-                },
-              ],
+              charts: [{ playStyle: 1, difficulty: 0 }],
             }
-          : (null as any)
+          : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            (null as any)
       )
     )
     const event = createEvent()
