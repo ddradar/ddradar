@@ -1,4 +1,7 @@
 // @vitest-environment node
+import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
+
 import { publicUser } from '@ddradar/core/test/data'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
@@ -82,5 +85,79 @@ describe('POST /api/v1/import/skillAttack', () => {
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
     expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
+  })
+
+  test('returns 200 with imported score', async () => {
+    // Arrange
+    vi.mocked(getLoginUserInfo).mockResolvedValue({ ...publicUser })
+    vi.mocked(fetchOne).mockImplementation((_1, _2, condition) =>
+      Promise.resolve(
+        condition.value === 700
+          ? {
+              id: 'o068b00O6QD8lo9O1i9PbQlqO6IQOidD',
+              name: 'New Century',
+              charts: [
+                {
+                  playStyle: 1,
+                  difficulty: 0,
+                },
+                {
+                  playStyle: 1,
+                  difficulty: 1,
+                },
+                {
+                  playStyle: 1,
+                  difficulty: 2,
+                },
+                {
+                  playStyle: 1,
+                  difficulty: 3,
+                },
+                {
+                  playStyle: 1,
+                  difficulty: 4,
+                },
+              ],
+            }
+          : condition.value === 455
+          ? {
+              id: 'lo6bOoq86d9od6qQ9PiPibOioOQb96lP',
+              name: 'TWINKLE♥HEART',
+              charts: [
+                {
+                  playStyle: 2,
+                  difficulty: 1,
+                },
+              ],
+            }
+          : condition.value === '700'
+          ? {
+              id: '80PdqQ0iiOQb9i91lIliodiO9PI8O609',
+              name: 'エキサイティング！！も・ちゃ・ちゃ☆',
+              charts: [
+                {
+                  playStyle: 1,
+                  difficulty: 0,
+                },
+              ],
+            }
+          : (null as any)
+      )
+    )
+    const event = createEvent()
+    const raw = vi.fn()
+    const arrayBuffer = async () =>
+      (await readFile(resolve(__dirname, 'score_10000000.txt'))).buffer
+    raw.mockResolvedValue({ ok: true, arrayBuffer })
+    $fetch.raw = raw
+
+    // Act
+    const userScores = await importSkillAttack(event)
+
+    // Assert
+    expect(userScores).not.toBeNull()
+    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
+    expect(vi.mocked(upsertScore)).toBeCalled()
+    expect(mockedContainer.items.batch).toBeCalled()
   })
 })
