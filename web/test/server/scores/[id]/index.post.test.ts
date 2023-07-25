@@ -1,5 +1,4 @@
 // @vitest-environment node
-import { calcMyGrooveRadar } from '@ddradar/core'
 import {
   areaHiddenUser,
   privateUser,
@@ -16,19 +15,16 @@ import postSongScores, {
 } from '~~/server/api/v1/scores/[id]/index.post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { upsertScore } from '~~/server/utils/score'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
+vi.mock('~~/server/utils/score')
 
 describe('POST /api/v1/scores/[id]', () => {
-  const song = {
-    id: testSongData.id,
-    name: testSongData.name,
-    ...testSongData.charts[0],
-  }
   const mockedContainer = { items: { batch: vi.fn() } }
   beforeAll(() => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
@@ -41,9 +37,10 @@ describe('POST /api/v1/scores/[id]', () => {
     vi.mocked(fetchOne).mockClear()
     vi.mocked(sendNullWithError).mockClear()
     mockedContainer.items.batch.mockClear()
+    vi.mocked(upsertScore).mockClear()
   })
 
-  const scores = new Map(testScores.map(d => [d.userId, d]))
+  /** MFC score */
   const score: ScoreListBody = {
     playStyle: 1,
     difficulty: 0,
@@ -182,123 +179,32 @@ describe('POST /api/v1/scores/[id]', () => {
     )
   })
 
-  test('(user: publicUser, body: [<new score>]) inserts world & area top', async () => {
-    // Arrange
-    const score = {
-      playStyle: 1,
-      difficulty: 1,
-      score: 999700,
-      clearLamp: 6,
-      rank: 'AAA',
-      maxCombo: 264,
-      exScore: 762,
-    } as const
-    vi.mocked(readBody).mockResolvedValue([score])
-    vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
-    vi.mocked(fetchList).mockResolvedValue([])
-    const event = createEvent({ id: testSongData.id })
-
-    // Act
-    const userScores = await postSongScores(event)
-
-    // Assert
-    expect(userScores).toStrictEqual([
-      {
-        ...scores.get(publicUser.id),
-        ...score,
-        level: testSongData.charts[1].level,
-        radar: calcMyGrooveRadar(testSongData.charts[1], score),
-      },
-    ])
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
-    expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(3)
-  })
-
   test.each([
-    [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        score: 996710,
-        clearLamp: 5,
-        rank: 'AAA',
-        maxCombo: 138,
-        exScore: 374,
-      } as const,
-      2, // user scores(old & new)
-    ],
-    [
-      {
-        playStyle: 1,
-        difficulty: 0,
-        score: 999620,
-        clearLamp: 6,
-        rank: 'AAA',
-        exScore: 376,
-        maxCombo: 138,
-      } as const,
-      4, // user scores and area top scores(old & new)
-    ],
-  ])('(user: publicUser, body: [%o]) calls %i batch', async (score, length) => {
-    // Arrange
-    vi.mocked(readBody).mockResolvedValue([score])
-    vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
-    vi.mocked(fetchList).mockResolvedValue(dbScores as any)
-    /* eslint-enable @typescript-eslint/no-explicit-any */
-    const event = createEvent({ id: testSongData.id })
+    [privateUser, 1], // personal
+    [areaHiddenUser, 2], // personal, world
+    [publicUser, 3], // personal, area, world
+  ])(
+    '(user: %o, body: [<MFC score>]) calls upsertScore() %i time(s)',
+    async (user, times) => {
+      // Arrange
+      vi.mocked(readBody).mockResolvedValue([score])
+      vi.mocked(getLoginUserInfo).mockResolvedValue(user)
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
+      vi.mocked(fetchList).mockResolvedValue(dbScores as any)
+      /* eslint-enable @typescript-eslint/no-explicit-any */
+      const event = createEvent({ id: testSongData.id })
 
-    // Act
-    const userScores = await postSongScores(event)
+      // Act
+      const userScores = await postSongScores(event)
 
-    // Assert
-    expect(userScores).toStrictEqual([
-      {
-        ...scores.get(publicUser.id),
-        ...score,
-        radar: calcMyGrooveRadar(testSongData.charts[0], score),
-      },
-    ])
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
-    expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(length)
-  })
-
-  test.each([
-    [privateUser, 2], // privateUser scores(old & new)
-    [areaHiddenUser, 4], // areaHiddenUser scores and world top scores(old & new)
-    [publicUser, 6], // publicUser scores, area top scores, and world top scores(old & new)
-  ])('(user: %o, body: [<MFC score>]) calls %i batch', async (user, length) => {
-    // Arrange
-    vi.mocked(readBody).mockResolvedValue([score])
-    vi.mocked(getLoginUserInfo).mockResolvedValue(user)
-    /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(fetchOne).mockResolvedValue(testSongData as any)
-    vi.mocked(fetchList).mockResolvedValue(dbScores as any)
-    /* eslint-enable @typescript-eslint/no-explicit-any */
-    const event = createEvent({ id: testSongData.id })
-
-    // Act
-    const userScores = await postSongScores(event)
-
-    // Assert
-    expect(userScores).toStrictEqual([
-      {
-        ...score,
-        userId: user.id,
-        userName: user.name,
-        isPublic: user.isPublic,
-        songId: song.id,
-        songName: song.name,
-        level: song.level,
-        radar: calcMyGrooveRadar(song, score),
-      },
-    ])
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
-    expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(length)
-  })
+      // Assert
+      expect(userScores).not.toBeNull()
+      expect(vi.mocked(upsertScore)).toBeCalledTimes(times)
+      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
+      expect(mockedContainer.items.batch).toBeCalled()
+    }
+  )
 
   test('(user: privateUser, body: [{ topScore: 1000000 }]) inserts world top', async () => {
     // Arrange
@@ -322,8 +228,9 @@ describe('POST /api/v1/scores/[id]', () => {
     const userScores = await postSongScores(event)
 
     // Assert
-    expect(userScores).toHaveLength(0)
+    expect(userScores).not.toBeNull()
+    expect(vi.mocked(upsertScore)).toBeCalledTimes(2)
     expect(vi.mocked(sendNullWithError)).not.toBeCalled()
-    expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(2)
+    expect(mockedContainer.items.batch).toBeCalled()
   })
 })

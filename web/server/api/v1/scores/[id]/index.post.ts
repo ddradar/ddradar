@@ -3,10 +3,8 @@ import type {
   CourseChartSchema,
   ScoreSchema,
   StepChartSchema,
-  UserSchema,
 } from '@ddradar/core'
 import {
-  createScoreSchema,
   difficultyMap,
   getDanceLevel,
   hasIntegerProperty,
@@ -14,19 +12,16 @@ import {
   isScore,
   isValidScore,
   isValidSongId,
-  mergeScore,
   playStyleMap,
-  setValidScoreFromChart,
 } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { readBody } from 'h3'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+import { topUser, upsertScore } from '~~/server/utils/score'
 
 type ChartInfo = StepChartSchema | CourseChartSchema
-
-const topUser = { id: '0', name: '0', isPublic: false } as const
 
 export type ScoreListBody = Pick<
   ScoreSchema,
@@ -153,11 +148,12 @@ export default defineEventHandler(async event => {
     )
     if (!chart) return sendNullWithError(event, 404)
 
-    if (!isValidScore(chart, score)) {
+    const chartInfo = { ...song, ...chart }
+    if (!isValidScore(chartInfo, score)) {
       return sendNullWithError(event, 400, `body[${i}] is invalid Score`)
     }
 
-    upsertScore(chart, user, score, true)
+    upsertScore(chartInfo, user, oldScores, score, result, operations)
 
     // World Record
     if (score.topScore) {
@@ -168,70 +164,24 @@ export default defineEventHandler(async event => {
         clearLamp: 2 as const,
         rank: getDanceLevel(score.topScore),
       }
-      upsertScore(chart, topUser, topScore)
+      upsertScore(chartInfo, topUser, oldScores, topScore, result, operations)
     } else if (user.isPublic) {
-      upsertScore(chart, topUser, score)
+      upsertScore(chartInfo, topUser, oldScores, score, result, operations)
     }
 
     // Area Top
     if (user.isPublic && user.area !== 0) {
-      upsertScore(
-        chart,
-        { id: `${user.area}`, name: `${user.area}`, isPublic: false },
-        score
-      )
+      const areaUser = {
+        id: `${user.area}`,
+        name: `${user.area}`,
+        isPublic: false,
+      }
+      upsertScore(chartInfo, areaUser, oldScores, score, result, operations)
     }
   }
 
   await getContainer('Scores').items.batch(operations)
-
   return result
-
-  function upsertScore(
-    chart: ChartInfo,
-    user: Pick<UserSchema, 'id' | 'name' | 'isPublic'>,
-    score: ScoreListBody,
-    isUser = false
-  ) {
-    const oldScore = oldScores.find(
-      d =>
-        d.userId === user.id &&
-        d.playStyle === chart.playStyle &&
-        d.difficulty === chart.difficulty
-    )
-    const mergedScore = mergeScore(
-      oldScore ?? { score: 0, rank: 'E', clearLamp: 0 },
-      setValidScoreFromChart(chart, score)
-    )
-    if (
-      mergedScore.score === oldScore?.score &&
-      mergedScore.clearLamp === oldScore.clearLamp &&
-      mergedScore.exScore === oldScore.exScore &&
-      mergedScore.maxCombo === oldScore.maxCombo &&
-      mergedScore.rank === oldScore.rank
-    ) {
-      return
-    }
-    const newScore = createScoreSchema(
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      { ...song!, ...chart },
-      user,
-      mergedScore
-    )
-    if (isUser) result.push(newScore)
-
-    operations.push({ operationType: 'Create', resourceBody: newScore })
-    if (oldScore) {
-      operations.push({
-        operationType: 'Patch',
-        id: oldScore.id,
-        partitionKey: oldScore.userId,
-        resourceBody: {
-          operations: [{ op: 'add', path: '/ttl', value: 3600 }],
-        },
-      })
-    }
-  }
 
   /** Assert request body is valid schema. */
   function isValidBody(body: unknown): body is ScoreListBody[] {
