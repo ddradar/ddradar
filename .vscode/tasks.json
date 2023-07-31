@@ -34,7 +34,7 @@
       "label": "Functions: Install Dependencies (Production)",
       "type": "shell",
       "command": "pnpm",
-      "args": ["install", "--prod"],
+      "args": ["install", "--prod", "--ignore-scripts"],
       "dependsOn": "Functions: Build",
       "options": {
         "cwd": "${workspaceFolder}/functions"
