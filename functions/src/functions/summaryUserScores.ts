@@ -13,14 +13,14 @@ const $return: CosmosDBOutput = {
   name: '$return',
   type: 'cosmosDB',
   direction: 'out',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'UserDetails',
+  containerName: 'UserDetails',
 }
 app.cosmosDB('summaryUserScores', {
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'Scores',
+  containerName: 'Scores',
   leaseCollectionPrefix: 'updateScores',
   createLeaseCollectionIfNotExists: true,
   return: $return,

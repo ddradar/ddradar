@@ -20,21 +20,21 @@
     "@ddradar/db": "workspace:*",
     "@oruga-ui/oruga-next": "^0.6.0",
     "@oruga-ui/theme-bulma": "^0.2.11",
-    "chart.js": "^4.3.0",
+    "chart.js": "^4.3.2",
     "iconv-lite": "^0.6.3",
     "markdown-it": "^13.0.1",
     "vue-chartjs": "^5.2.0"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxtjs/i18n": "^8.0.0-beta.12",
+    "@nuxtjs/i18n": "^8.0.0-rc.1",
     "@types/markdown-it": "^12.2.3",
     "@types/node": "^18.15.11",
-    "@vue/test-utils": "^2.4.0",
+    "@vue/test-utils": "^2.4.1",
     "eslint-plugin-nuxt": "^4.0.0",
-    "happy-dom": "^9.20.3",
-    "nuxt": "^3.6.1",
-    "sass": "^1.63.6",
-    "vitest": "^0.32.2"
+    "happy-dom": "^10.5.2",
+    "nuxt": "^3.6.5",
+    "sass": "^1.64.1",
+    "vitest": "^0.33.0"
   }
 }

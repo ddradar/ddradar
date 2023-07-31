@@ -31,26 +31,26 @@ import { fetchScore } from '@ddradar/db'
 const songInput: CosmosDBInput = {
   name: 'songs',
   type: 'cosmosDB',
-  connectionStringSetting: 'COSMOS_DB_CONN_READONLY',
+  connection: 'COSMOS_DB_CONN_READONLY',
   databaseName: 'DDRadar',
-  collectionName: 'Songs',
+  containerName: 'Songs',
   sqlQuery:
     "SELECT c.id, c.name, c.charts FROM c WHERE c.id = {songId} OR ({songId} = 'dll9D90dq1O09oObO66Pl8l9I9l0PbPP' AND c.id = '01lbO69qQiP691ll6DIiqPbIdd9O806o')",
 }
 const userInput: CosmosDBInput = {
   name: 'users',
   type: 'cosmosDB',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'Users',
+  containerName: 'Users',
   sqlQuery: 'SELECT * FROM c WHERE c.id = {userId}',
 }
 const output: CosmosDBOutput = {
   name: 'documents',
   type: 'cosmosDB',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'Scores',
+  containerName: 'Scores',
 }
 app.http('postSongScores', {
   authLevel: 'anonymous',

@@ -12,18 +12,18 @@ import { masterMusicToMap } from '../skill-attack'
 const input: CosmosDBInput = {
   name: 'songs',
   type: 'cosmosDB',
-  connectionStringSetting: 'COSMOS_DB_CONN_READONLY',
+  connection: 'COSMOS_DB_CONN_READONLY',
   databaseName: 'DDRadar',
-  collectionName: 'Songs',
+  containerName: 'Songs',
   sqlQuery:
     'SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)',
 }
 const $return: CosmosDBOutput = {
   name: '$return',
   type: 'cosmosDB',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'Songs',
+  containerName: 'Songs',
 }
 app.timer('importSkillAttackId', {
   schedule: '0 0 2 * * *',
