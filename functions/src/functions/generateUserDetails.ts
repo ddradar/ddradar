@@ -12,9 +12,9 @@ const input: CosmosDBInput = {
   name: 'oldSummeries',
   type: 'cosmosDB',
   direction: 'in',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'UserDetails',
+  containerName: 'UserDetails',
   sqlQuery:
     "SELECT * FROM c WHERE c.userId <> '0' AND c.type IN ('clear', 'score')",
 }
@@ -22,9 +22,9 @@ const $return: CosmosDBOutput = {
   name: '$return',
   type: 'cosmosDB',
   direction: 'out',
-  connectionStringSetting: 'COSMOS_DB_CONN',
+  connection: 'COSMOS_DB_CONN',
   databaseName: 'DDRadar',
-  collectionName: 'UserDetails',
+  containerName: 'UserDetails',
 }
 app.timer('generateUserDetails', {
   schedule: '0 0 20 * * *',
