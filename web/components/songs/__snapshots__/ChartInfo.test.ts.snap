@@ -1,21 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/songs/ChartInfo.vue > ({
-  songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-  chart: {
-    playStyle: 1,
-    difficulty: 0,
-    level: 4,
-    notes: 138,
-    freezeArrow: 0,
-    shockArrow: 0,
-    stream: 29,
-    voltage: 22,
-    air: 5,
-    freeze: 0,
-    chaos: 0
-  }
-}) snapshot test 1`] = `
+exports[`components/songs/ChartInfo.vue > ({ songId: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI', chart: { playStyle: 1, difficulty: +0, level: 4, notes: 138, freezeArrow: +0, shockArrow: +0, stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) snapshot test 1`] = `
 <section
   class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 >
@@ -168,48 +153,7 @@ exports[`components/songs/ChartInfo.vue > ({
 </section>
 `;
 
-exports[`components/songs/ChartInfo.vue > ({
-  songId: 'I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob',
-  chart: {
-    playStyle: 1,
-    difficulty: 1,
-    level: 8,
-    notes: 782,
-    freezeArrow: 36,
-    shockArrow: 0,
-    order: [
-      {
-        songId: 'PdPdbdQ1lDI18O90Q0li8QI0bo99bidd',
-        songName: 'This Beat Is.....',
-        playStyle: 1,
-        difficulty: 1,
-        level: 4
-      },
-      {
-        songId: 'PPQb966D6Ql6Q8iPo68810PdDiI6D0bl',
-        songName: 'Waiting',
-        playStyle: 1,
-        difficulty: 1,
-        level: 6
-      },
-      {
-        songId: '6iO8d9ld00I6lDIO6qbOldP99oqloqb9',
-        songName: 'Dead Heat',
-        playStyle: 1,
-        difficulty: 1,
-        level: 6
-      },
-      {
-        songId: '1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo',
-        songName: 'Neverland',
-        playStyle: 1,
-        difficulty: 1,
-        level: 8
-      },
-      [length]: 4
-    ]
-  }
-}) snapshot test 1`] = `
+exports[`components/songs/ChartInfo.vue > ({ songId: 'I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob', chart: { playStyle: 1, difficulty: 1, level: 8, notes: 782, freezeArrow: 36, shockArrow: +0, order: [ { songId: 'PdPdbdQ1lDI18O90Q0li8QI0bo99bidd', songName: 'This Beat Is.....', playStyle: 1, difficulty: 1, level: 4 }, { songId: 'PPQb966D6Ql6Q8iPo68810PdDiI6D0bl', songName: 'Waiting', playStyle: 1, difficulty: 1, level: 6 }, { songId: '6iO8d9ld00I6lDIO6qbOldP99oqloqb9', songName: 'Dead Heat', playStyle: 1, difficulty: 1, level: 6 }, { songId: '1iDPo19Pb9ooi8OqiidbqPb06DDdqiqo', songName: 'Neverland', playStyle: 1, difficulty: 1, level: 8 } ] } }) snapshot test 1`] = `
 <section
   class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
 >
