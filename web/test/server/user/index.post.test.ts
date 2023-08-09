@@ -75,6 +75,7 @@ describe('POST /api/v1/user', () => {
     expect(mockedContainer.items.upsert).toBeCalledWith({
       ...user,
       loginId: '1',
+      isAdmin: false,
     })
   })
 
@@ -97,8 +98,11 @@ describe('POST /api/v1/user', () => {
       }
       vi.mocked(readBody).mockResolvedValue(body)
       vi.mocked(useClientPrincipal).mockReturnValue(principal)
-      vi.mocked(fetchUser).mockResolvedValue(publicUser)
-      vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
+      vi.mocked(fetchUser).mockResolvedValue({ ...publicUser, isAdmin: true })
+      vi.mocked(fetchLoginUser).mockResolvedValue({
+        ...publicUser,
+        isAdmin: true,
+      })
 
       // Act
       const result = await postUserInfo(event)
@@ -109,6 +113,7 @@ describe('POST /api/v1/user', () => {
       expect(mockedContainer.items.upsert).toBeCalledWith({
         ...body,
         loginId: publicUser.loginId,
+        isAdmin: true,
       })
     }
   )
@@ -161,6 +166,9 @@ describe('POST /api/v1/user', () => {
     // Assert
     expect(result).toStrictEqual(user)
     expect(vi.mocked(sendNullWithError)).not.toBeCalled()
-    expect(mockedContainer.items.upsert).toBeCalledWith(publicUser)
+    expect(mockedContainer.items.upsert).toBeCalledWith({
+      ...publicUser,
+      isAdmin: false,
+    })
   })
 })
