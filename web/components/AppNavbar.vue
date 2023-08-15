@@ -98,6 +98,15 @@
             <div class="navbar-item">
               <div class="field">
                 <div class="control">
+                  <OButton variant="success" @click="login('line')">
+                    {{ t('menu.login_via', { provider: 'LINE' }) }}
+                  </OButton>
+                </div>
+              </div>
+            </div>
+            <div class="navbar-item">
+              <div class="field">
+                <div class="control">
                   <OButton
                     icon-left="github"
                     variant="dark"

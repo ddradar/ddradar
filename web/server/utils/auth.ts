@@ -10,7 +10,7 @@ type Role = 'anonymous' | 'authenticated' | 'administrator'
  */
 export interface ClientPrincipal {
   /** The name of the identity provider. */
-  identityProvider: 'github' | 'twitter'
+  identityProvider: 'github' | 'twitter' | 'line'
   /** An Azure Static Web Apps-specific unique identifier for the user. */
   userId: string
   /** User Name (GitHub/Twitter) */

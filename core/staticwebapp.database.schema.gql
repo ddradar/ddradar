@@ -159,6 +159,8 @@ type User @model {
   code: Int
   "`true` if this user info is public, otherwize `false`."
   isPublic: Boolean!
+  "`true` if this user is administrator."
+  isAdmin: Boolean
   "Use for external API."
   password: String
 }

@@ -1,23 +1,30 @@
 {
   "platform": { "apiRuntime": "node:18" },
+  "auth": {
+    "rolesSource": "/api/v1/user/roles",
+    "identityProviders": {
+      "customOpenIdConnectProviders": {
+        "line": {
+          "registration": {
+            "clientIdSettingName": "LINE_CLIENT_ID",
+            "clientCredential": {
+              "clientSecretSettingName": "LINE_CLIENT_SECRET"
+            },
+            "openIdConnectConfiguration": {
+              "wellKnownOpenIdConfiguration": "https://access.line.me/.well-known/openid-configuration"
+            }
+          },
+          "login": {}
+        }
+      }
+    }
+  },
   "globalHeaders": {
     "Access-Control-Allow-Origin": "https://p.eagate.573.jp",
     "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
     "Access-Control-Allow-Credentials": "true"
   },
   "routes": [
-    {
-      "route": "/.auth/login/aad",
-      "statusCode": 404
-    },
-    {
-      "route": "/.auth/login/facebook",
-      "statusCode": 404
-    },
-    {
-      "route": "/.auth/login/google",
-      "statusCode": 404
-    },
     {
       "route": "/api/v1/scores/*",
       "methods": ["POST", "DELETE"],

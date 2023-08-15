@@ -58,6 +58,7 @@ export default defineEventHandler(async event => {
   await getContainer('Users').items.upsert({
     ...user,
     loginId: oldData?.loginId ?? loginId,
+    isAdmin: oldData?.isAdmin ?? false,
   })
 
   return user

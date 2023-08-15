@@ -487,6 +487,36 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
                 class="control"
               >
                 <button
+                  class="button is-success"
+                  type="button"
+                >
+                  <span
+                    class="button-wrapper"
+                  >
+                    <!--v-if-->
+                    <span
+                      class=""
+                    >
+                      
+                      Login via LINE
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
+            >
+              <div
+                class="control"
+              >
+                <button
                   class="button is-dark"
                   type="button"
                 >
@@ -1506,6 +1536,36 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
                     >
                       
                       Twitterでログイン
+                      
+                    </span>
+                    <!--v-if-->
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="navbar-item"
+          >
+            <div
+              class="field"
+            >
+              <div
+                class="control"
+              >
+                <button
+                  class="button is-success"
+                  type="button"
+                >
+                  <span
+                    class="button-wrapper"
+                  >
+                    <!--v-if-->
+                    <span
+                      class=""
+                    >
+                      
+                      LINEでログイン
                       
                     </span>
                     <!--v-if-->
