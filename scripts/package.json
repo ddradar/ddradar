@@ -14,17 +14,17 @@
     "@azure/cosmos": "^3.17.3",
     "@ddradar/core": "workspace:*",
     "@ddradar/db": "workspace:*",
-    "@happy-dom/global-registrator": "^10.5.2",
+    "@happy-dom/global-registrator": "^10.10.0",
     "consola": "^3.2.3",
     "dotenv": "^16.3.1",
-    "happy-dom": "^10.5.2",
+    "happy-dom": "^10.10.0",
     "node-fetch-native": "^1.2.0",
-    "puppeteer-core": "^20.9.0"
+    "puppeteer-core": "^21.0.3"
   },
   "devDependencies": {
     "@ddradar/functions": "workspace:*",
     "@tsconfig/node18": "^2.0.1",
-    "@types/node": "^18.15.11",
+    "@types/node": "^18.17.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6"
   }
