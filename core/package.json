@@ -29,10 +29,11 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.0",
     "@graphql-codegen/typescript": "^4.0.1",
-    "@types/node": "^18.17.5",
+    "@types/node": "^18.17.8",
     "graphql": "^16.8.0",
-    "happy-dom": "^10.10.0",
-    "unbuild": "^1.2.1",
-    "vitest": "^0.34.1"
+    "happy-dom": "^10.11.0",
+    "typescript": "^5.1.6",
+    "unbuild": "^2.0.0",
+    "vitest": "^0.34.2"
   }
 }
