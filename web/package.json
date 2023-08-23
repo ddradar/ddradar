@@ -27,14 +27,14 @@
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
-    "@nuxtjs/i18n": "^8.0.0-rc.2",
-    "@types/markdown-it": "^12.2.3",
-    "@types/node": "^18.17.5",
+    "@nuxtjs/i18n": "^8.0.0-rc.3",
+    "@types/markdown-it": "^13.0.0",
+    "@types/node": "^18.17.8",
     "@vue/test-utils": "^2.4.1",
     "eslint-plugin-nuxt": "^4.0.0",
-    "happy-dom": "^10.10.0",
+    "happy-dom": "^10.11.0",
     "nuxt": "^3.6.5",
-    "sass": "^1.65.1",
+    "sass": "^1.66.1",
     "vitest": "^0.34.2"
   }
 }
