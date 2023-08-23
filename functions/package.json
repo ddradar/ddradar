@@ -34,10 +34,10 @@
     "@ddradar/core": "workspace:*",
     "@ddradar/db": "workspace:*",
     "iconv-lite": "^0.6.3",
-    "node-fetch-native": "^1.2.0"
+    "node-fetch-native": "^1.3.3"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^2.0.1",
+    "@tsconfig/node18": "^18.2.1",
     "@types/node": "^18.17.5",
     "typescript": "^5.1.6",
     "vitest": "^0.34.1"
