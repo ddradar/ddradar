@@ -21,12 +21,13 @@
           :key="i"
           closable
           :icon="m.icon"
+          :type="m.type"
           :variant="m.type"
         >
           <h2>{{ m.title }}</h2>
           <!--eslint-disable-next-line vue/no-v-html-->
           <div v-html="markdownToHTML(m.body)"></div>
-          <div>{{ unixTimeToString(m.timeStamp) }}</div>
+          <small>{{ unixTimeToString(m.timeStamp) }}</small>
         </ONotification>
       </template>
     </section>
