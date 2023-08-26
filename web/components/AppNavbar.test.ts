@@ -25,6 +25,7 @@ describe('components/AppNavbar.vue', () => {
         auth: ref(null),
         isLoggedIn: ref(false),
       } as any)
+      vi.mocked(useRoute).mockReturnValue({ path: '/' } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -44,6 +45,7 @@ describe('components/AppNavbar.vue', () => {
         id: ref(publicUser.id),
         name: ref(publicUser.name),
       } as any)
+      vi.mocked(useRoute).mockReturnValue({ path: '/' } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -65,6 +67,7 @@ describe('components/AppNavbar.vue', () => {
       auth: ref({}),
       isLoggedIn: ref(false),
     } as any)
+    vi.mocked(useRoute).mockReturnValue({ path: '/' } as any)
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -76,6 +79,27 @@ describe('components/AppNavbar.vue', () => {
     expect(vi.mocked(navigateTo)).toBeCalledWith('/profile')
   })
 
+  test('({ auth: {...}, isLoggedin: false, path: "/profile" }) does not redirect to /profile', async () => {
+    // Arrange
+    const i18n = createI18n({ legacy: false, locale: 'ja' })
+    vi.mocked(navigateTo).mockClear()
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    vi.mocked(useAuth).mockResolvedValue({
+      auth: ref({}),
+      isLoggedIn: ref(false),
+    } as any)
+    vi.mocked(useRoute).mockReturnValue({ path: '/profile' } as any)
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+
+    // Act
+    await mountAsync(AppNavbar, {
+      global: { plugins: [[Oruga, bulmaConfig], i18n], stubs },
+    })
+
+    // Assert
+    expect(vi.mocked(navigateTo)).not.toBeCalledWith('/profile')
+  })
+
   describe('events', () => {
     test('.navbar-burger@click sets "is-active" class', async () => {
       // Arrange
@@ -85,6 +109,7 @@ describe('components/AppNavbar.vue', () => {
         auth: ref(null),
         isLoggedIn: ref(false),
       } as any)
+      vi.mocked(useRoute).mockReturnValue({ path: '/' } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act

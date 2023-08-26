@@ -20,7 +20,8 @@
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "pnpm -r test",
     "test:db": "pnpm -r test:db",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "start": "swa start"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [

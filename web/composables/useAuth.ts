@@ -10,7 +10,11 @@ export default async function useAuth() {
     : (await $fetch<{ clientPrincipal: ClientPrincipal | null }>('/.auth/me'))
         .clientPrincipal
   try {
-    user.value = auth.value ? await $fetch('/api/v1/user') : null
+    user.value = auth.value
+      ? await $fetch('/api/v1/user', {
+          headers: useRequestHeaders(['x-ms-client-principal']),
+        })
+      : null
   } catch (error) {
     user.value = null
   }
