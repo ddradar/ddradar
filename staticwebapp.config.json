@@ -14,7 +14,9 @@
               "wellKnownOpenIdConfiguration": "https://access.line.me/.well-known/openid-configuration"
             }
           },
-          "login": {}
+          "login": {
+            "nameClaimType": "name"
+          }
         }
       }
     }
