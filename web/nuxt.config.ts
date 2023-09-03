@@ -1,7 +1,12 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
-  nitro: { preset: 'azure' },
+  nitro: {
+    preset: 'azure',
+    prerender: {
+      ignore: ['/.auth/**', '/data-api/**'],
+    },
+  },
   build: {
     transpile: [/@oruga-ui\/oruga-next/],
   },
