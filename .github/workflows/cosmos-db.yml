@@ -36,7 +36,7 @@ jobs:
         with:
           version: ${{ vars.PNPM_VERSION }}
       - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v3.7.0
+        uses: actions/setup-node@v3.8.1
         with:
           node-version: ${{ vars.NODE_VERSION }}
           cache: pnpm
