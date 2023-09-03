@@ -14,6 +14,10 @@
       "enabled": true,
       "path": "/graphql"
     },
+    "rest": {
+      "enabled": false,
+      "path": "/rest"
+    },
     "host": {
       "mode": "production",
       "cors": {
