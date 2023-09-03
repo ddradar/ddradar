@@ -92,28 +92,6 @@ describe('composables/useAuth', () => {
   })
 
   // Method
-  test.each(['github', 'twitter'] as const)(
-    'login("%s") calls navigateTo("/.auth/login")',
-    async provider => {
-      // Arrange
-      mockFetch(generalAuth, generalUser)
-      vi.mocked(navigateTo).mockClear()
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(useRoute).mockReturnValue({ path: 'path' } as any)
-
-      // Act
-      const { login } = await useAuth()
-      await login(provider)
-
-      // Assert
-      expect(vi.mocked(navigateTo)).toBeCalledWith(
-        `/.auth/login/${provider}?post_login_redirect_uri=path`,
-        {
-          external: true,
-        }
-      )
-    }
-  )
   test('saveUser() calls POST "/api/v1/user"', async () => {
     // Arrange
     mockFetch(null, generalUser)
@@ -129,23 +107,5 @@ describe('composables/useAuth', () => {
       method: 'POST',
       body: generalUser,
     })
-  })
-  test('logout() sets null', async () => {
-    // Arrange
-    mockFetch(generalAuth, generalUser)
-    vi.mocked(navigateTo).mockClear()
-
-    // Act
-    const { user, auth, logout } = await useAuth()
-
-    // Assert
-    expect(auth.value).toStrictEqual(generalAuth)
-    expect(user.value).toStrictEqual(generalUser)
-    await logout()
-    expect(vi.mocked(navigateTo)).toBeCalledWith('/.auth/logout', {
-      external: true,
-    })
-    expect(auth.value).toBeNull()
-    expect(user.value).toBeNull()
   })
 })

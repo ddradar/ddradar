@@ -441,6 +441,7 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
         <div
           class="navbar-dropdown is-right"
         >
+          
           <div
             class="navbar-item"
           >
@@ -450,9 +451,9 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-info"
-                  type="button"
+                  href="/.auth/login/twitter?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
@@ -473,7 +474,7 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -486,14 +487,20 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-success"
-                  type="button"
+                  href="/.auth/login/line?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
                   >
-                    <!--v-if-->
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-line mdi-24px"
+                      />
+                    </span>
                     <span
                       class=""
                     >
@@ -503,7 +510,7 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -516,9 +523,9 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-dark"
-                  type="button"
+                  href="/.auth/login/github?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
@@ -539,10 +546,11 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -1039,9 +1047,9 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-warning"
-                  type="button"
+                  href="/.auth/logout"
                 >
                   <span
                     class="button-wrapper"
@@ -1056,7 +1064,7 @@ exports[`components/AppNavbar.vue > { locale: en } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1508,6 +1516,7 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
         <div
           class="navbar-dropdown is-right"
         >
+          
           <div
             class="navbar-item"
           >
@@ -1517,9 +1526,9 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-info"
-                  type="button"
+                  href="/.auth/login/twitter?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
@@ -1540,7 +1549,7 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1553,14 +1562,20 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-success"
-                  type="button"
+                  href="/.auth/login/line?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
                   >
-                    <!--v-if-->
+                    <span
+                      class="icon"
+                    >
+                      <i
+                        class="mdi mdi-line mdi-24px"
+                      />
+                    </span>
                     <span
                       class=""
                     >
@@ -1570,7 +1585,7 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -1583,9 +1598,9 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-dark"
-                  type="button"
+                  href="/.auth/login/github?post_login_redirect_uri=/"
                 >
                   <span
                     class="button-wrapper"
@@ -1606,10 +1621,11 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
@@ -2106,9 +2122,9 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
               <div
                 class="control"
               >
-                <button
+                <a
                   class="button is-warning"
-                  type="button"
+                  href="/.auth/logout"
                 >
                   <span
                     class="button-wrapper"
@@ -2123,7 +2139,7 @@ exports[`components/AppNavbar.vue > { locale: ja } snapshot test > ({ isLoggedin
                     </span>
                     <!--v-if-->
                   </span>
-                </button>
+                </a>
               </div>
             </div>
           </div>
