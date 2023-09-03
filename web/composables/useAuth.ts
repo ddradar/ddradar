@@ -28,18 +28,8 @@ export default async function useAuth() {
     () => !!auth.value?.userRoles.includes('administrator')
   )
 
-  const login = async (provider: ClientPrincipal['identityProvider']) => {
-    const { path } = useRoute()
-    const loginUri = `/.auth/login/${provider}?post_login_redirect_uri=${path}`
-    await navigateTo(loginUri, { external: true })
-  }
   const saveUser = async (body: CurrentUserInfo) => {
     user.value = await $fetch('/api/v1/user', { method: 'POST', body })
-  }
-  const logout = async () => {
-    await navigateTo('/.auth/logout', { external: true })
-    auth.value = null
-    user.value = null
   }
 
   return {
@@ -49,8 +39,6 @@ export default async function useAuth() {
     name,
     isLoggedIn,
     isAdmin,
-    login,
     saveUser,
-    logout,
   }
 }

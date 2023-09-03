@@ -71,7 +71,7 @@
             <div class="navbar-item">
               <div class="field">
                 <div class="control">
-                  <OButton variant="warning" @click="logout()">
+                  <OButton variant="warning" tag="a" href="/.auth/logout">
                     {{ t('menu.logout') }}
                   </OButton>
                 </div>
@@ -82,37 +82,16 @@
         <div v-else class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">{{ t('menu.login') }}</a>
           <div class="navbar-dropdown is-right">
-            <div class="navbar-item">
+            <div v-for="(p, k) in providers" :key="k" class="navbar-item">
               <div class="field">
                 <div class="control">
                   <OButton
-                    icon-left="twitter"
-                    variant="info"
-                    @click="login('twitter')"
+                    :variant="p.variant"
+                    :icon-left="k"
+                    tag="a"
+                    :href="`/.auth/login/${k}?post_login_redirect_uri=${path}`"
                   >
-                    {{ t('menu.login_via', { provider: 'Twitter' }) }}
-                  </OButton>
-                </div>
-              </div>
-            </div>
-            <div class="navbar-item">
-              <div class="field">
-                <div class="control">
-                  <OButton variant="success" @click="login('line')">
-                    {{ t('menu.login_via', { provider: 'LINE' }) }}
-                  </OButton>
-                </div>
-              </div>
-            </div>
-            <div class="navbar-item">
-              <div class="field">
-                <div class="control">
-                  <OButton
-                    icon-left="github"
-                    variant="dark"
-                    @click="login('github')"
-                  >
-                    {{ t('menu.login_via', { provider: 'GitHub' }) }}
+                    {{ t('menu.login_via', { name: p.name }) }}
                   </OButton>
                 </div>
               </div>
@@ -138,7 +117,7 @@
       "mypage": "マイページ",
       "logout": "ログアウト",
       "login": "ログイン",
-      "login_via": "{provider}でログイン"
+      "login_via": "{name}でログイン"
     }
   },
   "en": {
@@ -153,7 +132,7 @@
       "mypage": "MyPage",
       "logout": "Logout",
       "login": "Login",
-      "login_via": "Login via {provider}"
+      "login_via": "Login via {name}"
     }
   }
 }
@@ -171,12 +150,17 @@ import {
 
 const { t } = useI18n()
 const { path } = useRoute()
-const { auth, id, isLoggedIn, name, login, logout } = await useAuth()
+const { auth, id, isLoggedIn, name } = await useAuth()
 if (auth.value && !isLoggedIn.value && path !== '/profile')
   await navigateTo('/profile')
 
 const isActive = useState(() => false)
 
+const providers = {
+  twitter: { name: 'Twitter', variant: 'info' },
+  line: { name: 'LINE', variant: 'success' },
+  github: { name: 'GitHub', variant: 'dark' },
+}
 const dropdownMenuList = [
   {
     title: t('menu.level', { style: 'SP' }),
