@@ -26,6 +26,21 @@ updates:
       interval: monthly
       time: '18:00'
       timezone: Asia/Tokyo
+    groups:
+      vitest:
+        dependency-type: development
+        patterns:
+          - '@vitest/*'
+          - vitest
+      lint-tools:
+        dependency-type: development
+        patterns:
+          - '@nuxt/eslint-config'
+          - '@typescript-eslint/*'
+          - 'eslint*'
+          - husky
+          - lint-staged
+          - prettier
     commit-message:
       prefix: fix
       prefix-development: chore
