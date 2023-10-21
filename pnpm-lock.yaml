@@ -82,8 +82,8 @@ importers:
         version: link:../core
     devDependencies:
       '@azure/cosmos':
-        specifier: ^3.17.3
-        version: 3.17.3
+        specifier: ^4.0.0
+        version: 4.0.0
       '@types/node':
         specifier: ^18.18.6
         version: 18.18.6
@@ -100,8 +100,8 @@ importers:
   functions:
     dependencies:
       '@azure/cosmos':
-        specifier: ^3.17.3
-        version: 3.17.3
+        specifier: ^4.0.0
+        version: 4.0.0
       '@azure/functions':
         specifier: ^4.0.1
         version: 4.0.1
@@ -134,8 +134,8 @@ importers:
   scripts:
     dependencies:
       '@azure/cosmos':
-        specifier: ^3.17.3
-        version: 3.17.3
+        specifier: ^4.0.0
+        version: 4.0.0
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
@@ -180,8 +180,8 @@ importers:
   web:
     dependencies:
       '@azure/cosmos':
-        specifier: ^3.17.3
-        version: 3.17.3
+        specifier: ^4.0.0
+        version: 4.0.0
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
@@ -212,7 +212,7 @@ importers:
         version: 0.2.0(eslint@8.52.0)
       '@nuxtjs/i18n':
         specifier: ^8.0.0-rc.3
-        version: 8.0.0-rc.3(@azure/cosmos@3.17.3)(vue@3.3.4)
+        version: 8.0.0-rc.3(@azure/cosmos@4.0.0)(vue@3.3.4)
       '@types/markdown-it':
         specifier: ^13.0.4
         version: 13.0.4
@@ -230,7 +230,7 @@ importers:
         version: 12.9.1
       nuxt:
         specifier: ^3.6.5
-        version: 3.6.5(@azure/cosmos@3.17.3)(@types/node@18.18.6)(eslint@8.52.0)(sass@1.69.4)(typescript@5.2.2)
+        version: 3.6.5(@azure/cosmos@4.0.0)(@types/node@18.18.6)(eslint@8.52.0)(sass@1.69.4)(typescript@5.2.2)
       sass:
         specifier: ^1.69.4
         version: 1.69.4
@@ -411,8 +411,8 @@ packages:
       '@azure/abort-controller': 1.1.0
       tslib: 2.6.2
 
-  /@azure/cosmos@3.17.3:
-    resolution: {integrity: sha512-wBglkQ6Irjv5Vo2iw8fd6eYj60WYRSSg4/0DBkeOP6BwQ4RA91znsOHd6s3qG6UAbNgYuzC9Nnq07vlFFZkHEw==}
+  /@azure/cosmos@4.0.0:
+    resolution: {integrity: sha512-/Z27p1+FTkmjmm8jk90zi/HrczPHw2t8WecFnsnTe4xGocWl0Z4clP0YlLUTJPhRLWYa5upwD9rMvKJkS1f1kg==}
     engines: {node: '>=14.0.0'}
     dependencies:
       '@azure/abort-controller': 1.1.0
@@ -442,6 +442,7 @@ packages:
   /@azure/identity@3.3.0:
     resolution: {integrity: sha512-gISa/dAAxrWt6F2WiDXZY0y2xY4MLlN2wkNW4cPuq5OgPQKLSkxLc4I2WR04puTfZyQZnpXbAapAMEj1b96fgg==}
     engines: {node: '>=14.0.0'}
+    deprecated: Please upgrade to the latest version of this package to get necessary fixes
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
@@ -2175,7 +2176,7 @@ packages:
       graphql: 16.8.1
       graphql-request: 6.1.0(graphql@16.8.1)
       http-proxy-agent: 7.0.0
-      https-proxy-agent: 7.0.0
+      https-proxy-agent: 7.0.2
       jose: 4.14.4
       js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
@@ -2235,10 +2236,10 @@ packages:
       '@types/ws': 8.5.5
       '@whatwg-node/fetch': 0.9.7
       graphql: 16.8.1
-      isomorphic-ws: 5.0.0(ws@8.13.0)
+      isomorphic-ws: 5.0.0(ws@8.14.2)
       tslib: 2.6.2
       value-or-promise: 1.0.12
-      ws: 8.13.0
+      ws: 8.14.2
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -2802,7 +2803,7 @@ packages:
       - vue-tsc
     dev: true
 
-  /@nuxtjs/i18n@8.0.0-rc.3(@azure/cosmos@3.17.3)(vue@3.3.4):
+  /@nuxtjs/i18n@8.0.0-rc.3(@azure/cosmos@4.0.0)(vue@3.3.4):
     resolution: {integrity: sha512-TrJF7OxCK1CcEnKQHcP3VjVnb0K22OdMxdbWOk/kUzD9DX6+hrcrfrQD6W7xDA5pnEhBnsw1pLT2I+DYVpK/gw==}
     engines: {node: ^14.16.0 || >=16.11.0}
     dependencies:
@@ -2824,7 +2825,7 @@ packages:
       pkg-types: 1.0.3
       ufo: 1.3.0
       unplugin: 1.4.0
-      unstorage: 1.9.0(@azure/cosmos@3.17.3)
+      unstorage: 1.9.0(@azure/cosmos@4.0.0)
       vue-i18n: 9.3.0-beta.26(vue@3.3.4)
       vue-i18n-routing: 0.13.3(vue-i18n@9.3.0-beta.26)(vue@3.3.4)
     transitivePeerDependencies:
@@ -2953,7 +2954,6 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
-      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -5817,7 +5817,7 @@ packages:
   /eslint-plugin-nuxt@4.0.0(eslint@8.52.0):
     resolution: {integrity: sha512-v3Vwdk8YKe52bAz8eSIDqQuTtfL/T1r9dSl1uhC5SyR5pgLxgKkQdxXVf/Bf6Ax7uyd9rHqiAuYVdqqDb7ILdA==}
     dependencies:
-      eslint-plugin-vue: 9.15.1(eslint@8.52.0)
+      eslint-plugin-vue: 9.17.0(eslint@8.52.0)
       semver: 7.5.4
       vue-eslint-parser: 9.3.1(eslint@8.52.0)
     transitivePeerDependencies:
@@ -5851,24 +5851,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
       - typescript
-    dev: true
-
-  /eslint-plugin-vue@9.15.1(eslint@8.52.0):
-    resolution: {integrity: sha512-CJE/oZOslvmAR9hf8SClTdQ9JLweghT6JCBQNrT2Iel1uVw0W0OLJxzvPd6CxmABKCvLrtyDnqGV37O7KQv6+A==}
-    engines: {node: ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      eslint: ^6.2.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      '@eslint-community/eslint-utils': 4.4.0(eslint@8.52.0)
-      eslint: 8.52.0
-      natural-compare: 1.4.0
-      nth-check: 2.1.1
-      postcss-selector-parser: 6.0.13
-      semver: 7.5.4
-      vue-eslint-parser: 9.3.1(eslint@8.52.0)
-      xml-name-validator: 4.0.0
-    transitivePeerDependencies:
-      - supports-color
     dev: true
 
   /eslint-plugin-vue@9.17.0(eslint@8.52.0):
@@ -6863,16 +6845,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /https-proxy-agent@7.0.0:
-    resolution: {integrity: sha512-0euwPCRyAPSgGdzD1IVN9nJYHtBhJwb6XPfbpQcYbPCwrBidX6GzxmchnaF4sfF/jPb74Ojx5g4yTg3sixlyPw==}
-    engines: {node: '>= 14'}
-    dependencies:
-      agent-base: 7.1.0
-      debug: 4.3.4
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
   /https-proxy-agent@7.0.2:
     resolution: {integrity: sha512-NmLNjm6ucYwtcUmL7JQC1ZQ57LmHP4lT15FQ8D61nak1rO6DH+fz5qNK2Ap5UN4ZapYICE3/0KodcLYSPsPbaA==}
     engines: {node: '>= 14'}
@@ -6881,7 +6853,6 @@ packages:
       debug: 4.3.4
     transitivePeerDependencies:
       - supports-color
-    dev: false
 
   /httpxy@0.1.2:
     resolution: {integrity: sha512-8IldwriN7eS7Pe1pPRE6L7S1LW551lBJ3N9oI4HLYGZTXl2JBkdINEi+mDZwhwykw1OBVI2li3zhPSi7r1N8lQ==}
@@ -7388,6 +7359,14 @@ packages:
       ws: '*'
     dependencies:
       ws: 8.13.0
+    dev: true
+
+  /isomorphic-ws@5.0.0(ws@8.14.2):
+    resolution: {integrity: sha512-muId7Zzn9ywDsyXgTIafTry2sV3nySZeUDe6YedVd1Hvuuep5AsIlqK+XefWpYTyJG5e503F2xIuT2lcU6rCSw==}
+    peerDependencies:
+      ws: '*'
+    dependencies:
+      ws: 8.14.2
     dev: true
 
   /istanbul-lib-coverage@3.2.0:
@@ -8211,10 +8190,6 @@ packages:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
     dev: true
 
-  /napi-wasm@1.1.0:
-    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
-    dev: true
-
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
@@ -8224,7 +8199,7 @@ packages:
     engines: {node: '>= 0.4.0'}
     dev: false
 
-  /nitropack@2.6.1(@azure/cosmos@3.17.3):
+  /nitropack@2.6.1(@azure/cosmos@4.0.0):
     resolution: {integrity: sha512-BoVM7nWx/S5S7TUU3z0DqiY/VVIHu6zng3vJyGMjESIW/FDhc3ecPDJRkNzdUXG5zZ3Ex7ZNll2AsdNHZImcpA==}
     engines: {node: ^16.11.0 || >=17.0.0}
     hasBin: true
@@ -8291,7 +8266,7 @@ packages:
       unctx: 2.3.1
       unenv: 1.7.3
       unimport: 3.2.0(rollup@3.28.1)
-      unstorage: 1.9.0(@azure/cosmos@3.17.3)
+      unstorage: 1.9.0(@azure/cosmos@4.0.0)
     transitivePeerDependencies:
       - '@azure/app-configuration'
       - '@azure/cosmos'
@@ -8458,7 +8433,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /nuxt@3.6.5(@azure/cosmos@3.17.3)(@types/node@18.18.6)(eslint@8.52.0)(sass@1.69.4)(typescript@5.2.2):
+  /nuxt@3.6.5(@azure/cosmos@4.0.0)(@types/node@18.18.6)(eslint@8.52.0)(sass@1.69.4)(typescript@5.2.2):
     resolution: {integrity: sha512-0A7V8B1HrIXX9IlqPc2w+5ZPXi+7MYa9QVhtuGYuLvjRKoSFANhCoMPRP6pKdoxigM1MBxhLue2VmHA/VbtJCw==}
     engines: {node: ^14.18.0 || >=16.10.0}
     hasBin: true
@@ -8499,7 +8474,7 @@ packages:
       local-pkg: 0.4.3
       magic-string: 0.30.3
       mlly: 1.4.1
-      nitropack: 2.6.1(@azure/cosmos@3.17.3)
+      nitropack: 2.6.1(@azure/cosmos@4.0.0)
       nuxi: 3.6.5
       nypm: 0.2.2
       ofetch: 1.3.3
@@ -10767,7 +10742,7 @@ packages:
       webpack-virtual-modules: 0.5.0
     dev: true
 
-  /unstorage@1.9.0(@azure/cosmos@3.17.3):
+  /unstorage@1.9.0(@azure/cosmos@4.0.0):
     resolution: {integrity: sha512-VpD8ZEYc/le8DZCrny3bnqKE4ZjioQxBRnWE+j5sGNvziPjeDlaS1NaFFHzl/kkXaO3r7UaF8MGQrs14+1B4pQ==}
     peerDependencies:
       '@azure/app-configuration': ^1.4.1
@@ -10805,7 +10780,7 @@ packages:
       idb-keyval:
         optional: true
     dependencies:
-      '@azure/cosmos': 3.17.3
+      '@azure/cosmos': 4.0.0
       anymatch: 3.1.3
       chokidar: 3.5.3
       destr: 2.0.1
@@ -11595,7 +11570,6 @@ packages:
         optional: true
       utf-8-validate:
         optional: true
-    dev: false
 
   /xdg-basedir@4.0.0:
     resolution: {integrity: sha512-PSNhEJDejZYV7h50BohL09Er9VaIefr2LMAf3OEmpCkjOi34eYyQYAXUTjEQtZJTKcF0E2UKTh+osDLsgNim9Q==}
