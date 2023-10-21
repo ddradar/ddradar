@@ -42,8 +42,8 @@ importers:
         specifier: ^8.0.3
         version: 8.0.3
       lint-staged:
-        specifier: ^14.0.1
-        version: 14.0.1
+        specifier: ^15.0.2
+        version: 15.0.2
       prettier:
         specifier: ^3.0.3
         version: 3.0.3
@@ -63,8 +63,8 @@ importers:
         specifier: ^16.8.0
         version: 16.8.0
       happy-dom:
-        specifier: ^10.11.0
-        version: 10.11.0
+        specifier: ^12.9.1
+        version: 12.9.1
       typescript:
         specifier: ^5.2.2
         version: 5.2.2
@@ -73,7 +73,7 @@ importers:
         version: 2.0.0(typescript@5.2.2)
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(happy-dom@10.11.0)
+        version: 0.34.6(happy-dom@12.9.1)
 
   db:
     dependencies:
@@ -95,7 +95,7 @@ importers:
         version: 2.0.0(typescript@5.2.2)
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(happy-dom@10.11.0)
+        version: 0.34.6(happy-dom@12.9.1)
 
   functions:
     dependencies:
@@ -129,7 +129,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(happy-dom@10.11.0)
+        version: 0.34.6(happy-dom@12.9.1)
 
   scripts:
     dependencies:
@@ -143,8 +143,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@happy-dom/global-registrator':
-        specifier: ^10.11.0
-        version: 10.11.0
+        specifier: ^12.9.1
+        version: 12.9.1
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -152,8 +152,8 @@ importers:
         specifier: ^16.3.1
         version: 16.3.1
       happy-dom:
-        specifier: ^10.11.0
-        version: 10.11.0
+        specifier: ^12.9.1
+        version: 12.9.1
       node-fetch-native:
         specifier: ^1.4.0
         version: 1.4.0
@@ -226,8 +226,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(eslint@8.52.0)
       happy-dom:
-        specifier: ^10.11.0
-        version: 10.11.0
+        specifier: ^12.9.1
+        version: 12.9.1
       nuxt:
         specifier: ^3.6.5
         version: 3.6.5(@azure/cosmos@3.17.3)(@types/node@18.17.11)(eslint@8.52.0)(sass@1.66.1)(typescript@5.2.2)
@@ -236,7 +236,7 @@ importers:
         version: 1.66.1
       vitest:
         specifier: ^0.34.6
-        version: 0.34.6(happy-dom@10.11.0)(sass@1.66.1)
+        version: 0.34.6(happy-dom@12.9.1)(sass@1.66.1)
 
 packages:
 
@@ -532,7 +532,7 @@ packages:
       serve-static: 1.15.0
       update-notifier: 5.1.0
       wait-on: 6.0.1
-      yaml: 2.3.1
+      yaml: 2.3.3
     transitivePeerDependencies:
       - debug
       - encoding
@@ -1811,7 +1811,7 @@ packages:
       string-env-interpolation: 1.0.1
       ts-log: 2.2.5
       tslib: 2.6.2
-      yaml: 2.3.1
+      yaml: 2.3.3
       yargs: 17.7.2
     transitivePeerDependencies:
       - '@babel/core'
@@ -2289,10 +2289,10 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@happy-dom/global-registrator@10.11.0:
-    resolution: {integrity: sha512-1CxO4JDIeps0L5zgi/VWFwy6391I2ZcvnRsCvlU0JTIsWYYpnVd1w7UmdWq3SCcjEErj+1YwEIiXKrzVuMIZxQ==}
+  /@happy-dom/global-registrator@12.9.1:
+    resolution: {integrity: sha512-25A3ScXgaWF2VIzHrhaJ0ERp84yIEYvib5Lv8OZTwLGd5ZUnBvPBlnAblO7WmimSDhaCELljd5J28r9gnyTyKQ==}
     dependencies:
-      happy-dom: 10.11.0
+      happy-dom: 12.9.1
     dev: false
 
   /@humanwhocodes/config-array@0.11.13:
@@ -3640,7 +3640,7 @@ packages:
       std-env: 3.4.3
       test-exclude: 6.0.0
       v8-to-istanbul: 9.1.0
-      vitest: 0.34.6(happy-dom@10.11.0)
+      vitest: 0.34.6(happy-dom@12.9.1)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -4791,8 +4791,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /commander@11.0.0:
-    resolution: {integrity: sha512-9HMlXtt/BNoYr8ooyjjNRdIilOTkVJXB+GhxMTtOKwk0R4j4lS4NpjuqmRxroBfnfTSHQIHQB7wryHhXarNjmQ==}
+  /commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
     engines: {node: '>=16'}
     dev: true
 
@@ -5846,7 +5846,7 @@ packages:
       '@typescript-eslint/eslint-plugin': 6.8.0(@typescript-eslint/parser@6.8.0)(eslint@8.52.0)(typescript@5.2.2)
       '@typescript-eslint/utils': 6.8.0(eslint@8.52.0)(typescript@5.2.2)
       eslint: 8.52.0
-      vitest: 0.34.6(happy-dom@10.11.0)
+      vitest: 0.34.6(happy-dom@12.9.1)
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -6059,6 +6059,21 @@ packages:
       npm-run-path: 5.1.0
       onetime: 6.0.0
       signal-exit: 3.0.7
+      strip-final-newline: 3.0.0
+    dev: true
+
+  /execa@8.0.1:
+    resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
+    engines: {node: '>=16.17'}
+    dependencies:
+      cross-spawn: 7.0.3
+      get-stream: 8.0.1
+      human-signals: 5.0.0
+      is-stream: 3.0.0
+      merge-stream: 2.0.0
+      npm-run-path: 5.1.0
+      onetime: 6.0.0
+      signal-exit: 4.1.0
       strip-final-newline: 3.0.0
     dev: true
 
@@ -6432,6 +6447,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /get-stream@8.0.1:
+    resolution: {integrity: sha512-VaUJspBffn/LMCJVoMvSAdmscJyS1auj5Zulnn5UoYcY531UWmdwhRWkcGKnGU93m5HSXP9LP2usOryrBtQowA==}
+    engines: {node: '>=16'}
+    dev: true
+
   /get-symbol-description@1.0.0:
     resolution: {integrity: sha512-2EmdH1YvIQiZpltCNgkuiUnyukzxM/R6NDJX31Ke3BG1Nq5b0S2PhX59UKi9vZpPDQVdqn+1IcaAwnzTT5vCjw==}
     engines: {node: '>= 0.4'}
@@ -6695,8 +6715,8 @@ packages:
       unenv: 1.7.3
     dev: true
 
-  /happy-dom@10.11.0:
-    resolution: {integrity: sha512-CmUT4LOLzvAsbYqgTJESrPyvF0gxLDkDG/KK1o/HYU7+c9o/VVIKXl3feJZnuCYbGqemw7meiQaZcL4SMgn1jQ==}
+  /happy-dom@12.9.1:
+    resolution: {integrity: sha512-UvQ3IwKn1G3iiNCdTrhijdLGqf8Vj7d3OpmYcPwlKakjFy83oYbW6TmOKDLMTVLO9whmOC1HIpS09wf/14k7cA==}
     dependencies:
       css.escape: 1.5.1
       entities: 4.5.0
@@ -6863,6 +6883,11 @@ packages:
   /human-signals@4.3.1:
     resolution: {integrity: sha512-nZXjEF2nbo7lIw3mgYjItAfgQXog3OjJogSbKa2CQIIvSGWcKgeJnQlNXip6NglNzYH45nSRiEVimMvYL8DDqQ==}
     engines: {node: '>=14.18.0'}
+    dev: true
+
+  /human-signals@5.0.0:
+    resolution: {integrity: sha512-AXcZb6vzzrFAUE61HnN4mpLqd/cSIwNQjtNWR0euPm6y0iqx3G4gOXaIDdtdDwZmhwe82LA6+zinmW4UBWVePQ==}
+    engines: {node: '>=16.17.0'}
     dev: true
 
   /husky@8.0.3:
@@ -7640,23 +7665,22 @@ packages:
       uc.micro: 1.0.6
     dev: false
 
-  /lint-staged@14.0.1:
-    resolution: {integrity: sha512-Mw0cL6HXnHN1ag0mN/Dg4g6sr8uf8sn98w2Oc1ECtFto9tvRF7nkXGJRbx8gPlHyoR0pLyBr2lQHbWwmUHe1Sw==}
-    engines: {node: ^16.14.0 || >=18.0.0}
+  /lint-staged@15.0.2:
+    resolution: {integrity: sha512-vnEy7pFTHyVuDmCAIFKR5QDO8XLVlPFQQyujQ/STOxe40ICWqJ6knS2wSJ/ffX/Lw0rz83luRDh+ET7toN+rOw==}
+    engines: {node: '>=18.12.0'}
     hasBin: true
     dependencies:
       chalk: 5.3.0
-      commander: 11.0.0
+      commander: 11.1.0
       debug: 4.3.4
-      execa: 7.2.0
+      execa: 8.0.1
       lilconfig: 2.1.0
-      listr2: 6.6.1
+      listr2: 7.0.2
       micromatch: 4.0.5
       pidtree: 0.6.0
       string-argv: 0.3.2
-      yaml: 2.3.1
+      yaml: 2.3.3
     transitivePeerDependencies:
-      - enquirer
       - supports-color
     dev: true
 
@@ -7701,14 +7725,9 @@ packages:
       wrap-ansi: 7.0.0
     dev: true
 
-  /listr2@6.6.1:
-    resolution: {integrity: sha512-+rAXGHh0fkEWdXBmX+L6mmfmXmXvDGEKzkjxO+8mP3+nI/r/CWznVBvsibXdxda9Zz0OW2e2ikphN3OwCT/jSg==}
+  /listr2@7.0.2:
+    resolution: {integrity: sha512-rJysbR9GKIalhTbVL2tYbF2hVyDnrf7pFUZBwjPaMIdadYHmeT+EVi/Bu3qd7ETQPahTotg2WRCatXwRBW554g==}
     engines: {node: '>=16.0.0'}
-    peerDependencies:
-      enquirer: '>= 2.3.0 < 3'
-    peerDependenciesMeta:
-      enquirer:
-        optional: true
     dependencies:
       cli-truncate: 3.1.0
       colorette: 2.0.20
@@ -9903,6 +9922,11 @@ packages:
     resolution: {integrity: sha512-wnD2ZE+l+SPC/uoS0vXeE9L1+0wuaMqKlfz9AMUo38JsyLSBWSFcHR1Rri62LZc12vLr1gb3jl7iwQhgwpAbGQ==}
     dev: true
 
+  /signal-exit@4.1.0:
+    resolution: {integrity: sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==}
+    engines: {node: '>=14'}
+    dev: true
+
   /signedsource@1.0.0:
     resolution: {integrity: sha512-6+eerH9fEnNmi/hyM1DXcRK3pWdoMQtlkQ+ns0ntzunjKqp5i3sKCc80ym8Fib3iaYhdJUOPdhlJWj1tvge2Ww==}
     dev: true
@@ -10716,7 +10740,7 @@ packages:
       scule: 1.0.0
       unplugin: 1.4.0
       vue-router: 4.2.4(vue@3.3.4)
-      yaml: 2.3.1
+      yaml: 2.3.3
     transitivePeerDependencies:
       - rollup
       - vue
@@ -11071,7 +11095,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@0.34.6(happy-dom@10.11.0):
+  /vitest@0.34.6(happy-dom@12.9.1):
     resolution: {integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -11115,7 +11139,7 @@ packages:
       cac: 6.7.14
       chai: 4.3.10
       debug: 4.3.4
-      happy-dom: 10.11.0
+      happy-dom: 12.9.1
       local-pkg: 0.4.3
       magic-string: 0.30.3
       pathe: 1.1.1
@@ -11137,7 +11161,7 @@ packages:
       - terser
     dev: true
 
-  /vitest@0.34.6(happy-dom@10.11.0)(sass@1.66.1):
+  /vitest@0.34.6(happy-dom@12.9.1)(sass@1.66.1):
     resolution: {integrity: sha512-+5CALsOvbNKnS+ZHMXtuUC7nL8/7F1F2DnHGjSsszX8zCjWSSviphCb/NuS9Nzf4Q03KyyDRBAXhF/8lffME4Q==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -11181,7 +11205,7 @@ packages:
       cac: 6.7.14
       chai: 4.3.10
       debug: 4.3.4
-      happy-dom: 10.11.0
+      happy-dom: 12.9.1
       local-pkg: 0.4.3
       magic-string: 0.30.3
       pathe: 1.1.1
@@ -11597,8 +11621,8 @@ packages:
     engines: {node: '>= 6'}
     dev: true
 
-  /yaml@2.3.1:
-    resolution: {integrity: sha512-2eHWfjaoXgTBC2jNM1LRef62VQa0umtvRiDSk6HSzW7RvS5YtkabJrwYLLEKWBc8a5U2PTSCs+dJjUTJdlHsWQ==}
+  /yaml@2.3.3:
+    resolution: {integrity: sha512-zw0VAJxgeZ6+++/su5AFoqBbZbrEakwu+X0M5HmcwUiBL7AzcuPKjj5we4xfQLp78LkEMpD0cOnUhmgOVy3KdQ==}
     engines: {node: '>= 14'}
     dev: true
 
