@@ -189,8 +189,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@oruga-ui/oruga-next':
-        specifier: ^0.6.0
-        version: 0.6.0(vue@3.3.4)
+        specifier: ^0.7.0
+        version: 0.7.0(vue@3.3.4)
       '@oruga-ui/theme-bulma':
         specifier: ^0.2.11
         version: 0.2.11
@@ -2853,8 +2853,8 @@ packages:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
     dev: true
 
-  /@oruga-ui/oruga-next@0.6.0(vue@3.3.4):
-    resolution: {integrity: sha512-M1Y5PgCWBUDmQGH74cgzrp3vKaRFdHVtGNr0DwejeJGScB7Q6jodW4xgCz6K4hajLgHW6zxz/3ukpC4ZczlfaQ==}
+  /@oruga-ui/oruga-next@0.7.0(vue@3.3.4):
+    resolution: {integrity: sha512-T2KnNhGzgqv/Xzu4Efx3wnYahANcP6Z7Yc8DHOFIOLrM+ZDdTS9OjL3gofBVDrDBRg1DQv6EvsSsNkwMR88LpA==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
@@ -2954,6 +2954,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -8188,6 +8189,10 @@ packages:
 
   /napi-build-utils@1.0.2:
     resolution: {integrity: sha512-ONmRUqK7zj7DWX0D9ADe03wbwOBZxNAfF20PlGfCWQcD3+/MakShIHrMqx9YwPTfxDdF1zLeL+RGZiR9kGMLdg==}
+    dev: true
+
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
     dev: true
 
   /natural-compare@1.4.0:

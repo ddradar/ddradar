@@ -643,65 +643,67 @@ exports[`Page /users > { locale: en } snapshot test > { loading: true } renders 
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="0"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
@@ -1411,77 +1413,81 @@ exports[`Page /users > { locale: en } snapshot test > { users: [...] } renders u
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="3"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li
+                class=""
+              >
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
                 >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
-              >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                <li>
-                  <a
-                    aria-current="true"
-                    class="pagination-link is-current"
-                    href="#"
-                    role="button"
-                  >
-                    
-                    1
-                    
-                  </a>
-                </li>
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
@@ -2052,65 +2058,67 @@ exports[`Page /users > { locale: en } snapshot test > { users: [] } renders empt
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="0"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
@@ -2762,65 +2770,67 @@ exports[`Page /users > { locale: ja } snapshot test > { loading: true } renders 
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="0"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
@@ -3530,77 +3540,81 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [...] } renders u
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="3"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
+              >
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              <li
+                class=""
+              >
+                <a
+                  aria-current="true"
+                  class="pagination-link is-current"
+                  href="#"
+                  role="button"
                 >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
-              >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                <li>
-                  <a
-                    aria-current="true"
-                    class="pagination-link is-current"
-                    href="#"
-                    role="button"
-                  >
-                    
-                    1
-                    
-                  </a>
-                </li>
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                  
+                  1
+                  
+                </a>
+              </li>
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
@@ -4171,65 +4185,67 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [] } renders empt
       
       <div
         class="level"
+        per-page="50"
+        rounded="false"
+        size="small"
+        total="0"
       >
         <div>
           
           
         </div>
         <div>
-          <div>
-            <nav
-              class="pagination is-right"
+          <nav
+            class="pagination is-right is-small"
+          >
+            <a
+              aria-current="false"
+              class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
+              href="#"
+              role="button"
             >
-              <a
-                aria-current="false"
-                class="pagination-link pagination-previous is-disabled pagination-previous is-disabled"
-                href="#"
-                role="button"
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-left mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <a
-                aria-current="false"
-                class="pagination-link pagination-next is-disabled pagination-next is-disabled"
-                href="#"
-                role="button"
+                <i
+                  class="mdi mdi-chevron-left mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <a
+              aria-current="false"
+              class="pagination-link pagination-next is-disabled pagination-next is-disabled"
+              href="#"
+              role="button"
+            >
+              
+              <span
+                aria-hidden="true"
+                class="icon"
               >
-                
-                <span
-                  aria-hidden="true"
-                  class="icon"
-                >
-                  <i
-                    class="mdi mdi-chevron-right mdi-24px"
-                  />
-                </span>
-                
-              </a>
-              <ul
-                class="pagination-list"
-              >
-                <!--First-->
-                <!--v-if-->
-                <!--v-if-->
-                <!--Pages-->
-                
-                
-                <!--Last-->
-                <!--v-if-->
-                <!--v-if-->
-              </ul>
-            </nav>
-          </div>
+                <i
+                  class="mdi mdi-chevron-right mdi-24px"
+                />
+              </span>
+              
+            </a>
+            <ul
+              class="pagination-list"
+            >
+              <!--First-->
+              <!--v-if-->
+              <!--v-if-->
+              <!--Pages-->
+              
+              
+              <!--Last-->
+              <!--v-if-->
+              <!--v-if-->
+            </ul>
+          </nav>
         </div>
       </div>
       
