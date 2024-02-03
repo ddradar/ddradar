@@ -220,8 +220,8 @@ importers:
         specifier: ^18.17.11
         version: 18.17.11
       '@vue/test-utils':
-        specifier: ^2.4.1
-        version: 2.4.1(vue@3.3.4)
+        specifier: ^2.4.4
+        version: 2.4.4(vue@3.3.4)
       eslint-plugin-nuxt:
         specifier: ^4.0.0
         version: 4.0.0(eslint@8.48.0)
@@ -3932,8 +3932,8 @@ packages:
   /@vue/shared@3.3.4:
     resolution: {integrity: sha512-7OjdcV8vQ74eiz1TZLzZP4JwqM5fA94K6yntPS5Z25r9HDuGNzaGdgvwKYq6S+MxwF0TFRwe50fIR/MYnakdkQ==}
 
-  /@vue/test-utils@2.4.1(vue@3.3.4):
-    resolution: {integrity: sha512-VO8nragneNzUZUah6kOjiFmD/gwRjUauG9DROh6oaOeFwX1cZRUNHhdeogE8635cISigXFTtGLUQWx5KCb0xeg==}
+  /@vue/test-utils@2.4.4(vue@3.3.4):
+    resolution: {integrity: sha512-8jkRxz8pNhClAf4Co4ZrpAoFISdvT3nuSkUlY6Ys6rmTpw3DMWG/X3mw3gQ7QJzgCZO9f+zuE2kW57fi09MW7Q==}
     peerDependencies:
       '@vue/server-renderer': ^3.0.1
       vue: ^3.0.1
@@ -3943,7 +3943,7 @@ packages:
     dependencies:
       js-beautify: 1.14.9
       vue: 3.3.4
-      vue-component-type-helpers: 1.8.4
+      vue-component-type-helpers: 1.8.27
     dev: true
 
   /@whatwg-node/events@0.0.3:
@@ -11417,8 +11417,8 @@ packages:
       vue: 3.3.4
     dev: false
 
-  /vue-component-type-helpers@1.8.4:
-    resolution: {integrity: sha512-6bnLkn8O0JJyiFSIF0EfCogzeqNXpnjJ0vW/SZzNHfe6sPx30lTtTXlE5TFs2qhJlAtDFybStVNpL73cPe3OMQ==}
+  /vue-component-type-helpers@1.8.27:
+    resolution: {integrity: sha512-0vOfAtI67UjeO1G6UiX5Kd76CqaQ67wrRZiOe7UAb9Jm6GzlUr/fC7CV90XfwapJRjpCMaZFhv1V0ajWRmE9Dg==}
     dev: true
 
   /vue-demi@0.13.11(vue@3.3.4):
