@@ -54,6 +54,7 @@ jobs:
         run: pnpm test
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v4.0.0
+        uses: codecov/codecov-action@v4.0.1
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json,./web/coverage/coverage-final.json
