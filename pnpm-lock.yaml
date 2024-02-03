@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@azure/static-web-apps-cli':
-        specifier: ^1.1.4
-        version: 1.1.4
+        specifier: ^1.1.6
+        version: 1.1.6
       '@typescript-eslint/eslint-plugin':
         specifier: ^6.6.0
         version: 6.6.0(@typescript-eslint/parser@6.6.0)(eslint@8.48.0)(typescript@5.3.3)
@@ -442,6 +442,7 @@ packages:
   /@azure/identity@3.3.0:
     resolution: {integrity: sha512-gISa/dAAxrWt6F2WiDXZY0y2xY4MLlN2wkNW4cPuq5OgPQKLSkxLc4I2WR04puTfZyQZnpXbAapAMEj1b96fgg==}
     engines: {node: '>=14.0.0'}
+    deprecated: Please upgrade to the latest version of this package to get necessary fixes
     dependencies:
       '@azure/abort-controller': 1.1.0
       '@azure/core-auth': 1.5.0
@@ -472,6 +473,7 @@ packages:
   /@azure/msal-browser@2.38.2:
     resolution: {integrity: sha512-71BeIn2we6LIgMplwCSaMq5zAwmalyJR3jFcVOZxNVfQ1saBRwOD+P77nLs5vrRCedVKTq8RMFhIOdpMLNno0A==}
     engines: {node: '>=0.8.0'}
+    deprecated: A newer major version of this library is available. Please upgrade to the latest available version.
     dependencies:
       '@azure/msal-common': 13.3.0
     dev: true
@@ -489,14 +491,15 @@ packages:
   /@azure/msal-node@1.18.2:
     resolution: {integrity: sha512-bLbuhF9Q5cgwj9tt8R7EV9MbCwGuFgZiv6Gw0VvHx5AcWHhh2m8hYginGagB4EucxKueFDwZP6aZVAxfuD/lUQ==}
     engines: {node: 10 || 12 || 14 || 16 || 18}
+    deprecated: A newer major version of this library is available. Please upgrade to the latest available version.
     dependencies:
       '@azure/msal-common': 13.3.0
       jsonwebtoken: 9.0.1
       uuid: 8.3.2
     dev: true
 
-  /@azure/static-web-apps-cli@1.1.4:
-    resolution: {integrity: sha512-TRj5X5TZRRPlmgNDk0cm5z3W38sMqKMLoQVaHR+mNqSy9vut7sbKc/M7gZznwAXDIy5nc9wmyBtiw/PImdwNpQ==}
+  /@azure/static-web-apps-cli@1.1.6:
+    resolution: {integrity: sha512-osbJg2Buh1KUDOG7zAEKzyRcGaeQrUNt8w9/PY2cvGepdhR3Q+Gf402hQSWv8AqS9DAKlG4No7kuW9ef3ts+og==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     hasBin: true
     dependencies:
