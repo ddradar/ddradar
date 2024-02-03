@@ -26,11 +26,11 @@
     "test:db": "vitest run \"db.test\""
   },
   "peerDependencies": {
-    "@azure/cosmos": "^3.17.3",
+    "@azure/cosmos": "^4.0.0",
     "@ddradar/core": "workspace:*"
   },
   "devDependencies": {
-    "@azure/cosmos": "^3.17.3",
+    "@azure/cosmos": "^4.0.0",
     "@types/node": "^18.17.11",
     "typescript": "^5.3.3",
     "unbuild": "^2.0.0",
