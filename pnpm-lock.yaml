@@ -103,8 +103,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       '@azure/functions':
-        specifier: ^4.0.0-alpha.11
-        version: 4.0.0-alpha.11
+        specifier: ^4.2.0
+        version: 4.2.0
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
@@ -431,8 +431,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@azure/functions@4.0.0-alpha.11:
-    resolution: {integrity: sha512-9Hrg9AkMgI6i9fFiROFQAwOI2Eid2OEZT85kPxb9GJW8UKUdJmgYYEkpMqOoW9gMIVEEEwyNq3nz9PNa1wTQQA==}
+  /@azure/functions@4.2.0:
+    resolution: {integrity: sha512-RSECLoje4jGVpsVRjEzkna9KvmQOVeB96cg8J5J2g41QQpMWCzD1QTPI5+yI0uvOidGRLYElV1zHZjdvsGf9Nw==}
     engines: {node: '>=18.0'}
     dependencies:
       long: 4.0.0
@@ -3451,7 +3451,7 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.1.0(rollup@4.9.6)
+      '@rollup/pluginutils': 5.0.3(rollup@4.9.6)
       magic-string: 0.27.0
       rollup: 4.9.6
     dev: true
@@ -3519,6 +3519,21 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.28.1
+    dev: true
+
+  /@rollup/pluginutils@5.0.3(rollup@4.9.6):
+    resolution: {integrity: sha512-hfllNN4a80rwNQ9QCxhxuHCGHMAvabXqxNdaChUSSadMre7t4iEUI6fFAhBOn/eIYTgYVhBv7vCLsAJ4u3lf3g==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+    dependencies:
+      '@types/estree': 1.0.5
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+      rollup: 4.9.6
     dev: true
 
   /@rollup/pluginutils@5.1.0(rollup@3.28.1):
