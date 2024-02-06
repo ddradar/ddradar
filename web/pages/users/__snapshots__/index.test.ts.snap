@@ -442,7 +442,7 @@ exports[`Page /users > { locale: en } snapshot test > { loading: true } renders 
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />
@@ -1152,7 +1152,7 @@ exports[`Page /users > { locale: en } snapshot test > { users: [...] } renders u
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />
@@ -1932,7 +1932,7 @@ exports[`Page /users > { locale: en } snapshot test > { users: [] } renders empt
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />
@@ -2561,7 +2561,7 @@ exports[`Page /users > { locale: ja } snapshot test > { loading: true } renders 
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />
@@ -3271,7 +3271,7 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [...] } renders u
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />
@@ -4051,7 +4051,7 @@ exports[`Page /users > { locale: ja } snapshot test > { users: [] } renders empt
                 maxlength="8"
                 minlength="8"
                 modelmodifiers="[object Object]"
-                pattern="^\\\\d{8}$"
+                pattern="^\\d{8}$"
                 placeholder="10000000"
                 type="text"
               />

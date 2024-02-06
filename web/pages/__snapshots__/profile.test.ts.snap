@@ -561,7 +561,7 @@ exports[`Page /profile > { locale: "en" } snapshot test > renders correctly 1`] 
         maxlength="8"
         minlength="8"
         modelmodifiers="[object Object]"
-        pattern="^[1-9]\\\\d{7}$"
+        pattern="^[1-9]\\d{7}$"
         placeholder="10000000"
         type="text"
       />
@@ -1299,7 +1299,7 @@ exports[`Page /profile > { locale: "ja" } snapshot test > renders correctly 1`] 
         maxlength="8"
         minlength="8"
         modelmodifiers="[object Object]"
-        pattern="^[1-9]\\\\d{7}$"
+        pattern="^[1-9]\\d{7}$"
         placeholder="10000000"
         type="text"
       />
