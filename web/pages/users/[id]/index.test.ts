@@ -73,8 +73,8 @@ describe('Page /users/[id]', () => {
               (uri as string).endsWith('radar')
                 ? null
                 : (uri as string).endsWith('clear')
-                ? null
-                : { ...publicUser, code: undefined }
+                  ? null
+                  : { ...publicUser, code: undefined }
             ),
           }) as any
       )
@@ -100,8 +100,8 @@ describe('Page /users/[id]', () => {
               (uri as string).endsWith('radar')
                 ? radars
                 : (uri as string).endsWith('clear')
-                ? clears
-                : publicUser
+                  ? clears
+                  : publicUser
             ),
           }) as any
       )

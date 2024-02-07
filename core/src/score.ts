@@ -296,8 +296,8 @@ export function calcMyGrooveRadar(
   const freezeCount = isFullCombo
     ? chart.freezeArrow
     : score.clearLamp === 3
-    ? chart.freezeArrow - 3
-    : 0
+      ? chart.freezeArrow - 3
+      : 0
 
   return {
     stream: Math.trunc((chart.stream * score.score) / 1000000),

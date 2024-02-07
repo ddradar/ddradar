@@ -35,14 +35,14 @@ type ContainerName =
 type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
   : T extends 'Songs'
-  ? SongSchema | CourseSchema
-  : T extends 'Users'
-  ? UserSchema
-  : T extends 'Notification'
-  ? NotificationSchema
-  : T extends 'UserDetails'
-  ? UserGrooveRadarSchema | UserClearLampSchema | UserRankSchema
-  : never
+    ? SongSchema | CourseSchema
+    : T extends 'Users'
+      ? UserSchema
+      : T extends 'Notification'
+        ? NotificationSchema
+        : T extends 'UserDetails'
+          ? UserGrooveRadarSchema | UserClearLampSchema | UserRankSchema
+          : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>
 //#endregion

@@ -105,19 +105,19 @@ describe('POST /api/v1/import/skillAttack', () => {
               ],
             }
           : condition.value === 455
-          ? {
-              id: 'lo6bOoq86d9od6qQ9PiPibOioOQb96lP',
-              name: 'TWINKLE♥HEART',
-              charts: [{ playStyle: 2, difficulty: 1 }],
-            }
-          : condition.value === '700'
-          ? {
-              id: '80PdqQ0iiOQb9i91lIliodiO9PI8O609',
-              name: 'エキサイティング！！も・ちゃ・ちゃ☆',
-              charts: [{ playStyle: 1, difficulty: 0 }],
-            }
-          : // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            (null as any)
+            ? {
+                id: 'lo6bOoq86d9od6qQ9PiPibOioOQb96lP',
+                name: 'TWINKLE♥HEART',
+                charts: [{ playStyle: 2, difficulty: 1 }],
+              }
+            : condition.value === '700'
+              ? {
+                  id: '80PdqQ0iiOQb9i91lIliodiO9PI8O609',
+                  name: 'エキサイティング！！も・ちゃ・ちゃ☆',
+                  charts: [{ playStyle: 1, difficulty: 0 }],
+                }
+              : // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                (null as any)
       )
     )
     const event = createEvent()
