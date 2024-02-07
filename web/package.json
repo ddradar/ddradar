@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepare": "nuxt prepare",
-    "build": "nuxt build && node -e \"fs.rmSync('./staticwebapp.config.json',{force:true})\"",
+    "build": "nuxt build && node -e \"fs.renameSync('./staticwebapp.config.json', './.output/public/staticwebapp.config.json')\"",
     "dev": "nuxt dev",
     "preview": "nuxt preview",
     "pretest": "nuxt prepare",
