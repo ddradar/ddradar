@@ -214,8 +214,8 @@ importers:
         specifier: ^8.0.2
         version: 8.0.2(rollup@4.9.6)(vue@3.4.15)
       '@types/markdown-it':
-        specifier: ^13.0.0
-        version: 13.0.0
+        specifier: ^13.0.7
+        version: 13.0.7
       '@types/node':
         specifier: ^18.17.11
         version: 18.17.11
@@ -3811,8 +3811,8 @@ packages:
     resolution: {integrity: sha512-BMVOiWs0uNxHVlHBgzTIqJYmj+PgCo4euloGF+5m4okL3rEYzM2EEv78mw8zWSMM57dM7kVIgJ2QDvwHSoCI5g==}
     dev: true
 
-  /@types/markdown-it@13.0.0:
-    resolution: {integrity: sha512-mPTaUl5glYfzdJFeCsvhXQwZKdyszNAZcMm5ZTP5SfpTu+vIbog7J3z8Fa4x/Fzv5TB4R6OA/pHBYIYmkYOWGQ==}
+  /@types/markdown-it@13.0.7:
+    resolution: {integrity: sha512-U/CBi2YUUcTHBt5tjO2r5QV/x0Po6nsYwQU4Y04fBS6vfoImaiZ6f8bi3CjTCxBPQSO1LMyUqkByzi8AidyxfA==}
     dependencies:
       '@types/linkify-it': 3.0.2
       '@types/mdurl': 1.0.2
