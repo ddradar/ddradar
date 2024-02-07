@@ -87,7 +87,7 @@ export default defineEventHandler(async event => {
       l.playStyle !== r.playStyle
         ? l.playStyle - r.playStyle
         : l.level !== r.level
-        ? l.level - r.level
-        : danceLevels.indexOf(l.rank) - danceLevels.indexOf(r.rank)
+          ? l.level - r.level
+          : danceLevels.indexOf(l.rank) - danceLevels.indexOf(r.rank)
     ) // ORDER BY playStyle, level, rank ASC
 })

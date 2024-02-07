@@ -116,8 +116,8 @@ const title =
   _pageKind === 'name'
     ? nameIndexMap.get(name)
     : _pageKind === 'series'
-    ? seriesNames[series]
-    : 'すべての楽曲を表示'
+      ? seriesNames[series]
+      : 'すべての楽曲を表示'
 const pages =
   _pageKind === 'name'
     ? [...nameIndexMap.entries()].map(([key, name]) => ({
@@ -126,12 +126,12 @@ const pages =
         query: { name: key },
       }))
     : _pageKind === 'series'
-    ? seriesNames.map((name, key) => ({
-        name,
-        key,
-        query: { series: key },
-      }))
-    : []
+      ? seriesNames.map((name, key) => ({
+          name,
+          key,
+          query: { series: key },
+        }))
+      : []
 
 // Method
 const isButtonDisabled = (key: number) => name === key || series === key || null

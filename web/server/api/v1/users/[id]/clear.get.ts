@@ -96,7 +96,7 @@ export default defineEventHandler(async event => {
       l.playStyle !== r.playStyle
         ? l.playStyle - r.playStyle
         : l.level !== r.level
-        ? l.level - r.level
-        : l.clearLamp - r.clearLamp
+          ? l.level - r.level
+          : l.clearLamp - r.clearLamp
     ) // ORDER BY playStyle, level, clearLamp ASC
 })

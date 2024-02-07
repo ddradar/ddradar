@@ -31,8 +31,8 @@ export type Strict<T, U> = Omit<T, keyof U> & U
 type Unbox<T> = T extends { [k: string]: infer U }
   ? U
   : T extends (infer U)[]
-  ? U
-  : T
+    ? U
+    : T
 type isPrimitive<T> = T extends Unbox<T> ? T : never
 export type DeepNonNullable<T> = {
   [P in keyof T]-?: T[P] extends isPrimitive<T[P]>

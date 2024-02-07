@@ -58,10 +58,10 @@ describe('GET /api/v1/users/[id]/scores', () => {
         key === 'style'
           ? parseFloat(style)
           : key === 'diff'
-          ? parseFloat(diff)
-          : key === 'level'
-          ? parseFloat(level)
-          : parseFloat(lamp)
+            ? parseFloat(diff)
+            : key === 'level'
+              ? parseFloat(level)
+              : parseFloat(lamp)
       )
       vi.mocked(getQueryString).mockReturnValue(rank)
       vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
