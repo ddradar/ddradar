@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  extends: ['@nuxt/ui-pro'],
   nitro: {
     preset: 'azure',
     azure: {
@@ -76,7 +77,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['@/assets/css/main.scss'],
-  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module', 'nuxt-swa'],
+  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module', '@nuxt/ui', 'nuxt-swa'],
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', name: 'English' },
