@@ -1,4 +1,4 @@
-name: Build & Deploy
+name: Azure Static Web Apps CI/CD
 
 on:
   push:
@@ -44,7 +44,7 @@ jobs:
           path: web/.output
 
   deploy:
-    name: Deploy to Azure Static Web Apps
+    name: Deploy
     needs: [build]
     if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
@@ -74,6 +74,5 @@ jobs:
           skip_app_build: true
           api_location: 'web/.output/server'
           skip_api_build: true
-          config_file_location: /
           data_api_location: 'core'
-          deployment_environment: ${{ (github.event_name == 'release' && '') || 'beta' }}
+          deployment_environment: ${{ vars.AZURE_SWA_DEPLOYMENT_ENVIRONMENT }}

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://dataapibuilder.azureedge.net/schemas/v0.5.34/dab.draft.schema.json",
+  "$schema": "https://github.com/Azure/data-api-builder/releases/download/v0.9.7/dab.draft.schema.json",
   "data-source": {
     "database-type": "cosmosdb_nosql",
     "options": {
@@ -14,10 +14,7 @@
       "enabled": true,
       "path": "/graphql"
     },
-    "rest": {
-      "enabled": false,
-      "path": "/rest"
-    },
+    "rest": { "enabled": false },
     "host": {
       "mode": "production",
       "cors": {
@@ -33,28 +30,24 @@
     "Song": {
       "source": "Songs",
       "permissions": [
-        {
-          "actions": ["read"],
-          "role": "anonymous"
-        },
-        {
-          "actions": ["*"],
-          "role": "administrator"
-        }
+        { "role": "anonymous", "actions": ["read"] },
+        { "role": "administrator", "actions": ["*"] }
       ]
     },
     "Course": {
       "source": "Songs",
       "permissions": [
-        {
-          "actions": ["read"],
-          "role": "anonymous"
-        },
-        {
-          "actions": ["*"],
-          "role": "administrator"
-        }
+        { "role": "anonymous", "actions": ["read"] },
+        { "role": "administrator", "actions": ["*"] }
       ]
+    },
+    "User": {
+      "source": "Users",
+      "permissions": [{ "role": "administrator", "actions": ["*"] }]
+    },
+    "Score": {
+      "source": "Scores",
+      "permissions": [{ "role": "administrator", "actions": ["*"] }]
     },
     "Notification": {
       "source": "Notification",

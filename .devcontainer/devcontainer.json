@@ -17,6 +17,20 @@
     }
   },
   "forwardPorts": [4280],
+  "portsAttributes": {
+    "3000": {
+      "label": "Nuxt Dev server",
+      "onAutoForward": "ignore"
+    },
+    "4280": {
+      "label": "Azure Static Web Apps emulator",
+      "onAutoForward": "openBrowser"
+    },
+    "5000-5001": {
+      "label": "Azure Data API Builder",
+      "onAutoForward": "ignore"
+    }
+  },
   "remoteUser": "node",
   "postCreateCommand": "pnpm install"
 }

@@ -244,7 +244,7 @@ type Notification @model {
 }
 
 "Summary of {@link Score.radar} (included in 'UserDetails' container)"
-type UserGrooveRadar @model {
+type UserGrooveRadar {
   "User details type"
   type: String!
   "{@link UserSchema.id}"
@@ -263,7 +263,7 @@ type UserGrooveRadar @model {
 }
 
 "Summary of {@link Score.clearLamp} (included in 'UserDetails' container)"
-type UserClearLamp @model {
+type UserClearLamp {
   "User details type"
   type: String!
   "{@link UserSchema.id}"
@@ -275,7 +275,7 @@ type UserClearLamp @model {
 }
 
 "Summary of {@link Score.rank} (included in 'UserDetails' container)"
-type UserRank @model {
+type UserRank {
   "User details type"
   type: String!
   "{@link UserSchema.id}"

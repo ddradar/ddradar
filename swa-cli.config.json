@@ -2,12 +2,10 @@
   "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
   "configurations": {
     "ddradar": {
-      "swaConfigLocation": "./",
-      "appLocation": "./web",
-      "apiLocation": "./web/.output/server",
-      "dataApiLocation": "./core",
-      "outputLocation": ".output/public",
-      "appBuildCommand": "pnpm build"
+      "appDevserverUrl": "http://localhost:3000",
+      "apiDevserverUrl": "http://localhost:3000",
+      "dataApiLocation": "core",
+      "run": "pnpm -C web dev"
     }
   }
 }
