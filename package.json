@@ -12,6 +12,7 @@
   },
   "scripts": {
     "build": "pnpm -r --workspace-concurrency 1 build",
+    "dev": "pnpm -C core build && pnpm -C db build && node -e \"fs.rmSync('./web/.output/public/staticwebapp.config.json',{force:true})\" && swa start",
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier --write",
@@ -20,8 +21,7 @@
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "pnpm -r test",
     "test:db": "pnpm -r test:db",
-    "prepare": "husky",
-    "start": "swa start"
+    "prepare": "husky"
   },
   "lint-staged": {
     "*.{js,ts,vue}": [
