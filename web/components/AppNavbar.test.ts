@@ -1,13 +1,21 @@
-import { publicUser } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
+import { publicUser } from '~~/../core/test/data'
 import AppNavbar from '~~/components/AppNavbar.vue'
 import useAuth from '~~/composables/useAuth'
 import { mountAsync } from '~~/test/test-utils'
+
+const { navigateToMock, useRouteMock } = vi.hoisted(() => ({
+  navigateToMock: vi.fn(),
+  useRouteMock: vi.fn(),
+}))
+mockNuxtImport('navigateTo', () => navigateToMock)
+mockNuxtImport('useRoute', () => useRouteMock)
 
 vi.mock('~~/composables/useAuth')
 

@@ -1,5 +1,5 @@
 import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
-import { ClientPrincipal, useClientPrincipal } from '~~/server/utils/auth'
+import { type ClientPrincipal, useClientPrincipal } from '~~/server/utils/auth'
 
 export default async function useAuth() {
   const auth = useState<ClientPrincipal | null>('auth')

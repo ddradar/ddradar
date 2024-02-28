@@ -1,11 +1,10 @@
-// @vitest-environment node
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
-import { publicUser } from '@ddradar/core/test/data'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { publicUser } from '~~/../core/test/data'
 import importSkillAttack from '~~/server/api/v1/import/skillAttack.post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'

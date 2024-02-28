@@ -1,14 +1,18 @@
 import { isAreaUser } from '@ddradar/core'
-import { privateUser, testScores, testSongData } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
+import { privateUser, testScores, testSongData } from '~~/../core/test/data'
 import ScoreBoard from '~~/components/songs/ScoreBoard.vue'
 import useAuth from '~~/composables/useAuth'
 import { mountAsync } from '~~/test/test-utils'
+
+const { useFetchMock } = vi.hoisted(() => ({ useFetchMock: vi.fn() }))
+mockNuxtImport('useFetch', () => useFetchMock)
 
 const open = vi.fn()
 vi.mock('~~/composables/useAuth')

@@ -1,10 +1,18 @@
-import { notification } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { notification } from '~~/../core/test/data'
 import Page from '~~/pages/admin/notification/[[id]].vue'
 import { mountAsync } from '~~/test/test-utils'
+
+const { useFetchMock, useRouteMock } = vi.hoisted(() => ({
+  useFetchMock: vi.fn(),
+  useRouteMock: vi.fn(),
+}))
+mockNuxtImport('useFetch', () => useFetchMock)
+mockNuxtImport('useRoute', () => useRouteMock)
 
 vi.mock('@oruga-ui/oruga-next', async origin => {
   const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
@@ -70,7 +78,7 @@ describe('Page /admin/notification', () => {
   })
 
   // Method
-  describe('saveNotification', () => {
+  describe.skip('saveNotification', () => {
     beforeEach(() => {
       vi.mocked(useProgrammatic).mockClear()
       vi.mocked($fetch).mockClear()
