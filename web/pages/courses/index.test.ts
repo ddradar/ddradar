@@ -1,4 +1,4 @@
-import { testCourseData as course } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
@@ -6,9 +6,17 @@ import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 import { createI18n } from 'vue-i18n'
 
+import { testCourseData as course } from '~~/../core/test/data'
 import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/courses/index.vue'
 import { mountAsync } from '~~/test/test-utils'
+
+const { useFetchMock, useRouteMock } = vi.hoisted(() => ({
+  useFetchMock: vi.fn(),
+  useRouteMock: vi.fn(),
+}))
+mockNuxtImport('useFetch', () => useFetchMock)
+mockNuxtImport('useRoute', () => useRouteMock)
 
 const open = vi.fn()
 vi.mock('~~/composables/useAuth')

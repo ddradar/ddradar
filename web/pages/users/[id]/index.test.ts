@@ -1,16 +1,23 @@
-import { publicUser } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
+import { publicUser } from '~~/../core/test/data'
 import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/users/[id]/index.vue'
 import type { ClearStatus } from '~~/server/api/v1/users/[id]/clear.get'
 import type { GrooveRadarInfo } from '~~/server/api/v1/users/[id]/radar.get'
 import { mountAsync } from '~~/test/test-utils'
 
+const { useRouteMock, useFetchMock } = vi.hoisted(() => ({
+  useRouteMock: vi.fn(),
+  useFetchMock: vi.fn(),
+}))
+mockNuxtImport('useRoute', () => useRouteMock)
+mockNuxtImport('useFetch', () => useFetchMock)
 vi.mock('~~/composables/useAuth')
 
 describe('Page /users/[id]', () => {
@@ -49,8 +56,8 @@ describe('Page /users/[id]', () => {
     test('{ user: null } renders empty', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useRoute).mockReturnValue({ params } as any)
-      vi.mocked(useFetch).mockResolvedValue({ data: ref(null) } as any)
+      useRouteMock.mockReturnValue({ params })
+      useFetchMock.mockResolvedValue({ data: ref(null) })
       vi.mocked(useAuth).mockResolvedValue({ id: ref(null) } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -65,19 +72,16 @@ describe('Page /users/[id]', () => {
     test('{ user: publicUser } renders user info', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useRoute).mockReturnValue({ params } as any)
-      vi.mocked(useFetch).mockImplementation(
-        uri =>
-          ({
-            data: ref(
-              (uri as string).endsWith('radar')
-                ? null
-                : (uri as string).endsWith('clear')
-                  ? null
-                  : { ...publicUser, code: undefined }
-            ),
-          }) as any
-      )
+      useRouteMock.mockReturnValue({ params })
+      useFetchMock.mockImplementation(uri => ({
+        data: ref(
+          (uri as string).endsWith('radar')
+            ? null
+            : (uri as string).endsWith('clear')
+              ? null
+              : { ...publicUser, code: undefined }
+        ),
+      }))
       vi.mocked(useAuth).mockResolvedValue({ id: ref(null) } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -92,19 +96,16 @@ describe('Page /users/[id]', () => {
     test('{ user: loginUser } renders import & settings button', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useRoute).mockReturnValue({ params } as any)
-      vi.mocked(useFetch).mockImplementation(
-        uri =>
-          ({
-            data: ref(
-              (uri as string).endsWith('radar')
-                ? radars
-                : (uri as string).endsWith('clear')
-                  ? clears
-                  : publicUser
-            ),
-          }) as any
-      )
+      useRouteMock.mockReturnValue({ params })
+      useFetchMock.mockImplementation(uri => ({
+        data: ref(
+          (uri as string).endsWith('radar')
+            ? radars
+            : (uri as string).endsWith('clear')
+              ? clears
+              : publicUser
+        ),
+      }))
       vi.mocked(useAuth).mockResolvedValue({ id: ref(publicUser.id) } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 

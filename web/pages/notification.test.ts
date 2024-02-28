@@ -1,13 +1,17 @@
-import { notifications } from '@ddradar/core/test/data'
+import { mockNuxtImport } from '@nuxt/test-utils/runtime'
 import Oruga from '@oruga-ui/oruga-next'
 import { bulmaConfig } from '@oruga-ui/theme-bulma'
 import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
+import { notifications } from '~~/../core/test/data'
 import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/notification.vue'
 import { mountAsync } from '~~/test/test-utils'
+
+const { useLazyFetchMock } = vi.hoisted(() => ({ useLazyFetchMock: vi.fn() }))
+mockNuxtImport('useLazyFetch', () => useLazyFetchMock)
 
 vi.mock('~~/composables/useAuth')
 vi.mock('~~/utils/format', async origin => {
