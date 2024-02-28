@@ -147,8 +147,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@happy-dom/global-registrator':
-        specifier: ^13.3.8
-        version: 13.3.8
+        specifier: ^13.6.2
+        version: 13.6.2
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -2459,8 +2459,8 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@happy-dom/global-registrator@13.3.8:
-    resolution: {integrity: sha512-7pHqBYKqfHZkowdy/ScCLHqwHLFDO0nQqizp3fKuBdQEaeYoCOm8igVLBLMtOtZ9Lzuv2cYk7g19qfuQLHy7xw==}
+  /@happy-dom/global-registrator@13.6.2:
+    resolution: {integrity: sha512-kP6XjwQtYhffyapFAwTTysqc67JWSlUfK0807S84ryUxugtBxpLkDyb0tqXcAatjQFdb3Oum+xdorBR0UpT70w==}
     engines: {node: '>=16.0.0'}
     dependencies:
       happy-dom: 13.6.2
