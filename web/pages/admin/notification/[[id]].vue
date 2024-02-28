@@ -47,7 +47,9 @@
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 
 import DialogModal from '~~/components/modal/DialogModal.vue'
-import { NotificationBody } from '~~/server/api/v1/notification/index.post'
+import type { NotificationBody } from '~~/server/api/v1/notification/index.post'
+
+definePageMeta({ allowedRoles: 'administrator' })
 
 const _route = useRoute()
 const { oruga } = useProgrammatic()

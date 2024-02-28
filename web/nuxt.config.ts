@@ -76,7 +76,7 @@ export default defineNuxtConfig({
     },
   },
   css: ['@/assets/css/main.scss'],
-  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module'],
+  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module', 'nuxt-swa'],
   i18n: {
     locales: [
       { code: 'en', iso: 'en-US', name: 'English' },
@@ -84,5 +84,8 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'ja',
     strategy: 'no_prefix',
+  },
+  swa: {
+    customRoles: ['administrator'],
   },
 })
