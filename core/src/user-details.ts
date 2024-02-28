@@ -1,8 +1,23 @@
-import type { UserClearLamp, UserGrooveRadar, UserRank } from './graphql'
-import type { ClearLamp, DanceLevel } from './score'
-import type { PlayStyle } from './song'
-import type { Strict } from './type-assert'
+import { z } from 'zod'
 
+import type { UserClearLamp, UserGrooveRadar, UserRank } from './graphql'
+import { scoreSchema } from './score'
+import { stepChartSchema } from './song'
+
+/** zod schema object for {@link UserGrooveRadarSchema}. */
+const userGrooveRadarSchema = scoreSchema
+  .pick({ userId: true, playStyle: true })
+  .merge(
+    stepChartSchema.pick({
+      playStyle: true,
+      stream: true,
+      voltage: true,
+      air: true,
+      freeze: true,
+      chaos: true,
+    })
+  )
+  .extend({ type: z.literal('radar') }) satisfies z.ZodType<UserGrooveRadar>
 /**
  * Summary of GrooveRadar (included in "UserDetails" container)
  * @example
@@ -19,16 +34,16 @@ import type { Strict } from './type-assert'
  * }
  * ```
  */
-export type UserGrooveRadarSchema = Strict<
-  UserGrooveRadar,
-  {
-    /** User details type */
-    type: 'radar'
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-  }
->
+export type UserGrooveRadarSchema = UserGrooveRadar &
+  z.infer<typeof userGrooveRadarSchema>
 
+/** zod schema object for {@link UserClearLampSchema}. */
+const userClearLampSchema = scoreSchema
+  .pick({ userId: true, playStyle: true, level: true, clearLamp: true })
+  .extend({
+    type: z.literal('clear'),
+    count: z.number().int().nonnegative(),
+  }) satisfies z.ZodType<UserClearLamp>
 /**
  * Summary of {@link ClearLamp} (included in "UserDetails" container)
  * @example
@@ -43,18 +58,16 @@ export type UserGrooveRadarSchema = Strict<
  * }
  * ```
  */
-export type UserClearLampSchema = Strict<
-  UserClearLamp,
-  {
-    /** User details type */
-    type: 'clear'
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    /** {@link ClearLamp} */
-    clearLamp: ClearLamp
-  }
->
+export type UserClearLampSchema = UserClearLamp &
+  z.infer<typeof userClearLampSchema>
 
+/** zod schema object for {@link UserRankSchema}. */
+export const userRankSchema = scoreSchema
+  .pick({ userId: true, playStyle: true, level: true, rank: true })
+  .extend({
+    type: z.literal('score'),
+    count: z.number().int().nonnegative(),
+  }) satisfies z.ZodType<UserRank>
 /**
  * Summary of {@link DanceLevel} (included in "UserDetails" container)
  * @example
@@ -69,13 +82,4 @@ export type UserClearLampSchema = Strict<
  * }
  * ```
  */
-export type UserRankSchema = Strict<
-  UserRank,
-  {
-    /** User details type */
-    type: 'score'
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    rank: DanceLevel
-  }
->
+export type UserRankSchema = UserRank & z.infer<typeof userRankSchema>

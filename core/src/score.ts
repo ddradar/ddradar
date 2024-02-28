@@ -1,72 +1,16 @@
+import { z } from 'zod'
+
 import type { CourseChartSchema } from './course'
 import type { GrooveRadar, Score as RawScoreSchema } from './graphql'
-import type { Difficulty, PlayStyle, SongSchema, StepChartSchema } from './song'
-import type { DeepNonNullable, Strict } from './type-assert'
-import { hasIntegerProperty, hasStringProperty } from './type-assert'
+import {
+  type SongSchema,
+  songSchema,
+  type StepChartSchema,
+  stepChartSchema,
+} from './song'
+import { hasIntegerProperty } from './type-assert'
 import type { UserSchema } from './user'
-import { isAreaUser } from './user'
-
-/**
- * DB schema of "Scores" container
- * @example
- * ```json
- * {
- *   "userId": "some_user1",
- *   "userName": "User1",
- *   "isPublic": true,
- *   "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
- *   "songName": "愛言葉",
- *   "playStyle": 1,
- *   "difficulty": 0,
- *   "level": 3,
- *   "score": 1000000,
- *   "exScore": 402,
- *   "maxCombo": 122,
- *   "clearLamp": 7,
- *   "rank": "AAA",
- *   "radar": {
- *     "stream": 21,
- *     "voltage": 22,
- *     "air": 7,
- *     "freeze": 26,
- *     "chaos": 0
- *   }
- * }
- * ```
- */
-export type ScoreSchema = Strict<
-  RawScoreSchema,
-  {
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    /** {@link Difficulty} */
-    difficulty: Difficulty
-    /** Highest {@link ClearLamp} */
-    clearLamp: ClearLamp
-    /** {@link DanceLevel} at the highest score */
-    rank: DanceLevel
-  }
->
-/** Primitive score */
-export type Score = Pick<
-  ScoreSchema,
-  'score' | 'exScore' | 'maxCombo' | 'clearLamp' | 'rank'
->
-/** Type assertion for {@link Score} */
-export function isScore(obj: unknown): obj is Score {
-  return (
-    hasIntegerProperty(obj, 'score', 'clearLamp') &&
-    obj.score >= 0 &&
-    obj.score <= 1000000 &&
-    clearLampMap.has(obj.clearLamp) &&
-    (hasIntegerProperty(obj, 'exScore') ||
-      (obj as Record<string, unknown>).exScore === undefined) &&
-    (hasIntegerProperty(obj, 'maxCombo') ||
-      (obj as Record<string, unknown>).maxCombo === undefined) &&
-    hasStringProperty(obj, 'rank') &&
-    danceLevelSet.has(obj.rank)
-  )
-}
+import { isAreaUser, userSchema } from './user'
 
 const clearLamps = new Map([
   [0, 'Failed'],
@@ -114,19 +58,89 @@ const danceLevels = [
 export type DanceLevel = (typeof danceLevels)[number]
 /** Set for {@link DanceLevel} */
 export const danceLevelSet: ReadonlySet<string> = new Set(danceLevels)
+
+/** zod schema object for {@link ScoreSchema}. */
+export const scoreSchema = z.object({
+  id: z.ostring(),
+  userId: userSchema.shape.id,
+  userName: userSchema.shape.name,
+  isPublic: userSchema.shape.isPublic,
+  songId: songSchema.shape.id,
+  songName: songSchema.shape.name,
+  playStyle: stepChartSchema.shape.playStyle,
+  difficulty: stepChartSchema.shape.difficulty,
+  level: stepChartSchema.shape.level,
+  score: z.number().int().min(0).max(1000000),
+  exScore: z.number().int().nonnegative().optional(),
+  maxCombo: z.number().int().nonnegative().optional(),
+  clearLamp: z.custom<ClearLamp>(
+    v => typeof v === 'number' && clearLampMap.has(v)
+  ),
+  rank: z.custom<DanceLevel>(
+    v => typeof v === 'string' && danceLevelSet.has(v)
+  ),
+  radar: stepChartSchema
+    .pick({
+      stream: true,
+      voltage: true,
+      air: true,
+      freeze: true,
+      chaos: true,
+    })
+    .optional(),
+  deleted: songSchema.shape.deleted,
+}) satisfies z.ZodType<RawScoreSchema>
+/**
+ * DB schema of "Scores" container
+ * @example
+ * ```json
+ * {
+ *   "userId": "some_user1",
+ *   "userName": "User1",
+ *   "isPublic": true,
+ *   "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
+ *   "songName": "愛言葉",
+ *   "playStyle": 1,
+ *   "difficulty": 0,
+ *   "level": 3,
+ *   "score": 1000000,
+ *   "exScore": 402,
+ *   "maxCombo": 122,
+ *   "clearLamp": 7,
+ *   "rank": "AAA",
+ *   "radar": {
+ *     "stream": 21,
+ *     "voltage": 22,
+ *     "air": 7,
+ *     "freeze": 26,
+ *     "chaos": 0
+ *   }
+ * }
+ * ```
+ */
+export type ScoreSchema = RawScoreSchema & z.infer<typeof scoreSchema>
+
+/** zod schema object for {@link Score}. */
+export const score = scoreSchema.pick({
+  score: true,
+  exScore: true,
+  maxCombo: true,
+  clearLamp: true,
+  rank: true,
+})
+/** Primitive score */
+export type Score = z.infer<typeof score>
+/** Type assertion for {@link Score} */
+export function isScore(obj: unknown): obj is Score {
+  return score.safeParse(obj).success
+}
+
 /**
  * Get {@link DanceLevel} from score.
  * @param score {@link ScoreSchema.score}
  */
 export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
-  if (!isPositiveInteger(score))
-    throw new RangeError(
-      `Invalid parameter: score(${score}) should be positive integer or 0.`
-    )
-  if (score > 1000000)
-    throw new RangeError(
-      `Invalid parameter: score(${score}) should be less than or equal to 1000000.`
-    )
+  const validatedScore = scoreSchema.shape.score.parse(score)
   const rankList = [
     { border: 990000, rank: 'AAA' },
     { border: 950000, rank: 'AA+' },
@@ -144,7 +158,7 @@ export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
     { border: 550000, rank: 'D+' },
   ] as const
   for (const { border, rank } of rankList) {
-    if (score >= border) return rank
+    if (validatedScore >= border) return rank
   }
   return 'D'
 }
@@ -158,7 +172,7 @@ export function calcMaxScore({
   shockArrow,
 }: Readonly<
   Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>
->): DeepNonNullable<Score> {
+>): Required<Score> {
   return {
     score: 1000000,
     exScore: (notes + freezeArrow + shockArrow) * 3,

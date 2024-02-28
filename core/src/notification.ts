@@ -1,11 +1,18 @@
-import { Notification } from './graphql'
-import {
-  hasBooleanProperty,
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from './type-assert'
+import { z } from 'zod'
 
+import type { Notification } from './graphql'
+
+/** zod schema object for {@link NotificationSchema}. */
+export const notificationSchema = z.object({
+  id: z.ostring(),
+  sender: z.literal('SYSTEM'),
+  pinned: z.boolean(),
+  type: z.string(),
+  icon: z.string(),
+  title: z.string(),
+  body: z.string(),
+  timeStamp: z.number(),
+}) satisfies z.ZodType<Notification>
 /**
  * DB schema of "Notification" container
  * @example
@@ -22,15 +29,13 @@ import {
  * }
  * ```
  */
-export type NotificationSchema = Notification
+export type NotificationSchema = Notification &
+  z.infer<typeof notificationSchema>
 
 /** Type assertion for {@link NotificationSchema}. */
 export function isNotificationSchema(obj: unknown): obj is NotificationSchema {
-  return (
-    hasStringProperty(obj, 'sender', 'type', 'icon', 'title', 'body') &&
-    obj.sender === 'SYSTEM' &&
-    hasBooleanProperty(obj, 'pinned') &&
-    (!hasProperty(obj, 'id') || hasStringProperty(obj, 'id')) &&
-    (!hasProperty(obj, 'timeStamp') || hasIntegerProperty(obj, 'timeStamp'))
-  )
+  return notificationSchema
+    .omit({ timeStamp: true })
+    .extend({ timeStamp: z.onumber() })
+    .safeParse(obj).success
 }
