@@ -1,114 +1,6 @@
+import { z } from 'zod'
+
 import type { Song, StepChart } from './graphql'
-import type { Strict } from './type-assert'
-import {
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-} from './type-assert'
-
-/**
- * DB Schema of Song data (included on "Songs" container)
- * @example
- * ```json
- * {
- *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
- *   "name": "イーディーエム・ジャンパーズ",
- *   "nameKana": "いーでぃーえむ じゃんぱーず",
- *   "nameIndex": 0,
- *   "artist": "かめりあ feat. ななひら",
- *   "series": "DanceDanceRevolution A",
- *   "minBPM": 72,
- *   "maxBPM": 145,
- *   "charts": [
- *     {
- *       "playStyle": 1,
- *       "difficulty": 0,
- *       "level": 3,
- *       "notes": 70,
- *       "freezeArrow": 11,
- *       "shockArrow": 0,
- *       "stream": 12,
- *       "voltage": 11,
- *       "air": 1,
- *       "freeze": 20,
- *       "chaos": 0
- *     }
- *   ]
- * }
- * ```
- */
-export type SongSchema = Strict<
-  Song,
-  {
-    /**
-     * Index for sorting. Associated with the "Choose by Name" folder.
-     * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
-     * @example `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
-     */
-    nameIndex: NameIndex
-    /** Series title depend on official site. */
-    series: Series
-    /** Song's step charts */
-    charts: StepChartSchema[]
-  }
->
-/** Song's step chart */
-export type StepChartSchema = Strict<
-  StepChart,
-  {
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    /** {@link Difficulty} */
-    difficulty: Difficulty
-  }
->
-/** Type assertion for {@link SongSchema} */
-export function isSongSchema(obj: unknown): obj is SongSchema {
-  return (
-    hasStringProperty(obj, 'id', 'name', 'nameKana', 'artist', 'series') &&
-    isValidSongId(obj.id) &&
-    /^([A-Z0-9 .\u3040-\u309Fー]*)$/.test(obj.nameKana) &&
-    seriesSet.has(obj.series) &&
-    hasIntegerProperty(obj, 'nameIndex') &&
-    obj.nameIndex >= 0 &&
-    obj.nameIndex <= 36 &&
-    (hasIntegerProperty(obj, 'minBPM', 'maxBPM') ||
-      (hasProperty(obj, 'minBPM', 'maxBPM') &&
-        obj.minBPM === null &&
-        obj.maxBPM === null)) &&
-    hasProperty(obj, 'charts') &&
-    Array.isArray(obj.charts) &&
-    obj.charts.every(c => isStepChartSchema(c))
-  )
-
-  function isStepChartSchema(obj: unknown): obj is StepChartSchema {
-    return (
-      hasIntegerProperty(
-        obj,
-        'playStyle',
-        'difficulty',
-        'level',
-        'notes',
-        'freezeArrow',
-        'shockArrow',
-        'stream',
-        'voltage',
-        'air',
-        'freeze',
-        'chaos'
-      ) &&
-      playStyleMap.has(obj.playStyle) &&
-      difficultyMap.has(obj.difficulty) &&
-      obj.level >= 1 &&
-      obj.level <= 20
-    )
-  }
-}
-
-/** Returns `id` is valid {@link Song.id} or not. */
-export function isValidSongId(id: string): boolean {
-  return /^[01689bdiloqDIOPQ]{32}$/.test(id)
-}
 
 const nameIndexes = new Map([
   [0, 'あ'],
@@ -254,6 +146,87 @@ const difficulties = new Map([
 export type Difficulty = Parameters<typeof difficulties.get>[0]
 /** Map for {@link Difficulty} */
 export const difficultyMap: ReadonlyMap<number, string> = difficulties
+
+/** zod schema object for {@link StepChartSchema}. */
+export const stepChartSchema = z.object({
+  playStyle: z.custom<PlayStyle>(
+    v => typeof v === 'number' && playStyleMap.has(v)
+  ),
+  difficulty: z.custom<Difficulty>(
+    v => typeof v === 'number' && difficultyMap.has(v)
+  ),
+  level: z.number().int().min(1).max(20),
+  notes: z.number().int().positive(),
+  freezeArrow: z.number().int().nonnegative(),
+  shockArrow: z.number().int().nonnegative(),
+  stream: z.number().int().nonnegative(),
+  voltage: z.number().int().nonnegative(),
+  air: z.number().int().nonnegative(),
+  freeze: z.number().int().nonnegative(),
+  chaos: z.number().int().nonnegative(),
+}) satisfies z.ZodType<StepChart>
+/** Song's step chart */
+export type StepChartSchema = StepChart & z.infer<typeof stepChartSchema>
+
+/** zod schema object for {@link SongSchema}. */
+export const songSchema = z.object({
+  id: z.string().regex(/^[01689bdiloqDIOPQ]{32}$/),
+  name: z.string(),
+  nameKana: z.string().regex(/^([A-Z0-9 .\u3040-\u309Fー]*)$/),
+  nameIndex: z.custom<NameIndex>(
+    v => typeof v === 'number' && nameIndexMap.has(v)
+  ),
+  artist: z.string(),
+  series: z.custom<Series>(v => typeof v === 'string' && seriesSet.has(v)),
+  minBPM: z.number().int().positive().nullable(),
+  maxBPM: z.number().int().positive().nullable(),
+  charts: z.array(stepChartSchema),
+  skillAttackId: z.number().int().optional(),
+  deleted: z.oboolean(),
+}) satisfies z.ZodType<Song>
+/**
+ * DB Schema of Song data (included on "Songs" container)
+ * @example
+ * ```json
+ * {
+ *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
+ *   "name": "イーディーエム・ジャンパーズ",
+ *   "nameKana": "いーでぃーえむ じゃんぱーず",
+ *   "nameIndex": 0,
+ *   "artist": "かめりあ feat. ななひら",
+ *   "series": "DanceDanceRevolution A",
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
+ *   "charts": [
+ *     {
+ *       "playStyle": 1,
+ *       "difficulty": 0,
+ *       "level": 3,
+ *       "notes": 70,
+ *       "freezeArrow": 11,
+ *       "shockArrow": 0,
+ *       "stream": 12,
+ *       "voltage": 11,
+ *       "air": 1,
+ *       "freeze": 20,
+ *       "chaos": 0
+ *     }
+ *   ]
+ * }
+ * ```
+ */
+export type SongSchema = Omit<Song, 'charts'> & z.infer<typeof songSchema>
+
+/** Type assertion for {@link SongSchema} */
+export function isSongSchema(obj: unknown): obj is SongSchema {
+  return songSchema.refine(v => !!v.minBPM === !!v.maxBPM).safeParse(obj)
+    .success
+}
+
+/** Returns `id` is valid {@link Song.id} or not. */
+export function isValidSongId(id: string): boolean {
+  return songSchema.shape.id.safeParse(id).success
+}
 
 /**
  * Returns whether the song has been deleted on the e-amusement GATE site.

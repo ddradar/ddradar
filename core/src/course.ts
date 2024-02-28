@@ -1,7 +1,50 @@
-import type { Course, CourseChart, CourseOrder } from './graphql'
-import type { Difficulty, PlayStyle, Series } from './song'
-import type { Strict } from './type-assert'
+import { z } from 'zod'
 
+import type { Course, CourseChart, CourseOrder } from './graphql'
+import { songSchema, stepChartSchema } from './song'
+
+/** zod schema object for {@link CourseOrderSchema}. */
+export const courseOrderSchema = stepChartSchema
+  .pick({ playStyle: true, difficulty: true, level: true })
+  .extend({
+    songId: songSchema.shape.id,
+    songName: songSchema.shape.name,
+  }) satisfies z.ZodType<CourseOrder>
+/** Course order */
+export type CourseOrderSchema = CourseOrder & z.infer<typeof courseOrderSchema>
+
+/** zod schema object for {@link CourseChartSchema}. */
+export const courseChartSchema = stepChartSchema
+  .pick({
+    playStyle: true,
+    difficulty: true,
+    level: true,
+    notes: true,
+    freezeArrow: true,
+    shockArrow: true,
+  })
+  .extend({
+    order: z.array(courseOrderSchema),
+  }) satisfies z.ZodType<CourseChart>
+/** Course difficulty */
+export type CourseChartSchema = Omit<CourseChart, 'order'> &
+  z.infer<typeof courseChartSchema>
+
+/** zod schema object for {@link CourseSchema}. */
+export const courseSchema = songSchema
+  .pick({
+    id: true,
+    name: true,
+    nameKana: true,
+    series: true,
+    minBPM: true,
+    maxBPM: true,
+    deleted: true,
+  })
+  .extend({
+    nameIndex: z.union([z.literal(-1), z.literal(-2)]),
+    charts: z.array(courseChartSchema),
+  }) satisfies z.ZodType<Course>
 /**
  * DB Schema of Course data (included on 'Songs' container)
  * @example
@@ -57,41 +100,4 @@ import type { Strict } from './type-assert'
  * }
  * ```
  */
-export type CourseSchema = Strict<
-  Course,
-  {
-    /**
-     * `-1`: NONSTOP, `-2`: Grade
-     * @description This property is the {@link https://docs.microsoft.com/azure/cosmos-db/partitioning-overview partition key}.
-     */
-    nameIndex: -1 | -2
-    /** Series title depend on official site. */
-    series: Series
-    /** Course difficulties */
-    charts: CourseChartSchema[]
-  }
->
-
-/** Course difficulty */
-export type CourseChartSchema = Strict<
-  CourseChart,
-  {
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    /** {@link Difficulty} */
-    difficulty: Difficulty
-    /** Course order */
-    order: CourseOrderSchema[]
-  }
->
-
-/** Course order */
-export type CourseOrderSchema = Strict<
-  CourseOrder,
-  {
-    /** {@link PlayStyle} */
-    playStyle: PlayStyle
-    /** {@link Difficulty} */
-    difficulty: Difficulty
-  }
->
+export type CourseSchema = Omit<Course, 'charts'> & z.infer<typeof courseSchema>

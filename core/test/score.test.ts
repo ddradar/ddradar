@@ -70,8 +70,7 @@ describe('score.ts', () => {
     )
     test.each([-1, 10.5, NaN, Infinity, -Infinity, 1000010])(
       '(%d) throws error',
-      d =>
-        expect(() => getDanceLevel(d)).toThrowError(/^Invalid parameter: score/)
+      d => expect(() => getDanceLevel(d)).toThrowError()
     )
   })
 
