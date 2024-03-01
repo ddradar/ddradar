@@ -1,7 +1,11 @@
 import type { NotificationSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import { z } from 'zod'
 
 import { sendNullWithError } from '~~/server/utils/http'
+
+/** Expected params */
+const schema = z.object({ id: z.string() })
 
 /**
  * Get notification that match the specified ID.
@@ -27,7 +31,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  * ```
  */
 export default defineEventHandler(async event => {
-  const id: string = event.context.params!.id
+  const { id } = await getValidatedRouterParams(event, schema.parse)
 
   const notification = (await fetchOne(
     'Notification',

@@ -1,13 +1,14 @@
-import type { UserSchema } from '@ddradar/core'
-import { isValidUserId } from '@ddradar/core'
+import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-
-import { sendNullWithError } from '~~/server/utils/http'
+import { z } from 'zod'
 
 export type ExistsUser = Pick<UserSchema, 'id'> & {
   /** User exists or not */
   exists: boolean
 }
+
+/** Expected params */
+const schema = z.object({ id: userSchema.shape.id })
 
 /**
  * Returns whether the specified user exists.
@@ -25,8 +26,7 @@ export type ExistsUser = Pick<UserSchema, 'id'> & {
  * ```
  */
 export default defineEventHandler(async event => {
-  const id: string = event.context.params!.id
-  if (!isValidUserId(id)) return sendNullWithError(event, 404)
+  const { id } = await getValidatedRouterParams(event, schema.parse)
 
   const condition = { condition: 'c.id = @', value: id } as const
   const user = await fetchOne('Users', ['id'], condition)

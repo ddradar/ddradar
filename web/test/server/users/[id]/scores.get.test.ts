@@ -1,16 +1,14 @@
 // @vitest-environment node
-import { privateUser, testScores } from '@ddradar/core/test/data'
 import { fetchScoreList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { privateUser, testScores } from '~/../core/test/data'
 import getUserScores from '~~/server/api/v1/users/[id]/scores.get'
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
-import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
 vi.mock('~~/utils/path')
@@ -52,18 +50,11 @@ describe('GET /api/v1/users/[id]/scores', () => {
     `?style=%s&diff=%s&level=%s&rank=%s&lamp=%s calls fetchScoreList(..., %o)`,
     async (style, diff, level, rank, lamp, condition) => {
       // Arrange
-      const event = createEvent({ id: privateUser.id })
-      vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
-      vi.mocked(getQueryInteger).mockImplementation((_, key) =>
-        key === 'style'
-          ? parseFloat(style)
-          : key === 'diff'
-            ? parseFloat(diff)
-            : key === 'level'
-              ? parseFloat(level)
-              : parseFloat(lamp)
+      const event = createEvent(
+        { id: privateUser.id },
+        { style, diff, level, rank, lamp }
       )
-      vi.mocked(getQueryString).mockReturnValue(rank)
+      vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
       vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
 
       // Act

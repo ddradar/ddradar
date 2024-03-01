@@ -1,8 +1,16 @@
-import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
+import { scoreSchema } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
+import { z } from 'zod'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
+
+/** Expected params */
+const schema = z.object({
+  id: scoreSchema.shape.songId,
+  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
+  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
+})
 
 /**
  * Delete scores that match the specified chart.
@@ -19,18 +27,10 @@ import { sendNullWithError } from '~~/server/utils/http'
  * - Returns `204 No Content` otherwize.
  */
 export default defineEventHandler(async event => {
-  // route params
-  const id: string = event.context.params!.id
-  const style = parseFloat(event.context.params!.style)
-  const diff = parseFloat(event.context.params!.diff)
-  if (
-    !isValidSongId(id) ||
-    !playStyleMap.has(style) ||
-    !difficultyMap.has(diff)
-  ) {
-    sendNullWithError(event, 404)
-    return
-  }
+  const { id, style, diff } = await getValidatedRouterParams(
+    event,
+    schema.parse
+  )
 
   const user = await getLoginUserInfo(event)
   if (!user) {

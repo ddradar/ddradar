@@ -1,39 +1,27 @@
 // @vitest-environment node
-import { publicUser } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { publicUser } from '~/../core/test/data'
 import existsUser from '~~/server/api/v1/users/[id]/exists.get'
-import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/http')
 
 describe('GET /api/v1/users/[id]/exists', () => {
-  const dbUser = {
-    id: publicUser.id,
-  }
-  beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
-  })
+  const dbUser = { id: publicUser.id }
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchOne).mockClear()
   })
 
   const invalidId = 'ユーザー'
-  test(`(id: "${invalidId}") returns 404`, async () => {
+  test(`(id: "${invalidId}") returns 400`, async () => {
     // Arrange
     const event = createEvent({ id: invalidId })
 
-    // Act
-    const result = await existsUser(event)
-
-    // Assert
-    expect(result).toBeNull()
+    // Act - Assert
+    await expect(existsUser(event)).rejects.toThrowError()
     expect(vi.mocked(fetchOne)).not.toBeCalled()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
   test('(id: "not_exists_user") returns 200 with { exists: false }', async () => {
@@ -47,11 +35,10 @@ describe('GET /api/v1/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id, exists: false })
-    expect(vi.mocked(fetchOne).mock.lastCall?.[2]).toStrictEqual({
+    expect(vi.mocked(fetchOne)).toBeCalledWith('Users', ['id'], {
       condition: 'c.id = @',
       value: id,
     })
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
   })
 
   test(`(id: "${dbUser.id}") returns 200 with { exists: true }`, async () => {
@@ -65,10 +52,9 @@ describe('GET /api/v1/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id: dbUser.id, exists: true })
-    expect(vi.mocked(fetchOne).mock.lastCall?.[2]).toStrictEqual({
+    expect(vi.mocked(fetchOne)).toBeCalledWith('Users', ['id'], {
       condition: 'c.id = @',
       value: dbUser.id,
     })
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
   })
 })

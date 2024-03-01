@@ -1,9 +1,5 @@
-import type { SongSchema } from '@ddradar/core'
-import { isSongSchema } from '@ddradar/core'
+import { type SongSchema, songSchema } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
-
-import { sendNullWithError } from '~~/server/utils/http'
 
 /**
  * Add or update song and charts information.
@@ -45,10 +41,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  * ```
  */
 export default defineEventHandler(async event => {
-  const body = await readBody(event)
-  if (!isSongSchema(body)) {
-    return sendNullWithError(event, 400, 'Invalid Body')
-  }
+  const body = await readValidatedBody(event, songSchema.parse)
 
   const song: SongSchema = {
     id: body.id,

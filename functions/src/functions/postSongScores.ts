@@ -16,17 +16,13 @@ import type {
 } from '@ddradar/core'
 import {
   createScoreSchema,
-  difficultyMap,
-  hasIntegerProperty,
-  hasProperty,
-  hasStringProperty,
-  isScore,
   isValidScore,
   mergeScore,
-  playStyleMap,
+  scoreSchema,
   setValidScoreFromChart,
 } from '@ddradar/core'
 import { fetchScore } from '@ddradar/db'
+import z from 'zod'
 
 const songInput: CosmosDBInput = {
   name: 'songs',
@@ -62,21 +58,27 @@ app.http('postSongScores', {
   handler,
 })
 
-export type ScoreListBody = Pick<
-  ScoreSchema,
-  | 'playStyle'
-  | 'difficulty'
-  | 'score'
-  | 'exScore'
-  | 'maxCombo'
-  | 'clearLamp'
-  | 'rank'
-> & {
-  /** World Record {@link ScoreSchema.score score}. */
-  topScore?: number
-}
-
-type ImportScoreBody = { password: string; scores: ScoreListBody[] }
+const schema = z.object({
+  password: z.string(),
+  scores: z
+    .array(
+      scoreSchema
+        .pick({
+          playStyle: true,
+          difficulty: true,
+          score: true,
+          exScore: true,
+          maxCombo: true,
+          clearLamp: true,
+          rank: true,
+        })
+        .extend({
+          topScore: scoreSchema.shape.score.optional(),
+        })
+    )
+    .min(1),
+})
+export type ScoreListBody = z.infer<typeof schema>['scores'][number]
 
 type SongInput = Pick<SongSchema, 'id' | 'name'> & {
   charts: ReadonlyArray<StepChartSchema | CourseChartSchema>
@@ -95,8 +97,10 @@ export async function handler(
 ): Promise<HttpResponseInit> {
   const [song] = ctx.extraInputs.get(songInput) as SongInput[]
   const [user] = ctx.extraInputs.get(userInput) as UserSchema[]
-  const body = await req.json()
-  if (!isValidBody(body)) return { status: 400 }
+
+  const parse = schema.safeParse(await req.json())
+  if (!parse.success) return { status: 400 }
+  const body = parse.data
 
   if (user?.password !== body.password) return { status: 404 }
 
@@ -134,27 +138,6 @@ export async function handler(
 
   ctx.extraOutputs.set(output, documents)
   return { status: 200 }
-
-  /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ImportScoreBody {
-    return (
-      hasStringProperty(body, 'password') &&
-      hasProperty(body, 'scores') &&
-      Array.isArray(body.scores) &&
-      body.scores.length > 0 &&
-      body.scores.every(isScoreListBody)
-    )
-
-    function isScoreListBody(obj: unknown): obj is ScoreListBody {
-      return (
-        isScore(obj) &&
-        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-        playStyleMap.has(obj.playStyle) &&
-        difficultyMap.has(obj.difficulty) &&
-        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
-      )
-    }
-  }
 
   /** Merge score is merged old one. */
   async function fetchMergedScore(

@@ -6,7 +6,7 @@ import type {
 } from '@ddradar/core'
 import { getDanceLevel } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import { decode } from 'iconv-lite'
+import iconv from 'iconv-lite'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
@@ -58,7 +58,8 @@ export default defineEventHandler(async event => {
     `http://skillattack.com/sa4/data/dancer/${user.code}/score_${user.code}.txt`
   )
   if (!ok) return sendNullWithError(event, 404)
-  const scoresMap = decode(Buffer.from(await arrayBuffer()), 'shift_jis')
+  const scoresMap = iconv
+    .decode(Buffer.from(await arrayBuffer()), 'shift_jis')
     .trim()
     .split('\n')
     .reduce(

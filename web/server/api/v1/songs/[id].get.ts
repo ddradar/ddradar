@@ -1,10 +1,12 @@
-import type { SongSchema } from '@ddradar/core'
-import { isValidSongId } from '@ddradar/core'
+import { type SongSchema, songSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
 export type SongInfo = Omit<SongSchema, 'skillAttackId'>
+
+/** Expected params */
+const schema = songSchema.pick({ id: true })
 
 /**
  * Get song and charts information that match the specified ID.
@@ -46,8 +48,7 @@ export type SongInfo = Omit<SongSchema, 'skillAttackId'>
  * ```
  */
 export default defineEventHandler(async event => {
-  const id: string = event.context.params!.id
-  if (!isValidSongId(id)) return sendNullWithError(event, 400)
+  const { id } = await getValidatedRouterParams(event, schema.parse)
 
   const song = await fetchOne(
     'Songs',

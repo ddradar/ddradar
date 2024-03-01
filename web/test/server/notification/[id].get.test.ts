@@ -1,8 +1,8 @@
 // @vitest-environment node
-import { notification } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { notification } from '~/../core/test/data'
 import getNotificationInfo from '~~/server/api/v1/notification/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'

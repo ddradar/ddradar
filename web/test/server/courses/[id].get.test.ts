@@ -1,8 +1,8 @@
 // @vitest-environment node
-import { testCourseData } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { testCourseData } from '~/../core/test/data'
 import getCourseInfo from '~~/server/api/v1/courses/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
@@ -50,11 +50,7 @@ describe('GET /api/v1/courses/[id]', () => {
     vi.mocked(fetchOne).mockResolvedValue(null)
     const event = createEvent({ id: 'invalid-id' })
 
-    // Act
-    const course = await getCourseInfo(event)
-
-    // Assert
-    expect(course).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400)
+    // Act - Assert
+    await expect(getCourseInfo(event)).rejects.toThrowError()
   })
 })

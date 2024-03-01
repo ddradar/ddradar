@@ -5,7 +5,7 @@ import { scoreSchema } from './score'
 import { stepChartSchema } from './song'
 
 /** zod schema object for {@link UserGrooveRadarSchema}. */
-const userGrooveRadarSchema = scoreSchema
+export const userGrooveRadarSchema = scoreSchema
   .pick({ userId: true, playStyle: true })
   .merge(
     stepChartSchema.pick({
@@ -38,7 +38,7 @@ export type UserGrooveRadarSchema = UserGrooveRadar &
   z.infer<typeof userGrooveRadarSchema>
 
 /** zod schema object for {@link UserClearLampSchema}. */
-const userClearLampSchema = scoreSchema
+export const userClearLampSchema = scoreSchema
   .pick({ userId: true, playStyle: true, level: true, clearLamp: true })
   .extend({
     type: z.literal('clear'),

@@ -7,21 +7,26 @@ import type {
 } from '@ddradar/core'
 import {
   createScoreSchema,
-  difficultyMap,
-  isScore,
   isValidScore,
-  isValidSongId,
   mergeScore,
-  playStyleMap,
+  score,
+  scoreSchema,
 } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
+import { z } from 'zod'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
 type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
   (StepChartSchema | CourseChartSchema)
+
+/** Expected params */
+const paramSchema = z.object({
+  id: scoreSchema.shape.songId,
+  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
+  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
+})
 
 /**
  * Add or update score that match the specified chart.
@@ -65,23 +70,11 @@ type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
  * ```
  */
 export default defineEventHandler(async event => {
-  // route params
-  const id: string = event.context.params!.id
-  const style = parseFloat(event.context.params!.style)
-  const diff = parseFloat(event.context.params!.diff)
-  if (
-    !isValidSongId(id) ||
-    !playStyleMap.has(style) ||
-    !difficultyMap.has(diff)
-  ) {
-    return sendNullWithError(event, 404)
-  }
-
-  // body
-  const body = await readBody(event)
-  if (!isScore(body)) {
-    return sendNullWithError(event, 400, 'body is not Score')
-  }
+  const { id, style, diff } = await getValidatedRouterParams(
+    event,
+    paramSchema.parse
+  )
+  const body = await readValidatedBody(event, score.parse)
 
   const user = await getLoginUserInfo(event)
   if (!user) return sendNullWithError(event, 401)

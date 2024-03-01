@@ -1,13 +1,11 @@
 // @vitest-environment node
 import { fetchOne } from '@ddradar/db'
-import { readBody } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import getRoles from '~~/server/api/v1/user/roles.get'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 
 describe('GET /api/v1/user/roles', () => {
   beforeEach(() => {
@@ -18,8 +16,7 @@ describe('GET /api/v1/user/roles', () => {
     'returns empty roles if user.isAdmin is %o',
     async isAdmin => {
       // Arrange
-      const event = createEvent()
-      vi.mocked(readBody).mockResolvedValueOnce({ userId: '' })
+      const event = createEvent(undefined, undefined, { userId: '' })
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchOne).mockResolvedValueOnce({ isAdmin } as any)
 
@@ -34,8 +31,7 @@ describe('GET /api/v1/user/roles', () => {
 
   test('returns "administrator" roles if user.isAdmin is true', async () => {
     // Arrange
-    const event = createEvent()
-    vi.mocked(readBody).mockResolvedValueOnce({ userId: '' })
+    const event = createEvent(undefined, undefined, { userId: '' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValueOnce({ isAdmin: true } as any)
 

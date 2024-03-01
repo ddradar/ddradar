@@ -5,17 +5,14 @@ import type {
   StepChartSchema,
 } from '@ddradar/core'
 import {
-  difficultyMap,
   getDanceLevel,
-  hasIntegerProperty,
-  hasProperty,
-  isScore,
   isValidScore,
-  isValidSongId,
-  playStyleMap,
+  score,
+  songSchema,
+  stepChartSchema,
 } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
+import { z } from 'zod'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
@@ -23,19 +20,20 @@ import { topUser, upsertScore } from '~~/server/utils/score'
 
 type ChartInfo = StepChartSchema | CourseChartSchema
 
-export type ScoreListBody = Pick<
-  ScoreSchema,
-  | 'playStyle'
-  | 'difficulty'
-  | 'score'
-  | 'exScore'
-  | 'maxCombo'
-  | 'clearLamp'
-  | 'rank'
-> & {
-  /** World Record {@link ScoreSchema.score score}. */
-  topScore?: number
-}
+/** Expected params */
+const paramSchema = z.object({ id: songSchema.shape.id })
+
+/** Expected body */
+const bodySchema = z
+  .array(
+    score.extend({
+      playStyle: stepChartSchema.shape.playStyle,
+      difficulty: stepChartSchema.shape.difficulty,
+      topScore: score.shape.score.optional(),
+    })
+  )
+  .min(1)
+export type ScoreListBody = z.infer<typeof bodySchema>[number]
 
 /**
  * Add or update the scores of the specified songs all at once.
@@ -108,15 +106,8 @@ export type ScoreListBody = Pick<
  * ```
  */
 export default defineEventHandler(async event => {
-  // route params
-  const id: string = event.context.params!.id
-  if (!isValidSongId(id)) return sendNullWithError(event, 404)
-
-  // body
-  const body = await readBody(event)
-  if (!isValidBody(body)) {
-    return sendNullWithError(event, 400, 'body is not Score[]')
-  }
+  const { id } = await getValidatedRouterParams(event, paramSchema.parse)
+  const body = await readValidatedBody(event, bodySchema.parse)
 
   const user = await getLoginUserInfo(event)
   if (!user) return sendNullWithError(event, 401)
@@ -182,19 +173,4 @@ export default defineEventHandler(async event => {
 
   await getContainer('Scores').items.batch(operations)
   return result
-
-  /** Assert request body is valid schema. */
-  function isValidBody(body: unknown): body is ScoreListBody[] {
-    return Array.isArray(body) && body.length > 0 && body.every(isScoreListBody)
-
-    function isScoreListBody(obj: unknown): obj is ScoreListBody {
-      return (
-        isScore(obj) &&
-        hasIntegerProperty(obj, 'playStyle', 'difficulty') &&
-        playStyleMap.has(obj.playStyle) &&
-        difficultyMap.has(obj.difficulty) &&
-        (!hasProperty(obj, 'topScore') || hasIntegerProperty(obj, 'topScore'))
-      )
-    }
-  }
 })

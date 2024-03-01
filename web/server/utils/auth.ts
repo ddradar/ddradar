@@ -1,4 +1,4 @@
-import { isValidUserId, UserSchema } from '@ddradar/core'
+import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { H3Event } from 'h3'
 
@@ -61,7 +61,7 @@ export async function tryFetchUser(
   event: Pick<H3Event, 'node' | 'context'>
 ): Promise<UserSchema | null> {
   const id: string = event.context.params!.id
-  if (!isValidUserId(id)) return null
+  if (!userSchema.shape.id.safeParse(id).success) return null
 
   const user = await fetchUser(id)
   if (!user) return null

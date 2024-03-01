@@ -1,9 +1,10 @@
+import { userSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import { readBody } from 'h3'
+import { z } from 'zod'
 
-export interface RolePayload {
-  userId: string
-}
+/** Expected body */
+const schema = z.object({ userId: userSchema.shape.loginId })
+export type RolePayload = z.infer<typeof schema>
 
 /**
  * Get user roles. (called from Azure Static Web Apps)
@@ -18,7 +19,7 @@ export interface RolePayload {
  * ```
  */
 export default defineEventHandler(async event => {
-  const { userId } = await readBody<RolePayload>(event)
+  const { userId } = await readValidatedBody(event, schema.parse)
   const user = await fetchOne('Users', ['isAdmin'], {
     condition: 'c.loginId = @',
     value: userId,

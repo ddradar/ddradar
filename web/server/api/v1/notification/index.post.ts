@@ -1,12 +1,14 @@
-import type { NotificationSchema } from '@ddradar/core'
-import { isNotificationSchema } from '@ddradar/core'
+import { type NotificationSchema, notificationSchema } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
-
-import { sendNullWithError } from '~~/server/utils/http'
+import { z } from 'zod'
 
 export type NotificationBody = Partial<NotificationSchema> &
   Omit<NotificationSchema, 'id' | 'timeStamp'>
+
+/** Expected body */
+const schema = notificationSchema
+  .omit({ timeStamp: true })
+  .extend({ timeStamp: z.onumber() })
 
 /**
  * Add or update Notification.
@@ -44,10 +46,7 @@ export type NotificationBody = Partial<NotificationSchema> &
  * ```
  */
 export default defineEventHandler(async event => {
-  const body = await readBody(event)
-  if (!isNotificationSchema(body)) {
-    return sendNullWithError(event, 400, 'Invalid Body')
-  }
+  const body = await readValidatedBody(event, schema.parse)
 
   const notification = {
     sender: body.sender,

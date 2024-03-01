@@ -3,28 +3,29 @@ import { describe, expect, test } from 'vitest'
 import {
   getNameIndex,
   isPageDeletedOnGate,
-  isSongSchema,
   isValidSongId,
   nameIndexMap,
+  songSchema,
 } from '../src/song'
 import { testSongData } from './data'
 
 describe('song.ts', () => {
-  describe('isSongSchema', () => {
+  describe('songSchema', () => {
     const validSong = { ...testSongData }
-    test.each([undefined, null, true, 1.5, 'foo', [], {}])(
-      '(%o) returns false',
-      (obj: unknown) => expect(isSongSchema(obj)).toBe(false)
-    )
     test.each([
+      undefined,
+      null,
+      true,
+      1.5,
+      'foo',
+      [],
+      {},
       { ...validSong, id: '' },
       { ...validSong, nameKana: 'abc' },
       { ...validSong, series: 'DDR FESTIVAL' },
       { ...validSong, nameIndex: 0.5 },
       { ...validSong, nameIndex: -1 },
       { ...validSong, nameIndex: 37 },
-      { ...validSong, minBPM: null },
-      { ...validSong, maxBPM: null },
       { ...validSong, charts: {} },
       { ...validSong, charts: [...validSong.charts, {}] },
       { ...validSong, charts: [{ ...validSong.charts[0], notes: '' }] },
@@ -33,14 +34,17 @@ describe('song.ts', () => {
       { ...validSong, charts: [{ ...validSong.charts[0], difficulty: 5 }] },
       { ...validSong, charts: [{ ...validSong.charts[0], level: 0 }] },
       { ...validSong, charts: [{ ...validSong.charts[0], level: 21 }] },
-    ])('(%o) returns false', o => expect(isSongSchema(o)).toBe(false))
-
+    ])('safeParse(%o) returns { success: false }', o =>
+      expect(songSchema.safeParse(o).success).toBe(false)
+    )
     test.each([
       validSong,
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
       { ...validSong, minBPM: null, maxBPM: null },
       { ...validSong, charts: [] },
-    ])('(%o) returns true', o => expect(isSongSchema(o)).toBe(true))
+    ])('safeParse(%o) returns { success: true }', o =>
+      expect(songSchema.safeParse(o).success).toBe(true)
+    )
   })
 
   describe('isValidSongId', () => {

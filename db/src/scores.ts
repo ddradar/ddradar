@@ -79,10 +79,12 @@ export function fetchScoreList(
   const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
     isNotObsolete,
-    ...Object.entries(conditions).map(([k, v]) => ({
-      condition: `c.${k as keyof ScoreSchema} = @` as const,
-      value: v,
-    })),
+    ...Object.entries(conditions)
+      .filter(([, v]) => v !== undefined)
+      .map(([k, v]) => ({
+        condition: `c.${k as keyof ScoreSchema} = @` as const,
+        value: v,
+      })),
   ]
   if (!includeCourse) condition.push(isUserSongScore)
 

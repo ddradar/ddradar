@@ -1,11 +1,10 @@
 import type { DanceLevel, UserRankSchema } from '@ddradar/core'
-import { danceLevelSet, playStyleMap } from '@ddradar/core'
+import { danceLevelSet, userRankSchema } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import { z } from 'zod'
 
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
-import { getQueryInteger } from '~~/utils/path'
 
 const danceLevels: string[] = [...danceLevelSet]
 
@@ -16,6 +15,20 @@ export type RankStatus = Pick<
   /** Dance level (`"E"` ~ `"AAA"`), `"-"`: No Play */
   rank: DanceLevel | '-'
 }
+
+/** Expected queries */
+const schema = z.object({
+  style: z.coerce
+    .number()
+    .pipe(userRankSchema.shape.playStyle)
+    .optional()
+    .catch(undefined),
+  lv: z.coerce
+    .number()
+    .pipe(userRankSchema.shape.level)
+    .optional()
+    .catch(undefined),
+})
 
 /**
  * Get Score statuses that match the specified userId, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
@@ -41,17 +54,11 @@ export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = getQuery(event)
-  const style = getQueryInteger(query, 'style')
-  const lv = getQueryInteger(query, 'lv')
+  const { style, lv } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'UserDetails'>[] = []
-  if (playStyleMap.has(style)) {
-    conditions.push({ condition: 'c.playStyle = @', value: style })
-  }
-  if (lv >= 1 && lv <= 20) {
-    conditions.push({ condition: 'c.level = @', value: lv })
-  }
+  if (style) conditions.push({ condition: 'c.playStyle = @', value: style })
+  if (lv) conditions.push({ condition: 'c.level = @', value: lv })
 
   /** User Score Statuses */
   const clears = (await fetchList(

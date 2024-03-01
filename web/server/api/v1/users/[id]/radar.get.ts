@@ -1,13 +1,23 @@
-import type { UserGrooveRadarSchema } from '@ddradar/core'
-import { playStyleMap } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import {
+  type UserGrooveRadarSchema,
+  userGrooveRadarSchema,
+} from '@ddradar/core'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
-import { getQueryInteger } from '~~/utils/path'
 
 export type GrooveRadarInfo = Omit<UserGrooveRadarSchema, 'userId' | 'type'>
+
+/** Expected queries */
+const schema = z.object({
+  style: z.coerce
+    .number()
+    .pipe(userGrooveRadarSchema.shape.playStyle)
+    .optional()
+    .catch(undefined),
+})
 
 /**
  * Get Groove Radar that match the specified userId and playStyle.
@@ -45,16 +55,13 @@ export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = getQuery(event)
-  const style = getQueryInteger(query, 'style')
+  const { style } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'UserDetails'>[] = [
     { condition: 'c.userId = @', value: user.id },
     { condition: 'c.type = "radar"' },
   ]
-  if (playStyleMap.has(style)) {
-    conditions.push({ condition: 'c.playStyle = @', value: style })
-  }
+  if (style) conditions.push({ condition: 'c.playStyle = @', value: style })
 
   return (await fetchList(
     'UserDetails',
