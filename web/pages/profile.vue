@@ -178,12 +178,11 @@ import { areaCodeSet } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { useI18n } from 'vue-i18n'
 
-import useAuth from '~~/composables/useAuth'
 import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
 
 const { t } = useI18n()
 const { oruga } = useProgrammatic()
-const { user, saveUser } = await useAuth()
+const { data: user, refresh } = await useFetch('/api/v1/user')
 
 const id = useState(() => user.value?.id ?? '')
 const name = useState(() => user.value?.name ?? '')
@@ -245,21 +244,22 @@ const checkId = async () => {
   loading.value = false
 }
 const save = async () => {
-  const user: CurrentUserInfo = {
+  const body: CurrentUserInfo = {
     id: id.value,
     name: name.value,
     area: area.value,
     isPublic: isPublic.value,
   }
-  if (code.value) user.code = code.value
-  if (password.value) user.password = password.value
+  if (code.value) body.code = code.value
+  if (password.value) body.password = password.value
   try {
-    await saveUser(user)
+    await $fetch('/api/v1/user', { method: 'POST', body })
     oruga.notification.open({
       message: t('message.success'),
       variant: 'success',
       position: 'top',
     })
+    await refresh()
   } catch (error) {
     oruga.notification.open({
       message: error,

@@ -1,7 +1,6 @@
 import type { UserSchema } from '@ddradar/core'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
 
 export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
 
@@ -29,7 +28,7 @@ export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
 export default defineEventHandler(async event => {
   const user = await getLoginUserInfo(event)
   if (!user) {
-    return sendNullWithError(event, 404, 'User registration is not completed')
+    return null
   }
 
   delete user.loginId

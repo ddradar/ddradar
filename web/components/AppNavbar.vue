@@ -1,3 +1,59 @@
+<script lang="ts" setup>
+import {
+  courseSeriesIndexes,
+  seriesNames,
+  shortenSeriesName,
+} from '~~/utils/song'
+
+const { t } = useI18n()
+const { path } = useRoute()
+const { isLoggedIn } = await useEasyAuth()
+const { data: user } = await useFetch('/api/v1/user')
+if (isLoggedIn.value && !user.value && path !== '/profile')
+  await navigateTo('/profile')
+
+const isActive = useState(() => false)
+
+const providers = {
+  twitter: { name: 'Twitter', variant: 'info' },
+  line: { name: 'LINE', variant: 'success' },
+  github: { name: 'GitHub', variant: 'dark' },
+}
+const dropdownMenuList = [
+  {
+    title: t('menu.level', { style: 'SP' }),
+    menu: [...Array(19).keys()].map(i => ({
+      name: `LEVEL ${i + 1}`,
+      to: `/charts?style=1&level=${i + 1}`,
+    })),
+  },
+  {
+    title: t('menu.level', { style: 'DP' }),
+    menu: [...Array(19).keys()].map(i => ({
+      name: `LEVEL ${i + 1}`,
+      to: `/charts?style=2&level=${i + 1}`,
+    })),
+  },
+  {
+    title: t('menu.series'),
+    menu: seriesNames.map((name, i) => ({ name, to: `/songs?series=${i}` })),
+  },
+  {
+    title: t('menu.course'),
+    menu: courseSeriesIndexes.flatMap(i => [
+      {
+        name: t('menu.nonstop', { series: shortenSeriesName(seriesNames[i]) }),
+        to: `/courses?type=1&series=${i}`,
+      },
+      {
+        name: t('menu.grade', { series: shortenSeriesName(seriesNames[i]) }),
+        to: `/courses?type=2&series=${i}`,
+      },
+    ]),
+  },
+]
+</script>
+
 <template>
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
@@ -25,9 +81,9 @@
           {{ t('menu.user') }}
         </NuxtLink>
         <NuxtLink
-          v-if="isLoggedIn"
+          v-if="user"
           class="navbar-item"
-          :to="`/users/${id}/scores`"
+          :to="`/users/${user.id}/scores`"
         >
           {{ t('menu.scores') }}
         </NuxtLink>
@@ -51,8 +107,8 @@
       </div>
 
       <div class="navbar-end">
-        <div v-if="isLoggedIn" class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">{{ name }}</a>
+        <div v-if="user" class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">{{ user.name }}</a>
           <div class="navbar-dropdown is-right">
             <div class="navbar-item">
               <div class="field">
@@ -61,7 +117,7 @@
                     icon-left="account"
                     variant="info"
                     tag="NuxtLink"
-                    :to="`/users/${id}`"
+                    :to="`/users/${user.id}`"
                   >
                     {{ t('menu.mypage') }}
                   </OButton>
@@ -137,61 +193,3 @@
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-
-import useAuth from '~~/composables/useAuth'
-import {
-  courseSeriesIndexes,
-  seriesNames,
-  shortenSeriesName,
-} from '~~/utils/song'
-
-const { t } = useI18n()
-const { path } = useRoute()
-const { auth, id, isLoggedIn, name } = await useAuth()
-if (auth.value && !isLoggedIn.value && path !== '/profile')
-  await navigateTo('/profile')
-
-const isActive = useState(() => false)
-
-const providers = {
-  twitter: { name: 'Twitter', variant: 'info' },
-  line: { name: 'LINE', variant: 'success' },
-  github: { name: 'GitHub', variant: 'dark' },
-}
-const dropdownMenuList = [
-  {
-    title: t('menu.level', { style: 'SP' }),
-    menu: [...Array(19).keys()].map(i => ({
-      name: `LEVEL ${i + 1}`,
-      to: `/charts?style=1&level=${i + 1}`,
-    })),
-  },
-  {
-    title: t('menu.level', { style: 'DP' }),
-    menu: [...Array(19).keys()].map(i => ({
-      name: `LEVEL ${i + 1}`,
-      to: `/charts?style=2&level=${i + 1}`,
-    })),
-  },
-  {
-    title: t('menu.series'),
-    menu: seriesNames.map((name, i) => ({ name, to: `/songs?series=${i}` })),
-  },
-  {
-    title: t('menu.course'),
-    menu: courseSeriesIndexes.flatMap(i => [
-      {
-        name: t('menu.nonstop', { series: shortenSeriesName(seriesNames[i]) }),
-        to: `/courses?type=1&series=${i}`,
-      },
-      {
-        name: t('menu.grade', { series: shortenSeriesName(seriesNames[i]) }),
-        to: `/courses?type=2&series=${i}`,
-      },
-    ]),
-  },
-]
-</script>

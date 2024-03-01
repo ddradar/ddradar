@@ -55,7 +55,7 @@
       >
         {{ props.row.level }}
       </OTableColumn>
-      <OTableColumn v-if="isLoggedIn" v-slot="props" :label="t('column.score')">
+      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
         <OButton
           icon-right="pencil-box-outline"
           @click="editScore(props.row)"
@@ -109,7 +109,6 @@ import { useI18n } from 'vue-i18n'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
-import useAuth from '~~/composables/useAuth'
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
 import { getQueryInteger } from '~~/utils/path'
 import { levels, shortenSeriesName } from '~~/utils/song'
@@ -125,7 +124,7 @@ const style = getQueryInteger(_route.query, 'style')
 const level = getQueryInteger(_route.query, 'level')
 const { oruga } = useProgrammatic()
 const { t } = useI18n()
-const { isLoggedIn } = await useAuth()
+const { data: user } = await useFetch('/api/v1/user')
 const { data: charts, pending } = await useFetch(
   `/api/v1/charts/${style}/${level}`,
   { watch: [_route.query] }

@@ -37,7 +37,7 @@
       <OTableColumn v-slot="props" field="bpm" :label="t('column.bpm')">
         {{ getDisplayedBPM(props.row) }}
       </OTableColumn>
-      <OTableColumn v-if="isLoggedIn" v-slot="props" :label="t('column.score')">
+      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
         <OButton
           icon-right="pencil-box-outline"
           @click="editScore(props.row.id)"
@@ -89,7 +89,6 @@ import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { useI18n } from 'vue-i18n'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
-import useAuth from '~~/composables/useAuth'
 import { getQueryInteger } from '~~/utils/path'
 import { getDisplayedBPM, seriesNames, shortenSeriesName } from '~~/utils/song'
 
@@ -104,7 +103,7 @@ const name = getQueryInteger(_route.query, _kinds[0])
 const series = getQueryInteger(_route.query, _kinds[1])
 const { oruga } = useProgrammatic()
 const { t } = useI18n()
-const { isLoggedIn } = await useAuth()
+const { data: user } = await useFetch('/api/v1/user')
 const { data: songs, pending } = await useFetch('/api/v1/songs', {
   query: { name, series },
   watch: [_route.query],

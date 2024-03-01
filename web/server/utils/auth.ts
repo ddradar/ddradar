@@ -2,26 +2,6 @@ import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { H3Event } from 'h3'
 
-type Role = 'anonymous' | 'authenticated' | 'administrator'
-
-/**
- * User information provided by Azure
- * @see https://docs.microsoft.com/azure/static-web-apps/user-information
- */
-export interface ClientPrincipal {
-  /** The name of the identity provider. */
-  identityProvider: 'github' | 'twitter' | 'line'
-  /** An Azure Static Web Apps-specific unique identifier for the user. */
-  userId: string
-  /** User Name (GitHub/Twitter) */
-  userDetails: string
-  /**
-   * An array of the user's assigned roles.
-   * @see https://docs.microsoft.com/azure/static-web-apps/authentication-authorization#roles
-   */
-  userRoles: ReadonlyArray<Role>
-}
-
 /**
  * Get {@link ClientPrincipal} from Request header.
  * @param event HTTP Event
@@ -42,12 +22,10 @@ export function useClientPrincipal(
   }
 }
 
-export async function getLoginUserInfo(event: {
-  node: {
-    req: Pick<Pick<Pick<H3Event, 'node'>['node'], 'req'>['req'], 'headers'>
-  }
-}): Promise<UserSchema | null> {
-  const clientPrincipal = useClientPrincipal(event.node.req.headers)
+export async function getLoginUserInfo(
+  event: H3Event
+): Promise<UserSchema | null> {
+  const clientPrincipal = getClientPrincipal(event)
   if (!clientPrincipal) return null
   return await fetchLoginUser(clientPrincipal.userId)
 }
@@ -57,15 +35,13 @@ export async function getLoginUserInfo(event: {
  * @param event HTTP Event (needs [id] context)
  * @returns UserSchema if user is public or same as login user. otherwise null.
  */
-export async function tryFetchUser(
-  event: Pick<H3Event, 'node' | 'context'>
-): Promise<UserSchema | null> {
+export async function tryFetchUser(event: H3Event): Promise<UserSchema | null> {
   const id: string = event.context.params!.id
   if (!userSchema.shape.id.safeParse(id).success) return null
 
   const user = await fetchUser(id)
   if (!user) return null
 
-  const loginId = useClientPrincipal(event.node.req.headers)?.userId ?? ''
+  const loginId = getClientPrincipal(event)?.userId ?? ''
   return user.isPublic || user.loginId === loginId ? user : null
 }

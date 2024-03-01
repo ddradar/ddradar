@@ -1,3 +1,28 @@
+<script lang="ts" setup>
+import ChartInfo from '~~/components/songs/ChartInfo.vue'
+import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import { getDisplayedBPM } from '~~/utils/song'
+
+const _route = useRoute()
+const { data: song } = await useFetch<SongInfo>(
+  `/api/v1/songs/${_route.params.id}`
+)
+const { clientPrincipal: _auth } = await useEasyAuth()
+const isAdmin = computed(
+  () => !!_auth.value?.userRoles.includes('administrator')
+)
+
+const displayedBPM = computed(() =>
+  song.value ? getDisplayedBPM(song.value) : '???'
+)
+const singleCharts = computed(() =>
+  song.value?.charts.filter(c => c.playStyle === 1)
+)
+const doubleCharts = computed(() =>
+  song.value?.charts.filter(c => c.playStyle === 2)
+)
+</script>
+
 <template>
   <section class="section">
     <template v-if="song">
@@ -42,26 +67,3 @@
     </template>
   </section>
 </template>
-
-<script lang="ts" setup>
-import ChartInfo from '~~/components/songs/ChartInfo.vue'
-import useAuth from '~~/composables/useAuth'
-import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { getDisplayedBPM } from '~~/utils/song'
-
-const _route = useRoute()
-const { data: song } = await useFetch<SongInfo>(
-  `/api/v1/songs/${_route.params.id}`
-)
-const { isAdmin } = await useAuth()
-
-const displayedBPM = computed(() =>
-  song.value ? getDisplayedBPM(song.value) : '???'
-)
-const singleCharts = computed(() =>
-  song.value?.charts.filter(c => c.playStyle === 1)
-)
-const doubleCharts = computed(() =>
-  song.value?.charts.filter(c => c.playStyle === 2)
-)
-</script>
