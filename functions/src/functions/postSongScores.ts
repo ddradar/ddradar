@@ -60,21 +60,23 @@ app.http('postSongScores', {
 
 const schema = z.object({
   password: z.string(),
-  scores: z.array(
-    scoreSchema
-      .pick({
-        playStyle: true,
-        difficulty: true,
-        score: true,
-        exScore: true,
-        maxCombo: true,
-        clearLamp: true,
-        rank: true,
-      })
-      .extend({
-        topScore: scoreSchema.shape.score.optional(),
-      })
-  ),
+  scores: z
+    .array(
+      scoreSchema
+        .pick({
+          playStyle: true,
+          difficulty: true,
+          score: true,
+          exScore: true,
+          maxCombo: true,
+          clearLamp: true,
+          rank: true,
+        })
+        .extend({
+          topScore: scoreSchema.shape.score.optional(),
+        })
+    )
+    .min(1),
 })
 export type ScoreListBody = z.infer<typeof schema>['scores'][number]
 
