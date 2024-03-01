@@ -199,8 +199,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(vue@3.4.20)
       '@oruga-ui/theme-bulma':
-        specifier: ^0.2.11
-        version: 0.2.11
+        specifier: ^0.3.0
+        version: 0.3.0
       chart.js:
         specifier: ^4.4.2
         version: 4.4.2
@@ -3214,8 +3214,8 @@ packages:
       vue: 3.4.20(typescript@5.3.3)
     dev: false
 
-  /@oruga-ui/theme-bulma@0.2.11:
-    resolution: {integrity: sha512-yMYNTWDNZQ0qyzAlWVyvEO/ZDRjRIyPDTf58IL+OVJuVCsq1Nn/4nFltemuQA1foL6KpsqXMFT9pBTf4wQHMPw==}
+  /@oruga-ui/theme-bulma@0.3.0:
+    resolution: {integrity: sha512-lkTsrdQJ6L5s/SACVtnjo51Tx/jIR+Dz2CgLAbLEooTE0tTiQPiQhkgXqEqLX8a78Kxp7kJa5d7YypGGxiJPjg==}
     dependencies:
       bulma: 0.9.4
     dev: false
