@@ -4,11 +4,9 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { publicUser } from '~/../core/test/data'
 import getUserList from '~~/server/api/v1/users/index.get'
-import { useClientPrincipal } from '~~/server/utils/auth'
 import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
 
 describe('GET /api/v1/users', () => {
   beforeAll(() => {
@@ -35,7 +33,7 @@ describe('GET /api/v1/users', () => {
     '?name=%s&area=%s&code=%s calls fetchList(%o) (anonymous)',
     async (name, area, code, conditions) => {
       // Arrange
-      vi.mocked(useClientPrincipal).mockReturnValue(null)
+      vi.mocked(getClientPrincipal).mockReturnValue(null)
       const event = createEvent(undefined, { name, area, code })
 
       // Act
@@ -52,7 +50,7 @@ describe('GET /api/v1/users', () => {
 
   test('calls fetchList(%o) (login user)', async () => {
     // Arrange
-    vi.mocked(useClientPrincipal).mockReturnValue(
+    vi.mocked(getClientPrincipal).mockReturnValue(
       createClientPrincipal(publicUser.id, publicUser.loginId)
     )
     const event = createEvent(undefined, undefined, {})

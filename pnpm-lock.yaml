@@ -244,6 +244,9 @@ importers:
       nuxt:
         specifier: ^3.10.3
         version: 3.10.3(@azure/cosmos@4.0.0)(@types/node@18.17.11)(eslint@8.56.0)(rollup@4.9.6)(sass@1.70.0)(typescript@5.3.3)(vite@5.1.4)
+      nuxt-swa:
+        specifier: ^0.4.0
+        version: 0.4.0(rollup@4.9.6)
       sass:
         specifier: ^1.70.0
         version: 1.70.0
@@ -9489,6 +9492,17 @@ packages:
       fsevents: 2.3.3
     dev: true
 
+  /nuxt-swa@0.4.0(rollup@4.9.6):
+    resolution: {integrity: sha512-87v2tPjuz4uSxhSPY8K6oZeUihEEIJKbJBfLMJF591nlGqO6jUTjnrgSJOi0md2MnFJm8J1A6wfUz17pbvqE2Q==}
+    dependencies:
+      '@nuxt/kit': 3.10.3(rollup@4.9.6)
+      defu: 6.1.4
+      ufo: 1.4.0
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /nuxt@3.10.3(@azure/cosmos@4.0.0)(@types/node@18.17.11)(eslint@8.56.0)(rollup@4.9.6)(sass@1.70.0)(typescript@5.3.3)(vite@5.1.4):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -10568,7 +10582,6 @@ packages:
 
   /queue-tick@1.0.1:
     resolution: {integrity: sha512-kJt5qhMxoszgU/62PLP1CJytzd2NKetjSRnyuj31fDd3Rlcz3fzlFdFLD1SItunPwyqEOkca6GbV612BWfaBag==}
-    requiresBuild: true
 
   /radix3@1.1.0:
     resolution: {integrity: sha512-pNsHDxbGORSvuSScqNJ+3Km6QAVqk8CfsCBIEoDgpqLrkD2f3QM4I7d1ozJJ172OmIcoUcerZaNWqtLkRXTV3A==}

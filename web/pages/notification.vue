@@ -67,13 +67,13 @@
 </i18n>
 
 <script lang="ts" setup>
-import { useI18n } from 'vue-i18n'
-
-import useAuth from '~~/composables/useAuth'
 import { markdownToHTML, unixTimeToString } from '~~/utils/format'
 
 // Data & Hook
 const { t } = useI18n()
-const { isAdmin } = await useAuth()
+const { clientPrincipal } = await useEasyAuth()
+const isAdmin = computed(
+  () => !!clientPrincipal.value?.userRoles.includes('administrator')
+)
 const { data: messages, pending } = await useLazyFetch('/api/v1/notification')
 </script>

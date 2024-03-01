@@ -6,8 +6,7 @@ import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 import { createI18n } from 'vue-i18n'
 
-import { testSongData as song } from '~~/../core/test/data'
-import useAuth from '~~/composables/useAuth'
+import { publicUser, testSongData as song } from '~~/../core/test/data'
 import Page from '~~/pages/charts.vue'
 import { mountAsync } from '~~/test/test-utils'
 
@@ -19,7 +18,6 @@ mockNuxtImport('useFetch', () => useFetchMock)
 mockNuxtImport('useRoute', () => useRouteMock)
 
 const open = vi.fn()
-vi.mock('~~/composables/useAuth')
 vi.mock('@oruga-ui/oruga-next', async origin => {
   const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
   return { ...actual, useProgrammatic: vi.fn() }
@@ -46,11 +44,11 @@ describe('Page /charts', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(true),
-        data: ref([]),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(null) }
+          : ({ pending: ref(true), data: ref([]) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -68,11 +66,11 @@ describe('Page /charts', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref(charts),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(null) }
+          : ({ pending: ref(false), data: ref(charts) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -90,11 +88,11 @@ describe('Page /charts', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref(charts),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(publicUser) }
+          : ({ pending: ref(false), data: ref(charts) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -112,11 +110,11 @@ describe('Page /charts', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
-      vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref([]),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(null) }
+          : ({ pending: ref(false), data: ref([]) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -141,11 +139,11 @@ describe('Page /charts', () => {
     const i18n = createI18n({ legacy: false, locale: 'en' })
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { style, level } } as any)
-    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(false) } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(true),
-      data: ref([]),
-    } as any)
+    vi.mocked(useFetch).mockImplementation(path =>
+      path === '/api/v1/user'
+        ? { data: ref(null) }
+        : ({ pending: ref(true), data: ref([]) } as any)
+    )
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
@@ -166,11 +164,11 @@ describe('Page /charts', () => {
     const i18n = createI18n({ legacy: false, locale: 'en' })
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query } as any)
-    vi.mocked(useAuth).mockResolvedValue({ isLoggedIn: ref(true) } as any)
-    vi.mocked(useFetch).mockResolvedValue({
-      pending: ref(false),
-      data: ref(charts),
-    } as any)
+    vi.mocked(useFetch).mockImplementation(path =>
+      path === '/api/v1/user'
+        ? { data: ref(publicUser) }
+        : ({ pending: ref(false), data: ref(charts) } as any)
+    )
     /* eslint-enable @typescript-eslint/no-explicit-any */
     open.mockClear()
     open.mockReturnValue({ promise: Promise.resolve() })

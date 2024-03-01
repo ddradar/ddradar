@@ -32,7 +32,7 @@
           {{ props.row.name }}
         </NuxtLink>
       </OTableColumn>
-      <OTableColumn v-if="isLoggedIn" v-slot="props" :label="t('column.score')">
+      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
         <OButton
           icon-right="pencil-box-outline"
           @click="editScore(props.row.id)"
@@ -79,7 +79,6 @@ import { useProgrammatic } from '@oruga-ui/oruga-next'
 import { useI18n } from 'vue-i18n'
 
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
-import useAuth from '~~/composables/useAuth'
 import { getQueryInteger } from '~~/utils/path'
 import {
   courseSeriesIndexes,
@@ -98,7 +97,7 @@ const type = getQueryInteger(_route.query, 'type')
 const series = getQueryInteger(_route.query, 'series')
 const { oruga } = useProgrammatic()
 const { t } = useI18n()
-const { isLoggedIn } = await useAuth()
+const { data: user } = await useFetch('/api/v1/user')
 const { data: courses, pending } = await useFetch('/api/v1/courses', {
   query: { type, series },
   watch: [_route.query],

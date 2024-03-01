@@ -52,13 +52,10 @@
       </div>
     </div>
     <footer class="card-footer">
-      <a v-if="isLoggedIn" class="card-footer-item" @click="editScore()">
+      <a v-if="user" class="card-footer-item" @click="editScore()">
         {{ t('button.edit') }}
       </a>
-      <a
-        v-if="isLoggedIn && !isPageDeletedOnGate(songId)"
-        class="card-footer-item"
-      >
+      <a v-if="user && !isPageDeletedOnGate(songId)" class="card-footer-item">
         {{ t('button.import') }}
       </a>
       <a class="card-footer-item" @click="reloadAll()">
@@ -111,12 +108,10 @@
 <script lang="ts" setup>
 import { difficultyMap, isAreaUser, isPageDeletedOnGate } from '@ddradar/core'
 import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { useI18n } from 'vue-i18n'
 
 import CollapsibleCard from '~~/components/CollapsibleCard.vue'
 import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
 import ScoreBadge from '~~/components/songs/ScoreBadge.vue'
-import useAuth from '~~/composables/useAuth'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
 import { getChartTitle } from '~~/utils/song'
 
@@ -130,7 +125,7 @@ const { oruga } = useProgrammatic()
 
 const props = defineProps<ScoreBoardProps>()
 const { t } = useI18n()
-const { id, isLoggedIn } = await useAuth()
+const { data: user } = await useFetch('/api/v1/user')
 const fetchAllData = useState(() => false)
 const {
   data: scores,
@@ -151,7 +146,9 @@ const cardType = computed(() =>
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   difficultyMap.get(props.chart.difficulty)!.toLowerCase()
 )
-const userScore = computed(() => scores.value?.find(s => s.userId === id.value))
+const userScore = computed(() =>
+  scores.value?.find(s => s.userId === user.value?.id)
+)
 
 /** Open ScoreEditor modal. */
 const editScore = async () => {

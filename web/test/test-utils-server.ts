@@ -1,8 +1,6 @@
 import type { H3Event } from 'h3'
 import { stringifyQuery } from 'ufo'
 
-import type { ClientPrincipal } from '~~/server/utils/auth'
-
 export function createEvent(
   params?: Record<string, string>,
   query?: Record<string, string | undefined>,
@@ -27,14 +25,14 @@ export function createClientPrincipal(
   id: string,
   loginId: string,
   isAdmin = false
-): ClientPrincipal {
+) {
   return {
-    identityProvider: 'github',
+    identityProvider: 'github' as const,
     userId: loginId,
     userDetails: id,
     userRoles: [
-      'anonymous',
-      'authenticated',
+      'anonymous' as const,
+      'authenticated' as const,
       ...(isAdmin ? (['administrator'] as const) : []),
     ],
   }

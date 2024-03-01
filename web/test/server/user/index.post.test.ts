@@ -5,12 +5,10 @@ import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { publicUser } from '~/../core/test/data'
 import postUserInfo from '~~/server/api/v1/user/index.post'
-import { useClientPrincipal } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/user', () => {
@@ -31,7 +29,7 @@ describe('POST /api/v1/user', () => {
   test('returns 401 if not logged in', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(useClientPrincipal).mockReturnValue(null)
+    vi.mocked(getClientPrincipal).mockReturnValue(null)
 
     // Act
     const result = await postUserInfo(event)
@@ -44,7 +42,7 @@ describe('POST /api/v1/user', () => {
   test('returns 400 if body is not UserSchema', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, null)
-    vi.mocked(useClientPrincipal).mockReturnValue(principal)
+    vi.mocked(getClientPrincipal).mockReturnValue(principal)
 
     // Act - Assert
     await expect(postUserInfo(event)).rejects.toThrowError()
@@ -53,7 +51,7 @@ describe('POST /api/v1/user', () => {
   test('returns 200 with JSON (Create)', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, user)
-    vi.mocked(useClientPrincipal).mockReturnValue(principal)
+    vi.mocked(getClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(null)
     vi.mocked(fetchLoginUser).mockResolvedValue(null)
 
@@ -87,7 +85,7 @@ describe('POST /api/v1/user', () => {
         ...diff,
       }
       const event = createEvent(undefined, undefined, body)
-      vi.mocked(useClientPrincipal).mockReturnValue(principal)
+      vi.mocked(getClientPrincipal).mockReturnValue(principal)
       vi.mocked(fetchUser).mockResolvedValue({ ...publicUser, isAdmin: true })
       vi.mocked(fetchLoginUser).mockResolvedValue({
         ...publicUser,
@@ -111,7 +109,7 @@ describe('POST /api/v1/user', () => {
   test('returns 400 if changed loginId', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, user)
-    vi.mocked(useClientPrincipal).mockReturnValue({ ...principal, userId: '3' })
+    vi.mocked(getClientPrincipal).mockReturnValue({ ...principal, userId: '3' })
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
@@ -127,7 +125,7 @@ describe('POST /api/v1/user', () => {
   test('returns 400 if changed id', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, { ...user, id: 'update' })
-    vi.mocked(useClientPrincipal).mockReturnValue(principal)
+    vi.mocked(getClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
@@ -143,7 +141,7 @@ describe('POST /api/v1/user', () => {
   test('returns 200 but does not update if changed area', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, { ...user, area: 14 })
-    vi.mocked(useClientPrincipal).mockReturnValue(principal)
+    vi.mocked(getClientPrincipal).mockReturnValue(principal)
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 

@@ -1,3 +1,106 @@
+<script lang="ts" setup>
+import { difficultyMap, getNameIndex, isValidSongId } from '@ddradar/core'
+import { useProgrammatic } from '@oruga-ui/oruga-next'
+
+import DialogModal from '~~/components/modal/DialogModal.vue'
+import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import { seriesNames } from '~~/utils/song'
+
+definePageMeta({ allowedRoles: 'administrator' })
+
+const _chart = {
+  level: 1,
+  notes: 1,
+  freezeArrow: 0,
+  shockArrow: 0,
+  stream: 0,
+  voltage: 0,
+  air: 0,
+  freeze: 0,
+  chaos: 0,
+} as const
+
+const _route = useRoute()
+const { oruga } = useProgrammatic()
+const id = useState(() => (_route.params.id as string) ?? '')
+const { data: song, refresh } = await useFetch<SongInfo>(
+  `/api/v1/songs/${id.value}`
+)
+song.value ??= {
+  id: id.value,
+  name: '',
+  nameKana: '',
+  nameIndex: 0,
+  artist: '',
+  series: seriesNames.slice(-1)[0],
+  minBPM: null,
+  maxBPM: null,
+  deleted: false,
+  charts: [
+    { playStyle: 1, difficulty: 0, ..._chart },
+    { playStyle: 1, difficulty: 1, ..._chart },
+    { playStyle: 1, difficulty: 2, ..._chart },
+    { playStyle: 1, difficulty: 3, ..._chart },
+    { playStyle: 2, difficulty: 1, ..._chart },
+    { playStyle: 2, difficulty: 2, ..._chart },
+    { playStyle: 2, difficulty: 3, ..._chart },
+  ],
+}
+
+// Validator
+const isValidId = computed(() => isValidSongId(id.value))
+const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
+  song.value!.charts.filter(
+    c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
+  ).length !== 1
+const hasError = computed(
+  () =>
+    !isValidId.value ||
+    !song.value!.name ||
+    !/^[A-Z0-9 .ぁ-んー]+$/.test(song.value!.nameKana) ||
+    !song.value!.series ||
+    !song.value!.minBPM !== !song.value!.maxBPM ||
+    song.value!.charts.length === 0 ||
+    song.value!.charts.some(c => hasDuplicatedChart(c))
+)
+
+// Methods
+/** Add empty chart in charts. */
+const addChart = () =>
+  (song.value!.charts as SongInfo['charts'][0][]).push({
+    playStyle: 1,
+    difficulty: 0,
+    ..._chart,
+  })
+/** Remove specific chart in charts. */
+const removeChart = (index: number) =>
+  (song.value!.charts as SongInfo['charts'][0][]).splice(index, 1)
+/** Set nameKana from upper-cased name. */
+const setNameKana = () =>
+  (song.value!.nameKana = song.value!.name.toUpperCase())
+
+/** Save song data. */
+const saveSongInfo = async () => {
+  const instance = oruga.modal.open({
+    component: DialogModal,
+    props: { message: 'Add or update this?', variant: 'info' },
+    trapFocus: true,
+  })
+
+  if ((await instance.promise) !== 'yes') return
+
+  const nameIndex = getNameIndex(song.value!.nameKana)
+  const body: SongInfo = { ...song.value!, id: id.value, nameIndex }
+  song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
+
+  oruga.notification.open({
+    message: 'Saved Successfully!',
+    variant: 'success',
+    position: 'top',
+  })
+}
+</script>
+
 <template>
   <section class="section">
     <h1 class="title">Add/Update Song</h1>
@@ -172,104 +275,3 @@
     </OField>
   </section>
 </template>
-
-<script lang="ts" setup>
-import { difficultyMap, getNameIndex, isValidSongId } from '@ddradar/core'
-import { useProgrammatic } from '@oruga-ui/oruga-next'
-
-import DialogModal from '~~/components/modal/DialogModal.vue'
-import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { seriesNames } from '~~/utils/song'
-
-const _chart = {
-  level: 1,
-  notes: 1,
-  freezeArrow: 0,
-  shockArrow: 0,
-  stream: 0,
-  voltage: 0,
-  air: 0,
-  freeze: 0,
-  chaos: 0,
-} as const
-
-const _route = useRoute()
-const { oruga } = useProgrammatic()
-const id = useState(() => (_route.params.id as string) ?? '')
-const { data: song, refresh } = await useFetch<SongInfo>(
-  `/api/v1/songs/${id.value}`
-)
-song.value ??= {
-  id: id.value,
-  name: '',
-  nameKana: '',
-  nameIndex: 0,
-  artist: '',
-  series: seriesNames.slice(-1)[0],
-  minBPM: null,
-  maxBPM: null,
-  deleted: false,
-  charts: [
-    { playStyle: 1, difficulty: 0, ..._chart },
-    { playStyle: 1, difficulty: 1, ..._chart },
-    { playStyle: 1, difficulty: 2, ..._chart },
-    { playStyle: 1, difficulty: 3, ..._chart },
-    { playStyle: 2, difficulty: 1, ..._chart },
-    { playStyle: 2, difficulty: 2, ..._chart },
-    { playStyle: 2, difficulty: 3, ..._chart },
-  ],
-}
-
-// Validator
-const isValidId = computed(() => isValidSongId(id.value))
-const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
-  song.value!.charts.filter(
-    c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
-  ).length !== 1
-const hasError = computed(
-  () =>
-    !isValidId.value ||
-    !song.value!.name ||
-    !/^[A-Z0-9 .ぁ-んー]+$/.test(song.value!.nameKana) ||
-    !song.value!.series ||
-    !song.value!.minBPM !== !song.value!.maxBPM ||
-    song.value!.charts.length === 0 ||
-    song.value!.charts.some(c => hasDuplicatedChart(c))
-)
-
-// Methods
-/** Add empty chart in charts. */
-const addChart = () =>
-  (song.value!.charts as SongInfo['charts'][0][]).push({
-    playStyle: 1,
-    difficulty: 0,
-    ..._chart,
-  })
-/** Remove specific chart in charts. */
-const removeChart = (index: number) =>
-  (song.value!.charts as SongInfo['charts'][0][]).splice(index, 1)
-/** Set nameKana from upper-cased name. */
-const setNameKana = () =>
-  (song.value!.nameKana = song.value!.name.toUpperCase())
-
-/** Save song data. */
-const saveSongInfo = async () => {
-  const instance = oruga.modal.open({
-    component: DialogModal,
-    props: { message: 'Add or update this?', variant: 'info' },
-    trapFocus: true,
-  })
-
-  if ((await instance.promise) !== 'yes') return
-
-  const nameIndex = getNameIndex(song.value!.nameKana)
-  const body: SongInfo = { ...song.value!, id: id.value, nameIndex }
-  song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
-
-  oruga.notification.open({
-    message: 'Saved Successfully!',
-    variant: 'success',
-    position: 'top',
-  })
-}
-</script>

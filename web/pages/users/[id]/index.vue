@@ -123,11 +123,10 @@ import { useI18n } from 'vue-i18n'
 import Card from '~~/components/CollapsibleCard.vue'
 import ClearStatus from '~~/components/users/ClearStatus.vue'
 import GrooveRadar from '~~/components/users/GrooveRadar.vue'
-import useAuth from '~~/composables/useAuth'
 
 const { t } = useI18n()
 const _route = useRoute()
-const { id } = await useAuth()
+const { data: loginUser } = await useFetch('/api/v1/user')
 const [{ data: user }, { data: radars }, { data: clears }] = await Promise.all([
   useFetch(`/api/v1/users/${_route.params.id}`),
   useFetch(`/api/v1/users/${_route.params.id}/radar`),
@@ -142,7 +141,9 @@ const ddrCode = computed(() =>
     ? String(user.value.code).replace(/^(\d{4})(\d{4})$/, '$1-$2')
     : ''
 )
-const isSelfPage = computed(() => !!user.value && user.value.id === id.value)
+const isSelfPage = computed(
+  () => !!user.value && user.value.id === loginUser.value?.id
+)
 </script>
 
 <style scoped>

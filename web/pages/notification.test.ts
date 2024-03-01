@@ -6,14 +6,17 @@ import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
 import { notifications } from '~~/../core/test/data'
-import useAuth from '~~/composables/useAuth'
 import Page from '~~/pages/notification.vue'
 import { mountAsync } from '~~/test/test-utils'
+import { createClientPrincipal } from '~~/test/test-utils-server'
 
-const { useLazyFetchMock } = vi.hoisted(() => ({ useLazyFetchMock: vi.fn() }))
+const { useEasyAuthMock, useLazyFetchMock } = vi.hoisted(() => ({
+  useEasyAuthMock: vi.fn(),
+  useLazyFetchMock: vi.fn(),
+}))
+mockNuxtImport('useEasyAuth', () => useEasyAuthMock)
 mockNuxtImport('useLazyFetch', () => useLazyFetchMock)
 
-vi.mock('~~/composables/useAuth')
 vi.mock('~~/utils/format', async origin => {
   const actual = (await origin()) as typeof import('~~/utils/format')
   return {
@@ -29,7 +32,9 @@ describe('Page /notification', () => {
     test('({ messages: [...] }) renders notification', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(false) } as any)
+      vi.mocked(useEasyAuth).mockResolvedValue({
+        clientPrincipal: ref(createClientPrincipal('', '', false)),
+      } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),
         data: ref(notifications),
@@ -51,7 +56,9 @@ describe('Page /notification', () => {
     test('({ isAdmin: true }) renders Edit button', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(true) } as any)
+      vi.mocked(useEasyAuth).mockResolvedValue({
+        clientPrincipal: ref(createClientPrincipal('', '', true)),
+      } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),
         data: ref(notifications),
@@ -73,7 +80,9 @@ describe('Page /notification', () => {
     test('({ loading: true }) renders loading state', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(false) } as any)
+      vi.mocked(useEasyAuth).mockResolvedValue({
+        clientPrincipal: ref(createClientPrincipal('', '', false)),
+      } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(true),
         data: ref(null),
@@ -96,7 +105,9 @@ describe('Page /notification', () => {
     test('({ messages: [] }) renders no notification', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useAuth).mockResolvedValue({ isAdmin: ref(false) } as any)
+      vi.mocked(useEasyAuth).mockResolvedValue({
+        clientPrincipal: ref(createClientPrincipal('', '', false)),
+      } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),
         data: ref([]),

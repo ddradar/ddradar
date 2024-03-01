@@ -1,7 +1,6 @@
 import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 
-import { useClientPrincipal } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 
 /**
@@ -27,7 +26,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  * ```
  */
 export default defineEventHandler(async event => {
-  const clientPrincipal = useClientPrincipal(event.node.req.headers)
+  const clientPrincipal = getClientPrincipal(event)
   if (!clientPrincipal) return sendNullWithError(event, 401)
   const loginId = clientPrincipal.userId
 
