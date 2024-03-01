@@ -195,6 +195,9 @@ importers:
       '@ddradar/db':
         specifier: workspace:*
         version: link:../db
+      '@iconify-json/simple-icons':
+        specifier: ^1.1.90
+        version: 1.1.93
       '@nuxt/ui-pro':
         specifier: ^1.0.1
         version: 1.0.1(nuxt@3.10.3)(rollup@4.9.6)(vite@5.1.4)(vue@3.4.20)
@@ -220,6 +223,9 @@ importers:
         specifier: ^3.22.4
         version: 3.22.4
     devDependencies:
+      '@nuxt/devtools':
+        specifier: ^1.0.8
+        version: 1.0.8(nuxt@3.10.3)(rollup@4.9.6)(vite@5.1.4)
       '@nuxt/eslint-config':
         specifier: ^0.2.0
         version: 0.2.0(eslint@8.56.0)
@@ -2517,6 +2523,12 @@ packages:
 
   /@iconify-json/heroicons@1.1.20:
     resolution: {integrity: sha512-puNt1al/rDw8Rb5x8sfk20UA8AQjMskLMh63nSUBj+8I0lQ7LtX+0Qn8wow2xTXTEsynJ9xXLD8Aat53e0qi8A==}
+    dependencies:
+      '@iconify/types': 2.0.0
+    dev: false
+
+  /@iconify-json/simple-icons@1.1.93:
+    resolution: {integrity: sha512-rPsEIJlNZQJekCy5Qj6QHhrCJyCF0UAAql5PEz+B8iNvEn/BDyqq2zgpfxsU2KQn2NdCui8xnjZiuyTc5nwIqw==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
