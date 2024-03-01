@@ -1,10 +1,13 @@
-import type { CourseSchema } from '@ddradar/core'
-import { isValidSongId } from '@ddradar/core'
+import { type CourseSchema, courseSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
+import { z } from 'zod'
 
 import { sendNullWithError } from '~~/server/utils/http'
 
 export type CourseInfo = CourseSchema
+
+/** Expected params */
+const schema = z.object({ id: courseSchema.shape.id })
 
 /**
  * Get course and orders information that match the specified ID.
@@ -70,8 +73,7 @@ export type CourseInfo = CourseSchema
  * ```
  */
 export default defineEventHandler(async event => {
-  const id: string = event.context.params!.id
-  if (!isValidSongId(id)) return sendNullWithError(event, 400)
+  const { id } = await getValidatedRouterParams(event, schema.parse)
 
   const course = await fetchOne(
     'Songs',

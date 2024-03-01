@@ -1,19 +1,16 @@
 // @vitest-environment node
-import { publicUser as user, testScores } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { publicUser as user, testScores } from '~/../core/test/data'
 import fetchChartScores from '~~/server/api/v1/scores/[id]/[style]/[diff].get'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
-import { getQueryString } from '~~/utils/path'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
-vi.mock('~~/utils/path')
 
 describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
   const id = testScores[0].songId
@@ -56,25 +53,14 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
     // Arrange
     const event = createEvent(params)
 
-    // Act
-    const scores = await fetchChartScores(event)
-
-    // Assert
-    expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      404,
-      'Invalid param'
-    )
-    expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
-    expect(vi.mocked(fetchList)).not.toBeCalled()
+    // Act - Assert
+    await expect(fetchChartScores(event)).rejects.toThrowError()
   })
 
   test(`?scope=private returns 404 if anonymous`, async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(getQueryString).mockReturnValue('private')
-    const event = createEvent(params)
+    const event = createEvent(params, { scope: 'private' })
 
     // Act
     const scores = await fetchChartScores(event)
@@ -111,10 +97,9 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
     async (scope, user, condition, value) => {
       // Arrange
       vi.mocked(getLoginUserInfo).mockResolvedValue(user)
-      vi.mocked(getQueryString).mockReturnValue(scope)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue(dbScores as any)
-      const event = createEvent(params)
+      const event = createEvent(params, { scope })
 
       // Act
       const scores = await fetchChartScores(event)

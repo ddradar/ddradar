@@ -1,20 +1,17 @@
 // @vitest-environment node
-import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { privateUser } from '~~/../core/test/data'
 import type { GrooveRadarInfo } from '~~/server/api/v1/users/[id]/radar.get'
 import getGrooveRadars from '~~/server/api/v1/users/[id]/radar.get'
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
-import { getQueryInteger } from '~~/utils/path'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
-vi.mock('~~/utils/path')
 
 describe('GET /api/v1/users/[id]/radar', () => {
   const radar = { stream: 100, voltage: 100, air: 100, freeze: 100, chaos: 100 }
@@ -57,9 +54,8 @@ describe('GET /api/v1/users/[id]/radar', () => {
     ['2', [...defaultConditons, { condition: 'c.playStyle = @', value: 2 }]],
   ])(`?style=%s calls fetchList(..., ..., %o)`, async (style, conditions) => {
     // Arrange
-    const event = createEvent({ id: privateUser.id })
+    const event = createEvent({ id: privateUser.id }, { style })
     vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
-    vi.mocked(getQueryInteger).mockReturnValue(parseFloat(style))
 
     // Act
     const result = await getGrooveRadars(event)

@@ -1,14 +1,12 @@
 // @vitest-environment node
-import { testSongList } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { testSongList } from '~/../core/test/data'
 import searchSongs from '~~/server/api/v1/songs/index.get'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 
 describe('GET /api/v1/songs', () => {
   beforeEach(() => {
@@ -24,7 +22,7 @@ describe('GET /api/v1/songs', () => {
     ['25', undefined, [{ condition: 'c.nameIndex = @', value: 25 }]],
     [undefined, '10', [{ condition: 'c.series = @', value: 'DDR X' }]],
     [
-      ['25'],
+      '25',
       '0',
       [
         { condition: 'c.nameIndex = @', value: 25 },
@@ -37,8 +35,7 @@ describe('GET /api/v1/songs', () => {
       // Arrange
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue([...testSongList] as any)
-      vi.mocked(getQuery).mockReturnValue({ name, series })
-      const event = createEvent()
+      const event = createEvent(undefined, { name, series })
 
       // Act
       const songs = await searchSongs(event)

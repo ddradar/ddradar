@@ -1,11 +1,19 @@
-import type { SongSchema, StepChartSchema } from '@ddradar/core'
-import { playStyleMap } from '@ddradar/core'
+import {
+  type SongSchema,
+  type StepChartSchema,
+  stepChartSchema,
+} from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
-
-import { sendNullWithError } from '~~/server/utils/http'
+import { z } from 'zod'
 
 export type ChartInfo = Pick<SongSchema, 'id' | 'name' | 'series'> &
   Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
+
+/** Expected params */
+const schema = z.object({
+  style: z.coerce.number().pipe(stepChartSchema.shape.playStyle),
+  level: z.coerce.number().pipe(stepChartSchema.shape.level),
+})
 
 /**
  * Get charts that match the specified conditions.
@@ -31,12 +39,7 @@ export type ChartInfo = Pick<SongSchema, 'id' | 'name' | 'series'> &
  * ```
  */
 export default defineEventHandler(async event => {
-  const style: number = parseInt(event.context.params!.style, 10)
-  const level: number = parseInt(event.context.params!.level, 10)
-
-  if (!playStyleMap.has(style) || !(level >= 1 && level <= 20)) {
-    return sendNullWithError(event, 404)
-  }
+  const { style, level } = await getValidatedRouterParams(event, schema.parse)
 
   return await fetchJoinedList<'Songs', ChartInfo>(
     'Songs',

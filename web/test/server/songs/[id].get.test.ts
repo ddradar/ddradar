@@ -1,8 +1,8 @@
 // @vitest-environment node
-import { testSongData } from '@ddradar/core/test/data'
 import { fetchOne } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { testSongData } from '~/../core/test/data'
 import getSongInfo from '~~/server/api/v1/songs/[id].get'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
@@ -15,6 +15,7 @@ describe('GET /api/v1/songs/[id]', () => {
     vi.mocked(sendNullWithError).mockReturnValue(null)
   })
   beforeEach(() => {
+    vi.mocked(fetchOne).mockClear()
     vi.mocked(sendNullWithError).mockClear()
   })
 
@@ -42,6 +43,7 @@ describe('GET /api/v1/songs/[id]', () => {
 
     // Assert
     expect(song).toBeNull()
+    expect(vi.mocked(fetchOne)).toBeCalled()
     expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
@@ -50,11 +52,8 @@ describe('GET /api/v1/songs/[id]', () => {
     vi.mocked(fetchOne).mockResolvedValue(null)
     const event = createEvent({ id: 'invalid-id' })
 
-    // Act
-    const song = await getSongInfo(event)
-
-    // Assert
-    expect(song).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400)
+    // Act - Assert
+    await expect(getSongInfo(event)).rejects.toThrowError()
+    expect(vi.mocked(fetchOne)).not.toBeCalled()
   })
 })

@@ -1,22 +1,19 @@
 // @vitest-environment node
 import type { DanceLevel } from '@ddradar/core'
 import { danceLevelSet } from '@ddradar/core'
-import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { privateUser } from '~/../core/test/data'
 import type { RankStatus } from '~~/server/api/v1/users/[id]/rank.get'
 import getDanceLevels from '~~/server/api/v1/users/[id]/rank.get'
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
-import { getQueryInteger } from '~~/utils/path'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
-vi.mock('~~/utils/path')
 
 describe('GET /api/v1/users/[id]/rank', () => {
   const levelLimit = 19
@@ -75,11 +72,8 @@ describe('GET /api/v1/users/[id]/rank', () => {
     `?style=%s&lv=%s calls fetchList(..., ..., %o)`,
     async (style, lv, conditions) => {
       // Arrange
-      const event = createEvent({ id: privateUser.id })
+      const event = createEvent({ id: privateUser.id }, { style, lv })
       vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
-      vi.mocked(getQueryInteger).mockImplementation((_, key) =>
-        key === 'style' ? parseFloat(style) : parseFloat(lv)
-      )
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockImplementation((_1, col, _3, _4): any =>
         col.includes('rank') ? ranks : total

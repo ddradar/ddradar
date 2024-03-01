@@ -1,15 +1,13 @@
 // @vitest-environment node
-import { publicUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { publicUser } from '~/../core/test/data'
 import getUserList from '~~/server/api/v1/users/index.get'
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 
 describe('GET /api/v1/users', () => {
@@ -38,10 +36,10 @@ describe('GET /api/v1/users', () => {
     async (name, area, code, conditions) => {
       // Arrange
       vi.mocked(useClientPrincipal).mockReturnValue(null)
-      vi.mocked(getQuery).mockReturnValue({ name, area, code })
+      const event = createEvent(undefined, { name, area, code })
 
       // Act
-      const users = await getUserList(createEvent())
+      const users = await getUserList(event)
 
       // Assert
       expect(users).toHaveLength(1)
@@ -57,10 +55,10 @@ describe('GET /api/v1/users', () => {
     vi.mocked(useClientPrincipal).mockReturnValue(
       createClientPrincipal(publicUser.id, publicUser.loginId)
     )
-    vi.mocked(getQuery).mockReturnValue({})
+    const event = createEvent(undefined, undefined, {})
 
     // Act
-    const users = await getUserList(createEvent())
+    const users = await getUserList(event)
 
     // Assert
     expect(users).toHaveLength(1)

@@ -1,8 +1,8 @@
 // @vitest-environment node
-import { publicUser as user, testScores } from '@ddradar/core/test/data'
 import { fetchList, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { publicUser as user, testScores } from '~/../core/test/data'
 import deleteChartScore from '~~/server/api/v1/scores/[id]/[style]/[diff].delete'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
@@ -42,13 +42,8 @@ describe('DELETE /api/v1/scores/[id]/[style]/[diff]', () => {
     // Arrange
     const event = createEvent(params)
 
-    // Act
-    await deleteChartScore(event)
-
-    // Assert
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
-    expect(vi.mocked(fetchList)).not.toBeCalled()
+    // Act - Assert
+    await expect(deleteChartScore(event)).rejects.toThrowError()
   })
 
   test('returns 401 if anonymous', async () => {

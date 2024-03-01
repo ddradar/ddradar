@@ -1,13 +1,25 @@
-import type { ScoreSchema } from '@ddradar/core'
-import { difficultyMap, isValidSongId, playStyleMap } from '@ddradar/core'
+import { type ScoreSchema, scoreSchema } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import { z } from 'zod'
 
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
-import { getQueryString } from '~~/utils/path'
 
 export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
+
+/** Expected params */
+const paramSchema = z.object({
+  id: scoreSchema.shape.songId,
+  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
+  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
+})
+
+/** Expected query */
+const querySchema = z.object({
+  scope: z
+    .union([z.literal('private'), z.literal('medium'), z.literal('full')])
+    .catch('medium'),
+})
 
 /**
  * Get scores that match the specified chart.
@@ -65,29 +77,11 @@ export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
  * ```
  */
 export default defineEventHandler(async event => {
-  // route params
-  const id: string = event.context.params!.id
-  const style = parseFloat(event.context.params!.style)
-  const diff = parseFloat(event.context.params!.diff)
-  if (
-    !isValidSongId(id) ||
-    !playStyleMap.has(style) ||
-    !difficultyMap.has(diff)
-  ) {
-    sendNullWithError(event, 404, 'Invalid param')
-    return []
-  }
-
-  // query
-  const queryValue = getQueryString(getQuery(event), 'scope') ?? 'medium'
-  /**
-   * `private`: Only personal best score
-   * `medium`(default): Personal best, area top, and world top scores
-   * `full`: All scores
-   */
-  const scope = ['private', 'medium', 'full'].includes(queryValue)
-    ? (queryValue as 'private' | 'medium' | 'full')
-    : 'medium'
+  const { id, style, diff } = await getValidatedRouterParams(
+    event,
+    paramSchema.parse
+  )
+  const { scope } = await getValidatedQuery(event, querySchema.parse)
 
   const user = await getLoginUserInfo(event)
   if (scope === 'private' && !user) {

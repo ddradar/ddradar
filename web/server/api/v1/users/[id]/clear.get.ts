@@ -1,11 +1,13 @@
-import type { ClearLamp, UserClearLampSchema } from '@ddradar/core'
-import { playStyleMap } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import {
+  type ClearLamp,
+  playStyleMap,
+  type UserClearLampSchema,
+} from '@ddradar/core'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
-import { getQueryInteger } from '~~/utils/path'
 
 export type ClearStatus = Pick<
   UserClearLampSchema,
@@ -24,6 +26,12 @@ export type ClearStatus = Pick<
    */
   clearLamp: ClearLamp | -1
 }
+
+/** Expected queries */
+export const schema = z.object({
+  style: z.coerce.number().default(0),
+  lv: z.coerce.number().default(0),
+})
 
 /**
  * Get Clear status that match the specified `userId`, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
@@ -50,9 +58,7 @@ export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = getQuery(event)
-  const style = getQueryInteger(query, 'style')
-  const lv = getQueryInteger(query, 'lv')
+  const { style, lv } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'UserDetails'>[] = []
   if (playStyleMap.has(style)) {

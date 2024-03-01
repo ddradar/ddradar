@@ -1,16 +1,9 @@
-import type { ScoreSchema } from '@ddradar/core'
-import {
-  clearLampMap,
-  danceLevelSet,
-  difficultyMap,
-  playStyleMap,
-} from '@ddradar/core'
+import { type ScoreSchema, scoreSchema } from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import { z } from 'zod'
 
 import { tryFetchUser } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
-import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type ScoreList = Omit<
   ScoreSchema,
@@ -19,6 +12,35 @@ export type ScoreList = Omit<
   /** Course score or not */
   isCourse: boolean
 }
+
+/** Expected queries */
+const schema = z.object({
+  style: z.coerce
+    .number()
+    .pipe(scoreSchema.shape.playStyle)
+    .optional()
+    .catch(undefined),
+  diff: z.coerce
+    .number()
+    .pipe(scoreSchema.shape.difficulty)
+    .optional()
+    .catch(undefined),
+  level: z.coerce
+    .number()
+    .pipe(scoreSchema.shape.level)
+    .optional()
+    .catch(undefined),
+  lamp: z.coerce
+    .number()
+    .pipe(scoreSchema.shape.clearLamp)
+    .optional()
+    .catch(undefined),
+  rank: z.coerce
+    .string()
+    .pipe(scoreSchema.shape.rank)
+    .optional()
+    .catch(undefined),
+})
 
 /**
  * Get user scores that match the specified conditions.
@@ -55,26 +77,15 @@ export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
   if (!user) return sendNullWithError(event, 404)
 
-  const query = getQuery(event)
-  const playStyle = getQueryInteger(query, 'style')
-  const difficulty = getQueryInteger(query, 'diff')
-  const level = getQueryInteger(query, 'level')
-  const clearLamp = getQueryInteger(query, 'lamp')
-  const rank = getQueryString(query, 'rank')
+  const {
+    style: playStyle,
+    diff: difficulty,
+    level,
+    lamp: clearLamp,
+    rank,
+  } = await getValidatedQuery(event, schema.parse)
 
-  const conditions = {
-    ...(playStyleMap.has(playStyle) ? { playStyle } : {}),
-    ...(difficultyMap.has(difficulty) ? { difficulty } : {}),
-    ...(level >= 1 && level <= 20 ? { level } : {}),
-    ...(clearLampMap.has(clearLamp) ? { clearLamp } : {}),
-    ...(danceLevelSet.has(rank) ? { rank } : {}),
-  } as Partial<
-    Pick<
-      ScoreSchema,
-      'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
-    >
-  >
-
+  const conditions = { playStyle, difficulty, level, clearLamp, rank }
   return (await fetchScoreList(user.id, conditions)).map<ScoreList>(d => {
     const r = { ...d, isCourse: !d.radar }
     delete r.radar

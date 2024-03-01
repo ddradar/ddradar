@@ -1,23 +1,21 @@
 // @vitest-environment node
 import { calcMyGrooveRadar } from '@ddradar/core'
+import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
+import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+
 import {
   areaHiddenUser,
   privateUser,
   publicUser,
   testScores,
   testSongData,
-} from '@ddradar/core/test/data'
-import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
-
+} from '~/../core/test/data'
 import postChartScore from '~~/server/api/v1/scores/[id]/[style]/[diff].post'
 import { getLoginUserInfo } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 vi.mock('~~/server/utils/auth')
 vi.mock('~~/server/utils/http')
 
@@ -34,7 +32,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
-    vi.mocked(readBody).mockClear()
     vi.mocked(fetchList).mockClear()
     vi.mocked(fetchJoinedList).mockClear()
     vi.mocked(sendNullWithError).mockClear()
@@ -58,13 +55,8 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     // Arrange
     const event = createEvent(params)
 
-    // Act
-    const userScore = await postChartScore(event)
-
-    // Assert
-    expect(userScore).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(readBody)).not.toBeCalled()
+    // Act - Assert
+    await expect(postChartScore(event)).rejects.toThrowError()
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchJoinedList)).not.toBeCalled()
   })
@@ -72,19 +64,10 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 400 if body is not Score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(readBody).mockResolvedValue({})
-    const event = createEvent(params)
+    const event = createEvent(params, undefined, {})
 
     // Act
-    const userScore = await postChartScore(event)
-
-    // Assert
-    expect(userScore).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'body is not Score'
-    )
+    await expect(postChartScore(event)).rejects.toThrowError()
     expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
     expect(vi.mocked(fetchJoinedList)).not.toBeCalled()
   })
@@ -92,8 +75,7 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 401 if anonymous', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
-    vi.mocked(readBody).mockResolvedValue(mfcScore)
-    const event = createEvent(params)
+    const event = createEvent(params, undefined, mfcScore)
 
     // Act
     const score = await postChartScore(event)
@@ -108,9 +90,8 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 404 if not found SongChart data', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(readBody).mockResolvedValue(mfcScore)
     vi.mocked(fetchJoinedList).mockResolvedValue([])
-    const event = createEvent(params)
+    const event = createEvent(params, undefined, mfcScore)
 
     // Act
     const score = await postChartScore(event)
@@ -123,14 +104,13 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   test('returns 400 if body is invalid Score', async () => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(readBody).mockResolvedValue({
+    vi.mocked(fetchJoinedList).mockResolvedValue([song])
+    const event = createEvent(params, undefined, {
       score: 90000,
       clearLamp: 2,
       rank: 'E',
       exScore: 1000,
     })
-    vi.mocked(fetchJoinedList).mockResolvedValue([song])
-    const event = createEvent(params)
 
     // Act
     const score = await postChartScore(event)
@@ -149,10 +129,9 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     // Arrange
     const body = { score: 900000, clearLamp: 3, rank: 'AA' } as const
     vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-    vi.mocked(readBody).mockResolvedValue(body)
     vi.mocked(fetchJoinedList).mockResolvedValue([song])
     vi.mocked(fetchList).mockResolvedValue([])
-    const event = createEvent(params)
+    const event = createEvent(params, undefined, body)
 
     // Act
     const score = await postChartScore(event)
@@ -201,11 +180,10 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     async (body, length) => {
       // Arrange
       vi.mocked(getLoginUserInfo).mockResolvedValue(publicUser)
-      vi.mocked(readBody).mockResolvedValue(body)
       vi.mocked(fetchJoinedList).mockResolvedValue([song])
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockResolvedValue(dbScores as any)
-      const event = createEvent(params)
+      const event = createEvent(params, undefined, body)
 
       // Act
       const score = await postChartScore(event)
@@ -236,11 +214,10 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
   ])('(user: %o, score: <MFC score>) calls %i batch', async (user, length) => {
     // Arrange
     vi.mocked(getLoginUserInfo).mockResolvedValue(user)
-    vi.mocked(readBody).mockResolvedValue(mfcScore)
     vi.mocked(fetchJoinedList).mockResolvedValue([song])
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchList).mockResolvedValue(dbScores as any)
-    const event = createEvent(params)
+    const event = createEvent(params, undefined, mfcScore)
 
     // Act
     const score = await postChartScore(event)

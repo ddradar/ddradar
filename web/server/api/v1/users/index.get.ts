@@ -1,11 +1,25 @@
-import type { UserSchema } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
+import { type UserSchema, userSchema } from '@ddradar/core'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 import { useClientPrincipal } from '~~/server/utils/auth'
-import { getQueryInteger, getQueryString } from '~~/utils/path'
 
 export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
+
+/** Expected queries */
+const schema = z.object({
+  name: z.ostring(),
+  area: z.coerce
+    .number()
+    .pipe(userSchema.shape.area)
+    .optional()
+    .catch(undefined),
+  code: z.coerce
+    .number()
+    .pipe(userSchema.shape.code)
+    .optional()
+    .catch(undefined),
+})
 
 /**
  * Get user list that match the specified conditions.
@@ -36,10 +50,7 @@ export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
  */
 export default defineEventHandler(async event => {
   const loginId = useClientPrincipal(event.node.req.headers)?.userId ?? null
-  const query = getQuery(event)
-  const name = getQueryString(query, 'name')
-  const area = getQueryInteger(query, 'area')
-  const code = getQueryInteger(query, 'code')
+  const { name, area, code } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'Users'>[] = [
     { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
@@ -47,8 +58,9 @@ export default defineEventHandler(async event => {
   if (name) {
     conditions.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   }
-  if (!isNaN(area)) conditions.push({ condition: 'c.area = @', value: area })
-  if (!isNaN(code)) conditions.push({ condition: 'c.code = @', value: code })
+  if (area) conditions.push({ condition: 'c.area = @', value: area })
+  if (code !== undefined)
+    conditions.push({ condition: 'c.code = @', value: code })
 
   return (await fetchList('Users', ['id', 'name', 'area', 'code'], conditions, {
     name: 'ASC',

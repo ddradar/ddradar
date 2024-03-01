@@ -1,14 +1,27 @@
-import { nameIndexMap, seriesSet, SongSchema } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
-
-import { getQueryInteger } from '~~/utils/path'
+import { seriesSet, type SongSchema, songSchema } from '@ddradar/core'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 export type SongListData = Omit<SongSchema, 'skillAttackId' | 'charts'>
 
-const maxNameIndex = nameIndexMap.size
 const maxSeriesIndex = seriesSet.size
 const seriesNames = [...seriesSet]
+
+/** Expected queries */
+const schema = z.object({
+  name: z.coerce
+    .number()
+    .pipe(songSchema.shape.nameIndex)
+    .optional()
+    .catch(undefined),
+  series: z.coerce
+    .number()
+    .int()
+    .min(0)
+    .max(maxSeriesIndex)
+    .optional()
+    .catch(undefined),
+})
 
 /**
  * Get a list of song information that matches the specified conditions.
@@ -36,16 +49,13 @@ const seriesNames = [...seriesSet]
  * ```
  */
 export default defineEventHandler(async event => {
-  const query = getQuery(event)
-  const name = getQueryInteger(query, 'name')
-  const series = getQueryInteger(query, 'series')
+  const { name, series } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex >= 0' }]
-  if (name >= 0 && name < maxNameIndex)
+  if (name !== undefined)
     conditions.push({ condition: 'c.nameIndex = @', value: name })
-  if (series >= 0 && series < maxSeriesIndex) {
+  if (series !== undefined)
     conditions.push({ condition: 'c.series = @', value: seriesNames[series] })
-  }
 
   return (await fetchList(
     'Songs',

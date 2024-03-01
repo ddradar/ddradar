@@ -1,14 +1,12 @@
 // @vitest-environment node
-import { notifications } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { notifications } from '~/../core/test/data'
 import fetchNotificationList from '~~/server/api/v1/notification/index.get'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('h3')
 
 describe('GET /api/v1/notification', () => {
   const result = notifications.map(n => ({
@@ -35,8 +33,7 @@ describe('GET /api/v1/notification', () => {
     ['TOP', []],
   ])('?scope=%s calls fetchList(..., ..., %o)', async (scope, expected) => {
     // Arrange
-    vi.mocked(getQuery).mockReturnValue({ scope })
-    const event = createEvent()
+    const event = createEvent(undefined, { scope })
 
     // Act
     const notificationList = await fetchNotificationList(event)

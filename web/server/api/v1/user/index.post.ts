@@ -1,7 +1,5 @@
-import type { UserSchema } from '@ddradar/core'
-import { isUserSchema } from '@ddradar/core'
+import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import { readBody } from 'h3'
 
 import { useClientPrincipal } from '~~/server/utils/auth'
 import { sendNullWithError } from '~~/server/utils/http'
@@ -33,10 +31,7 @@ export default defineEventHandler(async event => {
   if (!clientPrincipal) return sendNullWithError(event, 401)
   const loginId = clientPrincipal.userId
 
-  const body = await readBody(event)
-  if (!isUserSchema(body)) {
-    return sendNullWithError(event, 400, 'Invalid Body')
-  }
+  const body = await readValidatedBody(event, userSchema.parse)
 
   // Read existing data
   const oldData = (await fetchUser(body.id)) ?? (await fetchLoginUser(loginId))

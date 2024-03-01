@@ -1,10 +1,9 @@
 // @vitest-environment node
-import { testSongData } from '@ddradar/core/test/data'
 import { fetchJoinedList } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
+import { testSongData } from '~/../core/test/data'
 import searchCharts from '~~/server/api/v1/charts/[style]/[level].get'
-import { sendNullWithError } from '~~/server/utils/http'
 import { createEvent } from '~~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
@@ -19,11 +18,7 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
     difficulty: c.difficulty,
     level: c.level,
   }))
-  beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
-  })
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchJoinedList).mockClear()
   })
 
@@ -32,17 +27,12 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
     ['foo', 'bar'],
     ['0', '10'],
     ['1', '-10'],
-  ])('(style: "%s", level: "%s") returns 404', async (style, level) => {
+  ])('(style: "%s", level: "%s") returns 400', async (style, level) => {
     // Arrange
     const event = createEvent({ style, level })
 
-    // Act
-    const charts = await searchCharts(event)
-
-    // Assert
-    expect(charts).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
-    expect(vi.mocked(fetchJoinedList)).not.toBeCalled()
+    // Act - Assert
+    await expect(searchCharts(event)).rejects.toThrowError()
   })
 
   test.each([
@@ -74,7 +64,6 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
 
       // Assert
       expect(charts).toBe(dbCharts)
-      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
       expect(vi.mocked(fetchJoinedList).mock.calls[0][3]).toStrictEqual([
         { condition: 'c.nameIndex NOT IN (-1, -2)' },
         ...conditions,

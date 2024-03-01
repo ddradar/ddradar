@@ -1,9 +1,10 @@
-import type { CourseChartSchema, CourseSchema } from '@ddradar/core'
-import { seriesSet } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
-
-import { getQueryInteger } from '~~/utils/path'
+import {
+  type CourseChartSchema,
+  type CourseSchema,
+  seriesSet,
+} from '@ddradar/core'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 export type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
   /** Course difficulties (omitted) */
@@ -12,6 +13,17 @@ export type CourseListData = Pick<CourseSchema, 'id' | 'name' | 'series'> & {
 
 const maxSeriesIndex = seriesSet.size
 const seriesNames = [...seriesSet]
+
+/** Expected queries */
+const schema = z.object({
+  series: z.coerce
+    .number()
+    .int()
+    .min(0)
+    .max(seriesSet.size - 1)
+    .catch(-1),
+  type: z.coerce.number().catch(0),
+})
 
 /**
  * Get course information list.
@@ -37,9 +49,7 @@ const seriesNames = [...seriesSet]
  * ```
  */
 export default defineEventHandler(async event => {
-  const query = getQuery(event)
-  const type = getQueryInteger(query, 'type')
-  const series = getQueryInteger(query, 'series')
+  const { series, type } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex < 0' }]
   if (type === 1 || type === 2)

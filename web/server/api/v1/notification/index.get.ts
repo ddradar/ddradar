@@ -1,10 +1,11 @@
 import type { NotificationSchema } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
-import { getQuery } from 'h3'
-
-import { getQueryString } from '~~/utils/path'
+import { type Condition, fetchList } from '@ddradar/db'
+import { z } from 'zod'
 
 type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
+
+/** Expected query */
+const schema = z.object({ scope: z.ostring() })
 
 /**
  * Get system notification list.
@@ -28,7 +29,8 @@ type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
  * ```
  */
 export default defineEventHandler(async event => {
-  const pinnedOnly = getQueryString(getQuery(event), 'scope') === 'top'
+  const { scope } = await getValidatedQuery(event, schema.parse)
+  const pinnedOnly = scope === 'top'
 
   const conditions: Condition<'Notification'>[] = [
     { condition: 'c.sender = "SYSTEM"' },
