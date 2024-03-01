@@ -245,8 +245,8 @@ importers:
         specifier: ^3.10.3
         version: 3.10.3(@azure/cosmos@4.0.0)(@types/node@18.17.11)(eslint@8.56.0)(rollup@4.9.6)(sass@1.70.0)(typescript@5.3.3)(vite@5.1.4)
       nuxt-swa:
-        specifier: ^0.3.1
-        version: 0.3.1(rollup@4.9.6)
+        specifier: ^0.4.0
+        version: 0.4.0(rollup@4.9.6)
       sass:
         specifier: ^1.70.0
         version: 1.70.0
@@ -9492,11 +9492,10 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /nuxt-swa@0.3.1(rollup@4.9.6):
-    resolution: {integrity: sha512-SrF7Ji5kagtNEXwh0+vISN85BXE8BawSifSMU2FsqCyvXoPWzljDa10YHWzILyadUSD0y8qkFCyDsLkcUU2Z3A==}
+  /nuxt-swa@0.4.0(rollup@4.9.6):
+    resolution: {integrity: sha512-87v2tPjuz4uSxhSPY8K6oZeUihEEIJKbJBfLMJF591nlGqO6jUTjnrgSJOi0md2MnFJm8J1A6wfUz17pbvqE2Q==}
     dependencies:
       '@nuxt/kit': 3.10.3(rollup@4.9.6)
-      consola: 3.2.3
       defu: 6.1.4
       ufo: 1.4.0
     transitivePeerDependencies:

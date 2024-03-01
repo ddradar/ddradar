@@ -2,8 +2,6 @@ import { type UserSchema, userSchema } from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
 import { z } from 'zod'
 
-import { useClientPrincipal } from '~~/server/utils/auth'
-
 export type UserInfo = Omit<UserSchema, 'loginId' | 'isPublic' | 'password'>
 
 /** Expected queries */
@@ -49,7 +47,7 @@ const schema = z.object({
  * ```
  */
 export default defineEventHandler(async event => {
-  const loginId = useClientPrincipal(event.node.req.headers)?.userId ?? null
+  const loginId = getClientPrincipal(event)?.userId ?? null
   const { name, area, code } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'Users'>[] = [
