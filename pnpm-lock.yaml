@@ -196,8 +196,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@oruga-ui/oruga-next':
-        specifier: ^0.6.0
-        version: 0.6.0(vue@3.4.20)
+        specifier: ^0.8.5
+        version: 0.8.5(vue@3.4.20)
       '@oruga-ui/theme-bulma':
         specifier: ^0.2.11
         version: 0.2.11
@@ -3185,8 +3185,8 @@ packages:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
     dev: true
 
-  /@oruga-ui/oruga-next@0.6.0(vue@3.4.20):
-    resolution: {integrity: sha512-M1Y5PgCWBUDmQGH74cgzrp3vKaRFdHVtGNr0DwejeJGScB7Q6jodW4xgCz6K4hajLgHW6zxz/3ukpC4ZczlfaQ==}
+  /@oruga-ui/oruga-next@0.8.5(vue@3.4.20):
+    resolution: {integrity: sha512-HnODRTrurmke7O5rRNdrbqYuNIdMrnBJ+P3jh6J7/Lk/zgMnpsObSGj/6JfQRvdf5Wq++Ch5yVUys0V4Lm08JQ==}
     peerDependencies:
       vue: ^3.0.0
     dependencies:
