@@ -2,26 +2,6 @@ import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { H3Event } from 'h3'
 
-/**
- * Get {@link ClientPrincipal} from Request header.
- * @param event HTTP Event
- * @description https://docs.microsoft.com/azure/static-web-apps/user-information?tabs=javascript#api-functions
- */
-export function useClientPrincipal(
-  headers: Pick<H3Event, 'node'>['node']['req']['headers']
-): ClientPrincipal | null {
-  const header = headers['x-ms-client-principal']
-  if (typeof header !== 'string') return null
-
-  try {
-    const buffer = Buffer.from(header, 'base64')
-    const jsonString = buffer.toString('utf8')
-    return JSON.parse(jsonString)
-  } catch {
-    return null
-  }
-}
-
 export async function getLoginUserInfo(
   event: H3Event
 ): Promise<UserSchema | null> {

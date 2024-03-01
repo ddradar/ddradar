@@ -8,14 +8,12 @@ import { createI18n } from 'vue-i18n'
 
 import { privateUser, testScores, testSongData } from '~~/../core/test/data'
 import ScoreBoard from '~~/components/songs/ScoreBoard.vue'
-import useAuth from '~~/composables/useAuth'
 import { mountAsync } from '~~/test/test-utils'
 
 const { useFetchMock } = vi.hoisted(() => ({ useFetchMock: vi.fn() }))
 mockNuxtImport('useFetch', () => useFetchMock)
 
 const open = vi.fn()
-vi.mock('~~/composables/useAuth')
 vi.mock('@oruga-ui/oruga-next', async origin => {
   const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
   return { ...actual, useProgrammatic: vi.fn() }
@@ -39,14 +37,11 @@ describe('components/songs/ScoreBoard.vue', () => {
     test('{ loading: true } renders loading state', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(true),
-        data: ref([]),
-      } as any)
-      vi.mocked(useAuth).mockResolvedValue({
-        id: ref(null),
-        isLoggedIn: ref(false),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(null) }
+          : ({ pending: ref(true), data: ref([]) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -69,10 +64,11 @@ describe('components/songs/ScoreBoard.vue', () => {
         pending: ref(false),
         data: ref(scores),
       } as any)
-      vi.mocked(useAuth).mockResolvedValue({
-        id: ref(privateUser.id),
-        isLoggedIn: ref(true),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(privateUser) }
+          : ({ pending: ref(false), data: ref(scores) } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -96,15 +92,11 @@ describe('components/songs/ScoreBoard.vue', () => {
       const i18n = createI18n({ legacy: false, locale: 'en' })
       const refresh = vi.fn()
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref(scores),
-        refresh,
-      } as any)
-      vi.mocked(useAuth).mockResolvedValue({
-        id: ref(null),
-        isLoggedIn: ref(true),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(privateUser) }
+          : ({ pending: ref(false), data: ref(scores), refresh } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
       open.mockClear()
       open.mockReturnValue({ promise: Promise.resolve() })
@@ -130,15 +122,11 @@ describe('components/songs/ScoreBoard.vue', () => {
       const i18n = createI18n({ legacy: false, locale: 'en' })
       const refresh = vi.fn()
       /* eslint-disable @typescript-eslint/no-explicit-any */
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref(scores),
-        refresh,
-      } as any)
-      vi.mocked(useAuth).mockResolvedValue({
-        id: ref(null),
-        isLoggedIn: ref(false),
-      } as any)
+      vi.mocked(useFetch).mockImplementation(path =>
+        path === '/api/v1/user'
+          ? { data: ref(null) }
+          : ({ pending: ref(false), data: ref(scores), refresh } as any)
+      )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
