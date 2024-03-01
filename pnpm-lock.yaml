@@ -121,6 +121,9 @@ importers:
       node-fetch-native:
         specifier: ^1.6.2
         version: 1.6.2
+      zod:
+        specifier: ^3.22.4
+        version: 3.22.4
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.2
