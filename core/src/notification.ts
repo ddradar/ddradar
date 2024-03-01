@@ -31,11 +31,3 @@ export const notificationSchema = z.object({
  */
 export type NotificationSchema = Notification &
   z.infer<typeof notificationSchema>
-
-/** Type assertion for {@link NotificationSchema}. */
-export function isNotificationSchema(obj: unknown): obj is NotificationSchema {
-  return notificationSchema
-    .omit({ timeStamp: true })
-    .extend({ timeStamp: z.onumber() })
-    .safeParse(obj).success
-}

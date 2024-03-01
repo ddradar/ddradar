@@ -3,22 +3,12 @@ import { describe, expect, test } from 'vitest'
 import {
   areaCodeSet,
   isAreaUser,
-  isUserSchema,
-  isValidUserId,
-  UserSchema,
+  type UserSchema,
+  userSchema,
 } from '../src/user'
 
 describe('user.ts', () => {
-  describe('isValidUserId', () => {
-    test.each(['foo', 'foo-1234', '1', 'foo_bar'])('("%s") returns true', id =>
-      expect(isValidUserId(id)).toBe(true)
-    )
-    test.each(['', ' ', '#'])('("%s") returns false', id =>
-      expect(isValidUserId(id)).toBe(false)
-    )
-  })
-
-  describe('isUserSchema', () => {
+  describe('userSchema', () => {
     const validUserInfo: UserSchema = {
       id: 'new_user',
       name: 'New User',
@@ -42,7 +32,9 @@ describe('user.ts', () => {
       { ...validUserInfo, isPublic: undefined },
       { ...validUserInfo, password: 0 },
       { id: 'new_user', name: 'New User', area: 13 },
-    ])('(%o) returns false', o => expect(isUserSchema(o)).toBe(false))
+    ])('safeParse(%o) returns { result: false }', o =>
+      expect(userSchema.safeParse(o).success).toBe(false)
+    )
     test.each([
       validUserInfo,
       { ...validUserInfo, id: 'UPPER-CASED' },
@@ -51,7 +43,9 @@ describe('user.ts', () => {
       { ...validUserInfo, isPublic: false },
       { ...validUserInfo, loginId: 'foo' },
       { ...validUserInfo, password: 'password' },
-    ])('(%o) returns true', o => expect(isUserSchema(o)).toBe(true))
+    ])('safeParse(%o) returns { result: true }', o =>
+      expect(userSchema.safeParse(o).success).toBe(true)
+    )
   })
 
   describe('isAreaUser', () => {

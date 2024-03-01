@@ -217,12 +217,6 @@ export const songSchema = z.object({
  */
 export type SongSchema = Omit<Song, 'charts'> & z.infer<typeof songSchema>
 
-/** Type assertion for {@link SongSchema} */
-export function isSongSchema(obj: unknown): obj is SongSchema {
-  return songSchema.refine(v => !!v.minBPM === !!v.maxBPM).safeParse(obj)
-    .success
-}
-
 /** Returns `id` is valid {@link Song.id} or not. */
 export function isValidSongId(id: string): boolean {
   return songSchema.shape.id.safeParse(id).success

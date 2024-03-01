@@ -8,7 +8,6 @@ import {
   type StepChartSchema,
   stepChartSchema,
 } from './song'
-import { hasIntegerProperty } from './type-assert'
 import type { UserSchema } from './user'
 import { isAreaUser, userSchema } from './user'
 
@@ -285,8 +284,10 @@ export function createScoreSchema(
 
   return scoreSchema
 
-  function isSongInfo(chart: unknown): chart is StepChartSchema {
-    return hasIntegerProperty(chart, 'stream')
+  function isSongInfo(
+    chart: StepChartSchema | CourseChartSchema
+  ): chart is StepChartSchema {
+    return typeof (chart as StepChartSchema).stream === 'number'
   }
 }
 
