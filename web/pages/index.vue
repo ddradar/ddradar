@@ -1,63 +1,8 @@
-<template>
-  <section>
-    <section class="hero">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">DDRadar</h1>
-          <p class="subtitle">{{ t('subtitle') }}</p>
-        </div>
-      </div>
-    </section>
+<script lang="ts" setup>
+import { nameIndexMap } from '@ddradar/core'
 
-    <section class="section">
-      <template v-if="loading">
-        <OSkeleton animated />
-        <OSkeleton animated />
-        <OSkeleton animated />
-      </template>
-      <template v-else-if="messages">
-        <ONotification
-          v-for="(m, i) in messages"
-          :key="i"
-          closable
-          :icon="m.icon"
-          :type="m.type"
-          :variant="m.type"
-        >
-          <h2>{{ m.title }}</h2>
-          <!--eslint-disable-next-line vue/no-v-html-->
-          <div v-html="markdownToHTML(m.body)"></div>
-          <small>{{ unixTimeToString(m.timeStamp) }}</small>
-        </ONotification>
-      </template>
-    </section>
-
-    <section class="section">
-      <div class="columns is-multiline">
-        <section
-          v-for="m in menuList"
-          :key="m.title"
-          class="column is-half-tablet is-one-third-desktop is-one-quarter-widescreen"
-        >
-          <CollapsibleCard :title="m.title" variant="primary" collapsible>
-            <div class="card-content">
-              <div class="buttons">
-                <NuxtLink
-                  v-for="i in m.items"
-                  :key="i.name"
-                  class="button is-text"
-                  :to="i.to"
-                >
-                  {{ i.name }}
-                </NuxtLink>
-              </div>
-            </div>
-          </CollapsibleCard>
-        </section>
-      </div>
-    </section>
-  </section>
-</template>
+const { t } = useI18n()
+</script>
 
 <i18n lang="json">
 {
@@ -88,55 +33,67 @@
 }
 </i18n>
 
-<script lang="ts" setup>
-import { nameIndexMap } from '@ddradar/core'
-import { useI18n } from 'vue-i18n'
+<template>
+  <UPage>
+    <UPageHeader title="DDRadar" :description="t('subtitle')" />
 
-import CollapsibleCard from '~~/components/CollapsibleCard.vue'
-import { markdownToHTML, unixTimeToString } from '~~/utils/format'
-import {
-  courseSeriesIndexes,
-  levels,
-  seriesNames,
-  shortenSeriesName,
-} from '~~/utils/song'
+    <UPageBody>
+      <UPageGrid>
+        <UPageCard :title="t('search.name')">
+          <UButton
+            v-for="[i, n] in nameIndexMap"
+            :key="i"
+            :to="`/songs?name=${i}`"
+            variant="ghost"
+          >
+            {{ n }}
+          </UButton>
+        </UPageCard>
 
-const { t } = useI18n()
-const { data: messages, pending: loading } = await useLazyFetch(
-  '/api/v1/notification',
-  { query: { scope: 'top' } }
-)
+        <UPageCard :title="t('search.series')">
+          <UButton
+            v-for="(n, i) in seriesNames"
+            :key="i"
+            :to="`/songs?series=${i}`"
+            variant="ghost"
+          >
+            {{ shortenSeriesName(n) }}
+          </UButton>
+        </UPageCard>
 
-const menuList = [
-  {
-    title: t('search.name'),
-    items: [...nameIndexMap.entries()].map(([i, name]) => ({
-      name,
-      to: `/songs?name=${i}`,
-    })),
-  },
-  {
-    title: t('search.series'),
-    items: seriesNames.map((s, i) => ({
-      name: shortenSeriesName(s),
-      to: `/songs?series=${i}`,
-    })),
-  },
-  ...['SINGLE', 'DOUBLE'].map((style, i) => ({
-    title: t('search.level', { style }),
-    items: levels.map(name => ({
-      name,
-      to: `/charts?style=${i + 1}&level=${name}`,
-    })),
-  })),
-  {
-    title: t('search.course'),
-    items: courseSeriesIndexes.flatMap(series =>
-      ['nonstop', 'grade'].map((s, i) => ({
-        name: t(s, { series: shortenSeriesName(seriesNames[series]) }),
-        to: `/courses?type=${i + 1}&series=${series}`,
-      }))
-    ),
-  },
-]
-</script>
+        <UPageCard :title="t('search.level', { style: 'SINGLE' })">
+          <UButton
+            v-for="i in levels"
+            :key="i"
+            :to="`/charts?style=1&level=${i}`"
+            variant="ghost"
+          >
+            {{ i }}
+          </UButton>
+        </UPageCard>
+
+        <UPageCard :title="t('search.level', { style: 'DOUBLE' })">
+          <UButton
+            v-for="i in levels"
+            :key="i"
+            :to="`/charts?style=2&level=${i}`"
+            variant="ghost"
+          >
+            {{ i }}
+          </UButton>
+        </UPageCard>
+
+        <UPageCard :title="t('search.course')">
+          <template v-for="i in courseSeriesIndexes" :key="i">
+            <UButton :to="`/courses?type=1&series=${i}`" variant="ghost">
+              {{ t('nonstop', { series: shortenSeriesName(seriesNames[i]) }) }}
+            </UButton>
+            <UButton :to="`/courses?type=2&series=${i}`" variant="ghost">
+              {{ t('grade', { series: shortenSeriesName(seriesNames[i]) }) }}
+            </UButton>
+          </template>
+        </UPageCard>
+      </UPageGrid>
+    </UPageBody>
+  </UPage>
+</template>

@@ -1,8 +1,15 @@
 <template>
   <div>
-    <NuxtLoadingIndicator />
     <AppNavbar />
-    <NuxtPage />
+
+    <UMain>
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </UMain>
+
+    <UFooter></UFooter>
+    <UNotifications />
   </div>
 </template>
 

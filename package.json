@@ -11,8 +11,9 @@
     "pnpm": "8.x"
   },
   "scripts": {
+    "build:core": "pnpm -C core build && pnpm -C db build",
     "build": "pnpm -r --workspace-concurrency 1 build",
-    "dev": "pnpm -C core build && pnpm -C db build && node -e \"fs.rmSync('./web/.output/public/staticwebapp.config.json',{force:true})\" && swa start",
+    "dev": "swa start",
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier --write",
