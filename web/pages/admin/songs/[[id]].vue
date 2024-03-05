@@ -1,10 +1,12 @@
 <script lang="ts" setup>
-import { difficultyMap, getNameIndex, isValidSongId } from '@ddradar/core'
-import { useProgrammatic } from '@oruga-ui/oruga-next'
+import {
+  difficultyMap,
+  getNameIndex,
+  playStyleMap,
+  songSchema,
+} from '@ddradar/core'
 
-import DialogModal from '~~/components/modal/DialogModal.vue'
 import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { seriesNames } from '~~/utils/song'
 
 definePageMeta({ allowedRoles: 'administrator' })
 
@@ -20,258 +22,201 @@ const _chart = {
   chaos: 0,
 } as const
 
-const _route = useRoute()
-const { oruga } = useProgrammatic()
-const id = useState(() => (_route.params.id as string) ?? '')
-const { data: song, refresh } = await useFetch<SongInfo>(
-  `/api/v1/songs/${id.value}`
-)
-song.value ??= {
-  id: id.value,
-  name: '',
-  nameKana: '',
-  nameIndex: 0,
-  artist: '',
-  series: seriesNames.slice(-1)[0],
-  minBPM: null,
-  maxBPM: null,
-  deleted: false,
-  charts: [
-    { playStyle: 1, difficulty: 0, ..._chart },
-    { playStyle: 1, difficulty: 1, ..._chart },
-    { playStyle: 1, difficulty: 2, ..._chart },
-    { playStyle: 1, difficulty: 3, ..._chart },
-    { playStyle: 2, difficulty: 1, ..._chart },
-    { playStyle: 2, difficulty: 2, ..._chart },
-    { playStyle: 2, difficulty: 3, ..._chart },
-  ],
-}
-
-// Validator
-const isValidId = computed(() => isValidSongId(id.value))
-const hasDuplicatedChart = (chart: SongInfo['charts'][number]) =>
-  song.value!.charts.filter(
-    c => c.playStyle === chart.playStyle && c.difficulty === chart.difficulty
-  ).length !== 1
-const hasError = computed(
-  () =>
-    !isValidId.value ||
-    !song.value!.name ||
-    !/^[A-Z0-9 .ぁ-んー]+$/.test(song.value!.nameKana) ||
-    !song.value!.series ||
-    !song.value!.minBPM !== !song.value!.maxBPM ||
-    song.value!.charts.length === 0 ||
-    song.value!.charts.some(c => hasDuplicatedChart(c))
-)
+const _route = useRoute('admin-songs-id')
+const { data: song, refresh } = useFetch(`/api/v1/songs/${_route.params.id}`, {
+  default: () => ({
+    id: _route.params.id,
+    name: '',
+    nameKana: '',
+    nameIndex: 0 as const,
+    artist: '',
+    series: seriesNames.slice(-1)[0],
+    minBPM: null,
+    maxBPM: null,
+    deleted: false,
+    charts: [
+      { playStyle: 1, difficulty: 0, ..._chart } as const,
+      { playStyle: 1, difficulty: 1, ..._chart } as const,
+      { playStyle: 1, difficulty: 2, ..._chart } as const,
+      { playStyle: 1, difficulty: 3, ..._chart } as const,
+      { playStyle: 2, difficulty: 1, ..._chart } as const,
+      { playStyle: 2, difficulty: 2, ..._chart } as const,
+      { playStyle: 2, difficulty: 3, ..._chart } as const,
+    ],
+  }),
+  immediate: false,
+})
+if (_route.params.id) await refresh()
 
 // Methods
 /** Add empty chart in charts. */
 const addChart = () =>
-  (song.value!.charts as SongInfo['charts'][0][]).push({
+  song.value.charts.push({
     playStyle: 1,
     difficulty: 0,
     ..._chart,
   })
 /** Remove specific chart in charts. */
-const removeChart = (index: number) =>
-  (song.value!.charts as SongInfo['charts'][0][]).splice(index, 1)
+const removeChart = (index: number) => song.value.charts.splice(index, 1)
 /** Set nameKana from upper-cased name. */
-const setNameKana = () =>
-  (song.value!.nameKana = song.value!.name.toUpperCase())
-
+const setNameKana = () => (song.value.nameKana = song.value.name.toUpperCase())
 /** Save song data. */
 const saveSongInfo = async () => {
-  const instance = oruga.modal.open({
-    component: DialogModal,
-    props: { message: 'Add or update this?', variant: 'info' },
-    trapFocus: true,
-  })
-
-  if ((await instance.promise) !== 'yes') return
-
-  const nameIndex = getNameIndex(song.value!.nameKana)
-  const body: SongInfo = { ...song.value!, id: id.value, nameIndex }
+  const nameIndex = getNameIndex(song.value.nameKana)
+  const body = { ...song.value, nameIndex }
   song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
-
-  oruga.notification.open({
-    message: 'Saved Successfully!',
-    variant: 'success',
-    position: 'top',
-  })
 }
+
+/** PlayStyle Options */
+const playStyles = [...playStyleMap.entries()].map(([value, label]) => ({
+  value,
+  label,
+}))
+/** Difficulty Options */
+const difficulties = [...difficultyMap.entries()].map(([value, label]) => ({
+  value,
+  label,
+}))
+/** Table columns */
+const columns = [
+  { key: 'playStyle', label: 'Style' },
+  { key: 'difficulty', label: 'Difficulty' },
+  { key: 'level', label: 'Lv' },
+  { key: 'notes', label: 'Notes' },
+  { key: 'freezeArrow', label: 'FA' },
+  { key: 'shockArrow', label: 'SA' },
+  { key: 'stream', label: 'STR' },
+  { key: 'voltage', label: 'VOL' },
+  { key: 'air', label: 'AIR' },
+  { key: 'freeze', label: 'FRE' },
+  { key: 'chaos', label: 'CHA' },
+  { key: 'action' },
+]
 </script>
 
 <template>
-  <section class="section">
-    <h1 class="title">Add/Update Song</h1>
-    <OField label="Song ID">
-      <OField grouped>
-        <OInput
-          v-model="id"
-          maxlength="32"
-          required
-          pattern="^[01689bdiloqDIOPQ]{32}$"
-        />
-        <OButton variant="primary" :disabled="!isValidId" @click="refresh()">
-          Load
-        </OButton>
-        <OButton
-          tag="a"
-          variant="info"
-          :disabled="!isValidId"
-          :href="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${id}`"
+  <UPage>
+    <UPageHeader title="Add/Update Song" />
+    <UForm :state="song" :schema="songSchema" @onsubmit="saveSongInfo()">
+      <UFormGroup label="Song ID" name="id">
+        <UInput v-model="song.id" />
+        <UButton @click="refresh">Load</UButton>
+        <UButton
+          color="blue"
+          :to="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${song.id}`"
           target="_blank"
         >
           See Thumbnail
-        </OButton>
-      </OField>
-    </OField>
+        </UButton>
+      </UFormGroup>
 
-    <OField label="Name">
-      <OInput v-model="song!.name" required />
-    </OField>
+      <UFormGroup label="Name" name="name">
+        <UInput v-model="song.name" />
+      </UFormGroup>
 
-    <OField label="Furigana">
-      <OInput
-        v-model="song!.nameKana"
-        required
-        pattern="^[A-Z0-9 .ぁ-んー]+$"
-        placeholder="A-Z 0-9 . あ-ん ー"
-      />
-      <OButton icon-left="pencil" @click="setNameKana()">Auto Set</OButton>
-    </OField>
+      <UFormGroup label="Furigana" name="nameKana">
+        <UInput v-model="song.nameKana" />
+        <UButton @click="setNameKana()">Auto Set</UButton>
+      </UFormGroup>
 
-    <OField label="Artist">
-      <OInput v-model="song!.artist" />
-    </OField>
+      <UFormGroup label="Artist" name="artist">
+        <UInput v-model="song.artist" />
+      </UFormGroup>
 
-    <OField label="Series">
-      <OSelect v-model="song!.series" placeholder="Series">
-        <option v-for="n in seriesNames" :key="n" :value="n">
-          {{ n }}
-        </option>
-      </OSelect>
-    </OField>
+      <UFormGroup label="Series" name="series">
+        <USelect v-model="song.series" :options="seriesNames" />
+      </UFormGroup>
 
-    <OField label="BPM">
-      <OField grouped>
-        <OInput v-model.number="song!.minBPM" type="number" placeholder="min" />
-        <span class="control">-</span>
-        <OInput v-model.number="song!.maxBPM" type="number" placeholder="max" />
-      </OField>
-    </OField>
+      <UFormGroup label="BPM">
+        <UInput v-model.number="song.minBPM" type="number" placeholder="min" />
+        <UInput v-model.number="song.maxBPM" type="number" placeholder="max" />
+      </UFormGroup>
 
-    <OField>
-      <OCheckbox v-model="song!.deleted">Deleted</OCheckbox>
-    </OField>
+      <UFormGroup>
+        <UCheckbox v-model="song.deleted" name="deleted" label="Deleted" />
+      </UFormGroup>
 
-    <OField v-for="(chart, i) in song!.charts" :key="i" grouped group-multiline>
-      <OField
-        :variant="hasDuplicatedChart(chart) ? 'danger' : ''"
-        :message="hasDuplicatedChart(chart) ? 'Already Exists' : ''"
-      >
-        <OSelect v-model.number="chart.playStyle" placeholder="PlayStyle">
-          <option value="1">SINGLE</option>
-          <option value="2">DOUBLE</option>
-        </OSelect>
-        <OSelect v-model.number="chart.difficulty" placeholder="Difficulty">
-          <option
-            v-for="[value, label] in difficultyMap"
-            :key="value"
-            :value="value"
-          >
-            {{ label }}
-          </option>
-        </OSelect>
-        <OInput
-          v-model.number="chart.level"
-          placeholder="Level"
-          type="number"
-          min="1"
-          max="20"
-          required
-        />
-      </OField>
-      <OField>
-        <OInput
-          v-model.number="chart.notes"
-          placeholder="Notes"
-          type="number"
-          min="0"
-          max="9999"
-          required
-        />
-        <OInput
-          v-model.number="chart.freezeArrow"
-          placeholder="FA"
-          type="number"
-          min="0"
-          max="9999"
-          required
-        />
-        <OInput
-          v-model.number="chart.shockArrow"
-          placeholder="SA"
-          type="number"
-          min="0"
-          max="9999"
-          required
-        />
-      </OField>
-      <OField>
-        <OInput
-          v-model.number="chart.stream"
-          placeholder="Str"
-          type="number"
-          min="0"
-          max="300"
-          required
-        />
-        <OInput
-          v-model.number="chart.voltage"
-          placeholder="Vol"
-          type="number"
-          min="0"
-          max="300"
-          required
-        />
-        <OInput
-          v-model.number="chart.air"
-          placeholder="Air"
-          type="number"
-          min="0"
-          max="300"
-          required
-        />
-        <OInput
-          v-model.number="chart.freeze"
-          placeholder="Fre"
-          type="number"
-          min="0"
-          max="300"
-          required
-        />
-        <OInput
-          v-model.number="chart.chaos"
-          placeholder="Cha"
-          type="number"
-          min="0"
-          max="300"
-          required
-        />
-      </OField>
-      <OButton variant="danger" icon-left="delete" @click="removeChart(i)" />
-    </OField>
-    <OField>
-      <OButton variant="info" icon-left="plus" @click="addChart()">
-        Add Chart
-      </OButton>
-    </OField>
+      <UFormGroup label="Charts" name="charts">
+        <UTable :rows="song.charts" :columns="columns">
+          <template #playStyle-data="{ row }">
+            <USelect v-model.number="row.playStyle" :options="playStyles" />
+          </template>
+          <template #difficulty-data="{ row }">
+            <USelect v-model.number="row.difficulty" :options="difficulties" />
+          </template>
+          <template #level-data="{ row }">
+            <UInput v-model.number="row.level" type="number" min="0" max="20" />
+          </template>
 
-    <OField>
-      <OButton variant="success" :disabled="hasError" @click="saveSongInfo()">
-        Save
-      </OButton>
-    </OField>
-  </section>
+          <template #notes-data="{ row }">
+            <UInput
+              v-model.number="row.notes"
+              type="number"
+              min="0"
+              max="9999"
+            />
+          </template>
+          <template #freezeArrow-data="{ row }">
+            <UInput
+              v-model.number="row.freezeArrow"
+              type="number"
+              min="0"
+              max="9999"
+            />
+          </template>
+          <template #shockArrow-data="{ row }">
+            <UInput
+              v-model.number="row.shockArrow"
+              type="number"
+              min="0"
+              max="9999"
+            />
+          </template>
+
+          <template #stream-data="{ row }">
+            <UInput
+              v-model.number="row.stream"
+              type="number"
+              min="0"
+              max="999"
+            />
+          </template>
+          <template #voltage-data="{ row }">
+            <UInput
+              v-model.number="row.voltage"
+              type="number"
+              min="0"
+              max="999"
+            />
+          </template>
+          <template #air-data="{ row }">
+            <UInput v-model.number="row.air" type="number" min="0" max="999" />
+          </template>
+          <template #freeze-data="{ row }">
+            <UInput
+              v-model.number="row.freeze"
+              type="number"
+              min="0"
+              max="999"
+            />
+          </template>
+          <template #chaos-data="{ row }">
+            <UInput
+              v-model.number="row.chaos"
+              type="number"
+              min="0"
+              max="999"
+            />
+          </template>
+
+          <template #action-data="{ index }">
+            <UButton @click="removeChart(index)" />
+          </template>
+        </UTable>
+        <UButton @click="addChart">Add Chart</UButton>
+      </UFormGroup>
+
+      <UButton type="submit">Save</UButton>
+    </UForm>
+  </UPage>
 </template>

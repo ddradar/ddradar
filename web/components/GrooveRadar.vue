@@ -10,7 +10,7 @@ import { Radar } from 'vue-chartjs'
 type GrooveRadar = Exclude<ScoreSchema['radar'], undefined | null>
 const props = defineProps<{ radar: GrooveRadar }>()
 
-const chartData: ChartData<'radar'> = {
+const chartData = computed<ChartData<'radar'>>(() => ({
   labels: ['STREAM', 'CHAOS', 'FREEZE', 'AIR', 'VOLTAGE'],
   datasets: [
     {
@@ -26,7 +26,7 @@ const chartData: ChartData<'radar'> = {
       ],
     },
   ],
-}
+}))
 const chartOptions: ChartOptions<'radar'> = {
   responsive: true,
   plugins: { legend: { display: false } },

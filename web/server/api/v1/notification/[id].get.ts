@@ -37,7 +37,7 @@ export default defineEventHandler(async event => {
     'Notification',
     ['id', 'sender', 'pinned', 'type', 'icon', 'title', 'body', 'timeStamp'],
     { condition: 'c.id = @', value: id }
-  )) as NotificationSchema | null
+  )) as NotificationSchema
 
   return notification ?? sendNullWithError(event, 404)
 })
