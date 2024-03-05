@@ -4,10 +4,8 @@ import { z } from 'zod'
 
 definePageMeta({ key: route => route.fullPath })
 
-const { t } = useI18n()
-const { data: user } = await useFetch('/api/v1/user')
-
 // #region Data Fetching
+const { data: user } = await useFetch('/api/v1/user')
 /** Expected Query */
 const querySchema = z.object({
   name: z.coerce
@@ -23,34 +21,48 @@ const querySchema = z.object({
     .optional()
     .catch(undefined),
 })
-const _route = useRoute()
+const _route = useRoute('songs')
 const { name, series } = querySchema.parse(_route.query)
-const { data: songs, pending: loading } = await useFetch('/api/v1/songs', {
+const { data: _data, pending: loading } = await useFetch('/api/v1/songs', {
   query: { name, series },
   watch: [_route.query],
+  default: () => [],
 })
 // #endregion
 
+// #region Paging
+/** Current Page */
+const page = ref(1)
+/** Data count per page */
+const pageCount = 50
+/** Total data count */
+const pageTotal = computed(() => _data.value.length)
+const pageFrom = computed(() => (page.value - 1) * pageCount + 1)
+const pageTo = computed(() => Math.min(page.value * pageCount, pageTotal.value))
+const songs = computed(() =>
+  _data.value.slice(pageFrom.value - 1, pageTo.value)
+)
+// #endregion
+
+// #region i18n
+const { t } = useI18n()
 /** Page Title */
 const title = computed(() =>
   typeof name === 'number'
     ? nameIndexMap.get(name)
     : typeof series === 'number'
       ? seriesNames[series]
-      : 'すべての楽曲を表示'
+      : t('showAll')
 )
 /** Button Links to other series/name */
 const links = computed(() =>
   typeof name === 'number'
     ? [...nameIndexMap.entries()].map(([name, label]) => ({
         label,
-        query: { name: `${name}` },
+        query: { name },
       }))
     : typeof series === 'number'
-      ? seriesNames.map((label, series) => ({
-          label,
-          query: { series: `${series}` },
-        }))
+      ? seriesNames.map((label, series) => ({ label, query: { series } }))
       : []
 )
 /** Table Columns */
@@ -61,10 +73,80 @@ const columns = computed(() => [
   { key: 'bpm', label: t('column.bpm') },
   ...(user.value ? [{ key: 'score', label: t('column.score') }] : []),
 ])
+// #endregion
 
 /** Open ScoreEditor modal. */
 const editScore = async (_songId: string) => {}
 </script>
+
+<template>
+  <UPage>
+    <UPageHeader :title="title">
+      <template #description>
+        <UButton
+          v-for="l in links"
+          :key="l.query"
+          :to="{ path: '/songs', query: l.query }"
+          exact-query
+          variant="ghost"
+          color="blue"
+        >
+          {{ l.label }}
+        </UButton>
+      </template>
+    </UPageHeader>
+
+    <UPageBody>
+      <UTable
+        :rows="songs"
+        :columns="columns"
+        :loading="loading"
+        :empty-state="{
+          icon: 'i-heroicons-circle-stack-20-solid',
+          label: t('noData'),
+        }"
+      >
+        <template #series-data="{ row }">
+          {{ shortenSeriesName(row.series) }}
+        </template>
+        <template #name-data="{ row }">
+          <ULink class="blue" :to="`/songs/${row.id}`">{{ row.name }}</ULink>
+        </template>
+        <template #bpm-data="{ row }">
+          {{ getDisplayedBPM(row) }}
+        </template>
+        <template v-if="user" #score-data="{ row }">
+          <UButton
+            icon="i-heroicons-pencil-square"
+            @click="editScore(row.id)"
+          />
+        </template>
+      </UTable>
+
+      <div v-if="pageTotal" class="flex flex-wrap justify-between items-center">
+        <div>
+          <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
+            <template #from>
+              <span class="font-medium">{{ pageFrom }}</span>
+            </template>
+            <template #to>
+              <span class="font-medium">{{ pageTo }}</span>
+            </template>
+            <template #total>
+              <span class="font-medium">{{ pageTotal }}</span>
+            </template>
+          </i18n-t>
+        </div>
+
+        <UPagination
+          v-model="page"
+          :page-count="pageCount"
+          :total="pageTotal"
+        />
+      </div>
+    </UPageBody>
+  </UPage>
+</template>
 
 <i18n lang="json">
 {
@@ -76,6 +158,8 @@ const editScore = async (_songId: string) => {}
       "bpm": "BPM",
       "score": "スコア編集"
     },
+    "showAll": "すべての楽曲を表示",
+    "showing": "{total} 件中 {from} 件から {to} 件を表示中",
     "noData": "データがありません"
   },
   "en": {
@@ -86,49 +170,9 @@ const editScore = async (_songId: string) => {}
       "bpm": "BPM",
       "score": "Edit Score"
     },
+    "showAll": "Show All Songs",
+    "showing": "Showing {from} to {to} of {total} results",
     "noData": "No Data"
   }
 }
 </i18n>
-
-<template>
-  <UPage>
-    <UPageHeader :title="title" />
-
-    <UContainer>
-      <UButton
-        v-for="l in links"
-        :key="l.query"
-        :to="{ path: '/songs', query: l.query }"
-        exact-query
-        variant="ghost"
-        color="blue"
-      >
-        {{ l.label }}
-      </UButton>
-    </UContainer>
-
-    <UTable
-      :rows="songs"
-      :columns="columns"
-      :loading="loading"
-      :empty-state="{
-        icon: 'i-heroicons-circle-stack-20-solid',
-        label: t('noData'),
-      }"
-    >
-      <template #series-data="{ row }">
-        {{ shortenSeriesName(row.series) }}
-      </template>
-      <template #name-data="{ row }">
-        <ULink class="blue" :to="`/songs/${row.id}`">{{ row.name }}</ULink>
-      </template>
-      <template #bpm-data="{ row }">
-        {{ getDisplayedBPM(row) }}
-      </template>
-      <template v-if="user" #score-data="{ row }">
-        <UButton icon="i-heroicons-pencil-square" @click="editScore(row.id)" />
-      </template>
-    </UTable>
-  </UPage>
-</template>

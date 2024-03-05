@@ -1,79 +1,135 @@
+<script lang="ts" setup>
+import { stepChartSchema } from '@ddradar/core'
+import { z } from 'zod'
+
+import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
+
+/* c8 ignore next */
+definePageMeta({ key: route => route.fullPath })
+
+const _kinds = ['SINGLE', 'DOUBLE']
+
+// #region Data Fetching
+const { data: user } = await useFetch('/api/v1/user')
+/** Expected Query */
+const querySchema = z.object({
+  style: z.coerce.number().pipe(stepChartSchema.shape.playStyle),
+  level: z.coerce.number().pipe(stepChartSchema.shape.level),
+})
+const _route = useRoute('charts')
+const { style, level } = querySchema.parse(_route.query)
+const { t } = useI18n()
+const { data: _data, pending: loading } = await useFetch(
+  `/api/v1/charts/${style}/${level}`,
+  {
+    watch: [_route.query],
+    default: () => [],
+  }
+)
+// #endregion
+
+// #region Paging
+/** Current Page */
+const page = ref(1)
+/** Data count per page */
+const pageCount = 50
+/** Total data count */
+const pageTotal = computed(() => _data.value.length)
+const pageFrom = computed(() => (page.value - 1) * pageCount + 1)
+const pageTo = computed(() => Math.min(page.value * pageCount, pageTotal.value))
+const charts = computed(() =>
+  _data.value.slice(pageFrom.value - 1, pageTo.value)
+)
+// #endregion
+
+// Computed
+const title = `${_kinds[style - 1]} ${level}`
+const otherStyle = style === 2 ? 1 : 2
+
+// Method
+const headerLink = computed(() => [
+  {
+    label: t('change'),
+    to: { path: '/charts', query: { style: otherStyle, level } },
+    target: '_self',
+  },
+])
+/** Table Columns */
+const columns = computed(() => [
+  { key: 'series', label: t('column.series') },
+  { key: 'name', label: t('column.name') },
+  { key: 'difficulty', label: t('column.difficulty') },
+  { key: 'level', label: t('column.level') },
+  ...(user.value ? [{ key: 'score', label: t('column.score') }] : []),
+])
+/** Open ScoreEditor modal. */
+const editScore = async (_: ChartInfo) => {}
+</script>
+
 <template>
-  <section class="section">
-    <h1 class="title">{{ title }}</h1>
-
-    <div class="buttons">
-      <NuxtLink
-        class="button is-success"
-        :to="{ path: '/charts', query: { style: otherStyle, level } }"
-      >
-        {{ t('change') }}
-      </NuxtLink>
-    </div>
-    <div class="buttons">
-      <NuxtLink
-        v-for="lv in levels"
-        :key="lv"
-        class="button is-info"
-        :class="{
-          'is-outlined': isButtonDisabled(lv),
-        }"
-        :disabled="isButtonDisabled(lv)"
-        :to="{ path: '/charts', query: { style, level: lv } }"
-      >
-        {{ lv }}
-      </NuxtLink>
-    </div>
-
-    <OTable
-      :data="charts!"
-      striped
-      :loading="pending"
-      :mobile-cards="false"
-      paginated
-    >
-      <OTableColumn v-slot="props" field="series" :label="t('column.series')">
-        {{ shortenSeriesName(props.row.series) }}
-      </OTableColumn>
-      <OTableColumn v-slot="props" field="name" :label="t('column.name')">
-        <NuxtLink :to="`/songs/${props.row.id}`">
-          {{ props.row.name }}
-        </NuxtLink>
-      </OTableColumn>
-      <OTableColumn
-        v-slot="props"
-        field="difficulty"
-        :label="t('column.difficulty')"
-      >
-        <DifficultyBadge :difficulty="props.row.difficulty" />
-      </OTableColumn>
-      <OTableColumn
-        v-slot="props"
-        field="level"
-        :label="t('column.level')"
-        numeric
-      >
-        {{ props.row.level }}
-      </OTableColumn>
-      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
-        <OButton
-          icon-right="pencil-box-outline"
-          @click="editScore(props.row)"
-        />
-      </OTableColumn>
-
-      <template #empty>
-        <section v-if="pending" class="section">
-          <OSkeleton animated size="large" :count="3" />
-        </section>
-        <section v-else class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>{{ t('noData') }}</p>
-          </div>
-        </section>
+  <UPage>
+    <UPageHeader :title="title" :links="headerLink">
+      <template #description>
+        <UButton
+          v-for="i in levels"
+          :key="i"
+          :to="{ path: '/charts', query: { style, level: i } }"
+          exact-query
+          variant="ghost"
+          color="blue"
+        >
+          {{ i }}
+        </UButton>
       </template>
-    </OTable>
-  </section>
+    </UPageHeader>
+
+    <UPageBody>
+      <UTable
+        :rows="charts"
+        :columns="columns"
+        :loading="loading"
+        :empty-state="{
+          icon: 'i-heroicons-circle-stack-20-solid',
+          label: t('noData'),
+        }"
+      >
+        <template #series-data="{ row }">
+          {{ shortenSeriesName(row.series) }}
+        </template>
+        <template #name-data="{ row }">
+          <ULink class="blue" :to="`/songs/${row.id}`">{{ row.name }}</ULink>
+        </template>
+        <template #difficulty-data="{ row }">
+          <SongDifficultyBadge :difficulty="row.difficulty" />
+        </template>
+        <template v-if="user" #score-data="{ row }">
+          <UButton icon="i-heroicons-pencil-square" @click="editScore(row)" />
+        </template>
+      </UTable>
+
+      <div v-if="pageTotal" class="flex flex-wrap justify-between items-center">
+        <div>
+          <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
+            <template #from>
+              <span class="font-medium">{{ pageFrom }}</span>
+            </template>
+            <template #to>
+              <span class="font-medium">{{ pageTo }}</span>
+            </template>
+            <template #total>
+              <span class="font-medium">{{ pageTotal }}</span>
+            </template>
+          </i18n-t>
+        </div>
+
+        <UPagination
+          v-model="page"
+          :page-count="pageCount"
+          :total="pageTotal"
+        />
+      </div>
+    </UPageBody>
+  </UPage>
 </template>
 
 <i18n lang="json">
@@ -87,6 +143,7 @@
       "level": "Lv",
       "score": "スコア編集"
     },
+    "showing": "{total} 件中 {from} 件から {to} 件を表示中",
     "noData": "データがありません"
   },
   "en": {
@@ -98,51 +155,8 @@
       "level": "Lv",
       "score": "Edit Score"
     },
+    "showing": "Showing {from} to {to} of {total} results",
     "noData": "No Data"
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { useI18n } from 'vue-i18n'
-
-import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
-import DifficultyBadge from '~~/components/songs/DifficultyBadge.vue'
-import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
-import { getQueryInteger } from '~~/utils/path'
-import { levels, shortenSeriesName } from '~~/utils/song'
-
-/* c8 ignore next */
-definePageMeta({ key: route => route.fullPath })
-
-const _kinds = ['SINGLE', 'DOUBLE']
-
-// Data & Hook
-const _route = useRoute()
-const style = getQueryInteger(_route.query, 'style')
-const level = getQueryInteger(_route.query, 'level')
-const { oruga } = useProgrammatic()
-const { t } = useI18n()
-const { data: user } = await useFetch('/api/v1/user')
-const { data: charts, pending } = await useFetch(
-  `/api/v1/charts/${style}/${level}`,
-  { watch: [_route.query] }
-)
-
-// Computed
-const title = `${_kinds[style - 1]} ${level}`
-const otherStyle = style === 2 ? 1 : 2
-
-// Method
-const isButtonDisabled = (i: number) => level === i || null
-/** Open ScoreEditor modal. */
-const editScore = async ({ id, playStyle, difficulty }: ChartInfo) => {
-  const instance = oruga.modal.open({
-    component: ScoreEditor,
-    props: { songId: id, isCourse: false, playStyle, difficulty },
-    trapFocus: true,
-  })
-  await instance.promise
-}
-</script>

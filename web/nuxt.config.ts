@@ -2,6 +2,11 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
+  experimental: {
+    asyncContext: true,
+    typedPages: true,
+    sharedPrerenderData: true,
+  },
   nitro: {
     preset: 'azure',
     azure: {

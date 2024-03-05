@@ -1,7 +1,7 @@
 <template>
-  <span class="tag" :class="tagClass">
+  <UBadge class="tag" :color="color">
     {{ name }}
-  </span>
+  </UBadge>
 </template>
 
 <script lang="ts" setup>
@@ -14,7 +14,6 @@ interface DifficultyBadgeProps {
 
 const props = defineProps<DifficultyBadgeProps>()
 
-// eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-const name = computed(() => difficultyMap.get(props.difficulty)!)
-const tagClass = computed(() => `is-${name.value.toLowerCase()}`)
+const name = computed(() => difficultyMap.get(props.difficulty))
+const color = computed(() => getChartColor(props.difficulty))
 </script>

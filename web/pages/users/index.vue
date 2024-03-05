@@ -23,14 +23,18 @@ const query = reactive<z.infer<typeof schema>>({
   area: 0,
   code: undefined,
 })
-const { data, execute, status } = useFetch('/api/v1/users', {
+const {
+  data: _data,
+  execute,
+  status: _status,
+} = useFetch('/api/v1/users', {
   query,
   immediate: false,
   default: () => [],
   watch: false,
 })
 /** Loading state */
-const loading = computed(() => status.value === 'pending')
+const loading = computed(() => _status.value === 'pending')
 // #endregion
 
 // #region Paging
@@ -39,10 +43,12 @@ const page = ref(1)
 /** Data count per page */
 const pageCount = 20
 /** Total data count */
-const pageTotal = computed(() => data.value.length)
+const pageTotal = computed(() => _data.value.length)
 const pageFrom = computed(() => (page.value - 1) * pageCount + 1)
 const pageTo = computed(() => Math.min(page.value * pageCount, pageTotal.value))
-const users = computed(() => data.value.slice(pageFrom.value - 1, pageTo.value))
+const users = computed(() =>
+  _data.value.slice(pageFrom.value - 1, pageTo.value)
+)
 // #endregion
 
 // #region I18n
@@ -53,8 +59,8 @@ const areaOptions = computed(() =>
 )
 /** Table Columns */
 const columns = computed(() => [
-  { key: 'name', label: t('list.name') },
-  { key: 'area', label: t('list.area') },
+  { key: 'name', label: t('column.name') },
+  { key: 'area', label: t('column.area') },
 ])
 // #endregion
 </script>
@@ -92,7 +98,7 @@ const columns = computed(() => [
         :loading="loading"
         :empty-state="{
           icon: 'i-heroicons-circle-stack-20-solid',
-          label: t('list.empty'),
+          label: t('noData'),
         }"
       >
         <template #name-data="{ row }">
@@ -104,7 +110,7 @@ const columns = computed(() => [
 
       <div v-if="pageTotal" class="flex flex-wrap justify-between items-center">
         <div>
-          <i18n-t keypath="list.showing" tag="span" class="text-sm leading-5">
+          <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
             <template #from>
               <span class="font-medium">{{ pageFrom }}</span>
             </template>
@@ -137,12 +143,12 @@ const columns = computed(() => [
       "name": "登録名(部分一致)",
       "code": "DDR CODE"
     },
-    "list": {
+    "column": {
       "name": "登録名",
-      "area": "所属地域",
-      "showing": "{total} 件中 {from} 件から {to} 件を表示中",
-      "empty": "ユーザーが見つかりません"
+      "area": "所属地域"
     },
+    "showing": "{total} 件中 {from} 件から {to} 件を表示中",
+    "noData": "ユーザーが見つかりません",
     "search": "検索"
   },
   "en": {
@@ -152,12 +158,12 @@ const columns = computed(() => [
       "name": "Name (partial match)",
       "code": "DDR CODE"
     },
-    "list": {
+    "column": {
       "name": "Name",
-      "area": "Area",
-      "showing": "Showing {from} to {to} of {total} results",
-      "empty": "Not Found User"
+      "area": "Area"
     },
+    "showing": "Showing {from} to {to} of {total} results",
+    "noData": "Not Found User",
     "search": "Search"
   }
 }
