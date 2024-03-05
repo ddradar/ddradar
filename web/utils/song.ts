@@ -1,4 +1,4 @@
-import type { Series } from '@ddradar/core'
+import type { CourseChartSchema, Series, StepChartSchema } from '@ddradar/core'
 import { difficultyMap, playStyleMap, seriesSet } from '@ddradar/core'
 
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
@@ -40,3 +40,10 @@ export function getChartTitle({
 export function shortenSeriesName(series: string) {
   return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
 }
+
+export const getChartColor = (difficulty: number) =>
+  ['blue', 'yellow', 'red', 'green', 'purple'][difficulty]
+
+export const isCourseChart = (
+  chart: CourseChartSchema | StepChartSchema
+): chart is CourseChartSchema => !!(chart as CourseChartSchema).order
