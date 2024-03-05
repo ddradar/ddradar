@@ -31,12 +31,7 @@ const items = computed<AccordionItem[]>(() => [
 
 <template>
   <UCard
-    :ui="{
-      body: {
-        base: '',
-        padding: 'px-0 py-2 sm:px-0 sm:py-2',
-      },
-    }"
+    :ui="{ body: { base: '', padding: 'px-0 py-2 sm:px-0 sm:py-2' } }"
     :color="color"
   >
     <template #header>

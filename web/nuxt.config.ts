@@ -77,6 +77,9 @@ export default defineNuxtConfig({
     defaultLocale: 'ja',
     strategy: 'no_prefix',
   },
+  ui: {
+    icons: ['heroicons', 'simple-icons', 'flag'],
+  },
   swa: {
     customRoles: ['administrator'],
   },

@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import type { DropdownItem } from '#ui/types'
+
 const { locale, locales } = useI18n()
 
-const items = computed(() => [
-  locales.value.map(l => ({
+const items = computed<DropdownItem[][]>(() => [
+  locales.value.map<DropdownItem>(l => ({
     label: l.name!,
     icon: `i-flag-${l.flag}-4x3`,
     click: () => (locale.value = l.code),
