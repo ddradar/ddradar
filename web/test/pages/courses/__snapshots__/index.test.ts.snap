@@ -1,0 +1,2643 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: false, courses: <Data> } renders course list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                A20
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/courses/I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob"
+                >
+                  
+                  TWENTY
+                  
+                </a>
+                
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            Showing 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             to 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             of 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             results
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    No Data
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoading: true } renders loading state 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-5e930f4e=""
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-5e930f4e=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "en" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              GRADE (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Edit Score
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                A20
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/courses/I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob"
+                >
+                  
+                  TWENTY
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <button
+                  class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+                  type="button"
+                >
+                  
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 h-5 w-5"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                  
+                  
+                  <!--v-if-->
+                  
+                  
+                  <!--v-if-->
+                  
+                  
+                </button>
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            Showing 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             to 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             of 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             results
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: false, courses: <Data> } renders course list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  コース名
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                A20
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/courses/I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob"
+                >
+                  
+                  TWENTY
+                  
+                </a>
+                
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件中 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件から 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件を表示中
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: false, courses: [] } renders no data 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  コース名
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    データがありません
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoading: true } renders loading state 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  コース名
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-5e930f4e=""
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-5e930f4e=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`Page /courses > { locale: "ja" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              NONSTOP (A20)
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A20 PLUS)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=1&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              NONSTOP (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/courses?type=2&series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              段位認定 (A3)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  コース名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  スコア編集
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                A20
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/courses/I90bQ81P1blOPIdd9PPl6I9D8DQ1dIob"
+                >
+                  
+                  TWENTY
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <button
+                  class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+                  type="button"
+                >
+                  
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 h-5 w-5"
+                    data-v-80fe1a27=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                    />
+                  </svg>
+                  
+                  
+                  <!--v-if-->
+                  
+                  
+                  <!--v-if-->
+                  
+                  
+                </button>
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件中 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件から 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件を表示中
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-80fe1a27=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

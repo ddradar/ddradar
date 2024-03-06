@@ -134,39 +134,6 @@ const editScore = async (_songId: string) => {}
         />
       </div>
     </UPageBody>
-    <OTable
-      :data="courses!"
-      striped
-      :loading="loading"
-      :mobile-cards="false"
-      paginated
-    >
-      <OTableColumn v-slot="props" field="series" :label="t('column.series')">
-        {{ shortenSeriesName(props.row.series) }}
-      </OTableColumn>
-      <OTableColumn v-slot="props" field="name" :label="t('column.name')">
-        <NuxtLink :to="`/courses/${props.row.id}`">
-          {{ props.row.name }}
-        </NuxtLink>
-      </OTableColumn>
-      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
-        <OButton
-          icon-right="pencil-box-outline"
-          @click="editScore(props.row.id)"
-        />
-      </OTableColumn>
-
-      <template #empty>
-        <section v-if="loading" class="section">
-          <OSkeleton animated size="large" :count="3" />
-        </section>
-        <section v-else class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>{{ t('noData') }}</p>
-          </div>
-        </section>
-      </template>
-    </OTable>
   </UPage>
 </template>
 
@@ -187,7 +154,7 @@ const editScore = async (_songId: string) => {}
   "en": {
     "nonstop": "NONSTOP",
     "grade": "GRADE",
-    "course": "COURSE",
+    "course": "COURSES",
     "column": {
       "series": "Series",
       "name": "Name",

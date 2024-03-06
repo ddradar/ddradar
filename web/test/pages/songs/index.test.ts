@@ -1,14 +1,11 @@
-import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import Oruga, { useProgrammatic } from '@oruga-ui/oruga-next'
-import { bulmaConfig } from '@oruga-ui/theme-bulma'
-import { RouterLinkStub } from '@vue/test-utils'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, test, vi } from 'vitest'
 import { ref } from 'vue'
 import { createI18n } from 'vue-i18n'
 
-import { publicUser, testSongList as songs } from '~~/../core/test/data'
-import Page from '~~/pages/songs/index.vue'
-import { mountAsync } from '~~/test/test-utils'
+import { publicUser, testSongList as songs } from '~/../core/test/data'
+import Page from '~/pages/songs/index.vue'
+import { global, locales } from '~/test/test-utils'
 
 const { useFetchMock, useRouteMock } = vi.hoisted(() => ({
   useFetchMock: vi.fn(),
@@ -17,20 +14,11 @@ const { useFetchMock, useRouteMock } = vi.hoisted(() => ({
 mockNuxtImport('useFetch', () => useFetchMock)
 mockNuxtImport('useRoute', () => useRouteMock)
 
-const open = vi.fn()
-vi.mock('@oruga-ui/oruga-next', async origin => {
-  const actual = (await origin()) as typeof import('@oruga-ui/oruga-next')
-  return { ...actual, useProgrammatic: vi.fn() }
-})
-vi.mocked(useProgrammatic).mockReturnValue({
-  oruga: { modal: { open } },
-})
-
-describe('Page /songs', () => {
+describe('/songs', () => {
   const query = { series: '10' }
 
-  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = createI18n({ legacy: false, locale })
+  describe.each(locales)('{ locale: "%s" }', locale => {
+    const global = { plugins: [createI18n({ locale, legacy: false })] }
 
     test('{ isLoading: true } renders loading state', async () => {
       // Arrange
@@ -44,12 +32,7 @@ describe('Page /songs', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -66,12 +49,7 @@ describe('Page /songs', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -92,12 +70,7 @@ describe('Page /songs', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -114,12 +87,7 @@ describe('Page /songs', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -133,7 +101,6 @@ describe('Page /songs', () => {
     ['1', undefined, 'か'],
   ])('?name=%s&series=%s renders "%s" title', async (name, series, title) => {
     // Arrange
-    const i18n = createI18n({ legacy: false, locale: 'en' })
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { name, series } } as any)
     vi.mocked(useFetch).mockImplementation(path =>
@@ -144,42 +111,30 @@ describe('Page /songs', () => {
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
     // Act
-    const wrapper = await mountAsync(Page, {
-      global: {
-        plugins: [[Oruga, bulmaConfig], i18n],
-        stubs: { NuxtLink: RouterLinkStub },
-      },
-    })
+    const wrapper = await mountSuspended(Page, { global })
 
     // Assert
     expect(wrapper.find('h1').text()).toBe(title)
   })
-
-  // Method
-  test('score edit button calls modal open', async () => {
+  test.each([
+    ['ja', 'すべての楽曲を表示'],
+    ['en', 'Show All Songs'],
+  ])('{ locale: "%s" } renders "%s" title', async (locale, title) => {
     // Arrange
-    const i18n = createI18n({ legacy: false, locale: 'en' })
+    const global = { plugins: [createI18n({ legacy: false, locale })] }
     /* eslint-disable @typescript-eslint/no-explicit-any */
-    vi.mocked(useRoute).mockReturnValue({ query } as any)
+    vi.mocked(useRoute).mockReturnValue({ query: {} } as any)
     vi.mocked(useFetch).mockImplementation(path =>
       path === '/api/v1/user'
-        ? { data: ref(publicUser) }
-        : ({ pending: ref(false), data: ref(songs) } as any)
+        ? { data: ref(null) }
+        : ({ pending: ref(true), data: ref([]) } as any)
     )
     /* eslint-enable @typescript-eslint/no-explicit-any */
-    open.mockClear()
-    open.mockReturnValue({ promise: Promise.resolve() })
 
     // Act
-    const wrapper = await mountAsync(Page, {
-      global: {
-        plugins: [[Oruga, bulmaConfig], i18n],
-        stubs: { NuxtLink: RouterLinkStub },
-      },
-    })
-    await wrapper.find('i.mdi-pencil-box-outline').trigger('click')
+    const wrapper = await mountSuspended(Page, { global })
 
     // Assert
-    expect(open).toBeCalled()
+    expect(wrapper.find('h1').text()).toBe(title)
   })
 })
