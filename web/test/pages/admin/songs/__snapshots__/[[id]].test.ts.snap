@@ -1,0 +1,1544 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/admin/songs > snapshot test 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Add/Update Song
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <form
+      id="<input id="X0FSgiXBPY_1" name="id" type="text" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+    >
+      
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_1"
+            >
+              
+              Song ID
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_1"
+              name="id"
+              type="text"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            Load
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          <a
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500 dark:bg-blue-400 dark:hover:bg-blue-500 dark:disabled:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400 inline-flex items-center"
+            href="https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+             See Thumbnail 
+            
+            
+            <!--v-if-->
+            
+            
+          </a>
+          
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_2"
+            >
+              
+              Name
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_2"
+              name="name"
+              type="text"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_3"
+            >
+              
+              Furigana
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_3"
+              name="nameKana"
+              type="text"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            Auto Set
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_4"
+            >
+              
+              Artist
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_4"
+              name="artist"
+              type="text"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_5"
+            >
+              
+              Series
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+            data-v-9ad88b65=""
+          >
+            <select
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+              data-v-9ad88b65=""
+              id="X0FSgiXBPY_5"
+              name="series"
+            >
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR 1st"
+              >
+                DDR 1st
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR 2ndMIX"
+              >
+                DDR 2ndMIX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR 3rdMIX"
+              >
+                DDR 3rdMIX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR 4thMIX"
+              >
+                DDR 4thMIX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR 5thMIX"
+              >
+                DDR 5thMIX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDRMAX"
+              >
+                DDRMAX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDRMAX2"
+              >
+                DDRMAX2
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR EXTREME"
+              >
+                DDR EXTREME
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR SuperNOVA"
+              >
+                DDR SuperNOVA
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR SuperNOVA2"
+              >
+                DDR SuperNOVA2
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR X"
+              >
+                DDR X
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR X2"
+              >
+                DDR X2
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DDR X3 VS 2ndMIX"
+              >
+                DDR X3 VS 2ndMIX
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution (2013)"
+              >
+                DanceDanceRevolution (2013)
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution (2014)"
+              >
+                DanceDanceRevolution (2014)
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution A"
+              >
+                DanceDanceRevolution A
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution A20"
+              >
+                DanceDanceRevolution A20
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution A20 PLUS"
+              >
+                DanceDanceRevolution A20 PLUS
+              </option>
+              
+              
+              <option
+                data-v-9ad88b65=""
+                value="DanceDanceRevolution A3"
+              >
+                DanceDanceRevolution A3
+              </option>
+              
+              
+            </select>
+            <!--v-if-->
+            <span
+              class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+              data-v-9ad88b65=""
+            >
+              
+              <svg
+                aria-hidden="true"
+                class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                data-v-80fe1a27=""
+                data-v-9ad88b65=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </span>
+          </div>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_6"
+            >
+              
+              BPM
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_6"
+              placeholder="min"
+              type="number"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <div
+            class="relative"
+          >
+            <input
+              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+              id="X0FSgiXBPY_6"
+              placeholder="max"
+              type="number"
+            />
+            
+            
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        <div
+          class=""
+        >
+          
+          <div
+            class="relative flex items-start"
+          >
+            <div
+              class="flex items-center h-5"
+            >
+              <input
+                class="h-4 w-4 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-current dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent form-checkbox rounded bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 text-primary-500 dark:text-primary-400"
+                id="X0FSgiXBPY_7"
+                name="deleted"
+                type="checkbox"
+              />
+            </div>
+            <div
+              class="ms-3 flex flex-col"
+            >
+              <label
+                class="text-sm font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_7"
+              >
+                
+                Deleted
+                
+                <!--v-if-->
+              </label>
+              <!--v-if-->
+            </div>
+          </div>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <div
+        class=""
+      >
+        <div
+          class=""
+        >
+          <div
+            class="flex content-center items-center justify-between text-sm"
+          >
+            <label
+              class="block font-medium text-gray-700 dark:text-gray-200"
+              for="X0FSgiXBPY_8"
+            >
+              
+              Charts
+              
+            </label>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div
+          class="mt-1 relative"
+        >
+          
+          <div
+            class="relative overflow-x-auto"
+          >
+            <table
+              class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+            >
+              <thead
+                class="relative"
+              >
+                <tr
+                  class=""
+                >
+                  <!--v-if-->
+                  
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      Style
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      Difficulty
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      Lv
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      Notes
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      FA
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      SA
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      STR
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      VOL
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      AIR
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      FRE
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      CHA
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span />
+                    
+                  </th>
+                  
+                </tr>
+                <!--v-if-->
+              </thead>
+              <tbody
+                class="divide-y divide-gray-200 dark:divide-gray-800"
+              >
+                
+                <tr
+                  class=""
+                >
+                  <!--v-if-->
+                  
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                      data-v-9ad88b65=""
+                    >
+                      <select
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                        data-v-9ad88b65=""
+                        id="X0FSgiXBPY_8"
+                        modelmodifiers="[object Object]"
+                        name="charts"
+                      >
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="1"
+                        >
+                          SINGLE
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="2"
+                        >
+                          DOUBLE
+                        </option>
+                        
+                        
+                      </select>
+                      <!--v-if-->
+                      <span
+                        class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                        data-v-9ad88b65=""
+                      >
+                        
+                        <svg
+                          aria-hidden="true"
+                          class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                          data-v-80fe1a27=""
+                          data-v-9ad88b65=""
+                          height="1em"
+                          role="img"
+                          viewBox="0 0 20 20"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                        
+                      </span>
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                      data-v-9ad88b65=""
+                    >
+                      <select
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                        data-v-9ad88b65=""
+                        id="X0FSgiXBPY_8"
+                        modelmodifiers="[object Object]"
+                        name="charts"
+                      >
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="0"
+                        >
+                          BEGINNER
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="1"
+                        >
+                          BASIC
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="2"
+                        >
+                          DIFFICULT
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="3"
+                        >
+                          EXPERT
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="4"
+                        >
+                          CHALLENGE
+                        </option>
+                        
+                        
+                      </select>
+                      <!--v-if-->
+                      <span
+                        class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                        data-v-9ad88b65=""
+                      >
+                        
+                        <svg
+                          aria-hidden="true"
+                          class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                          data-v-80fe1a27=""
+                          data-v-9ad88b65=""
+                          height="1em"
+                          role="img"
+                          viewBox="0 0 20 20"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                        
+                      </span>
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="20"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <button
+                      class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+                      type="button"
+                    >
+                      
+                      
+                    </button>
+                    
+                  </td>
+                  
+                </tr>
+                <tr
+                  class=""
+                >
+                  <!--v-if-->
+                  
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                      data-v-9ad88b65=""
+                    >
+                      <select
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                        data-v-9ad88b65=""
+                        id="X0FSgiXBPY_8"
+                        modelmodifiers="[object Object]"
+                        name="charts"
+                      >
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="1"
+                        >
+                          SINGLE
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="2"
+                        >
+                          DOUBLE
+                        </option>
+                        
+                        
+                      </select>
+                      <!--v-if-->
+                      <span
+                        class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                        data-v-9ad88b65=""
+                      >
+                        
+                        <svg
+                          aria-hidden="true"
+                          class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                          data-v-80fe1a27=""
+                          data-v-9ad88b65=""
+                          height="1em"
+                          role="img"
+                          viewBox="0 0 20 20"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                        
+                      </span>
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                      data-v-9ad88b65=""
+                    >
+                      <select
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                        data-v-9ad88b65=""
+                        id="X0FSgiXBPY_8"
+                        modelmodifiers="[object Object]"
+                        name="charts"
+                      >
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="0"
+                        >
+                          BEGINNER
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="1"
+                        >
+                          BASIC
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="2"
+                        >
+                          DIFFICULT
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="3"
+                        >
+                          EXPERT
+                        </option>
+                        
+                        
+                        <option
+                          data-v-9ad88b65=""
+                          value="4"
+                        >
+                          CHALLENGE
+                        </option>
+                        
+                        
+                      </select>
+                      <!--v-if-->
+                      <span
+                        class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                        data-v-9ad88b65=""
+                      >
+                        
+                        <svg
+                          aria-hidden="true"
+                          class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                          data-v-80fe1a27=""
+                          data-v-9ad88b65=""
+                          height="1em"
+                          role="img"
+                          viewBox="0 0 20 20"
+                          width="1em"
+                          xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink"
+                        >
+                          <path
+                            clip-rule="evenodd"
+                            d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                            fill="currentColor"
+                            fill-rule="evenodd"
+                          />
+                        </svg>
+                        
+                      </span>
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="20"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="9999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="X0FSgiXBPY_8"
+                        max="999"
+                        min="0"
+                        name="charts"
+                        type="number"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <button
+                      class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+                      type="button"
+                    >
+                      
+                      
+                    </button>
+                    
+                  </td>
+                  
+                </tr>
+                
+              </tbody>
+            </table>
+          </div>
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            Add Chart
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          <!--v-if-->
+        </div>
+      </div>
+      <button
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+        type="submit"
+      >
+        
+        
+        <!--v-if-->
+        
+        
+        Save
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+    </form>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

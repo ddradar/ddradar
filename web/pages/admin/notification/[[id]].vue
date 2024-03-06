@@ -26,10 +26,13 @@ if (id) await execute()
 const pageTitle = computed(() => `${id ? 'Update' : 'Add'} Notification`)
 
 const saveNotification = async () => {
-  notification.value = await $fetch('/api/v1/notification', {
-    method: 'POST',
-    body: notification.value,
-  })
+  notification.value = await $fetch<(typeof notification)['value']>(
+    '/api/v1/notification',
+    {
+      method: 'POST',
+      body: notification.value,
+    }
+  )
 }
 </script>
 
@@ -41,7 +44,7 @@ const saveNotification = async () => {
       <UForm
         :state="notification"
         :schema="schema"
-        @onsubmit="saveNotification()"
+        @submit="saveNotification()"
       >
         <UFormGroup label="Title" name="title">
           <UInput v-model="notification.title" />

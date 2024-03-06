@@ -97,7 +97,7 @@ const columns = [
 <template>
   <UPage>
     <UPageHeader title="Add/Update Song" />
-    <UForm :state="song" :schema="songSchema" @onsubmit="saveSongInfo()">
+    <UForm :state="song" :schema="songSchema" @submit="saveSongInfo()">
       <UFormGroup label="Song ID" name="id">
         <UInput v-model="song.id" />
         <UButton @click="refresh">Load</UButton>
