@@ -1,10 +1,6 @@
 <script setup lang="ts">
-import {
-  type CourseChartSchema,
-  difficultyMap,
-  playStyleMap,
-  type StepChartSchema,
-} from '@ddradar/core'
+import type { CourseChartSchema, StepChartSchema } from '@ddradar/core'
+import { difficultyMap, playStyleMap } from '@ddradar/core'
 
 import type { AccordionItem } from '#ui/types'
 

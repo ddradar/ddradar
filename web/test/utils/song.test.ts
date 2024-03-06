@@ -1,11 +1,7 @@
 // @vitest-environment node
 import { describe, expect, test } from 'vitest'
 
-import {
-  getChartTitle,
-  getDisplayedBPM,
-  shortenSeriesName,
-} from '~~/utils/song'
+import { getChartTitle, getDisplayedBPM, shortenSeriesName } from '~/utils/song'
 
 describe('utils/song.ts', () => {
   describe('shortenSeriesName', () => {

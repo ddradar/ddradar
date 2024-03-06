@@ -2,7 +2,8 @@
 import type { DropdownItem } from '#ui/types'
 
 const { t } = useI18n()
-const { login } = await useEasyAuth()
+const login = (provider: string) =>
+  navigateTo(`/.auth/login/${provider}`, { external: true })
 const items = computed<DropdownItem[][]>(() => [
   [
     {

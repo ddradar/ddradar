@@ -1,26 +1,8 @@
-import type { ComponentMountingOptions } from '@vue/test-utils'
-import { flushPromises, mount } from '@vue/test-utils'
-import type { DefineComponent } from 'vue'
-import { defineComponent, h, Suspense } from 'vue'
+import type { LocaleObject } from '@nuxtjs/i18n'
 
-export async function mountAsync<T>(
-  component: T,
-  options?: ComponentMountingOptions<T>
-) {
-  const { props, ..._options } = options ?? {}
-  const wrapper = mount(
-    defineComponent({
-      render() {
-        return h(Suspense, null, {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          default: h(component as DefineComponent<any, any>, props),
-          fallback: h('div', 'fallback'),
-        })
-      },
-    }),
-    _options
-  )
+import config from '~/nuxt.config'
 
-  await flushPromises()
-  return wrapper
-}
+/** Locale strings */
+export const locales = [...(config.i18n!.locales as LocaleObject[])].map(
+  l => l.code
+)

@@ -1,0 +1,51 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`components/song/DifficultyBadge.vue > { difficulty: 0 } snapshot test 1`] = `
+<span
+  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-blue-500 dark:bg-blue-400 text-white dark:text-gray-900 tag"
+>
+  
+  BEGINNER
+  
+</span>
+`;
+
+exports[`components/song/DifficultyBadge.vue > { difficulty: 1 } snapshot test 1`] = `
+<span
+  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-yellow-500 dark:bg-yellow-400 text-white dark:text-gray-900 tag"
+>
+  
+  BASIC
+  
+</span>
+`;
+
+exports[`components/song/DifficultyBadge.vue > { difficulty: 2 } snapshot test 1`] = `
+<span
+  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-red-500 dark:bg-red-400 text-white dark:text-gray-900 tag"
+>
+  
+  DIFFICULT
+  
+</span>
+`;
+
+exports[`components/song/DifficultyBadge.vue > { difficulty: 3 } snapshot test 1`] = `
+<span
+  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-green-500 dark:bg-green-400 text-white dark:text-gray-900 tag"
+>
+  
+  EXPERT
+  
+</span>
+`;
+
+exports[`components/song/DifficultyBadge.vue > { difficulty: 4 } snapshot test 1`] = `
+<span
+  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-purple-500 dark:bg-purple-400 text-white dark:text-gray-900 tag"
+>
+  
+  CHALLENGE
+  
+</span>
+`;

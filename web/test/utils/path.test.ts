@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, test } from 'vitest'
 
-import { getQueryInteger, getQueryString } from '~~/utils/path'
+import { getQueryInteger, getQueryString } from '~/utils/path'
 
 describe('utils/path.ts', () => {
   describe('getQueryString', () => {
