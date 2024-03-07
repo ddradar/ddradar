@@ -4,48 +4,61 @@ import { z } from 'zod'
 
 definePageMeta({ allowedRoles: 'administrator' })
 
+const _toast = useToast()
 const _route = useRoute('admin-notification-id')
+const { id: _id } = _route.params
+
+const title = computed(() => `${_id ? 'Update' : 'Add'} Notification`)
+useHeadSafe({ title })
+
+// #region Data Fetching
+const { data: notification, execute } = useFetch(
+  `/api/v1/notification/${_id}`,
+  {
+    default: () => ({
+      sender: 'SYSTEM',
+      pinned: false,
+      type: 'info',
+      icon: '',
+      title: '',
+      body: '',
+    }),
+    immediate: false,
+  }
+)
+if (_id) await execute()
+// #endregion
+
+// #region Form
+/** Expected form body */
 const schema = notificationSchema
   .omit({ timeStamp: true })
   .extend({ timeStamp: z.onumber() })
-
-const id = _route.params.id
-const { data: notification, execute } = useFetch(`/api/v1/notification/${id}`, {
-  default: () => ({
-    sender: 'SYSTEM',
-    pinned: false,
-    type: 'info',
-    icon: '',
-    title: '',
-    body: '',
-  }),
-  immediate: false,
-})
-if (id) await execute()
-
-const pageTitle = computed(() => `${id ? 'Update' : 'Add'} Notification`)
-
-const saveNotification = async () => {
-  notification.value = await $fetch<(typeof notification)['value']>(
-    '/api/v1/notification',
-    {
-      method: 'POST',
-      body: notification.value,
-    }
-  )
+/** Save current notification. */
+const save = async () => {
+  try {
+    notification.value = await $fetch<(typeof notification)['value']>(
+      '/api/v1/notification',
+      { method: 'POST', body: notification.value }
+    )
+    _toast.add({
+      id: 'notification-updated',
+      title: 'Success!',
+      color: 'green',
+    })
+  } catch (error: any) {
+    _toast.add({ id: 'notification-update-error', title: error, color: 'red' })
+  }
 }
+// #endregion
 </script>
 
 <template>
   <UPage>
-    <UPageHeader :title="pageTitle" />
+    <UPageHeader :title="title" />
 
     <UPageBody>
-      <UForm
-        :state="notification"
-        :schema="schema"
-        @submit="saveNotification()"
-      >
+      <UForm :state="notification" :schema="schema" @submit="save()">
         <UFormGroup label="Title" name="title">
           <UInput v-model="notification.title" />
         </UFormGroup>

@@ -2,7 +2,7 @@ import type { NotificationSchema } from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
 import { z } from 'zod'
 
-type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
+export type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
 
 /** Expected query */
 const schema = z.object({ scope: z.ostring() })

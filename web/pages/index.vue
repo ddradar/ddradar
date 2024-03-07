@@ -2,6 +2,7 @@
 import { nameIndexMap } from '@ddradar/core'
 
 const { t } = useI18n()
+const { data: notifications } = await useFetch('/api/v1/notification')
 </script>
 
 <i18n lang="json">
@@ -38,6 +39,10 @@ const { t } = useI18n()
     <UPageHeader title="DDRadar" :description="t('subtitle')" />
 
     <UPageBody>
+      <NotificationAlert v-for="n in notifications" :key="n.id" :data="n" />
+      <UContainer class="text-right my-2">
+        <ULink to="/notification">{{ t('old_notification') }}</ULink>
+      </UContainer>
       <UPageGrid>
         <UPageCard :title="t('search.name')">
           <UButton

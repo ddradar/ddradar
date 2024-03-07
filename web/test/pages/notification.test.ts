@@ -1,33 +1,26 @@
-import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import Oruga from '@oruga-ui/oruga-next'
-import { bulmaConfig } from '@oruga-ui/theme-bulma'
-import { RouterLinkStub } from '@vue/test-utils'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
-import { notifications } from '~~/../core/test/data'
-import Page from '~~/pages/notification.vue'
-import { mountAsync } from '~~/test/test-utils'
-import { createClientPrincipal } from '~~/test/test-utils-server'
+import { notifications } from '~/../core/test/data'
+import Page from '~/pages/notification.vue'
+import { locales } from '~/test/test-utils'
+import { createClientPrincipal } from '~/test/test-utils-server'
 
-const { useEasyAuthMock, useLazyFetchMock } = vi.hoisted(() => ({
-  useEasyAuthMock: vi.fn(),
-  useLazyFetchMock: vi.fn(),
-}))
+const { useEasyAuthMock, useLazyFetchMock, unixTimeToStringMock } = vi.hoisted(
+  () => ({
+    useEasyAuthMock: vi.fn(),
+    useLazyFetchMock: vi.fn(),
+    unixTimeToStringMock: (u: number) => new Date(u * 1000).toUTCString(),
+  })
+)
 mockNuxtImport('useEasyAuth', () => useEasyAuthMock)
 mockNuxtImport('useLazyFetch', () => useLazyFetchMock)
+mockNuxtImport('unixTimeToString', () => unixTimeToStringMock)
 
-vi.mock('~~/utils/format', async origin => {
-  const actual = (await origin()) as typeof import('~~/utils/format')
-  return {
-    ...actual,
-    unixTimeToString: (u: number) => new Date(u * 1000).toUTCString(),
-  }
-})
-
-describe('Page /notification', () => {
-  describe.each(['ja', 'en'])('{ locale: "%s" } snapshot test', locale => {
-    const i18n = createI18n({ legacy: false, locale })
+describe('/notification', () => {
+  describe.each(locales)('{ locale: "%s" } snapshot test', locale => {
+    const global = { plugins: [createI18n({ legacy: false, locale })] }
 
     test('({ messages: [...] }) renders notification', async () => {
       // Arrange
@@ -42,12 +35,7 @@ describe('Page /notification', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -66,15 +54,10 @@ describe('Page /notification', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
-      expect(wrapper.find('.mdi.mdi-pencil-box-outline').exists()).toBeTruthy()
+      expect(wrapper.find('table').element).toMatchSnapshot()
     })
 
     test('({ loading: true }) renders loading state', async () => {
@@ -85,21 +68,15 @@ describe('Page /notification', () => {
       } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(true),
-        data: ref(null),
+        data: ref([]),
       } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
-      expect(wrapper.find('.o-load.loading').exists()).toBeTruthy()
-      expect(wrapper.find('td > section.section').element).toMatchSnapshot()
+      expect(wrapper.find('table').element).toMatchSnapshot()
     })
 
     test('({ messages: [] }) renders no notification', async () => {
@@ -115,17 +92,10 @@ describe('Page /notification', () => {
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
-      const wrapper = await mountAsync(Page, {
-        global: {
-          plugins: [[Oruga, bulmaConfig], i18n],
-          stubs: { NuxtLink: RouterLinkStub },
-        },
-      })
+      const wrapper = await mountSuspended(Page, { global })
 
       // Assert
-      expect(
-        wrapper.find('tbody > tr > td > section.section').element
-      ).toMatchSnapshot()
+      expect(wrapper.find('table').element).toMatchSnapshot()
     })
   })
 })

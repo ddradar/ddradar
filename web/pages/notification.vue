@@ -1,79 +1,62 @@
+<script lang="ts" setup>
+const { t } = useI18n()
+const { clientPrincipal } = await useEasyAuth()
+
+const { data: messages, pending } = await useLazyFetch('/api/v1/notification', {
+  default: () => [],
+})
+
+const isAdmin = computed(
+  () => !!clientPrincipal.value?.userRoles.includes('administrator')
+)
+/** Table columns */
+const columns = computed(() => [
+  { key: 'title', label: t('column.title') },
+  { key: 'timeStamp', label: t('column.timeStamp'), class: 'w-80' },
+  ...(isAdmin.value ? [{ key: 'action', label: 'Edit' }] : []),
+])
+</script>
+
 <template>
-  <section class="section">
-    <h1 class="title">{{ t('pageTitle') }}</h1>
-    <section>
-      <OTable
-        :data="messages ?? []"
-        paginated
-        :per-page="20"
-        striped
-        :loading="pending"
-        detailed
-        detail-key="id"
-        show-detail-icon
-      >
-        <OTableColumn v-slot="props" field="icon">
-          <OButton :variant="props.row.type" :icon-left="props.row.icon" />
-        </OTableColumn>
-        <OTableColumn v-slot="props" field="title" :label="t('title')">
-          {{ props.row.title }}
-        </OTableColumn>
-        <OTableColumn v-slot="props" field="timeStamp" :label="t('date')">
-          {{ unixTimeToString(props.row.timeStamp) }}
-        </OTableColumn>
-        <OTableColumn v-slot="props" :visible="isAdmin" label="Edit">
-          <NuxtLink :to="`/admin/notification/${props.row.id}`">
-            <OIcon icon="pencil-box-outline" />
-          </NuxtLink>
-        </OTableColumn>
+  <UPage>
+    <UPageHeader :title="t('pageTitle')" />
 
-        <template #detail="props">
-          <!-- eslint-disable-next-line vue/no-v-html -->
-          <div class="content" v-html="markdownToHTML(props.row.body)"></div>
+    <UPageBody>
+      <UTable :rows="messages" :columns="columns" :loading="pending">
+        <template #title-data="{ row }">
+          <NotificationAccordion :data="row" />
         </template>
-
-        <template #empty>
-          <section v-if="pending" class="section">
-            <OSkeleton animated />
-            <OSkeleton animated />
-            <OSkeleton animated />
-          </section>
-          <section v-else class="section">
-            <div class="content has-text-grey has-text-centered">
-              <p>{{ t('noData') }}</p>
-            </div>
-          </section>
+        <template #timeStamp-data="{ row }">
+          {{ unixTimeToString(row.timeStamp) }}
         </template>
-      </OTable>
-    </section>
-  </section>
+        <template #action-data="{ row }">
+          <UButton
+            icon="i-heroicons-pencil-square"
+            :to="`/admin/notification/${row.id}`"
+          />
+        </template>
+      </UTable>
+    </UPageBody>
+  </UPage>
 </template>
 
 <i18n lang="json">
 {
   "ja": {
     "pageTitle": "お知らせ一覧",
-    "title": "タイトル",
-    "date": "投稿日時",
+    "column": {
+      "title": "タイトル",
+      "timeStamp": "投稿日時"
+    },
     "noData": "データがありません"
   },
   "en": {
     "pageTitle": "All Notification List",
-    "title": "Title",
-    "date": "Date",
+    "column": {
+      "title": "Title",
+      "timeStamp": "Date"
+    },
     "noData": "No Data"
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import { markdownToHTML, unixTimeToString } from '~~/utils/format'
-
-// Data & Hook
-const { t } = useI18n()
-const { clientPrincipal } = await useEasyAuth()
-const isAdmin = computed(
-  () => !!clientPrincipal.value?.userRoles.includes('administrator')
-)
-const { data: messages, pending } = await useLazyFetch('/api/v1/notification')
-</script>
