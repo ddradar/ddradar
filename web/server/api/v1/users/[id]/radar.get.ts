@@ -18,6 +18,8 @@ const schema = z.object({
     .optional()
     .catch(undefined),
 })
+/** Default radar value */
+const radar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
 
 /**
  * Get Groove Radar that match the specified userId and playStyle.
@@ -63,10 +65,16 @@ export default defineEventHandler(async event => {
   ]
   if (style) conditions.push({ condition: 'c.playStyle = @', value: style })
 
-  return (await fetchList(
+  const result = await fetchList(
     'UserDetails',
     ['playStyle', 'stream', 'voltage', 'air', 'freeze', 'chaos'],
     conditions,
     { playStyle: 'ASC' }
-  )) as GrooveRadarInfo[]
+  )
+  return result.length
+    ? result
+    : ([
+        { playStyle: 1, ...radar },
+        { playStyle: 2, ...radar },
+      ] as GrooveRadarInfo[])
 })

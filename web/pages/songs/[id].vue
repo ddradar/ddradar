@@ -21,7 +21,7 @@ const headLink = computed(() =>
         {
           icon: 'i-heroicons-pencil-square',
           label: '編集',
-          to: `/admin/song/${song.value!.id}`,
+          to: `/admin/songs/${song.value!.id}`,
         },
       ]
     : []

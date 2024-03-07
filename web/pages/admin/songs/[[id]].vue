@@ -22,6 +22,7 @@ const _chart = {
   chaos: 0,
 } as const
 
+const _toast = useToast()
 const _route = useRoute('admin-songs-id')
 const { data: song, refresh } = useFetch(`/api/v1/songs/${_route.params.id}`, {
   default: () => ({
@@ -64,7 +65,15 @@ const setNameKana = () => (song.value.nameKana = song.value.name.toUpperCase())
 const saveSongInfo = async () => {
   const nameIndex = getNameIndex(song.value.nameKana)
   const body = { ...song.value, nameIndex }
-  song.value = await $fetch<SongInfo>('/api/v1/songs', { method: 'POST', body })
+  try {
+    song.value = await $fetch<SongInfo>('/api/v1/songs', {
+      method: 'POST',
+      body,
+    })
+    _toast.add({ title: 'Success!', color: 'green' })
+  } catch (error: any) {
+    _toast.add({ title: error.message, color: 'red' })
+  }
 }
 
 /** PlayStyle Options */
