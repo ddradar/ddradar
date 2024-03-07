@@ -207,12 +207,6 @@ importers:
       '@nuxt/ui-pro':
         specifier: ^1.0.1
         version: 1.0.1(nuxt@3.10.3)(rollup@4.9.6)(vite@5.1.4)(vue@3.4.20)
-      '@oruga-ui/oruga-next':
-        specifier: ^0.6.0
-        version: 0.6.0(vue@3.4.20)
-      '@oruga-ui/theme-bulma':
-        specifier: ^0.2.11
-        version: 0.2.11
       chart.js:
         specifier: ^4.4.2
         version: 4.4.2
@@ -3373,20 +3367,6 @@ packages:
     resolution: {integrity: sha512-XuySG1E38YScSJoMlqovLru4KTUNSjgVTIjyh7qMX6aNN5HY5Ct5LhRJdxO79JtTzKfzV/bnWpz+zquYrISsvw==}
     dev: true
 
-  /@oruga-ui/oruga-next@0.6.0(vue@3.4.20):
-    resolution: {integrity: sha512-M1Y5PgCWBUDmQGH74cgzrp3vKaRFdHVtGNr0DwejeJGScB7Q6jodW4xgCz6K4hajLgHW6zxz/3ukpC4ZczlfaQ==}
-    peerDependencies:
-      vue: ^3.0.0
-    dependencies:
-      vue: 3.4.20(typescript@5.3.3)
-    dev: false
-
-  /@oruga-ui/theme-bulma@0.2.11:
-    resolution: {integrity: sha512-yMYNTWDNZQ0qyzAlWVyvEO/ZDRjRIyPDTf58IL+OVJuVCsq1Nn/4nFltemuQA1foL6KpsqXMFT9pBTf4wQHMPw==}
-    dependencies:
-      bulma: 0.9.4
-    dev: false
-
   /@parcel/watcher-android-arm64@2.4.1:
     resolution: {integrity: sha512-LOi/WTbbh3aTn2RYddrO8pnapixAziFl6SMxHM69r3tvdSm94JtCenaKgk1GRg5FJ5wpMCpHeW+7yqPlvZv7kg==}
     engines: {node: '>= 10.0.0'}
@@ -5305,10 +5285,6 @@ packages:
     resolution: {integrity: sha512-qwVpFEHNfhYJIzNRBvd2C1kyo6jz3ZSMPyyuR47OPdiKWlbYnZNyDWuyR175qDnAJLiCo5fBBqPb3RiXgWlkOQ==}
     dependencies:
       semver: 7.6.0
-
-  /bulma@0.9.4:
-    resolution: {integrity: sha512-86FlT5+1GrsgKbPLRRY7cGDg8fsJiP/jzTqXXVqiUZZ2aZT8uemEOHlU1CDU+TxklPEZ11HZNNWclRBBecP4CQ==}
-    dev: false
 
   /bundle-name@4.1.0:
     resolution: {integrity: sha512-tjwM5exMg6BGRI+kNmTntNsvdZS1X8BFYS6tnJ2hdH0kVxM6/eVZ2xy+FqStSWvYmtfFMDLIxurorHwDKfDz5Q==}

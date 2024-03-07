@@ -65,9 +65,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  build: {
-    transpile: [/@oruga-ui\/oruga-next/],
-  },
   modules: [
     'nuxt-zod-i18n',
     '@nuxtjs/i18n',
