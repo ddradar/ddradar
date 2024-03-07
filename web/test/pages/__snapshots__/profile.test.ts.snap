@@ -1,0 +1,3573 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders disabled id input 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              User Settings
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form
+        id="<input id="X0FSgiXBPY_7" name="id" type="text" placeholder="Alphabets, Digits, Hyphen or Underbar" disabled="" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+      >
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_7"
+              >
+                
+                ID
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              can not be changed after registration.
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                id="X0FSgiXBPY_7"
+                name="id"
+                placeholder="Alphabets, Digits, Hyphen or Underbar"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_8"
+              >
+                
+                Display Name
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_8"
+                name="name"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+          disabled="true"
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_9"
+              >
+                
+                Area
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              can not be changed after registration.
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+              data-v-9ad88b65=""
+            >
+              <select
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                data-v-9ad88b65=""
+                id="X0FSgiXBPY_9"
+                name="area"
+              >
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="0"
+                >
+                  undefined
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="1"
+                >
+                  Hokkaido
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="2"
+                >
+                  Aomori
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="3"
+                >
+                  Iwate
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="4"
+                >
+                  Miyagi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="5"
+                >
+                  Akita
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="6"
+                >
+                  Yamagata
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="7"
+                >
+                  Fukushima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="8"
+                >
+                  Ibaraki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="9"
+                >
+                  Tochigi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="10"
+                >
+                  Gunma
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="11"
+                >
+                  Saitama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="12"
+                >
+                  Chiba
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="13"
+                >
+                  Tokyo
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="14"
+                >
+                  Kanagawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="15"
+                >
+                  Niigata
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="16"
+                >
+                  Toyama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="17"
+                >
+                  Ishikawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="18"
+                >
+                  Gukui
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="19"
+                >
+                  Yamanashi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="20"
+                >
+                  Nagano
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="21"
+                >
+                  Gifu
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="22"
+                >
+                  Shizuoka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="23"
+                >
+                  Aichi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="24"
+                >
+                  Mie
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="25"
+                >
+                  Shiga
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="26"
+                >
+                  Kyoto
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="27"
+                >
+                  Osaka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="28"
+                >
+                  Hyogo
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="29"
+                >
+                  Nara
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="30"
+                >
+                  Wakayama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="31"
+                >
+                  Tottori
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="32"
+                >
+                  Shimane
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="33"
+                >
+                  Okayama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="34"
+                >
+                  Hiroshima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="35"
+                >
+                  Yamaguchi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="36"
+                >
+                  Tokushima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="37"
+                >
+                  Kagawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="38"
+                >
+                  Ehime
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="39"
+                >
+                  Kochi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="40"
+                >
+                  Fukuoka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="41"
+                >
+                  Saga
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="42"
+                >
+                  Nagasaki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="43"
+                >
+                  Kumamoto
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="44"
+                >
+                  Oita
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="45"
+                >
+                  Miyazaki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="46"
+                >
+                  Kagoshima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="47"
+                >
+                  Okinawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="48"
+                >
+                  Hong Kong
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="49"
+                >
+                  Korea
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="50"
+                >
+                  Taiwan
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="51"
+                >
+                  USA
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="52"
+                >
+                  Europe
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="53"
+                >
+                  Oversea
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="106"
+                >
+                  Canada
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="107"
+                >
+                  Singapore
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="108"
+                >
+                  Thailand
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="109"
+                >
+                  Australia
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="110"
+                >
+                  New Zealand
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="111"
+                >
+                  United Kingdom
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="112"
+                >
+                  Italy
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="113"
+                >
+                  Spain
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="114"
+                >
+                  Germany
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="115"
+                >
+                  France
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="116"
+                >
+                  Portugal
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="117"
+                >
+                  Indonesia
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="118"
+                >
+                  Philippines
+                </option>
+                
+                
+              </select>
+              <!--v-if-->
+              <span
+                class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                data-v-9ad88b65=""
+              >
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-80fe1a27=""
+                  data-v-9ad88b65=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                
+              </span>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_10"
+              >
+                
+                DDR CODE(optional)
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_10"
+                name="code"
+                placeholder="10000000"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_11"
+              >
+                
+                Public
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              <p>
+                You will be shown in the user search and your page will be visible to anyone.
+                <br />
+                 Registered scores will be public.
+              </p>
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            
+            <input
+              hidden=""
+              name="isPublic"
+              readonly=""
+              style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+              type="checkbox"
+            />
+            <button
+              aria-checked="true"
+              class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-primary-500 dark:bg-primary-400"
+              data-headlessui-state="checked"
+              id="X0FSgiXBPY_11"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-4 rtl:-translate-x-4"
+              >
+                <!--v-if-->
+                <!--v-if-->
+              </span>
+            </button>
+            
+            
+            <p
+              class="mt-2 text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              Note: Even if you turn off, the scores so far will not be private.
+              
+            </p>
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="button"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          Save
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id input 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              User Settings
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form
+        id="<input id="X0FSgiXBPY_1" name="id" type="text" placeholder="Alphabets, Digits, Hyphen or Underbar" disabled="" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+      >
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_1"
+              >
+                
+                ID
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              can not be changed after registration.
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                id="X0FSgiXBPY_1"
+                name="id"
+                placeholder="Alphabets, Digits, Hyphen or Underbar"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_2"
+              >
+                
+                Display Name
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_2"
+                name="name"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+          disabled="true"
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_3"
+              >
+                
+                Area
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              can not be changed after registration.
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+              data-v-9ad88b65=""
+            >
+              <select
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                data-v-9ad88b65=""
+                id="X0FSgiXBPY_3"
+                name="area"
+              >
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="0"
+                >
+                  undefined
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="1"
+                >
+                  Hokkaido
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="2"
+                >
+                  Aomori
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="3"
+                >
+                  Iwate
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="4"
+                >
+                  Miyagi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="5"
+                >
+                  Akita
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="6"
+                >
+                  Yamagata
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="7"
+                >
+                  Fukushima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="8"
+                >
+                  Ibaraki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="9"
+                >
+                  Tochigi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="10"
+                >
+                  Gunma
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="11"
+                >
+                  Saitama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="12"
+                >
+                  Chiba
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="13"
+                >
+                  Tokyo
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="14"
+                >
+                  Kanagawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="15"
+                >
+                  Niigata
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="16"
+                >
+                  Toyama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="17"
+                >
+                  Ishikawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="18"
+                >
+                  Gukui
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="19"
+                >
+                  Yamanashi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="20"
+                >
+                  Nagano
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="21"
+                >
+                  Gifu
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="22"
+                >
+                  Shizuoka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="23"
+                >
+                  Aichi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="24"
+                >
+                  Mie
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="25"
+                >
+                  Shiga
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="26"
+                >
+                  Kyoto
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="27"
+                >
+                  Osaka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="28"
+                >
+                  Hyogo
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="29"
+                >
+                  Nara
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="30"
+                >
+                  Wakayama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="31"
+                >
+                  Tottori
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="32"
+                >
+                  Shimane
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="33"
+                >
+                  Okayama
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="34"
+                >
+                  Hiroshima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="35"
+                >
+                  Yamaguchi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="36"
+                >
+                  Tokushima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="37"
+                >
+                  Kagawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="38"
+                >
+                  Ehime
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="39"
+                >
+                  Kochi
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="40"
+                >
+                  Fukuoka
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="41"
+                >
+                  Saga
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="42"
+                >
+                  Nagasaki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="43"
+                >
+                  Kumamoto
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="44"
+                >
+                  Oita
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="45"
+                >
+                  Miyazaki
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="46"
+                >
+                  Kagoshima
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="47"
+                >
+                  Okinawa
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="48"
+                >
+                  Hong Kong
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="49"
+                >
+                  Korea
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="50"
+                >
+                  Taiwan
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="51"
+                >
+                  USA
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="52"
+                >
+                  Europe
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="53"
+                >
+                  Oversea
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="106"
+                >
+                  Canada
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="107"
+                >
+                  Singapore
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="108"
+                >
+                  Thailand
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="109"
+                >
+                  Australia
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="110"
+                >
+                  New Zealand
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="111"
+                >
+                  United Kingdom
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="112"
+                >
+                  Italy
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="113"
+                >
+                  Spain
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="114"
+                >
+                  Germany
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="115"
+                >
+                  France
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="116"
+                >
+                  Portugal
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="117"
+                >
+                  Indonesia
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="118"
+                >
+                  Philippines
+                </option>
+                
+                
+              </select>
+              <!--v-if-->
+              <span
+                class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                data-v-9ad88b65=""
+              >
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-80fe1a27=""
+                  data-v-9ad88b65=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                
+              </span>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_4"
+              >
+                
+                DDR CODE(optional)
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_4"
+                name="code"
+                placeholder="10000000"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_5"
+              >
+                
+                Public
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              <p>
+                You are not shown in the user search and the user page is only visible to you.
+                <br />
+                 Registered scores will be private.
+              </p>
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            
+            <input
+              hidden=""
+              name="isPublic"
+              readonly=""
+              style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+              type="checkbox"
+            />
+            <button
+              aria-checked="false"
+              class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-gray-200 dark:bg-gray-700"
+              data-headlessui-state=""
+              id="X0FSgiXBPY_5"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-0 rtl:-translate-x-0"
+              >
+                <!--v-if-->
+                <!--v-if-->
+              </span>
+            </button>
+            
+            
+            <p
+              class="mt-2 text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              Note: Even if you turn off, the scores so far will not be private.
+              
+            </p>
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="button"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          Save
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders disabled id input 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              ユーザー設定
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form
+        id="<input id="X0FSgiXBPY_19" name="id" type="text" placeholder="半角英数字, ハイフンまたはアンダーバー" disabled="" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+      >
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_19"
+              >
+                
+                ID
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              登録後の変更はできません。
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                id="X0FSgiXBPY_19"
+                name="id"
+                placeholder="半角英数字, ハイフンまたはアンダーバー"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_20"
+              >
+                
+                表示名
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_20"
+                name="name"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+          disabled="true"
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_21"
+              >
+                
+                所属地域
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              登録後の変更はできません。
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+              data-v-9ad88b65=""
+            >
+              <select
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                data-v-9ad88b65=""
+                id="X0FSgiXBPY_21"
+                name="area"
+              >
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="0"
+                >
+                  未指定
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="1"
+                >
+                  北海道
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="2"
+                >
+                  青森県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="3"
+                >
+                  岩手県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="4"
+                >
+                  宮城県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="5"
+                >
+                  秋田県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="6"
+                >
+                  山形県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="7"
+                >
+                  福島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="8"
+                >
+                  茨城県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="9"
+                >
+                  栃木県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="10"
+                >
+                  群馬県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="11"
+                >
+                  埼玉県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="12"
+                >
+                  千葉県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="13"
+                >
+                  東京都
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="14"
+                >
+                  神奈川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="15"
+                >
+                  新潟県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="16"
+                >
+                  富山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="17"
+                >
+                  石川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="18"
+                >
+                  福井県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="19"
+                >
+                  山梨県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="20"
+                >
+                  長野県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="21"
+                >
+                  岐阜県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="22"
+                >
+                  静岡県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="23"
+                >
+                  愛知県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="24"
+                >
+                  三重県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="25"
+                >
+                  滋賀県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="26"
+                >
+                  京都府
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="27"
+                >
+                  大阪府
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="28"
+                >
+                  兵庫県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="29"
+                >
+                  奈良県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="30"
+                >
+                  和歌山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="31"
+                >
+                  鳥取県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="32"
+                >
+                  島根県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="33"
+                >
+                  岡山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="34"
+                >
+                  広島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="35"
+                >
+                  山口県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="36"
+                >
+                  徳島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="37"
+                >
+                  香川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="38"
+                >
+                  愛媛県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="39"
+                >
+                  高知県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="40"
+                >
+                  福岡県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="41"
+                >
+                  佐賀県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="42"
+                >
+                  長崎県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="43"
+                >
+                  熊本県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="44"
+                >
+                  大分県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="45"
+                >
+                  宮崎県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="46"
+                >
+                  鹿児島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="47"
+                >
+                  沖縄県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="48"
+                >
+                  香港
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="49"
+                >
+                  韓国
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="50"
+                >
+                  台湾
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="51"
+                >
+                  アメリカ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="52"
+                >
+                  ヨーロッパ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="53"
+                >
+                  海外
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="106"
+                >
+                  カナダ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="107"
+                >
+                  シンガポール
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="108"
+                >
+                  タイ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="109"
+                >
+                  オーストラリア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="110"
+                >
+                  ニュージーランド
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="111"
+                >
+                  イギリス
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="112"
+                >
+                  イタリア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="113"
+                >
+                  スペイン
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="114"
+                >
+                  ドイツ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="115"
+                >
+                  フランス
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="116"
+                >
+                  ポルトガル
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="117"
+                >
+                  インドネシア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="118"
+                >
+                  フィリピン
+                </option>
+                
+                
+              </select>
+              <!--v-if-->
+              <span
+                class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                data-v-9ad88b65=""
+              >
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-80fe1a27=""
+                  data-v-9ad88b65=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                
+              </span>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_22"
+              >
+                
+                DDR CODE(任意)
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_22"
+                name="code"
+                placeholder="10000000"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_23"
+              >
+                
+                公開する
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              <p>
+                ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。
+                <br />
+                 これから登録するスコアはランキングに自動登録され、一般公開されます。
+              </p>
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            
+            <input
+              hidden=""
+              name="isPublic"
+              readonly=""
+              style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+              type="checkbox"
+            />
+            <button
+              aria-checked="true"
+              class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-primary-500 dark:bg-primary-400"
+              data-headlessui-state="checked"
+              id="X0FSgiXBPY_23"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-4 rtl:-translate-x-4"
+              >
+                <!--v-if-->
+                <!--v-if-->
+              </span>
+            </button>
+            
+            
+            <p
+              class="mt-2 text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
+              
+            </p>
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="button"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          保存
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id input 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              ユーザー設定
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form
+        id="<input id="X0FSgiXBPY_13" name="id" type="text" placeholder="半角英数字, ハイフンまたはアンダーバー" disabled="" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+      >
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_13"
+              >
+                
+                ID
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              登録後の変更はできません。
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                disabled=""
+                id="X0FSgiXBPY_13"
+                name="id"
+                placeholder="半角英数字, ハイフンまたはアンダーバー"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_14"
+              >
+                
+                表示名
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_14"
+                name="name"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+          disabled="true"
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_15"
+              >
+                
+                所属地域
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              登録後の変更はできません。
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+              data-v-9ad88b65=""
+            >
+              <select
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                data-v-9ad88b65=""
+                id="X0FSgiXBPY_15"
+                name="area"
+              >
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="0"
+                >
+                  未指定
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="1"
+                >
+                  北海道
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="2"
+                >
+                  青森県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="3"
+                >
+                  岩手県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="4"
+                >
+                  宮城県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="5"
+                >
+                  秋田県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="6"
+                >
+                  山形県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="7"
+                >
+                  福島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="8"
+                >
+                  茨城県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="9"
+                >
+                  栃木県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="10"
+                >
+                  群馬県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="11"
+                >
+                  埼玉県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="12"
+                >
+                  千葉県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="13"
+                >
+                  東京都
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="14"
+                >
+                  神奈川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="15"
+                >
+                  新潟県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="16"
+                >
+                  富山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="17"
+                >
+                  石川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="18"
+                >
+                  福井県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="19"
+                >
+                  山梨県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="20"
+                >
+                  長野県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="21"
+                >
+                  岐阜県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="22"
+                >
+                  静岡県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="23"
+                >
+                  愛知県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="24"
+                >
+                  三重県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="25"
+                >
+                  滋賀県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="26"
+                >
+                  京都府
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="27"
+                >
+                  大阪府
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="28"
+                >
+                  兵庫県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="29"
+                >
+                  奈良県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="30"
+                >
+                  和歌山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="31"
+                >
+                  鳥取県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="32"
+                >
+                  島根県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="33"
+                >
+                  岡山県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="34"
+                >
+                  広島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="35"
+                >
+                  山口県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="36"
+                >
+                  徳島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="37"
+                >
+                  香川県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="38"
+                >
+                  愛媛県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="39"
+                >
+                  高知県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="40"
+                >
+                  福岡県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="41"
+                >
+                  佐賀県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="42"
+                >
+                  長崎県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="43"
+                >
+                  熊本県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="44"
+                >
+                  大分県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="45"
+                >
+                  宮崎県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="46"
+                >
+                  鹿児島県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="47"
+                >
+                  沖縄県
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="48"
+                >
+                  香港
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="49"
+                >
+                  韓国
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="50"
+                >
+                  台湾
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="51"
+                >
+                  アメリカ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="52"
+                >
+                  ヨーロッパ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="53"
+                >
+                  海外
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="106"
+                >
+                  カナダ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="107"
+                >
+                  シンガポール
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="108"
+                >
+                  タイ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="109"
+                >
+                  オーストラリア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="110"
+                >
+                  ニュージーランド
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="111"
+                >
+                  イギリス
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="112"
+                >
+                  イタリア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="113"
+                >
+                  スペイン
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="114"
+                >
+                  ドイツ
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="115"
+                >
+                  フランス
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="116"
+                >
+                  ポルトガル
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="117"
+                >
+                  インドネシア
+                </option>
+                
+                
+                <option
+                  data-v-9ad88b65=""
+                  value="118"
+                >
+                  フィリピン
+                </option>
+                
+                
+              </select>
+              <!--v-if-->
+              <span
+                class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                data-v-9ad88b65=""
+              >
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-80fe1a27=""
+                  data-v-9ad88b65=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 20 20"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                    fill="currentColor"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                
+              </span>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_16"
+              >
+                
+                DDR CODE(任意)
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_16"
+                name="code"
+                placeholder="10000000"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_17"
+              >
+                
+                公開する
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <p
+              class="text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              <p>
+                ユーザー検索に表示されず、ユーザーページはあなたしか閲覧できません。
+                <br />
+                 これから登録するスコアは非公開となります。
+              </p>
+              
+            </p>
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            
+            <input
+              hidden=""
+              name="isPublic"
+              readonly=""
+              style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+              type="checkbox"
+            />
+            <button
+              aria-checked="false"
+              class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-gray-200 dark:bg-gray-700"
+              data-headlessui-state=""
+              id="X0FSgiXBPY_17"
+              role="switch"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-0 rtl:-translate-x-0"
+              >
+                <!--v-if-->
+                <!--v-if-->
+              </span>
+            </button>
+            
+            
+            <p
+              class="mt-2 text-gray-500 dark:text-gray-400 text-sm"
+            >
+              
+              ONからOFFにしても、今までに登録したスコアは非公開になりません。ご注意ください。
+              
+            </p>
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="button"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          保存
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

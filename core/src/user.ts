@@ -85,9 +85,12 @@ export const areaCodeSet: ReadonlySet<number> = new Set(areaCodes)
 
 /** zod schema object for {@link UserSchema}. */
 export const userSchema = z.object({
-  id: z.string().regex(/^[-a-zA-Z0-9_]+$/),
+  id: z
+    .string()
+    .min(1)
+    .regex(/^[-a-zA-Z0-9_]+$/),
   loginId: z.ostring(),
-  name: z.string(),
+  name: z.string().min(1),
   area: z.custom<AreaCode>(v => typeof v === 'number' && areaCodeSet.has(v)),
   code: z.number().int().min(10000000).max(99999999).optional(),
   isPublic: z.boolean(),

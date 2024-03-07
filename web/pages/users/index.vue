@@ -133,7 +133,7 @@ const columns = computed(() => [
   </UPage>
 </template>
 
-<i18n src="../../i18n/area.json"></i18n>
+<i18n src="~/locales/area.json"></i18n>
 <i18n lang="json">
 {
   "ja": {

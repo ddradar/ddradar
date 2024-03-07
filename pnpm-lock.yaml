@@ -262,6 +262,9 @@ importers:
       nuxt-swa:
         specifier: ^0.4.0
         version: 0.4.0(rollup@4.9.6)
+      nuxt-zod-i18n:
+        specifier: ^1.4.0
+        version: 1.4.0(rollup@4.9.6)
       sass:
         specifier: ^1.70.0
         version: 1.70.0
@@ -9693,6 +9696,18 @@ packages:
       - supports-color
     dev: true
 
+  /nuxt-zod-i18n@1.4.0(rollup@4.9.6):
+    resolution: {integrity: sha512-OK2yJhJ82l35aoxrwD9JEPjwkQ3rW6kOWgvczS67UQE38VfLnu9janJ5Z/85WDZIhy0T5rKaUGYiitzfWin+AQ==}
+    dependencies:
+      '@intlify/shared': 9.9.1
+      '@nuxt/kit': 3.10.3(rollup@4.9.6)
+      defu: 6.1.4
+      zod: 3.22.4
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+    dev: true
+
   /nuxt@3.10.3(@azure/cosmos@4.0.0)(@types/node@18.17.11)(eslint@8.56.0)(rollup@4.9.6)(sass@1.70.0)(typescript@5.3.3)(vite@5.1.4):
     resolution: {integrity: sha512-NchGNiiz9g/ErJAb462W/lpX2NqcXYb9hugySKWvLXNdrjeAPiJ2/7mhgwUSiZA9MpjuQg3saiEajr1zlRIOCg==}
     engines: {node: ^14.18.0 || >=16.10.0}
@@ -13263,4 +13278,3 @@ packages:
 
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
-    dev: false

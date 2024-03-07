@@ -68,11 +68,24 @@ export default defineNuxtConfig({
   build: {
     transpile: [/@oruga-ui\/oruga-next/],
   },
-  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module', '@nuxt/ui', 'nuxt-swa'],
+  modules: [
+    'nuxt-zod-i18n',
+    '@nuxtjs/i18n',
+    '@nuxt/test-utils/module',
+    '@nuxt/ui',
+    'nuxt-swa',
+  ],
   i18n: {
+    langDir: './locales',
     locales: [
-      { code: 'en', iso: 'en-US', name: 'English', flag: 'us' },
-      { code: 'ja', iso: 'ja-JP', name: '日本語', flag: 'jp' },
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        flag: 'us',
+        file: 'en.json',
+      },
+      { code: 'ja', iso: 'ja-JP', name: '日本語', flag: 'jp', file: 'ja.json' },
     ],
     defaultLocale: 'ja',
     strategy: 'no_prefix',
