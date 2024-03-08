@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { stepChartSchema } from '@ddradar/core'
+import { type Difficulty, stepChartSchema } from '@ddradar/core'
 import { z } from 'zod'
 
 import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
@@ -49,8 +49,18 @@ const columns = computed(() => [
   { key: 'level', label: t('column.level') },
   ...(user.value ? [{ key: 'score', label: t('column.score') }] : []),
 ])
+
+// #region Score Editor
+const modalSongId = ref('')
+const modalDifficulty = ref<Difficulty | undefined>(undefined)
+const modalIsOpen = ref(false)
 /** Open ScoreEditor modal. */
-const editScore = async (_: ChartInfo) => {}
+const editScore = async (row: ChartInfo) => {
+  modalSongId.value = row.id
+  modalDifficulty.value = row.difficulty
+  modalIsOpen.value = true
+}
+// #endregion
 </script>
 
 <template>
@@ -112,6 +122,13 @@ const editScore = async (_: ChartInfo) => {}
         <UPagination v-model="page" :page-count="pageCount" :total="total" />
       </div>
     </UPageBody>
+
+    <ModalScoreEditor
+      v-model="modalIsOpen"
+      :song-id="modalSongId"
+      :play-style="style"
+      :difficulty="modalDifficulty"
+    />
   </UPage>
 </template>
 
