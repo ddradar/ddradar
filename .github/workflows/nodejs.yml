@@ -52,6 +52,8 @@ jobs:
 
       - name: Test
         run: pnpm test
+        env:
+          NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
 
       - name: Report Code Coverage to codecov
         uses: codecov/codecov-action@v4.1.0
