@@ -30,19 +30,8 @@ const { data: _data, pending: loading } = await useFetch('/api/v1/songs', {
 })
 // #endregion
 
-// #region Paging
-/** Current Page */
-const page = ref(1)
-/** Data count per page */
 const pageCount = 50
-/** Total data count */
-const pageTotal = computed(() => _data.value.length)
-const pageFrom = computed(() => (page.value - 1) * pageCount + 1)
-const pageTo = computed(() => Math.min(page.value * pageCount, pageTotal.value))
-const songs = computed(() =>
-  _data.value.slice(pageFrom.value - 1, pageTo.value)
-)
-// #endregion
+const { page, total, from, to, data: songs } = usePaging(pageCount, _data)
 
 // #region i18n
 const { t } = useI18n()
@@ -123,26 +112,22 @@ const editScore = async (_songId: string) => {}
         </template>
       </UTable>
 
-      <div v-if="pageTotal" class="flex flex-wrap justify-between items-center">
+      <div v-if="total" class="flex flex-wrap justify-between items-center">
         <div>
           <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
             <template #from>
-              <span class="font-medium">{{ pageFrom }}</span>
+              <span class="font-medium">{{ from }}</span>
             </template>
             <template #to>
-              <span class="font-medium">{{ pageTo }}</span>
+              <span class="font-medium">{{ to }}</span>
             </template>
             <template #total>
-              <span class="font-medium">{{ pageTotal }}</span>
+              <span class="font-medium">{{ total }}</span>
             </template>
           </i18n-t>
         </div>
 
-        <UPagination
-          v-model="page"
-          :page-count="pageCount"
-          :total="pageTotal"
-        />
+        <UPagination v-model="page" :page-count="pageCount" :total="total" />
       </div>
     </UPageBody>
   </UPage>

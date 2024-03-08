@@ -37,19 +37,8 @@ const {
 const loading = computed(() => _status.value === 'pending')
 // #endregion
 
-// #region Paging
-/** Current Page */
-const page = ref(1)
-/** Data count per page */
 const pageCount = 20
-/** Total data count */
-const pageTotal = computed(() => _data.value.length)
-const pageFrom = computed(() => (page.value - 1) * pageCount + 1)
-const pageTo = computed(() => Math.min(page.value * pageCount, pageTotal.value))
-const users = computed(() =>
-  _data.value.slice(pageFrom.value - 1, pageTo.value)
-)
-// #endregion
+const { page, total, from, to, data: users } = usePaging(pageCount, _data)
 
 // #region I18n
 const { t } = useI18n()
@@ -71,15 +60,17 @@ const columns = computed(() => [
 
     <UPageBody>
       <UForm :state="query" :schema="schema" @submit="execute">
-        <UFormGroup :label="t('field.area')" name="area">
-          <USelect v-model="query.area" :options="areaOptions" />
-        </UFormGroup>
-        <UFormGroup :label="t('field.name')" name="name">
-          <UInput v-model="query.name" />
-        </UFormGroup>
-        <UFormGroup :label="t('field.code')" name="code">
-          <UInput v-model.number="query.code" placeholder="10000000" />
-        </UFormGroup>
+        <UPageGrid>
+          <UFormGroup :label="t('field.area')" name="area">
+            <USelect v-model="query.area" :options="areaOptions" />
+          </UFormGroup>
+          <UFormGroup :label="t('field.name')" name="name">
+            <UInput v-model="query.name" />
+          </UFormGroup>
+          <UFormGroup :label="t('field.code')" name="code">
+            <UInput v-model.number="query.code" placeholder="10000000" />
+          </UFormGroup>
+        </UPageGrid>
 
         <UButton
           icon="i-heroicons-magnifying-glass-20-solid"
@@ -90,7 +81,7 @@ const columns = computed(() => [
         </UButton>
       </UForm>
 
-      <UDivider />
+      <UDivider class="my-4" />
 
       <UTable
         :rows="users"
@@ -108,26 +99,22 @@ const columns = computed(() => [
         <template #area-data="{ row }">{{ t(`area.${row.area}`) }}</template>
       </UTable>
 
-      <div v-if="pageTotal" class="flex flex-wrap justify-between items-center">
+      <div v-if="total" class="flex flex-wrap justify-between items-center">
         <div>
           <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
             <template #from>
-              <span class="font-medium">{{ pageFrom }}</span>
+              <span class="font-medium">{{ from }}</span>
             </template>
             <template #to>
-              <span class="font-medium">{{ pageTo }}</span>
+              <span class="font-medium">{{ to }}</span>
             </template>
             <template #total>
-              <span class="font-medium">{{ pageTotal }}</span>
+              <span class="font-medium">{{ total }}</span>
             </template>
           </i18n-t>
         </div>
 
-        <UPagination
-          v-model="page"
-          :page-count="pageCount"
-          :total="pageTotal"
-        />
+        <UPagination v-model="page" :page-count="pageCount" :total="total" />
       </div>
     </UPageBody>
   </UPage>
