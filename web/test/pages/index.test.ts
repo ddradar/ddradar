@@ -1,13 +1,17 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
-import { describe, expect, test } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
 import { notifications } from '~/../core/test/data'
 import Page from '~/pages/index.vue'
 import { locales } from '~/test/test-utils'
 
-const { useFetchMock } = vi.hoisted(() => ({ useFetchMock: vi.fn() }))
+const { useFetchMock, unixTimeToStringMock } = vi.hoisted(() => ({
+  useFetchMock: vi.fn(),
+  unixTimeToStringMock: (u: number) => new Date(u * 1000).toUTCString(),
+}))
 mockNuxtImport('useFetch', () => useFetchMock)
+mockNuxtImport('unixTimeToString', () => unixTimeToStringMock)
 
 describe('/', () => {
   test.each(locales)('{ locale: "%s" } snapshot test', async locale => {
