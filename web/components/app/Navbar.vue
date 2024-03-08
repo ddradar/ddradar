@@ -50,7 +50,10 @@ const links = computed<HeaderLink[]>(() => [
 
 <template>
   <UHeader :links="links">
-    <template #logo>DDRadar</template>
+    <template #logo>
+      <AppLogo class="w-auto h-6" />
+      DDRadar
+    </template>
     <template #right>
       <AppLocaleSwitch />
       <UColorModeButton />
