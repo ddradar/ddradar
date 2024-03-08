@@ -120,11 +120,7 @@ const save = async () => {
 
 <template>
   <UModal v-model="isOpen">
-    <UCard
-      :color="
-        selectedChart ? getChartColor(selectedChart.difficulty) : undefined
-      "
-    >
+    <UCard>
       <template #header>
         {{ song?.name }}
         <div
@@ -134,9 +130,9 @@ const save = async () => {
           <USelect v-model="style" :options="playStyles" />
           <USelect v-model="diff" :options="difficulties" />
         </div>
-        <span v-else>{{
-          `${playStyleMap.get(style)}-${difficultyMap.get(diff)}`
-        }}</span>
+        <span v-else>
+          ({{ `${playStyleMap.get(style)}-${difficultyMap.get(diff)}` }})
+        </span>
       </template>
       <UForm
         id="scoreForm"

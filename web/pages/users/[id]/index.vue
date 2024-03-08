@@ -38,7 +38,10 @@ const ddrCode = computed(() =>
           <GrooveRadar :radar="radars?.[1] ?? radar" />
         </UPageCard>
       </UPageGrid>
-      <UTable :rows="clears"></UTable>
+      <UserClearLampTable
+        :play-style="1"
+        :statuses="clears"
+      ></UserClearLampTable>
     </UPageBody>
   </UPage>
 </template>
