@@ -5,7 +5,6 @@ import { createI18n } from 'vue-i18n'
 import { notifications } from '~/../core/test/data'
 import Page from '~/pages/notification.vue'
 import { locales } from '~/test/test-utils'
-import { createClientPrincipal } from '~/test/test-utils-server'
 
 const { useEasyAuthMock, useLazyFetchMock, unixTimeToStringMock } = vi.hoisted(
   () => ({
@@ -26,7 +25,7 @@ describe('/notification', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useEasyAuth).mockResolvedValue({
-        clientPrincipal: ref(createClientPrincipal('', '', false)),
+        hasRole: () => ref(false),
       } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),
@@ -45,7 +44,7 @@ describe('/notification', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useEasyAuth).mockResolvedValue({
-        clientPrincipal: ref(createClientPrincipal('', '', true)),
+        hasRole: () => ref(true),
       } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),
@@ -64,7 +63,7 @@ describe('/notification', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useEasyAuth).mockResolvedValue({
-        clientPrincipal: ref(createClientPrincipal('', '', false)),
+        hasRole: () => ref(false),
       } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(true),
@@ -83,7 +82,7 @@ describe('/notification', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useEasyAuth).mockResolvedValue({
-        clientPrincipal: ref(createClientPrincipal('', '', false)),
+        hasRole: () => ref(false),
       } as any)
       vi.mocked(useLazyFetch).mockResolvedValue({
         pending: ref(false),

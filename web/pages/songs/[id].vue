@@ -3,10 +3,8 @@ const _route = useRoute('songs-id')
 const { data: song } = await useFetch(`/api/v1/songs/${_route.params.id}`)
 if (!song.value) throw createError({ statusCode: 404 })
 
-const { clientPrincipal: _auth } = await useEasyAuth()
-const isAdmin = computed(
-  () => !!_auth.value?.userRoles.includes('administrator')
-)
+const { hasRole } = await useEasyAuth()
+const isAdmin = hasRole('administrator')
 
 const displayedBPM = computed(() => getDisplayedBPM(song.value!))
 const singleCharts = computed(() =>

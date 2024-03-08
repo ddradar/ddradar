@@ -1,14 +1,12 @@
 <script lang="ts" setup>
 const { t } = useI18n()
-const { clientPrincipal } = await useEasyAuth()
+const { hasRole } = await useEasyAuth()
 
 const { data: messages, pending } = await useLazyFetch('/api/v1/notification', {
   default: () => [],
 })
 
-const isAdmin = computed(
-  () => !!clientPrincipal.value?.userRoles.includes('administrator')
-)
+const isAdmin = hasRole('administrator')
 /** Table columns */
 const columns = computed(() => [
   { key: 'title', label: t('column.title') },

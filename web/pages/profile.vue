@@ -4,6 +4,8 @@ import { areaCodeSet, userSchema } from '@ddradar/core'
 import type { FormError, FormSubmitEvent } from '#ui/types'
 import type { CurrentUserInfo } from '~/server/api/v1/user/index.get'
 
+definePageMeta({ allowedRoles: 'authenticated' })
+
 const _default: CurrentUserInfo = {
   id: '',
   name: '',
@@ -79,6 +81,7 @@ const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
         :state="user"
         :schema="userSchema"
         :validate="validate"
+        class="space-y-4"
         @submit="onSubmit"
       >
         <UFormGroup
