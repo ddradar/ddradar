@@ -1,6 +1,8 @@
 {
   "extends": "@tsconfig/node18/tsconfig.json",
   "compilerOptions": {
+    "moduleResolution": "Bundler",
+    "module": "es2015",
     "lib": ["es2021", "dom"],
     "outDir": "./dist",
     "types": ["node"]
