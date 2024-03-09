@@ -9,9 +9,10 @@ import { Radar } from 'vue-chartjs'
 
 type GrooveRadar = Exclude<ScoreSchema['radar'], undefined | null>
 const props = withDefaults(
-  defineProps<{ radar: GrooveRadar; color?: string }>(),
+  defineProps<{ radar: GrooveRadar; color?: string; ticks?: boolean }>(),
   {
     color: 'rgba(0, 192, 192, 0.5)',
+    ticks: false,
   }
 )
 const colorMode = useColorMode()
@@ -43,6 +44,7 @@ const chartOptions = computed<ChartOptions<'radar'>>(() => ({
       max: 200,
       min: 0,
       ticks: {
+        display: props.ticks,
         stepSize: 20,
         color: isDark.value ? 'rgba(255,255,255,0.3)' : undefined,
         backdropColor: 'rgba(0,0,0,0)',

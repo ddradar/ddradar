@@ -24,16 +24,8 @@ const props = withDefaults(defineProps<ScoreEditorProps>(), {
   difficulty: undefined,
   isCourse: false,
 })
-const _style = ref(props.playStyle)
-const _diff = ref(props.difficulty)
-const style = computed({
-  get: () => props.playStyle ?? _style.value,
-  set: v => (_style.value = v),
-})
-const diff = computed({
-  get: () => props.difficulty ?? _diff.value,
-  set: v => (_diff.value = v),
-})
+const style = ref(props.playStyle)
+const diff = ref(props.difficulty)
 const _toast = useToast()
 const { t } = useI18n()
 
@@ -51,7 +43,8 @@ const _default: Score = {
   rank: 'E',
 }
 const _scoreUri = computed(
-  () => `/api/v1/scores/${props.songId}/${style.value}/${diff.value}` as const
+  () =>
+    `/api/v1/scores/${props.songId}/${style.value ?? 1}/${diff.value ?? 0}` as const
 )
 const { data: score, execute: fetchScore } = useFetch(_scoreUri, {
   query: { scope: 'private' },
@@ -71,18 +64,9 @@ const maxScore = computed(() =>
   selectedChart.value ? calcMaxScore(selectedChart.value) : null
 )
 
-const playStyles = [...playStyleMap.entries()].map(([value, label]) => ({
-  value,
-  label,
-}))
-const difficulties = [...difficultyMap.entries()].map(([value, label]) => ({
-  value,
-  label,
-}))
-const clearLamps = [...clearLampMap.entries()].map(([value, label]) => ({
-  value,
-  label,
-}))
+const playStyles = toSelectOptions(playStyleMap)
+const difficulties = toSelectOptions(difficultyMap)
+const clearLamps = toSelectOptions(clearLampMap)
 /** Validate input score (compare max score) */
 const validate = () => {
   const errors: FormError[] = []
@@ -101,20 +85,54 @@ const validate = () => {
 
   return errors
 }
-const save = async () => {
+/** Save current score. */
+const saveScore = async () => {
   try {
     score.value = await $fetch<(typeof score)['value']>(_scoreUri.value, {
       method: 'POST',
       body: score.value,
     })
     _toast.add({
-      id: 'notification-updated',
+      id: 'score-updated',
       title: 'Success!',
       color: 'green',
     })
   } catch (error: any) {
-    _toast.add({ id: 'notification-update-error', title: error, color: 'red' })
+    _toast.add({ id: 'score-update-error', title: error, color: 'red' })
   }
+}
+/** Confirm and delete score data. */
+const deleteScore = async () => {
+  _toast.add({
+    id: 'score-delete-confirm',
+    title: t('message.confirmDelete'),
+    icon: 'i-heroicons-exclamation-triangle-20-solid',
+    timeout: 0,
+    actions: [
+      {
+        label: t('field.yes'),
+        click: async () => {
+          try {
+            await $fetch<(typeof score)['value']>(_scoreUri.value, {
+              method: 'DELETE',
+            })
+            _toast.add({
+              id: 'score-deleted',
+              title: 'Success!',
+              color: 'green',
+            })
+          } catch (error) {
+            _toast.add({
+              id: 'score-delete-error',
+              title: String(error),
+              color: 'red',
+            })
+          }
+        },
+      },
+      { label: t('field.no') },
+    ],
+  })
 }
 </script>
 
@@ -122,16 +140,24 @@ const save = async () => {
   <UModal v-model="isOpen">
     <UCard>
       <template #header>
-        {{ song?.name }}
-        <div
-          v-if="style === undefined || diff === undefined"
-          class="grid grid-cols-2"
-        >
-          <USelect v-model="style" :options="playStyles" />
-          <USelect v-model="diff" :options="difficulties" />
+        <span class="text-lg">{{ song?.name }}</span>
+        <div class="grid grid-cols-2 space-x-2 m-1">
+          <USelect
+            v-model.number="style"
+            :options="playStyles"
+            :placeholder="t('field.playStyle')"
+          />
+          <USelect
+            v-model.number="diff"
+            :options="difficulties"
+            :placeholder="t('field.difficulty')"
+          />
         </div>
-        <span v-else>
-          ({{ `${playStyleMap.get(style)}-${difficultyMap.get(diff)}` }})
+        <span v-if="selectedChart">
+          Lv.{{ selectedChart.level }} Notes:
+          {{ selectedChart.notes }} FreezeArrow:
+          {{ selectedChart.freezeArrow }} ShockArrow:
+          {{ selectedChart.shockArrow }}
         </span>
       </template>
       <UForm
@@ -140,7 +166,7 @@ const save = async () => {
         :state="score"
         :validate="validate"
         class="space-y-4"
-        @submit="save()"
+        @submit="saveScore()"
       >
         <UFormGroup name="score" :label="t('field.score')">
           <UInput v-model.number="score.score" type="number" />
@@ -159,9 +185,35 @@ const save = async () => {
         </UFormGroup>
       </UForm>
       <template #footer>
-        <UButton type="submit" form="scoreForm">{{ t('save') }}</UButton>
-        <UButton>{{ t('delete') }}</UButton>
-        <UButton>{{ t('close') }}</UButton>
+        <div class="grid grid-cols-3">
+          <UButton
+            type="submit"
+            form="scoreForm"
+            block
+            icon="i-heroicons-circle-stack-20-solid"
+            color="green"
+            :disabled="!selectedChart"
+          >
+            {{ t('save') }}
+          </UButton>
+          <UButton
+            block
+            icon="i-heroicons-trash-20-solid"
+            color="red"
+            :disabled="!selectedChart"
+            @click="deleteScore()"
+          >
+            {{ t('delete') }}
+          </UButton>
+          <UButton
+            block
+            icon="i-heroicons-x-mark-20-solid"
+            color="gray"
+            @click="isOpen = false"
+          >
+            {{ t('close') }}
+          </UButton>
+        </div>
       </template>
     </UCard>
   </UModal>
@@ -171,14 +223,19 @@ const save = async () => {
 {
   "ja": {
     "field": {
+      "playStyle": "SP/DP",
+      "difficulty": "難易度",
       "score": "通常スコア",
       "exScore": "EXスコア",
       "maxCombo": "最大コンボ数",
       "clearLamp": "クリアランプ",
-      "rank": "ダンスレベル"
+      "rank": "ダンスレベル",
+      "yes": "はい",
+      "no": "いいえ"
     },
     "message": {
-      "tooBig": "{maximum} 以下の数値を入力してください"
+      "tooBig": "{maximum} 以下の数値を入力してください",
+      "confirmDelete": "スコアを削除してもよろしいですか？"
     },
     "save": "保存",
     "delete": "スコア削除",
@@ -186,14 +243,19 @@ const save = async () => {
   },
   "en": {
     "field": {
+      "playStyle": "SP/DP",
+      "difficulty": "Difficulty",
       "score": "Normal Score",
       "exScore": "EX SCORE",
       "maxCombo": "Max Combo",
       "clearLamp": "Clear lamp",
-      "rank": "Dance Level"
+      "rank": "Dance Level",
+      "yes": "Yes",
+      "no": "No"
     },
     "message": {
-      "tooBig": "Number must be less than or equal to {maximum}"
+      "tooBig": "Number must be less than or equal to {maximum}",
+      "confirmDelete": "Are you sure you want to delete the score?"
     },
     "save": "Save",
     "delete": "Delete Score",

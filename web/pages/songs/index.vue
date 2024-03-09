@@ -64,8 +64,15 @@ const columns = computed(() => [
 ])
 // #endregion
 
+// #region Score Editor
+const modalSongId = ref('')
+const modalIsOpen = ref(false)
 /** Open ScoreEditor modal. */
-const editScore = async (_songId: string) => {}
+const editScore = async (songId: string) => {
+  modalSongId.value = songId
+  modalIsOpen.value = true
+}
+// #endregion
 </script>
 
 <template>
@@ -106,7 +113,7 @@ const editScore = async (_songId: string) => {}
         </template>
         <template v-if="user" #score-data="{ row }">
           <UButton
-            icon="i-heroicons-pencil-square"
+            icon="i-heroicons-pencil-square-20-solid"
             @click="editScore(row.id)"
           />
         </template>
@@ -130,6 +137,8 @@ const editScore = async (_songId: string) => {}
         <UPagination v-model="page" :page-count="pageCount" :total="total" />
       </div>
     </UPageBody>
+
+    <ModalScoreEditor v-model="modalIsOpen" :song-id="modalSongId" />
   </UPage>
 </template>
 

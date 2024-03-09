@@ -115,152 +115,85 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
         
         
         <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900"
-          color="blue"
+          class="w-full flex flex-col"
         >
+          
           <div
-            class="px-4 py-5 sm:px-6"
+            class="w-full flex flex-col"
+            data-headlessui-state=""
           >
-            
-            SP-BEGINNER (4)
-            
-          </div>
-          <div
-            class="sm:p-6 px-0 py-2 sm:px-0 sm:py-2"
-          >
-            
-            <div
-              class="w-full flex flex-col"
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_9"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_8"
+              type="button"
             >
               
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_9"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+                SP-BEGINNER (4)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_8"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_9"
                 >
                   
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    スコアランキング
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
                   <div
-                    style="display: none;"
+                    class="grid grid-cols-2 h-300"
                   >
-                    <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_9"
-                    >
-                      
-                      
-                      
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
                     </div>
-                  </div>
-                </transition-stub>
-              </div>
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
-              >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_11"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
-                  data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_10"
-                  type="button"
-                >
-                  
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    譜面情報
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
-                  <div
-                    style="display: none;"
-                  >
                     <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_11"
+                      class="m-2"
                     >
-                      
                       <ul>
                         <li>
                           <em>
@@ -280,165 +213,194 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                           </em>
                           : 0
                         </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 29
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 22
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 5
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 0
+                        </li>
                       </ul>
-                      
                     </div>
                   </div>
-                </transition-stub>
+                  
+                </div>
               </div>
-              
-            </div>
-            
-          </div>
-          <!--v-if-->
-        </div>
-        <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900"
-          color="yellow"
-        >
-          <div
-            class="px-4 py-5 sm:px-6"
-          >
-            
-            SP-BASIC (8)
-            
+            </transition-stub>
           </div>
           <div
-            class="sm:p-6 px-0 py-2 sm:px-0 sm:py-2"
+            class="w-full flex flex-col"
+            data-headlessui-state=""
           >
-            
-            <div
-              class="w-full flex flex-col"
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_11"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_10"
+              type="button"
             >
               
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_13"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_12"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_11"
                 >
                   
                   
-                  <!--v-if-->
                   
-                  
-                  <span
-                    class=""
-                  >
-                    スコアランキング
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
-                  <div
-                    style="display: none;"
-                  >
-                    <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_13"
-                    >
-                      
-                      
-                      
-                    </div>
-                  </div>
-                </transition-stub>
+                </div>
               </div>
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+            </transition-stub>
+          </div>
+          
+        </div>
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_13"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_12"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_15"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+                SP-BASIC (8)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_14"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_13"
                 >
                   
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    譜面情報
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
                   <div
-                    style="display: none;"
+                    class="grid grid-cols-2 h-300"
                   >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
                     <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_15"
+                      class="m-2"
                     >
-                      
                       <ul>
                         <li>
                           <em>
@@ -458,17 +420,113 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                           </em>
                           : 0
                         </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 56
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 44
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 18
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 4
+                        </li>
                       </ul>
-                      
                     </div>
                   </div>
-                </transition-stub>
+                  
+                </div>
               </div>
-              
-            </div>
-            
+            </transition-stub>
           </div>
-          <!--v-if-->
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_15"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_14"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_15"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
         </div>
         
         
@@ -560,152 +618,85 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
         
         
         <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900"
-          color="blue"
+          class="w-full flex flex-col"
         >
+          
           <div
-            class="px-4 py-5 sm:px-6"
+            class="w-full flex flex-col"
+            data-headlessui-state=""
           >
-            
-            SP-BEGINNER (4)
-            
-          </div>
-          <div
-            class="sm:p-6 px-0 py-2 sm:px-0 sm:py-2"
-          >
-            
-            <div
-              class="w-full flex flex-col"
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_1"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_0"
+              type="button"
             >
               
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_1"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+                SP-BEGINNER (4)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_0"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_1"
                 >
                   
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    スコアランキング
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
                   <div
-                    style="display: none;"
+                    class="grid grid-cols-2 h-300"
                   >
-                    <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_1"
-                    >
-                      
-                      
-                      
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
                     </div>
-                  </div>
-                </transition-stub>
-              </div>
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
-              >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_3"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
-                  data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_2"
-                  type="button"
-                >
-                  
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    譜面情報
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
-                  <div
-                    style="display: none;"
-                  >
                     <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_3"
+                      class="m-2"
                     >
-                      
                       <ul>
                         <li>
                           <em>
@@ -725,165 +716,194 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                           </em>
                           : 0
                         </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 29
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 22
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 5
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 0
+                        </li>
                       </ul>
-                      
                     </div>
                   </div>
-                </transition-stub>
+                  
+                </div>
               </div>
-              
-            </div>
-            
-          </div>
-          <!--v-if-->
-        </div>
-        <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900"
-          color="yellow"
-        >
-          <div
-            class="px-4 py-5 sm:px-6"
-          >
-            
-            SP-BASIC (8)
-            
+            </transition-stub>
           </div>
           <div
-            class="sm:p-6 px-0 py-2 sm:px-0 sm:py-2"
+            class="w-full flex flex-col"
+            data-headlessui-state=""
           >
-            
-            <div
-              class="w-full flex flex-col"
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_3"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_2"
+              type="button"
             >
               
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_5"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_4"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_3"
                 >
                   
                   
-                  <!--v-if-->
                   
-                  
-                  <span
-                    class=""
-                  >
-                    スコアランキング
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
-                  <div
-                    style="display: none;"
-                  >
-                    <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_5"
-                    >
-                      
-                      
-                      
-                    </div>
-                  </div>
-                </transition-stub>
+                </div>
               </div>
-              <div
-                class="w-full flex flex-col"
-                data-headlessui-state=""
+            </transition-stub>
+          </div>
+          
+        </div>
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_5"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_4"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
               >
-                <button
-                  aria-controls="headlessui-disclosure-panel-D8OaopRZS8_7"
-                  aria-expanded="false"
-                  class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+                SP-BASIC (8)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-button-D8OaopRZS8_6"
-                  type="button"
+                  id="headlessui-disclosure-panel-D8OaopRZS8_5"
                 >
                   
-                  
-                  <!--v-if-->
-                  
-                  
-                  <span
-                    class=""
-                  >
-                    譜面情報
-                  </span>
-                  
-                  
-                  <svg
-                    aria-hidden="true"
-                    class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                    data-v-80fe1a27=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  
-                  
-                </button>
-                <transition-stub
-                  appear="false"
-                  css="true"
-                  enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-                  persisted="true"
-                >
                   <div
-                    style="display: none;"
+                    class="grid grid-cols-2 h-300"
                   >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
                     <div
-                      class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
-                      data-headlessui-state=""
-                      id="headlessui-disclosure-panel-D8OaopRZS8_7"
+                      class="m-2"
                     >
-                      
                       <ul>
                         <li>
                           <em>
@@ -903,17 +923,113 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                           </em>
                           : 0
                         </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 56
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 44
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 18
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 4
+                        </li>
                       </ul>
-                      
                     </div>
                   </div>
-                </transition-stub>
+                  
+                </div>
               </div>
-              
-            </div>
-            
+            </transition-stub>
           </div>
-          <!--v-if-->
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_7"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_6"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_7"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
         </div>
         
         

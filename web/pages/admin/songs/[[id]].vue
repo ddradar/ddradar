@@ -77,15 +77,9 @@ const saveSongInfo = async () => {
 }
 
 /** PlayStyle Options */
-const playStyles = [...playStyleMap.entries()].map(([value, label]) => ({
-  value,
-  label,
-}))
+const playStyles = toSelectOptions(playStyleMap)
 /** Difficulty Options */
-const difficulties = [...difficultyMap.entries()].map(([value, label]) => ({
-  value,
-  label,
-}))
+const difficulties = toSelectOptions(difficultyMap)
 /** Table columns */
 const columns = [
   { key: 'playStyle', label: 'Style' },

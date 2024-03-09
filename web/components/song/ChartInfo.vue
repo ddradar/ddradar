@@ -7,6 +7,7 @@ import type { AccordionItem } from '#ui/types'
 const props = defineProps<{ chart: CourseChartSchema | StepChartSchema }>()
 
 const { t } = useI18n()
+const isCourse = computed(() => isCourseChart(props.chart))
 const title = computed(() => {
   /* eslint-disable @typescript-eslint/no-non-null-assertion */
   const playStyleText = playStyleMap.get(props.chart.playStyle)!
@@ -17,32 +18,45 @@ const title = computed(() => {
 })
 const color = computed(() => getChartColor(props.chart.difficulty))
 const items = computed<AccordionItem[]>(() => [
+  { label: title.value, slot: 'chart' },
   { label: t('score'), slot: 'score' },
-  { label: t('chart'), slot: 'chart' },
-  ...(isCourseChart(props.chart)
-    ? [{ label: t('course'), slot: 'course' }]
-    : []),
+  ...(isCourse.value ? [{ label: t('course'), slot: 'course' }] : []),
 ])
 </script>
 
 <template>
-  <UCard
-    :ui="{ body: { base: '', padding: 'px-0 py-2 sm:px-0 sm:py-2' } }"
-    :color="color"
-  >
-    <template #header>
-      {{ title }}
+  <UAccordion :color="color" :items="items">
+    <template #chart>
+      <div class="grid grid-cols-2 h-300">
+        <div>
+          <GrooveRadar v-if="!isCourse" :radar="chart as StepChartSchema" />
+        </div>
+        <div class="m-2">
+          <ul>
+            <li><em>Notes</em>: {{ chart.notes }}</li>
+            <li><em>Freeze Arrow</em>: {{ chart.freezeArrow }}</li>
+            <li><em>Shock Arrow</em>: {{ chart.shockArrow }}</li>
+            <br />
+            <li v-if="!isCourse">
+              <em>Stream</em>: {{ (chart as StepChartSchema).stream }}
+            </li>
+            <li v-if="!isCourse">
+              <em>Voltage</em>: {{ (chart as StepChartSchema).voltage }}
+            </li>
+            <li v-if="!isCourse">
+              <em>Air</em>: {{ (chart as StepChartSchema).air }}
+            </li>
+            <li v-if="!isCourse">
+              <em>Freeze</em>: {{ (chart as StepChartSchema).freeze }}
+            </li>
+            <li v-if="!isCourse">
+              <em>Chaos</em>: {{ (chart as StepChartSchema).chaos }}
+            </li>
+          </ul>
+        </div>
+      </div>
     </template>
-    <UAccordion :color="color" :items="items">
-      <template #chart>
-        <ul>
-          <li><em>Notes</em>: {{ chart.notes }}</li>
-          <li><em>Freeze Arrow</em>: {{ chart.freezeArrow }}</li>
-          <li><em>Shock Arrow</em>: {{ chart.shockArrow }}</li>
-        </ul>
-      </template>
-    </UAccordion>
-  </UCard>
+  </UAccordion>
 </template>
 
 <i18n lang="json">

@@ -2,7 +2,8 @@
 import { type Difficulty, stepChartSchema } from '@ddradar/core'
 import { z } from 'zod'
 
-import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
+import type { Button } from '#ui/types'
+import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })
@@ -23,7 +24,7 @@ const { data: _data, pending: loading } = await useFetch(
   `/api/v1/charts/${style}/${level}`,
   {
     watch: [_route.query],
-    default: () => [],
+    default: (): ChartInfo[] => [],
   }
 )
 // #endregion
@@ -32,12 +33,13 @@ const pageCount = 50
 const { page, total, from, to, data: charts } = usePaging(pageCount, _data)
 
 const title = `${_kinds[style - 1]} ${level}`
-const otherStyle = style === 2 ? 1 : 2
 
-const headerLink = computed(() => [
+/** "Change Playstyle" button on Header */
+const headerLink = computed<Button[]>(() => [
   {
     label: t('change'),
-    to: { path: '/charts', query: { style: otherStyle, level } },
+    icon: 'i-heroicons-arrow-path-rounded-square-20-solid',
+    to: { path: '/charts', query: { style: style === 2 ? 1 : 2, level } },
     target: '_self',
   },
 ])
@@ -100,7 +102,10 @@ const editScore = async (row: ChartInfo) => {
           <SongDifficultyBadge :difficulty="row.difficulty" />
         </template>
         <template v-if="user" #score-data="{ row }">
-          <UButton icon="i-heroicons-pencil-square" @click="editScore(row)" />
+          <UButton
+            icon="i-heroicons-pencil-square-20-solid"
+            @click="editScore(row)"
+          />
         </template>
       </UTable>
 
