@@ -1,28 +1,14 @@
 <script lang="ts" setup>
-import { nameIndexMap, songSchema } from '@ddradar/core'
-import { z } from 'zod'
+import { nameIndexMap } from '@ddradar/core'
+
+import { getListQuerySchema } from '~/schemas/song'
 
 definePageMeta({ key: route => route.fullPath })
 
 // #region Data Fetching
 const { data: user } = await useFetch('/api/v1/user')
-/** Expected Query */
-const querySchema = z.object({
-  name: z.coerce
-    .number()
-    .pipe(songSchema.shape.nameIndex)
-    .optional()
-    .catch(undefined),
-  series: z.coerce
-    .number()
-    .int()
-    .min(0)
-    .max(seriesNames.length - 1)
-    .optional()
-    .catch(undefined),
-})
 const _route = useRoute('songs')
-const { name, series } = querySchema.parse(_route.query)
+const { name, series } = getListQuerySchema.parse(_route.query)
 const { data: _data, pending: loading } = await useFetch('/api/v1/songs', {
   query: { name, series },
   watch: [_route.query],

@@ -1,6 +1,5 @@
-import type { UserInfo } from '~~/server/api/v1/users/index.get'
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
+import type { UserInfo } from '~/schemas/user'
+import { tryFetchUser } from '~/server/utils/auth'
 
 /**
  * Get user information that match the specified ID.
@@ -24,7 +23,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  */
 export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
-  if (!user) return sendNullWithError(event, 404)
+  if (!user) throw createError({ statusCode: 404 })
 
   const userInfo: UserInfo = {
     id: user.id,

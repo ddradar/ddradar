@@ -1,14 +1,6 @@
-import { type NotificationSchema, notificationSchema } from '@ddradar/core'
 import { getContainer } from '@ddradar/db'
-import { z } from 'zod'
 
-export type NotificationBody = Partial<NotificationSchema> &
-  Omit<NotificationSchema, 'id' | 'timeStamp'>
-
-/** Expected body */
-const schema = notificationSchema
-  .omit({ timeStamp: true })
-  .extend({ timeStamp: z.onumber() })
+import { postBodySchema as schema } from '~/schemas/notification'
 
 /**
  * Add or update Notification.

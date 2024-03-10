@@ -6,8 +6,6 @@ import {
   songSchema,
 } from '@ddradar/core'
 
-import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-
 definePageMeta({ allowedRoles: 'administrator' })
 
 const _chart = {
@@ -66,13 +64,13 @@ const saveSongInfo = async () => {
   const nameIndex = getNameIndex(song.value.nameKana)
   const body = { ...song.value, nameIndex }
   try {
-    song.value = await $fetch<SongInfo>('/api/v1/songs', {
+    song.value = await $fetch<(typeof song)['value']>('/api/v1/songs', {
       method: 'POST',
       body,
     })
     _toast.add({ title: 'Success!', color: 'green' })
-  } catch (error: any) {
-    _toast.add({ title: error.message, color: 'red' })
+  } catch (error) {
+    _toast.add({ title: String(error), color: 'red' })
   }
 }
 
@@ -103,7 +101,7 @@ const columns = [
     <UForm :state="song" :schema="songSchema" @submit="saveSongInfo()">
       <UFormGroup label="Song ID" name="id">
         <UInput v-model="song.id" />
-        <UButton @click="refresh">Load</UButton>
+        <UButton @click="refresh()">Load</UButton>
         <UButton
           color="blue"
           :to="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${song.id}`"
@@ -213,10 +211,14 @@ const columns = [
           </template>
 
           <template #action-data="{ index }">
-            <UButton @click="removeChart(index)" />
+            <UButton
+              icon="i-heroicons-trash-20-solid"
+              color="red"
+              @click="removeChart(index)"
+            />
           </template>
         </UTable>
-        <UButton @click="addChart">Add Chart</UButton>
+        <UButton color="green" @click="addChart">Add Chart</UButton>
       </UFormGroup>
 
       <UButton type="submit">Save</UButton>

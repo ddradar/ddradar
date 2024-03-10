@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-import { type Difficulty, stepChartSchema } from '@ddradar/core'
-import { z } from 'zod'
+import type { Difficulty } from '@ddradar/core'
 
 import type { Button } from '#ui/types'
-import type { ChartInfo } from '~/server/api/v1/charts/[style]/[level].get'
+import type { ChartInfo } from '~/schemas/song'
+import { getChartsRouterParamsSchema } from '~/schemas/song'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })
@@ -12,13 +12,8 @@ const _kinds = ['SINGLE', 'DOUBLE']
 
 // #region Data Fetching
 const { data: user } = await useFetch('/api/v1/user')
-/** Expected Query */
-const querySchema = z.object({
-  style: z.coerce.number().pipe(stepChartSchema.shape.playStyle),
-  level: z.coerce.number().pipe(stepChartSchema.shape.level),
-})
 const _route = useRoute('charts')
-const { style, level } = querySchema.parse(_route.query)
+const { style, level } = getChartsRouterParamsSchema.parse(_route.query)
 const { t } = useI18n()
 const { data: _data, pending: loading } = await useFetch(
   `/api/v1/charts/${style}/${level}`,

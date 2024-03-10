@@ -1,37 +1,9 @@
-import {
-  type ClearLamp,
-  playStyleMap,
-  type UserClearLampSchema,
-} from '@ddradar/core'
+import { playStyleMap } from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
-import { z } from 'zod'
 
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type ClearStatus = Pick<
-  UserClearLampSchema,
-  'playStyle' | 'level' | 'count'
-> & {
-  /**
-   * `-1`: No Play,
-   * `0`: Failed,
-   * `1`: Assisted Clear,
-   * `2`: Clear,
-   * `3`: LIFE4,
-   * `4`: Good FC (Full Combo),
-   * `5`: Great FC,
-   * `6`: PFC,
-   * `7`: MFC
-   */
-  clearLamp: ClearLamp | -1
-}
-
-/** Expected queries */
-export const schema = z.object({
-  style: z.coerce.number().default(0),
-  lv: z.coerce.number().default(0),
-})
+import type { ClearStatus } from '~/schemas/user'
+import { getClearQuerySchema as schema } from '~/schemas/user'
+import { tryFetchUser } from '~/server/utils/auth'
 
 /**
  * Get Clear status that match the specified `userId`, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
@@ -56,7 +28,7 @@ export const schema = z.object({
  */
 export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
-  if (!user) return sendNullWithError(event, 404)
+  if (!user) throw createError({ statusCode: 404 })
 
   const { style, lv } = await getValidatedQuery(event, schema.parse)
 

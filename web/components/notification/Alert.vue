@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Notification } from '~/server/api/v1/notification/index.get'
+import type { NotificationListData } from '~/schemas/notification'
 
-defineProps<{ data: Notification }>()
+defineProps<{ data: NotificationListData }>()
 const closed = ref(false)
 </script>
 

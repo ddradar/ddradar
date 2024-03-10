@@ -1,6 +1,7 @@
 // @vitest-environment node
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import type { z } from 'zod'
 
 import {
   areaHiddenUser,
@@ -9,36 +10,31 @@ import {
   testScores,
   testSongData,
 } from '~/../core/test/data'
-import postSongScores, {
-  type ScoreListBody,
-} from '~~/server/api/v1/scores/[id]/index.post'
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { upsertScore } from '~~/server/utils/score'
-import { createEvent } from '~~/test/test-utils-server'
+import type { postBodySchema } from '~/schemas/score'
+import handler from '~/server/api/v1/scores/[id]/index.post'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { upsertScore } from '~/server/utils/score'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
-vi.mock('~~/server/utils/score')
+vi.mock('~/server/utils/auth')
+vi.mock('~/server/utils/score')
 
 describe('POST /api/v1/scores/[id]', () => {
   const mockedContainer = { items: { batch: vi.fn() } }
   beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
     vi.mocked(fetchList).mockClear()
     vi.mocked(fetchOne).mockClear()
-    vi.mocked(sendNullWithError).mockClear()
     mockedContainer.items.batch.mockClear()
     vi.mocked(upsertScore).mockClear()
   })
 
   /** MFC score */
-  const score: ScoreListBody = {
+  const score: z.infer<typeof postBodySchema>[number] = {
     playStyle: 1,
     difficulty: 0,
     score: 1000000,
@@ -54,7 +50,7 @@ describe('POST /api/v1/scores/[id]', () => {
     const event = createEvent({ id })
 
     // Act - Assert
-    await expect(postSongScores(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
   })
 
   test.each(['', [], ['foo']])('(body: %o) returns 400', async body => {
@@ -62,7 +58,7 @@ describe('POST /api/v1/scores/[id]', () => {
     const event = createEvent({ id: testSongData.id }, undefined, body)
 
     // Act - Assert
-    await expect(postSongScores(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
   })
 
   test('(user: <anonymous>) returns 401', async () => {
@@ -72,12 +68,8 @@ describe('POST /api/v1/scores/[id]', () => {
       { ...score, playStyle: 1, difficulty: 0 },
     ])
 
-    // Act
-    const userScores = await postSongScores(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
     expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -90,12 +82,9 @@ describe('POST /api/v1/scores/[id]', () => {
       { ...score, playStyle: 1, difficulty: 0 },
     ])
 
-    // Act
-    const userScores = await postSongScores(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked(fetchOne)).toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
@@ -114,12 +103,10 @@ describe('POST /api/v1/scores/[id]', () => {
         { ...score, playStyle, difficulty },
       ])
 
-      // Act
-      const userScores = await postSongScores(event)
-
-      // Assert
-      expect(userScores).toBeNull()
-      expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+      // Act - Assert
+      await expect(handler(event)).rejects.toThrowError()
+      expect(vi.mocked(fetchOne)).toBeCalled()
+      expect(vi.mocked(fetchList)).toBeCalled()
     }
   )
 
@@ -141,16 +128,10 @@ describe('POST /api/v1/scores/[id]', () => {
     vi.mocked(fetchList).mockResolvedValue([])
     const event = createEvent({ id: testSongData.id }, undefined, [score])
 
-    // Act
-    const userScores = await postSongScores(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'body[0] is invalid Score'
-    )
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked(fetchOne)).toBeCalled()
+    expect(vi.mocked(fetchList)).toBeCalled()
   })
 
   test.each([
@@ -169,12 +150,11 @@ describe('POST /api/v1/scores/[id]', () => {
       const event = createEvent({ id: testSongData.id }, undefined, [score])
 
       // Act
-      const userScores = await postSongScores(event)
+      const userScores = await handler(event)
 
       // Assert
       expect(userScores).not.toBeNull()
       expect(vi.mocked(upsertScore)).toBeCalledTimes(times)
-      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
       expect(mockedContainer.items.batch).toBeCalled()
     }
   )
@@ -197,12 +177,11 @@ describe('POST /api/v1/scores/[id]', () => {
     const event = createEvent({ id: testSongData.id }, undefined, [score])
 
     // Act
-    const userScores = await postSongScores(event)
+    const userScores = await handler(event)
 
     // Assert
     expect(userScores).not.toBeNull()
     expect(vi.mocked(upsertScore)).toBeCalledTimes(2)
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(mockedContainer.items.batch).toBeCalled()
   })
 })

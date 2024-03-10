@@ -1,18 +1,12 @@
-import type { NotificationSchema } from '@ddradar/core'
-import { type Condition, fetchList } from '@ddradar/db'
-import { z } from 'zod'
-
-export type Notification = Omit<NotificationSchema, 'sender' | 'pinned'>
-
-/** Expected query */
-const schema = z.object({ scope: z.ostring() })
+import type { NotificationListData } from '~/schemas/notification'
+import { getListQuerySchema as schema } from '~/schemas/notification'
 
 /**
  * Get system notification list.
  * @description
  * - No need Authentication.
  * - GET `api/v1/notification?scope=:scope`
- *   - `scope`(optional): `top`: only {@link NotificationSchema.pinned pinned} notification, other: all notification
+ *   - `scope`(optional): `top`: only pinne} notification, other: all notification
  * @returns `200 OK` with JSON body.
  * @example
  * ```json
@@ -30,17 +24,40 @@ const schema = z.object({ scope: z.ostring() })
  */
 export default defineEventHandler(async event => {
   const { scope } = await getValidatedQuery(event, schema.parse)
-  const pinnedOnly = scope === 'top'
 
-  const conditions: Condition<'Notification'>[] = [
-    { condition: 'c.sender = "SYSTEM"' },
-  ]
-  if (pinnedOnly) conditions.push({ condition: 'c.pinned = true' })
+  const query = /* GraphQL */ `
+  query(
+    ${scope === 'top' ? '$pinned: Boolean!' : ''}
+    $cursor: String
+  ) {
+    notifications(
+      filter: {
+        and: [
+          { sender: { eq: "SYSTEM" } }
+          ${scope === 'top' ? '{ pinned: { eq: $pinned } }' : ''}
+        ]
+      }
+      after: $cursor
+      orderBy: { pinned: DESC, timeStamp: DESC }
+    ) {
+      items {
+        id
+        type
+        icon
+        title
+        body
+        timeStamp
+      }
+      hasNextPage
+      endCursor
+    }
+  }
+  `
 
-  return (await fetchList(
-    'Notification',
-    ['id', 'type', 'icon', 'title', 'body', 'timeStamp'],
-    conditions,
-    { pinned: 'DESC', timeStamp: 'DESC' }
-  )) as Notification[]
+  return await $graphqlList<NotificationListData>(
+    event,
+    query,
+    'notifications',
+    { ...(scope === 'top' ? { pinned: true } : {}) }
+  )
 })

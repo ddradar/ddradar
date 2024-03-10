@@ -8,9 +8,8 @@ import { getDanceLevel } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import iconv from 'iconv-lite'
 
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { topUser, upsertScore } from '~~/server/utils/score'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { topUser, upsertScore } from '~/server/utils/score'
 
 type SkillAttackScore = Pick<
   ScoreSchema,
@@ -50,14 +49,17 @@ type Chart = StepChartSchema | CourseChartSchema
 export default defineEventHandler(async event => {
   // Get DDR-CODE
   const user = await getLoginUserInfo(event)
-  if (!user) return sendNullWithError(event, 401)
+  if (!user) throw createError({ statusCode: 401 })
   if (!user.code)
-    return sendNullWithError(event, 400, 'Import operation needs DDR-CODE.')
+    throw createError({
+      statusCode: 400,
+      message: 'Import operation needs DDR-CODE.',
+    })
 
   const { arrayBuffer, ok } = await $fetch.raw(
     `http://skillattack.com/sa4/data/dancer/${user.code}/score_${user.code}.txt`
   )
-  if (!ok) return sendNullWithError(event, 404)
+  if (!ok) throw createError({ statusCode: 404 })
   const scoresMap = iconv
     .decode(Buffer.from(await arrayBuffer()), 'shift_jis')
     .trim()

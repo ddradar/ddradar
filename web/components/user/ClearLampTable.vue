@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { defu } from 'defu'
 
-import type { ClearStatus } from '~/server/api/v1/users/[id]/clear.get'
+import type { ClearStatus } from '~/schemas/user'
 
 interface Props {
   playStyle: ClearStatus['playStyle']

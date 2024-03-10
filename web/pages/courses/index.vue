@@ -1,25 +1,11 @@
 <script lang="ts" setup>
-import { z } from 'zod'
+import { getListQuerySchema } from '~/schemas/course'
 
 definePageMeta({ key: route => route.fullPath })
 
 // Data & Hook
-const querySchema = z.object({
-  series: z.coerce
-    .number()
-    .int()
-    .min(0)
-    .max(seriesNames.length - 1)
-    .optional()
-    .catch(undefined),
-  type: z.coerce
-    .number()
-    .pipe(z.union([z.literal(1), z.literal(2)]))
-    .optional()
-    .catch(undefined),
-})
 const _route = useRoute()
-const { type, series } = querySchema.parse(_route.query)
+const { type, series } = getListQuerySchema.parse(_route.query)
 const { t } = useI18n()
 const { data: user } = await useFetch('/api/v1/user')
 const { data: _data, pending: loading } = await useFetch('/api/v1/courses', {

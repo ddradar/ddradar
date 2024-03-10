@@ -2,37 +2,10 @@
 import { nameIndexMap } from '@ddradar/core'
 
 const { t } = useI18n()
-const { data: notifications } = await useFetch('/api/v1/notification')
+const { data: notifications } = await useFetch('/api/v1/notification', {
+  query: { scope: 'top' },
+})
 </script>
-
-<i18n lang="json">
-{
-  "ja": {
-    "old_notification": "過去のお知らせ一覧",
-    "subtitle": "DDR Score Tracker",
-    "search": {
-      "name": "曲名から探す",
-      "series": "バージョンから探す",
-      "level": "レベルから探す({style})",
-      "course": "コースから探す"
-    },
-    "grade": "段位認定({series})",
-    "nonstop": "NONSTOP({series})"
-  },
-  "en": {
-    "old_notification": "Old Notification",
-    "subtitle": "DDR Score Tracker",
-    "search": {
-      "name": "Choose by Name",
-      "series": "Choose by Version",
-      "level": "Choose by LV ({style})",
-      "course": "Choose by Courses"
-    },
-    "grade": "GRADE({series})",
-    "nonstop": "NONSTOP({series})"
-  }
-}
-</i18n>
 
 <template>
   <UPage>
@@ -102,3 +75,32 @@ const { data: notifications } = await useFetch('/api/v1/notification')
     </UPageBody>
   </UPage>
 </template>
+
+<i18n lang="json">
+{
+  "ja": {
+    "old_notification": "過去のお知らせ一覧",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "曲名から探す",
+      "series": "バージョンから探す",
+      "level": "レベルから探す({style})",
+      "course": "コースから探す"
+    },
+    "grade": "段位認定({series})",
+    "nonstop": "NONSTOP({series})"
+  },
+  "en": {
+    "old_notification": "Old Notification",
+    "subtitle": "DDR Score Tracker",
+    "search": {
+      "name": "Choose by Name",
+      "series": "Choose by Version",
+      "level": "Choose by LV ({style})",
+      "course": "Choose by Courses"
+    },
+    "grade": "GRADE({series})",
+    "nonstop": "NONSTOP({series})"
+  }
+}
+</i18n>

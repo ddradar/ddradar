@@ -1,18 +1,10 @@
-import { type SongSchema, songSchema } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
-
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type SongInfo = Omit<SongSchema, 'skillAttackId'>
-
-/** Expected params */
-const schema = songSchema.pick({ id: true })
+import { getRouterParamsSchema as schema, type SongInfo } from '~/schemas/song'
 
 /**
  * Get song and charts information that match the specified ID.
  * @description
  * - No need Authentication.
- * - GET `api/v1/songs/:id`
+ * - GET `api/v1/songs/[id]`
  *   - `id`: {@link SongInfo.id}
  * @returns
  * - Returns `400 Bad Request` if {@link SongInfo.id id} is invalid.
@@ -48,26 +40,42 @@ const schema = songSchema.pick({ id: true })
  * ```
  */
 export default defineEventHandler(async event => {
-  const { id } = await getValidatedRouterParams(event, schema.parse)
+  const variables = await getValidatedRouterParams(event, schema.parse)
 
-  const song = await fetchOne(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'artist',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-      'charts',
-    ],
-    { condition: 'c.id = @', value: id },
-    { condition: 'c.nameIndex != -1' },
-    { condition: 'c.nameIndex != -2' }
+  const query = /* GraphQL */ `
+    query ($id: ID!) {
+      song_by_pk(id: $id) {
+        id
+        name
+        nameKana
+        nameIndex
+        artist
+        series
+        minBPM
+        maxBPM
+        deleted
+        charts {
+          playStyle
+          difficulty
+          level
+          notes
+          freezeArrow
+          shockArrow
+          stream
+          voltage
+          air
+          freeze
+          chaos
+        }
+      }
+    }
+  `
+  const { song_by_pk: song } = await $graphql<{ song_by_pk: SongInfo | null }>(
+    event,
+    query,
+    variables
   )
+  if (!song || song.nameIndex < 0) throw createError({ statusCode: 404 })
 
-  return (song as SongInfo) ?? sendNullWithError(event, 404)
+  return song
 })

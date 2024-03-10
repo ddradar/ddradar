@@ -1,24 +1,12 @@
 <script lang="ts" setup>
-import { areaCodeSet, userSchema } from '@ddradar/core'
+import { areaCodeSet } from '@ddradar/core'
 import { z } from 'zod'
 
+import { getListQuerySchema } from '~/schemas/user'
+
 // #region Data Fetching
-/** Expected queries */
-const schema = z.object({
-  name: z.ostring(),
-  area: z.coerce
-    .number()
-    .pipe(userSchema.shape.area)
-    .optional()
-    .catch(undefined),
-  code: z.coerce
-    .number()
-    .pipe(userSchema.shape.code)
-    .optional()
-    .catch(undefined),
-})
 /** Search Form conditions */
-const query = reactive<z.infer<typeof schema>>({
+const query = reactive<z.infer<typeof getListQuerySchema>>({
   name: '',
   area: 0,
   code: undefined,
@@ -59,7 +47,7 @@ const columns = computed(() => [
     <UPageHeader headline="User" :title="t('title')" />
 
     <UPageBody>
-      <UForm :state="query" :schema="schema" @submit="execute">
+      <UForm :state="query" :schema="getListQuerySchema" @submit="execute">
         <UPageGrid>
           <UFormGroup :label="t('field.area')" name="area">
             <USelect v-model="query.area" :options="areaOptions" />

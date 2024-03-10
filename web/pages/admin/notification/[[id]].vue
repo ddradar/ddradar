@@ -1,6 +1,5 @@
 <script lang="ts" setup>
-import { notificationSchema } from '@ddradar/core'
-import { z } from 'zod'
+import { postBodySchema } from '~/schemas/notification'
 
 definePageMeta({ allowedRoles: 'administrator' })
 
@@ -30,10 +29,6 @@ if (_id) await execute()
 // #endregion
 
 // #region Form
-/** Expected form body */
-const schema = notificationSchema
-  .omit({ timeStamp: true })
-  .extend({ timeStamp: z.onumber() })
 /** Save current notification. */
 const save = async () => {
   try {
@@ -58,7 +53,7 @@ const save = async () => {
     <UPageHeader :title="title" />
 
     <UPageBody>
-      <UForm :state="notification" :schema="schema" @submit="save()">
+      <UForm :state="notification" :schema="postBodySchema" @submit="save()">
         <UFormGroup label="Title" name="title">
           <UInput v-model="notification.title" />
         </UFormGroup>

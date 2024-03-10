@@ -1,8 +1,6 @@
 import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 
-import { sendNullWithError } from '~~/server/utils/http'
-
 /**
  * Add or Update information about the currently logged in user.
  * @description
@@ -27,7 +25,7 @@ import { sendNullWithError } from '~~/server/utils/http'
  */
 export default defineEventHandler(async event => {
   const clientPrincipal = getClientPrincipal(event)
-  if (!clientPrincipal) return sendNullWithError(event, 401)
+  if (!clientPrincipal) throw createError({ statusCode: 401 })
   const loginId = clientPrincipal.userId
 
   const body = await readValidatedBody(event, userSchema.parse)
@@ -36,7 +34,7 @@ export default defineEventHandler(async event => {
   const oldData = (await fetchUser(body.id)) ?? (await fetchLoginUser(loginId))
 
   if (oldData && (oldData.id !== body.id || oldData.loginId !== loginId)) {
-    return sendNullWithError(event, 400, 'Duplicated Id')
+    throw createError({ statusCode: 400, message: 'Duplicated Id' })
   }
 
   // Merge existing data with new data

@@ -2,7 +2,7 @@
 import { areaCodeSet, userSchema } from '@ddradar/core'
 
 import type { FormError, FormSubmitEvent } from '#ui/types'
-import type { CurrentUserInfo } from '~/server/api/v1/user/index.get'
+import type { CurrentUserInfo } from '~/schemas/user'
 
 definePageMeta({ allowedRoles: 'authenticated' })
 

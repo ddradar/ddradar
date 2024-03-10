@@ -1,34 +1,11 @@
-import type { DanceLevel, UserRankSchema } from '@ddradar/core'
-import { danceLevelSet, userRankSchema } from '@ddradar/core'
+import { danceLevelSet } from '@ddradar/core'
 import { Condition, fetchList } from '@ddradar/db'
-import { z } from 'zod'
 
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
+import type { RankStatus } from '~/schemas/user'
+import { getRankQuerySchema as schema } from '~/schemas/user'
+import { tryFetchUser } from '~/server/utils/auth'
 
 const danceLevels: string[] = [...danceLevelSet]
-
-export type RankStatus = Pick<
-  UserRankSchema,
-  'playStyle' | 'level' | 'count'
-> & {
-  /** Dance level (`"E"` ~ `"AAA"`), `"-"`: No Play */
-  rank: DanceLevel | '-'
-}
-
-/** Expected queries */
-const schema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(userRankSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-  lv: z.coerce
-    .number()
-    .pipe(userRankSchema.shape.level)
-    .optional()
-    .catch(undefined),
-})
 
 /**
  * Get Score statuses that match the specified userId, {@link RankStatus.playStyle playStyle} and {@link RankStatus.level level}.
@@ -52,7 +29,7 @@ const schema = z.object({
  */
 export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
-  if (!user) return sendNullWithError(event, 404)
+  if (!user) throw createError({ statusCode: 404 })
 
   const { style, lv } = await getValidatedQuery(event, schema.parse)
 

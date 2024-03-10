@@ -4,12 +4,10 @@ import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { publicUser } from '~/../core/test/data'
-import postUserInfo from '~~/server/api/v1/user/index.post'
-import { sendNullWithError } from '~~/server/utils/http'
-import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
+import handler from '~/server/api/v1/user/index.post'
+import { createClientPrincipal, createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/http')
 
 describe('POST /api/v1/user', () => {
   const user: UserSchema = { ...publicUser }
@@ -19,11 +17,9 @@ describe('POST /api/v1/user', () => {
   beforeAll(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
-    vi.mocked(sendNullWithError).mockReturnValue(null)
   })
   beforeEach(() => {
     mockedContainer.items.upsert.mockClear()
-    vi.mocked(sendNullWithError).mockClear()
   })
 
   test('returns 401 if not logged in', async () => {
@@ -31,12 +27,10 @@ describe('POST /api/v1/user', () => {
     const event = createEvent()
     vi.mocked(getClientPrincipal).mockReturnValue(null)
 
-    // Act
-    const result = await postUserInfo(event)
-
-    // Assert
-    expect(result).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError(
+      createError({ statusCode: 401 })
+    )
   })
 
   test('returns 400 if body is not UserSchema', async () => {
@@ -45,7 +39,7 @@ describe('POST /api/v1/user', () => {
     vi.mocked(getClientPrincipal).mockReturnValue(principal)
 
     // Act - Assert
-    await expect(postUserInfo(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
   })
 
   test('returns 200 with JSON (Create)', async () => {
@@ -56,11 +50,10 @@ describe('POST /api/v1/user', () => {
     vi.mocked(fetchLoginUser).mockResolvedValue(null)
 
     // Act
-    const result = await postUserInfo(event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(mockedContainer.items.upsert).toBeCalledWith({
       ...user,
       loginId: '1',
@@ -93,11 +86,10 @@ describe('POST /api/v1/user', () => {
       })
 
       // Act
-      const result = await postUserInfo(event)
+      const result = await handler(event)
 
       // Assert
       expect(result).toStrictEqual(body)
-      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
       expect(mockedContainer.items.upsert).toBeCalledWith({
         ...body,
         loginId: publicUser.loginId,
@@ -113,13 +105,10 @@ describe('POST /api/v1/user', () => {
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
-    // Act
-    const result = await postUserInfo(event)
-
-    // Assert
-    expect(result).toBeNull()
-    const message = 'Duplicated Id'
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError(
+      createError({ statusCode: 400, message: 'Duplicated Id' })
+    )
   })
 
   test('returns 400 if changed id', async () => {
@@ -129,13 +118,10 @@ describe('POST /api/v1/user', () => {
     vi.mocked(fetchUser).mockResolvedValue(publicUser)
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
-    // Act
-    const result = await postUserInfo(event)
-
-    // Assert
-    expect(result).toBeNull()
-    const message = 'Duplicated Id'
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 400, message)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError(
+      createError({ statusCode: 400, message: 'Duplicated Id' })
+    )
   })
 
   test('returns 200 but does not update if changed area', async () => {
@@ -146,11 +132,10 @@ describe('POST /api/v1/user', () => {
     vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
     // Act
-    const result = await postUserInfo(event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(mockedContainer.items.upsert).toBeCalledWith({
       ...publicUser,
       isAdmin: false,

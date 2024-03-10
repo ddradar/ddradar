@@ -1,19 +1,11 @@
-import { type CourseSchema, courseSchema } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
-import { z } from 'zod'
-
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type CourseInfo = CourseSchema
-
-/** Expected params */
-const schema = z.object({ id: courseSchema.shape.id })
+import type { CourseInfo } from '~/schemas/course'
+import { getRouterParamsSchema as schema } from '~/schemas/course'
 
 /**
  * Get course and orders information that match the specified ID.
  * @description
  * - No need Authentication.
- * - GET `api/v1/courses/:id`
+ * - GET `api/v1/courses/[id]`
  *   - `id`: {@link CourseInfo.id}
  * @returns
  * - Returns `400 Bad Request` if {@link CourseInfo.id id} is invalid.
@@ -73,23 +65,41 @@ const schema = z.object({ id: courseSchema.shape.id })
  * ```
  */
 export default defineEventHandler(async event => {
-  const { id } = await getValidatedRouterParams(event, schema.parse)
+  const variables = await getValidatedRouterParams(event, schema.parse)
 
-  const course = await fetchOne(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-      'charts',
-    ],
-    { condition: 'c.id = @', value: id },
-    { condition: 'c.nameIndex <= 0' }
-  )
-  return (course as CourseInfo) ?? sendNullWithError(event, 404)
+  const query = /* GraphQL */ `
+    query ($id: ID!) {
+      course_by_pk(id: $id) {
+        id
+        name
+        nameKana
+        nameIndex
+        series
+        minBPM
+        maxBPM
+        deleted
+        charts {
+          playStyle
+          difficulty
+          level
+          notes
+          freezeArrow
+          shockArrow
+          order {
+            songId
+            songName
+            playStyle
+            difficulty
+            level
+          }
+        }
+      }
+    }
+  `
+  const { course_by_pk: course } = await $graphql<{
+    course_by_pk: CourseInfo | null
+  }>(event, query, variables)
+  if (!course || course.nameIndex >= 0) throw createError({ statusCode: 404 })
+
+  return course
 })

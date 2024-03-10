@@ -1,23 +1,14 @@
-import { scoreSchema } from '@ddradar/core'
 import { fetchList, getContainer } from '@ddradar/db'
-import { z } from 'zod'
 
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-
-/** Expected params */
-const schema = z.object({
-  id: scoreSchema.shape.songId,
-  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
-  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
-})
+import { routerParamsSchema as schema } from '~/schemas/score'
+import { getLoginUserInfo } from '~/server/utils/auth'
 
 /**
  * Delete scores that match the specified chart.
  * @description
  * *Note: World record and area top score will not be deleted.*
  * - Need Authentication.
- * - DELETE `api/v1/scores/:id/:style/:diff`
+ * - DELETE `api/v1/scores/[id]/[style]/[diff]`
  *   - `id`: {@link ScoreSchema.songId}
  *   - `style`: {@link ScoreSchema.playStyle}
  *   - `diff`: {@link ScoreSchema.difficulty}
@@ -33,10 +24,7 @@ export default defineEventHandler(async event => {
   )
 
   const user = await getLoginUserInfo(event)
-  if (!user) {
-    sendNullWithError(event, 401)
-    return
-  }
+  if (!user) throw createError({ statusCode: 401 })
 
   const scores = await fetchList(
     'Scores',
@@ -49,10 +37,7 @@ export default defineEventHandler(async event => {
     ]
   )
 
-  if (scores.length === 0) {
-    sendNullWithError(event, 404)
-    return
-  }
+  if (scores.length === 0) throw createError({ statusCode: 404 })
 
   await getContainer('Scores').items.batch(
     scores.map(d => ({

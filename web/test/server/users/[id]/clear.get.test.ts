@@ -2,19 +2,16 @@
 import type { ClearLamp } from '@ddradar/core'
 import { clearLampMap } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { privateUser } from '~/../core/test/data'
-import type { ClearStatus } from '~~/server/api/v1/users/[id]/clear.get'
-import getClearCount from '~~/server/api/v1/users/[id]/clear.get'
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { createEvent } from '~~/test/test-utils-server'
+import type { ClearStatus } from '~/schemas/user'
+import handler from '~/server/api/v1/users/[id]/clear.get'
+import { tryFetchUser } from '~/server/utils/auth'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
-vi.mock('~~/utils/path')
+vi.mock('~/server/utils/auth')
 
 describe('GET /api/v1/users/[id]/clear', () => {
   const levelLimit = 19
@@ -36,25 +33,18 @@ describe('GET /api/v1/users/[id]/clear', () => {
   }))
   const sum = (scores: ClearStatus[]) => scores.reduce((p, c) => p + c.count, 0)
 
-  beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
-  })
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchList).mockClear()
   })
 
-  test(`returns 404 if canReadUserData() returns null`, async () => {
+  test(`returns 404 if tryFetchUser() returns null`, async () => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
     vi.mocked(tryFetchUser).mockResolvedValue(null)
 
-    // Act
-    const result = await getClearCount(event)
-
-    // Assert
-    expect(result).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked(fetchList)).not.toBeCalled()
   })
 
   test.each([
@@ -81,7 +71,7 @@ describe('GET /api/v1/users/[id]/clear', () => {
       )
 
       // Act
-      const result = await getClearCount(event)
+      const result = await handler(event)
 
       // Assert
       expect(result).toHaveLength(

@@ -4,7 +4,7 @@ import { createI18n } from 'vue-i18n'
 
 import { areaHiddenUser, privateUser, publicUser } from '~/../core/test/data'
 import Page from '~/pages/users/index.vue'
-import type { UserInfo } from '~/server/api/v1/users/index.get'
+import type { UserInfo } from '~/schemas/user'
 import { locales } from '~/test/test-utils'
 
 const { useFetchMock } = vi.hoisted(() => ({ useFetchMock: vi.fn() }))

@@ -1,9 +1,9 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import { describe, expect, test, vi } from 'vitest'
 
+import { testCourseData } from '~/../core/test/data'
+import Page from '~/pages/courses/[id].vue'
 import { global } from '~/test/test-utils'
-import { testCourseData } from '~~/../core/test/data'
-import Page from '~~/pages/courses/[id].vue'
 
 const { useFetchMock, useRouteMock } = vi.hoisted(() => ({
   useFetchMock: vi.fn(),

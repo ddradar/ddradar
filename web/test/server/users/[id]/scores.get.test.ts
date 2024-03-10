@@ -1,39 +1,28 @@
 // @vitest-environment node
 import { fetchScoreList } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { privateUser, testScores } from '~/../core/test/data'
-import getUserScores from '~~/server/api/v1/users/[id]/scores.get'
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { createEvent } from '~~/test/test-utils-server'
+import handler from '~/server/api/v1/users/[id]/scores.get'
+import { tryFetchUser } from '~/server/utils/auth'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
-vi.mock('~~/utils/path')
+vi.mock('~/server/utils/auth')
 
 describe('GET /api/v1/users/[id]/scores', () => {
-  beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
-  })
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchScoreList).mockClear()
   })
 
-  test(`returns 404 if canReadUserData() returns null`, async () => {
+  test(`returns 404 if tryFetchUser() returns null`, async () => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
     vi.mocked(tryFetchUser).mockResolvedValue(null)
 
-    // Act
-    const result = await getUserScores(event)
-
-    // Assert
-    expect(result).toBeNull()
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
     expect(vi.mocked(fetchScoreList)).not.toBeCalled()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
   })
 
   test.each([
@@ -58,7 +47,7 @@ describe('GET /api/v1/users/[id]/scores', () => {
       vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
 
       // Act
-      const result = await getUserScores(event)
+      const result = await handler(event)
 
       // Assert
       expect(result).toHaveLength(testScores.length)

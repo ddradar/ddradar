@@ -1,8 +1,7 @@
 import type { CourseChartSchema, Series, StepChartSchema } from '@ddradar/core'
 import { difficultyMap, playStyleMap, seriesSet } from '@ddradar/core'
 
-import type { ChartInfo } from '~~/server/api/v1/charts/[style]/[level].get'
-import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
+import type { ChartInfo, SongInfo } from '~/schemas/song'
 
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)

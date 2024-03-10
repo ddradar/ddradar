@@ -2,12 +2,11 @@
 import { describe, expect, test, vi } from 'vitest'
 
 import { publicUser } from '~/../core/test/data'
-import getCurrentUser from '~~/server/api/v1/user/index.get'
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { createEvent } from '~~/test/test-utils-server'
+import getCurrentUser from '~/server/api/v1/user/index.get'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { createEvent } from '~/test/test-utils-server'
 
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
+vi.mock('~/server/utils/auth')
 
 describe('GET /api/v1/user', () => {
   test('returns 200 if getLoginUserInfo() returns null', async () => {

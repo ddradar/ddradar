@@ -1,8 +1,5 @@
-import type { UserSchema } from '@ddradar/core'
-
-import { getLoginUserInfo } from '~~/server/utils/auth'
-
-export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
+import type { CurrentUserInfo } from '~/schemas/user'
+import { getLoginUserInfo } from '~/server/utils/auth'
 
 /**
  * Get information about the currently logged in user.
@@ -27,9 +24,7 @@ export type CurrentUserInfo = Omit<UserSchema, 'loginId'>
  */
 export default defineEventHandler(async event => {
   const user = await getLoginUserInfo(event)
-  if (!user) {
-    return null
-  }
+  if (!user) return null
 
   delete user.loginId
   return user as CurrentUserInfo

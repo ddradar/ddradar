@@ -3,11 +3,10 @@ import { fetchJoinedList } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { testSongData } from '~/../core/test/data'
-import searchCharts from '~~/server/api/v1/charts/[style]/[level].get'
-import { createEvent } from '~~/test/test-utils-server'
+import handler from '~/server/api/v1/charts/[style]/[level].get'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/http')
 
 describe('GET /api/v1/charts/[style]/[level]', () => {
   const dbCharts = testSongData.charts.map(c => ({
@@ -32,7 +31,7 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
     const event = createEvent({ style, level })
 
     // Act - Assert
-    await expect(searchCharts(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
   })
 
   test.each([
@@ -60,7 +59,7 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
       const event = createEvent({ style, level })
 
       // Act
-      const charts = await searchCharts(event)
+      const charts = await handler(event)
 
       // Assert
       expect(charts).toBe(dbCharts)
