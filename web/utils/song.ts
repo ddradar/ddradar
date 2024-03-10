@@ -1,7 +1,7 @@
 import type { CourseChartSchema, Series, StepChartSchema } from '@ddradar/core'
-import { difficultyMap, playStyleMap, seriesSet } from '@ddradar/core'
+import { seriesSet } from '@ddradar/core'
 
-import type { ChartInfo, SongInfo } from '~/schemas/song'
+import type { SongInfo } from '~/schemas/song'
 
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)
@@ -21,19 +21,6 @@ export function getDisplayedBPM({
   if (!minBPM || !maxBPM) return '???'
   if (minBPM === maxBPM) return `${minBPM}` as const
   return `${minBPM}-${maxBPM}` as const
-}
-
-export function getChartTitle({
-  playStyle,
-  difficulty,
-  level,
-}: Pick<ChartInfo, 'playStyle' | 'difficulty' | 'level'>) {
-  /* eslint-disable @typescript-eslint/no-non-null-assertion */
-  const playStyleText = playStyleMap.get(playStyle)!
-  const difficultyName = difficultyMap.get(difficulty)!
-  /* eslint-enable @typescript-eslint/no-non-null-assertion */
-  const shortPlayStyle = `${playStyleText[0]}P` as 'SP' | 'DP'
-  return `${shortPlayStyle}-${difficultyName} (${level})` as const
 }
 
 export function shortenSeriesName(series: string) {
