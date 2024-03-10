@@ -4,29 +4,25 @@ import { resolve } from 'node:path'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { publicUser } from '~~/../core/test/data'
-import importSkillAttack from '~~/server/api/v1/import/skillAttack.post'
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { upsertScore } from '~~/server/utils/score'
-import { createEvent } from '~~/test/test-utils-server'
+import { publicUser } from '~/../core/test/data'
+import handler from '~/server/api/v1/import/skillAttack.post'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { upsertScore } from '~/server/utils/score'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
-vi.mock('~~/server/utils/score')
+vi.mock('~/server/utils/auth')
+vi.mock('~/server/utils/score')
 
 describe('POST /api/v1/import/skillAttack', () => {
   const mockedContainer = { items: { batch: vi.fn() } }
   beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
   })
   beforeEach(() => {
     vi.mocked(fetchList).mockClear()
     vi.mocked(fetchOne).mockClear()
-    vi.mocked(sendNullWithError).mockClear()
     mockedContainer.items.batch.mockClear()
     vi.mocked(upsertScore).mockClear()
   })
@@ -36,12 +32,10 @@ describe('POST /api/v1/import/skillAttack', () => {
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
     const event = createEvent()
 
-    // Act
-    const userScores = await importSkillAttack(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 401)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError(
+      createError({ statusCode: 401 })
+    )
     expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -54,16 +48,8 @@ describe('POST /api/v1/import/skillAttack', () => {
     })
     const event = createEvent()
 
-    // Act
-    const userScores = await importSkillAttack(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      400,
-      'Import operation needs DDR-CODE.'
-    )
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
     expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -76,12 +62,8 @@ describe('POST /api/v1/import/skillAttack', () => {
     raw.mockResolvedValue({ ok: false })
     $fetch.raw = raw
 
-    // Act
-    const userScores = await importSkillAttack(event)
-
-    // Assert
-    expect(userScores).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
     expect(vi.mocked(fetchOne)).not.toBeCalled()
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -127,11 +109,10 @@ describe('POST /api/v1/import/skillAttack', () => {
     $fetch.raw = raw
 
     // Act
-    const userScores = await importSkillAttack(event)
+    const userScores = await handler(event)
 
     // Assert
     expect(userScores).not.toBeNull()
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
     expect(vi.mocked(upsertScore)).toBeCalled()
     expect(mockedContainer.items.batch).toBeCalled()
   })

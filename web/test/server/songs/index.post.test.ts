@@ -3,8 +3,8 @@ import { getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { testSongData } from '~/../core/test/data'
-import postSongInfo from '~~/server/api/v1/songs/index.post'
-import { createEvent } from '~~/test/test-utils-server'
+import postSongInfo from '~/server/api/v1/songs/index.post'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 

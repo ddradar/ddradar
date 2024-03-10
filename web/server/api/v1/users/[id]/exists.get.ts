@@ -1,14 +1,7 @@
-import { type UserSchema, userSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import { z } from 'zod'
 
-export type ExistsUser = Pick<UserSchema, 'id'> & {
-  /** User exists or not */
-  exists: boolean
-}
-
-/** Expected params */
-const schema = z.object({ id: userSchema.shape.id })
+import type { ExistsUser } from '~/schemas/user'
+import { paramsSchema as schema } from '~/schemas/user'
 
 /**
  * Returns whether the specified user exists.
@@ -18,7 +11,7 @@ const schema = z.object({ id: userSchema.shape.id })
  *   - `id`: {@link ExistsUser.id}
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
- * - Returns `404 Not Found` if `id` does not match `^[-a-zA-Z0-9_]+$` pattern.
+ * - Returns `400 Bad Request` if `id` does not match `^[-a-zA-Z0-9_]+$` pattern.
  * - Returns `200 OK` with JSON body otherwize.
  * @example
  * ```json
@@ -26,6 +19,8 @@ const schema = z.object({ id: userSchema.shape.id })
  * ```
  */
 export default defineEventHandler(async event => {
+  if (!hasRole(event, 'authenticated')) throw createError({ statusCode: 401 })
+
   const { id } = await getValidatedRouterParams(event, schema.parse)
 
   const condition = { condition: 'c.id = @', value: id } as const

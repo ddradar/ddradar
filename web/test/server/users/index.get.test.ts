@@ -3,8 +3,8 @@ import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { publicUser } from '~/../core/test/data'
-import getUserList from '~~/server/api/v1/users/index.get'
-import { createClientPrincipal, createEvent } from '~~/test/test-utils-server'
+import getUserList from '~/server/api/v1/users/index.get'
+import { createClientPrincipal, createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 

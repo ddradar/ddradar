@@ -1,95 +1,147 @@
+<script lang="ts" setup>
+import { areaCodeSet, userSchema } from '@ddradar/core'
+
+import type { FormError, FormSubmitEvent } from '#ui/types'
+import type { CurrentUserInfo } from '~/schemas/user'
+
+definePageMeta({ allowedRoles: 'authenticated' })
+
+const _default: CurrentUserInfo = {
+  id: '',
+  name: '',
+  area: 0,
+  code: undefined,
+  password: '',
+  isPublic: true,
+}
+const _toast = useToast()
+const { t } = useI18n()
+
+const isNewUser = useState(() => false)
+const { data: user, refresh } = await useFetch('/api/v1/user', {
+  default: () => _default,
+  transform: d => {
+    isNewUser.value = !d
+    return d || _default
+  },
+  deep: false,
+})
+const _uri = computed(() => `/api/v1/users/${user.value.id}/exists` as const)
+const {
+  data: _duplicated,
+  execute: _checkDuplicatedId,
+  status: _status,
+} = useFetch(_uri, {
+  immediate: false,
+  transform: u => u.exists,
+  default: () => false,
+  watch: false,
+})
+
+/** Loading state (/api/v1/users/{id}/exists) */
+const loading = computed(() => _status.value === 'pending')
+/** Area Options */
+const areaOptions = computed(() =>
+  [...areaCodeSet].map(value => ({ value, label: t(`area.${value}`) }))
+)
+
+/** Validate form data. */
+const validate = async (_state: CurrentUserInfo) => {
+  const errors: FormError[] = []
+  if (!isNewUser.value || !userSchema.shape.id.safeParse(user.value.id).success)
+    return errors
+  await _checkDuplicatedId()
+  if (_duplicated.value)
+    errors.push({ path: 'id', message: t('message.id.duplicate') })
+
+  return errors
+}
+/** Save current user profile. */
+const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
+  try {
+    await $fetch('/api/v1/user', { method: 'POST', body: event.data })
+    await refresh()
+    _toast.add({
+      id: 'user-updated',
+      title: t('message.success'),
+      color: 'green',
+    })
+  } catch (error: any) {
+    _toast.add({ id: 'user-update-error', title: error.message, color: 'red' })
+  }
+}
+</script>
+
 <template>
-  <section class="section">
-    <ONotification v-if="isNewUser" type="danger" variant="danger">
-      {{ t('newUser') }}
-    </ONotification>
-    <h1 class="title">{{ t('title') }}</h1>
+  <UPage>
+    <UPageHeader :title="t('title')" />
 
-    <OField :variant="variant" :message="message">
-      <template #label>
-        {{ t('field.id') }}
-        <OTooltip variant="dark" position="right" :label="t('text.id')">
-          <OIcon size="small" icon="help-circle-outline" />
-        </OTooltip>
-      </template>
-      <OInput
-        v-model="id"
-        :placeholder="t('placeholder.id')"
-        :disabled="!isNewUser"
-        :loading="loading"
-        @blur="checkId()"
-      />
-    </OField>
-
-    <OField :label="t('field.name')">
-      <OInput v-model="name" required />
-    </OField>
-
-    <OField>
-      <template #label>
-        {{ t('field.area') }}
-        <OTooltip variant="dark" position="right" :label="t('text.area')">
-          <OIcon size="small" icon="help-circle-outline" />
-        </OTooltip>
-      </template>
-      <OSelect
-        v-model.number="area"
-        :placeholder="t('placeholder.area')"
-        :disabled="!isNewUser"
+    <UPageBody>
+      <UForm
+        :state="user"
+        :schema="userSchema"
+        :validate="validate"
+        class="space-y-4"
+        @submit="onSubmit"
       >
-        <option v-for="a in areaOptions" :key="a.key" :value="a.key">
-          {{ a.value }}
-        </option>
-      </OSelect>
-    </OField>
+        <UFormGroup
+          :label="t('field.id')"
+          name="id"
+          :description="t('text.id')"
+        >
+          <UInput
+            v-model="user!.id"
+            :placeholder="t('placeholder.id')"
+            :disabled="!isNewUser"
+            :loading="loading"
+          />
+        </UFormGroup>
 
-    <OField :label="t('field.ddrCode')">
-      <OInput
-        v-model.number="code"
-        :placeholder="t('placeholder.ddrCode')"
-        minlength="8"
-        maxlength="8"
-        pattern="^[1-9]\d{7}$"
-      />
-    </OField>
+        <UFormGroup :label="t('field.name')" name="name">
+          <UInput v-model="user!.name" />
+        </UFormGroup>
 
-    <OField>
-      <template #label>
-        {{ t('field.password') }}
-        <OTooltip variant="dark" position="right" :label="t('text.password')">
-          <OIcon size="small" icon="help-circle-outline" />
-        </OTooltip>
-      </template>
-      <OInput v-model="password" type="password" password-reveal />
-    </OField>
+        <UFormGroup
+          :label="t('field.area')"
+          name="area"
+          :disabled="!isNewUser"
+          :description="t('text.area')"
+        >
+          <USelect v-model="user!.area" :options="areaOptions" />
+        </UFormGroup>
 
-    <OField grouped group-multiline>
-      <OSwitch v-model="isPublic">{{ t('field.isPublic') }}</OSwitch>
-      <div class="help">
-        <p v-if="isPublic">
-          {{ t('text.isPublic.public_0') }}<br />
-          {{ t('text.isPublic.public_1') }}
-        </p>
-        <p v-else>
-          {{ t('text.isPublic.private_0') }}<br />
-          {{ t('text.isPublic.private_1') }}
-        </p>
-        <p class="has-text-weight-bold has-text-danger">
-          <OIcon size="small" icon="alert" />
-          {{ t('text.isPublic.caution') }}
-        </p>
-      </div>
-    </OField>
+        <UFormGroup :label="t('field.ddrCode')" name="code">
+          <UInput
+            v-model.number="user!.code"
+            :placeholder="t('placeholder.ddrCode')"
+          />
+        </UFormGroup>
 
-    <OField>
-      <OButton variant="success" :disabled="hasError" @click="save()">
-        {{ t('save') }}
-      </OButton>
-    </OField>
-  </section>
+        <UFormGroup
+          :label="t('field.isPublic')"
+          name="isPublic"
+          :help="t('text.isPublic.caution')"
+        >
+          <template #description>
+            <p v-if="user!.isPublic">
+              {{ t('text.isPublic.public_0') }}<br />
+              {{ t('text.isPublic.public_1') }}
+            </p>
+            <p v-else>
+              {{ t('text.isPublic.private_0') }}<br />
+              {{ t('text.isPublic.private_1') }}
+            </p>
+          </template>
+          <UToggle v-model="user!.isPublic" />
+        </UFormGroup>
+
+        <UButton>{{ t('save') }}</UButton>
+      </UForm>
+    </UPageBody>
+  </UPage>
 </template>
 
-<i18n src="../i18n/area.json"></i18n>
+<i18n src="~/locales/area.json"></i18n>
 <i18n lang="json">
 {
   "ja": {
@@ -116,7 +168,7 @@
       }
     },
     "placeholder": {
-      "id": "ID",
+      "id": "半角英数字, ハイフンまたはアンダーバー",
       "area": "Select",
       "ddrCode": "10000000"
     },
@@ -155,7 +207,7 @@
       }
     },
     "placeholder": {
-      "id": "ID",
+      "id": "Alphabets, Digits, Hyphen or Underbar",
       "area": "Select",
       "ddrCode": "10000000"
     },
@@ -172,102 +224,3 @@
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import { areaCodeSet } from '@ddradar/core'
-import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { useI18n } from 'vue-i18n'
-
-import type { CurrentUserInfo } from '~~/server/api/v1/user/index.get'
-
-const { t } = useI18n()
-const { oruga } = useProgrammatic()
-const { data: user, refresh } = await useFetch('/api/v1/user')
-
-const id = useState(() => user.value?.id ?? '')
-const name = useState(() => user.value?.name ?? '')
-const area = useState(() => user.value?.area ?? 0)
-const code = useState(() => user.value?.code)
-const password = useState(() => user.value?.password ?? '')
-const isPublic = useState(() => user.value?.isPublic ?? true)
-const loading = useState(() => false)
-const variant = useState((): '' | 'success' | 'danger' => '')
-const message = useState(() => '')
-
-const isNewUser = computed(() => !user.value)
-const areaOptions = computed(() =>
-  [...areaCodeSet].map(key => ({ key, value: t(`area.${key}`) }))
-)
-const hasError = computed(
-  () =>
-    variant.value === 'danger' ||
-    !/^[-a-zA-Z0-9_]+$/.test(id.value) ||
-    !name.value ||
-    !areaCodeSet.has(area.value) ||
-    (!!code.value &&
-      (!Number.isInteger(code.value) ||
-        code.value < 10000000 ||
-        code.value > 99999999))
-)
-
-const checkId = async () => {
-  variant.value = ''
-
-  // Required check
-  if (!id.value) {
-    variant.value = 'danger'
-    message.value = t('message.id.required').toString()
-    return
-  }
-
-  // Pattern check
-  if (!/^[-a-zA-Z0-9_]+$/.test(id.value)) {
-    variant.value = 'danger'
-    message.value = t('message.id.invalid').toString()
-    return
-  }
-
-  // Duplicate check from API
-  loading.value = true
-  try {
-    const user = await $fetch(`/api/v1/users/${id.value}/exists`)
-    if (user?.exists) {
-      variant.value = 'danger'
-      message.value = t('message.id.duplicate').toString()
-    } else {
-      variant.value = 'success'
-      message.value = t('message.id.available').toString()
-    }
-  } catch (error) {
-    variant.value = ''
-  }
-  loading.value = false
-}
-const save = async () => {
-  const body: CurrentUserInfo = {
-    id: id.value,
-    name: name.value,
-    area: area.value,
-    isPublic: isPublic.value,
-  }
-  if (code.value) body.code = code.value
-  if (password.value) body.password = password.value
-  try {
-    await $fetch('/api/v1/user', { method: 'POST', body })
-    oruga.notification.open({
-      message: t('message.success'),
-      variant: 'success',
-      position: 'top',
-    })
-    await refresh()
-  } catch (error) {
-    oruga.notification.open({
-      message: error,
-      variant: 'danger',
-      position: 'top',
-    })
-  }
-  variant.value = ''
-  message.value = ''
-}
-</script>

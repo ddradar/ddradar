@@ -4,36 +4,17 @@ import type {
   ScoreSchema,
   StepChartSchema,
 } from '@ddradar/core'
-import {
-  getDanceLevel,
-  isValidScore,
-  score,
-  songSchema,
-  stepChartSchema,
-} from '@ddradar/core'
+import { getDanceLevel, isValidScore } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
-import { z } from 'zod'
 
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { topUser, upsertScore } from '~~/server/utils/score'
+import {
+  postBodySchema as bodySchema,
+  postRouterParamsSchema as paramSchema,
+} from '~/schemas/score'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { topUser, upsertScore } from '~/server/utils/score'
 
 type ChartInfo = StepChartSchema | CourseChartSchema
-
-/** Expected params */
-const paramSchema = z.object({ id: songSchema.shape.id })
-
-/** Expected body */
-const bodySchema = z
-  .array(
-    score.extend({
-      playStyle: stepChartSchema.shape.playStyle,
-      difficulty: stepChartSchema.shape.difficulty,
-      topScore: score.shape.score.optional(),
-    })
-  )
-  .min(1)
-export type ScoreListBody = z.infer<typeof bodySchema>[number]
 
 /**
  * Add or update the scores of the specified songs all at once.
@@ -110,7 +91,7 @@ export default defineEventHandler(async event => {
   const body = await readValidatedBody(event, bodySchema.parse)
 
   const user = await getLoginUserInfo(event)
-  if (!user) return sendNullWithError(event, 401)
+  if (!user) throw createError({ statusCode: 404 })
 
   // Get song info
   const song = await fetchOne('Songs', ['id', 'name', 'deleted', 'charts'], {
@@ -118,7 +99,7 @@ export default defineEventHandler(async event => {
       '(c.id = @ OR c.skillAttackId = StringToNumber(@) OR (@ = "dll9D90dq1O09oObO66Pl8l9I9l0PbPP" AND c.id = "01lbO69qQiP691ll6DIiqPbIdd9O806o"))',
     value: id,
   })
-  if (!song) return sendNullWithError(event, 404)
+  if (!song) throw createError({ statusCode: 404 })
 
   const oldScores = await fetchList('Scores', '*', [
     { condition: 'c.songId = @', value: id },
@@ -137,11 +118,14 @@ export default defineEventHandler(async event => {
     const chart = (song.charts as ChartInfo[]).find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
-    if (!chart) return sendNullWithError(event, 404)
+    if (!chart) throw createError({ statusCode: 404 })
 
     const chartInfo = { ...song, ...chart }
     if (!isValidScore(chartInfo, score)) {
-      return sendNullWithError(event, 400, `body[${i}] is invalid Score`)
+      throw createError({
+        statusCode: 400,
+        message: `body[${i}] is invalid Score`,
+      })
     }
 
     upsertScore(chartInfo, user, oldScores, score, result, operations)

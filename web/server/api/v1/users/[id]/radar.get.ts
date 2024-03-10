@@ -1,23 +1,11 @@
-import {
-  type UserGrooveRadarSchema,
-  userGrooveRadarSchema,
-} from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
-import { z } from 'zod'
 
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
+import type { GrooveRadarInfo } from '~/schemas/user'
+import { getRadarQuerySchema as schema } from '~/schemas/user'
+import { tryFetchUser } from '~/server/utils/auth'
 
-export type GrooveRadarInfo = Omit<UserGrooveRadarSchema, 'userId' | 'type'>
-
-/** Expected queries */
-const schema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(userGrooveRadarSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-})
+/** Default radar value */
+const radar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
 
 /**
  * Get Groove Radar that match the specified userId and playStyle.
@@ -53,7 +41,7 @@ const schema = z.object({
  */
 export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
-  if (!user) return sendNullWithError(event, 404)
+  if (!user) throw createError({ statusCode: 404 })
 
   const { style } = await getValidatedQuery(event, schema.parse)
 
@@ -63,10 +51,16 @@ export default defineEventHandler(async event => {
   ]
   if (style) conditions.push({ condition: 'c.playStyle = @', value: style })
 
-  return (await fetchList(
+  const result = await fetchList(
     'UserDetails',
     ['playStyle', 'stream', 'voltage', 'air', 'freeze', 'chaos'],
     conditions,
     { playStyle: 'ASC' }
-  )) as GrooveRadarInfo[]
+  )
+  return result.length
+    ? result
+    : ([
+        { playStyle: 1, ...radar },
+        { playStyle: 2, ...radar },
+      ] as GrooveRadarInfo[])
 })

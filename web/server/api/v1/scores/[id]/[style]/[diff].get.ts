@@ -1,31 +1,17 @@
-import { type ScoreSchema, scoreSchema } from '@ddradar/core'
 import { fetchList } from '@ddradar/db'
-import { z } from 'zod'
 
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
-
-/** Expected params */
-const paramSchema = z.object({
-  id: scoreSchema.shape.songId,
-  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
-  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
-})
-
-/** Expected query */
-const querySchema = z.object({
-  scope: z
-    .union([z.literal('private'), z.literal('medium'), z.literal('full')])
-    .catch('medium'),
-})
+import type { ScoreInfo } from '~/schemas/score'
+import {
+  getQuerySchema as querySchema,
+  routerParamsSchema as paramSchema,
+} from '~/schemas/score'
+import { getLoginUserInfo } from '~/server/utils/auth'
 
 /**
  * Get scores that match the specified chart.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - `GET api/v1/scores/:id/:style/:diff?scope=:scope`
+ * - GET `api/v1/scores/[id]/[style]/[diff]?scope=:scope`
  *   - `scope`(optional): `private`: Only personal best score, `medium`(default): Personal best, area top, and world top scores, `full`: All scores
  *   - `id`: {@link ScoreInfo.songId}
  *   - `style`: {@link ScoreInfo.playStyle}
@@ -85,8 +71,10 @@ export default defineEventHandler(async event => {
 
   const user = await getLoginUserInfo(event)
   if (scope === 'private' && !user) {
-    sendNullWithError(event, 404, '"private" scope must be logged in')
-    return []
+    throw createError({
+      statusCode: 404,
+      message: '"private" scope must be logged in',
+    })
   }
 
   /**

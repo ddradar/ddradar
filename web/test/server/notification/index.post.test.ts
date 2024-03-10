@@ -2,10 +2,8 @@
 import { getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import postNotification, {
-  type NotificationBody,
-} from '~~/server/api/v1/notification/index.post'
-import { createEvent } from '~~/test/test-utils-server'
+import postNotification from '~/server/api/v1/notification/index.post'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 
@@ -13,7 +11,7 @@ const timeStamp = 1597114800
 Date.now = vi.fn(() => timeStamp * 1000)
 
 describe('POST /api/v1/notification', () => {
-  const validBody: NotificationBody = {
+  const validBody = {
     sender: 'SYSTEM',
     pinned: true,
     type: 'is-info',

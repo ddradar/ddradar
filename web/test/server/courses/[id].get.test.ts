@@ -1,56 +1,57 @@
 // @vitest-environment node
-import { fetchOne } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { testCourseData } from '~/../core/test/data'
-import getCourseInfo from '~~/server/api/v1/courses/[id].get'
-import { sendNullWithError } from '~~/server/utils/http'
-import { createEvent } from '~~/test/test-utils-server'
-
-vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/http')
+import { testCourseData, testSongData } from '~/../core/test/data'
+import handler from '~/server/api/v1/courses/[id].get'
+import { createEvent } from '~/test/test-utils-server'
 
 describe('GET /api/v1/courses/[id]', () => {
-  beforeAll(() => {
-    vi.mocked(sendNullWithError).mockReturnValue(null)
-  })
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
+    vi.mocked($graphql).mockClear()
   })
 
   test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
     // Arrange
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValue(testCourseData as any)
+    vi.mocked($graphql).mockResolvedValue({ course_by_pk: testCourseData })
     const event = createEvent({ id: testCourseData.id })
 
     // Act
-    const course = await getCourseInfo(event)
+    const course = await handler(event)
 
     // Assert
     expect(course).toBe(testCourseData)
-    expect(vi.mocked(sendNullWithError)).not.toBeCalled()
+    expect(vi.mocked($graphql)).toBeCalled()
   })
 
   test(`/00000000000000000000000000000000 (not exist song) returns 404`, async () => {
     // Arrange
-    vi.mocked(fetchOne).mockResolvedValue(null)
+    vi.mocked($graphql).mockResolvedValue({ course_by_pk: null })
     const event = createEvent({ id: `00000000000000000000000000000000` })
 
-    // Act
-    const course = await getCourseInfo(event)
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked($graphql)).toBeCalled()
+  })
 
-    // Assert
-    expect(course).toBeNull()
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(event, 404)
+  test(`/${testSongData.id} (song data) returns 404`, async () => {
+    // Arrange
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    vi.mocked($graphql).mockResolvedValue({ course_by_pk: testSongData })
+    const event = createEvent({ id: testSongData.id })
+
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked($graphql)).toBeCalled()
   })
 
   test(`/invalid-id returns 400`, async () => {
     // Arrange
-    vi.mocked(fetchOne).mockResolvedValue(null)
+    vi.mocked($graphql).mockResolvedValue({ course_by_pk: null })
     const event = createEvent({ id: 'invalid-id' })
 
     // Act - Assert
-    await expect(getCourseInfo(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
+    expect(vi.mocked($graphql)).not.toBeCalled()
   })
 })

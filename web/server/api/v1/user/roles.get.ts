@@ -1,10 +1,6 @@
-import { userSchema } from '@ddradar/core'
 import { fetchOne } from '@ddradar/db'
-import { z } from 'zod'
 
-/** Expected body */
-const schema = z.object({ userId: userSchema.shape.loginId })
-export type RolePayload = z.infer<typeof schema>
+import { getRolesBodySchema as schema } from '~/schemas/user'
 
 /**
  * Get user roles. (called from Azure Static Web Apps)

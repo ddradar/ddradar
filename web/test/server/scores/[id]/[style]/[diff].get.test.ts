@@ -3,14 +3,12 @@ import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { publicUser as user, testScores } from '~/../core/test/data'
-import fetchChartScores from '~~/server/api/v1/scores/[id]/[style]/[diff].get'
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-import { createEvent } from '~~/test/test-utils-server'
+import handler from '~/server/api/v1/scores/[id]/[style]/[diff].get'
+import { getLoginUserInfo } from '~/server/utils/auth'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
-vi.mock('~~/server/utils/http')
+vi.mock('~/server/utils/auth')
 
 describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
   const id = testScores[0].songId
@@ -22,10 +20,8 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
 
   beforeAll(() => {
     vi.mocked(fetchList).mockResolvedValue([])
-    vi.mocked(sendNullWithError).mockReturnValue(null)
   })
   beforeEach(() => {
-    vi.mocked(sendNullWithError).mockClear()
     vi.mocked(fetchList).mockClear()
   })
 
@@ -49,12 +45,12 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
     { ...params, id: '0' },
     { ...params, style: '3' },
     { ...params, diff: '-1' },
-  ])('(%o) returns 404', async params => {
+  ])('(%o) returns 400', async params => {
     // Arrange
     const event = createEvent(params)
 
     // Act - Assert
-    await expect(fetchChartScores(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError()
   })
 
   test(`?scope=private returns 404 if anonymous`, async () => {
@@ -62,15 +58,12 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
     vi.mocked(getLoginUserInfo).mockResolvedValue(null)
     const event = createEvent(params, { scope: 'private' })
 
-    // Act
-    const scores = await fetchChartScores(event)
-
-    // Assert
-    expect(scores).toHaveLength(0)
-    expect(vi.mocked(sendNullWithError)).toBeCalledWith(
-      event,
-      404,
-      '"private" scope must be logged in'
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError(
+      createError({
+        statusCode: 404,
+        message: '"private" scope must be logged in',
+      })
     )
     expect(vi.mocked(fetchList)).not.toBeCalled()
   })
@@ -102,11 +95,10 @@ describe('GET /api/v1/scores/[id]/[style]/[diff]', () => {
       const event = createEvent(params, { scope })
 
       // Act
-      const scores = await fetchChartScores(event)
+      const scores = await handler(event)
 
       // Assert
       expect(scores).toBe(dbScores)
-      expect(vi.mocked(sendNullWithError)).not.toBeCalled()
       expect(vi.mocked(fetchList).mock.lastCall?.[2][4]).toStrictEqual({
         condition,
         value,

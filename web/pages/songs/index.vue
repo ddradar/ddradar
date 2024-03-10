@@ -1,61 +1,131 @@
+<script lang="ts" setup>
+import { nameIndexMap } from '@ddradar/core'
+
+import { getListQuerySchema } from '~/schemas/song'
+
+definePageMeta({ key: route => route.fullPath })
+
+// #region Data Fetching
+const { data: user } = await useFetch('/api/v1/user')
+const _route = useRoute('songs')
+const { name, series } = getListQuerySchema.parse(_route.query)
+const { data: _data, pending: loading } = await useFetch('/api/v1/songs', {
+  query: { name, series },
+  watch: [_route.query],
+  default: () => [],
+})
+// #endregion
+
+const pageCount = 50
+const { page, total, from, to, data: songs } = usePaging(pageCount, _data)
+
+// #region i18n
+const { t } = useI18n()
+/** Page Title */
+const title = computed(() =>
+  typeof name === 'number'
+    ? nameIndexMap.get(name)
+    : typeof series === 'number'
+      ? seriesNames[series]
+      : t('showAll')
+)
+/** Button Links to other series/name */
+const links = computed(() =>
+  typeof name === 'number'
+    ? [...nameIndexMap.entries()].map(([name, label]) => ({
+        label,
+        query: { name },
+      }))
+    : typeof series === 'number'
+      ? seriesNames.map((label, series) => ({ label, query: { series } }))
+      : []
+)
+/** Table Columns */
+const columns = computed(() => [
+  { key: 'series', label: t('column.series') },
+  { key: 'name', label: t('column.name') },
+  { key: 'artist', label: t('column.artist') },
+  { key: 'bpm', label: t('column.bpm') },
+  ...(user.value ? [{ key: 'score', label: t('column.score') }] : []),
+])
+// #endregion
+
+// #region Score Editor
+const modalSongId = ref('')
+const modalIsOpen = ref(false)
+/** Open ScoreEditor modal. */
+const editScore = async (songId: string) => {
+  modalSongId.value = songId
+  modalIsOpen.value = true
+}
+// #endregion
+</script>
+
 <template>
-  <section class="section">
-    <h1 class="title">{{ title }}</h1>
-
-    <div class="buttons">
-      <NuxtLink
-        v-for="l in pages"
-        :key="l.key"
-        class="button is-info"
-        :class="{ 'is-outlined': isButtonDisabled(l.key) }"
-        :disabled="isButtonDisabled(l.key)"
-        :to="{ path: '/songs', query: l.query }"
-      >
-        {{ l.name }}
-      </NuxtLink>
-    </div>
-
-    <OTable
-      :data="songs!"
-      striped
-      :loading="pending"
-      :mobile-cards="false"
-      paginated
-      :per-page="50"
-    >
-      <OTableColumn v-slot="props" field="series" :label="t('column.series')">
-        {{ shortenSeriesName(props.row.series) }}
-      </OTableColumn>
-      <OTableColumn v-slot="props" field="name" :label="t('column.name')">
-        <NuxtLink :to="`/songs/${props.row.id}`">
-          {{ props.row.name }}
-        </NuxtLink>
-      </OTableColumn>
-      <OTableColumn v-slot="props" field="artist" :label="t('column.artist')">
-        {{ props.row.artist }}
-      </OTableColumn>
-      <OTableColumn v-slot="props" field="bpm" :label="t('column.bpm')">
-        {{ getDisplayedBPM(props.row) }}
-      </OTableColumn>
-      <OTableColumn v-if="user" v-slot="props" :label="t('column.score')">
-        <OButton
-          icon-right="pencil-box-outline"
-          @click="editScore(props.row.id)"
-        />
-      </OTableColumn>
-
-      <template #empty>
-        <section v-if="pending" class="section">
-          <OSkeleton animated size="large" :count="3" />
-        </section>
-        <section v-else class="section">
-          <div class="content has-text-grey has-text-centered">
-            <p>{{ t('noData') }}</p>
-          </div>
-        </section>
+  <UPage>
+    <UPageHeader :title="title">
+      <template #description>
+        <UButton
+          v-for="l in links"
+          :key="l.query"
+          :to="{ path: '/songs', query: l.query }"
+          exact-query
+          variant="ghost"
+          color="blue"
+        >
+          {{ l.label }}
+        </UButton>
       </template>
-    </OTable>
-  </section>
+    </UPageHeader>
+
+    <UPageBody>
+      <UTable
+        :rows="songs"
+        :columns="columns"
+        :loading="loading"
+        :empty-state="{
+          icon: 'i-heroicons-circle-stack-20-solid',
+          label: t('noData'),
+        }"
+      >
+        <template #series-data="{ row }">
+          {{ shortenSeriesName(row.series) }}
+        </template>
+        <template #name-data="{ row }">
+          <ULink class="blue" :to="`/songs/${row.id}`">{{ row.name }}</ULink>
+        </template>
+        <template #bpm-data="{ row }">
+          {{ getDisplayedBPM(row) }}
+        </template>
+        <template v-if="user" #score-data="{ row }">
+          <UButton
+            icon="i-heroicons-pencil-square-20-solid"
+            @click="editScore(row.id)"
+          />
+        </template>
+      </UTable>
+
+      <div v-if="total" class="flex flex-wrap justify-between items-center">
+        <div>
+          <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
+            <template #from>
+              <span class="font-medium">{{ from }}</span>
+            </template>
+            <template #to>
+              <span class="font-medium">{{ to }}</span>
+            </template>
+            <template #total>
+              <span class="font-medium">{{ total }}</span>
+            </template>
+          </i18n-t>
+        </div>
+
+        <UPagination v-model="page" :page-count="pageCount" :total="total" />
+      </div>
+    </UPageBody>
+
+    <ModalScoreEditor v-model="modalIsOpen" :song-id="modalSongId" />
+  </UPage>
 </template>
 
 <i18n lang="json">
@@ -68,6 +138,8 @@
       "bpm": "BPM",
       "score": "スコア編集"
     },
+    "showAll": "すべての楽曲を表示",
+    "showing": "{total} 件中 {from} 件から {to} 件を表示中",
     "noData": "データがありません"
   },
   "en": {
@@ -78,69 +150,9 @@
       "bpm": "BPM",
       "score": "Edit Score"
     },
+    "showAll": "Show All Songs",
+    "showing": "Showing {from} to {to} of {total} results",
     "noData": "No Data"
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import { nameIndexMap } from '@ddradar/core'
-import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { useI18n } from 'vue-i18n'
-
-import ScoreEditor from '~~/components/modal/ScoreEditor.vue'
-import { getQueryInteger } from '~~/utils/path'
-import { getDisplayedBPM, seriesNames, shortenSeriesName } from '~~/utils/song'
-
-/* c8 ignore next */
-definePageMeta({ key: route => route.fullPath })
-
-const _kinds = ['name', 'series'] as const
-
-// Data & Hook
-const _route = useRoute()
-const name = getQueryInteger(_route.query, _kinds[0])
-const series = getQueryInteger(_route.query, _kinds[1])
-const { oruga } = useProgrammatic()
-const { t } = useI18n()
-const { data: user } = await useFetch('/api/v1/user')
-const { data: songs, pending } = await useFetch('/api/v1/songs', {
-  query: { name, series },
-  watch: [_route.query],
-})
-
-// Computed
-const _pageKind = !isNaN(name) ? _kinds[0] : !isNaN(series) ? _kinds[1] : 'all'
-const title =
-  _pageKind === 'name'
-    ? nameIndexMap.get(name)
-    : _pageKind === 'series'
-      ? seriesNames[series]
-      : 'すべての楽曲を表示'
-const pages =
-  _pageKind === 'name'
-    ? [...nameIndexMap.entries()].map(([key, name]) => ({
-        name,
-        key,
-        query: { name: key },
-      }))
-    : _pageKind === 'series'
-      ? seriesNames.map((name, key) => ({
-          name,
-          key,
-          query: { series: key },
-        }))
-      : []
-
-// Method
-const isButtonDisabled = (key: number) => name === key || series === key || null
-/** Open ScoreEditor modal. */
-const editScore = async (songId: string) => {
-  const instance = oruga.modal.open({
-    component: ScoreEditor,
-    props: { songId, isCourse: false },
-    trapFocus: true,
-  })
-  await instance.promise
-}
-</script>

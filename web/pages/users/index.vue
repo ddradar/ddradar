@@ -1,71 +1,114 @@
+<script lang="ts" setup>
+import { areaCodeSet } from '@ddradar/core'
+import { z } from 'zod'
+
+import { getListQuerySchema } from '~/schemas/user'
+
+// #region Data Fetching
+/** Search Form conditions */
+const query = reactive<z.infer<typeof getListQuerySchema>>({
+  name: '',
+  area: 0,
+  code: undefined,
+})
+const {
+  data: _data,
+  execute,
+  status: _status,
+} = useFetch('/api/v1/users', {
+  query,
+  immediate: false,
+  default: () => [],
+  watch: false,
+})
+/** Loading state */
+const loading = computed(() => _status.value === 'pending')
+// #endregion
+
+const pageCount = 20
+const { page, total, from, to, data: users } = usePaging(pageCount, _data)
+
+// #region I18n
+const { t } = useI18n()
+/** Area Options */
+const areaOptions = computed(() =>
+  [...areaCodeSet].map(value => ({ value, label: t(`area.${value}`) }))
+)
+/** Table Columns */
+const columns = computed(() => [
+  { key: 'name', label: t('column.name') },
+  { key: 'area', label: t('column.area') },
+])
+// #endregion
+</script>
+
 <template>
-  <section class="section">
-    <h1 class="title">{{ t('title') }}</h1>
-    <section>
-      <OField grouped group-multiline>
-        <OField :label="t('field.area')">
-          <OSelect v-model.number="area" placeholder="Select">
-            <option v-for="a in areaOptions" :key="a.key" :value="a.key">
-              {{ a.value }}
-            </option>
-          </OSelect>
-        </OField>
-        <OField :label="t('field.name')">
-          <OInput v-model="name" />
-        </OField>
-        <OField :label="t('field.code')">
-          <OInput
-            v-model.number="code"
-            placeholder="10000000"
-            minlength="8"
-            maxlength="8"
-            pattern="^\d{8}$"
-          />
-        </OField>
-      </OField>
-      <OField>
-        <OButton variant="success" icon-left="magnify" @click="search()">
+  <UPage>
+    <UPageHeader headline="User" :title="t('title')" />
+
+    <UPageBody>
+      <UForm :state="query" :schema="getListQuerySchema" @submit="execute">
+        <UPageGrid>
+          <UFormGroup :label="t('field.area')" name="area">
+            <USelect v-model="query.area" :options="areaOptions" />
+          </UFormGroup>
+          <UFormGroup :label="t('field.name')" name="name">
+            <UInput v-model="query.name" />
+          </UFormGroup>
+          <UFormGroup :label="t('field.code')" name="code">
+            <UInput v-model.number="query.code" placeholder="10000000" />
+          </UFormGroup>
+        </UPageGrid>
+
+        <UButton
+          icon="i-heroicons-magnifying-glass-20-solid"
+          color="green"
+          type="submit"
+        >
           {{ t('search') }}
-        </OButton>
-      </OField>
-    </section>
+        </UButton>
+      </UForm>
 
-    <section>
-      <OTable
-        :data="users"
-        striped
+      <UDivider class="my-4" />
+
+      <UTable
+        :rows="users"
+        :columns="columns"
         :loading="loading"
-        :mobile-cards="false"
-        paginated
-        :per-page="50"
+        :empty-state="{
+          icon: 'i-heroicons-circle-stack-20-solid',
+          label: t('noData'),
+        }"
       >
-        <OTableColumn v-slot="props" field="name" :label="t('list.name')">
-          <NuxtLink :to="`/users/${props.row.id}`">
-            {{ props.row.name }}
-          </NuxtLink>
-        </OTableColumn>
-        <OTableColumn v-slot="props" field="area" :label="t('list.area')">
-          {{ t(`area.${props.row.area}`) }}
-        </OTableColumn>
-
-        <template #empty>
-          <section v-if="loading" class="section">
-            <OSkeleton animated />
-            <OSkeleton animated />
-            <OSkeleton animated />
-          </section>
-          <section v-else class="section">
-            <div class="content has-text-grey has-text-centered">
-              <p>{{ t('list.empty') }}</p>
-            </div>
-          </section>
+        <template #name-data="{ row }">
+          <ULink :to="`/users/${row.id}`">{{ row.name }}</ULink>
         </template>
-      </OTable>
-    </section>
-  </section>
+
+        <template #area-data="{ row }">{{ t(`area.${row.area}`) }}</template>
+      </UTable>
+
+      <div v-if="total" class="flex flex-wrap justify-between items-center">
+        <div>
+          <i18n-t keypath="showing" tag="span" class="text-sm leading-5">
+            <template #from>
+              <span class="font-medium">{{ from }}</span>
+            </template>
+            <template #to>
+              <span class="font-medium">{{ to }}</span>
+            </template>
+            <template #total>
+              <span class="font-medium">{{ total }}</span>
+            </template>
+          </i18n-t>
+        </div>
+
+        <UPagination v-model="page" :page-count="pageCount" :total="total" />
+      </div>
+    </UPageBody>
+  </UPage>
 </template>
 
-<i18n src="../../i18n/area.json"></i18n>
+<i18n src="~/locales/area.json"></i18n>
 <i18n lang="json">
 {
   "ja": {
@@ -75,11 +118,12 @@
       "name": "登録名(部分一致)",
       "code": "DDR CODE"
     },
-    "list": {
+    "column": {
       "name": "登録名",
-      "area": "所属地域",
-      "empty": "ユーザーが見つかりません"
+      "area": "所属地域"
     },
+    "showing": "{total} 件中 {from} 件から {to} 件を表示中",
+    "noData": "ユーザーが見つかりません",
     "search": "検索"
   },
   "en": {
@@ -89,40 +133,13 @@
       "name": "Name (partial match)",
       "code": "DDR CODE"
     },
-    "list": {
+    "column": {
       "name": "Name",
-      "area": "Area",
-      "empty": "Not Found User"
+      "area": "Area"
     },
+    "showing": "Showing {from} to {to} of {total} results",
+    "noData": "Not Found User",
     "search": "Search"
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import type { AreaCode } from '@ddradar/core'
-import { areaCodeSet } from '@ddradar/core'
-import { useI18n } from 'vue-i18n'
-
-import type { UserInfo } from '~~/server/api/v1/users/index.get'
-
-const { t } = useI18n()
-
-const area = useState(() => 0 as AreaCode)
-const name = useState(() => '')
-const code = useState(() => undefined as number | undefined)
-const loading = useState(() => false)
-const users = useState(() => [] as UserInfo[])
-
-const areaOptions = computed(() =>
-  [...areaCodeSet].map(key => ({ key, value: t(`area.${key}`) }))
-)
-
-const search = async () => {
-  loading.value = true
-  users.value = await $fetch<UserInfo[]>('/api/v1/users', {
-    query: { area: area.value, name: name.value, code: code.value },
-  })
-  loading.value = false
-}
-</script>

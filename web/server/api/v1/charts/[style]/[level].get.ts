@@ -1,19 +1,7 @@
-import {
-  type SongSchema,
-  type StepChartSchema,
-  stepChartSchema,
-} from '@ddradar/core'
 import { fetchJoinedList } from '@ddradar/db'
-import { z } from 'zod'
 
-export type ChartInfo = Pick<SongSchema, 'id' | 'name' | 'series'> &
-  Pick<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>
-
-/** Expected params */
-const schema = z.object({
-  style: z.coerce.number().pipe(stepChartSchema.shape.playStyle),
-  level: z.coerce.number().pipe(stepChartSchema.shape.level),
-})
+import type { ChartInfo } from '~/schemas/song'
+import { getChartsRouterParamsSchema as schema } from '~/schemas/song'
 
 /**
  * Get charts that match the specified conditions.

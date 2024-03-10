@@ -1,46 +1,8 @@
-import { type ScoreSchema, scoreSchema } from '@ddradar/core'
 import { fetchScoreList } from '@ddradar/db'
-import { z } from 'zod'
 
-import { tryFetchUser } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
-
-export type ScoreList = Omit<
-  ScoreSchema,
-  'userId' | 'userName' | 'isPublic' | 'radar'
-> & {
-  /** Course score or not */
-  isCourse: boolean
-}
-
-/** Expected queries */
-const schema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-  diff: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.difficulty)
-    .optional()
-    .catch(undefined),
-  level: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.level)
-    .optional()
-    .catch(undefined),
-  lamp: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.clearLamp)
-    .optional()
-    .catch(undefined),
-  rank: z.coerce
-    .string()
-    .pipe(scoreSchema.shape.rank)
-    .optional()
-    .catch(undefined),
-})
+import type { ScoreList } from '~/schemas/user'
+import { getScoresQuerySchema as schema } from '~/schemas/user'
+import { tryFetchUser } from '~/server/utils/auth'
 
 /**
  * Get user scores that match the specified conditions.
@@ -75,7 +37,7 @@ const schema = z.object({
  */
 export default defineEventHandler(async event => {
   const user = await tryFetchUser(event)
-  if (!user) return sendNullWithError(event, 404)
+  if (!user) throw createError({ statusCode: 404 })
 
   const {
     style: playStyle,

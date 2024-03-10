@@ -1,0 +1,2295 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) renders Edit button 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          Title
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          Date
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          Edit
+        </span>
+        
+      </th>
+      
+    </tr>
+    <!--v-if-->
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_7"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="下記の譜面情報を追加しました。
+
+- [新曲](/song/foo)"
+              id="headlessui-disclosure-button-D8OaopRZS8_6"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                info
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                新曲を追加しました
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_7"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      下記の譜面情報を追加しました。
+                    </p>
+                    
+
+                    <ul>
+                      
+
+                      <li>
+                        <a
+                          href="/song/foo"
+                        >
+                          新曲
+                        </a>
+                      </li>
+                      
+
+                    </ul>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Thu, 13 Aug 2020 00:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/foo"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_9"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-warning-500 dark:text-warning-400 bg-warning-50 hover:bg-warning-100 disabled:bg-warning-50 dark:bg-warning-950 dark:hover:bg-warning-900 dark:disabled:bg-warning-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning-500 dark:focus-visible:ring-warning-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="このWebサイトはベータ版環境です。"
+              id="headlessui-disclosure-button-D8OaopRZS8_8"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                warning
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                このサイトはベータ版です
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_9"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      このWebサイトはベータ版環境です。
+                    </p>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Sat, 01 Aug 2020 03:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/bar"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_11"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="変更点は以下を参照してください。"
+              id="headlessui-disclosure-button-D8OaopRZS8_10"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                info
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                v0.6.0をリリースしました
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_11"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      変更点は以下を参照してください。
+                    </p>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Tue, 11 Aug 2020 03:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/baz"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    
+  </tbody>
+</table>
+`;
+
+exports[`/notification > { locale: "en" } snapshot test > ({ loading: true }) renders loading state 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          Title
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          Date
+        </span>
+        
+      </th>
+      
+    </tr>
+    <tr>
+      <td
+        class="absolute inset-x-0 -bottom-[0.5px] p-0"
+        colspan="0"
+      >
+        <div
+          class="w-full flex flex-col gap-2"
+          data-v-5e930f4e=""
+        >
+          <!--v-if-->
+          <progress
+            class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+            data-v-5e930f4e=""
+          />
+          <!--v-if-->
+        </div>
+      </td>
+    </tr>
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    <tr>
+      <td
+        colspan="2"
+      >
+        
+        <div
+          class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <p
+            class="text-sm text-center text-gray-900 dark:text-white"
+          >
+            Loading...
+          </p>
+        </div>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) renders notification 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              All Notification List
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Title
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+                scope="col"
+              >
+                
+                <span>
+                  Date
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_1"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="下記の譜面情報を追加しました。
+
+- [新曲](/song/foo)"
+                      id="headlessui-disclosure-button-D8OaopRZS8_0"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        info
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        新曲を追加しました
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_1"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              下記の譜面情報を追加しました。
+                            </p>
+                            
+
+                            <ul>
+                              
+
+                              <li>
+                                <a
+                                  href="/song/foo"
+                                >
+                                  新曲
+                                </a>
+                              </li>
+                              
+
+                            </ul>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Thu, 13 Aug 2020 00:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_3"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-warning-500 dark:text-warning-400 bg-warning-50 hover:bg-warning-100 disabled:bg-warning-50 dark:bg-warning-950 dark:hover:bg-warning-900 dark:disabled:bg-warning-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning-500 dark:focus-visible:ring-warning-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="このWebサイトはベータ版環境です。"
+                      id="headlessui-disclosure-button-D8OaopRZS8_2"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        warning
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        このサイトはベータ版です
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_3"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              このWebサイトはベータ版環境です。
+                            </p>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Sat, 01 Aug 2020 03:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_5"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="変更点は以下を参照してください。"
+                      id="headlessui-disclosure-button-D8OaopRZS8_4"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        info
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        v0.6.0をリリースしました
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_5"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              変更点は以下を参照してください。
+                            </p>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Tue, 11 Aug 2020 03:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/notification > { locale: "en" } snapshot test > ({ messages: [] }) renders no notification 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          Title
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          Date
+        </span>
+        
+      </th>
+      
+    </tr>
+    <!--v-if-->
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    <tr>
+      <td
+        colspan="2"
+      >
+        
+        <div
+          class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <p
+            class="text-sm text-center text-gray-900 dark:text-white"
+          >
+            No items.
+          </p>
+        </div>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) renders Edit button 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          タイトル
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          投稿日時
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          Edit
+        </span>
+        
+      </th>
+      
+    </tr>
+    <!--v-if-->
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_19"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="下記の譜面情報を追加しました。
+
+- [新曲](/song/foo)"
+              id="headlessui-disclosure-button-D8OaopRZS8_18"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                info
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                新曲を追加しました
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_19"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      下記の譜面情報を追加しました。
+                    </p>
+                    
+
+                    <ul>
+                      
+
+                      <li>
+                        <a
+                          href="/song/foo"
+                        >
+                          新曲
+                        </a>
+                      </li>
+                      
+
+                    </ul>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Thu, 13 Aug 2020 00:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/foo"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_21"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-warning-500 dark:text-warning-400 bg-warning-50 hover:bg-warning-100 disabled:bg-warning-50 dark:bg-warning-950 dark:hover:bg-warning-900 dark:disabled:bg-warning-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning-500 dark:focus-visible:ring-warning-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="このWebサイトはベータ版環境です。"
+              id="headlessui-disclosure-button-D8OaopRZS8_20"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                warning
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                このサイトはベータ版です
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_21"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      このWebサイトはベータ版環境です。
+                    </p>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Sat, 01 Aug 2020 03:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/bar"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_23"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              description="変更点は以下を参照してください。"
+              id="headlessui-disclosure-button-D8OaopRZS8_22"
+              type="button"
+            >
+              
+              
+              <span
+                aria-hidden="true"
+                class="icon flex-shrink-0 h-5 w-5"
+                data-v-80fe1a27=""
+                style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+              >
+                
+                info
+                
+              </span>
+              
+              
+              <span
+                class=""
+              >
+                v0.6.0をリリースしました
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_23"
+                >
+                  
+                  <!-- eslint-disable-next-line vue/no-v-html -->
+                  <p>
+                    <p>
+                      変更点は以下を参照してください。
+                    </p>
+                    
+
+                  </p>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        Tue, 11 Aug 2020 03:00:00 GMT
+        
+      </td>
+      <td
+        class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+      >
+        
+        
+        <a
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          href="/admin/notification/baz"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
+          
+          
+          <!--v-if-->
+          
+          
+          <!--v-if-->
+          
+          
+        </a>
+        
+        
+      </td>
+      
+    </tr>
+    
+  </tbody>
+</table>
+`;
+
+exports[`/notification > { locale: "ja" } snapshot test > ({ loading: true }) renders loading state 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          タイトル
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          投稿日時
+        </span>
+        
+      </th>
+      
+    </tr>
+    <tr>
+      <td
+        class="absolute inset-x-0 -bottom-[0.5px] p-0"
+        colspan="0"
+      >
+        <div
+          class="w-full flex flex-col gap-2"
+          data-v-5e930f4e=""
+        >
+          <!--v-if-->
+          <progress
+            class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+            data-v-5e930f4e=""
+          />
+          <!--v-if-->
+        </div>
+      </td>
+    </tr>
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    <tr>
+      <td
+        colspan="2"
+      >
+        
+        <div
+          class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <p
+            class="text-sm text-center text-gray-900 dark:text-white"
+          >
+            Loading...
+          </p>
+        </div>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) renders notification 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              お知らせ一覧
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  タイトル
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+                scope="col"
+              >
+                
+                <span>
+                  投稿日時
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_13"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="下記の譜面情報を追加しました。
+
+- [新曲](/song/foo)"
+                      id="headlessui-disclosure-button-D8OaopRZS8_12"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        info
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        新曲を追加しました
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_13"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              下記の譜面情報を追加しました。
+                            </p>
+                            
+
+                            <ul>
+                              
+
+                              <li>
+                                <a
+                                  href="/song/foo"
+                                >
+                                  新曲
+                                </a>
+                              </li>
+                              
+
+                            </ul>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Thu, 13 Aug 2020 00:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_15"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-warning-500 dark:text-warning-400 bg-warning-50 hover:bg-warning-100 disabled:bg-warning-50 dark:bg-warning-950 dark:hover:bg-warning-900 dark:disabled:bg-warning-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-warning-500 dark:focus-visible:ring-warning-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="このWebサイトはベータ版環境です。"
+                      id="headlessui-disclosure-button-D8OaopRZS8_14"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        warning
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        このサイトはベータ版です
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_15"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              このWebサイトはベータ版環境です。
+                            </p>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Sat, 01 Aug 2020 03:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <div
+                  class="w-full flex flex-col"
+                >
+                  
+                  <div
+                    class="w-full flex flex-col"
+                    data-headlessui-state=""
+                  >
+                    <button
+                      aria-controls="headlessui-disclosure-panel-D8OaopRZS8_17"
+                      aria-expanded="false"
+                      class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-info-500 dark:text-info-400 bg-info-50 hover:bg-info-100 disabled:bg-info-50 dark:bg-info-950 dark:hover:bg-info-900 dark:disabled:bg-info-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-info-500 dark:focus-visible:ring-info-400 inline-flex items-center mb-1.5 w-full"
+                      data-headlessui-state=""
+                      description="変更点は以下を参照してください。"
+                      id="headlessui-disclosure-button-D8OaopRZS8_16"
+                      type="button"
+                    >
+                      
+                      
+                      <span
+                        aria-hidden="true"
+                        class="icon flex-shrink-0 h-5 w-5"
+                        data-v-80fe1a27=""
+                        style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                      >
+                        
+                        info
+                        
+                      </span>
+                      
+                      
+                      <span
+                        class=""
+                      >
+                        v0.6.0をリリースしました
+                      </span>
+                      
+                      
+                      <svg
+                        aria-hidden="true"
+                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                        data-v-80fe1a27=""
+                        height="1em"
+                        role="img"
+                        viewBox="0 0 20 20"
+                        width="1em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                      >
+                        <path
+                          clip-rule="evenodd"
+                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                          fill="currentColor"
+                          fill-rule="evenodd"
+                        />
+                      </svg>
+                      
+                      
+                    </button>
+                    <transition-stub
+                      appear="false"
+                      css="true"
+                      enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+                      persisted="true"
+                    >
+                      <div
+                        style="display: none;"
+                      >
+                        <div
+                          class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                          data-headlessui-state=""
+                          id="headlessui-disclosure-panel-D8OaopRZS8_17"
+                        >
+                          
+                          <!-- eslint-disable-next-line vue/no-v-html -->
+                          <p>
+                            <p>
+                              変更点は以下を参照してください。
+                            </p>
+                            
+
+                          </p>
+                          
+                        </div>
+                      </div>
+                    </transition-stub>
+                  </div>
+                  
+                </div>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Tue, 11 Aug 2020 03:00:00 GMT
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [] }) renders no notification 1`] = `
+<table
+  class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+>
+  <thead
+    class="relative"
+  >
+    <tr
+      class=""
+    >
+      <!--v-if-->
+      
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+        scope="col"
+      >
+        
+        <span>
+          タイトル
+        </span>
+        
+      </th>
+      <th
+        class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm w-80"
+        scope="col"
+      >
+        
+        <span>
+          投稿日時
+        </span>
+        
+      </th>
+      
+    </tr>
+    <!--v-if-->
+  </thead>
+  <tbody
+    class="divide-y divide-gray-200 dark:divide-gray-800"
+  >
+    <tr>
+      <td
+        colspan="2"
+      >
+        
+        <div
+          class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+        >
+          <svg
+            aria-hidden="true"
+            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+            data-v-80fe1a27=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7.009 7.009 0 0 1 3 13.179"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          <p
+            class="text-sm text-center text-gray-900 dark:text-white"
+          >
+            No items.
+          </p>
+        </div>
+        
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;

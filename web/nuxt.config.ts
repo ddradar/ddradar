@@ -1,6 +1,12 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  extends: ['@nuxt/ui-pro'],
+  experimental: {
+    asyncContext: true,
+    typedPages: true,
+    sharedPrerenderData: true,
+  },
   nitro: {
     preset: 'azure',
     azure: {
@@ -59,31 +65,30 @@ export default defineNuxtConfig({
       },
     },
   },
-  build: {
-    transpile: [/@oruga-ui\/oruga-next/],
-  },
-  routeRules: {
-    '/admin/**': { ssr: false },
-  },
-  app: {
-    head: {
-      link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css',
-        },
-      ],
-    },
-  },
-  css: ['@/assets/css/main.scss'],
-  modules: ['@nuxtjs/i18n', '@nuxt/test-utils/module', 'nuxt-swa'],
+  modules: [
+    'nuxt-zod-i18n',
+    '@nuxtjs/i18n',
+    '@nuxt/test-utils/module',
+    '@nuxt/ui',
+    'nuxt-swa',
+  ],
   i18n: {
+    langDir: './locales',
     locales: [
-      { code: 'en', iso: 'en-US', name: 'English' },
-      { code: 'ja', iso: 'ja-JP', name: '日本語' },
+      {
+        code: 'en',
+        iso: 'en-US',
+        name: 'English',
+        flag: 'us',
+        file: 'en.json',
+      },
+      { code: 'ja', iso: 'ja-JP', name: '日本語', flag: 'jp', file: 'ja.json' },
     ],
     defaultLocale: 'ja',
     strategy: 'no_prefix',
+  },
+  ui: {
+    icons: ['heroicons', 'simple-icons', 'flag'],
   },
   swa: {
     customRoles: ['administrator'],

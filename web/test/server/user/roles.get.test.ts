@@ -2,8 +2,8 @@
 import { fetchOne } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import getRoles from '~~/server/api/v1/user/roles.get'
-import { createEvent } from '~~/test/test-utils-server'
+import getRoles from '~/server/api/v1/user/roles.get'
+import { createEvent } from '~/test/test-utils-server'
 
 vi.mock('@ddradar/db')
 

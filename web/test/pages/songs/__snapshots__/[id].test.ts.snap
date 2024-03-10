@@ -1,0 +1,1057 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        Songs
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              PARANOiA
+              
+            </h1>
+            <div
+              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
+            >
+              
+              
+              
+              <a
+                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+                href="/admin/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 h-5 w-5"
+                  data-v-80fe1a27=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                
+                
+                <span
+                  class=""
+                >
+                  編集
+                </span>
+                
+                
+                <!--v-if-->
+                
+                
+              </a>
+              
+              
+              
+            </div>
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            <div>
+              180 / DDR 1st
+            </div>
+            <div>
+              BPM 180
+            </div>
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+      >
+        
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_9"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_8"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                SP-BEGINNER (4)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_9"
+                >
+                  
+                  <div
+                    class="grid grid-cols-2 h-300"
+                  >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
+                    <div
+                      class="m-2"
+                    >
+                      <ul>
+                        <li>
+                          <em>
+                            Notes
+                          </em>
+                          : 138
+                        </li>
+                        <li>
+                          <em>
+                            Freeze Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Shock Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 29
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 22
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 5
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 0
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_11"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_10"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_11"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_13"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_12"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                SP-BASIC (8)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_13"
+                >
+                  
+                  <div
+                    class="grid grid-cols-2 h-300"
+                  >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
+                    <div
+                      class="m-2"
+                    >
+                      <ul>
+                        <li>
+                          <em>
+                            Notes
+                          </em>
+                          : 264
+                        </li>
+                        <li>
+                          <em>
+                            Freeze Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Shock Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 56
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 44
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 18
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 4
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_15"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_14"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_15"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+      <div
+        class="flex items-center align-center text-center w-full flex-row"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+      >
+        
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        Songs
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              PARANOiA
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <p
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            <div>
+              180 / DDR 1st
+            </div>
+            <div>
+              BPM 180
+            </div>
+            
+          </p>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+      >
+        
+        
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_1"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_0"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                SP-BEGINNER (4)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_1"
+                >
+                  
+                  <div
+                    class="grid grid-cols-2 h-300"
+                  >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
+                    <div
+                      class="m-2"
+                    >
+                      <ul>
+                        <li>
+                          <em>
+                            Notes
+                          </em>
+                          : 138
+                        </li>
+                        <li>
+                          <em>
+                            Freeze Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Shock Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 29
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 22
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 5
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 0
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_3"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_2"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_3"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        <div
+          class="w-full flex flex-col"
+        >
+          
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_5"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_4"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                SP-BASIC (8)
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_5"
+                >
+                  
+                  <div
+                    class="grid grid-cols-2 h-300"
+                  >
+                    <div>
+                      <canvas
+                        role="img"
+                      >
+                        <p>
+                          
+                        </p>
+                      </canvas>
+                    </div>
+                    <div
+                      class="m-2"
+                    >
+                      <ul>
+                        <li>
+                          <em>
+                            Notes
+                          </em>
+                          : 264
+                        </li>
+                        <li>
+                          <em>
+                            Freeze Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Shock Arrow
+                          </em>
+                          : 0
+                        </li>
+                        <br />
+                        <li>
+                          <em>
+                            Stream
+                          </em>
+                          : 56
+                        </li>
+                        <li>
+                          <em>
+                            Voltage
+                          </em>
+                          : 44
+                        </li>
+                        <li>
+                          <em>
+                            Air
+                          </em>
+                          : 18
+                        </li>
+                        <li>
+                          <em>
+                            Freeze
+                          </em>
+                          : 0
+                        </li>
+                        <li>
+                          <em>
+                            Chaos
+                          </em>
+                          : 4
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          <div
+            class="w-full flex flex-col"
+            data-headlessui-state=""
+          >
+            <button
+              aria-controls="headlessui-disclosure-panel-D8OaopRZS8_7"
+              aria-expanded="false"
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
+              data-headlessui-state=""
+              id="headlessui-disclosure-button-D8OaopRZS8_6"
+              type="button"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              <span
+                class=""
+              >
+                スコアランキング
+              </span>
+              
+              
+              <svg
+                aria-hidden="true"
+                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
+                data-v-80fe1a27=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+              
+            </button>
+            <transition-stub
+              appear="false"
+              css="true"
+              enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
+              persisted="true"
+            >
+              <div
+                style="display: none;"
+              >
+                <div
+                  class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
+                  data-headlessui-state=""
+                  id="headlessui-disclosure-panel-D8OaopRZS8_7"
+                >
+                  
+                  
+                  
+                </div>
+              </div>
+            </transition-stub>
+          </div>
+          
+        </div>
+        
+        
+      </div>
+      <div
+        class="flex items-center align-center text-center w-full flex-row"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+      >
+        
+        
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

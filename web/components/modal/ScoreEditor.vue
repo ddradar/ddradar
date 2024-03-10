@@ -1,315 +1,265 @@
+<script setup lang="ts">
+import type { Score, ScoreSchema } from '@ddradar/core'
+import {
+  calcMaxScore,
+  clearLampMap,
+  danceLevelSet,
+  difficultyMap,
+  playStyleMap,
+  score as schema,
+} from '@ddradar/core'
+
+import type { FormError } from '#ui/types'
+
+interface ScoreEditorProps {
+  songId: string
+  playStyle?: ScoreSchema['playStyle']
+  difficulty?: ScoreSchema['difficulty']
+  isCourse?: boolean
+}
+
+const isOpen = defineModel<boolean>({ required: true })
+const props = withDefaults(defineProps<ScoreEditorProps>(), {
+  playStyle: undefined,
+  difficulty: undefined,
+  isCourse: false,
+})
+const style = ref(props.playStyle)
+const diff = ref(props.difficulty)
+const _toast = useToast()
+const { t } = useI18n()
+
+const _songUri = computed(
+  () =>
+    `/api/v1/${props.isCourse ? 'courses' : 'songs'}/${props.songId}` as const
+)
+const { data: song, execute: fetchSong } = useFetch(_songUri, {
+  immediate: false,
+})
+if (props.songId) await fetchSong()
+const _default: Score = {
+  score: 0,
+  clearLamp: 0,
+  rank: 'E',
+}
+const _scoreUri = computed(
+  () =>
+    `/api/v1/scores/${props.songId}/${style.value ?? 1}/${diff.value ?? 0}` as const
+)
+const { data: score, execute: fetchScore } = useFetch(_scoreUri, {
+  query: { scope: 'private' },
+  transform: d => d[0] ?? _default,
+  default: () => _default,
+  immediate: false,
+  deep: false,
+})
+if (style.value !== undefined && diff.value !== undefined) await fetchScore()
+
+const selectedChart = computed(() =>
+  song.value?.charts.find(
+    d => d.playStyle === style.value && d.difficulty === diff.value
+  )
+)
+const maxScore = computed(() =>
+  selectedChart.value ? calcMaxScore(selectedChart.value) : null
+)
+
+const playStyles = toSelectOptions(playStyleMap)
+const difficulties = toSelectOptions(difficultyMap)
+const clearLamps = toSelectOptions(clearLampMap)
+/** Validate input score (compare max score) */
+const validate = () => {
+  const errors: FormError[] = []
+  if (!maxScore.value) return errors
+
+  if (score.value.exScore && score.value.exScore > maxScore.value.exScore)
+    errors.push({
+      path: 'exScore',
+      message: t('message.tooBig', { maximum: maxScore.value.exScore }),
+    })
+  if (score.value.maxCombo && score.value.maxCombo > maxScore.value.maxCombo)
+    errors.push({
+      path: 'maxCombo',
+      message: t('message.tooBig', { maximum: maxScore.value.maxCombo }),
+    })
+
+  return errors
+}
+/** Save current score. */
+const saveScore = async () => {
+  try {
+    score.value = await $fetch<(typeof score)['value']>(_scoreUri.value, {
+      method: 'POST',
+      body: score.value,
+    })
+    _toast.add({
+      id: 'score-updated',
+      title: 'Success!',
+      color: 'green',
+    })
+  } catch (error: any) {
+    _toast.add({ id: 'score-update-error', title: error, color: 'red' })
+  }
+}
+/** Confirm and delete score data. */
+const deleteScore = async () => {
+  _toast.add({
+    id: 'score-delete-confirm',
+    title: t('message.confirmDelete'),
+    icon: 'i-heroicons-exclamation-triangle-20-solid',
+    timeout: 0,
+    actions: [
+      {
+        label: t('field.yes'),
+        click: async () => {
+          try {
+            await $fetch<(typeof score)['value']>(_scoreUri.value, {
+              method: 'DELETE',
+            })
+            _toast.add({
+              id: 'score-deleted',
+              title: 'Success!',
+              color: 'green',
+            })
+          } catch (error) {
+            _toast.add({
+              id: 'score-delete-error',
+              title: String(error),
+              color: 'red',
+            })
+          }
+        },
+      },
+      { label: t('field.no') },
+    ],
+  })
+}
+</script>
+
 <template>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <h1 class="modal-card-title">{{ info!.name }}</h1>
-    </header>
-    <section class="modal-card-body">
-      <!-- Select chart -->
-      <h2 v-if="selectedChart" class="subtitle is-small">
-        {{ getChartTitle(selectedChart) }}
-      </h2>
-      <OField v-else :label="t('label.selectChart')">
-        <OSelect :disabled="selectedChart" @input="onChartSelected">
-          <option v-for="(c, i) in info!.charts" :key="i" :value="c">
-            {{ getChartTitle(c) }}
-          </option>
-        </OSelect>
-      </OField>
-
-      <!-- Input score -->
-      <template v-if="selectedChart">
-        <OLoading v-model:active="pending" />
-        <OField grouped>
-          <OField :label="t('label.score')">
-            <OInput
-              v-model.number="score"
-              type="number"
-              required
-              placeholder="0-1000000"
-              min="0"
-              max="1000000"
-              step="10"
-            />
-          </OField>
-          <OCheckbox v-model="isFailed">{{ t('label.rankE') }}</OCheckbox>
-        </OField>
-
-        <OField :label="t('label.clear')">
-          <OSelect v-model.number="clearLamp" :placeholder="t('label.clear')">
-            <option v-for="[i, label] in clearLampMap" :key="i" :value="i">
-              {{ label }}
-            </option>
-          </OSelect>
-        </OField>
-
-        <OField :label="t('label.exScore')">
-          <OInput
-            v-model.number="exScore"
-            type="number"
-            min="0"
-            :max="maxScore.exScore"
-            :placeholder="`0-${maxScore.exScore}`"
+  <UModal v-model="isOpen">
+    <UCard>
+      <template #header>
+        <span class="text-lg">{{ song?.name }}</span>
+        <div class="grid grid-cols-2 space-x-2 m-1">
+          <USelect
+            v-model.number="style"
+            :options="playStyles"
+            :placeholder="t('field.playStyle')"
           />
-        </OField>
-
-        <OField :label="t('label.maxCombo')">
-          <OInput
-            v-model.number="maxCombo"
-            type="number"
-            min="0"
-            :max="maxScore.maxCombo"
-            :placeholder="`0-${maxScore.maxCombo}`"
+          <USelect
+            v-model.number="diff"
+            :options="difficulties"
+            :placeholder="t('field.difficulty')"
           />
-        </OField>
-
-        <OField>
-          <OButton variant="info" icon-left="calculator" @click="calcScore()">
-            {{ t('button.calc') }}
-          </OButton>
-        </OField>
+        </div>
+        <span v-if="selectedChart">
+          Lv.{{ selectedChart.level }} Notes:
+          {{ selectedChart.notes }} FreezeArrow:
+          {{ selectedChart.freezeArrow }} ShockArrow:
+          {{ selectedChart.shockArrow }}
+        </span>
       </template>
-    </section>
-
-    <footer v-if="selectedChart" class="modal-card-foot">
-      <OButton variant="success" icon-left="content-save" @click="saveAsync()">
-        {{ t('button.save') }}
-      </OButton>
-      <OButton variant="danger" icon-left="delete" @click="deleteAsync()">
-        {{ t('button.delete') }}
-      </OButton>
-      <OButton variant="warning" @click="emits('close')">
-        {{ t('button.close') }}
-      </OButton>
-    </footer>
-  </div>
+      <UForm
+        id="scoreForm"
+        :schema="schema"
+        :state="score"
+        :validate="validate"
+        class="space-y-4"
+        @submit="saveScore()"
+      >
+        <UFormGroup name="score" :label="t('field.score')">
+          <UInput v-model.number="score.score" type="number" />
+        </UFormGroup>
+        <UFormGroup name="exScore" :label="t('field.exScore')">
+          <UInput v-model.number="score.exScore" type="number" />
+        </UFormGroup>
+        <UFormGroup name="maxCombo" :label="t('field.maxCombo')">
+          <UInput v-model.number="score.maxCombo" type="number" />
+        </UFormGroup>
+        <UFormGroup name="clearLamp" :label="t('field.clearLamp')">
+          <USelect v-model.number="score.clearLamp" :options="clearLamps" />
+        </UFormGroup>
+        <UFormGroup name="rank" :label="t('field.rank')">
+          <USelect v-model="score.rank" :options="[...danceLevelSet]" />
+        </UFormGroup>
+      </UForm>
+      <template #footer>
+        <div class="grid grid-cols-3">
+          <UButton
+            type="submit"
+            form="scoreForm"
+            block
+            icon="i-heroicons-circle-stack-20-solid"
+            color="green"
+            :disabled="!selectedChart"
+          >
+            {{ t('save') }}
+          </UButton>
+          <UButton
+            block
+            icon="i-heroicons-trash-20-solid"
+            color="red"
+            :disabled="!selectedChart"
+            @click="deleteScore()"
+          >
+            {{ t('delete') }}
+          </UButton>
+          <UButton
+            block
+            icon="i-heroicons-x-mark-20-solid"
+            color="gray"
+            @click="isOpen = false"
+          >
+            {{ t('close') }}
+          </UButton>
+        </div>
+      </template>
+    </UCard>
+  </UModal>
 </template>
 
 <i18n lang="json">
 {
   "ja": {
-    "label": {
-      "selectChart": "譜面を選択",
-      "score": "ハイスコア",
-      "rankE": "E判定",
-      "clear": "クリア種別",
+    "field": {
+      "playStyle": "SP/DP",
+      "difficulty": "難易度",
+      "score": "通常スコア",
       "exScore": "EXスコア",
-      "maxCombo": "最大コンボ数"
-    },
-    "button": {
-      "calc": "自動計算",
-      "save": "保存",
-      "delete": "削除",
-      "close": "閉じる"
+      "maxCombo": "最大コンボ数",
+      "clearLamp": "クリアランプ",
+      "rank": "ダンスレベル",
+      "yes": "はい",
+      "no": "いいえ"
     },
     "message": {
-      "cannotCalc": "情報が足りないため、スコアの自動計算ができませんでした。",
-      "saved": "保存しました",
-      "confirmDelete": "スコアを削除しますか？",
-      "deleted": "削除しました"
-    }
+      "tooBig": "{maximum} 以下の数値を入力してください",
+      "confirmDelete": "スコアを削除してもよろしいですか？"
+    },
+    "save": "保存",
+    "delete": "スコア削除",
+    "close": "閉じる"
   },
   "en": {
-    "label": {
-      "selectChart": "Select Chart",
-      "score": "Score",
-      "rankE": "Rank E",
-      "clear": "Clear Lamp",
+    "field": {
+      "playStyle": "SP/DP",
+      "difficulty": "Difficulty",
+      "score": "Normal Score",
       "exScore": "EX SCORE",
-      "maxCombo": "MAX COMBO"
-    },
-    "button": {
-      "calc": "Auto Calc",
-      "save": "Save",
-      "delete": "Delete",
-      "close": "Close"
+      "maxCombo": "Max Combo",
+      "clearLamp": "Clear lamp",
+      "rank": "Dance Level",
+      "yes": "Yes",
+      "no": "No"
     },
     "message": {
-      "cannotCalc": "Cannot guess score due to lack of information.",
-      "saved": "Saved",
-      "confirmDelete": "Do you delete this score?",
-      "deleted": "Deleted"
-    }
+      "tooBig": "Number must be less than or equal to {maximum}",
+      "confirmDelete": "Are you sure you want to delete the score?"
+    },
+    "save": "Save",
+    "delete": "Delete Score",
+    "close": "Close"
   }
 }
 </i18n>
-
-<script lang="ts" setup>
-import type { Score } from '@ddradar/core'
-import {
-  calcMaxScore,
-  clearLampMap,
-  getDanceLevel,
-  mergeScore,
-  setValidScoreFromChart,
-} from '@ddradar/core'
-import { useProgrammatic } from '@oruga-ui/oruga-next'
-import { useI18n } from 'vue-i18n'
-
-import DialogModal from '~~/components/modal/DialogModal.vue'
-import type { CourseInfo } from '~~/server/api/v1/courses/[id].get'
-import type { ScoreInfo } from '~~/server/api/v1/scores/[id]/[style]/[diff].get'
-import type { SongInfo } from '~~/server/api/v1/songs/[id].get'
-import { getChartTitle } from '~~/utils/song'
-
-type ChartSchema = SongInfo['charts'][number] | CourseInfo['charts'][number]
-
-interface ScoreEditorProps {
-  songId: SongInfo['id']
-  isCourse: boolean
-  playStyle?: SongInfo['charts'][number]['playStyle']
-  difficulty?: SongInfo['charts'][number]['difficulty']
-}
-
-const props = defineProps<ScoreEditorProps>()
-const emits = defineEmits<{ (e: 'close'): void }>()
-
-const score = useState<ScoreInfo['score']>(() => 0)
-const exScore = useState<Exclude<ScoreInfo['exScore'], null>>(() => 0)
-const clearLamp = useState<ScoreInfo['clearLamp']>(() => 0 as const)
-const maxCombo = useState<Exclude<ScoreInfo['maxCombo'], null>>(() => 0)
-const isFailed = useState(() => false)
-const playStyle = useState(() => props.playStyle)
-const difficulty = useState(() => props.difficulty)
-
-const { t } = useI18n()
-const { oruga } = useProgrammatic()
-const { data: info } = await useFetch(
-  `/api/v1/${props.isCourse ? 'courses' : 'songs'}/${props.songId}`
-)
-const { pending, refresh } = await useFetch(
-  `/api/v1/scores/${props.songId}/${playStyle.value ?? 0}/${
-    difficulty.value ?? 0
-  }`,
-  {
-    query: { scope: 'private' },
-    /* c8 ignore */
-    onResponse({ response }) {
-      const [userScore] = response._data as ScoreInfo[]
-      if (userScore) {
-        score.value = userScore.score
-        exScore.value ??= userScore.exScore!
-        clearLamp.value = userScore.clearLamp
-        maxCombo.value ??= userScore.maxCombo!
-        isFailed.value = userScore.rank === 'E'
-      }
-    },
-    /* c8 ignore */
-    onResponseError({ error }) {
-      oruga.notification.open({
-        message: error?.message,
-        variant: 'danger',
-        position: 'top',
-      })
-    },
-  }
-)
-
-const rank = computed<ScoreInfo['rank']>(() =>
-  isFailed.value ? 'E' : getDanceLevel(score.value)
-)
-const selectedChart = computed(() =>
-  (info.value!.charts as ChartSchema[]).find(
-    c => c.playStyle === playStyle.value && c.difficulty === difficulty.value
-  )
-)
-const maxScore = computed(() =>
-  calcMaxScore(
-    selectedChart.value ?? /* c8 ignore next */ {
-      notes: 0,
-      freezeArrow: 0,
-      shockArrow: 0,
-    }
-  )
-)
-
-const onChartSelected = async (
-  c: Exclude<(typeof selectedChart)['value'], undefined>
-) => {
-  playStyle.value = c.playStyle
-  difficulty.value = c.difficulty
-  await refresh()
-}
-const calcScore = () => {
-  /* c8 ignore if */
-  if (!selectedChart.value) return
-
-  const currentScore = {
-    score: score.value,
-    exScore: exScore.value,
-    maxCombo: maxCombo.value,
-    clearLamp: clearLamp.value,
-    rank: rank.value,
-  }
-  try {
-    const calcedScore = mergeScore(
-      currentScore,
-      setValidScoreFromChart(selectedChart.value, currentScore)
-    )
-    score.value = calcedScore.score
-    exScore.value = calcedScore.exScore!
-    maxCombo.value = calcedScore.maxCombo!
-    clearLamp.value = calcedScore.clearLamp
-    isFailed.value = calcedScore.rank === 'E'
-  } catch {
-    oruga.notification.open({
-      message: t('message.cannotCalc'),
-      variant: 'warning',
-      position: 'top',
-    })
-  }
-}
-const saveAsync = async () => {
-  /* c8 ignore if */
-  if (playStyle.value == null || difficulty.value == null) return
-  const body: Score = {
-    score: score.value,
-    exScore: exScore.value,
-    clearLamp: clearLamp.value,
-    rank: rank.value,
-    maxCombo: maxCombo.value,
-  }
-
-  try {
-    await $fetch(
-      `/api/v1/scores/${props.songId}/${playStyle.value}/${difficulty.value}`,
-      { method: 'POST', body }
-    )
-    oruga.notification.open({
-      message: t('message.saved'),
-      variant: 'success',
-      position: 'top',
-    })
-  } catch (message) {
-    oruga.notification.open({ message, variant: 'danger', position: 'top' })
-  }
-
-  emits('close')
-}
-const deleteAsync = async () => {
-  /* c8 ignore if */
-  if (playStyle.value == null || difficulty.value == null) return
-
-  const instance = oruga.modal.open({
-    component: DialogModal,
-    props: { message: t('message.confirmDelete'), variant: 'warning' },
-    trapFocus: true,
-  })
-  if ((await instance.promise) !== 'yes') return
-
-  try {
-    await $fetch(
-      `/api/v1/scores/${props.songId}/${playStyle.value}/${difficulty.value}`,
-      { method: 'DELETE' }
-    )
-    oruga.notification.open({
-      message: t('message.deleted'),
-      variant: 'success',
-      position: 'top',
-    })
-  } catch (message) {
-    oruga.notification.open({ message, variant: 'danger', position: 'top' })
-  }
-
-  emits('close')
-}
-</script>

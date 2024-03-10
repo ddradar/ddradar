@@ -1,18 +1,12 @@
-import type { NotificationSchema } from '@ddradar/core'
-import { fetchOne } from '@ddradar/db'
-import { z } from 'zod'
-
-import { sendNullWithError } from '~~/server/utils/http'
-
-/** Expected params */
-const schema = z.object({ id: z.string() })
+import type { NotificationInfo } from '~/schemas/notification'
+import { getRouterParamsSchema as schema } from '~/schemas/notification'
 
 /**
  * Get notification that match the specified ID.
  * @description
  * - No need Authentication.
- * - GET `api/v1/notification/:id`
- *   - `id`: {@link NotificationSchema.id}
+ * - GET `api/v1/notification/[id]`
+ *   - `id`: {@link NotificationInfo.id}
  * @returns
  * - Returns `404 Not Found` if no data that matches `id`.
  * - Returns `200 OK` with JSON body if found.
@@ -31,13 +25,26 @@ const schema = z.object({ id: z.string() })
  * ```
  */
 export default defineEventHandler(async event => {
-  const { id } = await getValidatedRouterParams(event, schema.parse)
+  const variables = await getValidatedRouterParams(event, schema.parse)
 
-  const notification = (await fetchOne(
-    'Notification',
-    ['id', 'sender', 'pinned', 'type', 'icon', 'title', 'body', 'timeStamp'],
-    { condition: 'c.id = @', value: id }
-  )) as NotificationSchema | null
+  const query = /* GraphQL */ `
+    query ($id: ID!) {
+      notification_by_pk(id: $id) {
+        id
+        sender
+        pinned
+        type
+        icon
+        title
+        body
+        timeStamp
+      }
+    }
+  `
+  const { notification_by_pk: notification } = await $graphql<{
+    notification_by_pk: NotificationInfo | null
+  }>(event, query, variables)
+  if (!notification) throw createError({ statusCode: 404 })
 
-  return notification ?? sendNullWithError(event, 404)
+  return notification
 })

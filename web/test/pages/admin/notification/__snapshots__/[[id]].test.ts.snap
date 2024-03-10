@@ -1,0 +1,317 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/admin/notification > snapshot test 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Update Notification
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form
+        title="<input id="X0FSgiXBPY_1" name="title" type="text" class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400">"
+      >
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_1"
+              >
+                
+                Title
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_1"
+                name="title"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_2"
+              >
+                
+                Body
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <textarea
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-textarea rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 resize-none"
+                id="X0FSgiXBPY_2"
+                name="body"
+                rows="3"
+              />
+              
+              
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <div
+            class=""
+          >
+            
+            <div
+              class="relative flex items-start"
+            >
+              <div
+                class="flex items-center h-5"
+              >
+                <input
+                  class="h-4 w-4 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-current dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent form-checkbox rounded bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 text-primary-500 dark:text-primary-400"
+                  id="X0FSgiXBPY_3"
+                  name="pinned"
+                  type="checkbox"
+                />
+              </div>
+              <div
+                class="ms-3 flex flex-col"
+              >
+                <label
+                  class="text-sm font-medium text-gray-700 dark:text-gray-200"
+                  for="X0FSgiXBPY_3"
+                >
+                  
+                  ピン留めする
+                  
+                  <!--v-if-->
+                </label>
+                <!--v-if-->
+              </div>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_4"
+              >
+                
+                Type
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="X0FSgiXBPY_4"
+                name="type"
+                type="text"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="X0FSgiXBPY_5"
+              >
+                
+                Icon
+                
+              </label>
+              <span
+                class="text-gray-500 dark:text-gray-400"
+              >
+                
+                
+                <a
+                  href="https://icon-sets.iconify.design/heroicons/"
+                  rel="noopener noreferrer"
+                >
+                  
+                   参考ページ 
+                  
+                </a>
+                
+                
+              </span>
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 ps-9"
+                id="X0FSgiXBPY_5"
+                name="icon"
+                type="text"
+              />
+              
+              
+              <span
+                class="absolute inset-y-0 start-0 flex items-center pointer-events-none px-2.5"
+              >
+                
+                <span
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-80fe1a27=""
+                  style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                >
+                  
+                  info
+                  
+                </span>
+                
+              </span>
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          Save
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

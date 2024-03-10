@@ -10,23 +10,14 @@ import {
   isValidScore,
   mergeScore,
   score,
-  scoreSchema,
 } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
-import { z } from 'zod'
 
-import { getLoginUserInfo } from '~~/server/utils/auth'
-import { sendNullWithError } from '~~/server/utils/http'
+import { routerParamsSchema as paramSchema } from '~/schemas/score'
+import { getLoginUserInfo } from '~/server/utils/auth'
 
 type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
   (StepChartSchema | CourseChartSchema)
-
-/** Expected params */
-const paramSchema = z.object({
-  id: scoreSchema.shape.songId,
-  style: z.coerce.number().pipe(scoreSchema.shape.playStyle),
-  diff: z.coerce.number().pipe(scoreSchema.shape.difficulty),
-})
 
 /**
  * Add or update score that match the specified chart.
@@ -77,7 +68,7 @@ export default defineEventHandler(async event => {
   const body = await readValidatedBody(event, score.parse)
 
   const user = await getLoginUserInfo(event)
-  if (!user) return sendNullWithError(event, 401)
+  if (!user) throw createError({ statusCode: 401 })
 
   // Get chart info
   const [chart]: SongChartInfo[] = await fetchJoinedList(
@@ -106,10 +97,10 @@ export default defineEventHandler(async event => {
     ],
     { id: 'ASC' }
   )
-  if (!chart) return sendNullWithError(event, 404)
+  if (!chart) throw createError({ statusCode: 404 })
 
   if (!isValidScore(chart, body)) {
-    return sendNullWithError(event, 400, 'body is invalid Score')
+    throw createError({ statusCode: 400, message: 'body is invalid Score' })
   }
 
   const oldScores = await fetchList('Scores', '*', [

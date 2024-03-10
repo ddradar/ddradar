@@ -1,27 +1,5 @@
-import { seriesSet, type SongSchema, songSchema } from '@ddradar/core'
-import { type Condition, fetchList } from '@ddradar/db'
-import { z } from 'zod'
-
-export type SongListData = Omit<SongSchema, 'skillAttackId' | 'charts'>
-
-const maxSeriesIndex = seriesSet.size
-const seriesNames = [...seriesSet]
-
-/** Expected queries */
-const schema = z.object({
-  name: z.coerce
-    .number()
-    .pipe(songSchema.shape.nameIndex)
-    .optional()
-    .catch(undefined),
-  series: z.coerce
-    .number()
-    .int()
-    .min(0)
-    .max(maxSeriesIndex)
-    .optional()
-    .catch(undefined),
-})
+import { getListQuerySchema as schema, type SongListData } from '~/schemas/song'
+import { seriesNames } from '~/utils/song'
 
 /**
  * Get a list of song information that matches the specified conditions.
@@ -51,26 +29,42 @@ const schema = z.object({
 export default defineEventHandler(async event => {
   const { name, series } = await getValidatedQuery(event, schema.parse)
 
-  const conditions: Condition<'Songs'>[] = [{ condition: 'c.nameIndex >= 0' }]
-  if (name !== undefined)
-    conditions.push({ condition: 'c.nameIndex = @', value: name })
-  if (series !== undefined)
-    conditions.push({ condition: 'c.series = @', value: seriesNames[series] })
+  const query = /* GraphQL */ `
+    query(
+      ${typeof name === 'number' ? '$name: Int!' : ''}
+      ${typeof series === 'number' ? '$series: String!' : ''}
+      $cursor: String
+    ) {
+      songs(
+        filter: {
+          and: [
+            { nameIndex: { gte: 0 } }
+            ${typeof name === 'number' ? '{ nameIndex: { eq: $name } }' : ''}
+            ${typeof series === 'number' ? '{ series: { eq: $series } }' : ''}
+          ]
+        }
+        after: $cursor
+        orderBy: { nameIndex: ASC, nameKana: ASC }
+      ) {
+        items {
+          id
+          name
+          nameKana
+          nameIndex
+          artist
+          series
+          minBPM
+          maxBPM
+          deleted
+        }
+        hasNextPage
+        endCursor
+      }
+    }
+    `
 
-  return (await fetchList(
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'artist',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-    ],
-    conditions,
-    { nameIndex: 'ASC', nameKana: 'ASC' }
-  )) as SongListData[]
+  return await $graphqlList<SongListData>(event, query, 'songs', {
+    ...(typeof name === 'number' ? { name } : {}),
+    ...(typeof series === 'number' ? { series: seriesNames[series] } : {}),
+  })
 })

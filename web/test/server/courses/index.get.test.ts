@@ -1,53 +1,41 @@
 // @vitest-environment node
-import { fetchList } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { testCourseData } from '~/../core/test/data'
-import searchCourses from '~~/server/api/v1/courses/index.get'
-import { createEvent } from '~~/test/test-utils-server'
-
-vi.mock('@ddradar/db')
+import handler from '~/server/api/v1/courses/index.get'
+import { createEvent } from '~/test/test-utils-server'
 
 describe('GET /api/v1/courses', () => {
   beforeEach(() => {
-    vi.mocked(fetchList).mockClear()
+    vi.mocked($graphqlList).mockClear()
   })
 
-  const defaultCond = { condition: 'c.nameIndex < 0' }
   test.each([
-    [undefined, undefined, []],
-    ['-1', '-1', []],
-    ['100', '100', []],
-    ['0.5', '0.5', []],
-    ['1', undefined, [{ condition: 'c.nameIndex = @', value: -1 }]],
-    [
-      undefined,
-      '17',
-      [{ condition: 'c.series = @', value: 'DanceDanceRevolution A20 PLUS' }],
-    ],
-    [
-      '2',
-      '18',
-      [
-        { condition: 'c.nameIndex = @', value: -2 },
-        { condition: 'c.series = @', value: 'DanceDanceRevolution A3' },
-      ],
-    ],
+    [undefined, undefined, {}],
+    ['-1', '-1', {}],
+    ['100', '100', {}],
+    ['0.5', '0.5', {}],
+    ['1', undefined, { type: -1 }],
+    [undefined, '17', { series: 'DanceDanceRevolution A20 PLUS' }],
+    ['2', '18', { type: -2, series: 'DanceDanceRevolution A3' }],
   ])(
-    '?name=%s&series=%s calls fetchList(..., ..., %o)',
-    async (type, series, expected) => {
+    '?name=%s&series=%s calls $graphqlList(event, query, "courses", %o)',
+    async (type, series, variables) => {
       // Arrange
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(fetchList).mockResolvedValue([testCourseData] as any)
+      vi.mocked($graphqlList).mockResolvedValue([testCourseData])
       const event = createEvent(undefined, { type, series })
 
       // Act
-      const songs = await searchCourses(event)
+      const courses = await handler(event)
 
       // Assert
-      expect(songs).not.toHaveLength(0)
-      const conditions = vi.mocked(fetchList).mock.calls[0][2]
-      expect(conditions).toStrictEqual([defaultCond, ...expected])
+      expect(courses).not.toHaveLength(0)
+      expect(vi.mocked($graphqlList)).toBeCalledWith(
+        event,
+        expect.any(String),
+        'courses',
+        variables
+      )
     }
   )
 })
