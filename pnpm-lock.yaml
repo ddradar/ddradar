@@ -150,8 +150,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@happy-dom/global-registrator':
-        specifier: ^13.6.2
-        version: 13.6.2
+        specifier: ^14.3.9
+        version: 14.3.9
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -2608,11 +2608,11 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@happy-dom/global-registrator@13.6.2:
-    resolution: {integrity: sha512-kP6XjwQtYhffyapFAwTTysqc67JWSlUfK0807S84ryUxugtBxpLkDyb0tqXcAatjQFdb3Oum+xdorBR0UpT70w==}
+  /@happy-dom/global-registrator@14.3.9:
+    resolution: {integrity: sha512-sOQQ56IY3IphSdUpCvOJxh300tzJ8+kI2QiIeUlOrojhOsCR+gu+sPP8PiGQKi6S41tyhDijT/C9vdvejyWfFQ==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      happy-dom: 13.6.2
+      happy-dom: 14.3.9
     dev: false
 
   /@headlessui/tailwindcss@0.2.0(tailwindcss@3.4.1):
@@ -8231,6 +8231,15 @@ packages:
       entities: 4.5.0
       webidl-conversions: 7.0.0
       whatwg-mimetype: 3.0.0
+
+  /happy-dom@14.3.9:
+    resolution: {integrity: sha512-0kPQchwthekcYpYN8CvCiq+/z5bqFYDLbTxZ+yDLwT8AFRVJDFadShHRxp3VAZRy7a5isOZ1j/LzsU1dtAIZMQ==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      entities: 4.5.0
+      webidl-conversions: 7.0.0
+      whatwg-mimetype: 3.0.0
+    dev: false
 
   /has-bigints@1.0.2:
     resolution: {integrity: sha512-tSvCKtBr9lkF0Ex0aQiP9N+OpV4zi2r/Nee5VkRDbaqv35RLYMzbwQfFSZZH0kR+Rd6302UJZ2p/bJCEoR3VoQ==}
