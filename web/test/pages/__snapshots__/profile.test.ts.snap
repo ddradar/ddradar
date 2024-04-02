@@ -57,7 +57,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_7"
+                for="zVzeBu8n5P_7"
               >
                 
                 ID
@@ -83,7 +83,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
-                id="X0FSgiXBPY_7"
+                id="zVzeBu8n5P_7"
                 name="id"
                 placeholder="Alphabets, Digits, Hyphen or Underbar"
                 type="text"
@@ -108,7 +108,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_8"
+                for="zVzeBu8n5P_8"
               >
                 
                 Display Name
@@ -127,7 +127,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_8"
+                id="zVzeBu8n5P_8"
                 name="name"
                 type="text"
               />
@@ -152,7 +152,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_9"
+                for="zVzeBu8n5P_9"
               >
                 
                 Area
@@ -174,18 +174,18 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             
             <div
               class="relative"
-              data-v-9ad88b65=""
+              data-v-37de6db6=""
             >
               <select
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                data-v-9ad88b65=""
-                id="X0FSgiXBPY_9"
+                data-v-37de6db6=""
+                id="zVzeBu8n5P_9"
                 name="area"
               >
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="0"
                 >
                   undefined
@@ -193,7 +193,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="1"
                 >
                   Hokkaido
@@ -201,7 +201,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="2"
                 >
                   Aomori
@@ -209,7 +209,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="3"
                 >
                   Iwate
@@ -217,7 +217,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="4"
                 >
                   Miyagi
@@ -225,7 +225,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="5"
                 >
                   Akita
@@ -233,7 +233,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="6"
                 >
                   Yamagata
@@ -241,7 +241,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="7"
                 >
                   Fukushima
@@ -249,7 +249,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="8"
                 >
                   Ibaraki
@@ -257,7 +257,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="9"
                 >
                   Tochigi
@@ -265,7 +265,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="10"
                 >
                   Gunma
@@ -273,7 +273,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="11"
                 >
                   Saitama
@@ -281,7 +281,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="12"
                 >
                   Chiba
@@ -289,7 +289,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="13"
                 >
                   Tokyo
@@ -297,7 +297,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="14"
                 >
                   Kanagawa
@@ -305,7 +305,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="15"
                 >
                   Niigata
@@ -313,7 +313,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="16"
                 >
                   Toyama
@@ -321,7 +321,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="17"
                 >
                   Ishikawa
@@ -329,7 +329,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="18"
                 >
                   Gukui
@@ -337,7 +337,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="19"
                 >
                   Yamanashi
@@ -345,7 +345,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="20"
                 >
                   Nagano
@@ -353,7 +353,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="21"
                 >
                   Gifu
@@ -361,7 +361,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="22"
                 >
                   Shizuoka
@@ -369,7 +369,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="23"
                 >
                   Aichi
@@ -377,7 +377,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="24"
                 >
                   Mie
@@ -385,7 +385,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="25"
                 >
                   Shiga
@@ -393,7 +393,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="26"
                 >
                   Kyoto
@@ -401,7 +401,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="27"
                 >
                   Osaka
@@ -409,7 +409,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="28"
                 >
                   Hyogo
@@ -417,7 +417,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="29"
                 >
                   Nara
@@ -425,7 +425,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="30"
                 >
                   Wakayama
@@ -433,7 +433,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="31"
                 >
                   Tottori
@@ -441,7 +441,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="32"
                 >
                   Shimane
@@ -449,7 +449,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="33"
                 >
                   Okayama
@@ -457,7 +457,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="34"
                 >
                   Hiroshima
@@ -465,7 +465,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="35"
                 >
                   Yamaguchi
@@ -473,7 +473,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="36"
                 >
                   Tokushima
@@ -481,7 +481,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="37"
                 >
                   Kagawa
@@ -489,7 +489,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="38"
                 >
                   Ehime
@@ -497,7 +497,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="39"
                 >
                   Kochi
@@ -505,7 +505,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="40"
                 >
                   Fukuoka
@@ -513,7 +513,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="41"
                 >
                   Saga
@@ -521,7 +521,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="42"
                 >
                   Nagasaki
@@ -529,7 +529,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="43"
                 >
                   Kumamoto
@@ -537,7 +537,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="44"
                 >
                   Oita
@@ -545,7 +545,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="45"
                 >
                   Miyazaki
@@ -553,7 +553,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="46"
                 >
                   Kagoshima
@@ -561,7 +561,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="47"
                 >
                   Okinawa
@@ -569,7 +569,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="48"
                 >
                   Hong Kong
@@ -577,7 +577,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="49"
                 >
                   Korea
@@ -585,7 +585,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="50"
                 >
                   Taiwan
@@ -593,7 +593,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="51"
                 >
                   USA
@@ -601,7 +601,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="52"
                 >
                   Europe
@@ -609,7 +609,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="53"
                 >
                   Oversea
@@ -617,7 +617,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="106"
                 >
                   Canada
@@ -625,7 +625,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="107"
                 >
                   Singapore
@@ -633,7 +633,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="108"
                 >
                   Thailand
@@ -641,7 +641,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="109"
                 >
                   Australia
@@ -649,7 +649,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="110"
                 >
                   New Zealand
@@ -657,7 +657,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="111"
                 >
                   United Kingdom
@@ -665,7 +665,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="112"
                 >
                   Italy
@@ -673,7 +673,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="113"
                 >
                   Spain
@@ -681,7 +681,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="114"
                 >
                   Germany
@@ -689,7 +689,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="115"
                 >
                   France
@@ -697,7 +697,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="116"
                 >
                   Portugal
@@ -705,7 +705,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="117"
                 >
                   Indonesia
@@ -713,7 +713,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="118"
                 >
                   Philippines
@@ -724,14 +724,14 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
               <!--v-if-->
               <span
                 class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
               >
                 
                 <svg
                   aria-hidden="true"
                   class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                  data-v-80fe1a27=""
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
+                  data-v-67c0a3c9=""
                   height="1em"
                   role="img"
                   viewBox="0 0 20 20"
@@ -764,7 +764,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_10"
+                for="zVzeBu8n5P_10"
               >
                 
                 DDR CODE(optional)
@@ -783,7 +783,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_10"
+                id="zVzeBu8n5P_10"
                 name="code"
                 placeholder="10000000"
                 type="text"
@@ -808,7 +808,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_11"
+                for="zVzeBu8n5P_11"
               >
                 
                 Public
@@ -844,7 +844,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
               aria-checked="true"
               class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-primary-500 dark:bg-primary-400"
               data-headlessui-state="checked"
-              id="X0FSgiXBPY_11"
+              id="zVzeBu8n5P_11"
               role="switch"
               tabindex="0"
               type="button"
@@ -852,6 +852,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: {...} } renders dis
               <span
                 class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-4 rtl:-translate-x-4"
               >
+                <!--v-if-->
                 <!--v-if-->
                 <!--v-if-->
               </span>
@@ -950,7 +951,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_1"
+                for="zVzeBu8n5P_1"
               >
                 
                 ID
@@ -976,7 +977,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
-                id="X0FSgiXBPY_1"
+                id="zVzeBu8n5P_1"
                 name="id"
                 placeholder="Alphabets, Digits, Hyphen or Underbar"
                 type="text"
@@ -1001,7 +1002,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_2"
+                for="zVzeBu8n5P_2"
               >
                 
                 Display Name
@@ -1020,7 +1021,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_2"
+                id="zVzeBu8n5P_2"
                 name="name"
                 type="text"
               />
@@ -1045,7 +1046,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_3"
+                for="zVzeBu8n5P_3"
               >
                 
                 Area
@@ -1067,18 +1068,18 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             
             <div
               class="relative"
-              data-v-9ad88b65=""
+              data-v-37de6db6=""
             >
               <select
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                data-v-9ad88b65=""
-                id="X0FSgiXBPY_3"
+                data-v-37de6db6=""
+                id="zVzeBu8n5P_3"
                 name="area"
               >
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="0"
                 >
                   undefined
@@ -1086,7 +1087,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="1"
                 >
                   Hokkaido
@@ -1094,7 +1095,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="2"
                 >
                   Aomori
@@ -1102,7 +1103,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="3"
                 >
                   Iwate
@@ -1110,7 +1111,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="4"
                 >
                   Miyagi
@@ -1118,7 +1119,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="5"
                 >
                   Akita
@@ -1126,7 +1127,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="6"
                 >
                   Yamagata
@@ -1134,7 +1135,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="7"
                 >
                   Fukushima
@@ -1142,7 +1143,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="8"
                 >
                   Ibaraki
@@ -1150,7 +1151,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="9"
                 >
                   Tochigi
@@ -1158,7 +1159,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="10"
                 >
                   Gunma
@@ -1166,7 +1167,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="11"
                 >
                   Saitama
@@ -1174,7 +1175,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="12"
                 >
                   Chiba
@@ -1182,7 +1183,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="13"
                 >
                   Tokyo
@@ -1190,7 +1191,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="14"
                 >
                   Kanagawa
@@ -1198,7 +1199,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="15"
                 >
                   Niigata
@@ -1206,7 +1207,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="16"
                 >
                   Toyama
@@ -1214,7 +1215,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="17"
                 >
                   Ishikawa
@@ -1222,7 +1223,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="18"
                 >
                   Gukui
@@ -1230,7 +1231,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="19"
                 >
                   Yamanashi
@@ -1238,7 +1239,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="20"
                 >
                   Nagano
@@ -1246,7 +1247,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="21"
                 >
                   Gifu
@@ -1254,7 +1255,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="22"
                 >
                   Shizuoka
@@ -1262,7 +1263,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="23"
                 >
                   Aichi
@@ -1270,7 +1271,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="24"
                 >
                   Mie
@@ -1278,7 +1279,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="25"
                 >
                   Shiga
@@ -1286,7 +1287,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="26"
                 >
                   Kyoto
@@ -1294,7 +1295,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="27"
                 >
                   Osaka
@@ -1302,7 +1303,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="28"
                 >
                   Hyogo
@@ -1310,7 +1311,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="29"
                 >
                   Nara
@@ -1318,7 +1319,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="30"
                 >
                   Wakayama
@@ -1326,7 +1327,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="31"
                 >
                   Tottori
@@ -1334,7 +1335,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="32"
                 >
                   Shimane
@@ -1342,7 +1343,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="33"
                 >
                   Okayama
@@ -1350,7 +1351,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="34"
                 >
                   Hiroshima
@@ -1358,7 +1359,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="35"
                 >
                   Yamaguchi
@@ -1366,7 +1367,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="36"
                 >
                   Tokushima
@@ -1374,7 +1375,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="37"
                 >
                   Kagawa
@@ -1382,7 +1383,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="38"
                 >
                   Ehime
@@ -1390,7 +1391,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="39"
                 >
                   Kochi
@@ -1398,7 +1399,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="40"
                 >
                   Fukuoka
@@ -1406,7 +1407,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="41"
                 >
                   Saga
@@ -1414,7 +1415,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="42"
                 >
                   Nagasaki
@@ -1422,7 +1423,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="43"
                 >
                   Kumamoto
@@ -1430,7 +1431,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="44"
                 >
                   Oita
@@ -1438,7 +1439,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="45"
                 >
                   Miyazaki
@@ -1446,7 +1447,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="46"
                 >
                   Kagoshima
@@ -1454,7 +1455,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="47"
                 >
                   Okinawa
@@ -1462,7 +1463,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="48"
                 >
                   Hong Kong
@@ -1470,7 +1471,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="49"
                 >
                   Korea
@@ -1478,7 +1479,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="50"
                 >
                   Taiwan
@@ -1486,7 +1487,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="51"
                 >
                   USA
@@ -1494,7 +1495,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="52"
                 >
                   Europe
@@ -1502,7 +1503,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="53"
                 >
                   Oversea
@@ -1510,7 +1511,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="106"
                 >
                   Canada
@@ -1518,7 +1519,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="107"
                 >
                   Singapore
@@ -1526,7 +1527,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="108"
                 >
                   Thailand
@@ -1534,7 +1535,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="109"
                 >
                   Australia
@@ -1542,7 +1543,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="110"
                 >
                   New Zealand
@@ -1550,7 +1551,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="111"
                 >
                   United Kingdom
@@ -1558,7 +1559,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="112"
                 >
                   Italy
@@ -1566,7 +1567,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="113"
                 >
                   Spain
@@ -1574,7 +1575,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="114"
                 >
                   Germany
@@ -1582,7 +1583,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="115"
                 >
                   France
@@ -1590,7 +1591,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="116"
                 >
                   Portugal
@@ -1598,7 +1599,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="117"
                 >
                   Indonesia
@@ -1606,7 +1607,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="118"
                 >
                   Philippines
@@ -1617,14 +1618,14 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
               <!--v-if-->
               <span
                 class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
               >
                 
                 <svg
                   aria-hidden="true"
                   class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                  data-v-80fe1a27=""
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
+                  data-v-67c0a3c9=""
                   height="1em"
                   role="img"
                   viewBox="0 0 20 20"
@@ -1657,7 +1658,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_4"
+                for="zVzeBu8n5P_4"
               >
                 
                 DDR CODE(optional)
@@ -1676,7 +1677,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_4"
+                id="zVzeBu8n5P_4"
                 name="code"
                 placeholder="10000000"
                 type="text"
@@ -1701,7 +1702,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_5"
+                for="zVzeBu8n5P_5"
               >
                 
                 Public
@@ -1737,7 +1738,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
               aria-checked="false"
               class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-gray-200 dark:bg-gray-700"
               data-headlessui-state=""
-              id="X0FSgiXBPY_5"
+              id="zVzeBu8n5P_5"
               role="switch"
               tabindex="0"
               type="button"
@@ -1745,6 +1746,7 @@ exports[`/profile > { locale: "en" } snapshot test > { user: null } renders id i
               <span
                 class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-0 rtl:-translate-x-0"
               >
+                <!--v-if-->
                 <!--v-if-->
                 <!--v-if-->
               </span>
@@ -1843,7 +1845,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_19"
+                for="zVzeBu8n5P_19"
               >
                 
                 ID
@@ -1869,7 +1871,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
-                id="X0FSgiXBPY_19"
+                id="zVzeBu8n5P_19"
                 name="id"
                 placeholder="半角英数字, ハイフンまたはアンダーバー"
                 type="text"
@@ -1894,7 +1896,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_20"
+                for="zVzeBu8n5P_20"
               >
                 
                 表示名
@@ -1913,7 +1915,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_20"
+                id="zVzeBu8n5P_20"
                 name="name"
                 type="text"
               />
@@ -1938,7 +1940,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_21"
+                for="zVzeBu8n5P_21"
               >
                 
                 所属地域
@@ -1960,18 +1962,18 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             
             <div
               class="relative"
-              data-v-9ad88b65=""
+              data-v-37de6db6=""
             >
               <select
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                data-v-9ad88b65=""
-                id="X0FSgiXBPY_21"
+                data-v-37de6db6=""
+                id="zVzeBu8n5P_21"
                 name="area"
               >
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="0"
                 >
                   未指定
@@ -1979,7 +1981,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="1"
                 >
                   北海道
@@ -1987,7 +1989,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="2"
                 >
                   青森県
@@ -1995,7 +1997,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="3"
                 >
                   岩手県
@@ -2003,7 +2005,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="4"
                 >
                   宮城県
@@ -2011,7 +2013,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="5"
                 >
                   秋田県
@@ -2019,7 +2021,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="6"
                 >
                   山形県
@@ -2027,7 +2029,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="7"
                 >
                   福島県
@@ -2035,7 +2037,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="8"
                 >
                   茨城県
@@ -2043,7 +2045,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="9"
                 >
                   栃木県
@@ -2051,7 +2053,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="10"
                 >
                   群馬県
@@ -2059,7 +2061,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="11"
                 >
                   埼玉県
@@ -2067,7 +2069,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="12"
                 >
                   千葉県
@@ -2075,7 +2077,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="13"
                 >
                   東京都
@@ -2083,7 +2085,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="14"
                 >
                   神奈川県
@@ -2091,7 +2093,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="15"
                 >
                   新潟県
@@ -2099,7 +2101,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="16"
                 >
                   富山県
@@ -2107,7 +2109,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="17"
                 >
                   石川県
@@ -2115,7 +2117,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="18"
                 >
                   福井県
@@ -2123,7 +2125,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="19"
                 >
                   山梨県
@@ -2131,7 +2133,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="20"
                 >
                   長野県
@@ -2139,7 +2141,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="21"
                 >
                   岐阜県
@@ -2147,7 +2149,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="22"
                 >
                   静岡県
@@ -2155,7 +2157,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="23"
                 >
                   愛知県
@@ -2163,7 +2165,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="24"
                 >
                   三重県
@@ -2171,7 +2173,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="25"
                 >
                   滋賀県
@@ -2179,7 +2181,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="26"
                 >
                   京都府
@@ -2187,7 +2189,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="27"
                 >
                   大阪府
@@ -2195,7 +2197,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="28"
                 >
                   兵庫県
@@ -2203,7 +2205,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="29"
                 >
                   奈良県
@@ -2211,7 +2213,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="30"
                 >
                   和歌山県
@@ -2219,7 +2221,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="31"
                 >
                   鳥取県
@@ -2227,7 +2229,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="32"
                 >
                   島根県
@@ -2235,7 +2237,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="33"
                 >
                   岡山県
@@ -2243,7 +2245,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="34"
                 >
                   広島県
@@ -2251,7 +2253,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="35"
                 >
                   山口県
@@ -2259,7 +2261,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="36"
                 >
                   徳島県
@@ -2267,7 +2269,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="37"
                 >
                   香川県
@@ -2275,7 +2277,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="38"
                 >
                   愛媛県
@@ -2283,7 +2285,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="39"
                 >
                   高知県
@@ -2291,7 +2293,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="40"
                 >
                   福岡県
@@ -2299,7 +2301,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="41"
                 >
                   佐賀県
@@ -2307,7 +2309,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="42"
                 >
                   長崎県
@@ -2315,7 +2317,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="43"
                 >
                   熊本県
@@ -2323,7 +2325,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="44"
                 >
                   大分県
@@ -2331,7 +2333,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="45"
                 >
                   宮崎県
@@ -2339,7 +2341,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="46"
                 >
                   鹿児島県
@@ -2347,7 +2349,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="47"
                 >
                   沖縄県
@@ -2355,7 +2357,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="48"
                 >
                   香港
@@ -2363,7 +2365,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="49"
                 >
                   韓国
@@ -2371,7 +2373,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="50"
                 >
                   台湾
@@ -2379,7 +2381,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="51"
                 >
                   アメリカ
@@ -2387,7 +2389,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="52"
                 >
                   ヨーロッパ
@@ -2395,7 +2397,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="53"
                 >
                   海外
@@ -2403,7 +2405,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="106"
                 >
                   カナダ
@@ -2411,7 +2413,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="107"
                 >
                   シンガポール
@@ -2419,7 +2421,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="108"
                 >
                   タイ
@@ -2427,7 +2429,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="109"
                 >
                   オーストラリア
@@ -2435,7 +2437,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="110"
                 >
                   ニュージーランド
@@ -2443,7 +2445,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="111"
                 >
                   イギリス
@@ -2451,7 +2453,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="112"
                 >
                   イタリア
@@ -2459,7 +2461,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="113"
                 >
                   スペイン
@@ -2467,7 +2469,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="114"
                 >
                   ドイツ
@@ -2475,7 +2477,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="115"
                 >
                   フランス
@@ -2483,7 +2485,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="116"
                 >
                   ポルトガル
@@ -2491,7 +2493,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="117"
                 >
                   インドネシア
@@ -2499,7 +2501,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="118"
                 >
                   フィリピン
@@ -2510,14 +2512,14 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
               <!--v-if-->
               <span
                 class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
               >
                 
                 <svg
                   aria-hidden="true"
                   class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                  data-v-80fe1a27=""
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
+                  data-v-67c0a3c9=""
                   height="1em"
                   role="img"
                   viewBox="0 0 20 20"
@@ -2550,7 +2552,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_22"
+                for="zVzeBu8n5P_22"
               >
                 
                 DDR CODE(任意)
@@ -2569,7 +2571,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_22"
+                id="zVzeBu8n5P_22"
                 name="code"
                 placeholder="10000000"
                 type="text"
@@ -2594,7 +2596,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_23"
+                for="zVzeBu8n5P_23"
               >
                 
                 公開する
@@ -2630,7 +2632,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
               aria-checked="true"
               class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-primary-500 dark:bg-primary-400"
               data-headlessui-state="checked"
-              id="X0FSgiXBPY_23"
+              id="zVzeBu8n5P_23"
               role="switch"
               tabindex="0"
               type="button"
@@ -2638,6 +2640,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: {...} } renders dis
               <span
                 class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-4 rtl:-translate-x-4"
               >
+                <!--v-if-->
                 <!--v-if-->
                 <!--v-if-->
               </span>
@@ -2736,7 +2739,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_13"
+                for="zVzeBu8n5P_13"
               >
                 
                 ID
@@ -2762,7 +2765,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
                 disabled=""
-                id="X0FSgiXBPY_13"
+                id="zVzeBu8n5P_13"
                 name="id"
                 placeholder="半角英数字, ハイフンまたはアンダーバー"
                 type="text"
@@ -2787,7 +2790,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_14"
+                for="zVzeBu8n5P_14"
               >
                 
                 表示名
@@ -2806,7 +2809,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_14"
+                id="zVzeBu8n5P_14"
                 name="name"
                 type="text"
               />
@@ -2831,7 +2834,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_15"
+                for="zVzeBu8n5P_15"
               >
                 
                 所属地域
@@ -2853,18 +2856,18 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             
             <div
               class="relative"
-              data-v-9ad88b65=""
+              data-v-37de6db6=""
             >
               <select
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                data-v-9ad88b65=""
-                id="X0FSgiXBPY_15"
+                data-v-37de6db6=""
+                id="zVzeBu8n5P_15"
                 name="area"
               >
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="0"
                 >
                   未指定
@@ -2872,7 +2875,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="1"
                 >
                   北海道
@@ -2880,7 +2883,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="2"
                 >
                   青森県
@@ -2888,7 +2891,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="3"
                 >
                   岩手県
@@ -2896,7 +2899,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="4"
                 >
                   宮城県
@@ -2904,7 +2907,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="5"
                 >
                   秋田県
@@ -2912,7 +2915,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="6"
                 >
                   山形県
@@ -2920,7 +2923,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="7"
                 >
                   福島県
@@ -2928,7 +2931,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="8"
                 >
                   茨城県
@@ -2936,7 +2939,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="9"
                 >
                   栃木県
@@ -2944,7 +2947,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="10"
                 >
                   群馬県
@@ -2952,7 +2955,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="11"
                 >
                   埼玉県
@@ -2960,7 +2963,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="12"
                 >
                   千葉県
@@ -2968,7 +2971,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="13"
                 >
                   東京都
@@ -2976,7 +2979,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="14"
                 >
                   神奈川県
@@ -2984,7 +2987,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="15"
                 >
                   新潟県
@@ -2992,7 +2995,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="16"
                 >
                   富山県
@@ -3000,7 +3003,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="17"
                 >
                   石川県
@@ -3008,7 +3011,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="18"
                 >
                   福井県
@@ -3016,7 +3019,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="19"
                 >
                   山梨県
@@ -3024,7 +3027,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="20"
                 >
                   長野県
@@ -3032,7 +3035,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="21"
                 >
                   岐阜県
@@ -3040,7 +3043,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="22"
                 >
                   静岡県
@@ -3048,7 +3051,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="23"
                 >
                   愛知県
@@ -3056,7 +3059,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="24"
                 >
                   三重県
@@ -3064,7 +3067,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="25"
                 >
                   滋賀県
@@ -3072,7 +3075,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="26"
                 >
                   京都府
@@ -3080,7 +3083,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="27"
                 >
                   大阪府
@@ -3088,7 +3091,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="28"
                 >
                   兵庫県
@@ -3096,7 +3099,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="29"
                 >
                   奈良県
@@ -3104,7 +3107,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="30"
                 >
                   和歌山県
@@ -3112,7 +3115,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="31"
                 >
                   鳥取県
@@ -3120,7 +3123,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="32"
                 >
                   島根県
@@ -3128,7 +3131,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="33"
                 >
                   岡山県
@@ -3136,7 +3139,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="34"
                 >
                   広島県
@@ -3144,7 +3147,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="35"
                 >
                   山口県
@@ -3152,7 +3155,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="36"
                 >
                   徳島県
@@ -3160,7 +3163,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="37"
                 >
                   香川県
@@ -3168,7 +3171,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="38"
                 >
                   愛媛県
@@ -3176,7 +3179,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="39"
                 >
                   高知県
@@ -3184,7 +3187,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="40"
                 >
                   福岡県
@@ -3192,7 +3195,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="41"
                 >
                   佐賀県
@@ -3200,7 +3203,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="42"
                 >
                   長崎県
@@ -3208,7 +3211,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="43"
                 >
                   熊本県
@@ -3216,7 +3219,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="44"
                 >
                   大分県
@@ -3224,7 +3227,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="45"
                 >
                   宮崎県
@@ -3232,7 +3235,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="46"
                 >
                   鹿児島県
@@ -3240,7 +3243,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="47"
                 >
                   沖縄県
@@ -3248,7 +3251,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="48"
                 >
                   香港
@@ -3256,7 +3259,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="49"
                 >
                   韓国
@@ -3264,7 +3267,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="50"
                 >
                   台湾
@@ -3272,7 +3275,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="51"
                 >
                   アメリカ
@@ -3280,7 +3283,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="52"
                 >
                   ヨーロッパ
@@ -3288,7 +3291,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="53"
                 >
                   海外
@@ -3296,7 +3299,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="106"
                 >
                   カナダ
@@ -3304,7 +3307,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="107"
                 >
                   シンガポール
@@ -3312,7 +3315,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="108"
                 >
                   タイ
@@ -3320,7 +3323,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="109"
                 >
                   オーストラリア
@@ -3328,7 +3331,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="110"
                 >
                   ニュージーランド
@@ -3336,7 +3339,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="111"
                 >
                   イギリス
@@ -3344,7 +3347,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="112"
                 >
                   イタリア
@@ -3352,7 +3355,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="113"
                 >
                   スペイン
@@ -3360,7 +3363,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="114"
                 >
                   ドイツ
@@ -3368,7 +3371,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="115"
                 >
                   フランス
@@ -3376,7 +3379,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="116"
                 >
                   ポルトガル
@@ -3384,7 +3387,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="117"
                 >
                   インドネシア
@@ -3392,7 +3395,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
                 
                 
                 <option
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
                   value="118"
                 >
                   フィリピン
@@ -3403,14 +3406,14 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
               <!--v-if-->
               <span
                 class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
               >
                 
                 <svg
                   aria-hidden="true"
                   class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                  data-v-80fe1a27=""
-                  data-v-9ad88b65=""
+                  data-v-37de6db6=""
+                  data-v-67c0a3c9=""
                   height="1em"
                   role="img"
                   viewBox="0 0 20 20"
@@ -3443,7 +3446,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_16"
+                for="zVzeBu8n5P_16"
               >
                 
                 DDR CODE(任意)
@@ -3462,7 +3465,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <input
                 class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                id="X0FSgiXBPY_16"
+                id="zVzeBu8n5P_16"
                 name="code"
                 placeholder="10000000"
                 type="text"
@@ -3487,7 +3490,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
             >
               <label
                 class="block font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_17"
+                for="zVzeBu8n5P_17"
               >
                 
                 公開する
@@ -3523,7 +3526,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
               aria-checked="false"
               class="relative inline-flex flex-shrink-0 border-2 border-transparent disabled:cursor-not-allowed disabled:opacity-50 focus:outline-none h-5 w-9 rounded-full focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 bg-gray-200 dark:bg-gray-700"
               data-headlessui-state=""
-              id="X0FSgiXBPY_17"
+              id="zVzeBu8n5P_17"
               role="switch"
               tabindex="0"
               type="button"
@@ -3531,6 +3534,7 @@ exports[`/profile > { locale: "ja" } snapshot test > { user: null } renders id i
               <span
                 class="pointer-events-none relative inline-block rounded-full bg-white dark:bg-gray-900 shadow transform ring-0 transition ease-in-out duration-200 h-4 w-4 translate-x-0 rtl:-translate-x-0"
               >
+                <!--v-if-->
                 <!--v-if-->
                 <!--v-if-->
               </span>

@@ -51,7 +51,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_1"
+              for="zVzeBu8n5P_1"
             >
               
               Song ID
@@ -70,7 +70,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_1"
+              id="zVzeBu8n5P_1"
               name="id"
               type="text"
             />
@@ -130,7 +130,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_2"
+              for="zVzeBu8n5P_2"
             >
               
               Name
@@ -149,7 +149,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_2"
+              id="zVzeBu8n5P_2"
               name="name"
               type="text"
             />
@@ -173,7 +173,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_3"
+              for="zVzeBu8n5P_3"
             >
               
               Furigana
@@ -192,7 +192,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_3"
+              id="zVzeBu8n5P_3"
               name="nameKana"
               type="text"
             />
@@ -232,7 +232,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_4"
+              for="zVzeBu8n5P_4"
             >
               
               Artist
@@ -251,7 +251,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_4"
+              id="zVzeBu8n5P_4"
               name="artist"
               type="text"
             />
@@ -275,7 +275,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_5"
+              for="zVzeBu8n5P_5"
             >
               
               Series
@@ -291,18 +291,18 @@ exports[`/admin/songs > snapshot test 1`] = `
           
           <div
             class="relative"
-            data-v-9ad88b65=""
+            data-v-37de6db6=""
           >
             <select
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-              data-v-9ad88b65=""
-              id="X0FSgiXBPY_5"
+              data-v-37de6db6=""
+              id="zVzeBu8n5P_5"
               name="series"
             >
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR 1st"
               >
                 DDR 1st
@@ -310,7 +310,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR 2ndMIX"
               >
                 DDR 2ndMIX
@@ -318,7 +318,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR 3rdMIX"
               >
                 DDR 3rdMIX
@@ -326,7 +326,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR 4thMIX"
               >
                 DDR 4thMIX
@@ -334,7 +334,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR 5thMIX"
               >
                 DDR 5thMIX
@@ -342,7 +342,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDRMAX"
               >
                 DDRMAX
@@ -350,7 +350,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDRMAX2"
               >
                 DDRMAX2
@@ -358,7 +358,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR EXTREME"
               >
                 DDR EXTREME
@@ -366,7 +366,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR SuperNOVA"
               >
                 DDR SuperNOVA
@@ -374,7 +374,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR SuperNOVA2"
               >
                 DDR SuperNOVA2
@@ -382,7 +382,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR X"
               >
                 DDR X
@@ -390,7 +390,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR X2"
               >
                 DDR X2
@@ -398,7 +398,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DDR X3 VS 2ndMIX"
               >
                 DDR X3 VS 2ndMIX
@@ -406,7 +406,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution (2013)"
               >
                 DanceDanceRevolution (2013)
@@ -414,7 +414,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution (2014)"
               >
                 DanceDanceRevolution (2014)
@@ -422,7 +422,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution A"
               >
                 DanceDanceRevolution A
@@ -430,7 +430,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution A20"
               >
                 DanceDanceRevolution A20
@@ -438,7 +438,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution A20 PLUS"
               >
                 DanceDanceRevolution A20 PLUS
@@ -446,7 +446,7 @@ exports[`/admin/songs > snapshot test 1`] = `
               
               
               <option
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
                 value="DanceDanceRevolution A3"
               >
                 DanceDanceRevolution A3
@@ -457,14 +457,14 @@ exports[`/admin/songs > snapshot test 1`] = `
             <!--v-if-->
             <span
               class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-              data-v-9ad88b65=""
+              data-v-37de6db6=""
             >
               
               <svg
                 aria-hidden="true"
                 class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                data-v-80fe1a27=""
-                data-v-9ad88b65=""
+                data-v-37de6db6=""
+                data-v-67c0a3c9=""
                 height="1em"
                 role="img"
                 viewBox="0 0 20 20"
@@ -497,7 +497,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_6"
+              for="zVzeBu8n5P_6"
             >
               
               BPM
@@ -516,7 +516,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_6"
+              id="zVzeBu8n5P_6"
               placeholder="min"
               type="number"
             />
@@ -530,7 +530,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <input
               class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="X0FSgiXBPY_6"
+              id="zVzeBu8n5P_6"
               placeholder="max"
               type="number"
             />
@@ -564,7 +564,7 @@ exports[`/admin/songs > snapshot test 1`] = `
             >
               <input
                 class="h-4 w-4 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-current dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent form-checkbox rounded bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 text-primary-500 dark:text-primary-400"
-                id="X0FSgiXBPY_7"
+                id="zVzeBu8n5P_7"
                 name="deleted"
                 type="checkbox"
               />
@@ -574,7 +574,7 @@ exports[`/admin/songs > snapshot test 1`] = `
             >
               <label
                 class="text-sm font-medium text-gray-700 dark:text-gray-200"
-                for="X0FSgiXBPY_7"
+                for="zVzeBu8n5P_7"
               >
                 
                 Deleted
@@ -599,7 +599,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="X0FSgiXBPY_8"
+              for="zVzeBu8n5P_8"
             >
               
               Charts
@@ -764,19 +764,19 @@ exports[`/admin/songs > snapshot test 1`] = `
                     
                     <div
                       class="relative"
-                      data-v-9ad88b65=""
+                      data-v-37de6db6=""
                     >
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                        data-v-9ad88b65=""
-                        id="X0FSgiXBPY_8"
+                        data-v-37de6db6=""
+                        id="zVzeBu8n5P_8"
                         modelmodifiers="[object Object]"
                         name="charts"
                       >
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="1"
                         >
                           SINGLE
@@ -784,7 +784,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="2"
                         >
                           DOUBLE
@@ -795,14 +795,14 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <!--v-if-->
                       <span
                         class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                        data-v-9ad88b65=""
+                        data-v-37de6db6=""
                       >
                         
                         <svg
                           aria-hidden="true"
                           class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                          data-v-80fe1a27=""
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
+                          data-v-67c0a3c9=""
                           height="1em"
                           role="img"
                           viewBox="0 0 20 20"
@@ -828,19 +828,19 @@ exports[`/admin/songs > snapshot test 1`] = `
                     
                     <div
                       class="relative"
-                      data-v-9ad88b65=""
+                      data-v-37de6db6=""
                     >
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                        data-v-9ad88b65=""
-                        id="X0FSgiXBPY_8"
+                        data-v-37de6db6=""
+                        id="zVzeBu8n5P_8"
                         modelmodifiers="[object Object]"
                         name="charts"
                       >
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="0"
                         >
                           BEGINNER
@@ -848,7 +848,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="1"
                         >
                           BASIC
@@ -856,7 +856,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="2"
                         >
                           DIFFICULT
@@ -864,7 +864,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="3"
                         >
                           EXPERT
@@ -872,7 +872,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="4"
                         >
                           CHALLENGE
@@ -883,14 +883,14 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <!--v-if-->
                       <span
                         class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                        data-v-9ad88b65=""
+                        data-v-37de6db6=""
                       >
                         
                         <svg
                           aria-hidden="true"
                           class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                          data-v-80fe1a27=""
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
+                          data-v-67c0a3c9=""
                           height="1em"
                           role="img"
                           viewBox="0 0 20 20"
@@ -919,7 +919,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="20"
                         min="0"
                         name="charts"
@@ -941,7 +941,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -963,7 +963,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -985,7 +985,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1007,7 +1007,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1029,7 +1029,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1051,7 +1051,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1073,7 +1073,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1095,7 +1095,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1121,7 +1121,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <svg
                         aria-hidden="true"
                         class="icon flex-shrink-0 h-5 w-5"
-                        data-v-80fe1a27=""
+                        data-v-67c0a3c9=""
                         height="1em"
                         role="img"
                         viewBox="0 0 20 20"
@@ -1160,19 +1160,19 @@ exports[`/admin/songs > snapshot test 1`] = `
                     
                     <div
                       class="relative"
-                      data-v-9ad88b65=""
+                      data-v-37de6db6=""
                     >
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                        data-v-9ad88b65=""
-                        id="X0FSgiXBPY_8"
+                        data-v-37de6db6=""
+                        id="zVzeBu8n5P_8"
                         modelmodifiers="[object Object]"
                         name="charts"
                       >
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="1"
                         >
                           SINGLE
@@ -1180,7 +1180,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="2"
                         >
                           DOUBLE
@@ -1191,14 +1191,14 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <!--v-if-->
                       <span
                         class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                        data-v-9ad88b65=""
+                        data-v-37de6db6=""
                       >
                         
                         <svg
                           aria-hidden="true"
                           class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                          data-v-80fe1a27=""
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
+                          data-v-67c0a3c9=""
                           height="1em"
                           role="img"
                           viewBox="0 0 20 20"
@@ -1224,19 +1224,19 @@ exports[`/admin/songs > snapshot test 1`] = `
                     
                     <div
                       class="relative"
-                      data-v-9ad88b65=""
+                      data-v-37de6db6=""
                     >
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
-                        data-v-9ad88b65=""
-                        id="X0FSgiXBPY_8"
+                        data-v-37de6db6=""
+                        id="zVzeBu8n5P_8"
                         modelmodifiers="[object Object]"
                         name="charts"
                       >
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="0"
                         >
                           BEGINNER
@@ -1244,7 +1244,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="1"
                         >
                           BASIC
@@ -1252,7 +1252,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="2"
                         >
                           DIFFICULT
@@ -1260,7 +1260,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="3"
                         >
                           EXPERT
@@ -1268,7 +1268,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                         
                         
                         <option
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
                           value="4"
                         >
                           CHALLENGE
@@ -1279,14 +1279,14 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <!--v-if-->
                       <span
                         class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
-                        data-v-9ad88b65=""
+                        data-v-37de6db6=""
                       >
                         
                         <svg
                           aria-hidden="true"
                           class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
-                          data-v-80fe1a27=""
-                          data-v-9ad88b65=""
+                          data-v-37de6db6=""
+                          data-v-67c0a3c9=""
                           height="1em"
                           role="img"
                           viewBox="0 0 20 20"
@@ -1315,7 +1315,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="20"
                         min="0"
                         name="charts"
@@ -1337,7 +1337,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1359,7 +1359,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1381,7 +1381,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1403,7 +1403,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1425,7 +1425,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1447,7 +1447,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1469,7 +1469,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1491,7 +1491,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="X0FSgiXBPY_8"
+                        id="zVzeBu8n5P_8"
                         max="999"
                         min="0"
                         name="charts"
@@ -1517,7 +1517,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <svg
                         aria-hidden="true"
                         class="icon flex-shrink-0 h-5 w-5"
-                        data-v-80fe1a27=""
+                        data-v-67c0a3c9=""
                         height="1em"
                         role="img"
                         viewBox="0 0 20 20"
