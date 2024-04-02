@@ -150,8 +150,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@happy-dom/global-registrator':
-        specifier: ^14.3.9
-        version: 14.3.9
+        specifier: ^14.3.10
+        version: 14.3.10
       consola:
         specifier: ^3.2.3
         version: 3.2.3
@@ -2529,11 +2529,11 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-  /@happy-dom/global-registrator@14.3.9:
-    resolution: {integrity: sha512-sOQQ56IY3IphSdUpCvOJxh300tzJ8+kI2QiIeUlOrojhOsCR+gu+sPP8PiGQKi6S41tyhDijT/C9vdvejyWfFQ==}
+  /@happy-dom/global-registrator@14.3.10:
+    resolution: {integrity: sha512-OPGj01nDT/A/xd9QVO+mtcdvGL4JmXa2nA/qN8RVmp870fPkRiGPxGaOHMKU2dZjY0egMP4fhUsheGXYrqfSbw==}
     engines: {node: '>=16.0.0'}
     dependencies:
-      happy-dom: 14.3.9
+      happy-dom: 14.3.10
     dev: false
 
   /@headlessui/tailwindcss@0.2.0(tailwindcss@3.4.1):
@@ -8254,6 +8254,15 @@ packages:
       unenv: 1.9.0
     transitivePeerDependencies:
       - uWebSockets.js
+
+  /happy-dom@14.3.10:
+    resolution: {integrity: sha512-Rh5li9vA9MF9Gkg85CbFABKTa3uoSAByILRNGb92u/vswDd561gBg2p1UW1ZauvDWWwRxPcbACK5zv3BR+gHnQ==}
+    engines: {node: '>=16.0.0'}
+    dependencies:
+      entities: 4.5.0
+      webidl-conversions: 7.0.0
+      whatwg-mimetype: 3.0.0
+    dev: false
 
   /happy-dom@14.3.9:
     resolution: {integrity: sha512-0kPQchwthekcYpYN8CvCiq+/z5bqFYDLbTxZ+yDLwT8AFRVJDFadShHRxp3VAZRy7a5isOZ1j/LzsU1dtAIZMQ==}
