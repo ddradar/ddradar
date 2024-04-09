@@ -1,12 +1,9 @@
 import type { ItemDefinition } from '@azure/cosmos'
 import { InvocationContext } from '@azure/functions'
 import type { UserClearLampSchema, UserRankSchema } from '@ddradar/core'
-import { fetchSummaryClearLampCount, fetchSummaryRankCount } from '@ddradar/db'
-import { beforeAll, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test } from 'vitest'
 
 import { handler } from '../../src/functions/generateUserDetails'
-
-vi.mock('@ddradar/db')
 
 describe('/functions/generateUserDetails.ts', () => {
   const status = {
@@ -55,10 +52,6 @@ describe('/functions/generateUserDetails.ts', () => {
       count: 10,
     },
   ]
-  beforeAll(() => {
-    vi.mocked(fetchSummaryClearLampCount).mockResolvedValue(newClears)
-    vi.mocked(fetchSummaryRankCount).mockResolvedValue(newScores)
-  })
 
   test('merges old.id & new data', async () => {
     // Arrange
@@ -80,6 +73,8 @@ describe('/functions/generateUserDetails.ts', () => {
       deletedClear,
       deletedScore,
     ])
+    ctx.extraInputs.set('newClearLampCounts', newClears)
+    ctx.extraInputs.set('newRankCounts', newScores)
 
     // Act
     const result = await handler(null, ctx)
