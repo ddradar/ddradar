@@ -43,7 +43,7 @@ jobs:
           pnpm -F "functions" build
 
       - name: Remove Dev Dependencies
-        run: pnpm install --frozen-lockfile --ignore-scripts
+        run: pnpm install --prod --frozen-lockfile --ignore-scripts
 
       - name: Deploy
         uses: Azure/functions-action@v1.5.1
