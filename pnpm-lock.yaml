@@ -112,9 +112,6 @@ importers:
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
-      '@ddradar/db':
-        specifier: workspace:*
-        version: link:../db
       iconv-lite:
         specifier: ^0.6.3
         version: 0.6.3
