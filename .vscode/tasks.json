@@ -13,9 +13,21 @@
       "command": "start --cors http://localhost:3000/",
       "problemMatcher": "$func-watch",
       "isBackground": true,
-      "dependsOn": "Functions: Build",
+      "dependsOn": "Functions: Prepare Artifact",
       "options": {
-        "cwd": "${workspaceFolder}/functions"
+        "cwd": "${workspaceFolder}/tmp"
+      }
+    },
+    {
+      "label": "Core: Build",
+      "type": "shell",
+      "group": "build",
+      "command": "pnpm",
+      "args": ["build"],
+      "dependsOn": "Install Dependencies",
+      "problemMatcher": "$tsc",
+      "options": {
+        "cwd": "${workspaceFolder}/core"
       }
     },
     {
@@ -24,21 +36,29 @@
       "group": "build",
       "command": "pnpm",
       "args": ["build"],
-      "dependsOn": "Install Dependencies",
+      "dependsOn": "Core: Build",
       "problemMatcher": "$tsc",
       "options": {
         "cwd": "${workspaceFolder}/functions"
       }
     },
     {
-      "label": "Functions: Install Dependencies (Production)",
+      "label": "Functions: Prepare Artifact",
       "type": "shell",
       "command": "pnpm",
-      "args": ["install", "--prod", "--ignore-scripts"],
-      "dependsOn": "Functions: Build",
-      "options": {
-        "cwd": "${workspaceFolder}/functions"
-      }
+      "args": [
+        "--filter",
+        "@ddradar/functions",
+        "--prod",
+        "deploy",
+        "dist",
+        "--config.shamefully-hoist=true",
+        "--config.hoist=true",
+        "--config.node-linker=true",
+        "--config.symlinks=false",
+        "--config.shared-workspace-lockfile=false"
+      ],
+      "dependsOn": "Functions: Build"
     }
   ]
 }
