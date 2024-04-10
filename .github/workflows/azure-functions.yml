@@ -37,17 +37,17 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build
+        # Workaround for https://github.com/pnpm/pnpm/issues/6166
         run: |
-          pnpm -F "core" build
-          pnpm -F "db" build
-          pnpm -F "functions" build
-
-      - name: Remove Dev Dependencies
-        run: |
-          pnpm install --prod --frozen-lockfile --ignore-scripts
-          pushd './functions'
-          cp -LR node_modules tmp && rm -rf node_modules && mv tmp node_modules
-          popd
+          pnpm build:core
+          pnpm -C functions build
+          pnpm \
+            --filter @ddradar/functions --prod deploy func
+            --config.shamefully-hoist=true \
+            --config.hoist=true \
+            --config.node-linker=true \
+            --config.symlinks=false \
+            --config.shared-workspace-lockfile=false
 
       - name: Deploy
         uses: Azure/functions-action@v1.5.1
@@ -55,6 +55,6 @@ jobs:
         with:
           app-name: ${{ vars.AZURE_FUNCTIONAPP_APP_NAME }}
           slot-name: ${{ vars.AZURE_FUNCTIONAPP_DEPLOY_SLOT }}
-          package: ./functions
+          package: ./func
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           respect-funcignore: true
