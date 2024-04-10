@@ -5,7 +5,7 @@ import type {
 } from '@azure/functions'
 import { app } from '@azure/functions'
 import type { SongSchema } from '@ddradar/core'
-import { fetch } from 'node-fetch-native'
+import { ofetch } from 'ofetch'
 
 import { masterMusicToMap } from '../skill-attack'
 
@@ -32,7 +32,9 @@ app.timer('importSkillAttackId', {
   handler,
 })
 
-const masterMusicUri = 'http://skillattack.com/sa4/data/master_music.txt'
+const masterMusicUri =
+  process.env.MASTER_MUSIC_URL ??
+  'http://skillattack.com/sa4/data/master_music.txt'
 
 /**
  * Import skillAttackId from Skill Attack site.
@@ -46,14 +48,9 @@ export async function handler(
   const songs = ctx.extraInputs.get(input) as SongSchema[]
   if (!songs.length) return []
 
-  const res = await fetch(masterMusicUri)
-  if (!res.ok) {
-    ctx.error(`${res.status}: ${res.statusText}`)
-    ctx.error(await res.text())
-    return []
-  }
-
-  const map = masterMusicToMap(Buffer.from(await res.arrayBuffer()))
+  const map = masterMusicToMap(
+    Buffer.from(await ofetch(masterMusicUri, { responseType: 'arrayBuffer' }))
+  )
 
   return songs
     .map(song => {

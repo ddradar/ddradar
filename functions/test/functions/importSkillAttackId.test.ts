@@ -1,25 +1,19 @@
 import { InvocationContext } from '@azure/functions'
 import { testSongData } from '@ddradar/core/test/data'
-import { fetch } from 'node-fetch-native'
+import { ofetch } from 'ofetch'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { handler } from '../../src/functions/importSkillAttackId'
 import { masterMusicToMap } from '../../src/skill-attack'
 
-vi.mock('node-fetch-native', async () => ({
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore mock
-  ...(await vi.importActual('node-fetch-native')),
-  fetch: vi.fn(),
-}))
+vi.mock('ofetch')
 vi.mock('../../src/skill-attack')
 
 describe('/functions/importSkillAttrackId.ts', () => {
   const uri = 'http://skillattack.com/sa4/data/master_music.txt'
-  const mapMock = vi.mocked(masterMusicToMap)
   beforeEach(() => {
-    vi.mocked(fetch).mockClear()
-    mapMock.mockClear()
+    vi.mocked(ofetch).mockClear()
+    vi.mocked(masterMusicToMap).mockClear()
   })
 
   test('returns [] if songs is empty', async () => {
@@ -32,28 +26,21 @@ describe('/functions/importSkillAttrackId.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(vi.mocked(fetch)).not.toBeCalled()
+    expect(vi.mocked(ofetch)).not.toBeCalled()
   })
 
-  test('returns [] with error if fetch() returns 404', async () => {
+  test('returns [] with error if ofetch() returns error', async () => {
     // Arrange
     const ctx = new InvocationContext()
     ctx.extraInputs.set('songs', [testSongData])
 
-    vi.mocked(fetch).mockResolvedValue({
-      ok: false,
-      status: 404,
-      statusText: 'Not Found',
-      text: () => Promise.resolve('Error'),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any)
+    vi.mocked(ofetch).mockRejectedValue('Error')
 
-    // Act
-    const result = await handler(null, ctx)
-
-    // Assert
-    expect(result).toStrictEqual([])
-    expect(vi.mocked(fetch)).toBeCalledWith(uri)
+    // Act - Assert
+    await expect(handler(null, ctx)).rejects.toThrowError()
+    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+      responseType: 'arrayBuffer',
+    })
   })
 
   test('returns [] if does not match songId', async () => {
@@ -61,19 +48,17 @@ describe('/functions/importSkillAttrackId.ts', () => {
     const ctx = new InvocationContext()
     ctx.extraInputs.set('songs', [testSongData])
 
-    vi.mocked(fetch).mockResolvedValue({
-      ok: true,
-      arrayBuffer: () => Promise.resolve(new ArrayBuffer(1)),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any)
-    mapMock.mockReturnValue(new Map())
+    vi.mocked(ofetch).mockResolvedValue(new ArrayBuffer(1))
+    vi.mocked(masterMusicToMap).mockReturnValue(new Map())
 
     // Act
     const result = await handler(null, ctx)
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(vi.mocked(fetch)).toBeCalledWith(uri)
+    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+      responseType: 'arrayBuffer',
+    })
   })
 
   test('returns [song] if match songId', async () => {
@@ -81,18 +66,16 @@ describe('/functions/importSkillAttrackId.ts', () => {
     const ctx = new InvocationContext()
     ctx.extraInputs.set('songs', [testSongData])
 
-    vi.mocked(fetch).mockResolvedValue({
-      ok: true,
-      arrayBuffer: () => Promise.resolve(new ArrayBuffer(1)),
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } as any)
-    mapMock.mockReturnValue(new Map([[testSongData.id, 1]]))
+    vi.mocked(ofetch).mockResolvedValue(new ArrayBuffer(1))
+    vi.mocked(masterMusicToMap).mockReturnValue(new Map([[testSongData.id, 1]]))
 
     // Act
     const result = await handler(null, ctx)
 
     // Assert
     expect(result).toStrictEqual([{ ...testSongData, skillAttackId: 1 }])
-    expect(vi.mocked(fetch)).toBeCalledWith(uri)
+    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+      responseType: 'arrayBuffer',
+    })
   })
 })
