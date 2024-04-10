@@ -6,19 +6,16 @@ on:
       - main
     paths:
       - core/**
-      - db/**
       - functions/**
       - .github/workflows/azure-functions.yml
+  pull_request:
   release:
     types: [published]
 
 jobs:
-  deploy-fa:
-    name: Build & Deploy
+  build:
+    name: Build
     runs-on: ubuntu-latest
-    environment:
-      name: ${{ (github.event_name == 'release' && 'Production') || 'Staging' }}
-      url: ${{ steps.fa-deploy.outputs.app-url }}
 
     steps:
       - name: Checkout
@@ -42,12 +39,38 @@ jobs:
           pnpm build:core
           pnpm -C functions build
           pnpm \
-            --filter @ddradar/functions --prod deploy func
+            --filter @ddradar/functions --prod deploy tmp \
             --config.shamefully-hoist=true \
             --config.hoist=true \
             --config.node-linker=true \
             --config.symlinks=false \
             --config.shared-workspace-lockfile=false
+
+      - name: Upload Artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: func
+          path: tmp
+
+  deploy:
+    name: Deploy
+    needs: [build]
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    environment:
+      name: ${{ (github.event_name == 'release' && 'Production') || 'Staging' }}
+      url: ${{ steps.fa-deploy.outputs.app-url }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.2
+
+      - name: Download Artifact
+        uses: actions/download-artifact@v4.1.4
+        with:
+          name: func
+          path: tmp
 
       - name: Deploy
         uses: Azure/functions-action@v1.5.1
@@ -55,6 +78,6 @@ jobs:
         with:
           app-name: ${{ vars.AZURE_FUNCTIONAPP_APP_NAME }}
           slot-name: ${{ vars.AZURE_FUNCTIONAPP_DEPLOY_SLOT }}
-          package: ./func
+          package: ./tmp
           publish-profile: ${{ secrets.AZURE_FUNCTIONAPP_PUBLISH_PROFILE }}
           respect-funcignore: true
