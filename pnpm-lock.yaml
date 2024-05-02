@@ -193,8 +193,8 @@ importers:
         specifier: workspace:*
         version: link:../db
       '@iconify-json/flag':
-        specifier: ^1.1.49
-        version: 1.1.49
+        specifier: ^1.1.51
+        version: 1.1.51
       '@iconify-json/heroicons':
         specifier: ^1.1.21
         version: 1.1.21
@@ -2569,8 +2569,8 @@ packages:
   /@humanwhocodes/object-schema@2.0.3:
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
 
-  /@iconify-json/flag@1.1.49:
-    resolution: {integrity: sha512-Cf0nM3UV/rVhYljWbF4LuOqoGMwnUS3rCGWMZwOyZdDo8FeGQzTqh7vBbdeV6uITLQQMupyPZybaANenOADXqA==}
+  /@iconify-json/flag@1.1.51:
+    resolution: {integrity: sha512-BnN2AB33WVkqjEFx+EVGeqnP5Jd21PH1n94NlfD46rESPWcAPGL54FocvtScW//XXgBxJ308dsfQZ1J33CNvlg==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
