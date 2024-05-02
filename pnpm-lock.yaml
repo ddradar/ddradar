@@ -214,8 +214,8 @@ importers:
         specifier: ^14.1.0
         version: 14.1.0
       vue-chartjs:
-        specifier: ^5.3.0
-        version: 5.3.0(chart.js@4.4.2)(vue@3.4.21)
+        specifier: ^5.3.1
+        version: 5.3.1(chart.js@4.4.2)(vue@3.4.21)
       zod:
         specifier: ^3.23.5
         version: 3.23.5
@@ -13635,8 +13635,8 @@ packages:
     dependencies:
       ufo: 1.5.3
 
-  /vue-chartjs@5.3.0(chart.js@4.4.2)(vue@3.4.21):
-    resolution: {integrity: sha512-8XqX0JU8vFZ+WA2/knz4z3ThClduni2Nm0BMe2u0mXgTfd9pXrmJ07QBI+WAij5P/aPmPMX54HCE1seWL37ZdQ==}
+  /vue-chartjs@5.3.1(chart.js@4.4.2)(vue@3.4.21):
+    resolution: {integrity: sha512-rZjqcHBxKiHrBl0CIvcOlVEBwRhpWAVf6rDU3vUfa7HuSRmGtCslc0Oc8m16oAVuk0erzc1FCtH1VCriHsrz+A==}
     peerDependencies:
       chart.js: ^4.1.1
       vue: ^3.0.0-0 || ^2.7.0
