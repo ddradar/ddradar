@@ -51,8 +51,8 @@ importers:
   core:
     dependencies:
       zod:
-        specifier: ^3.23.5
-        version: 3.23.5
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@graphql-codegen/cli':
         specifier: ^5.0.2
@@ -119,8 +119,8 @@ importers:
         specifier: ^1.6.4
         version: 1.6.4
       zod:
-        specifier: ^3.23.5
-        version: 3.23.5
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.4
@@ -217,8 +217,8 @@ importers:
         specifier: ^5.3.1
         version: 5.3.1(chart.js@4.4.2)(vue@3.4.21)
       zod:
-        specifier: ^3.23.5
-        version: 3.23.5
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@nuxt/devtools':
         specifier: ^1.2.0
@@ -10368,7 +10368,7 @@ packages:
       '@intlify/shared': 9.13.1
       '@nuxt/kit': 3.11.2(rollup@4.13.2)
       defu: 6.1.4
-      zod: 3.23.5
+      zod: 3.23.8
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -14094,5 +14094,5 @@ packages:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
 
-  /zod@3.23.5:
-    resolution: {integrity: sha512-fkwiq0VIQTksNNA131rDOsVJcns0pfVUjHzLrNBiF/O/Xxb5lQyEXkhZWcJ7npWsYlvs+h0jFWXXy4X46Em1JA==}
+  /zod@3.23.8:
+    resolution: {integrity: sha512-XBx9AXhXktjUqnepgTiE5flcKIYWi/rme0Eaj+5Y0lftuGBq+jyRu/md4WnuxqgP1ubdpNCsYEYPxrzVHD8d6g==}
