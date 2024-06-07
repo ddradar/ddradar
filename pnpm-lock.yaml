@@ -254,8 +254,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(rollup@4.13.2)
       nuxt-zod-i18n:
-        specifier: ^1.6.0
-        version: 1.6.0(rollup@4.13.2)
+        specifier: ^1.8.0
+        version: 1.8.0(rollup@4.13.2)
       sass:
         specifier: ^1.70.0
         version: 1.70.0
@@ -2631,7 +2631,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/message-compiler': 9.9.1
-      '@intlify/shared': 9.10.2
+      '@intlify/shared': 9.13.1
       acorn: 8.11.3
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -2680,6 +2680,11 @@ packages:
     engines: {node: '>= 16'}
     dev: true
 
+  /@intlify/shared@9.13.1:
+    resolution: {integrity: sha512-u3b6BKGhE6j/JeRU6C/RL2FgyJfy6LakbtfeVF8fJXURpZZTzfh3e05J0bu0XPw447Q6/WUp3C4ajv4TMS4YsQ==}
+    engines: {node: '>= 16'}
+    dev: true
+
   /@intlify/shared@9.9.1:
     resolution: {integrity: sha512-b3Pta1nwkz5rGq434v0psHwEwHGy1pYCttfcM22IE//K9owbpkEvFptx9VcuRAxjQdrO2If249cmDDjBu5wMDA==}
     engines: {node: '>= 16'}
@@ -2701,7 +2706,7 @@ packages:
         optional: true
     dependencies:
       '@intlify/bundle-utils': 7.5.0(vue-i18n@9.9.1)
-      '@intlify/shared': 9.10.2
+      '@intlify/shared': 9.13.1
       '@rollup/pluginutils': 5.1.0(rollup@4.13.2)
       '@vue/compiler-sfc': 3.4.21
       debug: 4.3.4
@@ -10357,11 +10362,11 @@ packages:
       - supports-color
     dev: true
 
-  /nuxt-zod-i18n@1.6.0(rollup@4.13.2):
-    resolution: {integrity: sha512-kHTS8vAyMqAFmJi0AxUuWitGNAMREeoMM4rUIlZgaX+DSgsHS35ENy2zRZcNgTJXEzedwsoQd8+ij8Ts1SKhYg==}
+  /nuxt-zod-i18n@1.8.0(rollup@4.13.2):
+    resolution: {integrity: sha512-c2C6OrMWeeWlIEmOdrDBAfhL0v3vwCT2UQbFi4KqwjJ6N/xgSF4ibtWgJtmzV0bJZhRwDoVMBzkQfudHdqSzrQ==}
     dependencies:
-      '@intlify/shared': 9.10.2
-      '@nuxt/kit': 3.11.1(rollup@4.13.2)
+      '@intlify/shared': 9.13.1
+      '@nuxt/kit': 3.11.2(rollup@4.13.2)
       defu: 6.1.4
       zod: 3.23.5
     transitivePeerDependencies:
