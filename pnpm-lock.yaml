@@ -107,8 +107,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       '@azure/functions':
-        specifier: ^4.4.0
-        version: 4.4.0
+        specifier: ^4.5.0
+        version: 4.5.0
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
@@ -468,8 +468,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@azure/functions@4.4.0:
-    resolution: {integrity: sha512-debidWolFTsfapsK53ftzLtXJc3dbYYPc9UqJoEm1GAj1lS7jFMARQnbfTQPDqBIhuJxLZ9D8WVvhIEV7Hifzw==}
+  /@azure/functions@4.5.0:
+    resolution: {integrity: sha512-WNCiOHMQEZpezxgThD3o2McKEjUEljtQBvdw4X4oE5714eTw76h33kIj0660ZJGEnxYSx4dx18oAbg5kLMs9iQ==}
     engines: {node: '>=18.0'}
     dependencies:
       cookie: 0.6.0
