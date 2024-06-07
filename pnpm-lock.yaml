@@ -205,8 +205,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(nuxt@3.11.1)(rollup@4.13.2)(vite@5.2.7)(vue@3.4.21)
       chart.js:
-        specifier: ^4.4.2
-        version: 4.4.2
+        specifier: ^4.4.3
+        version: 4.4.3
       iconv-lite:
         specifier: ^0.6.3
         version: 0.6.3
@@ -215,7 +215,7 @@ importers:
         version: 14.1.0
       vue-chartjs:
         specifier: ^5.3.1
-        version: 5.3.1(chart.js@4.4.2)(vue@3.4.21)
+        version: 5.3.1(chart.js@4.4.3)(vue@3.4.21)
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -6109,8 +6109,8 @@ packages:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
     dev: true
 
-  /chart.js@4.4.2:
-    resolution: {integrity: sha512-6GD7iKwFpP5kbSD4MeRRRlTnQvxfQREy36uEtm1hzHzcOqwWx0YEHuspuoNlslu+nciLIB7fjjsHkUv/FzFcOg==}
+  /chart.js@4.4.3:
+    resolution: {integrity: sha512-qK1gkGSRYcJzqrrzdR6a+I0vQ4/R+SoODXyAjscQ/4mzuNzySaMCd+hyVxitSY1+L2fjPD1Gbn+ibNqRmwQeLw==}
     engines: {pnpm: '>=8'}
     dependencies:
       '@kurkle/color': 0.3.2
@@ -13645,13 +13645,13 @@ packages:
     dependencies:
       ufo: 1.5.3
 
-  /vue-chartjs@5.3.1(chart.js@4.4.2)(vue@3.4.21):
+  /vue-chartjs@5.3.1(chart.js@4.4.3)(vue@3.4.21):
     resolution: {integrity: sha512-rZjqcHBxKiHrBl0CIvcOlVEBwRhpWAVf6rDU3vUfa7HuSRmGtCslc0Oc8m16oAVuk0erzc1FCtH1VCriHsrz+A==}
     peerDependencies:
       chart.js: ^4.1.1
       vue: ^3.0.0-0 || ^2.7.0
     dependencies:
-      chart.js: 4.4.2
+      chart.js: 4.4.3
       vue: 3.4.21(typescript@5.4.5)
     dev: false
 
