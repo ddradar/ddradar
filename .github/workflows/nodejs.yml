@@ -15,7 +15,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.4
       - name: Use pnpm ${{ vars.PNPM_VERSION }}
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4.0.0
         with:
           version: ${{ vars.PNPM_VERSION }}
       - name: Use Node.js ${{ vars.NODE_VERSION }}
@@ -38,7 +38,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.1.4
       - name: Use pnpm ${{ vars.PNPM_VERSION }}
-        uses: pnpm/action-setup@v3.0.0
+        uses: pnpm/action-setup@v4.0.0
         with:
           version: ${{ vars.PNPM_VERSION }}
       - name: Use Node.js ${{ vars.NODE_VERSION }}
