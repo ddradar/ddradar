@@ -73,7 +73,7 @@ jobs:
           path: dist
 
       - name: Deploy
-        uses: Azure/functions-action@v1.5.1
+        uses: Azure/functions-action@v1.5.2
         id: fa-deploy
         with:
           app-name: ${{ vars.AZURE_FUNCTIONAPP_APP_NAME }}
