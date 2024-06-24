@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@azure/static-web-apps-cli':
-        specifier: ^1.1.8
-        version: 1.1.8
+        specifier: ^1.1.9
+        version: 1.1.9
       '@typescript-eslint/eslint-plugin':
         specifier: ^7.5.0
         version: 7.5.0(@typescript-eslint/parser@7.5.0)(eslint@8.57.0)(typescript@5.5.2)
@@ -536,8 +536,8 @@ packages:
       uuid: 8.3.2
     dev: true
 
-  /@azure/static-web-apps-cli@1.1.8:
-    resolution: {integrity: sha512-6/yCxXjAfvBwsT8eqgc5asQFbdKwQJMN8PJmSJKenbQTYgAarwBdNClEvm6sVAWKiixKmIOjvQvZP08UI9ofKw==}
+  /@azure/static-web-apps-cli@1.1.9:
+    resolution: {integrity: sha512-W/BxVHuGMkP+Ycr/Wv6q3IM5tuDeJLob4MTzzT0+h7HIErTq6Ie5tzyqH99qstVv8XP2DJMsb+BwAoj9ZOzy0g==}
     engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     hasBin: true
     dependencies:
