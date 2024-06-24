@@ -33,17 +33,17 @@
   },
   "devDependencies": {
     "@azure/static-web-apps-cli": "^1.1.8",
-    "@typescript-eslint/eslint-plugin": "^7.5.0",
-    "@typescript-eslint/parser": "^7.5.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
     "@vitest/coverage-v8": "^1.4.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-simple-import-sort": "^12.0.0",
-    "eslint-plugin-vitest": "^0.4.1",
+    "eslint-plugin-simple-import-sort": "^12.1.0",
+    "eslint-plugin-vitest": "^0.5.4",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5"
+    "lint-staged": "^15.2.7",
+    "prettier": "^3.3.2"
   }
 }
