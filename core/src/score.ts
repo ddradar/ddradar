@@ -590,4 +590,21 @@ export function setValidScoreFromChart(
   }
 }
 
+/**
+ * Calculate Flare skill score.
+ * @param level Level of step chart
+ * @param flareRank Flare Rank
+ */
+export function calcFlareSkill(
+  level: number,
+  flareRank: FlareRank = 0
+): number {
+  level = stepChartSchema.shape.level.parse(level)
+  const baseScores = [
+    145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,
+    620, 635, 650, 665, 0,
+  ]
+  return Math.floor(baseScores[level - 1] * (flareRank * 0.06 + 1))
+}
+
 const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0
