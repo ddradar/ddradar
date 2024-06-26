@@ -35,6 +35,11 @@ export type ClearLamp = Parameters<typeof clearLamps.set>[0]
 /** Map for {@link ClearLamp} */
 export const clearLampMap: ReadonlyMap<number, string> = clearLamps
 
+const flareRanks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const
+/** Flare Rank (`0`: None, `1`: FLARE I, `1`: FLARE II, ..., `10`: FLARE EX) */
+export type FlareRank = (typeof flareRanks)[number]
+export const flareRankSet: ReadonlySet<number> = new Set(flareRanks)
+
 const danceLevels = [
   'E',
   'D',
