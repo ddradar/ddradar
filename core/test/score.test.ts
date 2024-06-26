@@ -2,6 +2,7 @@ import { describe, expect, test } from 'vitest'
 
 import type { Score } from '../src/score'
 import {
+  calcFlareSkill,
   calcMyGrooveRadar,
   createScoreSchema,
   getDanceLevel,
@@ -518,6 +519,61 @@ describe('score.ts', () => {
         // Assert
         expect(actual).toStrictEqual(expected)
       }
+    )
+  })
+
+  describe('calcFlareSkill', () => {
+    test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
+      `(%d) throws error`,
+      d => expect(() => calcFlareSkill(d)).toThrowError()
+    )
+
+    test.each([
+      [1, 145],
+      [2, 155],
+      [3, 170],
+      [4, 185],
+      [5, 205],
+      [6, 230],
+      [7, 255],
+      [8, 290],
+      [9, 335],
+      [10, 400],
+      [11, 465],
+      [12, 510],
+      [13, 545],
+      [14, 575],
+      [15, 600],
+      [16, 620],
+      [17, 635],
+      [18, 650],
+      [19, 665],
+    ])(`(%d) returns %d`, (d, expected) =>
+      expect(calcFlareSkill(d)).toBe(expected)
+    )
+
+    test.each([
+      [1, 232],
+      [2, 248],
+      [3, 272],
+      [4, 296],
+      [5, 328],
+      [6, 368],
+      [7, 408],
+      [8, 464],
+      [9, 536],
+      [10, 640],
+      [11, 744],
+      [12, 816],
+      [13, 872],
+      [14, 920],
+      [15, 960],
+      [16, 992],
+      [17, 1016],
+      [18, 1040],
+      [19, 1064],
+    ])(`(%d, 10) returns %d`, (d, expected) =>
+      expect(calcFlareSkill(d, 10)).toBe(expected)
     )
   })
 })

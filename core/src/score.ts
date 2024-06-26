@@ -35,6 +35,11 @@ export type ClearLamp = Parameters<typeof clearLamps.set>[0]
 /** Map for {@link ClearLamp} */
 export const clearLampMap: ReadonlyMap<number, string> = clearLamps
 
+const flareRanks = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const
+/** Flare Rank (`0`: None, `1`: FLARE I, `1`: FLARE II, ..., `10`: FLARE EX) */
+export type FlareRank = (typeof flareRanks)[number]
+export const flareRankSet: ReadonlySet<number> = new Set(flareRanks)
+
 const danceLevels = [
   'E',
   'D',
@@ -583,6 +588,23 @@ export function setValidScoreFromChart(
   function floorScore(rawScore: number) {
     return Math.floor(rawScore / 10) * 10
   }
+}
+
+/**
+ * Calculate Flare skill score.
+ * @param level Level of step chart
+ * @param flareRank Flare Rank
+ */
+export function calcFlareSkill(
+  level: number,
+  flareRank: FlareRank = 0
+): number {
+  level = stepChartSchema.shape.level.parse(level)
+  const baseScores = [
+    145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,
+    620, 635, 650, 665, 0,
+  ]
+  return Math.floor(baseScores[level - 1] * (flareRank * 0.06 + 1))
 }
 
 const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0
