@@ -55,8 +55,8 @@ describe('GET /api/v1/users/[id]/exists', () => {
 
   test(`(id: "${dbUser.id}") returns 200 with { exists: true }`, async () => {
     // Arrange
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(hasRole).mockReturnValue(true)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked(fetchOne).mockResolvedValue(dbUser as any)
     const event = createEvent({ id: dbUser.id })
 

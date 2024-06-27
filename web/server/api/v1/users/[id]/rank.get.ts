@@ -1,5 +1,6 @@
 import { danceLevelSet } from '@ddradar/core'
-import { Condition, fetchList } from '@ddradar/db'
+import type { Condition } from '@ddradar/db'
+import { fetchList } from '@ddradar/db'
 
 import type { RankStatus } from '~/schemas/user'
 import { getRankQuerySchema as schema } from '~/schemas/user'

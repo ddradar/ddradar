@@ -3,7 +3,7 @@ import type { H3Event } from 'h3'
 export const $graphql = async <T>(
   event: H3Event,
   query: string,
-  variables?: {},
+  variables?: object,
   role?: string
 ) => {
   const { data } = await $fetch<{ data: T }>('/data-api/graphql', {
@@ -35,7 +35,7 @@ export const $graphqlList = async <T>(
   event: H3Event,
   query: string,
   schema: string,
-  variables?: {},
+  variables?: object,
   role?: string
 ) => {
   const result: T[] = []

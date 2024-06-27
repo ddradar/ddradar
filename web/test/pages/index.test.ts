@@ -16,7 +16,10 @@ mockNuxtImport('unixTimeToString', () => unixTimeToStringMock)
 describe('/', () => {
   test.each(locales)('{ locale: "%s" } snapshot test', async locale => {
     // Arrange
-    vi.mocked(useFetch).mockResolvedValue({ data: ref(notifications) } as any)
+    const res = { data: ref(notifications) } as Awaited<
+      ReturnType<typeof useFetch>
+    >
+    vi.mocked(useFetch).mockResolvedValue(res)
     const global = { plugins: [createI18n({ locale, legacy: false })] }
     // Act
     const wrapper = await mountSuspended(Page, { global })

@@ -74,7 +74,6 @@ export async function handler(
   >[]
 
   const scores: ScoreSchema[] = []
-  // eslint-disable-next-line node/no-process-env
   const client = new CosmosClient(process.env.COSMOS_DB_CONN ?? '')
 
   for (const song of songs) {

@@ -52,7 +52,6 @@ export async function handler(
     },
     {} as Record<string, (ScoreSchema & ItemDefinition)[]>
   )
-  // eslint-disable-next-line node/no-process-env
   const client = new CosmosClient(process.env.COSMOS_DB_CONN ?? '')
 
   const result: UserDetailSchema[] = []

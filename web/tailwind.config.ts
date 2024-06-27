@@ -1,3 +1,4 @@
+/* eslint-disable n/no-extraneous-import */
 import type { Config } from 'tailwindcss'
 import defaultTheme from 'tailwindcss/defaultTheme'
 

@@ -8,7 +8,8 @@ import type {
   UserRankSchema,
 } from '@ddradar/core'
 
-import { Condition, fetchGroupedList, fetchList, fetchOne } from './database'
+import type { Condition } from './database'
+import { fetchGroupedList, fetchList, fetchOne } from './database'
 
 /**
  * Score is not deleted.

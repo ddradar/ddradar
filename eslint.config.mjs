@@ -25,7 +25,7 @@ export default withNuxt()
       ...node.configs['flat/recommended'],
       settings: {
         n: {
-          allowModules: ['@eslint/js', 'h3', 'ufo', 'vue-i18n'],
+          allowModules: ['@eslint/js', 'defu', 'h3', 'ufo', 'vue-i18n'],
         },
       },
     },
@@ -44,5 +44,7 @@ export default withNuxt()
       files: ['**/components/**/*.vue', '**/pages/**/*.vue'],
       rules: { 'vue/multi-word-component-names': 'off' },
     },
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-expect-error
     eslintConfigPrettier
   )

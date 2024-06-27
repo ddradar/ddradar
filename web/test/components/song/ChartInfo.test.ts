@@ -7,7 +7,7 @@ import ChartInfo from '~/components/song/ChartInfo.vue'
 import { locales } from '~/test/test-utils'
 
 describe('components/song/ChartInfo.vue', () => {
-  describe.each(locales)('{ locale: "%s" }', async locale => {
+  describe.each(locales)('{ locale: "%s" }', locale => {
     const global = { plugins: [createI18n({ locale, legacy: false })] }
 
     test.each([...testSongData.charts, ...testCourseData.charts])(

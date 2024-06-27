@@ -461,7 +461,6 @@ export function setValidScoreFromChart(
     )
   }
 
-  /* eslint-disable @typescript-eslint/no-non-null-assertion -- already checked before these methods called */
   function isPFC() {
     return (
       partialScore.clearLamp === 6 || // ClearLamp is PFC
@@ -525,7 +524,6 @@ export function setValidScoreFromChart(
 
     return null
   }
-  /* eslint-enable @typescript-eslint/no-non-null-assertion */
 
   function tryCalcFromExScore(): Required<Score> | null {
     // 1 Perfect
