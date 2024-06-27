@@ -18,7 +18,7 @@
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier --write",
     "lint": "pnpm run \"/^lint:.*/\"",
-    "lint:eslint": "eslint --ext .js,.ts,.vue --ignore-path .gitignore .",
+    "lint:eslint": "eslint .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "pnpm -r test",
     "test:db": "pnpm -r test:db",
