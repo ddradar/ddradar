@@ -6,10 +6,9 @@
   "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
-  "packageManager": "pnpm@8.15.8+sha512.d1a029e1a447ad90bc96cd58b0fad486d2993d531856396f7babf2d83eb1823bb83c5a3d0fc18f675b2d10321d49eb161fece36fe8134aa5823ecd215feed392",
+  "packageManager": "pnpm@9.4.0+sha512.f549b8a52c9d2b8536762f99c0722205efc5af913e77835dbccc3b0b0b2ca9e7dc8022b78062c17291c48e88749c70ce88eb5a74f1fa8c4bf5e18bb46c8bd83a",
   "engines": {
-    "node": ">=16",
-    "pnpm": "8.x"
+    "node": ">=16"
   },
   "scripts": {
     "build:core": "pnpm -C core build && pnpm -C db build",
@@ -36,7 +35,7 @@
     "@azure/static-web-apps-cli": "^1.1.10",
     "@typescript-eslint/eslint-plugin": "^7.5.0",
     "@typescript-eslint/parser": "^7.5.0",
-    "@vitest/coverage-v8": "^1.4.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-import": "^2.29.1",
@@ -45,6 +44,6 @@
     "eslint-plugin-vitest": "^0.4.1",
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
-    "prettier": "^3.2.5"
+    "prettier": "^3.3.2"
   }
 }
