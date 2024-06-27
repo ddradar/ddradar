@@ -97,8 +97,12 @@ const saveScore = async () => {
       title: 'Success!',
       color: 'green',
     })
-  } catch (error: any) {
-    _toast.add({ id: 'score-update-error', title: error, color: 'red' })
+  } catch (error: unknown) {
+    _toast.add({
+      id: 'score-update-error',
+      title: error as string,
+      color: 'red',
+    })
   }
 }
 /** Confirm and delete score data. */

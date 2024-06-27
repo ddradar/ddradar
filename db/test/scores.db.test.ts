@@ -1,4 +1,5 @@
-import { isAreaUser, ScoreSchema } from '@ddradar/core'
+import type { ScoreSchema } from '@ddradar/core'
+import { isAreaUser } from '@ddradar/core'
 import { publicUser, testScores, testSongData } from '@ddradar/core/test/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 

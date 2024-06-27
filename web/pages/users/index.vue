@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { areaCodeSet } from '@ddradar/core'
-import { z } from 'zod'
+import type { z } from 'zod'
 
 import { getListQuerySchema } from '~/schemas/user'
 

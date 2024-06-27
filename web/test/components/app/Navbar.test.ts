@@ -11,14 +11,15 @@ mockNuxtImport('useEasyAuth', () => useEasyAuthMock)
 describe('components/app/Navbar.vue', () => {
   const stubs = ['LocaleSwitch', 'UserButton', 'LoginButton']
 
-  describe.each(locales)('{ locale: "%s" } snapshot test', async locale => {
+  describe.each(locales)('{ locale: "%s" } snapshot test', locale => {
     const global = { stubs, plugins: [createI18n({ locale, legacy: false })] }
 
     test('{ isLoggedIn: false } renders AppLoginButton', async () => {
       // Arrange - Act
-      vi.mocked(useEasyAuth).mockResolvedValue({
-        isLoggedIn: ref(false),
-      } as any)
+      const auth = { isLoggedIn: ref(false) } as Awaited<
+        ReturnType<typeof useEasyAuth>
+      >
+      vi.mocked(useEasyAuth).mockResolvedValue(auth)
       const wrapper = await mountSuspended(Navbar, { global })
       // Assert
       expect(wrapper.element).toMatchSnapshot()
@@ -26,9 +27,10 @@ describe('components/app/Navbar.vue', () => {
 
     test('{ isLoggedIn: true } renders AppUserButton', async () => {
       // Arrange - Act
-      vi.mocked(useEasyAuth).mockResolvedValue({
-        isLoggedIn: ref(true),
-      } as any)
+      const auth = { isLoggedIn: ref(true) } as Awaited<
+        ReturnType<typeof useEasyAuth>
+      >
+      vi.mocked(useEasyAuth).mockResolvedValue(auth)
       const wrapper = await mountSuspended(Navbar, { global })
       // Assert
       expect(wrapper.element).toMatchSnapshot()

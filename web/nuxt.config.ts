@@ -72,6 +72,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     '@nuxt/ui',
     'nuxt-swa',
+    '@nuxt/eslint',
   ],
   i18n: {
     langDir: './locales',

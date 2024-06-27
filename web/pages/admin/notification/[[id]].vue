@@ -41,8 +41,12 @@ const save = async () => {
       title: 'Success!',
       color: 'green',
     })
-  } catch (error: any) {
-    _toast.add({ id: 'notification-update-error', title: error, color: 'red' })
+  } catch (error: unknown) {
+    _toast.add({
+      id: 'notification-update-error',
+      title: error as string,
+      color: 'red',
+    })
   }
 }
 // #endregion

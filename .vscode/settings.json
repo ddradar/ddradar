@@ -6,6 +6,7 @@
   "azureFunctions.preDeployTask": "Functions: Prepare Artifact",
   "azureFunctions.postDeployTask": "Install Dependencies",
   "debug.internalConsoleOptions": "neverOpen",
+  "eslint.useFlatConfig": true,
   "json.schemas": [
     {
       "fileMatch": ["/staticwebapp.config.json"],

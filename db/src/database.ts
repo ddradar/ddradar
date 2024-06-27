@@ -1,10 +1,11 @@
 import type {
+  Container,
   ItemDefinition,
   JSONValue,
   Resource,
   SqlParameter,
 } from '@azure/cosmos'
-import { Container, CosmosClient } from '@azure/cosmos'
+import { CosmosClient } from '@azure/cosmos'
 import type {
   CourseSchema,
   NotificationSchema,
@@ -16,7 +17,6 @@ import type {
   UserSchema,
 } from '@ddradar/core'
 
-// eslint-disable-next-line node/no-process-env
 const connectionString = process.env.COSMOS_DB_CONN
 
 /** Returns Cosmos DB connection string is defined or not. */

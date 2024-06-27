@@ -12,7 +12,6 @@ describe('GET /api/v1/courses/[id]', () => {
 
   test(`/${testCourseData.id} (exist course) returns CourseInfo`, async () => {
     // Arrange
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked($graphql).mockResolvedValue({ course_by_pk: testCourseData })
     const event = createEvent({ id: testCourseData.id })
 
@@ -36,7 +35,6 @@ describe('GET /api/v1/courses/[id]', () => {
 
   test(`/${testSongData.id} (song data) returns 404`, async () => {
     // Arrange
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     vi.mocked($graphql).mockResolvedValue({ course_by_pk: testSongData })
     const event = createEvent({ id: testSongData.id })
 

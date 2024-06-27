@@ -18,11 +18,13 @@ describe('/users', () => {
 
     test('{ users: [] } renders empty', async () => {
       // Arrange
-      vi.mocked(useFetch).mockReturnValue({
+      const res = {
         status: ref('idle'),
         data: ref([]),
         execute: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useFetch>
+      vi.mocked(useFetch).mockReturnValue(res)
+
       // Act
       const wrapper = await mountSuspended(Page, { global })
 
@@ -31,11 +33,13 @@ describe('/users', () => {
     })
     test('{ status: "pending" } renders loading state', async () => {
       // Arrange
-      vi.mocked(useFetch).mockReturnValue({
+      const res = {
         status: ref('pending'),
         data: ref([]),
         execute: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useFetch>
+      vi.mocked(useFetch).mockReturnValue(res)
+
       // Act
       const wrapper = await mountSuspended(Page, { global })
 
@@ -44,11 +48,13 @@ describe('/users', () => {
     })
     test('{ users: [...] } renders user list', async () => {
       // Arrange
-      vi.mocked(useFetch).mockReturnValue({
+      const res = {
         status: ref('success'),
         data: ref(users),
         execute: vi.fn(),
-      } as any)
+      } as unknown as ReturnType<typeof useFetch>
+      vi.mocked(useFetch).mockReturnValue(res)
+
       // Act
       const wrapper = await mountSuspended(Page, { global })
 

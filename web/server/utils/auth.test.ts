@@ -19,6 +19,7 @@ describe('server/utils/auth.ts', () => {
       vi.mocked(getClientPrincipal).mockReturnValue(null)
 
       // Act
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const user = await getLoginUserInfo({} as any)
 
       // Assert
@@ -34,6 +35,7 @@ describe('server/utils/auth.ts', () => {
       vi.mocked(fetchLoginUser).mockResolvedValue(null)
 
       // Act
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const user = await getLoginUserInfo({} as any)
 
       // Assert
@@ -49,6 +51,7 @@ describe('server/utils/auth.ts', () => {
       vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
 
       // Act
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const user = await getLoginUserInfo({} as any)
 
       // Assert
@@ -93,6 +96,7 @@ describe('server/utils/auth.ts', () => {
         event.context.params!.id = dbUser.id
         vi.mocked(getClientPrincipal).mockReturnValue({
           userId: loginId,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } as any)
         vi.mocked(fetchUser).mockResolvedValue(dbUser)
 
@@ -113,6 +117,7 @@ describe('server/utils/auth.ts', () => {
       // Arrange
       const id = dbUser?.id ?? 'foo'
       event.context.params!.id = id
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(getClientPrincipal).mockReturnValue({ userId: loginId } as any)
       vi.mocked(fetchUser).mockResolvedValue(dbUser)
 

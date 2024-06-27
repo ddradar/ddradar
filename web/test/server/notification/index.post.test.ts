@@ -46,7 +46,7 @@ describe('POST /api/v1/notification', () => {
     const event = createEvent(undefined, undefined, body)
 
     // Act - Assert
-    expect(postNotification(event)).rejects.toThrowError()
+    await expect(postNotification(event)).rejects.toThrowError()
   })
 
   test.each([

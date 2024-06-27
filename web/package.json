@@ -30,13 +30,12 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@nuxt/eslint-config": "^0.3.13",
+    "@nuxt/eslint": "^0.3.13",
     "@nuxt/test-utils": "^3.13.1",
     "@nuxtjs/i18n": "^8.3.1",
     "@types/markdown-it": "^14.1.1",
     "@types/node": "^18.17.11",
     "@vue/test-utils": "^2.4.6",
-    "eslint-plugin-nuxt": "^4.0.0",
     "happy-dom": "^14.12.3",
     "nuxt": "^3.12.2",
     "nuxt-swa": "^0.5.0",

@@ -9,10 +9,8 @@ const props = defineProps<{ chart: CourseChartSchema | StepChartSchema }>()
 const { t } = useI18n()
 const isCourse = computed(() => isCourseChart(props.chart))
 const title = computed(() => {
-  /* eslint-disable @typescript-eslint/no-non-null-assertion */
   const playStyleText = playStyleMap.get(props.chart.playStyle)!
   const difficultyName = difficultyMap.get(props.chart.difficulty)!
-  /* eslint-enable @typescript-eslint/no-non-null-assertion */
   const shortPlayStyle = `${playStyleText[0]}P` as 'SP' | 'DP'
   return `${shortPlayStyle}-${difficultyName} (${props.chart.level})` as const
 })

@@ -66,8 +66,12 @@ const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
       title: t('message.success'),
       color: 'green',
     })
-  } catch (error: any) {
-    _toast.add({ id: 'user-update-error', title: error.message, color: 'red' })
+  } catch (error: unknown) {
+    _toast.add({
+      id: 'user-update-error',
+      title: error as string,
+      color: 'red',
+    })
   }
 }
 </script>
