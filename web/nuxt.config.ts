@@ -2,6 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
+  devtools: { enabled: true },
   experimental: {
     asyncContext: true,
     typedPages: true,
