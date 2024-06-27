@@ -32,7 +32,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, courses: [] } renders n
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -381,7 +381,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, courses: [] } renders n
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -397,6 +397,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, courses: [] } renders n
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -532,7 +533,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, songs: <Data> } renders
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -881,7 +882,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, songs: <Data> } renders
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -897,6 +898,7 @@ exports[`/songs > { locale: "en" } > { isLoading: false, songs: <Data> } renders
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -1271,7 +1273,7 @@ exports[`/songs > { locale: "en" } > { isLoading: true } renders loading state 1
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -1620,7 +1622,7 @@ exports[`/songs > { locale: "en" } > { isLoading: true } renders loading state 1
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -1636,6 +1638,7 @@ exports[`/songs > { locale: "en" } > { isLoading: true } renders loading state 1
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -1693,12 +1696,12 @@ exports[`/songs > { locale: "en" } > { isLoading: true } renders loading state 1
               >
                 <div
                   class="w-full flex flex-col gap-2"
-                  data-v-0a94ca62=""
+                  data-v-3834103a=""
                 >
                   <!--v-if-->
                   <progress
                     class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-0a94ca62=""
+                    data-v-3834103a=""
                   />
                   <!--v-if-->
                 </div>
@@ -1788,7 +1791,7 @@ exports[`/songs > { locale: "en" } > { isLoggedIn: true } renders score edit but
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -2137,7 +2140,7 @@ exports[`/songs > { locale: "en" } > { isLoggedIn: true } renders score edit but
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -2153,6 +2156,7 @@ exports[`/songs > { locale: "en" } > { isLoggedIn: true } renders score edit but
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -2666,7 +2670,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, courses: [] } renders n
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -3015,7 +3019,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, courses: [] } renders n
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -3031,6 +3035,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, courses: [] } renders n
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -3166,7 +3171,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, songs: <Data> } renders
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -3515,7 +3520,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, songs: <Data> } renders
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -3531,6 +3536,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, songs: <Data> } renders
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -3904,7 +3910,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: true } renders loading state 1
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -4253,7 +4259,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: true } renders loading state 1
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -4269,6 +4275,7 @@ exports[`/songs > { locale: "ja" } > { isLoading: true } renders loading state 1
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -4326,12 +4333,12 @@ exports[`/songs > { locale: "ja" } > { isLoading: true } renders loading state 1
               >
                 <div
                   class="w-full flex flex-col gap-2"
-                  data-v-0a94ca62=""
+                  data-v-3834103a=""
                 >
                   <!--v-if-->
                   <progress
                     class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-0a94ca62=""
+                    data-v-3834103a=""
                   />
                   <!--v-if-->
                 </div>
@@ -4421,7 +4428,7 @@ exports[`/songs > { locale: "ja" } > { isLoggedIn: true } renders score edit but
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -4770,7 +4777,7 @@ exports[`/songs > { locale: "ja" } > { isLoggedIn: true } renders score edit but
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -4786,6 +4793,7 @@ exports[`/songs > { locale: "ja" } > { isLoggedIn: true } renders score edit but
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >

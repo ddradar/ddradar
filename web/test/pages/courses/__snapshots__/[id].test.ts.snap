@@ -38,7 +38,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -49,7 +49,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               BPM 128-180
             </div>
             
-          </p>
+          </div>
           
           
         </div>
@@ -73,11 +73,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_1"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_1"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_0"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_0"
               type="button"
             >
               
@@ -118,7 +118,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -126,7 +126,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_1"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_1"
                 >
                   
                   <div
@@ -176,11 +176,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_3"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_3"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_2"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_2"
               type="button"
             >
               
@@ -221,7 +221,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -229,7 +229,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_3"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_3"
                 >
                   
                   
@@ -243,11 +243,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_5"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_5"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_4"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_4"
               type="button"
             >
               
@@ -288,7 +288,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -296,7 +296,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_5"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_5"
                 >
                   
                   
@@ -316,11 +316,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_7"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_7"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_6"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_6"
               type="button"
             >
               
@@ -361,7 +361,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -369,7 +369,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_7"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_7"
                 >
                   
                   <div
@@ -419,11 +419,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_9"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_9"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_8"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_8"
               type="button"
             >
               
@@ -464,7 +464,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -472,7 +472,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_9"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_9"
                 >
                   
                   
@@ -486,11 +486,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_11"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_11"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_10"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_10"
               type="button"
             >
               
@@ -531,7 +531,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -539,7 +539,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_11"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_11"
                 >
                   
                   
@@ -559,11 +559,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_13"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_13"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_12"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_12"
               type="button"
             >
               
@@ -604,7 +604,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -612,7 +612,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_13"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_13"
                 >
                   
                   <div
@@ -662,11 +662,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_15"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_15"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_14"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_14"
               type="button"
             >
               
@@ -707,7 +707,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -715,7 +715,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_15"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_15"
                 >
                   
                   
@@ -729,11 +729,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_17"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_17"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_16"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_16"
               type="button"
             >
               
@@ -774,7 +774,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -782,7 +782,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_17"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_17"
                 >
                   
                   
@@ -802,11 +802,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_19"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_19"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_18"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_18"
               type="button"
             >
               
@@ -847,7 +847,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -855,7 +855,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_19"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_19"
                 >
                   
                   <div
@@ -905,11 +905,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_21"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_21"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_20"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_20"
               type="button"
             >
               
@@ -950,7 +950,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -958,7 +958,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_21"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_21"
                 >
                   
                   
@@ -972,11 +972,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_23"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_23"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_22"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_22"
               type="button"
             >
               
@@ -1017,7 +1017,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1025,7 +1025,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_23"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_23"
                 >
                   
                   
@@ -1061,11 +1061,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_25"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_25"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_24"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_24"
               type="button"
             >
               
@@ -1106,7 +1106,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1114,7 +1114,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_25"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_25"
                 >
                   
                   <div
@@ -1164,11 +1164,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_27"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_27"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_26"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_26"
               type="button"
             >
               
@@ -1209,7 +1209,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1217,7 +1217,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_27"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_27"
                 >
                   
                   
@@ -1231,11 +1231,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_29"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_29"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_28"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_28"
               type="button"
             >
               
@@ -1276,7 +1276,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1284,7 +1284,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_29"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_29"
                 >
                   
                   
@@ -1304,11 +1304,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_31"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_31"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_30"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_30"
               type="button"
             >
               
@@ -1349,7 +1349,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1357,7 +1357,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_31"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_31"
                 >
                   
                   <div
@@ -1407,11 +1407,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_33"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_33"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_32"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_32"
               type="button"
             >
               
@@ -1452,7 +1452,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1460,7 +1460,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_33"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_33"
                 >
                   
                   
@@ -1474,11 +1474,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_35"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_35"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-red-500 dark:text-red-400 bg-red-50 hover:bg-red-100 disabled:bg-red-50 dark:bg-red-950 dark:hover:bg-red-900 dark:disabled:bg-red-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_34"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_34"
               type="button"
             >
               
@@ -1519,7 +1519,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1527,7 +1527,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_35"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_35"
                 >
                   
                   
@@ -1547,11 +1547,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_37"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_37"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_36"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_36"
               type="button"
             >
               
@@ -1592,7 +1592,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1600,7 +1600,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_37"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_37"
                 >
                   
                   <div
@@ -1650,11 +1650,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_39"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_39"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_38"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_38"
               type="button"
             >
               
@@ -1695,7 +1695,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1703,7 +1703,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_39"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_39"
                 >
                   
                   
@@ -1717,11 +1717,11 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nyeb0rm3Gsf_41"
+              aria-controls="headlessui-disclosure-panel-nkbPxmLT6NZ_41"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-green-500 dark:text-green-400 bg-green-50 hover:bg-green-100 disabled:bg-green-50 dark:bg-green-950 dark:hover:bg-green-900 dark:disabled:bg-green-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-green-500 dark:focus-visible:ring-green-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nyeb0rm3Gsf_40"
+              id="headlessui-disclosure-button-nkbPxmLT6NZ_40"
               type="button"
             >
               
@@ -1762,7 +1762,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
               css="true"
               enteractiveclass="overflow-hidden transition-[height] duration-200 ease-out"
               leaveactiveclass="overflow-hidden transition-[height] duration-200 ease-out"
-              persisted="true"
+              persisted="false"
             >
               <div
                 style="display: none;"
@@ -1770,7 +1770,7 @@ exports[`/courses/[id] > { course: <Data> } renders course info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nyeb0rm3Gsf_41"
+                  id="headlessui-disclosure-panel-nkbPxmLT6NZ_41"
                 >
                   
                   

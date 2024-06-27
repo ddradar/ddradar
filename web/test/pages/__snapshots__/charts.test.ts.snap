@@ -78,7 +78,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: 
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -427,7 +427,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: 
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -443,6 +443,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: 
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -831,7 +832,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, songs: [
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -1180,7 +1181,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, songs: [
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -1196,6 +1197,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, songs: [
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -1377,7 +1379,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: true } renders 
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -1726,7 +1728,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: true } renders 
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -1742,6 +1744,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: true } renders 
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -1799,12 +1802,12 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoading: true } renders 
               >
                 <div
                   class="w-full flex flex-col gap-2"
-                  data-v-0a94ca62=""
+                  data-v-3834103a=""
                 >
                   <!--v-if-->
                   <progress
                     class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-0a94ca62=""
+                    data-v-3834103a=""
                   />
                   <!--v-if-->
                 </div>
@@ -1940,7 +1943,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -2289,7 +2292,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -2305,6 +2308,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -2789,7 +2793,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -3138,7 +3142,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -3154,6 +3158,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -3541,7 +3546,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -3890,7 +3895,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -3906,6 +3911,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -4087,7 +4093,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: true } renders 
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -4436,7 +4442,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: true } renders 
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -4452,6 +4458,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: true } renders 
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >
@@ -4509,12 +4516,12 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: true } renders 
               >
                 <div
                   class="w-full flex flex-col gap-2"
-                  data-v-0a94ca62=""
+                  data-v-3834103a=""
                 >
                   <!--v-if-->
                   <progress
                     class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-0a94ca62=""
+                    data-v-3834103a=""
                   />
                   <!--v-if-->
                 </div>
@@ -4650,7 +4657,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoggedIn: true } renders
               
             </div>
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
@@ -4999,7 +5006,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoggedIn: true } renders
             
             
             
-          </p>
+          </div>
           
           
         </div>
@@ -5015,6 +5022,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoggedIn: true } renders
         <table
           class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
         >
+          <!--v-if-->
           <thead
             class="relative"
           >

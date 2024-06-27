@@ -32,13 +32,13 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
             DDR Score Tracker
             
-          </p>
+          </div>
           
           
         </div>
@@ -57,10 +57,9 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             info
@@ -80,7 +79,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
               新曲を追加しました
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -115,7 +114,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div
@@ -165,10 +164,9 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             warning
@@ -188,7 +186,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
               このサイトはベータ版です
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -208,7 +206,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div
@@ -258,10 +256,9 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             info
@@ -281,7 +278,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
               v0.6.0をリリースしました
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -301,7 +298,7 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div
@@ -2341,13 +2338,13 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
             </h1>
             <!--v-if-->
           </div>
-          <p
+          <div
             class="mt-4 text-lg text-gray-500 dark:text-gray-400"
           >
             
             DDR Score Tracker
             
-          </p>
+          </div>
           
           
         </div>
@@ -2366,10 +2363,9 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             info
@@ -2389,7 +2385,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
               新曲を追加しました
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -2424,7 +2420,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div
@@ -2474,10 +2470,9 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             warning
@@ -2497,7 +2492,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
               このサイトはベータ版です
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -2517,7 +2512,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div
@@ -2567,10 +2562,9 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
         >
           
           <span
-            class="icon"
+            class="icon flex-shrink-0 w-5 h-5"
             data-v-6f8dffe5=""
             style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
-            ui="flex-shrink-0 w-5 h-5"
           >
             
             info
@@ -2590,7 +2584,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
               v0.6.0をリリースしました
               
             </p>
-            <p
+            <div
               class="text-sm opacity-90 mt-0 leading-5"
             >
               
@@ -2610,7 +2604,7 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
                 </time>
               </div>
               
-            </p>
+            </div>
             <!--v-if-->
           </div>
           <div

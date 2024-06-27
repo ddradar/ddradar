@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { getDisplayedBPM } from '~/utils/song'
+
 const _route = useRoute('courses-id')
 const { data: course } = await useFetch(`/api/v1/courses/${_route.params.id}`)
 if (!course.value) throw createError({ statusCode: 404 })
