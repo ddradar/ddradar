@@ -45,8 +45,8 @@ importers:
         specifier: ^15.2.2
         version: 15.2.2
       prettier:
-        specifier: ^3.2.5
-        version: 3.2.5
+        specifier: ^3.3.2
+        version: 3.3.2
 
   core:
     dependencies:
@@ -6004,8 +6004,8 @@ packages:
     resolution: {integrity: sha512-ravE6m9Atw9Z/jjttRUZ+clIXogdghyZAuWJ3qEzjT+jI/dL1ifAqhZeC5VHzQp1MSt1+jxKkFNemj/iO7tVUA==}
     engines: {node: '>=4'}
 
-  prettier@3.2.5:
-    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+  prettier@3.3.2:
+    resolution: {integrity: sha512-rAVeHYMcv8ATV5d508CFdn+8/pHPpXeIid1DdrPwXnaAdH7cqjVbpJaT5eq4yRAFU/lsbwYwSF/n5iNrdJHPQA==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -14492,7 +14492,7 @@ snapshots:
 
   prepend-http@2.0.0: {}
 
-  prettier@3.2.5: {}
+  prettier@3.3.2: {}
 
   pretty-bytes@6.1.1: {}
 
