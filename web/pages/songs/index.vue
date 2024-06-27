@@ -2,6 +2,7 @@
 import { nameIndexMap } from '@ddradar/core'
 
 import { getListQuerySchema } from '~/schemas/song'
+import { getDisplayedBPM } from '~/utils/song'
 
 definePageMeta({ key: route => route.fullPath })
 
