@@ -7,7 +7,7 @@ import { app } from '@azure/functions'
 import type { SongSchema } from '@ddradar/core'
 import { ofetch } from 'ofetch'
 
-import { masterMusicToMap } from '../skill-attack'
+import { masterMusicToMap } from '../skill-attack.js'
 
 const input: CosmosDBInput = {
   name: 'songs',

@@ -8,6 +8,7 @@
     "node": "18.x"
   },
   "main": "dist/functions/*.js",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "prestart": "tsc",

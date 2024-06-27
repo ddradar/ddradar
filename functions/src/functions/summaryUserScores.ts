@@ -8,7 +8,7 @@ import type {
   UserRankSchema,
 } from '@ddradar/core'
 
-import { getGrooveRadar, getUserDetails } from '../cosmos'
+import { getGrooveRadar, getUserDetails } from '../cosmos.js'
 
 const $return: CosmosDBOutput = {
   name: '$return',

@@ -14,7 +14,7 @@ import type {
 } from '@ddradar/core'
 import { calcMyGrooveRadar } from '@ddradar/core'
 
-import { getScores, getTotalChartCounts } from '../cosmos'
+import { getScores, getTotalChartCounts } from '../cosmos.js'
 
 const input: CosmosDBInput = {
   name: 'oldDetails',
