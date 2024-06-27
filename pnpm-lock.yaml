@@ -162,8 +162,8 @@ importers:
         specifier: ^1.6.4
         version: 1.6.4
       puppeteer-core:
-        specifier: ^22.12.0
-        version: 22.12.0
+        specifier: ^22.12.1
+        version: 22.12.1
     devDependencies:
       '@ddradar/functions':
         specifier: workspace:*
@@ -11656,8 +11656,8 @@ packages:
       escape-goat: 2.1.1
     dev: true
 
-  /puppeteer-core@22.12.0:
-    resolution: {integrity: sha512-9gY+JwBW/Fp3/x9+cOGK7ZcwqjvtvY2xjqRqsAA0B3ZFMzBauVTSZ26iWTmvOQX2sk78TN/rd5rnetxVxmK5CQ==}
+  /puppeteer-core@22.12.1:
+    resolution: {integrity: sha512-XmqeDPVdC5/3nGJys1jbgeoZ02wP0WV1GBlPtr/ULRbGXJFuqgXMcKQ3eeNtFpBzGRbpeoCGWHge1ZWKWl0Exw==}
     engines: {node: '>=18'}
     dependencies:
       '@puppeteer/browsers': 2.2.3
