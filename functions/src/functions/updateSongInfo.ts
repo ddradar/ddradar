@@ -1,4 +1,3 @@
-import { CosmosClient } from '@azure/cosmos'
 import type {
   CosmosDBInput,
   CosmosDBOutput,
@@ -13,6 +12,9 @@ import type {
   StepChartSchema,
   UserClearLampSchema,
 } from '@ddradar/core'
+import { calcMyGrooveRadar } from '@ddradar/core'
+
+import { getScores, getTotalChartCounts } from '../cosmos.js'
 
 const input: CosmosDBInput = {
   name: 'oldDetails',
@@ -74,20 +76,12 @@ export async function handler(
   >[]
 
   const scores: ScoreSchema[] = []
-  const client = new CosmosClient(process.env.COSMOS_DB_CONN ?? '')
 
   for (const song of songs) {
     ctx.info(`Start: ${song.name}`)
 
     // Get scores
-    const { resources } = await client
-      .database('DDRadar')
-      .container('Scores')
-      .items.query<ScoreSchema>({
-        query: `SELECT * FROM c WHERE c.songId = @id`,
-        parameters: [{ name: '@id', value: song.id }],
-      })
-      .fetchAll()
+    const resources = await getScores(song.id)
 
     const topScores: ScoreSchema[] = []
     // Update exists scores
@@ -116,14 +110,17 @@ export async function handler(
         ctx.warn(
           `maxCombo(${score.maxCombo}) is different than expected(${
             chart.notes + chart.shockArrow
-          }): ${scoreText}`
+          }): ${scoreText}. Make sure the chart info is correct.`
         )
-        ctx.warn('Make sure the chart info is correct.')
       }
+      const radar = (chart as StepChartSchema).stream
+        ? calcMyGrooveRadar(chart as StepChartSchema, score)
+        : undefined
       if (
         song.name !== score.songName ||
         chart.level !== score.level ||
-        song.deleted !== score.deleted
+        song.deleted !== score.deleted ||
+        !radarEquals(score.radar, radar)
       ) {
         ctx.info(`Updated: ${scoreText}`)
         const oldScore = { ...score }
@@ -132,7 +129,8 @@ export async function handler(
           ...oldScore,
           songName: song.name,
           level: chart.level,
-          ...(song.deleted ? { deleted: true } : {}),
+          ...{ deleted: song.deleted },
+          ...{ radar },
         })
       }
     }
@@ -166,16 +164,7 @@ export async function handler(
     }
   }
 
-  const { resources: newTotalCounts } = await client
-    .database('DDRadar')
-    .container('Songs')
-    .items.query<Pick<UserClearLampSchema, 'level' | 'playStyle' | 'count'>>(
-      'SELECT c.playStyle, c.level, COUNT(1) AS count ' +
-        'FROM s JOIN c IN s.charts ' +
-        'WHERE s.nameIndex NOT IN (-1, -2) AND NOT (IS_DEFINED(s.deleted) AND s.deleted = true) ' +
-        'GROUP BY c.playStyle, c.level'
-    )
-    .fetchAll()
+  const newTotalCounts = await getTotalChartCounts()
   const details = newTotalCounts.map(r => ({
     userId: '0',
     ...r,
@@ -184,4 +173,19 @@ export async function handler(
     )?.id,
   }))
   return { scores, details }
+
+  function radarEquals(
+    left: ScoreSchema['radar'],
+    right: ScoreSchema['radar']
+  ) {
+    if (!left && !right) return true
+    if (!left || !right) return false
+    return (
+      left.stream === right.stream &&
+      left.voltage === right.voltage &&
+      left.air === right.air &&
+      left.freeze === right.freeze &&
+      left.chaos === right.chaos
+    )
+  }
 }

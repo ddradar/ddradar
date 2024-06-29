@@ -1,4 +1,4 @@
-import { CosmosClient, type ItemDefinition } from '@azure/cosmos'
+import type { ItemDefinition } from '@azure/cosmos'
 import type { CosmosDBOutput, InvocationContext } from '@azure/functions'
 import { app } from '@azure/functions'
 import type {
@@ -7,6 +7,8 @@ import type {
   UserGrooveRadarSchema,
   UserRankSchema,
 } from '@ddradar/core'
+
+import { getGrooveRadar, getUserDetails } from '../cosmos.js'
 
 const $return: CosmosDBOutput = {
   name: '$return',
@@ -52,7 +54,6 @@ export async function handler(
     },
     {} as Record<string, (ScoreSchema & ItemDefinition)[]>
   )
-  const client = new CosmosClient(process.env.COSMOS_DB_CONN ?? '')
 
   const result: UserDetailSchema[] = []
   for (const [userId, scores] of Object.entries(userScores)) {
@@ -63,15 +64,7 @@ export async function handler(
     )
     ctx.info(`Generated: { userId: "${userId}" } Groove Radar`)
 
-    const { resources: summaries } = await client
-      .database('DDRadar')
-      .container('UserDetails')
-      .items.query<UserClearLampSchema | UserRankSchema>({
-        query:
-          'SELECT * FROM c WHERE c.userId = @userId AND c.type IN ("clear", "score")',
-        parameters: [{ name: '@userId', value: userId }],
-      })
-      .fetchAll()
+    const summaries = await getUserDetails(userId)
     // Count up/down Clear/Score status
     for (const score of scores) {
       const clear = summaries.find(
@@ -133,33 +126,7 @@ export async function handler(
     userId: string,
     playStyle: 1 | 2
   ): Promise<UserGrooveRadarSchema> {
-    const resource = (
-      await client
-        .database('DDRadar')
-        .container('Scores')
-        .items.query<UserGrooveRadarSchema>({
-          query: `
-        SELECT
-          c.userId, c.playStyle, "radar" AS type,
-          MAX(c.radar.stream) AS stream,
-          MAX(c.radar.voltage) AS voltage,
-          MAX(c.radar.air) AS air,
-          MAX(c.radar.freeze) AS freeze,
-          MAX(c.radar.chaos) AS chaos,
-        FROM c
-        WHERE c.userId = @userId
-        AND c.playStyle = @playStyle
-        AND IS_DEFINED(c.radar)
-        AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
-        GROUP BY c.userId, c.playStyle
-        `,
-          parameters: [
-            { name: '@userId', value: userId },
-            { name: '@playStyle', value: playStyle },
-          ],
-        })
-        .fetchAll()
-    ).resources[0]
+    const resource = await getGrooveRadar(userId, playStyle)
     const result: UserGrooveRadarSchema & Pick<ItemDefinition, 'id'> =
       resource ?? {
         userId,
