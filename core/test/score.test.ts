@@ -5,6 +5,7 @@ import {
   calcFlareSkill,
   calcMyGrooveRadar,
   createScoreSchema,
+  detectJudgeCounts,
   getDanceLevel,
   isScore,
   isValidScore,
@@ -574,6 +575,71 @@ describe('score.ts', () => {
       [19, 1064],
     ])(`(%d, 10) returns %d`, (d, expected) =>
       expect(calcFlareSkill(d, 10)).toBe(expected)
+    )
+  })
+
+  describe('detectJudgeCounts', () => {
+    const chart = {
+      notes: testSongData.charts[0].notes,
+      freezeArrow: testSongData.charts[0].freezeArrow,
+      shockArrow: testSongData.charts[0].shockArrow,
+    }
+    test.each([
+      [
+        chart,
+        1000000,
+        undefined,
+        [{ marvelousOrOk: 138, perfect: 0, great: 0, good: 0, miss: 0 }],
+      ],
+      [
+        chart,
+        999000,
+        6 as const,
+        [{ marvelousOrOk: 38, perfect: 100, great: 0, good: 0, miss: 0 }],
+      ],
+      [testSongData.charts[0], 998000, undefined, []],
+      [
+        chart,
+        950360,
+        5 as const,
+        [{ marvelousOrOk: 68, perfect: 53, great: 17, good: 0, miss: 0 }],
+      ],
+      [
+        chart,
+        969780,
+        4 as const,
+        [
+          { marvelousOrOk: 1, perfect: 130, great: 4, good: 3, miss: 0 },
+          { marvelousOrOk: 3, perfect: 129, great: 2, good: 4, miss: 0 },
+          { marvelousOrOk: 5, perfect: 128, great: 0, good: 5, miss: 0 },
+        ],
+      ],
+      [
+        chart,
+        940360,
+        3 as const,
+        [
+          { marvelousOrOk: 80, perfect: 39, great: 18, good: 0, miss: 1 },
+          { marvelousOrOk: 82, perfect: 38, great: 16, good: 1, miss: 1 },
+          { marvelousOrOk: 84, perfect: 37, great: 14, good: 2, miss: 1 },
+          { marvelousOrOk: 86, perfect: 36, great: 12, good: 3, miss: 1 },
+          { marvelousOrOk: 88, perfect: 35, great: 10, good: 4, miss: 1 },
+          { marvelousOrOk: 90, perfect: 34, great: 8, good: 5, miss: 1 },
+          { marvelousOrOk: 92, perfect: 33, great: 6, good: 6, miss: 1 },
+          { marvelousOrOk: 94, perfect: 32, great: 4, good: 7, miss: 1 },
+          { marvelousOrOk: 96, perfect: 31, great: 2, good: 8, miss: 1 },
+          { marvelousOrOk: 98, perfect: 30, great: 0, good: 9, miss: 1 },
+          { marvelousOrOk: 88, perfect: 34, great: 13, good: 0, miss: 3 },
+          { marvelousOrOk: 90, perfect: 33, great: 11, good: 1, miss: 3 },
+          { marvelousOrOk: 92, perfect: 32, great: 9, good: 2, miss: 3 },
+          { marvelousOrOk: 94, perfect: 31, great: 7, good: 3, miss: 3 },
+          { marvelousOrOk: 96, perfect: 30, great: 5, good: 4, miss: 3 },
+          { marvelousOrOk: 98, perfect: 29, great: 3, good: 5, miss: 3 },
+          { marvelousOrOk: 100, perfect: 28, great: 1, good: 6, miss: 3 },
+        ],
+      ],
+    ])('(%o, %i, %i) returns %o', (chart, score, clearLamp, expected) =>
+      expect(detectJudgeCounts(chart, score, clearLamp)).toStrictEqual(expected)
     )
   })
 })
