@@ -605,4 +605,72 @@ export function calcFlareSkill(
   return Math.floor(baseScores[level - 1] * (flareRank * 0.06 + 1))
 }
 
+export function detectJudgeCounts(
+  chart: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  score: number,
+  clearLamp: ClearLamp = 0
+): {
+  marvelousOrOk: number
+  perfect: number
+  great: number
+  good: number
+  miss: number
+}[] {
+  score = scoreSchema.shape.score.parse(score)
+  const total = chart.notes + chart.freezeArrow + chart.shockArrow
+  const result: {
+    marvelousOrOk: number
+    perfect: number
+    great: number
+    good: number
+    miss: number
+  }[] = []
+
+  for (let miss = 0; miss <= total; miss++) {
+    if (miss > 0 && clearLamp >= 4) break
+    if (miss > 3 && clearLamp >= 3) break
+    if (score > calcScore(0, 0, 0, miss)) break
+
+    for (let good = 0; good <= total - miss; good++) {
+      if (good > 0 && clearLamp >= 5) break
+      if (score > calcScore(0, 0, good, miss)) break
+
+      for (let great = 0; great <= total - miss - good; great++) {
+        if (great > 0 && clearLamp >= 6) break
+        if (score > calcScore(0, great, good, miss)) break
+
+        for (
+          let perfect = 0;
+          perfect <= total - miss - good - great;
+          perfect++
+        ) {
+          if (perfect > 0 && clearLamp >= 7) break
+
+          const calcedScore = calcScore(perfect, great, good, miss)
+          if (score === calcedScore)
+            result.push({
+              marvelousOrOk: total - perfect - great - good - miss,
+              perfect,
+              great,
+              good,
+              miss,
+            })
+          else if (score > calcedScore) break
+        }
+      }
+    }
+  }
+
+  return result
+
+  function calcScore(pf: number, gr: number, gd: number, miss: number): number {
+    const mvOrOkOrPf = total - gr - gd - miss
+    return (
+      Math.floor(
+        (100000 * mvOrOkOrPf + 60000 * gr + 20000 * gd) / total - pf + gr + gd
+      ) * 10
+    )
+  }
+}
+
 const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0
