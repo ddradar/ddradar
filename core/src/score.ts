@@ -605,4 +605,113 @@ export function calcFlareSkill(
   return Math.floor(baseScores[level - 1] * (flareRank * 0.06 + 1))
 }
 
+/**
+ * Detect judge counts from normal score.
+ * @remarks This function costs O(n^4) on worst case. consider set clearLamp arg if you know.
+ * @param chart Step chart
+ * @param score Normal score
+ * @param clearLamp {@link ClearLamp}
+ * @returns jugement count patterns
+ */
+export function detectJudgeCounts(
+  chart: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  score: number,
+  clearLamp: ClearLamp = 0
+): {
+  marvelousOrOk: number
+  perfect: number
+  great: number
+  good: number
+  miss: number
+}[] {
+  score = scoreSchema.shape.score.parse(score)
+  const total = chart.notes + chart.freezeArrow + chart.shockArrow
+  const result: {
+    marvelousOrOk: number
+    perfect: number
+    great: number
+    good: number
+    miss: number
+  }[] = []
+
+  for (let miss = 0; miss <= total; miss++) {
+    if (miss > 0 && clearLamp >= 4) break
+    if (miss > 3 && clearLamp >= 3) break
+    if (score > calcNormalScore(total, total - miss, 0, 0, 0)) break
+
+    for (let good = 0; good <= total - miss; good++) {
+      if (good > 0 && clearLamp >= 5) break
+      if (score > calcNormalScore(total, total - miss - good, 0, 0, good)) break
+
+      for (let great = 0; great <= total - miss - good; great++) {
+        if (great > 0 && clearLamp >= 6) break
+        if (
+          score >
+          calcNormalScore(total, total - miss - good - great, 0, great, good)
+        )
+          break
+
+        for (
+          let perfect = 0;
+          perfect <= total - miss - good - great;
+          perfect++
+        ) {
+          if (perfect > 0 && clearLamp >= 7) break
+
+          const marvelousAndOk = total - perfect - great - good - miss
+          const calcedScore = calcNormalScore(
+            total,
+            marvelousAndOk,
+            perfect,
+            great,
+            good
+          )
+          if (score === calcedScore)
+            result.push({
+              marvelousOrOk: marvelousAndOk,
+              perfect,
+              great,
+              good,
+              miss,
+            })
+          else if (score > calcedScore) break
+        }
+      }
+    }
+  }
+
+  return result.sort((a, b) =>
+    a.marvelousOrOk !== b.marvelousOrOk
+      ? b.marvelousOrOk - a.marvelousOrOk
+      : b.perfect - a.perfect
+  )
+}
+
+/**
+ * Calculate normal score from judge counts.
+ * @param totalNotes Notes + Freeze Arrow count + Shock Arrow count
+ * @param marvelousAndOk Marvelous & OK count
+ * @param perfect Perfect count
+ * @param great Great count
+ * @param good Good count
+ * @returns Normal Score
+ */
+export function calcNormalScore(
+  totalNotes: number,
+  marvelousAndOk: number,
+  perfect: number,
+  great: number,
+  good: number
+): number {
+  return (
+    Math.floor(
+      (100000 * (marvelousAndOk + perfect) + 60000 * great + 20000 * good) /
+        totalNotes -
+        perfect -
+        great -
+        good
+    ) * 10
+  )
+}
+
 const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0
