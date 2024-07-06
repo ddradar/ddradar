@@ -661,7 +661,11 @@ export function detectJudgeCounts(
     }
   }
 
-  return result
+  return result.sort((a, b) =>
+    a.marvelousOrOk !== b.marvelousOrOk
+      ? b.marvelousOrOk - a.marvelousOrOk
+      : b.perfect - a.perfect
+  )
 
   function calcScore(pf: number, gr: number, gd: number, miss: number): number {
     const mvOrOkOrPf = total - gr - gd - miss
