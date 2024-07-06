@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       - name: Use pnpm
         uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js ${{ vars.NODE_VERSION }}
@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
       - name: Use pnpm
         uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js ${{ vars.NODE_VERSION }}
@@ -52,7 +52,7 @@ jobs:
           NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v4.4.1
+        uses: codecov/codecov-action@v4.5.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json,./web/coverage/coverage-final.json
