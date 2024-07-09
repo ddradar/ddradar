@@ -1415,6 +1415,24 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
             </a>
             
             
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+              href="/songs?series=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              WORLD
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
             
             
           </div>
@@ -2149,146 +2167,6 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
               
               
             </a>
-            
-            
-            
-            
-          </div>
-          <!--v-if-->
-        </div>
-        <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 relative group"
-        >
-          <!--v-if-->
-          <div
-            class="flex-1 px-4 py-5 sm:p-6"
-          >
-            
-            <!--v-if-->
-            <!--v-if-->
-            <p
-              class="text-gray-900 dark:text-white text-base font-semibold truncate flex items-center gap-1.5"
-            >
-              
-              Choose by Courses
-              
-            </p>
-            <!--v-if-->
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A20)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              GRADE(A20)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A20 PLUS)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              GRADE(A20 PLUS)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A3)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              GRADE(A3)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
             
             
             
@@ -3721,6 +3599,24 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
             </a>
             
             
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+              href="/songs?series=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              WORLD
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
             
             
           </div>
@@ -4455,146 +4351,6 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
               
               
             </a>
-            
-            
-            
-            
-          </div>
-          <!--v-if-->
-        </div>
-        <div
-          class="rounded-lg divide-y divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900 relative group"
-        >
-          <!--v-if-->
-          <div
-            class="flex-1 px-4 py-5 sm:p-6"
-          >
-            
-            <!--v-if-->
-            <!--v-if-->
-            <p
-              class="text-gray-900 dark:text-white text-base font-semibold truncate flex items-center gap-1.5"
-            >
-              
-              コースから探す
-              
-            </p>
-            <!--v-if-->
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A20)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              段位認定(A20)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A20 PLUS)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              段位認定(A20 PLUS)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=1&series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              NONSTOP(A3)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 hover:bg-primary-50 disabled:bg-transparent dark:hover:bg-primary-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-              href="/courses?type=2&series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              段位認定(A3)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
             
             
             

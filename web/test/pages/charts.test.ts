@@ -45,7 +45,7 @@ describe('/charts', () => {
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
-    test('{ isLoading: false, charts: <Data> } renders course list', async () => {
+    test('{ isLoading: false, charts: <Data> } renders chart list', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)

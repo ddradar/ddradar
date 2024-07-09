@@ -7,12 +7,10 @@ import type {
 } from '@azure/cosmos'
 import { CosmosClient } from '@azure/cosmos'
 import type {
-  CourseSchema,
   NotificationSchema,
   ScoreSchema,
   SongSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
   UserSchema,
 } from '@ddradar/core'
@@ -35,13 +33,13 @@ type ContainerName =
 type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
   : T extends 'Songs'
-    ? SongSchema | CourseSchema
+    ? SongSchema
     : T extends 'Users'
       ? UserSchema
       : T extends 'Notification'
         ? NotificationSchema
         : T extends 'UserDetails'
-          ? UserGrooveRadarSchema | UserClearLampSchema | UserRankSchema
+          ? UserClearLampSchema | UserRankSchema
           : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>

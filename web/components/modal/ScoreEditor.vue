@@ -15,24 +15,19 @@ interface ScoreEditorProps {
   songId: string
   playStyle?: ScoreSchema['playStyle']
   difficulty?: ScoreSchema['difficulty']
-  isCourse?: boolean
 }
 
 const isOpen = defineModel<boolean>({ required: true })
 const props = withDefaults(defineProps<ScoreEditorProps>(), {
   playStyle: undefined,
   difficulty: undefined,
-  isCourse: false,
 })
 const style = ref(props.playStyle)
 const diff = ref(props.difficulty)
 const _toast = useToast()
 const { t } = useI18n()
 
-const _songUri = computed(
-  () =>
-    `/api/v1/${props.isCourse ? 'courses' : 'songs'}/${props.songId}` as const
-)
+const _songUri = computed(() => `/api/v1/songs/${props.songId}` as const)
 const { data: song, execute: fetchSong } = useFetch(_songUri, {
   immediate: false,
 })

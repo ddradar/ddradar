@@ -97,26 +97,6 @@ exports[`/admin/songs > snapshot test 1`] = `
             
           </button>
           
-          <a
-            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-blue-500 hover:bg-blue-600 disabled:bg-blue-500 dark:bg-blue-400 dark:hover:bg-blue-500 dark:disabled:bg-blue-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-500 dark:focus-visible:outline-blue-400 inline-flex items-center"
-            href="https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            
-            
-            <!--v-if-->
-            
-            
-             See Thumbnail 
-            
-            
-            <!--v-if-->
-            
-            
-          </a>
-          
-          
           <!--v-if-->
         </div>
       </div>
@@ -456,6 +436,14 @@ exports[`/admin/songs > snapshot test 1`] = `
                 value="DanceDanceRevolution A3"
               >
                 DanceDanceRevolution A3
+              </option>
+              
+              
+              <option
+                data-v-e0e9f3ba=""
+                value="DanceDanceRevolution WORLD"
+              >
+                DanceDanceRevolution WORLD
               </option>
               
               

@@ -4,7 +4,6 @@ import type {
   PlayStyle,
   ScoreSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
 } from '@ddradar/core'
 
@@ -18,8 +17,6 @@ import { fetchGroupedList, fetchList, fetchOne } from './database'
 const isNotObsolete = {
   condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' as const,
 }
-/** Score is not Area user score and not Course score. */
-const isUserSongScore = { condition: 'IS_DEFINED(c.radar)' as const }
 
 /**
  * Returns one score data that matches conditions.
@@ -51,7 +48,6 @@ export function fetchScore(
       'rank',
       'exScore',
       'maxCombo',
-      'radar',
     ],
     { condition: 'c.userId = @', value: userId },
     { condition: 'c.songId = @', value: songId },
@@ -65,7 +61,6 @@ export function fetchScore(
  * Returns one score data list that matches conditions.
  * @param userId User id
  * @param conditions WHERE conditions
- * @param includeCourse Includes course score or not
  */
 export function fetchScoreList(
   userId: string,
@@ -74,8 +69,7 @@ export function fetchScoreList(
       ScoreSchema,
       'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
     >
-  > = {},
-  includeCourse = false
+  > = {}
 ): Promise<Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
   const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
@@ -87,7 +81,6 @@ export function fetchScoreList(
         value: v,
       })),
   ]
-  if (!includeCourse) condition.push(isUserSongScore)
 
   return fetchList(
     'Scores',
@@ -102,7 +95,6 @@ export function fetchScoreList(
       'maxCombo',
       'clearLamp',
       'rank',
-      'radar',
       'deleted',
     ],
     condition,
@@ -123,7 +115,7 @@ export function fetchSummaryClearLampCount(): Promise<UserClearLampSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"clear" AS type', 'clearLamp', 'COUNT(1) AS count'],
-    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [isNotObsolete, isNotDeletedSong],
     [...summaryColumns, 'clearLamp']
   )
 }
@@ -136,51 +128,7 @@ export function fetchSummaryRankCount(): Promise<UserRankSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"score" AS type', 'rank', 'COUNT(1) AS count'],
-    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [isNotObsolete, isNotDeletedSong],
     [...summaryColumns, 'rank']
   )
-}
-
-/**
- * Generates {@link UserGrooveRadarSchema} from Score data.
- * @param userId User id
- * @param playStyle {@link PlayStyle}
- */
-export async function generateGrooveRadar(
-  userId: string,
-  playStyle: PlayStyle
-): Promise<UserGrooveRadarSchema> {
-  const [resource]: UserGrooveRadarSchema[] = await fetchGroupedList(
-    'Scores',
-    [
-      'userId',
-      '"radar" AS type',
-      'playStyle',
-      'MAX(c.radar.stream) AS stream',
-      'MAX(c.radar.voltage) AS voltage',
-      'MAX(c.radar.air) AS air',
-      'MAX(c.radar.freeze) AS freeze',
-      'MAX(c.radar.chaos) AS chaos',
-    ],
-    [
-      { condition: 'c.userId = @', value: userId },
-      { condition: 'c.playStyle = @', value: playStyle },
-      isUserSongScore,
-      isNotObsolete,
-    ],
-    ['userId', 'playStyle']
-  )
-  const result: UserGrooveRadarSchema & Pick<ItemDefinition, 'id'> =
-    resource ?? {
-      userId,
-      type: 'radar',
-      playStyle,
-      stream: 0,
-      voltage: 0,
-      air: 0,
-      freeze: 0,
-      chaos: 0,
-    }
-  result.id = `radar-${userId}-${playStyle}`
-  return result
 }

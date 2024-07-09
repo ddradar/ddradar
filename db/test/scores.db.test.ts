@@ -1,30 +1,25 @@
 import type { ScoreSchema } from '@ddradar/core'
-import { isAreaUser } from '@ddradar/core'
 import { publicUser, testScores, testSongData } from '@ddradar/core/test/data'
 import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 
 import { canConnectDB, getContainer } from '../src/database'
-import { fetchScore, fetchScoreList, generateGrooveRadar } from '../src/scores'
+import { fetchScore, fetchScoreList } from '../src/scores'
 
 describe.runIf(canConnectDB())('scores.ts', () => {
-  const radar = { stream: 28, voltage: 22, air: 5, freeze: 0, chaos: 0 }
   const scores: (ScoreSchema & { id: string })[] = [
     ...testScores.map(d => ({
       ...d,
       id: `${d.userId}-${d.songId}-${d.playStyle}-${d.difficulty}`,
-      ...(isAreaUser({ id: d.userId }) ? {} : { radar }),
     })),
     ...testScores.map(d => ({
       ...d,
       id: `${d.userId}-${d.songId}-${d.playStyle}-${d.difficulty}-deleted`,
-      ...(isAreaUser({ id: d.userId }) ? {} : { radar }),
       ttl: 3600,
     })),
     ...testScores.map(d => ({
       ...d,
       difficulty: 1 as const,
       id: `${d.userId}-${d.songId}-${d.playStyle}-1-deleted`,
-      ...(isAreaUser({ id: d.userId }) ? {} : { radar }),
       ttl: 3600,
     })),
   ]
@@ -107,25 +102,8 @@ describe.runIf(canConnectDB())('scores.ts', () => {
           maxCombo: testScores[2].maxCombo,
           clearLamp: testScores[2].clearLamp,
           rank: testScores[2].rank,
-          radar,
         },
       ])
-    })
-  })
-  describe('generateGrooveRadar', () => {
-    const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
-    test.each([
-      ['not_exist_user', 1 as const, emptyRadar],
-      ['13', 1 as const, emptyRadar],
-      [publicUser.id, 1 as const, radar],
-    ])('("%s", %i) returns %o', async (userId, playStyle, expected) => {
-      expect(await generateGrooveRadar(userId, playStyle)).toStrictEqual({
-        id: `radar-${userId}-${playStyle}`,
-        userId,
-        type: 'radar',
-        playStyle,
-        ...expected,
-      })
     })
   })
 })

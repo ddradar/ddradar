@@ -1,9 +1,5 @@
 import type { OperationInput } from '@azure/cosmos'
-import type {
-  CourseChartSchema,
-  ScoreSchema,
-  StepChartSchema,
-} from '@ddradar/core'
+import type { ScoreSchema } from '@ddradar/core'
 import { getDanceLevel } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import iconv from 'iconv-lite'
@@ -15,7 +11,6 @@ type SkillAttackScore = Pick<
   ScoreSchema,
   'playStyle' | 'difficulty' | 'score' | 'clearLamp' | 'rank'
 >
-type Chart = StepChartSchema | CourseChartSchema
 
 /**
  * Import user scores from Skill Attack site.
@@ -130,7 +125,7 @@ export default defineEventHandler(async event => {
     ])
 
     for (const score of scores) {
-      const chart = (song.charts as Chart[]).find(
+      const chart = song.charts.find(
         c =>
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
       )

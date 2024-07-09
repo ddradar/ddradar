@@ -1,9 +1,7 @@
 import { CosmosClient } from '@azure/cosmos'
 import type {
-  PlayStyle,
   ScoreSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
 } from '@ddradar/core'
 
@@ -34,34 +32,6 @@ export async function getUserDetails(userId: string) {
   return resources
 }
 
-export async function getGrooveRadar(userId: string, playStyle: PlayStyle) {
-  const { resources } = await client
-    .database('DDRadar')
-    .container('Scores')
-    .items.query<UserGrooveRadarSchema>({
-      query: `
-      SELECT
-        c.userId, c.playStyle, "radar" AS type,
-        MAX(c.radar.stream) AS stream,
-        MAX(c.radar.voltage) AS voltage,
-        MAX(c.radar.air) AS air,
-        MAX(c.radar.freeze) AS freeze,
-        MAX(c.radar.chaos) AS chaos,
-      FROM c
-      WHERE c.userId = @userId
-      AND c.playStyle = @playStyle
-      AND IS_DEFINED(c.radar)
-      AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
-      GROUP BY c.userId, c.playStyle
-      `,
-      parameters: [
-        { name: '@userId', value: userId },
-        { name: '@playStyle', value: playStyle },
-      ],
-    })
-    .fetchAll()
-  return resources[0]
-}
 export async function getTotalChartCounts() {
   const { resources } = await client
     .database('DDRadar')

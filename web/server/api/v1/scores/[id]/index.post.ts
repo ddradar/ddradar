@@ -1,9 +1,5 @@
 import type { OperationInput } from '@azure/cosmos'
-import type {
-  CourseChartSchema,
-  ScoreSchema,
-  StepChartSchema,
-} from '@ddradar/core'
+import type { ScoreSchema } from '@ddradar/core'
 import { getDanceLevel, isValidScore } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 
@@ -13,8 +9,6 @@ import {
 } from '~/schemas/score'
 import { getLoginUserInfo } from '~/server/utils/auth'
 import { topUser, upsertScore } from '~/server/utils/score'
-
-type ChartInfo = StepChartSchema | CourseChartSchema
 
 /**
  * Add or update the scores of the specified songs all at once.
@@ -115,7 +109,7 @@ export default defineEventHandler(async event => {
   for (let i = 0; i < body.length; i++) {
     const score = body[i]
 
-    const chart = (song.charts as ChartInfo[]).find(
+    const chart = song.charts.find(
       c => c.playStyle === score.playStyle && c.difficulty === score.difficulty
     )
     if (!chart) throw createError({ statusCode: 404 })
