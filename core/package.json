@@ -13,6 +13,9 @@
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs"
+    },
+    "./test/data": {
+      "import": "./dist/test/data.mjs"
     }
   },
   "main": "./dist/index.cjs",
@@ -21,7 +24,7 @@
     "dist"
   ],
   "scripts": {
-    "prepare": "graphql-codegen",
+    "prepare": "ts-patch install && typia patch && graphql-codegen",
     "prebuild": "pnpm prepare",
     "build": "unbuild",
     "test": "vitest run"
@@ -29,14 +32,17 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^5.0.2",
     "@graphql-codegen/typescript": "^4.0.9",
+    "@ryoppippi/unplugin-typia": "npm:@jsr/ryoppippi__unplugin-typia@^0.5.4",
     "@types/node": "^18.17.11",
     "graphql": "^16.9.0",
     "happy-dom": "^14.12.3",
+    "ts-patch": "^3.2.1",
     "typescript": "^5.5.2",
-    "unbuild": "^2.0.0",
+    "unbuild": "^3.0.0-rc.6",
     "vitest": "^1.6.0"
   },
   "dependencies": {
+    "typia": "^6.4.1",
     "zod": "^3.23.8"
   }
 }
