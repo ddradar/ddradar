@@ -129,6 +129,19 @@ importers:
         specifier: ^1.6.0
         version: 1.6.0(@types/node@18.17.11)(happy-dom@14.12.3)(terser@5.18.2)
 
+  scripts:
+    dependencies:
+      '@azure/cosmos':
+        specifier: ^4.0.0
+        version: 4.0.0
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+    devDependencies:
+      jiti:
+        specifier: ^2.0.0-beta.3
+        version: 2.0.0-beta.3
+
   web:
     dependencies:
       '@azure/cosmos':
@@ -4392,6 +4405,10 @@ packages:
 
   jiti@1.21.6:
     resolution: {integrity: sha512-2yTgeWTWzMWkHu6Jp9NKgePDaYHbntiwvYuuJLbbN9vl7DC9DvXKOB2BC3ZZ92D3cvV/aflH0osDfwpHepQ53w==}
+    hasBin: true
+
+  jiti@2.0.0-beta.3:
+    resolution: {integrity: sha512-pmfRbVRs/7khFrSAYnSiJ8C0D5GvzkE4Ey2pAvUcJsw1ly/p+7ut27jbJrjY79BpAJQJ4gXYFtK6d1Aub+9baQ==}
     hasBin: true
 
   joi@17.9.2:
@@ -12225,6 +12242,8 @@ snapshots:
       '@pkgjs/parseargs': 0.11.0
 
   jiti@1.21.6: {}
+
+  jiti@2.0.0-beta.3: {}
 
   joi@17.9.2:
     dependencies:
