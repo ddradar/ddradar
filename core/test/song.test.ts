@@ -39,6 +39,7 @@ describe('song.ts', () => {
     test.each([
       validSong,
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
+      { ...validSong, series: 'DanceDanceRevolution WORLD' },
       { ...validSong, minBPM: null, maxBPM: null },
       { ...validSong, charts: [] },
     ])('safeParse(%o) returns { success: true }', o =>

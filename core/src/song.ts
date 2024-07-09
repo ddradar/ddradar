@@ -114,6 +114,7 @@ const series = [
   'DanceDanceRevolution A20',
   'DanceDanceRevolution A20 PLUS',
   'DanceDanceRevolution A3',
+  'DanceDanceRevolution WORLD',
 ] as const
 /** Series title depend on official site. */
 export type Series = (typeof series)[number]
