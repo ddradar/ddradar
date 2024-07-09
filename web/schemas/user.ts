@@ -3,16 +3,10 @@ import type {
   DanceLevel,
   ScoreSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
   UserSchema,
 } from '@ddradar/core'
-import {
-  scoreSchema,
-  userGrooveRadarSchema,
-  userRankSchema,
-  userSchema,
-} from '@ddradar/core'
+import { scoreSchema, userRankSchema, userSchema } from '@ddradar/core'
 import { z } from 'zod'
 
 /** GET `api/v1/user` response type */
@@ -72,18 +66,6 @@ export type ExistsUser = Pick<UserSchema, 'id'> & {
   /** User exists or not */
   exists: boolean
 }
-
-/** GET `api/v1/users/[id]/radar` expected queries */
-export const getRadarQuerySchema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(userGrooveRadarSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-})
-
-/** GET `api/v1/users/[id]/radar` response type */
-export type GrooveRadarInfo = Omit<UserGrooveRadarSchema, 'userId' | 'type'>
 
 /** GET `api/v1/users/[id]/rank` expected queries */
 export const getRankQuerySchema = z.object({

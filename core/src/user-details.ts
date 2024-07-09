@@ -1,41 +1,7 @@
 import { z } from 'zod'
 
-import type { UserClearLamp, UserGrooveRadar, UserRank } from './graphql'
+import type { UserClearLamp, UserRank } from './graphql'
 import { scoreSchema } from './score'
-import { stepChartSchema } from './song'
-
-/** zod schema object for {@link UserGrooveRadarSchema}. */
-export const userGrooveRadarSchema = scoreSchema
-  .pick({ userId: true, playStyle: true })
-  .merge(
-    stepChartSchema.pick({
-      playStyle: true,
-      stream: true,
-      voltage: true,
-      air: true,
-      freeze: true,
-      chaos: true,
-    })
-  )
-  .extend({ type: z.literal('radar') }) satisfies z.ZodType<UserGrooveRadar>
-/**
- * Summary of GrooveRadar (included in "UserDetails" container)
- * @example
- * ```json
- * {
- *   "userId": "user_1",
- *   "type": "radar",
- *   "playStyle": 1,
- *   "stream": 100,
- *   "voltage": 100,
- *   "air": 100,
- *   "freeze": 100,
- *   "chaos": 100
- * }
- * ```
- */
-export type UserGrooveRadarSchema = UserGrooveRadar &
-  z.infer<typeof userGrooveRadarSchema>
 
 /** zod schema object for {@link UserClearLampSchema}. */
 export const userClearLampSchema = scoreSchema

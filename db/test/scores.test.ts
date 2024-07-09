@@ -1,8 +1,4 @@
-import type {
-  ClearLamp,
-  ScoreSchema,
-  UserGrooveRadarSchema,
-} from '@ddradar/core'
+import type { ClearLamp, ScoreSchema } from '@ddradar/core'
 import { testScores } from '@ddradar/core/test/data'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -12,7 +8,6 @@ import {
   fetchScoreList,
   fetchSummaryClearLampCount,
   fetchSummaryRankCount,
-  generateGrooveRadar,
 } from '../src/scores'
 
 vi.mock('../src/database')
@@ -72,7 +67,7 @@ describe('scores.ts', () => {
       })
     })
     test.each([
-      [{}, [{ condition: 'IS_DEFINED(c.radar)' }]],
+      [{}, []],
       [
         {
           playStyle: 1,
@@ -87,7 +82,6 @@ describe('scores.ts', () => {
           { condition: 'c.level = @', value: 3 },
           { condition: 'c.clearLamp = @', value: 4 },
           { condition: 'c.rank = @', value: 'AAA' },
-          { condition: 'IS_DEFINED(c.radar)' },
         ],
       ],
     ])(
@@ -161,53 +155,6 @@ describe('scores.ts', () => {
 
       // Assert
       expect(result).toHaveLength(length)
-    })
-  })
-  describe('generateGrooveRadar()', () => {
-    const radar: UserGrooveRadarSchema = {
-      userId: 'public_user',
-      type: 'radar',
-      playStyle: 1,
-      stream: 100,
-      voltage: 100,
-      air: 100,
-      freeze: 100,
-      chaos: 100,
-    }
-
-    test('returns groove radar', async () => {
-      // Arrange
-      vi.mocked(fetchGroupedList).mockResolvedValue([{ ...radar }])
-
-      // Act
-      const result = await generateGrooveRadar('public_user', 1)
-
-      // Assert
-      expect(result).toStrictEqual({ ...radar, id: 'radar-public_user-1' })
-      expect(vi.mocked(fetchGroupedList).mock.calls[0][2]).toStrictEqual([
-        { condition: 'c.userId = @', value: 'public_user' },
-        { condition: 'c.playStyle = @', value: 1 },
-        { condition: 'IS_DEFINED(c.radar)' },
-        {
-          condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)',
-        },
-      ])
-    })
-
-    test('returns empty groove radar if scores is empty', async () => {
-      // Arrange
-      vi.mocked(fetchGroupedList).mockResolvedValue([])
-
-      // Act
-      const result = await generateGrooveRadar('public_user', 1)
-      const emptyRadar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
-
-      expect(result).toStrictEqual({
-        ...radar,
-        ...emptyRadar,
-        id: 'radar-public_user-1',
-      })
-      expect(vi.mocked(fetchGroupedList)).toBeCalled()
     })
   })
 })

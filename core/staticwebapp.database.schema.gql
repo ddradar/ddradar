@@ -58,16 +58,6 @@ type StepChart {
   freezeArrow: Int!
   "Shock Arrow count."
   shockArrow: Int!
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
 }
 
 "DB schema of 'Users' container."
@@ -123,29 +113,10 @@ type Score @model {
   clearLamp: Int!
   rank: String!
   """
-  Groove Radar
-  @description Not defined on area top score.
-  """
-  radar: GrooveRadar
-  """
   {@link SongSchema.deleted}
   If true, this score is not counted at total.
   """
   deleted: Boolean
-}
-
-"Groove Radar"
-type GrooveRadar {
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
 }
 
 "DB schema of 'Notification' container"
@@ -170,25 +141,6 @@ type Notification @model {
   body: String!
   "Created time (UNIX time)"
   timeStamp: Int!
-}
-
-"Summary of {@link Score.radar} (included in 'UserDetails' container)"
-type UserGrooveRadar {
-  "User details type"
-  type: String!
-  "{@link UserSchema.id}"
-  userId: String!
-  playStyle: Int!
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
 }
 
 "Summary of {@link Score.clearLamp} (included in 'UserDetails' container)"

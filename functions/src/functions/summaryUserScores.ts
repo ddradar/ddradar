@@ -4,11 +4,10 @@ import { app } from '@azure/functions'
 import type {
   ScoreSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
 } from '@ddradar/core'
 
-import { getGrooveRadar, getUserDetails } from '../cosmos.js'
+import { getUserDetails } from '../cosmos.js'
 
 const $return: CosmosDBOutput = {
   name: '$return',
@@ -28,10 +27,7 @@ app.cosmosDB('summaryUserScores', {
   handler,
 })
 
-type UserDetailSchema =
-  | UserGrooveRadarSchema
-  | UserClearLampSchema
-  | UserRankSchema
+type UserDetailSchema = UserClearLampSchema | UserRankSchema
 
 /**
  * Summary user scores for User details.
@@ -45,9 +41,6 @@ export async function handler(
   const scores = documents as (ScoreSchema & ItemDefinition)[]
   const userScores = scores.reduce(
     (prev, s) => {
-      // Skip area top score
-      if (!s.radar) return prev
-
       if (!prev[s.userId]) prev[s.userId] = []
       prev[s.userId].push(s)
       return prev
@@ -57,13 +50,6 @@ export async function handler(
 
   const result: UserDetailSchema[] = []
   for (const [userId, scores] of Object.entries(userScores)) {
-    // Regenerate Groove Radar
-    result.push(
-      await generateGrooveRadar(userId, 1),
-      await generateGrooveRadar(userId, 2)
-    )
-    ctx.info(`Generated: { userId: "${userId}" } Groove Radar`)
-
     const summaries = await getUserDetails(userId)
     // Count up/down Clear/Score status
     for (const score of scores) {
@@ -121,24 +107,4 @@ export async function handler(
     result.push(...summaries)
   }
   return result
-
-  async function generateGrooveRadar(
-    userId: string,
-    playStyle: 1 | 2
-  ): Promise<UserGrooveRadarSchema> {
-    const resource = await getGrooveRadar(userId, playStyle)
-    const result: UserGrooveRadarSchema & Pick<ItemDefinition, 'id'> =
-      resource ?? {
-        userId,
-        type: 'radar',
-        playStyle,
-        stream: 0,
-        voltage: 0,
-        air: 0,
-        freeze: 0,
-        chaos: 0,
-      }
-    result.id = `radar-${userId}-${playStyle}`
-    return result
-  }
 }

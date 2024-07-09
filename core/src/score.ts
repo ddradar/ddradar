@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import type { GrooveRadar, Score as RawScoreSchema } from './graphql'
+import type { Score as RawScoreSchema } from './graphql'
 import {
   type SongSchema,
   songSchema,
@@ -8,7 +8,7 @@ import {
   stepChartSchema,
 } from './song'
 import type { UserSchema } from './user'
-import { isAreaUser, userSchema } from './user'
+import { userSchema } from './user'
 
 const clearLamps = new Map([
   [0, 'Failed'],
@@ -82,15 +82,6 @@ export const scoreSchema = z.object({
   rank: z.custom<DanceLevel>(
     v => typeof v === 'string' && danceLevelSet.has(v)
   ),
-  radar: stepChartSchema
-    .pick({
-      stream: true,
-      voltage: true,
-      air: true,
-      freeze: true,
-      chaos: true,
-    })
-    .optional(),
   deleted: songSchema.shape.deleted,
 }) satisfies z.ZodType<RawScoreSchema>
 /**
@@ -110,14 +101,7 @@ export const scoreSchema = z.object({
  *   "exScore": 402,
  *   "maxCombo": 122,
  *   "clearLamp": 7,
- *   "rank": "AAA",
- *   "radar": {
- *     "stream": 21,
- *     "voltage": 22,
- *     "air": 7,
- *     "freeze": 26,
- *     "chaos": 0
- *   }
+ *   "rank": "AAA"
  * }
  * ```
  */
@@ -279,46 +263,7 @@ export function createScoreSchema(
     scoreSchema.maxCombo = song.notes + song.shockArrow
   }
 
-  if (!isAreaUser(user)) {
-    scoreSchema.radar = calcMyGrooveRadar(song, score)
-  }
-
   return scoreSchema
-}
-
-/**
- * Calcurate My Groove Radar from score.
- * @param chart Target chart
- * @param score Target score
- * @returns Groove Radar value
- */
-export function calcMyGrooveRadar(
-  chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'>,
-  score: Score
-): GrooveRadar {
-  const note = chart.notes + chart.shockArrow
-  const isFullCombo = score.clearLamp >= 4
-  const maxCombo = isFullCombo ? note : score.maxCombo ?? 0
-
-  // Treat as miss:3 if Life 4 Clear
-  const arrowCount =
-    score.clearLamp === 3 ? Math.max(maxCombo, note - 3) : maxCombo
-  const freezeCount = isFullCombo
-    ? chart.freezeArrow
-    : score.clearLamp === 3
-      ? chart.freezeArrow - 3
-      : 0
-
-  return {
-    stream: Math.trunc((chart.stream * score.score) / 1000000),
-    voltage: Math.trunc((chart.voltage * maxCombo) / note),
-    air: Math.trunc((chart.air * arrowCount) / note),
-    freeze:
-      chart.freezeArrow === 0
-        ? 0
-        : Math.trunc((chart.freeze * freezeCount) / chart.freezeArrow),
-    chaos: Math.trunc((chart.chaos * arrowCount) / note),
-  }
 }
 
 /**

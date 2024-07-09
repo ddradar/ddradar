@@ -11,7 +11,6 @@ import type {
   ScoreSchema,
   SongSchema,
   UserClearLampSchema,
-  UserGrooveRadarSchema,
   UserRankSchema,
   UserSchema,
 } from '@ddradar/core'
@@ -40,7 +39,7 @@ type ContainerValue<T> = T extends 'Scores'
       : T extends 'Notification'
         ? NotificationSchema
         : T extends 'UserDetails'
-          ? UserGrooveRadarSchema | UserClearLampSchema | UserRankSchema
+          ? UserClearLampSchema | UserRankSchema
           : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>

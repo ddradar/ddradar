@@ -3,7 +3,6 @@ import { describe, expect, test } from 'vitest'
 import type { Score } from '../src/score'
 import {
   calcFlareSkill,
-  calcMyGrooveRadar,
   createScoreSchema,
   detectJudgeCounts,
   getDanceLevel,
@@ -12,7 +11,6 @@ import {
   mergeScore,
   setValidScoreFromChart,
 } from '../src/score'
-import type { StepChartSchema } from '../src/song'
 import { publicUser, testSongData } from './data'
 
 describe('score.ts', () => {
@@ -144,14 +142,6 @@ describe('score.ts', () => {
 
   describe('createScoreSchema', () => {
     const songInfo = { ...testSongData, ...testSongData.charts[0] }
-    const radar = {
-      stream: testSongData.charts[0].stream,
-      voltage: testSongData.charts[0].voltage,
-      air: testSongData.charts[0].air,
-      freeze: testSongData.charts[0].freeze,
-      chaos: testSongData.charts[0].chaos,
-    }
-
     const scores: Score[] = [
       { score: 1000000, clearLamp: 7, rank: 'AAA' },
       { score: 800000, clearLamp: 3, rank: 'A', maxCombo: 100, exScore: 300 },
@@ -175,7 +165,6 @@ describe('score.ts', () => {
           userId: publicUser.id,
           userName: publicUser.name,
           isPublic: publicUser.isPublic,
-          radar,
         },
       ],
       [
@@ -213,7 +202,6 @@ describe('score.ts', () => {
           userId: publicUser.id,
           userName: publicUser.name,
           isPublic: publicUser.isPublic,
-          radar,
           deleted: true,
         },
       ],
@@ -239,43 +227,6 @@ describe('score.ts', () => {
         expect(
           createScoreSchema({ ...songInfo, deleted: true }, user, score)
         ).toStrictEqual(expected)
-    )
-  })
-
-  describe('calcMyGrooveRadar', () => {
-    const chart: Omit<StepChartSchema, 'playStyle' | 'difficulty' | 'level'> = {
-      notes: 150,
-      freezeArrow: 50,
-      shockArrow: 50,
-      stream: 100,
-      voltage: 100,
-      air: 100,
-      freeze: 100,
-      chaos: 100,
-    }
-    const score: Score = { clearLamp: 2, score: 800000, rank: 'A' }
-    test('({ freeze: 0 }, score) returns { freeze: 0 }', () =>
-      expect(
-        calcMyGrooveRadar(
-          { ...chart, freezeArrow: 0, freeze: 0 },
-          { ...score, clearLamp: 4 }
-        ).freeze
-      ).toBe(0))
-    test.each([
-      [score, 80, 0, 0, 0, 0],
-      [{ ...score, maxCombo: 100 } as const, 80, 50, 50, 0, 50],
-      [{ ...score, clearLamp: 3 } as const, 80, 0, 98, 94, 98],
-      [{ ...score, clearLamp: 4 } as const, 80, 100, 100, 100, 100],
-    ])(
-      '(chart, %o) returns { %i, %i, %i, %i, %i }',
-      (score, stream, voltage, air, freeze, chaos) =>
-        expect(calcMyGrooveRadar(chart, score)).toStrictEqual({
-          stream,
-          voltage,
-          air,
-          freeze,
-          chaos,
-        })
     )
   })
 

@@ -1,5 +1,4 @@
 // @vitest-environment node
-import { calcMyGrooveRadar } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -126,7 +125,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     const score = await handler(event)
 
     // Assert
-    const radar = calcMyGrooveRadar(song, body)
     expect(score).toStrictEqual({
       ...body,
       userId: publicUser.id,
@@ -137,7 +135,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
       playStyle: song.playStyle,
       difficulty: song.difficulty,
       level: song.level,
-      radar,
     })
     expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(3)
   })
@@ -177,7 +174,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
       const score = await handler(event)
 
       // Assert
-      const radar = calcMyGrooveRadar(song, body)
       expect(score).toStrictEqual({
         ...body,
         userId: publicUser.id,
@@ -188,7 +184,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
         playStyle: song.playStyle,
         difficulty: song.difficulty,
         level: song.level,
-        radar,
       })
       expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(length)
     }
@@ -210,7 +205,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
     const score = await handler(event)
 
     // Assert
-    const radar = calcMyGrooveRadar(song, mfcScore)
     expect(score).toStrictEqual({
       ...mfcScore,
       exScore: (song.notes + song.freezeArrow + song.shockArrow) * 3,
@@ -223,7 +217,6 @@ describe('POST /api/v1/scores/[id]/[style]/[diff]', () => {
       playStyle: song.playStyle,
       difficulty: song.difficulty,
       level: song.level,
-      radar,
     })
     expect(mockedContainer.items.batch.mock.calls[0][0]).toHaveLength(length)
   })

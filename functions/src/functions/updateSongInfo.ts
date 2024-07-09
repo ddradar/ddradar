@@ -10,7 +10,6 @@ import type {
   StepChartSchema,
   UserClearLampSchema,
 } from '@ddradar/core'
-import { calcMyGrooveRadar } from '@ddradar/core'
 
 import { getScores, getTotalChartCounts } from '../cosmos.js'
 
@@ -109,14 +108,10 @@ export async function handler(
           }): ${scoreText}. Make sure the chart info is correct.`
         )
       }
-      const radar = (chart as StepChartSchema).stream
-        ? calcMyGrooveRadar(chart as StepChartSchema, score)
-        : undefined
       if (
         song.name !== score.songName ||
         chart.level !== score.level ||
-        song.deleted !== score.deleted ||
-        !radarEquals(score.radar, radar)
+        song.deleted !== score.deleted
       ) {
         ctx.info(`Updated: ${scoreText}`)
         const oldScore = { ...score }
@@ -126,7 +121,6 @@ export async function handler(
           songName: song.name,
           level: chart.level,
           ...{ deleted: song.deleted },
-          ...{ radar },
         })
       }
     }
@@ -169,19 +163,4 @@ export async function handler(
     )?.id,
   }))
   return { scores, details }
-
-  function radarEquals(
-    left: ScoreSchema['radar'],
-    right: ScoreSchema['radar']
-  ) {
-    if (!left && !right) return true
-    if (!left || !right) return false
-    return (
-      left.stream === right.stream &&
-      left.voltage === right.voltage &&
-      left.air === right.air &&
-      left.freeze === right.freeze &&
-      left.chaos === right.chaos
-    )
-  }
 }

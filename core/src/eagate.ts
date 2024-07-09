@@ -6,7 +6,7 @@ const srcRegex = /^.+\/ddr\/ddra\d+\/p\/images\/play_data\/(.+)\.png$/
 
 type EagateScore = Omit<
   ScoreSchema,
-  'isPublic' | 'radar' | 'deleted' | 'songId' | 'userId' | 'userName' | 'level'
+  'isPublic' | 'deleted' | 'songId' | 'userId' | 'userName' | 'level'
 >
 
 /**

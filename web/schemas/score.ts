@@ -17,7 +17,7 @@ export const getQuerySchema = z.object({
 })
 
 /** GET `api/v1/scores/[id]/[style]/[diff]` response type */
-export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'radar' | 'deleted'>
+export type ScoreInfo = Omit<ScoreSchema, 'isPublic' | 'deleted'>
 
 /** POST `api/v1/scores/[id]` expected router params */
 export const postRouterParamsSchema = z.object({ id: scoreSchema.shape.songId })
