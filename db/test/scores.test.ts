@@ -72,7 +72,7 @@ describe('scores.ts', () => {
       })
     })
     test.each([
-      [{}, []],
+      [{}, [{ condition: 'IS_DEFINED(c.radar)' }]],
       [
         {
           playStyle: 1,

@@ -84,6 +84,7 @@ export function fetchScoreList(
         condition: `c.${k as keyof ScoreSchema} = @` as const,
         value: v,
       })),
+    { condition: 'IS_DEFINED(c.radar)' },
   ]
 
   return fetchList(
