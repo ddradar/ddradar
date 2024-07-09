@@ -20,7 +20,6 @@ export default defineBuildConfig({
   declaration: 'compatible',
   hooks: {
     'rollup:options'(_ctx, options) {
-      // @ts-expect-error Rollup versioning
       options.plugins.push(UnpluginTypia())
     },
   },

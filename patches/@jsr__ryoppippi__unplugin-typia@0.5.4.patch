@@ -1,0 +1,26 @@
+diff --git a/src/core/cache.js b/src/core/cache.js
+index c78b2a542aa33ed1ec7f3ba8d32fd39afa1f96c3..7185d420b53ebe12bb71da9284c86d9e19048474 100755
+--- a/src/core/cache.js
++++ b/src/core/cache.js
+@@ -3,12 +3,8 @@ import { accessSync, constants, existsSync, mkdirSync, readFileSync, rmSync, wri
+ import { createHash } from 'node:crypto';
+ import { basename, dirname, join } from "pathe";
+ import findCacheDirectory from "find-cache-dir";
+-import typiaPackageJson from "typia/package.json" with {
+-  type: 'json'
+-};
+ import { wrap } from "./types.js";
+ import { isBun } from "./utils.js";
+-const { version: typiaVersion } = typiaPackageJson;
+ _computedKey = Symbol.dispose;
+ /**
+  * Cache class
+@@ -79,7 +75,7 @@ _computedKey = Symbol.dispose;
+     return createHash('md5').update(input).digest('hex');
+   }
+   get hashComment() {
+-    return `/* unplugin-typia-${typiaVersion ?? ''}-${this.#hashKey} */`;
++    return `/* unplugin-typia-${this.#hashKey} */`;
+   }
+   isWritable(filename) {
+     try {

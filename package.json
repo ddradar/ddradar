@@ -43,5 +43,10 @@
     "lint-staged": "^15.2.7",
     "prettier": "^3.3.2",
     "typescript-eslint": "^7.14.1"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "@jsr/ryoppippi__unplugin-typia@0.5.4": "patches/@jsr__ryoppippi__unplugin-typia@0.5.4.patch"
+    }
   }
 }
