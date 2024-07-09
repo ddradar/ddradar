@@ -1,4 +1,3 @@
-export * from './eagate'
 export * from './notification'
 export * from './score'
 export * from './song'
