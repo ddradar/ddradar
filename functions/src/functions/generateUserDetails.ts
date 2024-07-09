@@ -28,8 +28,7 @@ const lamps: CosmosDBInput = {
     SELECT c.userId, c.playStyle, c.level, "clear" AS type, c.clearLamp, COUNT(1) AS count
     FROM c
     WHERE
-      IS_DEFINED(c.radar)
-      AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
+      ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
       AND NOT (IS_DEFINED(c.deleted) AND c.deleted = true)
     GROUP BY c.userId, c.playStyle, c.level, c.clearLamp`,
 }
@@ -44,8 +43,7 @@ const ranks: CosmosDBInput = {
     SELECT c.userId, c.playStyle, c.level, "score" AS type, c.rank, COUNT(1) AS count
     FROM c
     WHERE
-      IS_DEFINED(c.radar)
-      AND ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
+      ((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)
       AND NOT (IS_DEFINED(c.deleted) AND c.deleted = true)
     GROUP BY c.userId, c.playStyle, c.level, c.rank`,
 }

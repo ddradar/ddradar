@@ -34,13 +34,6 @@
         { "role": "administrator", "actions": ["*"] }
       ]
     },
-    "Course": {
-      "source": "Songs",
-      "permissions": [
-        { "role": "anonymous", "actions": ["read"] },
-        { "role": "administrator", "actions": ["*"] }
-      ]
-    },
     "User": {
       "source": "Users",
       "permissions": [{ "role": "administrator", "actions": ["*"] }]

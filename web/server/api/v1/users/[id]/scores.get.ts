@@ -1,6 +1,5 @@
 import { fetchScoreList } from '@ddradar/db'
 
-import type { ScoreList } from '~/schemas/user'
 import { getScoresQuerySchema as schema } from '~/schemas/user'
 import { tryFetchUser } from '~/server/utils/auth'
 
@@ -29,8 +28,7 @@ import { tryFetchUser } from '~/server/utils/auth'
  *     "level": 3,
  *     "score": 999950,
  *     "clearLamp": 6,
- *     "rank": "AAA",
- *     "isCourse": false
+ *     "rank": "AAA"
  *   }
  * ]
  * ```
@@ -48,9 +46,5 @@ export default defineEventHandler(async event => {
   } = await getValidatedQuery(event, schema.parse)
 
   const conditions = { playStyle, difficulty, level, clearLamp, rank }
-  return (await fetchScoreList(user.id, conditions)).map<ScoreList>(d => {
-    const r = { ...d, isCourse: !d.radar }
-    delete r.radar
-    return r
-  })
+  return await fetchScoreList(user.id, conditions)
 })

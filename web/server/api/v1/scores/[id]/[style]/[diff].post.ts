@@ -1,10 +1,5 @@
 import type { OperationInput, PatchOperationInput } from '@azure/cosmos'
-import type {
-  CourseChartSchema,
-  ScoreSchema,
-  SongSchema,
-  StepChartSchema,
-} from '@ddradar/core'
+import type { ScoreSchema, SongSchema, StepChartSchema } from '@ddradar/core'
 import {
   createScoreSchema,
   isValidScore,
@@ -17,7 +12,7 @@ import { routerParamsSchema as paramSchema } from '~/schemas/score'
 import { getLoginUserInfo } from '~/server/utils/auth'
 
 type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
-  (StepChartSchema | CourseChartSchema)
+  StepChartSchema
 
 /**
  * Add or update score that match the specified chart.

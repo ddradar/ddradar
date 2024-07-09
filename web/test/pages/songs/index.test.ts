@@ -75,7 +75,7 @@ describe('/songs', () => {
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
-    test('{ isLoading: false, courses: [] } renders no data', async () => {
+    test('{ isLoading: false, songs: [] } renders no data', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)

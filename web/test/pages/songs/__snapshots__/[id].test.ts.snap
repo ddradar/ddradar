@@ -182,15 +182,6 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                   <div
                     class="grid grid-cols-2 h-300"
                   >
-                    <div>
-                      <canvas
-                        role="img"
-                      >
-                        <p>
-                          
-                        </p>
-                      </canvas>
-                    </div>
                     <div
                       class="m-2"
                     >
@@ -214,36 +205,6 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                           : 0
                         </li>
                         <br />
-                        <li>
-                          <em>
-                            Stream
-                          </em>
-                          : 29
-                        </li>
-                        <li>
-                          <em>
-                            Voltage
-                          </em>
-                          : 22
-                        </li>
-                        <li>
-                          <em>
-                            Air
-                          </em>
-                          : 5
-                        </li>
-                        <li>
-                          <em>
-                            Freeze
-                          </em>
-                          : 0
-                        </li>
-                        <li>
-                          <em>
-                            Chaos
-                          </em>
-                          : 0
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -389,15 +350,6 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                   <div
                     class="grid grid-cols-2 h-300"
                   >
-                    <div>
-                      <canvas
-                        role="img"
-                      >
-                        <p>
-                          
-                        </p>
-                      </canvas>
-                    </div>
                     <div
                       class="m-2"
                     >
@@ -421,36 +373,6 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                           : 0
                         </li>
                         <br />
-                        <li>
-                          <em>
-                            Stream
-                          </em>
-                          : 56
-                        </li>
-                        <li>
-                          <em>
-                            Voltage
-                          </em>
-                          : 44
-                        </li>
-                        <li>
-                          <em>
-                            Air
-                          </em>
-                          : 18
-                        </li>
-                        <li>
-                          <em>
-                            Freeze
-                          </em>
-                          : 0
-                        </li>
-                        <li>
-                          <em>
-                            Chaos
-                          </em>
-                          : 4
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -685,15 +607,6 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                   <div
                     class="grid grid-cols-2 h-300"
                   >
-                    <div>
-                      <canvas
-                        role="img"
-                      >
-                        <p>
-                          
-                        </p>
-                      </canvas>
-                    </div>
                     <div
                       class="m-2"
                     >
@@ -717,36 +630,6 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                           : 0
                         </li>
                         <br />
-                        <li>
-                          <em>
-                            Stream
-                          </em>
-                          : 29
-                        </li>
-                        <li>
-                          <em>
-                            Voltage
-                          </em>
-                          : 22
-                        </li>
-                        <li>
-                          <em>
-                            Air
-                          </em>
-                          : 5
-                        </li>
-                        <li>
-                          <em>
-                            Freeze
-                          </em>
-                          : 0
-                        </li>
-                        <li>
-                          <em>
-                            Chaos
-                          </em>
-                          : 0
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -892,15 +775,6 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                   <div
                     class="grid grid-cols-2 h-300"
                   >
-                    <div>
-                      <canvas
-                        role="img"
-                      >
-                        <p>
-                          
-                        </p>
-                      </canvas>
-                    </div>
                     <div
                       class="m-2"
                     >
@@ -924,36 +798,6 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                           : 0
                         </li>
                         <br />
-                        <li>
-                          <em>
-                            Stream
-                          </em>
-                          : 56
-                        </li>
-                        <li>
-                          <em>
-                            Voltage
-                          </em>
-                          : 44
-                        </li>
-                        <li>
-                          <em>
-                            Air
-                          </em>
-                          : 18
-                        </li>
-                        <li>
-                          <em>
-                            Freeze
-                          </em>
-                          : 0
-                        </li>
-                        <li>
-                          <em>
-                            Chaos
-                          </em>
-                          : 4
-                        </li>
                       </ul>
                     </div>
                   </div>

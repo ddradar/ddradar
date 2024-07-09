@@ -58,87 +58,6 @@ type StepChart {
   freezeArrow: Int!
   "Shock Arrow count."
   shockArrow: Int!
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
-}
-
-"DB Schema of Course data (included on 'Songs' container)"
-type Course @model {
-  """
-  ID that depend on official site.
-  @example `^([01689bdiloqDIOPQ]*){32}$`
-  """
-  id: ID!
-  name: String!
-  """
-  ID for sorting.
-  @example `^([A-Z0-9 .ぁ-んー]*)$`
-  """
-  nameKana: String!
-  "`-1`: NONSTOP, `-2`: Grade"
-  nameIndex: Int!
-  "Series title depend on official site."
-  series: String!
-  "Displayed min BPM (Beet Per Minutes)."
-  minBPM: Int
-  "Displayed max BPM (Beet Per Minutes)."
-  maxBPM: Int
-  "Course difficulties"
-  charts: [CourseChart!]!
-  "Course is deleted or not"
-  deleted: Boolean
-}
-
-"Course difficulty"
-type CourseChart {
-  "`1`: SINGLE, `2`: DOUBLE"
-  playStyle: Int!
-  """
-  `0`: BEGINNER,
-  `1`: BASIC,
-  `2`: DIFFICULT,
-  `3`: EXPERT,
-  `4`: CHALLENGE
-  """
-  difficulty: Int!
-  "level (equals to highest order's level)"
-  level: Int!
-  "Normal arrow count. (Jump = 1 count)"
-  notes: Int!
-  "Freeze Arrow count."
-  freezeArrow: Int!
-  "Shock Arrow count."
-  shockArrow: Int!
-  "Course order"
-  order: [CourseOrder!]!
-}
-
-"Course order"
-type CourseOrder {
-  "{@link Song.id}"
-  songId: String!
-  "{@link Song.name}"
-  songName: String!
-  "`1`: SINGLE, `2`: DOUBLE"
-  playStyle: Int!
-  """
-  `0`: BEGINNER,
-  `1`: BASIC,
-  `2`: DIFFICULT,
-  `3`: EXPERT,
-  `4`: CHALLENGE
-  """
-  difficulty: Int!
-  "Chart level"
-  level: Int!
 }
 
 "DB schema of 'Users' container."
@@ -194,29 +113,10 @@ type Score @model {
   clearLamp: Int!
   rank: String!
   """
-  Groove Radar
-  @description Not defined on area top score or course score.
-  """
-  radar: GrooveRadar
-  """
   {@link SongSchema.deleted}
   If true, this score is not counted at total.
   """
   deleted: Boolean
-}
-
-"Groove Radar"
-type GrooveRadar {
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
 }
 
 "DB schema of 'Notification' container"
@@ -241,25 +141,6 @@ type Notification @model {
   body: String!
   "Created time (UNIX time)"
   timeStamp: Int!
-}
-
-"Summary of {@link Score.radar} (included in 'UserDetails' container)"
-type UserGrooveRadar {
-  "User details type"
-  type: String!
-  "{@link UserSchema.id}"
-  userId: String!
-  playStyle: Int!
-  "Groove Radar STREAM"
-  stream: Int!
-  "Groove Radar VOLTAGE"
-  voltage: Int!
-  "Groove Radar AIR"
-  air: Int!
-  "Groove Radar FREEZE"
-  freeze: Int!
-  "Groove Radar CHAOS"
-  chaos: Int!
 }
 
 "Summary of {@link Score.clearLamp} (included in 'UserDetails' container)"

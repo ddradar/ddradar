@@ -5,11 +5,6 @@ const _route = useRoute('users-id')
 const { data: user } = await useFetch(`/api/v1/users/${_route.params.id}`)
 if (!user.value) throw createError({ statusCode: 404, message: t('empty') })
 
-const radar = { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
-const { data: radars } = await useFetch(
-  `/api/v1/users/${_route.params.id}/radar`,
-  { default: () => [radar, radar] }
-)
 const { data: clears } = await useFetch(
   `/api/v1/users/${_route.params.id}/clear`
 )
@@ -28,16 +23,6 @@ const ddrCode = computed(() =>
       :description="`${areaName} / ${ddrCode}`"
     />
     <UPageBody>
-      <UPageGrid
-        :ui="{ wrapper: 'sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-2' }"
-      >
-        <UPageCard title="Groove Radar (SINGLE)">
-          <GrooveRadar :radar="radars?.[0] ?? radar" />
-        </UPageCard>
-        <UPageCard title="Groove Radar (DOUBLE)">
-          <GrooveRadar :radar="radars?.[1] ?? radar" />
-        </UPageCard>
-      </UPageGrid>
       <UserClearLampTable
         :play-style="1"
         :statuses="clears"
@@ -57,7 +42,6 @@ const ddrCode = computed(() =>
       "settings": "設定"
     },
     "title": {
-      "radar": "グルーブレーダー ({0})",
       "clear": "クリア状況 ({0})"
     },
     "empty": "ユーザーが存在しないか、非公開に設定されています。",
@@ -71,7 +55,6 @@ const ddrCode = computed(() =>
       "settings": "Settings"
     },
     "title": {
-      "radar": "Groove Radar ({0})",
       "clear": "Clear Status ({0})"
     },
     "empty": "User does not exist or is private",

@@ -102,13 +102,6 @@ const columns = [
       <UFormGroup label="Song ID" name="id">
         <UInput v-model="song.id" />
         <UButton @click="refresh()">Load</UButton>
-        <UButton
-          color="blue"
-          :to="`https://p.eagate.573.jp/game/ddr/ddra3/p/images/binary_jk.html?img=${song.id}`"
-          target="_blank"
-        >
-          See Thumbnail
-        </UButton>
       </UFormGroup>
 
       <UFormGroup label="Name" name="name">
