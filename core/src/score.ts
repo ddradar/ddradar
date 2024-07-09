@@ -1,6 +1,5 @@
 import { z } from 'zod'
 
-import type { CourseChartSchema } from './course'
 import type { GrooveRadar, Score as RawScoreSchema } from './graphql'
 import {
   type SongSchema,
@@ -253,10 +252,7 @@ export function isValidScore(
  * @param score Score data
  */
 export function createScoreSchema(
-  song: Readonly<
-    Pick<SongSchema, 'id' | 'name' | 'deleted'> &
-      (StepChartSchema | CourseChartSchema)
-  >,
+  song: Readonly<Pick<SongSchema, 'id' | 'name' | 'deleted'> & StepChartSchema>,
   user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
   score: Readonly<Score>
 ): ScoreSchema {
@@ -283,17 +279,11 @@ export function createScoreSchema(
     scoreSchema.maxCombo = song.notes + song.shockArrow
   }
 
-  if (!isAreaUser(user) && isSongInfo(song)) {
+  if (!isAreaUser(user)) {
     scoreSchema.radar = calcMyGrooveRadar(song, score)
   }
 
   return scoreSchema
-
-  function isSongInfo(
-    chart: StepChartSchema | CourseChartSchema
-  ): chart is StepChartSchema {
-    return typeof (chart as StepChartSchema).stream === 'number'
-  }
 }
 
 /**

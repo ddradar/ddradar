@@ -138,10 +138,4 @@ export const getScoresQuerySchema = z.object({
 })
 
 /** GET `api/v1/users/[id]/scores` response type */
-export type ScoreList = Omit<
-  ScoreSchema,
-  'userId' | 'userName' | 'isPublic' | 'radar'
-> & {
-  /** Course score or not */
-  isCourse: boolean
-}
+export type ScoreList = Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>

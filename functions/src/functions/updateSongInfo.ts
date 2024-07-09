@@ -5,8 +5,6 @@ import type {
 } from '@azure/functions'
 import { app } from '@azure/functions'
 import type {
-  CourseChartSchema,
-  CourseSchema,
   ScoreSchema,
   SongSchema,
   StepChartSchema,
@@ -70,7 +68,7 @@ export async function handler(
   documents: unknown[],
   ctx: InvocationContext
 ): Promise<UpdateSongResult> {
-  const songs = documents as (SongSchema | CourseSchema)[]
+  const songs = documents as SongSchema[]
   const oldTotalCounts = ctx.extraInputs.get(input) as Required<
     Omit<TotalCount, 'count' | 'userId'>
   >[]
@@ -87,9 +85,7 @@ export async function handler(
     // Update exists scores
     for (const score of resources) {
       const scoreText = `{ id: ${score.id}, userId: ${score.userId}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
-      const chart = (
-        song.charts as (StepChartSchema | CourseChartSchema)[]
-      ).find(
+      const chart = song.charts.find(
         c =>
           c.playStyle === score.playStyle && c.difficulty === score.difficulty
       )

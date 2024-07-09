@@ -30,21 +30,6 @@ const links = computed<HeaderLink[]>(() => [
       exactQuery: true,
     })),
   },
-  {
-    label: t('menu.course'),
-    children: courseSeriesIndexes.flatMap(i => [
-      {
-        label: t('menu.nonstop', { series: shortenSeriesName(seriesNames[i]) }),
-        to: { path: `/courses`, query: { type: 1, series: i } },
-        exactQuery: true,
-      },
-      {
-        label: t('menu.grade', { series: shortenSeriesName(seriesNames[i]) }),
-        to: { path: `/courses`, query: { type: 2, series: i } },
-        exactQuery: true,
-      },
-    ]),
-  },
 ])
 </script>
 
@@ -70,10 +55,7 @@ const links = computed<HeaderLink[]>(() => [
       "user": "ユーザーを探す",
       "scores": "スコア一覧",
       "level": "レベル({style})",
-      "series": "バージョン",
-      "course": "コース",
-      "nonstop": "NONSTOP({series})",
-      "grade": "段位認定({series})"
+      "series": "バージョン"
     }
   },
   "en": {
@@ -81,10 +63,7 @@ const links = computed<HeaderLink[]>(() => [
       "user": "Find User",
       "scores": "Score List",
       "level": "Level({style})",
-      "series": "Version",
-      "course": "Courses",
-      "nonstop": "NONSTOP({series})",
-      "grade": "GRADE({series})"
+      "series": "Version"
     }
   }
 }

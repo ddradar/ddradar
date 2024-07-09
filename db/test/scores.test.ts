@@ -72,7 +72,7 @@ describe('scores.ts', () => {
       })
     })
     test.each([
-      [{}, true, []],
+      [{}, []],
       [
         {
           playStyle: 1,
@@ -81,7 +81,6 @@ describe('scores.ts', () => {
           clearLamp: 4,
           rank: 'AAA',
         } as const,
-        false,
         [
           { condition: 'c.playStyle = @', value: 1 },
           { condition: 'c.difficulty = @', value: 0 },
@@ -93,7 +92,7 @@ describe('scores.ts', () => {
       ],
     ])(
       '("foo", %o, %o) calls fetchList("Scores", columns, %o, { songName: "ASC" })',
-      async (conditions, includeCourse, additionalConditions) => {
+      async (conditions, additionalConditions) => {
         // Arrange
         const resources: Omit<
           ScoreSchema,
@@ -103,7 +102,7 @@ describe('scores.ts', () => {
         vi.mocked(fetchList).mockResolvedValue(resources as any)
 
         // Act
-        const result = await fetchScoreList('foo', conditions, includeCourse)
+        const result = await fetchScoreList('foo', conditions)
 
         // Assert
         expect(result).toBe(resources)

@@ -1,4 +1,4 @@
-import type { CourseChartSchema, Series, StepChartSchema } from '@ddradar/core'
+import type { Series } from '@ddradar/core'
 import { seriesSet } from '@ddradar/core'
 
 import type { SongInfo } from '~/schemas/song'
@@ -10,9 +10,6 @@ export const seriesNames = [...seriesSet] as Series[]
 
 /** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3 */
 export const seriesIndexes = [...Array(seriesSet.size).keys()]
-
-/** seriesIndexes that has NONSTOP/GRADE course */
-export const courseSeriesIndexes = [16, 17, 18]
 
 export function getDisplayedBPM({
   minBPM,
@@ -29,7 +26,3 @@ export function shortenSeriesName(series: string) {
 
 export const getChartColor = (difficulty: number) =>
   ['blue', 'yellow', 'red', 'green', 'purple'][difficulty]
-
-export const isCourseChart = (
-  chart: CourseChartSchema | StepChartSchema
-): chart is CourseChartSchema => !!(chart as CourseChartSchema).order

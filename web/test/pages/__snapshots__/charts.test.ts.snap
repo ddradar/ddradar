@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: <Data> } renders course list 1`] = `
+exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: <Data> } renders chart list 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
 >
@@ -2715,7 +2715,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders
 </div>
 `;
 
-exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: <Data> } renders course list 1`] = `
+exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: <Data> } renders chart list 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
 >

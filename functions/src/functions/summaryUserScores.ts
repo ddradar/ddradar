@@ -45,7 +45,7 @@ export async function handler(
   const scores = documents as (ScoreSchema & ItemDefinition)[]
   const userScores = scores.reduce(
     (prev, s) => {
-      // Skip area top & course score
+      // Skip area top score
       if (!s.radar) return prev
 
       if (!prev[s.userId]) prev[s.userId] = []

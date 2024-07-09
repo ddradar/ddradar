@@ -1,506 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`/songs > { locale: "en" } > { isLoading: false, courses: [] } renders no data 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              DDR X
-              
-            </h1>
-            <!--v-if-->
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=0"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 1st
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 2ndMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 3rdMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 4thMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 5thMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDRMAX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDRMAX2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR EXTREME
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR SuperNOVA
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR SuperNOVA2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X3 VS 2ndMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution (2013)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution (2014)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A20
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A20 PLUS
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Series
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Name
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Artist
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  BPM
-                </span>
-                
-              </th>
-              
-            </tr>
-            <!--v-if-->
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            <tr>
-              <td
-                colspan="4"
-              >
-                
-                <div
-                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-                    data-v-cf6c0647=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  <p
-                    class="text-sm text-center text-gray-900 dark:text-white"
-                  >
-                    No Data
-                  </p>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--v-if-->
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
 exports[`/songs > { locale: "en" } > { isLoading: false, songs: <Data> } renders song list 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
@@ -1232,6 +731,507 @@ exports[`/songs > { locale: "en" } > { isLoading: false, songs: <Data> } renders
           
         </div>
       </div>
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/songs > { locale: "en" } > { isLoading: false, songs: [] } renders no data 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              DDR X
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=0"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 1st
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 2ndMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 3rdMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 4thMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 5thMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDRMAX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDRMAX2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR EXTREME
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR SuperNOVA
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR SuperNOVA2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X3 VS 2ndMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution (2013)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution (2014)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A20
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A20 PLUS
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Artist
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  BPM
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="4"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-cf6c0647=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    No Data
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
       
     </div>
     <!---->
@@ -2638,507 +2638,6 @@ exports[`/songs > { locale: "en" } > { isLoggedIn: true } renders score edit but
 </div>
 `;
 
-exports[`/songs > { locale: "ja" } > { isLoading: false, courses: [] } renders no data 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              DDR X
-              
-            </h1>
-            <!--v-if-->
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=0"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 1st
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 2ndMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 3rdMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 4thMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR 5thMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDRMAX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDRMAX2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR EXTREME
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR SuperNOVA
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR SuperNOVA2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DDR X3 VS 2ndMIX
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution (2013)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution (2014)
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A20
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A20 PLUS
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/songs?series=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              DanceDanceRevolution A3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  シリーズ
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  曲名
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  アーティスト
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  BPM
-                </span>
-                
-              </th>
-              
-            </tr>
-            <!--v-if-->
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            <tr>
-              <td
-                colspan="4"
-              >
-                
-                <div
-                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
-                >
-                  <svg
-                    aria-hidden="true"
-                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-                    data-v-cf6c0647=""
-                    height="1em"
-                    role="img"
-                    viewBox="0 0 20 20"
-                    width="1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
-                  >
-                    <path
-                      clip-rule="evenodd"
-                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
-                      fill="currentColor"
-                      fill-rule="evenodd"
-                    />
-                  </svg>
-                  <p
-                    class="text-sm text-center text-gray-900 dark:text-white"
-                  >
-                    データがありません
-                  </p>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--v-if-->
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
 exports[`/songs > { locale: "ja" } > { isLoading: false, songs: <Data> } renders song list 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
@@ -3869,6 +3368,507 @@ exports[`/songs > { locale: "ja" } > { isLoading: false, songs: <Data> } renders
           
         </div>
       </div>
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/songs > { locale: "ja" } > { isLoading: false, songs: [] } renders no data 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              DDR X
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=0"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 1st
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 2ndMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 3rdMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 4thMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR 5thMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDRMAX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDRMAX2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR EXTREME
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR SuperNOVA
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR SuperNOVA2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DDR X3 VS 2ndMIX
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution (2013)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution (2014)
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A20
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A20 PLUS
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/songs?series=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              DanceDanceRevolution A3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  曲名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  アーティスト
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  BPM
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="4"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-cf6c0647=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    データがありません
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
       
     </div>
     <!---->

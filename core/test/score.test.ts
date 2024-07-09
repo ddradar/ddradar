@@ -13,7 +13,7 @@ import {
   setValidScoreFromChart,
 } from '../src/score'
 import type { StepChartSchema } from '../src/song'
-import { publicUser, testCourseData, testSongData } from './data'
+import { publicUser, testSongData } from './data'
 
 describe('score.ts', () => {
   describe('isScore', () => {
@@ -144,7 +144,6 @@ describe('score.ts', () => {
 
   describe('createScoreSchema', () => {
     const songInfo = { ...testSongData, ...testSongData.charts[0] }
-    const courseInfo = { ...testCourseData, ...testCourseData.charts[0] }
     const radar = {
       stream: testSongData.charts[0].stream,
       voltage: testSongData.charts[0].voltage,
@@ -196,50 +195,6 @@ describe('score.ts', () => {
       ],
     ])('(songInfo, user: %o, scores: %o) returns %o', (user, score, expected) =>
       expect(createScoreSchema(songInfo, user, score)).toStrictEqual(expected)
-    )
-    test.each([
-      [
-        publicUser,
-        scores[1],
-        {
-          ...scores[1],
-          songId: courseInfo.id,
-          songName: courseInfo.name,
-          playStyle: courseInfo.playStyle,
-          difficulty: courseInfo.difficulty,
-          level: courseInfo.level,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          isPublic: publicUser.isPublic,
-        },
-      ],
-      [
-        areaUser,
-        scores[0],
-        {
-          ...scores[0],
-          exScore:
-            (courseInfo.notes +
-              courseInfo.freezeArrow +
-              courseInfo.shockArrow) *
-            3,
-          maxCombo: courseInfo.notes + courseInfo.shockArrow,
-          songId: courseInfo.id,
-          songName: courseInfo.name,
-          playStyle: courseInfo.playStyle,
-          difficulty: courseInfo.difficulty,
-          level: courseInfo.level,
-          userId: areaUser.id,
-          userName: areaUser.name,
-          isPublic: areaUser.isPublic,
-        },
-      ],
-    ])(
-      '(courseInfo, user: %o, scores: %o) returns %o',
-      (user, score, expected) =>
-        expect(createScoreSchema(courseInfo, user, score)).toStrictEqual(
-          expected
-        )
     )
     test.each([
       [

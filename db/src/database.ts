@@ -7,7 +7,6 @@ import type {
 } from '@azure/cosmos'
 import { CosmosClient } from '@azure/cosmos'
 import type {
-  CourseSchema,
   NotificationSchema,
   ScoreSchema,
   SongSchema,
@@ -35,7 +34,7 @@ type ContainerName =
 type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
   : T extends 'Songs'
-    ? SongSchema | CourseSchema
+    ? SongSchema
     : T extends 'Users'
       ? UserSchema
       : T extends 'Notification'

@@ -18,8 +18,8 @@ import { fetchGroupedList, fetchList, fetchOne } from './database'
 const isNotObsolete = {
   condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' as const,
 }
-/** Score is not Area user score and not Course score. */
-const isUserSongScore = { condition: 'IS_DEFINED(c.radar)' as const }
+/** Score is not Area user score. */
+const isUserScore = { condition: 'IS_DEFINED(c.radar)' as const }
 
 /**
  * Returns one score data that matches conditions.
@@ -65,7 +65,6 @@ export function fetchScore(
  * Returns one score data list that matches conditions.
  * @param userId User id
  * @param conditions WHERE conditions
- * @param includeCourse Includes course score or not
  */
 export function fetchScoreList(
   userId: string,
@@ -74,8 +73,7 @@ export function fetchScoreList(
       ScoreSchema,
       'playStyle' | 'difficulty' | 'level' | 'clearLamp' | 'rank'
     >
-  > = {},
-  includeCourse = false
+  > = {}
 ): Promise<Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>[]> {
   const condition: Condition<'Scores'>[] = [
     { condition: 'c.userId = @', value: userId },
@@ -87,7 +85,6 @@ export function fetchScoreList(
         value: v,
       })),
   ]
-  if (!includeCourse) condition.push(isUserSongScore)
 
   return fetchList(
     'Scores',
@@ -123,7 +120,7 @@ export function fetchSummaryClearLampCount(): Promise<UserClearLampSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"clear" AS type', 'clearLamp', 'COUNT(1) AS count'],
-    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [isUserScore, isNotObsolete, isNotDeletedSong],
     [...summaryColumns, 'clearLamp']
   )
 }
@@ -136,7 +133,7 @@ export function fetchSummaryRankCount(): Promise<UserRankSchema[]> {
   return fetchGroupedList(
     'Scores',
     [...summaryColumns, '"score" AS type', 'rank', 'COUNT(1) AS count'],
-    [isUserSongScore, isNotObsolete, isNotDeletedSong],
+    [isUserScore, isNotObsolete, isNotDeletedSong],
     [...summaryColumns, 'rank']
   )
 }
@@ -165,7 +162,7 @@ export async function generateGrooveRadar(
     [
       { condition: 'c.userId = @', value: userId },
       { condition: 'c.playStyle = @', value: playStyle },
-      isUserSongScore,
+      isUserScore,
       isNotObsolete,
     ],
     ['userId', 'playStyle']
