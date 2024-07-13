@@ -1,10 +1,10 @@
-import { mockNuxtImport } from '@nuxt/test-utils/runtime'
-import { mount } from '@vue/test-utils'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
+import { RouterLinkStub } from '@vue/test-utils'
 import { describe, expect, test, vi } from 'vitest'
 import { createI18n } from 'vue-i18n'
 
 import LoginButton from '~/components/app/LoginButton.vue'
-import { locales } from '~/test/utils'
+import { global, locales } from '~/test/utils'
 
 const { navigateToMock } = vi.hoisted(() => ({ navigateToMock: vi.fn() }))
 mockNuxtImport('navigateTo', () => navigateToMock)
@@ -12,12 +12,13 @@ mockNuxtImport('navigateTo', () => navigateToMock)
 describe('components/app/LoginButton.vue', () => {
   test.each(locales)('{ locale: "%s" } snapshot test', async locale => {
     // Arrange
-    const global = { plugins: [createI18n({ locale, legacy: false })] }
-    const wrapper = mount(LoginButton, { global })
+    const stubs = { RouterLink: RouterLinkStub }
+    const global = { stubs, plugins: [createI18n({ locale, legacy: false })] }
+    const wrapper = await mountSuspended(LoginButton, { global })
     // Act
     await wrapper.find('button').trigger('click') // Expand dropdown
     // Assert
-    expect(wrapper.element).toMatchSnapshot()
+    expect(wrapper.find('div').element).toMatchSnapshot()
   })
 
   test.each([
@@ -29,11 +30,10 @@ describe('components/app/LoginButton.vue', () => {
     async (i, provider) => {
       // Arrange
       vi.mocked(navigateTo).mockClear()
-      const global = { plugins: [createI18n({ locale: 'ja', legacy: false })] }
-      const wrapper = mount(LoginButton, { global })
+      const wrapper = await mountSuspended(LoginButton, { global })
       // Act
       await wrapper.find('button').trigger('click') // Expand dropdown
-      await wrapper.findAll("button[role='menuitem']")[i].trigger('click') // Click menu item
+      await wrapper.findAll("button[role='menuitem']")[i]?.trigger('click') // Click menu item
       // Assert
       expect(vi.mocked(navigateTo)).toBeCalledWith(`/.auth/login/${provider}`, {
         external: true,
