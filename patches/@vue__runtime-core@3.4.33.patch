@@ -1,8 +1,8 @@
 diff --git a/dist/runtime-core.cjs.js b/dist/runtime-core.cjs.js
-index 71a044f550e1cd2fb65bc87a64eb39d155f02827..074482f4f3153ba412e78c0e79be2efb7a44cb38 100644
+index 917aaba306752bd225d4c45f80e79c594d3b5b80..bd0e9e0bfc2b13a3694a1745d50fcefee546eeca 100644
 --- a/dist/runtime-core.cjs.js
 +++ b/dist/runtime-core.cjs.js
-@@ -1444,7 +1444,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
+@@ -6750,7 +6750,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
      }
    }
  }
