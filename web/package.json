@@ -8,11 +8,11 @@
     "node": ">=16"
   },
   "scripts": {
-    "prepare": "nuxt prepare",
-    "build": "nuxt build && node -e \"fs.renameSync('./staticwebapp.config.json', './.output/public/staticwebapp.config.json')\"",
-    "dev": "nuxt dev",
-    "preview": "nuxt preview",
-    "pretest": "nuxt prepare",
+    "prepare": "nuxi prepare",
+    "build": "nuxi build && node -e \"fs.renameSync('./staticwebapp.config.json', './.output/public/staticwebapp.config.json')\"",
+    "dev": "nuxi dev",
+    "preview": "nuxi preview",
+    "pretest": "nuxi prepare",
     "test": "vitest run"
   },
   "dependencies": {
