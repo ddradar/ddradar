@@ -1,7 +1,7 @@
 import { fetchJoinedList } from '@ddradar/db'
 
-import type { ChartInfo } from '~/schemas/song'
-import { getChartsRouterParamsSchema as schema } from '~/schemas/song'
+import type { ChartInfo } from '~~/schemas/song'
+import { getChartsRouterParamsSchema as schema } from '~~/schemas/song'
 
 /**
  * Get charts that match the specified conditions.

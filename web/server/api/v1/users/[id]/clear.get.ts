@@ -1,9 +1,9 @@
 import { playStyleMap } from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
 
-import type { ClearStatus } from '~/schemas/user'
-import { getClearQuerySchema as schema } from '~/schemas/user'
-import { tryFetchUser } from '~/server/utils/auth'
+import type { ClearStatus } from '~~/schemas/user'
+import { getClearQuerySchema as schema } from '~~/schemas/user'
+import { tryFetchUser } from '~~/server/utils/auth'
 
 /**
  * Get Clear status that match the specified `userId`, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.

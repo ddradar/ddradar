@@ -1,0 +1,332 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/admin/notification > snapshot test 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Update Notification
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="nRuNKZl1oR0_1"
+              >
+                
+                Title
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="nRuNKZl1oR0_1"
+                name="title"
+                type="text"
+                value="新曲を追加しました"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="nRuNKZl1oR0_2"
+              >
+                
+                Body
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <textarea
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-textarea rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 resize-none"
+                id="nRuNKZl1oR0_2"
+                name="body"
+                rows="3"
+                value="下記の譜面情報を追加しました。
+
+- [新曲](/song/foo)"
+              />
+              
+              
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <!--v-if-->
+            <!--v-if-->
+          </div>
+          <div
+            class=""
+          >
+            
+            <div
+              class="relative flex items-start"
+            >
+              <div
+                class="flex items-center h-5"
+              >
+                <input
+                  class="h-4 w-4 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-current dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent form-checkbox rounded bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 text-primary-500 dark:text-primary-400"
+                  id="nRuNKZl1oR0_3"
+                  name="pinned"
+                  type="checkbox"
+                />
+              </div>
+              <div
+                class="ms-3 flex flex-col"
+              >
+                <label
+                  class="text-sm font-medium text-gray-700 dark:text-gray-200"
+                  for="nRuNKZl1oR0_3"
+                >
+                  
+                  ピン留めする
+                  
+                  <!--v-if-->
+                </label>
+                <!--v-if-->
+              </div>
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="nRuNKZl1oR0_4"
+              >
+                
+                Type
+                
+              </label>
+              <!--v-if-->
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                id="nRuNKZl1oR0_4"
+                name="type"
+                type="text"
+                value="blue"
+              />
+              
+              
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <div
+          class=""
+        >
+          <div
+            class=""
+          >
+            <div
+              class="flex content-center items-center justify-between text-sm"
+            >
+              <label
+                class="block font-medium text-gray-700 dark:text-gray-200"
+                for="nRuNKZl1oR0_5"
+              >
+                
+                Icon
+                
+              </label>
+              <span
+                class="text-gray-500 dark:text-gray-400"
+              >
+                
+                
+                <a
+                  href="https://icon-sets.iconify.design/heroicons/"
+                  rel="noopener noreferrer"
+                >
+                  
+                   参考ページ 
+                  
+                </a>
+                
+                
+              </span>
+            </div>
+            <!--v-if-->
+          </div>
+          <div
+            class="mt-1 relative"
+          >
+            
+            <div
+              class="relative"
+            >
+              <input
+                class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 ps-9"
+                id="nRuNKZl1oR0_5"
+                name="icon"
+                type="text"
+                value="i-heroicons-musical-note"
+              />
+              
+              
+              <span
+                class="absolute inset-y-0 start-0 flex items-center pointer-events-none px-2.5"
+              >
+                
+                <svg
+                  aria-hidden="true"
+                  class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                  data-v-60b76eb3=""
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                >
+                  <path
+                    d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
+                
+              </span>
+              <!--v-if-->
+            </div>
+            
+            <!--v-if-->
+          </div>
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <!--v-if-->
+          
+          
+          Save
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

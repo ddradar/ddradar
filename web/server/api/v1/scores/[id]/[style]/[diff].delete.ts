@@ -1,7 +1,7 @@
 import { fetchList, getContainer } from '@ddradar/db'
 
-import { routerParamsSchema as schema } from '~/schemas/score'
-import { getLoginUserInfo } from '~/server/utils/auth'
+import { routerParamsSchema as schema } from '~~/schemas/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
 
 /**
  * Delete scores that match the specified chart.

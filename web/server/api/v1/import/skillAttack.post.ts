@@ -4,8 +4,8 @@ import { getDanceLevel } from '@ddradar/core'
 import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import iconv from 'iconv-lite'
 
-import { getLoginUserInfo } from '~/server/utils/auth'
-import { topUser, upsertScore } from '~/server/utils/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { topUser, upsertScore } from '~~/server/utils/score'
 
 type SkillAttackScore = Pick<
   ScoreSchema,

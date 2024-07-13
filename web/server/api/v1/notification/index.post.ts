@@ -1,6 +1,6 @@
 import { getContainer } from '@ddradar/db'
 
-import { postBodySchema as schema } from '~/schemas/notification'
+import { postBodySchema as schema } from '~~/schemas/notification'
 
 /**
  * Add or update Notification.

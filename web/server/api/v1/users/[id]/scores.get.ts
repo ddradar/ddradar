@@ -1,7 +1,7 @@
 import { fetchScoreList } from '@ddradar/db'
 
-import { getScoresQuerySchema as schema } from '~/schemas/user'
-import { tryFetchUser } from '~/server/utils/auth'
+import { getScoresQuerySchema as schema } from '~~/schemas/user'
+import { tryFetchUser } from '~~/server/utils/auth'
 
 /**
  * Get user scores that match the specified conditions.

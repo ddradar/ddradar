@@ -1,7 +1,7 @@
 import { type Condition, fetchList } from '@ddradar/db'
 
-import type { UserInfo } from '~/schemas/user'
-import { getListQuerySchema as schema } from '~/schemas/user'
+import type { UserInfo } from '~~/schemas/user'
+import { getListQuerySchema as schema } from '~~/schemas/user'
 
 /**
  * Get user list that match the specified conditions.

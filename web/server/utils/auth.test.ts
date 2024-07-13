@@ -1,9 +1,9 @@
+import { privateUser, publicUser } from '@ddradar/core/test/data'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { privateUser, publicUser } from '~/../core/test/data'
-import { getLoginUserInfo, tryFetchUser } from '~/server/utils/auth'
-import { createClientPrincipal, createEvent } from '~/test/test-utils-server'
+import { createClientPrincipal, createEvent } from '~~/server/test/utils'
+import { getLoginUserInfo, tryFetchUser } from '~~/server/utils/auth'
 
 vi.mock('@ddradar/db')
 

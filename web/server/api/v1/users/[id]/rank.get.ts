@@ -2,9 +2,9 @@ import { danceLevelSet } from '@ddradar/core'
 import type { Condition } from '@ddradar/db'
 import { fetchList } from '@ddradar/db'
 
-import type { RankStatus } from '~/schemas/user'
-import { getRankQuerySchema as schema } from '~/schemas/user'
-import { tryFetchUser } from '~/server/utils/auth'
+import type { RankStatus } from '~~/schemas/user'
+import { getRankQuerySchema as schema } from '~~/schemas/user'
+import { tryFetchUser } from '~~/server/utils/auth'
 
 const danceLevels: string[] = [...danceLevelSet]
 

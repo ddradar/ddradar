@@ -4,7 +4,7 @@ import type { Score, ScoreSchema } from '@ddradar/core'
 import { privateUser, testSongData } from '@ddradar/core/test/data'
 import { describe, expect, test } from 'vitest'
 
-import { topUser, upsertScore } from '~/server/utils/score'
+import { topUser, upsertScore } from '~~/server/utils/score'
 
 describe('server/utils/score.ts', () => {
   describe('upsertScore', () => {

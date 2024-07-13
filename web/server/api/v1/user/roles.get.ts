@@ -1,6 +1,6 @@
 import { fetchOne } from '@ddradar/db'
 
-import { getRolesBodySchema as schema } from '~/schemas/user'
+import { getRolesBodySchema as schema } from '~~/schemas/user'
 
 /**
  * Get user roles. (called from Azure Static Web Apps)

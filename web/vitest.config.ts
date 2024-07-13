@@ -13,7 +13,7 @@ export default defineVitestConfig({
   },
   test: {
     environment: 'nuxt',
-    setupFiles: './test/setup.ts',
+    setupFiles: './test-setup.ts',
     coverage: {
       enabled: true,
       all: true,
