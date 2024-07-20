@@ -1,5 +1,7 @@
-import { getListQuerySchema as schema, type SongListData } from '~/schemas/song'
-import { seriesNames } from '~/utils/song'
+import { queryContainer } from '@ddradar/db'
+
+import { getListQuerySchema as schema } from '~~/schemas/song'
+import { seriesNames } from '~~/utils/song'
 
 /**
  * Get a list of song information that matches the specified conditions.
@@ -29,42 +31,28 @@ import { seriesNames } from '~/utils/song'
 export default defineEventHandler(async event => {
   const { name, series } = await getValidatedQuery(event, schema.parse)
 
-  const query = /* GraphQL */ `
-    query(
-      ${typeof name === 'number' ? '$name: Int!' : ''}
-      ${typeof series === 'number' ? '$series: String!' : ''}
-      $cursor: String
-    ) {
-      songs(
-        filter: {
-          and: [
-            { nameIndex: { gte: 0 } }
-            ${typeof name === 'number' ? '{ nameIndex: { eq: $name } }' : ''}
-            ${typeof series === 'number' ? '{ series: { eq: $series } }' : ''}
-          ]
-        }
-        after: $cursor
-        orderBy: { nameIndex: ASC, nameKana: ASC }
-      ) {
-        items {
-          id
-          name
-          nameKana
-          nameIndex
-          artist
-          series
-          minBPM
-          maxBPM
-          deleted
-        }
-        hasNextPage
-        endCursor
-      }
-    }
-    `
-
-  return await $graphqlList<SongListData>(event, query, 'songs', {
-    ...(typeof name === 'number' ? { name } : {}),
-    ...(typeof series === 'number' ? { series: seriesNames[series] } : {}),
-  })
+  const { resources } = await queryContainer(
+    getCosmosClient(event),
+    'Songs',
+    [
+      'id',
+      'name',
+      'nameKana',
+      'nameIndex',
+      'artist',
+      'series',
+      'minBPM',
+      'maxBPM',
+      'deleted',
+    ],
+    [
+      ...(typeof name === 'number'
+        ? ([{ condition: 'c.nameIndex = @', value: name }] as const)
+        : []),
+      ...(typeof series === 'number'
+        ? ([{ condition: 'c.series = @', value: seriesNames[series] }] as const)
+        : []),
+    ]
+  ).fetchAll()
+  return resources
 })

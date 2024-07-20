@@ -1,12 +1,15 @@
 // @vitest-environment node
+import { queryContainer } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import { notifications } from '~/../core/test/data'
-import handler from '~/server/api/v1/notification/index.get'
-import { createEvent } from '~/test/test-utils-server'
+import { notifications } from '~~/../core/test/data'
+import handler from '~~/server/api/v1/notification/index.get'
+import { createEvent } from '~~/test/test-utils-server'
+
+vi.mock('@ddradar/db')
 
 describe('GET /api/v1/notification', () => {
-  const result = notifications.map(n => ({
+  const resources = notifications.map(n => ({
     id: n.id,
     type: n.type,
     icon: n.icon,
@@ -15,31 +18,36 @@ describe('GET /api/v1/notification', () => {
     timeStamp: n.timeStamp,
   }))
   beforeEach(() => {
-    vi.mocked($graphqlList).mockClear()
+    vi.mocked(queryContainer).mockClear()
   })
 
   test.each([
-    ['', {}],
-    ['foo', {}],
-    ['top', { pinned: true }],
-    ['TOP', {}],
+    ['', [{ condition: 'c.sender = "SYSTEM"' }]],
+    ['foo', [{ condition: 'c.sender = "SYSTEM"' }]],
+    [
+      'top',
+      [{ condition: 'c.sender = "SYSTEM"' }, { condition: 'c.pinned = true' }],
+    ],
+    ['TOP', [{ condition: 'c.sender = "SYSTEM"' }]],
   ])(
-    '?scope=%s calls $graphqlList(event, query, "notifications", %o)',
-    async (scope, variables) => {
+    '?scope=%s calls queryContainer(client, "Notification", query, %o)',
+    async (scope, conditions) => {
       // Arrange
-      vi.mocked($graphqlList).mockResolvedValue(result)
+      vi.mocked(queryContainer).mockReturnValue({
+        fetchAll: vi.fn().mockResolvedValue({ resources }),
+      } as unknown as ReturnType<typeof queryContainer>)
       const event = createEvent(undefined, { scope })
 
       // Act
       const notificationList = await handler(event)
 
       // Assert
-      expect(notificationList).toBe(result)
-      expect(vi.mocked($graphqlList)).toBeCalledWith(
-        event,
-        expect.any(String),
-        'notifications',
-        variables
+      expect(notificationList).toBe(resources)
+      expect(vi.mocked(queryContainer)).toBeCalledWith(
+        undefined,
+        'Notification',
+        expect.any(Array),
+        conditions
       )
     }
   )

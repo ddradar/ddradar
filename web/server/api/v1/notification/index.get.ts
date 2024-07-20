@@ -1,5 +1,6 @@
-import type { NotificationListData } from '~/schemas/notification'
-import { getListQuerySchema as schema } from '~/schemas/notification'
+import { queryContainer } from '@ddradar/db'
+
+import { getListQuerySchema as schema } from '~~/schemas/notification'
 
 /**
  * Get system notification list.
@@ -25,39 +26,14 @@ import { getListQuerySchema as schema } from '~/schemas/notification'
 export default defineEventHandler(async event => {
   const { scope } = await getValidatedQuery(event, schema.parse)
 
-  const query = /* GraphQL */ `
-  query(
-    ${scope === 'top' ? '$pinned: Boolean!' : ''}
-    $cursor: String
-  ) {
-    notifications(
-      filter: {
-        and: [
-          { sender: { eq: "SYSTEM" } }
-          ${scope === 'top' ? '{ pinned: { eq: $pinned } }' : ''}
-        ]
-      }
-      after: $cursor
-      orderBy: { pinned: DESC, timeStamp: DESC }
-    ) {
-      items {
-        id
-        type
-        icon
-        title
-        body
-        timeStamp
-      }
-      hasNextPage
-      endCursor
-    }
-  }
-  `
-
-  return await $graphqlList<NotificationListData>(
-    event,
-    query,
-    'notifications',
-    { ...(scope === 'top' ? { pinned: true } : {}) }
-  )
+  const { resources } = await queryContainer(
+    getCosmosClient(event),
+    'Notification',
+    ['id', 'type', 'icon', 'title', 'body', 'timeStamp'],
+    [
+      { condition: 'c.sender = "SYSTEM"' },
+      ...(scope === 'top' ? ([{ condition: 'c.pinned = true' }] as const) : []),
+    ]
+  ).fetchAll()
+  return resources
 })

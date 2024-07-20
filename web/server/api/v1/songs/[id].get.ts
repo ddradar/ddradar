@@ -1,4 +1,6 @@
-import { getRouterParamsSchema as schema, type SongInfo } from '~/schemas/song'
+import { queryContainer } from '@ddradar/db'
+
+import { getRouterParamsSchema as schema } from '~~/schemas/song'
 
 /**
  * Get song and charts information that match the specified ID.
@@ -40,42 +42,30 @@ import { getRouterParamsSchema as schema, type SongInfo } from '~/schemas/song'
  * ```
  */
 export default defineEventHandler(async event => {
-  const variables = await getValidatedRouterParams(event, schema.parse)
+  const { id } = await getValidatedRouterParams(event, schema.parse)
 
-  const query = /* GraphQL */ `
-    query ($id: ID!) {
-      song_by_pk(id: $id) {
-        id
-        name
-        nameKana
-        nameIndex
-        artist
-        series
-        minBPM
-        maxBPM
-        deleted
-        charts {
-          playStyle
-          difficulty
-          level
-          notes
-          freezeArrow
-          shockArrow
-          stream
-          voltage
-          air
-          freeze
-          chaos
-        }
-      }
-    }
-  `
-  const { song_by_pk: song } = await $graphql<{ song_by_pk: SongInfo | null }>(
-    event,
-    query,
-    variables
-  )
-  if (!song || song.nameIndex < 0) throw createError({ statusCode: 404 })
+  const [song] = (
+    await queryContainer(
+      getCosmosClient(event),
+      'Songs',
+      [
+        'id',
+        'name',
+        'nameKana',
+        'nameIndex',
+        'artist',
+        'series',
+        'minBPM',
+        'maxBPM',
+        'deleted',
+        'charts',
+      ],
+      [{ condition: 'c.id = @', value: id }, { condition: 'c.nameIndex >= 0' }],
+      {},
+      { maxItemCount: 1 }
+    ).fetchNext()
+  ).resources
+  if (!song) throw createError({ statusCode: 404 })
 
   return song
 })

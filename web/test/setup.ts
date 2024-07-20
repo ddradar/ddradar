@@ -14,8 +14,9 @@ vi.stubGlobal('getValidatedQuery', getValidatedQuery)
 vi.stubGlobal('getValidatedRouterParams', getValidatedRouterParams)
 vi.stubGlobal('readValidatedBody', readValidatedBody)
 
-vi.stubGlobal('getClientPrincipal', vi.fn())
+// Nuxt SWA (server)
 vi.stubGlobal('hasRole', vi.fn())
+vi.stubGlobal('getClientPrincipal', vi.fn())
 
-vi.stubGlobal('$graphql', vi.fn())
-vi.stubGlobal('$graphqlList', vi.fn())
+// Server Utils (/server/utils)
+vi.stubGlobal('getCosmosClient', vi.fn())

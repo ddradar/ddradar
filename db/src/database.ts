@@ -1,7 +1,9 @@
 import type {
   Container,
+  FeedOptions,
   ItemDefinition,
   JSONValue,
+  QueryIterator,
   Resource,
   SqlParameter,
 } from '@azure/cosmos'
@@ -16,6 +18,7 @@ import type {
 } from '@ddradar/core'
 
 const connectionString = process.env.COSMOS_DB_CONN
+const databaseName = 'DDRadar'
 
 /** Returns Cosmos DB connection string is defined or not. */
 export function canConnectDB(): boolean {
@@ -162,6 +165,70 @@ export async function fetchList<
     .items.query<Pick<DbItem<T>, U>>({ query, parameters })
     .fetchAll()
   return resources
+}
+
+/**
+ * Returns items that matches conditions from container.
+ * @param containerName Container name
+ * @param columns Columns (`'*'` means all columns)
+ * @param conditions SQL WHERE conditions
+ * @param orderBy Sort order
+ */
+export function queryContainer<
+  T extends ContainerName,
+  U extends KeysOfUnion<DbItem<T>>,
+>(
+  client: CosmosClient,
+  containerName: T,
+  columns: readonly U[],
+  conditions: readonly Condition<T>[],
+  orderBy?: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>,
+  options?: FeedOptions
+): QueryIterator<Pick<DbItem<T>, U>>
+
+/**
+ * Returns items that matches conditions from container.
+ * @param containerName Container name
+ * @param columns Columns (`'*'` means all columns)
+ * @param conditions SQL WHERE conditions
+ * @param orderBy Sort order
+ */
+export function queryContainer<T extends ContainerName>(
+  client: CosmosClient,
+  containerName: T,
+  columns: '*',
+  conditions: readonly Condition<T>[],
+  orderBy?: Partial<Record<KeysOfUnion<DbItem<T>>, 'ASC' | 'DESC'>>,
+  options?: FeedOptions
+): QueryIterator<DbItem<T>>
+
+export function queryContainer<
+  T extends ContainerName,
+  U extends KeysOfUnion<DbItem<T>>,
+>(
+  client: CosmosClient,
+  containerName: T,
+  columns: readonly U[] | '*',
+  conditions: readonly Condition<T>[],
+  orderBy: Partial<Record<U, 'ASC' | 'DESC'>> = {},
+  options?: FeedOptions
+): QueryIterator<Pick<DbItem<T>, U>> {
+  // Create SQL statement
+  const column =
+    columns === '*' ? '*' : columns.map(s => `c.${s.toString()}`).join(', ')
+  const { condition, parameters } = createConditions(conditions)
+  const order = Object.entries(orderBy)
+    .map(([c, a]) => `c.${c} ${a}`)
+    .join(', ')
+  const query = `SELECT ${column} FROM c${conditions.length ? ` WHERE ${condition}` : ''}${
+    order ? ` ORDER BY ${order}` : ''
+  }`
+
+  const container = client.database(databaseName).container(containerName)
+  return container.items.query<Pick<DbItem<T>, U>>(
+    { query, parameters },
+    options
+  )
 }
 
 /**
