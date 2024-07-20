@@ -17,7 +17,7 @@ const { data: notification, execute } = useFetch(
     default: () => ({
       sender: 'SYSTEM',
       pinned: false,
-      type: 'info',
+      color: 'blue',
       icon: '',
       title: '',
       body: '',
@@ -71,7 +71,7 @@ const save = async () => {
         </UFormGroup>
 
         <UFormGroup label="Type" name="type">
-          <UInput v-model="notification.type" />
+          <UInput v-model="notification.color" />
         </UFormGroup>
 
         <UFormGroup label="Icon" name="icon">

@@ -14,8 +14,8 @@ import { getListQuerySchema as schema } from '~~/schemas/notification'
  * [
  *   {
  *     "id": "<Auto Generated>",
- *     "type": "is-info",
- *     "icon": "info",
+ *     "color": "yellow",
+ *     "icon": "i-heroicons-exclamation-triangle",
  *     "title": "このサイトはベータ版です",
  *     "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
  *     "timeStamp": 1597028400
@@ -29,7 +29,7 @@ export default defineEventHandler(async event => {
   const { resources } = await queryContainer(
     getCosmosClient(event),
     'Notification',
-    ['id', 'type', 'icon', 'title', 'body', 'timeStamp'],
+    ['id', 'color', 'icon', 'title', 'body', 'timeStamp'],
     [
       { condition: 'c.sender = "SYSTEM"' },
       ...(scope === 'top' ? ([{ condition: 'c.pinned = true' }] as const) : []),

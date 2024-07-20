@@ -9,7 +9,7 @@ export const notificationSchema = z.object({
   /** Display on the Top page or not */
   pinned: z.boolean(),
   /** Card color */
-  type: z.union([
+  color: z.union([
     z.literal('blue'),
     z.literal('green'),
     z.literal('yellow'),
@@ -32,8 +32,8 @@ export const notificationSchema = z.object({
  *   "id": "<Auto Generated>",
  *   "sender": "SYSTEM",
  *   "pinned": true,
- *   "type": "is-info",
- *   "icon": "info",
+ *   "color": "yellow",
+ *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
  *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
  *   "timeStamp": 1597028400

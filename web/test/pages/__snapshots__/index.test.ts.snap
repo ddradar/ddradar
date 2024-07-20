@@ -50,21 +50,32 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
       
       
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-info-500 dark:bg-info-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            info
-            
-          </span>
+            <path
+              d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->
@@ -157,21 +168,32 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
         </div>
       </div>
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-warning-500 dark:bg-warning-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            warning
-            
-          </span>
+            <path
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->
@@ -249,21 +271,32 @@ exports[`/ > { locale: "en" } snapshot test 1`] = `
         </div>
       </div>
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-info-500 dark:bg-info-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            info
-            
-          </span>
+            <path
+              d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->
@@ -2234,21 +2267,32 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
       
       
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-info-500 dark:bg-info-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            info
-            
-          </span>
+            <path
+              d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->
@@ -2341,21 +2385,32 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
         </div>
       </div>
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-warning-500 dark:bg-warning-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            warning
-            
-          </span>
+            <path
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->
@@ -2433,21 +2488,32 @@ exports[`/ > { locale: "ja" } snapshot test 1`] = `
         </div>
       </div>
       <div
-        class="w-full relative overflow-hidden my-2 rounded-lg p-4 bg-info-500 dark:bg-info-400 text-white dark:text-gray-900"
+        class="w-full relative overflow-hidden my-2 rounded-lg p-4 text-gray-900 dark:text-white bg-white dark:bg-gray-900 ring-1 ring-gray-200 dark:ring-gray-800"
       >
         <div
           class="flex gap-3 items-start"
         >
           
-          <span
+          <svg
+            aria-hidden="true"
             class="icon flex-shrink-0 w-5 h-5"
             data-v-cf6c0647=""
-            style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+            height="1em"
+            role="img"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
           >
-            
-            info
-            
-          </span>
+            <path
+              d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="1.5"
+            />
+          </svg>
           
           
           <!--v-if-->

@@ -15,15 +15,13 @@ mockNuxtImport('useRoute', () => useRouteMock)
 describe('/admin/songs', () => {
   test('snapshot test', async () => {
     // Arrange
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({
       params: { id: testSongData.id },
-    } as any)
+    } as unknown as ReturnType<typeof useRoute>)
     vi.mocked(useFetch).mockReturnValue({
       data: ref(testSongData),
-      refresh: vi.fn(),
-    } as any)
-    /* eslint-enable @typescript-eslint/no-explicit-any */
+      execute: vi.fn(),
+    } as unknown as ReturnType<typeof useFetch>)
 
     // Act
     const wrapper = await mountSuspended(Page, { global })

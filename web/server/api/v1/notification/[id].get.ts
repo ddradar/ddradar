@@ -17,8 +17,8 @@ import { getRouterParamsSchema as schema } from '~~/schemas/notification'
  *   "id": "<Auto Generated>",
  *   "sender": "SYSTEM",
  *   "pinned": true,
- *   "type": "is-info",
- *   "icon": "info",
+ *   "color": "yellow",
+ *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
  *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
  *   "timeStamp": 1597024800
@@ -32,7 +32,7 @@ export default defineEventHandler(async event => {
     await queryContainer(
       getCosmosClient(event),
       'Notification',
-      ['id', 'sender', 'pinned', 'type', 'icon', 'title', 'body', 'timeStamp'],
+      ['id', 'sender', 'pinned', 'color', 'icon', 'title', 'body', 'timeStamp'],
       [{ condition: 'c.id = @', value: id }],
       {},
       { maxItemCount: 1 }
