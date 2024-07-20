@@ -7,8 +7,8 @@ describe('notification.ts', () => {
     const validBody = {
       sender: 'SYSTEM',
       pinned: true,
-      type: 'is-info',
-      icon: 'info',
+      type: 'yellow',
+      icon: 'i-heroicons-exclamation-triangle',
       title: 'このサイトはベータ版です',
       body: 'このWebサイトはベータ版環境です。',
       timeStamp: 1597114800,
@@ -24,6 +24,7 @@ describe('notification.ts', () => {
       { ...validBody, sender: 'USER' },
       { ...validBody, pinned: 'false' },
       { ...validBody, icon: false },
+      { ...validBody, icon: 'foo' },
       { ...validBody, title: 1 },
       { ...validBody, body: [] },
       { ...validBody, timeStamp: [] },
@@ -33,7 +34,7 @@ describe('notification.ts', () => {
     test.each([
       validBody,
       { ...validBody, id: 'foo' },
-      { ...validBody, type: 'is-dark' },
+      { ...validBody, type: 'blue' },
     ])('(%o) returns { success: true }', o =>
       expect(notificationSchema.safeParse(o).success).toBe(true)
     )
