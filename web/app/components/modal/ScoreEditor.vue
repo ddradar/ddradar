@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { Score, ScoreSchema } from '@ddradar/core'
+import type { ScoreRecord, ScoreSchema } from '@ddradar/core'
 import {
   calcMaxScore,
   clearLampMap,
   danceLevelSet,
   difficultyMap,
   playStyleMap,
-  score as schema,
+  scoreRecordSchema as schema,
 } from '@ddradar/core'
 
 import type { FormError } from '#ui/types'
@@ -32,7 +32,7 @@ const { data: song, execute: fetchSong } = useFetch(_songUri, {
   immediate: false,
 })
 if (props.songId) await fetchSong()
-const _default: Score = {
+const _default: ScoreRecord = {
   score: 0,
   clearLamp: 0,
   rank: 'E',

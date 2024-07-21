@@ -1,6 +1,6 @@
 // @vitest-environment node
 import type { OperationInput } from '@azure/cosmos'
-import type { Score, ScoreSchema } from '@ddradar/core'
+import type { ScoreRecord, ScoreSchema } from '@ddradar/core'
 import { privateUser, testSongData } from '@ddradar/core/test/data'
 import { describe, expect, test } from 'vitest'
 
@@ -57,7 +57,7 @@ describe('server/utils/score.ts', () => {
       (
         user,
         oldScores: ScoreSchema[],
-        score: Score,
+        score: ScoreRecord,
         resultCount,
         operationsCount
       ) => {

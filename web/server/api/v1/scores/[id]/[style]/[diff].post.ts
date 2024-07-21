@@ -4,7 +4,7 @@ import {
   createScoreSchema,
   isValidScore,
   mergeScore,
-  score,
+  scoreRecordSchema,
 } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 
@@ -60,7 +60,7 @@ export default defineEventHandler(async event => {
     event,
     paramSchema.parse
   )
-  const body = await readValidatedBody(event, score.parse)
+  const body = await readValidatedBody(event, scoreRecordSchema.parse)
 
   const user = await getLoginUserInfo(event)
   if (!user) throw createError({ statusCode: 401 })
@@ -78,11 +78,6 @@ export default defineEventHandler(async event => {
       'i.notes',
       'i.freezeArrow',
       'i.shockArrow',
-      'i.stream',
-      'i.voltage',
-      'i.air',
-      'i.freeze',
-      'i.chaos',
     ],
     'charts',
     [
