@@ -1,6 +1,5 @@
 import { z } from 'zod'
 
-import type { UserClearLamp, UserRank } from './graphql'
 import { scoreSchema } from './score'
 
 /** zod schema object for {@link UserClearLampSchema}. */
@@ -9,7 +8,7 @@ export const userClearLampSchema = scoreSchema
   .extend({
     type: z.literal('clear'),
     count: z.number().int().nonnegative(),
-  }) satisfies z.ZodType<UserClearLamp>
+  })
 /**
  * Summary of {@link ClearLamp} (included in "UserDetails" container)
  * @example
@@ -24,8 +23,7 @@ export const userClearLampSchema = scoreSchema
  * }
  * ```
  */
-export type UserClearLampSchema = UserClearLamp &
-  z.infer<typeof userClearLampSchema>
+export type UserClearLampSchema = z.infer<typeof userClearLampSchema>
 
 /** zod schema object for {@link UserRankSchema}. */
 export const userRankSchema = scoreSchema
@@ -33,7 +31,7 @@ export const userRankSchema = scoreSchema
   .extend({
     type: z.literal('score'),
     count: z.number().int().nonnegative(),
-  }) satisfies z.ZodType<UserRank>
+  })
 /**
  * Summary of {@link DanceLevel} (included in "UserDetails" container)
  * @example
@@ -48,4 +46,4 @@ export const userRankSchema = scoreSchema
  * }
  * ```
  */
-export type UserRankSchema = UserRank & z.infer<typeof userRankSchema>
+export type UserRankSchema = z.infer<typeof userRankSchema>

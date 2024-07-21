@@ -14,8 +14,8 @@ describe('POST /api/v1/notification', () => {
   const validBody = {
     sender: 'SYSTEM',
     pinned: true,
-    type: 'is-info',
-    icon: 'info',
+    color: 'yellow',
+    icon: 'i-heroicons-exclamation-triangle',
     title: 'このサイトはベータ版です',
     body: 'このWebサイトはベータ版環境です。',
   }
@@ -52,8 +52,8 @@ describe('POST /api/v1/notification', () => {
   test.each([
     [validBody, { ...validBody, timeStamp }],
     [
-      { ...validBody, type: 'is-dark' },
-      { ...validBody, type: 'is-dark', timeStamp },
+      { ...validBody, color: 'green' },
+      { ...validBody, color: 'green', timeStamp },
     ],
     [
       { ...validBody, id: 'foo' },

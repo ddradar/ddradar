@@ -13,16 +13,13 @@ const _chart = {
   notes: 1,
   freezeArrow: 0,
   shockArrow: 0,
-  stream: 0,
-  voltage: 0,
-  air: 0,
-  freeze: 0,
-  chaos: 0,
 } as const
 
 const _toast = useToast()
 const _route = useRoute('admin-songs-id')
-const { data: song, refresh } = useFetch(`/api/v1/songs/${_route.params.id}`, {
+const { id: _id } = _route.params
+
+const { data: song, execute } = useFetch(`/api/v1/songs/${_id}`, {
   default: () => ({
     id: _route.params.id,
     name: '',
@@ -45,7 +42,7 @@ const { data: song, refresh } = useFetch(`/api/v1/songs/${_route.params.id}`, {
   }),
   immediate: false,
 })
-if (_route.params.id) await refresh()
+if (_id) await execute()
 
 // Methods
 /** Add empty chart in charts. */
@@ -86,11 +83,6 @@ const columns = [
   { key: 'notes', label: 'Notes' },
   { key: 'freezeArrow', label: 'FA' },
   { key: 'shockArrow', label: 'SA' },
-  { key: 'stream', label: 'STR' },
-  { key: 'voltage', label: 'VOL' },
-  { key: 'air', label: 'AIR' },
-  { key: 'freeze', label: 'FRE' },
-  { key: 'chaos', label: 'CHA' },
   { key: 'action' },
 ]
 </script>
@@ -101,7 +93,7 @@ const columns = [
     <UForm :state="song" :schema="songSchema" @submit="saveSongInfo()">
       <UFormGroup label="Song ID" name="id">
         <UInput v-model="song.id" />
-        <UButton @click="refresh()">Load</UButton>
+        <UButton @click="execute()">Load</UButton>
       </UFormGroup>
 
       <UFormGroup label="Name" name="name">
@@ -164,42 +156,6 @@ const columns = [
               type="number"
               min="0"
               max="9999"
-            />
-          </template>
-
-          <template #stream-data="{ row }">
-            <UInput
-              v-model.number="row.stream"
-              type="number"
-              min="0"
-              max="999"
-            />
-          </template>
-          <template #voltage-data="{ row }">
-            <UInput
-              v-model.number="row.voltage"
-              type="number"
-              min="0"
-              max="999"
-            />
-          </template>
-          <template #air-data="{ row }">
-            <UInput v-model.number="row.air" type="number" min="0" max="999" />
-          </template>
-          <template #freeze-data="{ row }">
-            <UInput
-              v-model.number="row.freeze"
-              type="number"
-              min="0"
-              max="999"
-            />
-          </template>
-          <template #chaos-data="{ row }">
-            <UInput
-              v-model.number="row.chaos"
-              type="number"
-              min="0"
-              max="999"
             />
           </template>
 

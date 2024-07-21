@@ -95,4 +95,7 @@ export default defineNuxtConfig({
   swa: {
     customRoles: ['administrator'],
   },
+  runtimeConfig: {
+    cosmosDBConn: process.env.COSMOS_DB_CONN,
+  },
 })

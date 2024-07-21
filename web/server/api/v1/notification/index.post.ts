@@ -17,8 +17,8 @@ import { postBodySchema as schema } from '~/schemas/notification'
  * {
  *   "sender": "SYSTEM",
  *   "pinned": true,
- *   "type": "is-info",
- *   "icon": "info",
+ *   "color": "yellow",
+ *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
  *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。"
  * }
@@ -29,8 +29,8 @@ import { postBodySchema as schema } from '~/schemas/notification'
  * {
  *   "sender": "SYSTEM",
  *   "pinned": true,
- *   "type": "is-info",
- *   "icon": "info",
+ *   "color": "yellow",
+ *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
  *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
  *   "timeStamp": 1597024800
@@ -43,7 +43,7 @@ export default defineEventHandler(async event => {
   const notification = {
     sender: body.sender,
     pinned: body.pinned,
-    type: body.type,
+    color: body.color,
     icon: body.icon,
     title: body.title,
     body: body.body,

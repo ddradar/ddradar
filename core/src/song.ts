@@ -1,7 +1,5 @@
 import { z } from 'zod'
 
-import type { Song, StepChart } from './graphql'
-
 const nameIndexes = new Map([
   [0, 'あ'],
   [1, 'か'],
@@ -150,41 +148,66 @@ export const difficultyMap: ReadonlyMap<number, string> = difficulties
 
 /** zod schema object for {@link StepChartSchema}. */
 export const stepChartSchema = z.object({
+  /** `1`: SINGLE, `2`: DOUBLE */
   playStyle: z.custom<PlayStyle>(
     v => typeof v === 'number' && playStyleMap.has(v)
   ),
+  /**
+   * `0`: BEGINNER,
+   * `1`: BASIC,
+   * `2`: DIFFICULT,
+   * `3`: EXPERT,
+   * `4`: CHALLENGE
+   */
   difficulty: z.custom<Difficulty>(
     v => typeof v === 'number' && difficultyMap.has(v)
   ),
+  /** Chart level */
   level: z.number().int().min(1).max(20),
+  /** Normal arrow count. (Jump = 1 count) */
   notes: z.number().int().positive(),
+  /** Freeze Arrow count. */
   freezeArrow: z.number().int().nonnegative(),
+  /** Shock Arrow count. */
   shockArrow: z.number().int().nonnegative(),
-  stream: z.number().int().nonnegative(),
-  voltage: z.number().int().nonnegative(),
-  air: z.number().int().nonnegative(),
-  freeze: z.number().int().nonnegative(),
-  chaos: z.number().int().nonnegative(),
-}) satisfies z.ZodType<StepChart>
+})
 /** Song's step chart */
-export type StepChartSchema = StepChart & z.infer<typeof stepChartSchema>
+export type StepChartSchema = z.infer<typeof stepChartSchema>
 
 /** zod schema object for {@link SongSchema}. */
 export const songSchema = z.object({
+  /** ID that depend on official site. */
   id: z.string().regex(/^[01689bdiloqDIOPQ]{32}$/),
   name: z.string(),
+  /** Furigana for sorting. */
   nameKana: z.string().regex(/^([A-Z0-9 .\u3040-\u309Fー]*)$/),
+  /**
+   * Index for sorting. Associated with the "Choose by Name" folder.
+   * @example 0: あ行, 1: か行, ..., 10: A, 11: B, ..., 35: Z, `36`: 数字・記号
+   */
   nameIndex: z.custom<NameIndex>(
     v => typeof v === 'number' && nameIndexMap.has(v)
   ),
   artist: z.string(),
+  /** Series title depend on official site. */
   series: z.custom<Series>(v => typeof v === 'string' && seriesSet.has(v)),
+  /**
+   * Displayed min BPM (Beet Per Minutes).
+   * Set to `null` if not revealed, such as "???".
+   */
   minBPM: z.number().int().positive().nullable(),
+  /**
+   * Displayed max BPM (Beet Per Minutes).
+   * Set to `null` if not revealed, such as "???".
+   */
   maxBPM: z.number().int().positive().nullable(),
+  /** Song's step charts */
   charts: z.array(stepChartSchema),
+  /** ID used by {@link http://skillattack.com/sa4/ Skill Attack}. */
   skillAttackId: z.number().int().optional(),
+  /** Song is deleted or not */
   deleted: z.oboolean(),
-}) satisfies z.ZodType<Song>
+})
 /**
  * DB Schema of Song data (included on "Songs" container)
  * @example
@@ -216,7 +239,7 @@ export const songSchema = z.object({
  * }
  * ```
  */
-export type SongSchema = Omit<Song, 'charts'> & z.infer<typeof songSchema>
+export type SongSchema = z.infer<typeof songSchema>
 
 /** Returns `id` is valid {@link Song.id} or not. */
 export function isValidSongId(id: string): boolean {

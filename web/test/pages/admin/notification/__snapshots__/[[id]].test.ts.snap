@@ -210,7 +210,7 @@ exports[`/admin/notification > snapshot test 1`] = `
                 id="nXbH8Xoh0Oh_4"
                 name="type"
                 type="text"
-                value="info"
+                value="blue"
               />
               
               
@@ -269,7 +269,7 @@ exports[`/admin/notification > snapshot test 1`] = `
                 id="nXbH8Xoh0Oh_5"
                 name="icon"
                 type="text"
-                value="info"
+                value="i-heroicons-musical-note"
               />
               
               
@@ -277,15 +277,26 @@ exports[`/admin/notification > snapshot test 1`] = `
                 class="absolute inset-y-0 start-0 flex items-center pointer-events-none px-2.5"
               >
                 
-                <span
+                <svg
+                  aria-hidden="true"
                   class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
                   data-v-cf6c0647=""
-                  style="font-size: 1em; line-height: 1em; width: 1em; height: 1em;"
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
                 >
-                  
-                  info
-                  
-                </span>
+                  <path
+                    d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                  />
+                </svg>
                 
               </span>
               <!--v-if-->

@@ -4,7 +4,6 @@
     "ddradar": {
       "appDevserverUrl": "http://localhost:3000",
       "apiDevserverUrl": "http://localhost:3000",
-      "dataApiLocation": "core",
       "run": "pnpm -C web dev"
     }
   }

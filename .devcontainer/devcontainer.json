@@ -6,12 +6,10 @@
       "extensions": [
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
-        "GraphQL.vscode-graphql-syntax",
         "Jacano.vscode-pnpm",
         "ms-azuretools.vscode-azurefunctions",
         "ms-azuretools.vscode-cosmosdb",
         "ms-azuretools.vscode-azurestaticwebapps",
-        "sibiraj-s.vscode-scss-formatter",
         "Vue.volar"
       ]
     }
@@ -25,10 +23,6 @@
     "4280": {
       "label": "Azure Static Web Apps emulator",
       "onAutoForward": "openBrowser"
-    },
-    "5000-5001": {
-      "label": "Azure Data API Builder",
-      "onAutoForward": "ignore"
     }
   },
   "remoteUser": "node",
