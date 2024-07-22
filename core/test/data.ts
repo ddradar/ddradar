@@ -1,9 +1,9 @@
 import type { NotificationSchema } from '../src/notification'
 import type { ScoreSchema } from '../src/score'
-import type { SongSchema } from '../src/song'
+import type { Song } from '../src/song'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
-export const testSongData: SongSchema = {
+export const testSongData: Song = {
   id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
   name: 'PARANOiA',
   nameKana: 'PARANOIA',
@@ -12,10 +12,16 @@ export const testSongData: SongSchema = {
   series: 'DDR 1st',
   minBPM: 180,
   maxBPM: 180,
+  folders: [
+    { type: 'category', name: 'CLASSIC' },
+    { type: 'name', name: 'P' },
+    { type: 'series', name: '1st-5th' },
+  ],
   charts: [
     {
       playStyle: 1,
       difficulty: 0,
+      bpm: [170, 180, 184],
       level: 4,
       notes: 138,
       freezeArrow: 0,
@@ -24,6 +30,7 @@ export const testSongData: SongSchema = {
     {
       playStyle: 1,
       difficulty: 1,
+      bpm: [170, 180, 184],
       level: 8,
       notes: 264,
       freezeArrow: 0,
@@ -33,7 +40,7 @@ export const testSongData: SongSchema = {
 }
 
 /** PARANOiA, PARANOiA(X-Special), SP-TRIP MACHINE～JUNGLE MIX～(X-Special) */
-export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
+export const testSongList: Omit<Song, 'charts' | 'skillAttackId'>[] = [
   {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',
@@ -41,6 +48,7 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 25,
     artist: '180',
     series: 'DDR 1st',
+    folders: [],
     minBPM: 180,
     maxBPM: 180,
   },
@@ -51,6 +59,7 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 25,
     artist: '180',
     series: 'DDR X',
+    folders: [],
     minBPM: 180,
     maxBPM: 180,
   },
@@ -61,6 +70,7 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 28,
     artist: 'DE-SIRE',
     series: 'DDR X',
+    folders: [],
     minBPM: 160,
     maxBPM: 160,
   },

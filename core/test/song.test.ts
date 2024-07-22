@@ -1,11 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import {
-  getNameIndex,
-  isValidSongId,
-  nameIndexMap,
-  songSchema,
-} from '../src/song'
+import { getNameIndex, nameIndexMap, songSchema } from '../src/song'
 import { testSongData } from './data'
 
 describe('song.ts', () => {
@@ -21,11 +16,11 @@ describe('song.ts', () => {
       {},
       { ...validSong, id: '' },
       { ...validSong, nameKana: 'abc' },
-      { ...validSong, series: 'DDR FESTIVAL' },
       { ...validSong, nameIndex: 0.5 },
       { ...validSong, nameIndex: -1 },
       { ...validSong, nameIndex: 37 },
-      { ...validSong, charts: {} },
+      { ...validSong, series: 'DDR FESTIVAL' },
+      { ...validSong, charts: [] },
       { ...validSong, charts: [...validSong.charts, {}] },
       { ...validSong, charts: [{ ...validSong.charts[0], notes: '' }] },
       { ...validSong, charts: [{ ...validSong.charts[0], playStyle: 3 }] },
@@ -40,24 +35,12 @@ describe('song.ts', () => {
       validSong,
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
       { ...validSong, series: 'DanceDanceRevolution WORLD' },
-      { ...validSong, minBPM: null, maxBPM: null },
-      { ...validSong, charts: [] },
+      { ...validSong, folders: [] },
+      { ...validSong, skillAttackId: 1 },
+      { ...validSong, deleted: true },
     ])('safeParse(%o) returns { success: true }', o =>
       expect(songSchema.safeParse(o).success).toBe(true)
     )
-  })
-
-  describe('isValidSongId', () => {
-    test.each([
-      '',
-      '01689bdiloqDIOPQ',
-      '0000000000000000000000000000000000000000',
-    ])('("%s") returns false', id => expect(isValidSongId(id)).toBe(false))
-    test.each([
-      '00000000000000000000000000000000',
-      '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-      '01689bdiloqDIOPQ01689bdiloqDIOPQ',
-    ])('("%s") returns true', id => expect(isValidSongId(id)).toBe(true))
   })
 
   describe('getNameIndex', () => {

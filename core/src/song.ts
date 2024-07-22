@@ -1,6 +1,176 @@
 import { z } from 'zod'
 
-const nameIndexes = new Map([
+/** zod schema object for {@link StepChart}. */
+export const stepChartSchema = z.object({
+  /** `1`: SINGLE, `2`: DOUBLE */
+  playStyle: z.union([z.literal(1), z.literal(2)]),
+  /**
+   * `0`: BEGINNER,
+   * `1`: BASIC,
+   * `2`: DIFFICULT,
+   * `3`: EXPERT,
+   * `4`: CHALLENGE
+   */
+  difficulty: z.union([
+    z.literal(0),
+    z.literal(1),
+    z.literal(2),
+    z.literal(3),
+    z.literal(4),
+  ]),
+  /** Min BPM, Core BPM, Max BPM. */
+  bpm: z.tuple([
+    z.number().int().positive(),
+    z.number().int().positive(),
+    z.number().int().positive(),
+  ]),
+  /** Chart level */
+  level: z.number().int().min(1).max(20),
+  /** Normal arrow count. (Jump = 1 count) */
+  notes: z.number().int().positive(),
+  /** Freeze Arrow count. */
+  freezeArrow: z.number().int().nonnegative(),
+  /** Shock Arrow count. */
+  shockArrow: z.number().int().nonnegative(),
+})
+/** Song's step chart */
+export type StepChart = z.infer<typeof stepChartSchema>
+
+/** `1`: SINGLE, `2`: DOUBLE */
+export type PlayStyle = z.infer<typeof stepChartSchema>['playStyle']
+/** Map for {@link PlayStyle} */
+export const playStyleMap: ReadonlyMap<number, string> = new Map([
+  [1, 'SINGLE'],
+  [2, 'DOUBLE'],
+] satisfies [PlayStyle, string][])
+
+/**
+ * `0`: BEGINNER,
+ * `1`: BASIC,
+ * `2`: DIFFICULT,
+ * `3`: EXPERT,
+ * `4`: CHALLENGE
+ */
+export type Difficulty = z.infer<typeof stepChartSchema>['difficulty']
+/** Map for {@link Difficulty} */
+export const difficultyMap: ReadonlyMap<number, string> = new Map([
+  [0, 'BEGINNER'],
+  [1, 'BASIC'],
+  [2, 'DIFFICULT'],
+  [3, 'EXPERT'],
+  [4, 'CHALLENGE'],
+] satisfies [Difficulty, string][])
+
+const _filter = z.object({
+  /**
+   * Filter type
+   * - `category`: Flare Skill Category ("CLASSIC", "WHITE", "GOLD")
+   * - `folder`: Music Folder (e.g. "FIRST STEP", "POP MUSIC", "東方")
+   * - `level`: Chart level (e.g. "1", "13", "19")
+   * - `name`: Name index (e.g. "あ行", "A", "XYZ")
+   * - `series`: Series  (e.g. "1st-5th", "MAX-MAX2", "A20")
+   */
+  type: z.union([
+    z.literal('category'),
+    z.literal('folder'),
+    z.literal('level'),
+    z.literal('name'),
+    z.literal('series'),
+  ]),
+  /** Filter name */
+  name: z.string().min(1),
+})
+
+/** zod schema object for {@link Song}. */
+export const songSchema = z.object({
+  /** ID that depend on official site. */
+  id: z.string().regex(/^[01689bdiloqDIOPQ]{32}$/),
+  /** Song name */
+  name: z.string().min(1),
+  /** Furigana for sorting. */
+  nameKana: z.string().regex(/^[A-Z0-9 .\u3040-\u309Fー]+$/), // A-Z, 0-9, space, period, ぁ-ん, ー
+  /**
+   * Calculate from {@link Song.nameKana}.
+   * `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
+   */
+  nameIndex: z.number().int().min(0).max(36).readonly(),
+  /** Artist (possibly empty) */
+  artist: z.string(),
+  /** Series title depend on official site. */
+  series: z.union([
+    z.literal('DDR 1st'),
+    z.literal('DDR 2ndMIX'),
+    z.literal('DDR 3rdMIX'),
+    z.literal('DDR 4thMIX'),
+    z.literal('DDR 5thMIX'),
+    z.literal('DDRMAX'),
+    z.literal('DDRMAX2'),
+    z.literal('DDR EXTREME'),
+    z.literal('DDR SuperNOVA'),
+    z.literal('DDR SuperNOVA2'),
+    z.literal('DDR X'),
+    z.literal('DDR X2'),
+    z.literal('DDR X3 VS 2ndMIX'),
+    z.literal('DanceDanceRevolution (2013)'),
+    z.literal('DanceDanceRevolution (2014)'),
+    z.literal('DanceDanceRevolution A'),
+    z.literal('DanceDanceRevolution A20'),
+    z.literal('DanceDanceRevolution A20 PLUS'),
+    z.literal('DanceDanceRevolution A3'),
+    z.literal('DanceDanceRevolution WORLD'),
+  ]),
+  /** Displayed min BPM (Beet Per Minutes). */
+  minBPM: z.number().int().positive().readonly(),
+  /** Displayed max BPM (Beet Per Minutes). */
+  maxBPM: z.number().int().positive().readonly(),
+  /** Used for filtering */
+  folders: z.array(_filter).catch([]),
+  /** Song's step charts */
+  charts: z.array(stepChartSchema).min(1),
+  /** ID used by {@link http://skillattack.com/sa4/ Skill Attack}. */
+  skillAttackId: z.number().int().optional(),
+  /** Song is deleted or not */
+  deleted: z.oboolean(),
+})
+/**
+ * Song data object
+ * @example
+ * ```json
+ * {
+ *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
+ *   "name": "イーディーエム・ジャンパーズ",
+ *   "nameKana": "いーでぃーえむ じゃんぱーず",
+ *   "nameIndex": 0,
+ *   "artist": "かめりあ feat. ななひら",
+ *   "series": "DanceDanceRevolution A",
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
+ *   "folders": [
+ *     { "type": "category", "name": "WHITE" },
+ *     { "type": "name", "name": "あ" },
+ *     { "type": "series", "name": "A" }
+ *   ],
+ *   "charts": [
+ *     {
+ *       "playStyle": 1,
+ *       "difficulty": 0,
+ *       "bpm": [72, 145, 145],
+ *       "level": 3,
+ *       "notes": 70,
+ *       "freezeArrow": 11,
+ *       "shockArrow": 0
+ *     }
+ *   ],
+ *   "skillAttackId": 675
+ * }
+ * ```
+ */
+export type Song = z.infer<typeof songSchema>
+
+/** `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号 */
+export type NameIndex = z.infer<typeof songSchema>['nameIndex']
+/** Map for {@link NameIndex} */
+export const nameIndexMap: ReadonlyMap<number, string> = new Map([
   [0, 'あ'],
   [1, 'か'],
   [2, 'さ'],
@@ -38,11 +208,7 @@ const nameIndexes = new Map([
   [34, 'Y'],
   [35, 'Z'],
   [36, '数字・記号'],
-] as const)
-/** `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号 */
-export type NameIndex = Parameters<typeof nameIndexes.get>[0]
-/** Map for {@link NameIndex} */
-export const nameIndexMap: ReadonlyMap<number, string> = nameIndexes
+] satisfies [NameIndex, string][])
 /**
  * Get {@link NameIndex} from Furigana.
  * @param nameKana Furigana
@@ -92,7 +258,10 @@ export function getNameIndex(nameKana: string): NameIndex {
   return 36
 }
 
-const series = [
+/** Series title depend on official site. */
+export type Series = z.infer<typeof songSchema>['series']
+/** Set for {@link Series} */
+export const seriesSet: ReadonlySet<string> = new Set([
   'DDR 1st',
   'DDR 2ndMIX',
   'DDR 3rdMIX',
@@ -113,135 +282,4 @@ const series = [
   'DanceDanceRevolution A20 PLUS',
   'DanceDanceRevolution A3',
   'DanceDanceRevolution WORLD',
-] as const
-/** Series title depend on official site. */
-export type Series = (typeof series)[number]
-/** Set for {@link Series} */
-export const seriesSet: ReadonlySet<string> = new Set(series)
-
-const playStyles = new Map([
-  [1, 'SINGLE'],
-  [2, 'DOUBLE'],
-] as const)
-/** `1`: SINGLE, `2`: DOUBLE */
-export type PlayStyle = Parameters<typeof playStyles.get>[0]
-/** Map for {@link PlayStyle} */
-export const playStyleMap: ReadonlyMap<number, string> = playStyles
-
-const difficulties = new Map([
-  [0, 'BEGINNER'],
-  [1, 'BASIC'],
-  [2, 'DIFFICULT'],
-  [3, 'EXPERT'],
-  [4, 'CHALLENGE'],
-] as const)
-/**
- * `0`: BEGINNER,
- * `1`: BASIC,
- * `2`: DIFFICULT,
- * `3`: EXPERT,
- * `4`: CHALLENGE
- */
-export type Difficulty = Parameters<typeof difficulties.get>[0]
-/** Map for {@link Difficulty} */
-export const difficultyMap: ReadonlyMap<number, string> = difficulties
-
-/** zod schema object for {@link StepChartSchema}. */
-export const stepChartSchema = z.object({
-  /** `1`: SINGLE, `2`: DOUBLE */
-  playStyle: z.custom<PlayStyle>(
-    v => typeof v === 'number' && playStyleMap.has(v)
-  ),
-  /**
-   * `0`: BEGINNER,
-   * `1`: BASIC,
-   * `2`: DIFFICULT,
-   * `3`: EXPERT,
-   * `4`: CHALLENGE
-   */
-  difficulty: z.custom<Difficulty>(
-    v => typeof v === 'number' && difficultyMap.has(v)
-  ),
-  /** Chart level */
-  level: z.number().int().min(1).max(20),
-  /** Normal arrow count. (Jump = 1 count) */
-  notes: z.number().int().positive(),
-  /** Freeze Arrow count. */
-  freezeArrow: z.number().int().nonnegative(),
-  /** Shock Arrow count. */
-  shockArrow: z.number().int().nonnegative(),
-})
-/** Song's step chart */
-export type StepChartSchema = z.infer<typeof stepChartSchema>
-
-/** zod schema object for {@link SongSchema}. */
-export const songSchema = z.object({
-  /** ID that depend on official site. */
-  id: z.string().regex(/^[01689bdiloqDIOPQ]{32}$/),
-  name: z.string(),
-  /** Furigana for sorting. */
-  nameKana: z.string().regex(/^([A-Z0-9 .\u3040-\u309Fー]*)$/),
-  /**
-   * Index for sorting. Associated with the "Choose by Name" folder.
-   * @example 0: あ行, 1: か行, ..., 10: A, 11: B, ..., 35: Z, `36`: 数字・記号
-   */
-  nameIndex: z.custom<NameIndex>(
-    v => typeof v === 'number' && nameIndexMap.has(v)
-  ),
-  artist: z.string(),
-  /** Series title depend on official site. */
-  series: z.custom<Series>(v => typeof v === 'string' && seriesSet.has(v)),
-  /**
-   * Displayed min BPM (Beet Per Minutes).
-   * Set to `null` if not revealed, such as "???".
-   */
-  minBPM: z.number().int().positive().nullable(),
-  /**
-   * Displayed max BPM (Beet Per Minutes).
-   * Set to `null` if not revealed, such as "???".
-   */
-  maxBPM: z.number().int().positive().nullable(),
-  /** Song's step charts */
-  charts: z.array(stepChartSchema),
-  /** ID used by {@link http://skillattack.com/sa4/ Skill Attack}. */
-  skillAttackId: z.number().int().optional(),
-  /** Song is deleted or not */
-  deleted: z.oboolean(),
-})
-/**
- * DB Schema of Song data (included on "Songs" container)
- * @example
- * ```json
- * {
- *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
- *   "name": "イーディーエム・ジャンパーズ",
- *   "nameKana": "いーでぃーえむ じゃんぱーず",
- *   "nameIndex": 0,
- *   "artist": "かめりあ feat. ななひら",
- *   "series": "DanceDanceRevolution A",
- *   "minBPM": 72,
- *   "maxBPM": 145,
- *   "charts": [
- *     {
- *       "playStyle": 1,
- *       "difficulty": 0,
- *       "level": 3,
- *       "notes": 70,
- *       "freezeArrow": 11,
- *       "shockArrow": 0,
- *       "stream": 12,
- *       "voltage": 11,
- *       "air": 1,
- *       "freeze": 20,
- *       "chaos": 0
- *     }
- *   ]
- * }
- * ```
- */
-export type SongSchema = z.infer<typeof songSchema>
-
-/** Returns `id` is valid {@link Song.id} or not. */
-export function isValidSongId(id: string): boolean {
-  return songSchema.shape.id.safeParse(id).success
-}
+] satisfies Series[])

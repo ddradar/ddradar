@@ -1,11 +1,6 @@
 import { z } from 'zod'
 
-import {
-  type SongSchema,
-  songSchema,
-  type StepChartSchema,
-  stepChartSchema,
-} from './song'
+import { type Song, songSchema, type StepChart, stepChartSchema } from './song'
 import type { UserSchema } from './user'
 import { userSchema } from './user'
 
@@ -201,15 +196,15 @@ export function getDanceLevel(score: number): Exclude<DanceLevel, 'E'> {
 }
 /**
  * Calculate MAX score from chart info.
- * @param param0 {@link StepChartSchema}
+ * @param param0 {@link StepChart}
  */
 export function calcMaxScore({
   notes,
   freezeArrow,
   shockArrow,
-}: Readonly<
-  Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>
->): Required<Omit<ScoreRecord, 'flareSkill' | 'flareRank'>> {
+}: Readonly<Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>>): Required<
+  Omit<ScoreRecord, 'flareSkill' | 'flareRank'>
+> {
   return {
     score: 1000000,
     exScore: (notes + freezeArrow + shockArrow) * 3,
@@ -246,7 +241,7 @@ export function mergeScore(
 
 /**
  * Returns {@link ScoreRecord} is compliant chart or not.
- * @param param0 {@link StepChartSchema}
+ * @param param0 {@link StepChart}
  * @param param1 {@link ScoreRecord}
  */
 export function isValidScore(
@@ -254,7 +249,7 @@ export function isValidScore(
     notes,
     freezeArrow,
     shockArrow,
-  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
+  }: Readonly<Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>>,
   {
     clearLamp,
     exScore,
@@ -290,7 +285,7 @@ export function isValidScore(
  * @param score Score data
  */
 export function createScoreSchema(
-  song: Readonly<Pick<SongSchema, 'id' | 'name' | 'deleted'> & StepChartSchema>,
+  song: Readonly<Pick<Song, 'id' | 'name' | 'deleted'> & StepChart>,
   user: Readonly<Pick<UserSchema, 'id' | 'name' | 'isPublic'>>,
   score: Readonly<ScoreRecord>
 ): ScoreSchema {
@@ -321,8 +316,8 @@ export function createScoreSchema(
 }
 
 /**
- * Fill missing {@link ScoreRecord} property from {@link StepChartSchema}.
- * @param param0 {@link StepChartSchema}
+ * Fill missing {@link ScoreRecord} property from {@link StepChart}.
+ * @param param0 {@link StepChart}
  * @param partialScore {@link ScoreRecord}
  */
 export function setValidScoreFromChart(
@@ -330,7 +325,7 @@ export function setValidScoreFromChart(
     notes,
     freezeArrow,
     shockArrow,
-  }: Readonly<Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>>,
+  }: Readonly<Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>>,
   partialScore: Readonly<Partial<ScoreRecord>>
 ): ScoreRecord {
   const objects = notes + freezeArrow + shockArrow
@@ -603,7 +598,7 @@ export function calcFlareSkill(
  * @returns jugement count patterns
  */
 export function detectJudgeCounts(
-  chart: Pick<StepChartSchema, 'notes' | 'freezeArrow' | 'shockArrow'>,
+  chart: Pick<StepChart, 'notes' | 'freezeArrow' | 'shockArrow'>,
   score: number,
   clearLamp: ClearLamp = 0
 ): {
