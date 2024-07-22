@@ -8,8 +8,8 @@ import {
 } from '@ddradar/core'
 import { fetchJoinedList, fetchList, getContainer } from '@ddradar/db'
 
-import { routerParamsSchema as paramSchema } from '~/schemas/score'
-import { getLoginUserInfo } from '~/server/utils/auth'
+import { routerParamsSchema as paramSchema } from '~~/schemas/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
 
 type SongChartInfo = Pick<SongSchema, 'id' | 'name' | 'deleted'> &
   StepChartSchema

@@ -1,5 +1,5 @@
-import type { UserInfo } from '~/schemas/user'
-import { tryFetchUser } from '~/server/utils/auth'
+import type { UserInfo } from '~~/schemas/user'
+import { tryFetchUser } from '~~/server/utils/auth'
 
 /**
  * Get user information that match the specified ID.

@@ -1,0 +1,13 @@
+diff --git a/dist/runtime-core.cjs.js b/dist/runtime-core.cjs.js
+index 917aaba306752bd225d4c45f80e79c594d3b5b80..bd0e9e0bfc2b13a3694a1745d50fcefee546eeca 100644
+--- a/dist/runtime-core.cjs.js
++++ b/dist/runtime-core.cjs.js
+@@ -6750,7 +6750,7 @@ function patchSuspense(n1, n2, container, anchor, parentComponent, namespace, sl
+     }
+   }
+ }
+-let hasWarned = false;
++let hasWarned = true;
+ function createSuspenseBoundary(vnode, parentSuspense, parentComponent, container, hiddenContainer, anchor, namespace, slotScopeIds, optimized, rendererInternals, isHydrating = false) {
+   if (!hasWarned) {
+     hasWarned = true;

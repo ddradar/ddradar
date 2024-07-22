@@ -1,7 +1,7 @@
 import { fetchOne } from '@ddradar/db'
 
-import type { ExistsUser } from '~/schemas/user'
-import { paramsSchema as schema } from '~/schemas/user'
+import type { ExistsUser } from '~~/schemas/user'
+import { paramsSchema as schema } from '~~/schemas/user'
 
 /**
  * Returns whether the specified user exists.

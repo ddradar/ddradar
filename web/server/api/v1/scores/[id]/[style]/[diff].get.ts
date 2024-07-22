@@ -1,11 +1,11 @@
 import { fetchList } from '@ddradar/db'
 
-import type { ScoreInfo } from '~/schemas/score'
+import type { ScoreInfo } from '~~/schemas/score'
 import {
   getQuerySchema as querySchema,
   routerParamsSchema as paramSchema,
-} from '~/schemas/score'
-import { getLoginUserInfo } from '~/server/utils/auth'
+} from '~~/schemas/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
 
 /**
  * Get scores that match the specified chart.

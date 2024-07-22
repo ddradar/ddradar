@@ -2,12 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
-  devtools: { enabled: true },
-  experimental: {
-    asyncContext: true,
-    typedPages: true,
-    sharedPrerenderData: true,
-  },
+  future: { compatibilityVersion: 4 },
   nitro: {
     preset: 'azure',
     azure: {
@@ -98,4 +93,5 @@ export default defineNuxtConfig({
   runtimeConfig: {
     cosmosDBConn: process.env.COSMOS_DB_CONN,
   },
+  devtools: { enabled: true },
 })

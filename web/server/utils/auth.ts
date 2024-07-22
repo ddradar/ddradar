@@ -2,7 +2,7 @@ import type { UserSchema } from '@ddradar/core'
 import { fetchLoginUser, fetchUser } from '@ddradar/db'
 import type { H3Event } from 'h3'
 
-import { paramsSchema } from '~/schemas/user'
+import { paramsSchema } from '~~/schemas/user'
 
 export async function getLoginUserInfo(
   event: H3Event

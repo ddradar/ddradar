@@ -8,11 +8,11 @@
     "node": ">=16"
   },
   "scripts": {
-    "prepare": "nuxt prepare",
-    "build": "nuxt build && node -e \"fs.renameSync('./staticwebapp.config.json', './.output/public/staticwebapp.config.json')\"",
-    "dev": "nuxt dev",
-    "preview": "nuxt preview",
-    "pretest": "nuxt prepare",
+    "prepare": "nuxi prepare",
+    "build": "nuxi build && node -e \"fs.renameSync('./staticwebapp.config.json', './.output/public/staticwebapp.config.json')\"",
+    "dev": "nuxi dev",
+    "preview": "nuxi preview",
+    "pretest": "nuxi prepare",
     "test": "vitest run"
   },
   "dependencies": {
@@ -37,9 +37,9 @@
     "@types/node": "^18.17.11",
     "@vue/test-utils": "^2.4.6",
     "happy-dom": "^14.12.3",
-    "nuxt": "^3.12.2",
+    "nuxt": "^3.12.4",
     "nuxt-swa": "^0.5.0",
-    "nuxt-zod-i18n": "^1.8.0",
+    "nuxt-zod-i18n": "^1.9.0",
     "vitest": "^1.6.0"
   }
 }

@@ -1,7 +1,7 @@
 import { queryContainer } from '@ddradar/db'
 
+import { seriesNames } from '~~/app/utils/song'
 import { getListQuerySchema as schema } from '~~/schemas/song'
-import { seriesNames } from '~~/utils/song'
 
 /**
  * Get a list of song information that matches the specified conditions.

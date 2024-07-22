@@ -6,9 +6,9 @@ import { fetchList, fetchOne, getContainer } from '@ddradar/db'
 import {
   postBodySchema as bodySchema,
   postRouterParamsSchema as paramSchema,
-} from '~/schemas/score'
-import { getLoginUserInfo } from '~/server/utils/auth'
-import { topUser, upsertScore } from '~/server/utils/score'
+} from '~~/schemas/score'
+import { getLoginUserInfo } from '~~/server/utils/auth'
+import { topUser, upsertScore } from '~~/server/utils/score'
 
 /**
  * Add or update the scores of the specified songs all at once.

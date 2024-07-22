@@ -1,5 +1,5 @@
-import type { CurrentUserInfo } from '~/schemas/user'
-import { getLoginUserInfo } from '~/server/utils/auth'
+import type { CurrentUserInfo } from '~~/schemas/user'
+import { getLoginUserInfo } from '~~/server/utils/auth'
 
 /**
  * Get information about the currently logged in user.

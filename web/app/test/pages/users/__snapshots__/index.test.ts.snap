@@ -1,0 +1,5732 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/users > { locale: "en" } snapshot test > { status: "pending" } renders loading state 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Search User
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_5"
+                >
+                  
+                  Area
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_5"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    undefined
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    Hokkaido
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    Aomori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    Iwate
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    Miyagi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    Akita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    Yamagata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    Fukushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    Ibaraki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    Tochigi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    Gunma
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    Saitama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    Chiba
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    Tokyo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    Kanagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    Niigata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    Toyama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    Ishikawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    Gukui
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    Yamanashi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    Nagano
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    Gifu
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    Shizuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    Aichi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    Mie
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    Shiga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    Kyoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    Osaka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    Hyogo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    Nara
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    Wakayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    Tottori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    Shimane
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    Okayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    Hiroshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    Yamaguchi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    Tokushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    Kagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    Ehime
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    Kochi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    Fukuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    Saga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    Nagasaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    Kumamoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    Oita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    Miyazaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    Kagoshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    Okinawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    Hong Kong
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    Korea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    Taiwan
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    USA
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    Europe
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    Oversea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    Canada
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    Singapore
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    Thailand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    Australia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    New Zealand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    United Kingdom
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    Italy
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    Spain
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    Germany
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    France
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    Portugal
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    Indonesia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    Philippines
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_6"
+                >
+                  
+                  Name (partial match)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_6"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_7"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_7"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          Search
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Area
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-7b2d3720=""
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-7b2d3720=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                    data-v-2205d584=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/users > { locale: "en" } snapshot test > { users: [...] } renders user list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Search User
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_9"
+                >
+                  
+                  Area
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_9"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    undefined
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    Hokkaido
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    Aomori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    Iwate
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    Miyagi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    Akita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    Yamagata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    Fukushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    Ibaraki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    Tochigi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    Gunma
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    Saitama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    Chiba
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    Tokyo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    Kanagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    Niigata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    Toyama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    Ishikawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    Gukui
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    Yamanashi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    Nagano
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    Gifu
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    Shizuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    Aichi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    Mie
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    Shiga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    Kyoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    Osaka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    Hyogo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    Nara
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    Wakayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    Tottori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    Shimane
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    Okayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    Hiroshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    Yamaguchi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    Tokushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    Kagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    Ehime
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    Kochi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    Fukuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    Saga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    Nagasaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    Kumamoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    Oita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    Miyazaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    Kagoshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    Okinawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    Hong Kong
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    Korea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    Taiwan
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    USA
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    Europe
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    Oversea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    Canada
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    Singapore
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    Thailand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    Australia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    New Zealand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    United Kingdom
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    Italy
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    Spain
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    Germany
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    France
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    Portugal
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    Indonesia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    Philippines
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_10"
+                >
+                  
+                  Name (partial match)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_10"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_11"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_11"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          Search
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Area
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/public_user"
+                >
+                  
+                  Public User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                Tokyo
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/area_hidden_user"
+                >
+                  
+                  Area Hidden User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                undefined
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/private_user"
+                >
+                  
+                  Private User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                undefined
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            Showing 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             to 
+            
+            <span
+              class="font-medium"
+            >
+              3
+            </span>
+            
+             of 
+            
+            <span
+              class="font-medium"
+            >
+              3
+            </span>
+            
+             results
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-2205d584=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-2205d584=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/users > { locale: "en" } snapshot test > { users: [] } renders empty 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              Search User
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_1"
+                >
+                  
+                  Area
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_1"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    undefined
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    Hokkaido
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    Aomori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    Iwate
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    Miyagi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    Akita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    Yamagata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    Fukushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    Ibaraki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    Tochigi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    Gunma
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    Saitama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    Chiba
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    Tokyo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    Kanagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    Niigata
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    Toyama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    Ishikawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    Gukui
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    Yamanashi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    Nagano
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    Gifu
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    Shizuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    Aichi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    Mie
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    Shiga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    Kyoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    Osaka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    Hyogo
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    Nara
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    Wakayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    Tottori
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    Shimane
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    Okayama
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    Hiroshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    Yamaguchi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    Tokushima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    Kagawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    Ehime
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    Kochi
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    Fukuoka
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    Saga
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    Nagasaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    Kumamoto
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    Oita
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    Miyazaki
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    Kagoshima
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    Okinawa
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    Hong Kong
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    Korea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    Taiwan
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    USA
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    Europe
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    Oversea
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    Canada
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    Singapore
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    Thailand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    Australia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    New Zealand
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    United Kingdom
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    Italy
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    Spain
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    Germany
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    France
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    Portugal
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    Indonesia
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    Philippines
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_2"
+                >
+                  
+                  Name (partial match)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_2"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_3"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_3"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          Search
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Area
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-2205d584=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Not Found User
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/users > { locale: "ja" } snapshot test > { status: "pending" } renders loading state 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              ユーザーを探す
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_17"
+                >
+                  
+                  所属地域
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_17"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    未指定
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    北海道
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    青森県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    岩手県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    宮城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    秋田県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    山形県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    福島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    茨城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    栃木県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    群馬県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    埼玉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    千葉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    東京都
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    神奈川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    新潟県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    富山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    石川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    福井県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    山梨県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    長野県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    岐阜県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    静岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    愛知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    三重県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    滋賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    京都府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    大阪府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    兵庫県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    奈良県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    和歌山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    鳥取県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    島根県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    岡山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    広島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    山口県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    徳島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    香川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    愛媛県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    高知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    福岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    佐賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    長崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    熊本県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    大分県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    宮崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    鹿児島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    沖縄県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    香港
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    韓国
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    台湾
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    アメリカ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    ヨーロッパ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    海外
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    カナダ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    シンガポール
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    タイ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    オーストラリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    ニュージーランド
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    イギリス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    イタリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    スペイン
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    ドイツ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    フランス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    ポルトガル
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    インドネシア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    フィリピン
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_18"
+                >
+                  
+                  登録名(部分一致)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_18"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_19"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_19"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          検索
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  登録名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  所属地域
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-7b2d3720=""
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-7b2d3720=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                    data-v-2205d584=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/users > { locale: "ja" } snapshot test > { users: [...] } renders user list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              ユーザーを探す
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_21"
+                >
+                  
+                  所属地域
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_21"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    未指定
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    北海道
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    青森県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    岩手県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    宮城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    秋田県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    山形県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    福島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    茨城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    栃木県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    群馬県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    埼玉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    千葉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    東京都
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    神奈川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    新潟県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    富山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    石川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    福井県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    山梨県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    長野県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    岐阜県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    静岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    愛知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    三重県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    滋賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    京都府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    大阪府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    兵庫県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    奈良県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    和歌山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    鳥取県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    島根県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    岡山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    広島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    山口県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    徳島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    香川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    愛媛県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    高知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    福岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    佐賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    長崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    熊本県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    大分県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    宮崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    鹿児島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    沖縄県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    香港
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    韓国
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    台湾
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    アメリカ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    ヨーロッパ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    海外
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    カナダ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    シンガポール
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    タイ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    オーストラリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    ニュージーランド
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    イギリス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    イタリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    スペイン
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    ドイツ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    フランス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    ポルトガル
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    インドネシア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    フィリピン
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_22"
+                >
+                  
+                  登録名(部分一致)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_22"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_23"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_23"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          検索
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  登録名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  所属地域
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/public_user"
+                >
+                  
+                  Public User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                東京都
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/area_hidden_user"
+                >
+                  
+                  Area Hidden User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                未指定
+                
+              </td>
+              
+            </tr>
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  href="/users/private_user"
+                >
+                  
+                  Private User
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                未指定
+                
+              </td>
+              
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            
+            <span
+              class="font-medium"
+            >
+              3
+            </span>
+            
+             件中 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件から 
+            
+            <span
+              class="font-medium"
+            >
+              3
+            </span>
+            
+             件を表示中
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-2205d584=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <svg
+              aria-hidden="true"
+              class="icon flex-shrink-0 h-5 w-5"
+              data-v-2205d584=""
+              height="1em"
+              role="img"
+              viewBox="0 0 20 20"
+              width="1em"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+            >
+              <path
+                clip-rule="evenodd"
+                d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10L8.22 6.28a.75.75 0 0 1 0-1.06"
+                fill="currentColor"
+                fill-rule="evenodd"
+              />
+            </svg>
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/users > { locale: "ja" } snapshot test > { users: [] } renders empty 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <div
+        class="mb-3 text-sm/6 font-semibold text-primary flex items-center gap-1.5"
+      >
+        
+        User
+        
+      </div>
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              ユーザーを探す
+              
+            </h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <form>
+        
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-8"
+        >
+          
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_13"
+                >
+                  
+                  所属地域
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+                data-v-49390f5d=""
+              >
+                <select
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
+                  data-v-49390f5d=""
+                  id="nsDy9xFO86N_13"
+                  name="area"
+                  value="0"
+                >
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    selected=""
+                    value="0"
+                  >
+                    未指定
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="1"
+                  >
+                    北海道
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="2"
+                  >
+                    青森県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="3"
+                  >
+                    岩手県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="4"
+                  >
+                    宮城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="5"
+                  >
+                    秋田県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="6"
+                  >
+                    山形県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="7"
+                  >
+                    福島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="8"
+                  >
+                    茨城県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="9"
+                  >
+                    栃木県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="10"
+                  >
+                    群馬県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="11"
+                  >
+                    埼玉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="12"
+                  >
+                    千葉県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="13"
+                  >
+                    東京都
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="14"
+                  >
+                    神奈川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="15"
+                  >
+                    新潟県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="16"
+                  >
+                    富山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="17"
+                  >
+                    石川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="18"
+                  >
+                    福井県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="19"
+                  >
+                    山梨県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="20"
+                  >
+                    長野県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="21"
+                  >
+                    岐阜県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="22"
+                  >
+                    静岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="23"
+                  >
+                    愛知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="24"
+                  >
+                    三重県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="25"
+                  >
+                    滋賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="26"
+                  >
+                    京都府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="27"
+                  >
+                    大阪府
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="28"
+                  >
+                    兵庫県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="29"
+                  >
+                    奈良県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="30"
+                  >
+                    和歌山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="31"
+                  >
+                    鳥取県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="32"
+                  >
+                    島根県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="33"
+                  >
+                    岡山県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="34"
+                  >
+                    広島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="35"
+                  >
+                    山口県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="36"
+                  >
+                    徳島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="37"
+                  >
+                    香川県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="38"
+                  >
+                    愛媛県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="39"
+                  >
+                    高知県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="40"
+                  >
+                    福岡県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="41"
+                  >
+                    佐賀県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="42"
+                  >
+                    長崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="43"
+                  >
+                    熊本県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="44"
+                  >
+                    大分県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="45"
+                  >
+                    宮崎県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="46"
+                  >
+                    鹿児島県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="47"
+                  >
+                    沖縄県
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="48"
+                  >
+                    香港
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="49"
+                  >
+                    韓国
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="50"
+                  >
+                    台湾
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="51"
+                  >
+                    アメリカ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="52"
+                  >
+                    ヨーロッパ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="53"
+                  >
+                    海外
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="106"
+                  >
+                    カナダ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="107"
+                  >
+                    シンガポール
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="108"
+                  >
+                    タイ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="109"
+                  >
+                    オーストラリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="110"
+                  >
+                    ニュージーランド
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="111"
+                  >
+                    イギリス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="112"
+                  >
+                    イタリア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="113"
+                  >
+                    スペイン
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="114"
+                  >
+                    ドイツ
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="115"
+                  >
+                    フランス
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="116"
+                  >
+                    ポルトガル
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="117"
+                  >
+                    インドネシア
+                  </option>
+                  
+                  
+                  <option
+                    data-v-49390f5d=""
+                    value="118"
+                  >
+                    フィリピン
+                  </option>
+                  
+                  
+                </select>
+                <!--v-if-->
+                <span
+                  class="absolute inset-y-0 end-0 flex items-center pointer-events-none px-2.5"
+                  data-v-49390f5d=""
+                >
+                  
+                  <svg
+                    aria-hidden="true"
+                    class="icon flex-shrink-0 text-gray-400 dark:text-gray-500 h-5 w-5"
+                    data-v-2205d584=""
+                    data-v-49390f5d=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  
+                </span>
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_14"
+                >
+                  
+                  登録名(部分一致)
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_14"
+                  name="name"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          <div
+            class=""
+          >
+            <div
+              class=""
+            >
+              <div
+                class="flex content-center items-center justify-between text-sm"
+              >
+                <label
+                  class="block font-medium text-gray-700 dark:text-gray-200"
+                  for="nsDy9xFO86N_15"
+                >
+                  
+                  DDR CODE
+                  
+                </label>
+                <!--v-if-->
+              </div>
+              <!--v-if-->
+            </div>
+            <div
+              class="mt-1 relative"
+            >
+              
+              <div
+                class="relative"
+              >
+                <input
+                  class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                  id="nsDy9xFO86N_15"
+                  name="code"
+                  placeholder="10000000"
+                  type="text"
+                  value=""
+                />
+                
+                
+                <!--v-if-->
+                <!--v-if-->
+              </div>
+              
+              <!--v-if-->
+            </div>
+          </div>
+          
+        </div>
+        <button
+          class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-green-500 hover:bg-green-600 disabled:bg-green-500 dark:bg-green-400 dark:hover:bg-green-500 dark:disabled:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-500 dark:focus-visible:outline-green-400 inline-flex items-center"
+          type="submit"
+        >
+          
+          
+          <svg
+            aria-hidden="true"
+            class="icon flex-shrink-0 h-5 w-5"
+            data-v-2205d584=""
+            height="1em"
+            role="img"
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+          >
+            <path
+              clip-rule="evenodd"
+              d="M9 3.5a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11M2 9a7 7 0 1 1 12.452 4.391l3.328 3.329a.75.75 0 1 1-1.06 1.06l-3.329-3.328A7 7 0 0 1 2 9"
+              fill="currentColor"
+              fill-rule="evenodd"
+            />
+          </svg>
+          
+          
+          検索
+          
+          
+          <!--v-if-->
+          
+          
+        </button>
+        
+      </form>
+      <div
+        class="flex items-center align-center text-center w-full flex-row my-4"
+      >
+        <div
+          class="flex border-gray-200 dark:border-gray-800 w-full border-t border-solid"
+        />
+        <!--v-if-->
+      </div>
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  登録名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  所属地域
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="2"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                    data-v-2205d584=""
+                    height="1em"
+                    role="img"
+                    viewBox="0 0 20 20"
+                    width="1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
+                      fill="currentColor"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    ユーザーが見つかりません
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    
+  </div>
+  <!--v-if-->
+</div>
+`;

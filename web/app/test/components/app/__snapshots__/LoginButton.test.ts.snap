@@ -1,0 +1,313 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
+<div
+  class="relative inline-flex text-left rtl:text-right"
+  data-headlessui-state="open"
+>
+  <div
+    aria-controls="headlessui-menu-items-nMxitAjFO8F_1"
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="inline-flex w-full"
+    data-headlessui-state="open"
+    disabled="false"
+    id="headlessui-menu-button-nMxitAjFO8F_0"
+    role="button"
+  >
+    
+    <button
+      class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+      type="button"
+    >
+      
+      
+      <svg
+        aria-hidden="true"
+        class="icon flex-shrink-0 h-5 w-5"
+        data-v-2205d584=""
+        height="1em"
+        role="img"
+        viewBox="0 0 20 20"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g
+          clip-rule="evenodd"
+          fill="currentColor"
+          fill-rule="evenodd"
+        >
+          <path
+            d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75z"
+          />
+          <path
+            d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10"
+          />
+        </g>
+      </svg>
+      
+      
+      Login
+      
+      
+      <!--v-if-->
+      
+      
+    </button>
+    
+  </div>
+  <div
+    class="z-20 group w-48"
+    data-popper-placement="bottom-end"
+    style="position: fixed; left: auto; top: 0px; margin: 0px; right: 0px; bottom: auto; transform: translate(0px, 8px);"
+  >
+    <transition-stub
+      appear="true"
+      css="true"
+      enteractiveclass="transition duration-100 ease-out"
+      enterfromclass="transform scale-95 opacity-0"
+      entertoclass="transform scale-100 opacity-100"
+      leaveactiveclass="transition duration-75 ease-in"
+      leavefromclass="transform scale-100 opacity-100"
+      leavetoclass="transform scale-95 opacity-0"
+      persisted="false"
+    >
+      <div>
+        <!--v-if-->
+        <div
+          aria-labelledby="headlessui-menu-button-nMxitAjFO8F_0"
+          class="relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-200 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800"
+          data-headlessui-state="open"
+          id="headlessui-menu-items-nMxitAjFO8F_1"
+          role="menu"
+          tabindex="0"
+        >
+          
+          <div
+            class="p-1"
+            role="none"
+          >
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_2"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                Login via X
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_3"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                Login via LINE
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_4"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                Login via GitHub
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+          </div>
+          
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</div>
+`;
+
+exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
+<div
+  class="relative inline-flex text-left rtl:text-right"
+  data-headlessui-state="open"
+>
+  <div
+    aria-controls="headlessui-menu-items-nMxitAjFO8F_6"
+    aria-expanded="true"
+    aria-haspopup="menu"
+    class="inline-flex w-full"
+    data-headlessui-state="open"
+    disabled="false"
+    id="headlessui-menu-button-nMxitAjFO8F_5"
+    role="button"
+  >
+    
+    <button
+      class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+      type="button"
+    >
+      
+      
+      <svg
+        aria-hidden="true"
+        class="icon flex-shrink-0 h-5 w-5"
+        data-v-2205d584=""
+        height="1em"
+        role="img"
+        viewBox="0 0 20 20"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g
+          clip-rule="evenodd"
+          fill="currentColor"
+          fill-rule="evenodd"
+        >
+          <path
+            d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75z"
+          />
+          <path
+            d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10"
+          />
+        </g>
+      </svg>
+      
+      
+      ログイン
+      
+      
+      <!--v-if-->
+      
+      
+    </button>
+    
+  </div>
+  <div
+    class="z-20 group w-48"
+    data-popper-placement="bottom-end"
+    style="position: fixed; left: auto; top: 0px; margin: 0px; right: 0px; bottom: auto; transform: translate(0px, 8px);"
+  >
+    <transition-stub
+      appear="true"
+      css="true"
+      enteractiveclass="transition duration-100 ease-out"
+      enterfromclass="transform scale-95 opacity-0"
+      entertoclass="transform scale-100 opacity-100"
+      leaveactiveclass="transition duration-75 ease-in"
+      leavefromclass="transform scale-100 opacity-100"
+      leavetoclass="transform scale-95 opacity-0"
+      persisted="false"
+    >
+      <div>
+        <!--v-if-->
+        <div
+          aria-labelledby="headlessui-menu-button-nMxitAjFO8F_5"
+          class="relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-200 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800"
+          data-headlessui-state="open"
+          id="headlessui-menu-items-nMxitAjFO8F_6"
+          role="menu"
+          tabindex="0"
+        >
+          
+          <div
+            class="p-1"
+            role="none"
+          >
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_7"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                Xでログイン
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_8"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                LINEでログイン
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+            <button
+              class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
+              data-headlessui-state=""
+              href=""
+              id="headlessui-menu-item-nMxitAjFO8F_9"
+              role="menuitem"
+            >
+              
+              <!---->
+              <span
+                class="truncate"
+              >
+                GitHubでログイン
+              </span>
+              <!--v-if-->
+              
+            </button>
+            
+            
+          </div>
+          
+        </div>
+      </div>
+    </transition-stub>
+  </div>
+</div>
+`;

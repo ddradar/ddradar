@@ -1,0 +1,1317 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLoggedIn: false } renders AppLoginButton 1`] = `
+<header
+  class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50"
+>
+  
+  
+  <div
+    class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between gap-3 h-[--header-height]"
+  >
+    
+    <div
+      class="lg:flex-1 flex items-center gap-1.5"
+    >
+      
+      <a
+        aria-label="DDRadar"
+        class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white flex items-end gap-1.5"
+        href="/"
+      >
+        
+        <svg
+          class="w-auto h-6"
+          fill="none"
+          height="640"
+          viewBox="0 0 640 640"
+          width="640"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z"
+            fill="rgb(var(--color-primary-DEFAULT))"
+          />
+          <path
+            d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"
+            fill="none"
+            stroke="rgb(var(--color-primary-DEFAULT))"
+            stroke-width="30"
+          />
+        </svg>
+         DDRadar 
+        
+      </a>
+      
+    </div>
+    
+    <ul
+      class="items-center gap-x-8 hidden lg:flex"
+    >
+      
+      <li
+        class="relative"
+      >
+        
+        <a
+          class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+          href="/users"
+        >
+          
+          
+          Find User
+          
+          <!--v-if-->
+          
+        </a>
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_0"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Level(SP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_2"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Level(DP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_4"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Version
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      
+    </ul>
+    
+    <div
+      class="flex items-center justify-end lg:flex-1 gap-1.5"
+    >
+      
+      <locale-switch-stub />
+      
+      <button
+        aria-label="Switch to dark mode"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+        type="button"
+      >
+        
+        
+        <!---->
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+      <login-button-stub />
+      
+      
+      <button
+        aria-label="Open Menu"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center lg:hidden"
+        type="button"
+      >
+        
+        
+        <svg
+          aria-hidden="true"
+          class="icon flex-shrink-0 h-5 w-5"
+          data-v-2205d584=""
+          height="1em"
+          role="img"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+    </div>
+    
+  </div>
+  
+  
+  <!---->
+</header>
+`;
+
+exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLoggedIn: true } renders AppUserButton 1`] = `
+<header
+  class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50"
+>
+  
+  
+  <div
+    class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between gap-3 h-[--header-height]"
+  >
+    
+    <div
+      class="lg:flex-1 flex items-center gap-1.5"
+    >
+      
+      <a
+        aria-label="DDRadar"
+        class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white flex items-end gap-1.5"
+        href="/"
+      >
+        
+        <svg
+          class="w-auto h-6"
+          fill="none"
+          height="640"
+          viewBox="0 0 640 640"
+          width="640"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z"
+            fill="rgb(var(--color-primary-DEFAULT))"
+          />
+          <path
+            d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"
+            fill="none"
+            stroke="rgb(var(--color-primary-DEFAULT))"
+            stroke-width="30"
+          />
+        </svg>
+         DDRadar 
+        
+      </a>
+      
+    </div>
+    
+    <ul
+      class="items-center gap-x-8 hidden lg:flex"
+    >
+      
+      <li
+        class="relative"
+      >
+        
+        <a
+          class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+          href="/users"
+        >
+          
+          
+          Find User
+          
+          <!--v-if-->
+          
+        </a>
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_6"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Level(SP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_8"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Level(DP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_10"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              Version
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      
+    </ul>
+    
+    <div
+      class="flex items-center justify-end lg:flex-1 gap-1.5"
+    >
+      
+      <locale-switch-stub />
+      
+      <button
+        aria-label="Switch to dark mode"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+        type="button"
+      >
+        
+        
+        <!---->
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+      <user-button-stub />
+      
+      
+      <button
+        aria-label="Open Menu"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center lg:hidden"
+        type="button"
+      >
+        
+        
+        <svg
+          aria-hidden="true"
+          class="icon flex-shrink-0 h-5 w-5"
+          data-v-2205d584=""
+          height="1em"
+          role="img"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+    </div>
+    
+  </div>
+  
+  
+  <!---->
+</header>
+`;
+
+exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLoggedIn: false } renders AppLoginButton 1`] = `
+<header
+  class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50"
+>
+  
+  
+  <div
+    class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between gap-3 h-[--header-height]"
+  >
+    
+    <div
+      class="lg:flex-1 flex items-center gap-1.5"
+    >
+      
+      <a
+        aria-label="DDRadar"
+        class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white flex items-end gap-1.5"
+        href="/"
+      >
+        
+        <svg
+          class="w-auto h-6"
+          fill="none"
+          height="640"
+          viewBox="0 0 640 640"
+          width="640"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z"
+            fill="rgb(var(--color-primary-DEFAULT))"
+          />
+          <path
+            d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"
+            fill="none"
+            stroke="rgb(var(--color-primary-DEFAULT))"
+            stroke-width="30"
+          />
+        </svg>
+         DDRadar 
+        
+      </a>
+      
+    </div>
+    
+    <ul
+      class="items-center gap-x-8 hidden lg:flex"
+    >
+      
+      <li
+        class="relative"
+      >
+        
+        <a
+          class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+          href="/users"
+        >
+          
+          
+          ユーザーを探す
+          
+          <!--v-if-->
+          
+        </a>
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_12"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              レベル(SP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_14"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              レベル(DP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_16"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              バージョン
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      
+    </ul>
+    
+    <div
+      class="flex items-center justify-end lg:flex-1 gap-1.5"
+    >
+      
+      <locale-switch-stub />
+      
+      <button
+        aria-label="Switch to dark mode"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+        type="button"
+      >
+        
+        
+        <!---->
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+      <login-button-stub />
+      
+      
+      <button
+        aria-label="Open Menu"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center lg:hidden"
+        type="button"
+      >
+        
+        
+        <svg
+          aria-hidden="true"
+          class="icon flex-shrink-0 h-5 w-5"
+          data-v-2205d584=""
+          height="1em"
+          role="img"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+    </div>
+    
+  </div>
+  
+  
+  <!---->
+</header>
+`;
+
+exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLoggedIn: true } renders AppUserButton 1`] = `
+<header
+  class="bg-background/75 backdrop-blur border-b border-gray-200 dark:border-gray-800 -mb-px sticky top-0 z-50"
+>
+  
+  
+  <div
+    class="mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl flex items-center justify-between gap-3 h-[--header-height]"
+  >
+    
+    <div
+      class="lg:flex-1 flex items-center gap-1.5"
+    >
+      
+      <a
+        aria-label="DDRadar"
+        class="flex-shrink-0 font-bold text-xl text-gray-900 dark:text-white flex items-end gap-1.5"
+        href="/"
+      >
+        
+        <svg
+          class="w-auto h-6"
+          fill="none"
+          height="640"
+          viewBox="0 0 640 640"
+          width="640"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z"
+            fill="rgb(var(--color-primary-DEFAULT))"
+          />
+          <path
+            d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"
+            fill="none"
+            stroke="rgb(var(--color-primary-DEFAULT))"
+            stroke-width="30"
+          />
+        </svg>
+         DDRadar 
+        
+      </a>
+      
+    </div>
+    
+    <ul
+      class="items-center gap-x-8 hidden lg:flex"
+    >
+      
+      <li
+        class="relative"
+      >
+        
+        <a
+          class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+          href="/users"
+        >
+          
+          
+          ユーザーを探す
+          
+          <!--v-if-->
+          
+        </a>
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_18"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              レベル(SP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_20"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              レベル(DP)
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      <li
+        class="relative"
+      >
+        
+        <!-- eslint-disable-next-line vue/no-template-shadow -->
+        
+        
+        <div
+          class="relative"
+          data-headlessui-state=""
+        >
+          
+          <div
+            aria-expanded="false"
+            class="inline-flex w-full"
+            data-headlessui-state=""
+            id="headlessui-popover-button-nZjBLPEMTpX_22"
+            role="button"
+          >
+            
+            <button
+              class="text-sm/6 font-semibold flex items-center gap-1 hover:text-primary"
+              type="button"
+            >
+              
+              
+              バージョン
+              
+              <svg
+                aria-hidden="true"
+                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+                data-v-2205d584=""
+                height="1em"
+                role="img"
+                viewBox="0 0 20 20"
+                width="1em"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <path
+                  clip-rule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
+                  fill="currentColor"
+                  fill-rule="evenodd"
+                />
+              </svg>
+              
+            </button>
+            
+          </div>
+          <!---->
+          
+          <!--v-if-->
+          <!--v-if-->
+        </div>
+        
+        <div
+          hidden=""
+          style="position: fixed; height: 0px; padding: 0px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0px; display: none;"
+        />
+        
+        
+      </li>
+      
+    </ul>
+    
+    <div
+      class="flex items-center justify-end lg:flex-1 gap-1.5"
+    >
+      
+      <locale-switch-stub />
+      
+      <button
+        aria-label="Switch to dark mode"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center"
+        type="button"
+      >
+        
+        
+        <!---->
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+      <user-button-stub />
+      
+      
+      <button
+        aria-label="Open Menu"
+        class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 p-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center lg:hidden"
+        type="button"
+      >
+        
+        
+        <svg
+          aria-hidden="true"
+          class="icon flex-shrink-0 h-5 w-5"
+          data-v-2205d584=""
+          height="1em"
+          role="img"
+          viewBox="0 0 20 20"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <path
+            clip-rule="evenodd"
+            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
+            fill="currentColor"
+            fill-rule="evenodd"
+          />
+        </svg>
+        
+        
+        <!--v-if-->
+        
+        
+        <!--v-if-->
+        
+        
+      </button>
+      
+    </div>
+    
+  </div>
+  
+  
+  <!---->
+</header>
+`;

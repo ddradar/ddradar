@@ -149,9 +149,9 @@ export const notifications: readonly NotificationSchema[] = [
 const scoreTemplate = {
   songId: testSongData.id,
   songName: testSongData.name,
-  playStyle: testSongData.charts[0].playStyle,
-  difficulty: testSongData.charts[0].difficulty,
-  level: testSongData.charts[0].level,
+  playStyle: testSongData.charts[0]!.playStyle,
+  difficulty: testSongData.charts[0]!.difficulty,
+  level: testSongData.charts[0]!.level,
   score: 970630, // P:28, Gr:10
   clearLamp: 5,
   rank: 'AA+',
