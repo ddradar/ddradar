@@ -11,7 +11,6 @@ import { CosmosClient } from '@azure/cosmos'
 import type {
   NotificationSchema,
   ScoreSchema,
-  SongSchema,
   UserClearLampSchema,
   UserRankSchema,
   UserSchema,
@@ -26,24 +25,17 @@ export function canConnectDB(): boolean {
 }
 
 //#region DB Container - Schema mapping
-type ContainerName =
-  | 'Scores'
-  | 'Songs'
-  | 'Users'
-  | 'Notification'
-  | 'UserDetails'
+type ContainerName = 'Scores' | 'Users' | 'Notification' | 'UserDetails'
 
 type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
-  : T extends 'Songs'
-    ? SongSchema
-    : T extends 'Users'
-      ? UserSchema
-      : T extends 'Notification'
-        ? NotificationSchema
-        : T extends 'UserDetails'
-          ? UserClearLampSchema | UserRankSchema
-          : never
+  : T extends 'Users'
+    ? UserSchema
+    : T extends 'Notification'
+      ? NotificationSchema
+      : T extends 'UserDetails'
+        ? UserClearLampSchema | UserRankSchema
+        : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>
 //#endregion

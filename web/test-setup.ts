@@ -20,3 +20,4 @@ vi.stubGlobal('getClientPrincipal', vi.fn())
 
 // Server Utils (/server/utils)
 vi.stubGlobal('getCosmosClient', vi.fn())
+vi.stubGlobal('getSongRepository', vi.fn())

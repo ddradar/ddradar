@@ -1,7 +1,4 @@
-import { fetchJoinedList } from '@ddradar/db'
-
-import type { ChartInfo } from '~~/schemas/song'
-import { getChartsRouterParamsSchema as schema } from '~~/schemas/song'
+import { getRouterParamsSchema as schema } from '~~/schemas/charts'
 
 /**
  * Get charts that match the specified conditions.
@@ -29,15 +26,8 @@ import { getChartsRouterParamsSchema as schema } from '~~/schemas/song'
 export default defineEventHandler(async event => {
   const { style, level } = await getValidatedRouterParams(event, schema.parse)
 
-  return await fetchJoinedList<'Songs', ChartInfo>(
-    'Songs',
-    ['c.id', 'c.name', 'c.series', 'i.playStyle', 'i.difficulty', 'i.level'],
-    'charts',
-    [
-      { condition: 'c.nameIndex NOT IN (-1, -2)' },
-      { condition: 'i.playStyle = @', value: style },
-      { condition: 'i.level = @', value: level },
-    ],
-    { nameIndex: 'ASC', nameKana: 'ASC' }
-  )
+  return await getSongRepository(event).listCharts([
+    { condition: 'c.playStyle = @', value: style },
+    { condition: 'c.level = @', value: level },
+  ])
 })

@@ -1,13 +1,11 @@
-import { queryContainer } from '@ddradar/db'
-
 import { seriesNames } from '~~/app/utils/song'
-import { getListQuerySchema as schema } from '~~/schemas/song'
+import { getListQuerySchema as schema } from '~~/schemas/songs'
 
 /**
  * Get a list of song information that matches the specified conditions.
  * @description
  * - No need Authentication.
- * - GET `/api/v1/songs?name=:name&series=:series`
+ * - GET `/api/v2/songs?name=:name&series=:series`
  *   - `name`(optional): {@link SongListData.nameIndex}
  *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
  * @param event HTTP Event
@@ -31,28 +29,12 @@ import { getListQuerySchema as schema } from '~~/schemas/song'
 export default defineEventHandler(async event => {
   const { name, series } = await getValidatedQuery(event, schema.parse)
 
-  const { resources } = await queryContainer(
-    getCosmosClient(event),
-    'Songs',
-    [
-      'id',
-      'name',
-      'nameKana',
-      'nameIndex',
-      'artist',
-      'series',
-      'minBPM',
-      'maxBPM',
-      'deleted',
-    ],
-    [
-      ...(typeof name === 'number'
-        ? ([{ condition: 'c.nameIndex = @', value: name }] as const)
-        : []),
-      ...(typeof series === 'number'
-        ? ([{ condition: 'c.series = @', value: seriesNames[series] }] as const)
-        : []),
-    ]
-  ).fetchAll()
-  return resources
+  return await getSongRepository(event).list([
+    ...(typeof name === 'number'
+      ? [{ condition: 'c.cp_nameIndex = @', value: name } as const]
+      : []),
+    ...(typeof series === 'number'
+      ? [{ condition: 'c.series = @', value: seriesNames[series] } as const]
+      : []),
+  ])
 })

@@ -1,11 +1,12 @@
-import { type SongSchema, songSchema } from '@ddradar/core'
-import { getContainer } from '@ddradar/db'
+import type { DBSongSchema } from '@ddradar/db'
+
+import { postBodySchema } from '~~/schemas/songs'
 
 /**
  * Add or update song and charts information.
  * @description
  * - Need Authentication with `administrator` role.
- * - POST `/api/v1/songs`
+ * - POST `/api/v2/songs`
  * @returns
  * - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
  * - Returns `400 BadRequest` if body parameters are invalid.
@@ -17,11 +18,9 @@ import { getContainer } from '@ddradar/db'
  *   "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
  *   "name": "イーディーエム・ジャンパーズ",
  *   "nameKana": "いーでぃーえむ じゃんぱーず",
- *   "nameIndex": 0,
  *   "artist": "かめりあ feat. ななひら",
  *   "series": "DanceDanceRevolution A",
- *   "minBPM": 72,
- *   "maxBPM": 145,
+ *   "folders": [],
  *   "charts": [
  *     {
  *       "playStyle": 1,
@@ -29,37 +28,33 @@ import { getContainer } from '@ddradar/db'
  *       "level": 3,
  *       "notes": 70,
  *       "freezeArrow": 11,
- *       "shockArrow": 0,
- *       "stream": 12,
- *       "voltage": 11,
- *       "air": 1,
- *       "freeze": 20,
- *       "chaos": 0
+ *       "shockArrow": 0
  *     }
  *   ]
  * }
  * ```
  */
 export default defineEventHandler(async event => {
-  const body = await readValidatedBody(event, songSchema.parse)
+  if (!hasRole(event, 'administrator')) throw createError({ statusCode: 401 })
 
-  const song: SongSchema = {
+  const body = await readValidatedBody(event, postBodySchema.parse)
+
+  const song: DBSongSchema = {
     id: body.id,
+    type: 'song',
     name: body.name,
     nameKana: body.nameKana,
-    nameIndex: body.nameIndex,
     artist: body.artist,
     series: body.series,
-    minBPM: body.minBPM,
-    maxBPM: body.maxBPM,
-    ...(body.deleted ? { deleted: true } : {}),
+    folders: body.folders,
     charts: [...body.charts].sort((l, r) =>
       l.playStyle === r.playStyle
         ? l.difficulty - r.difficulty
         : l.playStyle - r.playStyle
     ),
+    ...(body.deleted ? { deleted: true } : {}),
   }
-  await getContainer('Songs').items.upsert(song)
+  await getSongRepository(event).upsert(song)
 
   return song
 })

@@ -4,12 +4,8 @@ import type {
   InvocationContext,
 } from '@azure/functions'
 import { app } from '@azure/functions'
-import type {
-  ScoreSchema,
-  SongSchema,
-  StepChartSchema,
-  UserClearLampSchema,
-} from '@ddradar/core'
+import type { ScoreSchema, StepChart, UserClearLampSchema } from '@ddradar/core'
+import type { DBSongSchema } from '@ddradar/db'
 
 import { getScores, getTotalChartCounts } from '../cosmos.js'
 
@@ -67,7 +63,7 @@ export async function handler(
   documents: unknown[],
   ctx: InvocationContext
 ): Promise<UpdateSongResult> {
-  const songs = documents as SongSchema[]
+  const songs = documents as DBSongSchema[]
   const oldTotalCounts = ctx.extraInputs.get(input) as Required<
     Omit<TotalCount, 'count' | 'userId'>
   >[]
@@ -126,7 +122,7 @@ export async function handler(
     }
 
     // Create empty score
-    const emptyScore: Omit<ScoreSchema, keyof StepChartSchema> = {
+    const emptyScore: Omit<ScoreSchema, keyof StepChart> = {
       score: 0,
       clearLamp: 0,
       rank: 'E',

@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle: 1, difficulty: +0, level: 4, notes: 138, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
+exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 180, 184 ], level: 4, notes: 138, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
 <div
   class="w-full flex flex-col"
 >
@@ -143,7 +143,7 @@ exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle
 </div>
 `;
 
-exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle: 1, difficulty: 1, level: 8, notes: 264, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
+exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle: 1, difficulty: 1, bpm: [ 170, 180, 184 ], level: 8, notes: 264, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
 <div
   class="w-full flex flex-col"
 >
@@ -286,7 +286,7 @@ exports[`components/song/ChartInfo.vue > { locale: "en" } > { chart: { playStyle
 </div>
 `;
 
-exports[`components/song/ChartInfo.vue > { locale: "ja" } > { chart: { playStyle: 1, difficulty: +0, level: 4, notes: 138, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
+exports[`components/song/ChartInfo.vue > { locale: "ja" } > { chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 180, 184 ], level: 4, notes: 138, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
 <div
   class="w-full flex flex-col"
 >
@@ -429,7 +429,7 @@ exports[`components/song/ChartInfo.vue > { locale: "ja" } > { chart: { playStyle
 </div>
 `;
 
-exports[`components/song/ChartInfo.vue > { locale: "ja" } > { chart: { playStyle: 1, difficulty: 1, level: 8, notes: 264, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
+exports[`components/song/ChartInfo.vue > { locale: "ja" } > { chart: { playStyle: 1, difficulty: 1, bpm: [ 170, 180, 184 ], level: 8, notes: 264, freezeArrow: +0, shockArrow: +0 } } snapshot test 1`] = `
 <div
   class="w-full flex flex-col"
 >

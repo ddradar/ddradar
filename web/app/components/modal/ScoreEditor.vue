@@ -27,11 +27,11 @@ const diff = ref(props.difficulty)
 const _toast = useToast()
 const { t } = useI18n()
 
-const _songUri = computed(() => `/api/v1/songs/${props.songId}` as const)
-const { data: song, execute: fetchSong } = useFetch(_songUri, {
-  immediate: false,
-})
-if (props.songId) await fetchSong()
+const { data: song } = await useFetch(
+  computed(() => `/api/v2/songs/${props.songId}` as const),
+  { pick: ['name', 'charts'] }
+)
+
 const _default: ScoreRecord = {
   score: 0,
   clearLamp: 0,
@@ -41,14 +41,14 @@ const _scoreUri = computed(
   () =>
     `/api/v1/scores/${props.songId}/${style.value ?? 1}/${diff.value ?? 0}` as const
 )
-const { data: score, execute: fetchScore } = useFetch(_scoreUri, {
+const { data: score, execute } = useFetch(_scoreUri, {
   query: { scope: 'private' },
   transform: d => d[0] ?? _default,
   default: () => _default,
   immediate: false,
   deep: false,
 })
-if (style.value !== undefined && diff.value !== undefined) await fetchScore()
+if (style.value !== undefined && diff.value !== undefined) await execute()
 
 const selectedChart = computed(() =>
   song.value?.charts.find(

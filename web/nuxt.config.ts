@@ -49,11 +49,6 @@ export default defineNuxtConfig({
             methods: ['POST'],
             allowedRoles: ['administrator'],
           },
-          {
-            route: '/api/v1/songs',
-            methods: ['POST'],
-            allowedRoles: ['administrator'],
-          },
           { route: '/api/v1/user', allowedRoles: ['authenticated'] },
           { route: '/api/v1/users/exists/*', allowedRoles: ['authenticated'] },
           { route: '/admin/*', allowedRoles: ['administrator'] },

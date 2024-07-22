@@ -20,14 +20,14 @@ describe('/songs', () => {
   describe.each(locales)('{ locale: "%s" }', locale => {
     const global = { plugins: [createI18n({ locale, legacy: false })] }
 
-    test('{ isLoading: true } renders loading state', async () => {
+    test('{ status: "pending" } renders loading state', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
         path === '/api/v1/user'
           ? { data: ref(null) }
-          : ({ pending: ref(true), data: ref([]) } as any)
+          : ({ status: 'pending', data: ref([]) } as any)
       )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -37,14 +37,14 @@ describe('/songs', () => {
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
-    test('{ isLoading: false, songs: <Data> } renders song list', async () => {
+    test('{ status: "success", songs: <Data> } renders song list', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
         path === '/api/v1/user'
           ? { data: ref(null) }
-          : ({ pending: ref(false), data: ref(songs) } as any)
+          : ({ status: 'success', data: ref(songs) } as any)
       )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -61,12 +61,8 @@ describe('/songs', () => {
       vi.mocked(useFetch).mockImplementation(path =>
         path === '/api/v1/user'
           ? { data: ref(publicUser) }
-          : ({ pending: ref(false), data: ref(songs) } as any)
+          : ({ status: 'success', data: ref(songs) } as any)
       )
-      vi.mocked(useFetch).mockResolvedValue({
-        pending: ref(false),
-        data: ref(songs),
-      } as any)
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
       // Act
@@ -75,14 +71,14 @@ describe('/songs', () => {
       // Assert
       expect(wrapper.element).toMatchSnapshot()
     })
-    test('{ isLoading: false, songs: [] } renders no data', async () => {
+    test('{ status: "success", songs: [] } renders no data', async () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
         path === '/api/v1/user'
           ? { data: ref(null) }
-          : ({ pending: ref(false), data: ref([]) } as any)
+          : ({ status: 'success', data: ref([]) } as any)
       )
       /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -106,7 +102,7 @@ describe('/songs', () => {
     vi.mocked(useFetch).mockImplementation(path =>
       path === '/api/v1/user'
         ? { data: ref(null) }
-        : ({ pending: ref(true), data: ref([]) } as any)
+        : ({ status: 'pending', data: ref([]) } as any)
     )
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
@@ -127,7 +123,7 @@ describe('/songs', () => {
     vi.mocked(useFetch).mockImplementation(path =>
       path === '/api/v1/user'
         ? { data: ref(null) }
-        : ({ pending: ref(true), data: ref([]) } as any)
+        : ({ status: 'pending', data: ref([]) } as any)
     )
     /* eslint-enable @typescript-eslint/no-explicit-any */
 
