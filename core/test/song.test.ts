@@ -1,6 +1,11 @@
 import { describe, expect, test } from 'vitest'
 
-import { getNameIndex, nameIndexMap, songSchema } from '../src/song'
+import {
+  detectCategory,
+  getNameIndex,
+  nameIndexMap,
+  songSchema,
+} from '../src/song'
 import { testSongData } from './data'
 
 describe('song.ts', () => {
@@ -66,5 +71,32 @@ describe('song.ts', () => {
     ])('(%s) returns %i', (nameKana, expected) =>
       expect(getNameIndex(nameKana)).toBe(expected)
     )
+  })
+
+  describe('detectCategory', () => {
+    test.each([
+      ['DDR 1st', 'CLASSIC'],
+      ['DDR 2ndMIX', 'CLASSIC'],
+      ['DDR 3rdMIX', 'CLASSIC'],
+      ['DDR 4thMIX', 'CLASSIC'],
+      ['DDR 5thMIX', 'CLASSIC'],
+      ['DDRMAX', 'CLASSIC'],
+      ['DDRMAX2', 'CLASSIC'],
+      ['DDR EXTREME', 'CLASSIC'],
+      ['DDR SuperNOVA', 'CLASSIC'],
+      ['DDR SuperNOVA2', 'CLASSIC'],
+      ['DDR X', 'CLASSIC'],
+      ['DDR X2', 'CLASSIC'],
+      ['DDR X3 VS 2ndMIX', 'CLASSIC'],
+      ['DanceDanceRevolution (2013)', 'WHITE'],
+      ['DanceDanceRevolution (2014)', 'WHITE'],
+      ['DanceDanceRevolution A', 'WHITE'],
+      ['DanceDanceRevolution A20', 'GOLD'],
+      ['DanceDanceRevolution A20 PLUS', 'GOLD'],
+      ['DanceDanceRevolution A3', 'GOLD'],
+      ['DanceDanceRevolution WORLD', 'GOLD'],
+    ] as const)('(%s) returns "%s"', (series, expected) => {
+      expect(detectCategory(series)).toBe(expected)
+    })
   })
 })

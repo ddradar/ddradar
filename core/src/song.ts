@@ -283,3 +283,37 @@ export const seriesSet: ReadonlySet<string> = new Set([
   'DanceDanceRevolution A3',
   'DanceDanceRevolution WORLD',
 ] satisfies Series[])
+/** Series belong with "CLASSIC" */
+export const classicSeries = new Set<Series>([
+  'DDR 1st',
+  'DDR 2ndMIX',
+  'DDR 3rdMIX',
+  'DDR 4thMIX',
+  'DDR 5thMIX',
+  'DDRMAX',
+  'DDRMAX2',
+  'DDR EXTREME',
+  'DDR SuperNOVA',
+  'DDR SuperNOVA2',
+  'DDR X',
+  'DDR X2',
+  'DDR X3 VS 2ndMIX',
+])
+/** Series belong with "WHITE" */
+export const whiteSeries = new Set<Series>([
+  'DanceDanceRevolution (2013)',
+  'DanceDanceRevolution (2014)',
+  'DanceDanceRevolution A',
+])
+/**
+ * Detect Flare Skill Category from {@link Series}.
+ * @param series Series title
+ * @returns CLASSIC, WHITE, or GOLD
+ */
+export function detectCategory(series: Series): 'CLASSIC' | 'WHITE' | 'GOLD' {
+  return classicSeries.has(series)
+    ? 'CLASSIC'
+    : whiteSeries.has(series)
+      ? 'WHITE'
+      : 'GOLD'
+}
