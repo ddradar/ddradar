@@ -84,6 +84,12 @@ importers:
       '@types/node':
         specifier: ^18.17.11
         version: 18.17.11
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+      jiti:
+        specifier: ^1.21.6
+        version: 1.21.6
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
