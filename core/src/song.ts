@@ -120,9 +120,9 @@ export const songSchema = z.object({
     z.literal('DanceDanceRevolution WORLD'),
   ]),
   /** Displayed min BPM (Beet Per Minutes). */
-  minBPM: z.number().int().positive().readonly(),
+  minBPM: z.number().int().positive(),
   /** Displayed max BPM (Beet Per Minutes). */
-  maxBPM: z.number().int().positive().readonly(),
+  maxBPM: z.number().int().positive(),
   /** Used for filtering */
   folders: z.array(_filter).catch([]),
   /** Song's step charts */

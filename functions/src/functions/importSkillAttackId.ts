@@ -4,7 +4,7 @@ import type {
   InvocationContext,
 } from '@azure/functions'
 import { app } from '@azure/functions'
-import type { SongSchema } from '@ddradar/core'
+import type { DBSongSchema } from '@ddradar/db'
 import { ofetch } from 'ofetch'
 
 import { masterMusicToMap } from '../skill-attack.js'
@@ -44,8 +44,8 @@ const masterMusicUri =
 export async function handler(
   _: unknown,
   ctx: InvocationContext
-): Promise<SongSchema[]> {
-  const songs = ctx.extraInputs.get(input) as SongSchema[]
+): Promise<DBSongSchema[]> {
+  const songs = ctx.extraInputs.get(input) as DBSongSchema[]
   if (!songs.length) return []
 
   const map = masterMusicToMap(
@@ -65,5 +65,5 @@ export async function handler(
       )
       return song
     })
-    .filter((s): s is SongSchema => !!s)
+    .filter(s => !!s)
 }

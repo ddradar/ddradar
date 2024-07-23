@@ -14,8 +14,8 @@ const songSchemaToListMappings = [
   ['c.cp_nameIndex', 'nameIndex'],
   ['c.artist', 'artist'],
   ['c.series', 'series'],
-  ['c.cp_minBPM', 'minBPM'],
-  ['c.cp_maxBPM', 'maxBPM'],
+  ['c.minBPM', 'minBPM'],
+  ['c.maxBPM', 'maxBPM'],
   ['c.cp_folders', 'folders'],
   ['c.deleted', 'deleted'],
 ] as const satisfies [`c.${keyof DBSongSchemaWithCP}`, keyof Song][]

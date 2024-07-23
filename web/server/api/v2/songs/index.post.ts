@@ -20,11 +20,14 @@ import { postBodySchema } from '~~/schemas/songs'
  *   "nameKana": "いーでぃーえむ じゃんぱーず",
  *   "artist": "かめりあ feat. ななひら",
  *   "series": "DanceDanceRevolution A",
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
  *   "folders": [],
  *   "charts": [
  *     {
  *       "playStyle": 1,
  *       "difficulty": 0,
+ *       "bpm": [72, 145, 145],
  *       "level": 3,
  *       "notes": 70,
  *       "freezeArrow": 11,
@@ -46,6 +49,8 @@ export default defineEventHandler(async event => {
     nameKana: body.nameKana,
     artist: body.artist,
     series: body.series,
+    minBPM: body.minBPM,
+    maxBPM: body.maxBPM,
     folders: body.folders,
     charts: [...body.charts].sort((l, r) =>
       l.playStyle === r.playStyle

@@ -13,6 +13,8 @@ describe('POST /api/v2/songs', () => {
     nameKana: testSongData.nameKana,
     artist: testSongData.artist,
     series: testSongData.series,
+    minBPM: testSongData.minBPM,
+    maxBPM: testSongData.maxBPM,
     folders: [],
     charts: [
       ...testSongData.charts,

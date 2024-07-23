@@ -2,12 +2,10 @@ import { songSchema } from '@ddradar/core'
 import { z } from 'zod'
 
 /** zod schema object for {@link DBSongSchema}. */
-export const dbSongSchema = songSchema
-  .omit({ nameIndex: true, minBPM: true, maxBPM: true })
-  .extend({
-    /** To detect schema */
-    type: z.literal('song').catch('song'),
-  })
+export const dbSongSchema = songSchema.omit({ nameIndex: true }).extend({
+  /** To detect schema */
+  type: z.literal('song').catch('song'),
+})
 /**
  * DB Schema of Song data (included on "Songs" container)
  * @example
@@ -19,6 +17,8 @@ export const dbSongSchema = songSchema
  *   "nameKana": "いーでぃーえむ じゃんぱーず",
  *   "artist": "かめりあ feat. ななひら",
  *   "series": "DanceDanceRevolution A",
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
  *   "folders": [],
  *   "charts": [
  *     {
@@ -62,16 +62,6 @@ export const songSchemaWithCP = dbSongSchema.extend({
    * @remarks This property is {@link https://learn.microsoft.com/azure/cosmos-db/nosql/query/computed-properties Computed Properties}.
    */
   cp_folders: songSchema.shape.folders,
-  /**
-   * Displayed min BPM (Beet Per Minutes). Calculate from `charts.bpm` property.
-   * @remarks This property is {@link https://learn.microsoft.com/azure/cosmos-db/nosql/query/computed-properties Computed Properties}.
-   */
-  cp_minBPM: z.number().int().positive().readonly(),
-  /**
-   * Displayed max BPM (Beet Per Minutes). Calculate from `charts.bpm` property.
-   * @remarks This property is {@link https://learn.microsoft.com/azure/cosmos-db/nosql/query/computed-properties Computed Properties}.
-   */
-  cp_maxBPM: z.number().int().positive().readonly(),
 })
 /**
  * DB Schema of Song data with computed properties. (included on "Songs" container)
@@ -85,8 +75,8 @@ export const songSchemaWithCP = dbSongSchema.extend({
  *   "artist": "かめりあ feat. ななひら",
  *   "series": "DanceDanceRevolution A",
  *   "cp_seriesCategory": "WHITE",
- *   "cp_minBPM": 72,
- *   "cp_maxBPM": 145,
+ *   "minBPM": 72,
+ *   "maxBPM": 145,
  *   "folders": [],
  *   "cp_folders": [
  *     { "type": "category", "name": "WHITE" },
