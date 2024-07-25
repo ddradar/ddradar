@@ -1,15 +1,10 @@
 import { describe, expect, test } from 'vitest'
 
-import {
-  areaCodeSet,
-  isAreaUser,
-  type UserSchema,
-  userSchema,
-} from '../src/user'
+import { areaCodeSet, isAreaUser, type User, userSchema } from '../src/user'
 
 describe('user.ts', () => {
   describe('userSchema', () => {
-    const validUserInfo: UserSchema = {
+    const validUserInfo: User = {
       id: 'new_user',
       name: 'New User',
       area: 13,
@@ -24,13 +19,16 @@ describe('user.ts', () => {
       {},
       { ...validUserInfo, id: 1 },
       { ...validUserInfo, id: '#foo' },
+      {
+        ...validUserInfo,
+        id: 'Very-Long-Name5678901234567890123',
+      },
       { ...validUserInfo, area: 'Tokyo' },
       { ...validUserInfo, area: -1 },
       { ...validUserInfo, code: '1000-0000' },
       { ...validUserInfo, code: -1 },
       { ...validUserInfo, code: 100000000 },
       { ...validUserInfo, isPublic: undefined },
-      { ...validUserInfo, password: 0 },
       { id: 'new_user', name: 'New User', area: 13 },
     ])('safeParse(%o) returns { result: false }', o =>
       expect(userSchema.safeParse(o).success).toBe(false)
@@ -41,8 +39,6 @@ describe('user.ts', () => {
       { ...validUserInfo, area: 0 },
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },
-      { ...validUserInfo, loginId: 'foo' },
-      { ...validUserInfo, password: 'password' },
     ])('safeParse(%o) returns { result: true }', o =>
       expect(userSchema.safeParse(o).success).toBe(true)
     )

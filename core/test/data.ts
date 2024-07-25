@@ -1,6 +1,7 @@
 import type { NotificationSchema } from '../src/notification'
 import type { ScoreSchema } from '../src/score'
 import type { Song } from '../src/song'
+import type { User } from '../src/user'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
 export const testSongData: Song = {
@@ -85,37 +86,31 @@ export const publicUser = {
   area: 13,
   code: 10000000,
   isPublic: true,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: true, area: 0, code: undefined } user */
-export const areaHiddenUser = {
+export const areaHiddenUser: User = {
   id: 'area_hidden_user',
-  loginId: 'area_hidden_user',
   name: 'Area Hidden User',
   area: 0,
   isPublic: true,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
-export const privateUser = {
+export const privateUser: User = {
   id: 'private_user',
-  loginId: 'private_user',
   name: 'Private User',
   area: 0,
   isPublic: false,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
-export const noPasswordUser = {
+export const noPasswordUser: User = {
   id: 'no_password_user',
-  loginId: 'no_password_user',
   name: 'No password User',
   area: 0,
   isPublic: false,
-} as const
+}
 //#endregion
 
 //#region NotificationSchema
