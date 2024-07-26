@@ -5,10 +5,8 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/v1/users/[id]/scores.get'
 import { createEvent } from '~~/server/test/utils'
-import { tryFetchUser } from '~~/server/utils/auth'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
 
 describe('GET /api/v1/users/[id]/scores', () => {
   beforeEach(() => {
@@ -18,7 +16,7 @@ describe('GET /api/v1/users/[id]/scores', () => {
   test(`returns 404 if tryFetchUser() returns null`, async () => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
-    vi.mocked(tryFetchUser).mockResolvedValue(null)
+    vi.mocked(getUser).mockRejectedValue({ statusCode: 404 })
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrowError()
@@ -43,7 +41,7 @@ describe('GET /api/v1/users/[id]/scores', () => {
         { id: privateUser.id },
         { style, diff, level, rank, lamp }
       )
-      vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
+      vi.mocked(getUser).mockResolvedValue(privateUser)
       vi.mocked(fetchScoreList).mockResolvedValue([...testScores])
 
       // Act

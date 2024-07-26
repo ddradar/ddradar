@@ -1,26 +1,27 @@
 // @vitest-environment node
 import { publicUser } from '@ddradar/core/test/data'
-import { describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/v1/users/[id]/index.get'
+import handler from '~~/server/api/v2/users/[id]/index.get'
 import { createEvent } from '~~/server/test/utils'
-import { tryFetchUser } from '~~/server/utils/auth'
 
-vi.mock('~~/server/utils/auth')
+describe('GET /api/v2/users/[id]', () => {
+  beforeEach(() => {
+    vi.mocked(getUser).mockClear()
+  })
 
-describe('GET /api/v1/users/[id]', () => {
-  test('returns 404 if tryFetchUser() returns null', async () => {
+  test('returns 404 when getUser() throws error', async () => {
     // Arrange
-    vi.mocked(tryFetchUser).mockResolvedValue(null)
+    vi.mocked(getUser).mockRejectedValue({ statusCode: 404 })
     const event = createEvent({ id: 'not_exists_user' })
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrowError()
   })
 
-  test('returns 200 with JSON if tryFetchUser() returns user', async () => {
+  test('returns 200 with JSON when getUser() returns user', async () => {
     // Arrange
-    vi.mocked(tryFetchUser).mockResolvedValue(publicUser)
+    vi.mocked(getUser).mockResolvedValue(publicUser)
     const event = createEvent({ id: publicUser.id })
 
     // Act

@@ -2,14 +2,14 @@
 import { nameIndexMap } from '@ddradar/core'
 
 import { getDisplayedBPM } from '~/utils/song'
-import { getListQuerySchema } from '~~/schemas/songs'
+import { listQuerySchema } from '~~/schemas/songs'
 
 definePageMeta({ key: route => route.fullPath })
 
 // #region Data Fetching
 const { data: user } = await useFetch('/api/v1/user')
 const _route = useRoute('songs')
-const { name, series } = getListQuerySchema.parse(_route.query)
+const { name, series } = listQuerySchema.parse(_route.query)
 const { data: _data, status } = await useFetch('/api/v2/songs', {
   query: { name, series },
   watch: [_route.query],

@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     azure: {
       config: {
         auth: {
-          rolesSource: '/api/v1/user/roles',
+          rolesSource: '/api/v2/user/roles',
           identityProviders: {
             twitter: {
               registration: {

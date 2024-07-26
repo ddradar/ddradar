@@ -79,9 +79,8 @@ export const testSongList: Omit<Song, 'charts' | 'skillAttackId'>[] = [
 
 //#region UserSchema
 /** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
-export const publicUser = {
+export const publicUser: User = {
   id: 'public_user',
-  loginId: '1',
   name: 'Public User',
   area: 13,
   code: 10000000,

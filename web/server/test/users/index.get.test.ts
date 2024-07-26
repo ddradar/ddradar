@@ -1,27 +1,24 @@
 // @vitest-environment node
 import { publicUser } from '@ddradar/core/test/data'
-import { fetchList } from '@ddradar/db'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
-import getUserList from '~~/server/api/v1/users/index.get'
+import handler from '~~/server/api/v2/users/index.get'
 import { createClientPrincipal, createEvent } from '~~/server/test/utils'
 
-vi.mock('@ddradar/db')
-
-describe('GET /api/v1/users', () => {
+describe('GET /api/v2/users', () => {
+  const list = vi.fn()
   beforeAll(() => {
-    vi.mocked(fetchList).mockResolvedValue([
+    list.mockResolvedValue([
       {
         id: publicUser.id,
         name: publicUser.name,
         area: publicUser.area,
         code: publicUser.code,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any,
+      },
     ])
   })
   beforeEach(() => {
-    vi.mocked(fetchList).mockClear()
+    vi.mocked(list).mockClear()
   })
 
   test.each([
@@ -34,34 +31,32 @@ describe('GET /api/v1/users', () => {
     async (name, area, code, conditions) => {
       // Arrange
       vi.mocked(getClientPrincipal).mockReturnValue(null)
+      vi.mocked(getUserRepository).mockReturnValue({
+        list,
+      } as unknown as ReturnType<typeof getUserRepository>)
       const event = createEvent(undefined, { name, area, code })
 
       // Act
-      const users = await getUserList(event)
+      const users = await handler(event)
 
       // Assert
       expect(users).toHaveLength(1)
-      expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
-        { condition: '(c.isPublic OR c.loginId = @)', value: null },
-        ...conditions,
-      ])
+      expect(list).toBeCalledWith(conditions, undefined)
     }
   )
 
   test('calls fetchList(%o) (login user)', async () => {
     // Arrange
     vi.mocked(getClientPrincipal).mockReturnValue(
-      createClientPrincipal(publicUser.id, publicUser.loginId)
+      createClientPrincipal(publicUser.id, 'loginId')
     )
     const event = createEvent(undefined, undefined, {})
 
     // Act
-    const users = await getUserList(event)
+    const users = await handler(event)
 
     // Assert
     expect(users).toHaveLength(1)
-    expect(vi.mocked(fetchList).mock.lastCall?.[2]).toStrictEqual([
-      { condition: '(c.isPublic OR c.loginId = @)', value: publicUser.loginId },
-    ])
+    expect(list).toBeCalledWith([], 'loginId')
   })
 })

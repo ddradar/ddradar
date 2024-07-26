@@ -6,7 +6,7 @@ import { z } from 'zod'
 export const getRouterParamsSchema = songSchema.pick({ id: true })
 
 /** GET `/api/v2/songs` expected query */
-export const getListQuerySchema = z.object({
+export const listQuerySchema = z.object({
   name: z.coerce
     .number()
     .pipe(songSchema.shape.nameIndex)

@@ -1,17 +1,14 @@
 // @vitest-environment node
-import type { DanceLevel } from '@ddradar/core'
-import { danceLevelSet } from '@ddradar/core'
+import { type DanceLevel, danceLevelSet } from '@ddradar/core'
 import { privateUser } from '@ddradar/core/test/data'
 import { fetchList } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import type { RankStatus } from '~~/schemas/user'
+import type { RankStatus } from '~~/schemas/users'
 import handler from '~~/server/api/v1/users/[id]/rank.get'
 import { createEvent } from '~~/server/test/utils'
-import { tryFetchUser } from '~~/server/utils/auth'
 
 vi.mock('@ddradar/db')
-vi.mock('~~/server/utils/auth')
 
 describe('GET /api/v1/users/[id]/rank', () => {
   const levelLimit = 19
@@ -37,10 +34,10 @@ describe('GET /api/v1/users/[id]/rank', () => {
     vi.mocked(fetchList).mockClear()
   })
 
-  test(`returns 404 if tryFetchUser() returns null`, async () => {
+  test(`returns 404 when getUser() throws error`, async () => {
     // Arrange
     const event = createEvent({ id: privateUser.id })
-    vi.mocked(tryFetchUser).mockResolvedValue(null)
+    vi.mocked(getUser).mockRejectedValue({ statusCode: 404 })
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrowError()
@@ -64,7 +61,7 @@ describe('GET /api/v1/users/[id]/rank', () => {
     async (style, lv, conditions) => {
       // Arrange
       const event = createEvent({ id: privateUser.id }, { style, lv })
-      vi.mocked(tryFetchUser).mockResolvedValue(privateUser)
+      vi.mocked(getUser).mockResolvedValue(privateUser)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(fetchList).mockImplementation((_1, col, _3, _4): any =>
         col.includes('rank') ? ranks : total

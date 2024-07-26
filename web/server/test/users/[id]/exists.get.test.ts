@@ -1,17 +1,15 @@
 // @vitest-environment node
 import { publicUser } from '@ddradar/core/test/data'
-import { fetchOne } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/v1/users/[id]/exists.get'
+import handler from '~~/server/api/v2/users/[id]/exists.get'
 import { createEvent } from '~~/server/test/utils'
 
-vi.mock('@ddradar/db')
-
-describe('GET /api/v1/users/[id]/exists', () => {
+describe('GET /api/v2/users/[id]/exists', () => {
   const dbUser = { id: publicUser.id }
   beforeEach(() => {
-    vi.mocked(fetchOne).mockClear()
+    vi.mocked(hasRole).mockClear()
+    vi.mocked(getUserRepository).mockClear()
   })
 
   test(`<anonymous user> returns 401`, async () => {
@@ -20,8 +18,10 @@ describe('GET /api/v1/users/[id]/exists', () => {
     const event = createEvent({ id: dbUser.id })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
-    expect(vi.mocked(fetchOne)).not.toBeCalled()
+    await expect(handler(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 401 })
+    )
+    expect(vi.mocked(getUserRepository)).not.toBeCalled()
   })
 
   const invalidId = 'ユーザー'
@@ -31,15 +31,20 @@ describe('GET /api/v1/users/[id]/exists', () => {
     const event = createEvent({ id: invalidId })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
-    expect(vi.mocked(fetchOne)).not.toBeCalled()
+    await expect(handler(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getUserRepository)).not.toBeCalled()
   })
 
   test('(id: "not_exists_user") returns 200 with { exists: false }', async () => {
     // Arrange
     const id = 'not_exists_user'
     vi.mocked(hasRole).mockReturnValue(true)
-    vi.mocked(fetchOne).mockResolvedValue(null)
+    const exists = vi.fn().mockResolvedValue(false)
+    vi.mocked(getUserRepository).mockReturnValue({
+      exists,
+    } as unknown as ReturnType<typeof getUserRepository>)
     const event = createEvent({ id })
 
     // Act
@@ -47,17 +52,17 @@ describe('GET /api/v1/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id, exists: false })
-    expect(vi.mocked(fetchOne)).toBeCalledWith('Users', ['id'], {
-      condition: 'c.id = @',
-      value: id,
-    })
+    expect(vi.mocked(getUserRepository)).toBeCalled()
+    expect(exists).toBeCalledWith(id)
   })
 
   test(`(id: "${dbUser.id}") returns 200 with { exists: true }`, async () => {
     // Arrange
     vi.mocked(hasRole).mockReturnValue(true)
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValue(dbUser as any)
+    const exists = vi.fn().mockResolvedValue(true)
+    vi.mocked(getUserRepository).mockReturnValue({
+      exists,
+    } as unknown as ReturnType<typeof getUserRepository>)
     const event = createEvent({ id: dbUser.id })
 
     // Act
@@ -65,9 +70,7 @@ describe('GET /api/v1/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id: dbUser.id, exists: true })
-    expect(vi.mocked(fetchOne)).toBeCalledWith('Users', ['id'], {
-      condition: 'c.id = @',
-      value: dbUser.id,
-    })
+    expect(vi.mocked(getUserRepository)).toBeCalled()
+    expect(exists).toBeCalledWith(dbUser.id)
   })
 })

@@ -1,45 +1,34 @@
 // @vitest-environment node
-import { fetchOne } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import getRoles from '~~/server/api/v1/user/roles.get'
+import handler from '~~/server/api/v2/user/roles.get'
 import { createEvent } from '~~/server/test/utils'
 
-vi.mock('@ddradar/db')
-
-describe('GET /api/v1/user/roles', () => {
+describe('GET /api/v2/user/roles', () => {
   beforeEach(() => {
-    vi.mocked(fetchOne).mockClear()
+    vi.mocked(getUserRepository).mockClear()
   })
 
-  test.each([false, undefined])(
-    'returns empty roles if user.isAdmin is %o',
-    async isAdmin => {
+  test.each([
+    [[], false],
+    [['administrator'], true],
+  ])(
+    'returns { roles: %o } when UserRepository.isAdministrator() returns %o',
+    async (expected, isAdmin) => {
       // Arrange
-      const event = createEvent(undefined, undefined, { userId: '' })
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(fetchOne).mockResolvedValueOnce({ isAdmin } as any)
+      const event = createEvent(undefined, undefined, { userId: 'userId' })
+      const isAdministrator = vi.fn().mockResolvedValue(isAdmin)
+      vi.mocked(getUserRepository).mockReturnValueOnce({
+        isAdministrator,
+      } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act
-      const { roles } = await getRoles(event)
+      const { roles } = await handler(event)
 
       // Assert
-      expect(roles).toHaveLength(0)
-      expect(vi.mocked(fetchOne)).toBeCalled()
+      expect(roles).toStrictEqual(expected)
+      expect(vi.mocked(getUserRepository)).toBeCalled()
+      expect(isAdministrator).toBeCalledWith('userId')
     }
   )
-
-  test('returns "administrator" roles if user.isAdmin is true', async () => {
-    // Arrange
-    const event = createEvent(undefined, undefined, { userId: '' })
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(fetchOne).mockResolvedValueOnce({ isAdmin: true } as any)
-
-    // Act
-    const { roles } = await getRoles(event)
-
-    // Assert
-    expect(roles).toStrictEqual(['administrator'])
-    expect(vi.mocked(fetchOne)).toBeCalled()
-  })
 })

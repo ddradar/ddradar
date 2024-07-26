@@ -1,7 +1,6 @@
 import { fetchScoreList } from '@ddradar/db'
 
-import { getScoresQuerySchema as schema } from '~~/schemas/user'
-import { tryFetchUser } from '~~/server/utils/auth'
+import { getScoresQuerySchema as schema } from '~~/schemas/users'
 
 /**
  * Get user scores that match the specified conditions.
@@ -34,8 +33,7 @@ import { tryFetchUser } from '~~/server/utils/auth'
  * ```
  */
 export default defineEventHandler(async event => {
-  const user = await tryFetchUser(event)
-  if (!user) throw createError({ statusCode: 404 })
+  const user = await getUser(event)
 
   const {
     style: playStyle,

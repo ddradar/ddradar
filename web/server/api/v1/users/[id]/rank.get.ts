@@ -2,9 +2,8 @@ import { danceLevelSet } from '@ddradar/core'
 import type { Condition } from '@ddradar/db'
 import { fetchList } from '@ddradar/db'
 
-import type { RankStatus } from '~~/schemas/user'
-import { getRankQuerySchema as schema } from '~~/schemas/user'
-import { tryFetchUser } from '~~/server/utils/auth'
+import type { RankStatus } from '~~/schemas/users'
+import { getRankQuerySchema as schema } from '~~/schemas/users'
 
 const danceLevels: string[] = [...danceLevelSet]
 
@@ -29,9 +28,7 @@ const danceLevels: string[] = [...danceLevelSet]
  * ```
  */
 export default defineEventHandler(async event => {
-  const user = await tryFetchUser(event)
-  if (!user) throw createError({ statusCode: 404 })
-
+  const user = await getUser(event)
   const { style, lv } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'UserDetails'>[] = []

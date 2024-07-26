@@ -1,5 +1,3 @@
-import { fetchOne } from '@ddradar/db'
-
 import { getRolesBodySchema as schema } from '~~/schemas/user'
 
 /**
@@ -16,10 +14,7 @@ import { getRolesBodySchema as schema } from '~~/schemas/user'
  */
 export default defineEventHandler(async event => {
   const { userId } = await readValidatedBody(event, schema.parse)
-  const user = await fetchOne('Users', ['isAdmin'], {
-    condition: 'c.loginId = @',
-    value: userId,
-  })
+  const isAdmin = await getUserRepository(event).isAdministrator(userId)
 
-  return { roles: user?.isAdmin ? ['administrator'] : [] }
+  return { roles: isAdmin ? ['administrator'] : [] }
 })

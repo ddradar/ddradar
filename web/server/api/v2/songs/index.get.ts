@@ -1,5 +1,5 @@
 import { seriesNames } from '~~/app/utils/song'
-import { getListQuerySchema as schema } from '~~/schemas/songs'
+import { listQuerySchema as schema } from '~~/schemas/songs'
 
 /**
  * Get a list of song information that matches the specified conditions.

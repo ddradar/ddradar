@@ -1,24 +1,25 @@
 <script lang="ts" setup>
-import { areaCodeSet, userSchema } from '@ddradar/core'
+import { areaCodeSet, type User } from '@ddradar/core'
 
 import type { FormError, FormSubmitEvent } from '#ui/types'
-import type { CurrentUserInfo } from '~~/schemas/user'
+import { postBodySchema as schema } from '~~/schemas/user'
 
 definePageMeta({ allowedRoles: 'authenticated' })
 
-const _default: CurrentUserInfo = {
+const _default: User = {
   id: '',
   name: '',
   area: 0,
   code: undefined,
-  password: '',
   isPublic: true,
 }
 const _toast = useToast()
 const { t } = useI18n()
 
 const isNewUser = useState(() => false)
-const { data: user, refresh } = await useFetch('/api/v1/user', {
+
+// #region Data Fetching
+const { data: user, refresh } = await useFetch('/api/v2/user', {
   default: () => _default,
   transform: d => {
     isNewUser.value = !d
@@ -26,7 +27,7 @@ const { data: user, refresh } = await useFetch('/api/v1/user', {
   },
   deep: false,
 })
-const _uri = computed(() => `/api/v1/users/${user.value.id}/exists` as const)
+const _uri = computed(() => `/api/v2/users/${user.value.id}/exists` as const)
 const {
   data: _duplicated,
   execute: _checkDuplicatedId,
@@ -37,18 +38,19 @@ const {
   default: () => false,
   watch: false,
 })
-
-/** Loading state (/api/v1/users/{id}/exists) */
+/** Loading state (/api/v2/users/[id]/exists) */
 const loading = computed(() => _status.value === 'pending')
+// #endregion
+
 /** Area Options */
 const areaOptions = computed(() =>
   [...areaCodeSet].map(value => ({ value, label: t(`area.${value}`) }))
 )
 
 /** Validate form data. */
-const validate = async (_state: CurrentUserInfo) => {
+const validate = async (_state: User) => {
   const errors: FormError[] = []
-  if (!isNewUser.value || !userSchema.shape.id.safeParse(user.value.id).success)
+  if (!isNewUser.value || !schema.shape.id.safeParse(user.value.id).success)
     return errors
   await _checkDuplicatedId()
   if (_duplicated.value)
@@ -57,7 +59,7 @@ const validate = async (_state: CurrentUserInfo) => {
   return errors
 }
 /** Save current user profile. */
-const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
+const onSubmit = async (event: FormSubmitEvent<User>) => {
   try {
     await $fetch('/api/v1/user', { method: 'POST', body: event.data })
     await refresh()
@@ -83,7 +85,7 @@ const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
     <UPageBody>
       <UForm
         :state="user"
-        :schema="userSchema"
+        :schema="schema"
         :validate="validate"
         class="space-y-4"
         @submit="onSubmit"
@@ -156,13 +158,11 @@ const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
       "name": "表示名",
       "area": "所属地域",
       "ddrCode": "DDR CODE(任意)",
-      "password": "インポート用パスワード(任意)",
       "isPublic": "公開する"
     },
     "text": {
       "id": "登録後の変更はできません。",
       "area": "登録後の変更はできません。",
-      "password": "外部インポートを利用しない場合は空欄にしてください。",
       "isPublic": {
         "public_0": "ユーザー検索に表示され、ユーザーページは誰でも閲覧できるようになります。",
         "public_1": "これから登録するスコアはランキングに自動登録され、一般公開されます。",
@@ -195,13 +195,11 @@ const onSubmit = async (event: FormSubmitEvent<CurrentUserInfo>) => {
       "name": "Display Name",
       "area": "Area",
       "ddrCode": "DDR CODE(optional)",
-      "password": "Password for Import(optional)",
       "isPublic": "Public"
     },
     "text": {
       "id": "can not be changed after registration.",
       "area": "can not be changed after registration.",
-      "password": "keep it blank if you do not use external import.",
       "isPublic": {
         "public_0": "You will be shown in the user search and your page will be visible to anyone.",
         "public_1": "Registered scores will be public.",

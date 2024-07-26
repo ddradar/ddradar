@@ -1,9 +1,8 @@
 import { playStyleMap } from '@ddradar/core'
 import { type Condition, fetchList } from '@ddradar/db'
 
-import type { ClearStatus } from '~~/schemas/user'
-import { getClearQuerySchema as schema } from '~~/schemas/user'
-import { tryFetchUser } from '~~/server/utils/auth'
+import type { ClearStatus } from '~~/schemas/users'
+import { getClearQuerySchema as schema } from '~~/schemas/users'
 
 /**
  * Get Clear status that match the specified `userId`, {@link ClearStatus.playStyle playStyle} and {@link ClearStatus.level level}.
@@ -27,9 +26,7 @@ import { tryFetchUser } from '~~/server/utils/auth'
  * ```
  */
 export default defineEventHandler(async event => {
-  const user = await tryFetchUser(event)
-  if (!user) throw createError({ statusCode: 404 })
-
+  const user = await getUser(event)
   const { style, lv } = await getValidatedQuery(event, schema.parse)
 
   const conditions: Condition<'UserDetails'>[] = []

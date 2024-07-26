@@ -2,7 +2,7 @@
 const { t } = useI18n()
 const _route = useRoute('users-id')
 
-const { data: user } = await useFetch(`/api/v1/users/${_route.params.id}`)
+const { data: user } = await useFetch(`/api/v2/users/${_route.params.id}`)
 if (!user.value) throw createError({ statusCode: 404, message: t('empty') })
 
 const { data: clears } = await useFetch(
@@ -25,7 +25,7 @@ const ddrCode = computed(() =>
     <UPageBody>
       <UserClearLampTable
         :play-style="1"
-        :statuses="clears"
+        :statuses="clears!"
       ></UserClearLampTable>
     </UPageBody>
   </UPage>

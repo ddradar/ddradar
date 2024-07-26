@@ -1,16 +1,18 @@
-import { type Condition, fetchList } from '@ddradar/db'
+import type { UserInfo } from '~~/schemas/users'
+import { listQuerySchema as schema } from '~~/schemas/users'
 
-import type { UserInfo } from '~~/schemas/user'
-import { getListQuerySchema as schema } from '~~/schemas/user'
+type Condition = Parameters<
+  ReturnType<typeof getUserRepository>['list']
+>[0][number]
 
 /**
  * Get user list that match the specified conditions.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - GET `api/v1/users?area=:area&name=:name&code=:code`
- *   - `name`(optional): {@link UserInfo.name} (partial match, ignore case)
- *   - `area`(optional): {@link UserInfo.area}
- *   - `code`(optional): {@link UserInfo.code}
+ * - GET `/api/v2/users?area=:area&name=:name&code=:code`
+ *   - `name`(optional): User Name (partial match, ignore case)
+ *   - `area`(optional): Area ID
+ *   - `code`(optional): DDR Code
  * @returns
  * - Returns `200 OK` with JSON body.
  * @example
@@ -31,12 +33,10 @@ import { getListQuerySchema as schema } from '~~/schemas/user'
  * ```
  */
 export default defineEventHandler(async event => {
-  const loginId = getClientPrincipal(event)?.userId ?? null
+  const loginId = getClientPrincipal(event)?.userId
   const { name, area, code } = await getValidatedQuery(event, schema.parse)
 
-  const conditions: Condition<'Users'>[] = [
-    { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
-  ]
+  const conditions: Condition[] = []
   if (name) {
     conditions.push({ condition: 'CONTAINS(c.name, @, true)', value: name })
   }
@@ -44,7 +44,8 @@ export default defineEventHandler(async event => {
   if (code !== undefined)
     conditions.push({ condition: 'c.code = @', value: code })
 
-  return (await fetchList('Users', ['id', 'name', 'area', 'code'], conditions, {
-    name: 'ASC',
-  })) as UserInfo[]
+  return (await getUserRepository(event).list(
+    conditions,
+    loginId
+  )) satisfies UserInfo[]
 })

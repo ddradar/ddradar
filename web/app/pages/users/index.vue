@@ -2,11 +2,11 @@
 import { areaCodeSet } from '@ddradar/core'
 import type { z } from 'zod'
 
-import { getListQuerySchema } from '~~/schemas/user'
+import { listQuerySchema } from '~~/schemas/users'
 
 // #region Data Fetching
 /** Search Form conditions */
-const query = reactive<z.infer<typeof getListQuerySchema>>({
+const query = reactive<z.infer<typeof listQuerySchema>>({
   name: '',
   area: 0,
   code: undefined,
@@ -15,7 +15,7 @@ const {
   data: _data,
   execute,
   status: _status,
-} = useFetch('/api/v1/users', {
+} = useFetch('/api/v2/users', {
   query,
   immediate: false,
   default: () => [],
@@ -47,7 +47,7 @@ const columns = computed(() => [
     <UPageHeader headline="User" :title="t('title')" />
 
     <UPageBody>
-      <UForm :state="query" :schema="getListQuerySchema" @submit="execute">
+      <UForm :state="query" :schema="listQuerySchema" @submit="execute">
         <UPageGrid>
           <UFormGroup :label="t('field.area')" name="area">
             <USelect v-model="query.area" :options="areaOptions" />

@@ -1,132 +1,131 @@
 import { privateUser, publicUser } from '@ddradar/core/test/data'
-import { fetchLoginUser, fetchUser } from '@ddradar/db'
+import type { H3Event } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { createClientPrincipal, createEvent } from '~~/server/test/utils'
-import { getLoginUserInfo, tryFetchUser } from '~~/server/utils/auth'
-
-vi.mock('@ddradar/db')
+import { getLoginUserInfo, getUser } from '~~/server/utils/auth'
 
 describe('server/utils/auth.ts', () => {
   describe('getLoginUserInfo', () => {
     beforeEach(() => {
       vi.mocked(getClientPrincipal).mockClear()
-      vi.mocked(fetchLoginUser).mockClear()
+      vi.mocked(getUserRepository).mockClear()
     })
 
-    test(`(getClientPrincipal: null) returns null`, async () => {
+    test(`(getClientPrincipal: null) throws 401 error`, async () => {
       // Arrange
       vi.mocked(getClientPrincipal).mockReturnValue(null)
 
-      // Act
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const user = await getLoginUserInfo({} as any)
-
-      // Assert
-      expect(user).toBeNull()
-      expect(vi.mocked(fetchLoginUser)).not.toBeCalled()
+      // Act - Assert
+      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrowError(
+        expect.objectContaining({ statusCode: 401 })
+      )
+      expect(vi.mocked(getUserRepository)).not.toBeCalled()
     })
 
-    test(`(getClientPrincipal: <Unregistered User Token>) returns null`, async () => {
+    test(`(getClientPrincipal: <Unregistered User Token>) throws 404 error`, async () => {
       // Arrange
       vi.mocked(getClientPrincipal).mockReturnValue(
         createClientPrincipal('id', 'loginId')
       )
-      vi.mocked(fetchLoginUser).mockResolvedValue(null)
+      const get = vi.fn().mockResolvedValue(undefined)
+      vi.mocked(getUserRepository).mockReturnValue({
+        get,
+      } as unknown as ReturnType<typeof getUserRepository>)
 
-      // Act
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const user = await getLoginUserInfo({} as any)
-
-      // Assert
-      expect(user).toBeNull()
-      expect(vi.mocked(fetchLoginUser)).toBeCalledWith('loginId')
+      // Act - Assert
+      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrowError(
+        expect.objectContaining({ statusCode: 404 })
+      )
+      expect(vi.mocked(getClientPrincipal)).toBeCalled()
+      expect(get).toBeCalledWith('', 'loginId')
     })
 
-    test(`(getClientPrincipal: <Registered User Token>) returns UserSchema`, async () => {
+    test(`(getClientPrincipal: <Registered User Token>) returns User`, async () => {
       // Arrange
       vi.mocked(getClientPrincipal).mockReturnValue(
-        createClientPrincipal(publicUser.id, publicUser.loginId)
+        createClientPrincipal(publicUser.id, 'loginId')
       )
-      vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
+      const get = vi.fn().mockResolvedValue(publicUser)
+      vi.mocked(getUserRepository).mockReturnValue({
+        get,
+      } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const user = await getLoginUserInfo({} as any)
+      const user = await getLoginUserInfo({} as H3Event)
 
       // Assert
       expect(user).toBe(publicUser)
-      expect(vi.mocked(fetchLoginUser)).toBeCalledWith(publicUser.loginId)
+      expect(vi.mocked(getClientPrincipal)).toBeCalled()
+      expect(vi.mocked(get)).toBeCalledWith('', 'loginId')
     })
   })
 
-  describe('tryFetchUser', () => {
-    const event: Parameters<typeof tryFetchUser>[0] = createEvent({
+  describe('getUser', () => {
+    const event: Parameters<typeof getUser>[0] = createEvent({
       id: '',
     })
     beforeEach(() => {
       event.node.req.headers = {}
       event.context.params!.id = ''
-      vi.mocked(fetchUser).mockClear()
+      vi.mocked(getClientPrincipal).mockClear()
+      vi.mocked(getUserRepository).mockClear()
     })
 
     test.each(['', '#user', 'ユーザー'])(
-      '({ id: "%s" }) returns null',
+      '({ id: "%s" }) throws 404 error',
       async id => {
         // Arrange
         event.context.params!.id = id
 
-        // Act
-        const user = await tryFetchUser(event)
-
-        // Assert
-        expect(user).toBeNull()
-        expect(vi.mocked(fetchUser)).not.toBeCalled()
+        // Act - Assert
+        await expect(getUser(event)).rejects.toThrowError(
+          expect.objectContaining({ statusCode: 404 })
+        )
+        expect(vi.mocked(getClientPrincipal)).not.toBeCalled()
+        expect(vi.mocked(getUserRepository)).not.toBeCalled()
       }
     )
 
-    test.each([
-      [publicUser, null],
-      [publicUser, 'foo'],
-      [privateUser, privateUser.loginId],
-    ])(
-      `({ id: %o, header: "%s" }) returns UserSchema`,
-      async (dbUser, loginId) => {
-        // Arrange
-        event.context.params!.id = dbUser.id
-        vi.mocked(getClientPrincipal).mockReturnValue({
-          userId: loginId,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        } as any)
-        vi.mocked(fetchUser).mockResolvedValue(dbUser)
-
-        // Act
-        const user = await tryFetchUser(event)
-
-        // Assert
-        expect(user).toStrictEqual(dbUser)
-        expect(vi.mocked(fetchUser)).toBeCalledWith(dbUser.id)
-      }
-    )
-
-    test.each([
-      [null, null],
-      [privateUser, null],
-      [privateUser, 'foo'],
-    ])(`({ id: %o, header: "%s" }) returns null`, async (dbUser, loginId) => {
+    test('({ id: <Not found or Private User ID> }) throws 404 error', async () => {
       // Arrange
-      const id = dbUser?.id ?? 'foo'
-      event.context.params!.id = id
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      vi.mocked(getClientPrincipal).mockReturnValue({ userId: loginId } as any)
-      vi.mocked(fetchUser).mockResolvedValue(dbUser)
+      event.context.params!.id = privateUser.id
+      vi.mocked(getClientPrincipal).mockReturnValue(
+        createClientPrincipal(privateUser.id, 'loginId')
+      )
+      const get = vi.fn().mockResolvedValue(undefined)
+      vi.mocked(getUserRepository).mockReturnValue({
+        get,
+      } as unknown as ReturnType<typeof getUserRepository>)
+
+      // Act - Assert
+      await expect(getUser(event)).rejects.toThrowError(
+        expect.objectContaining({ statusCode: 404 })
+      )
+      expect(vi.mocked(getClientPrincipal)).toBeCalled()
+      expect(vi.mocked(getUserRepository)).toBeCalled()
+      expect(get).toBeCalledWith(privateUser.id, 'loginId')
+    })
+
+    test(`({ id: "${publicUser.id}" }) returns User`, async () => {
+      // Arrange
+      event.context.params!.id = publicUser.id
+      vi.mocked(getClientPrincipal).mockReturnValue(
+        createClientPrincipal(publicUser.id, 'loginId')
+      )
+      const get = vi.fn().mockResolvedValue(publicUser)
+      vi.mocked(getUserRepository).mockReturnValue({
+        get,
+      } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act
-      const user = await tryFetchUser(event)
+      const user = await getUser(event)
 
       // Assert
-      expect(user).toBeNull()
-      expect(vi.mocked(fetchUser)).toBeCalledWith(id)
+      expect(user).toBe(publicUser)
+      expect(vi.mocked(getClientPrincipal)).toBeCalled()
+      expect(vi.mocked(getUserRepository)).toBeCalled()
+      expect(get).toBeCalledWith(publicUser.id, 'loginId')
     })
   })
 })

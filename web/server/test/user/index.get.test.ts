@@ -2,41 +2,28 @@
 import { publicUser } from '@ddradar/core/test/data'
 import { describe, expect, test, vi } from 'vitest'
 
-import getCurrentUser from '~~/server/api/v1/user/index.get'
+import handler from '~~/server/api/v2/user/index.get'
 import { createEvent } from '~~/server/test/utils'
-import { getLoginUserInfo } from '~~/server/utils/auth'
 
-vi.mock('~~/server/utils/auth')
-
-describe('GET /api/v1/user', () => {
-  test('returns 200 if getLoginUserInfo() returns null', async () => {
+describe('GET /api/v2/user', () => {
+  test('throws error when getLoginUserInfo() throws error', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(getLoginUserInfo).mockResolvedValueOnce(null)
+    vi.mocked(getLoginUserInfo).mockRejectedValue({ statusCode: 401 })
 
-    // Act
-    const user = await getCurrentUser(event)
-
-    // Assert
-    expect(user).toBeNull()
+    // Act - Assert
+    await expect(handler(event)).rejects.toThrowError()
   })
 
-  test('returns 200 with JSON if getLoginUserInfo() returns user', async () => {
+  test('returns 200 with JSON', async () => {
     // Arrange
     const event = createEvent()
-    vi.mocked(getLoginUserInfo).mockResolvedValueOnce({ ...publicUser })
+    vi.mocked(getLoginUserInfo).mockResolvedValue({ ...publicUser })
 
     // Act
-    const result = await getCurrentUser(event)
+    const result = await handler(event)
 
     // Assert
-    expect(result).toStrictEqual({
-      id: publicUser.id,
-      name: publicUser.name,
-      area: publicUser.area,
-      code: publicUser.code,
-      isPublic: publicUser.isPublic,
-      password: publicUser.password,
-    })
+    expect(result).toStrictEqual(publicUser)
   })
 })
