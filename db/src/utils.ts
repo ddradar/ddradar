@@ -1,5 +1,15 @@
 import type { JSONValue, SqlParameter } from '@azure/cosmos'
 
+export type Column<DBSchema, T = DBSchema, Alias extends string = 'c'> =
+  | `${Alias}.${Extract<keyof DBSchema & keyof T, string>}`
+  | `${Alias}.${Extract<Exclude<keyof DBSchema, keyof T>, string>} AS ${Extract<keyof T, string>}`
+
+export type FuncColumn<
+  DBSchema,
+  T = DBSchema,
+  Alias extends string = 'c',
+> = `${string}${Alias}.${Extract<Exclude<keyof DBSchema, keyof T>, string>}${string} AS ${Extract<keyof T, string>}`
+
 /** SQL WHERE condition */
 export type QueryFilter<T, Alias extends string = 'c'> =
   | {

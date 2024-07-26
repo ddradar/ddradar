@@ -2,63 +2,17 @@ import type { CosmosClient } from '@azure/cosmos'
 import type { Song, StepChart } from '@ddradar/core'
 
 import { databaseName, songContainer } from '../constants'
-import type { DBSongSchema, DBSongSchemaWithCP } from '../schemas/songs'
+import type {
+  DBSongSchema,
+  DBSongSchemaWithCP as DBSchema,
+} from '../schemas/songs'
 import { dbSongSchema } from '../schemas/songs'
-import type { QueryFilter } from '../utils'
+import type { Column, FuncColumn, QueryFilter } from '../utils'
 import { generateQueryConditions } from '../utils'
 
-const songSchemaToListMappings = [
-  ['c.id', 'id'],
-  ['c.name', 'name'],
-  ['c.nameKana', 'nameKana'],
-  ['c.cp_nameIndex', 'nameIndex'],
-  ['c.artist', 'artist'],
-  ['c.series', 'series'],
-  ['c.minBPM', 'minBPM'],
-  ['c.maxBPM', 'maxBPM'],
-  ['c.cp_folders', 'folders'],
-  ['c.deleted', 'deleted'],
-] as const satisfies [`c.${keyof DBSongSchemaWithCP}`, keyof Song][]
-/** Columns used for SELECT Song data list */
-const songListColumns = songSchemaToListMappings
-  .map(([schema, model]) => `${schema} AS ${model}`)
-  .join(', ')
-
-const songSchemaToModelMappings = [
-  ...songSchemaToListMappings,
-  ['c.charts', 'charts'],
-  ['c.skillAttackId', 'skillAttackId'],
-] as const satisfies [`c.${keyof DBSongSchemaWithCP}`, keyof Song][]
-/** Columns used for SELECT Song data */
-const songColumns = songSchemaToModelMappings
-  .map(([schema, model]) => `${schema} AS ${model}`)
-  .join(', ')
-
-const chartSchemaToModelMappings = [
-  ['s.id', 'id'],
-  ['s.name', 'name'],
-  ['s.nameKana', 'nameKana'],
-  ['s.cp_nameIndex', 'nameIndex'],
-  ['s.artist', 'artist'],
-  ['s.series', 'series'],
-  [
-    'ARRAY_CONCAT(c.cp_folders, [{ type: "level", name: ToString(i.level) }])',
-    'folders',
-  ],
-  ['c.playStyle', 'playStyle'],
-  ['c.difficulty', 'difficulty'],
-  ['c.level', 'level'],
-  ['c.notes', 'notes'],
-] as const satisfies [
-  `s.${keyof DBSongSchemaWithCP}` | `c.${keyof StepChart}` | string,
-  keyof Song | keyof StepChart,
-][]
-/** Columns used for SELECT StepChart data */
-const chartColumns = chartSchemaToModelMappings
-  .map(([schema, model]) => `${schema} AS ${model}`)
-  .join(', ')
-
 const orderBy = 'ORDER BY c.cp_nameIndex, c.nameKana'
+
+type DBColumn<T, Alias extends string = 'c'> = Column<DBSchema, T, Alias>
 
 /**
  * Repository for Song & chart data.
@@ -76,12 +30,26 @@ export class SongRepository {
    * @returns Song data
    */
   async get(id: string): Promise<Song | undefined> {
+    const columns: DBColumn<Song>[] = [
+      'c.id',
+      'c.name',
+      'c.nameKana',
+      'c.cp_nameIndex AS nameIndex',
+      'c.artist',
+      'c.series',
+      'c.minBPM',
+      'c.maxBPM',
+      'c.cp_folders AS folders',
+      'c.charts',
+      'c.skillAttackId',
+      'c.deleted',
+    ]
     const { resources } = await this.client
       .database(databaseName)
       .container(songContainer)
       .items.query<Song>(
         {
-          query: `SELECT TOP 1 ${songColumns} FROM c WHERE c.id = @id`,
+          query: `SELECT TOP 1 ${columns.join(', ')} FROM c WHERE c.id = @id`,
           parameters: [{ name: '@id', value: id }],
         },
         { maxItemCount: 1 }
@@ -96,14 +64,26 @@ export class SongRepository {
    * @returns Song list that matches the conditions.
    */
   async list(
-    conditions: QueryFilter<DBSongSchemaWithCP>[]
+    conditions: QueryFilter<DBSchema>[]
   ): Promise<Omit<Song, 'charts' | 'skillAttackId'>[]> {
+    const columns: DBColumn<Omit<Song, 'charts' | 'skillAttackId'>>[] = [
+      'c.id',
+      'c.name',
+      'c.nameKana',
+      'c.cp_nameIndex AS nameIndex',
+      'c.artist',
+      'c.series',
+      'c.minBPM',
+      'c.maxBPM',
+      'c.cp_folders AS folders',
+      'c.deleted',
+    ]
     const { queryConditions, parameters } = generateQueryConditions(conditions)
     const { resources } = await this.client
       .database(databaseName)
       .container(songContainer)
       .items.query<Song>({
-        query: `SELECT ${songListColumns} FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
         parameters,
       })
       .fetchAll()
@@ -116,17 +96,34 @@ export class SongRepository {
    * @returns Chart list that matches the conditions.
    */
   async listCharts(
-    conditions: (
-      | QueryFilter<DBSongSchemaWithCP, 's'>
-      | QueryFilter<StepChart>
-    )[]
+    conditions: (QueryFilter<DBSchema, 's'> | QueryFilter<StepChart>)[]
   ): Promise<(Omit<Song, 'minBPM' | 'maxBPM' | 'charts'> & StepChart)[]> {
+    const columns: (
+      | DBColumn<Omit<Song, 'minBPM' | 'maxBPM' | 'charts' | 'folders'>, 's'>
+      | Column<StepChart>
+      | FuncColumn<DBSchema, Pick<Song, 'folders'>, 's'>
+    )[] = [
+      's.id',
+      's.name',
+      's.nameKana',
+      's.cp_nameIndex AS nameIndex',
+      's.artist',
+      's.series',
+      'ARRAY_CONCAT(s.cp_folders, [{ type: "level", name: ToString(c.level) }]) AS folders',
+      'c.playStyle',
+      'c.difficulty',
+      'c.bpm',
+      'c.level',
+      'c.notes',
+      'c.freezeArrow',
+      'c.shockArrow',
+    ]
     const { queryConditions, parameters } = generateQueryConditions(conditions)
     const { resources } = await this.client
       .database(databaseName)
       .container(songContainer)
       .items.query<Omit<Song, 'minBPM' | 'maxBPM' | 'charts'> & StepChart>({
-        query: `SELECT ${chartColumns} FROM s JOIN c IN s.charts${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
         parameters,
       })
       .fetchAll()

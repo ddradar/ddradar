@@ -13,7 +13,6 @@ import type {
   ScoreSchema,
   UserClearLampSchema,
   UserRankSchema,
-  UserSchema,
 } from '@ddradar/core'
 
 const connectionString = process.env.COSMOS_DB_CONN
@@ -29,13 +28,11 @@ type ContainerName = 'Scores' | 'Users' | 'Notification' | 'UserDetails'
 
 type ContainerValue<T> = T extends 'Scores'
   ? ScoreSchema
-  : T extends 'Users'
-    ? UserSchema
-    : T extends 'Notification'
-      ? NotificationSchema
-      : T extends 'UserDetails'
-        ? UserClearLampSchema | UserRankSchema
-        : never
+  : T extends 'Notification'
+    ? NotificationSchema
+    : T extends 'UserDetails'
+      ? UserClearLampSchema | UserRankSchema
+      : never
 
 type DbItem<T> = ContainerValue<T> & Resource & Pick<ItemDefinition, 'ttl'>
 //#endregion

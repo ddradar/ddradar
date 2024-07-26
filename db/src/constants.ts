@@ -1,3 +1,4 @@
 export const databaseName = 'DDRadar'
 
-export const songContainer = 'SongsV2'
+export const songContainer = 'Songs'
+export const userDataContainer = 'UserData'
