@@ -119,6 +119,13 @@ export const songSchema = z.object({
     z.literal('DanceDanceRevolution A3'),
     z.literal('DanceDanceRevolution WORLD'),
   ]),
+  /**
+   * Flare skill category.
+   * @description Calculate from {@link Song.series}.
+   */
+  seriesCategory: z
+    .union([z.literal('CLASSIC'), z.literal('WHITE'), z.literal('GOLD')])
+    .readonly(),
   /** Displayed min BPM (Beet Per Minutes). */
   minBPM: z.number().int().positive(),
   /** Displayed max BPM (Beet Per Minutes). */

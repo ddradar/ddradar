@@ -236,131 +236,87 @@ describe('score.ts', () => {
       maxCombo: 0,
     }
     test.each([
-      [{ clearLamp: 7 } as Partial<ScoreRecord>, mfcScore], // MFC
-      [{ score: 1000000 } as Partial<ScoreRecord>, mfcScore], // MFC
-      [{ exScore: 3060 } as Partial<ScoreRecord>, mfcScore], // MFC
-      [{ score: 999990 } as Partial<ScoreRecord>, pfcScore], // P1
-      [{ exScore: 3059 } as Partial<ScoreRecord>, pfcScore], // P1
+      [{ clearLamp: 7 }, mfcScore], // MFC
+      [{ score: 1000000 }, mfcScore], // MFC
+      [{ exScore: 3060 }, mfcScore], // MFC
+      [{ score: 999990 }, pfcScore], // P1
+      [{ exScore: 3059 }, pfcScore], // P1
+      [{ score: 999600 }, { ...pfcScore, score: 999600, exScore: 3020 }], // Maybe PFC (score is greater than Great:1 score)
       [
-        // Maybe PFC (score is greater than Great:1 score)
-        { score: 999600 } as Partial<ScoreRecord>,
-        { ...pfcScore, score: 999600, exScore: 3020 },
-      ],
-      [
-        // P20
-        { exScore: 3040, clearLamp: 6 } as Partial<ScoreRecord>,
+        { exScore: 3040, clearLamp: 6 },
         { ...pfcScore, score: 999800, exScore: 3040 },
-      ],
-      [{ exScore: 3058, clearLamp: 5 } as Partial<ScoreRecord>, gfcScore], // Gr1
-      [{ score: 999590, clearLamp: 5 } as Partial<ScoreRecord>, gfcScore], // Gr1
+      ], // P20
+      [{ exScore: 3058, clearLamp: 5 }, gfcScore], // Gr1
+      [{ score: 999590, clearLamp: 5 }, gfcScore], // Gr1
       [
-        // Gr1 P9
-        { score: 999500, clearLamp: 5 } as Partial<ScoreRecord>,
+        { score: 999500, clearLamp: 5 },
         { ...gfcScore, score: 999500, exScore: 3049 },
-      ],
+      ], // Gr1 P9
+      [{ score: 999210 }, { ...gfcScore, score: 999210, exScore: 3020 }], // Maybe Great:1 FC (score is greater than Good:1 score)
       [
-        // Maybe Great:1 FC (score is greater than Good:1 score)
-        { score: 999210 } as Partial<ScoreRecord>,
-        { ...gfcScore, score: 999210, exScore: 3020 },
-      ],
+        { score: 987600, clearLamp: 5 },
+        { score: 987600, rank: 'AA+', clearLamp: 5, maxCombo: 1010 },
+      ], // Cannot guess EX SCORE
+      [{ exScore: 3057, clearLamp: 4 }, fcScore], // Gd1
+      [{ score: 999200, clearLamp: 4 }, fcScore], // Gd1
       [
-        // Cannot guess EX SCORE
-        { score: 987600, clearLamp: 5 } as Partial<ScoreRecord>,
-        {
-          score: 987600,
-          rank: 'AA+',
-          clearLamp: 5,
-          maxCombo: 1010,
-        } as ScoreRecord,
-      ],
-      [{ exScore: 3057, clearLamp: 4 } as Partial<ScoreRecord>, fcScore], // Gd1
-      [{ score: 999200, clearLamp: 4 } as Partial<ScoreRecord>, fcScore], // Gd1
-      [
-        // Gd1 P20
-        { score: 999000, clearLamp: 4 } as Partial<ScoreRecord>,
+        { score: 999000, clearLamp: 4 },
         { ...fcScore, score: 999000, exScore: 3037 },
-      ],
+      ], // Gd1 P20
       [
-        // Maybe Full Combo (score is greater than Miss:1 score)
-        { score: 999100 } as Partial<ScoreRecord>,
-        {
-          score: 999100,
-          rank: 'AAA',
-          clearLamp: 4,
-          maxCombo: 1010,
-        } as ScoreRecord,
-      ],
+        { score: 999100 },
+        { score: 999100, rank: 'AAA', clearLamp: 4, maxCombo: 1010 },
+      ], // Maybe Full Combo (score is greater than Miss:1 score)
       [
-        // Cannot guess EX SCORE
-        { score: 987600, clearLamp: 4 } as Partial<ScoreRecord>,
-        {
-          score: 987600,
-          clearLamp: 4,
-          rank: 'AA+',
-          maxCombo: 1010,
-        } as ScoreRecord,
-      ],
+        { score: 987600, clearLamp: 4 },
+        { score: 987600, clearLamp: 4, rank: 'AA+', maxCombo: 1010 },
+      ], // Cannot guess EX SCORE
       [
-        // Miss1 P1
-        { score: 999000, clearLamp: 2 } as Partial<ScoreRecord>,
-        {
-          score: 999000,
-          rank: 'AAA',
-          clearLamp: 2,
-          exScore: 3056,
-        } as ScoreRecord,
-      ],
+        { score: 999000, clearLamp: 2 },
+        { score: 999000, rank: 'AAA', clearLamp: 2, exScore: 3056 },
+      ], // Miss1 P1
       [
-        // Miss1 P1 (missed last FA)
-        { score: 999000, clearLamp: 0, maxCombo: 1010 } as Partial<ScoreRecord>,
+        { score: 999000, clearLamp: 0, maxCombo: 1010 },
         {
           score: 999000,
           rank: 'E',
           clearLamp: 0,
           exScore: 3056,
           maxCombo: 1010,
-        } as ScoreRecord,
+        },
+      ], // Miss1 P1 (missed last FA)
+      [
+        { score: 948260, clearLamp: 3, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: 3, maxCombo: 260 },
       ],
       [
-        { score: 948260, clearLamp: 3, maxCombo: 260 } as Partial<ScoreRecord>,
-        {
-          score: 948260,
-          rank: 'AA',
-          clearLamp: 3,
-          maxCombo: 260,
-        } as ScoreRecord,
+        { score: 948260, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: 2, maxCombo: 260 },
       ],
       [
-        { score: 948260, maxCombo: 260 } as Partial<ScoreRecord>,
-        {
-          score: 948260,
-          rank: 'AA',
-          clearLamp: 2,
-          maxCombo: 260,
-        } as ScoreRecord,
+        { score: 8460, rank: 'E' },
+        { score: 8460, rank: 'E', clearLamp: 0 },
       ],
-      [
-        { score: 8460, rank: 'E' } as Partial<ScoreRecord>,
-        { score: 8460, rank: 'E', clearLamp: 0 } as ScoreRecord,
-      ],
-      [{ score: 0, clearLamp: 0 } as Partial<ScoreRecord>, noPlayScore], // 0 point
-      [{ score: 0, rank: 'E' } as Partial<ScoreRecord>, noPlayScore], // 0 point
+      [{ score: 0, clearLamp: 0 }, noPlayScore], // 0 point falied
+      [{ score: 0, rank: 'E' }, noPlayScore], // 0 point falied
       [
         // 0 point clear (Maybe use Assist option)
         { score: 0, clearLamp: 1 } as Partial<ScoreRecord>,
         { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreRecord,
       ],
       [
-        // 0 point clear (Maybe use Assist option)
-        { score: 0, clearLamp: 2 } as Partial<ScoreRecord>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreRecord,
-      ],
+        { score: 0, clearLamp: 2 },
+        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+      ], // 0 point clear (Maybe use Assist option)
       [
-        // 0 point clear (Maybe use Assist option)
-        { score: 0, rank: 'D' } as Partial<ScoreRecord>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreRecord,
-      ],
-    ])(
+        { score: 0, rank: 'D' },
+        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+      ], // 0 point clear (Maybe use Assist option)
+      [
+        { score: 0, clearLamp: 2, flareRank: 1 },
+        { ...noPlayScore, rank: 'D', clearLamp: 2, flareRank: 1 },
+      ], // 0 point clear (FLARE I Clear)
+    ] as const)(
       '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
       (score: Partial<ScoreRecord>, expected: ScoreRecord) =>
         expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
@@ -371,26 +327,26 @@ describe('score.ts', () => {
       ).toThrowError(/^Cannot guess Score object. set score property/))
     test.each([
       [
-        { score: 993100, clearLamp: 5 } as Partial<ScoreRecord>, // Gr3 P55
+        { score: 993100, clearLamp: 5 },
         {
           score: 993100,
           rank: 'AAA',
           clearLamp: 5,
           exScore: 509,
           maxCombo: 180,
-        } as ScoreRecord,
-      ],
+        },
+      ], // Gr3 P55
       [
-        { score: 989100, clearLamp: 5 } as Partial<ScoreRecord>, // Gr5 P32
+        { score: 989100, clearLamp: 5 },
         {
           score: 989100,
           rank: 'AA+',
           clearLamp: 5,
           exScore: 528,
           maxCombo: 180,
-        } as ScoreRecord,
-      ],
-    ])(
+        },
+      ], // Gr5 P32
+    ] as const)(
       '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %o) returns %o',
       (incompleteScore: Partial<ScoreRecord>, expected: ScoreRecord) => {
         // Arrange

@@ -84,7 +84,8 @@ export type DanceLevel = ScoreRecord['rank']
 /** {@link ScoreRecord.flareRank} */
 export type FlareRank = Exclude<ScoreRecord['flareRank'], undefined>
 
-const clearLamps = new Map<ClearLamp, string>([
+/** Map for {@link ClearLamp} */
+export const clearLampMap: ReadonlyMap<number, string> = new Map([
   [0, 'Failed'],
   [1, 'Assisted Clear'],
   [2, 'Clear'],
@@ -93,14 +94,15 @@ const clearLamps = new Map<ClearLamp, string>([
   [5, 'Great Full Combo'],
   [6, 'Perfect Full Combo'],
   [7, 'Marvelous Full Combo'],
-])
-/** Map for {@link ClearLamp} */
-export const clearLampMap: ReadonlyMap<number, string> = clearLamps
+] satisfies [ClearLamp, string][])
 
-const flareRanks: FlareRank[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-export const flareRankSet: ReadonlySet<number> = new Set(flareRanks)
+/** Set for {@link FlareRank} */
+export const flareRankSet: ReadonlySet<number> = new Set([
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+] satisfies FlareRank[])
 
-const danceLevels: DanceLevel[] = [
+/** Set for {@link DanceLevel} */
+export const danceLevelSet: ReadonlySet<string> = new Set([
   'E',
   'D',
   'D+',
@@ -117,9 +119,19 @@ const danceLevels: DanceLevel[] = [
   'AA',
   'AA+',
   'AAA',
-]
-/** Set for {@link DanceLevel} */
-export const danceLevelSet: ReadonlySet<string> = new Set(danceLevels)
+] satisfies DanceLevel[])
+
+/** Score record linked to user, song and chart */
+export type UserScoreRecord = ScoreRecord & {
+  /** User ID */
+  userId: User['id']
+  /** User name */
+  userName: User['name']
+  /** Song ID */
+  songId: Song['id']
+  /** Song name */
+  songName: Song['name']
+} & Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>
 
 /** zod schema object for {@link ScoreSchema}. */
 export const scoreSchema = scoreRecordSchema.extend({
@@ -264,7 +276,7 @@ export function isValidScore(
 
   if (exScore) {
     if (
-      !isPositiveInteger(exScore) ||
+      !scoreRecordSchema.shape.exScore.safeParse(exScore).success ||
       exScore > maxExScore ||
       (clearLamp !== 7 && exScore === maxExScore) || // EX SCORE is MAX, but not MFC
       (clearLamp !== 6 && exScore === maxExScore - 1) || // EX SCORE is P1, but not PFC
@@ -273,9 +285,9 @@ export function isValidScore(
       return false
   }
 
-  // Do not check maxCombo because "MAX COMBO is fullCombo, but not FC" pattern is exists.
+  // Do not treat (maxCombo = fullCombo count) as FULL COMBO because "MAX COMBO is fullCombo, but not FC" pattern is exists.
   // ex. missed last Freeze Arrow
-  return !maxCombo || (isPositiveInteger(maxCombo) && maxCombo <= fullCombo)
+  return (maxCombo ?? 0) <= fullCombo
 }
 
 /**
@@ -333,17 +345,12 @@ export function setValidScoreFromChart(
   const maxExScore = objects * 3
   /** Full Combo */
   const maxCombo = notes + shockArrow
-  /** Marvelous or O.K. score */
-  const baseScore = 1000000 / objects
-  /** Great score */
-  const great = baseScore * 0.6 - 10
-  /** Good score */
-  const good = baseScore * 0.2 - 10
 
   const isFailed = partialScore.rank === 'E' || partialScore.clearLamp === 0
 
   if (isMFC()) {
     return {
+      ...partialScore,
       score: 1000000,
       rank: 'AAA',
       clearLamp: 7,
@@ -355,7 +362,7 @@ export function setValidScoreFromChart(
   // Patterns that can be calculated from EX SCORE
   const scoreFromEx = tryCalcFromExScore()
   if (scoreFromEx !== null) {
-    return scoreFromEx
+    return { ...partialScore, ...scoreFromEx }
   }
 
   if (partialScore.score === undefined)
@@ -389,9 +396,9 @@ export function setValidScoreFromChart(
     )
   }
 
-  if (isGood1()) {
+  if (isGreat0Good1()) {
     /** Perfect:0, Great:0, Good:1 Score */
-    const target = floorScore(1000000 - baseScore + good)
+    const target = calcNormalScore(objects, objects - 1, 0, 0, 1)
     const perfectCount = (target - partialScore.score) / 10
     return {
       ...result,
@@ -417,20 +424,20 @@ export function setValidScoreFromChart(
   // Currently, 0 point can only be obtained by the following methods:
   // 1. Failed
   // 2. CHAOS [SP-BEGINNER] with CUT1 (= Assisted Clear)
-  // 3. ようこそジャパリパークへ [DP-CHALLENGE] with JUMP OFF (= Assisted Clear)
+  // 3. Flare gauge clear (ex. FLARE I allows up to 66 miss, so any chart with 66 notes or less can be cleared with 0 point)
   if (partialScore.score === 0) {
     return {
       ...result,
       score: 0,
-      clearLamp: isFailed ? 0 : 1,
+      clearLamp: isFailed ? 0 : partialScore.flareRank ? 2 : 1,
       exScore: 0,
       maxCombo: 0,
     }
   }
 
-  if (isMiss1()) {
+  if (isGreat0Good0Miss1()) {
     /** Perfect:0, Great:0, Good:0, Miss:1 score */
-    const target = floorScore(1000000 - baseScore)
+    const target = calcNormalScore(objects, objects - 1, 0, 0, 0)
     const perfectCount = (target - partialScore.score) / 10
     result.exScore = maxExScore - 3 - perfectCount
   }
@@ -448,65 +455,37 @@ export function setValidScoreFromChart(
   function isPFC() {
     return (
       partialScore.clearLamp === 6 || // ClearLamp is PFC
-      partialScore.score! > floorScore(1000000 - baseScore + great) // Score is greater than Gr:1 score
+      partialScore.score! > calcNormalScore(objects, objects - 1, 0, 1, 0) // Score is greater than Great:1 score
     )
   }
 
   function isGreatFC() {
     return (
       partialScore.clearLamp === 5 || // ClearLamp is GreatFC
-      partialScore.score! > floorScore(1000000 - baseScore + good) // Score is greater than Good:1 score
+      partialScore.score! > calcNormalScore(objects, objects - 1, 0, 0, 1) // Score is greater than Good:1 score
     )
   }
 
   function isGoodFC() {
     return (
       partialScore.clearLamp === 4 || // ClearLamp is GoodFC
-      partialScore.score! > floorScore(1000000 - baseScore) // Score is greater than Miss:1 score
+      partialScore.score! > calcNormalScore(objects, objects - 1, 0, 0, 0) // Score is greater than Miss:1 score
     )
   }
 
-  function isGood1() {
+  function isGreat0Good1() {
     return (
       partialScore.clearLamp === 4 &&
-      partialScore.score! > floorScore(1000000 - baseScore * 2 - good + great) // Score is greater than Great:1, Good:1 score
+      partialScore.score! > calcNormalScore(objects, objects - 2, 0, 1, 1) // Score is greater than Great:1, Good:1 score
     )
   }
 
-  function isMiss1() {
+  function isGreat0Good0Miss1() {
     return (
       (partialScore.clearLamp ?? 2) < 4 && // Not selected Full combo
-      (partialScore.score! > floorScore(1000000 - baseScore * 2 + great) || // Score is greater than Great:1, Miss:1
+      (partialScore.score! > calcNormalScore(objects, objects - 2, 0, 1, 0) || // Score is greater than Great:1, Miss:1
         partialScore.maxCombo === maxCombo) // [Note]: This is NOT Full Combo. (ex. missed last Freeze Arrow)
     )
-  }
-
-  function tryCalcFromGreatFC(): ScoreRecord | null {
-    const dropScore = great - baseScore
-
-    // Try to calc great count from score
-    let greatCount = 0
-    while (
-      floorScore(1000000 + dropScore * (greatCount + 1)) >= partialScore.score!
-    ) {
-      greatCount++
-    }
-
-    // Can calc
-    if (greatCount === 1 || (notes - greatCount) * 10 < -dropScore) {
-      /** Perfect:0, Great: greatCount Score */
-      const target = floorScore(1000000 + dropScore * greatCount)
-      const perfectCount = (target - partialScore.score!) / 10
-      return {
-        score: partialScore.score!,
-        rank: getDanceLevel(partialScore.score!),
-        clearLamp: 5,
-        exScore: maxExScore - perfectCount - greatCount * 2,
-        maxCombo,
-      }
-    }
-
-    return null
   }
 
   function tryCalcFromExScore(): ScoreRecord | null {
@@ -533,12 +512,12 @@ export function setValidScoreFromChart(
       }
     }
 
-    // 1 Great 0 Perfect
+    // 1 Great
     if (
       partialScore.clearLamp === 5 &&
       partialScore.exScore === maxExScore - 2
     ) {
-      const score = floorScore(1000000 - baseScore + great)
+      const score = calcNormalScore(objects, objects - 1, 0, 1, 0)
       return {
         score,
         rank: getDanceLevel(score),
@@ -548,16 +527,22 @@ export function setValidScoreFromChart(
       }
     }
 
-    // 1 Good 0 Great 0 Perfect
+    // 1 Good or 1 Miss
     if (
-      partialScore.clearLamp === 4 &&
+      partialScore.clearLamp !== undefined &&
       partialScore.exScore === maxExScore - 3
     ) {
-      const score = floorScore(1000000 - baseScore + good)
+      const score = calcNormalScore(
+        objects,
+        objects - 1,
+        0,
+        0,
+        partialScore.clearLamp === 4 ? 1 : 0
+      )
       return {
         score,
         rank: getDanceLevel(score),
-        clearLamp: 4,
+        clearLamp: partialScore.clearLamp,
         exScore: maxExScore - 3,
         maxCombo,
       }
@@ -566,9 +551,34 @@ export function setValidScoreFromChart(
     return null
   }
 
-  /** Round down ones digit (ex. 998756 => 998750) */
-  function floorScore(rawScore: number) {
-    return Math.floor(rawScore / 10) * 10
+  function tryCalcFromGreatFC(): ScoreRecord | null {
+    // Try to calc great count from score
+    let gr = 0
+    /** Perfect: 0, Great: `gr` score */
+    let target
+    do {
+      target = calcNormalScore(objects, objects - ++gr, 0, gr, 0)
+    } while (target >= partialScore.score!)
+    target = calcNormalScore(objects, objects - --gr, 0, gr, 0)
+
+    // Can calc (Great: 1 or Perfect drop (=Perfect count * 10) less than Great: 1 drop (=baseScore * 0.4 + 10))
+    if (
+      gr === 1 ||
+      (notes - gr) * 10 <
+        calcNormalScore(objects, 1, 0, 0, 0) -
+          calcNormalScore(objects, 0, 0, 1, 0)
+    ) {
+      const perfectCount = (target - partialScore.score!) / 10
+      return {
+        score: partialScore.score!,
+        rank: getDanceLevel(partialScore.score!),
+        clearLamp: 5,
+        exScore: maxExScore - perfectCount - gr * 2,
+        maxCombo,
+      }
+    }
+
+    return null
   }
 }
 
@@ -697,5 +707,3 @@ export function calcNormalScore(
     ) * 10
   )
 }
-
-const isPositiveInteger = (n: number) => Number.isInteger(n) && n >= 0

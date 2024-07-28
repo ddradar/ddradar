@@ -11,6 +11,7 @@ export const testSongData: Song = {
   nameIndex: 25,
   artist: '180',
   series: 'DDR 1st',
+  seriesCategory: 'CLASSIC',
   minBPM: 180,
   maxBPM: 180,
   folders: [
@@ -41,7 +42,10 @@ export const testSongData: Song = {
 }
 
 /** PARANOiA, PARANOiA(X-Special), SP-TRIP MACHINE～JUNGLE MIX～(X-Special) */
-export const testSongList: Omit<Song, 'charts' | 'skillAttackId'>[] = [
+export const testSongList: Omit<
+  Song,
+  'charts' | 'skillAttackId' | 'seriesCategory'
+>[] = [
   {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',
