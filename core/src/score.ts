@@ -386,14 +386,7 @@ export function setValidScoreFromChart(
   }
 
   if (isGreatFC()) {
-    const calcFromGreatFC = tryCalcFromGreatFC()
-    return (
-      calcFromGreatFC ?? {
-        ...result,
-        clearLamp: 5,
-        maxCombo,
-      }
-    )
+    return tryCalcFromGreatFC() ?? { ...result, clearLamp: 5, maxCombo }
   }
 
   if (isGreat0Good1()) {
@@ -424,7 +417,8 @@ export function setValidScoreFromChart(
   // Currently, 0 point can only be obtained by the following methods:
   // 1. Failed
   // 2. CHAOS [SP-BEGINNER] with CUT1 (= Assisted Clear)
-  // 3. Flare gauge clear (ex. FLARE I allows up to 66 miss, so any chart with 66 notes or less can be cleared with 0 point)
+  // 3. Flare gauge clear (= Clear)
+  //     - ex. FLARE I allows up to 66 miss, so 66 or less notes chart can be cleared with 0 point
   if (partialScore.score === 0) {
     return {
       ...result,
@@ -489,6 +483,8 @@ export function setValidScoreFromChart(
   }
 
   function tryCalcFromExScore(): ScoreRecord | null {
+    if (partialScore.exScore === undefined) return null
+
     // 1 Perfect
     if (partialScore.exScore === maxExScore - 1) {
       return {
@@ -501,13 +497,13 @@ export function setValidScoreFromChart(
     }
 
     // X Perfects
-    if (partialScore.clearLamp === 6 && partialScore.exScore) {
+    if (partialScore.clearLamp === 6) {
       const dropCount = maxExScore - partialScore.exScore
       return {
         score: 1000000 - dropCount * 10,
         rank: 'AAA',
         clearLamp: 6,
-        exScore: Math.max(maxExScore - dropCount, partialScore.exScore ?? 0),
+        exScore: Math.max(maxExScore - dropCount, partialScore.exScore),
         maxCombo,
       }
     }
@@ -515,23 +511,26 @@ export function setValidScoreFromChart(
     // 1 Great
     if (
       partialScore.clearLamp === 5 &&
-      partialScore.exScore === maxExScore - 2
+      partialScore.exScore >= maxExScore - 3
     ) {
-      const score = calcNormalScore(objects, objects - 1, 0, 1, 0)
+      const perfect = maxExScore - 2 - partialScore.exScore
+      const score = calcNormalScore(
+        objects,
+        objects - 1 - perfect,
+        perfect,
+        1,
+        0
+      )
       return {
         score,
         rank: getDanceLevel(score),
         clearLamp: 5,
-        exScore: maxExScore - 2,
         maxCombo,
       }
     }
 
     // 1 Good or 1 Miss
-    if (
-      partialScore.clearLamp !== undefined &&
-      partialScore.exScore === maxExScore - 3
-    ) {
+    if (partialScore.exScore === maxExScore - 3) {
       const score = calcNormalScore(
         objects,
         objects - 1,
@@ -541,10 +540,10 @@ export function setValidScoreFromChart(
       )
       return {
         score,
-        rank: getDanceLevel(score),
-        clearLamp: partialScore.clearLamp,
+        rank: isFailed ? 'E' : getDanceLevel(score),
+        clearLamp: partialScore.clearLamp ?? (isFailed ? 0 : 1),
         exScore: maxExScore - 3,
-        maxCombo,
+        ...(partialScore.clearLamp === 4 ? { maxCombo } : {}),
       }
     }
 

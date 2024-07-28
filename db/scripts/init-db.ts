@@ -1,8 +1,22 @@
+import type { Resource } from '@azure/cosmos'
 import { CosmosClient } from '@azure/cosmos'
 import { classicSeries, whiteSeries } from '@ddradar/core'
+import consola from 'consola'
 
-import { databaseName, songContainer } from '../src/constants'
+import {
+  databaseName,
+  scoreContainer,
+  songContainer,
+  userDataContainer,
+} from '../src/constants'
+import type { DBScoreSchemaWithCP } from '../src/schemas/scores'
+import type { DBSongSchemaWithCP } from '../src/schemas/songs'
+import type { DBUserSchema } from '../src/schemas/userData'
+import type { ContainerPath } from '../src/utils'
 
+const connectionString = process.env.COSMOS_DB_CONN
+
+/** For create {@link DBSongSchemaWithCP.cp_nameIndex} property query */
 const nameIndexQueries = [
   'ぁ-おゔ',
   'か-ごゕ-ゖ',
@@ -41,11 +55,17 @@ const nameIndexQueries = [
   'yY',
   'zZ',
 ]
+/** For create {@link DBScoreSchemaWithCP.cp_flareSkill} property query */
+const baseScores = [
+  145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,
+  620, 635, 650, 665, 0,
+]
 
-await run(process.env.COSMOS_DB_CONN)
-
-async function run(connectionString: string | undefined) {
-  if (!connectionString) return
+async function run() {
+  if (!connectionString) {
+    consola.error('Environment variable "COSMOS_DB_CONN" is required.')
+    return
+  }
 
   const client = new CosmosClient(connectionString)
 
@@ -53,90 +73,92 @@ async function run(connectionString: string | undefined) {
     id: databaseName,
   })
 
-  await database.containers.createIfNotExists({
-    id: songContainer,
-    indexingPolicy: {
-      compositeIndexes: [
-        [
-          {
-            path: '/cp_nameIndex',
-            order: 'ascending',
-          },
-          {
-            path: '/nameKana',
-            order: 'ascending',
-          },
-        ],
-      ],
-    },
-    computedProperties: [
-      {
-        name: 'cp_nameIndex',
-        query: `SELECT VALUE ${nameIndexQueries.map((s, i) => `RegexMatch(c.nameKana, "^[${s}]") ? ${i}`).join(' : ')} : 36 FROM c`,
+  await Promise.all([
+    database.containers.createIfNotExists({
+      id: songContainer,
+      partitionKey: {
+        paths: ['/type'] satisfies ContainerPath<DBSongSchemaWithCP>[],
       },
-      {
-        name: 'cp_seriesCategory',
-        query:
-          'SELECT VALUE ' +
-          `ARRAY_CONTAINS([${[...classicSeries].map(s => `"${s}"`).join(', ')}], c.series) ? "CLASSIC" ` +
-          `  : ARRAY_CONTAINS([${[...whiteSeries].map(s => `"${s}"`).join(', ')}], c.series) ? "WHITE" ` +
-          '    : "GOLD" ' +
-          'FROM c',
-      },
-      {
-        name: 'cp_folders',
-        query:
-          'SELECT VALUE ARRAY_CONCAT([{ type: "category", name: c.cp_seriesCategory }], c.folders) FROM c',
-      },
-    ],
-  } as object)
-  await database.containers.createIfNotExists({
-    id: 'Scores',
-    partitionKey: { paths: ['/userId'] },
-    indexingPolicy: {
-      compositeIndexes: [
-        [
-          {
-            path: '/score',
-            order: 'descending',
-          },
-          {
-            path: '/clearLamp',
-            order: 'descending',
-          },
-          {
-            path: '/_ts',
-            order: 'ascending',
-          },
+      indexingPolicy: {
+        compositeIndexes: [
+          [
+            {
+              path: '/cp_nameIndex' satisfies ContainerPath<DBSongSchemaWithCP>,
+              order: 'ascending',
+            },
+            {
+              path: '/nameKana' satisfies ContainerPath<DBSongSchemaWithCP>,
+              order: 'ascending',
+            },
+          ],
         ],
+      },
+      computedProperties: [
+        {
+          name: 'cp_nameIndex' satisfies keyof DBSongSchemaWithCP,
+          query: `SELECT VALUE ${nameIndexQueries.map((s, i) => `RegexMatch(c.nameKana, "^[${s}]") ? ${i}`).join(' : ')} : 36 FROM c`,
+        },
+        {
+          name: 'cp_seriesCategory' satisfies keyof DBSongSchemaWithCP,
+          query:
+            'SELECT VALUE ' +
+            `ARRAY_CONTAINS([${[...classicSeries].map(s => `"${s}"`).join(', ')}], c.series) ? "CLASSIC" ` +
+            `  : ARRAY_CONTAINS([${[...whiteSeries].map(s => `"${s}"`).join(', ')}], c.series) ? "WHITE" ` +
+            '    : "GOLD" ' +
+            'FROM c',
+        },
+        {
+          name: 'cp_folders' satisfies keyof DBSongSchemaWithCP,
+          query:
+            'SELECT VALUE ARRAY_CONCAT([{ type: "category", name: c.cp_seriesCategory }], c.folders) FROM c',
+        },
       ],
-    } as object,
-    defaultTtl: -1,
-  })
-  await database.containers.createIfNotExists({
-    id: 'Users',
-    partitionKey: { paths: ['/id'] },
-  })
-  await database.containers.createIfNotExists({
-    id: 'Notification',
-    partitionKey: { paths: ['/sender'] },
-    indexingPolicy: {
-      compositeIndexes: [
-        [
-          {
-            path: '/pinned',
-            order: 'descending',
-          },
-          {
-            path: '/timeStamp',
-            order: 'descending',
-          },
+    } as object),
+    database.containers.createIfNotExists({
+      id: userDataContainer,
+      partitionKey: { paths: ['/uid'] satisfies ContainerPath<DBUserSchema>[] },
+    }),
+    database.containers.createIfNotExists({
+      id: scoreContainer,
+      partitionKey: {
+        paths: ['/song/id'] satisfies ContainerPath<DBScoreSchemaWithCP>[],
+      },
+      indexingPolicy: {
+        compositeIndexes: [
+          [
+            {
+              path: '/score' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              order: 'descending',
+            },
+            {
+              path: '/clearLamp' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              order: 'descending',
+            },
+            {
+              path: '/_ts' satisfies ContainerPath<Resource>,
+              order: 'ascending',
+            },
+          ],
+          [
+            {
+              path: '/cp_flareSkill' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              order: 'descending',
+            },
+            {
+              path: '/_ts' satisfies ContainerPath<Resource>,
+              order: 'ascending',
+            },
+          ],
         ],
+      },
+      computedProperties: [
+        {
+          name: 'cp_flareSkill' satisfies keyof DBScoreSchemaWithCP,
+          query: `SELECT VALUE FLOOR(CHOOSE(c.chart.level, ${baseScores.join(', ')}) * (c.flareRank * 0.06 + 1)) FROM c`,
+        },
       ],
-    } as object,
-  })
-  await database.containers.createIfNotExists({
-    id: 'UserDetails',
-    partitionKey: { paths: ['/userId'] },
-  })
+    } as object),
+  ])
 }
+
+run().catch(consola.error)

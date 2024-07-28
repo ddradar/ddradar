@@ -272,6 +272,22 @@ describe('score.ts', () => {
         { score: 987600, clearLamp: 4, rank: 'AA+', maxCombo: 1010 },
       ], // Cannot guess EX SCORE
       [
+        { exScore: 3057, clearLamp: 2 },
+        { score: 999010, rank: 'AAA', clearLamp: 2, exScore: 3057 },
+      ], // Miss1
+      [
+        { exScore: 3057, rank: 'AAA' },
+        { score: 999010, rank: 'AAA', clearLamp: 1, exScore: 3057 },
+      ], // Miss1
+      [
+        { exScore: 3057, clearLamp: 0 },
+        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+      ], // Miss1 (Failed)
+      [
+        { exScore: 3057, rank: 'E' },
+        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+      ], // Miss1 (Failed)
+      [
         { score: 999000, clearLamp: 2 },
         { score: 999000, rank: 'AAA', clearLamp: 2, exScore: 3056 },
       ], // Miss1 P1

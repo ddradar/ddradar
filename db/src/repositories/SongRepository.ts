@@ -10,9 +10,11 @@ import { dbSongSchema } from '../schemas/songs'
 import type { Column, FuncColumn, QueryFilter } from '../utils'
 import { generateQueryConditions } from '../utils'
 
-const orderBy = 'ORDER BY c.cp_nameIndex, c.nameKana'
-
-type DBColumn<T, Alias extends string = 'c'> = Column<DBSchema, T, Alias>
+type DBColumn<T = DBSchema, Alias extends string = 'c'> = Column<
+  DBSchema,
+  T,
+  Alias
+>
 
 /**
  * Repository for Song & chart data.
@@ -37,6 +39,7 @@ export class SongRepository {
       'c.cp_nameIndex AS nameIndex',
       'c.artist',
       'c.series',
+      'c.cp_seriesCategory AS seriesCategory',
       'c.minBPM',
       'c.maxBPM',
       'c.cp_folders AS folders',
@@ -64,7 +67,10 @@ export class SongRepository {
    * @returns Song list that matches the conditions.
    */
   async list(
-    conditions: QueryFilter<DBSchema>[]
+    conditions: QueryFilter<DBSchema>[],
+    orderBy:
+      | `${DBColumn} ${'ASC' | 'DESC'}`
+      | 'c.cp_nameIndex ASC, c.nameKana ASC' = 'c.cp_nameIndex ASC, c.nameKana ASC'
   ): Promise<Omit<Song, 'charts' | 'skillAttackId'>[]> {
     const columns: DBColumn<Omit<Song, 'charts' | 'skillAttackId'>>[] = [
       'c.id',
@@ -73,6 +79,7 @@ export class SongRepository {
       'c.cp_nameIndex AS nameIndex',
       'c.artist',
       'c.series',
+      'c.cp_seriesCategory AS seriesCategory',
       'c.minBPM',
       'c.maxBPM',
       'c.cp_folders AS folders',
@@ -83,7 +90,7 @@ export class SongRepository {
       .database(databaseName)
       .container(songContainer)
       .items.query<Song>({
-        query: `SELECT ${columns.join(', ')} FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} ORDER BY ${orderBy}`,
         parameters,
       })
       .fetchAll()
@@ -96,7 +103,10 @@ export class SongRepository {
    * @returns Chart list that matches the conditions.
    */
   async listCharts(
-    conditions: (QueryFilter<DBSchema, 's'> | QueryFilter<StepChart>)[]
+    conditions: (QueryFilter<DBSchema, 's'> | QueryFilter<StepChart>)[],
+    orderBy:
+      | `${DBColumn<DBSchema, 's'>} ${'ASC' | 'DESC'}`
+      | 's.cp_nameIndex ASC, s.nameKana ASC' = 's.cp_nameIndex ASC, s.nameKana ASC'
   ): Promise<(Omit<Song, 'minBPM' | 'maxBPM' | 'charts'> & StepChart)[]> {
     const columns: (
       | DBColumn<Omit<Song, 'minBPM' | 'maxBPM' | 'charts' | 'folders'>, 's'>
@@ -109,6 +119,7 @@ export class SongRepository {
       's.cp_nameIndex AS nameIndex',
       's.artist',
       's.series',
+      's.cp_seriesCategory AS seriesCategory',
       'ARRAY_CONCAT(s.cp_folders, [{ type: "level", name: ToString(c.level) }]) AS folders',
       'c.playStyle',
       'c.difficulty',
@@ -123,7 +134,7 @@ export class SongRepository {
       .database(databaseName)
       .container(songContainer)
       .items.query<Omit<Song, 'minBPM' | 'maxBPM' | 'charts'> & StepChart>({
-        query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts${queryConditions ? ` WHERE ${queryConditions}` : ''} ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts${queryConditions ? ` WHERE ${queryConditions}` : ''} ORDER BY ${orderBy}`,
         parameters,
       })
       .fetchAll()

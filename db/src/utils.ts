@@ -1,8 +1,21 @@
 import type { JSONValue, SqlParameter } from '@azure/cosmos'
 
-export type Column<DBSchema, T = DBSchema, Alias extends string = 'c'> =
-  | `${Alias}.${Extract<keyof DBSchema & keyof T, string>}`
-  | `${Alias}.${Extract<Exclude<keyof DBSchema, keyof T>, string>} AS ${Extract<keyof T, string>}`
+type Paths<T, Separator extends string = '.'> = T extends object
+  ? {
+      [K in keyof T]: `${Exclude<K, symbol>}${'' | `${Separator}${Paths<T[K], Separator>}`}`
+    }[keyof T]
+  : never
+
+type Leaves<T> = T extends object
+  ? {
+      [K in keyof T]: `${Exclude<K, symbol>}${Leaves<T[K]> extends never ? '' : `/${Leaves<T[K]>}`}`
+    }[keyof T]
+  : never
+export type ContainerPath<T> = `/${Leaves<T>}`
+
+export type Column<TSchema, TModel = TSchema, Alias extends string = 'c'> =
+  | `${Alias}.${Paths<TSchema> & Paths<TModel>}`
+  | `${Alias}.${Exclude<Paths<TSchema>, Paths<TModel>>} AS ${Paths<TModel>}`
 
 export type FuncColumn<
   DBSchema,
@@ -33,7 +46,7 @@ export function generateQueryConditions(
 ) {
   return {
     queryConditions: conditions
-      .map((c, i) => c.condition.replace('@', `@param${i}`))
+      .map((c, i) => `(${c.condition.replace('@', `@param${i}`)})`)
       .join(' AND '),
     parameters: conditions
       .map((c, i) => ({ name: `@param${i}`, value: c.value }))

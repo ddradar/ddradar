@@ -2,10 +2,15 @@ import { songSchema } from '@ddradar/core'
 import { z } from 'zod'
 
 /** zod schema object for {@link DBSongSchema}. */
-export const dbSongSchema = songSchema.omit({ nameIndex: true }).extend({
-  /** To detect schema */
-  type: z.literal('song').catch('song'),
-})
+export const dbSongSchema = songSchema
+  .omit({ nameIndex: true, seriesCategory: true })
+  .extend({
+    /**
+     * To detect schema
+     * @remarks This property is {@link https://learn.microsoft.com/azure/cosmos-db/partitioning-overview Partition Key}.
+     */
+    type: z.literal('song').catch('song'),
+  })
 /**
  * DB Schema of Song data (included on "Songs" container)
  * @example
