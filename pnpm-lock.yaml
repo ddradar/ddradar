@@ -140,8 +140,8 @@ importers:
         specifier: ^1.1.53
         version: 1.1.53
       '@iconify-json/heroicons':
-        specifier: ^1.1.21
-        version: 1.1.21
+        specifier: ^1.1.23
+        version: 1.1.23
       '@iconify-json/simple-icons':
         specifier: ^1.1.108
         version: 1.1.108
@@ -1001,8 +1001,8 @@ packages:
   '@iconify-json/flag@1.1.53':
     resolution: {integrity: sha512-TdnS0AAmPnbwg3WdKavUQeyjUJZCp/0O6HsvdnBlpQ7DwcJD36ENvo0FE7BLdte/6haAKOKqnU6H+gvxCdrONQ==}
 
-  '@iconify-json/heroicons@1.1.21':
-    resolution: {integrity: sha512-A+3L4KN+TjH3V8fQ2N2dkOOnLLxMgMBzO8RDT0P9YL+YzvLMIbe/lkDLSB8NB8x0DKWmkvTimoo1l4DKMwi7Zg==}
+  '@iconify-json/heroicons@1.1.23':
+    resolution: {integrity: sha512-LLev2ZBBDJKMzjnQgZRhEj0Nkz5m9O4UtQVH2TpPchdXSkxQUUOlPpsM4MVQCs49a2MaJfKiay+48WaZli5cNQ==}
 
   '@iconify-json/simple-icons@1.1.108':
     resolution: {integrity: sha512-GeC0Oy3j385BgjI0TadEzVbzM/cYjvAot22hJLNal3wKLmf/8t6RtH2PgRiNaK+SxELeDYdSAHocXxw4QoKXYA==}
@@ -6754,7 +6754,7 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/heroicons@1.1.21':
+  '@iconify-json/heroicons@1.1.23':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -7234,7 +7234,7 @@ snapshots:
       '@egoist/tailwindcss-icons': 1.8.1(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.3)))
       '@headlessui/tailwindcss': 0.2.1(tailwindcss@3.4.4(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.3)))
       '@headlessui/vue': 1.7.22(vue@3.4.33(typescript@5.5.3))
-      '@iconify-json/heroicons': 1.1.21
+      '@iconify-json/heroicons': 1.1.23
       '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.18.1)
       '@nuxtjs/color-mode': 3.4.2(magicast@0.3.4)(rollup@4.18.1)
       '@nuxtjs/tailwindcss': 6.12.0(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.3))
