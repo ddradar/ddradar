@@ -4,9 +4,9 @@ import { getRouterParamsSchema as schema } from '~~/schemas/charts'
  * Get charts that match the specified conditions.
  * @description
  * - No need Authentication.
- * - GET `/api/v1/charts/[style]/[level]`
- *   - `style`: {@link ChartInfo.playStyle}
- *   - `level`: {@link ChartInfo.level}
+ * - GET `/api/v2/charts/[style]/[level]`
+ *   - `style`: PlayStyle
+ *   - `level`: Level
  * @returns
  * - Returns `200 OK` with JSON body.
  * @example

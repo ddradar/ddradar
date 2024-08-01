@@ -25,7 +25,7 @@ describe('/songs', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'pending', data: ref([]) } as any)
       )
@@ -42,7 +42,7 @@ describe('/songs', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'success', data: ref(songs) } as any)
       )
@@ -59,7 +59,7 @@ describe('/songs', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(publicUser) }
           : ({ status: 'success', data: ref(songs) } as any)
       )
@@ -76,7 +76,7 @@ describe('/songs', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'success', data: ref([]) } as any)
       )
@@ -100,7 +100,7 @@ describe('/songs', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { name, series } } as any)
     vi.mocked(useFetch).mockImplementation(path =>
-      path === '/api/v1/user'
+      path === '/api/v2/user'
         ? { data: ref(null) }
         : ({ status: 'pending', data: ref([]) } as any)
     )
@@ -121,7 +121,7 @@ describe('/songs', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: {} } as any)
     vi.mocked(useFetch).mockImplementation(path =>
-      path === '/api/v1/user'
+      path === '/api/v2/user'
         ? { data: ref(null) }
         : ({ status: 'pending', data: ref([]) } as any)
     )

@@ -12,7 +12,7 @@ export const dbSongSchema = songSchema
     type: z.literal('song').catch('song'),
   })
 /**
- * DB Schema of Song data (included on "Songs" container)
+ * DB Schema of Song data (included on "SongsV2" container)
  * @example
  * ```json
  * {
@@ -69,7 +69,7 @@ export const songSchemaWithCP = dbSongSchema.extend({
   cp_folders: songSchema.shape.folders,
 })
 /**
- * DB Schema of Song data with computed properties. (included on "Songs" container)
+ * DB Schema of Song data with computed properties. (included on "SongsV2" container)
  * @example
  * ```json
  * {

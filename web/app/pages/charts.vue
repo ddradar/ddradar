@@ -11,7 +11,7 @@ definePageMeta({ key: route => route.fullPath })
 const _kinds = ['SINGLE', 'DOUBLE']
 
 // #region Data Fetching
-const { data: user } = await useFetch('/api/v1/user')
+const { data: user } = await useFetch('/api/v2/user')
 const _route = useRoute('charts')
 const { style, level } = getRouterParamsSchema.parse(_route.query)
 const { t } = useI18n()

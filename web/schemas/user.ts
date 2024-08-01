@@ -4,7 +4,7 @@ import { z } from 'zod'
 
 export const postBodySchema = userSchema
 
-/** GET `api/v1/user/roles` expected body */
+/** GET `/api/v2/user/roles` expected body */
 export const getRolesBodySchema = z.object({
   userId: dbUserSchema.shape.loginId,
 })

@@ -1,5 +1,5 @@
 import type { NotificationSchema } from '../src/notification'
-import type { ScoreSchema } from '../src/score'
+import type { UserScoreRecord } from '../src/score'
 import type { Song } from '../src/song'
 import type { User } from '../src/user'
 
@@ -81,7 +81,7 @@ export const testSongList: Omit<
   },
 ]
 
-//#region UserSchema
+//#region User
 /** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
 export const publicUser: User = {
   id: 'public_user',
@@ -153,7 +153,7 @@ export const notifications: readonly NotificationSchema[] = [
 ] as const
 //#endregion
 
-//#region ScoreSchema
+//#region UserScoreRecord
 const scoreTemplate = {
   songId: testSongData.id,
   songName: testSongData.name,
@@ -166,11 +166,10 @@ const scoreTemplate = {
   maxCombo: 138,
   exScore: 366,
 } as const
-export const testScores: ScoreSchema[] = [
+export const testScores: UserScoreRecord[] = [
   {
     userId: '0',
     userName: '0',
-    isPublic: false,
     ...scoreTemplate,
     score: 999620, // P:38
     clearLamp: 6,
@@ -181,7 +180,6 @@ export const testScores: ScoreSchema[] = [
   {
     userId: '13',
     userName: '13',
-    isPublic: false,
     ...scoreTemplate,
     score: 996720, // P:37, Gr:1
     clearLamp: 5,
@@ -192,19 +190,16 @@ export const testScores: ScoreSchema[] = [
   {
     userId: publicUser.id,
     userName: publicUser.name,
-    isPublic: publicUser.isPublic,
     ...scoreTemplate,
   },
   {
     userId: areaHiddenUser.id,
     userName: areaHiddenUser.name,
-    isPublic: areaHiddenUser.isPublic,
     ...scoreTemplate,
   },
   {
     userId: privateUser.id,
     userName: privateUser.name,
-    isPublic: privateUser.isPublic,
     ...scoreTemplate,
   },
 ]

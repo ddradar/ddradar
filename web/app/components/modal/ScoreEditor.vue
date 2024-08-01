@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ScoreRecord, ScoreSchema } from '@ddradar/core'
+import type { ScoreRecord, UserScoreRecord } from '@ddradar/core'
 import {
   calcMaxScore,
   clearLampMap,
@@ -13,8 +13,8 @@ import type { FormError } from '#ui/types'
 
 interface ScoreEditorProps {
   songId: string
-  playStyle?: ScoreSchema['playStyle']
-  difficulty?: ScoreSchema['difficulty']
+  playStyle?: UserScoreRecord['playStyle']
+  difficulty?: UserScoreRecord['difficulty']
 }
 
 const isOpen = defineModel<boolean>({ required: true })
@@ -39,7 +39,7 @@ const _default: ScoreRecord = {
 }
 const _scoreUri = computed(
   () =>
-    `/api/v1/scores/${props.songId}/${style.value ?? 1}/${diff.value ?? 0}` as const
+    `/api/v2/scores/${props.songId}/${style.value ?? 1}/${diff.value ?? 0}` as const
 )
 const { data: score, execute } = useFetch(_scoreUri, {
   query: { scope: 'private' },

@@ -5,10 +5,6 @@ const _route = useRoute('users-id')
 const { data: user } = await useFetch(`/api/v2/users/${_route.params.id}`)
 if (!user.value) throw createError({ statusCode: 404, message: t('empty') })
 
-const { data: clears } = await useFetch(
-  `/api/v1/users/${_route.params.id}/clear`
-)
-
 const areaName = computed(() => t(`area.${user.value!.area}`))
 const ddrCode = computed(() =>
   String(user.value!.code).replace(/^(\d{4})(\d{4})$/, '$1-$2')
@@ -22,12 +18,7 @@ const ddrCode = computed(() =>
       :title="user!.name"
       :description="`${areaName} / ${ddrCode}`"
     />
-    <UPageBody>
-      <UserClearLampTable
-        :play-style="1"
-        :statuses="clears!"
-      ></UserClearLampTable>
-    </UPageBody>
+    <UPageBody> </UPageBody>
   </UPage>
 </template>
 

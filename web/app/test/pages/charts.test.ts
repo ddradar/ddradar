@@ -33,7 +33,7 @@ describe('/charts', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'pending', data: ref([]) } as any)
       )
@@ -50,7 +50,7 @@ describe('/charts', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'success', data: ref(charts) } as any)
       )
@@ -67,7 +67,7 @@ describe('/charts', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(publicUser) }
           : ({ status: 'success', data: ref(charts) } as any)
       )
@@ -84,7 +84,7 @@ describe('/charts', () => {
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useRoute).mockReturnValue({ query } as any)
       vi.mocked(useFetch).mockImplementation(path =>
-        path === '/api/v1/user'
+        path === '/api/v2/user'
           ? { data: ref(null) }
           : ({ status: 'success', data: ref([]) } as any)
       )
@@ -108,7 +108,7 @@ describe('/charts', () => {
     /* eslint-disable @typescript-eslint/no-explicit-any */
     vi.mocked(useRoute).mockReturnValue({ query: { style, level } } as any)
     vi.mocked(useFetch).mockImplementation(path =>
-      path === '/api/v1/user'
+      path === '/api/v2/user'
         ? { data: ref(null) }
         : ({ status: 'pending', data: ref([]) } as any)
     )

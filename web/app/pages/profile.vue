@@ -61,7 +61,7 @@ const validate = async (_state: User) => {
 /** Save current user profile. */
 const onSubmit = async (event: FormSubmitEvent<User>) => {
   try {
-    await $fetch('/api/v1/user', { method: 'POST', body: event.data })
+    await $fetch('/api/v2/user', { method: 'POST', body: event.data })
     await refresh()
     _toast.add({
       id: 'user-updated',

@@ -1,21 +1,17 @@
-import { fetchList } from '@ddradar/db'
-
-import type { ScoreInfo } from '~~/schemas/score'
 import {
   getQuerySchema as querySchema,
   routerParamsSchema as paramSchema,
-} from '~~/schemas/score'
-import { getLoginUserInfo } from '~~/server/utils/auth'
+} from '~~/schemas/scores'
 
 /**
  * Get scores that match the specified chart.
  * @description
  * - No need Authentication. Authenticated users can get their own data even if they are private.
- * - GET `api/v1/scores/[id]/[style]/[diff]?scope=:scope`
+ * - GET `/api/v2/scores/[id]/[style]/[diff]?scope=:scope`
  *   - `scope`(optional): `private`: Only personal best score, `medium`(default): Personal best, area top, and world top scores, `full`: All scores
- *   - `id`: {@link ScoreInfo.songId}
- *   - `style`: {@link ScoreInfo.playStyle}
- *   - `diff`: {@link ScoreInfo.difficulty}
+ *   - `id`: Song ID
+ *   - `style`: PlayStyle
+ *   - `diff`: Difficulty
  * @returns
  * - Returns `404 Not Found` if parameters are invalid.
  * - Returns `200 OK` with JSON body otherwize.
@@ -25,39 +21,44 @@ import { getLoginUserInfo } from '~~/server/utils/auth'
  *   {
  *     "userId": "0",
  *     "userName": "0",
- *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
- *     "songName": "愛言葉",
+ *     "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+ *     "songName": "PARANOiA",
  *     "playStyle": 1,
  *     "difficulty": 0,
+ *     "level": 4,
  *     "score": 1000000,
- *     "exScore": 402,
- *     "maxCombo": 122,
+ *     "exScore": 414,
+ *     "maxCombo": 138,
  *     "clearLamp": 7,
  *     "rank": "AAA"
  *   },
  *   {
  *     "userId": "13",
  *     "userName": "13",
- *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
- *     "songName": "愛言葉",
+ *     "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+ *     "songName": "PARANOiA",
  *     "playStyle": 1,
  *     "difficulty": 0,
+ *     "level": 4,
  *     "score": 999980,
- *     "exScore": 400,
- *     "maxCombo": 122,
+ *     "exScore": 412,
+ *     "maxCombo": 138,
  *     "clearLamp": 6,
  *     "rank": "AAA"
  *   },
  *   {
  *     "userId": "public_user",
  *     "userName": "AFRO",
- *     "songId": "QPd01OQqbOIiDoO1dbdo1IIbb60bqPdl",
- *     "songName": "愛言葉",
+ *     "songId": "06loOQ0DQb0DqbOibl6qO81qlIdoP9DI",
+ *     "songName": "PARANOiA",
  *     "playStyle": 1,
  *     "difficulty": 0,
+ *     "level": 4,
  *     "score": 999950,
  *     "clearLamp": 6,
- *     "rank": "AAA"
+ *     "rank": "AAA",
+ *     "flareRank": 10,
+ *     "flareSkill": 296
  *   }
  * ]
  * ```
@@ -69,7 +70,7 @@ export default defineEventHandler(async event => {
   )
   const { scope } = await getValidatedQuery(event, querySchema.parse)
 
-  const user = await getLoginUserInfo(event)
+  const user = await getLoginUserInfo(event).catch(() => null)
   if (scope === 'private' && !user) {
     throw createError({
       statusCode: 404,
@@ -86,36 +87,17 @@ export default defineEventHandler(async event => {
     ...(scope !== 'private' ? ['0', `${user?.area ?? ''}`] : []),
   ].filter((u): u is string => !!u)
 
-  const scores: ScoreInfo[] = await fetchList(
-    'Scores',
-    [
-      'userId',
-      'userName',
-      'songId',
-      'songName',
-      'playStyle',
-      'difficulty',
-      'level',
-      'score',
-      'clearLamp',
-      'rank',
-      'maxCombo',
-      'exScore',
-    ],
-    [
-      { condition: '((NOT IS_DEFINED(c.ttl)) OR c.ttl = -1 OR c.ttl = null)' },
-      { condition: 'c.songId = @', value: id },
-      { condition: 'c.playStyle = @', value: style },
-      { condition: 'c.difficulty = @', value: diff },
-      {
-        condition: `(ARRAY_CONTAINS(@, c.userId)${
-          scope === 'full' ? ' OR c.isPublic' : ''
-        })`,
-        value: userIds,
-      },
-    ],
-    { score: 'DESC', clearLamp: 'DESC', _ts: 'ASC' }
-  )
+  const scores = await getScoreRepository(event).list([
+    { condition: 'c.song.id = @', value: id },
+    { condition: 'c.chart.playStyle = @', value: style },
+    { condition: 'c.chart.difficulty = @', value: diff },
+    {
+      condition: `ARRAY_CONTAINS(@, c.user.id)${
+        scope === 'full' ? ' OR c.user.isPublic' : ''
+      }`,
+      value: userIds,
+    },
+  ])
 
   return scores
 })

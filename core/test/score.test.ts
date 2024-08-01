@@ -3,14 +3,13 @@ import { describe, expect, test } from 'vitest'
 import type { ScoreRecord } from '../src/score'
 import {
   calcFlareSkill,
-  createScoreSchema,
   detectJudgeCounts,
   getDanceLevel,
   isValidScore,
   mergeScore,
   setValidScoreFromChart,
 } from '../src/score'
-import { publicUser, testSongData } from './data'
+import { testSongData } from './data'
 
 describe('score.ts', () => {
   describe('getDanceLevel', () => {
@@ -103,96 +102,6 @@ describe('score.ts', () => {
       { ...baseScore, clearLamp: 3, maxCombo: 110 },
     ] as const)('(chart, %o) returns true', score =>
       expect(isValidScore(chart, score)).toBe(true)
-    )
-  })
-
-  describe('createScoreSchema', () => {
-    const songInfo = { ...testSongData, ...testSongData.charts[0] }
-    const scores: ScoreRecord[] = [
-      { score: 1000000, clearLamp: 7, rank: 'AAA' },
-      { score: 800000, clearLamp: 3, rank: 'A', maxCombo: 100, exScore: 300 },
-    ]
-    const areaUser = { id: '13', name: '13', isPublic: false }
-
-    test.each([
-      [
-        publicUser,
-        scores[0],
-        {
-          ...scores[0],
-          exScore:
-            (songInfo.notes + songInfo.freezeArrow + songInfo.shockArrow) * 3,
-          maxCombo: songInfo.notes + songInfo.shockArrow,
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          isPublic: publicUser.isPublic,
-        },
-      ],
-      [
-        areaUser,
-        scores[1],
-        {
-          ...scores[1],
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: areaUser.id,
-          userName: areaUser.name,
-          isPublic: areaUser.isPublic,
-        },
-      ],
-    ])('(songInfo, user: %o, scores: %o) returns %o', (user, score, expected) =>
-      expect(createScoreSchema(songInfo, user, score)).toStrictEqual(expected)
-    )
-    test.each([
-      [
-        publicUser,
-        scores[0],
-        {
-          ...scores[0],
-          exScore:
-            (songInfo.notes + songInfo.freezeArrow + songInfo.shockArrow) * 3,
-          maxCombo: songInfo.notes + songInfo.shockArrow,
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          isPublic: publicUser.isPublic,
-          deleted: true,
-        },
-      ],
-      [
-        areaUser,
-        scores[1],
-        {
-          ...scores[1],
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: areaUser.id,
-          userName: areaUser.name,
-          isPublic: areaUser.isPublic,
-          deleted: true,
-        },
-      ],
-    ])(
-      '(deletedSong, user: %o, scores: %o) returns %o',
-      (user, score, expected) =>
-        expect(
-          createScoreSchema({ ...songInfo, deleted: true }, user, score)
-        ).toStrictEqual(expected)
     )
   })
 

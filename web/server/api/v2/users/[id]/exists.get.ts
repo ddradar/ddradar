@@ -4,7 +4,7 @@ import { type ExistsUser, routerParamsSchema as schema } from '~~/schemas/users'
  * Returns whether the specified user exists.
  * @description
  * - Need Authentication.
- * - GET `api/v1/users/[id]/exists`
+ * - GET `/api/v2/users/[id]/exists`
  *   - `id`: User ID
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.

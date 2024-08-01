@@ -40,17 +40,10 @@ export default defineNuxtConfig({
         },
         routes: [
           {
-            route: '/api/v1/scores/*',
-            methods: ['POST', 'DELETE'],
-            allowedRoles: ['authenticated'],
-          },
-          {
             route: '/api/v1/notification',
             methods: ['POST'],
             allowedRoles: ['administrator'],
           },
-          { route: '/api/v1/user', allowedRoles: ['authenticated'] },
-          { route: '/api/v1/users/exists/*', allowedRoles: ['authenticated'] },
           { route: '/admin/*', allowedRoles: ['administrator'] },
         ],
       },

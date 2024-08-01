@@ -1,12 +1,5 @@
-import type {
-  ClearLamp,
-  DanceLevel,
-  ScoreSchema,
-  User,
-  UserClearLampSchema,
-  UserRankSchema,
-} from '@ddradar/core'
-import { scoreSchema, userRankSchema, userSchema } from '@ddradar/core'
+import type { User } from '@ddradar/core'
+import { userSchema } from '@ddradar/core'
 import { z } from 'zod'
 
 /** GET `/api/v2/users` expected queries */
@@ -35,83 +28,3 @@ export type ExistsUser = Pick<User, 'id'> & {
   /** User exists or not */
   exists: boolean
 }
-
-/** GET `api/v1/users/[id]/clear` expected queries */
-export const getClearQuerySchema = z.object({
-  style: z.coerce.number().default(0),
-  lv: z.coerce.number().default(0),
-})
-
-/** GET `api/v1/users/[id]/clear` response type */
-export type ClearStatus = Pick<
-  UserClearLampSchema,
-  'playStyle' | 'level' | 'count'
-> & {
-  /**
-   * `-1`: No Play,
-   * `0`: Failed,
-   * `1`: Assisted Clear,
-   * `2`: Clear,
-   * `3`: LIFE4,
-   * `4`: Good FC (Full Combo),
-   * `5`: Great FC,
-   * `6`: PFC,
-   * `7`: MFC
-   */
-  clearLamp: ClearLamp | -1
-}
-
-/** GET `api/v1/users/[id]/rank` expected queries */
-export const getRankQuerySchema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(userRankSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-  lv: z.coerce
-    .number()
-    .pipe(userRankSchema.shape.level)
-    .optional()
-    .catch(undefined),
-})
-
-/** GET `api/v1/users/[id]/rank` response type */
-export type RankStatus = Pick<
-  UserRankSchema,
-  'playStyle' | 'level' | 'count'
-> & {
-  /** Dance level (`"E"` ~ `"AAA"`), `"-"`: No Play */
-  rank: DanceLevel | '-'
-}
-
-/** GET `api/v1/users/[id]/scores` expected queries */
-export const getScoresQuerySchema = z.object({
-  style: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.playStyle)
-    .optional()
-    .catch(undefined),
-  diff: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.difficulty)
-    .optional()
-    .catch(undefined),
-  level: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.level)
-    .optional()
-    .catch(undefined),
-  lamp: z.coerce
-    .number()
-    .pipe(scoreSchema.shape.clearLamp)
-    .optional()
-    .catch(undefined),
-  rank: z.coerce
-    .string()
-    .pipe(scoreSchema.shape.rank)
-    .optional()
-    .catch(undefined),
-})
-
-/** GET `api/v1/users/[id]/scores` response type */
-export type ScoreList = Omit<ScoreSchema, 'userId' | 'userName' | 'isPublic'>

@@ -1,14 +1,27 @@
 import { z } from 'zod'
 
-import { scoreSchema } from './score'
+import { scoreRecordSchema } from './score'
+import { stepChartSchema } from './song'
+import { userSchema } from './user'
+
+export const userFlareRankSchema = z.object({
+  userId: z.string(),
+  type: z.literal('flare'),
+  playStyle: z.number().int(),
+  level: z.number().int(),
+  rank: z.string(),
+  count: z.number().int().nonnegative(),
+})
 
 /** zod schema object for {@link UserClearLampSchema}. */
-export const userClearLampSchema = scoreSchema
-  .pick({ userId: true, playStyle: true, level: true, clearLamp: true })
-  .extend({
-    type: z.literal('clear'),
-    count: z.number().int().nonnegative(),
-  })
+export const userClearLampSchema = z.object({
+  userId: userSchema.shape.id,
+  type: z.literal('clear'),
+  playStyle: stepChartSchema.shape.playStyle,
+  level: stepChartSchema.shape.level,
+  clearLamp: scoreRecordSchema.shape.clearLamp,
+  count: z.number().int().nonnegative(),
+})
 /**
  * Summary of {@link ClearLamp} (included in "UserDetails" container)
  * @example
@@ -26,12 +39,14 @@ export const userClearLampSchema = scoreSchema
 export type UserClearLampSchema = z.infer<typeof userClearLampSchema>
 
 /** zod schema object for {@link UserRankSchema}. */
-export const userRankSchema = scoreSchema
-  .pick({ userId: true, playStyle: true, level: true, rank: true })
-  .extend({
-    type: z.literal('score'),
-    count: z.number().int().nonnegative(),
-  })
+export const userRankSchema = z.object({
+  userId: userSchema.shape.id,
+  type: z.literal('score'),
+  playStyle: stepChartSchema.shape.playStyle,
+  level: stepChartSchema.shape.level,
+  rank: scoreRecordSchema.shape.rank,
+  count: z.number().int().nonnegative(),
+})
 /**
  * Summary of {@link DanceLevel} (included in "UserDetails" container)
  * @example

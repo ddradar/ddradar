@@ -82,19 +82,9 @@ export class ScoreRepository {
     conditions: QueryFilter<DBSchema>[],
     orderBy:
       | `${DBColumn} ${'ASC' | 'DESC'}`
-      | 'c.score DESC, c.clearLamp DESC, c._ts ASC',
-    user?: Pick<User, 'id' | 'area'>
+      | 'c.score DESC, c.clearLamp DESC, c._ts ASC' = 'c.score DESC, c.clearLamp DESC, c._ts ASC'
   ): Promise<UserScoreRecord[]> {
-    const { resources } = await this.queryInner(
-      [
-        {
-          condition: 'c.user.isPublic OR ARRAY_CONTAINS(@, c.user.id)',
-          value: ['0', ...(user ? [user.id, `${user.area}`] : [])],
-        },
-        ...conditions,
-      ],
-      orderBy
-    ).fetchAll()
+    const { resources } = await this.queryInner(conditions, orderBy).fetchAll()
     return resources
   }
 
@@ -123,6 +113,30 @@ export class ScoreRepository {
     return resources
   }
 
+  async count<T extends { count: number }>(
+    summaryColumns: DBColumn<T>[],
+    conditions: QueryFilter<DBSchema>[],
+    user?: Pick<User, 'id' | 'area'>
+  ): Promise<T[]> {
+    const { queryConditions, parameters } = generateQueryConditions([
+      { condition: 'c.type = "score"' },
+      {
+        condition: 'c.user.isPublic OR ARRAY_CONTAINS(@, c.user.id)',
+        value: ['0', ...(user ? [user.id, `${user.area}`] : [])],
+      },
+      ...conditions,
+    ])
+    const { resources } = await this.client
+      .database(databaseName)
+      .container(scoreContainer)
+      .items.query<T>({
+        query: `SELECT ${summaryColumns.join(', ')} COUNT(1) AS count FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} GROUP BY ${summaryColumns.join(', ')}`,
+        parameters,
+      })
+      .fetchAll()
+    return resources
+  }
+
   /**
    * Update or insert user score data.
    * @remarks This method also updates area top & world tops scores.
@@ -138,7 +152,7 @@ export class ScoreRepository {
     playStyle: StepChart['playStyle'],
     difficulty: StepChart['difficulty'],
     score: Omit<ScoreRecord, 'flareSkill'>
-  ): Promise<void> {
+  ): Promise<DBScoreSchema> {
     // Get song and chart info
     const columns: (
       | Column<
@@ -182,7 +196,7 @@ export class ScoreRepository {
 
     if (!isValidScore(songAndChart, score)) throw new Error('Invalid score')
 
-    await this.client
+    const { resource } = await this.client
       .database(databaseName)
       .container(scoreContainer)
       .items.upsert<DBScoreSchema>({
@@ -212,6 +226,20 @@ export class ScoreRepository {
         maxCombo: score.maxCombo,
         flareRank: score.flareRank,
       })
+    return resource!
+  }
+
+  async delete(
+    userId: User['id'],
+    songId: Song['id'],
+    playStyle: StepChart['playStyle'],
+    difficulty: StepChart['difficulty']
+  ): Promise<void> {
+    await this.client
+      .database(databaseName)
+      .container(scoreContainer)
+      .item(`${songId}/${playStyle}/${difficulty}/${userId}`, songId)
+      .delete()
   }
 
   private queryInner(
