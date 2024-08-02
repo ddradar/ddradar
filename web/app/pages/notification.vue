@@ -2,7 +2,7 @@
 const { t } = useI18n()
 const { hasRole } = await useEasyAuth()
 
-const { data: messages, pending } = await useLazyFetch('/api/v1/notification', {
+const { data: messages, pending } = await useLazyFetch('/api/v2/notification', {
   default: () => [],
 })
 

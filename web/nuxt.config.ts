@@ -38,14 +38,7 @@ export default defineNuxtConfig({
           'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
           'Access-Control-Allow-Credentials': 'true',
         },
-        routes: [
-          {
-            route: '/api/v1/notification',
-            methods: ['POST'],
-            allowedRoles: ['administrator'],
-          },
-          { route: '/admin/*', allowedRoles: ['administrator'] },
-        ],
+        routes: [{ route: '/admin/*', allowedRoles: ['administrator'] }],
       },
     },
   },

@@ -68,7 +68,7 @@ describe('POST /api/v2/songs', () => {
       { ...song, deleted: true },
       { ...song, type: 'song', deleted: true },
     ],
-  ])('(body: %o) returns 200 with %o', async (body, expected) => {
+  ])('(body: %o) calls SongRepository.upsert(%o)', async (body, expected) => {
     // Arrange
     const upsert = vi.fn()
     vi.mocked(hasRole).mockReturnValueOnce(true)

@@ -2,7 +2,7 @@
 import { nameIndexMap } from '@ddradar/core'
 
 const { t } = useI18n()
-const { data: notifications } = await useFetch('/api/v1/notification', {
+const { data: notifications } = await useFetch('/api/v2/notification', {
   query: { scope: 'top' },
 })
 </script>

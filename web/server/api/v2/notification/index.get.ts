@@ -1,12 +1,10 @@
-import { queryContainer } from '@ddradar/db'
-
 import { getListQuerySchema as schema } from '~~/schemas/notification'
 
 /**
  * Get system notification list.
  * @description
  * - No need Authentication.
- * - GET `api/v1/notification?scope=:scope`
+ * - GET `/api/v2/notification?scope=:scope`
  *   - `scope`(optional): `top`: only pinne} notification, other: all notification
  * @returns `200 OK` with JSON body.
  * @example
@@ -26,14 +24,7 @@ import { getListQuerySchema as schema } from '~~/schemas/notification'
 export default defineEventHandler(async event => {
   const { scope } = await getValidatedQuery(event, schema.parse)
 
-  const { resources } = await queryContainer(
-    getCosmosClient(event),
-    'Notification',
-    ['id', 'color', 'icon', 'title', 'body', 'timeStamp'],
-    [
-      { condition: 'c.sender = "SYSTEM"' },
-      ...(scope === 'top' ? ([{ condition: 'c.pinned = true' }] as const) : []),
-    ]
-  ).fetchAll()
-  return resources
+  return await getNotificationRepository(event).list(
+    scope ? [{ condition: 'c.pinned = true' }] : []
+  )
 })

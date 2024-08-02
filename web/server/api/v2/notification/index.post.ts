@@ -1,4 +1,4 @@
-import { getContainer } from '@ddradar/db'
+import type { Notification } from '@ddradar/core'
 
 import { postBodySchema as schema } from '~~/schemas/notification'
 
@@ -6,7 +6,7 @@ import { postBodySchema as schema } from '~~/schemas/notification'
  * Add or update Notification.
  * @description
  * - Need Authentication with `administrator` role.
- * - POST `/api/v1/notification`
+ * - POST `/api/v2/notification`
  * @returns
  * - Returns `401 Unauthorized` if user is not authenticated or does not have `administrator` role.
  * - Returns `400 BadRequest` if body is invalid.
@@ -15,20 +15,18 @@ import { postBodySchema as schema } from '~~/schemas/notification'
  * ```jsonc
  * // Request Body
  * {
- *   "sender": "SYSTEM",
- *   "pinned": true,
  *   "color": "yellow",
  *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
- *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。"
+ *   "body": "このWebサイトはベータ版環境です。以下の点にご留意してご利用ください。",
+ *   "pinned": true
  * }
  * ```
  *
  * ```jsonc
  * // Response Body
  * {
- *   "sender": "SYSTEM",
- *   "pinned": true,
+ *   "id": "<Auto Generated>",
  *   "color": "yellow",
  *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
@@ -38,11 +36,10 @@ import { postBodySchema as schema } from '~~/schemas/notification'
  * ```
  */
 export default defineEventHandler(async event => {
+  if (!hasRole(event, 'administrator')) throw createError({ statusCode: 401 })
   const body = await readValidatedBody(event, schema.parse)
 
   const notification = {
-    sender: body.sender,
-    pinned: body.pinned,
     color: body.color,
     icon: body.icon,
     title: body.title,
@@ -50,7 +47,17 @@ export default defineEventHandler(async event => {
     timeStamp: body.timeStamp || Math.floor(Date.now() / 1000),
     ...(body.id ? { id: body.id } : {}),
   }
-  await getContainer('Notification').items.upsert(notification)
+  const res = await getNotificationRepository(event).upsert(
+    notification,
+    body.pinned
+  )
 
-  return notification
+  return {
+    id: res.id,
+    color: res.color,
+    icon: res.icon,
+    title: res.title,
+    body: res.body,
+    timeStamp: res.timeStamp,
+  } satisfies Notification
 })

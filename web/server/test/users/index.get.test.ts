@@ -27,7 +27,7 @@ describe('GET /api/v2/users', () => {
     ['', '13', '', [{ condition: 'c.area = @', value: 13 }]],
     ['', '', '10000000', [{ condition: 'c.code = @', value: 10000000 }]],
   ])(
-    '?name=%s&area=%s&code=%s calls fetchList(%o) (anonymous)',
+    '?name=%s&area=%s&code=%s calls UserRepository.list(%o, undefined) when anonymous',
     async (name, area, code, conditions) => {
       // Arrange
       vi.mocked(getClientPrincipal).mockReturnValue(null)
@@ -45,11 +45,14 @@ describe('GET /api/v2/users', () => {
     }
   )
 
-  test('calls fetchList(%o) (login user)', async () => {
+  test('calls UserRepository.list([], loginId) when logged in', async () => {
     // Arrange
     vi.mocked(getClientPrincipal).mockReturnValue(
       createClientPrincipal(publicUser.id, 'loginId')
     )
+    vi.mocked(getUserRepository).mockReturnValue({
+      list,
+    } as unknown as ReturnType<typeof getUserRepository>)
     const event = createEvent(undefined, undefined, {})
 
     // Act

@@ -1,12 +1,10 @@
-import { queryContainer } from '@ddradar/db'
-
 import { getRouterParamsSchema as schema } from '~~/schemas/notification'
 
 /**
  * Get notification that match the specified ID.
  * @description
  * - No need Authentication.
- * - GET `api/v1/notification/[id]`
+ * - GET `/api/v2/notification/[id]`
  *   - `id`: Notification ID
  * @returns
  * - Returns `404 Not Found` if no data that matches `id`.
@@ -15,8 +13,6 @@ import { getRouterParamsSchema as schema } from '~~/schemas/notification'
  * ```json
  * {
  *   "id": "<Auto Generated>",
- *   "sender": "SYSTEM",
- *   "pinned": true,
  *   "color": "yellow",
  *   "icon": "i-heroicons-exclamation-triangle",
  *   "title": "このサイトはベータ版です",
@@ -28,16 +24,7 @@ import { getRouterParamsSchema as schema } from '~~/schemas/notification'
 export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, schema.parse)
 
-  const [notification] = (
-    await queryContainer(
-      getCosmosClient(event),
-      'Notification',
-      ['id', 'sender', 'pinned', 'color', 'icon', 'title', 'body', 'timeStamp'],
-      [{ condition: 'c.id = @', value: id }],
-      {},
-      { maxItemCount: 1 }
-    ).fetchNext()
-  ).resources
+  const notification = await getNotificationRepository(event).get(id)
   if (!notification) throw createError({ statusCode: 404 })
 
   return notification

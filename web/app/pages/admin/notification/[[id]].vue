@@ -10,13 +10,12 @@ const { id: _id } = _route.params
 const title = computed(() => `${_id ? 'Update' : 'Add'} Notification`)
 useHeadSafe({ title })
 
+const pinned = ref(false)
 // #region Data Fetching
 const { data: notification, execute } = useFetch(
-  `/api/v1/notification/${_id}`,
+  `/api/v2/notification/${_id}`,
   {
     default: () => ({
-      sender: 'SYSTEM',
-      pinned: false,
       color: 'blue',
       icon: '',
       title: '',
@@ -33,8 +32,8 @@ if (_id) await execute()
 const save = async () => {
   try {
     notification.value = await $fetch<(typeof notification)['value']>(
-      '/api/v1/notification',
-      { method: 'POST', body: notification.value }
+      '/api/v2/notification',
+      { method: 'POST', body: { ...notification.value, pinned: pinned.value } }
     )
     _toast.add({
       id: 'notification-updated',
@@ -67,7 +66,7 @@ const save = async () => {
         </UFormGroup>
 
         <UFormGroup name="pinned">
-          <UCheckbox v-model="notification.pinned" label="ピン留めする" />
+          <UCheckbox v-model="pinned" label="ピン留めする" />
         </UFormGroup>
 
         <UFormGroup label="Type" name="type">
