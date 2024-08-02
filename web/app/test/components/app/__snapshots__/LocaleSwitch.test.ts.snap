@@ -6,13 +6,13 @@ exports[`components/app/LocaleSwitch.vue > snapshot test 1`] = `
   data-headlessui-state="open"
 >
   <div
-    aria-controls="headlessui-menu-items-n01ju42yprg_1"
+    aria-controls="headlessui-menu-items-nQG8qDL0FHA_1"
     aria-expanded="true"
     aria-haspopup="menu"
     class="inline-flex w-full"
     data-headlessui-state="open"
     disabled="false"
-    id="headlessui-menu-button-n01ju42yprg_0"
+    id="headlessui-menu-button-nQG8qDL0FHA_0"
     role="button"
   >
     
@@ -22,30 +22,10 @@ exports[`components/app/LocaleSwitch.vue > snapshot test 1`] = `
     >
       
       
-      <svg
+      <span
         aria-hidden="true"
-        class="icon flex-shrink-0 h-5 w-5"
-        data-v-b5528787=""
-        height="1em"
-        role="img"
-        viewBox="0 0 20 20"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <g
-          fill="currentColor"
-        >
-          <path
-            d="M7.75 2.75a.75.75 0 0 0-1.5 0v1.258a33 33 0 0 0-3.599.278a.75.75 0 1 0 .198 1.487A31.6 31.6 0 0 1 8.7 5.545A19.4 19.4 0 0 1 7 9.56a19 19 0 0 1-1.002-2.05a.75.75 0 0 0-1.384.577a21 21 0 0 0 1.492 2.91a19.6 19.6 0 0 1-3.828 4.154a.75.75 0 1 0 .945 1.164A21 21 0 0 0 7 12.331q.143.198.29.391a.75.75 0 0 0 1.194-.91q-.306-.4-.59-.815a21 21 0 0 0 2.333-5.332q.465.047.924.108a.75.75 0 0 0 .198-1.487a33 33 0 0 0-3.599-.278z"
-          />
-          <path
-            clip-rule="evenodd"
-            d="M13 8a.75.75 0 0 1 .671.415l4.25 8.5a.75.75 0 1 1-1.342.67L15.787 16h-5.573l-.793 1.585a.75.75 0 1 1-1.342-.67l4.25-8.5A.75.75 0 0 1 13 8m2.037 6.5L13 10.427L10.964 14.5z"
-            fill-rule="evenodd"
-          />
-        </g>
-      </svg>
+        class="iconify i-heroicons:language-20-solid flex-shrink-0 h-5 w-5"
+      />
       
       
       <!--v-if-->
@@ -76,10 +56,10 @@ exports[`components/app/LocaleSwitch.vue > snapshot test 1`] = `
       <div>
         <!--v-if-->
         <div
-          aria-labelledby="headlessui-menu-button-n01ju42yprg_0"
+          aria-labelledby="headlessui-menu-button-nQG8qDL0FHA_0"
           class="relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-200 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800"
           data-headlessui-state="open"
-          id="headlessui-menu-items-n01ju42yprg_1"
+          id="headlessui-menu-items-nQG8qDL0FHA_1"
           role="menu"
           tabindex="0"
         >
@@ -94,7 +74,7 @@ exports[`components/app/LocaleSwitch.vue > snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_2"
+              id="headlessui-menu-item-nQG8qDL0FHA_2"
               role="menuitem"
             >
               
@@ -113,7 +93,7 @@ exports[`components/app/LocaleSwitch.vue > snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_3"
+              id="headlessui-menu-item-nQG8qDL0FHA_3"
               role="menuitem"
             >
               

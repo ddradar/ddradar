@@ -12,6 +12,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
       class=""
     >
       <!--v-if-->
+      <!--v-if-->
       
       <th
         class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
@@ -51,9 +52,11 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
     class="divide-y divide-gray-200 dark:divide-gray-800"
   >
     
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -69,65 +72,35 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_7"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_7"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-              id="headlessui-disclosure-button-nJRT1705wUV_6"
+              id="headlessui-disclosure-button-noBnPM2aHde_6"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 新曲を追加しました
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -144,7 +117,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_7"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_7"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -197,26 +170,10 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -231,9 +188,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -249,63 +210,33 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_9"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_9"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="このWebサイトはベータ版環境です。"
-              id="headlessui-disclosure-button-nJRT1705wUV_8"
+              id="headlessui-disclosure-button-noBnPM2aHde_8"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:exclamation-triangle flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 このサイトはベータ版です
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -322,7 +253,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_9"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_9"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -360,26 +291,10 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -394,9 +309,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -412,63 +331,33 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_11"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_11"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="変更点は以下を参照してください。"
-              id="headlessui-disclosure-button-nJRT1705wUV_10"
+              id="headlessui-disclosure-button-noBnPM2aHde_10"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 v0.6.0をリリースしました
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -485,7 +374,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_11"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_11"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -523,26 +412,10 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -557,6 +430,8 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
     
   </tbody>
 </table>
@@ -573,6 +448,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ loading: true }) re
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <th
@@ -604,12 +480,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ loading: true }) re
       >
         <div
           class="w-full flex flex-col gap-2"
-          data-v-0c58688f=""
+          data-v-e7e07852=""
+          role="progressbar"
         >
           <!--v-if-->
           <progress
             class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-            data-v-0c58688f=""
+            data-v-e7e07852=""
           />
           <!--v-if-->
         </div>
@@ -627,24 +504,10 @@ exports[`/notification > { locale: "en" } snapshot test > ({ loading: true }) re
         <div
           class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
         >
-          <svg
+          <span
             aria-hidden="true"
-            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 20 20"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
-              fill="currentColor"
-              fill-rule="evenodd"
-            />
-          </svg>
+            class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+          />
           <p
             class="text-sm text-center text-gray-900 dark:text-white"
           >
@@ -714,6 +577,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
               class=""
             >
               <!--v-if-->
+              <!--v-if-->
               
               <th
                 class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
@@ -743,9 +607,11 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
             class="divide-y divide-gray-200 dark:divide-gray-800"
           >
             
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -761,65 +627,35 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_1"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_1"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-                      id="headlessui-disclosure-button-nJRT1705wUV_0"
+                      id="headlessui-disclosure-button-noBnPM2aHde_0"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         新曲を追加しました
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -836,7 +672,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_1"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_1"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -880,9 +716,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -898,63 +738,33 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_3"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_3"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="このWebサイトはベータ版環境です。"
-                      id="headlessui-disclosure-button-nJRT1705wUV_2"
+                      id="headlessui-disclosure-button-noBnPM2aHde_2"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:exclamation-triangle flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         このサイトはベータ版です
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -971,7 +781,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_3"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_3"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1000,9 +810,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -1018,63 +832,33 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_5"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_5"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="変更点は以下を参照してください。"
-                      id="headlessui-disclosure-button-nJRT1705wUV_4"
+                      id="headlessui-disclosure-button-noBnPM2aHde_4"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         v0.6.0をリリースしました
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -1091,7 +875,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_5"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_5"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1120,6 +904,8 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
             
           </tbody>
         </table>
@@ -1143,6 +929,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [] }) ren
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <th
@@ -1180,24 +967,10 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [] }) ren
         <div
           class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
         >
-          <svg
+          <span
             aria-hidden="true"
-            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 20 20"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
-              fill="currentColor"
-              fill-rule="evenodd"
-            />
-          </svg>
+            class="iconify i-heroicons:circle-stack-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+          />
           <p
             class="text-sm text-center text-gray-900 dark:text-white"
           >
@@ -1222,6 +995,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <th
@@ -1262,9 +1036,11 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
     class="divide-y divide-gray-200 dark:divide-gray-800"
   >
     
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -1280,65 +1056,35 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_19"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_19"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-              id="headlessui-disclosure-button-nJRT1705wUV_18"
+              id="headlessui-disclosure-button-noBnPM2aHde_18"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 新曲を追加しました
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -1355,7 +1101,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_19"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_19"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1408,26 +1154,10 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -1442,9 +1172,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -1460,63 +1194,33 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_21"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_21"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="このWebサイトはベータ版環境です。"
-              id="headlessui-disclosure-button-nJRT1705wUV_20"
+              id="headlessui-disclosure-button-noBnPM2aHde_20"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:exclamation-triangle flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 このサイトはベータ版です
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -1533,7 +1237,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_21"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_21"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1571,26 +1275,10 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -1605,9 +1293,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
+    
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <td
@@ -1623,63 +1315,33 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_23"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_23"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="変更点は以下を参照してください。"
-              id="headlessui-disclosure-button-nJRT1705wUV_22"
+              id="headlessui-disclosure-button-noBnPM2aHde_22"
               type="button"
             >
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon flex-shrink-0 h-5 w-5"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 24 24"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.5"
-                />
-              </svg>
+                class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+              />
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 v0.6.0をリリースしました
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -1696,7 +1358,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_23"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_23"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1734,26 +1396,10 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
         >
           
           
-          <svg
+          <span
             aria-hidden="true"
-            class="icon flex-shrink-0 h-5 w-5"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 24 24"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-              fill="none"
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="1.5"
-            />
-          </svg>
+            class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+          />
           
           
           <!--v-if-->
@@ -1768,6 +1414,8 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
       </td>
       
     </tr>
+    <!--v-if-->
+    
     
   </tbody>
 </table>
@@ -1784,6 +1432,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ loading: true }) re
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <th
@@ -1815,12 +1464,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ loading: true }) re
       >
         <div
           class="w-full flex flex-col gap-2"
-          data-v-0c58688f=""
+          data-v-e7e07852=""
+          role="progressbar"
         >
           <!--v-if-->
           <progress
             class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-            data-v-0c58688f=""
+            data-v-e7e07852=""
           />
           <!--v-if-->
         </div>
@@ -1838,24 +1488,10 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ loading: true }) re
         <div
           class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
         >
-          <svg
+          <span
             aria-hidden="true"
-            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 20 20"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M15.312 11.424a5.5 5.5 0 0 1-9.201 2.466l-.312-.311h2.433a.75.75 0 0 0 0-1.5H3.989a.75.75 0 0 0-.75.75v4.242a.75.75 0 0 0 1.5 0v-2.43l.31.31a7 7 0 0 0 11.712-3.138a.75.75 0 0 0-1.449-.39m1.23-3.723a.75.75 0 0 0 .219-.53V2.929a.75.75 0 0 0-1.5 0V5.36l-.31-.31A7 7 0 0 0 3.239 8.188a.75.75 0 1 0 1.448.389A5.5 5.5 0 0 1 13.89 6.11l.311.31h-2.432a.75.75 0 0 0 0 1.5h4.243a.75.75 0 0 0 .53-.219"
-              fill="currentColor"
-              fill-rule="evenodd"
-            />
-          </svg>
+            class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+          />
           <p
             class="text-sm text-center text-gray-900 dark:text-white"
           >
@@ -1925,6 +1561,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
               class=""
             >
               <!--v-if-->
+              <!--v-if-->
               
               <th
                 class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
@@ -1954,9 +1591,11 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
             class="divide-y divide-gray-200 dark:divide-gray-800"
           >
             
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -1972,65 +1611,35 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_13"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_13"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-                      id="headlessui-disclosure-button-nJRT1705wUV_12"
+                      id="headlessui-disclosure-button-noBnPM2aHde_12"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         新曲を追加しました
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -2047,7 +1656,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_13"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_13"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -2091,9 +1700,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -2109,63 +1722,33 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_15"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_15"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="このWebサイトはベータ版環境です。"
-                      id="headlessui-disclosure-button-nJRT1705wUV_14"
+                      id="headlessui-disclosure-button-noBnPM2aHde_14"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0zM12 15.75h.007v.008H12z"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:exclamation-triangle flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         このサイトはベータ版です
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -2182,7 +1765,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_15"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_15"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -2211,9 +1794,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
+            
             <tr
               class=""
             >
+              <!--v-if-->
               <!--v-if-->
               
               <td
@@ -2229,63 +1816,33 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-nJRT1705wUV_17"
+                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_17"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="変更点は以下を参照してください。"
-                      id="headlessui-disclosure-button-nJRT1705wUV_16"
+                      id="headlessui-disclosure-button-noBnPM2aHde_16"
                       type="button"
                     >
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon flex-shrink-0 h-5 w-5"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 24 24"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          d="m9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 1 1-.99-3.467l2.31-.66a2.25 2.25 0 0 0 1.632-2.163m0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 0 1-1.632 2.163l-1.32.377a1.803 1.803 0 0 1-.99-3.467l2.31-.66A2.25 2.25 0 0 0 9 15.553"
-                          fill="none"
-                          stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="1.5"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:musical-note flex-shrink-0 h-5 w-5"
+                      />
                       
                       
                       <span
-                        class=""
+                        class="text-left break-all line-clamp-1"
                       >
                         v0.6.0をリリースしました
                       </span>
                       
                       
-                      <svg
+                      <span
                         aria-hidden="true"
-                        class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                        data-v-b5528787=""
-                        height="1em"
-                        role="img"
-                        viewBox="0 0 20 20"
-                        width="1em"
-                        xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink"
-                      >
-                        <path
-                          clip-rule="evenodd"
-                          d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                          fill="currentColor"
-                          fill-rule="evenodd"
-                        />
-                      </svg>
+                        class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+                      />
                       
                       
                     </button>
@@ -2302,7 +1859,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-nJRT1705wUV_17"
+                          id="headlessui-disclosure-panel-noBnPM2aHde_17"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -2331,6 +1888,8 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
               </td>
               
             </tr>
+            <!--v-if-->
+            
             
           </tbody>
         </table>
@@ -2354,6 +1913,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [] }) ren
     <tr
       class=""
     >
+      <!--v-if-->
       <!--v-if-->
       
       <th
@@ -2391,24 +1951,10 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [] }) ren
         <div
           class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
         >
-          <svg
+          <span
             aria-hidden="true"
-            class="icon w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-            data-v-b5528787=""
-            height="1em"
-            role="img"
-            viewBox="0 0 20 20"
-            width="1em"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M10 1c3.866 0 7 1.79 7 4s-3.134 4-7 4s-7-1.79-7-4s3.134-4 7-4m5.694 8.13c.464-.264.91-.583 1.306-.952V10c0 2.21-3.134 4-7 4s-7-1.79-7-4V8.178a7 7 0 0 0 1.306.953C5.838 10.006 7.854 10.5 10 10.5s4.162-.494 5.694-1.37M3 13.179V15c0 2.21 3.134 4 7 4s7-1.79 7-4v-1.822a7 7 0 0 1-1.306.953C14.162 15.006 12.146 15.5 10 15.5s-4.162-.494-5.694-1.37A7 7 0 0 1 3 13.179"
-              fill="currentColor"
-              fill-rule="evenodd"
-            />
-          </svg>
+            class="iconify i-heroicons:circle-stack-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+          />
           <p
             class="text-sm text-center text-gray-900 dark:text-white"
           >
