@@ -5,10 +5,12 @@ import consola from 'consola'
 
 import {
   databaseName,
+  notificationContainer,
   scoreContainer,
   songContainer,
   userDataContainer,
 } from '../src/constants'
+import type { DBNotificationSchema } from '../src/schemas/notification'
 import type { DBScoreSchemaWithCP } from '../src/schemas/scores'
 import type { DBSongSchemaWithCP } from '../src/schemas/songs'
 import type { DBUserSchema } from '../src/schemas/userData'
@@ -158,6 +160,26 @@ async function run() {
         },
       ],
     } as object),
+    database.containers.createIfNotExists({
+      id: notificationContainer,
+      partitionKey: {
+        paths: ['/sender'] satisfies ContainerPath<DBNotificationSchema>[],
+      },
+      indexingPolicy: {
+        compositeIndexes: [
+          [
+            {
+              path: '/pinned' satisfies ContainerPath<DBNotificationSchema>,
+              order: 'descending',
+            },
+            {
+              path: '/timeStamp' satisfies ContainerPath<DBNotificationSchema>,
+              order: 'descending',
+            },
+          ],
+        ],
+      } as object,
+    }),
   ])
 }
 

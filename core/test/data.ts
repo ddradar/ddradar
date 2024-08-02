@@ -1,4 +1,4 @@
-import type { NotificationSchema } from '../src/notification'
+import type { Notification } from '../src/notification'
 import type { UserScoreRecord } from '../src/score'
 import type { Song } from '../src/song'
 import type { User } from '../src/user'
@@ -116,27 +116,24 @@ export const noPasswordUser: User = {
 }
 //#endregion
 
-//#region NotificationSchema
+//#region Notification
 /** Sample Notification data */
-export const notification = {
+export const notification: Notification = {
   id: 'foo',
-  sender: 'SYSTEM',
-  pinned: false,
   color: 'blue',
   icon: 'i-heroicons-musical-note',
   title: '新曲を追加しました',
   body: '下記の譜面情報を追加しました。\n\n- [新曲](/song/foo)',
   /** 2020/8/13 0:00 (UTC) */
   timeStamp: 1597276800,
-} as const
+}
 
 /** Sample Notification list data */
-export const notifications: readonly NotificationSchema[] = [
+export const notifications: readonly Notification[] = [
   notification,
   {
     ...notification,
     id: 'bar',
-    pinned: true,
     color: 'yellow',
     icon: 'i-heroicons-exclamation-triangle',
     title: 'このサイトはベータ版です',
@@ -150,7 +147,7 @@ export const notifications: readonly NotificationSchema[] = [
     body: '変更点は以下を参照してください。',
     timeStamp: 1597114800,
   },
-] as const
+]
 //#endregion
 
 //#region UserScoreRecord

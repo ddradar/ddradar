@@ -1,13 +1,12 @@
 import { describe, expect, test } from 'vitest'
 
-import type { NotificationSchema } from '../src/notification'
+import type { Notification } from '../src/notification'
 import { notificationSchema } from '../src/notification'
 
 describe('notification.ts', () => {
   describe('notificationSchema', () => {
-    const validBody: NotificationSchema = {
-      sender: 'SYSTEM',
-      pinned: true,
+    const validBody: Notification = {
+      id: 'foo',
       color: 'yellow',
       icon: 'i-heroicons-exclamation-triangle',
       title: 'このサイトはベータ版です',
@@ -22,8 +21,7 @@ describe('notification.ts', () => {
       1,
       'foo',
       {},
-      { ...validBody, sender: 'USER' },
-      { ...validBody, pinned: 'false' },
+      { ...validBody, id: undefined },
       { ...validBody, color: 'foo' },
       { ...validBody, icon: false },
       { ...validBody, icon: 'foo' },
@@ -33,12 +31,9 @@ describe('notification.ts', () => {
     ])('safeParse(%o) returns { success: false }', o =>
       expect(notificationSchema.safeParse(o).success).toBe(false)
     )
-    test.each([
-      validBody,
-      { ...validBody, id: 'foo' },
-      { ...validBody, color: 'blue' },
-    ])('(%o) returns { success: true }', o =>
-      expect(notificationSchema.safeParse(o).success).toBe(true)
+    test.each([validBody, { ...validBody, color: 'blue' }])(
+      '(%o) returns { success: true }',
+      o => expect(notificationSchema.safeParse(o).success).toBe(true)
     )
   })
 })
