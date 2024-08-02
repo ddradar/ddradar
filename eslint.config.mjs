@@ -11,8 +11,7 @@ import withNuxt from './web/.nuxt/eslint.config.mjs'
 export default withNuxt()
   .prepend(
     eslint.configs.recommended,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
+    // @ts-expect-error - type
     ...typescript.config(...typescript.configs.recommended),
     {
       plugins: { 'simple-import-sort': simpleImportSort },
@@ -44,7 +43,5 @@ export default withNuxt()
       files: ['**/components/**/*.vue', '**/pages/**/*.vue'],
       rules: { 'vue/multi-word-component-names': 'off' },
     },
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
     eslintConfigPrettier
   )
