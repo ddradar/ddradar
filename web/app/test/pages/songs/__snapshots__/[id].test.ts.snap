@@ -50,26 +50,10 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
               >
                 
                 
-                <svg
+                <span
                   aria-hidden="true"
-                  class="icon flex-shrink-0 h-5 w-5"
-                  data-v-b5528787=""
-                  height="1em"
-                  role="img"
-                  viewBox="0 0 24 24"
-                  width="1em"
-                  xmlns="http://www.w3.org/2000/svg"
-                  xmlns:xlink="http://www.w3.org/1999/xlink"
-                >
-                  <path
-                    d="m16.862 4.487l1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="1.5"
-                  />
-                </svg>
+                  class="iconify i-heroicons:pencil-square flex-shrink-0 h-5 w-5"
+                />
                 
                 
                 <span
@@ -123,11 +107,11 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_9"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_9"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_8"
+              id="headlessui-disclosure-button-noBnPM2aHde_8"
               type="button"
             >
               
@@ -136,30 +120,16 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 SP-BEGINNER (4)
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -176,7 +146,7 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_9"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_9"
                 >
                   
                   <div
@@ -218,11 +188,11 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_11"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_11"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_10"
+              id="headlessui-disclosure-button-noBnPM2aHde_10"
               type="button"
             >
               
@@ -231,30 +201,16 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 スコアランキング
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -271,7 +227,7 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_11"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_11"
                 >
                   
                   
@@ -291,11 +247,11 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_13"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_13"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_12"
+              id="headlessui-disclosure-button-noBnPM2aHde_12"
               type="button"
             >
               
@@ -304,30 +260,16 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 SP-BASIC (8)
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -344,7 +286,7 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_13"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_13"
                 >
                   
                   <div
@@ -386,11 +328,11 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_15"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_15"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_14"
+              id="headlessui-disclosure-button-noBnPM2aHde_14"
               type="button"
             >
               
@@ -399,30 +341,16 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 スコアランキング
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -439,7 +367,7 @@ exports[`/songs/[id] > { isAdmin: true } renders edit button 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_15"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_15"
                 >
                   
                   
@@ -548,11 +476,11 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_1"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_1"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_0"
+              id="headlessui-disclosure-button-noBnPM2aHde_0"
               type="button"
             >
               
@@ -561,30 +489,16 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 SP-BEGINNER (4)
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -601,7 +515,7 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_1"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_1"
                 >
                   
                   <div
@@ -643,11 +557,11 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_3"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_3"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 bg-blue-50 hover:bg-blue-100 disabled:bg-blue-50 dark:bg-blue-950 dark:hover:bg-blue-900 dark:disabled:bg-blue-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_2"
+              id="headlessui-disclosure-button-noBnPM2aHde_2"
               type="button"
             >
               
@@ -656,30 +570,16 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 スコアランキング
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -696,7 +596,7 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_3"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_3"
                 >
                   
                   
@@ -716,11 +616,11 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_5"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_5"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_4"
+              id="headlessui-disclosure-button-noBnPM2aHde_4"
               type="button"
             >
               
@@ -729,30 +629,16 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 SP-BASIC (8)
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -769,7 +655,7 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_5"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_5"
                 >
                   
                   <div
@@ -811,11 +697,11 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-nJRT1705wUV_7"
+              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_7"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-yellow-500 dark:text-yellow-400 bg-yellow-50 hover:bg-yellow-100 disabled:bg-yellow-50 dark:bg-yellow-950 dark:hover:bg-yellow-900 dark:disabled:bg-yellow-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-yellow-500 dark:focus-visible:ring-yellow-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
-              id="headlessui-disclosure-button-nJRT1705wUV_6"
+              id="headlessui-disclosure-button-noBnPM2aHde_6"
               type="button"
             >
               
@@ -824,30 +710,16 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
               
               
               <span
-                class=""
+                class="text-left break-all line-clamp-1"
               >
                 スコアランキング
               </span>
               
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon h-5 w-5 ms-auto transform transition-transform duration-200"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid h-5 w-5 ms-auto transform transition-transform duration-200 flex-shrink-0"
+              />
               
               
             </button>
@@ -864,7 +736,7 @@ exports[`/songs/[id] > { song: <Data> } renders song info 1`] = `
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-nJRT1705wUV_7"
+                  id="headlessui-disclosure-panel-noBnPM2aHde_7"
                 >
                   
                   

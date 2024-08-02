@@ -6,13 +6,13 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
   data-headlessui-state="open"
 >
   <div
-    aria-controls="headlessui-menu-items-n01ju42yprg_1"
+    aria-controls="headlessui-menu-items-nQG8qDL0FHA_1"
     aria-expanded="true"
     aria-haspopup="menu"
     class="inline-flex w-full"
     data-headlessui-state="open"
     disabled="false"
-    id="headlessui-menu-button-n01ju42yprg_0"
+    id="headlessui-menu-button-nQG8qDL0FHA_0"
     role="button"
   >
     
@@ -22,30 +22,10 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
     >
       
       
-      <svg
+      <span
         aria-hidden="true"
-        class="icon flex-shrink-0 h-5 w-5"
-        data-v-b5528787=""
-        height="1em"
-        role="img"
-        viewBox="0 0 20 20"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <g
-          clip-rule="evenodd"
-          fill="currentColor"
-          fill-rule="evenodd"
-        >
-          <path
-            d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75z"
-          />
-          <path
-            d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10"
-          />
-        </g>
-      </svg>
+        class="iconify i-heroicons:arrow-right-end-on-rectangle-20-solid flex-shrink-0 h-5 w-5"
+      />
       
       
       Login
@@ -76,10 +56,10 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
       <div>
         <!--v-if-->
         <div
-          aria-labelledby="headlessui-menu-button-n01ju42yprg_0"
+          aria-labelledby="headlessui-menu-button-nQG8qDL0FHA_0"
           class="relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-200 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800"
           data-headlessui-state="open"
-          id="headlessui-menu-items-n01ju42yprg_1"
+          id="headlessui-menu-items-nQG8qDL0FHA_1"
           role="menu"
           tabindex="0"
         >
@@ -94,7 +74,7 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_2"
+              id="headlessui-menu-item-nQG8qDL0FHA_2"
               role="menuitem"
             >
               
@@ -113,7 +93,7 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_3"
+              id="headlessui-menu-item-nQG8qDL0FHA_3"
               role="menuitem"
             >
               
@@ -132,7 +112,7 @@ exports[`components/app/LoginButton.vue > { locale: "en" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_4"
+              id="headlessui-menu-item-nQG8qDL0FHA_4"
               role="menuitem"
             >
               
@@ -162,13 +142,13 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
   data-headlessui-state="open"
 >
   <div
-    aria-controls="headlessui-menu-items-n01ju42yprg_6"
+    aria-controls="headlessui-menu-items-nQG8qDL0FHA_6"
     aria-expanded="true"
     aria-haspopup="menu"
     class="inline-flex w-full"
     data-headlessui-state="open"
     disabled="false"
-    id="headlessui-menu-button-n01ju42yprg_5"
+    id="headlessui-menu-button-nQG8qDL0FHA_5"
     role="button"
   >
     
@@ -178,30 +158,10 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
     >
       
       
-      <svg
+      <span
         aria-hidden="true"
-        class="icon flex-shrink-0 h-5 w-5"
-        data-v-b5528787=""
-        height="1em"
-        role="img"
-        viewBox="0 0 20 20"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-      >
-        <g
-          clip-rule="evenodd"
-          fill="currentColor"
-          fill-rule="evenodd"
-        >
-          <path
-            d="M17 4.25A2.25 2.25 0 0 0 14.75 2h-5.5A2.25 2.25 0 0 0 7 4.25v2a.75.75 0 0 0 1.5 0v-2a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v11.5a.75.75 0 0 1-.75.75h-5.5a.75.75 0 0 1-.75-.75v-2a.75.75 0 0 0-1.5 0v2A2.25 2.25 0 0 0 9.25 18h5.5A2.25 2.25 0 0 0 17 15.75z"
-          />
-          <path
-            d="M1 10a.75.75 0 0 1 .75-.75h9.546l-1.048-.943a.75.75 0 1 1 1.004-1.114l2.5 2.25a.75.75 0 0 1 0 1.114l-2.5 2.25a.75.75 0 1 1-1.004-1.114l1.048-.943H1.75A.75.75 0 0 1 1 10"
-          />
-        </g>
-      </svg>
+        class="iconify i-heroicons:arrow-right-end-on-rectangle-20-solid flex-shrink-0 h-5 w-5"
+      />
       
       
       ログイン
@@ -232,10 +192,10 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
       <div>
         <!--v-if-->
         <div
-          aria-labelledby="headlessui-menu-button-n01ju42yprg_5"
+          aria-labelledby="headlessui-menu-button-nQG8qDL0FHA_5"
           class="relative focus:outline-none overflow-y-auto scroll-py-1 divide-y divide-gray-200 dark:divide-gray-700 ring-1 ring-gray-200 dark:ring-gray-700 rounded-md shadow-lg bg-white dark:bg-gray-800"
           data-headlessui-state="open"
-          id="headlessui-menu-items-n01ju42yprg_6"
+          id="headlessui-menu-items-nQG8qDL0FHA_6"
           role="menu"
           tabindex="0"
         >
@@ -250,7 +210,7 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_7"
+              id="headlessui-menu-item-nQG8qDL0FHA_7"
               role="menuitem"
             >
               
@@ -269,7 +229,7 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_8"
+              id="headlessui-menu-item-nQG8qDL0FHA_8"
               role="menuitem"
             >
               
@@ -288,7 +248,7 @@ exports[`components/app/LoginButton.vue > { locale: "ja" } snapshot test 1`] = `
               class="group flex items-center gap-1.5 w-full px-1.5 py-1.5 text-sm rounded-md text-gray-700 dark:text-gray-200"
               data-headlessui-state=""
               href=""
-              id="headlessui-menu-item-n01ju42yprg_9"
+              id="headlessui-menu-item-nQG8qDL0FHA_9"
               role="menuitem"
             >
               

@@ -82,7 +82,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_0"
+            id="headlessui-popover-button-nvHZ77ZiBfj_0"
             role="button"
           >
             
@@ -94,24 +94,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Level(SP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -145,7 +131,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_2"
+            id="headlessui-popover-button-nvHZ77ZiBfj_2"
             role="button"
           >
             
@@ -157,24 +143,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Level(DP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -208,7 +180,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_4"
+            id="headlessui-popover-button-nvHZ77ZiBfj_4"
             role="button"
           >
             
@@ -220,24 +192,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Version
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -292,24 +250,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
       >
         
         
-        <svg
+        <span
           aria-hidden="true"
-          class="icon flex-shrink-0 h-5 w-5"
-          data-v-b5528787=""
-          height="1em"
-          role="img"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
+          class="iconify i-heroicons:bars-3-20-solid flex-shrink-0 h-5 w-5"
+        />
         
         
         <!--v-if-->
@@ -411,7 +355,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_6"
+            id="headlessui-popover-button-nvHZ77ZiBfj_6"
             role="button"
           >
             
@@ -423,24 +367,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Level(SP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -474,7 +404,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_8"
+            id="headlessui-popover-button-nvHZ77ZiBfj_8"
             role="button"
           >
             
@@ -486,24 +416,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Level(DP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -537,7 +453,7 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_10"
+            id="headlessui-popover-button-nvHZ77ZiBfj_10"
             role="button"
           >
             
@@ -549,24 +465,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
               
               Version
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -621,24 +523,10 @@ exports[`components/app/Navbar.vue > { locale: "en" } snapshot test > { isLogged
       >
         
         
-        <svg
+        <span
           aria-hidden="true"
-          class="icon flex-shrink-0 h-5 w-5"
-          data-v-b5528787=""
-          height="1em"
-          role="img"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
+          class="iconify i-heroicons:bars-3-20-solid flex-shrink-0 h-5 w-5"
+        />
         
         
         <!--v-if-->
@@ -740,7 +628,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_12"
+            id="headlessui-popover-button-nvHZ77ZiBfj_12"
             role="button"
           >
             
@@ -752,24 +640,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               レベル(SP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -803,7 +677,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_14"
+            id="headlessui-popover-button-nvHZ77ZiBfj_14"
             role="button"
           >
             
@@ -815,24 +689,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               レベル(DP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -866,7 +726,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_16"
+            id="headlessui-popover-button-nvHZ77ZiBfj_16"
             role="button"
           >
             
@@ -878,24 +738,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               バージョン
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -950,24 +796,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
       >
         
         
-        <svg
+        <span
           aria-hidden="true"
-          class="icon flex-shrink-0 h-5 w-5"
-          data-v-b5528787=""
-          height="1em"
-          role="img"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
+          class="iconify i-heroicons:bars-3-20-solid flex-shrink-0 h-5 w-5"
+        />
         
         
         <!--v-if-->
@@ -1069,7 +901,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_18"
+            id="headlessui-popover-button-nvHZ77ZiBfj_18"
             role="button"
           >
             
@@ -1081,24 +913,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               レベル(SP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -1132,7 +950,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_20"
+            id="headlessui-popover-button-nvHZ77ZiBfj_20"
             role="button"
           >
             
@@ -1144,24 +962,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               レベル(DP)
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -1195,7 +999,7 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
             aria-expanded="false"
             class="inline-flex w-full"
             data-headlessui-state=""
-            id="headlessui-popover-button-nEq1iKz0Hwa_22"
+            id="headlessui-popover-button-nvHZ77ZiBfj_22"
             role="button"
           >
             
@@ -1207,24 +1011,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
               
               バージョン
               
-              <svg
+              <span
                 aria-hidden="true"
-                class="icon w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
-                data-v-b5528787=""
-                height="1em"
-                role="img"
-                viewBox="0 0 20 20"
-                width="1em"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06"
-                  fill="currentColor"
-                  fill-rule="evenodd"
-                />
-              </svg>
+                class="iconify i-heroicons:chevron-down-20-solid w-5 h-5 transform transition-transform duration-200 flex-shrink-0"
+              />
               
             </button>
             
@@ -1279,24 +1069,10 @@ exports[`components/app/Navbar.vue > { locale: "ja" } snapshot test > { isLogged
       >
         
         
-        <svg
+        <span
           aria-hidden="true"
-          class="icon flex-shrink-0 h-5 w-5"
-          data-v-b5528787=""
-          height="1em"
-          role="img"
-          viewBox="0 0 20 20"
-          width="1em"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-        >
-          <path
-            clip-rule="evenodd"
-            d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75M2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10m0 5.25a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1-.75-.75"
-            fill="currentColor"
-            fill-rule="evenodd"
-          />
-        </svg>
+          class="iconify i-heroicons:bars-3-20-solid flex-shrink-0 h-5 w-5"
+        />
         
         
         <!--v-if-->
