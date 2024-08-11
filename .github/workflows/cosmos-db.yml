@@ -47,7 +47,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Initialize Cosmos DB
-        run: pnpm run init:db
+        run: |
+          pnpm -C core build
+          pnpm run init:db
 
       - name: Test (only End-to-End)
         run: pnpm test:e2e
