@@ -10,14 +10,12 @@ import { canConnectDB, getClient } from '../utils'
 describe.runIf(canConnectDB())(
   '/repositories/NotificationRepository (End-to-End)',
   () => {
-    const client = getClient()
-
     // Prepare temporary item
     const notExistsId = 'notExists'
     let store: DBNotificationSchema | undefined = undefined
 
     beforeAll(async () => {
-      const temporaryItem = client
+      const temporaryItem = getClient()
         .database(databaseName)
         .container(notificationContainer)
         .item(notExistsId, 'SYSTEM')
@@ -27,7 +25,7 @@ describe.runIf(canConnectDB())(
     })
     afterAll(async () => {
       if (store)
-        await client
+        await getClient()
           .database(databaseName)
           .container(notificationContainer)
           .items.create(store)
@@ -62,7 +60,7 @@ describe.runIf(canConnectDB())(
     describe('list', () => {
       test('({ condition: "c.pinned = @", value: true }) returns 1 rows', async () => {
         // Arrange - Act
-        const repo = new NotificationRepository(client)
+        const repo = new NotificationRepository(getClient())
         const result = await repo.list([
           { condition: 'c.pinned = @', value: true },
         ])
@@ -81,7 +79,7 @@ describe.runIf(canConnectDB())(
       })
       test('({ condition: "c.sender != @", value: "SYSTEM" }) returns 0 rows', async () => {
         // Arrange - Act
-        const repo = new NotificationRepository(client)
+        const repo = new NotificationRepository(getClient())
         const result = await repo.list([
           { condition: 'c.sender != @', value: 'SYSTEM' },
         ])
@@ -94,7 +92,7 @@ describe.runIf(canConnectDB())(
     describe('upsert', () => {
       let id: string
       afterAll(async () => {
-        await client
+        await getClient()
           .database(databaseName)
           .container(notificationContainer)
           .item(id, 'SYSTEM')
@@ -110,7 +108,7 @@ describe.runIf(canConnectDB())(
           body: 'このデータはテスト用です',
           timeStamp: 1597028400,
         }
-        const repo = new NotificationRepository(client)
+        const repo = new NotificationRepository(getClient())
         // Act (Insert)
         const insertResult = await repo.upsert(body, false)
         // Assert (Insert)
