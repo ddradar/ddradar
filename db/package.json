@@ -23,7 +23,7 @@
   "scripts": {
     "build": "unbuild",
     "test": "vitest run",
-    "test:e2e": "vitest run \"e2e/**\"",
+    "test:e2e": "vitest run \"e2e\"",
     "start": "jiti"
   },
   "peerDependencies": {

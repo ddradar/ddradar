@@ -8,5 +8,5 @@ export function canConnectDB(): boolean {
 
 let _client: CosmosClient | undefined
 export function getClient(): CosmosClient {
-  return (_client ??= new CosmosClient(process.env.COSMOS_DB_CONN!))
+  return (_client ??= new CosmosClient(process.env.COSMOS_DB_CONN ?? ''))
 }
