@@ -92,11 +92,12 @@ describe.runIf(canConnectDB())(
     describe('upsert', () => {
       let id: string
       afterAll(async () => {
-        await getClient()
-          .database(databaseName)
-          .container(notificationContainer)
-          .item(id, 'SYSTEM')
-          .delete()
+        if (id)
+          await getClient()
+            .database(databaseName)
+            .container(notificationContainer)
+            .item(id, 'SYSTEM')
+            .delete()
       })
 
       test('returns Notification', async () => {

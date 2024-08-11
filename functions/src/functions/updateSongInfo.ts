@@ -5,7 +5,7 @@ import type { DBScoreSchema, DBSongSchema } from '@ddradar/db'
 import { databaseName, scoreContainer, songContainer } from '@ddradar/db'
 
 import { connection } from '../constants.js'
-import { client } from '../cosmos.js'
+import { getClient } from '../cosmos.js'
 
 const functionName = 'updateSongInfo'
 type TriggerOutputs = {
@@ -46,7 +46,7 @@ export async function handler(
     const worldRecordIds = new Set<string>()
 
     // Get exists scores
-    for await (const { resources } of client
+    for await (const { resources } of getClient()
       .database(databaseName)
       .container(scoreContainer)
       .items.query<DBScoreSchema>({
@@ -72,12 +72,11 @@ export async function handler(
             chart: {
               playStyle: d.chart.playStyle,
               difficulty: d.chart.difficulty,
-              level:
-                song.charts.find(
-                  c =>
-                    c.playStyle === d.chart.playStyle &&
-                    c.difficulty === d.chart.difficulty
-                )?.level ?? d.chart.level,
+              level: song.charts.find(
+                c =>
+                  c.playStyle === d.chart.playStyle &&
+                  c.difficulty === d.chart.difficulty
+              )!.level,
             },
           }
         })
