@@ -22,28 +22,15 @@ export class UserRepository {
   async get(id: string = '', loginId: string = ''): Promise<User | undefined> {
     if (!id && !loginId) throw new Error('id or loginId is required.')
 
-    const { queryConditions, parameters } = generateQueryConditions([
-      { condition: 'c.type = "user"' },
+    return await this.first(
       ...(id
-        ? [
+        ? ([
             { condition: 'c.id = @', value: id },
             { condition: 'c.uid = @', value: id },
-          ]
+          ] as const)
         : []),
-      { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
-    ])
-    const { resources } = await this.client
-      .database(databaseName)
-      .container(userDataContainer)
-      .items.query<User>(
-        {
-          query: `SELECT TOP 1 c.id, c.name, c.area, c.code, c.isPublic FROM c WHERE ${queryConditions}`,
-          parameters,
-        },
-        { maxItemCount: 1 }
-      )
-      .fetchNext()
-    return resources[0]
+      { condition: 'c.isPublic OR c.loginId = @', value: loginId }
+    )
   }
 
   /**
@@ -58,7 +45,7 @@ export class UserRepository {
   ): Promise<Omit<User, 'isPublic'>[]> {
     const { queryConditions, parameters } = generateQueryConditions([
       { condition: 'c.type = "user"' },
-      { condition: '(c.isPublic OR c.loginId = @)', value: loginId },
+      { condition: 'c.isPublic OR c.loginId = @', value: loginId },
       ...conditions,
     ])
     const { resources } = await this.client
@@ -78,18 +65,7 @@ export class UserRepository {
    * @returns `true` if the user data exists.
    */
   async exists(id: string): Promise<boolean> {
-    const { resources } = await this.client
-      .database(databaseName)
-      .container(userDataContainer)
-      .items.query<Pick<User, 'id'>>(
-        {
-          query: `SELECT TOP 1 c.id FROM c WHERE c.id = @id`,
-          parameters: [{ name: '@id', value: id }],
-        },
-        { maxItemCount: 1 }
-      )
-      .fetchNext()
-    return resources.length > 0
+    return !!(await this.first({ condition: 'c.id = @', value: id }))
   }
 
   /**
@@ -98,18 +74,10 @@ export class UserRepository {
    * @returns `true` if the user is an administrator.
    */
   async isAdministrator(loginId: string): Promise<boolean> {
-    const { resources } = await this.client
-      .database(databaseName)
-      .container(userDataContainer)
-      .items.query<Pick<User, 'id'>>(
-        {
-          query: `SELECT TOP 1 c.id FROM c WHERE c.type = "user" AND c.loginId = @id AND c.isAdmin = true`,
-          parameters: [{ name: '@id', value: loginId }],
-        },
-        { maxItemCount: 1 }
-      )
-      .fetchNext()
-    return resources.length > 0
+    return !!(await this.first(
+      { condition: 'c.loginId = @', value: loginId },
+      { condition: 'c.isAdmin = true' }
+    ))
   }
 
   /**
@@ -148,5 +116,31 @@ export class UserRepository {
           : { op: 'remove', path: '/code' },
         { op: 'replace', path: '/isPublic', value: isPublic },
       ])
+  }
+
+  /**
+   * Get the first user data that matches the conditions.
+   * @param conditions Query conditions.
+   * @returns User data that matches the conditions.
+   */
+  private async first(
+    ...conditions: QueryFilter<DBUserSchema>[]
+  ): Promise<User | undefined> {
+    const { queryConditions, parameters } = generateQueryConditions([
+      { condition: 'c.type = "user"' },
+      ...conditions,
+    ])
+    const { resources } = await this.client
+      .database(databaseName)
+      .container(userDataContainer)
+      .items.query<User>(
+        {
+          query: `SELECT TOP 1 c.id, c.name, c.area, c.code, c.isPublic FROM c WHERE ${queryConditions}`,
+          parameters,
+        },
+        { maxItemCount: 1 }
+      )
+      .fetchNext()
+    return resources[0]
   }
 }

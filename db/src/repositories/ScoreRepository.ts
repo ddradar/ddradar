@@ -130,7 +130,7 @@ export class ScoreRepository {
       .database(databaseName)
       .container(scoreContainer)
       .items.query<T>({
-        query: `SELECT ${summaryColumns.join(', ')} COUNT(1) AS count FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} GROUP BY ${summaryColumns.join(', ')}`,
+        query: `SELECT ${summaryColumns.join(', ')}, COUNT(1) AS count FROM c WHERE ${queryConditions} GROUP BY ${summaryColumns.join(', ')}`,
         parameters,
       })
       .fetchAll()

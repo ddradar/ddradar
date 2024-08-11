@@ -85,12 +85,15 @@ export class SongRepository {
       'c.cp_folders AS folders',
       'c.deleted',
     ]
-    const { queryConditions, parameters } = generateQueryConditions(conditions)
+    const { queryConditions, parameters } = generateQueryConditions([
+      { condition: 'c.type = "song"' },
+      ...conditions,
+    ])
     const { resources } = await this.client
       .database(databaseName)
       .container(songContainer)
       .items.query<Song>({
-        query: `SELECT ${columns.join(', ')} FROM c${queryConditions ? ` WHERE ${queryConditions}` : ''} ORDER BY ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM c WHERE ${queryConditions} ORDER BY ${orderBy}`,
         parameters,
       })
       .fetchAll()
@@ -129,12 +132,15 @@ export class SongRepository {
       'c.freezeArrow',
       'c.shockArrow',
     ]
-    const { queryConditions, parameters } = generateQueryConditions(conditions)
+    const { queryConditions, parameters } = generateQueryConditions([
+      { condition: 's.type = "song"' },
+      ...conditions,
+    ])
     const { resources } = await this.client
       .database(databaseName)
       .container(songContainer)
       .items.query<Omit<Song, 'minBPM' | 'maxBPM' | 'charts'> & StepChart>({
-        query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts${queryConditions ? ` WHERE ${queryConditions}` : ''} ORDER BY ${orderBy}`,
+        query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts WHERE ${queryConditions} ORDER BY ${orderBy}`,
         parameters,
       })
       .fetchAll()

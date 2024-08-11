@@ -71,11 +71,6 @@ export const dbScoreSchema = _dbScoreSchema.refine(
  */
 export type DBScoreSchema = z.infer<typeof dbScoreSchema>
 
-/** zod schema object for {@link DBScoreSchemaWithCP}. */
-export const dbScoreSchemaWithCP = _dbScoreSchema.extend({
-  /** Calculate from `flareRank` and `chart.level` property. */
-  cp_flareSkill: z.number().int().min(0).max(1500).readonly(),
-})
 /**
  * DB schema of Score record with computed properties. (included on "Scores" container)
  * @example
@@ -110,4 +105,6 @@ export const dbScoreSchemaWithCP = _dbScoreSchema.extend({
  * }
  * ```
  */
-export type DBScoreSchemaWithCP = z.infer<typeof dbScoreSchemaWithCP>
+export type DBScoreSchemaWithCP = DBScoreSchema & {
+  readonly cp_flareSkill: number
+}
