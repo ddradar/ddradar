@@ -5,7 +5,10 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { ScoreRepository } from '../../src/repositories/ScoreRepository'
 
-vi.mock('@ddradar/core')
+vi.mock('@ddradar/core', async actual => ({
+  ...((await actual()) as object),
+  isValidScore: vi.fn(),
+}))
 
 describe('/repositories/ScoreRepository', () => {
   const client = {
@@ -52,7 +55,7 @@ describe('/repositories/ScoreRepository', () => {
       expect(client.items.query).toBeCalledWith(
         {
           query:
-            `SELECT TOP 1 c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.cp_flareSkill AS flareSkill ` +
+            `SELECT TOP 1 c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.flareSkill ` +
             `FROM c WHERE c.id = @id AND c.song.id = @songId AND c.type = "score"`,
           parameters: [
             {
@@ -84,7 +87,7 @@ describe('/repositories/ScoreRepository', () => {
           query:
             `SELECT c.user.id AS userId, c.user.name AS userName, c.song.id AS songId, ` +
             `c.song.name AS songName, c.chart.playStyle AS playStyle, c.chart.difficulty AS difficulty, ` +
-            `c.chart.level AS level, c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.cp_flareSkill AS flareSkill ` +
+            `c.chart.level AS level, c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.flareSkill ` +
             `FROM c WHERE (c.type = "score") AND (c.user.id = @param1) ` +
             'ORDER BY c.score DESC, c.clearLamp DESC, c._ts ASC',
           parameters: [{ name: '@param1', value: testScores[0].userId }],
@@ -111,10 +114,10 @@ describe('/repositories/ScoreRepository', () => {
           query:
             'SELECT c.user.id AS userId, c.user.name AS userName, c.song.id AS songId, ' +
             'c.song.name AS songName, c.chart.playStyle AS playStyle, c.chart.difficulty AS difficulty, ' +
-            'c.chart.level AS level, c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.cp_flareSkill AS flareSkill ' +
+            'c.chart.level AS level, c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.flareSkill ' +
             'FROM c WHERE (c.type = "score") AND (c.user.id = @param1) AND (c.song.seriesCategory = @param2) ' +
-            'AND (c.chart.playStyle = @param3) AND (IS_DEFINED(c.cp_flareSkill)) ' +
-            'ORDER BY c.cp_flareSkill DESC, c._ts ASC',
+            'AND (c.chart.playStyle = @param3) AND (IS_DEFINED(c.flareSkill)) ' +
+            'ORDER BY c.flareSkill DESC, c._ts ASC',
           parameters: [
             { name: '@param1', value: userId },
             { name: '@param2', value: 'CLASSIC' },

@@ -72,7 +72,7 @@ export const scoreRecordSchema = z.object({
       z.literal(10),
     ])
     .optional(),
-  flareSkill: z.number().int().readonly().optional(),
+  flareSkill: z.number().int().optional(),
 })
 /** Primitive score */
 export type ScoreRecord = z.infer<typeof scoreRecordSchema>
@@ -502,10 +502,7 @@ export function setValidScoreFromChart(
  * @param level Level of step chart
  * @param flareRank Flare Rank
  */
-export function calcFlareSkill(
-  level: number,
-  flareRank: FlareRank = 0
-): number {
+export function calcFlareSkill(level: number, flareRank: FlareRank): number {
   level = stepChartSchema.shape.level.parse(level)
   const baseScores = [
     145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,

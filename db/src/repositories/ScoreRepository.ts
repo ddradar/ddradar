@@ -9,15 +9,12 @@ import type {
 import { isValidScore } from '@ddradar/core'
 
 import { databaseName, scoreContainer, songContainer } from '../constants'
-import type {
-  DBScoreSchema,
-  DBScoreSchemaWithCP as DBSchema,
-} from '../schemas/scores'
+import { type DBScoreSchema, dbScoreSchema } from '../schemas/scores'
 import type { DBSongSchemaWithCP } from '../schemas/songs'
 import type { Column, QueryFilter } from '../utils'
 import { generateQueryConditions } from '../utils'
 
-type DBColumn<T = DBSchema> = Column<DBSchema, T>
+type DBColumn<T = DBScoreSchema> = Column<DBScoreSchema, T>
 
 /**
  * Repository for Score data.
@@ -50,7 +47,7 @@ export class ScoreRepository {
       'c.exScore',
       'c.maxCombo',
       'c.flareRank',
-      'c.cp_flareSkill AS flareSkill',
+      'c.flareSkill',
     ]
     const { resources } = await this.client
       .database(databaseName)
@@ -79,7 +76,7 @@ export class ScoreRepository {
    * @returns Score list that matches the conditions.
    */
   async list(
-    conditions: QueryFilter<DBSchema>[],
+    conditions: QueryFilter<DBScoreSchema>[],
     orderBy:
       | `${DBColumn} ${'ASC' | 'DESC'}`
       | 'c.score DESC, c.clearLamp DESC, c._ts ASC' = 'c.score DESC, c.clearLamp DESC, c._ts ASC'
@@ -105,9 +102,9 @@ export class ScoreRepository {
         { condition: 'c.user.id = @', value: userId },
         { condition: 'c.song.seriesCategory = @', value: seriesCategory },
         { condition: 'c.chart.playStyle = @', value: playStyle },
-        { condition: 'IS_DEFINED(c.cp_flareSkill)' },
+        { condition: 'IS_DEFINED(c.flareSkill)' },
       ],
-      'c.cp_flareSkill DESC, c._ts ASC',
+      'c.flareSkill DESC, c._ts ASC',
       { maxItemCount: 30 }
     ).fetchNext()
     return resources
@@ -115,7 +112,7 @@ export class ScoreRepository {
 
   async count<T extends { count: number }>(
     summaryColumns: DBColumn<T>[],
-    conditions: QueryFilter<DBSchema>[],
+    conditions: QueryFilter<DBScoreSchema>[],
     user?: Pick<User, 'id' | 'area'>
   ): Promise<T[]> {
     const { queryConditions, parameters } = generateQueryConditions([
@@ -151,7 +148,7 @@ export class ScoreRepository {
     songId: Song['id'],
     playStyle: StepChart['playStyle'],
     difficulty: StepChart['difficulty'],
-    score: Omit<ScoreRecord, 'flareSkill'>
+    score: ScoreRecord
   ): Promise<DBScoreSchema> {
     // Get song and chart info
     const columns: (
@@ -199,33 +196,36 @@ export class ScoreRepository {
     const { resource } = await this.client
       .database(databaseName)
       .container(scoreContainer)
-      .items.upsert<DBScoreSchema>({
-        id: `${songId}/${playStyle}/${difficulty}/${user.id}`,
-        type: 'score',
-        user: {
-          id: user.id,
-          name: user.name,
-          isPublic: user.isPublic,
-          area: user.area,
-        },
-        song: {
-          id: songAndChart.id,
-          name: songAndChart.name,
-          seriesCategory: songAndChart.seriesCategory,
-          deleted: songAndChart.deleted,
-        },
-        chart: {
-          playStyle,
-          difficulty,
-          level: songAndChart.level,
-        },
-        score: score.score,
-        clearLamp: score.clearLamp,
-        rank: score.rank,
-        exScore: score.exScore,
-        maxCombo: score.maxCombo,
-        flareRank: score.flareRank,
-      })
+      .items.upsert<DBScoreSchema>(
+        dbScoreSchema.parse({
+          id: `${songId}/${playStyle}/${difficulty}/${user.id}`,
+          type: 'score',
+          user: {
+            id: user.id,
+            name: user.name,
+            isPublic: user.isPublic,
+            area: user.area,
+          },
+          song: {
+            id: songAndChart.id,
+            name: songAndChart.name,
+            seriesCategory: songAndChart.seriesCategory,
+            deleted: songAndChart.deleted,
+          },
+          chart: {
+            playStyle,
+            difficulty,
+            level: songAndChart.level,
+          },
+          score: score.score,
+          clearLamp: score.clearLamp,
+          rank: score.rank,
+          exScore: score.exScore,
+          maxCombo: score.maxCombo,
+          flareRank: score.flareRank,
+          flareSkill: score.flareSkill,
+        })
+      )
     return resource!
   }
 
@@ -243,7 +243,7 @@ export class ScoreRepository {
   }
 
   private queryInner(
-    conditions: QueryFilter<DBSchema>[],
+    conditions: QueryFilter<DBScoreSchema>[],
     orderBy: string,
     options?: FeedOptions
   ) {
@@ -261,7 +261,7 @@ export class ScoreRepository {
       'c.exScore',
       'c.maxCombo',
       'c.flareRank',
-      'c.cp_flareSkill AS flareSkill',
+      'c.flareSkill',
     ]
     const { queryConditions, parameters } = generateQueryConditions([
       { condition: 'c.type = "score"' },

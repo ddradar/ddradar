@@ -16,4 +16,4 @@ export const getQuerySchema = z.object({
 })
 
 /** POST `/api/v2/scores/[id]/[style]/[diff]` expected body */
-export const postBodySchema = scoreRecordSchema.omit({ flareSkill: true })
+export const postBodySchema = scoreRecordSchema

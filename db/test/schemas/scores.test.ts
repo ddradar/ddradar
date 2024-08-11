@@ -40,14 +40,17 @@ describe('/schemas/scores', () => {
       'foo',
       {},
       { ...validScore, id: 'foo' },
+      { ...validScore, flareRank: 1, flareSkill: 1000 },
     ])('safeParse(%o) returns { success: false }', o => {
       expect(dbScoreSchema.safeParse(o).success).toBe(false)
     })
-    test.each([validScore, { ...validScore, type: undefined }])(
-      'safeParse(%o) returns { success: true }',
-      o => {
-        expect(dbScoreSchema.safeParse(o).success).toBe(true)
-      }
-    )
+    test.each([
+      validScore,
+      { ...validScore, type: undefined },
+      { ...validScore, flareRank: 1 },
+      { ...validScore, flareRank: 1, flareSkill: 196 },
+    ])('safeParse(%o) returns { success: true }', o => {
+      expect(dbScoreSchema.safeParse(o).success).toBe(true)
+    })
   })
 })

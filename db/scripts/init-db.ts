@@ -11,7 +11,7 @@ import {
   userDataContainer,
 } from '../src/constants'
 import type { DBNotificationSchema } from '../src/schemas/notification'
-import type { DBScoreSchemaWithCP } from '../src/schemas/scores'
+import type { DBScoreSchema } from '../src/schemas/scores'
 import type { DBSongSchemaWithCP } from '../src/schemas/songs'
 import type { DBUserSchema } from '../src/schemas/userData'
 import type { ContainerPath } from '../src/utils'
@@ -56,11 +56,6 @@ const nameIndexQueries = [
   'xX',
   'yY',
   'zZ',
-]
-/** For create {@link DBScoreSchemaWithCP.cp_flareSkill} property query */
-const baseScores = [
-  145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,
-  620, 635, 650, 665, 0,
 ]
 
 async function run() {
@@ -123,17 +118,17 @@ async function run() {
     database.containers.createIfNotExists({
       id: scoreContainer,
       partitionKey: {
-        paths: ['/song/id'] satisfies ContainerPath<DBScoreSchemaWithCP>[],
+        paths: ['/song/id'] satisfies ContainerPath<DBScoreSchema>[],
       },
       indexingPolicy: {
         compositeIndexes: [
           [
             {
-              path: '/score' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              path: '/score' satisfies ContainerPath<DBScoreSchema>,
               order: 'descending',
             },
             {
-              path: '/clearLamp' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              path: '/clearLamp' satisfies ContainerPath<DBScoreSchema>,
               order: 'descending',
             },
             {
@@ -143,7 +138,7 @@ async function run() {
           ],
           [
             {
-              path: '/cp_flareSkill' satisfies ContainerPath<DBScoreSchemaWithCP>,
+              path: '/flareSkill' satisfies ContainerPath<DBScoreSchema>,
               order: 'descending',
             },
             {
@@ -152,14 +147,8 @@ async function run() {
             },
           ],
         ],
-      },
-      computedProperties: [
-        {
-          name: 'cp_flareSkill' satisfies keyof DBScoreSchemaWithCP,
-          query: `SELECT VALUE FLOOR(CHOOSE(c.chart.level, ${baseScores.join(', ')}) * (c.flareRank * 0.06 + 1)) FROM c`,
-        },
-      ],
-    } as object),
+      } as object,
+    }),
     database.containers.createIfNotExists({
       id: notificationContainer,
       partitionKey: {
