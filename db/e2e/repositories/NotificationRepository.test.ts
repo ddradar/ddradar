@@ -5,9 +5,9 @@ import { databaseName, notificationContainer } from '../../src/constants'
 import { NotificationRepository } from '../../src/repositories/NotificationRepository'
 import type { DBNotificationSchema } from '../../src/schemas/notification'
 import { notifications } from '../data'
-import { getClient, hasConnectionStrings } from '../utils'
+import { canConnectDB, getClient } from '../utils'
 
-describe.skipIf(!hasConnectionStrings)(
+describe.runIf(canConnectDB())(
   '/repositories/NotificationRepository (End-to-End)',
   () => {
     const client = getClient()
