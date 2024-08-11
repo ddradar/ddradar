@@ -26,16 +26,16 @@ describe('/schemas/notification', () => {
       1,
       'foo',
       {},
-      { ...validNotification, type: 'foo' },
-      { ...validNotification, sender: 'foo' },
+      { ...validNotification, pinned: undefined },
     ])('safeParse(%o) returns { success: false }', o => {
       expect(dbNotificationSchema.safeParse(o).success).toBe(false)
     })
-    test.each([validNotification])(
-      'safeParse(%o) returns { success: true }',
-      o => {
-        expect(dbNotificationSchema.safeParse(o).success).toBe(true)
-      }
-    )
+    test.each([
+      validNotification,
+      { ...validNotification, type: undefined },
+      { ...validNotification, sender: undefined },
+    ])('safeParse(%o) returns { success: true }', o => {
+      expect(dbNotificationSchema.safeParse(o).success).toBe(true)
+    })
   })
 })
