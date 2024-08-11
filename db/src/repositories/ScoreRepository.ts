@@ -72,7 +72,7 @@ export class ScoreRepository {
   /**
    * Get score list that matches the conditions.
    * @param conditions Filtering conditions.
-   * @param user User info to get area top & non-public data.
+   * @param orderBy Order by condition.
    * @returns Score list that matches the conditions.
    */
   async list(

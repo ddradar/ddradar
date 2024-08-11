@@ -87,6 +87,9 @@ importers:
       consola:
         specifier: ^3.2.3
         version: 3.2.3
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
       jiti:
         specifier: ^1.21.6
         version: 1.21.6

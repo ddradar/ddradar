@@ -18,6 +18,7 @@ export default defineConfig({
       reporter: ['json', 'text'],
       exclude: [
         'dist/**',
+        'e2e/**',
         'scripts/**',
         'test/**',
         '**/index.ts',

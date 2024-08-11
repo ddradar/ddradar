@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import type { Resource } from '@azure/cosmos'
 import { CosmosClient } from '@azure/cosmos'
 import { classicSeries, whiteSeries } from '@ddradar/core'
