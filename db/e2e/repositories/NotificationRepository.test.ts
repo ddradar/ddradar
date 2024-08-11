@@ -7,7 +7,7 @@ import type { DBNotificationSchema } from '../../src/schemas/notification'
 import { notifications } from '../data'
 import { getClient, hasConnectionStrings } from '../utils'
 
-describe.skipIf(hasConnectionStrings)(
+describe.skipIf(!hasConnectionStrings)(
   '/repositories/NotificationRepository (End-to-End)',
   () => {
     const client = getClient()
@@ -23,7 +23,7 @@ describe.skipIf(hasConnectionStrings)(
         .item(notExistsId, 'SYSTEM')
       const res = await temporaryItem.read<DBNotificationSchema>()
       store = res.resource
-      await temporaryItem.delete()
+      if (store) await temporaryItem.delete()
     })
     afterAll(async () => {
       if (store)

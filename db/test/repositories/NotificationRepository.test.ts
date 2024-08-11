@@ -83,6 +83,8 @@ describe('/repositories/NotificationRepository', () => {
       expect(client.items.upsert).toBeCalledWith({
         ...notification,
         pinned: true,
+        sender: 'SYSTEM',
+        type: 'notification',
       })
     })
   })
