@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { SongRepository } from '../../src/repositories/SongRepository'
 
-describe('SongRepository', () => {
+describe('/repositories/SongRepository', () => {
   const client = {
     database: vi.fn().mockReturnThis(),
     container: vi.fn().mockReturnThis(),

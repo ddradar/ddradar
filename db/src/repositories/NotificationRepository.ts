@@ -2,7 +2,10 @@ import type { CosmosClient } from '@azure/cosmos'
 import type { Notification } from '@ddradar/core'
 
 import { databaseName, notificationContainer } from '../constants'
-import type { DBNotificationSchema } from '../schemas/notification'
+import {
+  type DBNotificationSchema,
+  dbNotificationSchema,
+} from '../schemas/notification'
 import type { Column, QueryFilter } from '../utils'
 import { generateQueryConditions } from '../utils'
 
@@ -60,10 +63,9 @@ export class NotificationRepository {
     const { resource } = await this.client
       .database(databaseName)
       .container(notificationContainer)
-      .items.upsert<DBNotificationSchema>({
-        ...data,
-        pinned,
-      } as DBNotificationSchema)
+      .items.upsert<DBNotificationSchema>(
+        dbNotificationSchema.parse({ ...data, pinned })
+      )
     return resource!
   }
 }

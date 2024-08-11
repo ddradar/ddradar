@@ -17,11 +17,12 @@
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "pnpm lint:eslint --fix",
     "fix:prettier": "pnpm lint:prettier --write",
+    "init:db": "pnpm -C db start ./scripts/create-database.ts && pnpm -C db start ./scripts/insert-test-data.ts",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier -l \"**/*.{json,yaml,yml,js,ts,vue}\"",
     "test": "pnpm -r test",
-    "test:db": "pnpm -r test:db",
+    "test:e2e": "pnpm -r test:e2e",
     "prepare": "husky"
   },
   "lint-staged": {
