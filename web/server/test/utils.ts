@@ -22,14 +22,14 @@ export function createEvent(
 }
 
 export function createClientPrincipal(
-  id: string,
+  name: string,
   loginId: string,
   isAdmin = false
 ) {
   return {
     identityProvider: 'github' as const,
     userId: loginId,
-    userDetails: id,
+    userDetails: name,
     userRoles: [
       'anonymous' as const,
       'authenticated' as const,

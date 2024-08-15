@@ -10,8 +10,6 @@ export default defineConfig({
     },
   },
   test: {
-    threads: false,
-    globalSetup: './test/setup-database.ts',
     hookTimeout: 20000,
     testTimeout: 10000,
     coverage: {
@@ -20,11 +18,11 @@ export default defineConfig({
       reporter: ['json', 'text'],
       exclude: [
         'dist/**',
+        'e2e/**',
+        'scripts/**',
         'test/**',
         '**/index.ts',
-        '**/database.ts',
         '*.config.ts',
-        '*.d.ts',
       ],
     },
   },

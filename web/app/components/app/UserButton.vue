@@ -4,7 +4,7 @@ import type { DropdownItem } from '#ui/types'
 const { t } = useI18n()
 
 const { logout } = await useEasyAuth()
-const { data: user } = await useFetch('/api/v1/user')
+const { data: user } = await useFetch('/api/v2/user')
 
 const name = computed(() => user.value?.name ?? t('unregistered_user'))
 const items = computed<DropdownItem[][]>(() => [

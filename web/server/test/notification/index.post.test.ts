@@ -1,31 +1,34 @@
 // @vitest-environment node
-import { getContainer } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { notification } from '@ddradar/core/test/data'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import postNotification from '~~/server/api/v1/notification/index.post'
+import postNotification from '~~/server/api/v2/notification/index.post'
 import { createEvent } from '~~/server/test/utils'
-
-vi.mock('@ddradar/db')
 
 const timeStamp = 1597114800
 Date.now = vi.fn(() => timeStamp * 1000)
 
-describe('POST /api/v1/notification', () => {
+describe('POST /api/v2/notification', () => {
   const validBody = {
-    sender: 'SYSTEM',
-    pinned: true,
-    color: 'yellow',
-    icon: 'i-heroicons-exclamation-triangle',
-    title: 'このサイトはベータ版です',
-    body: 'このWebサイトはベータ版環境です。',
+    color: notification.color,
+    icon: notification.icon,
+    title: notification.title,
+    body: notification.body,
   }
-  const mockedContainer = { items: { upsert: vi.fn() } }
-  beforeAll(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
-  })
   beforeEach(() => {
-    mockedContainer.items.upsert.mockClear()
+    vi.mocked(getNotificationRepository).mockClear()
+  })
+
+  test('throws 401 error when user does not have "administrator" role', async () => {
+    // Arrange
+    vi.mocked(hasRole).mockReturnValue(false)
+    const event = createEvent(undefined, undefined, validBody)
+
+    // Act - Assert
+    await expect(postNotification(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 401 })
+    )
+    expect(vi.mocked(getNotificationRepository)).not.toBeCalled()
   })
 
   test.each([
@@ -35,43 +38,60 @@ describe('POST /api/v1/notification', () => {
     1,
     'foo',
     {},
-    { ...validBody, sender: 'USER' },
     { ...validBody, pinned: 'false' },
     { ...validBody, icon: false },
     { ...validBody, title: 1 },
     { ...validBody, body: [] },
     { ...validBody, timeStamp: [] },
-  ])('(%o) returns 400', async (body: unknown) => {
+  ])('(%o) throws 400 error', async (body: unknown) => {
     // Arrange
+    vi.mocked(hasRole).mockReturnValue(true)
     const event = createEvent(undefined, undefined, body)
 
     // Act - Assert
-    await expect(postNotification(event)).rejects.toThrowError()
+    await expect(postNotification(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getNotificationRepository)).not.toBeCalled()
   })
 
   test.each([
-    [validBody, { ...validBody, timeStamp }],
+    [{ ...validBody, pinned: false }, { ...validBody, timeStamp }, false],
+    [{ ...validBody, pinned: true }, { ...validBody, timeStamp }, true],
     [
-      { ...validBody, color: 'green' },
-      { ...validBody, color: 'green', timeStamp },
-    ],
-    [
-      { ...validBody, id: 'foo' },
+      { ...validBody, id: 'foo', pinned: true },
       { ...validBody, id: 'foo', timeStamp },
+      true,
     ],
     [
+      { ...validBody, timeStamp, pinned: false },
       { ...validBody, timeStamp },
-      { ...validBody, timeStamp },
+      false,
     ],
-  ])('(%o) returns 200 with %o', async (body, expected) => {
-    // Arrange
-    const event = createEvent(undefined, undefined, body)
+  ])(
+    '(%o) calls NotificationRepository.upsert(%o)',
+    async (body, expected, pinned) => {
+      // Arrange
+      vi.mocked(hasRole).mockReturnValue(true)
+      const upsert = vi.fn().mockResolvedValue(notification)
+      vi.mocked(getNotificationRepository).mockReturnValue({
+        upsert,
+      } as unknown as ReturnType<typeof getNotificationRepository>)
+      const event = createEvent(undefined, undefined, body)
 
-    // Arrange - Act
-    const notification = await postNotification(event)
+      // Act
+      const result = await postNotification(event)
 
-    // Assert
-    expect(notification).toStrictEqual(expected)
-    expect(mockedContainer.items.upsert).toBeCalledWith(expected)
-  })
+      // Assert
+      expect(result).toStrictEqual({
+        id: notification.id,
+        color: notification.color,
+        icon: notification.icon,
+        title: notification.title,
+        body: notification.body,
+        timeStamp: notification.timeStamp,
+      })
+      expect(upsert).toBeCalledWith(expected, pinned)
+    }
+  )
 })

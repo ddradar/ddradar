@@ -1,166 +1,119 @@
-import type {
-  CosmosDBInput,
-  CosmosDBOutput,
-  InvocationContext,
-} from '@azure/functions'
+import type { CosmosDBOutput, InvocationContext } from '@azure/functions'
 import { app } from '@azure/functions'
-import type {
-  ScoreSchema,
-  SongSchema,
-  StepChartSchema,
-  UserClearLampSchema,
-} from '@ddradar/core'
+import { detectCategory } from '@ddradar/core'
+import type { DBScoreSchema, DBSongSchema } from '@ddradar/db'
+import { databaseName, scoreContainer, songContainer } from '@ddradar/db'
 
-import { getScores, getTotalChartCounts } from '../cosmos.js'
+import { connection } from '../constants.js'
+import { getClient } from '../cosmos.js'
 
-const input: CosmosDBInput = {
-  name: 'oldDetails',
-  type: 'cosmosDB',
-  direction: 'in',
-  connection: 'COSMOS_DB_CONN',
-  databaseName: 'DDRadar',
-  containerName: 'UserDetails',
-  sqlQuery: "SELECT c.id, c.playStyle, c.level FROM c WHERE c.userId = '0'",
+const functionName = 'updateSongInfo'
+type TriggerOutputs = {
+  scores: DBScoreSchema[]
 }
+
 const scoreOutput: CosmosDBOutput = {
   name: 'scores',
   type: 'cosmosDB',
   direction: 'out',
-  connection: 'COSMOS_DB_CONN',
-  databaseName: 'DDRadar',
-  containerName: 'Scores',
+  connection,
+  databaseName,
+  containerName: scoreContainer,
 }
-const detailsOutput: CosmosDBOutput = {
-  name: 'details',
-  type: 'cosmosDB',
-  direction: 'out',
-  connection: 'COSMOS_DB_CONN',
-  databaseName: 'DDRadar',
-  containerName: 'UserDetails',
-}
-app.cosmosDB('updateSongInfo', {
-  connection: 'COSMOS_DB_CONN',
-  databaseName: 'DDRadar',
-  containerName: 'Songs',
-  leaseCollectionPrefix: 'updateSong',
+app.cosmosDB(functionName, {
+  connection,
+  databaseName,
+  containerName: songContainer,
+  leaseCollectionPrefix: functionName,
   createLeaseCollectionIfNotExists: true,
-  extraInputs: [input],
-  extraOutputs: [scoreOutput, detailsOutput],
+  extraOutputs: [scoreOutput],
   handler,
 })
 
-type TotalCount = { id?: string } & Pick<
-  UserClearLampSchema,
-  'level' | 'playStyle' | 'count' | 'userId'
->
-type UpdateSongResult = {
-  scores: ScoreSchema[]
-  details: TotalCount[]
-}
-
 /**
  * Update song info of other container.
- * @param documents Change feed of "Songs" container
+ * @param documents Change feed of "SongsV2" container
  * @param ctx Function context
  */
 export async function handler(
   documents: unknown[],
   ctx: InvocationContext
-): Promise<UpdateSongResult> {
-  const songs = documents as SongSchema[]
-  const oldTotalCounts = ctx.extraInputs.get(input) as Required<
-    Omit<TotalCount, 'count' | 'userId'>
-  >[]
+): Promise<TriggerOutputs> {
+  const scores: DBScoreSchema[] = []
 
-  const scores: ScoreSchema[] = []
+  for (const song of documents as DBSongSchema[]) {
+    ctx.debug(`Start: ${song.name}`)
+    const worldRecordIds = new Set<string>()
 
-  for (const song of songs) {
-    ctx.info(`Start: ${song.name}`)
+    // Get exists scores
+    for await (const { resources } of getClient()
+      .database(databaseName)
+      .container(scoreContainer)
+      .items.query<DBScoreSchema>({
+        query: `SELECT * FROM c WHERE c.song.id = @id`,
+        parameters: [{ name: '@id', value: song.id }],
+      })
+      .getAsyncIterator()) {
+      // Update song & chart info
+      scores.push(
+        ...resources.map(d => {
+          // Detect world record
+          if (d.user.id === '0') worldRecordIds.add(d.id)
 
-    // Get scores
-    const resources = await getScores(song.id)
-
-    const topScores: ScoreSchema[] = []
-    // Update exists scores
-    for (const score of resources) {
-      const scoreText = `{ id: ${score.id}, userId: ${score.userId}, playStyle: ${score.playStyle}, difficulty: ${score.difficulty} }`
-      const chart = song.charts.find(
-        c =>
-          c.playStyle === score.playStyle && c.difficulty === score.difficulty
+          ctx.debug(`Update: ${d.id}`)
+          return {
+            ...d,
+            song: {
+              id: song.id,
+              name: song.name,
+              seriesCategory: detectCategory(song.series),
+              deleted: song.deleted,
+            },
+            chart: {
+              playStyle: d.chart.playStyle,
+              difficulty: d.chart.difficulty,
+              level: song.charts.find(
+                c =>
+                  c.playStyle === d.chart.playStyle &&
+                  c.difficulty === d.chart.difficulty
+              )!.level,
+            },
+          }
+        })
       )
-      if (!chart) {
-        ctx.error(`Not found chart: ${scoreText}`)
-        continue
-      }
+    }
 
-      if (score.userId === '0') {
-        topScores.push(score)
-      }
-
-      if (
-        score.clearLamp >= 4 &&
-        score.maxCombo &&
-        score.maxCombo !== chart.notes + chart.shockArrow
-      ) {
-        ctx.warn(
-          `maxCombo(${score.maxCombo}) is different than expected(${
-            chart.notes + chart.shockArrow
-          }): ${scoreText}. Make sure the chart info is correct.`
+    // Create world record if not exists
+    scores.push(
+      ...song.charts
+        .filter(
+          c =>
+            !worldRecordIds.has(`${song.id}/${c.playStyle}/${c.difficulty}/0`)
         )
-      }
-      if (
-        song.name !== score.songName ||
-        chart.level !== score.level ||
-        song.deleted !== score.deleted
-      ) {
-        ctx.info(`Updated: ${scoreText}`)
-        const oldScore = { ...score }
-        delete oldScore.deleted
-        scores.push({
-          ...oldScore,
-          songName: song.name,
-          level: chart.level,
-          ...{ deleted: song.deleted },
+        .map<DBScoreSchema>(c => {
+          ctx.debug(`Create: ${song.id}/${c.playStyle}/${c.difficulty}/0`)
+          return {
+            id: `${song.id}/${c.playStyle}/${c.difficulty}/0`,
+            type: 'score',
+            user: { id: '0', area: 0, isPublic: false, name: '0' },
+            song: {
+              id: song.id,
+              name: song.name,
+              seriesCategory: detectCategory(song.series),
+              deleted: song.deleted,
+            },
+            chart: {
+              playStyle: c.playStyle,
+              difficulty: c.difficulty,
+              level: c.level,
+            },
+            score: 0,
+            rank: 'E',
+            clearLamp: 0,
+          }
         })
-      }
-    }
-
-    // Create empty score
-    const emptyScore: Omit<ScoreSchema, keyof StepChartSchema> = {
-      score: 0,
-      clearLamp: 0,
-      rank: 'E',
-      userId: '0',
-      userName: '0',
-      isPublic: false,
-      songId: song.id,
-      songName: song.name,
-    }
-    for (const chart of song.charts) {
-      if (
-        !topScores.find(
-          s =>
-            s.playStyle === chart.playStyle && s.difficulty === chart.difficulty
-        )
-      ) {
-        scores.push({
-          ...emptyScore,
-          playStyle: chart.playStyle,
-          difficulty: chart.difficulty,
-          level: chart.level,
-          ...(song.deleted ? { deleted: true } : {}),
-        })
-      }
-    }
+    )
+    ctx.debug(`Finished: ${song.name}`)
   }
-
-  const newTotalCounts = await getTotalChartCounts()
-  const details = newTotalCounts.map(r => ({
-    userId: '0',
-    ...r,
-    id: oldTotalCounts.find(
-      d => d.playStyle === r.playStyle && d.level === r.level
-    )?.id,
-  }))
-  return { scores, details }
+  return { scores }
 }

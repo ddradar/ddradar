@@ -74,6 +74,9 @@ importers:
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
     devDependencies:
       '@azure/cosmos':
         specifier: ^4.0.0
@@ -81,6 +84,15 @@ importers:
       '@types/node':
         specifier: ^18.17.11
         version: 18.17.11
+      consola:
+        specifier: ^3.2.3
+        version: 3.2.3
+      dotenv:
+        specifier: ^16.4.5
+        version: 16.4.5
+      jiti:
+        specifier: ^1.21.6
+        version: 1.21.6
       typescript:
         specifier: ^5.5.4
         version: 5.5.4
@@ -102,6 +114,9 @@ importers:
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
+      '@ddradar/db':
+        specifier: workspace:*
+        version: link:../db
       iconv-lite:
         specifier: ^0.6.3
         version: 0.6.3

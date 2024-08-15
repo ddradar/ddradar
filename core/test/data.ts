@@ -1,21 +1,29 @@
-import type { NotificationSchema } from '../src/notification'
-import type { ScoreSchema } from '../src/score'
-import type { SongSchema } from '../src/song'
+import type { Notification } from '../src/notification'
+import type { UserScoreRecord } from '../src/score'
+import type { Song } from '../src/song'
+import type { User } from '../src/user'
 
 /** PARANOiA song info (charts are only SP/BEG & SP/BAS) */
-export const testSongData: SongSchema = {
+export const testSongData: Song = {
   id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
   name: 'PARANOiA',
   nameKana: 'PARANOIA',
   nameIndex: 25,
   artist: '180',
   series: 'DDR 1st',
+  seriesCategory: 'CLASSIC',
   minBPM: 180,
   maxBPM: 180,
+  folders: [
+    { type: 'category', name: 'CLASSIC' },
+    { type: 'name', name: 'P' },
+    { type: 'series', name: '1st-5th' },
+  ],
   charts: [
     {
       playStyle: 1,
       difficulty: 0,
+      bpm: [170, 180, 184],
       level: 4,
       notes: 138,
       freezeArrow: 0,
@@ -24,6 +32,7 @@ export const testSongData: SongSchema = {
     {
       playStyle: 1,
       difficulty: 1,
+      bpm: [170, 180, 184],
       level: 8,
       notes: 264,
       freezeArrow: 0,
@@ -33,7 +42,10 @@ export const testSongData: SongSchema = {
 }
 
 /** PARANOiA, PARANOiA(X-Special), SP-TRIP MACHINE～JUNGLE MIX～(X-Special) */
-export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
+export const testSongList: Omit<
+  Song,
+  'charts' | 'skillAttackId' | 'seriesCategory'
+>[] = [
   {
     id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
     name: 'PARANOiA',
@@ -41,6 +53,7 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 25,
     artist: '180',
     series: 'DDR 1st',
+    folders: [],
     minBPM: 180,
     maxBPM: 180,
   },
@@ -51,6 +64,7 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 25,
     artist: '180',
     series: 'DDR X',
+    folders: [],
     minBPM: 180,
     maxBPM: 180,
   },
@@ -61,74 +75,65 @@ export const testSongList: Omit<SongSchema, 'charts' | 'skillAttackId'>[] = [
     nameIndex: 28,
     artist: 'DE-SIRE',
     series: 'DDR X',
+    folders: [],
     minBPM: 160,
     maxBPM: 160,
   },
 ]
 
-//#region UserSchema
+//#region User
 /** { isPublic: true, area: 13 (Tokyo), code: 10000000 } user */
-export const publicUser = {
+export const publicUser: User = {
   id: 'public_user',
-  loginId: '1',
   name: 'Public User',
   area: 13,
   code: 10000000,
   isPublic: true,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: true, area: 0, code: undefined } user */
-export const areaHiddenUser = {
+export const areaHiddenUser: User = {
   id: 'area_hidden_user',
-  loginId: 'area_hidden_user',
   name: 'Area Hidden User',
   area: 0,
   isPublic: true,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
-export const privateUser = {
+export const privateUser: User = {
   id: 'private_user',
-  loginId: 'private_user',
   name: 'Private User',
   area: 0,
   isPublic: false,
-  password: 'password',
-} as const
+}
 
 /** { isPublic: false, area: 13 (Tokyo), code: undefined } user */
-export const noPasswordUser = {
+export const noPasswordUser: User = {
   id: 'no_password_user',
-  loginId: 'no_password_user',
   name: 'No password User',
   area: 0,
   isPublic: false,
-} as const
+}
 //#endregion
 
-//#region NotificationSchema
+//#region Notification
 /** Sample Notification data */
-export const notification = {
+export const notification: Notification = {
   id: 'foo',
-  sender: 'SYSTEM',
-  pinned: false,
   color: 'blue',
   icon: 'i-heroicons-musical-note',
   title: '新曲を追加しました',
   body: '下記の譜面情報を追加しました。\n\n- [新曲](/song/foo)',
   /** 2020/8/13 0:00 (UTC) */
   timeStamp: 1597276800,
-} as const
+}
 
 /** Sample Notification list data */
-export const notifications: readonly NotificationSchema[] = [
+export const notifications: readonly Notification[] = [
   notification,
   {
     ...notification,
     id: 'bar',
-    pinned: true,
     color: 'yellow',
     icon: 'i-heroicons-exclamation-triangle',
     title: 'このサイトはベータ版です',
@@ -142,10 +147,10 @@ export const notifications: readonly NotificationSchema[] = [
     body: '変更点は以下を参照してください。',
     timeStamp: 1597114800,
   },
-] as const
+]
 //#endregion
 
-//#region ScoreSchema
+//#region UserScoreRecord
 const scoreTemplate = {
   songId: testSongData.id,
   songName: testSongData.name,
@@ -158,11 +163,10 @@ const scoreTemplate = {
   maxCombo: 138,
   exScore: 366,
 } as const
-export const testScores: ScoreSchema[] = [
+export const testScores: UserScoreRecord[] = [
   {
     userId: '0',
     userName: '0',
-    isPublic: false,
     ...scoreTemplate,
     score: 999620, // P:38
     clearLamp: 6,
@@ -173,7 +177,6 @@ export const testScores: ScoreSchema[] = [
   {
     userId: '13',
     userName: '13',
-    isPublic: false,
     ...scoreTemplate,
     score: 996720, // P:37, Gr:1
     clearLamp: 5,
@@ -184,19 +187,16 @@ export const testScores: ScoreSchema[] = [
   {
     userId: publicUser.id,
     userName: publicUser.name,
-    isPublic: publicUser.isPublic,
     ...scoreTemplate,
   },
   {
     userId: areaHiddenUser.id,
     userName: areaHiddenUser.name,
-    isPublic: areaHiddenUser.isPublic,
     ...scoreTemplate,
   },
   {
     userId: privateUser.id,
     userName: privateUser.name,
-    isPublic: privateUser.isPublic,
     ...scoreTemplate,
   },
 ]

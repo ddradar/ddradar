@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     azure: {
       config: {
         auth: {
-          rolesSource: '/api/v1/user/roles',
+          rolesSource: '/api/v2/user/roles',
           identityProviders: {
             twitter: {
               registration: {
@@ -38,26 +38,7 @@ export default defineNuxtConfig({
           'Access-Control-Allow-Methods': 'POST, GET, OPTIONS',
           'Access-Control-Allow-Credentials': 'true',
         },
-        routes: [
-          {
-            route: '/api/v1/scores/*',
-            methods: ['POST', 'DELETE'],
-            allowedRoles: ['authenticated'],
-          },
-          {
-            route: '/api/v1/notification',
-            methods: ['POST'],
-            allowedRoles: ['administrator'],
-          },
-          {
-            route: '/api/v1/songs',
-            methods: ['POST'],
-            allowedRoles: ['administrator'],
-          },
-          { route: '/api/v1/user', allowedRoles: ['authenticated'] },
-          { route: '/api/v1/users/exists/*', allowedRoles: ['authenticated'] },
-          { route: '/admin/*', allowedRoles: ['administrator'] },
-        ],
+        routes: [{ route: '/admin/*', allowedRoles: ['administrator'] }],
       },
     },
   },

@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { StepChartSchema } from '@ddradar/core'
+import type { StepChart } from '@ddradar/core'
 import { difficultyMap, playStyleMap } from '@ddradar/core'
 
 import type { AccordionItem } from '#ui/types'
 
-const props = defineProps<{ chart: StepChartSchema }>()
+const props = defineProps<{ chart: StepChart }>()
 
 const { t } = useI18n()
 const title = computed(() => {

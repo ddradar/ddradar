@@ -1,7 +1,5 @@
-import type { Series } from '@ddradar/core'
+import type { Series, Song } from '@ddradar/core'
 import { seriesSet } from '@ddradar/core'
-
-import type { SongInfo } from '~~/schemas/song'
 
 /** LEVEL 1-19 */
 export const levels = [...Array(19).keys()].map(i => i + 1)
@@ -14,10 +12,10 @@ export const seriesIndexes = [...Array(seriesSet.size).keys()]
 export function getDisplayedBPM({
   minBPM,
   maxBPM,
-}: Pick<SongInfo, 'minBPM' | 'maxBPM'>) {
-  if (!minBPM || !maxBPM) return '???'
-  if (minBPM === maxBPM) return `${minBPM}` as const
-  return `${minBPM}-${maxBPM}` as const
+}: Pick<Song, 'minBPM' | 'maxBPM'>) {
+  return minBPM === maxBPM
+    ? (`${minBPM}` as const)
+    : (`${minBPM}-${maxBPM}` as const)
 }
 
 export function shortenSeriesName(series: string) {

@@ -1,1784 +1,5 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, charts: <Data> } renders chart list 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              SINGLE 16
-              
-            </h1>
-            <div
-              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
-            >
-              
-              
-              
-              <a
-                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-                href="/charts?style=2&level=16"
-              >
-                
-                
-                <span
-                  aria-hidden="true"
-                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
-                />
-                
-                
-                <span
-                  class=""
-                >
-                  Change Play Style
-                </span>
-                
-                
-                <!--v-if-->
-                
-                
-              </a>
-              
-              
-              
-            </div>
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              1
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              4
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              5
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              6
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              7
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              8
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              9
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              10
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              11
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              12
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              13
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              14
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              15
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              16
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              17
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              18
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=19"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              19
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Series
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Name
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Difficulty
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Lv
-                </span>
-                
-              </th>
-              
-            </tr>
-            <!--v-if-->
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            
-            
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                1st
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                
-                <a
-                  class="blue"
-                  href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
-                >
-                  
-                  PARANOiA
-                  
-                </a>
-                
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                <span
-                  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-blue-500 dark:bg-blue-400 text-white dark:text-gray-900 tag"
-                >
-                  
-                  BEGINNER
-                  
-                </span>
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                4
-                
-              </td>
-              
-            </tr>
-            <!--v-if-->
-            
-            
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                1st
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                
-                <a
-                  class="blue"
-                  href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
-                >
-                  
-                  PARANOiA
-                  
-                </a>
-                
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                <span
-                  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-yellow-500 dark:bg-yellow-400 text-white dark:text-gray-900 tag"
-                >
-                  
-                  BASIC
-                  
-                </span>
-                
-              </td>
-              <td
-                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
-              >
-                
-                8
-                
-              </td>
-              
-            </tr>
-            <!--v-if-->
-            
-            
-          </tbody>
-        </table>
-      </div>
-      <div
-        class="flex flex-wrap justify-between items-center"
-      >
-        <div>
-          <span
-            class="text-sm leading-5"
-          >
-            Showing 
-            
-            <span
-              class="font-medium"
-            >
-              1
-            </span>
-            
-             to 
-            
-            <span
-              class="font-medium"
-            >
-              2
-            </span>
-            
-             of 
-            
-            <span
-              class="font-medium"
-            >
-              2
-            </span>
-            
-             results
-          </span>
-        </div>
-        <div
-          class="flex items-center -space-x-px"
-        >
-          
-          <!--v-if-->
-          
-          
-          <button
-            aria-label="Prev"
-            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
-            disabled=""
-            type="button"
-          >
-            
-            
-            <span
-              aria-hidden="true"
-              class="iconify i-heroicons:chevron-left-20-solid flex-shrink-0 h-5 w-5"
-            />
-            
-            
-            <!--v-if-->
-            
-            
-            <!--v-if-->
-            
-            
-          </button>
-          
-          
-          <button
-            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
-            type="button"
-          >
-            
-            
-            <!--v-if-->
-            
-            
-            <span
-              class=""
-            >
-              1
-            </span>
-            
-            
-            <!--v-if-->
-            
-            
-          </button>
-          
-          
-          <button
-            aria-label="Next"
-            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
-            disabled=""
-            type="button"
-          >
-            
-            
-            <span
-              aria-hidden="true"
-              class="iconify i-heroicons:chevron-right-20-solid flex-shrink-0 h-5 w-5"
-            />
-            
-            
-            <!--v-if-->
-            
-            
-            <!--v-if-->
-            
-            
-          </button>
-          
-          
-          <!--v-if-->
-          
-        </div>
-      </div>
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
-exports[`/charts > { locale: "en" } snapshot test > { isLoading: false, songs: [] } renders no data 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              SINGLE 16
-              
-            </h1>
-            <div
-              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
-            >
-              
-              
-              
-              <a
-                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-                href="/charts?style=2&level=16"
-              >
-                
-                
-                <span
-                  aria-hidden="true"
-                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
-                />
-                
-                
-                <span
-                  class=""
-                >
-                  Change Play Style
-                </span>
-                
-                
-                <!--v-if-->
-                
-                
-              </a>
-              
-              
-              
-            </div>
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              1
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              4
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              5
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              6
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              7
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              8
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              9
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              10
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              11
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              12
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              13
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              14
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              15
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              16
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              17
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              18
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=19"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              19
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Series
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Name
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Difficulty
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Lv
-                </span>
-                
-              </th>
-              
-            </tr>
-            <!--v-if-->
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            <tr>
-              <td
-                colspan="4"
-              >
-                
-                <div
-                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="iconify i-heroicons:circle-stack-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
-                  />
-                  <p
-                    class="text-sm text-center text-gray-900 dark:text-white"
-                  >
-                    No Data
-                  </p>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--v-if-->
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
-exports[`/charts > { locale: "en" } snapshot test > { isLoading: true } renders loading state 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              SINGLE 16
-              
-            </h1>
-            <div
-              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
-            >
-              
-              
-              
-              <a
-                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-                href="/charts?style=2&level=16"
-              >
-                
-                
-                <span
-                  aria-hidden="true"
-                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
-                />
-                
-                
-                <span
-                  class=""
-                >
-                  Change Play Style
-                </span>
-                
-                
-                <!--v-if-->
-                
-                
-              </a>
-              
-              
-              
-            </div>
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              1
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              4
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              5
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              6
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              7
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              8
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              9
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              10
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              11
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              12
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              13
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              14
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              15
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              16
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              17
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              18
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=19"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              19
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Series
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Name
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Difficulty
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Lv
-                </span>
-                
-              </th>
-              
-            </tr>
-            <tr>
-              <td
-                class="absolute inset-x-0 -bottom-[0.5px] p-0"
-                colspan="0"
-              >
-                <div
-                  class="w-full flex flex-col gap-2"
-                  data-v-e7e07852=""
-                  role="progressbar"
-                >
-                  <!--v-if-->
-                  <progress
-                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-e7e07852=""
-                  />
-                  <!--v-if-->
-                </div>
-              </td>
-            </tr>
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            <tr>
-              <td
-                colspan="4"
-              >
-                
-                <div
-                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
-                  />
-                  <p
-                    class="text-sm text-center text-gray-900 dark:text-white"
-                  >
-                    Loading...
-                  </p>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--v-if-->
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
 exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders score edit button 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
@@ -2560,7 +781,7 @@ exports[`/charts > { locale: "en" } snapshot test > { isLoggedIn: true } renders
 </div>
 `;
 
-exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: <Data> } renders chart list 1`] = `
+exports[`/charts > { locale: "en" } snapshot test > { status: "pending" } renders loading state 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
 >
@@ -2611,7 +832,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
                 <span
                   class=""
                 >
-                  プレースタイルを切り替える
+                  Change Play Style
                 </span>
                 
                 
@@ -3005,7 +1226,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               >
                 
                 <span>
-                  シリーズ
+                  Series
                 </span>
                 
               </th>
@@ -3015,7 +1236,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               >
                 
                 <span>
-                  曲名
+                  Name
                 </span>
                 
               </th>
@@ -3025,7 +1246,545 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               >
                 
                 <span>
-                  難易度
+                  Difficulty
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Lv
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-e7e07852=""
+                  role="progressbar"
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-e7e07852=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="4"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                  />
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/charts > { locale: "en" } snapshot test > { status: "success", charts: <Data> } renders chart list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              SINGLE 16
+              
+            </h1>
+            <div
+              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
+            >
+              
+              
+              
+              <a
+                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+                href="/charts?style=2&level=16"
+              >
+                
+                
+                <span
+                  aria-hidden="true"
+                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
+                />
+                
+                
+                <span
+                  class=""
+                >
+                  Change Play Style
+                </span>
+                
+                
+                <!--v-if-->
+                
+                
+              </a>
+              
+              
+              
+            </div>
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              1
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              4
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              5
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              6
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              7
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              8
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              9
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              10
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              11
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              12
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              13
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              14
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              15
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              16
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              17
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              18
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              19
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Series
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Name
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Difficulty
                 </span>
                 
               </th>
@@ -3166,14 +1925,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
           <span
             class="text-sm leading-5"
           >
-            
-            <span
-              class="font-medium"
-            >
-              2
-            </span>
-            
-             件中 
+            Showing 
             
             <span
               class="font-medium"
@@ -3181,7 +1933,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               1
             </span>
             
-             件から 
+             to 
             
             <span
               class="font-medium"
@@ -3189,7 +1941,15 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
               2
             </span>
             
-             件を表示中
+             of 
+            
+            <span
+              class="font-medium"
+            >
+              2
+            </span>
+            
+             results
           </span>
         </div>
         <div
@@ -3280,7 +2040,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, charts: 
 </div>
 `;
 
-exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [] } renders no data 1`] = `
+exports[`/charts > { locale: "en" } snapshot test > { status: "success", songs: [] } renders no data 1`] = `
 <div
   class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
 >
@@ -3331,7 +2091,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
                 <span
                   class=""
                 >
-                  プレースタイルを切り替える
+                  Change Play Style
                 </span>
                 
                 
@@ -3725,7 +2485,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
               >
                 
                 <span>
-                  シリーズ
+                  Series
                 </span>
                 
               </th>
@@ -3735,7 +2495,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
               >
                 
                 <span>
-                  曲名
+                  Name
                 </span>
                 
               </th>
@@ -3745,7 +2505,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
               >
                 
                 <span>
-                  難易度
+                  Difficulty
                 </span>
                 
               </th>
@@ -3781,545 +2541,7 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoading: false, songs: [
                   <p
                     class="text-sm text-center text-gray-900 dark:text-white"
                   >
-                    データがありません
-                  </p>
-                </div>
-                
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <!--v-if-->
-      
-    </div>
-    <!---->
-    
-  </div>
-  <!--v-if-->
-</div>
-`;
-
-exports[`/charts > { locale: "ja" } snapshot test > { isLoading: true } renders loading state 1`] = `
-<div
-  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
->
-  <!--v-if-->
-  <div
-    class="lg:col-span-10"
-  >
-    
-    <div
-      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
-    >
-      <!--v-if-->
-      <div
-        class="flex flex-col lg:flex-row items-start gap-6"
-      >
-        <!--v-if-->
-        <div
-          class="flex-1"
-        >
-          <div
-            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
-          >
-            <h1
-              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
-            >
-              
-              SINGLE 16
-              
-            </h1>
-            <div
-              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
-            >
-              
-              
-              
-              <a
-                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
-                href="/charts?style=2&level=16"
-              >
-                
-                
-                <span
-                  aria-hidden="true"
-                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
-                />
-                
-                
-                <span
-                  class=""
-                >
-                  プレースタイルを切り替える
-                </span>
-                
-                
-                <!--v-if-->
-                
-                
-              </a>
-              
-              
-              
-            </div>
-          </div>
-          <div
-            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
-          >
-            
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=1"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              1
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=2"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              2
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=3"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              3
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=4"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              4
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=5"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              5
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=6"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              6
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=7"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              7
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=8"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              8
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=9"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              9
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=10"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              10
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=11"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              11
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=12"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              12
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=13"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              13
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=14"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              14
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=15"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              15
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=16"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              16
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=17"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              17
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=18"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              18
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            <a
-              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
-              href="/charts?style=1&level=19"
-            >
-              
-              
-              <!--v-if-->
-              
-              
-              19
-              
-              
-              <!--v-if-->
-              
-              
-            </a>
-            
-            
-            
-          </div>
-          
-          
-        </div>
-      </div>
-    </div>
-    <div
-      class="mt-8 pb-24"
-    >
-      
-      <div
-        class="relative overflow-x-auto"
-      >
-        <table
-          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
-        >
-          <!--v-if-->
-          <thead
-            class="relative"
-          >
-            <tr
-              class=""
-            >
-              <!--v-if-->
-              <!--v-if-->
-              
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  シリーズ
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  曲名
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  難易度
-                </span>
-                
-              </th>
-              <th
-                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
-                scope="col"
-              >
-                
-                <span>
-                  Lv
-                </span>
-                
-              </th>
-              
-            </tr>
-            <tr>
-              <td
-                class="absolute inset-x-0 -bottom-[0.5px] p-0"
-                colspan="0"
-              >
-                <div
-                  class="w-full flex flex-col gap-2"
-                  data-v-e7e07852=""
-                  role="progressbar"
-                >
-                  <!--v-if-->
-                  <progress
-                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-                    data-v-e7e07852=""
-                  />
-                  <!--v-if-->
-                </div>
-              </td>
-            </tr>
-          </thead>
-          <tbody
-            class="divide-y divide-gray-200 dark:divide-gray-800"
-          >
-            <tr>
-              <td
-                colspan="4"
-              >
-                
-                <div
-                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
-                >
-                  <span
-                    aria-hidden="true"
-                    class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
-                  />
-                  <p
-                    class="text-sm text-center text-gray-900 dark:text-white"
-                  >
-                    Loading...
+                    No Data
                   </p>
                 </div>
                 
@@ -5109,6 +3331,1784 @@ exports[`/charts > { locale: "ja" } snapshot test > { isLoggedIn: true } renders
           
         </div>
       </div>
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/charts > { locale: "ja" } snapshot test > { status: "pending" } renders loading state 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              SINGLE 16
+              
+            </h1>
+            <div
+              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
+            >
+              
+              
+              
+              <a
+                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+                href="/charts?style=2&level=16"
+              >
+                
+                
+                <span
+                  aria-hidden="true"
+                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
+                />
+                
+                
+                <span
+                  class=""
+                >
+                  プレースタイルを切り替える
+                </span>
+                
+                
+                <!--v-if-->
+                
+                
+              </a>
+              
+              
+              
+            </div>
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              1
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              4
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              5
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              6
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              7
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              8
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              9
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              10
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              11
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              12
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              13
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              14
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              15
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              16
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              17
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              18
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              19
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  曲名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  難易度
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Lv
+                </span>
+                
+              </th>
+              
+            </tr>
+            <tr>
+              <td
+                class="absolute inset-x-0 -bottom-[0.5px] p-0"
+                colspan="0"
+              >
+                <div
+                  class="w-full flex flex-col gap-2"
+                  data-v-e7e07852=""
+                  role="progressbar"
+                >
+                  <!--v-if-->
+                  <progress
+                    class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
+                    data-v-e7e07852=""
+                  />
+                  <!--v-if-->
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="4"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="iconify i-heroicons:arrow-path-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4 animate-spin"
+                  />
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    Loading...
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/charts > { locale: "ja" } snapshot test > { status: "success", charts: <Data> } renders chart list 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              SINGLE 16
+              
+            </h1>
+            <div
+              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
+            >
+              
+              
+              
+              <a
+                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+                href="/charts?style=2&level=16"
+              >
+                
+                
+                <span
+                  aria-hidden="true"
+                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
+                />
+                
+                
+                <span
+                  class=""
+                >
+                  プレースタイルを切り替える
+                </span>
+                
+                
+                <!--v-if-->
+                
+                
+              </a>
+              
+              
+              
+            </div>
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              1
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              4
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              5
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              6
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              7
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              8
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              9
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              10
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              11
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              12
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              13
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              14
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              15
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              16
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              17
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              18
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              19
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  曲名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  難易度
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Lv
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                1st
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+                >
+                  
+                  PARANOiA
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <span
+                  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-blue-500 dark:bg-blue-400 text-white dark:text-gray-900 tag"
+                >
+                  
+                  BEGINNER
+                  
+                </span>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                4
+                
+              </td>
+              
+            </tr>
+            <!--v-if-->
+            
+            
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                1st
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                
+                <a
+                  class="blue"
+                  href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI"
+                >
+                  
+                  PARANOiA
+                  
+                </a>
+                
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                <span
+                  class="inline-flex items-center font-medium rounded-md text-xs px-2 py-1 bg-yellow-500 dark:bg-yellow-400 text-white dark:text-gray-900 tag"
+                >
+                  
+                  BASIC
+                  
+                </span>
+                
+              </td>
+              <td
+                class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+              >
+                
+                8
+                
+              </td>
+              
+            </tr>
+            <!--v-if-->
+            
+            
+          </tbody>
+        </table>
+      </div>
+      <div
+        class="flex flex-wrap justify-between items-center"
+      >
+        <div>
+          <span
+            class="text-sm leading-5"
+          >
+            
+            <span
+              class="font-medium"
+            >
+              2
+            </span>
+            
+             件中 
+            
+            <span
+              class="font-medium"
+            >
+              1
+            </span>
+            
+             件から 
+            
+            <span
+              class="font-medium"
+            >
+              2
+            </span>
+            
+             件を表示中
+          </span>
+        </div>
+        <div
+          class="flex items-center -space-x-px"
+        >
+          
+          <!--v-if-->
+          
+          
+          <button
+            aria-label="Prev"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:first-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <span
+              aria-hidden="true"
+              class="iconify i-heroicons:chevron-left-20-solid flex-shrink-0 h-5 w-5"
+            />
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            class="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center z-[1] first:rounded-s-md last:rounded-e-md"
+            type="button"
+          >
+            
+            
+            <!--v-if-->
+            
+            
+            <span
+              class=""
+            >
+              1
+            </span>
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <button
+            aria-label="Next"
+            class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium text-sm gap-x-1.5 p-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center first:rounded-s-md last:rounded-e-md rtl:[&_span:last-child]:rotate-180"
+            disabled=""
+            type="button"
+          >
+            
+            
+            <span
+              aria-hidden="true"
+              class="iconify i-heroicons:chevron-right-20-solid flex-shrink-0 h-5 w-5"
+            />
+            
+            
+            <!--v-if-->
+            
+            
+            <!--v-if-->
+            
+            
+          </button>
+          
+          
+          <!--v-if-->
+          
+        </div>
+      </div>
+      
+    </div>
+    <!---->
+    
+  </div>
+  <!--v-if-->
+</div>
+`;
+
+exports[`/charts > { locale: "ja" } snapshot test > { status: "success", songs: [] } renders no data 1`] = `
+<div
+  class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-8"
+>
+  <!--v-if-->
+  <div
+    class="lg:col-span-10"
+  >
+    
+    <div
+      class="relative border-b border-gray-200 dark:border-gray-800 py-8"
+    >
+      <!--v-if-->
+      <div
+        class="flex flex-col lg:flex-row items-start gap-6"
+      >
+        <!--v-if-->
+        <div
+          class="flex-1"
+        >
+          <div
+            class="flex flex-col lg:flex-row lg:items-center lg:justify-between"
+          >
+            <h1
+              class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              
+              SINGLE 16
+              
+            </h1>
+            <div
+              class="flex flex-wrap items-center gap-1.5 mt-4 lg:mt-0"
+            >
+              
+              
+              
+              <a
+                class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 dark:ring-gray-700 text-gray-900 dark:text-white bg-white hover:bg-gray-50 disabled:bg-white dark:bg-gray-900 dark:hover:bg-gray-800/50 dark:disabled:bg-gray-900 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+                href="/charts?style=2&level=16"
+              >
+                
+                
+                <span
+                  aria-hidden="true"
+                  class="iconify i-heroicons:arrow-path-rounded-square-20-solid flex-shrink-0 h-5 w-5"
+                />
+                
+                
+                <span
+                  class=""
+                >
+                  プレースタイルを切り替える
+                </span>
+                
+                
+                <!--v-if-->
+                
+                
+              </a>
+              
+              
+              
+            </div>
+          </div>
+          <div
+            class="mt-4 text-lg text-gray-500 dark:text-gray-400"
+          >
+            
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=1"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              1
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=2"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              2
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=3"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              3
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=4"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              4
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=5"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              5
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=6"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              6
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=7"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              7
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=8"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              8
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=9"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              9
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=10"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              10
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=11"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              11
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=12"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              12
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=13"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              13
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=14"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              14
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=15"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              15
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=16"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              16
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=17"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              17
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=18"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              18
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            <a
+              class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-blue-500 dark:text-blue-400 hover:bg-blue-50 disabled:bg-transparent dark:hover:bg-blue-950 dark:disabled:bg-transparent focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500 dark:focus-visible:ring-blue-400 inline-flex items-center"
+              href="/charts?style=1&level=19"
+            >
+              
+              
+              <!--v-if-->
+              
+              
+              19
+              
+              
+              <!--v-if-->
+              
+              
+            </a>
+            
+            
+            
+          </div>
+          
+          
+        </div>
+      </div>
+    </div>
+    <div
+      class="mt-8 pb-24"
+    >
+      
+      <div
+        class="relative overflow-x-auto"
+      >
+        <table
+          class="min-w-full table-fixed divide-y divide-gray-300 dark:divide-gray-700"
+        >
+          <!--v-if-->
+          <thead
+            class="relative"
+          >
+            <tr
+              class=""
+            >
+              <!--v-if-->
+              <!--v-if-->
+              
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  シリーズ
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  曲名
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  難易度
+                </span>
+                
+              </th>
+              <th
+                class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                scope="col"
+              >
+                
+                <span>
+                  Lv
+                </span>
+                
+              </th>
+              
+            </tr>
+            <!--v-if-->
+          </thead>
+          <tbody
+            class="divide-y divide-gray-200 dark:divide-gray-800"
+          >
+            <tr>
+              <td
+                colspan="4"
+              >
+                
+                <div
+                  class="flex flex-col items-center justify-center flex-1 px-6 py-14 sm:px-14"
+                >
+                  <span
+                    aria-hidden="true"
+                    class="iconify i-heroicons:circle-stack-20-solid w-6 h-6 mx-auto text-gray-400 dark:text-gray-500 mb-4"
+                  />
+                  <p
+                    class="text-sm text-center text-gray-900 dark:text-white"
+                  >
+                    データがありません
+                  </p>
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <!--v-if-->
       
     </div>
     <!---->

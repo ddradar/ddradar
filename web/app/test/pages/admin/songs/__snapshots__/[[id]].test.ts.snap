@@ -472,65 +472,6 @@ exports[`/admin/songs > snapshot test 1`] = `
         <div
           class=""
         >
-          <div
-            class="flex content-center items-center justify-between text-sm"
-          >
-            <label
-              class="block font-medium text-gray-700 dark:text-gray-200"
-              for="nvlcNj4sN38_6"
-            >
-              
-              BPM
-              
-            </label>
-            <!--v-if-->
-          </div>
-          <!--v-if-->
-        </div>
-        <div
-          class="mt-1 relative"
-        >
-          
-          <div
-            class="relative"
-          >
-            <input
-              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="nvlcNj4sN38_6"
-              placeholder="min"
-              type="number"
-              value="180"
-            />
-            
-            
-            <!--v-if-->
-            <!--v-if-->
-          </div>
-          <div
-            class="relative"
-          >
-            <input
-              class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-              id="nvlcNj4sN38_6"
-              placeholder="max"
-              type="number"
-              value="180"
-            />
-            
-            
-            <!--v-if-->
-            <!--v-if-->
-          </div>
-          
-          <!--v-if-->
-        </div>
-      </div>
-      <div
-        class=""
-      >
-        <div
-          class=""
-        >
           <!--v-if-->
           <!--v-if-->
         </div>
@@ -546,7 +487,7 @@ exports[`/admin/songs > snapshot test 1`] = `
             >
               <input
                 class="h-4 w-4 dark:checked:bg-current dark:checked:border-transparent dark:indeterminate:bg-current dark:indeterminate:border-transparent disabled:opacity-50 disabled:cursor-not-allowed focus:ring-0 focus:ring-transparent focus:ring-offset-transparent form-checkbox rounded bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-900 text-primary-500 dark:text-primary-400"
-                id="nvlcNj4sN38_7"
+                id="nvlcNj4sN38_6"
                 name="deleted"
                 type="checkbox"
               />
@@ -556,7 +497,7 @@ exports[`/admin/songs > snapshot test 1`] = `
             >
               <label
                 class="text-sm font-medium text-gray-700 dark:text-gray-200"
-                for="nvlcNj4sN38_7"
+                for="nvlcNj4sN38_6"
               >
                 
                 Deleted
@@ -581,7 +522,7 @@ exports[`/admin/songs > snapshot test 1`] = `
           >
             <label
               class="block font-medium text-gray-700 dark:text-gray-200"
-              for="nvlcNj4sN38_8"
+              for="nvlcNj4sN38_7"
             >
               
               Charts
@@ -638,6 +579,16 @@ exports[`/admin/songs > snapshot test 1`] = `
                     
                     <span>
                       Lv
+                    </span>
+                    
+                  </th>
+                  <th
+                    class="text-left rtl:text-right px-4 py-3.5 text-gray-900 dark:text-white font-semibold text-sm"
+                    scope="col"
+                  >
+                    
+                    <span>
+                      BPM
                     </span>
                     
                   </th>
@@ -705,7 +656,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
                         data-v-912d5b1f=""
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         modelmodifiers="[object Object]"
                         name="charts"
                         value="1"
@@ -757,7 +708,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
                         data-v-912d5b1f=""
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         modelmodifiers="[object Object]"
                         name="charts"
                         value="0"
@@ -831,7 +782,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="20"
                         min="0"
                         name="charts"
@@ -854,7 +805,61 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="min"
+                        type="number"
+                        value="170"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="core"
+                        type="number"
+                        value="180"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="max"
+                        type="number"
+                        value="184"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"
@@ -877,7 +882,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"
@@ -900,7 +905,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"
@@ -961,7 +966,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
                         data-v-912d5b1f=""
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         modelmodifiers="[object Object]"
                         name="charts"
                         value="1"
@@ -1013,7 +1018,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                       <select
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-md text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 pe-9"
                         data-v-912d5b1f=""
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         modelmodifiers="[object Object]"
                         name="charts"
                         value="1"
@@ -1087,7 +1092,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="20"
                         min="0"
                         name="charts"
@@ -1110,7 +1115,61 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="min"
+                        type="number"
+                        value="170"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="core"
+                        type="number"
+                        value="180"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
+                        name="charts"
+                        placeholder="max"
+                        type="number"
+                        value="184"
+                      />
+                      
+                      
+                      <!--v-if-->
+                      <!--v-if-->
+                    </div>
+                    
+                  </td>
+                  <td
+                    class="whitespace-nowrap px-2 py-2 text-gray-500 dark:text-gray-400 text-sm"
+                  >
+                    
+                    <div
+                      class="relative"
+                    >
+                      <input
+                        class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1133,7 +1192,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"
@@ -1156,7 +1215,7 @@ exports[`/admin/songs > snapshot test 1`] = `
                     >
                       <input
                         class="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-input rounded-md placeholder-gray-400 dark:placeholder-gray-500 text-sm px-2.5 py-1.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
-                        id="nvlcNj4sN38_8"
+                        id="nvlcNj4sN38_7"
                         max="9999"
                         min="0"
                         name="charts"

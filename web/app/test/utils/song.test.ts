@@ -18,9 +18,6 @@ describe('utils/song.ts', () => {
 
   describe('getDisplayedBPM', () => {
     test.each([
-      [null, null, '???'],
-      [100, null, '???'],
-      [null, 400, '???'],
       [200, 200, '200'],
       [100, 400, '100-400'],
     ])(

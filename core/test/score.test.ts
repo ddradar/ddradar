@@ -1,52 +1,17 @@
 import { describe, expect, test } from 'vitest'
 
-import type { Score } from '../src/score'
+import type { ScoreRecord } from '../src/score'
 import {
   calcFlareSkill,
-  createScoreSchema,
   detectJudgeCounts,
   getDanceLevel,
-  isScore,
   isValidScore,
   mergeScore,
   setValidScoreFromChart,
 } from '../src/score'
-import { publicUser, testSongData } from './data'
+import { testSongData } from './data'
 
 describe('score.ts', () => {
-  describe('isScore', () => {
-    const validScore: Score = {
-      clearLamp: 2,
-      rank: 'AA+',
-      score: 978800,
-    }
-
-    test.each([
-      undefined,
-      null,
-      true,
-      1.5,
-      'foo',
-      {},
-      { ...validScore, score: Infinity },
-      { ...validScore, score: -1 },
-      { ...validScore, score: 10000000 },
-      { ...validScore, clearLamp: -2 },
-      { ...validScore, clearLamp: 8 },
-      { ...validScore, rank: '-' },
-      { ...validScore, exScore: '334' },
-      { ...validScore, maxCombo: true },
-      { ...validScore, exScore: 334, maxCombo: {} },
-      { ...validScore, exScore: NaN, maxCombo: 120 },
-    ])('(%o) returns false', o => expect(isScore(o)).toBe(false))
-    test.each([
-      validScore,
-      { ...validScore, exScore: 334 },
-      { ...validScore, maxCombo: 120 },
-      { ...validScore, exScore: 334, maxCombo: 120 },
-    ])('(%o) returns true', o => expect(isScore(o)).toBe(true))
-  })
-
   describe('getDanceLevel', () => {
     test.each([
       [0, 'D'],
@@ -113,7 +78,7 @@ describe('score.ts', () => {
       freezeArrow: 20,
       shockArrow: 10,
     } as const
-    const baseScore: Score = {
+    const baseScore: ScoreRecord = {
       score: 900000,
       clearLamp: 4,
       rank: 'AA',
@@ -140,100 +105,10 @@ describe('score.ts', () => {
     )
   })
 
-  describe('createScoreSchema', () => {
-    const songInfo = { ...testSongData, ...testSongData.charts[0] }
-    const scores: Score[] = [
-      { score: 1000000, clearLamp: 7, rank: 'AAA' },
-      { score: 800000, clearLamp: 3, rank: 'A', maxCombo: 100, exScore: 300 },
-    ]
-    const areaUser = { id: '13', name: '13', isPublic: false }
-
-    test.each([
-      [
-        publicUser,
-        scores[0],
-        {
-          ...scores[0],
-          exScore:
-            (songInfo.notes + songInfo.freezeArrow + songInfo.shockArrow) * 3,
-          maxCombo: songInfo.notes + songInfo.shockArrow,
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          isPublic: publicUser.isPublic,
-        },
-      ],
-      [
-        areaUser,
-        scores[1],
-        {
-          ...scores[1],
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: areaUser.id,
-          userName: areaUser.name,
-          isPublic: areaUser.isPublic,
-        },
-      ],
-    ])('(songInfo, user: %o, scores: %o) returns %o', (user, score, expected) =>
-      expect(createScoreSchema(songInfo, user, score)).toStrictEqual(expected)
-    )
-    test.each([
-      [
-        publicUser,
-        scores[0],
-        {
-          ...scores[0],
-          exScore:
-            (songInfo.notes + songInfo.freezeArrow + songInfo.shockArrow) * 3,
-          maxCombo: songInfo.notes + songInfo.shockArrow,
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: publicUser.id,
-          userName: publicUser.name,
-          isPublic: publicUser.isPublic,
-          deleted: true,
-        },
-      ],
-      [
-        areaUser,
-        scores[1],
-        {
-          ...scores[1],
-          songId: songInfo.id,
-          songName: songInfo.name,
-          playStyle: songInfo.playStyle,
-          difficulty: songInfo.difficulty,
-          level: songInfo.level,
-          userId: areaUser.id,
-          userName: areaUser.name,
-          isPublic: areaUser.isPublic,
-          deleted: true,
-        },
-      ],
-    ])(
-      '(deletedSong, user: %o, scores: %o) returns %o',
-      (user, score, expected) =>
-        expect(
-          createScoreSchema({ ...songInfo, deleted: true }, user, score)
-        ).toStrictEqual(expected)
-    )
-  })
-
   describe('setValidScoreFromChart', () => {
     const chart = { notes: 1000, freezeArrow: 10, shockArrow: 10 } as const
 
-    const mfcScore: Score = {
+    const mfcScore: ScoreRecord = {
       score: 1000000,
       rank: 'AAA',
       clearLamp: 7,
@@ -241,28 +116,28 @@ describe('score.ts', () => {
       maxCombo: 1010,
     }
     /** Perfect:1 Score */
-    const pfcScore: Score = {
+    const pfcScore: ScoreRecord = {
       ...mfcScore,
       score: 999990,
       clearLamp: 6,
       exScore: 3059,
     }
     /** Great:1 Score */
-    const gfcScore: Score = {
+    const gfcScore: ScoreRecord = {
       ...pfcScore,
       score: 999590,
       clearLamp: 5,
       exScore: 3058,
     }
     /** Good:1 Score */
-    const fcScore: Score = {
+    const fcScore: ScoreRecord = {
       ...gfcScore,
       score: 999200,
       clearLamp: 4,
       exScore: 3057,
     }
     /** 0 point falied Score */
-    const noPlayScore: Score = {
+    const noPlayScore: ScoreRecord = {
       score: 0,
       rank: 'E',
       clearLamp: 0,
@@ -270,123 +145,105 @@ describe('score.ts', () => {
       maxCombo: 0,
     }
     test.each([
-      [{ clearLamp: 7 } as Partial<Score>, mfcScore], // MFC
-      [{ score: 1000000 } as Partial<Score>, mfcScore], // MFC
-      [{ exScore: 3060 } as Partial<Score>, mfcScore], // MFC
-      [{ score: 999990 } as Partial<Score>, pfcScore], // P1
-      [{ exScore: 3059 } as Partial<Score>, pfcScore], // P1
+      [{ clearLamp: 7 }, mfcScore], // MFC
+      [{ score: 1000000 }, mfcScore], // MFC
+      [{ exScore: 3060 }, mfcScore], // MFC
+      [{ score: 999990 }, pfcScore], // P1
+      [{ exScore: 3059 }, pfcScore], // P1
+      [{ score: 999600 }, { ...pfcScore, score: 999600, exScore: 3020 }], // Maybe PFC (score is greater than Great:1 score)
       [
-        // Maybe PFC (score is greater than Great:1 score)
-        { score: 999600 } as Partial<Score>,
-        { ...pfcScore, score: 999600, exScore: 3020 },
-      ],
-      [
-        // P20
-        { exScore: 3040, clearLamp: 6 } as Partial<Score>,
+        { exScore: 3040, clearLamp: 6 },
         { ...pfcScore, score: 999800, exScore: 3040 },
-      ],
-      [{ exScore: 3058, clearLamp: 5 } as Partial<Score>, gfcScore], // Gr1
-      [{ score: 999590, clearLamp: 5 } as Partial<Score>, gfcScore], // Gr1
+      ], // P20
+      [{ exScore: 3058, clearLamp: 5 }, gfcScore], // Gr1
+      [{ score: 999590, clearLamp: 5 }, gfcScore], // Gr1
       [
-        // Gr1 P9
-        { score: 999500, clearLamp: 5 } as Partial<Score>,
+        { score: 999500, clearLamp: 5 },
         { ...gfcScore, score: 999500, exScore: 3049 },
-      ],
+      ], // Gr1 P9
+      [{ score: 999210 }, { ...gfcScore, score: 999210, exScore: 3020 }], // Maybe Great:1 FC (score is greater than Good:1 score)
       [
-        // Maybe Great:1 FC (score is greater than Good:1 score)
-        { score: 999210 } as Partial<Score>,
-        { ...gfcScore, score: 999210, exScore: 3020 },
-      ],
+        { score: 987600, clearLamp: 5 },
+        { score: 987600, rank: 'AA+', clearLamp: 5, maxCombo: 1010 },
+      ], // Cannot guess EX SCORE
+      [{ exScore: 3057, clearLamp: 4 }, fcScore], // Gd1
+      [{ score: 999200, clearLamp: 4 }, fcScore], // Gd1
       [
-        // Cannot guess EX SCORE
-        { score: 987600, clearLamp: 5 } as Partial<Score>,
-        {
-          score: 987600,
-          rank: 'AA+',
-          clearLamp: 5,
-          maxCombo: 1010,
-        } as Score,
-      ],
-      [{ exScore: 3057, clearLamp: 4 } as Partial<Score>, fcScore], // Gd1
-      [{ score: 999200, clearLamp: 4 } as Partial<Score>, fcScore], // Gd1
-      [
-        // Gd1 P20
-        { score: 999000, clearLamp: 4 } as Partial<Score>,
+        { score: 999000, clearLamp: 4 },
         { ...fcScore, score: 999000, exScore: 3037 },
-      ],
+      ], // Gd1 P20
       [
-        // Maybe Full Combo (score is greater than Miss:1 score)
-        { score: 999100 } as Partial<Score>,
-        {
-          score: 999100,
-          rank: 'AAA',
-          clearLamp: 4,
-          maxCombo: 1010,
-        } as Score,
-      ],
+        { score: 999100 },
+        { score: 999100, rank: 'AAA', clearLamp: 4, maxCombo: 1010 },
+      ], // Maybe Full Combo (score is greater than Miss:1 score)
       [
-        // Cannot guess EX SCORE
-        { score: 987600, clearLamp: 4 } as Partial<Score>,
-        {
-          score: 987600,
-          clearLamp: 4,
-          rank: 'AA+',
-          maxCombo: 1010,
-        } as Score,
-      ],
+        { score: 987600, clearLamp: 4 },
+        { score: 987600, clearLamp: 4, rank: 'AA+', maxCombo: 1010 },
+      ], // Cannot guess EX SCORE
       [
-        // Miss1 P1
-        { score: 999000, clearLamp: 2 } as Partial<Score>,
-        {
-          score: 999000,
-          rank: 'AAA',
-          clearLamp: 2,
-          exScore: 3056,
-        } as Score,
-      ],
+        { exScore: 3057, clearLamp: 2 },
+        { score: 999010, rank: 'AAA', clearLamp: 2, exScore: 3057 },
+      ], // Miss1
       [
-        // Miss1 P1 (missed last FA)
-        { score: 999000, clearLamp: 0, maxCombo: 1010 } as Partial<Score>,
+        { exScore: 3057, rank: 'AAA' },
+        { score: 999010, rank: 'AAA', clearLamp: 1, exScore: 3057 },
+      ], // Miss1
+      [
+        { exScore: 3057, clearLamp: 0 },
+        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+      ], // Miss1 (Failed)
+      [
+        { exScore: 3057, rank: 'E' },
+        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+      ], // Miss1 (Failed)
+      [
+        { score: 999000, clearLamp: 2 },
+        { score: 999000, rank: 'AAA', clearLamp: 2, exScore: 3056 },
+      ], // Miss1 P1
+      [
+        { score: 999000, clearLamp: 0, maxCombo: 1010 },
         {
           score: 999000,
           rank: 'E',
           clearLamp: 0,
           exScore: 3056,
           maxCombo: 1010,
-        } as Score,
+        },
+      ], // Miss1 P1 (missed last FA)
+      [
+        { score: 948260, clearLamp: 3, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: 3, maxCombo: 260 },
       ],
       [
-        { score: 948260, clearLamp: 3, maxCombo: 260 } as Partial<Score>,
-        { score: 948260, rank: 'AA', clearLamp: 3, maxCombo: 260 } as Score,
+        { score: 948260, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: 2, maxCombo: 260 },
       ],
       [
-        { score: 948260, maxCombo: 260 } as Partial<Score>,
-        { score: 948260, rank: 'AA', clearLamp: 2, maxCombo: 260 } as Score,
+        { score: 8460, rank: 'E' },
+        { score: 8460, rank: 'E', clearLamp: 0 },
       ],
-      [
-        { score: 8460, rank: 'E' } as Partial<Score>,
-        { score: 8460, rank: 'E', clearLamp: 0 } as Score,
-      ],
-      [{ score: 0, clearLamp: 0 } as Partial<Score>, noPlayScore], // 0 point
-      [{ score: 0, rank: 'E' } as Partial<Score>, noPlayScore], // 0 point
-      [
-        // 0 point clear (Maybe use Assist option)
-        { score: 0, clearLamp: 1 } as Partial<Score>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as Score,
-      ],
+      [{ score: 0, clearLamp: 0 }, noPlayScore], // 0 point falied
+      [{ score: 0, rank: 'E' }, noPlayScore], // 0 point falied
       [
         // 0 point clear (Maybe use Assist option)
-        { score: 0, clearLamp: 2 } as Partial<Score>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as Score,
+        { score: 0, clearLamp: 1 } as Partial<ScoreRecord>,
+        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreRecord,
       ],
       [
-        // 0 point clear (Maybe use Assist option)
-        { score: 0, rank: 'D' } as Partial<Score>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as Score,
-      ],
-    ])(
+        { score: 0, clearLamp: 2 },
+        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+      ], // 0 point clear (Maybe use Assist option)
+      [
+        { score: 0, rank: 'D' },
+        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+      ], // 0 point clear (Maybe use Assist option)
+      [
+        { score: 0, clearLamp: 2, flareRank: 1 },
+        { ...noPlayScore, rank: 'D', clearLamp: 2, flareRank: 1 },
+      ], // 0 point clear (FLARE I Clear)
+    ] as const)(
       '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
-      (score: Partial<Score>, expected: Score) =>
+      (score: Partial<ScoreRecord>, expected: ScoreRecord) =>
         expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
     )
     test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>
@@ -395,28 +252,28 @@ describe('score.ts', () => {
       ).toThrowError(/^Cannot guess Score object. set score property/))
     test.each([
       [
-        { score: 993100, clearLamp: 5 } as Partial<Score>, // Gr3 P55
+        { score: 993100, clearLamp: 5 },
         {
           score: 993100,
           rank: 'AAA',
           clearLamp: 5,
           exScore: 509,
           maxCombo: 180,
-        } as Score,
-      ],
+        },
+      ], // Gr3 P55
       [
-        { score: 989100, clearLamp: 5 } as Partial<Score>, // Gr5 P32
+        { score: 989100, clearLamp: 5 },
         {
           score: 989100,
           rank: 'AA+',
           clearLamp: 5,
           exScore: 528,
           maxCombo: 180,
-        } as Score,
-      ],
-    ])(
+        },
+      ], // Gr5 P32
+    ] as const)(
       '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %o) returns %o',
-      (incompleteScore: Partial<Score>, expected: Score) => {
+      (incompleteScore: Partial<ScoreRecord>, expected: ScoreRecord) => {
         // Arrange
         const chart = { notes: 180, freezeArrow: 10, shockArrow: 0 }
 
@@ -431,56 +288,51 @@ describe('score.ts', () => {
 
   describe('calcFlareSkill', () => {
     test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
-      `(%d) throws error`,
-      d => expect(() => calcFlareSkill(d)).toThrowError()
+      `(%d, 0) throws error`,
+      d => expect(() => calcFlareSkill(d, 0)).toThrowError()
     )
 
     test.each([
-      [1, 145],
-      [2, 155],
-      [3, 170],
-      [4, 185],
-      [5, 205],
-      [6, 230],
-      [7, 255],
-      [8, 290],
-      [9, 335],
-      [10, 400],
-      [11, 465],
-      [12, 510],
-      [13, 545],
-      [14, 575],
-      [15, 600],
-      [16, 620],
-      [17, 635],
-      [18, 650],
-      [19, 665],
-    ])(`(%d) returns %d`, (d, expected) =>
-      expect(calcFlareSkill(d)).toBe(expected)
-    )
-
-    test.each([
-      [1, 232],
-      [2, 248],
-      [3, 272],
-      [4, 296],
-      [5, 328],
-      [6, 368],
-      [7, 408],
-      [8, 464],
-      [9, 536],
-      [10, 640],
-      [11, 744],
-      [12, 816],
-      [13, 872],
-      [14, 920],
-      [15, 960],
-      [16, 992],
-      [17, 1016],
-      [18, 1040],
-      [19, 1064],
-    ])(`(%d, 10) returns %d`, (d, expected) =>
-      expect(calcFlareSkill(d, 10)).toBe(expected)
+      [1, 0, 145],
+      [2, 0, 155],
+      [3, 0, 170],
+      [4, 0, 185],
+      [5, 0, 205],
+      [6, 0, 230],
+      [7, 0, 255],
+      [8, 0, 290],
+      [9, 0, 335],
+      [10, 0, 400],
+      [11, 0, 465],
+      [12, 0, 510],
+      [13, 0, 545],
+      [14, 0, 575],
+      [15, 0, 600],
+      [16, 0, 620],
+      [17, 0, 635],
+      [18, 0, 650],
+      [19, 0, 665],
+      [1, 10, 232],
+      [2, 10, 248],
+      [3, 10, 272],
+      [4, 10, 296],
+      [5, 10, 328],
+      [6, 10, 368],
+      [7, 10, 408],
+      [8, 10, 464],
+      [9, 10, 536],
+      [10, 10, 640],
+      [11, 10, 744],
+      [12, 10, 816],
+      [13, 10, 872],
+      [14, 10, 920],
+      [15, 10, 960],
+      [16, 10, 992],
+      [17, 10, 1016],
+      [18, 10, 1040],
+      [19, 10, 1064],
+    ] as const)(`(%d, %d) returns %d`, (level, flareRank, expected) =>
+      expect(calcFlareSkill(level, flareRank)).toBe(expected)
     )
   })
 

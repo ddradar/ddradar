@@ -1,24 +1,28 @@
 // @vitest-environment node
 import { testSongData } from '@ddradar/core/test/data'
-import { fetchJoinedList } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/v1/charts/[style]/[level].get'
+import handler from '~~/server/api/v2/charts/[style]/[level].get'
 import { createEvent } from '~~/server/test/utils'
 
-vi.mock('@ddradar/db')
-
-describe('GET /api/v1/charts/[style]/[level]', () => {
+describe('GET /api/v2/charts/[style]/[level]', () => {
   const dbCharts = testSongData.charts.map(c => ({
     id: testSongData.id,
     name: testSongData.name,
+    nameKana: testSongData.nameKana,
+    nameIndex: testSongData.nameIndex,
+    artist: testSongData.artist,
     series: testSongData.series,
+    folders: [
+      ...testSongData.folders,
+      { type: 'level', name: c.level.toString() },
+    ],
     playStyle: c.playStyle,
     difficulty: c.difficulty,
     level: c.level,
   }))
   beforeEach(() => {
-    vi.mocked(fetchJoinedList).mockClear()
+    vi.mocked(getSongRepository).mockClear()
   })
 
   test.each([
@@ -31,7 +35,10 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
     const event = createEvent({ style, level })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getSongRepository)).not.toBeCalled()
   })
 
   test.each([
@@ -39,23 +46,26 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
       '1',
       '1',
       [
-        { condition: 'i.playStyle = @', value: 1 },
-        { condition: 'i.level = @', value: 1 },
+        { condition: 'c.playStyle = @', value: 1 },
+        { condition: 'c.level = @', value: 1 },
       ],
     ],
     [
       '2',
       '20',
       [
-        { condition: 'i.playStyle = @', value: 2 },
-        { condition: 'i.level = @', value: 20 },
+        { condition: 'c.playStyle = @', value: 2 },
+        { condition: 'c.level = @', value: 20 },
       ],
     ],
   ])(
-    `(style: "%s", level: "%s") calls fetchJoinedList(..., ..., %o, ...)`,
+    `(style: "%s", level: "%s") calls SongRepository.listCharts(%o)`,
     async (style, level, conditions) => {
       // Arrange
-      vi.mocked(fetchJoinedList).mockResolvedValue(dbCharts)
+      const listCharts = vi.fn().mockResolvedValue(dbCharts)
+      vi.mocked(getSongRepository).mockReturnValue({
+        listCharts,
+      } as unknown as ReturnType<typeof getSongRepository>)
       const event = createEvent({ style, level })
 
       // Act
@@ -63,10 +73,8 @@ describe('GET /api/v1/charts/[style]/[level]', () => {
 
       // Assert
       expect(charts).toBe(dbCharts)
-      expect(vi.mocked(fetchJoinedList).mock.calls[0][3]).toStrictEqual([
-        { condition: 'c.nameIndex NOT IN (-1, -2)' },
-        ...conditions,
-      ])
+      expect(vi.mocked(getSongRepository)).toBeCalled()
+      expect(listCharts).toBeCalledWith(conditions)
     }
   )
 })

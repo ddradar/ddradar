@@ -4,6 +4,7 @@ import {
   getNameIndex,
   playStyleMap,
   songSchema,
+  type StepChart,
 } from '@ddradar/core'
 
 definePageMeta({ allowedRoles: 'administrator' })
@@ -11,33 +12,32 @@ definePageMeta({ allowedRoles: 'administrator' })
 const _chart = {
   level: 1,
   notes: 1,
+  bpm: [0, 0, 0],
   freezeArrow: 0,
   shockArrow: 0,
-} as const
+} as const satisfies Omit<StepChart, 'playStyle' | 'difficulty'>
 
 const _toast = useToast()
 const _route = useRoute('admin-songs-id')
 const { id: _id } = _route.params
 
-const { data: song, execute } = useFetch(`/api/v1/songs/${_id}`, {
+const { data: song, execute } = useFetch(`/api/v2/songs/${_id}`, {
+  pick: ['id', 'name', 'nameKana', 'artist', 'series', 'deleted', 'charts'],
   default: () => ({
     id: _route.params.id,
     name: '',
     nameKana: '',
-    nameIndex: 0 as const,
     artist: '',
     series: seriesNames.slice(-1)[0],
-    minBPM: null,
-    maxBPM: null,
     deleted: false,
     charts: [
-      { playStyle: 1, difficulty: 0, ..._chart } as const,
-      { playStyle: 1, difficulty: 1, ..._chart } as const,
-      { playStyle: 1, difficulty: 2, ..._chart } as const,
-      { playStyle: 1, difficulty: 3, ..._chart } as const,
-      { playStyle: 2, difficulty: 1, ..._chart } as const,
-      { playStyle: 2, difficulty: 2, ..._chart } as const,
-      { playStyle: 2, difficulty: 3, ..._chart } as const,
+      { playStyle: 1, difficulty: 0, ..._chart },
+      { playStyle: 1, difficulty: 1, ..._chart },
+      { playStyle: 1, difficulty: 2, ..._chart },
+      { playStyle: 1, difficulty: 3, ..._chart },
+      { playStyle: 2, difficulty: 1, ..._chart },
+      { playStyle: 2, difficulty: 2, ..._chart },
+      { playStyle: 2, difficulty: 3, ..._chart },
     ],
   }),
   immediate: false,
@@ -61,7 +61,7 @@ const saveSongInfo = async () => {
   const nameIndex = getNameIndex(song.value.nameKana)
   const body = { ...song.value, nameIndex }
   try {
-    song.value = await $fetch<(typeof song)['value']>('/api/v1/songs', {
+    song.value = await $fetch<(typeof song)['value']>('/api/v2/songs', {
       method: 'POST',
       body,
     })
@@ -80,6 +80,7 @@ const columns = [
   { key: 'playStyle', label: 'Style' },
   { key: 'difficulty', label: 'Difficulty' },
   { key: 'level', label: 'Lv' },
+  { key: 'bpm', label: 'BPM' },
   { key: 'notes', label: 'Notes' },
   { key: 'freezeArrow', label: 'FA' },
   { key: 'shockArrow', label: 'SA' },
@@ -113,11 +114,6 @@ const columns = [
         <USelect v-model="song.series" :options="seriesNames" />
       </UFormGroup>
 
-      <UFormGroup label="BPM">
-        <UInput v-model.number="song.minBPM" type="number" placeholder="min" />
-        <UInput v-model.number="song.maxBPM" type="number" placeholder="max" />
-      </UFormGroup>
-
       <UFormGroup>
         <UCheckbox v-model="song.deleted" name="deleted" label="Deleted" />
       </UFormGroup>
@@ -132,6 +128,24 @@ const columns = [
           </template>
           <template #level-data="{ row }">
             <UInput v-model.number="row.level" type="number" min="0" max="20" />
+          </template>
+
+          <template #bpm-data="{ row }">
+            <UInput
+              v-model.number="row.bpm[0]"
+              type="number"
+              placeholder="min"
+            />
+            <UInput
+              v-model.number="row.bpm[1]"
+              type="number"
+              placeholder="core"
+            />
+            <UInput
+              v-model.number="row.bpm[2]"
+              type="number"
+              placeholder="max"
+            />
           </template>
 
           <template #notes-data="{ row }">

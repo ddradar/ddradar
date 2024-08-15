@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest'
 
 import {
+  detectCategory,
   getNameIndex,
-  isValidSongId,
   nameIndexMap,
   songSchema,
 } from '../src/song'
@@ -21,11 +21,11 @@ describe('song.ts', () => {
       {},
       { ...validSong, id: '' },
       { ...validSong, nameKana: 'abc' },
-      { ...validSong, series: 'DDR FESTIVAL' },
       { ...validSong, nameIndex: 0.5 },
       { ...validSong, nameIndex: -1 },
       { ...validSong, nameIndex: 37 },
-      { ...validSong, charts: {} },
+      { ...validSong, series: 'DDR FESTIVAL' },
+      { ...validSong, charts: [] },
       { ...validSong, charts: [...validSong.charts, {}] },
       { ...validSong, charts: [{ ...validSong.charts[0], notes: '' }] },
       { ...validSong, charts: [{ ...validSong.charts[0], playStyle: 3 }] },
@@ -40,24 +40,12 @@ describe('song.ts', () => {
       validSong,
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
       { ...validSong, series: 'DanceDanceRevolution WORLD' },
-      { ...validSong, minBPM: null, maxBPM: null },
-      { ...validSong, charts: [] },
+      { ...validSong, folders: [] },
+      { ...validSong, skillAttackId: 1 },
+      { ...validSong, deleted: true },
     ])('safeParse(%o) returns { success: true }', o =>
       expect(songSchema.safeParse(o).success).toBe(true)
     )
-  })
-
-  describe('isValidSongId', () => {
-    test.each([
-      '',
-      '01689bdiloqDIOPQ',
-      '0000000000000000000000000000000000000000',
-    ])('("%s") returns false', id => expect(isValidSongId(id)).toBe(false))
-    test.each([
-      '00000000000000000000000000000000',
-      '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
-      '01689bdiloqDIOPQ01689bdiloqDIOPQ',
-    ])('("%s") returns true', id => expect(isValidSongId(id)).toBe(true))
   })
 
   describe('getNameIndex', () => {
@@ -83,5 +71,32 @@ describe('song.ts', () => {
     ])('(%s) returns %i', (nameKana, expected) =>
       expect(getNameIndex(nameKana)).toBe(expected)
     )
+  })
+
+  describe('detectCategory', () => {
+    test.each([
+      ['DDR 1st', 'CLASSIC'],
+      ['DDR 2ndMIX', 'CLASSIC'],
+      ['DDR 3rdMIX', 'CLASSIC'],
+      ['DDR 4thMIX', 'CLASSIC'],
+      ['DDR 5thMIX', 'CLASSIC'],
+      ['DDRMAX', 'CLASSIC'],
+      ['DDRMAX2', 'CLASSIC'],
+      ['DDR EXTREME', 'CLASSIC'],
+      ['DDR SuperNOVA', 'CLASSIC'],
+      ['DDR SuperNOVA2', 'CLASSIC'],
+      ['DDR X', 'CLASSIC'],
+      ['DDR X2', 'CLASSIC'],
+      ['DDR X3 VS 2ndMIX', 'CLASSIC'],
+      ['DanceDanceRevolution (2013)', 'WHITE'],
+      ['DanceDanceRevolution (2014)', 'WHITE'],
+      ['DanceDanceRevolution A', 'WHITE'],
+      ['DanceDanceRevolution A20', 'GOLD'],
+      ['DanceDanceRevolution A20 PLUS', 'GOLD'],
+      ['DanceDanceRevolution A3', 'GOLD'],
+      ['DanceDanceRevolution WORLD', 'GOLD'],
+    ] as const)('(%s) returns "%s"', (series, expected) => {
+      expect(detectCategory(series)).toBe(expected)
+    })
   })
 })

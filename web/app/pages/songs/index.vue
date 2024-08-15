@@ -2,15 +2,15 @@
 import { nameIndexMap } from '@ddradar/core'
 
 import { getDisplayedBPM } from '~/utils/song'
-import { getListQuerySchema } from '~~/schemas/song'
+import { listQuerySchema } from '~~/schemas/songs'
 
 definePageMeta({ key: route => route.fullPath })
 
 // #region Data Fetching
-const { data: user } = await useFetch('/api/v1/user')
+const { data: user } = await useFetch('/api/v2/user')
 const _route = useRoute('songs')
-const { name, series } = getListQuerySchema.parse(_route.query)
-const { data: _data, pending: loading } = await useFetch('/api/v1/songs', {
+const { name, series } = listQuerySchema.parse(_route.query)
+const { data: _data, status } = await useFetch('/api/v2/songs', {
   query: { name, series },
   watch: [_route.query],
   default: () => [],
@@ -83,7 +83,7 @@ const editScore = async (songId: string) => {
       <UTable
         :rows="songs"
         :columns="columns"
-        :loading="loading"
+        :loading="status === 'pending'"
         :empty-state="{
           icon: 'i-heroicons-circle-stack-20-solid',
           label: t('noData'),

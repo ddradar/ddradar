@@ -4,26 +4,27 @@ import type {
   InvocationContext,
 } from '@azure/functions'
 import { app } from '@azure/functions'
-import type { SongSchema } from '@ddradar/core'
+import { databaseName, type DBSongSchema, songContainer } from '@ddradar/db'
 import { ofetch } from 'ofetch'
 
+import { connection, connectionReadOnly } from '../constants.js'
 import { masterMusicToMap } from '../skill-attack.js'
 
 const input: CosmosDBInput = {
   name: 'songs',
   type: 'cosmosDB',
-  connection: 'COSMOS_DB_CONN_READONLY',
-  databaseName: 'DDRadar',
-  containerName: 'Songs',
+  connection: connectionReadOnly,
+  databaseName,
+  containerName: songContainer,
   sqlQuery:
-    'SELECT * FROM c WHERE c.nameIndex >= 0 AND NOT IS_DEFINED(c.skillAttackId)',
+    'SELECT * FROM c WHERE c.type = "song" AND NOT IS_DEFINED(c.skillAttackId)',
 }
 const $return: CosmosDBOutput = {
   name: '$return',
   type: 'cosmosDB',
-  connection: 'COSMOS_DB_CONN',
-  databaseName: 'DDRadar',
-  containerName: 'Songs',
+  connection,
+  databaseName,
+  containerName: songContainer,
 }
 app.timer('importSkillAttackId', {
   schedule: '0 0 2 * * *',
@@ -44,8 +45,8 @@ const masterMusicUri =
 export async function handler(
   _: unknown,
   ctx: InvocationContext
-): Promise<SongSchema[]> {
-  const songs = ctx.extraInputs.get(input) as SongSchema[]
+): Promise<DBSongSchema[]> {
+  const songs = ctx.extraInputs.get(input) as DBSongSchema[]
   if (!songs.length) return []
 
   const map = masterMusicToMap(
@@ -65,5 +66,5 @@ export async function handler(
       )
       return song
     })
-    .filter((s): s is SongSchema => !!s)
+    .filter(s => !!s)
 }

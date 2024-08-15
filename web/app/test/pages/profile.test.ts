@@ -17,7 +17,7 @@ describe('/profile', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useFetch).mockImplementation(uri =>
-        uri === '/api/v1/user'
+        uri === '/api/v2/user'
           ? (Promise.resolve({ data: ref({ id: '' }) }) as any)
           : { data: ref(false), status: ref('idle'), execute: vi.fn() }
       )
@@ -34,7 +34,7 @@ describe('/profile', () => {
       // Arrange
       /* eslint-disable @typescript-eslint/no-explicit-any */
       vi.mocked(useFetch).mockImplementation(uri =>
-        uri === '/api/v1/user'
+        uri === '/api/v2/user'
           ? (Promise.resolve({ data: ref(publicUser) }) as any)
           : { data: ref(false), status: ref('idle'), execute: vi.fn() }
       )

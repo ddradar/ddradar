@@ -2,8 +2,8 @@
 import type { Difficulty } from '@ddradar/core'
 
 import type { Button } from '#ui/types'
-import type { ChartInfo } from '~~/schemas/song'
-import { getChartsRouterParamsSchema } from '~~/schemas/song'
+import type { GetResponse } from '~~/schemas/charts'
+import { getRouterParamsSchema } from '~~/schemas/charts'
 
 /* c8 ignore next */
 definePageMeta({ key: route => route.fullPath })
@@ -11,15 +11,15 @@ definePageMeta({ key: route => route.fullPath })
 const _kinds = ['SINGLE', 'DOUBLE']
 
 // #region Data Fetching
-const { data: user } = await useFetch('/api/v1/user')
+const { data: user } = await useFetch('/api/v2/user')
 const _route = useRoute('charts')
-const { style, level } = getChartsRouterParamsSchema.parse(_route.query)
+const { style, level } = getRouterParamsSchema.parse(_route.query)
 const { t } = useI18n()
-const { data: _data, pending: loading } = await useFetch(
-  `/api/v1/charts/${style}/${level}`,
+const { data: _data, status } = await useFetch(
+  `/api/v2/charts/${style}/${level}`,
   {
     watch: [_route.query],
-    default: (): ChartInfo[] => [],
+    default: (): GetResponse => [],
   }
 )
 // #endregion
@@ -52,7 +52,7 @@ const modalSongId = ref('')
 const modalDifficulty = ref<Difficulty | undefined>(undefined)
 const modalIsOpen = ref(false)
 /** Open ScoreEditor modal. */
-const editScore = async (row: ChartInfo) => {
+const editScore = async (row: GetResponse[number]) => {
   modalSongId.value = row.id
   modalDifficulty.value = row.difficulty
   modalIsOpen.value = true
@@ -81,7 +81,7 @@ const editScore = async (row: ChartInfo) => {
       <UTable
         :rows="charts"
         :columns="columns"
-        :loading="loading"
+        :loading="status === 'pending'"
         :empty-state="{
           icon: 'i-heroicons-circle-stack-20-solid',
           label: t('noData'),

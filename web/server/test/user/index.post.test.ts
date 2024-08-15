@@ -1,36 +1,28 @@
 // @vitest-environment node
-import type { UserSchema } from '@ddradar/core'
+import type { User } from '@ddradar/core'
 import { publicUser } from '@ddradar/core/test/data'
-import { fetchLoginUser, fetchUser, getContainer } from '@ddradar/db'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/v1/user/index.post'
+import handler from '~~/server/api/v2/user/index.post'
 import { createClientPrincipal, createEvent } from '~~/server/test/utils'
 
-vi.mock('@ddradar/db')
-
-describe('POST /api/v1/user', () => {
-  const user: UserSchema = { ...publicUser }
-  delete user.loginId
-  const principal = createClientPrincipal(user.id, publicUser.loginId)
-  const mockedContainer = { items: { upsert: vi.fn() } }
-  beforeAll(() => {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    vi.mocked(getContainer).mockReturnValue(mockedContainer as any)
-  })
+describe('POST /api/v2/user', () => {
+  const user: User = { ...publicUser }
+  const principal = createClientPrincipal(user.id, 'loginId')
   beforeEach(() => {
-    mockedContainer.items.upsert.mockClear()
+    vi.mocked(getUserRepository).mockClear()
   })
 
-  test('returns 401 if not logged in', async () => {
+  test('returns 401 error when not logged in', async () => {
     // Arrange
     const event = createEvent()
     vi.mocked(getClientPrincipal).mockReturnValue(null)
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrowError(
-      createError({ statusCode: 401 })
+      expect.objectContaining({ statusCode: 401 })
     )
+    expect(vi.mocked(getUserRepository)).not.toBeCalled()
   })
 
   test('returns 400 if body is not UserSchema', async () => {
@@ -39,38 +31,40 @@ describe('POST /api/v1/user', () => {
     vi.mocked(getClientPrincipal).mockReturnValue(principal)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrowError(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getUserRepository)).not.toBeCalled()
   })
 
   test('returns 200 with JSON (Create)', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, user)
     vi.mocked(getClientPrincipal).mockReturnValue(principal)
-    vi.mocked(fetchUser).mockResolvedValue(null)
-    vi.mocked(fetchLoginUser).mockResolvedValue(null)
+    const get = vi.fn().mockResolvedValue(undefined)
+    const create = vi.fn()
+    const update = vi.fn()
+    vi.mocked(getUserRepository).mockReturnValueOnce({
+      get,
+      create,
+      update,
+    } as unknown as ReturnType<typeof getUserRepository>)
 
     // Act
     const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(mockedContainer.items.upsert).toBeCalledWith({
-      ...user,
-      loginId: '1',
-      isAdmin: false,
-    })
+    expect(get).toBeCalledWith('', 'loginId')
+    expect(create).toBeCalledWith(user, 'loginId')
+    expect(update).not.toBeCalled()
   })
 
-  test.each([
-    { name: 'AFRO' },
-    { isPublic: true },
-    { code: 20000000 },
-    { password: 'changed' },
-  ])(
+  test.each([{ name: 'AFRO' }, { isPublic: true }, { code: 20000000 }])(
     'returns "200 OK" with JSON body (Update) if changed %o',
-    async (diff: Partial<UserSchema>) => {
+    async (diff: Partial<User>) => {
       // Arrange
-      const body: UserSchema = {
+      const body: User = {
         id: user.id,
         name: user.name,
         area: user.area,
@@ -79,66 +73,45 @@ describe('POST /api/v1/user', () => {
       }
       const event = createEvent(undefined, undefined, body)
       vi.mocked(getClientPrincipal).mockReturnValue(principal)
-      vi.mocked(fetchUser).mockResolvedValue({ ...publicUser, isAdmin: true })
-      vi.mocked(fetchLoginUser).mockResolvedValue({
-        ...publicUser,
-        isAdmin: true,
-      })
+      const get = vi.fn().mockResolvedValue(publicUser)
+      const create = vi.fn()
+      const update = vi.fn()
+      vi.mocked(getUserRepository).mockReturnValueOnce({
+        get,
+        create,
+        update,
+      } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act
       const result = await handler(event)
 
       // Assert
       expect(result).toStrictEqual(body)
-      expect(mockedContainer.items.upsert).toBeCalledWith({
-        ...body,
-        loginId: publicUser.loginId,
-        isAdmin: true,
-      })
+      expect(get).toBeCalledWith('', 'loginId')
+      expect(create).not.toBeCalled()
+      expect(update).toBeCalledWith(body)
     }
   )
 
-  test('returns 400 if changed loginId', async () => {
-    // Arrange
-    const event = createEvent(undefined, undefined, user)
-    vi.mocked(getClientPrincipal).mockReturnValue({ ...principal, userId: '3' })
-    vi.mocked(fetchUser).mockResolvedValue(publicUser)
-    vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
-
-    // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
-      createError({ statusCode: 400, message: 'Duplicated Id' })
-    )
-  })
-
-  test('returns 400 if changed id', async () => {
+  test('throws 400 error when changed user.id', async () => {
     // Arrange
     const event = createEvent(undefined, undefined, { ...user, id: 'update' })
     vi.mocked(getClientPrincipal).mockReturnValue(principal)
-    vi.mocked(fetchUser).mockResolvedValue(publicUser)
-    vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
+    const get = vi.fn().mockResolvedValue(publicUser)
+    const create = vi.fn()
+    const update = vi.fn()
+    vi.mocked(getUserRepository).mockReturnValueOnce({
+      get,
+      create,
+      update,
+    } as unknown as ReturnType<typeof getUserRepository>)
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrowError(
-      createError({ statusCode: 400, message: 'Duplicated Id' })
+      expect.objectContaining({ statusCode: 400 })
     )
-  })
-
-  test('returns 200 but does not update if changed area', async () => {
-    // Arrange
-    const event = createEvent(undefined, undefined, { ...user, area: 14 })
-    vi.mocked(getClientPrincipal).mockReturnValue(principal)
-    vi.mocked(fetchUser).mockResolvedValue(publicUser)
-    vi.mocked(fetchLoginUser).mockResolvedValue(publicUser)
-
-    // Act
-    const result = await handler(event)
-
-    // Assert
-    expect(result).toStrictEqual(user)
-    expect(mockedContainer.items.upsert).toBeCalledWith({
-      ...publicUser,
-      isAdmin: false,
-    })
+    expect(get).toBeCalledWith('', 'loginId')
+    expect(create).not.toBeCalled()
+    expect(update).not.toBeCalled()
   })
 })

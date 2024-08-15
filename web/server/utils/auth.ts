@@ -1,29 +1,39 @@
-import type { UserSchema } from '@ddradar/core'
-import { fetchLoginUser, fetchUser } from '@ddradar/db'
+import type { User } from '@ddradar/core'
 import type { H3Event } from 'h3'
 
-import { paramsSchema } from '~~/schemas/user'
+import { routerParamsSchema as schema } from '~~/schemas/users'
 
-export async function getLoginUserInfo(
-  event: H3Event
-): Promise<UserSchema | null> {
+/**
+ * Get login user information from Authentication header.
+ * @param event HTTP Event (needs Authentication header)
+ * @returns {User} Login user information
+ * @throws
+ * - Throws `401 Unauthorized` error when you are not logged in.
+ * - Throws `404 Not Found` error when user registration is not completed.
+ */
+export async function getLoginUserInfo(event: H3Event): Promise<User> {
   const clientPrincipal = getClientPrincipal(event)
-  if (!clientPrincipal) return null
-  return await fetchLoginUser(clientPrincipal.userId)
+  if (!clientPrincipal) throw createError({ statusCode: 401 })
+
+  const user = await getUserRepository(event).get('', clientPrincipal.userId)
+  if (!user) throw createError({ statusCode: 404 })
+  return user
 }
 
 /**
- * Check user visibility
+ * Get user information that match the specified ID.
  * @param event HTTP Event (needs [id] context)
- * @returns UserSchema if user is public or same as login user. otherwise null.
+ * @returns {User} User information
+ * @throws
+ * - Throws `404 Not Found` when `id` is not defined.
+ * - Throws `404 Not Found` when no user that matches `id` or user is private.
  */
-export async function tryFetchUser(event: H3Event): Promise<UserSchema | null> {
-  const result = await getValidatedRouterParams(event, paramsSchema.safeParse)
-  if (!result.success) return null
+export async function getUser(event: H3Event): Promise<User> {
+  const result = await getValidatedRouterParams(event, schema.safeParse)
+  if (!result.success) throw createError({ statusCode: 404 })
 
-  const user = await fetchUser(result.data.id)
-  if (!user) return null
-
-  const loginId = getClientPrincipal(event)?.userId ?? ''
-  return user.isPublic || user.loginId === loginId ? user : null
+  const loginId = getClientPrincipal(event)?.userId
+  const user = await getUserRepository(event).get(result.data.id, loginId)
+  if (!user) throw createError({ statusCode: 404 })
+  return user
 }
