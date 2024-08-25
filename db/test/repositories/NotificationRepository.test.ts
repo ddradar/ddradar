@@ -35,13 +35,13 @@ describe('/repositories/NotificationRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(notification)
-      expect(client.items.query).toBeCalledWith({
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT TOP 1 c.id, c.color, c.icon, c.title, c.body, c.timeStamp ' +
           'FROM c WHERE c.id = @id AND c.sender = "SYSTEM" AND c.type = "notification"',
         parameters: [{ name: '@id', value: 'test' }],
       })
-      expect(client.items.fetchNext).toBeCalled()
+      expect(client.items.fetchNext).toHaveBeenCalled()
     })
   })
 
@@ -58,14 +58,14 @@ describe('/repositories/NotificationRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(notifications)
-      expect(client.items.query).toBeCalledWith({
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT c.id, c.color, c.icon, c.title, c.body, c.timeStamp ' +
           'FROM c WHERE (c.sender = "SYSTEM") AND (c.type = "notification") AND (c.pinned = @param2) ' +
           'ORDER BY c.pinned DESC, c.timeStamp DESC',
         parameters: [{ name: '@param2', value: true }],
       })
-      expect(client.items.fetchAll).toBeCalled()
+      expect(client.items.fetchAll).toHaveBeenCalled()
     })
   })
 
@@ -80,7 +80,7 @@ describe('/repositories/NotificationRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(notification)
-      expect(client.items.upsert).toBeCalledWith({
+      expect(client.items.upsert).toHaveBeenCalledWith({
         ...notification,
         pinned: true,
         sender: 'SYSTEM',

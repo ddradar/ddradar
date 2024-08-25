@@ -26,7 +26,7 @@ describe('/functions/importSkillAttrackId.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(vi.mocked(ofetch)).not.toBeCalled()
+    expect(vi.mocked(ofetch)).not.toHaveBeenCalled()
   })
 
   test('returns [] with error if ofetch() returns error', async () => {
@@ -37,8 +37,8 @@ describe('/functions/importSkillAttrackId.ts', () => {
     vi.mocked(ofetch).mockRejectedValue('Error')
 
     // Act - Assert
-    await expect(handler(null, ctx)).rejects.toThrowError()
-    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+    await expect(handler(null, ctx)).rejects.toThrow('Error')
+    expect(vi.mocked(ofetch)).toHaveBeenCalledWith(uri, {
       responseType: 'arrayBuffer',
     })
   })
@@ -56,7 +56,7 @@ describe('/functions/importSkillAttrackId.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([])
-    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+    expect(vi.mocked(ofetch)).toHaveBeenCalledWith(uri, {
       responseType: 'arrayBuffer',
     })
   })
@@ -74,7 +74,7 @@ describe('/functions/importSkillAttrackId.ts', () => {
 
     // Assert
     expect(result).toStrictEqual([{ ...testSongData, skillAttackId: 1 }])
-    expect(vi.mocked(ofetch)).toBeCalledWith(uri, {
+    expect(vi.mocked(ofetch)).toHaveBeenCalledWith(uri, {
       responseType: 'arrayBuffer',
     })
   })

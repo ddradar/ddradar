@@ -52,7 +52,7 @@ describe('/repositories/ScoreRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(score)
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             `SELECT TOP 1 c.score, c.clearLamp, c.rank, c.exScore, c.maxCombo, c.flareRank, c.flareSkill ` +
@@ -82,7 +82,7 @@ describe('/repositories/ScoreRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(testScores)
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             `SELECT c.user.id AS userId, c.user.name AS userName, c.song.id AS songId, ` +
@@ -94,7 +94,7 @@ describe('/repositories/ScoreRepository', () => {
         },
         undefined
       )
-      expect(client.items.fetchAll).toBeCalled()
+      expect(client.items.fetchAll).toHaveBeenCalled()
     })
   })
   describe('listFlareSkills', () => {
@@ -109,7 +109,7 @@ describe('/repositories/ScoreRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(testScores)
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             'SELECT c.user.id AS userId, c.user.name AS userName, c.song.id AS songId, ' +
@@ -126,7 +126,7 @@ describe('/repositories/ScoreRepository', () => {
         },
         { maxItemCount: 30 }
       )
-      expect(client.items.fetchNext).toBeCalled()
+      expect(client.items.fetchNext).toHaveBeenCalled()
     })
   })
   describe('count', () => {
@@ -150,7 +150,7 @@ describe('/repositories/ScoreRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(resources)
-      expect(client.items.query).toBeCalledWith({
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT c.clearLamp, COUNT(1) AS count ' +
           'FROM c WHERE (c.type = "score") AND (c.user.isPublic OR ARRAY_CONTAINS(@param1, c.user.id)) ' +
@@ -161,7 +161,7 @@ describe('/repositories/ScoreRepository', () => {
           { name: '@param2', value: publicUser.id },
         ],
       })
-      expect(client.items.fetchAll).toBeCalled()
+      expect(client.items.fetchAll).toHaveBeenCalled()
     })
   })
   describe('upsert', () => {
@@ -202,7 +202,7 @@ describe('/repositories/ScoreRepository', () => {
       )
 
       // Assert
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             'SELECT s.id, s.name, s.cp_seriesCategory AS seriesCategory, s.deleted, ' +
@@ -216,9 +216,9 @@ describe('/repositories/ScoreRepository', () => {
         },
         { maxItemCount: 1 }
       )
-      expect(client.items.fetchNext).toBeCalled()
-      expect(vi.mocked(isValidScore)).not.toBeCalled()
-      expect(client.items.upsert).not.toBeCalled()
+      expect(client.items.fetchNext).toHaveBeenCalled()
+      expect(vi.mocked(isValidScore)).not.toHaveBeenCalled()
+      expect(client.items.upsert).not.toHaveBeenCalled()
     })
     test('throws Error when isValidScore() returns false', async () => {
       // Arrange
@@ -237,7 +237,7 @@ describe('/repositories/ScoreRepository', () => {
       ).rejects.toThrow(expect.objectContaining({ message: 'Invalid score' }))
 
       // Assert
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             'SELECT s.id, s.name, s.cp_seriesCategory AS seriesCategory, s.deleted, ' +
@@ -251,9 +251,9 @@ describe('/repositories/ScoreRepository', () => {
         },
         { maxItemCount: 1 }
       )
-      expect(client.items.fetchNext).toBeCalled()
-      expect(vi.mocked(isValidScore)).toBeCalledWith(songAndChart, score)
-      expect(client.items.upsert).not.toBeCalled()
+      expect(client.items.fetchNext).toHaveBeenCalled()
+      expect(vi.mocked(isValidScore)).toHaveBeenCalledWith(songAndChart, score)
+      expect(client.items.upsert).not.toHaveBeenCalled()
     })
     test('calls items.query() and items.upsert()', async () => {
       // Arrange
@@ -271,7 +271,7 @@ describe('/repositories/ScoreRepository', () => {
       await repo.upsert(publicUser, songId, playStyle, difficulty, score)
 
       // Assert
-      expect(client.items.query).toBeCalledWith(
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             'SELECT s.id, s.name, s.cp_seriesCategory AS seriesCategory, s.deleted, ' +
@@ -285,9 +285,9 @@ describe('/repositories/ScoreRepository', () => {
         },
         { maxItemCount: 1 }
       )
-      expect(client.items.fetchNext).toBeCalled()
-      expect(vi.mocked(isValidScore)).toBeCalledWith(songAndChart, score)
-      expect(client.items.upsert).toBeCalledWith({
+      expect(client.items.fetchNext).toHaveBeenCalled()
+      expect(vi.mocked(isValidScore)).toHaveBeenCalledWith(songAndChart, score)
+      expect(client.items.upsert).toHaveBeenCalledWith({
         id: `${songId}/${playStyle}/${difficulty}/${userId}`,
         type: 'score',
         song: {
@@ -322,11 +322,11 @@ describe('/repositories/ScoreRepository', () => {
       await repo.delete(userId, songId, playStyle, difficulty)
 
       // Assert
-      expect(client.item).toBeCalledWith(
+      expect(client.item).toHaveBeenCalledWith(
         `${songId}/${playStyle}/${difficulty}/${userId}`,
         songId
       )
-      expect(client.delete).toBeCalled()
+      expect(client.delete).toHaveBeenCalled()
     })
   })
 })

@@ -27,7 +27,7 @@ describe('DELETE /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
   })
@@ -38,10 +38,10 @@ describe('DELETE /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getScoreRepository)).not.toBeCalled()
+    expect(vi.mocked(getScoreRepository)).not.toHaveBeenCalled()
   })
 
   test('returns 204 and calls ScoreRepository.delete()', async () => {
@@ -57,7 +57,7 @@ describe('DELETE /api/v2/scores/[id]/[style]/[diff]', () => {
     await handler(event)
 
     // Assert
-    expect(deleteMock).toBeCalledWith(
+    expect(deleteMock).toHaveBeenCalledWith(
       user.id,
       params.id,
       testScores[0].playStyle,

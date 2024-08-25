@@ -17,10 +17,10 @@ describe('server/utils/auth.ts', () => {
       vi.mocked(getClientPrincipal).mockReturnValue(null)
 
       // Act - Assert
-      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrowError(
+      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 401 })
       )
-      expect(vi.mocked(getUserRepository)).not.toBeCalled()
+      expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
     })
 
     test(`(getClientPrincipal: <Unregistered User Token>) throws 404 error`, async () => {
@@ -34,11 +34,11 @@ describe('server/utils/auth.ts', () => {
       } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act - Assert
-      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrowError(
+      await expect(getLoginUserInfo({} as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 404 })
       )
-      expect(vi.mocked(getClientPrincipal)).toBeCalled()
-      expect(get).toBeCalledWith('', 'loginId')
+      expect(vi.mocked(getClientPrincipal)).toHaveBeenCalled()
+      expect(get).toHaveBeenCalledWith('', 'loginId')
     })
 
     test(`(getClientPrincipal: <Registered User Token>) returns User`, async () => {
@@ -56,8 +56,8 @@ describe('server/utils/auth.ts', () => {
 
       // Assert
       expect(user).toBe(publicUser)
-      expect(vi.mocked(getClientPrincipal)).toBeCalled()
-      expect(vi.mocked(get)).toBeCalledWith('', 'loginId')
+      expect(vi.mocked(getClientPrincipal)).toHaveBeenCalled()
+      expect(vi.mocked(get)).toHaveBeenCalledWith('', 'loginId')
     })
   })
 
@@ -79,11 +79,11 @@ describe('server/utils/auth.ts', () => {
         event.context.params!.id = id
 
         // Act - Assert
-        await expect(getUser(event)).rejects.toThrowError(
+        await expect(getUser(event)).rejects.toThrow(
           expect.objectContaining({ statusCode: 404 })
         )
-        expect(vi.mocked(getClientPrincipal)).not.toBeCalled()
-        expect(vi.mocked(getUserRepository)).not.toBeCalled()
+        expect(vi.mocked(getClientPrincipal)).not.toHaveBeenCalled()
+        expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
       }
     )
 
@@ -99,12 +99,12 @@ describe('server/utils/auth.ts', () => {
       } as unknown as ReturnType<typeof getUserRepository>)
 
       // Act - Assert
-      await expect(getUser(event)).rejects.toThrowError(
+      await expect(getUser(event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 404 })
       )
-      expect(vi.mocked(getClientPrincipal)).toBeCalled()
-      expect(vi.mocked(getUserRepository)).toBeCalled()
-      expect(get).toBeCalledWith(privateUser.id, 'loginId')
+      expect(vi.mocked(getClientPrincipal)).toHaveBeenCalled()
+      expect(vi.mocked(getUserRepository)).toHaveBeenCalled()
+      expect(get).toHaveBeenCalledWith(privateUser.id, 'loginId')
     })
 
     test(`({ id: "${publicUser.id}" }) returns User`, async () => {
@@ -123,9 +123,9 @@ describe('server/utils/auth.ts', () => {
 
       // Assert
       expect(user).toBe(publicUser)
-      expect(vi.mocked(getClientPrincipal)).toBeCalled()
-      expect(vi.mocked(getUserRepository)).toBeCalled()
-      expect(get).toBeCalledWith(publicUser.id, 'loginId')
+      expect(vi.mocked(getClientPrincipal)).toHaveBeenCalled()
+      expect(vi.mocked(getUserRepository)).toHaveBeenCalled()
+      expect(get).toHaveBeenCalledWith(publicUser.id, 'loginId')
     })
   })
 })

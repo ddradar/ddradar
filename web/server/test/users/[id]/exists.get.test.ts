@@ -18,10 +18,10 @@ describe('GET /api/v2/users/[id]/exists', () => {
     const event = createEvent({ id: dbUser.id })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getUserRepository)).not.toBeCalled()
+    expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
   })
 
   const invalidId = 'ユーザー'
@@ -31,10 +31,10 @@ describe('GET /api/v2/users/[id]/exists', () => {
     const event = createEvent({ id: invalidId })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getUserRepository)).not.toBeCalled()
+    expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
   })
 
   test('(id: "not_exists_user") returns 200 with { exists: false }', async () => {
@@ -52,8 +52,8 @@ describe('GET /api/v2/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id, exists: false })
-    expect(vi.mocked(getUserRepository)).toBeCalled()
-    expect(exists).toBeCalledWith(id)
+    expect(vi.mocked(getUserRepository)).toHaveBeenCalled()
+    expect(exists).toHaveBeenCalledWith(id)
   })
 
   test(`(id: "${dbUser.id}") returns 200 with { exists: true }`, async () => {
@@ -70,7 +70,7 @@ describe('GET /api/v2/users/[id]/exists', () => {
 
     // Assert
     expect(result).toStrictEqual({ id: dbUser.id, exists: true })
-    expect(vi.mocked(getUserRepository)).toBeCalled()
-    expect(exists).toBeCalledWith(dbUser.id)
+    expect(vi.mocked(getUserRepository)).toHaveBeenCalled()
+    expect(exists).toHaveBeenCalledWith(dbUser.id)
   })
 })

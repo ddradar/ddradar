@@ -48,7 +48,7 @@ describe('eagate.ts', () => {
       '<html></html>',
       '<html>\n<div id="data_tbl" />\n</html>',
     ])('("%s") throws error', source => {
-      expect(() => parsePlayDataList(source)).toThrowError()
+      expect(() => parsePlayDataList(source)).toThrow('invalid html')
     })
     test.each(['invalid_column.html', 'invalid_chart_id.html'])(
       '(%s) throws error',
@@ -57,7 +57,7 @@ describe('eagate.ts', () => {
         const source = await createSource(fileName)
 
         // Act - Assert
-        expect(() => parsePlayDataList(source)).toThrowError('invalid html')
+        expect(() => parsePlayDataList(source)).toThrow('invalid html')
       }
     )
 
@@ -131,7 +131,7 @@ describe('eagate.ts', () => {
       '<html></html>',
       '<html>\n<div id="music_info" />\n</html>',
     ])('("%s") throws error', source => {
-      expect(() => parseScoreDetail(source)).toThrowError('invalid html')
+      expect(() => parseScoreDetail(source)).toThrow('invalid html')
     })
     test.each([
       ['invalid_header.html', 'invalid html'],
@@ -143,7 +143,7 @@ describe('eagate.ts', () => {
       const source = await readFileAsync('music_detail', fileName)
 
       // Act - Assert
-      expect(() => parseScoreDetail(source)).toThrowError(err)
+      expect(() => parseScoreDetail(source)).toThrow(err)
     })
     test.each([
       [

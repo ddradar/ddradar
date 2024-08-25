@@ -37,10 +37,10 @@ describe('/repositories/UserRepository', () => {
       const repository = new UserRepository(client as unknown as CosmosClient)
 
       // Act & Assert
-      await expect(() => repository.get()).rejects.toThrowError(
+      await expect(() => repository.get()).rejects.toThrow(
         'id or loginId is required.'
       )
-      expect(client.items.query).not.toBeCalled()
+      expect(client.items.query).not.toHaveBeenCalled()
     })
     test.each([
       [
@@ -80,8 +80,8 @@ describe('/repositories/UserRepository', () => {
         const result = await repository.get(id, loginId)
 
         // Assert
-        expect(result).toEqual(publicUser)
-        expect(client.items.query).toBeCalledWith(
+        expect(result).toStrictEqual(publicUser)
+        expect(client.items.query).toHaveBeenCalledWith(
           {
             query: `SELECT TOP 1 c.id, c.name, c.area, c.code, c.isPublic FROM c WHERE (c.type = "user") AND ${condition}`,
             parameters,
@@ -104,8 +104,8 @@ describe('/repositories/UserRepository', () => {
       )
 
       // Assert
-      expect(result).toEqual([publicUser])
-      expect(client.items.query).toBeCalledWith({
+      expect(result).toStrictEqual([publicUser])
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT c.id, c.name, c.area, c.code FROM c WHERE (c.type = "user") AND (c.isPublic OR c.loginId = @param1) AND (c.area = @param2) ORDER BY c.name ASC',
         parameters: [
@@ -131,7 +131,7 @@ describe('/repositories/UserRepository', () => {
 
         // Assert
         expect(result).toBe(expected)
-        expect(client.items.query).toBeCalledWith(
+        expect(client.items.query).toHaveBeenCalledWith(
           {
             query:
               'SELECT TOP 1 c.id, c.name, c.area, c.code, c.isPublic FROM c WHERE (c.type = "user") AND (c.id = @param1)',
@@ -158,7 +158,7 @@ describe('/repositories/UserRepository', () => {
 
         // Assert
         expect(result).toBe(expected)
-        expect(client.items.query).toBeCalledWith(
+        expect(client.items.query).toHaveBeenCalledWith(
           {
             query:
               'SELECT TOP 1 c.id, c.name, c.area, c.code, c.isPublic FROM c WHERE (c.type = "user") AND (c.loginId = @param1) AND (c.isAdmin = true)',
@@ -178,7 +178,7 @@ describe('/repositories/UserRepository', () => {
       await repository.create(publicUser, 'loginId')
 
       // Assert
-      expect(client.items.create).toBeCalledWith({
+      expect(client.items.create).toHaveBeenCalledWith({
         ...publicUser,
         type: 'user',
         uid: publicUser.id,
@@ -214,8 +214,8 @@ describe('/repositories/UserRepository', () => {
       await repository.update(user)
 
       // Assert
-      expect(client.item).toBeCalledWith(user.id, user.id)
-      expect(client.patch).toBeCalledWith(patchRequest)
+      expect(client.item).toHaveBeenCalledWith(user.id, user.id)
+      expect(client.patch).toHaveBeenCalledWith(patchRequest)
     })
   })
 })

@@ -23,7 +23,7 @@ describe('GET /api/v2/songs/[id]', () => {
 
     // Assert
     expect(song).toBe(testSongData)
-    expect(get).toBeCalledWith(testSongData.id)
+    expect(get).toHaveBeenCalledWith(testSongData.id)
   })
   test(`/00000000000000000000000000000000 (not exist song) returns 404`, async () => {
     // Arrange
@@ -33,10 +33,10 @@ describe('GET /api/v2/songs/[id]', () => {
     const event = createEvent({ id: `00000000000000000000000000000000` })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
-    expect(vi.mocked(getSongRepository)).toBeCalled()
+    expect(vi.mocked(getSongRepository)).toHaveBeenCalled()
   })
   test(`/invalid-id returns 400`, async () => {
     // Arrange
@@ -46,9 +46,9 @@ describe('GET /api/v2/songs/[id]', () => {
     const event = createEvent({ id: 'invalid-id' })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getSongRepository)).not.toBeCalled()
+    expect(vi.mocked(getSongRepository)).not.toHaveBeenCalled()
   })
 })

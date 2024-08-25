@@ -42,7 +42,7 @@ describe('GET /api/v2/songs', () => {
 
       // Assert
       expect(songs).not.toHaveLength(0)
-      expect(list).toBeCalledWith(conditions)
+      expect(list).toHaveBeenCalledWith(conditions)
     }
   )
 })

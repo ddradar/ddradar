@@ -35,10 +35,10 @@ describe('GET /api/v2/charts/[style]/[level]', () => {
     const event = createEvent({ style, level })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getSongRepository)).not.toBeCalled()
+    expect(vi.mocked(getSongRepository)).not.toHaveBeenCalled()
   })
 
   test.each([
@@ -73,8 +73,8 @@ describe('GET /api/v2/charts/[style]/[level]', () => {
 
       // Assert
       expect(charts).toBe(dbCharts)
-      expect(vi.mocked(getSongRepository)).toBeCalled()
-      expect(listCharts).toBeCalledWith(conditions)
+      expect(vi.mocked(getSongRepository)).toHaveBeenCalled()
+      expect(listCharts).toHaveBeenCalledWith(conditions)
     }
   )
 })
