@@ -72,14 +72,14 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_7"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_7"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-              id="headlessui-disclosure-button-noBnPM2aHde_6"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_6"
               type="button"
             >
               
@@ -117,7 +117,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_7"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_7"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -210,12 +210,12 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_9"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_9"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="このWebサイトはベータ版環境です。"
-              id="headlessui-disclosure-button-noBnPM2aHde_8"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_8"
               type="button"
             >
               
@@ -253,7 +253,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_9"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_9"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -331,12 +331,12 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_11"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_11"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="変更点は以下を参照してください。"
-              id="headlessui-disclosure-button-noBnPM2aHde_10"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_10"
               type="button"
             >
               
@@ -374,7 +374,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_11"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_11"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -480,13 +480,13 @@ exports[`/notification > { locale: "en" } snapshot test > ({ loading: true }) re
       >
         <div
           class="w-full flex flex-col gap-2"
-          data-v-e7e07852=""
+          data-v-4ef42f33=""
           role="progressbar"
         >
           <!--v-if-->
           <progress
             class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-            data-v-e7e07852=""
+            data-v-4ef42f33=""
           />
           <!--v-if-->
         </div>
@@ -627,14 +627,14 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_1"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_1"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-                      id="headlessui-disclosure-button-noBnPM2aHde_0"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_0"
                       type="button"
                     >
                       
@@ -672,7 +672,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_1"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_1"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -738,12 +738,12 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_3"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_3"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="このWebサイトはベータ版環境です。"
-                      id="headlessui-disclosure-button-noBnPM2aHde_2"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_2"
                       type="button"
                     >
                       
@@ -781,7 +781,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_3"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_3"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -832,12 +832,12 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_5"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_5"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="変更点は以下を参照してください。"
-                      id="headlessui-disclosure-button-noBnPM2aHde_4"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_4"
                       type="button"
                     >
                       
@@ -875,7 +875,7 @@ exports[`/notification > { locale: "en" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_5"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_5"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1056,14 +1056,14 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_19"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_19"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-              id="headlessui-disclosure-button-noBnPM2aHde_18"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_18"
               type="button"
             >
               
@@ -1101,7 +1101,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_19"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_19"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1194,12 +1194,12 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_21"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_21"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="このWebサイトはベータ版環境です。"
-              id="headlessui-disclosure-button-noBnPM2aHde_20"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_20"
               type="button"
             >
               
@@ -1237,7 +1237,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_21"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_21"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1315,12 +1315,12 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
             data-headlessui-state=""
           >
             <button
-              aria-controls="headlessui-disclosure-panel-noBnPM2aHde_23"
+              aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_23"
               aria-expanded="false"
               class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
               data-headlessui-state=""
               description="変更点は以下を参照してください。"
-              id="headlessui-disclosure-button-noBnPM2aHde_22"
+              id="headlessui-disclosure-button-nRrIiE8J3nY_22"
               type="button"
             >
               
@@ -1358,7 +1358,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ isAdmin: true }) re
                 <div
                   class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                   data-headlessui-state=""
-                  id="headlessui-disclosure-panel-noBnPM2aHde_23"
+                  id="headlessui-disclosure-panel-nRrIiE8J3nY_23"
                 >
                   
                   <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1464,13 +1464,13 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ loading: true }) re
       >
         <div
           class="w-full flex flex-col gap-2"
-          data-v-e7e07852=""
+          data-v-4ef42f33=""
           role="progressbar"
         >
           <!--v-if-->
           <progress
             class="block appearance-none border-none overflow-hidden w-full [&::-webkit-progress-bar]:w-full h-px rounded-full [&::-webkit-progress-bar]:rounded-full [&::-webkit-progress-bar]:bg-gray-200 [&::-webkit-progress-bar]:dark:bg-gray-700 [@supports(selector(&::-moz-progress-bar))]:bg-gray-200 [@supports(selector(&::-moz-progress-bar))]:dark:bg-gray-700 [&::-webkit-progress-value]:rounded-full [&::-webkit-progress-value]:transition-all [&::-webkit-progress-value]:ease-in-out [&::-moz-progress-bar]:rounded-full text-primary-500 dark:text-primary-400 [&::-webkit-progress-value]:bg-current [&::-moz-progress-bar]:bg-current indeterminate:relative indeterminate:after:rounded-full [&:indeterminate::-webkit-progress-value]:rounded-full [&:indeterminate::-moz-progress-bar]:rounded-full bar-animation-carousel"
-            data-v-e7e07852=""
+            data-v-4ef42f33=""
           />
           <!--v-if-->
         </div>
@@ -1611,14 +1611,14 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_13"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_13"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="下記の譜面情報を追加しました。
 
 - [新曲](/song/foo)"
-                      id="headlessui-disclosure-button-noBnPM2aHde_12"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_12"
                       type="button"
                     >
                       
@@ -1656,7 +1656,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_13"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_13"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1722,12 +1722,12 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_15"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_15"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="このWebサイトはベータ版環境です。"
-                      id="headlessui-disclosure-button-noBnPM2aHde_14"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_14"
                       type="button"
                     >
                       
@@ -1765,7 +1765,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_15"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_15"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
@@ -1816,12 +1816,12 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                     data-headlessui-state=""
                   >
                     <button
-                      aria-controls="headlessui-disclosure-panel-noBnPM2aHde_17"
+                      aria-controls="headlessui-disclosure-panel-nRrIiE8J3nY_17"
                       aria-expanded="false"
                       class="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-md text-sm gap-x-1.5 px-2.5 py-1.5 text-primary-500 dark:text-primary-400 bg-primary-50 hover:bg-primary-100 disabled:bg-primary-50 dark:bg-primary-950 dark:hover:bg-primary-900 dark:disabled:bg-primary-950 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center mb-1.5 w-full"
                       data-headlessui-state=""
                       description="変更点は以下を参照してください。"
-                      id="headlessui-disclosure-button-noBnPM2aHde_16"
+                      id="headlessui-disclosure-button-nRrIiE8J3nY_16"
                       type="button"
                     >
                       
@@ -1859,7 +1859,7 @@ exports[`/notification > { locale: "ja" } snapshot test > ({ messages: [...] }) 
                         <div
                           class="text-sm text-gray-500 dark:text-gray-400 pt-1.5 pb-3"
                           data-headlessui-state=""
-                          id="headlessui-disclosure-panel-noBnPM2aHde_17"
+                          id="headlessui-disclosure-panel-nRrIiE8J3nY_17"
                         >
                           
                           <!-- eslint-disable-next-line vue/no-v-html -->
