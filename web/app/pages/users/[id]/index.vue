@@ -22,7 +22,7 @@ const ddrCode = computed(() =>
   </UPage>
 </template>
 
-<i18n src="~/locales/area.json"></i18n>
+<i18n src="~~/i18n/locales/area.json"></i18n>
 <i18n lang="json">
 {
   "ja": {
