@@ -112,7 +112,7 @@ async function run() {
             'SELECT VALUE ARRAY_CONCAT([{ type: "category", name: c.cp_seriesCategory }], c.folders) FROM c',
         },
       ],
-    } as object),
+    }),
     database.containers.createIfNotExists({
       id: userDataContainer,
       partitionKey: { paths: ['/uid'] satisfies ContainerPath<DBUserSchema>[] },
@@ -149,7 +149,7 @@ async function run() {
             },
           ],
         ],
-      } as object,
+      },
     }),
     database.containers.createIfNotExists({
       id: notificationContainer,
@@ -169,7 +169,7 @@ async function run() {
             },
           ],
         ],
-      } as object,
+      },
     }),
   ])
 }
