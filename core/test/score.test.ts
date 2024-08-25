@@ -353,20 +353,20 @@ describe('score.ts', () => {
     }
     test.each([
       [
-        [chart, 1000000, 7],
+        [chart, 1000000, Lamp.MFC],
         [{ marvelousOrOk: 138, perfect: 0, great: 0, good: 0, miss: 0 }],
       ],
       [
-        [chart, 999000, 6],
+        [chart, 999000, Lamp.PFC],
         [{ marvelousOrOk: 38, perfect: 100, great: 0, good: 0, miss: 0 }],
       ],
       [[testSongData.charts[0], 998000, undefined], []],
       [
-        [chart, 950360, 5],
+        [chart, 950360, Lamp.GFC],
         [{ marvelousOrOk: 102, perfect: 19, great: 17, good: 0, miss: 0 }],
       ],
       [
-        [chart, 969780, 4],
+        [chart, 969780, Lamp.FC],
         [
           { marvelousOrOk: 15, perfect: 118, great: 0, good: 5, miss: 0 },
           { marvelousOrOk: 15, perfect: 117, great: 2, good: 4, miss: 0 },
@@ -377,7 +377,7 @@ describe('score.ts', () => {
         ],
       ],
       [
-        [chart, 940360, 3],
+        [chart, 940360, Lamp.Life4],
         [
           { marvelousOrOk: 116, perfect: 12, great: 0, good: 9, miss: 1 },
           { marvelousOrOk: 116, perfect: 11, great: 2, good: 8, miss: 1 },
