@@ -1,6 +1,7 @@
 import { defineNuxtConfig } from 'nuxt/config'
 
 export default defineNuxtConfig({
+  compatibilityDate: '2024-08-25',
   extends: ['@nuxt/ui-pro'],
   future: { compatibilityVersion: 4 },
   nitro: {
@@ -51,22 +52,25 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
   ],
   i18n: {
-    langDir: './locales',
+    langDir: '../i18n/locales',
     locales: [
       {
         code: 'en',
-        iso: 'en-US',
+        language: 'en-US',
         name: 'English',
         flag: 'us',
         file: 'en.json',
       },
-      { code: 'ja', iso: 'ja-JP', name: '日本語', flag: 'jp', file: 'ja.json' },
+      {
+        code: 'ja',
+        language: 'ja-JP',
+        name: '日本語',
+        flag: 'jp',
+        file: 'ja.json',
+      },
     ],
     defaultLocale: 'ja',
     strategy: 'no_prefix',
-  },
-  ui: {
-    icons: ['heroicons', 'simple-icons', 'flag'],
   },
   swa: {
     customRoles: ['administrator'],
