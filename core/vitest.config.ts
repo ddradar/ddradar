@@ -6,13 +6,7 @@ export default defineConfig({
       enabled: true,
       all: true,
       reporter: ['json', 'text'],
-      exclude: [
-        'dist/**',
-        '**/index.ts',
-        '*.config.ts',
-        '*.d.ts',
-        '**/test/**',
-      ],
+      exclude: ['dist/**', '**/index.ts', '*.config.ts', 'test/**'],
     },
   },
 })

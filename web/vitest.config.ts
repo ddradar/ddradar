@@ -19,13 +19,7 @@ export default defineVitestConfig({
       all: true,
       reporter: ['json', 'text'],
       include: ['**/*.ts', '**/*.vue'],
-      exclude: [
-        '.nuxt/**',
-        'plugins/**',
-        'test/**',
-        '**/*.config.ts',
-        '**/*.test.ts',
-      ],
+      exclude: ['.nuxt/**', 'test/**', '**/*.config.ts', '**/*.test.ts'],
     },
   },
 })
