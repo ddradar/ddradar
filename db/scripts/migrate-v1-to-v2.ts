@@ -196,7 +196,7 @@ async function migrateScores(client: CosmosClient) {
         user: {
           id: score.userId,
           name: user?.name ?? score.userId,
-          area: user?.area ?? (parseInt(score.userId, 10) as User['area']),
+          area: user?.area ?? parseInt(score.userId, 10),
           isPublic: user?.isPublic ?? false,
         },
         score: score.score,

@@ -16,66 +16,22 @@ export const userSchema = z.object({
   /**
    * Area number that depend on official site.
    * @description
-   * - `0`: 未設定 / undefined
-   * - `1`: 北海道 / Hokkaido
-   * - `2`: 青森県 / Aomori
-   * - `3`: 岩手県 / Iwate
-   * - `4`: 宮城県 / Miyagi
-   * - `5`: 秋田県 / Akita
-   * - `6`: 山形県 / Yamagata
-   * - `7`: 福島県 / Fukushima
-   * - `8`: 茨城県 / Ibaraki
-   * - `9`: 栃木県 / Tochigi
-   * - `10`: 群馬県 / Gunma
-   * - `11`: 埼玉県 / Saitama
-   * - `12`: 千葉県 / Chiba
-   * - `13`: 東京都 / Tokyo
-   * - `14`: 神奈川県 / Kanagawa
-   * - `15`: 新潟県 / Niigata
-   * - `16`: 富山県 / Toyama
-   * - `17`: 石川県 / Ishikawa
-   * - `18`: 福井県 / Fukui
-   * - `19`: 山梨県 / Yamanashi
-   * - `20`: 長野県 / Nagano
-   * - `21`: 岐阜県 / Gifu
-   * - `22`: 静岡県 / Shizuoka
-   * - `23`: 愛知県 / Aichi
-   * - `24`: 三重県 / Mie
-   * - `25`: 滋賀県 / Shiga
-   * - `26`: 京都府 / Kyoto
-   * - `27`: 大阪府 / Osaka
-   * - `28`: 兵庫県 / Hyogo
-   * - `29`: 奈良県 / Nara
-   * - `30`: 和歌山県 / Wakayama
-   * - `31`: 鳥取県 / Tottori
-   * - `32`: 島根県 / Shimane
-   * - `33`: 岡山県 / Okayama
-   * - `34`: 広島県 / Hiroshima
-   * - `35`: 山口県 / Yamaguchi
-   * - `36`: 徳島県 / Tokushima
-   * - `37`: 香川県 / Kagawa
-   * - `38`: 愛媛県 / Ehime
-   * - `39`: 高知県 / Kochi
-   * - `40`: 福岡県 / Fukuoka
-   * - `41`: 佐賀県 / Saga
-   * - `42`: 長崎県 / Nagasaki
-   * - `43`: 熊本県 / Kumamoto
-   * - `44`: 大分県 / Oita
-   * - `45`: 宮崎県 / Miyazaki
-   * - `46`: 鹿児島県 / Kagoshima
-   * - `47`: 沖縄県 / Okinawa
+   * - `0`: 未設定 / Undefined
+   * - `1`-`47`: Japan Prefectures (北海道 - 沖縄県)
    * - `48`: 香港 / Hong Kong
    * - `49`: 韓国 / Korea
    * - `50`: 台湾 / Taiwan
-   * - `51`: アメリカ / USA
+   * - `51`: アメリカ合衆国 / USA
    * - `52`: ヨーロッパ / Europe
-   * - `53`: 海外 / Oversea
+   * - `53`: 海外 / Overseas
+   * - `54`-`104` : United States (Alaska - Washington, D.C.)
+   * - `105`: 日本 / Japan
    * - `106`: カナダ / Canada
    * - `107`: シンガポール / Singapore
    * - `108`: タイ / Thailand
    * - `109`: オーストラリア / Australia
    * - `110`: ニュージーランド / New Zealand
-   * - `111`: イギリス / United Kingdom
+   * - `111`: イギリス / UK
    * - `112`: イタリア / Italy
    * - `113`: スペイン / Spain
    * - `114`: ドイツ / Germany
@@ -84,75 +40,7 @@ export const userSchema = z.object({
    * - `117`: インドネシア / Indonesia
    * - `118`: フィリピン / Philippines
    */
-  area: z.union([
-    z.literal(0),
-    z.literal(1),
-    z.literal(2),
-    z.literal(3),
-    z.literal(4),
-    z.literal(5),
-    z.literal(6),
-    z.literal(7),
-    z.literal(8),
-    z.literal(9),
-    z.literal(10),
-    z.literal(11),
-    z.literal(12),
-    z.literal(13),
-    z.literal(14),
-    z.literal(15),
-    z.literal(16),
-    z.literal(17),
-    z.literal(18),
-    z.literal(19),
-    z.literal(20),
-    z.literal(21),
-    z.literal(22),
-    z.literal(23),
-    z.literal(24),
-    z.literal(25),
-    z.literal(26),
-    z.literal(27),
-    z.literal(28),
-    z.literal(29),
-    z.literal(30),
-    z.literal(31),
-    z.literal(32),
-    z.literal(33),
-    z.literal(34),
-    z.literal(35),
-    z.literal(36),
-    z.literal(37),
-    z.literal(38),
-    z.literal(39),
-    z.literal(40),
-    z.literal(41),
-    z.literal(42),
-    z.literal(43),
-    z.literal(44),
-    z.literal(45),
-    z.literal(46),
-    z.literal(47),
-    z.literal(48),
-    z.literal(49),
-    z.literal(50),
-    z.literal(51),
-    z.literal(52),
-    z.literal(53),
-    z.literal(106),
-    z.literal(107),
-    z.literal(108),
-    z.literal(109),
-    z.literal(110),
-    z.literal(111),
-    z.literal(112),
-    z.literal(113),
-    z.literal(114),
-    z.literal(115),
-    z.literal(116),
-    z.literal(117),
-    z.literal(118),
-  ]),
+  area: z.number().int().min(0).max(118),
   /** DDR Code */
   code: z.number().int().min(10000000).max(99999999).optional(),
   /** `true` if this user info is public, otherwize `false`. */
@@ -173,21 +61,156 @@ export const userSchema = z.object({
  */
 export type User = z.infer<typeof userSchema>
 
-/** Area number that depend on official site. */
-export type AreaCode = z.infer<typeof userSchema>['area']
-/** Set for {@link AreaCode} */
-export const areaCodeSet: ReadonlySet<number> = new Set([
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21,
-  22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
-  41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 106, 107, 108, 109, 110,
-  111, 112, 113, 114, 115, 116, 117, 118,
-] satisfies AreaCode[])
+/** Area enum object */
+export const Area = {
+  Undefined: 0,
+  Australia: 109,
+  Canada: 106,
+  Europe: 52,
+  France: 115,
+  Germany: 114,
+  HongKong: 48,
+  Indonesia: 117,
+  Italy: 112,
+  Japan: 105,
+  Korea: 49,
+  NewZealand: 110,
+  Philippines: 118,
+  Portugal: 116,
+  Singapore: 107,
+  Spain: 113,
+  Taiwan: 50,
+  Thailand: 108,
+  UK: 111,
+  USA: 51,
+  Overseas: 53,
+  北海道: 1,
+  青森県: 2,
+  岩手県: 3,
+  宮城県: 4,
+  秋田県: 5,
+  山形県: 6,
+  福島県: 7,
+  茨城県: 8,
+  栃木県: 9,
+  群馬県: 10,
+  埼玉県: 11,
+  千葉県: 12,
+  東京都: 13,
+  神奈川県: 14,
+  新潟県: 15,
+  富山県: 16,
+  石川県: 17,
+  福井県: 18,
+  山梨県: 19,
+  長野県: 20,
+  岐阜県: 21,
+  静岡県: 22,
+  愛知県: 23,
+  三重県: 24,
+  滋賀県: 25,
+  京都府: 26,
+  大阪府: 27,
+  兵庫県: 28,
+  奈良県: 29,
+  和歌山県: 30,
+  鳥取県: 31,
+  島根県: 32,
+  岡山県: 33,
+  広島県: 34,
+  山口県: 35,
+  徳島県: 36,
+  香川県: 37,
+  愛媛県: 38,
+  高知県: 39,
+  福岡県: 40,
+  佐賀県: 41,
+  長崎県: 42,
+  熊本県: 43,
+  大分県: 44,
+  宮崎県: 45,
+  鹿児島県: 46,
+  沖縄県: 47,
+  Alabama: 55,
+  Alaska: 54,
+  Arizona: 57,
+  Arkansas: 56,
+  California: 58,
+  Colorado: 59,
+  Connecticut: 60,
+  Delaware: 61,
+  Florida: 62,
+  Georgia: 63,
+  Hawaii: 64,
+  Idaho: 66,
+  Illinois: 67,
+  Indiana: 68,
+  Iowa: 65,
+  Kansas: 69,
+  Kentucky: 70,
+  Louisiana: 71,
+  Maine: 74,
+  Maryland: 73,
+  Massachusetts: 72,
+  Michigan: 75,
+  Minnesota: 76,
+  Mississippi: 78,
+  Missouri: 77,
+  Montana: 79,
+  Nebraska: 80,
+  NorthCarolina: 81,
+  NorthDakota: 82,
+  NewHampshire: 83,
+  NewJersey: 84,
+  NewMexico: 85,
+  NewYork: 87,
+  Nevada: 86,
+  Ohio: 88,
+  Oklahoma: 89,
+  Oregon: 90,
+  Pennsylvania: 91,
+  RhodeIsland: 92,
+  SouthCarolina: 93,
+  SouthDakot: 94,
+  Tennessee: 95,
+  Texas: 96,
+  Utah: 97,
+  Vermont: 99,
+  Virginia: 98,
+  Washington: 100,
+  WashingtonDC: 104,
+  WestVirginia: 102,
+  Wisconsin: 101,
+  Wyoming: 103,
+} as const
+/** Set for {@link User.area} */
+export const areaCodeSet: ReadonlySet<number> = new Set([...Array(119).keys()]) // 0-118
+
+/**
+ * Returns the area that includes the specified area
+ * @param area - Area code
+ * @returns
+ * - Japan Prefectures returns `105`(Japan).
+ * - United States returns `51`(USA).
+ * - Europe countries returns `52`(Europe).
+ * - Overseas countries returns `53`(Overseas).
+ * - Other returns `0`(Undefined).
+ */
+export function findLargerArea(area: User['area']): User['area'] {
+  if (area >= Area.北海道 && area <= Area.沖縄県) return Area.Japan // Japan Prefectures(1-47)
+  if (area >= Area.Alaska && area <= Area.WashingtonDC) return Area.USA // United States(54-104)
+  if (area >= Area.UK && area <= Area.Portugal) return Area.Europe // Europe(111-116)
+  // Overseas(48-52, 106-110, 117-118)
+  if (!([Area.Undefined, Area.Japan, Area.Overseas] as number[]).includes(area))
+    return Area.Overseas
+  return 0
+}
 
 /**
  * Returns user is Area user (generated by system) or not.
  */
 export function isAreaUser(
   user: Pick<User, 'id'>
-): user is { id: `${AreaCode}` } {
+): user is { id: `${User['area']}` } {
   return [...areaCodeSet].map(i => `${i}`).includes(user.id)
 }

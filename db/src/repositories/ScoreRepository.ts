@@ -16,6 +16,9 @@ import { generateQueryConditions } from '../utils'
 
 type DBColumn<T = DBScoreSchema> = Column<DBScoreSchema, T>
 
+type SongAndChart = Pick<Song, 'id' | 'name' | 'seriesCategory' | 'deleted'> &
+  Omit<StepChart, 'playStyle' | 'difficulty' | 'bpm'>
+
 /**
  * Repository for Score data.
  */
@@ -177,10 +180,7 @@ export class ScoreRepository {
       await this.client
         .database(databaseName)
         .container(songContainer)
-        .items.query<
-          Pick<Song, 'id' | 'name' | 'seriesCategory' | 'deleted'> &
-            Omit<StepChart, 'playStyle' | 'difficulty' | 'bpm'>
-        >(
+        .items.query<SongAndChart>(
           {
             query: `SELECT ${columns.join(', ')} FROM s JOIN c IN s.charts WHERE ${queryConditions}`,
             parameters,
