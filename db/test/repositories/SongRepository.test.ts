@@ -33,8 +33,8 @@ describe('/repositories/SongRepository', () => {
       const result = await repository.get(testSongData.id)
 
       // Assert
-      expect(result).toEqual(testSongData)
-      expect(client.items.query).toBeCalledWith(
+      expect(result).toStrictEqual(testSongData)
+      expect(client.items.query).toHaveBeenCalledWith(
         {
           query:
             'SELECT TOP 1 c.id, c.name, c.nameKana, c.cp_nameIndex AS nameIndex, c.artist, ' +
@@ -60,8 +60,8 @@ describe('/repositories/SongRepository', () => {
       )
 
       // Assert
-      expect(result).toEqual(testSongList)
-      expect(client.items.query).toBeCalledWith({
+      expect(result).toStrictEqual(testSongList)
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT c.id, c.name, c.nameKana, c.cp_nameIndex AS nameIndex, c.artist, ' +
           'c.series, c.cp_seriesCategory AS seriesCategory, c.minBPM, c.maxBPM, c.cp_folders AS folders, c.deleted ' +
@@ -96,7 +96,7 @@ describe('/repositories/SongRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(resources)
-      expect(client.items.query).toBeCalledWith({
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT s.id, s.name, s.nameKana, s.cp_nameIndex AS nameIndex, s.artist, s.series, ' +
           's.cp_seriesCategory AS seriesCategory, ARRAY_CONCAT(s.cp_folders, [{ type: "level", name: ToString(c.level) }]) AS folders, ' +
@@ -121,7 +121,7 @@ describe('/repositories/SongRepository', () => {
 
       // Assert
       expect(result).toStrictEqual(resources)
-      expect(client.items.query).toBeCalledWith({
+      expect(client.items.query).toHaveBeenCalledWith({
         query:
           'SELECT c.playStyle, c.level, COUNT(1) AS count ' +
           'FROM s JOIN c IN s.charts ' +
@@ -148,7 +148,7 @@ describe('/repositories/SongRepository', () => {
       await repository.upsert(song)
 
       // Assert
-      expect(client.items.upsert).toBeCalledWith(song)
+      expect(client.items.upsert).toHaveBeenCalledWith(song)
     })
   })
 })

@@ -16,7 +16,9 @@ describe('GET /api/v2/users/[id]', () => {
     const event = createEvent({ id: 'not_exists_user' })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrow(
+      expect.objectContaining({ statusCode: 404 })
+    )
   })
 
   test('returns 200 with JSON when getUser() returns user', async () => {

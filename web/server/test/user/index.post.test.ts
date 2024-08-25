@@ -19,10 +19,10 @@ describe('POST /api/v2/user', () => {
     vi.mocked(getClientPrincipal).mockReturnValue(null)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getUserRepository)).not.toBeCalled()
+    expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
   })
 
   test('returns 400 if body is not UserSchema', async () => {
@@ -31,10 +31,10 @@ describe('POST /api/v2/user', () => {
     vi.mocked(getClientPrincipal).mockReturnValue(principal)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getUserRepository)).not.toBeCalled()
+    expect(vi.mocked(getUserRepository)).not.toHaveBeenCalled()
   })
 
   test('returns 200 with JSON (Create)', async () => {
@@ -55,9 +55,9 @@ describe('POST /api/v2/user', () => {
 
     // Assert
     expect(result).toStrictEqual(user)
-    expect(get).toBeCalledWith('', 'loginId')
-    expect(create).toBeCalledWith(user, 'loginId')
-    expect(update).not.toBeCalled()
+    expect(get).toHaveBeenCalledWith('', 'loginId')
+    expect(create).toHaveBeenCalledWith(user, 'loginId')
+    expect(update).not.toHaveBeenCalled()
   })
 
   test.each([{ name: 'AFRO' }, { isPublic: true }, { code: 20000000 }])(
@@ -87,9 +87,9 @@ describe('POST /api/v2/user', () => {
 
       // Assert
       expect(result).toStrictEqual(body)
-      expect(get).toBeCalledWith('', 'loginId')
-      expect(create).not.toBeCalled()
-      expect(update).toBeCalledWith(body)
+      expect(get).toHaveBeenCalledWith('', 'loginId')
+      expect(create).not.toHaveBeenCalled()
+      expect(update).toHaveBeenCalledWith(body)
     }
   )
 
@@ -107,11 +107,11 @@ describe('POST /api/v2/user', () => {
     } as unknown as ReturnType<typeof getUserRepository>)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(get).toBeCalledWith('', 'loginId')
-    expect(create).not.toBeCalled()
-    expect(update).not.toBeCalled()
+    expect(get).toHaveBeenCalledWith('', 'loginId')
+    expect(create).not.toHaveBeenCalled()
+    expect(update).not.toHaveBeenCalled()
   })
 })

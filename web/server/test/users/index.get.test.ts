@@ -41,7 +41,7 @@ describe('GET /api/v2/users', () => {
 
       // Assert
       expect(users).toHaveLength(1)
-      expect(list).toBeCalledWith(conditions, undefined)
+      expect(list).toHaveBeenCalledWith(conditions, undefined)
     }
   )
 
@@ -60,6 +60,6 @@ describe('GET /api/v2/users', () => {
 
     // Assert
     expect(users).toHaveLength(1)
-    expect(list).toBeCalledWith([], 'loginId')
+    expect(list).toHaveBeenCalledWith([], 'loginId')
   })
 })

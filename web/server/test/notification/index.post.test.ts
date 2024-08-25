@@ -25,10 +25,10 @@ describe('POST /api/v2/notification', () => {
     const event = createEvent(undefined, undefined, validBody)
 
     // Act - Assert
-    await expect(postNotification(event)).rejects.toThrowError(
+    await expect(postNotification(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getNotificationRepository)).not.toBeCalled()
+    expect(vi.mocked(getNotificationRepository)).not.toHaveBeenCalled()
   })
 
   test.each([
@@ -49,10 +49,10 @@ describe('POST /api/v2/notification', () => {
     const event = createEvent(undefined, undefined, body)
 
     // Act - Assert
-    await expect(postNotification(event)).rejects.toThrowError(
+    await expect(postNotification(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getNotificationRepository)).not.toBeCalled()
+    expect(vi.mocked(getNotificationRepository)).not.toHaveBeenCalled()
   })
 
   test.each([
@@ -91,7 +91,7 @@ describe('POST /api/v2/notification', () => {
         body: notification.body,
         timeStamp: notification.timeStamp,
       })
-      expect(upsert).toBeCalledWith(expected, pinned)
+      expect(upsert).toHaveBeenCalledWith(expected, pinned)
     }
   )
 })

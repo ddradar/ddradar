@@ -27,8 +27,8 @@ describe('GET /api/v2/user/roles', () => {
 
       // Assert
       expect(roles).toStrictEqual(expected)
-      expect(vi.mocked(getUserRepository)).toBeCalled()
-      expect(isAdministrator).toBeCalledWith('userId')
+      expect(vi.mocked(getUserRepository)).toHaveBeenCalled()
+      expect(isAdministrator).toHaveBeenCalledWith('userId')
     }
   )
 })

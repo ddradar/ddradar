@@ -35,9 +35,12 @@ describe('components/app/LoginButton.vue', () => {
       await wrapper.find('button').trigger('click') // Expand dropdown
       await wrapper.findAll("button[role='menuitem']")[i]?.trigger('click') // Click menu item
       // Assert
-      expect(vi.mocked(navigateTo)).toBeCalledWith(`/.auth/login/${provider}`, {
-        external: true,
-      })
+      expect(vi.mocked(navigateTo)).toHaveBeenCalledWith(
+        `/.auth/login/${provider}`,
+        {
+          external: true,
+        }
+      )
     }
   )
 })

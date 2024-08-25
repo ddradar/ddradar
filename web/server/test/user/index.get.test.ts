@@ -12,7 +12,9 @@ describe('GET /api/v2/user', () => {
     vi.mocked(getLoginUserInfo).mockRejectedValue({ statusCode: 401 })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
+    await expect(handler(event)).rejects.toThrow(
+      expect.objectContaining({ statusCode: 401 })
+    )
   })
 
   test('returns 200 with JSON', async () => {

@@ -34,10 +34,10 @@ describe('POST /api/v2/songs', () => {
     const event = createEvent(undefined, undefined, null)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getSongRepository)).not.toBeCalled()
+    expect(vi.mocked(getSongRepository)).not.toHaveBeenCalled()
   })
   test('throws 400 Error when body is empty', async () => {
     // Arrange
@@ -45,10 +45,10 @@ describe('POST /api/v2/songs', () => {
     const event = createEvent(undefined, undefined, null)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
-    expect(vi.mocked(getSongRepository)).not.toBeCalled()
+    expect(vi.mocked(getSongRepository)).not.toHaveBeenCalled()
   })
 
   const inversedCharts = [...song.charts].sort(
@@ -82,6 +82,6 @@ describe('POST /api/v2/songs', () => {
 
     // Assert
     expect(result).toStrictEqual(expected)
-    expect(upsert).toBeCalledWith(expected)
+    expect(upsert).toHaveBeenCalledWith(expected)
   })
 })

@@ -30,14 +30,16 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     { ...params, id: '0' },
     { ...params, style: '3' },
     { ...params, diff: '-1' },
-  ])('%o (params) throws 404 error', async params => {
+  ])('%o (params) throws 400 error', async params => {
     // Arrange
     const event = createEvent(params)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
-    expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
-    expect(vi.mocked(getScoreRepository)).not.toBeCalled()
+    await expect(handler(event)).rejects.toThrow(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getLoginUserInfo)).not.toHaveBeenCalled()
+    expect(vi.mocked(getScoreRepository)).not.toHaveBeenCalled()
   })
 
   test.each([null, {}])('throws 400 error when body is %o', async body => {
@@ -45,9 +47,11 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params, undefined, body)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError()
-    expect(vi.mocked(getLoginUserInfo)).not.toBeCalled()
-    expect(vi.mocked(getScoreRepository)).not.toBeCalled()
+    await expect(handler(event)).rejects.toThrow(
+      expect.objectContaining({ statusCode: 400 })
+    )
+    expect(vi.mocked(getLoginUserInfo)).not.toHaveBeenCalled()
+    expect(vi.mocked(getScoreRepository)).not.toHaveBeenCalled()
   })
 
   test('throws 401 error when anonymous', async () => {
@@ -56,10 +60,10 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params, undefined, mfcScore)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 401 })
     )
-    expect(vi.mocked(getScoreRepository)).not.toBeCalled()
+    expect(vi.mocked(getScoreRepository)).not.toHaveBeenCalled()
   })
 
   test('throws 404 error when not found Song', async () => {
@@ -72,10 +76,10 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params, undefined, mfcScore)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404, message: 'Song not found' })
     )
-    expect(vi.mocked(upsert)).toBeCalledWith(
+    expect(vi.mocked(upsert)).toHaveBeenCalledWith(
       user,
       params.id,
       song.charts[0].playStyle,
@@ -94,10 +98,10 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params, undefined, mfcScore)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400, message: 'Invalid score' })
     )
-    expect(vi.mocked(upsert)).toBeCalledWith(
+    expect(vi.mocked(upsert)).toHaveBeenCalledWith(
       user,
       params.id,
       song.charts[0].playStyle,
@@ -152,7 +156,7 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
       difficulty: song.charts[0].difficulty,
       level: song.charts[0].level,
     })
-    expect(vi.mocked(upsert)).toBeCalledWith(
+    expect(vi.mocked(upsert)).toHaveBeenCalledWith(
       user,
       params.id,
       song.charts[0].playStyle,

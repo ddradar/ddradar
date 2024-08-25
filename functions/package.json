@@ -5,7 +5,7 @@
   "license": "MIT",
   "private": true,
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "main": "dist/functions/*.js",
   "type": "module",
@@ -25,8 +25,8 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4",
-    "@types/node": "^18.17.11",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/node": "^18.19.45",
     "typescript": "^5.5.4",
     "vitest": "^2.0.5"
   }

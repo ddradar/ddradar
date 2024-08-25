@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import { ZodError } from 'zod'
 
 import type { ScoreRecord } from '../src/score'
 import {
@@ -37,7 +38,7 @@ describe('score.ts', () => {
     )
     test.each([-1, 10.5, NaN, Infinity, -Infinity, 1000010])(
       '(%d) throws error',
-      d => expect(() => getDanceLevel(d)).toThrowError()
+      d => expect(() => getDanceLevel(d)).toThrow(expect.any(ZodError))
     )
   })
 
@@ -256,9 +257,9 @@ describe('score.ts', () => {
         expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
     )
     test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>
-      expect(() =>
-        setValidScoreFromChart(chart, { exScore: 800 })
-      ).toThrowError(/^Cannot guess Score object. set score property/))
+      expect(() => setValidScoreFromChart(chart, { exScore: 800 })).toThrow(
+        /^Cannot guess Score object. set score property/
+      ))
     test.each([
       [
         { score: 993100, clearLamp: Lamp.GFC },
@@ -298,7 +299,7 @@ describe('score.ts', () => {
   describe('calcFlareSkill', () => {
     test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
       `(%d, 0) throws error`,
-      d => expect(() => calcFlareSkill(d, 0)).toThrowError()
+      d => expect(() => calcFlareSkill(d, 0)).toThrow(expect.any(ZodError))
     )
 
     test.each([

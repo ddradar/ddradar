@@ -34,7 +34,7 @@ describe('GET /api/v2/notification/[id]', () => {
     const event = createEvent({ id: `00000000000` })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
   })

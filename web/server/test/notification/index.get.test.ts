@@ -30,7 +30,7 @@ describe('GET /api/v2/notification', () => {
 
       // Assert
       expect(result).toStrictEqual(notifications)
-      expect(list).toBeCalledWith(conditions)
+      expect(list).toHaveBeenCalledWith(conditions)
     }
   )
 })

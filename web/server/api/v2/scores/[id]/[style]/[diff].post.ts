@@ -15,8 +15,8 @@ import {
  *   - `diff`: Difficulty
  * @returns
  * - Returns `401 Unauthorized` if you are not logged in.
- * - Returns `400 Bad Request` if parameter body is invalid.
- * - Returns `404 Not Found` if route parameters are invalid or no chart.
+ * - Returns `400 Bad Request` if parameter body or route params are invalid.
+ * - Returns `404 Not Found` if no song or chart.
  * - Returns `200 OK` with JSON body otherwize.
  * @example
  * ```jsonc

@@ -13,7 +13,7 @@ import {
  *   - `style`: PlayStyle
  *   - `diff`: Difficulty
  * @returns
- * - Returns `404 Not Found` if parameters are invalid.
+ * - Returns `400 Bad Request` if parameters are invalid.
  * - Returns `200 OK` with JSON body otherwize.
  * @example
  * ```json

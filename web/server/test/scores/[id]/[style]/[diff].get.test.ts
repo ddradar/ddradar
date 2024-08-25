@@ -43,7 +43,7 @@ describe('GET /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params)
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
   })
@@ -54,10 +54,10 @@ describe('GET /api/v2/scores/[id]/[style]/[diff]', () => {
     const event = createEvent(params, { scope: 'private' })
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
-    expect(vi.mocked(getScoreRepository)).not.toBeCalled()
+    expect(vi.mocked(getScoreRepository)).not.toHaveBeenCalled()
   })
 
   test.each([
@@ -146,7 +146,7 @@ describe('GET /api/v2/scores/[id]/[style]/[diff]', () => {
 
       // Assert
       expect(scores).toBe(dbScores)
-      expect(list).toBeCalledWith(conditions)
+      expect(list).toHaveBeenCalledWith(conditions)
     }
   )
 })
