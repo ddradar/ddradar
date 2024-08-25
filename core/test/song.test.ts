@@ -1,5 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
+import type { Series } from '../src/song'
 import {
   detectCategory,
   getNameIndex,
@@ -39,7 +40,7 @@ describe('song.ts', () => {
     test.each([
       validSong,
       { ...validSong, name: 'テスト', nameKana: 'てすと', nameIndex: 3 },
-      { ...validSong, series: 'DanceDanceRevolution WORLD' },
+      { ...validSong, series: 'DDR WORLD' },
       { ...validSong, folders: [] },
       { ...validSong, skillAttackId: 1 },
       { ...validSong, deleted: true },
@@ -88,14 +89,14 @@ describe('song.ts', () => {
       ['DDR X', 'CLASSIC'],
       ['DDR X2', 'CLASSIC'],
       ['DDR X3 VS 2ndMIX', 'CLASSIC'],
-      ['DanceDanceRevolution (2013)', 'WHITE'],
-      ['DanceDanceRevolution (2014)', 'WHITE'],
-      ['DanceDanceRevolution A', 'WHITE'],
-      ['DanceDanceRevolution A20', 'GOLD'],
-      ['DanceDanceRevolution A20 PLUS', 'GOLD'],
-      ['DanceDanceRevolution A3', 'GOLD'],
-      ['DanceDanceRevolution WORLD', 'GOLD'],
-    ] as const)('(%s) returns "%s"', (series, expected) => {
+      ['DDR (2013)', 'WHITE'],
+      ['DDR (2014)', 'WHITE'],
+      ['DDR A', 'WHITE'],
+      ['DDR A20', 'GOLD'],
+      ['DDR A20 PLUS', 'GOLD'],
+      ['DDR A3', 'GOLD'],
+      ['DDR WORLD', 'GOLD'],
+    ] satisfies [Series, string][])('(%s) returns "%s"', (series, expected) => {
       expect(detectCategory(series)).toBe(expected)
     })
   })

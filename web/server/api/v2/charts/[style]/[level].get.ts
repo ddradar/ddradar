@@ -15,7 +15,7 @@ import { getRouterParamsSchema as schema } from '~~/schemas/charts'
  *   {
  *     "id": "61oIP0QIlO90d18ObDP1Dii6PoIQoOD8",
  *     "name": "イーディーエム・ジャンパーズ",
- *     "series": "DanceDanceRevolution A",
+ *     "series": "DDR A",
  *     "playStyle": 1,
  *     "difficulty": 3,
  *     "level": 12

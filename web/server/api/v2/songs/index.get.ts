@@ -7,7 +7,7 @@ import { listQuerySchema as schema } from '~~/schemas/songs'
  * - No need Authentication.
  * - GET `/api/v2/songs?name=:name&series=:series`
  *   - `name`(optional): {@link SongListData.nameIndex}
- *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `18`: Dance Dance Revolution A3
+ *   - `series`(optional): `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `19`: DDR WORLD
  * @param event HTTP Event
  * @returns `200 OK` with JSON body.
  * @example
@@ -19,7 +19,7 @@ import { listQuerySchema as schema } from '~~/schemas/songs'
  *     "nameKana": "いーでぃーえむ じゃんぱーず",
  *     "nameIndex": 0,
  *     "artist": "かめりあ feat. ななひら",
- *     "series": "DanceDanceRevolution A",
+ *     "series": "DDR A",
  *     "minBPM": 72,
  *     "maxBPM": 145
  *   }

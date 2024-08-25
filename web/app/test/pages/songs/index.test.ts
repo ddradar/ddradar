@@ -93,7 +93,7 @@ describe('/songs', () => {
   // Computed
   test.each([
     [undefined, undefined, 'すべての楽曲を表示'],
-    [undefined, '18', 'DanceDanceRevolution A3'],
+    [undefined, '19', 'DDR WORLD'],
     ['1', undefined, 'か'],
   ])('?name=%s&series=%s renders "%s" title', async (name, series, title) => {
     // Arrange

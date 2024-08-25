@@ -18,7 +18,7 @@ import { getRouterParamsSchema as schema } from '~~/schemas/songs'
  *   "nameKana": "いーでぃーえむ じゃんぱーず",
  *   "nameIndex": 0,
  *   "artist": "かめりあ feat. ななひら",
- *   "series": "DanceDanceRevolution A",
+ *   "series": "DDR A",
  *   "minBPM": 72,
  *   "maxBPM": 145,
  *   "folders": [

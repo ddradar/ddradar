@@ -132,13 +132,13 @@ export const songSchema = z.object({
     z.literal('DDR X'),
     z.literal('DDR X2'),
     z.literal('DDR X3 VS 2ndMIX'),
-    z.literal('DanceDanceRevolution (2013)'),
-    z.literal('DanceDanceRevolution (2014)'),
-    z.literal('DanceDanceRevolution A'),
-    z.literal('DanceDanceRevolution A20'),
-    z.literal('DanceDanceRevolution A20 PLUS'),
-    z.literal('DanceDanceRevolution A3'),
-    z.literal('DanceDanceRevolution WORLD'),
+    z.literal('DDR (2013)'),
+    z.literal('DDR (2014)'),
+    z.literal('DDR A'),
+    z.literal('DDR A20'),
+    z.literal('DDR A20 PLUS'),
+    z.literal('DDR A3'),
+    z.literal('DDR WORLD'),
   ]),
   /**
    * Flare skill category.
@@ -303,13 +303,13 @@ export const seriesSet: ReadonlySet<string> = new Set([
   'DDR X',
   'DDR X2',
   'DDR X3 VS 2ndMIX',
-  'DanceDanceRevolution (2013)',
-  'DanceDanceRevolution (2014)',
-  'DanceDanceRevolution A',
-  'DanceDanceRevolution A20',
-  'DanceDanceRevolution A20 PLUS',
-  'DanceDanceRevolution A3',
-  'DanceDanceRevolution WORLD',
+  'DDR (2013)',
+  'DDR (2014)',
+  'DDR A',
+  'DDR A20',
+  'DDR A20 PLUS',
+  'DDR A3',
+  'DDR WORLD',
 ] satisfies Series[])
 /** Series belong with "CLASSIC" */
 export const classicSeries = new Set<Series>([
@@ -329,9 +329,9 @@ export const classicSeries = new Set<Series>([
 ])
 /** Series belong with "WHITE" */
 export const whiteSeries = new Set<Series>([
-  'DanceDanceRevolution (2013)',
-  'DanceDanceRevolution (2014)',
-  'DanceDanceRevolution A',
+  'DDR (2013)',
+  'DDR (2014)',
+  'DDR A',
 ])
 /**
  * Detect Flare Skill Category from {@link Series}.
