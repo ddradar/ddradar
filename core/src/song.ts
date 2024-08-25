@@ -35,6 +35,27 @@ export const stepChartSchema = z.object({
 })
 /** Song's step chart */
 export type StepChart = z.infer<typeof stepChartSchema>
+/** Enum object for {@link StepChart} */
+export const Chart = {
+  /** SINGLE/BEGINNER */
+  bSP: [1, 0],
+  /** SINGLE/BASIC */
+  BSP: [1, 1],
+  /** SINGLE/DIFFICULT */
+  DSP: [1, 2],
+  /** SINGLE/EXPERT */
+  ESP: [1, 3],
+  /** SINGLE/CHALLENGE */
+  CSP: [1, 4],
+  /** DOUBLE/BASIC */
+  BDP: [2, 1],
+  /** DOUBLE/DIFFICULT */
+  DDP: [2, 2],
+  /** DOUBLE/EXPERT */
+  EDP: [2, 3],
+  /** DOUBLE/CHALLENGE */
+  CDP: [2, 4],
+} as const
 
 /** `1`: SINGLE, `2`: DOUBLE */
 export type PlayStyle = z.infer<typeof stepChartSchema>['playStyle']

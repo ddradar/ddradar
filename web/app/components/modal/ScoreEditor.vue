@@ -5,6 +5,7 @@ import {
   clearLampMap,
   danceLevelSet,
   difficultyMap,
+  Lamp,
   playStyleMap,
   scoreRecordSchema as schema,
 } from '@ddradar/core'
@@ -34,7 +35,7 @@ const { data: song } = await useFetch(
 
 const _default: ScoreRecord = {
   score: 0,
-  clearLamp: 0,
+  clearLamp: Lamp.Failed,
   rank: 'E',
 }
 const _scoreUri = computed(

@@ -1,4 +1,5 @@
 import { InvocationContext } from '@azure/functions'
+import { Lamp } from '@ddradar/core'
 import { publicUser, testSongData } from '@ddradar/core/test/data'
 import type { DBScoreSchema } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
@@ -44,7 +45,7 @@ describe('/functions/updateSongInfo.ts', () => {
           chart: { ...chart, level: 1 },
           user: { id: '0', area: 0, name: '0', isPublic: false },
           score: 999620, // P:38
-          clearLamp: 6,
+          clearLamp: Lamp.PFC,
           rank: 'AAA',
           maxCombo: 138,
           exScore: 376,
@@ -61,7 +62,7 @@ describe('/functions/updateSongInfo.ts', () => {
             name: publicUser.name,
           },
           score: 970630, // P:28, Gr:10
-          clearLamp: 5,
+          clearLamp: Lamp.GFC,
           rank: 'AA+',
           maxCombo: 138,
           exScore: 366,
@@ -75,7 +76,7 @@ describe('/functions/updateSongInfo.ts', () => {
           chart,
           user: { id: '0', area: 0, name: '0', isPublic: false },
           score: 999620, // P:38
-          clearLamp: 6,
+          clearLamp: Lamp.PFC,
           rank: 'AAA',
           maxCombo: 138,
           exScore: 376,
@@ -92,7 +93,7 @@ describe('/functions/updateSongInfo.ts', () => {
             name: publicUser.name,
           },
           score: 970630, // P:28, Gr:10
-          clearLamp: 5,
+          clearLamp: Lamp.GFC,
           rank: 'AA+',
           maxCombo: 138,
           exScore: 366,
@@ -108,7 +109,7 @@ describe('/functions/updateSongInfo.ts', () => {
           },
           user: { id: '0', area: 0, name: '0', isPublic: false },
           score: 0,
-          clearLamp: 0,
+          clearLamp: Lamp.Failed,
           rank: 'E',
         },
       ] satisfies DBScoreSchema[],

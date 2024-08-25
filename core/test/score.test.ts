@@ -4,8 +4,10 @@ import type { ScoreRecord } from '../src/score'
 import {
   calcFlareSkill,
   detectJudgeCounts,
+  Flare,
   getDanceLevel,
   isValidScore,
+  Lamp,
   mergeScore,
   setValidScoreFromChart,
 } from '../src/score'
@@ -42,34 +44,37 @@ describe('score.ts', () => {
   describe('mergeScore', () => {
     test.each([
       [
-        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
-        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
-        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
+        { score: 900000, clearLamp: Lamp.Assisted, rank: 'AA' },
+        { score: 900000, clearLamp: Lamp.Assisted, rank: 'AA' },
+        { score: 900000, clearLamp: Lamp.Assisted, rank: 'AA' },
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
-        { score: 850000, clearLamp: 4, exScore: 100, rank: 'A+' } as const,
-        { score: 900000, clearLamp: 4, rank: 'AA', exScore: 100 } as const,
+        { score: 900000, clearLamp: Lamp.Life4, rank: 'AA' },
+        { score: 850000, clearLamp: Lamp.FC, exScore: 100, rank: 'A+' },
+        { score: 900000, clearLamp: Lamp.FC, rank: 'AA', exScore: 100 },
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
-        { score: 920000, clearLamp: 0, rank: 'E' } as const,
-        { score: 920000, clearLamp: 3, rank: 'E' } as const,
+        { score: 900000, clearLamp: Lamp.Life4, rank: 'AA' },
+        { score: 920000, clearLamp: Lamp.Failed, rank: 'E' },
+        { score: 920000, clearLamp: Lamp.Life4, rank: 'E' },
       ],
       [
-        { score: 900000, clearLamp: 3, rank: 'AA' } as const,
-        { score: 850000, clearLamp: 4, maxCombo: 100, rank: 'A+' } as const,
-        { score: 900000, clearLamp: 4, rank: 'AA', maxCombo: 100 } as const,
+        { score: 900000, clearLamp: Lamp.Life4, rank: 'AA' },
+        { score: 850000, clearLamp: Lamp.FC, maxCombo: 100, rank: 'A+' },
+        { score: 900000, clearLamp: Lamp.FC, rank: 'AA', maxCombo: 100 },
       ],
       [
-        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
-        { score: 900000, clearLamp: 2, rank: 'AA' } as const,
-        { score: 900000, clearLamp: 1, rank: 'AA' } as const,
+        { score: 900000, clearLamp: Lamp.Assisted, rank: 'AA' },
+        { score: 900000, clearLamp: Lamp.Clear, rank: 'AA' },
+        { score: 900000, clearLamp: Lamp.Assisted, rank: 'AA' },
       ],
-    ])('(%o, %o) returns %o', (left, right, expected) => {
-      expect(mergeScore(left, right)).toStrictEqual(expected)
-      expect(mergeScore(right, left)).toStrictEqual(expected)
-    })
+    ] satisfies [ScoreRecord, ScoreRecord, ScoreRecord][])(
+      '(%o, %o) returns %o',
+      (left, right, expected) => {
+        expect(mergeScore(left, right)).toStrictEqual(expected)
+        expect(mergeScore(right, left)).toStrictEqual(expected)
+      }
+    )
   })
 
   describe('isValidScore', () => {
@@ -80,7 +85,7 @@ describe('score.ts', () => {
     } as const
     const baseScore: ScoreRecord = {
       score: 900000,
-      clearLamp: 4,
+      clearLamp: Lamp.FC,
       rank: 'AA',
     }
     test.each([
@@ -95,11 +100,11 @@ describe('score.ts', () => {
     test.each([
       baseScore,
       { ...baseScore, exScore: 200 },
-      { ...baseScore, clearLamp: 7, exScore: 390 },
-      { ...baseScore, clearLamp: 6, exScore: 389 },
-      { ...baseScore, clearLamp: 5, exScore: 388 },
+      { ...baseScore, clearLamp: Lamp.MFC, exScore: 390 },
+      { ...baseScore, clearLamp: Lamp.PFC, exScore: 389 },
+      { ...baseScore, clearLamp: Lamp.GFC, exScore: 388 },
       { ...baseScore, maxCombo: 110 },
-      { ...baseScore, clearLamp: 3, maxCombo: 110 },
+      { ...baseScore, clearLamp: Lamp.Life4, maxCombo: 110 },
     ] as const)('(chart, %o) returns true', score =>
       expect(isValidScore(chart, score)).toBe(true)
     )
@@ -111,7 +116,7 @@ describe('score.ts', () => {
     const mfcScore: ScoreRecord = {
       score: 1000000,
       rank: 'AAA',
-      clearLamp: 7,
+      clearLamp: Lamp.MFC,
       exScore: 3060,
       maxCombo: 1010,
     }
@@ -119,131 +124,135 @@ describe('score.ts', () => {
     const pfcScore: ScoreRecord = {
       ...mfcScore,
       score: 999990,
-      clearLamp: 6,
+      clearLamp: Lamp.PFC,
       exScore: 3059,
     }
     /** Great:1 Score */
     const gfcScore: ScoreRecord = {
       ...pfcScore,
       score: 999590,
-      clearLamp: 5,
+      clearLamp: Lamp.GFC,
       exScore: 3058,
     }
     /** Good:1 Score */
     const fcScore: ScoreRecord = {
       ...gfcScore,
       score: 999200,
-      clearLamp: 4,
+      clearLamp: Lamp.FC,
       exScore: 3057,
     }
     /** 0 point falied Score */
     const noPlayScore: ScoreRecord = {
       score: 0,
       rank: 'E',
-      clearLamp: 0,
+      clearLamp: Lamp.Failed,
       exScore: 0,
       maxCombo: 0,
     }
     test.each([
-      [{ clearLamp: 7 }, mfcScore], // MFC
+      [{ clearLamp: Lamp.MFC }, mfcScore], // MFC
       [{ score: 1000000 }, mfcScore], // MFC
       [{ exScore: 3060 }, mfcScore], // MFC
       [{ score: 999990 }, pfcScore], // P1
       [{ exScore: 3059 }, pfcScore], // P1
       [{ score: 999600 }, { ...pfcScore, score: 999600, exScore: 3020 }], // Maybe PFC (score is greater than Great:1 score)
       [
-        { exScore: 3040, clearLamp: 6 },
+        { exScore: 3040, clearLamp: Lamp.PFC },
         { ...pfcScore, score: 999800, exScore: 3040 },
       ], // P20
-      [{ exScore: 3058, clearLamp: 5 }, gfcScore], // Gr1
-      [{ score: 999590, clearLamp: 5 }, gfcScore], // Gr1
+      [{ exScore: 3058, clearLamp: Lamp.GFC }, gfcScore], // Gr1
+      [{ score: 999590, clearLamp: Lamp.GFC }, gfcScore], // Gr1
       [
-        { score: 999500, clearLamp: 5 },
+        { score: 999500, clearLamp: Lamp.GFC },
         { ...gfcScore, score: 999500, exScore: 3049 },
       ], // Gr1 P9
       [{ score: 999210 }, { ...gfcScore, score: 999210, exScore: 3020 }], // Maybe Great:1 FC (score is greater than Good:1 score)
       [
-        { score: 987600, clearLamp: 5 },
-        { score: 987600, rank: 'AA+', clearLamp: 5, maxCombo: 1010 },
+        { score: 987600, clearLamp: Lamp.GFC },
+        { score: 987600, rank: 'AA+', clearLamp: Lamp.GFC, maxCombo: 1010 },
       ], // Cannot guess EX SCORE
-      [{ exScore: 3057, clearLamp: 4 }, fcScore], // Gd1
-      [{ score: 999200, clearLamp: 4 }, fcScore], // Gd1
+      [{ exScore: 3057, clearLamp: Lamp.FC }, fcScore], // Gd1
+      [{ score: 999200, clearLamp: Lamp.FC }, fcScore], // Gd1
       [
-        { score: 999000, clearLamp: 4 },
+        { score: 999000, clearLamp: Lamp.FC },
         { ...fcScore, score: 999000, exScore: 3037 },
       ], // Gd1 P20
       [
         { score: 999100 },
-        { score: 999100, rank: 'AAA', clearLamp: 4, maxCombo: 1010 },
+        { score: 999100, rank: 'AAA', clearLamp: Lamp.FC, maxCombo: 1010 },
       ], // Maybe Full Combo (score is greater than Miss:1 score)
       [
-        { score: 987600, clearLamp: 4 },
-        { score: 987600, clearLamp: 4, rank: 'AA+', maxCombo: 1010 },
+        { score: 987600, clearLamp: Lamp.FC },
+        { score: 987600, clearLamp: Lamp.FC, rank: 'AA+', maxCombo: 1010 },
       ], // Cannot guess EX SCORE
       [
-        { exScore: 3057, clearLamp: 2 },
-        { score: 999010, rank: 'AAA', clearLamp: 2, exScore: 3057 },
+        { exScore: 3057, clearLamp: Lamp.Clear },
+        { score: 999010, rank: 'AAA', clearLamp: Lamp.Clear, exScore: 3057 },
       ], // Miss1
       [
         { exScore: 3057, rank: 'AAA' },
-        { score: 999010, rank: 'AAA', clearLamp: 1, exScore: 3057 },
+        { score: 999010, rank: 'AAA', clearLamp: Lamp.Assisted, exScore: 3057 },
       ], // Miss1
       [
-        { exScore: 3057, clearLamp: 0 },
-        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+        { exScore: 3057, clearLamp: Lamp.Failed },
+        { score: 999010, rank: 'E', clearLamp: Lamp.Failed, exScore: 3057 },
       ], // Miss1 (Failed)
       [
         { exScore: 3057, rank: 'E' },
-        { score: 999010, rank: 'E', clearLamp: 0, exScore: 3057 },
+        { score: 999010, rank: 'E', clearLamp: Lamp.Failed, exScore: 3057 },
       ], // Miss1 (Failed)
       [
-        { score: 999000, clearLamp: 2 },
-        { score: 999000, rank: 'AAA', clearLamp: 2, exScore: 3056 },
+        { score: 999000, clearLamp: Lamp.Clear },
+        { score: 999000, rank: 'AAA', clearLamp: Lamp.Clear, exScore: 3056 },
       ], // Miss1 P1
       [
-        { score: 999000, clearLamp: 0, maxCombo: 1010 },
+        { score: 999000, clearLamp: Lamp.Failed, maxCombo: 1010 },
         {
           score: 999000,
           rank: 'E',
-          clearLamp: 0,
+          clearLamp: Lamp.Failed,
           exScore: 3056,
           maxCombo: 1010,
         },
       ], // Miss1 P1 (missed last FA)
       [
-        { score: 948260, clearLamp: 3, maxCombo: 260 },
-        { score: 948260, rank: 'AA', clearLamp: 3, maxCombo: 260 },
+        { score: 948260, clearLamp: Lamp.Life4, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: Lamp.Life4, maxCombo: 260 },
       ],
       [
         { score: 948260, maxCombo: 260 },
-        { score: 948260, rank: 'AA', clearLamp: 2, maxCombo: 260 },
+        { score: 948260, rank: 'AA', clearLamp: Lamp.Clear, maxCombo: 260 },
       ],
       [
         { score: 8460, rank: 'E' },
-        { score: 8460, rank: 'E', clearLamp: 0 },
+        { score: 8460, rank: 'E', clearLamp: Lamp.Failed },
       ],
-      [{ score: 0, clearLamp: 0 }, noPlayScore], // 0 point falied
+      [{ score: 0, clearLamp: Lamp.Failed }, noPlayScore], // 0 point falied
       [{ score: 0, rank: 'E' }, noPlayScore], // 0 point falied
       [
-        // 0 point clear (Maybe use Assist option)
-        { score: 0, clearLamp: 1 } as Partial<ScoreRecord>,
-        { ...noPlayScore, rank: 'D', clearLamp: 1 } as ScoreRecord,
-      ],
+        { score: 0, clearLamp: Lamp.Assisted },
+        { ...noPlayScore, rank: 'D', clearLamp: Lamp.Assisted },
+      ], // 0 point clear (Maybe use Assist option)
       [
-        { score: 0, clearLamp: 2 },
-        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+        { score: 0, clearLamp: Lamp.Clear },
+        { ...noPlayScore, rank: 'D', clearLamp: Lamp.Assisted },
       ], // 0 point clear (Maybe use Assist option)
       [
         { score: 0, rank: 'D' },
-        { ...noPlayScore, rank: 'D', clearLamp: 1 },
+        { ...noPlayScore, rank: 'D', clearLamp: Lamp.Assisted },
       ], // 0 point clear (Maybe use Assist option)
       [
-        { score: 0, clearLamp: 2, flareRank: 1 },
-        { ...noPlayScore, rank: 'D', clearLamp: 2, flareRank: 1 },
+        { score: 0, clearLamp: Lamp.Clear, flareRank: Flare.I },
+        {
+          ...noPlayScore,
+          rank: 'D',
+          clearLamp: Lamp.Clear,
+          flareRank: Flare.I,
+        },
       ], // 0 point clear (FLARE I Clear)
-    ] as const)(
+    ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(
       '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
-      (score: Partial<ScoreRecord>, expected: ScoreRecord) =>
+      (score, expected) =>
         expect(setValidScoreFromChart(chart, score)).toStrictEqual(expected)
     )
     test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>
@@ -252,21 +261,21 @@ describe('score.ts', () => {
       ).toThrowError(/^Cannot guess Score object. set score property/))
     test.each([
       [
-        { score: 993100, clearLamp: 5 },
+        { score: 993100, clearLamp: Lamp.GFC },
         {
           score: 993100,
           rank: 'AAA',
-          clearLamp: 5,
+          clearLamp: Lamp.GFC,
           exScore: 509,
           maxCombo: 180,
         },
       ], // Gr3 P55
       [
-        { score: 989100, clearLamp: 5 },
+        { score: 989100, clearLamp: Lamp.GFC },
         {
           score: 989100,
           rank: 'AA+',
-          clearLamp: 5,
+          clearLamp: Lamp.GFC,
           exScore: 528,
           maxCombo: 180,
         },
@@ -293,44 +302,44 @@ describe('score.ts', () => {
     )
 
     test.each([
-      [1, 0, 145],
-      [2, 0, 155],
-      [3, 0, 170],
-      [4, 0, 185],
-      [5, 0, 205],
-      [6, 0, 230],
-      [7, 0, 255],
-      [8, 0, 290],
-      [9, 0, 335],
-      [10, 0, 400],
-      [11, 0, 465],
-      [12, 0, 510],
-      [13, 0, 545],
-      [14, 0, 575],
-      [15, 0, 600],
-      [16, 0, 620],
-      [17, 0, 635],
-      [18, 0, 650],
-      [19, 0, 665],
-      [1, 10, 232],
-      [2, 10, 248],
-      [3, 10, 272],
-      [4, 10, 296],
-      [5, 10, 328],
-      [6, 10, 368],
-      [7, 10, 408],
-      [8, 10, 464],
-      [9, 10, 536],
-      [10, 10, 640],
-      [11, 10, 744],
-      [12, 10, 816],
-      [13, 10, 872],
-      [14, 10, 920],
-      [15, 10, 960],
-      [16, 10, 992],
-      [17, 10, 1016],
-      [18, 10, 1040],
-      [19, 10, 1064],
+      [1, Flare.None, 145],
+      [2, Flare.None, 155],
+      [3, Flare.None, 170],
+      [4, Flare.None, 185],
+      [5, Flare.None, 205],
+      [6, Flare.None, 230],
+      [7, Flare.None, 255],
+      [8, Flare.None, 290],
+      [9, Flare.None, 335],
+      [10, Flare.None, 400],
+      [11, Flare.None, 465],
+      [12, Flare.None, 510],
+      [13, Flare.None, 545],
+      [14, Flare.None, 575],
+      [15, Flare.None, 600],
+      [16, Flare.None, 620],
+      [17, Flare.None, 635],
+      [18, Flare.None, 650],
+      [19, Flare.None, 665],
+      [1, Flare.EX, 232],
+      [2, Flare.EX, 248],
+      [3, Flare.EX, 272],
+      [4, Flare.EX, 296],
+      [5, Flare.EX, 328],
+      [6, Flare.EX, 368],
+      [7, Flare.EX, 408],
+      [8, Flare.EX, 464],
+      [9, Flare.EX, 536],
+      [10, Flare.EX, 640],
+      [11, Flare.EX, 744],
+      [12, Flare.EX, 816],
+      [13, Flare.EX, 872],
+      [14, Flare.EX, 920],
+      [15, Flare.EX, 960],
+      [16, Flare.EX, 992],
+      [17, Flare.EX, 1016],
+      [18, Flare.EX, 1040],
+      [19, Flare.EX, 1064],
     ] as const)(`(%d, %d) returns %d`, (level, flareRank, expected) =>
       expect(calcFlareSkill(level, flareRank)).toBe(expected)
     )
@@ -344,28 +353,20 @@ describe('score.ts', () => {
     }
     test.each([
       [
-        chart,
-        1000000,
-        7 as const,
+        [chart, 1000000, 7],
         [{ marvelousOrOk: 138, perfect: 0, great: 0, good: 0, miss: 0 }],
       ],
       [
-        chart,
-        999000,
-        6 as const,
+        [chart, 999000, 6],
         [{ marvelousOrOk: 38, perfect: 100, great: 0, good: 0, miss: 0 }],
       ],
-      [testSongData.charts[0], 998000, undefined, []],
+      [[testSongData.charts[0], 998000, undefined], []],
       [
-        chart,
-        950360,
-        5 as const,
+        [chart, 950360, 5],
         [{ marvelousOrOk: 102, perfect: 19, great: 17, good: 0, miss: 0 }],
       ],
       [
-        chart,
-        969780,
-        4 as const,
+        [chart, 969780, 4],
         [
           { marvelousOrOk: 15, perfect: 118, great: 0, good: 5, miss: 0 },
           { marvelousOrOk: 15, perfect: 117, great: 2, good: 4, miss: 0 },
@@ -376,9 +377,7 @@ describe('score.ts', () => {
         ],
       ],
       [
-        chart,
-        940360,
-        3 as const,
+        [chart, 940360, 3],
         [
           { marvelousOrOk: 116, perfect: 12, great: 0, good: 9, miss: 1 },
           { marvelousOrOk: 116, perfect: 11, great: 2, good: 8, miss: 1 },
@@ -400,9 +399,7 @@ describe('score.ts', () => {
         ],
       ],
       [
-        { notes: 300, freezeArrow: 30, shockArrow: 10 },
-        984500,
-        undefined,
+        [{ notes: 300, freezeArrow: 30, shockArrow: 10 }, 984500, undefined],
         [
           { marvelousOrOk: 320, perfect: 13, great: 1, good: 6, miss: 0 },
           { marvelousOrOk: 320, perfect: 12, great: 3, good: 5, miss: 0 },
@@ -469,7 +466,10 @@ describe('score.ts', () => {
           { marvelousOrOk: 23, perfect: 311, great: 3, good: 0, miss: 3 },
         ],
       ],
-    ])('(%o, %i, %i) returns %o', (chart, score, clearLamp, expected) =>
+    ] satisfies [
+      Parameters<typeof detectJudgeCounts>,
+      ReturnType<typeof detectJudgeCounts>,
+    ][])('(%o) returns %o', ([chart, score, clearLamp], expected) =>
       expect(detectJudgeCounts(chart, score, clearLamp)).toStrictEqual(expected)
     )
   })
