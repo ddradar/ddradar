@@ -76,7 +76,11 @@ async function migrateSongs(client: CosmosClient) {
         name: songOrCource.name,
         nameKana: songOrCource.nameKana,
         artist: songOrCource.artist,
-        series: songOrCource.series,
+        // Shorten series name (ex. DanceDanceRevolution (2013) -> DDR (2013))
+        series: songOrCource.series.replace(
+          'DanceDanceRevolution',
+          'DDR'
+        ) as Series,
         minBPM: songOrCource.minBPM,
         maxBPM: songOrCource.maxBPM,
         folders: [],
@@ -110,7 +114,7 @@ async function migrateSongs(client: CosmosClient) {
     nameKana: string
     nameIndex: Song['nameIndex']
     artist: string
-    series: Series
+    series: string
     minBPM: number
     maxBPM: number
     charts: {
@@ -275,6 +279,7 @@ async function migrateNotification(client: CosmosClient) {
   logger.success('Migration completed!')
 
   type NotificationSchemaV1 = Omit<DBNotificationSchema, 'type' | 'color'> & {
+    id: string
     type: 'is-info' | 'is-success' | 'is-warning' | 'is-danger'
     icon: string
   }

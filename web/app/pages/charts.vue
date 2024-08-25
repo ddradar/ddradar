@@ -88,7 +88,7 @@ const editScore = async (row: GetResponse[number]) => {
         }"
       >
         <template #series-data="{ row }">
-          {{ shortenSeriesName(row.series) }}
+          {{ row.series }}
         </template>
         <template #name-data="{ row }">
           <ULink class="blue" :to="`/songs/${row.id}`">{{ row.name }}</ULink>

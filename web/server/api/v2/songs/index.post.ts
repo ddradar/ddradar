@@ -19,7 +19,7 @@ import { postBodySchema } from '~~/schemas/songs'
  *   "name": "イーディーエム・ジャンパーズ",
  *   "nameKana": "いーでぃーえむ じゃんぱーず",
  *   "artist": "かめりあ feat. ななひら",
- *   "series": "DanceDanceRevolution A",
+ *   "series": "DDR A",
  *   "minBPM": 72,
  *   "maxBPM": 145,
  *   "folders": [],

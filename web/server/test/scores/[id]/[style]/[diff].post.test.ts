@@ -1,5 +1,5 @@
 // @vitest-environment node
-import type { ScoreRecord } from '@ddradar/core'
+import { Lamp, type ScoreRecord } from '@ddradar/core'
 import {
   publicUser as user,
   testSongData as song,
@@ -16,7 +16,11 @@ describe('POST /api/v2/scores/[id]/[style]/[diff]', () => {
     style: `${song.charts[0].playStyle}`,
     diff: `${song.charts[0].difficulty}`,
   }
-  const mfcScore: ScoreRecord = { score: 1000000, rank: 'AAA', clearLamp: 7 }
+  const mfcScore: ScoreRecord = {
+    score: 1000000,
+    rank: 'AAA',
+    clearLamp: Lamp.MFC,
+  }
   beforeEach(() => {
     vi.mocked(getScoreRepository).mockClear()
   })

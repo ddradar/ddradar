@@ -6,7 +6,7 @@ export const levels = [...Array(19).keys()].map(i => i + 1)
 
 export const seriesNames = [...seriesSet] as Series[]
 
-/** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `19`: Dance Dance Revolution WORLD */
+/** `0`: DDR 1st, `1`: DDR 2ndMIX, ..., `19`: DDR WORLD */
 export const seriesIndexes = [...Array(seriesSet.size).keys()]
 
 export function getDisplayedBPM({
@@ -16,10 +16,6 @@ export function getDisplayedBPM({
   return minBPM === maxBPM
     ? (`${minBPM}` as const)
     : (`${minBPM}-${maxBPM}` as const)
-}
-
-export function shortenSeriesName(series: string) {
-  return series.replace(/^(DDR |DanceDanceRevolution )\(?([^)]+)\)?$/, '$2')
 }
 
 export const getChartColor = (difficulty: number) =>

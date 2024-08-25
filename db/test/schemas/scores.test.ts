@@ -1,3 +1,4 @@
+import { Flare } from '@ddradar/core'
 import { publicUser, testScores, testSongData } from '@ddradar/core/test/data'
 import { describe, expect, test } from 'vitest'
 
@@ -40,15 +41,15 @@ describe('/schemas/scores', () => {
       'foo',
       {},
       { ...validScore, id: 'foo' },
-      { ...validScore, flareRank: 1, flareSkill: 1000 },
+      { ...validScore, flareRank: Flare.I, flareSkill: 1000 },
     ])('safeParse(%o) returns { success: false }', o => {
       expect(dbScoreSchema.safeParse(o).success).toBe(false)
     })
     test.each([
       validScore,
       { ...validScore, type: undefined },
-      { ...validScore, flareRank: 1 },
-      { ...validScore, flareRank: 1, flareSkill: 196 },
+      { ...validScore, flareRank: Flare.I },
+      { ...validScore, flareRank: Flare.I, flareSkill: 196 },
     ])('safeParse(%o) returns { success: true }', o => {
       expect(dbScoreSchema.safeParse(o).success).toBe(true)
     })

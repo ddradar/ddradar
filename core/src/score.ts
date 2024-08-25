@@ -76,13 +76,28 @@ export const scoreRecordSchema = z.object({
 })
 /** Primitive score */
 export type ScoreRecord = z.infer<typeof scoreRecordSchema>
+
 /** {@link ScoreRecord.clearLamp} */
 export type ClearLamp = ScoreRecord['clearLamp']
-/** `"E"` ~ `"AAA"` */
-export type DanceLevel = ScoreRecord['rank']
-/** {@link ScoreRecord.flareRank} */
-export type FlareRank = Exclude<ScoreRecord['flareRank'], undefined>
-
+/** Enum object for {@link ClearLamp} */
+export const Lamp = {
+  /** Failed */
+  Failed: 0,
+  /** Clear with Assisted options (CUT, JUMP OFF or FREEZE OFF), or failed on Local Versus (BPL) mode */
+  Assisted: 1,
+  /** Clear with Normal or FLARE gauge */
+  Clear: 2,
+  /** Clear with Life 4 gauge */
+  Life4: 3,
+  /** (Good) Full Combo */
+  FC: 4,
+  /** Great Full Combo (contains only Great or above) */
+  GFC: 5,
+  /** Perfect Full Combo (contains only Perfect or above) */
+  PFC: 6,
+  /** Marvelous Full Combo (contains only Marvelous) */
+  MFC: 7,
+} as const
 /** Map for {@link ClearLamp} */
 export const clearLampMap: ReadonlyMap<number, string> = new Map([
   [0, 'Failed'],
@@ -95,11 +110,8 @@ export const clearLampMap: ReadonlyMap<number, string> = new Map([
   [7, 'Marvelous Full Combo'],
 ] satisfies [ClearLamp, string][])
 
-/** Set for {@link FlareRank} */
-export const flareRankSet: ReadonlySet<number> = new Set([
-  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-] satisfies FlareRank[])
-
+/** `"E"` ~ `"AAA"` */
+export type DanceLevel = ScoreRecord['rank']
 /** Set for {@link DanceLevel} */
 export const danceLevelSet: ReadonlySet<string> = new Set([
   'E',
@@ -119,6 +131,38 @@ export const danceLevelSet: ReadonlySet<string> = new Set([
   'AA+',
   'AAA',
 ] satisfies DanceLevel[])
+
+/** {@link ScoreRecord.flareRank} */
+export type FlareRank = Exclude<ScoreRecord['flareRank'], undefined>
+/** Enum object for {@link FlareRank} */
+export const Flare = {
+  /** No FLARE */
+  None: 0,
+  /** FLARE I */
+  I: 1,
+  /** FLARE II */
+  II: 2,
+  /** FLARE III */
+  III: 3,
+  /** FLARE IV */
+  IV: 4,
+  /** FLARE V */
+  V: 5,
+  /** FLARE VI */
+  VI: 6,
+  /** FLARE VII */
+  VII: 7,
+  /** FLARE VIII */
+  VIII: 8,
+  /** FLARE IX */
+  IX: 9,
+  /** FLARE EX */
+  EX: 10,
+} as const
+/** Set for {@link FlareRank} */
+export const flareRankSet: ReadonlySet<number> = new Set([
+  0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+] satisfies FlareRank[])
 
 /** Score record linked to user, song and chart */
 export type UserScoreRecord = ScoreRecord & {
@@ -174,7 +218,7 @@ export function calcMaxScore({
     score: 1000000,
     exScore: (notes + freezeArrow + shockArrow) * 3,
     maxCombo: notes + shockArrow,
-    clearLamp: 7,
+    clearLamp: Lamp.MFC,
     rank: 'AAA',
   }
 }
@@ -269,7 +313,7 @@ export function setValidScoreFromChart(
       ...partialScore,
       score: 1000000,
       rank: 'AAA',
-      clearLamp: 7,
+      clearLamp: Lamp.MFC,
       exScore: maxExScore,
       maxCombo,
     }
@@ -295,14 +339,14 @@ export function setValidScoreFromChart(
     const dropCount = (1000000 - partialScore.score) / 10
     return {
       ...result,
-      clearLamp: 6,
+      clearLamp: Lamp.PFC,
       exScore: maxExScore - dropCount,
       maxCombo,
     }
   }
 
   if (isGreatFC()) {
-    return tryCalcFromGreatFC() ?? { ...result, clearLamp: 5, maxCombo }
+    return tryCalcFromGreatFC() ?? { ...result, clearLamp: Lamp.GFC, maxCombo }
   }
 
   if (isGreat0Good1()) {
@@ -311,7 +355,7 @@ export function setValidScoreFromChart(
     const perfectCount = (target - partialScore.score) / 10
     return {
       ...result,
-      clearLamp: 4,
+      clearLamp: Lamp.FC,
       exScore: maxExScore - 3 - perfectCount,
       maxCombo,
     }
@@ -320,7 +364,7 @@ export function setValidScoreFromChart(
   if (isGoodFC()) {
     return {
       ...result,
-      clearLamp: 4,
+      clearLamp: Lamp.FC,
       maxCombo,
     }
   }
@@ -406,7 +450,7 @@ export function setValidScoreFromChart(
       return {
         score: 999990,
         rank: 'AAA',
-        clearLamp: 6,
+        clearLamp: Lamp.PFC,
         exScore: maxExScore - 1,
         maxCombo,
       }
@@ -418,7 +462,7 @@ export function setValidScoreFromChart(
       return {
         score: 1000000 - dropCount * 10,
         rank: 'AAA',
-        clearLamp: 6,
+        clearLamp: Lamp.PFC,
         exScore: Math.max(maxExScore - dropCount, partialScore.exScore),
         maxCombo,
       }
@@ -440,7 +484,7 @@ export function setValidScoreFromChart(
       return {
         score,
         rank: getDanceLevel(score),
-        clearLamp: 5,
+        clearLamp: Lamp.GFC,
         maxCombo,
       }
     }
@@ -487,7 +531,7 @@ export function setValidScoreFromChart(
       return {
         score: partialScore.score!,
         rank: getDanceLevel(partialScore.score!),
-        clearLamp: 5,
+        clearLamp: Lamp.GFC,
         exScore: maxExScore - perfectCount - gr * 2,
         maxCombo,
       }

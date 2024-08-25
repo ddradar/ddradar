@@ -35,7 +35,7 @@ const { data: notifications } = await useFetch('/api/v2/notification', {
             :to="`/songs?series=${i}`"
             variant="ghost"
           >
-            {{ shortenSeriesName(n) }}
+            {{ n }}
           </UButton>
         </UPageCard>
 

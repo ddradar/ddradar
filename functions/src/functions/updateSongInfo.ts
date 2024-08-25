@@ -1,6 +1,6 @@
 import type { CosmosDBOutput, InvocationContext } from '@azure/functions'
 import { app } from '@azure/functions'
-import { detectCategory } from '@ddradar/core'
+import { detectCategory, Lamp } from '@ddradar/core'
 import type { DBScoreSchema, DBSongSchema } from '@ddradar/db'
 import { databaseName, scoreContainer, songContainer } from '@ddradar/db'
 
@@ -109,7 +109,7 @@ export async function handler(
             },
             score: 0,
             rank: 'E',
-            clearLamp: 0,
+            clearLamp: Lamp.Failed,
           }
         })
     )
