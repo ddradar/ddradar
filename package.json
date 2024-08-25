@@ -44,10 +44,5 @@
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "typescript-eslint": "^8.2.0"
-  },
-  "pnpm": {
-    "patchedDependencies": {
-      "@vue/runtime-core@3.4.33": "patches/@vue__runtime-core@3.4.33.patch"
-    }
   }
 }
