@@ -156,8 +156,8 @@ importers:
         specifier: ^1.1.114
         version: 1.1.114
       '@nuxt/ui-pro':
-        specifier: ^1.4.0
-        version: 1.4.0(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))
+        specifier: ^1.4.1
+        version: 1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))
       chart.js:
         specifier: ^4.4.4
         version: 4.4.4
@@ -1007,6 +1007,9 @@ packages:
   '@iconify-json/simple-icons@1.1.114':
     resolution: {integrity: sha512-KADlAqTH3/vDTVpS+lwDF0pO/RHgaxf40Hata0QLhAPouygLmhQGPj3ojbpUDfoBGPw/WQ1sor38/2PixR2VRg==}
 
+  '@iconify-json/vscode-icons@1.1.37':
+    resolution: {integrity: sha512-02+dR2/LdIZTqGfyQerla5snhdN4edwYgpDuFZpI2lK9w8OVm26WYbg8RR8TxXQrlCRs726NQYxl5W+7V1YM/Q==}
+
   '@iconify/collections@1.0.445':
     resolution: {integrity: sha512-xvIojlhJ5Xk5+Cj4M5JYvRXjkG5Ur++2ia7/ErUsTKh2eXene2d3JulzG98UvlSl9/WhfUKfE0N56GKttsjExw==}
 
@@ -1268,11 +1271,11 @@ packages:
       vitest:
         optional: true
 
-  '@nuxt/ui-pro@1.4.0':
-    resolution: {integrity: sha512-xo6fbFhAocVgyvDbQK21P+0zQuy9XMNeW65O+czRvJDwlsf9QEqcCF5iGkYIB/5OXk9VYFgYMiHN4fNAyz36ZA==}
+  '@nuxt/ui-pro@1.4.1':
+    resolution: {integrity: sha512-ab+SNjyWHQTH23/WJD0gDE2p6FoF5zEshij4HFAhkco7x5w1HeGMtyLDUlzDb95zIaxAC+Mj5EP+ytBH/McJrg==}
 
-  '@nuxt/ui@2.18.3':
-    resolution: {integrity: sha512-bFy3K0cDPRlEYclQAjIgVFUGFb91sGYAtBmEzunFux85aUw0g4tI7vsWdyVijhKzGOyOjBuLGaG40kGl4AIXpA==}
+  '@nuxt/ui@2.18.4':
+    resolution: {integrity: sha512-NzFUzh5Izd7mduhYhFBlIOcqE8aY+9mbSQ0n8sIASpASv162VJ46OsR5Jm5sbfhKDrgv7UsBk6VKXJXiEI7ThQ==}
     engines: {node: '>=v16.20.2'}
 
   '@nuxt/vite-builder@3.12.4':
@@ -6752,6 +6755,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/vscode-icons@1.1.37':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify/collections@1.0.445':
     dependencies:
       '@iconify/types': 2.0.0
@@ -7215,9 +7222,10 @@ snapshots:
       - rollup
       - supports-color
 
-  '@nuxt/ui-pro@1.4.0(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))':
+  '@nuxt/ui-pro@1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))':
     dependencies:
-      '@nuxt/ui': 2.18.3(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))
+      '@iconify-json/vscode-icons': 1.1.37
+      '@nuxt/ui': 2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))
       '@vueuse/core': 10.11.0(vue@3.4.33(typescript@5.5.4))
       defu: 6.1.4
       git-url-parse: 14.1.0
@@ -7248,7 +7256,7 @@ snapshots:
       - vite
       - vue
 
-  '@nuxt/ui@2.18.3(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))':
+  '@nuxt/ui@2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))':
     dependencies:
       '@headlessui/tailwindcss': 0.2.1(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4)))
       '@headlessui/vue': 1.7.22(vue@3.4.33(typescript@5.5.4))
