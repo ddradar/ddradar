@@ -226,8 +226,8 @@ export function parseScoreDetail(sourceCode: string): ScoreDetailData {
     .innerHTML.replace(/^(.+)<br.+/ms, '$1')
     .trim()
 
-  const detailTable = doc.getElementById('music_detail_table')
-  if (!detailTable) {
+  const table = doc.getElementById('music_detail_table')
+  if (!table) {
     const message =
       doc.getElementById('popup_cnt')?.textContent?.trim() ?? 'invalid html'
     throw new Error(message)
@@ -240,31 +240,30 @@ export function parseScoreDetail(sourceCode: string): ScoreDetailData {
     .src.replace(srcRegex, '$1')
   const [playStyle, difficulty] = fileDifficultyMap.get(logo)!
 
-  const rank = getText(1, 0) as DanceLevel
-  const topScoreText = detailTable
+  const rank = getText(table, 1, 0) as DanceLevel
+  const topScoreText = table
     .getElementsByTagName('tr')[2]
     .getElementsByTagName('td')[1]
     .getElementsByTagName('span')[0].textContent!
-  const flareSkill = parseInt(getText(3, 0), 10)
+  const flareSkill = parseInt(getText(table, 3, 0), 10)
 
   return {
     songId,
     songName,
     playStyle,
     difficulty,
-    score: parseInt(getText(1, 1), 10),
-    maxCombo: parseInt(getText(5, 0), 10),
+    score: parseInt(getText(table, 1, 1), 10),
+    maxCombo: parseInt(getText(table, 5, 0), 10),
     clearLamp: getClearLamp() ?? (rank === 'E' ? 0 : 1),
     rank,
-    flareRank: textFlareRankMap.get(getText(2, 0)) ?? 0,
+    flareRank: textFlareRankMap.get(getText(table, 2, 0)) ?? 0,
     ...(Number.isInteger(flareSkill) ? { flareSkill } : {}),
     topScore: parseInt(topScoreText, 10),
   }
 
-  function getText(row: number, col: number): string {
-    return detailTable!
-      .getElementsByTagName('tr')
-      [row].getElementsByTagName('td')[col].textContent!
+  function getText(table: Element, row: number, col: number): string {
+    return table.getElementsByTagName('tr')[row].getElementsByTagName('td')[col]
+      .textContent!
   }
 
   /** Detect ClearLamp from element. */
@@ -277,7 +276,7 @@ export function parseScoreDetail(sourceCode: string): ScoreDetailData {
       if (parseInt(countText, 10) > 0) return clearLamp
     }
     // Check Clear count (Assisted Clear is not counted on here)
-    const clearCountText = detailTable!
+    const clearCountText = table!
       .getElementsByTagName('tr')[4]
       .getElementsByTagName('td')[1].textContent!
     if (parseInt(clearCountText, 10) > 0) return 2
