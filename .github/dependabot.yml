@@ -1,5 +1,5 @@
 # Please see the documentation for all configuration options:
-# https://help.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+# https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
 
 version: 2
 updates:
@@ -11,11 +11,10 @@ updates:
       time: '19:00'
       timezone: Asia/Tokyo
     commit-message:
-      prefix: ci
-      include: scope
+      prefix: ci(gh-actions)
     milestone: 21
     labels:
-      - 'dependabot:robot:'
+      - 'dependabot :robot:'
     reviewers:
       - ddradar/developer
 
@@ -35,19 +34,34 @@ updates:
       lint-tools:
         dependency-type: development
         patterns:
-          - '@nuxt/eslint-config'
-          - '@typescript-eslint/*'
+          - '@nuxt/eslint'
           - 'eslint*'
           - husky
           - lint-staged
           - prettier
+          - typescript-eslint
     commit-message:
-      prefix: fix
+      prefix: chore
       prefix-development: chore
       include: scope
     milestone: 21
     labels:
-      - 'dependabot:robot:'
+      - 'dependabot :robot:'
     reviewers:
       - ddradar/developer
     open-pull-requests-limit: 20
+
+  # Development Containers (/.devcontainer/devcontainer.json)
+  - package-ecosystem: devcontainers
+    directory: '/'
+    schedule:
+      interval: monthly
+      time: '19:00'
+      timezone: Asia/Tokyo
+    commit-message:
+      prefix: ci(devcontainer)
+    milestone: 21
+    labels:
+      - 'dependabot :robot:'
+    reviewers:
+      - ddradar/developer
