@@ -164,8 +164,8 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.18.1)(ts-node@10.9.2(@types/node@18.17.11)(typescript@5.5.4))(vite@5.3.4(@types/node@18.17.11)(terser@5.18.2))(vue@3.4.33(typescript@5.5.4))
       chart.js:
-        specifier: ^4.4.3
-        version: 4.4.3
+        specifier: ^4.4.4
+        version: 4.4.4
       iconv-lite:
         specifier: ^0.6.3
         version: 0.6.3
@@ -174,7 +174,7 @@ importers:
         version: 14.1.0
       vue-chartjs:
         specifier: ^5.3.1
-        version: 5.3.1(chart.js@4.4.3)(vue@3.4.33(typescript@5.5.4))
+        version: 5.3.1(chart.js@4.4.4)(vue@3.4.33(typescript@5.5.4))
       zod:
         specifier: ^3.23.8
         version: 3.23.8
@@ -2320,8 +2320,8 @@ packages:
   charenc@0.0.2:
     resolution: {integrity: sha512-yrLQ/yVUFXkzg7EDQsPieE/53+0RlaWTs+wBrvW36cyilJ2SaDWfl4Yj7MtLTXleV9uEKefbAGUPv2/iWSooRA==}
 
-  chart.js@4.4.3:
-    resolution: {integrity: sha512-qK1gkGSRYcJzqrrzdR6a+I0vQ4/R+SoODXyAjscQ/4mzuNzySaMCd+hyVxitSY1+L2fjPD1Gbn+ibNqRmwQeLw==}
+  chart.js@4.4.4:
+    resolution: {integrity: sha512-emICKGBABnxhMjUjlYRR12PmOXhJ2eJjEHL2/dZlWjxRAZT1D8xplLFq5M0tMQK8ja+wBS/tuVEJB5C6r7VxJA==}
     engines: {pnpm: '>=8'}
 
   check-error@2.1.1:
@@ -8541,7 +8541,7 @@ snapshots:
 
   charenc@0.0.2: {}
 
-  chart.js@4.4.3:
+  chart.js@4.4.4:
     dependencies:
       '@kurkle/color': 0.3.2
 
@@ -12415,9 +12415,9 @@ snapshots:
     dependencies:
       ufo: 1.5.4
 
-  vue-chartjs@5.3.1(chart.js@4.4.3)(vue@3.4.33(typescript@5.5.4)):
+  vue-chartjs@5.3.1(chart.js@4.4.4)(vue@3.4.33(typescript@5.5.4)):
     dependencies:
-      chart.js: 4.4.3
+      chart.js: 4.4.4
       vue: 3.4.33(typescript@5.5.4)
 
   vue-component-type-helpers@2.0.7: {}
