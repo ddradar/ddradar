@@ -1,4 +1,4 @@
-import { calcMaxScore, detectCategory } from '@ddradar/core'
+import { Area, calcMaxScore, detectCategory } from '@ddradar/core'
 
 import type {
   DBNotificationSchema,
@@ -274,7 +274,7 @@ export const userData: DBUserSchema[] = [
     uid: 'admin_user',
     name: '管理者ユーザー',
     loginId: 'ec2c633fcc21433ba087d5fdba4b818a',
-    area: 22,
+    area: Area.静岡県,
     isPublic: true,
     code: 11173996,
     isAdmin: true,
@@ -284,7 +284,7 @@ export const userData: DBUserSchema[] = [
     type: 'user',
     uid: 'public_user',
     name: '一般ユーザー1',
-    area: 13,
+    area: Area.東京都,
     isPublic: true,
     loginId: 'ec2c633fcc21433ba087d5fdba4b818b',
   },
@@ -293,7 +293,7 @@ export const userData: DBUserSchema[] = [
     type: 'user',
     uid: 'public_user',
     name: '一般ユーザー2',
-    area: 0,
+    area: Area.Undefined,
     isPublic: true,
     loginId: 'ec2c633fcc21433ba087d5fdba4b818c',
   },
@@ -302,7 +302,7 @@ export const userData: DBUserSchema[] = [
     type: 'user',
     uid: 'private_user',
     name: '非公開ユーザー',
-    area: 13,
+    area: Area.東京都,
     isPublic: false,
     loginId: 'ec2c633fcc21433ba087d5fdba4b818d',
   },

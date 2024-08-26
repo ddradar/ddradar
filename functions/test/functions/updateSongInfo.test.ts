@@ -1,5 +1,5 @@
 import { InvocationContext } from '@azure/functions'
-import { Lamp } from '@ddradar/core'
+import { Area, Lamp } from '@ddradar/core'
 import { publicUser, testSongData } from '@ddradar/core/test/data'
 import type { DBScoreSchema } from '@ddradar/db'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
@@ -43,7 +43,7 @@ describe('/functions/updateSongInfo.ts', () => {
           type: 'score',
           song: { ...song, name: 'test', deleted: false },
           chart: { ...chart, level: 1 },
-          user: { id: '0', area: 0, name: '0', isPublic: false },
+          user: { id: '0', area: Area.Undefined, name: '0', isPublic: false },
           score: 999620, // P:38
           clearLamp: Lamp.PFC,
           rank: 'AAA',
@@ -74,7 +74,7 @@ describe('/functions/updateSongInfo.ts', () => {
           type: 'score',
           song,
           chart,
-          user: { id: '0', area: 0, name: '0', isPublic: false },
+          user: { id: '0', area: Area.Undefined, name: '0', isPublic: false },
           score: 999620, // P:38
           clearLamp: Lamp.PFC,
           rank: 'AAA',
@@ -107,7 +107,7 @@ describe('/functions/updateSongInfo.ts', () => {
             difficulty: testSongData.charts[1].difficulty,
             level: testSongData.charts[1].level,
           },
-          user: { id: '0', area: 0, name: '0', isPublic: false },
+          user: { id: '0', area: Area.Undefined, name: '0', isPublic: false },
           score: 0,
           clearLamp: Lamp.Failed,
           rank: 'E',

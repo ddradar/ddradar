@@ -15,20 +15,26 @@ describe('/repositories/ScoreRepository', () => {
     database: vi.fn().mockReturnThis(),
     container: vi.fn().mockReturnThis(),
     items: {
+      create: vi.fn(),
       query: vi.fn().mockReturnThis(),
       fetchNext: vi.fn(),
       fetchAll: vi.fn(),
       upsert: vi.fn(),
     },
     item: vi.fn().mockReturnThis(),
+    read: vi.fn(),
+    patch: vi.fn(),
     delete: vi.fn(),
   }
   beforeEach(() => {
+    client.items.create.mockClear()
     client.items.query.mockClear()
     client.items.fetchNext.mockClear()
     client.items.fetchAll.mockClear()
     client.items.upsert.mockClear()
     client.item.mockClear()
+    client.read.mockClear()
+    client.patch.mockClear()
     client.delete.mockClear()
     vi.mocked(isValidScore).mockClear()
   })
@@ -183,6 +189,7 @@ describe('/repositories/ScoreRepository', () => {
       clearLamp: testScores[0].clearLamp,
       rank: testScores[0].rank,
       maxCombo: testScores[0].maxCombo,
+      flareRank: 9,
     }
 
     test('throws Error when not found song', async () => {
@@ -257,13 +264,24 @@ describe('/repositories/ScoreRepository', () => {
     })
     test('calls items.query() and items.upsert()', async () => {
       // Arrange
-      const { id: userId } = publicUser
       client.items.fetchNext.mockResolvedValueOnce({
         resources: [songAndChart],
       })
       client.items.upsert.mockImplementationOnce(resourse =>
         Promise.resolve({ resourse })
       )
+      client.read
+        .mockResolvedValueOnce({ resource: undefined })
+        .mockResolvedValue({
+          resource: {
+            score: 0,
+            clearLamp: 0,
+            rank: 'E',
+            exScore: 0,
+            maxCombo: 0,
+            flareRank: 0,
+          },
+        })
       vi.mocked(isValidScore).mockReturnValue(true)
 
       // Act
@@ -288,7 +306,7 @@ describe('/repositories/ScoreRepository', () => {
       expect(client.items.fetchNext).toHaveBeenCalled()
       expect(vi.mocked(isValidScore)).toHaveBeenCalledWith(songAndChart, score)
       expect(client.items.upsert).toHaveBeenCalledWith({
-        id: `${songId}/${playStyle}/${difficulty}/${userId}`,
+        id: `${songId}/${playStyle}/${difficulty}/${publicUser.id}`,
         type: 'score',
         song: {
           id: songId,
@@ -298,17 +316,39 @@ describe('/repositories/ScoreRepository', () => {
         },
         chart: { playStyle, difficulty, level: songAndChart.level },
         user: {
-          id: userId,
+          id: publicUser.id,
           name: publicUser.name,
-          isPublic: true,
+          isPublic: publicUser.isPublic,
           area: publicUser.area,
         },
-        score: score.score,
-        clearLamp: score.clearLamp,
-        rank: score.rank,
-        exScore: score.exScore,
-        maxCombo: score.maxCombo,
-        flareRank: score.flareRank,
+        ...score,
+      })
+      expect(client.read).toHaveBeenCalledTimes(3)
+      expect(client.patch).toHaveBeenCalledWith([
+        { op: 'set', path: '/score', value: score.score },
+        { op: 'set', path: '/rank', value: score.rank },
+        { op: 'set', path: '/clearLamp', value: score.clearLamp },
+        { op: 'set', path: '/exScore', value: score.exScore },
+        { op: 'set', path: '/maxCombo', value: score.maxCombo },
+        { op: 'set', path: '/flareRank', value: score.flareRank },
+      ])
+      expect(client.items.create).toHaveBeenCalledWith({
+        id: `${songId}/${playStyle}/${difficulty}/${publicUser.area}`,
+        type: 'score',
+        song: {
+          id: songId,
+          name: songAndChart.name,
+          seriesCategory: songAndChart.seriesCategory,
+          deleted: songAndChart.deleted,
+        },
+        chart: { playStyle, difficulty, level: songAndChart.level },
+        user: {
+          id: `${publicUser.area}`,
+          name: `${publicUser.area}`,
+          isPublic: false,
+          area: publicUser.area,
+        },
+        ...score,
       })
     })
   })

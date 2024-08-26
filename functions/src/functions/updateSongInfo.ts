@@ -1,6 +1,6 @@
 import type { CosmosDBOutput, InvocationContext } from '@azure/functions'
 import { app } from '@azure/functions'
-import { detectCategory, Lamp } from '@ddradar/core'
+import { Area, detectCategory, Lamp } from '@ddradar/core'
 import type { DBScoreSchema, DBSongSchema } from '@ddradar/db'
 import { databaseName, scoreContainer, songContainer } from '@ddradar/db'
 
@@ -95,7 +95,7 @@ export async function handler(
           return {
             id: `${song.id}/${c.playStyle}/${c.difficulty}/0`,
             type: 'score',
-            user: { id: '0', area: 0, isPublic: false, name: '0' },
+            user: { id: '0', area: Area.Undefined, isPublic: false, name: '0' },
             song: {
               id: song.id,
               name: song.name,
