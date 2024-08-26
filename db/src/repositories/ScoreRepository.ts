@@ -1,4 +1,4 @@
-import type { CosmosClient, FeedOptions } from '@azure/cosmos'
+import type { CosmosClient, FeedOptions, PatchOperation } from '@azure/cosmos'
 import type {
   ScoreRecord,
   Song,
@@ -6,7 +6,7 @@ import type {
   User,
   UserScoreRecord,
 } from '@ddradar/core'
-import { isValidScore } from '@ddradar/core'
+import { findLargerArea, isValidScore } from '@ddradar/core'
 
 import { databaseName, scoreContainer, songContainer } from '../constants'
 import { type DBScoreSchema, dbScoreSchema } from '../schemas/scores'
@@ -212,11 +212,7 @@ export class ScoreRepository {
             seriesCategory: songAndChart.seriesCategory,
             deleted: songAndChart.deleted,
           },
-          chart: {
-            playStyle,
-            difficulty,
-            level: songAndChart.level,
-          },
+          chart: { playStyle, difficulty, level: songAndChart.level },
           score: score.score,
           clearLamp: score.clearLamp,
           rank: score.rank,
@@ -226,6 +222,15 @@ export class ScoreRepository {
           flareSkill: score.flareSkill,
         })
       )
+
+    // Update area top score
+    let area = user.area
+    await this.updeteAreaTop(area, songAndChart, playStyle, difficulty, score)
+    while (area !== 0) {
+      area = findLargerArea(area)
+      await this.updeteAreaTop(area, songAndChart, playStyle, difficulty, score)
+    }
+
     return resource!
   }
 
@@ -277,5 +282,71 @@ export class ScoreRepository {
         },
         options
       )
+  }
+
+  /**
+   * Update area top score.
+   * @param area Area
+   * @param songAndChart Song and Chart info
+   * @param playStyle PlayStyle
+   * @param difficulty Difficulty
+   * @param score User score
+   */
+  private async updeteAreaTop(
+    area: User['area'],
+    songAndChart: SongAndChart,
+    playStyle: StepChart['playStyle'],
+    difficulty: StepChart['difficulty'],
+    score: ScoreRecord
+  ) {
+    const item = this.client
+      .database(databaseName)
+      .container(scoreContainer)
+      .item(
+        `${songAndChart.id}/${playStyle}/${difficulty}/${area}`,
+        songAndChart.id
+      )
+    const { resource: prev } = await item.read<DBScoreSchema>()
+
+    if (!prev) {
+      await this.client
+        .database(databaseName)
+        .container(scoreContainer)
+        .items.create({
+          id: `${songAndChart.id}/${playStyle}/${difficulty}/${area}`,
+          type: 'score',
+          user: { id: `${area}`, name: `${area}`, isPublic: false, area },
+          song: {
+            id: songAndChart.id,
+            name: songAndChart.name,
+            seriesCategory: songAndChart.seriesCategory,
+            deleted: songAndChart.deleted,
+          },
+          chart: { playStyle, difficulty, level: songAndChart.level },
+          score: score.score,
+          clearLamp: score.clearLamp,
+          rank: score.rank,
+          exScore: score.exScore,
+          maxCombo: score.maxCombo,
+          flareRank: score.flareRank,
+          flareSkill: score.flareSkill,
+        })
+      return
+    }
+    const diff: PatchOperation[] = []
+    if (prev.score < score.score) {
+      diff.push({ op: 'set', path: '/score', value: score.score })
+      diff.push({ op: 'set', path: '/rank', value: score.rank })
+    }
+    if (prev.clearLamp < score.clearLamp)
+      diff.push({ op: 'set', path: '/clearLamp', value: score.clearLamp })
+    if (score.exScore && (prev.exScore ?? 0) < score.exScore)
+      diff.push({ op: 'set', path: '/exScore', value: score.exScore })
+    if (score.maxCombo && (prev.maxCombo ?? 0) < score.maxCombo)
+      diff.push({ op: 'set', path: '/maxCombo', value: score.maxCombo })
+    if (score.flareRank && (prev.flareRank ?? 0) < score.flareRank)
+      diff.push({ op: 'set', path: '/flareRank', value: score.flareRank })
+
+    if (diff.length > 0) await item.patch(diff)
   }
 }
