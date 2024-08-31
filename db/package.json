@@ -27,12 +27,12 @@
     "start": "jiti"
   },
   "peerDependencies": {
-    "@azure/cosmos": "^4.1.0",
+    "@azure/cosmos": "^4.0.0",
     "@ddradar/core": "workspace:*"
   },
   "devDependencies": {
-    "@azure/cosmos": "^4.1.0",
-    "@types/node": "^18.19.45",
+    "@azure/cosmos": "^4.1.1",
+    "@types/node": "^18.19.47",
     "consola": "^3.2.3",
     "dotenv": "^16.4.5",
     "jiti": "^1.21.6",
