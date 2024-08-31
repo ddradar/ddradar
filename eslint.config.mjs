@@ -1,9 +1,9 @@
 // @ts-check
 import eslint from '@eslint/js'
+import vitest from '@vitest/eslint-plugin'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import node from 'eslint-plugin-n'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
-import vitest from 'eslint-plugin-vitest'
 import typescript from 'typescript-eslint'
 
 import withNuxt from './web/.nuxt/eslint.config.mjs'
