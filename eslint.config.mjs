@@ -63,5 +63,6 @@ export default withNuxt()
       files: ['**/components/**/*.vue', '**/pages/**/*.vue'],
       rules: { 'vue/multi-word-component-names': 'off' },
     },
+    // @ts-expect-error - RuleEntry
     eslintConfigPrettier
   )
