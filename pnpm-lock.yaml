@@ -199,8 +199,8 @@ importers:
         specifier: ^3.13.0
         version: 3.13.0(@azure/cosmos@4.1.1)(@azure/identity@4.4.1)(@parcel/watcher@2.4.1)(@types/node@18.19.47)(encoding@0.1.13)(eslint@9.9.1(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(terser@5.18.2)(typescript@5.5.4)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))
       nuxt-swa:
-        specifier: ^0.5.0
-        version: 0.5.0(magicast@0.3.4)(rollup@4.21.0)
+        specifier: ^0.6.0
+        version: 0.6.0(magicast@0.3.4)(rollup@4.21.0)
       nuxt-zod-i18n:
         specifier: ^1.9.0
         version: 1.9.0(magicast@0.3.4)(rollup@4.21.0)
@@ -4187,8 +4187,8 @@ packages:
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
 
-  nuxt-swa@0.5.0:
-    resolution: {integrity: sha512-JntIORM0U1Nr5lmahnyXuz4s9zvzmYw1zdHBMGhZnV60CTej42AGivv35kFUpzmxpoJOL8APUXxUF69IwIPUrw==}
+  nuxt-swa@0.6.0:
+    resolution: {integrity: sha512-mxeMQiiYdccg+kreSjyaftE7u3pKoOvSAjfhh7aWES36ljWhtk5TG1QrAfuhWRgET1ql7ccQM+5yEFYj4Iq5bw==}
 
   nuxt-zod-i18n@1.9.0:
     resolution: {integrity: sha512-DpOZFIGlW5fFCSc/6Lp9Ot7GOYo+dz2vqDe96P9gZPMgMx4xMlb/XoHUwULLJt8XoUtnUVGoN4YCmJX5chVMZg==}
@@ -10542,7 +10542,7 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  nuxt-swa@0.5.0(magicast@0.3.4)(rollup@4.21.0):
+  nuxt-swa@0.6.0(magicast@0.3.4)(rollup@4.21.0):
     dependencies:
       '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
       defu: 6.1.4
