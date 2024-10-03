@@ -157,7 +157,7 @@ importers:
         version: 1.2.5
       '@nuxt/ui-pro':
         specifier: ^1.4.1
-        version: 1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))
+        version: 1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)
       chart.js:
         specifier: ^4.4.4
         version: 4.4.4
@@ -202,8 +202,8 @@ importers:
         specifier: ^0.6.0
         version: 0.6.0(magicast@0.3.4)(rollup@4.21.0)
       nuxt-zod-i18n:
-        specifier: ^1.9.0
-        version: 1.9.0(magicast@0.3.4)(rollup@4.21.0)
+        specifier: ^1.10.0
+        version: 1.10.0(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
       vitest:
         specifier: ^2.0.5
         version: 2.0.5(@types/node@18.19.47)(happy-dom@14.12.3)(terser@5.18.2)
@@ -1060,6 +1060,10 @@ packages:
     resolution: {integrity: sha512-u3b6BKGhE6j/JeRU6C/RL2FgyJfy6LakbtfeVF8fJXURpZZTzfh3e05J0bu0XPw447Q6/WUp3C4ajv4TMS4YsQ==}
     engines: {node: '>= 16'}
 
+  '@intlify/shared@9.14.1':
+    resolution: {integrity: sha512-XjHu6PEQup9MnP1x0W9y0nXXfq9jFftAYSfV11hryjtH4XqXP8HrzMvXI+ZVifF+jZLszaTzIhvukllplxTQTg==}
+    engines: {node: '>= 16'}
+
   '@intlify/shared@9.9.1':
     resolution: {integrity: sha512-b3Pta1nwkz5rGq434v0psHwEwHGy1pYCttfcM22IE//K9owbpkEvFptx9VcuRAxjQdrO2If249cmDDjBu5wMDA==}
     engines: {node: '>= 16'}
@@ -1227,8 +1231,16 @@ packages:
     resolution: {integrity: sha512-gbhSbDvYfkGQ0R2ztqTLQLHRMv+7g50kAKKuN6mbF4tL9jg7NPnQ8bAarn2I4Qx8xtmwO+qY1ABkmYMn5S1CpA==}
     engines: {node: ^14.18.0 || >=16.10.0}
 
+  '@nuxt/kit@3.13.2':
+    resolution: {integrity: sha512-KvRw21zU//wdz25IeE1E5m/aFSzhJloBRAQtv+evcFeZvuroIxpIQuUqhbzuwznaUwpiWbmwlcsp5uOWmi4vwA==}
+    engines: {node: ^14.18.0 || >=16.10.0}
+
   '@nuxt/schema@3.13.0':
     resolution: {integrity: sha512-JBGSjF9Hd8guvTV2312eM1RulCMJc50yR3CeMZPLDsI02A8TXQnABS8EbgvGRvxD43q/ITjj21B2ffG1wEVrnQ==}
+    engines: {node: ^14.18.0 || >=16.10.0}
+
+  '@nuxt/schema@3.13.2':
+    resolution: {integrity: sha512-CCZgpm+MkqtOMDEgF9SWgGPBXlQ01hV/6+2reDEpJuqFPGzV8HYKPBcIFvn7/z5ahtgutHLzjP71Na+hYcqSpw==}
     engines: {node: ^14.18.0 || >=16.10.0}
 
   '@nuxt/telemetry@2.5.4':
@@ -1497,6 +1509,15 @@ packages:
 
   '@rollup/pluginutils@5.1.0':
     resolution: {integrity: sha512-XTIWOPPcpvyKI6L1NHo0lFlCyznUEyPmPY1mc3KpPVDYulHSTvyeLNVW00QTLIAFNhR3kYnJTQHeGqU4M3n09g==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
+    peerDependenciesMeta:
+      rollup:
+        optional: true
+
+  '@rollup/pluginutils@5.1.2':
+    resolution: {integrity: sha512-/FIdS3PyZ39bjZlwqFnWqCOVnW7o963LtKMwQOD0NhQqw22gSr2YY1afu3FxRip4ZCZNsD5jq6Aaz6QV3D/Njw==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0||^3.0.0||^4.0.0
@@ -2226,6 +2247,14 @@ packages:
       magicast:
         optional: true
 
+  c12@1.11.2:
+    resolution: {integrity: sha512-oBs8a4uvSDO9dm8b7OCFW7+dgtVrwmwnrVXYzLm43ta7ep2jCn/0MhoUFygIWtxhyy6+/MG7/agvpY0U1Iemew==}
+    peerDependencies:
+      magicast: ^0.3.4
+    peerDependenciesMeta:
+      magicast:
+        optional: true
+
   cac@6.7.14:
     resolution: {integrity: sha512-b6Ilus+c3RrdDk+JhLKUAQfzzgLEPy6wcXqS7f/xe1EETvsDP6GORG7SFuOs6cID5YkqchW/LXZbX5bc8j7ZcQ==}
     engines: {node: '>=8'}
@@ -2632,6 +2661,10 @@ packages:
   decompress-response@6.0.0:
     resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
     engines: {node: '>=10'}
+
+  dedupe@4.0.3:
+    resolution: {integrity: sha512-WMo1AIq5MSstJ5DhVVccdue22MEpaxzf0tdznjXgWrfei9F3aNYP7xhbKgi1U8JlvTU4RyhUSLI63jt7PUipBQ==}
+    engines: {node: '>=4.0'}
 
   deep-eql@5.0.2:
     resolution: {integrity: sha512-h5k/5U50IJJFpzfL6nO9jaaumfjO/f2NjK/oYB2Djzm4p9L+3T9qWpZqZ2hAbLPuuYq9wrU08WQyBTL5GbPk5Q==}
@@ -4191,8 +4224,8 @@ packages:
   nuxt-swa@0.6.0:
     resolution: {integrity: sha512-mxeMQiiYdccg+kreSjyaftE7u3pKoOvSAjfhh7aWES36ljWhtk5TG1QrAfuhWRgET1ql7ccQM+5yEFYj4Iq5bw==}
 
-  nuxt-zod-i18n@1.9.0:
-    resolution: {integrity: sha512-DpOZFIGlW5fFCSc/6Lp9Ot7GOYo+dz2vqDe96P9gZPMgMx4xMlb/XoHUwULLJt8XoUtnUVGoN4YCmJX5chVMZg==}
+  nuxt-zod-i18n@1.10.0:
+    resolution: {integrity: sha512-MhmP57IIQaAJ6qyc/thAe/hNFIIcbLx+obmlk9AlnIZlg/5xPFtlCQYJEKk4vfuS/39lQnzxulQ0U57VEyFqSA==}
 
   nuxt@3.13.0:
     resolution: {integrity: sha512-NZlPGlMav18KXWiOmTguQtH5lcrwooPniWXM3Ca4c9spsMRu3wyWLlN8wiI/cK+lEu3rQyKCGSA75nFVK4Ew3w==}
@@ -5444,6 +5477,9 @@ packages:
   unimport@3.11.1:
     resolution: {integrity: sha512-DuB1Uoq01LrrXTScxnwOoMSlTXxyKcULguFxbLrMDFcE/CO0ZWHpEiyhovN0mycPt7K6luAHe8laqvwvuoeUPg==}
 
+  unimport@3.13.1:
+    resolution: {integrity: sha512-nNrVzcs93yrZQOW77qnyOVHtb68LegvhYFwxFMfuuWScmwQmyVCG/NBuN8tYsaGzgQUVYv34E/af+Cc9u4og4A==}
+
   universalify@2.0.0:
     resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
     engines: {node: '>= 10.0.0'}
@@ -5463,6 +5499,15 @@ packages:
   unplugin@1.12.2:
     resolution: {integrity: sha512-bEqQxeC7rxtxPZ3M5V4Djcc4lQqKPgGe3mAWZvxcSmX5jhGxll19NliaRzQSQPrk4xJZSGniK3puLWpRuZN7VQ==}
     engines: {node: '>=14.0.0'}
+
+  unplugin@1.14.1:
+    resolution: {integrity: sha512-lBlHbfSFPToDYp9pjXlUEFVxYLaue9f9T1HC+4OHlmj+HnMDdz9oZY+erXfoCe/5V/7gKUSY2jpXPb9S7f0f/w==}
+    engines: {node: '>=14.0.0'}
+    peerDependencies:
+      webpack-sources: ^3
+    peerDependenciesMeta:
+      webpack-sources:
+        optional: true
 
   unstorage@1.10.2:
     resolution: {integrity: sha512-cULBcwDqrS8UhlIysUJs2Dk0Mmt8h7B0E6mtR+relW9nZvsf/u4SkAYyNliPiPW7XtFNb5u3IUMkxGxFTTRTgQ==}
@@ -6723,7 +6768,7 @@ snapshots:
   '@intlify/bundle-utils@7.5.0(vue-i18n@9.9.1(vue@3.4.38(typescript@5.5.4)))':
     dependencies:
       '@intlify/message-compiler': 9.9.1
-      '@intlify/shared': 9.13.1
+      '@intlify/shared': 9.14.1
       acorn: 8.12.1
       escodegen: 2.1.0
       estree-walker: 2.0.2
@@ -6756,6 +6801,8 @@ snapshots:
       source-map-js: 1.2.0
 
   '@intlify/shared@9.13.1': {}
+
+  '@intlify/shared@9.14.1': {}
 
   '@intlify/shared@9.9.1': {}
 
@@ -7032,14 +7079,14 @@ snapshots:
       - utf-8-validate
       - vite
 
-  '@nuxt/icon@1.4.4(magicast@0.3.4)(rollup@4.21.0)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))':
+  '@nuxt/icon@1.4.4(magicast@0.3.4)(rollup@4.21.0)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
       '@iconify/collections': 1.0.445
       '@iconify/types': 2.0.0
       '@iconify/utils': 2.1.25
       '@iconify/vue': 4.1.3-beta.1(vue@3.4.38(typescript@5.5.4))
       '@nuxt/devtools-kit': 1.4.1(magicast@0.3.4)(rollup@4.21.0)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
+      '@nuxt/kit': 3.13.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
       consola: 3.2.3
       fast-glob: 3.3.2
       local-pkg: 0.5.0
@@ -7051,6 +7098,7 @@ snapshots:
       - supports-color
       - vite
       - vue
+      - webpack-sources
 
   '@nuxt/kit@3.13.0(magicast@0.3.4)(rollup@4.21.0)':
     dependencies:
@@ -7079,6 +7127,34 @@ snapshots:
       - rollup
       - supports-color
 
+  '@nuxt/kit@3.13.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)':
+    dependencies:
+      '@nuxt/schema': 3.13.2(rollup@4.21.0)(webpack-sources@3.2.3)
+      c12: 1.11.2(magicast@0.3.4)
+      consola: 3.2.3
+      defu: 6.1.4
+      destr: 2.0.3
+      globby: 14.0.2
+      hash-sum: 2.0.0
+      ignore: 5.3.2
+      jiti: 1.21.6
+      klona: 2.0.6
+      knitwork: 1.1.0
+      mlly: 1.7.1
+      pathe: 1.1.2
+      pkg-types: 1.2.0
+      scule: 1.3.0
+      semver: 7.6.3
+      ufo: 1.5.4
+      unctx: 2.3.1
+      unimport: 3.13.1(rollup@4.21.0)(webpack-sources@3.2.3)
+      untyped: 1.4.2
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
+      - webpack-sources
+
   '@nuxt/schema@3.13.0(rollup@4.21.0)':
     dependencies:
       compatx: 0.1.8
@@ -7096,6 +7172,25 @@ snapshots:
     transitivePeerDependencies:
       - rollup
       - supports-color
+
+  '@nuxt/schema@3.13.2(rollup@4.21.0)(webpack-sources@3.2.3)':
+    dependencies:
+      compatx: 0.1.8
+      consola: 3.2.3
+      defu: 6.1.4
+      hookable: 5.5.3
+      pathe: 1.1.2
+      pkg-types: 1.2.0
+      scule: 1.3.0
+      std-env: 3.7.0
+      ufo: 1.5.4
+      uncrypto: 0.1.3
+      unimport: 3.13.1(rollup@4.21.0)(webpack-sources@3.2.3)
+      untyped: 1.4.2
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+      - webpack-sources
 
   '@nuxt/telemetry@2.5.4(magicast@0.3.4)(rollup@4.21.0)':
     dependencies:
@@ -7160,10 +7255,10 @@ snapshots:
       - rollup
       - supports-color
 
-  '@nuxt/ui-pro@1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))':
+  '@nuxt/ui-pro@1.4.1(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
       '@iconify-json/vscode-icons': 1.1.37
-      '@nuxt/ui': 2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))
+      '@nuxt/ui': 2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)
       '@vueuse/core': 10.11.0(vue@3.4.38(typescript@5.5.4))
       defu: 6.1.4
       git-url-parse: 14.1.0
@@ -7193,16 +7288,17 @@ snapshots:
       - universal-cookie
       - vite
       - vue
+      - webpack-sources
 
-  '@nuxt/ui@2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))':
+  '@nuxt/ui@2.18.4(axios@1.7.3)(change-case@4.1.2)(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
       '@headlessui/tailwindcss': 0.2.1(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4)))
       '@headlessui/vue': 1.7.22(vue@3.4.38(typescript@5.5.4))
       '@iconify-json/heroicons': 1.2.0
-      '@nuxt/icon': 1.4.4(magicast@0.3.4)(rollup@4.21.0)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))
+      '@nuxt/icon': 1.4.4(magicast@0.3.4)(rollup@4.21.0)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2))(vue@3.4.38(typescript@5.5.4))(webpack-sources@3.2.3)
       '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
-      '@nuxtjs/color-mode': 3.4.2(magicast@0.3.4)(rollup@4.21.0)
-      '@nuxtjs/tailwindcss': 6.12.1(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))
+      '@nuxtjs/color-mode': 3.4.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
+      '@nuxtjs/tailwindcss': 6.12.1(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(webpack-sources@3.2.3)
       '@popperjs/core': 2.11.8
       '@tailwindcss/aspect-ratio': 0.4.2(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4)))
       '@tailwindcss/container-queries': 0.1.1(tailwindcss@3.4.7(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4)))
@@ -7238,6 +7334,7 @@ snapshots:
       - universal-cookie
       - vite
       - vue
+      - webpack-sources
 
   '@nuxt/vite-builder@3.13.0(@types/node@18.19.47)(eslint@9.9.1(jiti@1.21.6))(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(terser@5.18.2)(typescript@5.5.4)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
@@ -7298,9 +7395,9 @@ snapshots:
       - vti
       - vue-tsc
 
-  '@nuxtjs/color-mode@3.4.2(magicast@0.3.4)(rollup@4.21.0)':
+  '@nuxtjs/color-mode@3.4.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)':
     dependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
+      '@nuxt/kit': 3.13.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
       pathe: 1.1.2
       pkg-types: 1.2.0
       semver: 7.6.3
@@ -7308,6 +7405,7 @@ snapshots:
       - magicast
       - rollup
       - supports-color
+      - webpack-sources
 
   '@nuxtjs/i18n@8.5.1(magicast@0.3.4)(rollup@4.21.0)(vue@3.4.38(typescript@5.5.4))':
     dependencies:
@@ -7341,9 +7439,9 @@ snapshots:
       - vue
       - vue-i18n-bridge
 
-  '@nuxtjs/tailwindcss@6.12.1(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))':
+  '@nuxtjs/tailwindcss@6.12.1(magicast@0.3.4)(rollup@4.21.0)(ts-node@10.9.2(@types/node@18.19.47)(typescript@5.5.4))(webpack-sources@3.2.3)':
     dependencies:
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
+      '@nuxt/kit': 3.13.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
       autoprefixer: 10.4.20(postcss@8.4.41)
       consola: 3.2.3
       defu: 6.1.4
@@ -7361,6 +7459,7 @@ snapshots:
       - supports-color
       - ts-node
       - uWebSockets.js
+      - webpack-sources
 
   '@one-ini/wasm@0.1.1': {}
 
@@ -7528,6 +7627,14 @@ snapshots:
       picomatch: 2.3.1
 
   '@rollup/pluginutils@5.1.0(rollup@4.21.0)':
+    dependencies:
+      '@types/estree': 1.0.5
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    optionalDependencies:
+      rollup: 4.21.0
+
+  '@rollup/pluginutils@5.1.2(rollup@4.21.0)':
     dependencies:
       '@types/estree': 1.0.5
       estree-walker: 2.0.2
@@ -8360,6 +8467,23 @@ snapshots:
     optionalDependencies:
       magicast: 0.3.4
 
+  c12@1.11.2(magicast@0.3.4):
+    dependencies:
+      chokidar: 3.6.0
+      confbox: 0.1.7
+      defu: 6.1.4
+      dotenv: 16.4.5
+      giget: 1.2.3
+      jiti: 1.21.6
+      mlly: 1.7.1
+      ohash: 1.1.3
+      pathe: 1.1.2
+      perfect-debounce: 1.0.0
+      pkg-types: 1.2.0
+      rc9: 2.1.2
+    optionalDependencies:
+      magicast: 0.3.4
+
   cac@6.7.14: {}
 
   cache-content-type@1.0.1:
@@ -8751,6 +8875,8 @@ snapshots:
   decompress-response@6.0.0:
     dependencies:
       mimic-response: 3.1.0
+
+  dedupe@4.0.3: {}
 
   deep-eql@5.0.2: {}
 
@@ -10553,16 +10679,18 @@ snapshots:
       - rollup
       - supports-color
 
-  nuxt-zod-i18n@1.9.0(magicast@0.3.4)(rollup@4.21.0):
+  nuxt-zod-i18n@1.10.0(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3):
     dependencies:
-      '@intlify/shared': 9.13.1
-      '@nuxt/kit': 3.13.0(magicast@0.3.4)(rollup@4.21.0)
+      '@intlify/shared': 9.14.1
+      '@nuxt/kit': 3.13.2(magicast@0.3.4)(rollup@4.21.0)(webpack-sources@3.2.3)
+      dedupe: 4.0.3
       defu: 6.1.4
       zod: 3.23.8
     transitivePeerDependencies:
       - magicast
       - rollup
       - supports-color
+      - webpack-sources
 
   nuxt@3.13.0(@azure/cosmos@4.1.1)(@azure/identity@4.4.1)(@parcel/watcher@2.4.1)(@types/node@18.19.47)(encoding@0.1.13)(eslint@9.9.1(jiti@1.21.6))(ioredis@5.4.1)(magicast@0.3.4)(optionator@0.9.4)(rollup@4.21.0)(terser@5.18.2)(typescript@5.5.4)(vite@5.4.2(@types/node@18.19.47)(terser@5.18.2)):
     dependencies:
@@ -11992,6 +12120,25 @@ snapshots:
     transitivePeerDependencies:
       - rollup
 
+  unimport@3.13.1(rollup@4.21.0)(webpack-sources@3.2.3):
+    dependencies:
+      '@rollup/pluginutils': 5.1.2(rollup@4.21.0)
+      acorn: 8.12.1
+      escape-string-regexp: 5.0.0
+      estree-walker: 3.0.3
+      fast-glob: 3.3.2
+      local-pkg: 0.5.0
+      magic-string: 0.30.11
+      mlly: 1.7.1
+      pathe: 1.1.2
+      pkg-types: 1.2.0
+      scule: 1.3.0
+      strip-literal: 2.1.0
+      unplugin: 1.14.1(webpack-sources@3.2.3)
+    transitivePeerDependencies:
+      - rollup
+      - webpack-sources
+
   universalify@2.0.0: {}
 
   unpipe@1.0.0: {}
@@ -12024,6 +12171,13 @@ snapshots:
       chokidar: 3.6.0
       webpack-sources: 3.2.3
       webpack-virtual-modules: 0.6.2
+
+  unplugin@1.14.1(webpack-sources@3.2.3):
+    dependencies:
+      acorn: 8.12.1
+      webpack-virtual-modules: 0.6.2
+    optionalDependencies:
+      webpack-sources: 3.2.3
 
   unstorage@1.10.2(@azure/cosmos@4.1.1)(@azure/identity@4.4.1)(ioredis@5.4.1):
     dependencies:
