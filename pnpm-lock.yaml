@@ -104,8 +104,8 @@ importers:
         specifier: ^4.1.1
         version: 4.1.1
       '@azure/functions':
-        specifier: ^4.5.1
-        version: 4.5.1
+        specifier: ^4.6.0
+        version: 4.6.0
       '@ddradar/core':
         specifier: workspace:*
         version: link:../core
@@ -280,8 +280,8 @@ packages:
     resolution: {integrity: sha512-EKcRHZy3enhz7hU/qlwW2urcoF7haFkQRbLhR+rUaAtzDaN6+F/rH4xJtNc94NjOEoeHUI+bkze63ZA55Gca0A==}
     engines: {node: '>=18.0.0'}
 
-  '@azure/functions@4.5.1':
-    resolution: {integrity: sha512-ikiw1IrM2W9NlQM3XazcX+4Sq3XAjZi4eeG22B5InKC2x5i7MatGF2S/Gn1ACZ+fEInwu+Ru9J8DlnBv1/hIvg==}
+  '@azure/functions@4.6.0':
+    resolution: {integrity: sha512-vGq9jXlgrJ3KaI8bepgfpk26zVY8vFZsQukF85qjjKTAR90eFOOBNaa+mc/0ViDY2lcdrU2fL/o1pQyZUtTDsw==}
     engines: {node: '>=18.0'}
 
   '@azure/identity@4.4.1':
@@ -2482,8 +2482,8 @@ packages:
     resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
     engines: {node: '>= 0.6'}
 
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
+  cookie@0.7.2:
+    resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
 
   cookies@0.9.1:
@@ -6040,9 +6040,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@azure/functions@4.5.1':
+  '@azure/functions@4.6.0':
     dependencies:
-      cookie: 0.6.0
+      cookie: 0.7.2
       long: 4.0.0
       undici: 5.28.4
 
@@ -8614,7 +8614,7 @@ snapshots:
 
   cookie@0.5.0: {}
 
-  cookie@0.6.0: {}
+  cookie@0.7.2: {}
 
   cookies@0.9.1:
     dependencies:
