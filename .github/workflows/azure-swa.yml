@@ -38,10 +38,11 @@ jobs:
 
       - name: Upload Artifact
         if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4.4.0
+        uses: actions/upload-artifact@v4.4.3
         with:
           name: web
           path: web/.output
+          include-hidden-files: true
 
   deploy:
     name: Deploy
