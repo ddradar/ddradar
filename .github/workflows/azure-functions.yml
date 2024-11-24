@@ -50,6 +50,7 @@ jobs:
         with:
           name: func
           path: dist
+          include-hidden-files: true
 
   deploy:
     name: Deploy
