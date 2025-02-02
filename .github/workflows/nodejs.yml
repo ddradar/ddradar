@@ -52,7 +52,7 @@ jobs:
           NUXT_UI_PRO_LICENSE: ${{ secrets.NUXT_UI_PRO_LICENSE }}
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v5.1.2
+        uses: codecov/codecov-action@v5.3.1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./core/coverage/coverage-final.json,./db/coverage/coverage-final.json,./functions/coverage/coverage-final.json,./web/coverage/coverage-final.json
