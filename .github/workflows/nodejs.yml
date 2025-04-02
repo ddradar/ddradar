@@ -17,7 +17,7 @@ jobs:
       - name: Use pnpm
         uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v4.2.0
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: ${{ vars.NODE_VERSION }}
           cache: pnpm
@@ -38,7 +38,7 @@ jobs:
       - name: Use pnpm
         uses: pnpm/action-setup@v4.0.0
       - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v4.2.0
+        uses: actions/setup-node@v4.3.0
         with:
           node-version: ${{ vars.NODE_VERSION }}
           cache: pnpm
