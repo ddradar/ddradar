@@ -16,7 +16,7 @@
     "test": "vitest run"
   },
   "dependencies": {
-    "@azure/cosmos": "^4.1.1",
+    "@azure/cosmos": "^4.4.1",
     "@ddradar/core": "workspace:*",
     "@ddradar/db": "workspace:*",
     "@iconify-json/flag": "^1.2.2",
