@@ -12,18 +12,23 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "npx nuxthub preview",
-    "deploy": "npx nuxthub deploy",
-    "postinstall": "nuxt prepare",
+    "preview": "nuxthub preview",
+    "deploy": "nuxthub deploy",
+    "prepare": "nuxt prepare",
     "lint": "eslint ."
   },
   "dependencies": {
     "@nuxthub/core": "^0.9.1",
-    "nuxt": "^4.2.1"
+    "drizzle-orm": "1.0.0-beta.2-86f844e",
+    "nuxt": "^4.2.1",
+    "vue": "^3.5.25",
+    "zod": "^4.1.13"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.11.0",
+    "drizzle-kit": "1.0.0-beta.2-86f844e",
     "eslint": "^9.39.1",
+    "nuxthub": "^0.9.4",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.6",
     "wrangler": "^4.53.0"
