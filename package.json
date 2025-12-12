@@ -11,24 +11,39 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxthub preview",
-    "deploy": "nuxthub deploy",
-    "prepare": "nuxt prepare",
+    "preview": "wrangler preview",
+    "deploy": "wrangler deploy",
+    "prepare": "husky && nuxt prepare",
     "lint": "eslint ."
   },
+  "lint-staged": {
+    "*.{js,mjs,ts,vue}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,yml}": "prettier --write"
+  },
   "dependencies": {
-    "@nuxthub/core": "^0.9.1",
-    "drizzle-orm": "1.0.0-beta.2-86f844e",
-    "nuxt": "^4.2.1",
+    "@libsql/client": "^0.15.15",
+    "@nuxt/ui": "^4.2.1",
+    "@nuxthub/core": "^0.10.1",
+    "drizzle-orm": "^0.45.1",
+    "happy-dom": "^20.0.11",
+    "iconv-lite": "^0.7.0",
+    "nuxt": "^4.2.2",
     "vue": "^3.5.25",
     "zod": "^4.1.13"
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.11.0",
-    "drizzle-kit": "1.0.0-beta.2-86f844e",
+    "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "nuxthub": "^0.9.4",
+    "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "vue-tsc": "^3.1.6",
     "wrangler": "^4.53.0"
