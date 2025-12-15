@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2025-03-01',
+  compatibilityDate: '2025-12-11',
   modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui'],
   nitro: {
     preset: 'cloudflare-module',
@@ -16,4 +16,16 @@ export default defineNuxtConfig({
     kv: true,
   },
   css: ['~/assets/css/main.css'],
+  runtimeConfig: {
+    ddrCardDrawJsonUrl:
+      'https://raw.githubusercontent.com/noahm/DDRCardDraw/refs/heads/main/src/songs/ddr_world.json',
+    bemaniWiki: {
+      totalNotesUrl:
+        'https://bemaniwiki.com/?DanceDanceRevolution+WORLD/%C1%B4%B6%CA%C1%ED%A5%CE%A1%BC%A5%C4%BF%F4%A5%EA%A5%B9%A5%C8',
+      grooveRadarSPUrl:
+        'https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29',
+      grooveRadarDPUrl:
+        'https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29',
+    },
+  },
 })

@@ -2,11 +2,8 @@ import type { Difficulty, PlayStyle, StepChart } from '../types/step-chart'
 
 export function scrapeSongNotes(
   document: Document
-): ReadonlyMap<string, Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]> {
-  const wikiSongDataMap = new Map<
-    string,
-    Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]
-  >()
+): Map<string, Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]> {
+  const map: ReturnType<typeof scrapeSongNotes> = new Map()
   for (const table of document.querySelectorAll('table')) {
     const rows = table.querySelectorAll('tr')
     for (const row of rows) {
@@ -49,17 +46,17 @@ export function scrapeSongNotes(
       }
 
       if (chartDataList.length > 0) {
-        wikiSongDataMap.set(songName, chartDataList)
+        map.set(songName, chartDataList)
       }
     }
   }
-  return wikiSongDataMap
+  return map
 }
 
 export function scrapeGrooveRadar(
   document: Document,
   playStyle: PlayStyle
-): ReadonlyMap<
+): Map<
   string,
   Required<Pick<StepChart, 'playStyle' | 'difficulty' | 'radar'>>[]
 > {
@@ -70,10 +67,7 @@ export function scrapeGrooveRadar(
     EXPERT: 3,
     CHALLENGE: 4,
   }
-  const radarMap = new Map<
-    string,
-    Required<Pick<StepChart, 'playStyle' | 'difficulty' | 'radar'>>[]
-  >()
+  const map: ReturnType<typeof scrapeGrooveRadar> = new Map()
 
   // Parse all tables in the document
   const tables = document.querySelectorAll('table')
@@ -144,9 +138,9 @@ export function scrapeGrooveRadar(
       if (hasInvalidValue || values.length < 5) continue
 
       // Initialize song map if needed
-      if (!radarMap.has(songName)) radarMap.set(songName, [])
+      if (!map.has(songName)) map.set(songName, [])
 
-      const difficulties = radarMap.get(songName)!
+      const difficulties = map.get(songName)!
       difficulties.push({
         playStyle,
         difficulty,
@@ -161,7 +155,7 @@ export function scrapeGrooveRadar(
     }
   }
 
-  return radarMap
+  return map
 }
 
 const corrections = new Map<string, string>([
@@ -177,6 +171,7 @@ const corrections = new Map<string, string>([
   ['めうめうぺったんたん!!', 'めうめうぺったんたん！！'],
   ['ロンロンへ ライライライ!', 'ロンロンへ　ライライライ！'],
   ['&AElig;THER', 'ÆTHER'],
+  ['BabeL 〜Next Story〜', 'BabeL ～Next Story～'],
   ['GRADIUS REMIX（↑↑↓↓←→←→BA Ver.)', 'GRADIUS REMIX (↑↑↓↓←→←→BA Ver.)'],
   ['Ha・lle・lu・jah', 'Ha･lle･lu･jah'],
   ['KIMONO♡PRINCESS', 'KIMONO♥PRINCESS'],
@@ -187,6 +182,10 @@ const corrections = new Map<string, string>([
   ],
   ['MITOれて!いばらきっしゅだ～りん', 'MITOれて！いばらきっしゅだ～りん'],
   ['murmur twins (guitar pop ver.)(ReGLOSS)', 'murmur twins (guitar pop ver.)'],
+  [
+    'murmur twins (guitar pop ver.) (ReGLOSS)',
+    'murmur twins (guitar pop ver.)',
+  ],
   ['neko*neko', 'neko＊neko'],
   [
     'osaka EVOLVED -毎度、おおきに!- (TYPE1)',

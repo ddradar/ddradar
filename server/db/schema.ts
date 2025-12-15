@@ -10,29 +10,34 @@ import {
 const timestamps = {
   createdAt: int('created_at', { mode: 'timestamp' })
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+    .default(sql`strftime('%s', 'now')`),
   updatedAt: int('updated_at', { mode: 'timestamp' })
     .notNull()
-    .default(sql`CURRENT_TIMESTAMP`),
+    .default(sql`strftime('%s', 'now')`),
   deletedAt: int('deleted_at', { mode: 'timestamp' })
     .$type<Date | null>()
     .default(null),
 }
+export type TimestampColumn = keyof typeof timestamps
 
 export const songs = sqliteTable(
   'songs',
   {
-    /** ID that depend on official site. `/^[01689bdiloqDIOPQ]{32}$/` */
+    /**
+     * ID that depend on official site.
+     * @pattern /^[01689bdiloqDIOPQ]{32}$/
+     */
     id: text('id', { length: 32 }).primaryKey(),
     /** Song name */
     name: text('name').notNull(),
-    /** Furigana for sorting. (allows A-Z, 0-9, space, period, ぁ-ん, ー) */
+    /** Furigana for sorting. (allows A-Z, 0-9, space, period, _, ぁ-ん, ー) */
     nameKana: text('name_kana').notNull(),
     /**
      * Calculate from `nameKana`.
      * `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
      */
     nameIndex: int('name_index')
+      .$type<NameIndex>()
       .generatedAlwaysAs(
         sql`CASE
       WHEN name_kana GLOB '[ぁ-おゔ]*' THEN 0
@@ -80,9 +85,13 @@ export const songs = sqliteTable(
     /** Displayed BPM (use DDR GRAND PRIX, A3 or earlier) */
     bpm: text('bpm'),
     /** Series title depend on official site. */
-    series: text('series').notNull(),
-    /** Flare skill category. Calculate from `series`. */
+    series: text('series').$type<SeriesFolder>().notNull(),
+    /**
+     * Flare skill category.
+     * @description Calculate from {@link Song.series}.
+     */
     seriesCategory: text('series_category')
+      .$type<SeriesCategory>()
       .generatedAlwaysAs(
         sql`CASE
       WHEN series IN (
@@ -117,22 +126,28 @@ export const charts = sqliteTable(
     id: text('id')
       .notNull()
       .references(() => songs.id),
-    /** Play style (1: Single, 2: Double) */
+    /**
+     * Play style
+     * @description `1`: SINGLE, `2`: DOUBLE
+     */
     playStyle: int('play_style').$type<PlayStyle>().notNull(),
     /** Difficulty (0: BEGINNER, 1: BASIC, 2: DIFFICULT, 3: EXPERT, 4: CHALLENGE) */
     difficulty: int('difficulty').$type<Difficulty>().notNull(),
     /**
-     * Charts BPM range.
+     * Chart BPM range.
      * - 1-tuple: [fixed BPM]
-     * - 2-tuple: [Min BPM, Max BPM]
      * - 3-tuple: [Min BPM, Core BPM, Max BPM]
      */
     bpm: text('bpm', { mode: 'json' }).$type<number[]>().notNull(),
-    /** Level (1-20) */
+    /** Chart level (1-20) */
     level: int('level').notNull(),
+    /** Normal arrow count. (Jump = 1 count) */
     notes: int('notes'),
+    /** Freeze Arrow count. */
     freezes: int('freezes'),
+    /** Shock Arrow count. */
     shocks: int('shocks').default(0),
+    /** Groove Radar data (if available) */
     radar: text('radar', { mode: 'json' }).$type<GrooveRadar | null>(),
     ...timestamps,
   },
