@@ -1,21 +1,22 @@
 import { eq } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-const _songApiSchema = z.extend(songSchema, {
-  charts: z.array(stepChartSchema),
-})
+import { ignoreTimestampCols } from '~~/server/db/utils'
 
 export default eventHandler(async event => {
   const { id } = await getValidatedRouterParams(
     event,
     z.pick(songSchema, { id: true }).parse
   )
+
   const song = await db.query.songs.findFirst({
-    columns: { nameIndex: false, createdAt: false, updatedAt: false },
+    columns: { ...ignoreTimestampCols },
     with: {
-      charts: { columns: { id: false, createdAt: false, updatedAt: false } },
+      charts: { columns: { id: false, ...ignoreTimestampCols } },
     },
     where: eq(schema.songs.id, id),
   })
-  return song as unknown as Song & { charts: StepChart[] }
+
+  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  return song as Song & { charts: StepChart[] }
 })

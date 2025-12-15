@@ -16,9 +16,14 @@
       "custom_domain": true,
     },
   ],
+  "triggers": {
+    // Exactly same patterns as `nitro.scheduledTasks` in nuxt.config.ts
+    "crons": ["0 6 * * 4", "30 6 * * 4"],
+  },
   "d1_databases": [
     {
       "binding": "DB",
+      "database_name": "ddradar",
       "database_id": "4dce0809-a8f5-4246-8aa3-a98d80d75f58",
     },
   ],

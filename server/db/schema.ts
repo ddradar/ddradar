@@ -10,10 +10,10 @@ import {
 const timestamps = {
   createdAt: int('created_at', { mode: 'timestamp' })
     .notNull()
-    .default(sql`strftime('%s', 'now')`),
+    .default(sql`(strftime('%s', 'now'))`),
   updatedAt: int('updated_at', { mode: 'timestamp' })
     .notNull()
-    .default(sql`strftime('%s', 'now')`),
+    .default(sql`(strftime('%s', 'now'))`),
   deletedAt: int('deleted_at', { mode: 'timestamp' })
     .$type<Date | null>()
     .default(null),
@@ -130,12 +130,16 @@ export const charts = sqliteTable(
      * Play style
      * @description `1`: SINGLE, `2`: DOUBLE
      */
-    playStyle: int('play_style').$type<PlayStyle>().notNull(),
-    /** Difficulty (0: BEGINNER, 1: BASIC, 2: DIFFICULT, 3: EXPERT, 4: CHALLENGE) */
-    difficulty: int('difficulty').$type<Difficulty>().notNull(),
+    playStyle: int('play_style').notNull(),
+    /**
+     * Difficulty
+     * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+     */
+    difficulty: int('difficulty').notNull(),
     /**
      * Chart BPM range.
      * - 1-tuple: [fixed BPM]
+     * - 2-tuple: [Min BPM, Max BPM] (unused because cannot detect Core BPM)
      * - 3-tuple: [Min BPM, Core BPM, Max BPM]
      */
     bpm: text('bpm', { mode: 'json' }).$type<number[]>().notNull(),

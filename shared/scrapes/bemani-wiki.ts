@@ -1,4 +1,4 @@
-import type { Difficulty, PlayStyle, StepChart } from '../types/step-chart'
+import type { StepChart } from '../types/step-chart'
 
 export function scrapeSongNotes(
   document: Document
@@ -55,12 +55,12 @@ export function scrapeSongNotes(
 
 export function scrapeGrooveRadar(
   document: Document,
-  playStyle: PlayStyle
+  playStyle: StepChart['playStyle']
 ): Map<
   string,
   Required<Pick<StepChart, 'playStyle' | 'difficulty' | 'radar'>>[]
 > {
-  const difficultyRecord: Record<string, Difficulty> = {
+  const difficultyRecord: Record<string, StepChart['difficulty']> = {
     BEGINNER: 0,
     BASIC: 1,
     DIFFICULT: 2,
@@ -85,7 +85,7 @@ export function scrapeGrooveRadar(
       const hasRowspan = firstCell?.getAttribute('rowspan')
 
       let cellIndex = 0
-      let difficulty: Difficulty | undefined
+      let difficulty: StepChart['difficulty'] | undefined
 
       // Case 1: rowspan present -> first cell is song name
       if (hasRowspan) {
@@ -101,7 +101,7 @@ export function scrapeGrooveRadar(
         // If it's not a difficulty label, treat it as song name (1-chart songs with no rowspan).
         const firstText = cells[cellIndex++]?.textContent?.trim() || ''
         const firstDifficulty = difficultyRecord[firstText.toUpperCase()] as
-          | Difficulty
+          | StepChart['difficulty']
           | undefined
 
         if (firstDifficulty !== undefined) {

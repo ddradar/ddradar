@@ -2,35 +2,33 @@ import * as z from 'zod/mini'
 
 import type { charts, TimestampColumn } from '~~/server/db/schema'
 
-type KeyOfMap<T> = T extends Map<infer K, unknown> ? K : never
+/** Enum object for `playStyle` */
+export const PlayStyle = {
+  SINGLE: 1,
+  DOUBLE: 2,
+} as const
 
-const _playStyles = new Map([
-  [1, 'SINGLE'],
-  [2, 'DOUBLE'],
-] as const)
-/** `1`: SINGLE, `2`: DOUBLE */
-export type PlayStyle = KeyOfMap<typeof _playStyles>
-export const playStyleMap: ReadonlyMap<number, string> = _playStyles
+/** Enum object for `difficulty` */
+export const Difficulty = {
+  BEGINNER: 0,
+  BASIC: 1,
+  DIFFICULT: 2,
+  EXPERT: 3,
+  CHALLENGE: 4,
+} as const
 
-const _difficulties = new Map([
-  [0, 'BEGINNER'],
-  [1, 'BASIC'],
-  [2, 'DIFFICULT'],
-  [3, 'EXPERT'],
-  [4, 'CHALLENGE'],
-] as const)
-/** 0: BEGINNER, 1: BASIC, 2: DIFFICULT, 3: EXPERT, 4: CHALLENGE */
-export type Difficulty = KeyOfMap<typeof _difficulties>
-export const difficultyMap: ReadonlyMap<number, string> = _difficulties
-
+/** Schema for StepChart */
 export const stepChartSchema = z.object({
   /**
    * Play style
    * @description `1`: SINGLE, `2`: DOUBLE
    */
-  playStyle: z.union([..._playStyles.keys().map(k => z.literal(k))]),
-  /** Difficulty (0: BEGINNER, 1: BASIC, 2: DIFFICULT, 3: EXPERT, 4: CHALLENGE) */
-  difficulty: z.union([..._difficulties.keys().map(k => z.literal(k))]),
+  playStyle: z.union(Object.values(PlayStyle).map(k => z.literal(k))),
+  /**
+   * Difficulty
+   * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+   */
+  difficulty: z.union(Object.values(Difficulty).map(k => z.literal(k))),
   /**
    * Chart BPM range.
    * @description
@@ -64,9 +62,36 @@ export type StepChart = Omit<
   typeof charts.$inferSelect,
   'id' | TimestampColumn
 > &
-  z.infer<typeof stepChartSchema>
-export type GrooveRadar = NonNullable<z.infer<typeof stepChartSchema>['radar']>
+  ZodInfer<typeof stepChartSchema>
+export type GrooveRadar = NonNullable<ZodInfer<typeof stepChartSchema>['radar']>
 
+/**
+ * Get the display name of a step chart.
+ * @param chart Step chart
+ * @returns Display name of the chart in the format of "PLAYSTYLE/DIFFICULTY"
+ */
+export function getChartName(
+  chart: Pick<StepChart, 'playStyle' | 'difficulty'>
+): string {
+  const playStyleName = getKeyByValue(PlayStyle, chart.playStyle) ?? 'UNKNOWN'
+  const difficultyName =
+    getKeyByValue(Difficulty, chart.difficulty) ?? 'UNKNOWN'
+  return `${playStyleName}/${difficultyName}`
+
+  function getKeyByValue<T>(
+    obj: Record<string, T>,
+    value: T
+  ): string | undefined {
+    return Object.entries(obj).find(([, v]) => v === value)?.[0]
+  }
+}
+
+/**
+ * Compare two step charts for equality.
+ * @param left Step chart on the left side
+ * @param right Step chart on the right side
+ * @returns Whether the two step charts are equal
+ */
 export function chartEquals(
   left: Pick<StepChart, 'playStyle' | 'difficulty'>,
   right: Pick<StepChart, 'playStyle' | 'difficulty'>

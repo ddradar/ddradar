@@ -152,12 +152,10 @@ export default defineTask({
             .values(
               song.charts.map(c => ({
                 id: song.saHash!,
-                playStyle: (c.style.toLowerCase() === 'double'
-                  ? 2
-                  : 1) as PlayStyle,
+                playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
                 difficulty: data.meta.difficulties.findIndex(
                   d => d.key === c.diffClass
-                ) as Difficulty,
+                ),
                 level: +c.lvl,
                 bpm: parseBPM(c.bpm ?? song.bpm),
                 notes: c.step,
@@ -169,11 +167,11 @@ export default defineTask({
         ])
         console.log(`Added song: ${song.name} (${song.saHash})`)
 
-        function parseBPM(bpm: string | undefined): [number, number, number] {
-          if (!bpm) return [0, 0, 0]
+        function parseBPM(bpm: string | undefined): number[] {
+          if (!bpm) return [0]
           const parts = bpm.split('-').map(part => parseInt(part, 10))
           if (parts.length === 1) {
-            return [parts[0], parts[0], parts[0]]
+            return [parts[0]]
           } else {
             return [parts[0], parts[1], parts[1]]
           }
