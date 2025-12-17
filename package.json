@@ -10,18 +10,25 @@
   "packageManager": "pnpm@10.12.1",
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
-    "preview": "wrangler preview",
     "deploy": "wrangler deploy",
+    "dev": "nuxt dev",
+    "fix": "pnpm run \"/^fix:.*/\"",
+    "fix:eslint": "eslint --fix .",
+    "fix:prettier": "prettier --write \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\"",
+    "lint": "pnpm run \"/^lint:.*/\"",
+    "lint:eslint": "eslint .",
+    "lint:typecheck": "nuxt typecheck",
+    "lint:prettier": "prettier -l \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\"",
     "prepare": "husky && nuxt prepare",
-    "lint": "eslint ."
+    "preview": "wrangler preview",
+    "test": "vitest run"
   },
   "lint-staged": {
     "*.{js,mjs,ts,vue}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,yml}": "prettier --write"
+    "*.{json,jsonc,yml}": "prettier --write"
   },
   "dependencies": {
     "@libsql/client": "^0.15.15",
@@ -36,6 +43,8 @@
   },
   "devDependencies": {
     "@nuxt/eslint": "^1.11.0",
+    "@nuxt/test-utils": "^3.21.0",
+    "@vue/test-utils": "^2.4.6",
     "drizzle-kit": "^0.31.8",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
@@ -45,6 +54,7 @@
     "nuxthub": "^0.9.4",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
+    "vitest": "^4.0.16",
     "vue-tsc": "^3.1.6",
     "wrangler": "^4.54.0"
   },

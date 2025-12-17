@@ -52,49 +52,63 @@ const _querySchema = z.object({
   includeCharts: z.catch(z.coerce.boolean(), false),
 })
 
-export default eventHandler(async event => {
-  const query = await getValidatedQuery(event, _querySchema.parse)
+export default cachedEventHandler(
+  async event => {
+    const query = await getValidatedQuery(event, _querySchema.parse)
 
-  const hasChartConditions =
-    query.style !== undefined && query.level !== undefined
-  const includeCharts = hasChartConditions || query.includeCharts
-  const conditions = []
-  if (query.name !== undefined)
-    conditions.push(eq(schema.songs.nameIndex, query.name))
-  if (query.series !== undefined)
-    conditions.push(eq(schema.songs.series, seriesList[query.series]))
-  if (hasChartConditions) {
-    conditions.push(
-      exists(
-        db
-          .select()
-          .from(schema.charts)
-          .where(
-            and(
-              eq(schema.charts.id, schema.songs.id),
-              eq(schema.charts.playStyle, query.style!),
-              eq(schema.charts.level, query.level!)
+    const hasChartConditions =
+      query.style !== undefined && query.level !== undefined
+    const includeCharts = hasChartConditions || query.includeCharts
+    const conditions = []
+    if (query.name !== undefined)
+      conditions.push(eq(schema.songs.nameIndex, query.name))
+    if (query.series !== undefined)
+      conditions.push(eq(schema.songs.series, seriesList[query.series]))
+    if (hasChartConditions) {
+      conditions.push(
+        exists(
+          db
+            .select()
+            .from(schema.charts)
+            .where(
+              and(
+                eq(schema.charts.id, schema.songs.id),
+                eq(schema.charts.playStyle, query.style!),
+                eq(schema.charts.level, query.level!)
+              )
             )
-          )
+        )
       )
-    )
-  }
+    }
 
-  const res = await db.query.songs.findMany({
-    columns: { ...ignoreTimestampCols },
-    where: and(...conditions),
-    with: {
-      charts: includeCharts
-        ? {
-            columns: { playStyle: true, difficulty: true, level: true },
-          }
-        : undefined,
+    const res = await db.query.songs.findMany({
+      columns: { ...ignoreTimestampCols },
+      where: and(...conditions),
+      with: {
+        charts: includeCharts
+          ? {
+              columns: { playStyle: true, difficulty: true, level: true },
+            }
+          : undefined,
+      },
+    })
+    return res.sort(compareSong) as (Song & {
+      charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
+    })[]
+  },
+  {
+    maxAge: 60 * 60, // 1 hour
+    name: 'getSongList',
+    getKey: async event => {
+      const query = await getValidatedQuery(event, _querySchema.parse)
+      return `name=${query.name ?? 'all'}&series=${query.series ?? 'all'}&style=${
+        query.style ?? 'none'
+      }&level=${query.level ?? 'none'}&includeCharts=${
+        query.includeCharts ?? 'false'
+      }`
     },
-  })
-  return res.sort(compareSong) as (Song & {
-    charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
-  })[]
-})
+  }
+)
 
 // Define OpenAPI metadata
 defineRouteMeta({

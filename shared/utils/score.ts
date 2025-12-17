@@ -1,3 +1,11 @@
+import {
+  calcNormalScore,
+  ClearLamp,
+  FlareRank,
+  getDanceLevel,
+} from '~~/shared/types/score'
+import { stepChartSchema } from '~~/shared/types/step-chart'
+
 type StepChartWithNotes = NonNullableProps<
   Pick<StepChart, 'notes' | 'freezes' | 'shocks'>
 >
@@ -37,7 +45,7 @@ export function calcFlareSkill(
  * @param chart Step chart notes info
  */
 export function calcMaxScore(
-  chart: StepChartWithNotes
+  chart: Readonly<StepChartWithNotes>
 ): NonNullableProps<Omit<ScoreRecord, 'flareSkill' | 'flareRank'>> {
   return {
     normalScore: 1000000,
@@ -55,8 +63,8 @@ export function calcMaxScore(
  * @returns Whether the score record is valid for the given chart
  */
 export function isValidScoreRecord(
-  chart: StepChartWithNotes,
-  score: ScoreRecord
+  chart: Readonly<StepChartWithNotes>,
+  score: Readonly<ScoreRecord>
 ) {
   const max = calcMaxScore(chart)
 
@@ -83,8 +91,8 @@ export function isValidScoreRecord(
  * @returns Filled `ScoreRecord`
  */
 export function fillScoreRecordFromChart(
-  chart: StepChartWithNotes,
-  partialScore: Partial<ScoreRecord>
+  chart: Readonly<StepChartWithNotes>,
+  partialScore: Readonly<Partial<ScoreRecord>>
 ): ScoreRecord {
   const objects = chart.notes + chart.freezes + chart.shocks
   const max = { ...calcMaxScore(chart), flareRank: FlareRank.None }
@@ -122,24 +130,31 @@ export function fillScoreRecordFromChart(
   }
 
   if (isGFC()) {
-    result.clearLamp = ClearLamp.GFC
-    result.maxCombo = max.maxCombo
-    return { ...result, ...tryCalcExScoreFromGreatFC() }
+    return {
+      ...result,
+      clearLamp: ClearLamp.GFC,
+      maxCombo: max.maxCombo,
+      ...tryCalcExScoreFromGreatFC(),
+    }
   }
 
   if (isFC()) {
-    result.clearLamp = ClearLamp.FC
-    result.maxCombo = max.maxCombo
     // Great:0, Good:1
-    if (result.normalScore > calcNormalScore(objects, objects - 2, 0, 1, 1)) {
+    if (
+      partialScore.clearLamp === ClearLamp.FC &&
+      result.normalScore > calcNormalScore(objects, objects - 2, 0, 1, 1)
+    ) {
       /** Perfect:0, Great:0, Good:1 Score */
       const target = calcNormalScore(objects, objects - 1, 0, 0, 1)
       const perfectCount = (target - result.normalScore) / 10
       return {
         ...result,
+        clearLamp: ClearLamp.FC,
+        maxCombo: max.maxCombo,
         exScore: max.exScore - 3 - perfectCount,
       }
     }
+    return { ...result, clearLamp: ClearLamp.FC, maxCombo: max.maxCombo }
   }
 
   if (isFailed()) {
@@ -153,6 +168,8 @@ export function fillScoreRecordFromChart(
   // 3. Flare gauge clear (= Clear)
   //     - ex. FLARE I allows up to 66 miss, so 66 or less notes chart can be cleared with 0 point
   if (result.normalScore === 0) {
+    result.exScore = 0
+    result.maxCombo = 0
     if (result.clearLamp !== ClearLamp.Failed) {
       result.clearLamp = result.flareRank ? ClearLamp.Clear : ClearLamp.Assisted
       result.rank = 'D'
@@ -293,6 +310,8 @@ export function fillScoreRecordFromChart(
 
   /** Try to get `exScore` from Great Full Combo (GFC) score. */
   function tryCalcExScoreFromGreatFC() {
+    if (partialScore.clearLamp !== ClearLamp.GFC || partialScore.exScore)
+      return null
     // Try to calc great count from score
     let gr = 0
     /** Perfect:0, Great:`gr` score */

@@ -174,7 +174,7 @@ export function mergeScoreRecords(
   left: Readonly<ScoreRecord>,
   right: Readonly<ScoreRecord>
 ): ScoreRecord {
-  return {
+  const res: ScoreRecord = {
     normalScore: maxOrUndefined(left.normalScore, right.normalScore),
     exScore: maxOrUndefined(left.exScore, right.exScore),
     maxCombo: maxOrUndefined(left.maxCombo, right.maxCombo),
@@ -187,6 +187,11 @@ export function mergeScoreRecords(
     flareRank: maxOrUndefined(left.flareRank, right.flareRank),
     flareSkill: maxOrUndefined(left.flareSkill, right.flareSkill),
   }
+  if (res.exScore === undefined) delete res.exScore
+  if (res.maxCombo === undefined) delete res.maxCombo
+  if (res.flareSkill === undefined) delete res.flareSkill
+
+  return res
 
   function maxOrUndefined<T extends number | null | undefined>(l: T, r: T): T {
     if (typeof l !== 'number') return r

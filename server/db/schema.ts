@@ -39,7 +39,7 @@ export const songs = sqliteTable(
      * `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
      */
     nameIndex: int('name_index')
-      .$type<NameIndex>()
+      .$type<ValueOf<typeof NameIndex>>()
       .generatedAlwaysAs(
         sql`CASE
       WHEN name_kana GLOB '[ぁ-おゔ]*' THEN 0

@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
-  modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui'],
+  modules: [
+    '@nuxthub/core',
+    '@nuxt/eslint',
+    '@nuxt/ui',
+    '@nuxt/test-utils/module',
+  ],
   nitro: {
     preset: 'cloudflare-module',
     experimental: {
@@ -11,6 +16,11 @@ export default defineNuxtConfig({
     scheduledTasks: {
       '0 6 * * 4': ['db:insert'], // Every Thursday at 15:00(JST)
       '30 6 * * 4': ['db:update'], // Every Thursday at 15:30(JST)
+    },
+  },
+  typescript: {
+    tsConfig: {
+      include: ['../test/**/*'],
     },
   },
   devtools: { enabled: true },

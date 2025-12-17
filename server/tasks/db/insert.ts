@@ -165,10 +165,11 @@ export default defineTask({
             )
             .onConflictDoNothing(),
         ])
-        // Clear cache for (GET /api/songs/[id])
+        // Clear cache for Song API
         await useStorage('cache').removeItem(
           `nitro:handler:getSong:${song.saHash}.json`
         )
+        await useStorage('cache').removeItem('nitro:handler:getSongList')
         console.log(`Added song: ${song.name} (${song.saHash})`)
 
         function parseBPM(bpm: string | undefined): number[] {

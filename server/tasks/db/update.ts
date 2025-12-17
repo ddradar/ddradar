@@ -211,10 +211,11 @@ export default defineTask({
           })
 
         if (res.length === 0) continue // No actual update
-        // Clear cache for (GET /api/songs/[id])
+        // Clear cache for Song API
         await useStorage('cache').removeItem(
           `nitro:handler:getSong:${targetSong.id}.json`
         )
+        await useStorage('cache').removeItem('nitro:handler:getSongList')
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
