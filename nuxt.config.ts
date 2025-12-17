@@ -4,7 +4,10 @@ export default defineNuxtConfig({
   modules: ['@nuxthub/core', '@nuxt/eslint', '@nuxt/ui'],
   nitro: {
     preset: 'cloudflare-module',
-    experimental: { tasks: true },
+    experimental: {
+      openAPI: true,
+      tasks: true,
+    },
     scheduledTasks: {
       '0 6 * * 4': ['db:insert'], // Every Thursday at 15:00(JST)
       '30 6 * * 4': ['db:update'], // Every Thursday at 15:30(JST)

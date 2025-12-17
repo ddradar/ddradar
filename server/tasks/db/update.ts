@@ -1,4 +1,4 @@
-import { and, eq, isNull, or } from 'drizzle-orm'
+import { and, eq, isNull, ne, or } from 'drizzle-orm'
 import { Window } from 'happy-dom'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
@@ -8,7 +8,11 @@ import {
   scrapeSongNotes,
 } from '~~/shared/scrapes/bemani-wiki'
 
-type PartialStepChart = Omit<StepChart, 'bpm' | 'level'>
+type PartialStepChart = Omit<
+  StepChart,
+  'bpm' | 'level' | 'notes' | 'freezes' | 'shocks' | 'radar'
+> &
+  Partial<Pick<StepChart, 'notes' | 'freezes' | 'shocks' | 'radar'>>
 
 const runtimeConfigSchema = z.object({
   totalNotesUrl: z
@@ -34,8 +38,8 @@ async function fetchBemaniWikiPage(url: string): Promise<string> {
 }
 
 function mergeSongChartMaps(
-  target: Map<string, Omit<StepChart, 'bpm' | 'level'>[]>,
-  source: Map<string, Omit<StepChart, 'bpm' | 'level'>[]>
+  target: Map<string, PartialStepChart[]>,
+  source: Map<string, PartialStepChart[]>
 ) {
   for (const [songName, chartDataList] of source) {
     const existingCharts = target.get(songName)
@@ -154,7 +158,7 @@ export default defineTask({
         const wikiChart = chartDataList.find(c => chartEquals(c, chart))
         if (!wikiChart) continue
 
-        await db
+        const res = await db
           .update(schema.charts)
           .set({
             notes: wikiChart.notes,
@@ -167,11 +171,52 @@ export default defineTask({
             and(
               eq(schema.charts.id, targetSong.id),
               eq(schema.charts.playStyle, chart.playStyle),
-              eq(schema.charts.difficulty, chart.difficulty)
+              eq(schema.charts.difficulty, chart.difficulty),
+              or(
+                and(
+                  isNull(schema.charts.notes),
+                  ne(
+                    schema.charts.notes,
+                    wikiChart.notes ?? schema.charts.notes
+                  )
+                ),
+                and(
+                  isNull(schema.charts.freezes),
+                  ne(
+                    schema.charts.freezes,
+                    wikiChart.freezes ?? schema.charts.freezes
+                  )
+                ),
+                and(
+                  isNull(schema.charts.shocks),
+                  ne(
+                    schema.charts.shocks,
+                    wikiChart.shocks ?? schema.charts.shocks
+                  )
+                ),
+                and(
+                  isNull(schema.charts.radar),
+                  ne(
+                    schema.charts.radar,
+                    wikiChart.radar ?? schema.charts.radar
+                  )
+                )
+              )
             )
           )
+          .returning({
+            id: schema.charts.id,
+            playStyle: schema.charts.playStyle,
+            difficulty: schema.charts.difficulty,
+          })
+
+        if (res.length === 0) continue // No actual update
+        // Clear cache for (GET /api/songs/[id])
+        await useStorage('cache').removeItem(
+          `nitro:handler:getSong:${targetSong.id}.json`
+        )
         console.log(
-          `[UPDATE] ${name} (${playStyleMap.get(chart.playStyle)}/${difficultyMap.get(chart.difficulty)})`
+          `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
         updatedSongs ||= true
         updated.charts++

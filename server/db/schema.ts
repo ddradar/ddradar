@@ -13,13 +13,15 @@ const timestamps = {
     .default(sql`(strftime('%s', 'now'))`),
   updatedAt: int('updated_at', { mode: 'timestamp' })
     .notNull()
-    .default(sql`(strftime('%s', 'now'))`),
+    .default(sql`(strftime('%s', 'now'))`)
+    .$onUpdate(() => sql`(strftime('%s', 'now'))`),
   deletedAt: int('deleted_at', { mode: 'timestamp' })
     .$type<Date | null>()
     .default(null),
 }
 export type TimestampColumn = keyof typeof timestamps
 
+/** DB schema for `Song` */
 export const songs = sqliteTable(
   'songs',
   {
@@ -119,6 +121,7 @@ export const songs = sqliteTable(
   table => [index('idx_name').on(table.nameIndex, table.nameKana)]
 )
 
+/** DB schema for `StepChart` */
 export const charts = sqliteTable(
   'charts',
   {
@@ -130,19 +133,20 @@ export const charts = sqliteTable(
      * Play style
      * @description `1`: SINGLE, `2`: DOUBLE
      */
-    playStyle: int('play_style').notNull(),
+    playStyle: int('play_style').$type<ValueOf<typeof PlayStyle>>().notNull(),
     /**
      * Difficulty
      * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
      */
-    difficulty: int('difficulty').notNull(),
+    difficulty: int('difficulty').$type<ValueOf<typeof Difficulty>>().notNull(),
     /**
      * Chart BPM range.
      * - 1-tuple: [fixed BPM]
-     * - 2-tuple: [Min BPM, Max BPM] (unused because cannot detect Core BPM)
      * - 3-tuple: [Min BPM, Core BPM, Max BPM]
      */
-    bpm: text('bpm', { mode: 'json' }).$type<number[]>().notNull(),
+    bpm: text('bpm', { mode: 'json' })
+      .$type<[number] | [number, number, number]>()
+      .notNull(),
     /** Chart level (1-20) */
     level: int('level').notNull(),
     /** Normal arrow count. (Jump = 1 count) */
@@ -161,6 +165,80 @@ export const charts = sqliteTable(
   ]
 )
 
+/** DB schema for `ScoreRecord` */
+export const scores = sqliteTable(
+  'scores',
+  {
+    /** Song ID */
+    songId: text('song_id')
+      .notNull()
+      .references(() => songs.id),
+    /**
+     * Play style
+     * @description `1`: SINGLE, `2`: DOUBLE
+     */
+    playStyle: int('play_style')
+      .$type<ValueOf<typeof PlayStyle>>()
+      .notNull()
+      .references(() => charts.playStyle),
+    /**
+     * Difficulty
+     * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+     */
+    difficulty: int('difficulty')
+      .$type<ValueOf<typeof Difficulty>>()
+      .notNull()
+      .references(() => charts.difficulty),
+    /** User ID */
+    userId: text('user_id').notNull(),
+    /** Normal Score (0-1,000,000) */
+    normalScore: int('normal_score').notNull(),
+    /** EX Score */
+    exScore: int('ex_score'),
+    /** Max Combo */
+    maxCombo: int('max_combo'),
+    /**
+     * Clear Lamp
+     * @description
+     * - `0`: Failed
+     * - `1`: Assisted Clear
+     * - `2`: Clear
+     * - `3`: Life 4
+     * - `4`: Full Combo (Good FC)
+     * - `5`: Great Full Combo
+     * - `6`: Perfect Full Combo
+     * - `7`: Marvelous Full Combo
+     */
+    clearLamp: int('clear_lamp').$type<ValueOf<typeof ClearLamp>>().notNull(),
+    /** Dance Level ("AAA", "AA+", "AA", "AA-", ..., "D+", "D", "E") */
+    rank: text('rank').notNull(),
+    /**
+     * Flare Rank
+     * @description
+     * - `0`: No FLARE
+     * - `1`: FLARE I
+     * - `2`: FLARE II
+     * - `3`: FLARE III
+     * - `4`: FLARE IV
+     * - `5`: FLARE V
+     * - `6`: FLARE VI
+     * - `7`: FLARE VII
+     * - `8`: FLARE VIII
+     * - `9`: FLARE IX
+     * - `10`: FLARE EX
+     */
+    flareRank: int('flare_rank').$type<ValueOf<typeof FlareRank>>().notNull(),
+    /** Flare Skill */
+    flareSkill: int('flare_skill'),
+    ...timestamps,
+  },
+  table => [
+    primaryKey({
+      columns: [table.songId, table.playStyle, table.difficulty, table.userId],
+    }),
+  ]
+)
+
 export const songRelations = relations(songs, ({ many }) => ({
   charts: many(charts),
 }))
@@ -168,6 +246,20 @@ export const songRelations = relations(songs, ({ many }) => ({
 export const chartRelations = relations(charts, ({ one }) => ({
   song: one(songs, {
     fields: [charts.id],
+    references: [songs.id],
+  }),
+}))
+
+export const scoreChartRelations = relations(scores, ({ one }) => ({
+  chart: one(charts, {
+    fields: [scores.songId, scores.playStyle, scores.difficulty],
+    references: [charts.id, charts.playStyle, charts.difficulty],
+  }),
+}))
+
+export const scoreSongRelations = relations(scores, ({ one }) => ({
+  song: one(songs, {
+    fields: [scores.songId],
     references: [songs.id],
   }),
 }))
