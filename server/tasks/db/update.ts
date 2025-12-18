@@ -3,6 +3,8 @@ import { Window } from 'happy-dom'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
 
+import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id].get'
+import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
 import {
   scrapeGrooveRadar,
   scrapeSongNotes,
@@ -213,9 +215,9 @@ export default defineTask({
         if (res.length === 0) continue // No actual update
         // Clear cache for Song API
         await useStorage('cache').removeItem(
-          `nitro:handler:getSong:${targetSong.id}.json`
+          `nitro:handler:${getSongByIdKey}:${targetSong.id}.json`
         )
-        await useStorage('cache').removeItem('nitro:handler:getSongList')
+        await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )

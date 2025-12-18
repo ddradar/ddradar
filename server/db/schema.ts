@@ -5,7 +5,21 @@ import {
   primaryKey,
   sqliteTable,
   text,
+  uniqueIndex,
 } from 'drizzle-orm/sqlite-core'
+
+import type { ClearLamp, FlareRank } from '~~/shared/types/score'
+import type {
+  NameIndex,
+  SeriesCategory,
+  SeriesFolder,
+} from '~~/shared/types/song'
+import type {
+  Difficulty,
+  GrooveRadar,
+  PlayStyle,
+} from '~~/shared/types/step-chart'
+import type { Area } from '~~/shared/types/user'
 
 const timestamps = {
   createdAt: int('created_at', { mode: 'timestamp' })
@@ -21,6 +35,7 @@ const timestamps = {
 }
 export type TimestampColumn = keyof typeof timestamps
 
+// #region Tables
 /** DB schema for `Song` */
 export const songs = sqliteTable(
   'songs',
@@ -170,27 +185,21 @@ export const scores = sqliteTable(
   'scores',
   {
     /** Song ID */
-    songId: text('song_id')
-      .notNull()
-      .references(() => songs.id),
+    songId: text('song_id').notNull(),
     /**
      * Play style
      * @description `1`: SINGLE, `2`: DOUBLE
      */
-    playStyle: int('play_style')
-      .$type<ValueOf<typeof PlayStyle>>()
-      .notNull()
-      .references(() => charts.playStyle),
+    playStyle: int('play_style').$type<ValueOf<typeof PlayStyle>>().notNull(),
     /**
      * Difficulty
      * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
      */
-    difficulty: int('difficulty')
-      .$type<ValueOf<typeof Difficulty>>()
-      .notNull()
-      .references(() => charts.difficulty),
+    difficulty: int('difficulty').$type<ValueOf<typeof Difficulty>>().notNull(),
     /** User ID */
-    userId: text('user_id').notNull(),
+    userId: text('user_id')
+      .notNull()
+      .references(() => users.id),
     /** Normal Score (0-1,000,000) */
     normalScore: int('normal_score').notNull(),
     /** EX Score */
@@ -239,6 +248,39 @@ export const scores = sqliteTable(
   ]
 )
 
+/** DB schema for `User` */
+export const users = sqliteTable(
+  'users',
+  {
+    /** User ID */
+    id: text('id').primaryKey(),
+    /** Display name */
+    name: text('name').notNull(),
+    /** Login provider */
+    provider: text('provider').notNull(),
+    /** Provider ID */
+    providerId: text('provider_id').notNull(),
+    /** User & score visibility */
+    isPublic: int('is_public', { mode: 'boolean' }).notNull(),
+    /** User area */
+    area: int('area')
+      .$type<ValueOf<typeof Area>>()
+      .notNull()
+      .$default(() => 0),
+    /** DDR code */
+    ddrCode: int('ddr_code'),
+    /** User roles */
+    roles: text('roles', { mode: 'json' })
+      .$type<string[]>()
+      .notNull()
+      .$default(() => []),
+    ...timestamps,
+  },
+  table => [uniqueIndex('idx_provider').on(table.provider, table.providerId)]
+)
+// #endregion Tables
+
+// #region Relations
 export const songRelations = relations(songs, ({ many }) => ({
   charts: many(charts),
 }))
@@ -263,3 +305,15 @@ export const scoreSongRelations = relations(scores, ({ one }) => ({
     references: [songs.id],
   }),
 }))
+
+export const scoreUserRelations = relations(scores, ({ one }) => ({
+  user: one(users, {
+    fields: [scores.userId],
+    references: [users.id],
+  }),
+}))
+
+export const userRelations = relations(users, ({ many }) => ({
+  scores: many(scores),
+}))
+// #endregion Relations

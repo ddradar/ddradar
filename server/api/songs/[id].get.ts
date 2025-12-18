@@ -5,28 +5,30 @@ import { ignoreTimestampCols } from '~~/server/db/utils'
 import { type Song, songSchema } from '~~/shared/types/song'
 import type { StepChart } from '~~/shared/types/step-chart'
 
+/** Schema for router params */
+const _paramsSchema = z.pick(songSchema, { id: true })
+
+export const cacheName = 'getSongById'
 export default cachedEventHandler(
   async event => {
-    const { id } = await getValidatedRouterParams(
-      event,
-      z.pick(songSchema, { id: true }).parse
-    )
+    const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
 
-    const song = await db.query.songs.findFirst({
-      columns: { ...ignoreTimestampCols },
-      with: {
-        charts: { columns: { id: false, ...ignoreTimestampCols } },
-      },
-      where: eq(schema.songs.id, id),
-    })
+    const song: (Song & { charts: StepChart[] }) | undefined =
+      await db.query.songs.findFirst({
+        columns: { ...ignoreTimestampCols },
+        with: {
+          charts: { columns: { id: false, ...ignoreTimestampCols } },
+        },
+        where: eq(schema.songs.id, id),
+      })
 
     if (!song)
       throw createError({ statusCode: 404, statusMessage: 'Not Found' })
-    return song as Song & { charts: StepChart[] }
+    return song
   },
   {
     maxAge: 60 * 60 * 24, // 24 hours
-    name: 'getSong',
+    name: cacheName,
     getKey: event => getRouterParam(event, 'id') ?? 'undefined',
   }
 )
@@ -34,7 +36,7 @@ export default cachedEventHandler(
 // Define OpenAPI metadata
 defineRouteMeta({
   openAPI: {
-    summary: 'Get Song Details',
+    summary: 'Get Song Details by ID',
     tags: ['Song'],
     parameters: [
       {

@@ -17,7 +17,14 @@ export const Difficulty = {
   CHALLENGE: 4,
 } as const
 
-/** Schema for StepChart */
+export type GrooveRadar = {
+  stream: number
+  voltage: number
+  air: number
+  freeze: number
+  chaos: number
+}
+/** Zod schema for `StepChart` (excepts `id`) */
 export const stepChartSchema = z.object({
   /**
    * Play style
@@ -36,9 +43,14 @@ export const stepChartSchema = z.object({
    * - 2-tuple: [Min BPM, Max BPM] (unused because cannot detect Core BPM)
    * - 3-tuple: [Min BPM, Core BPM, Max BPM]
    */
-  bpm: z
-    .array(z.int().check(z.positive()))
-    .check(z.minLength(1), z.maxLength(3)),
+  bpm: z.union([
+    z.tuple([z.int().check(z.positive())]),
+    z.tuple([
+      z.int().check(z.positive()),
+      z.int().check(z.positive()),
+      z.int().check(z.positive()),
+    ]),
+  ]),
   /** Chart level (1-20) */
   level: z.int().check(z.minimum(1), z.maximum(20)),
   /** Normal arrow count. (Jump = 1 count) */
@@ -57,13 +69,10 @@ export const stepChartSchema = z.object({
       chaos: z.int().check(z.nonnegative()),
     })
   ),
-})
-export type StepChart = Omit<
-  typeof charts.$inferSelect,
-  'id' | TimestampColumn
-> &
-  ZodInfer<typeof stepChartSchema>
-export type GrooveRadar = NonNullable<ZodInfer<typeof stepChartSchema>['radar']>
+}) satisfies z.ZodMiniType<
+  Omit<typeof charts.$inferInsert, 'id' | TimestampColumn>
+>
+export type StepChart = ZodInfer<typeof stepChartSchema>
 
 /**
  * Get the display name of a step chart.
@@ -71,19 +80,11 @@ export type GrooveRadar = NonNullable<ZodInfer<typeof stepChartSchema>['radar']>
  * @returns Display name of the chart in the format of "PLAYSTYLE/DIFFICULTY"
  */
 export function getChartName(
-  chart: Pick<StepChart, 'playStyle' | 'difficulty'>
+  chart: Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>
 ): string {
-  const playStyleName = getKeyByValue(PlayStyle, chart.playStyle) ?? 'UNKNOWN'
-  const difficultyName =
-    getKeyByValue(Difficulty, chart.difficulty) ?? 'UNKNOWN'
+  const playStyleName = getEnumKey(PlayStyle, chart.playStyle) ?? 'UNKNOWN'
+  const difficultyName = getEnumKey(Difficulty, chart.difficulty) ?? 'UNKNOWN'
   return `${playStyleName}/${difficultyName}`
-
-  function getKeyByValue<T>(
-    obj: Record<string, T>,
-    value: T
-  ): string | undefined {
-    return Object.entries(obj).find(([, v]) => v === value)?.[0]
-  }
 }
 
 /**
@@ -93,8 +94,8 @@ export function getChartName(
  * @returns Whether the two step charts are equal
  */
 export function chartEquals(
-  left: Pick<StepChart, 'playStyle' | 'difficulty'>,
-  right: Pick<StepChart, 'playStyle' | 'difficulty'>
+  left: Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>,
+  right: Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>
 ): boolean {
   return (
     left.playStyle === right.playStyle && left.difficulty === right.difficulty

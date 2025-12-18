@@ -83,7 +83,7 @@ export function getSeriesCategory(series: string): SeriesCategory {
   return 'GOLD'
 }
 
-/** Schema for Song. */
+/** Zod schema for `Song`. (mutable properties only) */
 export const songSchema = z.object({
   /**
    * ID that depend on official site.
@@ -100,13 +100,11 @@ export const songSchema = z.object({
   bpm: z.nullish(z.string().check(z.regex(/^[0-9]+(-[0-9]+)?$/))),
   /** Series title depend on official site. */
   series: z.enum(seriesList),
-})
-
-export type Song = Omit<typeof songs.$inferSelect, TimestampColumn> &
-  ZodInfer<typeof songSchema>
+}) satisfies z.ZodMiniType<Omit<typeof songs.$inferInsert, TimestampColumn>>
+export type Song = ZodInfer<typeof songSchema> &
+  Readonly<Omit<typeof songs.$inferSelect, keyof typeof songs.$inferInsert>>
 /** Writable Song type */
-export type MutableSong = Omit<typeof songs.$inferInsert, TimestampColumn> &
-  ZodInfer<typeof songSchema>
+export type MutableSong = ZodInfer<typeof songSchema>
 
 /**
  * Compare two songs for sorting by `nameKana`.

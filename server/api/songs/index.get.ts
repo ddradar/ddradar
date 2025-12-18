@@ -52,6 +52,7 @@ const _querySchema = z.object({
   includeCharts: z.catch(z.coerce.boolean(), false),
 })
 
+export const cacheName = 'getSongList'
 export default cachedEventHandler(
   async event => {
     const query = await getValidatedQuery(event, _querySchema.parse)
@@ -98,7 +99,7 @@ export default cachedEventHandler(
   },
   {
     maxAge: 60 * 60, // 1 hour
-    name: 'getSongList',
+    name: cacheName,
     getKey: async event => {
       const query = await getValidatedQuery(event, _querySchema.parse)
       return `name=${query.name ?? 'all'}&series=${query.series ?? 'all'}&style=${

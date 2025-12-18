@@ -1,5 +1,7 @@
 import * as z from 'zod/mini'
 
+import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id].get'
+import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
 import { seriesList } from '~~/shared/types/song'
 
 const runtimeConfigSchema = z.object({
@@ -107,9 +109,7 @@ export default defineTask({
   },
   async run() {
     // Get source URL from config and validate
-    const config = runtimeConfigSchema.safeParse(
-      useRuntimeConfig().ddrCardDrawJsonUrl
-    )
+    const config = runtimeConfigSchema.safeParse(useRuntimeConfig())
     if (!config.success) {
       console.error('Invalid configuration:')
       console.error(config.error.message)
@@ -167,9 +167,9 @@ export default defineTask({
         ])
         // Clear cache for Song API
         await useStorage('cache').removeItem(
-          `nitro:handler:getSong:${song.saHash}.json`
+          `nitro:handler:${getSongByIdKey}:${song.saHash}.json`
         )
-        await useStorage('cache').removeItem('nitro:handler:getSongList')
+        await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
         console.log(`Added song: ${song.name} (${song.saHash})`)
 
         function parseBPM(bpm: string | undefined): number[] {
