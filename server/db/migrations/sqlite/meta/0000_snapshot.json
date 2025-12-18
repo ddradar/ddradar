@@ -1,0 +1,463 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "10ea1991-bd0f-4c78-9c30-ec3bc7e229af",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "charts": {
+      "name": "charts",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "play_style": {
+          "name": "play_style",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "difficulty": {
+          "name": "difficulty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bpm": {
+          "name": "bpm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "level": {
+          "name": "level",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "notes": {
+          "name": "notes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "freezes": {
+          "name": "freezes",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "shocks": {
+          "name": "shocks",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": 0
+        },
+        "radar": {
+          "name": "radar",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'null'"
+        }
+      },
+      "indexes": {
+        "idx_style_level": {
+          "name": "idx_style_level",
+          "columns": ["play_style", "level"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "charts_id_songs_id_fk": {
+          "name": "charts_id_songs_id_fk",
+          "tableFrom": "charts",
+          "tableTo": "songs",
+          "columnsFrom": ["id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "charts_id_play_style_difficulty_pk": {
+          "columns": ["id", "play_style", "difficulty"],
+          "name": "charts_id_play_style_difficulty_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "scores": {
+      "name": "scores",
+      "columns": {
+        "song_id": {
+          "name": "song_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "play_style": {
+          "name": "play_style",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "difficulty": {
+          "name": "difficulty",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "user_id": {
+          "name": "user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "normal_score": {
+          "name": "normal_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ex_score": {
+          "name": "ex_score",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "max_combo": {
+          "name": "max_combo",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "clear_lamp": {
+          "name": "clear_lamp",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "rank": {
+          "name": "rank",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "flare_rank": {
+          "name": "flare_rank",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "flare_skill": {
+          "name": "flare_skill",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'null'"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "scores_user_id_users_id_fk": {
+          "name": "scores_user_id_users_id_fk",
+          "tableFrom": "scores",
+          "tableTo": "users",
+          "columnsFrom": ["user_id"],
+          "columnsTo": ["id"],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "scores_song_id_play_style_difficulty_user_id_pk": {
+          "columns": ["song_id", "play_style", "difficulty", "user_id"],
+          "name": "scores_song_id_play_style_difficulty_user_id_pk"
+        }
+      },
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "songs": {
+      "name": "songs",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text(32)",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name_kana": {
+          "name": "name_kana",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name_index": {
+          "name": "name_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "generated": {
+            "as": "(CASE\n      WHEN name_kana GLOB '[ぁ-おゔ]*' THEN 0\n      WHEN name_kana GLOB '[か-ごゕ-ゖ]*' THEN 1\n      WHEN name_kana GLOB '[さ-ぞ]*' THEN 2\n      WHEN name_kana GLOB '[た-ど]*' THEN 3\n      WHEN name_kana GLOB '[な-の]*' THEN 4\n      WHEN name_kana GLOB '[は-ぽ]*' THEN 5\n      WHEN name_kana GLOB '[ま-も]*' THEN 6\n      WHEN name_kana GLOB '[ゃ-よ]*' THEN 7\n      WHEN name_kana GLOB '[ら-ろ]*' THEN 8\n      WHEN name_kana GLOB '[ゎ-ん]*' THEN 9\n      WHEN name_kana GLOB '[aA]*' THEN 10\n      WHEN name_kana GLOB '[bB]*' THEN 11\n      WHEN name_kana GLOB '[cC]*' THEN 12\n      WHEN name_kana GLOB '[dD]*' THEN 13\n      WHEN name_kana GLOB '[eE]*' THEN 14\n      WHEN name_kana GLOB '[fF]*' THEN 15\n      WHEN name_kana GLOB '[gG]*' THEN 16\n      WHEN name_kana GLOB '[hH]*' THEN 17\n      WHEN name_kana GLOB '[iI]*' THEN 18\n      WHEN name_kana GLOB '[jJ]*' THEN 19\n      WHEN name_kana GLOB '[kK]*' THEN 20\n      WHEN name_kana GLOB '[lL]*' THEN 21\n      WHEN name_kana GLOB '[mM]*' THEN 22\n      WHEN name_kana GLOB '[nN]*' THEN 23\n      WHEN name_kana GLOB '[oO]*' THEN 24\n      WHEN name_kana GLOB '[pP]*' THEN 25\n      WHEN name_kana GLOB '[qQ]*' THEN 26\n      WHEN name_kana GLOB '[rR]*' THEN 27\n      WHEN name_kana GLOB '[sS]*' THEN 28\n      WHEN name_kana GLOB '[tT]*' THEN 29\n      WHEN name_kana GLOB '[uU]*' THEN 30\n      WHEN name_kana GLOB '[vV]*' THEN 31\n      WHEN name_kana GLOB '[wW]*' THEN 32\n      WHEN name_kana GLOB '[xX]*' THEN 33\n      WHEN name_kana GLOB '[yY]*' THEN 34\n      WHEN name_kana GLOB '[zZ]*' THEN 35\n      ELSE 36\n    END)",
+            "type": "virtual"
+          }
+        },
+        "artist": {
+          "name": "artist",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "bpm": {
+          "name": "bpm",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "series": {
+          "name": "series",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "series_category": {
+          "name": "series_category",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "generated": {
+            "as": "(CASE\n      WHEN series IN (\n        'DDR 1st',\n        'DDR 2ndMIX',\n        'DDR 3rdMIX',\n        'DDR 4thMIX',\n        'DDR 5thMIX',\n        'DDRMAX',\n        'DDRMAX2',\n        'DDR EXTREME',\n        'DDR SuperNOVA',\n        'DDR SuperNOVAA2',\n        'DDR X',\n        'DDR X2',\n        'DDR X3 VS 2ndMIX'\n      ) THEN 'CLASSIC'\n      WHEN series IN ('DDR (2013)', 'DDR (2014)', 'DDR A') THEN 'WHITE'\n      ELSE 'GOLD'\n    END)",
+            "type": "virtual"
+          }
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'null'"
+        }
+      },
+      "indexes": {
+        "idx_name": {
+          "name": "idx_name",
+          "columns": ["name_index", "name_kana"],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    },
+    "users": {
+      "name": "users",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "provider": {
+          "name": "provider",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "provider_id": {
+          "name": "provider_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "is_public": {
+          "name": "is_public",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "area": {
+          "name": "area",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "ddr_code": {
+          "name": "ddr_code",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        },
+        "roles": {
+          "name": "roles",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "(strftime('%s', 'now'))"
+        },
+        "deleted_at": {
+          "name": "deleted_at",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false,
+          "default": "'null'"
+        }
+      },
+      "indexes": {
+        "idx_provider": {
+          "name": "idx_provider",
+          "columns": ["provider", "provider_id"],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "checkConstraints": {}
+    }
+  },
+  "views": {},
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/ui',
     '@nuxt/test-utils/module',
+    'nuxt-auth-utils',
   ],
   nitro: {
     preset: 'cloudflare-module',
@@ -41,6 +42,11 @@ export default defineNuxtConfig({
         'https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29',
       grooveRadarDPUrl:
         'https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29',
+    },
+    oauth: {
+      github: { clientId: '', clientSecret: '' },
+      line: { clientId: '', clientSecret: '' },
+      x: { clientId: '', clientSecret: '' },
     },
   },
 })
