@@ -19,6 +19,17 @@ export default defineNuxtConfig({
       '30 6 * * 4': ['db:update'], // Every Thursday at 15:30(JST)
     },
   },
+  routeRules: {
+    '/api/**': {
+      cors: true,
+      headers: {
+        'Access-Control-Allow-Origin': 'https://p.eagate.573.jp',
+        'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+    },
+  },
   typescript: {
     tsConfig: {
       include: ['../test/**/*'],
@@ -47,6 +58,14 @@ export default defineNuxtConfig({
       github: { clientId: '', clientSecret: '' },
       line: { clientId: '', clientSecret: '' },
       x: { clientId: '', clientSecret: '' },
+    },
+    session: {
+      cookie: {
+        sameSite: 'none',
+        secure: true,
+        httpOnly: false,
+      },
+      password: '',
     },
   },
 })
