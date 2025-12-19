@@ -1,30 +1,12 @@
 import * as z from 'zod/mini'
 
 import type { TimestampColumn, users } from '~~/server/db/schema'
+import { range } from '~~/shared/utils/enum'
 
 /** Area enum object */
 export const Area = {
   Undefined: 0,
-  Australia: 109,
-  Canada: 106,
-  Europe: 52,
-  France: 115,
-  Germany: 114,
-  HongKong: 48,
-  Indonesia: 117,
-  Italy: 112,
-  Japan: 105,
-  Korea: 49,
-  NewZealand: 110,
-  Philippines: 118,
-  Portugal: 116,
-  Singapore: 107,
-  Spain: 113,
-  Taiwan: 50,
-  Thailand: 108,
-  UK: 111,
-  USA: 51,
-  Overseas: 53,
+  // #region Japan Prefectures
   北海道: 1,
   青森県: 2,
   岩手県: 3,
@@ -72,10 +54,18 @@ export const Area = {
   宮崎県: 45,
   鹿児島県: 46,
   沖縄県: 47,
-  Alabama: 55,
+  // #endregion Japan Prefectures
+  HongKong: 48,
+  Korea: 49,
+  Taiwan: 50,
+  USA: 51,
+  Europe: 52,
+  Overseas: 53,
+  // #region United States
   Alaska: 54,
-  Arizona: 57,
+  Alabama: 55,
   Arkansas: 56,
+  Arizona: 57,
   California: 58,
   Colorado: 59,
   Connecticut: 60,
@@ -83,20 +73,20 @@ export const Area = {
   Florida: 62,
   Georgia: 63,
   Hawaii: 64,
+  Iowa: 65,
   Idaho: 66,
   Illinois: 67,
   Indiana: 68,
-  Iowa: 65,
   Kansas: 69,
   Kentucky: 70,
   Louisiana: 71,
-  Maine: 74,
-  Maryland: 73,
   Massachusetts: 72,
+  Maryland: 73,
+  Maine: 74,
   Michigan: 75,
   Minnesota: 76,
-  Mississippi: 78,
   Missouri: 77,
+  Mississippi: 78,
   Montana: 79,
   Nebraska: 80,
   NorthCarolina: 81,
@@ -104,8 +94,8 @@ export const Area = {
   NewHampshire: 83,
   NewJersey: 84,
   NewMexico: 85,
-  NewYork: 87,
   Nevada: 86,
+  NewYork: 87,
   Ohio: 88,
   Oklahoma: 89,
   Oregon: 90,
@@ -116,13 +106,28 @@ export const Area = {
   Tennessee: 95,
   Texas: 96,
   Utah: 97,
-  Vermont: 99,
   Virginia: 98,
+  Vermont: 99,
   Washington: 100,
-  WashingtonDC: 104,
-  WestVirginia: 102,
   Wisconsin: 101,
+  WestVirginia: 102,
   Wyoming: 103,
+  WashingtonDC: 104,
+  // #endregion United States
+  Japan: 105,
+  Canada: 106,
+  Singapore: 107,
+  Thailand: 108,
+  Australia: 109,
+  NewZealand: 110,
+  UK: 111,
+  Italy: 112,
+  Spain: 113,
+  Germany: 114,
+  France: 115,
+  Portugal: 116,
+  Indonesia: 117,
+  Philippines: 118,
 } as const
 
 /** Zod schema for `User` (excepts system fields) */
@@ -143,23 +148,31 @@ export const userSchema = z.object({
 export type User = ZodInfer<typeof userSchema>
 
 /**
- * Returns the area that includes the specified area
+ * Returns the areas that are included in the specified area
  * @param area - Area code
  * @returns
- * - Japan Prefectures returns `105`(Japan).
- * - United States returns `51`(USA).
- * - Europe countries returns `52`(Europe).
- * - Overseas countries returns `53`(Overseas).
- * - Other returns `0`(Undefined).
+ * - `Area.Japan` returns all 47 prefectures codes.
+ * - `Area.USA` returns all 51 states codes.
+ * - `Area.Europe` returns all 6 countries codes.
+ * - `Area.Overseas` returns all area codes except Japan.
+ * - Other area returns an empty array.
  */
-export function findLargerArea(
+export function getNarrowedArea(
   area: ValueOf<typeof Area>
-): ValueOf<typeof Area> {
-  if (area >= Area.北海道 && area <= Area.沖縄県) return Area.Japan // Japan Prefectures(1-47)
-  if (area >= Area.Alaska && area <= Area.WashingtonDC) return Area.USA // United States(54-104)
-  if (area >= Area.UK && area <= Area.Portugal) return Area.Europe // Europe(111-116)
-  // Overseas(48-52, 106-110, 117-118)
-  if (!([Area.Undefined, Area.Japan, Area.Overseas] as number[]).includes(area))
-    return Area.Overseas
-  return Area.Undefined
+): ValueOf<typeof Area>[] {
+  switch (area) {
+    case Area.Japan:
+      return range(Area.北海道, Area.沖縄県)
+    case Area.USA:
+      return range(Area.Alaska, Area.WashingtonDC)
+    case Area.Europe:
+      return range(Area.UK, Area.Portugal)
+    case Area.Overseas:
+      return [
+        ...range(Area.HongKong, Area.Europe),
+        ...range(Area.Alaska, Area.WashingtonDC),
+        ...range(Area.Canada, Area.Philippines),
+      ]
+  }
+  return []
 }

@@ -7,7 +7,8 @@ import {
   type Song,
   songSchema,
 } from '~~/shared/types/song'
-import { testSongData } from '~~/test/data'
+import { notValidObject } from '~~/test/data/schema'
+import { testSongData } from '~~/test/data/song'
 
 describe('/shared/types/song', () => {
   describe('getSeriesCategory', () => {
@@ -24,16 +25,11 @@ describe('/shared/types/song', () => {
       expect(getSeriesCategory(series)).toBe(expected)
     )
   })
+
   describe('songSchema', () => {
     const validSong: Song = { ...testSongData }
     test.each([
-      undefined,
-      null,
-      true,
-      1.5,
-      'foo',
-      [],
-      {},
+      ...notValidObject,
       { ...validSong, id: '' },
       { ...validSong, name: '' },
       { ...validSong, nameKana: 'abc' },
@@ -57,6 +53,7 @@ describe('/shared/types/song', () => {
       expect(songSchema.safeParse(o).success).toBe(true)
     )
   })
+
   describe('compareSong', () => {
     test.each([
       [

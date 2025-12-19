@@ -121,12 +121,18 @@ export const scoreRecordSchema = z.object({
   flareRank: z.union(Object.values(FlareRank).map(v => z.literal(v))),
   /** Flare Skill */
   flareSkill: z.nullish(z.int().check(z.nonnegative())),
-})
-export type ScoreRecord = Omit<
-  typeof scores.$inferInsert,
-  'songId' | 'playStyle' | 'difficulty' | 'userId' | TimestampColumn
-> &
-  z.infer<typeof scoreRecordSchema>
+}) satisfies z.ZodMiniType<
+  Omit<
+    typeof scores.$inferInsert,
+    'songId' | 'playStyle' | 'difficulty' | 'userId' | TimestampColumn
+  >
+>
+export type ScoreRecord = ZodInfer<typeof scoreRecordSchema>
+export type UserScoreRecord = ScoreRecord &
+  Pick<
+    typeof scores.$inferInsert,
+    'songId' | 'playStyle' | 'difficulty' | 'userId'
+  >
 
 /**
  * Get Dance Level from normal score.

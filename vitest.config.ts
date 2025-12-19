@@ -5,6 +5,16 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
+    coverage: {
+      provider: 'v8',
+      include: [
+        'app/components/**/*.vue',
+        'app/pages/**/*.vue',
+        'shared/**/*.ts',
+        'server/api/**/*.ts',
+      ],
+      exclude: ['**/*.d.ts'],
+    },
     projects: [
       {
         resolve: {

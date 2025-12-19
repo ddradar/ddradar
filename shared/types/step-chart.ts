@@ -1,6 +1,7 @@
 import * as z from 'zod/mini'
 
 import type { charts, TimestampColumn } from '~~/server/db/schema'
+import { getEnumKey } from '~~/shared/utils/enum'
 
 /** Enum object for `playStyle` */
 export const PlayStyle = {
@@ -17,6 +18,20 @@ export const Difficulty = {
   CHALLENGE: 4,
 } as const
 
+/** Mapping of chart ID to `[PlayStyle, Difficulty]` */
+export const Chart = {
+  bSP: [PlayStyle.SINGLE, Difficulty.BEGINNER],
+  BSP: [PlayStyle.SINGLE, Difficulty.BASIC],
+  DSP: [PlayStyle.SINGLE, Difficulty.DIFFICULT],
+  ESP: [PlayStyle.SINGLE, Difficulty.EXPERT],
+  CSP: [PlayStyle.SINGLE, Difficulty.CHALLENGE],
+  BDP: [PlayStyle.DOUBLE, Difficulty.BASIC],
+  DDP: [PlayStyle.DOUBLE, Difficulty.DIFFICULT],
+  EDP: [PlayStyle.DOUBLE, Difficulty.EXPERT],
+  CDP: [PlayStyle.DOUBLE, Difficulty.CHALLENGE],
+} as const
+
+/** Groove Radar data */
 export type GrooveRadar = {
   stream: number
   voltage: number

@@ -8,6 +8,7 @@ import {
   type ScoreRecord,
   scoreRecordSchema,
 } from '~~/shared/types/score'
+import { notValidObject } from '~~/test/data/schema'
 
 describe('/shared/types/score', () => {
   describe('scoreRecordSchema', () => {
@@ -18,13 +19,7 @@ describe('/shared/types/score', () => {
       flareRank: FlareRank.None,
     }
     test.each([
-      undefined,
-      null,
-      true,
-      1.5,
-      'foo',
-      [],
-      {},
+      ...notValidObject,
       { ...validScoreRecord, normalScore: -1 },
       { ...validScoreRecord, normalScore: 1000001 },
       { ...validScoreRecord, exScore: -5 },
@@ -46,6 +41,7 @@ describe('/shared/types/score', () => {
       expect(scoreRecordSchema.safeParse(o).success).toBe(true)
     )
   })
+
   describe('getDanceLevel', () => {
     test.each([
       [0, 'D'],
@@ -72,6 +68,7 @@ describe('/shared/types/score', () => {
       d => expect(() => getDanceLevel(d)).toThrow()
     )
   })
+
   describe('mergeScoreRecords', () => {
     test.each([
       [

@@ -24,6 +24,7 @@ describe('/shared/utils/score', () => {
       { notes: 0, freezes: 0, shocks: 0 },
     ])('(%o) returns true', chart => expect(hasNotesInfo(chart)).toBe(true))
   })
+
   describe('calcFlareSkill', () => {
     test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
       `(%d, 0) throws error`,
@@ -49,6 +50,7 @@ describe('/shared/utils/score', () => {
       [17, FlareRank.None, 635],
       [18, FlareRank.None, 650],
       [19, FlareRank.None, 665],
+      [20, FlareRank.None, 0], // level 20 returns 0
       [1, FlareRank.EX, 232],
       [2, FlareRank.EX, 248],
       [3, FlareRank.EX, 272],
@@ -68,10 +70,12 @@ describe('/shared/utils/score', () => {
       [17, FlareRank.EX, 1016],
       [18, FlareRank.EX, 1040],
       [19, FlareRank.EX, 1064],
+      [20, FlareRank.EX, 0], // level 20 returns 0
     ])(`(%d, %d) returns %d`, (level, flareRank, expected) =>
       expect(calcFlareSkill(level, flareRank)).toBe(expected)
     )
   })
+
   describe('isValidScoreRecord', () => {
     const chart = {
       notes: 100,
@@ -105,6 +109,7 @@ describe('/shared/utils/score', () => {
       expect(isValidScoreRecord(chart, score)).toBe(true)
     )
   })
+
   describe('setValidScoreFromChart', () => {
     const chart = { notes: 1000, freezes: 10, shocks: 10 }
 
