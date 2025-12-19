@@ -8,30 +8,30 @@ import type { StepChart } from '~~/shared/types/step-chart'
 /** Schema for router params */
 const _paramsSchema = z.pick(songSchema, { id: true })
 
+// Cache name for this handler (expoted for clear cache usage)
 export const cacheName = 'getSongById'
-export default cachedEventHandler(
-  async event => {
-    const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
+// API main handler (exported for testing)
+export const handler = defineEventHandler(async event => {
+  const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
 
-    const song: (Song & { charts: StepChart[] }) | undefined =
-      await db.query.songs.findFirst({
-        columns: { ...ignoreTimestampCols },
-        with: {
-          charts: { columns: { id: false, ...ignoreTimestampCols } },
-        },
-        where: eq(schema.songs.id, id),
-      })
+  const song: (Song & { charts: StepChart[] }) | undefined =
+    await db.query.songs.findFirst({
+      columns: { ...ignoreTimestampCols },
+      with: {
+        charts: { columns: { id: false, ...ignoreTimestampCols } },
+      },
+      where: eq(schema.songs.id, id),
+    })
 
-    if (!song)
-      throw createError({ statusCode: 404, statusMessage: 'Not Found' })
-    return song
-  },
-  {
-    maxAge: 60 * 60 * 24, // 24 hours
-    name: cacheName,
-    getKey: event => getRouterParam(event, 'id') ?? 'undefined',
-  }
-)
+  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  return song
+})
+// Export cached handler as default
+export default cachedEventHandler(handler, {
+  maxAge: 60 * 60 * 24, // 24 hours
+  name: cacheName,
+  getKey: event => getRouterParam(event, 'id') ?? 'UD',
+})
 
 // Define OpenAPI metadata
 defineRouteMeta({

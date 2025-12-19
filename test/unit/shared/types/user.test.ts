@@ -31,7 +31,7 @@ describe('/shared/types/user', () => {
       { ...validUserInfo, ddrCode: 100000000 },
       { ...validUserInfo, isPublic: undefined },
       { id: 'new_user', name: 'New User', area: Area.東京都 },
-    ])('safeParse(%o) returns { result: false }', o =>
+    ])('safeParse(%o) returns { success: false }', o =>
       expect(userSchema.safeParse(o).success).toBe(false)
     )
     test.each([
@@ -40,7 +40,7 @@ describe('/shared/types/user', () => {
       { ...validUserInfo, area: Area.Undefined },
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },
-    ])('safeParse(%o) returns { result: true }', o =>
+    ])('safeParse(%o) returns { success: true }', o =>
       expect(userSchema.safeParse(o).success).toBe(true)
     )
   })

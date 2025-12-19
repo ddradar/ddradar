@@ -2,7 +2,7 @@ import { and, eq, exists } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { ignoreTimestampCols } from '~~/server/db/utils'
-import { seriesList, type Song } from '~~/shared/types/song'
+import { compareSong, seriesList, type Song } from '~~/shared/types/song'
 import type { StepChart } from '~~/shared/types/step-chart'
 
 /** Schema for query parameters */
@@ -52,64 +52,64 @@ const _querySchema = z.object({
   includeCharts: z.catch(z.coerce.boolean(), false),
 })
 
+// Cache name for this handler (expoted for clear cache usage)
 export const cacheName = 'getSongList'
-export default cachedEventHandler(
-  async event => {
-    const query = await getValidatedQuery(event, _querySchema.parse)
+// API main handler (exported for testing)
+export const handler = defineEventHandler(async event => {
+  const query = await getValidatedQuery(event, _querySchema.parse)
 
-    const hasChartConditions =
-      query.style !== undefined && query.level !== undefined
-    const includeCharts = hasChartConditions || query.includeCharts
-    const conditions = []
-    if (query.name !== undefined)
-      conditions.push(eq(schema.songs.nameIndex, query.name))
-    if (query.series !== undefined)
-      conditions.push(eq(schema.songs.series, seriesList[query.series]))
-    if (hasChartConditions) {
-      conditions.push(
-        exists(
-          db
-            .select()
-            .from(schema.charts)
-            .where(
-              and(
-                eq(schema.charts.id, schema.songs.id),
-                eq(schema.charts.playStyle, query.style!),
-                eq(schema.charts.level, query.level!)
-              )
+  const hasChartConditions =
+    query.style !== undefined && query.level !== undefined
+  const includeCharts = hasChartConditions || query.includeCharts
+  const conditions = []
+  if (query.name !== undefined)
+    conditions.push(eq(schema.songs.nameIndex, query.name))
+  if (query.series !== undefined)
+    conditions.push(eq(schema.songs.series, seriesList[query.series]))
+  if (hasChartConditions) {
+    conditions.push(
+      exists(
+        db
+          .select()
+          .from(schema.charts)
+          .where(
+            and(
+              eq(schema.charts.id, schema.songs.id),
+              eq(schema.charts.playStyle, query.style!),
+              eq(schema.charts.level, query.level!)
             )
-        )
+          )
       )
-    }
-
-    const res = await db.query.songs.findMany({
-      columns: { ...ignoreTimestampCols },
-      where: and(...conditions),
-      with: {
-        charts: includeCharts
-          ? {
-              columns: { playStyle: true, difficulty: true, level: true },
-            }
-          : undefined,
-      },
-    })
-    return res.sort(compareSong) as (Song & {
-      charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
-    })[]
-  },
-  {
-    maxAge: 60 * 60, // 1 hour
-    name: cacheName,
-    getKey: async event => {
-      const query = await getValidatedQuery(event, _querySchema.parse)
-      return `name=${query.name ?? 'all'}&series=${query.series ?? 'all'}&style=${
-        query.style ?? 'none'
-      }&level=${query.level ?? 'none'}&includeCharts=${
-        query.includeCharts ?? 'false'
-      }`
-    },
+    )
   }
-)
+
+  const res = await db.query.songs.findMany({
+    columns: { ...ignoreTimestampCols },
+    where: and(...conditions),
+    with: {
+      charts: includeCharts
+        ? {
+            columns: { playStyle: true, difficulty: true, level: true },
+          }
+        : undefined,
+    },
+  })
+  return res.sort(compareSong) as (Song & {
+    charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
+  })[]
+})
+// Export cached handler as default
+export default cachedEventHandler(handler, {
+  maxAge: 60 * 60, // 1 hour
+  name: cacheName,
+  getKey: async event => {
+    const query = await getValidatedQuery(event, _querySchema.parse)
+    return Object.entries(query)
+      .map(([key, value]) => `${key}=${value ?? 'UD'}`)
+      .sort()
+      .join('&')
+  },
+})
 
 // Define OpenAPI metadata
 defineRouteMeta({

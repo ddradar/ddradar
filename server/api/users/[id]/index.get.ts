@@ -6,6 +6,7 @@ import { type User, userSchema } from '~~/shared/types/user'
 /** Schema for router params */
 const _paramsSchema = z.pick(userSchema, { id: true })
 
+// Never use `cachedEventHandler` because user privacy settings may change
 export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
   const session = await getUserSession(event)
