@@ -59,13 +59,11 @@ export default defineNuxtConfig({
       line: { clientId: '', clientSecret: '' },
       x: { clientId: '', clientSecret: '' },
     },
-    session: {
-      cookie: {
-        sameSite: 'none',
-        secure: true,
-        httpOnly: false,
+    public: {
+      token: {
+        maxCreationPerUser: 10,
+        maxExpirationDays: 365,
       },
-      password: '',
     },
   },
 })

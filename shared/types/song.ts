@@ -92,8 +92,8 @@ export const songSchema = z.object({
   id: z.string().check(z.regex(/^[01689bdiloqDIOPQ]{32}$/)),
   /** Song name */
   name: z.string().check(z.minLength(1)),
-  /** Furigana for sorting. (allows A-Z, 0-9, space, period, _, ぁ-ん, ー) */
-  nameKana: z.string().check(z.regex(/^[A-Z0-9 ._\u3040-\u309Fー]+$/)), // A-Z, 0-9, space, period, _, ぁ-ん, ー
+  /** Furigana for sorting. */
+  nameKana: z.string().check(z.regex(/^[^a-z]+$/)),
   /** Artist (possibly empty) */
   artist: z.string(),
   /** Displayed BPM (use DDR GRAND PRIX, A3 or earlier) */

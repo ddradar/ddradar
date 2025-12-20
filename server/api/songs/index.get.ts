@@ -120,7 +120,8 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'name',
-        schema: { type: 'integer', minimum: 0, maximum: 36 },
+        // @ts-expect-error - not provided in nitro types
+        schema: { $ref: '#/components/schemas/Song/properties/nameIndex' },
         description: 'Song name index (0-36)',
         examples: {
           あ行: { value: 0 },
@@ -193,7 +194,8 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'style',
-        schema: { type: 'integer', minimum: 1, maximum: 2 },
+        // @ts-expect-error - not provided in nitro types
+        schema: { $ref: '#/components/schemas/StepChart/properties/playStyle' },
         description:
           'Play style (1: SINGLE, 2: DOUBLE). Ignored if `level` is not specified.',
         examples: { SINGLE: { value: 1 }, DOUBLE: { value: 2 } },
@@ -201,7 +203,8 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'level',
-        schema: { type: 'integer', minimum: 1, maximum: 20 },
+        // @ts-expect-error - not provided in nitro types
+        schema: { $ref: '#/components/schemas/StepChart/properties/level' },
         description: 'Chart level (1-20). Ignored if `style` is not specified.',
       },
       {
@@ -222,59 +225,23 @@ defineRouteMeta({
               items: {
                 type: 'object',
                 properties: {
-                  id: {
-                    type: 'string',
-                    description: 'Song ID',
-                    // @ts-expect-error - pattern not provided in nitro types
-                    pattern: '^[01689bdiloqDIOPQ]{32}$',
-                  },
-                  name: { type: 'string', description: 'Song name' },
+                  id: { $ref: '#/components/schemas/Song/properties/id' },
+                  name: { $ref: '#/components/schemas/Song/properties/name' },
                   nameKana: {
-                    type: 'string',
-                    description: 'Furigana for sorting',
-                    pattern: '^[A-Z0-9 ._ぁ-んー]+$',
+                    $ref: '#/components/schemas/Song/properties/nameKana',
                   },
                   nameIndex: {
-                    type: 'integer',
-                    description: 'Song name index',
-                    minimum: 0,
-                    maximum: 36,
+                    $ref: '#/components/schemas/Song/properties/nameIndex',
                   },
-                  artist: { type: 'string', description: 'Artist' },
-                  bpm: {
-                    type: ['string', 'null'],
-                    description:
-                      'Displayed BPM (use DDR GRAND PRIX, A3 or earlier)',
-                    pattern: '^[0-9]{1,4}(-[0-9]{1,4})?$',
+                  artist: {
+                    $ref: '#/components/schemas/Song/properties/artist',
                   },
+                  bpm: { $ref: '#/components/schemas/Song/properties/bpm' },
                   series: {
-                    type: 'string',
-                    description: 'Series title',
-                    enum: [
-                      'DDR 1st',
-                      'DDR 2ndMIX',
-                      'DDR 3rdMIX',
-                      'DDR 4thMIX',
-                      'DDR 5thMIX',
-                      'DDR MAX',
-                      'DDR MAX2',
-                      'DDR SuperNOVA',
-                      'DDR SuperNOVA 2',
-                      'DDR X',
-                      'DDR X2',
-                      'DDR X3 VS 2ndMIX',
-                      'DDR 2013',
-                      'DDR A',
-                      'DDR A20',
-                      'DDR A20 PLUS',
-                      'DDR A3',
-                      'DDR WORLD',
-                    ],
+                    $ref: '#/components/schemas/Song/properties/series',
                   },
                   seriesCategory: {
-                    type: 'string',
-                    description: 'Series category',
-                    enum: ['CLASSIC', 'WHITE', 'GOLD'],
+                    $ref: '#/components/schemas/Song/properties/seriesCategory',
                   },
                   charts: {
                     type: 'array',
@@ -283,27 +250,19 @@ defineRouteMeta({
                       type: 'object',
                       properties: {
                         playStyle: {
-                          type: 'integer',
-                          description: 'Play style (1: Single, 2: Double)',
-                          enum: [1, 2],
+                          $ref: '#/components/schemas/StepChart/properties/playStyle',
                         },
                         difficulty: {
-                          type: 'integer',
-                          description:
-                            'Difficulty (0: BEGINNER, 1: BASIC, 2: DIFFICULT, 3: EXPERT, 4: CHALLENGE)',
-                          enum: [0, 1, 2, 3, 4],
+                          $ref: '#/components/schemas/StepChart/properties/difficulty',
                         },
                         level: {
-                          type: 'number',
-                          description: 'Level',
-                          minimum: 1,
-                          maximum: 20,
+                          $ref: '#/components/schemas/StepChart/properties/level',
                         },
                       },
                       required: ['playStyle', 'difficulty', 'level'],
-                      minItems: 1,
-                      maxItems: 9,
                     },
+                    minItems: 1,
+                    maxItems: 9,
                   },
                 },
                 required: [

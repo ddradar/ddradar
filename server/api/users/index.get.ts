@@ -24,16 +24,16 @@ const _querySchema = z.object({
 // Never use `cachedEventHandler` because user privacy settings may change
 export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, _querySchema.parse)
-  const session = await getUserSession(event)
+  const user = await getAuthenticatedUser(event)
 
   const conditions = [
-    session.user
+    user
       ? or(
           eq(schema.users.isPublic, true),
           // Logged-in user can access their own data regardless of `isPublic`
           and(
-            eq(schema.users.provider, session.user.provider),
-            eq(schema.users.providerId, session.user.providerId)
+            eq(schema.users.provider, user.provider),
+            eq(schema.users.providerId, user.providerId)
           )
         )
       : eq(schema.users.isPublic, true),
@@ -85,31 +85,12 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'area',
-        schema: { type: 'integer', minimum: 0, maximum: 118 },
+        // @ts-expect-error - not provided in nitro types
+        schema: { $ref: '#/components/schemas/User/properties/area' },
         required: false,
         description: 'Area code',
         examples: {
           Undefined: { value: 0 },
-          Australia: { value: 109 },
-          Canada: { value: 106 },
-          Europe: { value: 52 },
-          France: { value: 115 },
-          Germany: { value: 114 },
-          HongKong: { value: 48 },
-          Indonesia: { value: 117 },
-          Italy: { value: 112 },
-          Japan: { value: 105 },
-          Korea: { value: 49 },
-          NewZealand: { value: 110 },
-          Philippines: { value: 118 },
-          Portugal: { value: 116 },
-          Singapore: { value: 107 },
-          Spain: { value: 113 },
-          Taiwan: { value: 50 },
-          Thailand: { value: 108 },
-          UK: { value: 111 },
-          USA: { value: 51 },
-          Overseas: { value: 53 },
           北海道: { value: 1 },
           青森県: { value: 2 },
           岩手県: { value: 3 },
@@ -157,10 +138,16 @@ defineRouteMeta({
           宮崎県: { value: 45 },
           鹿児島県: { value: 46 },
           沖縄県: { value: 47 },
-          Alabama: { value: 55 },
+          HongKong: { value: 48 },
+          Korea: { value: 49 },
+          Taiwan: { value: 50 },
+          USA: { value: 51 },
+          Europe: { value: 52 },
+          Overseas: { value: 53 },
           Alaska: { value: 54 },
-          Arizona: { value: 57 },
+          Alabama: { value: 55 },
           Arkansas: { value: 56 },
+          Arizona: { value: 57 },
           California: { value: 58 },
           Colorado: { value: 59 },
           Connecticut: { value: 60 },
@@ -168,20 +155,20 @@ defineRouteMeta({
           Florida: { value: 62 },
           Georgia: { value: 63 },
           Hawaii: { value: 64 },
+          Iowa: { value: 65 },
           Idaho: { value: 66 },
           Illinois: { value: 67 },
           Indiana: { value: 68 },
-          Iowa: { value: 65 },
           Kansas: { value: 69 },
           Kentucky: { value: 70 },
           Louisiana: { value: 71 },
-          Maine: { value: 74 },
-          Maryland: { value: 73 },
           Massachusetts: { value: 72 },
+          Maryland: { value: 73 },
+          Maine: { value: 74 },
           Michigan: { value: 75 },
           Minnesota: { value: 76 },
-          Mississippi: { value: 78 },
           Missouri: { value: 77 },
+          Mississippi: { value: 78 },
           Montana: { value: 79 },
           Nebraska: { value: 80 },
           NorthCarolina: { value: 81 },
@@ -189,8 +176,8 @@ defineRouteMeta({
           NewHampshire: { value: 83 },
           NewJersey: { value: 84 },
           NewMexico: { value: 85 },
-          NewYork: { value: 87 },
           Nevada: { value: 86 },
+          NewYork: { value: 87 },
           Ohio: { value: 88 },
           Oklahoma: { value: 89 },
           Oregon: { value: 90 },
@@ -201,19 +188,34 @@ defineRouteMeta({
           Tennessee: { value: 95 },
           Texas: { value: 96 },
           Utah: { value: 97 },
-          Vermont: { value: 99 },
           Virginia: { value: 98 },
+          Vermont: { value: 99 },
           Washington: { value: 100 },
-          WashingtonDC: { value: 104 },
-          WestVirginia: { value: 102 },
           Wisconsin: { value: 101 },
+          WestVirginia: { value: 102 },
           Wyoming: { value: 103 },
+          WashingtonDC: { value: 104 },
+          Japan: { value: 105 },
+          Canada: { value: 106 },
+          Singapore: { value: 107 },
+          Thailand: { value: 108 },
+          Australia: { value: 109 },
+          NewZealand: { value: 110 },
+          UK: { value: 111 },
+          Italy: { value: 112 },
+          Spain: { value: 113 },
+          Germany: { value: 114 },
+          France: { value: 115 },
+          Portugal: { value: 116 },
+          Indonesia: { value: 117 },
+          Philippines: { value: 118 },
         },
       },
       {
         in: 'query',
         name: 'code',
-        schema: { type: 'integer', minimum: 10000000, maximum: 99999999 },
+        // @ts-expect-error - not provided in nitro types
+        schema: { $ref: '#/components/schemas/User/properties/ddrCode' },
         required: false,
         description: 'DDR code (8-digit number)',
       },
@@ -225,38 +227,7 @@ defineRouteMeta({
           'application/json': {
             schema: {
               type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  id: {
-                    type: 'string',
-                    description: 'User ID',
-                    // @ts-expect-error - pattern not provided in nitro types
-                    pattern: '^[a-zA-Z0-9_-]{3,32}$',
-                  },
-                  name: {
-                    type: 'string',
-                    description: 'User name',
-                  },
-                  isPublic: {
-                    type: 'boolean',
-                    description: 'Whether the user profile is public',
-                  },
-                  area: {
-                    type: 'integer',
-                    description: 'Area code',
-                    minimum: 0,
-                    maximum: 118,
-                  },
-                  ddrCode: {
-                    type: ['integer', 'null'],
-                    description: 'DDR code (8-digit number)',
-                    minimum: 10000000,
-                    maximum: 99999999,
-                  },
-                },
-                required: ['id', 'name', 'isPublic', 'area'],
-              },
+              items: { $ref: '#/components/schemas/User' },
             },
           },
         },

@@ -26,3 +26,5 @@ vi.stubGlobal('schema', { charts, scores, songs, users })
 
 // nuxt-auth-utils
 vi.stubGlobal('getUserSession', vi.fn())
+vi.stubGlobal('requireUserSession', vi.fn())
+vi.stubGlobal('setUserSession', vi.fn())

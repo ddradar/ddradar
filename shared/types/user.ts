@@ -176,3 +176,15 @@ export function getNarrowedArea(
   }
   return []
 }
+
+export const apiTokenSchema = z.object({
+  /** Token ID */
+  id: z.string().check(z.regex(/^[A-Za-z0-9_-]{21}$/)),
+  /** Token name */
+  name: z.string().check(z.minLength(1), z.maxLength(50)),
+  /** Token creation date (ISO 8601 format) */
+  createdAt: z.string().check(z.iso.datetime()),
+  /** Token expiration date (ISO 8601 format) */
+  expiresAt: z.string().check(z.iso.datetime()),
+})
+export type ApiToken = ZodInfer<typeof apiTokenSchema>
