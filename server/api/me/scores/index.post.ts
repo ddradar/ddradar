@@ -5,6 +5,7 @@ import * as z from 'zod/mini'
 import { getStepChart } from '~~/server/db/utils'
 
 const _bodySchema = z.array(scoreRecordInputSchema).check(z.minLength(1))
+const CHUNK_SIZE = 25
 const requiredCols = ['normalScore', 'clearLamp', 'rank', 'flareRank'] as const
 
 type ErrorOrWarning = {
@@ -116,10 +117,10 @@ export default defineEventHandler(async event => {
     })
   }
 
-  // Upsert all valid scores
-  await Promise.all(
-    targetScores.map(async ([column, score]) => {
-      const res: D1Result = await db
+  // Upsert all valid scores in chunks
+  for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
+    const [first, ...rest] = chunkScores.map(([, score]) =>
+      db
         .insert(schema.scores)
         .values({
           songId: score.songId,
@@ -169,10 +170,14 @@ export default defineEventHandler(async event => {
             )
           ),
         })
-      if (!res.meta.changed_db)
+    )
+    const res: D1Result[] = await db.batch([first, ...rest])
+    res.forEach((result, index) => {
+      const [column, score] = chunkScores[index]
+      if (!result.meta.changed_db)
         addWarningOrError('LOWER_THAN_EXISTING', column, score)
     })
-  )
+  }
   return { count: targetScores.length, warnings: errorsOrWarnings }
 
   function addWarningOrError(

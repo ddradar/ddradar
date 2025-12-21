@@ -21,6 +21,13 @@ export function range<T extends number>(start: T, end: T): T[] {
   return [...Array(end - start + 1).keys()].map(i => (i + start) as T)
 }
 
+export function chunkArray<T>(array: T[], size: number): T[][] {
+  const out: T[][] = []
+  for (let i = 0; i < array.length; i += size)
+    out.push(array.slice(i, i + size))
+  return out
+}
+
 export function isPropertyNotNull<T, K extends keyof T>(
   obj: T,
   ...keys: K[]
