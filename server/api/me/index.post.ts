@@ -96,6 +96,14 @@ defineRouteMeta({
               },
             },
           },
+          RegistrationRequired: {
+            description: 'Forbidden - User registration required',
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/ErrorResponse' },
+              },
+            },
+          },
         },
       },
     },

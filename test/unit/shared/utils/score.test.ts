@@ -5,7 +5,7 @@ import {
   calcFlareSkill,
   fillScoreRecordFromChart,
   hasNotesInfo,
-  isValidScoreRecord,
+  ValidateScoreRecord,
 } from '~~/shared/utils/score'
 
 describe('/shared/utils/score', () => {
@@ -78,6 +78,7 @@ describe('/shared/utils/score', () => {
 
   describe('isValidScoreRecord', () => {
     const chart = {
+      level: 12,
       notes: 100,
       freezes: 20,
       shocks: 10,
@@ -89,13 +90,56 @@ describe('/shared/utils/score', () => {
       flareRank: FlareRank.None,
     }
     test.each([
-      { ...baseScore, exScore: 1000 },
-      { ...baseScore, maxCombo: 1000 },
-      { ...baseScore, exScore: 390 },
-      { ...baseScore, exScore: 389 },
-      { ...baseScore, exScore: 388 },
-    ])('(chart, %o) returns false', score =>
-      expect(isValidScoreRecord(chart, score)).toBe(false)
+      [
+        { ...baseScore, exScore: 1000 },
+        [
+          {
+            field: 'exScore',
+            message: 'exScore is too high (up to 390, but 1000)',
+          },
+        ],
+      ],
+      [
+        { ...baseScore, maxCombo: 1000 },
+        [
+          {
+            field: 'maxCombo',
+            message: 'maxCombo is too high (up to 110, but 1000)',
+          },
+        ],
+      ],
+      [
+        { ...baseScore, exScore: 390 },
+        [
+          {
+            field: 'exScore',
+            message:
+              'exScore: 390(MAX) is mismatched with clearLamp (expected clearLamp: 7)',
+          },
+        ],
+      ],
+      [
+        { ...baseScore, exScore: 389 },
+        [
+          {
+            field: 'exScore',
+            message:
+              'exScore: 389(MAX-1) is mismatched with clearLamp (expected clearLamp: 6)',
+          },
+        ],
+      ],
+      [
+        { ...baseScore, exScore: 388 },
+        [
+          {
+            field: 'exScore',
+            message:
+              'exScore: 388(MAX-2) is mismatched with clearLamp (expected clearLamp: 5 or 6)',
+          },
+        ],
+      ],
+    ])('(chart, %o) returns %o', (score, expected) =>
+      expect(ValidateScoreRecord(chart, score)).toStrictEqual(expected)
     )
     test.each([
       baseScore,
@@ -105,8 +149,8 @@ describe('/shared/utils/score', () => {
       { ...baseScore, clearLamp: ClearLamp.GFC, exScore: 388 },
       { ...baseScore, maxCombo: 110 },
       { ...baseScore, clearLamp: ClearLamp.Life4, maxCombo: 110 },
-    ] as const)('(chart, %o) returns true', score =>
-      expect(isValidScoreRecord(chart, score)).toBe(true)
+    ] as const)('(chart, %o) returns []', score =>
+      expect(ValidateScoreRecord(chart, score)).toStrictEqual([])
     )
   })
 
@@ -341,7 +385,7 @@ describe('/shared/utils/score', () => {
       ], // 0 point clear (FLARE I Clear)
     ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(
       '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
-      (score, expected) =>
+      (score: Partial<ScoreRecord>, expected: ScoreRecord) =>
         expect(fillScoreRecordFromChart(chart, score)).toStrictEqual(expected)
     )
     test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>

@@ -34,20 +34,15 @@ export default eventHandler(async event => {
   const { maxExpirationDays, maxCreationPerUser } = _runtimeConfigSchema.parse(
     useRuntimeConfig(event).public.token
   )
-  // Require user session with registered user ID
-  const { user } = await requireUserSession(event)
-  if (!user?.id) {
-    throw createError({
-      statusCode: 403,
-      statusMessage: 'User registration required',
-    })
-  }
 
   // Validate request body
   const body = await readValidatedBody(
     event,
     z.pick(apiTokenSchema, { name: true, expiresAt: true }).parse
   )
+
+  // Require user session with registered user ID (not allow token-authenticated)
+  const user = await requireAuthenticatedUserFromSession(event)
 
   const now = Date.now()
   const expiresAtMs = new Date(body.expiresAt).getTime()
@@ -188,14 +183,7 @@ defineRouteMeta({
         },
       },
       401: { $ref: '#/components/responses/Unauthorized' },
-      403: {
-        description: 'Forbidden - User registration required',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
-      },
+      403: { $ref: '#/components/responses/RegistrationRequired' },
     },
   },
 })

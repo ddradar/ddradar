@@ -169,7 +169,6 @@ export default defineTask({
         await useStorage('cache').removeItem(
           `nitro:handler:${getSongByIdKey}:${song.saHash}.json`
         )
-        await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
         console.log(`Added song: ${song.name} (${song.saHash})`)
 
         function parseBPM(bpm: string | undefined): number[] {
@@ -183,6 +182,10 @@ export default defineTask({
         }
       })
     )
+    // Clear cache for Song API
+    if (newSongs.length)
+      await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
+
     return { result: 'success', inserted: newSongs.length }
   },
 })

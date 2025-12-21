@@ -56,32 +56,65 @@ export function calcMaxScore(
   }
 }
 
+type ValidationError = {
+  field: keyof ScoreRecord
+  message: string
+}
+
 /**
  * Check whether the given score record is valid for the given step chart.
  * @param chart step chart info
  * @param score score to validate
- * @returns Whether the score record is valid for the given chart
+ * @returns Array of validation errors with field names and messages
  */
-export function isValidScoreRecord(
-  chart: Readonly<StepChartWithNotes>,
+export function ValidateScoreRecord(
+  chart: Readonly<Pick<StepChart, 'level' | 'notes' | 'freezes' | 'shocks'>>,
   score: Readonly<ScoreRecord>
-) {
+): ValidationError[] {
+  const res: ValidationError[] = []
+
+  // Validate flareSkill point
+  if (score.flareSkill ?? 0 > calcFlareSkill(chart.level, score.flareRank))
+    res.push({ field: 'flareSkill', message: 'flareSkill is too high' })
+
+  if (!hasNotesInfo(chart)) return res
+
   const max = calcMaxScore(chart)
 
   if (score.exScore) {
-    if (
-      score.exScore > max.exScore ||
-      (score.clearLamp !== ClearLamp.MFC && score.exScore === max.exScore) || // EX SCORE is MAX, but not MFC
-      (score.clearLamp !== ClearLamp.PFC &&
-        score.exScore === max.exScore - 1) || // EX SCORE is Perfect:1, but not PFC
-      (score.clearLamp < ClearLamp.GFC && score.exScore === max.exScore - 2) // EX SCORE is Perfect:2 or Great:1, but not GFC or PFC
-    )
-      return false
+    if (score.exScore > max.exScore)
+      res.push({
+        field: 'exScore',
+        message: `exScore is too high (up to ${max.exScore}, but ${score.exScore})`,
+      })
+    if (score.clearLamp !== ClearLamp.MFC && score.exScore === max.exScore)
+      res.push({
+        field: 'exScore',
+        message: `exScore: ${score.exScore}(MAX) is mismatched with clearLamp (expected clearLamp: ${ClearLamp.MFC})`,
+      })
+    if (score.clearLamp !== ClearLamp.PFC && score.exScore === max.exScore - 1)
+      res.push({
+        field: 'exScore',
+        message: `exScore: ${score.exScore}(MAX-1) is mismatched with clearLamp (expected clearLamp: ${ClearLamp.PFC})`,
+      })
+    if (score.clearLamp < ClearLamp.GFC && score.exScore === max.exScore - 2)
+      res.push({
+        field: 'exScore',
+        message: `exScore: ${score.exScore}(MAX-2) is mismatched with clearLamp (expected clearLamp: ${ClearLamp.GFC} or ${ClearLamp.PFC})`,
+      })
   }
 
-  // Do not treat (maxCombo = fullCombo count) as FULL COMBO because "MAX COMBO is fullCombo, but not FC" pattern is exists.
-  // ex. missed last Freeze Arrow
-  return (score.maxCombo ?? 0) <= max.maxCombo
+  if (score.maxCombo) {
+    if (score.maxCombo > max.maxCombo) {
+      res.push({
+        field: 'maxCombo',
+        message: `maxCombo is too high (up to ${max.maxCombo}, but ${score.maxCombo})`,
+      })
+    }
+    // Do not treat (maxCombo = fullCombo count) as FULL COMBO because "MAX COMBO is fullCombo, but not FC" pattern is exists.
+    // ex. missed last Freeze Arrow
+  }
+  return res
 }
 
 /**
@@ -90,10 +123,10 @@ export function isValidScoreRecord(
  * @param partialScore partial score info
  * @returns Filled `ScoreRecord`
  */
-export function fillScoreRecordFromChart(
+export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
   chart: Readonly<StepChartWithNotes>,
-  partialScore: Readonly<Partial<ScoreRecord>>
-): ScoreRecord {
+  partialScore: Readonly<T>
+): T & ScoreRecord {
   const objects = chart.notes + chart.freezes + chart.shocks
   const max = { ...calcMaxScore(chart), flareRank: FlareRank.None }
 
@@ -111,7 +144,7 @@ export function fillScoreRecordFromChart(
   if (partialScore.normalScore === undefined)
     throw new Error('Cannot guess Score object. set normalScore property')
 
-  const result: ScoreRecord = {
+  const result: T & ScoreRecord = {
     rank: getDanceLevel(partialScore.normalScore),
     clearLamp: ClearLamp.Clear,
     flareRank: FlareRank.None,

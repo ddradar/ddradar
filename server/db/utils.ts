@@ -20,3 +20,22 @@ export function getCurrentUser(provider: string, providerId: string) {
     ),
   })
 }
+
+/**
+ * Get step chart by key, or throw 404 error if not found
+ * @param key Key to identify the step chart
+ * @returns The step chart
+ */
+export async function getStepChart(
+  key: Readonly<Pick<ScoreRecordInput, 'songId' | 'playStyle' | 'difficulty'>>
+): Promise<StepChart | undefined> {
+  const chart = await db.query.charts.findFirst({
+    columns: { ...ignoreTimestampCols },
+    where: and(
+      eq(schema.charts.id, key.songId),
+      eq(schema.charts.playStyle, key.playStyle),
+      eq(schema.charts.difficulty, key.difficulty)
+    ),
+  })
+  return chart
+}

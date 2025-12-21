@@ -31,10 +31,7 @@ export default defineEventHandler(async event => {
       ? or(
           eq(schema.users.isPublic, true),
           // Logged-in user can access their own data regardless of `isPublic`
-          and(
-            eq(schema.users.provider, user.provider),
-            eq(schema.users.providerId, user.providerId)
-          )
+          eq(schema.users.id, user.id)
         )
       : eq(schema.users.isPublic, true),
   ]

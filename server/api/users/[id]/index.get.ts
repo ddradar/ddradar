@@ -16,13 +16,7 @@ export default defineEventHandler(async event => {
   ]
   if (user) {
     // Logged-in user can access their own data regardless of `isPublic`
-    conditions.push(
-      and(
-        eq(schema.users.id, id),
-        eq(schema.users.provider, user.provider),
-        eq(schema.users.providerId, user.providerId)
-      )
-    )
+    conditions.push(and(eq(schema.users.id, id), eq(schema.users.id, user.id)))
   }
 
   const result: User | undefined = await db.query.users.findFirst({

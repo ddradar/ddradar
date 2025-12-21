@@ -1,7 +1,7 @@
 import * as z from 'zod/mini'
 
 import type { TimestampColumn, users } from '~~/server/db/schema'
-import { range } from '~~/shared/utils/enum'
+import { range } from '~~/shared/utils/types'
 
 /** Area enum object */
 export const Area = {

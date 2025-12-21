@@ -217,7 +217,6 @@ export default defineTask({
         await useStorage('cache').removeItem(
           `nitro:handler:${getSongByIdKey}:${targetSong.id}.json`
         )
-        await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
@@ -226,6 +225,9 @@ export default defineTask({
       }
       if (updatedSongs) updated.songs++
     }
+    // Clear cache for Song API
+    if (updated.charts > 0)
+      await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
     console.log(
       `Updated ${updated.charts} charts across ${updated.songs} songs.`
     )

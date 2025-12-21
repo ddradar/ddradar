@@ -1,6 +1,8 @@
 import * as z from 'zod/mini'
 
 import type { scores, TimestampColumn } from '~~/server/db/schema'
+import { songSchema } from '~~/shared/types/song'
+import { stepChartSchema } from '~~/shared/types/step-chart'
 
 /** Enum object for `clearLamp` */
 export const ClearLamp = {
@@ -52,7 +54,7 @@ const _danceLevels = [
   { border: undefined, rank: 'D' },
   { border: undefined, rank: 'E' },
 ] as const
-type DanceLevel = (typeof _danceLevels)[number]['rank']
+export type DanceLevel = (typeof _danceLevels)[number]['rank']
 
 /** Enum object for `flareRank` */
 export const FlareRank = {
@@ -94,7 +96,7 @@ export const scoreRecordSchema = z.object({
    * - `0`: Failed
    * - `1`: Assisted Clear
    * - `2`: Clear
-   * - `3`: Life 4
+   * - `3`: Life 4 Clear
    * - `4`: Full Combo (Good FC)
    * - `5`: Great Full Combo
    * - `6`: Perfect Full Combo
@@ -128,11 +130,13 @@ export const scoreRecordSchema = z.object({
   >
 >
 export type ScoreRecord = ZodInfer<typeof scoreRecordSchema>
-export type UserScoreRecord = ScoreRecord &
-  Pick<
-    typeof scores.$inferInsert,
-    'songId' | 'playStyle' | 'difficulty' | 'userId'
-  >
+
+export const scoreRecordInputSchema = z.extend(z.partial(scoreRecordSchema), {
+  songId: songSchema.shape.id,
+  playStyle: stepChartSchema.shape.playStyle,
+  difficulty: stepChartSchema.shape.difficulty,
+})
+export type ScoreRecordInput = ZodInfer<typeof scoreRecordInputSchema>
 
 /**
  * Get Dance Level from normal score.
@@ -204,4 +208,20 @@ export function mergeScoreRecords(
     if (typeof r !== 'number') return l
     return Math.max(l, r) as T
   }
+}
+
+export function scoreRecordsEqual(
+  left: Readonly<ScoreRecord>,
+  right: Readonly<ScoreRecord>
+): boolean {
+  // Use == to treat null and undefined as equal
+  return (
+    left.normalScore == right.normalScore &&
+    left.exScore == right.exScore &&
+    left.maxCombo == right.maxCombo &&
+    left.clearLamp == right.clearLamp &&
+    left.rank == right.rank &&
+    left.flareRank == right.flareRank &&
+    left.flareSkill == right.flareSkill
+  )
 }

@@ -20,3 +20,13 @@ export function getEnumKey<TValue, TEnum extends Record<string, TValue>>(
 export function range<T extends number>(start: T, end: T): T[] {
   return [...Array(end - start + 1).keys()].map(i => (i + start) as T)
 }
+
+export function isPropertyNotNull<T, K extends keyof T>(
+  obj: T,
+  ...keys: K[]
+): obj is T & { [P in K]-?: NonNullable<T[P]> } {
+  for (const key of keys) {
+    if (obj[key] == null) return false
+  }
+  return true
+}

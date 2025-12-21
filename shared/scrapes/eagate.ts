@@ -1,11 +1,11 @@
-import type { UserScoreRecord } from '~~/shared/types/score'
+import type { ScoreRecordInput } from '~~/shared/types/score'
 import type { Song } from '~~/shared/types/song'
 
-type PlayStyle = UserScoreRecord['playStyle']
-type Difficulty = UserScoreRecord['difficulty']
-type DanceLevel = UserScoreRecord['rank']
-type ClearLamp = UserScoreRecord['clearLamp']
-type FlareRank = UserScoreRecord['flareRank']
+type PlayStyle = ScoreRecordInput['playStyle']
+type Difficulty = ScoreRecordInput['difficulty']
+type DanceLevel = ScoreRecordInput['rank']
+type ClearLamp = ScoreRecordInput['clearLamp']
+type FlareRank = ScoreRecordInput['flareRank']
 
 /** Music Detail page URI */
 const idRegex = /^.+\/ddr\/ddrworld\/.+(img|index)=([01689bdiloqDIOPQ]{32}).*$/
@@ -67,7 +67,7 @@ const fileFlareRankMap = new Map<string, FlareRank>([
 ])
 // #endregion
 
-type EAGateScoreRecord = Omit<UserScoreRecord, 'userId'> & Pick<Song, 'name'>
+type EAGateScoreRecord = Omit<ScoreRecordInput, 'userId'> & Pick<Song, 'name'>
 
 /**
  * Parse score data from e-amusement PLAY DATA page.
@@ -207,9 +207,9 @@ const textFlareRankMap = new Map<string, FlareRank>([
 ])
 // #endregion
 
-type RivalScore = Pick<UserScoreRecord, 'normalScore'> & {
+type RivalScore = Pick<ScoreRecordInput, 'normalScore'> & {
   name: string
-} & Partial<Pick<UserScoreRecord, 'rank' | 'flareRank'>>
+} & Partial<Pick<ScoreRecordInput, 'rank' | 'flareRank'>>
 
 /**
  * Parse score data from e-amusement MUSIC DETAIL page.

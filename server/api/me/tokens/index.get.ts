@@ -1,12 +1,6 @@
 export default eventHandler(async event => {
-  // Require user session with registered user ID
-  const { user } = await requireUserSession(event)
-  if (!user?.id) {
-    throw createError({
-      statusCode: 403,
-      statusMessage: 'User registration required',
-    })
-  }
+  // Require user session with registered user ID (not allow token-authenticated)
+  const user = await requireAuthenticatedUserFromSession(event)
 
   // Prefix-scan token keys for the user
   const tokenKeys = await kv.keys(`user:${user.id}:token`)
@@ -87,14 +81,7 @@ defineRouteMeta({
         },
       },
       401: { $ref: '#/components/responses/Unauthorized' },
-      403: {
-        description: 'Forbidden - User registration required',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
-      },
+      403: { $ref: '#/components/responses/RegistrationRequired' },
     },
   },
 })

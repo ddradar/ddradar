@@ -220,7 +220,7 @@ export const scores = sqliteTable(
      */
     clearLamp: int('clear_lamp').$type<ValueOf<typeof ClearLamp>>().notNull(),
     /** Dance Level ("AAA", "AA+", "AA", "AA-", ..., "D+", "D", "E") */
-    rank: text('rank').notNull(),
+    rank: text('rank').$type<DanceLevel>().notNull(),
     /**
      * Flare Rank
      * @description

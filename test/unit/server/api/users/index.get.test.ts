@@ -11,29 +11,23 @@ import {
 } from 'vitest'
 
 import handler from '~~/server/api/users/index.get'
-import { privateUser, publicUser, sessionUser } from '~~/test/data/user'
+import { privateUser, publicUser } from '~~/test/data/user'
 
 describe('GET /api/users', () => {
   const findMany = vi.fn<typeof db.query.users.findMany>()
   const originalQuery = vi.mocked(db).query
 
-  beforeAll(() => {
-    vi.mocked(db).query = { users: { findMany } } as never
-  })
-
+  beforeAll(() => (vi.mocked(db).query = { users: { findMany } } as never))
   beforeEach(() => {
     findMany.mockClear()
-    vi.mocked(getUserSession).mockClear()
+    vi.mocked(getAuthenticatedUser).mockClear()
   })
-
-  afterAll(() => {
-    vi.mocked(db).query = originalQuery
-  })
+  afterAll(() => (vi.mocked(db).query = originalQuery))
 
   test('select columns are fixed', async () => {
     // Arrange
     findMany.mockResolvedValue([publicUser] as never)
-    vi.mocked(getUserSession).mockResolvedValue({ user: undefined } as never)
+    vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
     const event = { path: '/api/users' } as unknown as H3Event
 
     // Act
@@ -90,7 +84,7 @@ describe('GET /api/users', () => {
     async (query, conditions) => {
       // Arrange
       findMany.mockResolvedValue([publicUser] as never)
-      vi.mocked(getUserSession).mockResolvedValue({ user: undefined } as never)
+      vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
       const pathSuffix = query ? `?${query}` : ''
       const event = { path: `/api/users${pathSuffix}` } as unknown as H3Event
 
@@ -111,10 +105,7 @@ describe('GET /api/users', () => {
       [
         or(
           eq(schema.users.isPublic, true),
-          and(
-            eq(schema.users.provider, sessionUser.provider),
-            eq(schema.users.providerId, sessionUser.providerId)
-          )
+          eq(schema.users.id, privateUser.id)
         ),
       ],
     ],
@@ -123,10 +114,7 @@ describe('GET /api/users', () => {
       [
         or(
           eq(schema.users.isPublic, true),
-          and(
-            eq(schema.users.provider, sessionUser.provider),
-            eq(schema.users.providerId, sessionUser.providerId)
-          )
+          eq(schema.users.id, privateUser.id)
         ),
         sql`${schema.users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
       ],
@@ -136,9 +124,10 @@ describe('GET /api/users', () => {
     async (query, conditions) => {
       // Arrange
       findMany.mockResolvedValue([publicUser, privateUser] as never)
-      vi.mocked(getUserSession).mockResolvedValue({
-        user: sessionUser,
-      } as never)
+      vi.mocked(getAuthenticatedUser).mockResolvedValue({
+        id: privateUser.id,
+        roles: [],
+      })
       const pathSuffix = query ? `?${query}` : ''
       const event = { path: `/api/users${pathSuffix}` } as unknown as H3Event
 

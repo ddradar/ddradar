@@ -28,3 +28,8 @@ vi.stubGlobal('schema', { charts, scores, songs, users })
 vi.stubGlobal('getUserSession', vi.fn())
 vi.stubGlobal('requireUserSession', vi.fn())
 vi.stubGlobal('setUserSession', vi.fn())
+
+// Server Utils
+vi.stubGlobal('getAuthenticatedUser', vi.fn())
+vi.stubGlobal('requireAuthenticatedUser', vi.fn())
+vi.stubGlobal('requireAuthenticatedUserFromSession', vi.fn())

@@ -1,19 +1,13 @@
 import * as z from 'zod/mini'
 
 export default eventHandler(async event => {
-  // Require user session with registered user ID
-  const { user } = await requireUserSession(event)
-  if (!user?.id) {
-    throw createError({
-      statusCode: 403,
-      statusMessage: 'User registration required',
-    })
-  }
-
   const { id: tokenId } = await getValidatedRouterParams(
     event,
     z.pick(apiTokenSchema, { id: true }).parse
   )
+
+  // Require user session with registered user ID (not allow token-authenticated)
+  const user = await requireAuthenticatedUserFromSession(event)
 
   // Get token data
   const tokenKey = `user:${user.id}:token:${tokenId}`
@@ -63,14 +57,7 @@ defineRouteMeta({
         },
       },
       401: { $ref: '#/components/responses/Unauthorized' },
-      403: {
-        description: 'Forbidden - User registration required',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
-      },
+      403: { $ref: '#/components/responses/RegistrationRequired' },
       404: {
         description: 'Token not found',
         content: {

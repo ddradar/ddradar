@@ -10,8 +10,8 @@ const _bodySchema = z.extend(songSchema, {
 })
 
 export default eventHandler(async event => {
-  const user = await getAuthenticatedUser(event)
-  if (!user?.roles.includes('admin'))
+  const user = await requireAuthenticatedUser(event)
+  if (!user.roles.includes('admin'))
     throw createError({ statusCode: 403, statusMessage: 'Forbidden' })
 
   const body = await readValidatedBody(event, _bodySchema.parse)

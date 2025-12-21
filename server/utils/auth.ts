@@ -1,6 +1,8 @@
 import { eq } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 
+import type { User as SessionUser } from '#auth-utils'
+
 export type StoredApiToken = Pick<
   ApiToken,
   'name' | 'expiresAt' | 'createdAt'
@@ -63,12 +65,12 @@ async function validateTokenAndGetUserId(token: string): Promise<string> {
  *
  * @param event H3Event
  * @returns User object from database, or null if no valid authentication found
- * @throws 403 if session and token user mismatch
  * @throws 401 if token validation fails without session authentication
+ * @throws 403 if session and token user mismatch or user registration incomplete
  */
 export async function getAuthenticatedUser(
   event: H3Event
-): Promise<typeof schema.users.$inferSelect | null> {
+): Promise<Required<Pick<SessionUser, 'id' | 'roles'>> | null> {
   let userIdFromSession: string | undefined
   let userIdFromToken: string | undefined
 
@@ -112,8 +114,49 @@ export async function getAuthenticatedUser(
   }
 
   // Fetch user from database
-  const user = await db.query.users.findFirst({
-    where: eq(schema.users.id, userIdFromSession || userIdFromToken!),
-  })
-  return user || null
+  const user = session.user?.id
+    ? session.user
+    : await db.query.users.findFirst({
+        columns: { id: true, roles: true },
+        where: eq(schema.users.id, userIdFromToken!),
+      })
+  return (user as Required<Pick<SessionUser, 'id' | 'roles'>>) || null
+}
+
+/**
+ * Get authenticated user from either session or API token
+ * Supports both cookie-based session authentication and Bearer token authentication
+ *
+ * @param event H3Event
+ * @returns User object from database
+ * @throws 401 if token validation fails without session authentication
+ * @throws 403 if session and token user mismatch or user registration incomplete
+ */
+export async function requireAuthenticatedUser(
+  event: H3Event
+): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
+  const user = await getAuthenticatedUser(event)
+  if (!user)
+    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  return user
+}
+
+/**
+ * Get authenticated user from either session
+ *
+ * @param event H3Event
+ * @returns User object from database, or null if no valid authentication found
+ * @throws 401 if no session
+ * @throws 403 if user registration is not complete
+ */
+export async function requireAuthenticatedUserFromSession(
+  event: H3Event
+): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
+  const { user } = await requireUserSession(event)
+  if (!user?.id)
+    throw createError({
+      statusCode: 403,
+      statusMessage: 'User registration required',
+    })
+  return user as Required<Pick<SessionUser, 'id' | 'roles'>>
 }

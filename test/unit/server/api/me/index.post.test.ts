@@ -160,7 +160,7 @@ describe('POST /api/me', () => {
     })
   })
 
-  test('throws 500 when returning rows are not exactly one', async () => {
+  test('throws 409 when returning rows are not exactly one', async () => {
     // Arrange
     vi.mocked(requireUserSession).mockResolvedValue({
       user: { ...sessionUser, id: undefined },
@@ -179,8 +179,8 @@ describe('POST /api/me', () => {
 
     // Act & Assert
     await expect(handler(event)).rejects.toMatchObject({
-      statusCode: 500,
-      statusMessage: 'Failed to upsert user',
+      statusCode: 409,
+      statusMessage: 'Conflict',
     })
     expect(setUserSession).not.toHaveBeenCalled()
   })
