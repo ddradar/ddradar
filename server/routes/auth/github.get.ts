@@ -17,11 +17,18 @@ export default defineOAuthGitHubEventHandler({
     if (!currentUser) return sendRedirect(event, '/profile')
 
     const to = getCookie(event, 'redirect') || '/'
-    setCookie(event, 'redirect', '')
+    deleteCookie(event, 'redirect')
     return sendRedirect(event, to)
   },
   onError(event, error) {
     console.error('GitHub OAuth error:', error)
     return sendRedirect(event, '/')
+  },
+})
+
+defineRouteMeta({
+  openAPI: {
+    summary: 'GitHub OAuth callback handler',
+    tags: ['Authentication'],
   },
 })

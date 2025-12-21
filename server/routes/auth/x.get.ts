@@ -18,11 +18,18 @@ export default defineOAuthXEventHandler({
     if (!currentUser) return sendRedirect(event, '/profile')
 
     const to = getCookie(event, 'redirect') || '/'
-    setCookie(event, 'redirect', '')
+    deleteCookie(event, 'redirect')
     return sendRedirect(event, to)
   },
   onError(event, error) {
     console.error('X OAuth error:', error)
     return sendRedirect(event, '/')
+  },
+})
+
+defineRouteMeta({
+  openAPI: {
+    summary: 'X (formerly Twitter) OAuth callback handler',
+    tags: ['Authentication'],
   },
 })

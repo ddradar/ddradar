@@ -18,11 +18,18 @@ export default defineOAuthLineEventHandler({
     if (!currentUser) return sendRedirect(event, '/profile')
 
     const to = getCookie(event, 'redirect') || '/'
-    setCookie(event, 'redirect', '')
+    deleteCookie(event, 'redirect')
     return sendRedirect(event, to)
   },
   onError(event, error) {
     console.error('Line OAuth error:', error)
     return sendRedirect(event, '/')
+  },
+})
+
+defineRouteMeta({
+  openAPI: {
+    summary: 'LINE OAuth callback handler',
+    tags: ['Authentication'],
   },
 })
