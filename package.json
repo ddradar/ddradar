@@ -54,7 +54,6 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
-    "nuxthub": "^0.9.4",
     "prettier": "^3.7.4",
     "typescript": "^5.9.3",
     "vitest": "^4.0.16",
@@ -70,7 +69,8 @@
       "workerd"
     ],
     "patchedDependencies": {
-      "@nuxthub/core": "patches/@nuxthub__core.patch"
+      "@nuxthub/core": "patches/@nuxthub__core.patch",
+      "nitropack@2.12.9": "patches/nitropack@2.12.9.patch"
     }
   }
 }

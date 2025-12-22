@@ -3,6 +3,7 @@ import * as z from 'zod/mini'
 import type { scores, TimestampColumn } from '~~/server/db/schema'
 import { songSchema } from '~~/shared/types/song'
 import { stepChartSchema } from '~~/shared/types/step-chart'
+import { userSchema } from '~~/shared/types/user'
 
 /** Enum object for `clearLamp` */
 export const ClearLamp = {
@@ -54,6 +55,7 @@ const _danceLevels = [
   { border: undefined, rank: 'D' },
   { border: undefined, rank: 'E' },
 ] as const
+export const danceLevels = _danceLevels.map(dl => dl.rank)
 export type DanceLevel = (typeof _danceLevels)[number]['rank']
 
 /** Enum object for `flareRank` */

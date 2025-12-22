@@ -1,0 +1,13 @@
+diff --git a/dist/rollup/index.mjs b/dist/rollup/index.mjs
+index 3b04012488c162b264a6bc60967fe7d59de11121..445e68936bc9513346de3f8bbe72fbb8345a6c11 100644
+--- a/dist/rollup/index.mjs
++++ b/dist/rollup/index.mjs
+@@ -1184,7 +1184,7 @@ function astToObject(node) {
+       return obj;
+     }
+     case "ArrayExpression": {
+-      return node.elements.map((el) => astToObject(el)).filter(Boolean);
++      return node.elements.map((el) => astToObject(el)).filter((el) => el !== null && el !== void 0);
+     }
+     case "Literal": {
+       return node.value;

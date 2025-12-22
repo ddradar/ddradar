@@ -2,14 +2,25 @@ import { and, eq, exists } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { ignoreTimestampCols } from '~~/server/db/utils'
-import { compareSong, seriesList, type Song } from '~~/shared/types/song'
-import type { StepChart } from '~~/shared/types/step-chart'
+import {
+  compareSong,
+  NameIndex,
+  seriesList,
+  type Song,
+} from '~~/shared/types/song'
+import { type StepChart, stepChartSchema } from '~~/shared/types/step-chart'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
   /** Song name index (0-36) */
   name: z.catch(
-    z.optional(z.coerce.number().check(z.int(), z.minimum(0), z.maximum(36))),
+    z.optional(
+      z.coerce
+        .number()
+        .check(
+          z.refine(i => (Object.values(NameIndex) as number[]).includes(i))
+        )
+    ),
     undefined
   ),
   /**
@@ -23,9 +34,7 @@ const _querySchema = z.object({
    */
   series: z.catch(
     z.optional(
-      z.coerce
-        .number()
-        .check(z.int(), z.minimum(0), z.maximum(seriesList.length - 1))
+      z.coerce.number().check(z.refine(i => i >= 0 && i < seriesList.length))
     ),
     undefined
   ),
@@ -34,7 +43,13 @@ const _querySchema = z.object({
    * @summary Ignored if `level` is not specified.
    */
   style: z.catch(
-    z.optional(z.coerce.number().check(z.int(), z.minimum(1), z.maximum(2))),
+    z.optional(
+      z.coerce
+        .number()
+        .check(
+          z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
+        )
+    ),
     undefined
   ),
   /**
@@ -42,14 +57,18 @@ const _querySchema = z.object({
    * @summary Ignored if `style` is not specified.
    */
   level: z.catch(
-    z.optional(z.coerce.number().check(z.int(), z.minimum(1), z.maximum(20))),
+    z.optional(
+      z.coerce
+        .number()
+        .check(z.refine(i => stepChartSchema.shape.level.safeParse(i).success))
+    ),
     undefined
   ),
   /**
    * Whether to include charts data
    * @default false when no chart conditions (`style` and `level`) specified, true when they are specified
    */
-  includeCharts: z.catch(z.coerce.boolean(), false),
+  includeCharts: z.catch(z.stringbool(), false),
 })
 
 // Cache name for this handler (expoted for clear cache usage)

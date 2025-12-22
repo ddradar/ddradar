@@ -47,6 +47,7 @@ describe('GET /api/songs', () => {
 
   test.each([
     ['', []],
+    ['includeCharts=false', []],
     ['name=-1', []],
     ['name=37', []],
     ['series=-1', []],
@@ -82,7 +83,6 @@ describe('GET /api/songs', () => {
 
   test.each([
     ['includeCharts=true', []],
-    ['includeCharts=false', []], // Boolean("false") is truthy. lol
     ['style=1&level=10', [exists(expect.anything())]],
     [
       'name=10&series=10&style=1&level=10',
