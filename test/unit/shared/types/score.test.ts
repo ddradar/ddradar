@@ -17,6 +17,9 @@ describe('/shared/types/score', () => {
       clearLamp: ClearLamp.FC,
       rank: 'AA',
       flareRank: FlareRank.None,
+      exScore: null,
+      maxCombo: null,
+      flareSkill: null,
     }
     test.each([
       ...notValidObject,
@@ -32,7 +35,6 @@ describe('/shared/types/score', () => {
     )
     test.each([
       validScoreRecord,
-      { ...validScoreRecord, exScore: null, maxCombo: null, flareSkill: null },
       { ...validScoreRecord, exScore: 0, maxCombo: 0 },
       { ...validScoreRecord, exScore: 1000 },
       { ...validScoreRecord, maxCombo: 300 },
@@ -70,35 +72,46 @@ describe('/shared/types/score', () => {
   })
 
   describe('mergeScoreRecords', () => {
+    const defaultScore: ScoreRecord = {
+      normalScore: 0,
+      clearLamp: ClearLamp.Failed,
+      rank: 'E',
+      exScore: null,
+      maxCombo: null,
+      flareRank: FlareRank.None,
+      flareSkill: null,
+    }
     test.each([
       [
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Assisted,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Assisted,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Assisted,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
       ],
       [
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Life4,
           rank: 'AA',
           flareRank: FlareRank.I,
         },
         {
+          ...defaultScore,
           normalScore: 850000,
           clearLamp: ClearLamp.FC,
           exScore: 100,
@@ -106,6 +119,7 @@ describe('/shared/types/score', () => {
           flareRank: FlareRank.V,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.FC,
           rank: 'AA',
@@ -115,18 +129,21 @@ describe('/shared/types/score', () => {
       ],
       [
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Life4,
           rank: 'AA',
           flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 920000,
           clearLamp: ClearLamp.Failed,
           rank: 'E',
           flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 920000,
           clearLamp: ClearLamp.Life4,
           rank: 'E',
@@ -135,12 +152,14 @@ describe('/shared/types/score', () => {
       ],
       [
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Life4,
           rank: 'AA',
           flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 850000,
           clearLamp: ClearLamp.FC,
           maxCombo: 100,
@@ -149,6 +168,7 @@ describe('/shared/types/score', () => {
           flareSkill: 299,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.FC,
           rank: 'AA',
@@ -159,22 +179,22 @@ describe('/shared/types/score', () => {
       ],
       [
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Assisted,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Clear,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
         {
+          ...defaultScore,
           normalScore: 900000,
           clearLamp: ClearLamp.Assisted,
           rank: 'AA',
-          flareRank: FlareRank.None,
         },
       ],
     ] satisfies [ScoreRecord, ScoreRecord, ScoreRecord][])(

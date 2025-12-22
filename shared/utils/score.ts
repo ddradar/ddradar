@@ -128,7 +128,11 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
   partialScore: Readonly<T>
 ): T & ScoreRecord {
   const objects = chart.notes + chart.freezes + chart.shocks
-  const max = { ...calcMaxScore(chart), flareRank: FlareRank.None }
+  const max = {
+    ...calcMaxScore(chart),
+    flareRank: FlareRank.None,
+    flareSkill: null,
+  }
 
   if (isMFC()) return { ...max, ...partialScore }
 
@@ -137,6 +141,7 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
     return {
       ...scoreFromEx,
       flareRank: FlareRank.None,
+      flareSkill: null,
       ...partialScore,
     }
   }
@@ -145,9 +150,12 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
     throw new Error('Cannot guess Score object. set normalScore property')
 
   const result: T & ScoreRecord = {
+    exScore: null,
+    maxCombo: null,
     rank: getDanceLevel(partialScore.normalScore),
     clearLamp: ClearLamp.Clear,
     flareRank: FlareRank.None,
+    flareSkill: null,
     normalScore: partialScore.normalScore,
     ...partialScore,
   }
@@ -317,6 +325,7 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
         rank: getDanceLevel(normalScore),
         clearLamp: ClearLamp.GFC,
         maxCombo: max.maxCombo,
+        exScore: Math.max(max.exScore - perfectCount, partialScore.exScore),
       }
     }
 
@@ -333,9 +342,8 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
         normalScore,
         rank: isFailed() ? 'E' : getDanceLevel(normalScore),
         clearLamp: partialScore.clearLamp ?? (isFailed() ? 0 : 1),
-        ...(partialScore.clearLamp === ClearLamp.FC
-          ? { maxCombo: max.maxCombo }
-          : {}),
+        exScore: partialScore.exScore,
+        maxCombo: partialScore.clearLamp === ClearLamp.FC ? max.maxCombo : null,
       }
     }
     return null

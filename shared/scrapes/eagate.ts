@@ -67,7 +67,8 @@ const fileFlareRankMap = new Map<string, FlareRank>([
 ])
 // #endregion
 
-type EAGateScoreRecord = Omit<ScoreRecordInput, 'userId'> & Pick<Song, 'name'>
+type EAGateScoreRecord = Omit<ScoreRecordInput, 'userId' | 'exScore'> &
+  Pick<Song, 'name'>
 
 /**
  * Parse score data from e-amusement PLAY DATA page.
@@ -110,7 +111,7 @@ export function parsePlayDataList(document: Document): EAGateScoreRecord[] {
       )!
 
       // Flare Skill
-      const flareSkill = getInteger(chart, 'data_flareskill')
+      const flareSkill = getInteger(chart, 'data_flareskill') ?? null
 
       // Flare Rank
       const flareRank = fileFlareRankMap.get(
@@ -125,8 +126,9 @@ export function parsePlayDataList(document: Document): EAGateScoreRecord[] {
         normalScore,
         clearLamp,
         rank,
-        ...(flareSkill !== undefined ? { flareSkill } : {}),
+        flareSkill,
         flareRank,
+        maxCombo: null,
       })
     }
   }
@@ -312,7 +314,7 @@ export function parseScoreDetail(
     clearLamp: getClearLamp() ?? (rank === 'E' ? 0 : 1),
     rank,
     flareRank: textFlareRankMap.get(getText(table, 2, 0)) ?? 0,
-    ...(Number.isInteger(flareSkill) ? { flareSkill } : {}),
+    flareSkill: Number.isInteger(flareSkill) ? flareSkill : null,
     rivalScores,
   }
 

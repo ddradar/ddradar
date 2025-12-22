@@ -10,7 +10,7 @@ import {
   vi,
 } from 'vitest'
 
-import { handler } from '~~/server/api/songs/[id].get'
+import { handler } from '~~/server/api/songs/[id]/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 

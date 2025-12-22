@@ -87,9 +87,15 @@ export const scoreRecordSchema = z.object({
   /** Normal Score (0-1,000,000) */
   normalScore: z.int().check(z.minimum(0), z.maximum(1000000)),
   /** EX Score */
-  exScore: z.nullish(z.int().check(z.nonnegative())),
+  exScore: z.pipe(
+    z.nullish(z.int().check(z.nonnegative())),
+    z.transform(v => v ?? null)
+  ),
   /** Max Combo */
-  maxCombo: z.nullish(z.int().check(z.nonnegative())),
+  maxCombo: z.pipe(
+    z.nullish(z.int().check(z.nonnegative())),
+    z.transform(v => v ?? null)
+  ),
   /**
    * Clear Lamp
    * @description
@@ -122,7 +128,10 @@ export const scoreRecordSchema = z.object({
    */
   flareRank: z.union(Object.values(FlareRank).map(v => z.literal(v))),
   /** Flare Skill */
-  flareSkill: z.nullish(z.int().check(z.nonnegative())),
+  flareSkill: z.pipe(
+    z.nullish(z.int().check(z.nonnegative())),
+    z.transform(v => v ?? null)
+  ),
 }) satisfies z.ZodMiniType<
   Omit<
     typeof scores.$inferInsert,
@@ -131,11 +140,30 @@ export const scoreRecordSchema = z.object({
 >
 export type ScoreRecord = ZodInfer<typeof scoreRecordSchema>
 
-export const scoreRecordInputSchema = z.extend(z.partial(scoreRecordSchema), {
+export const scoreRecordKeySchema = z.object({
   songId: songSchema.shape.id,
   playStyle: stepChartSchema.shape.playStyle,
   difficulty: stepChartSchema.shape.difficulty,
-})
+  userId: userSchema.shape.id,
+}) satisfies z.ZodMiniType<
+  Pick<
+    typeof scores.$inferInsert,
+    'songId' | 'playStyle' | 'difficulty' | 'userId'
+  >
+>
+
+export const scoreRecordInputSchema = z.pipe(
+  z.object({
+    ...z.partial(scoreRecordSchema).shape,
+    ...z.omit(scoreRecordKeySchema, { userId: true }).shape,
+  }),
+  z.transform(value => ({
+    ...value,
+    exScore: value.exScore ?? null,
+    maxCombo: value.maxCombo ?? null,
+    flareSkill: value.flareSkill ?? null,
+  }))
+)
 export type ScoreRecordInput = ZodInfer<typeof scoreRecordInputSchema>
 
 /**
@@ -197,13 +225,9 @@ export function mergeScoreRecords(
     flareRank: maxOrUndefined(left.flareRank, right.flareRank),
     flareSkill: maxOrUndefined(left.flareSkill, right.flareSkill),
   }
-  if (res.exScore === undefined) delete res.exScore
-  if (res.maxCombo === undefined) delete res.maxCombo
-  if (res.flareSkill === undefined) delete res.flareSkill
-
   return res
 
-  function maxOrUndefined<T extends number | null | undefined>(l: T, r: T): T {
+  function maxOrUndefined<T extends number | null>(l: T, r: T): T {
     if (typeof l !== 'number') return r
     if (typeof r !== 'number') return l
     return Math.max(l, r) as T

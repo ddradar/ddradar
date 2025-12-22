@@ -3,7 +3,7 @@ import { Window } from 'happy-dom'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
 
-import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id].get'
+import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id]/index.get'
 import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
 import {
   scrapeGrooveRadar,

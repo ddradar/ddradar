@@ -31,6 +31,8 @@ const createScore = (
   rank,
   clearLamp,
   flareRank,
+  maxCombo: null,
+  flareSkill: null,
 })
 
 describe('/shared/scrapes/eagate', () => {

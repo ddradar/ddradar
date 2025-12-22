@@ -88,6 +88,9 @@ describe('/shared/utils/score', () => {
       clearLamp: ClearLamp.FC,
       rank: 'AA',
       flareRank: FlareRank.None,
+      exScore: null,
+      maxCombo: null,
+      flareSkill: null,
     }
     test.each([
       [
@@ -164,6 +167,7 @@ describe('/shared/utils/score', () => {
       exScore: 3060,
       maxCombo: 1010,
       flareRank: FlareRank.None,
+      flareSkill: null,
     }
     /** Perfect:1 Score */
     const pfcScore: ScoreRecord = {
@@ -194,6 +198,7 @@ describe('/shared/utils/score', () => {
       exScore: 0,
       maxCombo: 0,
       flareRank: FlareRank.None,
+      flareSkill: null,
     }
     test.each([
       [{ clearLamp: ClearLamp.MFC }, mfcScore], // MFC
@@ -232,6 +237,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.GFC,
           maxCombo: 1010,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ], // GFC or above (score is greater than Good:1 score)
       [
@@ -242,6 +249,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.GFC,
           maxCombo: 1010,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ], // Cannot guess EX SCORE
       [{ exScore: 3057, clearLamp: ClearLamp.FC }, fcScore], // Gd1
@@ -258,6 +267,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.FC,
           maxCombo: 1010,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ], // Maybe Full Combo or above (score is greater than Miss:1 score)
       [
@@ -268,6 +279,8 @@ describe('/shared/utils/score', () => {
           rank: 'AA+',
           maxCombo: 1010,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ], // Cannot guess EX SCORE
       [
@@ -278,6 +291,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Clear,
           exScore: 3057,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          maxCombo: null,
         },
       ], // Miss1
       [
@@ -288,16 +303,20 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Assisted,
           exScore: 3057,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          maxCombo: null,
         },
       ], // Miss1
       [
-        { exScore: 3057, clearLamp: ClearLamp.Failed },
+        { exScore: 3057, clearLamp: ClearLamp.Failed, maxCombo: 1000 },
         {
           normalScore: 999010,
           rank: 'E',
           clearLamp: ClearLamp.Failed,
           exScore: 3057,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          maxCombo: 1000,
         },
       ], // Miss1 (Failed)
       [
@@ -308,6 +327,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Failed,
           exScore: 3057,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          maxCombo: null,
         },
       ], // Miss1 (Failed)
       [
@@ -318,6 +339,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Clear,
           exScore: 3056,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          maxCombo: null,
         },
       ], // Miss1 P1
       [
@@ -329,6 +352,7 @@ describe('/shared/utils/score', () => {
           exScore: 3056,
           maxCombo: 1010,
           flareRank: FlareRank.None,
+          flareSkill: null,
         },
       ], // Miss1 P1 (missed last FA)
       [
@@ -339,6 +363,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Life4,
           maxCombo: 260,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ],
       [
@@ -349,6 +375,8 @@ describe('/shared/utils/score', () => {
           clearLamp: ClearLamp.Clear,
           maxCombo: 260,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
         },
       ],
       [
@@ -358,6 +386,9 @@ describe('/shared/utils/score', () => {
           rank: 'E',
           clearLamp: ClearLamp.Failed,
           flareRank: FlareRank.None,
+          flareSkill: null,
+          exScore: null,
+          maxCombo: null,
         },
       ],
       [{ normalScore: 0, clearLamp: ClearLamp.Failed }, noPlayScore], // 0 point falied
@@ -381,6 +412,7 @@ describe('/shared/utils/score', () => {
           rank: 'D',
           clearLamp: ClearLamp.Clear,
           flareRank: FlareRank.I,
+          flareSkill: null,
         },
       ], // 0 point clear (FLARE I Clear)
     ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(
@@ -402,6 +434,7 @@ describe('/shared/utils/score', () => {
           exScore: 509,
           maxCombo: 180,
           flareRank: FlareRank.None,
+          flareSkill: null,
         },
       ], // Gr3 P55
       [
@@ -413,6 +446,7 @@ describe('/shared/utils/score', () => {
           exScore: 528,
           maxCombo: 180,
           flareRank: FlareRank.None,
+          flareSkill: null,
         },
       ], // Gr5 P32
     ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(

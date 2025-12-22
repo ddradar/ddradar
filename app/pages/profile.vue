@@ -70,7 +70,7 @@ const toast = useToast()
 
 const isRegistered = computed(() => !!user.value?.id)
 const uri = computed(() => `/api/users/${user.value?.id}` as const)
-const { data: state, execute } = useFetch(uri, {
+const { data: state, execute } = useFetch<User>(uri, {
   method: 'GET',
   immediate: false,
   default: (): User => ({

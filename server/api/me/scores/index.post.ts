@@ -1,40 +1,23 @@
 import type { D1Result } from '@cloudflare/workers-types'
-import { lt, or, sql } from 'drizzle-orm'
+import { isNotNull, lt, or, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { getStepChart } from '~~/server/db/utils'
+import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
+import {
+  type ScoreRecordInput,
+  scoreRecordInputSchema,
+} from '~~/shared/types/score'
+import {
+  fillScoreRecordFromChart,
+  hasNotesInfo,
+  ValidateScoreRecord,
+} from '~~/shared/utils/score'
+import { chunkArray, isPropertyNotNull } from '~~/shared/utils/types'
 
 const _bodySchema = z.array(scoreRecordInputSchema).check(z.minLength(1))
 const CHUNK_SIZE = 25
 const requiredCols = ['normalScore', 'clearLamp', 'rank', 'flareRank'] as const
-
-type ErrorOrWarning = {
-  severity: 'error' | 'warning'
-  reason: keyof typeof Reason
-  message: string
-  column: number
-  data: ScoreRecordInput
-  details?: {
-    fields?: Array<{ field: string; message: string }>
-  }
-}
-
-const Reason = {
-  CHART_NOT_FOUND: ['error', 'Chart not found'],
-  MISSING_CHART_NOTES: [
-    'warning',
-    'Chart notes information is incomplete. ignore exScore and maxCombo.',
-  ],
-  MISSING_REQUIRED_PROPERTIES: [
-    'error',
-    'Missing required properties and cannot detect other properties.',
-  ],
-  VALIDATION_FAILED: ['error', 'Score validation failed.'],
-  LOWER_THAN_EXISTING: [
-    'warning',
-    'Score not updated because existing score is higher.',
-  ],
-} as const
 
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
@@ -42,7 +25,7 @@ export default defineEventHandler(async event => {
   const body = await readValidatedBody(event, _bodySchema.parse)
 
   let hasError = false
-  const errorsOrWarnings: ErrorOrWarning[] = []
+  const errorsOrWarnings: ScoreUpsertResult[] = []
   const targetScores: [number, ScoreRecordInput & ScoreRecord][] = []
 
   // Validate all scores first
@@ -72,8 +55,8 @@ export default defineEventHandler(async event => {
           },
         ],
       })
-      delete scoreData.exScore
-      delete scoreData.maxCombo
+      scoreData.exScore = null
+      scoreData.maxCombo = null
     }
 
     // Check required properties
@@ -119,7 +102,7 @@ export default defineEventHandler(async event => {
 
   // Upsert all valid scores in chunks
   for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
-    const [first, ...rest] = chunkScores.map(([, score]) =>
+    const upserts = chunkScores.map(([, score]) =>
       db
         .insert(schema.scores)
         .values({
@@ -134,6 +117,7 @@ export default defineEventHandler(async event => {
           rank: score.rank,
           flareRank: score.flareRank,
           flareSkill: score.flareSkill,
+          deletedAt: null,
         })
         .onConflictDoUpdate({
           target: [
@@ -143,16 +127,18 @@ export default defineEventHandler(async event => {
             schema.scores.userId,
           ],
           set: {
-            normalScore: sql`CASE WHEN ${schema.scores.normalScore} < ${score.normalScore} THEN ${score.normalScore} ELSE ${schema.scores.normalScore} END`,
-            exScore: sql`CASE WHEN COALESCE(${schema.scores.exScore}, -1) < ${score.exScore ?? -1} THEN ${score.exScore ?? -1} ELSE ${schema.scores.exScore} END`,
-            maxCombo: sql`CASE WHEN COALESCE(${schema.scores.maxCombo}, -1) < ${score.maxCombo ?? -1} THEN ${score.maxCombo ?? -1} ELSE ${schema.scores.maxCombo} END`,
-            clearLamp: sql`CASE WHEN ${schema.scores.clearLamp} < ${score.clearLamp} THEN ${score.clearLamp} ELSE ${schema.scores.clearLamp} END`,
-            rank: sql`CASE WHEN ${schema.scores.normalScore} < ${score.normalScore} THEN ${score.rank} ELSE ${schema.scores.rank} END`,
-            flareRank: sql`CASE WHEN ${schema.scores.flareRank} < ${score.flareRank} THEN ${score.flareRank} ELSE ${schema.scores.flareRank} END`,
-            flareSkill: sql`CASE WHEN COALESCE(${schema.scores.flareSkill}, -1) < ${score.flareSkill ?? -1} THEN ${score.flareSkill ?? -1} ELSE ${schema.scores.flareSkill} END`,
+            normalScore: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.normalScore, score.normalScore))} THEN ${score.normalScore} ELSE ${schema.scores.normalScore} END`,
+            exScore: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.exScore}, -1)`, score.exScore ?? -1))} THEN ${score.exScore ?? null} ELSE ${schema.scores.exScore} END`,
+            maxCombo: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.maxCombo}, -1)`, score.maxCombo ?? -1))} THEN ${score.maxCombo ?? null} ELSE ${schema.scores.maxCombo} END`,
+            clearLamp: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.clearLamp, score.clearLamp))} THEN ${score.clearLamp} ELSE ${schema.scores.clearLamp} END`,
+            rank: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.normalScore, score.normalScore))} THEN ${score.rank} ELSE ${schema.scores.rank} END`,
+            flareRank: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.flareRank, score.flareRank))} THEN ${score.flareRank} ELSE ${schema.scores.flareRank} END`,
+            flareSkill: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${schema.scores.flareSkill} END`,
+            deletedAt: null,
             updatedAt: new Date(),
           },
           setWhere: or(
+            isNotNull(schema.scores.deletedAt),
             lt(schema.scores.normalScore, score.normalScore),
             lt(
               sql`COALESCE(${schema.scores.exScore}, -1)`,
@@ -171,9 +157,9 @@ export default defineEventHandler(async event => {
           ),
         })
     )
-    const res: D1Result[] = await db.batch([first, ...rest])
+    const res: ReadonlyArray<D1Result> = await db.batch(upserts as never)
     res.forEach((result, index) => {
-      const [column, score] = chunkScores[index]
+      const [column, score] = chunkScores[index] as [number, ScoreRecordInput]
       if (!result.meta.changed_db)
         addWarningOrError('LOWER_THAN_EXISTING', column, score)
     })
@@ -181,22 +167,13 @@ export default defineEventHandler(async event => {
   return { count: targetScores.length, warnings: errorsOrWarnings }
 
   function addWarningOrError(
-    reason: keyof typeof Reason,
+    reason: ScoreUpsertResult['reason'],
     column: number,
     data: ScoreRecordInput,
     message?: string,
-    details?: ErrorOrWarning['details']
+    details?: ScoreUpsertResult['details']
   ) {
-    const [severity, defaultMessage] = Reason[reason]
-    message ??= defaultMessage
-    errorsOrWarnings.push({
-      severity,
-      reason,
-      message,
-      column,
-      data,
-      ...(details && { details }),
-    })
+    errorsOrWarnings.push(getReason(reason, column, data, message, details))
   }
 })
 
