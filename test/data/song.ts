@@ -1,4 +1,4 @@
-export const testSongData: Song = {
+export const testSongData: Omit<SongInfo, 'charts'> = {
   id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
   name: 'PARANOiA',
   nameKana: 'PARANOIA',

@@ -4,13 +4,12 @@ import {
   compareSong,
   getSeriesCategory,
   NameIndex,
-  type Song,
   songSchema,
-} from '~~/shared/types/song'
+} from '~~/shared/schemas/song'
 import { notValidObject } from '~~/test/data/schema'
 import { testSongData } from '~~/test/data/song'
 
-describe('/shared/types/song', () => {
+describe('/shared/schemas/song', () => {
   describe('getSeriesCategory', () => {
     test.each([
       ['DDR 1st', 'CLASSIC'],
@@ -27,7 +26,7 @@ describe('/shared/types/song', () => {
   })
 
   describe('songSchema', () => {
-    const validSong: Song = { ...testSongData }
+    const validSong = { ...testSongData }
     test.each([
       ...notValidObject,
       { ...validSong, id: '' },
@@ -49,8 +48,9 @@ describe('/shared/types/song', () => {
       { ...validSong, artist: '' },
       { ...validSong, series: 'DDR WORLD' },
       { ...validSong, bpm: null },
-    ] satisfies Song[])('safeParse(%o) returns { success: true }', o =>
-      expect(songSchema.safeParse(o).success).toBe(true)
+    ] satisfies Omit<SongInfo, 'charts'>[])(
+      'safeParse(%o) returns { success: true }',
+      o => expect(songSchema.safeParse(o).success).toBe(true)
     )
   })
 
@@ -90,8 +90,8 @@ describe('/shared/types/song', () => {
         0,
       ],
     ] satisfies [
-      Pick<Song, 'nameKana' | 'nameIndex'>,
-      Pick<Song, 'nameKana' | 'nameIndex'>,
+      Pick<SongInfo, 'nameKana' | 'nameIndex'>,
+      Pick<SongInfo, 'nameKana' | 'nameIndex'>,
       number,
     ][])('(%o, %o) returns %d', (a, b, expected) => {
       expect(compareSong(a, b)).toBe(expected)

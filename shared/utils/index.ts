@@ -1,3 +1,5 @@
+import * as z from 'zod/mini'
+
 /**
  * Returns the key of the specified enum value
  * @param enumObj Enum object
@@ -36,4 +38,12 @@ export function isPropertyNotNull<T, K extends keyof T>(
     if (obj[key] == null) return false
   }
   return true
+}
+
+/**
+ * Returns a Zod schema that accepts either a single value or an array of values
+ * @param schema Zod schema for the value type
+ */
+export function singleOrArray<T extends z.ZodMiniType>(schema: T) {
+  return z.union([schema, z.array(schema)])
 }

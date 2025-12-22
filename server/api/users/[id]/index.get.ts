@@ -1,7 +1,7 @@
 import { and, eq, or } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { type User, userSchema } from '~~/shared/types/user'
+import { userSchema } from '~~/shared/schemas/user'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(userSchema, { id: true })

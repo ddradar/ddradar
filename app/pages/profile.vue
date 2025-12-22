@@ -58,7 +58,7 @@
 <script setup lang="ts">
 import type { SelectItem } from '@nuxt/ui'
 
-import { Area, type User, userSchema } from '~~/shared/types/user'
+import { Area, userSchema } from '~~/shared/schemas/user'
 
 definePageMeta({ middleware: ['auth'] })
 

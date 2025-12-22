@@ -1,7 +1,7 @@
 import { and, eq, isNull } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { scoreRecordKeySchema } from '~~/shared/types/score'
+import { scoreRecordKeySchema } from '~~/shared/schemas/score'
 
 /** Schema for router params */
 const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })

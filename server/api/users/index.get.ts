@@ -1,8 +1,6 @@
 import { and, eq, or, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import type { User } from '~~/shared/types/user'
-
 /** Schema for query parameters */
 const _querySchema = z.object({
   /** User name (partial match) */

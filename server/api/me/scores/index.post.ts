@@ -4,16 +4,13 @@ import * as z from 'zod/mini'
 
 import { getStepChart } from '~~/server/db/utils'
 import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
-import {
-  type ScoreRecordInput,
-  scoreRecordInputSchema,
-} from '~~/shared/types/score'
+import { scoreRecordInputSchema } from '~~/shared/schemas/score'
+import { chunkArray, isPropertyNotNull } from '~~/shared/utils'
 import {
   fillScoreRecordFromChart,
   hasNotesInfo,
   ValidateScoreRecord,
 } from '~~/shared/utils/score'
-import { chunkArray, isPropertyNotNull } from '~~/shared/utils/types'
 
 const _bodySchema = z.array(scoreRecordInputSchema).check(z.minLength(1))
 const CHUNK_SIZE = 25

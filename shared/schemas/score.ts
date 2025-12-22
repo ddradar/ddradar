@@ -1,9 +1,9 @@
 import * as z from 'zod/mini'
 
 import type { scores, TimestampColumn } from '~~/server/db/schema'
-import { songSchema } from '~~/shared/types/song'
-import { stepChartSchema } from '~~/shared/types/step-chart'
-import { userSchema } from '~~/shared/types/user'
+import { songSchema } from '~~/shared/schemas/song'
+import { stepChartSchema } from '~~/shared/schemas/step-chart'
+import { userSchema } from '~~/shared/schemas/user'
 
 /** Enum object for `clearLamp` */
 export const ClearLamp = {
@@ -55,8 +55,8 @@ const _danceLevels = [
   { border: undefined, rank: 'D' },
   { border: undefined, rank: 'E' },
 ] as const
+/** Dance Level List (high to low) */
 export const danceLevels = _danceLevels.map(dl => dl.rank)
-export type DanceLevel = (typeof _danceLevels)[number]['rank']
 
 /** Enum object for `flareRank` */
 export const FlareRank = {
@@ -83,6 +83,32 @@ export const FlareRank = {
   /** FLARE EX */
   EX: 10,
 } as const
+
+/** Schema for ScoreRecord keys */
+export const scoreRecordKeySchema = z.object({
+  /**
+   * Song ID that depend on official site.
+   * @pattern /^[01689bdiloqDIOPQ]{32}$/
+   */
+  songId: songSchema.shape.id,
+  /**
+   * Play style
+   * @description `1`: SINGLE, `2`: DOUBLE
+   */
+  playStyle: stepChartSchema.shape.playStyle,
+  /**
+   * Difficulty
+   * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+   */
+  difficulty: stepChartSchema.shape.difficulty,
+  /** User ID (3-32 characters) */
+  userId: userSchema.shape.id,
+}) satisfies z.ZodMiniType<
+  Pick<
+    typeof scores.$inferInsert,
+    'songId' | 'playStyle' | 'difficulty' | 'userId'
+  >
+>
 
 /** Schema for ScoreRecord */
 export const scoreRecordSchema = z.object({
@@ -137,20 +163,7 @@ export const scoreRecordSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<
     typeof scores.$inferInsert,
-    'songId' | 'playStyle' | 'difficulty' | 'userId' | TimestampColumn
-  >
->
-export type ScoreRecord = ZodInfer<typeof scoreRecordSchema>
-
-export const scoreRecordKeySchema = z.object({
-  songId: songSchema.shape.id,
-  playStyle: stepChartSchema.shape.playStyle,
-  difficulty: stepChartSchema.shape.difficulty,
-  userId: userSchema.shape.id,
-}) satisfies z.ZodMiniType<
-  Pick<
-    typeof scores.$inferInsert,
-    'songId' | 'playStyle' | 'difficulty' | 'userId'
+    keyof ZodInfer<typeof scoreRecordKeySchema> | TimestampColumn
   >
 >
 
@@ -166,7 +179,6 @@ export const scoreRecordInputSchema = z.pipe(
     flareSkill: value.flareSkill ?? null,
   }))
 )
-export type ScoreRecordInput = ZodInfer<typeof scoreRecordInputSchema>
 
 /**
  * Get Dance Level from normal score.
@@ -206,48 +218,5 @@ export function calcNormalScore(
         great -
         good
     ) * 10
-  )
-}
-
-/** Combine two ScoreRecords, taking the best values. */
-export function mergeScoreRecords(
-  left: Readonly<ScoreRecord>,
-  right: Readonly<ScoreRecord>
-): ScoreRecord {
-  const res: ScoreRecord = {
-    normalScore: maxOrUndefined(left.normalScore, right.normalScore),
-    exScore: maxOrUndefined(left.exScore, right.exScore),
-    maxCombo: maxOrUndefined(left.maxCombo, right.maxCombo),
-    clearLamp:
-      Math.min(left.clearLamp, right.clearLamp) === ClearLamp.Assisted &&
-      Math.max(left.clearLamp, right.clearLamp) === ClearLamp.Clear
-        ? ClearLamp.Assisted // Keep "Assisted Clear"
-        : maxOrUndefined(left.clearLamp, right.clearLamp),
-    rank: left.normalScore >= right.normalScore ? left.rank : right.rank,
-    flareRank: maxOrUndefined(left.flareRank, right.flareRank),
-    flareSkill: maxOrUndefined(left.flareSkill, right.flareSkill),
-  }
-  return res
-
-  function maxOrUndefined<T extends number | null>(l: T, r: T): T {
-    if (typeof l !== 'number') return r
-    if (typeof r !== 'number') return l
-    return Math.max(l, r) as T
-  }
-}
-
-export function scoreRecordsEqual(
-  left: Readonly<ScoreRecord>,
-  right: Readonly<ScoreRecord>
-): boolean {
-  // Use == to treat null and undefined as equal
-  return (
-    left.normalScore == right.normalScore &&
-    left.exScore == right.exScore &&
-    left.maxCombo == right.maxCombo &&
-    left.clearLamp == right.clearLamp &&
-    left.rank == right.rank &&
-    left.flareRank == right.flareRank &&
-    left.flareSkill == right.flareSkill
   )
 }

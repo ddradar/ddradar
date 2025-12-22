@@ -2,8 +2,7 @@ import { eq } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { ignoreTimestampCols } from '~~/server/db/utils'
-import { type Song, songSchema } from '~~/shared/types/song'
-import type { StepChart } from '~~/shared/types/step-chart'
+import { songSchema } from '~~/shared/schemas/song'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(songSchema, { id: true })
@@ -14,14 +13,13 @@ export const cacheName = 'getSongById'
 export const handler = defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
 
-  const song: (Song & { charts: StepChart[] }) | undefined =
-    await db.query.songs.findFirst({
-      columns: { ...ignoreTimestampCols },
-      with: {
-        charts: { columns: { id: false, ...ignoreTimestampCols } },
-      },
-      where: eq(schema.songs.id, id),
-    })
+  const song: SongInfo | undefined = await db.query.songs.findFirst({
+    columns: { ...ignoreTimestampCols },
+    with: {
+      charts: { columns: { id: false, ...ignoreTimestampCols } },
+    },
+    where: eq(schema.songs.id, id),
+  })
 
   if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
   return song

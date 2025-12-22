@@ -11,7 +11,7 @@ import {
 } from 'vitest'
 
 import { handler } from '~~/server/api/songs/index.get'
-import { seriesList } from '~~/shared/types/song'
+import { seriesList } from '~~/shared/schemas/song'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 

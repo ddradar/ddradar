@@ -101,10 +101,6 @@ export const songSchema = z.object({
   /** Series title depend on official site. */
   series: z.enum(seriesList),
 }) satisfies z.ZodMiniType<Omit<typeof songs.$inferInsert, TimestampColumn>>
-export type Song = ZodInfer<typeof songSchema> &
-  Readonly<Omit<typeof songs.$inferSelect, keyof typeof songs.$inferInsert>>
-/** Writable Song type */
-export type MutableSong = ZodInfer<typeof songSchema>
 
 /**
  * Compare two songs for sorting by `nameKana`.
@@ -113,8 +109,8 @@ export type MutableSong = ZodInfer<typeof songSchema>
  * @returns Comparison result (negative if left < right, positive if left > right, zero if equal)
  */
 export function compareSong(
-  left: Pick<Song, 'nameIndex' | 'nameKana'>,
-  right: Pick<Song, 'nameIndex' | 'nameKana'>
+  left: Pick<SongInfo, 'nameIndex' | 'nameKana'>,
+  right: Pick<SongInfo, 'nameIndex' | 'nameKana'>
 ): number {
   return left.nameIndex === right.nameIndex
     ? left.nameKana.localeCompare(right.nameKana)

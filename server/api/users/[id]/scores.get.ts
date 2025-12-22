@@ -1,163 +1,189 @@
 import { desc, type Operators, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import type { ScoreRecordInput } from '~~/shared/types/score'
 import {
   ClearLamp,
   danceLevels,
   FlareRank,
   scoreRecordSchema,
-} from '~~/shared/types/score'
-import { songSchema } from '~~/shared/types/song'
+} from '~~/shared/schemas/score'
+import { songSchema } from '~~/shared/schemas/song'
 import {
   Difficulty,
   PlayStyle,
-  type StepChart,
   stepChartSchema,
-} from '~~/shared/types/step-chart'
-import { type User, userSchema } from '~~/shared/types/user'
-import { range } from '~~/shared/utils/types'
+} from '~~/shared/schemas/step-chart'
+import { userSchema } from '~~/shared/schemas/user'
+import { range } from '~~/shared/utils'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(userSchema, { id: true })
 
-function singleOrArray<T extends z.ZodMiniType>(schema: T) {
-  return z.union([schema, z.array(schema)])
-}
-
 const _querySchema = z.object({
+  /** Song ID */
   id: z.optional(songSchema.shape.id),
-  /** Play style (1: SINGLE, 2: DOUBLE) */
+  /**
+   * Play Style (default: all styles)
+   * @description `1`: SINGLE, `2`: DOUBLE
+   */
   style: z.catch(
     singleOrArray(
       z.coerce
-        .number<StepChart['playStyle']>()
+        .number()
         .check(
           z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
         )
     ),
     [PlayStyle.SINGLE, PlayStyle.DOUBLE]
   ),
-  /** Difficulty: 0-4 (defined in {@link Difficulty}) */
+  /**
+   * Difficulty (default: all difficulties)
+   * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+   */
   diff: z.catch(
     singleOrArray(
       z.coerce
-        .number<StepChart['difficulty']>()
+        .number()
         .check(
           z.refine(i => stepChartSchema.shape.difficulty.safeParse(i).success)
         )
     ),
     range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
   ),
-  /** Level: 1-20 (defined in {@link stepChartSchema}) */
+  /** Level (default: all levels) */
   lv: z.catch(
     singleOrArray(
       z.coerce
-        .number<StepChart['level']>()
+        .number()
         .check(z.refine(i => stepChartSchema.shape.level.safeParse(i).success))
     ),
     range(1, 20)
   ),
-  /** ClearLamp: 0-7 (defined in {@link ClearLamp}) */
+  /**
+   * Clear Lamp (default: all lamps)
+   * @description
+   * - `0`: Failed
+   * - `1`: Assisted Clear
+   * - `2`: Clear
+   * - `3`: Life 4 Clear
+   * - `4`: Full Combo (Good FC)
+   * - `5`: Great Full Combo
+   * - `6`: Perfect Full Combo
+   * - `7`: Marvelous Full Combo
+   */
   clear: z.catch(
     singleOrArray(
       z.coerce
-        .number<ValueOf<typeof ClearLamp>>()
+        .number()
         .check(
           z.refine(i => scoreRecordSchema.shape.clearLamp.safeParse(i).success)
         )
     ),
     range(ClearLamp.Failed, ClearLamp.MFC)
   ),
-  /** FlareRank: 0-10 (defined in {@link FlareRank}) */
+  /**
+   * Flare Rank (default: all ranks)
+   * @description
+   * - `0`: No FLARE
+   * - `1`: FLARE I
+   * - `2`: FLARE II
+   * - `3`: FLARE III
+   * - `4`: FLARE IV
+   * - `5`: FLARE V
+   * - `6`: FLARE VI
+   * - `7`: FLARE VII
+   * - `8`: FLARE VIII
+   * - `9`: FLARE IX
+   * - `10`: FLARE EX
+   */
   flare: z.catch(
     singleOrArray(
       z.coerce
-        .number<ValueOf<typeof FlareRank>>()
+        .number()
         .check(
           z.refine(i => scoreRecordSchema.shape.flareRank.safeParse(i).success)
         )
     ),
     range(FlareRank.None, FlareRank.EX)
   ),
+  /** Dance Level (default: all ranks) */
   rank: z.catch(singleOrArray(scoreRecordSchema.shape.rank), danceLevels),
+  /** Maximum number of items to return (default: 50, maximum: 100) */
   limit: z.catch(
     z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
     50
   ),
+  /** Number of items to skip. use for pagination (default: 0) */
   offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
 })
 
-export default defineEventHandler(async event => {
-  const currentUser = await getAuthenticatedUser(event)
-  const { id: userId } = await getValidatedRouterParams(
-    event,
-    _paramsSchema.parse
-  )
-  const query = await getValidatedQuery(event, _querySchema.parse)
+export default defineEventHandler(
+  async (event): Promise<Pagenation<ScoreSearchResult>> => {
+    const currentUser = await getAuthenticatedUser(event)
+    const { id: userId } = await getValidatedRouterParams(
+      event,
+      _paramsSchema.parse
+    )
+    const query = await getValidatedQuery(event, _querySchema.parse)
 
-  // @ts-expect-error - cannot infer type properly
-  const items: (ScoreRecordInput & {
-    song: Pick<Song, 'name' | 'artist'>
-    chart: Pick<StepChart, 'level'>
-    user: Pick<User, 'name' | 'area'>
-    updatedAt: Date
-  })[] = await db.query.scores.findMany({
-    columns: {
-      songId: true,
-      playStyle: true,
-      difficulty: true,
-      normalScore: true,
-      exScore: true,
-      maxCombo: true,
-      clearLamp: true,
-      rank: true,
-      flareRank: true,
-      flareSkill: true,
-      updatedAt: true,
-    },
-    where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
-      and(
-        eq(scores.userId, userId),
-        isNull(scores.deletedAt),
-        eq(scores.songId, query.id ?? scores.songId),
-        inArray(scores.playStyle, [query.style].flat()),
-        inArray(scores.difficulty, [query.diff].flat()),
-        inArray(scores.rank, [query.rank].flat()),
-        inArray(scores.clearLamp, [query.clear].flat()),
-        inArray(scores.flareRank, [query.flare].flat()),
-        isNotNull(sql`chart`),
-        isNotNull(sql`user`)
-      ),
-    with: {
-      song: { columns: { name: true, artist: true } },
-      chart: {
-        columns: { level: true },
-        where: (charts: typeof schema.charts, { inArray }: Operators) =>
-          inArray(charts.level, [query.lv].flat()),
+    // @ts-expect-error - cannot infer type properly
+    const items: ScoreSearchResult[] = await db.query.scores.findMany({
+      columns: {
+        songId: true,
+        playStyle: true,
+        difficulty: true,
+        normalScore: true,
+        exScore: true,
+        maxCombo: true,
+        clearLamp: true,
+        rank: true,
+        flareRank: true,
+        flareSkill: true,
+        updatedAt: true,
       },
-      user: {
-        columns: { name: true, area: true },
-        where: (users: typeof schema.users, { eq, or }: Operators) =>
-          or(eq(users.isPublic, true), eq(users.id, currentUser?.id ?? '')),
+      where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
+        and(
+          eq(scores.userId, userId),
+          isNull(scores.deletedAt),
+          eq(scores.songId, query.id ?? scores.songId),
+          inArray(scores.playStyle, [query.style].flat()),
+          inArray(scores.difficulty, [query.diff].flat()),
+          inArray(scores.rank, [query.rank].flat()),
+          inArray(scores.clearLamp, [query.clear].flat()),
+          inArray(scores.flareRank, [query.flare].flat()),
+          isNotNull(sql`chart`),
+          isNotNull(sql`user`)
+        ),
+      with: {
+        song: { columns: { name: true, artist: true } },
+        chart: {
+          columns: { level: true },
+          where: (charts: typeof schema.charts, { inArray }: Operators) =>
+            inArray(charts.level, [query.lv].flat()),
+        },
+        user: {
+          columns: { name: true, area: true },
+          where: (users: typeof schema.users, { eq, or }: Operators) =>
+            or(eq(users.isPublic, true), eq(users.id, currentUser?.id ?? '')),
+        },
       },
-    },
-    orderBy: [desc(schema.scores.updatedAt)],
-    offset: query.offset,
-    limit: query.limit + 1, // Fetch one extra to check if there are more
-  })
+      orderBy: [desc(schema.scores.updatedAt)],
+      offset: query.offset,
+      limit: query.limit + 1, // Fetch one extra to check if there are more
+    })
 
-  const hasMore = items.length > query.limit
-  const result = items.slice(0, query.limit)
+    const hasMore = items.length > query.limit
+    const result = items.slice(0, query.limit)
 
-  return {
-    items: result,
-    limit: query.limit,
-    offset: query.offset,
-    nextOffset: hasMore ? query.offset + query.limit : null,
-    hasMore,
+    return {
+      items: result,
+      limit: query.limit,
+      offset: query.offset,
+      nextOffset: hasMore ? query.offset + query.limit : null,
+      hasMore,
+    }
   }
-})
+)
 
 // Define OpenAPI metadata
 defineRouteMeta({

@@ -2,13 +2,8 @@ import { and, eq, exists } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { ignoreTimestampCols } from '~~/server/db/utils'
-import {
-  compareSong,
-  NameIndex,
-  seriesList,
-  type Song,
-} from '~~/shared/types/song'
-import { type StepChart, stepChartSchema } from '~~/shared/types/step-chart'
+import { compareSong, NameIndex, seriesList } from '~~/shared/schemas/song'
+import { stepChartSchema } from '~~/shared/schemas/step-chart'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
@@ -73,6 +68,7 @@ const _querySchema = z.object({
 
 // Cache name for this handler (expoted for clear cache usage)
 export const cacheName = 'getSongList'
+
 // API main handler (exported for testing)
 export const handler = defineEventHandler(async event => {
   const query = await getValidatedQuery(event, _querySchema.parse)
@@ -102,7 +98,7 @@ export const handler = defineEventHandler(async event => {
     )
   }
 
-  const res = await db.query.songs.findMany({
+  const res: SongSearchResult[] = await db.query.songs.findMany({
     columns: { ...ignoreTimestampCols },
     where: and(...conditions),
     with: {
@@ -113,10 +109,9 @@ export const handler = defineEventHandler(async event => {
         : undefined,
     },
   })
-  return res.sort(compareSong) as (Song & {
-    charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
-  })[]
+  return res.sort(compareSong)
 })
+
 // Export cached handler as default
 export default cachedEventHandler(handler, {
   maxAge: 60 * 60, // 1 hour

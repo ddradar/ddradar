@@ -1,6 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 
-import { type User, userSchema } from '~~/shared/types/user'
+import { userSchema } from '~~/shared/schemas/user'
 
 export default defineEventHandler(async event => {
   const { user } = await requireUserSession(event)
@@ -10,7 +10,7 @@ export default defineEventHandler(async event => {
     .insert(schema.users)
     .values({
       ...body,
-      ...(user.id ? { id: user.id } : {}), // Use existing ID if available
+      id: user.id ?? body.id, // Use existing ID if available
       provider: user.provider,
       providerId: user.providerId,
     })

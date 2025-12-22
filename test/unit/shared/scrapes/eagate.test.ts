@@ -4,9 +4,9 @@ import { join } from 'node:path'
 
 import { beforeAll, describe, expect, test } from 'vitest'
 
+import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
+import { Chart } from '~~/shared/schemas/step-chart'
 import { parsePlayDataList, parseScoreDetail } from '~~/shared/scrapes/eagate'
-import { ClearLamp, FlareRank } from '~~/shared/types/score'
-import { Chart } from '~~/shared/types/step-chart'
 
 type EAGateScoreRecord = ReturnType<typeof parsePlayDataList>[number]
 type EAGateScoreRecordWithRivals = ReturnType<typeof parseScoreDetail>

@@ -1,7 +1,10 @@
 import * as z from 'zod/mini'
 
 import { getStepChart } from '~~/server/db/utils'
-import { scoreRecordKeySchema, scoreRecordSchema } from '~~/shared/types/score'
+import {
+  scoreRecordKeySchema,
+  scoreRecordSchema,
+} from '~~/shared/schemas/score'
 import { ValidateScoreRecord } from '~~/shared/utils/score'
 
 /** Schema for router params */

@@ -1,7 +1,7 @@
 import * as z from 'zod/mini'
 
 import type { charts, TimestampColumn } from '~~/server/db/schema'
-import { getEnumKey } from '~~/shared/utils/types'
+import { getEnumKey } from '~~/shared/utils'
 
 /** Enum object for `playStyle` */
 export const PlayStyle = {
@@ -31,14 +31,6 @@ export const Chart = {
   CDP: [PlayStyle.DOUBLE, Difficulty.CHALLENGE],
 } as const
 
-/** Groove Radar data */
-export type GrooveRadar = {
-  stream: number
-  voltage: number
-  air: number
-  freeze: number
-  chaos: number
-}
 /** Zod schema for `StepChart` (excepts `id`) */
 export const stepChartSchema = z.object({
   /**
@@ -87,7 +79,6 @@ export const stepChartSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<typeof charts.$inferInsert, 'id' | TimestampColumn>
 >
-export type StepChart = ZodInfer<typeof stepChartSchema>
 
 /**
  * Get the display name of a step chart.

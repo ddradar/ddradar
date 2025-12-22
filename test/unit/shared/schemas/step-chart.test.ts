@@ -6,12 +6,11 @@ import {
   Difficulty,
   getChartName,
   PlayStyle,
-  type StepChart,
   stepChartSchema,
-} from '~~/shared/types/step-chart'
+} from '~~/shared/schemas/step-chart'
 import { notValidObject } from '~~/test/data/schema'
 
-describe('/shared/types/step-chart', () => {
+describe('/shared/schemas/step-chart', () => {
   describe('stepChartSchema', () => {
     const validStepChart: StepChart = {
       playStyle: PlayStyle.SINGLE,

@@ -1,3 +1,8 @@
+import type { apiTokenSchema, userSchema } from '~~/shared/schemas/user'
+
+export type User = ZodInfer<typeof userSchema>
+export type ApiToken = ZodInfer<typeof apiTokenSchema>
+
 declare module '#auth-utils' {
   interface User {
     /** Internal user ID */

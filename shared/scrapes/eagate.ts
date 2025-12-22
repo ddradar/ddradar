@@ -1,6 +1,3 @@
-import type { ScoreRecordInput } from '~~/shared/types/score'
-import type { Song } from '~~/shared/types/song'
-
 type PlayStyle = ScoreRecordInput['playStyle']
 type Difficulty = ScoreRecordInput['difficulty']
 type DanceLevel = ScoreRecordInput['rank']
@@ -68,7 +65,7 @@ const fileFlareRankMap = new Map<string, FlareRank>([
 // #endregion
 
 type EAGateScoreRecord = Omit<ScoreRecordInput, 'userId' | 'exScore'> &
-  Pick<Song, 'name'>
+  Pick<SongInfo, 'name'>
 
 /**
  * Parse score data from e-amusement PLAY DATA page.

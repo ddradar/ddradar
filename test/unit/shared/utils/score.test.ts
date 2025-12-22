@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { ClearLamp, FlareRank, type ScoreRecord } from '~~/shared/types/score'
+import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
 import {
   calcFlareSkill,
   fillScoreRecordFromChart,

@@ -1,7 +1,7 @@
 import * as z from 'zod/mini'
 
 import type { TimestampColumn, users } from '~~/server/db/schema'
-import { range } from '~~/shared/utils/types'
+import { range } from '~~/shared/utils'
 
 /** Area enum object */
 export const Area = {
@@ -132,12 +132,17 @@ export const Area = {
 
 /** Zod schema for `User` (excepts system fields) */
 export const userSchema = z.object({
+  /** User ID (3-32 characters) */
   id: z
     .string()
     .check(z.regex(/^[a-zA-Z0-9_-]+$/), z.minLength(3), z.maxLength(32)),
+  /** Display name (1-32 characters) */
   name: z.string().check(z.minLength(1), z.maxLength(32)),
+  /** Profile visibility. if `false`, user profile and scores are not visible to others. */
   isPublic: z.boolean(),
+  /** Area code depend on official site. */
   area: z.enum(Area),
+  /** DDR code (8 digits) */
   ddrCode: z.nullish(z.int().check(z.minimum(10000000), z.maximum(99999999))),
 }) satisfies z.ZodMiniType<
   Omit<
@@ -145,7 +150,6 @@ export const userSchema = z.object({
     'provider' | 'providerId' | 'roles' | TimestampColumn
   >
 >
-export type User = ZodInfer<typeof userSchema>
 
 /**
  * Returns the areas that are included in the specified area
@@ -187,4 +191,3 @@ export const apiTokenSchema = z.object({
   /** Token expiration date (ISO 8601 format) */
   expiresAt: z.string().check(z.iso.datetime()),
 })
-export type ApiToken = ZodInfer<typeof apiTokenSchema>
