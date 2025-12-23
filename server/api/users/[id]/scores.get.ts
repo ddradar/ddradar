@@ -119,61 +119,61 @@ const _querySchema = z.object({
 
 export default defineEventHandler(
   async (event): Promise<Pagenation<ScoreSearchResult>> => {
-    const currentUser = await getAuthenticatedUser(event)
     const { id: userId } = await getValidatedRouterParams(
       event,
       _paramsSchema.parse
     )
     const query = await getValidatedQuery(event, _querySchema.parse)
+    const loginUser = await getAuthenticatedUser(event)
+
+    const user = await getCachedUser(event, userId)
+    // Handle user visibility (user must be public or logged-in as the user)
+    if (!user || (!user.isPublic && user.id !== loginUser?.id))
+      throw createError({ statusCode: 404, statusMessage: 'Not Found' })
 
     // @ts-expect-error - cannot infer type properly
-    const items: ScoreSearchResult[] = await db.query.scores.findMany({
-      columns: {
-        songId: true,
-        playStyle: true,
-        difficulty: true,
-        normalScore: true,
-        exScore: true,
-        maxCombo: true,
-        clearLamp: true,
-        rank: true,
-        flareRank: true,
-        flareSkill: true,
-        updatedAt: true,
-      },
-      where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
-        and(
-          eq(scores.userId, userId),
-          isNull(scores.deletedAt),
-          eq(scores.songId, query.id ?? scores.songId),
-          inArray(scores.playStyle, [query.style].flat()),
-          inArray(scores.difficulty, [query.diff].flat()),
-          inArray(scores.rank, [query.rank].flat()),
-          inArray(scores.clearLamp, [query.clear].flat()),
-          inArray(scores.flareRank, [query.flare].flat()),
-          isNotNull(sql`chart`),
-          isNotNull(sql`user`)
-        ),
-      with: {
-        song: { columns: { name: true, artist: true } },
-        chart: {
-          columns: { level: true },
-          where: (charts: typeof schema.charts, { inArray }: Operators) =>
-            inArray(charts.level, [query.lv].flat()),
+    const items: Omit<ScoreSearchResult, 'user'>[] =
+      await db.query.scores.findMany({
+        columns: {
+          normalScore: true,
+          exScore: true,
+          maxCombo: true,
+          clearLamp: true,
+          rank: true,
+          flareRank: true,
+          flareSkill: true,
+          updatedAt: true,
         },
-        user: {
-          columns: { name: true, area: true },
-          where: (users: typeof schema.users, { eq, or }: Operators) =>
-            or(eq(users.isPublic, true), eq(users.id, currentUser?.id ?? '')),
+        where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
+          and(
+            eq(scores.userId, user.id),
+            isNull(scores.deletedAt),
+            eq(scores.songId, query.id ?? scores.songId),
+            inArray(scores.playStyle, [query.style].flat()),
+            inArray(scores.difficulty, [query.diff].flat()),
+            inArray(scores.rank, [query.rank].flat()),
+            inArray(scores.clearLamp, [query.clear].flat()),
+            inArray(scores.flareRank, [query.flare].flat()),
+            isNotNull(sql`chart`)
+          ),
+        with: {
+          song: { columns: { id: true, name: true, artist: true } },
+          chart: {
+            columns: { level: true },
+            where: (charts: typeof schema.charts, { inArray }: Operators) =>
+              inArray(charts.level, [query.lv].flat()),
+          },
         },
-      },
-      orderBy: [desc(schema.scores.updatedAt)],
-      offset: query.offset,
-      limit: query.limit + 1, // Fetch one extra to check if there are more
-    })
+        orderBy: [desc(schema.scores.updatedAt)],
+        offset: query.offset,
+        limit: query.limit + 1, // Fetch one extra to check if there are more
+      })
 
     const hasMore = items.length > query.limit
-    const result = items.slice(0, query.limit)
+    const result = items.slice(0, query.limit).map(item => ({
+      ...item,
+      user: { id: user.id, name: user.name, area: user.area },
+    }))
 
     return {
       items: result,
@@ -204,6 +204,7 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'id',
+        required: false,
         // @ts-expect-error - not provided in nitro types
         schema: { $ref: '#/components/schemas/Song/properties/id' },
         description: 'Song ID',
@@ -299,13 +300,21 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'limit',
-        schema: { type: 'integer', minimum: 1, maximum: 100, default: 50 },
+        schema: {
+          // @ts-expect-error - not provided in nitro types
+          $ref: '#/components/schemas/PaginatedResult/properties/limit',
+          default: 50,
+        },
         description: 'Maximum number of items to return (default: 50)',
       },
       {
         in: 'query',
         name: 'offset',
-        schema: { type: 'integer', minimum: 0, default: 0 },
+        schema: {
+          // @ts-expect-error - not provided in nitro types
+          $ref: '#/components/schemas/PaginatedResult/properties/offset',
+          default: 0,
+        },
         description: 'Number of items to skip (default: 0)',
       },
     ],
@@ -316,90 +325,31 @@ defineRouteMeta({
           'application/json': {
             schema: {
               type: 'object',
-              properties: {
-                items: {
-                  type: 'array',
-                  items: {
-                    type: 'object',
-                    properties: {
-                      songId: {
-                        $ref: '#/components/schemas/Song/properties/id',
-                      },
-                      playStyle: {
-                        $ref: '#/components/schemas/StepChart/properties/playStyle',
-                      },
-                      difficulty: {
-                        $ref: '#/components/schemas/StepChart/properties/difficulty',
-                      },
-                      normalScore: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/normalScore',
-                      },
-                      exScore: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/exScore',
-                      },
-                      maxCombo: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/maxCombo',
-                      },
-                      clearLamp: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/clearLamp',
-                      },
-                      rank: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/rank',
-                      },
-                      flareRank: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/flareRank',
-                      },
-                      flareSkill: {
-                        $ref: '#/components/schemas/ScoreRecord/properties/flareSkill',
-                      },
-                      updatedAt: {
-                        type: 'string',
-                        format: 'date-time',
-                        description: 'Last update time',
-                      },
+              description: 'Paginated list of song scores',
+              allOf: [
+                {
+                  type: 'object',
+                  properties: {
+                    items: {
+                      type: 'array',
+                      description: 'Array of score records',
+                      items: { $ref: '#/components/schemas/ScoreSearchItem' },
                     },
-                    required: [
-                      'songId',
-                      'playStyle',
-                      'difficulty',
-                      'normalScore',
-                      'clearLamp',
-                      'rank',
-                      'flareRank',
-                      'updatedAt',
-                    ],
                   },
                 },
-                limit: {
-                  type: 'integer',
-                  description: 'Number of items per page',
-                },
-                offset: {
-                  type: 'integer',
-                  description: 'Current offset',
-                },
-                nextOffset: {
-                  type: ['integer', 'null'],
-                  description:
-                    'Next offset for pagination (null if no more items)',
-                },
-                hasMore: {
-                  type: 'boolean',
-                  description: 'Whether there are more items available',
-                },
-              },
-              required: ['items', 'limit', 'offset', 'nextOffset', 'hasMore'],
+                { $ref: '#/components/schemas/PaginatedResult' },
+              ],
             },
           },
         },
       },
+      400: {
+        $ref: '#/components/responses/Error',
+        description: 'User ID is invalid',
+      },
       404: {
+        $ref: '#/components/responses/Error',
         description: 'User not found or not accessible',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
       },
     },
   },

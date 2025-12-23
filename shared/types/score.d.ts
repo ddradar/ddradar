@@ -13,9 +13,9 @@ export type ScoreRecord = ZodInfer<typeof scoreRecordSchema>
 export type ScoreRecordInput = ZodInfer<typeof scoreRecordInputSchema>
 
 /** Score record with related song, chart, and user info */
-export type ScoreSearchResult = ScoreRecordInput & {
-  song: Pick<SongInfo, 'name' | 'artist'>
-  chart: Pick<StepChart, 'level'>
-  user: Pick<User, 'name' | 'area'>
+export type ScoreSearchResult = ScoreRecord & {
+  song: Pick<SongInfo, 'id' | 'name' | 'artist'>
+  chart: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>
+  user: Pick<User, 'id' | 'name' | 'area'>
   updatedAt: Date
 }

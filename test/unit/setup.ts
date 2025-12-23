@@ -19,6 +19,7 @@ vi.stubGlobal('readValidatedBody', readValidatedBody)
 // Nitro
 vi.stubGlobal('cachedEventHandler', vi.fn())
 vi.stubGlobal('defineRouteMeta', vi.fn())
+vi.stubGlobal('useStorage', vi.fn())
 
 // nuxthub
 vi.stubGlobal('db', vi.fn())
@@ -33,3 +34,7 @@ vi.stubGlobal('setUserSession', vi.fn())
 vi.stubGlobal('getAuthenticatedUser', vi.fn())
 vi.stubGlobal('requireAuthenticatedUser', vi.fn())
 vi.stubGlobal('requireAuthenticatedUserFromSession', vi.fn())
+
+// Auto imports
+vi.stubGlobal('getCachedSongInfo', vi.fn())
+vi.stubGlobal('getCachedUser', vi.fn())

@@ -1,28 +1,14 @@
-import { and, eq, or } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/users/[id]/index.get'
 import { privateUser, publicUser } from '~~/test/data/user'
 
 describe('GET /api/users/[id]', () => {
-  const findFirst = vi.fn<typeof db.query.users.findFirst>()
-  const originalQuery = vi.mocked(db).query
-
-  beforeAll(() => (vi.mocked(db).query = { users: { findFirst } } as never))
   beforeEach(() => {
-    findFirst.mockClear()
-    vi.mocked(getUserSession).mockClear()
+    vi.mocked(getAuthenticatedUser).mockClear()
+    vi.mocked(getCachedUser).mockClear()
   })
-  afterAll(() => (vi.mocked(db).query = originalQuery))
 
   test.each(['', 'ab', 'a'.repeat(33), 'invalid user!'])(
     '(id: "%s") throws 400',
@@ -33,13 +19,13 @@ describe('GET /api/users/[id]', () => {
 
       // Act & Assert
       await expect(handler(event)).rejects.toMatchObject({ statusCode: 400 })
-      expect(findFirst).not.toHaveBeenCalled()
+      expect(vi.mocked(getCachedUser)).not.toHaveBeenCalled()
     }
   )
 
-  test(`(id: "${publicUser.id}") returns publicUser (found in DB)`, async () => {
+  test(`(id: "${publicUser.id}") returns publicUser (found in DB or cache)`, async () => {
     // Arrange
-    findFirst.mockResolvedValue(publicUser as never)
+    vi.mocked(getCachedUser).mockResolvedValue(publicUser)
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
     const event = {
       context: { params: { id: publicUser.id } },
@@ -50,18 +36,36 @@ describe('GET /api/users/[id]', () => {
 
     // Assert
     expect(result).toEqual(publicUser)
-    expect(findFirst).toHaveBeenCalledTimes(1)
-    const arg = findFirst.mock.calls[0]?.[0]
-    expect(arg?.where).toStrictEqual(
-      or(
-        and(eq(schema.users.id, publicUser.id), eq(schema.users.isPublic, true))
-      )
+    expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
+      1,
+      event,
+      publicUser.id
     )
   })
 
-  test(`(id: "${privateUser.id}") throws 404 (not found in DB or user is not owner)`, async () => {
+  test(`(id: "not_exists_user_id") throws 404 (user not found)`, async () => {
     // Arrange
-    findFirst.mockResolvedValue(undefined)
+    vi.mocked(getCachedUser).mockResolvedValue(undefined)
+    vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
+    const event = {
+      context: { params: { id: 'not_exists_user_id' } },
+    } as unknown as H3Event
+
+    // Act & Assert
+    await expect(handler(event)).rejects.toMatchObject({
+      statusCode: 404,
+      statusMessage: 'Not Found',
+    })
+    expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
+      1,
+      event,
+      'not_exists_user_id'
+    )
+  })
+
+  test(`(id: "${privateUser.id}") throws 404 (user is private and not owner)`, async () => {
+    // Arrange
+    vi.mocked(getCachedUser).mockResolvedValue(privateUser)
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
     const event = {
       context: { params: { id: privateUser.id } },
@@ -72,21 +76,16 @@ describe('GET /api/users/[id]', () => {
       statusCode: 404,
       statusMessage: 'Not Found',
     })
-    expect(findFirst).toHaveBeenCalledTimes(1)
-    const arg = findFirst.mock.calls[0]?.[0]
-    expect(arg?.where).toStrictEqual(
-      or(
-        and(
-          eq(schema.users.id, privateUser.id),
-          eq(schema.users.isPublic, true)
-        )
-      )
+    expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
+      1,
+      event,
+      privateUser.id
     )
   })
 
-  test(`(id: "${privateUser.id}") returns privateUser (user is owner)`, async () => {
+  test(`(id: "${privateUser.id}") returns privateUser (user is private but owner)`, async () => {
     // Arrange
-    findFirst.mockResolvedValue(privateUser as never)
+    vi.mocked(getCachedUser).mockResolvedValue(privateUser)
     vi.mocked(getAuthenticatedUser).mockResolvedValue({
       id: privateUser.id,
       roles: [],
@@ -100,19 +99,10 @@ describe('GET /api/users/[id]', () => {
 
     // Assert
     expect(result).toEqual(privateUser)
-    expect(findFirst).toHaveBeenCalledTimes(1)
-    const arg = findFirst.mock.calls[0]?.[0]
-    expect(arg?.where).toStrictEqual(
-      or(
-        and(
-          eq(schema.users.id, privateUser.id),
-          eq(schema.users.isPublic, true)
-        ),
-        and(
-          eq(schema.users.id, privateUser.id),
-          eq(schema.users.id, privateUser.id)
-        )
-      )
+    expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
+      1,
+      event,
+      privateUser.id
     )
   })
 })

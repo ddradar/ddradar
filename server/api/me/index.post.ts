@@ -6,7 +6,7 @@ export default defineEventHandler(async event => {
   const { user } = await requireUserSession(event)
   const body = await readValidatedBody(event, userSchema.parse)
 
-  const result: User[] = await db
+  const result: UserInfo[] = await db
     .insert(schema.users)
     .values({
       ...body,
@@ -42,9 +42,14 @@ export default defineEventHandler(async event => {
     })
   }
 
+  // Remove cached user data
+  await useStorage('cache').removeItem(
+    `nitro:functions:users:${user.id ?? body.id}.json`
+  )
+
   // Update session with new user ID and display name
   await setUserSession(event, {
-    user: { ...user, id: body.id, displayName: body.name },
+    user: { ...user, id: user.id ?? body.id, displayName: body.name },
     lastAccessedAt: new Date(),
   })
 
@@ -88,21 +93,21 @@ defineRouteMeta({
           },
         },
         responses: {
-          Unauthorized: {
-            description: 'Unauthorized - User is not authenticated',
+          Error: {
+            description: 'Generic error response',
             content: {
               'application/json': {
                 schema: { $ref: '#/components/schemas/ErrorResponse' },
               },
             },
           },
+          Unauthorized: {
+            $ref: '#/components/responses/Error',
+            description: 'Unauthorized - User is not authenticated',
+          },
           RegistrationRequired: {
+            $ref: '#/components/responses/Error',
             description: 'Forbidden - User registration required',
-            content: {
-              'application/json': {
-                schema: { $ref: '#/components/schemas/ErrorResponse' },
-              },
-            },
           },
         },
       },
@@ -117,7 +122,9 @@ defineRouteMeta({
       description: 'User profile data to create or update',
       required: true,
       content: {
-        'application/json': { schema: { $ref: '#/components/schemas/User' } },
+        'application/json': {
+          schema: { $ref: '#/components/schemas/User' },
+        },
       },
     },
     responses: {
@@ -125,17 +132,15 @@ defineRouteMeta({
         description:
           'The created or updated user profile (same as request body)',
         content: {
-          'application/json': { schema: { $ref: '#/components/schemas/User' } },
+          'application/json': {
+            schema: { $ref: '#/components/schemas/User' },
+          },
         },
       },
       401: { $ref: '#/components/responses/Unauthorized' },
       409: {
+        $ref: '#/components/responses/Error',
         description: 'Conflict - Duplicate user registration detected',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
       },
     },
   },

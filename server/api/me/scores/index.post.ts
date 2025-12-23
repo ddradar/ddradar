@@ -179,126 +179,26 @@ defineRouteMeta({
     $global: {
       components: {
         schemas: {
-          ScoreRecord: {
-            type: 'object',
-            properties: {
-              normalScore: {
-                type: 'integer',
-                description: 'Normal Score (0-1,000,000)',
-                minimum: 0,
-                maximum: 1000000,
-              },
-              exScore: {
-                type: ['integer', 'null'],
-                description: 'EX Score',
-                minimum: 0,
-              },
-              maxCombo: {
-                type: ['integer', 'null'],
-                description: 'Max Combo',
-                minimum: 0,
-              },
-              clearLamp: {
-                type: 'integer',
-                description:
-                  'Clear Lamp (0: Failed, 1: Assisted Clear, 2: Clear, 3: Life 4 Clear, 4: Full Combo (Good FC), 5: Great Full Combo, 6: Perfect Full Combo, 7: Marvelous Full Combo)',
-                enum: [0, 1, 2, 3, 4, 5, 6, 7],
-                'x-enum-varnames': [
-                  'Failed',
-                  'Assisted_Clear',
-                  'Clear',
-                  'Life 4 Clear',
-                  'Full Combo (Good FC)',
-                  'Great Full Combo',
-                  'Perfect Full Combo',
-                  'Marvelous Full Combo',
-                ],
-              },
-              rank: {
-                type: 'string',
-                description:
-                  'Dance Level ("AAA", "AA+", "AA", "AA-", ..., "D+", "D", "E")',
-                enum: [
-                  'AAA',
-                  'AA+',
-                  'AA',
-                  'AA-',
-                  'A+',
-                  'A',
-                  'A-',
-                  'B+',
-                  'B',
-                  'B-',
-                  'C+',
-                  'C',
-                  'C-',
-                  'D+',
-                  'D',
-                  'E',
-                ],
-              },
-              flareRank: {
-                type: 'integer',
-                description:
-                  'Flare Rank (0: No FLARE, 1: FLARE I, 2: FLARE II, 3: FLARE III, 4: FLARE IV, 5: FLARE V, 6: FLARE VI, 7: FLARE VII, 8: FLARE VIII, 9: FLARE IX, 10: FLARE EX)',
-                enum: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
-                'x-enum-varnames': [
-                  'No FLARE',
-                  'FLARE I',
-                  'FLARE II',
-                  'FLARE III',
-                  'FLARE IV',
-                  'FLARE V',
-                  'FLARE VI',
-                  'FLARE VII',
-                  'FLARE VIII',
-                  'FLARE IX',
-                  'FLARE EX',
-                ],
-              },
-              flareSkill: {
-                type: ['integer', 'null'],
-                description: 'Flare Skill',
-                minimum: 0,
-              },
-            },
-            required: ['normalScore', 'clearLamp', 'rank', 'flareRank'],
-          },
           BatchScoreRecord: {
             type: 'object',
             description: 'Score record to batch create or update',
-            properties: {
-              songId: {
-                $ref: '#/components/schemas/Song/properties/id',
+            allOf: [
+              {
+                type: 'object',
+                properties: {
+                  songId: {
+                    $ref: '#/components/schemas/Song/properties/id',
+                  },
+                  playStyle: {
+                    $ref: '#/components/schemas/StepChart/properties/playStyle',
+                  },
+                  difficulty: {
+                    $ref: '#/components/schemas/StepChart/properties/difficulty',
+                  },
+                },
               },
-              playStyle: {
-                $ref: '#/components/schemas/StepChart/properties/playStyle',
-              },
-              difficulty: {
-                $ref: '#/components/schemas/StepChart/properties/difficulty',
-              },
-              normalScore: {
-                $ref: '#/components/schemas/ScoreRecord/properties/normalScore',
-              },
-              exScore: {
-                $ref: '#/components/schemas/ScoreRecord/properties/exScore',
-              },
-              maxCombo: {
-                $ref: '#/components/schemas/ScoreRecord/properties/maxCombo',
-              },
-              clearLamp: {
-                $ref: '#/components/schemas/ScoreRecord/properties/clearLamp',
-              },
-              rank: {
-                $ref: '#/components/schemas/ScoreRecord/properties/rank',
-              },
-              flareRank: {
-                $ref: '#/components/schemas/ScoreRecord/properties/flareRank',
-              },
-              flareSkill: {
-                $ref: '#/components/schemas/ScoreRecord/properties/flareSkill',
-              },
-            },
+              { $ref: '#/components/schemas/ScoreRecord', required: [] },
+            ],
             required: ['songId', 'playStyle', 'difficulty'],
           },
           BatchScoreUpsertResult: {
@@ -368,7 +268,7 @@ defineRouteMeta({
     description:
       'Create or update multiple Score records for the authenticated user. If a score is lower than the existing one, it will not be updated.',
     tags: ['Score'],
-    security: [{ SessionCookieAuth: [], BearerAuth: [] }],
+    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
     requestBody: {
       description: 'Array of Score records to create or update',
       content: {

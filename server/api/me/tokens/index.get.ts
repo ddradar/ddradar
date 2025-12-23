@@ -62,6 +62,12 @@ defineRouteMeta({
             required: ['id', 'name', 'createdAt', 'expiresAt'],
           },
         },
+        responses: {
+          RegistrationRequired: {
+            $ref: '#/components/responses/Error',
+            description: 'Forbidden - User registration required',
+          },
+        },
       },
     },
     summary: 'List API Tokens',

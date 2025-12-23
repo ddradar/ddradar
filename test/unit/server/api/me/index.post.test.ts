@@ -14,7 +14,7 @@ import handler from '~~/server/api/me/index.post'
 import { publicUser, sessionUser } from '~~/test/data/user'
 
 // Body used in requests
-const body = {
+const body: UserInfo = {
   id: 'new_user',
   name: 'New User',
   isPublic: true,
@@ -38,6 +38,7 @@ describe('POST /api/me', () => {
         ReturnType<ReturnType<typeof db.insert>['values']>['onConflictDoUpdate']
       >['returning']
     >()
+  const removeItem = vi.fn<ReturnType<typeof useStorage>['removeItem']>()
 
   beforeAll(() => {
     // chain: insert(schema.users).values(...).onConflictDoUpdate(...).returning(...)
@@ -45,21 +46,24 @@ describe('POST /api/me', () => {
     insert.mockImplementation(() => ({ values }) as never)
     values.mockImplementation(() => ({ onConflictDoUpdate }) as never)
     onConflictDoUpdate.mockImplementation(() => ({ returning }) as never)
+    // mock useStorage for cache removal
+    vi.mocked(useStorage).mockReturnValue({ removeItem } as never)
   })
   beforeEach(() => {
     insert.mockClear()
     values.mockClear()
     onConflictDoUpdate.mockClear()
     returning.mockClear()
+    removeItem.mockClear()
     vi.mocked(requireUserSession).mockClear()
     vi.mocked(setUserSession).mockClear()
   })
   afterAll(() => (vi.mocked(db).insert = originalInsert))
 
-  test('creates/updates user (no existing id) and updates session', async () => {
+  test('(body: <valid body>, session: <new user>) creates UserInfo on DB and updates session', async () => {
     // Arrange
     vi.mocked(requireUserSession).mockResolvedValue({
-      user: { ...sessionUser, id: undefined },
+      user: { ...sessionUser },
     } as never)
     returning.mockResolvedValue([publicUser] as never)
     const event = {
@@ -80,7 +84,6 @@ describe('POST /api/me', () => {
 
     // insert chain assertions
     expect(insert).toHaveBeenCalledWith(schema.users)
-
     const valuesArg = values.mock.calls[0]?.[0]
     expect(valuesArg).toMatchObject({
       id: body.id, // falls back to body.id when session user.id is undefined
@@ -91,7 +94,6 @@ describe('POST /api/me', () => {
       provider: sessionUser.provider,
       providerId: sessionUser.providerId,
     })
-
     const conflictArg = onConflictDoUpdate.mock.calls[0]?.[0]
     expect(conflictArg?.target).toStrictEqual([schema.users.id])
     expect(conflictArg?.targetWhere).toStrictEqual(
@@ -107,26 +109,23 @@ describe('POST /api/me', () => {
       ddrCode: body.ddrCode,
     })
 
-    expect(returning).toHaveBeenCalledWith({
-      id: schema.users.id,
-      name: schema.users.name,
-      isPublic: schema.users.isPublic,
-      area: schema.users.area,
-      ddrCode: schema.users.ddrCode,
+    expect(setUserSession).toHaveBeenNthCalledWith(1, event, {
+      user: {
+        ...sessionUser,
+        id: body.id,
+        displayName: body.name,
+      },
+      lastAccessedAt: expect.any(Date),
     })
-
-    expect(setUserSession).toHaveBeenCalledTimes(1)
-    const sessionArg = vi.mocked(setUserSession).mock.calls[0]?.[1]
-    expect(sessionArg?.user).toMatchObject({
-      id: body.id,
-      displayName: body.name,
-    })
+    expect(removeItem).toHaveBeenCalledWith(
+      `nitro:functions:users:${body.id}.json`
+    )
   })
 
-  test('uses existing session id when present', async () => {
+  test('(body: <other id body>, session: <existing user>) updates UserInfo and ignores body id', async () => {
     // When session has id, values.id uses the session id
     vi.mocked(requireUserSession).mockResolvedValue({
-      user: { ...sessionUser, id: 'auth_user' },
+      user: { ...sessionUser, id: body.id },
     } as never)
     returning.mockResolvedValue([publicUser] as never)
 
@@ -150,14 +149,18 @@ describe('POST /api/me', () => {
       string,
       unknown
     >
-    expect(valuesArg.id).toBe('auth_user') // prefer session id
+    expect(valuesArg.id).toBe(body.id) // prefer session id
 
     // setUserSession should use body.id
     const sessionArg = vi.mocked(setUserSession).mock.calls[0]?.[1]
     expect(sessionArg?.user).toMatchObject({
-      id: 'different_id',
+      id: body.id,
       displayName: body.name,
     })
+    expect(removeItem).toHaveBeenNthCalledWith(
+      1,
+      `nitro:functions:users:${body.id}.json`
+    )
   })
 
   test('throws 409 when returning rows are not exactly one', async () => {
@@ -183,5 +186,6 @@ describe('POST /api/me', () => {
       statusMessage: 'Conflict',
     })
     expect(setUserSession).not.toHaveBeenCalled()
+    expect(removeItem).not.toHaveBeenCalled()
   })
 })

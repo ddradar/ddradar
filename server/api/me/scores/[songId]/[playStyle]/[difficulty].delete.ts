@@ -36,6 +36,7 @@ defineRouteMeta({
     description:
       'Deletes the score record for the authenticated user corresponding to the specified song ID, play style, and difficulty.',
     tags: ['Score'],
+    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
     parameters: [
       {
         in: 'path',
@@ -52,10 +53,6 @@ defineRouteMeta({
         schema: { $ref: '#/components/schemas/StepChart/properties/playStyle' },
         required: true,
         description: 'Play Style (1: Single, 2: Double)',
-        examples: {
-          SINGLE: { value: 1, description: 'Single Play' },
-          DOUBLE: { value: 2, description: 'Double Play' },
-        },
       },
       {
         in: 'path',
@@ -73,6 +70,8 @@ defineRouteMeta({
       204: {
         description: 'Score record deleted successfully.',
       },
+      401: { $ref: '#/components/responses/Unauthorized' },
+      403: { $ref: '#/components/responses/RegistrationRequired' },
       404: {
         description: 'Score record not found.',
         content: {

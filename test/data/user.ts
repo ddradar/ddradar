@@ -1,4 +1,6 @@
-export const publicUser: User = {
+import type { User as SessionUser } from '#auth-utils'
+
+export const publicUser: UserInfo = {
   id: 'public_user',
   name: 'Public User',
   isPublic: true,
@@ -6,7 +8,7 @@ export const publicUser: User = {
   ddrCode: 10000000,
 }
 
-export const privateUser: User = {
+export const privateUser: UserInfo = {
   id: 'private_user',
   name: 'Private User',
   isPublic: false,
@@ -14,10 +16,10 @@ export const privateUser: User = {
   ddrCode: 20000000,
 }
 
-export const sessionUser = {
-  id: 'auth_user',
+export const sessionUser: SessionUser = {
   provider: 'github',
   providerId: '12345',
   roles: [],
   displayName: 'Auth User',
+  avatarUrl: 'https://example.com/avatar.png',
 }

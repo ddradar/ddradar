@@ -1,5 +1,3 @@
-import type { StepChart } from '../types/step-chart'
-
 export function scrapeSongNotes(
   document: Document
 ): Map<string, Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]> {

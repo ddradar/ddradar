@@ -70,10 +70,10 @@ const toast = useToast()
 
 const isRegistered = computed(() => !!user.value?.id)
 const uri = computed(() => `/api/users/${user.value?.id}` as const)
-const { data: state, execute } = useFetch<User>(uri, {
+const { data: state, execute } = useFetch<UserInfo>(uri, {
   method: 'GET',
   immediate: false,
-  default: (): User => ({
+  default: (): UserInfo => ({
     id: '',
     name: user.value?.displayName ?? '',
     area: Area.東京都,

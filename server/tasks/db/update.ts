@@ -3,8 +3,12 @@ import { Window } from 'happy-dom'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
 
-import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id]/index.get'
 import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
+import {
+  chartEquals,
+  Difficulty,
+  PlayStyle,
+} from '~~/shared/schemas/step-chart'
 import {
   scrapeGrooveRadar,
   scrapeSongNotes,
@@ -136,7 +140,9 @@ export default defineTask({
             })
             return acc
           },
-          [] as (Pick<Song, 'id' | 'name'> & { charts: PartialStepChart[] })[]
+          [] as (Pick<SongInfo, 'id' | 'name'> & {
+            charts: PartialStepChart[]
+          })[]
         )
       )
 
@@ -215,7 +221,7 @@ export default defineTask({
         if (res.length === 0) continue // No actual update
         // Clear cache for Song API
         await useStorage('cache').removeItem(
-          `nitro:handler:${getSongByIdKey}:${targetSong.id}.json`
+          `nitro:functions:songs:${targetSong.id}.json`
         )
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`

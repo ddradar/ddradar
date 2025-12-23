@@ -1,7 +1,8 @@
 import * as z from 'zod/mini'
 
-import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id]/index.get'
 import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
+import { songSchema } from '~~/shared/schemas/song'
+import { stepChartSchema } from '~~/shared/schemas/step-chart'
 
 /** Schema for request body */
 const _bodySchema = z.extend(songSchema, {
@@ -73,9 +74,7 @@ export default eventHandler(async event => {
   ])
 
   // Clear cache for Song API
-  await useStorage('cache').removeItem(
-    `nitro:handler:${getSongByIdKey}:${body.id}.json`
-  )
+  await useStorage('cache').removeItem(`nitro:functions:songs:${body.id}.json`)
   await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
 
   return body
@@ -89,7 +88,7 @@ defineRouteMeta({
     description:
       'Create or update a Song data. ' +
       'If the song does not exist, a new song record will be created.',
-    security: [{ SessionCookieAuth: [], BearerAuth: [] }],
+    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
     requestBody: {
       description: 'Song data to create or update',
       required: true,
@@ -155,12 +154,8 @@ defineRouteMeta({
       },
       401: { $ref: '#/components/responses/Unauthorized' },
       403: {
-        description: 'Forbidden - User lacks admin role',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
+        $ref: '#/components/responses/Error',
+        description: 'User lacks admin role',
       },
     },
   },

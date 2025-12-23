@@ -5,7 +5,7 @@ import { notValidObject } from '~~/test/data/schema'
 
 describe('/shared/schemas/user', () => {
   describe('userSchema', () => {
-    const validUserInfo: User = {
+    const validUserInfo: UserInfo = {
       id: 'new_user',
       name: 'New User',
       area: Area.東京都,

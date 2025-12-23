@@ -1,8 +1,7 @@
 import * as z from 'zod/mini'
 
-import { cacheName as getSongByIdKey } from '~~/server/api/songs/[id]/index.get'
 import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
-import { seriesList } from '~~/shared/types/song'
+import { seriesList } from '~~/shared/schemas/song'
 
 const runtimeConfigSchema = z.object({
   ddrCardDrawJsonUrl: z
@@ -165,10 +164,6 @@ export default defineTask({
             )
             .onConflictDoNothing(),
         ])
-        // Clear cache for Song API
-        await useStorage('cache').removeItem(
-          `nitro:handler:${getSongByIdKey}:${song.saHash}.json`
-        )
         console.log(`Added song: ${song.name} (${song.saHash})`)
 
         function parseBPM(bpm: string | undefined): number[] {
