@@ -1,7 +1,7 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "10ea1991-bd0f-4c78-9c30-ec3bc7e229af",
+  "id": "cff1df46-9748-4481-9e56-040b6c02e7c0",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "tables": {
     "charts": {
@@ -93,7 +93,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'null'"
+          "default": "NULL"
         }
       },
       "indexes": {
@@ -225,7 +225,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'null'"
+          "default": "NULL"
         }
       },
       "indexes": {},
@@ -338,7 +338,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'null'"
+          "default": "NULL"
         }
       },
       "indexes": {
@@ -434,7 +434,7 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false,
-          "default": "'null'"
+          "default": "NULL"
         }
       },
       "indexes": {

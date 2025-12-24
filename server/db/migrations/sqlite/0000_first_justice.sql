@@ -10,7 +10,7 @@ CREATE TABLE `charts` (
 	`radar` text,
 	`created_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
 	`updated_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
-	`deleted_at` integer DEFAULT 'null',
+	`deleted_at` integer DEFAULT NULL,
 	PRIMARY KEY(`id`, `play_style`, `difficulty`),
 	FOREIGN KEY (`id`) REFERENCES `songs`(`id`) ON UPDATE no action ON DELETE no action
 );
@@ -30,7 +30,7 @@ CREATE TABLE `scores` (
 	`flare_skill` integer,
 	`created_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
 	`updated_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
-	`deleted_at` integer DEFAULT 'null',
+	`deleted_at` integer DEFAULT NULL,
 	PRIMARY KEY(`song_id`, `play_style`, `difficulty`, `user_id`),
 	FOREIGN KEY (`user_id`) REFERENCES `users`(`id`) ON UPDATE no action ON DELETE no action
 );
@@ -102,7 +102,7 @@ CREATE TABLE `songs` (
     END) VIRTUAL NOT NULL,
 	`created_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
 	`updated_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
-	`deleted_at` integer DEFAULT 'null'
+	`deleted_at` integer DEFAULT NULL
 );
 --> statement-breakpoint
 CREATE INDEX `idx_name` ON `songs` (`name_index`,`name_kana`);--> statement-breakpoint
@@ -117,7 +117,7 @@ CREATE TABLE `users` (
 	`roles` text NOT NULL,
 	`created_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
 	`updated_at` integer DEFAULT (strftime('%s', 'now')) NOT NULL,
-	`deleted_at` integer DEFAULT 'null'
+	`deleted_at` integer DEFAULT NULL
 );
 --> statement-breakpoint
 CREATE UNIQUE INDEX `idx_provider` ON `users` (`provider`,`provider_id`);

@@ -14,7 +14,7 @@ export const getCachedSongInfo = defineCachedFunction(
       with: {
         charts: { columns: { id: false, ...ignoreTimestampCols } },
       },
-      where: (songs, { and, isNull, eq }) =>
+      where: (songs, { and, eq, isNull }) =>
         and(eq(songs.id, songId), isNull(songs.deletedAt)),
     })
     return song

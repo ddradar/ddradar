@@ -37,7 +37,8 @@ export function calcFlareSkill(
     145, 155, 170, 185, 205, 230, 255, 290, 335, 400, 465, 510, 545, 575, 600,
     620, 635, 650, 665,
   ]
-  return Math.floor((baseScores[level - 1] ?? 0) * (flareRank * 0.06 + 1))
+  const baseScore = baseScores[level - 1] ?? 0
+  return Math.round((baseScore * (flareRank * 6 + 100)) / 100)
 }
 
 /**
@@ -74,7 +75,7 @@ export function ValidateScoreRecord(
   const res: ValidationError[] = []
 
   // Validate flareSkill point
-  if (score.flareSkill ?? 0 > calcFlareSkill(chart.level, score.flareRank))
+  if ((score.flareSkill ?? 0) > calcFlareSkill(chart.level, score.flareRank))
     res.push({ field: 'flareSkill', message: 'flareSkill is too high' })
 
   if (!hasNotesInfo(chart)) return res

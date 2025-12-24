@@ -27,7 +27,7 @@ const timestamps = {
     .$onUpdate(() => sql`(strftime('%s', 'now'))`),
   deletedAt: int('deleted_at', { mode: 'timestamp' })
     .$type<Date | null>()
-    .default(null),
+    .default(sql`NULL`),
 }
 export type TimestampColumn = keyof typeof timestamps
 
