@@ -10,10 +10,13 @@ export type ScoreUpsertResult = {
 }
 
 const Reason = {
-  CHART_NOT_FOUND: ['error', 'Chart not found'],
+  CHART_NOT_FOUND: [
+    'error',
+    'Chart not found in the database. If you posted new song charts recently, please contact the administrator.',
+  ],
   MISSING_CHART_NOTES: [
     'warning',
-    'Chart notes information is incomplete. ignore exScore and maxCombo.',
+    'Chart notes information is incomplete. exScore and maxCombo are ignored.',
   ],
   MISSING_REQUIRED_PROPERTIES: [
     'error',

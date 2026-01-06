@@ -1,4 +1,4 @@
-import { and, eq, isNull, ne, or } from 'drizzle-orm'
+import { and, eq, isNull, or, sql } from 'drizzle-orm'
 import { Window } from 'happy-dom'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
@@ -181,34 +181,18 @@ export default defineTask({
               eq(schema.charts.playStyle, chart.playStyle),
               eq(schema.charts.difficulty, chart.difficulty),
               or(
-                and(
-                  isNull(schema.charts.notes),
-                  ne(
-                    schema.charts.notes,
-                    wikiChart.notes ?? schema.charts.notes
-                  )
-                ),
-                and(
-                  isNull(schema.charts.freezes),
-                  ne(
-                    schema.charts.freezes,
-                    wikiChart.freezes ?? schema.charts.freezes
-                  )
-                ),
-                and(
-                  isNull(schema.charts.shocks),
-                  ne(
-                    schema.charts.shocks,
-                    wikiChart.shocks ?? schema.charts.shocks
-                  )
-                ),
-                and(
-                  isNull(schema.charts.radar),
-                  ne(
-                    schema.charts.radar,
-                    wikiChart.radar ?? schema.charts.radar
-                  )
-                )
+                wikiChart.notes != null
+                  ? isNull(schema.charts.notes)
+                  : sql`1 = 2`,
+                wikiChart.freezes != null
+                  ? isNull(schema.charts.freezes)
+                  : sql`1 = 2`,
+                wikiChart.shocks != null
+                  ? isNull(schema.charts.shocks)
+                  : sql`1 = 2`,
+                wikiChart.radar != null
+                  ? isNull(schema.charts.radar)
+                  : sql`1 = 2`
               )
             )
           )

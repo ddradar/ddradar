@@ -5,7 +5,6 @@ import { songSchema } from '~~/shared/schemas/song'
 /** Schema for router params */
 const _paramsSchema = z.pick(songSchema, { id: true })
 
-// API main handler (exported for testing)
 export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
 

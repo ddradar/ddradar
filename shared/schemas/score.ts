@@ -1,6 +1,6 @@
+import type { scores, TimestampColumn } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import type { scores, TimestampColumn } from '~~/server/db/schema'
 import { songSchema } from '~~/shared/schemas/song'
 import { stepChartSchema } from '~~/shared/schemas/step-chart'
 import { userSchema } from '~~/shared/schemas/user'

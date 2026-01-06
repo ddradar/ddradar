@@ -70,8 +70,13 @@ describe('/shared/schemas/step-chart', () => {
         5 as ValueOf<typeof Difficulty>,
         'UNKNOWN/UNKNOWN',
       ],
-    ])('(%i, %i) returns "%s"', (playStyle, difficulty, expected) =>
-      expect(getChartName({ playStyle, difficulty })).toBe(expected)
+    ])(
+      '({ playStyle: %i, difficulty: %i }) returns "%s"',
+      (playStyle, difficulty, expected) =>
+        expect(getChartName({ playStyle, difficulty })).toBe(expected)
+    )
+    test.each([null, undefined])('(%o) returns "UNKNOWN/UNKNOWN"', chart =>
+      expect(getChartName(chart)).toBe('UNKNOWN/UNKNOWN')
     )
   })
 

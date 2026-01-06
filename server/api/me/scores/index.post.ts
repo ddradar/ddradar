@@ -21,7 +21,6 @@ export default defineEventHandler(async event => {
 
   const body = await readValidatedBody(event, _bodySchema.parse)
 
-  let hasError = false
   const errorsOrWarnings: ScoreUpsertResult[] = []
   const targetScores: [number, ScoreRecordInput & ScoreRecord][] = []
 
@@ -30,7 +29,6 @@ export default defineEventHandler(async event => {
     const chart = await getStepChart(data)
     if (!chart) {
       addWarningOrError('CHART_NOT_FOUND', column, data)
-      hasError ||= true
       continue
     }
 
@@ -40,18 +38,24 @@ export default defineEventHandler(async event => {
       scoreData = fillScoreRecordFromChart(chart, data)
     } else {
       // If chart notes info is missing, ignore exScore and maxCombo
-      addWarningOrError('MISSING_CHART_NOTES', column, data, undefined, {
-        fields: [
-          {
-            field: 'exScore',
-            message: 'Chart notes information is incomplete',
-          },
-          {
-            field: 'maxCombo',
-            message: 'Chart notes information is incomplete',
-          },
-        ],
-      })
+      const fields = []
+      if (data.exScore != null) {
+        fields.push({
+          field: 'exScore',
+          message: 'Ignored because chart notes information is incomplete',
+        })
+      }
+      if (data.maxCombo != null) {
+        fields.push({
+          field: 'maxCombo',
+          message: 'Ignored because chart notes information is incomplete',
+        })
+      }
+      if (fields.length > 0) {
+        addWarningOrError('MISSING_CHART_NOTES', column, data, undefined, {
+          fields,
+        })
+      }
       scoreData.exScore = null
       scoreData.maxCombo = null
     }
@@ -68,7 +72,6 @@ export default defineEventHandler(async event => {
           message: 'Required property is missing and cannot be detected',
         })),
       })
-      hasError ||= true
       continue
     }
 
@@ -81,84 +84,81 @@ export default defineEventHandler(async event => {
       addWarningOrError('VALIDATION_FAILED', column, data, message, {
         fields: validationErrors,
       })
-      hasError ||= true
       continue
     }
 
     targetScores.push([column, scoreData])
   }
 
-  if (hasError) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Bad Request',
-      message: 'One or more scores are invalid.',
-      data: errorsOrWarnings,
-    })
-  }
-
-  // Upsert all valid scores in chunks
+  // Get db and schema references to avoid repeated imports in the loop
+  const database = db
+  const dbSchema = schema
+  // Upsert all valid scores in batches
   for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
-    const upserts = chunkScores.map(([, score]) =>
-      db
-        .insert(schema.scores)
-        .values({
-          songId: score.songId,
-          playStyle: score.playStyle,
-          difficulty: score.difficulty,
-          userId,
-          normalScore: score.normalScore,
-          exScore: score.exScore,
-          maxCombo: score.maxCombo,
-          clearLamp: score.clearLamp,
-          rank: score.rank,
-          flareRank: score.flareRank,
-          flareSkill: score.flareSkill,
-          deletedAt: null,
-        })
-        .onConflictDoUpdate({
-          target: [
-            schema.scores.songId,
-            schema.scores.playStyle,
-            schema.scores.difficulty,
-            schema.scores.userId,
-          ],
-          set: {
-            normalScore: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.normalScore, score.normalScore))} THEN ${score.normalScore} ELSE ${schema.scores.normalScore} END`,
-            exScore: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.exScore}, -1)`, score.exScore ?? -1))} THEN ${score.exScore ?? null} ELSE ${schema.scores.exScore} END`,
-            maxCombo: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.maxCombo}, -1)`, score.maxCombo ?? -1))} THEN ${score.maxCombo ?? null} ELSE ${schema.scores.maxCombo} END`,
-            clearLamp: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.clearLamp, score.clearLamp))} THEN ${score.clearLamp} ELSE ${schema.scores.clearLamp} END`,
-            rank: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.normalScore, score.normalScore))} THEN ${score.rank} ELSE ${schema.scores.rank} END`,
-            flareRank: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(schema.scores.flareRank, score.flareRank))} THEN ${score.flareRank} ELSE ${schema.scores.flareRank} END`,
-            flareSkill: sql`CASE WHEN ${or(isNotNull(schema.scores.deletedAt), lt(sql`COALESCE(${schema.scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${schema.scores.flareSkill} END`,
+    const results: ReadonlyArray<D1Result> = await database.batch(
+      chunkScores.map(([, score]) =>
+        database
+          .insert(dbSchema.scores)
+          .values({
+            songId: score.songId,
+            playStyle: score.playStyle,
+            difficulty: score.difficulty,
+            userId,
+            normalScore: score.normalScore,
+            exScore: score.exScore,
+            maxCombo: score.maxCombo,
+            clearLamp: score.clearLamp,
+            rank: score.rank,
+            flareRank: score.flareRank,
+            flareSkill: score.flareSkill,
             deletedAt: null,
-            updatedAt: new Date(),
-          },
-          setWhere: or(
-            isNotNull(schema.scores.deletedAt),
-            lt(schema.scores.normalScore, score.normalScore),
-            lt(
-              sql`COALESCE(${schema.scores.exScore}, -1)`,
-              score.exScore ?? -1
+          })
+          .onConflictDoUpdate({
+            target: [
+              dbSchema.scores.songId,
+              dbSchema.scores.playStyle,
+              dbSchema.scores.difficulty,
+              dbSchema.scores.userId,
+            ],
+            set: {
+              normalScore: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.normalScore, score.normalScore))} THEN ${score.normalScore} ELSE ${dbSchema.scores.normalScore} END`,
+              exScore: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.exScore}, -1)`, score.exScore ?? -1))} THEN ${score.exScore ?? null} ELSE ${dbSchema.scores.exScore} END`,
+              maxCombo: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.maxCombo}, -1)`, score.maxCombo ?? -1))} THEN ${score.maxCombo ?? null} ELSE ${dbSchema.scores.maxCombo} END`,
+              clearLamp: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.clearLamp, score.clearLamp))} THEN ${score.clearLamp} ELSE ${dbSchema.scores.clearLamp} END`,
+              rank: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.normalScore, score.normalScore))} THEN ${score.rank} ELSE ${dbSchema.scores.rank} END`,
+              flareRank: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.flareRank, score.flareRank))} THEN ${score.flareRank} ELSE ${dbSchema.scores.flareRank} END`,
+              flareSkill: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${dbSchema.scores.flareSkill} END`,
+              deletedAt: null,
+              updatedAt: new Date(),
+            },
+            setWhere: or(
+              isNotNull(dbSchema.scores.deletedAt),
+              lt(dbSchema.scores.normalScore, score.normalScore),
+              lt(
+                sql`COALESCE(${dbSchema.scores.exScore}, -1)`,
+                score.exScore ?? -1
+              ),
+              lt(
+                sql`COALESCE(${dbSchema.scores.maxCombo}, -1)`,
+                score.maxCombo ?? -1
+              ),
+              lt(dbSchema.scores.clearLamp, score.clearLamp),
+              lt(dbSchema.scores.flareRank, score.flareRank),
+              lt(
+                sql`COALESCE(${dbSchema.scores.flareSkill}, -1)`,
+                score.flareSkill ?? -1
+              )
             ),
-            lt(
-              sql`COALESCE(${schema.scores.maxCombo}, -1)`,
-              score.maxCombo ?? -1
-            ),
-            lt(schema.scores.clearLamp, score.clearLamp),
-            lt(schema.scores.flareRank, score.flareRank),
-            lt(
-              sql`COALESCE(${schema.scores.flareSkill}, -1)`,
-              score.flareSkill ?? -1
-            )
-          ),
-        })
+          })
+      ) as never
     )
-    const res: ReadonlyArray<D1Result> = await db.batch(upserts as never)
-    res.forEach((result, index) => {
-      const [column, score] = chunkScores[index] as [number, ScoreRecordInput]
-      if (!result.meta.changed_db)
+
+    results.forEach((result, index) => {
+      const [column] = chunkScores[index] as [number, ScoreRecordInput]
+      const score = chunkScores[index]?.[1]
+      if (score && !result.meta.changed_db) {
         addWarningOrError('LOWER_THAN_EXISTING', column, score)
+      }
     })
   }
   return { count: targetScores.length, warnings: errorsOrWarnings }
@@ -299,48 +299,10 @@ defineRouteMeta({
                 warnings: {
                   type: 'array',
                   description:
-                    'Array of warnings for scores that were not updated or ignored some properties',
+                    'Array of errors or warnings for scores that were not updated or ignored some properties',
                   items: {
                     $ref: '#/components/schemas/BatchScoreUpsertResult',
                   },
-                },
-              },
-            },
-          },
-        },
-      },
-      400: {
-        description: 'Bad Request - One or more scores are invalid',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              description: 'Error response for invalid scores',
-              properties: {
-                error: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/error',
-                },
-                url: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/url',
-                },
-                data: {
-                  type: 'array',
-                  description: 'Array of errors for invalid scores',
-                  items: {
-                    $ref: '#/components/schemas/BatchScoreUpsertResult',
-                  },
-                },
-                statusCode: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/statusCode',
-                },
-                statusMessage: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/statusMessage',
-                },
-                message: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/message',
-                },
-                stack: {
-                  $ref: '#/components/schemas/ErrorResponse/properties/stack',
                 },
               },
             },

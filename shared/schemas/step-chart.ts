@@ -1,6 +1,6 @@
+import type { charts, TimestampColumn } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import type { charts, TimestampColumn } from '~~/server/db/schema'
 import { getEnumKey } from '~~/shared/utils'
 
 /** Enum object for `playStyle` */
@@ -86,10 +86,13 @@ export const stepChartSchema = z.object({
  * @returns Display name of the chart in the format of "PLAYSTYLE/DIFFICULTY"
  */
 export function getChartName(
-  chart: Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>
+  chart:
+    | Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>
+    | null
+    | undefined
 ): string {
-  const playStyleName = getEnumKey(PlayStyle, chart.playStyle) ?? 'UNKNOWN'
-  const difficultyName = getEnumKey(Difficulty, chart.difficulty) ?? 'UNKNOWN'
+  const playStyleName = getEnumKey(PlayStyle, chart?.playStyle) ?? 'UNKNOWN'
+  const difficultyName = getEnumKey(Difficulty, chart?.difficulty) ?? 'UNKNOWN'
   return `${playStyleName}/${difficultyName}`
 }
 

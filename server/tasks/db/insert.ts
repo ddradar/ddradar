@@ -1,7 +1,10 @@
+import type { D1Result } from '@cloudflare/workers-types'
+import { sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
 import { seriesList } from '~~/shared/schemas/song'
+import { Difficulty } from '~~/shared/schemas/step-chart'
 
 const runtimeConfigSchema = z.object({
   ddrCardDrawJsonUrl: z
@@ -122,49 +125,69 @@ export default defineTask({
       config.data.ddrCardDrawJsonUrl,
       { responseType: 'json' }
     )
-    const existsIds = (
+    const hasChallengeChartIds = (
       await db.query.songs.findMany({
         columns: { id: true },
+        with: {
+          charts: {
+            where: (charts, { eq }) =>
+              eq(charts.difficulty, Difficulty.CHALLENGE),
+          },
+        },
+        where: (_, { isNull }) => isNull(sql`charts`),
       })
     ).map(s => s.id)
 
-    const newSongs = data.songs.filter(
-      song => song.saHash && !existsIds.includes(song.saHash)
+    const newSongsOrCharts = data.songs.filter(
+      song => song.saHash && !hasChallengeChartIds.includes(song.saHash)
     )
     const series = data.meta.folders.reverse()
-    await Promise.all(
-      newSongs.map(async song => {
-        await db.batch([
-          db
-            .insert(schema.songs)
-            .values({
+    const insertedCounts = await Promise.all(
+      newSongsOrCharts.map(async song => {
+        const songRes: D1Result = await db
+          .insert(schema.songs)
+          .values({
+            id: song.saHash!,
+            name: song.name,
+            nameKana: song.name.toUpperCase(),
+            artist: song.artist,
+            bpm: song.bpm,
+            series: seriesList.at(series.indexOf(song.folder!))!,
+          })
+          .onConflictDoNothing()
+        if (songRes.results.length > 0)
+          console.log(`Added song: ${song.name} (${song.saHash})`)
+
+        // New songs or CHALLENGE charts for existing songs only
+        const charts = song.charts.filter(
+          c =>
+            songRes.results.length > 0 ||
+            data.meta.difficulties.findIndex(d => d.key === c.diffClass) ===
+              Difficulty.CHALLENGE
+        )
+        if (charts.length === 0) return songRes.results.length
+        const chartRes: D1Result = await db
+          .insert(schema.charts)
+          .values(
+            charts.map(c => ({
               id: song.saHash!,
-              name: song.name,
-              nameKana: song.name.toUpperCase(),
-              artist: song.artist,
-              bpm: song.bpm,
-              series: seriesList.at(series.indexOf(song.folder!))!,
-            })
-            .onConflictDoNothing(),
-          db
-            .insert(schema.charts)
-            .values(
-              song.charts.map(c => ({
-                id: song.saHash!,
-                playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
-                difficulty: data.meta.difficulties.findIndex(
-                  d => d.key === c.diffClass
-                ),
-                level: +c.lvl,
-                bpm: parseBPM(c.bpm ?? song.bpm),
-                notes: c.step,
-                freezes: c.freeze,
-                shocks: c.shock,
-              }))
-            )
-            .onConflictDoNothing(),
-        ])
-        console.log(`Added song: ${song.name} (${song.saHash})`)
+              playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
+              difficulty: data.meta.difficulties.findIndex(
+                d => d.key === c.diffClass
+              ),
+              level: +c.lvl,
+              bpm: parseBPM(c.bpm ?? song.bpm),
+              notes: c.step,
+              freezes: c.freeze,
+              shocks: c.shock,
+            }))
+          )
+          .onConflictDoNothing()
+        if (chartRes.results.length > 0)
+          console.log(
+            `Added ${chartRes.results.length} chart(s) for ${song.name}`
+          )
+        return songRes.results.length + chartRes.results.length
 
         function parseBPM(bpm: string | undefined): number[] {
           if (!bpm) return [0]
@@ -177,10 +200,11 @@ export default defineTask({
         }
       })
     )
+    const totalInserted = insertedCounts.reduce((a, b) => a + b, 0)
     // Clear cache for Song API
-    if (newSongs.length)
+    if (totalInserted > 0)
       await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
 
-    return { result: 'success', inserted: newSongs.length }
+    return { result: 'success', inserted: totalInserted }
   },
 })

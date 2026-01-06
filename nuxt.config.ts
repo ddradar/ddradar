@@ -29,19 +29,33 @@ export default defineNuxtConfig({
       },
     },
   },
-  typescript: {
-    tsConfig: {
-      include: ['../test/**/*'],
+  typescript: { tsConfig: { include: ['../test/**/*'] } },
+  devtools: { enabled: true },
+  css: ['~/assets/css/main.css'],
+  ui: {
+    theme: {
+      colors: [
+        'primary',
+        'secondary',
+        'info',
+        'success',
+        'warning',
+        'error',
+        // custom colors
+        'beginner',
+        'basic',
+        'difficult',
+        'expert',
+        'challenge',
+      ],
     },
   },
-  devtools: { enabled: true },
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {
     cache: true,
-    db: 'sqlite',
+    db: { dialect: 'sqlite', casing: 'snake_case' },
     kv: true,
   },
-  css: ['~/assets/css/main.css'],
   runtimeConfig: {
     ddrCardDrawJsonUrl:
       'https://raw.githubusercontent.com/noahm/DDRCardDraw/refs/heads/main/src/songs/ddr_world.json',

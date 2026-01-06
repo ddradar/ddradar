@@ -18,14 +18,14 @@ import type { Difficulty, PlayStyle } from '~~/shared/schemas/step-chart'
 import type { Area } from '~~/shared/schemas/user'
 
 const timestamps = {
-  createdAt: int('created_at', { mode: 'timestamp' })
+  createdAt: int({ mode: 'timestamp' })
     .notNull()
     .default(sql`(strftime('%s', 'now'))`),
-  updatedAt: int('updated_at', { mode: 'timestamp' })
+  updatedAt: int({ mode: 'timestamp' })
     .notNull()
     .default(sql`(strftime('%s', 'now'))`)
     .$onUpdate(() => sql`(strftime('%s', 'now'))`),
-  deletedAt: int('deleted_at', { mode: 'timestamp' })
+  deletedAt: int({ mode: 'timestamp' })
     .$type<Date | null>()
     .default(sql`NULL`),
 }
@@ -40,16 +40,16 @@ export const songs = sqliteTable(
      * ID that depend on official site.
      * @pattern /^[01689bdiloqDIOPQ]{32}$/
      */
-    id: text('id', { length: 32 }).primaryKey(),
+    id: text({ length: 32 }).primaryKey(),
     /** Song name */
-    name: text('name').notNull(),
+    name: text().notNull(),
     /** Furigana for sorting. (allows A-Z, 0-9, space, period, _, ぁ-ん, ー) */
-    nameKana: text('name_kana').notNull(),
+    nameKana: text().notNull(),
     /**
      * Calculate from `nameKana`.
      * `0`: あ行, `1`: か行, ..., `10`: A, `11`: B, ..., `35`: Z, `36`: 数字・記号
      */
-    nameIndex: int('name_index')
+    nameIndex: int()
       .$type<ValueOf<typeof NameIndex>>()
       .generatedAlwaysAs(
         sql`CASE
@@ -94,16 +94,16 @@ export const songs = sqliteTable(
       )
       .notNull(),
     /** Artist (possibly empty) */
-    artist: text('artist').notNull(),
+    artist: text().notNull(),
     /** Displayed BPM (use DDR GRAND PRIX, A3 or earlier) */
-    bpm: text('bpm'),
+    bpm: text(),
     /** Series title depend on official site. */
-    series: text('series').$type<SeriesFolder>().notNull(),
+    series: text().$type<SeriesFolder>().notNull(),
     /**
      * Flare skill category.
      * @description Calculate from {@link Song.series}.
      */
-    seriesCategory: text('series_category')
+    seriesCategory: text()
       .$type<SeriesCategory>()
       .generatedAlwaysAs(
         sql`CASE
@@ -137,37 +137,37 @@ export const charts = sqliteTable(
   'charts',
   {
     /** Song ID */
-    id: text('id')
+    id: text()
       .notNull()
       .references(() => songs.id),
     /**
      * Play style
      * @description `1`: SINGLE, `2`: DOUBLE
      */
-    playStyle: int('play_style').$type<ValueOf<typeof PlayStyle>>().notNull(),
+    playStyle: int().$type<ValueOf<typeof PlayStyle>>().notNull(),
     /**
      * Difficulty
      * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
      */
-    difficulty: int('difficulty').$type<ValueOf<typeof Difficulty>>().notNull(),
+    difficulty: int().$type<ValueOf<typeof Difficulty>>().notNull(),
     /**
      * Chart BPM range.
      * - 1-tuple: [fixed BPM]
      * - 3-tuple: [Min BPM, Core BPM, Max BPM]
      */
-    bpm: text('bpm', { mode: 'json' })
+    bpm: text({ mode: 'json' })
       .$type<[number] | [number, number, number]>()
       .notNull(),
     /** Chart level (1-20) */
-    level: int('level').notNull(),
+    level: int().notNull(),
     /** Normal arrow count. (Jump = 1 count) */
-    notes: int('notes'),
+    notes: int(),
     /** Freeze Arrow count. */
-    freezes: int('freezes'),
+    freezes: int(),
     /** Shock Arrow count. */
-    shocks: int('shocks').default(0),
+    shocks: int().default(0),
     /** Groove Radar data (if available) */
-    radar: text('radar', { mode: 'json' }).$type<GrooveRadar | null>(),
+    radar: text({ mode: 'json' }).$type<GrooveRadar | null>(),
     ...timestamps,
   },
   table => [
@@ -181,27 +181,27 @@ export const scores = sqliteTable(
   'scores',
   {
     /** Song ID */
-    songId: text('song_id').notNull(),
+    songId: text().notNull(),
     /**
      * Play style
      * @description `1`: SINGLE, `2`: DOUBLE
      */
-    playStyle: int('play_style').$type<ValueOf<typeof PlayStyle>>().notNull(),
+    playStyle: int().$type<ValueOf<typeof PlayStyle>>().notNull(),
     /**
      * Difficulty
      * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
      */
-    difficulty: int('difficulty').$type<ValueOf<typeof Difficulty>>().notNull(),
+    difficulty: int().$type<ValueOf<typeof Difficulty>>().notNull(),
     /** User ID */
-    userId: text('user_id')
+    userId: text()
       .notNull()
       .references(() => users.id),
     /** Normal Score (0-1,000,000) */
-    normalScore: int('normal_score').notNull(),
+    normalScore: int().notNull(),
     /** EX Score */
-    exScore: int('ex_score'),
+    exScore: int(),
     /** Max Combo */
-    maxCombo: int('max_combo'),
+    maxCombo: int(),
     /**
      * Clear Lamp
      * @description
@@ -214,9 +214,9 @@ export const scores = sqliteTable(
      * - `6`: Perfect Full Combo
      * - `7`: Marvelous Full Combo
      */
-    clearLamp: int('clear_lamp').$type<ValueOf<typeof ClearLamp>>().notNull(),
+    clearLamp: int().$type<ValueOf<typeof ClearLamp>>().notNull(),
     /** Dance Level ("AAA", "AA+", "AA", "AA-", ..., "D+", "D", "E") */
-    rank: text('rank').$type<DanceLevel>().notNull(),
+    rank: text().$type<DanceLevel>().notNull(),
     /**
      * Flare Rank
      * @description
@@ -232,9 +232,9 @@ export const scores = sqliteTable(
      * - `9`: FLARE IX
      * - `10`: FLARE EX
      */
-    flareRank: int('flare_rank').$type<ValueOf<typeof FlareRank>>().notNull(),
+    flareRank: int().$type<ValueOf<typeof FlareRank>>().notNull(),
     /** Flare Skill */
-    flareSkill: int('flare_skill'),
+    flareSkill: int(),
     ...timestamps,
   },
   table => [
@@ -249,24 +249,24 @@ export const users = sqliteTable(
   'users',
   {
     /** User ID */
-    id: text('id').primaryKey(),
+    id: text().primaryKey(),
     /** Display name */
-    name: text('name').notNull(),
+    name: text().notNull(),
     /** Login provider */
-    provider: text('provider').notNull(),
+    provider: text().notNull(),
     /** Provider ID */
-    providerId: text('provider_id').notNull(),
+    providerId: text().notNull(),
     /** User & score visibility */
-    isPublic: int('is_public', { mode: 'boolean' }).notNull(),
+    isPublic: int({ mode: 'boolean' }).notNull(),
     /** User area */
-    area: int('area')
+    area: int()
       .$type<ValueOf<typeof Area>>()
       .notNull()
       .$default(() => 0),
     /** DDR code */
-    ddrCode: int('ddr_code'),
+    ddrCode: int(),
     /** User roles */
-    roles: text('roles', { mode: 'json' })
+    roles: text({ mode: 'json' })
       .$type<string[]>()
       .notNull()
       .$default(() => []),

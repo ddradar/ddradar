@@ -1,6 +1,6 @@
+import type { TimestampColumn, users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import type { TimestampColumn, users } from '~~/server/db/schema'
 import { range } from '~~/shared/utils'
 
 /** Area enum object */

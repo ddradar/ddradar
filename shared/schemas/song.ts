@@ -1,6 +1,5 @@
+import type { songs, TimestampColumn } from 'hub:db:schema'
 import * as z from 'zod/mini'
-
-import type { songs, TimestampColumn } from '~~/server/db/schema'
 
 /** Enum for `nameIndex` */
 export const NameIndex = {
