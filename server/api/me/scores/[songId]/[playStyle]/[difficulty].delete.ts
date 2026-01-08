@@ -1,7 +1,8 @@
 import { and, eq, isNull } from 'drizzle-orm'
+import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import { scoreRecordKeySchema } from '~~/shared/schemas/score'
+import { scoreRecordKeySchema } from '#shared/schemas/score'
 
 /** Schema for router params */
 const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
@@ -11,15 +12,15 @@ export default defineEventHandler(async event => {
   const params = await getValidatedRouterParams(event, _paramsSchema.parse)
 
   const result = await db
-    .update(schema.scores)
+    .update(scores)
     .set({ deletedAt: new Date(), updatedAt: new Date() })
     .where(
       and(
-        eq(schema.scores.userId, userId),
-        eq(schema.scores.songId, params.songId),
-        eq(schema.scores.playStyle, params.playStyle),
-        eq(schema.scores.difficulty, params.difficulty),
-        isNull(schema.scores.deletedAt)
+        eq(scores.userId, userId),
+        eq(scores.songId, params.songId),
+        eq(scores.playStyle, params.playStyle),
+        eq(scores.difficulty, params.difficulty),
+        isNull(scores.deletedAt)
       )
     )
     .run()

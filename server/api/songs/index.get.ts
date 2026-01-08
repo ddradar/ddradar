@@ -1,9 +1,10 @@
 import { and, eq, exists } from 'drizzle-orm'
+import { charts, songs } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
+import { compareSong, NameIndex, seriesList } from '#shared/schemas/song'
+import { stepChartSchema } from '#shared/schemas/step-chart'
 import { ignoreTimestampCols } from '~~/server/db/utils'
-import { compareSong, NameIndex, seriesList } from '~~/shared/schemas/song'
-import { stepChartSchema } from '~~/shared/schemas/step-chart'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
@@ -77,21 +78,20 @@ export const handler = defineEventHandler(async event => {
     query.style !== undefined && query.level !== undefined
   const includeCharts = hasChartConditions || query.includeCharts
   const conditions = []
-  if (query.name !== undefined)
-    conditions.push(eq(schema.songs.nameIndex, query.name))
+  if (query.name !== undefined) conditions.push(eq(songs.nameIndex, query.name))
   if (query.series !== undefined)
-    conditions.push(eq(schema.songs.series, seriesList[query.series]))
+    conditions.push(eq(songs.series, seriesList[query.series]))
   if (hasChartConditions) {
     conditions.push(
       exists(
         db
           .select()
-          .from(schema.charts)
+          .from(charts)
           .where(
             and(
-              eq(schema.charts.id, schema.songs.id),
-              eq(schema.charts.playStyle, query.style!),
-              eq(schema.charts.level, query.level!)
+              eq(charts.id, songs.id),
+              eq(charts.playStyle, query.style!),
+              eq(charts.level, query.level!)
             )
           )
       )
@@ -116,6 +116,7 @@ export const handler = defineEventHandler(async event => {
 export default cachedEventHandler(handler, {
   maxAge: 60 * 60, // 1 hour
   name: cacheName,
+  /* v8 ignore next -- @preserve */
   getKey: async event => {
     const query = await getValidatedQuery(event, _querySchema.parse)
     return Object.entries(query)

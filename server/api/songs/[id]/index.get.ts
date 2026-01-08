@@ -1,6 +1,6 @@
 import * as z from 'zod/mini'
 
-import { songSchema } from '~~/shared/schemas/song'
+import { songSchema } from '#shared/schemas/song'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(songSchema, { id: true })

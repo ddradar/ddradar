@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
+  experimental: { typedPages: true, typescriptPlugin: true },
+  vite: { vue: { features: { optionsAPI: false } } },
   modules: [
     '@nuxthub/core',
     '@nuxt/eslint',
@@ -10,6 +12,7 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'cloudflare-module',
+    compressPublicAssets: true,
     experimental: {
       openAPI: true,
       tasks: true,

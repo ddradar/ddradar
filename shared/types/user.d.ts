@@ -1,4 +1,4 @@
-import type { apiTokenSchema, userSchema } from '~~/shared/schemas/user'
+import type { apiTokenSchema, userSchema } from '#shared/schemas/user'
 
 export type UserInfo = ZodInfer<typeof userSchema>
 export type ApiToken = ZodInfer<typeof apiTokenSchema>

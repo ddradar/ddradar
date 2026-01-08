@@ -1,6 +1,7 @@
-import type { songs } from '~~/server/db/schema'
-import type { songSchema } from '~~/shared/schemas/song'
-import type { stepChartSchema } from '~~/shared/schemas/step-chart'
+import type { songs } from 'hub:db:schema'
+
+import type { songSchema } from '#shared/schemas/song'
+import type { stepChartSchema } from '#shared/schemas/step-chart'
 
 /** Song info */
 export type SongInfo = ZodInfer<typeof songSchema> &
@@ -12,7 +13,7 @@ export type SongSearchResult = Omit<SongInfo, 'charts'> & {
 }
 export type SongBody = ZodInfer<typeof songSchema> & { charts: StepChart[] }
 
-export type { SeriesCategory, SeriesFolder } from '~~/shared/schemas/song'
+export type { SeriesCategory, SeriesFolder } from '#shared/schemas/song'
 
 /** Groove Radar data */
 export type GrooveRadar = {

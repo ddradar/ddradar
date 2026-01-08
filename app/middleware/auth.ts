@@ -1,5 +1,16 @@
 export default defineNuxtRouteMiddleware(async to => {
-  const { loggedIn } = useUserSession()
+  const { loggedIn, user } = useUserSession()
+
+  if (to.meta.roles) {
+    if (
+      !(to.meta.roles as string[]).find(role =>
+        user.value?.roles.includes(role)
+      )
+    ) {
+      abortNavigation({ statusCode: 403, statusMessage: 'Forbidden' })
+    }
+    return
+  }
 
   if (!loggedIn.value) {
     const redirect = useCookie('redirect')

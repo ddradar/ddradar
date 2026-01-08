@@ -1,6 +1,8 @@
 import * as z from 'zod/mini'
 
-export default eventHandler(async event => {
+import { apiTokenSchema } from '#shared/schemas/user'
+
+export default defineEventHandler(async event => {
   const { id: tokenId } = await getValidatedRouterParams(
     event,
     z.pick(apiTokenSchema, { id: true }).parse

@@ -1,13 +1,14 @@
 import { and, eq } from 'drizzle-orm'
+import { users } from 'hub:db:schema'
 
-import { userSchema } from '~~/shared/schemas/user'
+import { userSchema } from '#shared/schemas/user'
 
 export default defineEventHandler(async event => {
   const { user } = await requireUserSession(event)
   const body = await readValidatedBody(event, userSchema.parse)
 
   const result: UserInfo[] = await db
-    .insert(schema.users)
+    .insert(users)
     .values({
       ...body,
       id: user.id ?? body.id, // Use existing ID if available
@@ -15,10 +16,10 @@ export default defineEventHandler(async event => {
       providerId: user.providerId,
     })
     .onConflictDoUpdate({
-      target: [schema.users.id],
+      target: [users.id],
       targetWhere: and(
-        eq(schema.users.provider, user.provider),
-        eq(schema.users.providerId, user.providerId)
+        eq(users.provider, user.provider),
+        eq(users.providerId, user.providerId)
       ),
       set: {
         name: body.name,
@@ -28,11 +29,11 @@ export default defineEventHandler(async event => {
       },
     })
     .returning({
-      id: schema.users.id,
-      name: schema.users.name,
-      isPublic: schema.users.isPublic,
-      area: schema.users.area,
-      ddrCode: schema.users.ddrCode,
+      id: users.id,
+      name: users.name,
+      isPublic: users.isPublic,
+      area: users.area,
+      ddrCode: users.ddrCode,
     })
   if (result.length !== 1) {
     throw createError({
@@ -42,10 +43,7 @@ export default defineEventHandler(async event => {
     })
   }
 
-  // Remove cached user data
-  await useStorage('cache').removeItem(
-    `nitro:functions:users:${user.id ?? body.id}.json`
-  )
+  await clearUserCache(user.id ?? body.id)
 
   // Update session with new user ID and display name
   await setUserSession(event, {

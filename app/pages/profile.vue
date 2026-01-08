@@ -1,3 +1,42 @@
+<script setup lang="ts">
+import { useToast } from '@nuxt/ui/composables'
+
+import { Area, userSchema } from '#shared/schemas/user'
+import type { UserInfo } from '#shared/types/user'
+import { getSelectItems } from '~/utils'
+
+definePageMeta({ middleware: ['auth'] })
+
+const areas = ref(getSelectItems(Area))
+const { user, fetch: updateSession } = useUserSession()
+const toast = useToast()
+
+const isRegistered = computed(() => !!user.value?.id)
+const uri = computed(() => `/api/users/${user.value?.id}` as const)
+const { data: state, execute } = useFetch<UserInfo>(uri, {
+  method: 'GET',
+  immediate: false,
+  default: (): UserInfo => ({
+    id: '',
+    name: user.value?.displayName ?? '',
+    area: Area.東京都,
+    ddrCode: null,
+    isPublic: false,
+  }),
+})
+if (isRegistered.value) await execute()
+
+async function onSubmit() {
+  try {
+    await $fetch('/api/me', { method: 'POST', body: state.value })
+    toast.add({ color: 'success', title: 'プロフィールを更新しました。' })
+    await updateSession()
+  } catch {
+    toast.add({ color: 'error', title: 'プロフィールの更新に失敗しました。' })
+  }
+}
+</script>
+
 <template>
   <UPage>
     <UContainer>
@@ -30,7 +69,7 @@
             <UInput v-model="state.name" class="w-full" />
           </UFormField>
           <UFormField label="所属エリア" name="area" required class="mt-4 mb-4">
-            <USelect v-model="state.area" :items="areaOptions" class="w-full" />
+            <USelect v-model="state.area" :items="areas" class="w-full" />
           </UFormField>
           <UFormField label="DDRコード" name="ddrCode" class="mt-4 mb-4">
             <UInput
@@ -54,42 +93,3 @@
     </UContainer>
   </UPage>
 </template>
-
-<script setup lang="ts">
-import type { SelectItem } from '@nuxt/ui'
-
-import { Area, userSchema } from '~~/shared/schemas/user'
-
-definePageMeta({ middleware: ['auth'] })
-
-const areaOptions = ref<SelectItem[]>(
-  Object.entries(Area).map(([label, value]) => ({ label, value }))
-)
-const { user, fetch: updateSession } = useUserSession()
-const toast = useToast()
-
-const isRegistered = computed(() => !!user.value?.id)
-const uri = computed(() => `/api/users/${user.value?.id}` as const)
-const { data: state, execute } = useFetch<UserInfo>(uri, {
-  method: 'GET',
-  immediate: false,
-  default: (): UserInfo => ({
-    id: '',
-    name: user.value?.displayName ?? '',
-    area: Area.東京都,
-    ddrCode: null,
-    isPublic: false,
-  }),
-})
-if (isRegistered.value) await execute()
-
-async function onSubmit() {
-  try {
-    await $fetch('/api/me', { method: 'POST', body: state.value })
-    toast.add({ color: 'success', title: 'プロフィールを更新しました。' })
-    await updateSession()
-  } catch {
-    toast.add({ color: 'error', title: 'プロフィールの更新に失敗しました。' })
-  }
-}
-</script>

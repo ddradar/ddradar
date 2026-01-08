@@ -1,16 +1,17 @@
 import type { D1Result } from '@cloudflare/workers-types'
 import { isNotNull, lt, or, sql } from 'drizzle-orm'
+import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import { getStepChart } from '~~/server/db/utils'
-import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
-import { scoreRecordInputSchema } from '~~/shared/schemas/score'
-import { chunkArray, isPropertyNotNull } from '~~/shared/utils'
+import { scoreRecordInputSchema } from '#shared/schemas/score'
+import { chunkArray, isPropertyNotNull } from '#shared/utils'
 import {
   fillScoreRecordFromChart,
   hasNotesInfo,
   ValidateScoreRecord,
-} from '~~/shared/utils/score'
+} from '#shared/utils/score'
+import { getStepChart } from '~~/server/db/utils'
+import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
 
 const _bodySchema = z.array(scoreRecordInputSchema).check(z.minLength(1))
 const CHUNK_SIZE = 25
@@ -92,13 +93,12 @@ export default defineEventHandler(async event => {
 
   // Get db and schema references to avoid repeated imports in the loop
   const database = db
-  const dbSchema = schema
   // Upsert all valid scores in batches
   for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
     const results: ReadonlyArray<D1Result> = await database.batch(
       chunkScores.map(([, score]) =>
         database
-          .insert(dbSchema.scores)
+          .insert(scores)
           .values({
             songId: score.songId,
             playStyle: score.playStyle,
@@ -115,37 +115,31 @@ export default defineEventHandler(async event => {
           })
           .onConflictDoUpdate({
             target: [
-              dbSchema.scores.songId,
-              dbSchema.scores.playStyle,
-              dbSchema.scores.difficulty,
-              dbSchema.scores.userId,
+              scores.songId,
+              scores.playStyle,
+              scores.difficulty,
+              scores.userId,
             ],
             set: {
-              normalScore: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.normalScore, score.normalScore))} THEN ${score.normalScore} ELSE ${dbSchema.scores.normalScore} END`,
-              exScore: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.exScore}, -1)`, score.exScore ?? -1))} THEN ${score.exScore ?? null} ELSE ${dbSchema.scores.exScore} END`,
-              maxCombo: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.maxCombo}, -1)`, score.maxCombo ?? -1))} THEN ${score.maxCombo ?? null} ELSE ${dbSchema.scores.maxCombo} END`,
-              clearLamp: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.clearLamp, score.clearLamp))} THEN ${score.clearLamp} ELSE ${dbSchema.scores.clearLamp} END`,
-              rank: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.normalScore, score.normalScore))} THEN ${score.rank} ELSE ${dbSchema.scores.rank} END`,
-              flareRank: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(dbSchema.scores.flareRank, score.flareRank))} THEN ${score.flareRank} ELSE ${dbSchema.scores.flareRank} END`,
-              flareSkill: sql`CASE WHEN ${or(isNotNull(dbSchema.scores.deletedAt), lt(sql`COALESCE(${dbSchema.scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${dbSchema.scores.flareSkill} END`,
+              normalScore: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(scores.normalScore, score.normalScore))} THEN ${score.normalScore} ELSE ${scores.normalScore} END`,
+              exScore: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(sql`COALESCE(${scores.exScore}, -1)`, score.exScore ?? -1))} THEN ${score.exScore ?? null} ELSE ${scores.exScore} END`,
+              maxCombo: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(sql`COALESCE(${scores.maxCombo}, -1)`, score.maxCombo ?? -1))} THEN ${score.maxCombo ?? null} ELSE ${scores.maxCombo} END`,
+              clearLamp: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(scores.clearLamp, score.clearLamp))} THEN ${score.clearLamp} ELSE ${scores.clearLamp} END`,
+              rank: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(scores.normalScore, score.normalScore))} THEN ${score.rank} ELSE ${scores.rank} END`,
+              flareRank: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(scores.flareRank, score.flareRank))} THEN ${score.flareRank} ELSE ${scores.flareRank} END`,
+              flareSkill: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(sql`COALESCE(${scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${scores.flareSkill} END`,
               deletedAt: null,
               updatedAt: new Date(),
             },
             setWhere: or(
-              isNotNull(dbSchema.scores.deletedAt),
-              lt(dbSchema.scores.normalScore, score.normalScore),
+              isNotNull(scores.deletedAt),
+              lt(scores.normalScore, score.normalScore),
+              lt(sql`COALESCE(${scores.exScore}, -1)`, score.exScore ?? -1),
+              lt(sql`COALESCE(${scores.maxCombo}, -1)`, score.maxCombo ?? -1),
+              lt(scores.clearLamp, score.clearLamp),
+              lt(scores.flareRank, score.flareRank),
               lt(
-                sql`COALESCE(${dbSchema.scores.exScore}, -1)`,
-                score.exScore ?? -1
-              ),
-              lt(
-                sql`COALESCE(${dbSchema.scores.maxCombo}, -1)`,
-                score.maxCombo ?? -1
-              ),
-              lt(dbSchema.scores.clearLamp, score.clearLamp),
-              lt(dbSchema.scores.flareRank, score.flareRank),
-              lt(
-                sql`COALESCE(${dbSchema.scores.flareSkill}, -1)`,
+                sql`COALESCE(${scores.flareSkill}, -1)`,
                 score.flareSkill ?? -1
               )
             ),

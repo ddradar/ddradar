@@ -1,10 +1,8 @@
 import type { D1Result } from '@cloudflare/workers-types'
-import { sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
-import { seriesList } from '~~/shared/schemas/song'
-import { Difficulty } from '~~/shared/schemas/step-chart'
+import { seriesList } from '#shared/schemas/song'
+import { Difficulty } from '#shared/schemas/step-chart'
 
 const runtimeConfigSchema = z.object({
   ddrCardDrawJsonUrl: z
@@ -134,7 +132,7 @@ export default defineTask({
               eq(charts.difficulty, Difficulty.CHALLENGE),
           },
         },
-        where: (_, { isNull }) => isNull(sql`charts`),
+        where: (_, { isNull, sql }) => isNull(sql`charts`),
       })
     ).map(s => s.id)
 
@@ -187,9 +185,13 @@ export default defineTask({
           console.log(
             `Added ${chartRes.results.length} chart(s) for ${song.name}`
           )
-        return songRes.results.length + chartRes.results.length
+        const count = songRes.results.length + chartRes.results.length
+        if (count) await clearSongCache(song.saHash!, false)
+        return count
 
-        function parseBPM(bpm: string | undefined): number[] {
+        function parseBPM(
+          bpm: string | undefined
+        ): [number] | [number, number, number] {
           if (!bpm) return [0]
           const parts = bpm.split('-').map(part => parseInt(part, 10))
           if (parts.length === 1) {
@@ -201,9 +203,7 @@ export default defineTask({
       })
     )
     const totalInserted = insertedCounts.reduce((a, b) => a + b, 0)
-    // Clear cache for Song API
-    if (totalInserted > 0)
-      await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
+    if (totalInserted > 0) await clearSongCache('', true)
 
     return { result: 'success', inserted: totalInserted }
   },

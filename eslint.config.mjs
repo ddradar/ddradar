@@ -13,5 +13,15 @@ export default withNuxt(
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
     },
+  },
+  {
+    files: ['**/*.vue'],
+    rules: {
+      'vue/block-order': [
+        'error',
+        { order: ['spec', 'script', 'template', 'style'] },
+      ],
+      'vue/no-empty-component-block': 'error',
+    },
   }
 )

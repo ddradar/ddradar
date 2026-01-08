@@ -8,14 +8,14 @@ import {
   uniqueIndex,
 } from 'drizzle-orm/sqlite-core'
 
-import type { ClearLamp, FlareRank } from '~~/shared/schemas/score'
+import type { ClearLamp, FlareRank } from '#shared/schemas/score'
 import type {
   NameIndex,
   SeriesCategory,
   SeriesFolder,
-} from '~~/shared/schemas/song'
-import type { Difficulty, PlayStyle } from '~~/shared/schemas/step-chart'
-import type { Area } from '~~/shared/schemas/user'
+} from '#shared/schemas/song'
+import type { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
+import type { Area } from '#shared/schemas/user'
 
 const timestamps = {
   createdAt: int({ mode: 'timestamp' })

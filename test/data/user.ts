@@ -23,3 +23,10 @@ export const sessionUser: SessionUser = {
   displayName: 'Auth User',
   avatarUrl: 'https://example.com/avatar.png',
 }
+
+export const apiToken: StoredApiToken = {
+  name: 'Test Token',
+  hashedToken: 'hashedtoken123',
+  createdAt: '2024-01-01T00:00:00.000Z',
+  expiresAt: '2024-12-31T23:59:59.999Z',
+}

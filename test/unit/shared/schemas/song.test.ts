@@ -5,7 +5,7 @@ import {
   getSeriesCategory,
   NameIndex,
   songSchema,
-} from '~~/shared/schemas/song'
+} from '#shared/schemas/song'
 import { notValidObject } from '~~/test/data/schema'
 import { testSongData } from '~~/test/data/song'
 

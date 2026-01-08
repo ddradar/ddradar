@@ -1,7 +1,7 @@
 import type { charts, TimestampColumn } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import { getEnumKey } from '~~/shared/utils'
+import { getEnumKey } from '#shared/utils'
 
 /** Enum object for `playStyle` */
 export const PlayStyle = {

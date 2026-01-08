@@ -6,15 +6,15 @@ import {
   danceLevels,
   FlareRank,
   scoreRecordSchema,
-} from '~~/shared/schemas/score'
-import { songSchema } from '~~/shared/schemas/song'
+} from '#shared/schemas/score'
+import { songSchema } from '#shared/schemas/song'
 import {
   Difficulty,
   PlayStyle,
   stepChartSchema,
-} from '~~/shared/schemas/step-chart'
-import { userSchema } from '~~/shared/schemas/user'
-import { range } from '~~/shared/utils'
+} from '#shared/schemas/step-chart'
+import { userSchema } from '#shared/schemas/user'
+import { range } from '#shared/utils'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(userSchema, { id: true })

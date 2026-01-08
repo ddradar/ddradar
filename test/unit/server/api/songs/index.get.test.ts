@@ -1,5 +1,6 @@
 import { and, eq, exists } from 'drizzle-orm'
 import type { H3Event } from 'h3'
+import { songs } from 'hub:db:schema'
 import {
   afterAll,
   beforeAll,
@@ -10,8 +11,8 @@ import {
   vi,
 } from 'vitest'
 
+import { seriesList } from '#shared/schemas/song'
 import { handler } from '~~/server/api/songs/index.get'
-import { seriesList } from '~~/shared/schemas/song'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 
@@ -56,11 +57,11 @@ describe('GET /api/songs', () => {
     ['style=3', []],
     ['level=0', []],
     ['level=21', []],
-    ['name=0', [eq(schema.songs.nameIndex, 0)]],
-    ['series=0', [eq(schema.songs.series, seriesList[0])]],
+    ['name=0', [eq(songs.nameIndex, 0)]],
+    ['series=0', [eq(songs.series, seriesList[0]!)]],
     [
       'name=10&series=10',
-      [eq(schema.songs.nameIndex, 10), eq(schema.songs.series, seriesList[10])],
+      [eq(songs.nameIndex, 10), eq(songs.series, seriesList[10]!)],
     ],
   ])(
     '(query: "%s") filters by expected conditions without including charts',
@@ -87,12 +88,12 @@ describe('GET /api/songs', () => {
     [
       'name=10&series=10&style=1&level=10',
       [
-        eq(schema.songs.nameIndex, 10),
-        eq(schema.songs.series, seriesList[10]),
+        eq(songs.nameIndex, 10),
+        eq(songs.series, seriesList[10]!),
         exists(expect.anything()),
       ],
     ],
-    ['series=14&includeCharts=true', [eq(schema.songs.series, seriesList[14])]],
+    ['series=14&includeCharts=true', [eq(songs.series, seriesList[14]!)]],
   ])(
     '(query: "%s") filters by expected conditions with including charts',
     async (query, conditions) => {

@@ -1,3 +1,15 @@
+<script setup lang="ts">
+const { user, clear } = useUserSession()
+const displayName = computed(
+  () => `${user.value?.displayName}${user.value?.id ? '' : ' (未登録)'}`
+)
+
+async function logout() {
+  await clear()
+  navigateTo('/')
+}
+</script>
+
 <template>
   <UHeader>
     <template #title>
@@ -7,9 +19,14 @@
       <AuthState>
         <template #default="{ loggedIn }">
           <template v-if="loggedIn">
-            <UAvatar :src="user?.avatarUrl" />
-            {{ displayName }}
-            <UButton @click="logout">Logout</UButton>
+            <div class="flex items-center gap-3">
+              <UButton to="/profile" variant="ghost" icon="i-lucide-user">
+                プロフィール
+              </UButton>
+              <UAvatar :src="user?.avatarUrl" />
+              <span>{{ displayName }}</span>
+              <UButton @click="logout"> ログアウト </UButton>
+            </div>
           </template>
           <UModal v-else>
             <UButton>Login</UButton>
@@ -24,15 +41,3 @@
     </template>
   </UHeader>
 </template>
-
-<script setup lang="ts">
-const { user, clear } = useUserSession()
-const displayName = computed(
-  () => `${user.value?.displayName}${user.value?.id ? '' : ' (未登録)'}`
-)
-
-async function logout() {
-  await clear()
-  navigateTo('/')
-}
-</script>

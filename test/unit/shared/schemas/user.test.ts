@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest'
 
-import { Area, getNarrowedArea, userSchema } from '~~/shared/schemas/user'
+import { Area, getNarrowedArea, userSchema } from '#shared/schemas/user'
 import { notValidObject } from '~~/test/data/schema'
 
 describe('/shared/schemas/user', () => {

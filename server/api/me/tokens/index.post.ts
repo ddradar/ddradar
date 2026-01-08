@@ -1,6 +1,8 @@
 import { nanoid } from 'nanoid'
 import * as z from 'zod/mini'
 
+import { apiTokenSchema } from '#shared/schemas/user'
+
 /** Schema for runtimeConfig */
 const _runtimeConfigSchema = z.catch(
   z.object({
@@ -15,10 +17,7 @@ function generateToken(): string {
   // Generate 32-byte random token (base64url encoded)
   const bytes = new Uint8Array(32)
   crypto.getRandomValues(bytes)
-  return btoa(String.fromCharCode(...bytes))
-    .replace(/\+/g, '-')
-    .replace(/\//g, '_')
-    .replace(/=/g, '')
+  return Buffer.from(bytes).toString('base64url')
 }
 
 /** Hash token using SHA-256 */
@@ -30,7 +29,7 @@ async function hashToken(token: string): Promise<string> {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
-export default eventHandler(async event => {
+export default defineEventHandler(async event => {
   const { maxExpirationDays, maxCreationPerUser } = _runtimeConfigSchema.parse(
     useRuntimeConfig(event).public.token
   )
@@ -46,6 +45,7 @@ export default eventHandler(async event => {
 
   const now = Date.now()
   const expiresAtMs = new Date(body.expiresAt).getTime()
+  /* v8 ignore if -- @preserve */
   if (Number.isNaN(expiresAtMs)) {
     throw createError({
       statusCode: 400,

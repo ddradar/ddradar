@@ -1,24 +1,27 @@
+import { charts, songs } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
-import { songSchema } from '~~/shared/schemas/song'
-import { stepChartSchema } from '~~/shared/schemas/step-chart'
+import { songSchema } from '#shared/schemas/song'
+import { stepChartSchema } from '#shared/schemas/step-chart'
 
 /** Schema for request body */
 const _bodySchema = z.extend(songSchema, {
   charts: z.array(stepChartSchema),
-  deletedAt: z.optional(z.date()),
+  deletedAt: z.optional(z.iso.datetime()),
 })
 
-export default eventHandler(async event => {
+export default defineEventHandler(async event => {
   const user = await requireAuthenticatedUser(event)
   if (!user.roles.includes('admin'))
     throw createError({ statusCode: 403, statusMessage: 'Forbidden' })
 
   const body = await readValidatedBody(event, _bodySchema.parse)
-  await Promise.all([
-    db
-      .insert(schema.songs)
+
+  const deletedAt = body.deletedAt ? new Date(body.deletedAt) : null
+  const database = db
+  await database.batch([
+    database
+      .insert(songs)
       .values({
         id: body.id,
         name: body.name,
@@ -26,22 +29,22 @@ export default eventHandler(async event => {
         artist: body.artist,
         bpm: body.bpm,
         series: body.series,
-        deletedAt: body.deletedAt,
+        deletedAt,
       })
       .onConflictDoUpdate({
-        target: schema.songs.id,
+        target: songs.id,
         set: {
           name: body.name,
           nameKana: body.nameKana,
           artist: body.artist,
           bpm: body.bpm,
           series: body.series,
-          deletedAt: body.deletedAt,
+          deletedAt,
         },
       }),
     ...body.charts.map(chart =>
-      db
-        .insert(schema.charts)
+      database
+        .insert(charts)
         .values({
           id: body.id,
           playStyle: chart.playStyle,
@@ -52,14 +55,10 @@ export default eventHandler(async event => {
           freezes: chart.freezes,
           shocks: chart.shocks,
           radar: chart.radar,
-          deletedAt: body.deletedAt,
+          deletedAt,
         })
         .onConflictDoUpdate({
-          target: [
-            schema.charts.id,
-            schema.charts.playStyle,
-            schema.charts.difficulty,
-          ],
+          target: [charts.id, charts.playStyle, charts.difficulty],
           set: {
             bpm: chart.bpm,
             level: chart.level,
@@ -67,15 +66,13 @@ export default eventHandler(async event => {
             freezes: chart.freezes,
             shocks: chart.shocks,
             radar: chart.radar,
-            deletedAt: body.deletedAt,
+            deletedAt,
           },
         })
     ),
   ])
 
-  // Clear cache for Song API
-  await useStorage('cache').removeItem(`nitro:functions:songs:${body.id}.json`)
-  await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
+  await clearSongCache(body.id)
 
   return body
 })
@@ -107,9 +104,10 @@ defineRouteMeta({
               series: { $ref: '#/components/schemas/Song/properties/series' },
               charts: { $ref: '#/components/schemas/Song/properties/charts' },
               deletedAt: {
-                type: ['number', 'null'],
+                type: ['string', 'null'],
+                format: 'date-time',
                 description:
-                  'Deletion UNIX timestamp. Set to null for active songs.',
+                  'Deletion ISO 8601 timestamp. Set to null for active songs.',
               },
             },
             required: ['id', 'name', 'nameKana', 'artist', 'series', 'charts'],

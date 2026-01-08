@@ -1,4 +1,5 @@
 import { and, eq, or, sql } from 'drizzle-orm'
+import { users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 /** Schema for query parameters */
@@ -27,11 +28,11 @@ export default defineEventHandler(async event => {
   const conditions = [
     user
       ? or(
-          eq(schema.users.isPublic, true),
+          eq(users.isPublic, true),
           // Logged-in user can access their own data regardless of `isPublic`
-          eq(schema.users.id, user.id)
+          eq(users.id, user.id)
         )
-      : eq(schema.users.isPublic, true),
+      : eq(users.isPublic, true),
   ]
   if (query.name) {
     const esc = '\\'
@@ -39,14 +40,10 @@ export default defineEventHandler(async event => {
       .replaceAll(esc, `${esc}${esc}`)
       .replaceAll('%', `${esc}%`)
       .replaceAll('_', `${esc}_`)
-    conditions.push(
-      sql`${schema.users.name} LIKE ${`%${escapedName}%`} ESCAPE ${esc}`
-    )
+    conditions.push(sql`${users.name} LIKE ${`%${escapedName}%`} ESCAPE ${esc}`)
   }
-  if (query.area !== undefined)
-    conditions.push(eq(schema.users.area, query.area))
-  if (query.code !== undefined)
-    conditions.push(eq(schema.users.ddrCode, query.code))
+  if (query.area !== undefined) conditions.push(eq(users.area, query.area))
+  if (query.code !== undefined) conditions.push(eq(users.ddrCode, query.code))
 
   const result: UserInfo[] = await db.query.users.findMany({
     columns: {

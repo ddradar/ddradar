@@ -1,5 +1,5 @@
 // Handle CORS preflight for /api/** routes
-export default eventHandler(event => {
+export default defineEventHandler(event => {
   setResponseStatus(event, 204)
 })
 

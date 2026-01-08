@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'vitest'
 
-import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
+import { ClearLamp, FlareRank } from '#shared/schemas/score'
 import {
   calcFlareSkill,
   fillScoreRecordFromChart,
   hasNotesInfo,
   ValidateScoreRecord,
-} from '~~/shared/utils/score'
+} from '#shared/utils/score'
 
 describe('/shared/utils/score', () => {
   describe('hasNotesInfo', () => {

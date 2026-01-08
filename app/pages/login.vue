@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import AppLoginForm from '~/components/app/LoginForm.vue'
+</script>
+
 <template>
   <UPage>
     <UContainer class="min-w-100">

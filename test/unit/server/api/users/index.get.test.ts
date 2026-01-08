@@ -1,5 +1,6 @@
 import { and, eq, or, sql } from 'drizzle-orm'
 import type { H3Event } from 'h3'
+import { users } from 'hub:db:schema'
 import {
   afterAll,
   beforeAll,
@@ -45,40 +46,37 @@ describe('GET /api/users', () => {
   })
 
   test.each([
-    ['', [eq(schema.users.isPublic, true)]],
+    ['', [eq(users.isPublic, true)]],
     [
       'name=Test',
       [
-        eq(schema.users.isPublic, true),
-        sql`${schema.users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
+        eq(users.isPublic, true),
+        sql`${users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
       ],
     ],
     [
       'name=Test%25%5F',
       [
-        eq(schema.users.isPublic, true),
-        sql`${schema.users.name} LIKE ${`%Test\\%\\_%`} ESCAPE ${'\\'}`,
+        eq(users.isPublic, true),
+        sql`${users.name} LIKE ${`%Test\\%\\_%`} ESCAPE ${'\\'}`,
       ],
     ],
-    ['area=13', [eq(schema.users.isPublic, true), eq(schema.users.area, 13)]],
-    [
-      'code=10000000',
-      [eq(schema.users.isPublic, true), eq(schema.users.ddrCode, 10000000)],
-    ],
+    ['area=13', [eq(users.isPublic, true), eq(users.area, 13)]],
+    ['code=10000000', [eq(users.isPublic, true), eq(users.ddrCode, 10000000)]],
     [
       'name=Test&area=13&code=10000000',
       [
-        eq(schema.users.isPublic, true),
-        sql`${schema.users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
-        eq(schema.users.area, 13),
-        eq(schema.users.ddrCode, 10000000),
+        eq(users.isPublic, true),
+        sql`${users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
+        eq(users.area, 13),
+        eq(users.ddrCode, 10000000),
       ],
     ],
     // invalid parameters
-    ['area=-1', [eq(schema.users.isPublic, true)]],
-    ['area=119', [eq(schema.users.isPublic, true)]],
-    ['code=9999999', [eq(schema.users.isPublic, true)]],
-    ['code=100000000', [eq(schema.users.isPublic, true)]],
+    ['area=-1', [eq(users.isPublic, true)]],
+    ['area=119', [eq(users.isPublic, true)]],
+    ['code=9999999', [eq(users.isPublic, true)]],
+    ['code=100000000', [eq(users.isPublic, true)]],
   ])(
     '(query: "%s") filters by expected conditions (without session)',
     async (query, conditions) => {
@@ -100,23 +98,12 @@ describe('GET /api/users', () => {
   )
 
   test.each([
-    [
-      '',
-      [
-        or(
-          eq(schema.users.isPublic, true),
-          eq(schema.users.id, privateUser.id)
-        ),
-      ],
-    ],
+    ['', [or(eq(users.isPublic, true), eq(users.id, privateUser.id))]],
     [
       'name=Test',
       [
-        or(
-          eq(schema.users.isPublic, true),
-          eq(schema.users.id, privateUser.id)
-        ),
-        sql`${schema.users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
+        or(eq(users.isPublic, true), eq(users.id, privateUser.id)),
+        sql`${users.name} LIKE ${`%Test%`} ESCAPE ${'\\'}`,
       ],
     ],
   ])(

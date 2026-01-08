@@ -5,7 +5,7 @@ import {
   FlareRank,
   getDanceLevel,
   scoreRecordSchema,
-} from '~~/shared/schemas/score'
+} from '#shared/schemas/score'
 import { notValidObject } from '~~/test/data/schema'
 
 describe('/shared/schemas/score', () => {

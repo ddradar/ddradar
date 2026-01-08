@@ -1,4 +1,4 @@
-export default eventHandler(async event => {
+export default defineEventHandler(async event => {
   // Require user session with registered user ID (not allow token-authenticated)
   const user = await requireAuthenticatedUserFromSession(event)
 
@@ -6,13 +6,14 @@ export default eventHandler(async event => {
   const tokenKeys = await kv.keys(`user:${user.id}:token`)
 
   // Fetch all token details
-  const tokens = await Promise.all<ApiToken | null>(
+  const tokens = await Promise.all(
     tokenKeys.map(async key => {
       const tokenData = await kv.get<StoredApiToken>(key)
 
       if (!tokenData) return null
 
       const tokenId = key.split(':').pop() || ''
+      /* v8 ignore if -- @preserve */
       if (!tokenId) return null
 
       // Return without hashedToken
@@ -21,7 +22,7 @@ export default eventHandler(async event => {
         name: tokenData.name,
         createdAt: tokenData.createdAt,
         expiresAt: tokenData.expiresAt,
-      }
+      } satisfies ApiToken
     })
   )
   return tokens.filter(Boolean) as ApiToken[]

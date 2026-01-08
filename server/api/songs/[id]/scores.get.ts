@@ -1,13 +1,13 @@
 import { asc, desc, type Operators, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { songSchema } from '~~/shared/schemas/song'
+import { songSchema } from '#shared/schemas/song'
 import {
   Difficulty,
   PlayStyle,
   stepChartSchema,
-} from '~~/shared/schemas/step-chart'
-import { range } from '~~/shared/utils'
+} from '#shared/schemas/step-chart'
+import { range } from '#shared/utils'
 
 /** Schema for router params */
 const _paramsSchema = z.pick(songSchema, { id: true })

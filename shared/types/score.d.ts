@@ -2,7 +2,7 @@ import type {
   danceLevels,
   scoreRecordInputSchema,
   scoreRecordSchema,
-} from '~~/shared/schemas/score'
+} from '#shared/schemas/score'
 
 export type DanceLevel = (typeof danceLevels)[number]
 

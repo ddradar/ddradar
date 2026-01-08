@@ -1,18 +1,11 @@
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
 import { Window } from 'happy-dom'
+import { charts } from 'hub:db:schema'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
 
-import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
-import {
-  chartEquals,
-  Difficulty,
-  PlayStyle,
-} from '~~/shared/schemas/step-chart'
-import {
-  scrapeGrooveRadar,
-  scrapeSongNotes,
-} from '~~/shared/scrapes/bemani-wiki'
+import { chartEquals, Difficulty, PlayStyle } from '#shared/schemas/step-chart'
+import { scrapeGrooveRadar, scrapeSongNotes } from '#shared/scrapes/bemani-wiki'
 
 type PartialStepChart = Omit<
   StepChart,
@@ -118,12 +111,13 @@ export default defineTask({
           radar: true,
         },
         with: { song: { columns: { id: true, name: true } } },
-        where: or(
-          isNull(schema.charts.notes),
-          isNull(schema.charts.freezes),
-          isNull(schema.charts.shocks),
-          isNull(schema.charts.radar)
-        ),
+        where: (charts, { isNull, or }) =>
+          or(
+            isNull(charts.notes),
+            isNull(charts.freezes),
+            isNull(charts.shocks),
+            isNull(charts.radar)
+          ),
       })
       .then(charts =>
         charts.reduce(
@@ -167,7 +161,7 @@ export default defineTask({
         if (!wikiChart) continue
 
         const res = await db
-          .update(schema.charts)
+          .update(charts)
           .set({
             notes: wikiChart.notes,
             freezes: wikiChart.freezes,
@@ -177,36 +171,25 @@ export default defineTask({
           })
           .where(
             and(
-              eq(schema.charts.id, targetSong.id),
-              eq(schema.charts.playStyle, chart.playStyle),
-              eq(schema.charts.difficulty, chart.difficulty),
+              eq(charts.id, targetSong.id),
+              eq(charts.playStyle, chart.playStyle),
+              eq(charts.difficulty, chart.difficulty),
               or(
-                wikiChart.notes != null
-                  ? isNull(schema.charts.notes)
-                  : sql`1 = 2`,
-                wikiChart.freezes != null
-                  ? isNull(schema.charts.freezes)
-                  : sql`1 = 2`,
-                wikiChart.shocks != null
-                  ? isNull(schema.charts.shocks)
-                  : sql`1 = 2`,
-                wikiChart.radar != null
-                  ? isNull(schema.charts.radar)
-                  : sql`1 = 2`
+                wikiChart.notes != null ? isNull(charts.notes) : sql`1 = 2`,
+                wikiChart.freezes != null ? isNull(charts.freezes) : sql`1 = 2`,
+                wikiChart.shocks != null ? isNull(charts.shocks) : sql`1 = 2`,
+                wikiChart.radar != null ? isNull(charts.radar) : sql`1 = 2`
               )
             )
           )
           .returning({
-            id: schema.charts.id,
-            playStyle: schema.charts.playStyle,
-            difficulty: schema.charts.difficulty,
+            id: charts.id,
+            playStyle: charts.playStyle,
+            difficulty: charts.difficulty,
           })
 
         if (res.length === 0) continue // No actual update
-        // Clear cache for Song API
-        await useStorage('cache').removeItem(
-          `nitro:functions:songs:${targetSong.id}.json`
-        )
+        await clearSongCache(targetSong.id, false)
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
@@ -215,9 +198,7 @@ export default defineTask({
       }
       if (updatedSongs) updated.songs++
     }
-    // Clear cache for Song API
-    if (updated.charts > 0)
-      await useStorage('cache').removeItem(`nitro:handler:${getSongListKey}`)
+    if (updated.charts > 0) await clearSongCache('', true)
     console.log(
       `Updated ${updated.charts} charts across ${updated.songs} songs.`
     )

@@ -7,6 +7,40 @@ export const ignoreTimestampCols = {
 } as const
 
 /**
+ * Get song info from database.
+ * @summary Use `getCachedSongInfo` instead. This function is only for internal use.
+ * @param id Song ID
+ * @returns Song info or undefined if not found
+ * @private
+ */
+export async function __getSongInfo(id: string): Promise<SongInfo | undefined> {
+  const song: SongInfo | undefined = await db.query.songs.findFirst({
+    columns: { ...ignoreTimestampCols },
+    with: {
+      charts: { columns: { id: false, ...ignoreTimestampCols } },
+    },
+    where: (songs, { and, eq, isNull }) =>
+      and(eq(songs.id, id), isNull(songs.deletedAt)),
+  })
+  return song
+}
+
+/**
+ * Get user info from database.
+ * @summary Use `getCachedUser` instead. This function is only for internal use.
+ * @param id User ID
+ * @returns User info or undefined if not found
+ */
+export async function __getUser(id: string): Promise<UserInfo | undefined> {
+  const user: UserInfo | undefined = await db.query.users.findFirst({
+    columns: { ...ignoreTimestampCols, provider: false, providerId: false },
+    where: (users, { and, isNull, eq }) =>
+      and(eq(users.id, id), isNull(users.deletedAt)),
+  })
+  return user
+}
+
+/**
  * Get login user by provider and providerId
  * @param provider OAuth provider name
  * @param providerId User ID on the OAuth provider

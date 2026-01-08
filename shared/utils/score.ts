@@ -3,8 +3,8 @@ import {
   ClearLamp,
   FlareRank,
   getDanceLevel,
-} from '~~/shared/schemas/score'
-import { stepChartSchema } from '~~/shared/schemas/step-chart'
+} from '#shared/schemas/score'
+import { stepChartSchema } from '#shared/schemas/step-chart'
 
 type StepChartWithNotes = NonNullableProps<
   Pick<StepChart, 'notes' | 'freezes' | 'shocks'>

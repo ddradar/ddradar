@@ -1,12 +1,14 @@
 import * as z from 'zod/mini'
 
+import { apiTokenSchema } from '#shared/schemas/user'
+
 /** Schema for runtimeConfig */
 const _runtimeConfigSchema = z.catch(
   z.object({ maxExpirationDays: z.coerce.number() }),
   { maxExpirationDays: 365 }
 )
 
-export default eventHandler(async event => {
+export default defineEventHandler(async event => {
   const { maxExpirationDays } = _runtimeConfigSchema.parse(
     useRuntimeConfig(event).public.token
   )
@@ -26,6 +28,7 @@ export default eventHandler(async event => {
 
   const now = Date.now()
   const expiresAtMs = new Date(body.expiresAt).getTime()
+  /* v8 ignore if -- @preserve */
   if (Number.isNaN(expiresAtMs)) {
     throw createError({
       statusCode: 400,

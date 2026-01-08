@@ -1,11 +1,9 @@
+import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
-import {
-  scoreRecordKeySchema,
-  scoreRecordSchema,
-} from '~~/shared/schemas/score'
-import { chartEquals } from '~~/shared/schemas/step-chart'
-import { ValidateScoreRecord } from '~~/shared/utils/score'
+import { scoreRecordKeySchema, scoreRecordSchema } from '#shared/schemas/score'
+import { chartEquals } from '#shared/schemas/step-chart'
+import { ValidateScoreRecord } from '#shared/utils/score'
 
 /** Schema for router params */
 const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
@@ -38,25 +36,25 @@ export default defineEventHandler(async event => {
   // Upsert score record
   const row = { ...params, userId, ...body, deletedAt: null }
   const [saved] = await db
-    .insert(schema.scores)
+    .insert(scores)
     .values(row)
     .onConflictDoUpdate({
       target: [
-        schema.scores.songId,
-        schema.scores.playStyle,
-        schema.scores.difficulty,
-        schema.scores.userId,
+        scores.songId,
+        scores.playStyle,
+        scores.difficulty,
+        scores.userId,
       ],
       set: { ...row, updatedAt: new Date() },
     })
     .returning({
-      normalScore: schema.scores.normalScore,
-      exScore: schema.scores.exScore,
-      maxCombo: schema.scores.maxCombo,
-      clearLamp: schema.scores.clearLamp,
-      rank: schema.scores.rank,
-      flareRank: schema.scores.flareRank,
-      flareSkill: schema.scores.flareSkill,
+      normalScore: scores.normalScore,
+      exScore: scores.exScore,
+      maxCombo: scores.maxCombo,
+      clearLamp: scores.clearLamp,
+      rank: scores.rank,
+      flareRank: scores.flareRank,
+      flareSkill: scores.flareSkill,
     })
   return saved
 })

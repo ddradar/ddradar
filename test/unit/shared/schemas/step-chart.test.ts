@@ -7,7 +7,7 @@ import {
   getChartName,
   PlayStyle,
   stepChartSchema,
-} from '~~/shared/schemas/step-chart'
+} from '#shared/schemas/step-chart'
 import { notValidObject } from '~~/test/data/schema'
 
 describe('/shared/schemas/step-chart', () => {
