@@ -74,7 +74,7 @@ describe('GET /api/songs', () => {
       const result = await handler(event)
 
       // Assert
-      expect(result).toEqual(mockData)
+      expect(result).toStrictEqual(mockData)
       expect(findMany).toHaveBeenCalledTimes(1)
       const arg = findMany.mock.calls[0]?.[0]
       expect(arg?.where).toStrictEqual(and(...conditions))
@@ -105,7 +105,7 @@ describe('GET /api/songs', () => {
       const result = await handler(event)
 
       // Assert
-      expect(result).toEqual(mockData)
+      expect(result).toStrictEqual(mockData)
       expect(findMany).toHaveBeenCalledTimes(1)
       const arg = findMany.mock.calls[0]?.[0]
       expect(arg?.where).toStrictEqual(and(...conditions))

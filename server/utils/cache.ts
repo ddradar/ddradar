@@ -36,7 +36,7 @@ export const clearSongCache = async (songId: string, clearListCache = true) => {
  * @returns User info or undefined if not found
  */
 export const getCachedUser = defineCachedFunction(
-  async (_: never, userId: string) => __getUser(userId),
+  async (_: unknown, userId: string) => __getUser(userId),
   {
     maxAge: 60 * 60 * 24, // 24 hour
     name: 'users',

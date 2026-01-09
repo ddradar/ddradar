@@ -1,4 +1,4 @@
-export const testStepCharts: StepChart[] = [
+export const testStepCharts = [
   {
     playStyle: 1,
     difficulty: 0,
@@ -17,17 +17,12 @@ export const testStepCharts: StepChart[] = [
     notes: 264,
     freezes: 0,
     shocks: 0,
-    radar: { stream: 56, voltage: 44, air: 18, freeze: 0, chaos: 4 },
   },
   {
     playStyle: 1,
     difficulty: 2,
     bpm: [170, 184, 184],
     level: 9,
-    notes: 275,
-    freezes: 0,
-    shocks: 0,
-    radar: { stream: 58, voltage: 52, air: 49, freeze: 0, chaos: 6 },
   },
   {
     playStyle: 1,
@@ -69,4 +64,4 @@ export const testStepCharts: StepChart[] = [
     shocks: 0,
     radar: { stream: 81, voltage: 60, air: 60, freeze: 0, chaos: 31 },
   },
-]
+] as const satisfies StepChart[]

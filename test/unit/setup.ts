@@ -27,8 +27,17 @@ vi.stubGlobal('useRuntimeConfig', vi.fn<typeof useRuntimeConfig>())
 vi.stubGlobal('db', {
   batch: vi.fn<typeof db.batch>(),
   insert: vi.fn(() => ({
-    values: vi.fn(() => ({ onConflictDoUpdate: vi.fn() })),
+    values: vi.fn(() => ({
+      onConflictDoUpdate: vi.fn(() => ({ returning: vi.fn() })),
+    })),
   })),
+  update: vi.fn(),
+  query: {
+    songs: { findFirst: vi.fn(), findMany: vi.fn() },
+    charts: { findFirst: vi.fn(), findMany: vi.fn() },
+    scores: { findFirst: vi.fn(), findMany: vi.fn() },
+    users: { findFirst: vi.fn(), findMany: vi.fn() },
+  },
 })
 vi.stubGlobal('kv', {
   get: vi.fn<typeof kv.get>(),

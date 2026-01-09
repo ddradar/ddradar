@@ -28,7 +28,10 @@ describe('/shared/utils/score', () => {
   describe('calcFlareSkill', () => {
     test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
       `(%d, 0) throws error`,
-      d => expect(() => calcFlareSkill(d, FlareRank.None)).toThrow()
+      d =>
+        expect(() => calcFlareSkill(d, FlareRank.None)).toThrowError(
+          /"Invalid input"/
+        )
     )
     test.each([
       [1, FlareRank.None, 145],
@@ -157,7 +160,7 @@ describe('/shared/utils/score', () => {
     )
   })
 
-  describe('setValidScoreFromChart', () => {
+  describe('fillScoreRecordFromChart', () => {
     const chart = { notes: 1000, freezes: 10, shocks: 10 }
 
     const mfcScore: ScoreRecord = {
@@ -415,15 +418,13 @@ describe('/shared/utils/score', () => {
           flareSkill: null,
         },
       ], // 0 point clear (FLARE I Clear)
-    ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(
+      [{ exScore: 800 }, { exScore: 800 }], // Cannot guess anything
+    ] satisfies [Partial<ScoreRecord>, Partial<ScoreRecord>][])(
       '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
-      (score: Partial<ScoreRecord>, expected: ScoreRecord) =>
+      (score: Partial<ScoreRecord>, expected: Partial<ScoreRecord>) =>
         expect(fillScoreRecordFromChart(chart, score)).toStrictEqual(expected)
     )
-    test('({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, { exScore: 800 }) throws error', () =>
-      expect(() => fillScoreRecordFromChart(chart, { exScore: 800 })).toThrow(
-        /^Cannot guess Score object. set normalScore property/
-      ))
+
     test.each([
       [
         { normalScore: 993100, clearLamp: ClearLamp.GFC },

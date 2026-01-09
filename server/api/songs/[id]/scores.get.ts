@@ -1,4 +1,15 @@
-import { asc, desc, type Operators, sql } from 'drizzle-orm'
+import {
+  and,
+  asc,
+  desc,
+  eq,
+  inArray,
+  isNotNull,
+  isNull,
+  or,
+  sql,
+} from 'drizzle-orm'
+import { scores, users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
@@ -7,10 +18,7 @@ import {
   PlayStyle,
   stepChartSchema,
 } from '#shared/schemas/step-chart'
-import { range } from '#shared/utils'
-
-/** Schema for router params */
-const _paramsSchema = z.pick(songSchema, { id: true })
+import { range, singleOrArray } from '#shared/utils'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
@@ -51,73 +59,68 @@ const _querySchema = z.object({
   offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
 })
 
-export default defineEventHandler(
-  async (event): Promise<Pagenation<ScoreSearchResult>> => {
-    const currentUser = await getAuthenticatedUser(event)
-    const { id: songId } = await getValidatedRouterParams(
-      event,
-      _paramsSchema.parse
-    )
-    const query = await getValidatedQuery(event, _querySchema.parse)
+export default defineEventHandler(async event => {
+  const currentUser = await getAuthenticatedUser(event)
+  const { id: songId } = await getValidatedRouterParams(
+    event,
+    z.pick(songSchema, { id: true }).parse
+  )
+  const query = await getValidatedQuery(event, _querySchema.parse)
 
-    const song = await getCachedSongInfo(event, songId)
-    if (!song)
-      throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  const song = await getCachedSongInfo(event, songId)
+  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
 
-    // @ts-expect-error - cannot infer type properly
-    const items: Omit<ScoreSearchResult, 'song'>[] =
-      await db.query.scores.findMany({
-        columns: {
-          normalScore: true,
-          exScore: true,
-          maxCombo: true,
-          clearLamp: true,
-          rank: true,
-          flareRank: true,
-          flareSkill: true,
-          updatedAt: true,
+  // @ts-expect-error - cannot infer type properly
+  const items: Omit<ScoreSearchResult, 'song'>[] =
+    await db.query.scores.findMany({
+      columns: {
+        normalScore: true,
+        exScore: true,
+        maxCombo: true,
+        clearLamp: true,
+        rank: true,
+        flareRank: true,
+        flareSkill: true,
+        updatedAt: true,
+      },
+      where: and(
+        eq(scores.songId, song.id),
+        inArray(scores.playStyle, [query.style].flat()),
+        inArray(scores.difficulty, [query.diff].flat()),
+        isNotNull(sql`user`), // User is public or is current user
+        isNull(scores.deletedAt)
+      ),
+      with: {
+        chart: {
+          columns: { playStyle: true, difficulty: true, level: true },
         },
-        where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
-          and(
-            eq(scores.songId, song.id),
-            inArray(scores.playStyle, [query.style].flat()),
-            inArray(scores.difficulty, [query.diff].flat()),
-            isNotNull(sql`user`), // User is public or is current user
-            isNull(scores.deletedAt)
+        user: {
+          columns: { id: true, name: true, area: true },
+          where: or(
+            eq(users.isPublic, true),
+            eq(users.id, currentUser?.id ?? '')
           ),
-        with: {
-          chart: {
-            columns: { playStyle: true, difficulty: true, level: true },
-          },
-          user: {
-            columns: { id: true, name: true, area: true },
-            where: (users: typeof schema.users, { eq, or }: Operators) =>
-              or(eq(users.isPublic, true), eq(users.id, currentUser?.id ?? '')),
-          },
         },
-        orderBy: [
-          desc(schema.scores.normalScore),
-          asc(schema.scores.updatedAt),
-        ],
-        offset: query.offset,
-        limit: query.limit + 1, // Fetch one extra to check if there are more
-      })
-
-    const hasMore = items.length > query.limit
-    const result = items.slice(0, query.limit).map(item => ({
-      ...item,
-      song: { id: song.id, name: song.name, artist: song.artist },
-    }))
-
-    return {
-      items: result,
-      limit: query.limit,
+      },
+      orderBy: [desc(scores.normalScore), asc(scores.updatedAt)],
       offset: query.offset,
-      nextOffset: hasMore ? query.offset + query.limit : null,
-      hasMore,
-    }
-  }
-)
+      limit: query.limit + 1, // Fetch one extra to check if there are more
+    })
+
+  const hasMore = items.length > query.limit
+  const result = items.slice(0, query.limit).map(item => ({
+    ...item,
+    song: { id: song.id, name: song.name, artist: song.artist },
+  }))
+
+  return {
+    items: result,
+    limit: query.limit,
+    offset: query.offset,
+    nextOffset: hasMore ? query.offset + query.limit : null,
+    hasMore,
+  } satisfies Pagenation<ScoreSearchResult>
+})
 
 // Define OpenAPI metadata
 defineRouteMeta({

@@ -53,7 +53,7 @@ describe('/shared/scrapes/eagate', () => {
       '<html>\n<div id="data_tbl" />\n</html>',
     ])('("%s") throws error', source => {
       const document = new DOMParser().parseFromString(source, 'text/html')
-      expect(() => parsePlayDataList(document)).toThrow('invalid html')
+      expect(() => parsePlayDataList(document)).toThrowError('invalid html')
     })
     test.each(['invalid_column.html', 'invalid_chart_id.html'])(
       '(%s) throws error',
@@ -63,7 +63,7 @@ describe('/shared/scrapes/eagate', () => {
         const document = new DOMParser().parseFromString(source, 'text/html')
 
         // Act - Assert
-        expect(() => parsePlayDataList(document)).toThrow('invalid html')
+        expect(() => parsePlayDataList(document)).toThrowError('invalid html')
       }
     )
 
@@ -253,7 +253,7 @@ describe('/shared/scrapes/eagate', () => {
       '<html>\n<div id="music_info" />\n</html>',
     ])('("%s") throws error', source => {
       const document = new DOMParser().parseFromString(source, 'text/html')
-      expect(() => parseScoreDetail(document)).toThrow('invalid html')
+      expect(() => parseScoreDetail(document)).toThrowError('invalid html')
     })
     test.each([
       ['invalid_header.html', 'invalid html'],
@@ -266,7 +266,7 @@ describe('/shared/scrapes/eagate', () => {
       const document = new DOMParser().parseFromString(source, 'text/html')
 
       // Act - Assert
-      expect(() => parseScoreDetail(document)).toThrow(err)
+      expect(() => parseScoreDetail(document)).toThrowError(err)
     })
     test.each([
       [

@@ -1,3 +1,4 @@
+import type { D1Response } from '@cloudflare/workers-types'
 import { and, eq, isNull } from 'drizzle-orm'
 import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
@@ -11,7 +12,7 @@ export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
   const params = await getValidatedRouterParams(event, _paramsSchema.parse)
 
-  const result = await db
+  const result: D1Response = await db
     .update(scores)
     .set({ deletedAt: new Date(), updatedAt: new Date() })
     .where(
@@ -25,7 +26,7 @@ export default defineEventHandler(async event => {
     )
     .run()
 
-  if (!result.changes)
+  if (!result.meta.changes)
     throw createError({ statusCode: 404, statusMessage: 'Not Found' })
   setResponseStatus(event, 204)
 })

@@ -127,7 +127,7 @@ export function ValidateScoreRecord(
 export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
   chart: Readonly<StepChartWithNotes>,
   partialScore: Readonly<T>
-): T & ScoreRecord {
+): T {
   const objects = chart.notes + chart.freezes + chart.shocks
   const max = {
     ...calcMaxScore(chart),
@@ -147,8 +147,7 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
     }
   }
 
-  if (partialScore.normalScore === undefined)
-    throw new Error('Cannot guess Score object. set normalScore property')
+  if (partialScore.normalScore === undefined) return { ...partialScore }
 
   const result: T & ScoreRecord = {
     exScore: null,

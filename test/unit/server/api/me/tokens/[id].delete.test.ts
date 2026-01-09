@@ -47,7 +47,7 @@ describe('DELETE /api/me/tokens/[id]', () => {
     await handler(event as H3Event)
 
     // Assert
-    expect(event.node!.res.statusCode).toBe(204)
+    expect(event.node?.res.statusCode).toBe(204)
     expect(vi.mocked(kv.get)).toHaveBeenCalledWith(
       `user:${user.id}:token:${tokenId}`
     )

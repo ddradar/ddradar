@@ -4,6 +4,7 @@ import * as z from 'zod/mini'
 import { scoreRecordKeySchema, scoreRecordSchema } from '#shared/schemas/score'
 import { chartEquals } from '#shared/schemas/step-chart'
 import { ValidateScoreRecord } from '#shared/utils/score'
+import { getReason } from '~~/server/utils/score-insert'
 
 /** Schema for router params */
 const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })

@@ -35,7 +35,7 @@ describe('GET /api/users/[id]', () => {
     const result = await handler(event)
 
     // Assert
-    expect(result).toEqual(publicUser)
+    expect(result).toStrictEqual(publicUser)
     expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
       1,
       event,
@@ -98,7 +98,7 @@ describe('GET /api/users/[id]', () => {
     const result = await handler(event)
 
     // Assert
-    expect(result).toEqual(privateUser)
+    expect(result).toStrictEqual(privateUser)
     expect(vi.mocked(getCachedUser)).toHaveBeenNthCalledWith(
       1,
       event,

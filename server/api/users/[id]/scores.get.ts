@@ -1,4 +1,5 @@
-import { desc, type Operators, sql } from 'drizzle-orm'
+import { and, desc, eq, inArray, isNotNull, isNull, sql } from 'drizzle-orm'
+import { charts, scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import {
@@ -14,10 +15,7 @@ import {
   stepChartSchema,
 } from '#shared/schemas/step-chart'
 import { userSchema } from '#shared/schemas/user'
-import { range } from '#shared/utils'
-
-/** Schema for router params */
-const _paramsSchema = z.pick(userSchema, { id: true })
+import { range, singleOrArray } from '#shared/utils'
 
 const _querySchema = z.object({
   /** Song ID */
@@ -121,7 +119,7 @@ export default defineEventHandler(
   async (event): Promise<Pagenation<ScoreSearchResult>> => {
     const { id: userId } = await getValidatedRouterParams(
       event,
-      _paramsSchema.parse
+      z.pick(userSchema, { id: true }).parse
     )
     const query = await getValidatedQuery(event, _querySchema.parse)
     const loginUser = await getAuthenticatedUser(event)
@@ -144,27 +142,25 @@ export default defineEventHandler(
           flareSkill: true,
           updatedAt: true,
         },
-        where: (scores, { and, eq, inArray, isNull, isNotNull }) =>
-          and(
-            eq(scores.userId, user.id),
-            isNull(scores.deletedAt),
-            eq(scores.songId, query.id ?? scores.songId),
-            inArray(scores.playStyle, [query.style].flat()),
-            inArray(scores.difficulty, [query.diff].flat()),
-            inArray(scores.rank, [query.rank].flat()),
-            inArray(scores.clearLamp, [query.clear].flat()),
-            inArray(scores.flareRank, [query.flare].flat()),
-            isNotNull(sql`chart`)
-          ),
+        where: and(
+          isNull(scores.deletedAt),
+          isNotNull(sql`chart`),
+          eq(scores.userId, user.id),
+          eq(scores.songId, query.id ?? scores.songId),
+          inArray(scores.playStyle, [query.style].flat()),
+          inArray(scores.difficulty, [query.diff].flat()),
+          inArray(scores.rank, [query.rank].flat()),
+          inArray(scores.clearLamp, [query.clear].flat()),
+          inArray(scores.flareRank, [query.flare].flat())
+        ),
         with: {
           song: { columns: { id: true, name: true, artist: true } },
           chart: {
             columns: { level: true },
-            where: (charts: typeof schema.charts, { inArray }: Operators) =>
-              inArray(charts.level, [query.lv].flat()),
+            where: inArray(charts.level, [query.lv].flat()),
           },
         },
-        orderBy: [desc(schema.scores.updatedAt)],
+        orderBy: [desc(scores.updatedAt)],
         offset: query.offset,
         limit: query.limit + 1, // Fetch one extra to check if there are more
       })

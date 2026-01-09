@@ -1,4 +1,4 @@
-import type { D1Result } from '@cloudflare/workers-types'
+import type { D1Response } from '@cloudflare/workers-types'
 import { isNotNull, lt, or, sql } from 'drizzle-orm'
 import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
@@ -95,7 +95,7 @@ export default defineEventHandler(async event => {
   const database = db
   // Upsert all valid scores in batches
   for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
-    const results: ReadonlyArray<D1Result> = await database.batch(
+    const results: ReadonlyArray<D1Response> = await database.batch(
       chunkScores.map(([, score]) =>
         database
           .insert(scores)

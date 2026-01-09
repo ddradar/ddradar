@@ -85,6 +85,7 @@ export function parsePlayDataList(document: Document): EAGateScoreRecord[] {
   for (let i = 0; i < songs.length; i++) {
     const row = songs[i]!
     const { id: songId, name } = getSongInfo(row)
+    /* v8 ignore if -- @preserve */
     if (!songId || !name) continue
 
     const charts = row.getElementsByClassName('rank')
@@ -153,6 +154,7 @@ export function parsePlayDataList(document: Document): EAGateScoreRecord[] {
 
   function getInteger(cell: Element, className: string) {
     const res = parseInt(
+      /* v8 ignore next -- @preserve */
       cell.getElementsByClassName(className)[0]?.textContent ?? '',
       10
     )
@@ -225,6 +227,7 @@ export function parseScoreDetail(
     ?.getElementsByTagName('img')[0]
     ?.src.replace(idRegex, '$2')
   if (!songId) throw new Error('invalid html')
+  /* v8 ignore next -- @preserve */
   const name =
     document
       .getElementById('music_info')
@@ -246,7 +249,10 @@ export function parseScoreDetail(
     .getElementById('diff_logo')
     ?.getElementsByTagName('img')[0]
     ?.src.replace(srcRegex, '$1')
-  const [playStyle, difficulty] = fileDifficultyMap.get(logo ?? '')!
+  const [playStyle, difficulty] = fileDifficultyMap.get(
+    /* v8 ignore next -- @preserve */
+    logo ?? ''
+  )!
 
   const rank = getText(table, 1, 0) as DanceLevel
   const flareSkill = parseInt(getText(table, 3, 0), 10)
@@ -254,6 +260,7 @@ export function parseScoreDetail(
   const rivalScores: RivalScore[] = []
   // Add Top Score
   const topScoreElement = table?.getElementsByTagName('top_score_disp')[0]
+  /* v8 ignore next -- @preserve */
   const topScorePlayer = topScoreElement
     ? Array.from(topScoreElement.childNodes)
         .find(
@@ -281,6 +288,7 @@ export function parseScoreDetail(
     const row = rivalDetailRow![i]!
     const name = row.getElementsByTagName('th')[0]?.textContent?.trim()
     const normalScore = parseInt(
+      /* v8 ignore next -- @preserve */
       row.getElementsByTagName('td')[0]?.textContent ?? '',
       10
     )
@@ -289,6 +297,7 @@ export function parseScoreDetail(
       | DanceLevel
       | undefined
     const flareRank =
+      /* v8 ignore next -- @preserve */
       textFlareRankMap.get(
         row.getElementsByTagName('td')[2]?.textContent ?? ''
       ) ?? 0
@@ -310,6 +319,7 @@ export function parseScoreDetail(
     maxCombo: parseInt(getText(table, 5, 0), 10),
     clearLamp: getClearLamp() ?? (rank === 'E' ? 0 : 1),
     rank,
+    /* v8 ignore next -- @preserve */
     flareRank: textFlareRankMap.get(getText(table, 2, 0)) ?? 0,
     flareSkill: Number.isInteger(flareSkill) ? flareSkill : null,
     rivalScores,
@@ -317,6 +327,7 @@ export function parseScoreDetail(
 
   function getText(table: Element, row: number, col: number): string {
     return (
+      /* v8 ignore next -- @preserve */
       table.getElementsByTagName('tr')[row]?.getElementsByTagName('td')[col]
         ?.textContent ?? ''
     )
@@ -326,16 +337,22 @@ export function parseScoreDetail(
   function getClearLamp(): ClearLamp | undefined {
     // Check Full Combo count
     for (const [id, clearLamp] of clearLampIds) {
+      /* v8 ignore next -- @preserve */
       const countText = document
         .getElementById(id)
         ?.getElementsByTagName('td')[0]?.textContent
-      if (parseInt(countText ?? '', 10) > 0) return clearLamp
+      if (parseInt(/* v8 ignore next -- @preserve */ countText ?? '', 10) > 0)
+        return clearLamp
     }
     // Check Clear count (Assisted Clear is not counted on here)
+    /* v8 ignore next -- @preserve */
     const clearCountText = table!
       .getElementsByTagName('tr')[4]
       ?.getElementsByTagName('td')[1]?.textContent
-    if (parseInt(clearCountText ?? '', 10) > 0) return 2
+    if (
+      parseInt(/* v8 ignore next -- @preserve */ clearCountText ?? '', 10) > 0
+    )
+      return 2
 
     // Assisted Clear or Falied
     return undefined

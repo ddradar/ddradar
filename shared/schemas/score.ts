@@ -95,12 +95,12 @@ export const scoreRecordKeySchema = z.object({
    * Play style
    * @description `1`: SINGLE, `2`: DOUBLE
    */
-  playStyle: stepChartSchema.shape.playStyle,
+  playStyle: z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle),
   /**
    * Difficulty
    * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
    */
-  difficulty: stepChartSchema.shape.difficulty,
+  difficulty: z.pipe(z.coerce.number(), stepChartSchema.shape.difficulty),
   /** User ID (3-32 characters) */
   userId: userSchema.shape.id,
 }) satisfies z.ZodMiniType<
