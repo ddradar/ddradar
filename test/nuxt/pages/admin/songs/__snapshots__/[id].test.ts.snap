@@ -1,0 +1,195 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`/admin/songs/[id] > (<admin user>) renders correctly 1`] = `
+"<div data-slot="root" class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-10">
+  <!--v-if-->
+  <div data-slot="center" class="lg:col-span-10">
+    <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8">
+      <div data-slot="root" class="relative border-b border-default py-8">
+        <!--v-if-->
+        <div data-slot="container" class="">
+          <div data-slot="wrapper" class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+            <h1 data-slot="title" class="text-3xl sm:text-4xl text-pretty font-bold text-highlighted">PARANOiA</h1>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+      </div>
+      <form id="main-form" class="">
+        <div data-slot="root" class="rounded-lg overflow-hidden bg-elevated/50 divide-y divide-default mb-6">
+          <div data-slot="header" class="p-4 sm:px-6">
+            <h2 class="text-xl font-bold">基本情報</h2>
+          </div>
+          <div data-slot="body" class="p-4 sm:p-6">
+            <div data-slot="root" class="text-sm">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-0" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">曲名</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center"><input id="v-0-0-0" type="text" name="name" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="PARANOiA">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">曲名フリガナ</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center"><input id="v-0-0-1" type="text" name="nameKana" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="PARANOIA">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">アーティスト</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center"><input id="v-0-0-2" type="text" name="artist" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="180">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">表示BPM</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center"><input id="v-0-0-3" type="text" name="bpm" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="170-184">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">シリーズ</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1"><button id="v-0-0-4" data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus:ring-2 focus:ring-inset focus:ring-primary pe-9" aria-invalid="false" role="combobox" type="button" aria-controls="reka-select-content-v-0-0-5" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+                  <!--v-if--><span data-slot="value" class="truncate pointer-events-none">DDR 1st</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
+                </button>
+                <!--teleport start-->
+                <!--teleport end--><select aria-hidden="true" tabindex="-1" style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" name="series" value="DDR 1st">
+                  <!--v-if-->
+                  <option value="DDR 1st">DDR 1st</option>
+                  <option value="DDR 2ndMIX">DDR 2ndMIX</option>
+                  <option value="DDR 3rdMIX">DDR 3rdMIX</option>
+                  <option value="DDR 4thMIX">DDR 4thMIX</option>
+                  <option value="DDR 5thMIX">DDR 5thMIX</option>
+                  <option value="DDRMAX">DDRMAX</option>
+                  <option value="DDRMAX2">DDRMAX2</option>
+                  <option value="DDR EXTREME">DDR EXTREME</option>
+                  <option value="DDR SuperNOVA">DDR SuperNOVA</option>
+                  <option value="DDR SuperNOVA2">DDR SuperNOVA2</option>
+                  <option value="DDR X">DDR X</option>
+                  <option value="DDR X2">DDR X2</option>
+                  <option value="DDR X3 VS 2ndMIX">DDR X3 VS 2ndMIX</option>
+                  <option value="DDR (2013)">DDR (2013)</option>
+                  <option value="DDR (2014)">DDR (2014)</option>
+                  <option value="DDR A">DDR A</option>
+                  <option value="DDR A20">DDR A20</option>
+                  <option value="DDR A20 PLUS">DDR A20 PLUS</option>
+                  <option value="DDR A3">DDR A3</option>
+                  <option value="DDR WORLD">DDR WORLD</option>
+                </select>
+                <!--v-if-->
+              </div>
+            </div>
+          </div>
+          <div data-slot="footer" class="p-4 sm:px-6">
+            <div class="flex gap-2 justify-end"><button type="button" id="add-button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                <!--v-if-->追加
+                <!--v-if-->
+              </button><button type="submit" id="save-button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+                <!--v-if-->保存
+                <!--v-if-->
+              </button></div>
+          </div>
+        </div>
+      </form>
+      <div data-slot="root" class="w-full">
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-6" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">SINGLE/BEGINNER</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-6" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-7" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-8" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">SINGLE/BASIC</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-8" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-9" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-10" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">SINGLE/DIFFICULT</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-10" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-11" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-12" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">SINGLE/EXPERT</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-12" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-13" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-14" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">DOUBLE/BASIC</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-14" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-15" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-16" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">DOUBLE/DIFFICULT</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-16" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-17" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+        <div data-state="closed" data-orientation="vertical" data-slot="item" class="border-b border-default last:border-b-0">
+          <div data-orientation="vertical" data-state="closed" data-slot="header" class="flex"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" id="reka-accordion-trigger-v-0-0-18" data-reka-collection-item="" data-orientation="vertical" data-slot="trigger" class="group flex-1 flex items-center gap-1.5 font-medium text-sm py-3.5 focus-visible:outline-primary min-w-0">
+              <!--v-if--><span data-slot="label" class="text-start break-words">DOUBLE/EXPERT</span><span class="iconify i-lucide:chevron-down shrink-0 size-5 ms-auto group-data-[state=open]:rotate-180 transition-transform duration-200" aria-hidden="true" data-slot="trailingIcon"></span>
+            </button></div>
+          <div role="region" aria-labelledby="reka-accordion-trigger-v-0-0-18" data-state="closed" data-orientation="vertical" style="--reka-accordion-content-width: var(--reka-collapsible-content-width); --reka-accordion-content-height: var(--reka-collapsible-content-height); --reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;" data-slot="content" class="data-[state=open]:animate-[accordion-down_200ms_ease-out] data-[state=closed]:animate-[accordion-up_200ms_ease-out] overflow-hidden focus:outline-none" id="reka-collapsible-content-v-0-0-19" hidden="">
+            <!--v-if-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;

@@ -1,3 +1,10 @@
+const insertJobCron = '0 6 * * 4' // Every Thursday at 15:00(JST)
+const updateJobCron = '30 6 * * 4' // Every Thursday at 15:30(JST)
+const databaseId = '4dce0809-a8f5-4246-8aa3-a98d80d75f58'
+const databasePreviewId = '8fe9ebda-1ec6-4a2d-96a4-2a5b393762bb'
+const kvNamespaceId = '3a68c2e208034ac4a5008807742d2b93'
+const kvPreviewNamespaceId = '052f5579bfdb447692b026df4b8574cf'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
@@ -18,8 +25,56 @@ export default defineNuxtConfig({
       tasks: true,
     },
     scheduledTasks: {
-      '0 6 * * 4': ['db:insert'], // Every Thursday at 15:00(JST)
-      '30 6 * * 4': ['db:update'], // Every Thursday at 15:30(JST)
+      [insertJobCron]: ['db:insert'],
+      [updateJobCron]: ['db:update'],
+    },
+    cloudflare: {
+      deployConfig: true,
+      nodeCompat: true,
+      wrangler: {
+        compatibility_date: '2025-11-17',
+        name: 'ddradar',
+        workers_dev: true,
+        preview_urls: true,
+        routes: [
+          {
+            pattern: 'ddradar.app',
+            zone_name: 'ddradar.app',
+            custom_domain: true,
+          },
+        ],
+        triggers: { crons: [insertJobCron, updateJobCron] },
+        d1_databases: [
+          {
+            binding: 'DB',
+            database_id: databaseId,
+            preview_database_id: databasePreviewId,
+          },
+        ],
+        kv_namespaces: [
+          ...['CACHE', 'KV'].map(binding => ({
+            binding,
+            id: kvNamespaceId,
+            preview_id: kvPreviewNamespaceId,
+          })),
+        ],
+        observability: {
+          enabled: false,
+          head_sampling_rate: 1,
+          logs: {
+            enabled: true,
+            head_sampling_rate: 1,
+            // @ts-expect-error untyped config
+            persist: true,
+            invocation_logs: true,
+          },
+          traces: {
+            enabled: false,
+            persist: true,
+            head_sampling_rate: 1,
+          },
+        },
+      },
     },
   },
   routeRules: {
@@ -55,9 +110,20 @@ export default defineNuxtConfig({
   },
   // https://hub.nuxt.com/docs/getting-started/installation#options
   hub: {
-    cache: true,
-    db: { dialect: 'sqlite', casing: 'snake_case' },
-    kv: true,
+    cache: {
+      driver: 'cloudflare-kv-binding',
+      namespaceId: kvNamespaceId,
+    },
+    db: {
+      dialect: 'sqlite',
+      driver: 'd1',
+      casing: 'snake_case',
+      connection: { databaseId },
+    },
+    kv: {
+      driver: 'cloudflare-kv-binding',
+      namespaceId: kvNamespaceId,
+    },
   },
   runtimeConfig: {
     ddrCardDrawJsonUrl:
