@@ -376,3 +376,58 @@ export function fillScoreRecordFromChart<T extends Partial<ScoreRecord>>(
     return null
   }
 }
+
+/**
+ * Calculate Groove Radar values from chart and score.
+ * @param chart Step chart info that has notes and radar info
+ * @param score Score record obtained from chart
+ * @returns Groove Radar values
+ */
+export function calcGrooveRadar(
+  chart: Readonly<NonNullableProps<StepChart>>,
+  score: ScoreRecord
+): GrooveRadar {
+  if (score.clearLamp === ClearLamp.Failed || score.normalScore === 0)
+    return { stream: 0, voltage: 0, air: 0, freeze: 0, chaos: 0 }
+
+  const max = chart.notes + chart.shocks
+  const missCount = Math.min(
+    detectMissCountFromClearLamp(score.clearLamp) ?? max,
+    detectMissCountFromFlareRank(score.flareRank) ?? max
+  )
+  const maxCombo =
+    score.maxCombo ??
+    // Miss: 0 -> fullCombo
+    // Miss: X -> MAX COMBO reaches at least maxCombo / X
+    (missCount === 0 ? max : Math.floor(max / missCount))
+
+  return {
+    stream: (chart.radar.stream * score.normalScore) / 1000000,
+    voltage: (chart.radar.voltage * maxCombo) / max,
+    air: (chart.radar.air * maxCombo) / max,
+    freeze: Math.max(
+      // Treat all missCount as Freeze Arrow misses
+      (chart.radar.freeze * (chart.freezes - missCount)) / chart.freezes,
+      0
+    ),
+    chaos: (chart.radar.chaos * maxCombo) / max,
+  }
+
+  function detectMissCountFromClearLamp(
+    clearLamp: ScoreRecord['clearLamp']
+  ): number | undefined {
+    return clearLamp >= ClearLamp.FC
+      ? 0
+      : clearLamp === ClearLamp.Life4
+        ? 3
+        : undefined
+  }
+
+  function detectMissCountFromFlareRank(
+    flareRank: ScoreRecord['flareRank']
+  ): number | undefined {
+    /** Miss damages(%) per Flare Rank */
+    const damages = [undefined, 1.5, 3, 4.5, 11, 16, 18, 22, 26, 30, 30]
+    return damages[flareRank] ? Math.floor(100 / damages[flareRank]) : undefined
+  }
+}

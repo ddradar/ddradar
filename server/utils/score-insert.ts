@@ -1,3 +1,4 @@
+/** Batch Result of Score Upsert */
 export type ScoreUpsertResult = {
   severity: 'error' | 'warning'
   reason: keyof typeof Reason
@@ -9,6 +10,7 @@ export type ScoreUpsertResult = {
   }
 }
 
+/** Reasons for Score Upsert results */
 const Reason = {
   CHART_NOT_FOUND: [
     'error',
@@ -29,6 +31,15 @@ const Reason = {
   ],
 } as const
 
+/**
+ * Generate a ScoreUpsertResult object.
+ * @param reason Reason key from Reason object
+ * @param column Column number in the input data
+ * @param data Original data that caused the result
+ * @param message Optional custom message
+ * @param details Optional additional details
+ * @returns ScoreUpsertResult object
+ */
 export function getReason(
   reason: keyof typeof Reason,
   column: number,

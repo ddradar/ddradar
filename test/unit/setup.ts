@@ -17,7 +17,10 @@ vi.stubGlobal('readValidatedBody', readValidatedBody)
 vi.stubGlobal('setResponseStatus', setResponseStatus)
 
 // Nitro
-vi.stubGlobal('cachedEventHandler', vi.fn<typeof cachedEventHandler>())
+vi.stubGlobal(
+  'cachedEventHandler',
+  vi.fn(h => defineEventHandler(h))
+)
 vi.stubGlobal('defineCachedFunction', vi.fn<typeof defineCachedFunction>())
 vi.stubGlobal('defineRouteMeta', vi.fn<typeof defineRouteMeta>())
 vi.stubGlobal('useStorage', vi.fn<typeof useStorage>())
@@ -31,13 +34,14 @@ vi.stubGlobal('db', {
       onConflictDoUpdate: vi.fn(() => ({ returning: vi.fn() })),
     })),
   })),
-  update: vi.fn(),
   query: {
     songs: { findFirst: vi.fn(), findMany: vi.fn() },
     charts: { findFirst: vi.fn(), findMany: vi.fn() },
     scores: { findFirst: vi.fn(), findMany: vi.fn() },
     users: { findFirst: vi.fn(), findMany: vi.fn() },
   },
+  select: vi.fn(() => ({ from: vi.fn(() => ({ where: vi.fn(() => ({})) })) })),
+  update: vi.fn(),
 })
 vi.stubGlobal('kv', {
   get: vi.fn<typeof kv.get>(),

@@ -1,18 +1,10 @@
 import { and, eq, exists } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { songs } from 'hub:db:schema'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { seriesList } from '#shared/schemas/song'
-import { handler } from '~~/server/api/songs/index.get'
+import handler from '~~/server/api/songs/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 
@@ -28,23 +20,8 @@ describe('GET /api/songs', () => {
     },
   ]
 
-  const findMany = vi.fn<typeof db.query.songs.findMany>()
-  const originalQuery = vi.mocked(db).query
-  const originalSelect = vi.mocked(db).select
-
-  beforeAll(() => {
-    vi.mocked(db).query = { songs: { findMany } } as never
-    const mockQueryBuilder = {
-      from: vi.fn(() => mockQueryBuilder),
-      where: vi.fn(() => mockQueryBuilder),
-    }
-    vi.mocked(db).select = vi.fn(() => mockQueryBuilder) as never
-  })
-  beforeEach(() => findMany.mockClear())
-  afterAll(() => {
-    vi.mocked(db).query = originalQuery
-    vi.mocked(db).select = originalSelect
-  })
+  beforeEach(() => vi.mocked(db.query.songs.findMany).mockClear())
+  afterAll(() => vi.mocked(cachedEventHandler).mockClear())
 
   test.each([
     ['', []],
@@ -67,7 +44,7 @@ describe('GET /api/songs', () => {
     '(query: "%s") filters by expected conditions without including charts',
     async (query, conditions) => {
       // Arrange
-      findMany.mockResolvedValue(mockData as never)
+      vi.mocked(db.query.songs.findMany).mockResolvedValue(mockData as never)
       const event = { path: `/?${query}` } as unknown as H3Event
 
       // Act
@@ -75,10 +52,14 @@ describe('GET /api/songs', () => {
 
       // Assert
       expect(result).toStrictEqual(mockData)
-      expect(findMany).toHaveBeenCalledTimes(1)
-      const arg = findMany.mock.calls[0]?.[0]
-      expect(arg?.where).toStrictEqual(and(...conditions))
-      expect(arg?.with?.charts).toBeUndefined()
+      expect(vi.mocked(db.query.songs.findMany)).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: and(...conditions),
+          with: expect.objectContaining({
+            charts: undefined,
+          }),
+        })
+      )
     }
   )
 
@@ -98,7 +79,7 @@ describe('GET /api/songs', () => {
     '(query: "%s") filters by expected conditions with including charts',
     async (query, conditions) => {
       // Arrange
-      findMany.mockResolvedValue(mockData as never)
+      vi.mocked(db.query.songs.findMany).mockResolvedValue(mockData as never)
       const event = { path: `/?${query}` } as unknown as H3Event
 
       // Act
@@ -106,10 +87,37 @@ describe('GET /api/songs', () => {
 
       // Assert
       expect(result).toStrictEqual(mockData)
-      expect(findMany).toHaveBeenCalledTimes(1)
-      const arg = findMany.mock.calls[0]?.[0]
-      expect(arg?.where).toStrictEqual(and(...conditions))
-      expect(arg?.with?.charts).toBeDefined()
+      expect(vi.mocked(db.query.songs.findMany)).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: and(...conditions),
+          with: expect.objectContaining({
+            charts: {
+              columns: { playStyle: true, difficulty: true, level: true },
+            },
+          }),
+        })
+      )
     }
   )
+
+  describe('cache', () => {
+    test.each([
+      ['', 'all'],
+      ['includeCharts=true', 'withCharts:all'],
+      ['name=5', 'name=5'],
+      ['series=10', 'series=10'],
+      ['style=2&level=15', 'withCharts:level=15&style=2'],
+      ['name=3&series=7&style=0&level=5', 'name=3&series=7'],
+    ])('getKey({query: "%s"}) returns "%s"', async (query, expected) => {
+      // Arrange
+      const event = { path: `/?${query}` } as unknown as H3Event
+      const getKey = vi.mocked(cachedEventHandler).mock.calls[0]![1]!.getKey!
+
+      // Act
+      const result = await getKey(event)
+
+      // Assert
+      expect(result).toBe(expected)
+    })
+  })
 })

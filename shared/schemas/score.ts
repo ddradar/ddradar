@@ -167,6 +167,7 @@ export const scoreRecordSchema = z.object({
   >
 >
 
+/** Schema for ScoreRecordInput */
 export const scoreRecordInputSchema = z.pipe(
   z.object({
     ...z.partial(scoreRecordSchema).shape,

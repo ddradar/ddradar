@@ -1,5 +1,6 @@
 import { and, eq } from 'drizzle-orm'
 
+/** Columns to ignore timestamps (use it to `columns` property in `db.query.{schema}.findFirst/findMany`) */
 export const ignoreTimestampCols = {
   createdAt: false,
   updatedAt: false,

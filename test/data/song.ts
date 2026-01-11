@@ -1,3 +1,4 @@
+/** Test song data (minimal, without charts) */
 export const testSongData: Omit<SongInfo, 'charts'> = {
   id: '06loOQ0DQb0DqbOibl6qO81qlIdoP9DI',
   name: 'PARANOiA',

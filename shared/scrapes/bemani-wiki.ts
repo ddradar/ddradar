@@ -1,8 +1,15 @@
+/** Scraper for BEMANIWiki 2nd. */
 import { decode } from 'he'
 
 import { Chart, Difficulty } from '#shared/schemas/step-chart'
 import { getNumberContent, getTextContent } from '#shared/scrapes/utils'
 
+/**
+ * Scrape song notes data from BEMANIWiki 2nd document.
+ * @param document DOM of BEMANIWiki 2nd "Total Notes List" page.
+ * - https://bemaniwiki.com/?DanceDanceRevolution+WORLD/%C1%B4%B6%CA%C1%ED%A5%CE%A1%BC%A5%C4%BF%F4%A5%EA%A5%B9%A5%C8
+ * @returns Map of song name to array of note data (notes, freezes, shocks) per chart
+ */
 export function scrapeSongNotes(
   document: Document
 ): Map<string, Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]> {
@@ -56,6 +63,18 @@ export function scrapeSongNotes(
   return map
 }
 
+/**
+ * Scrape groove radar data from BEMANIWiki 2nd document.
+ * @param document DOM of BEMANIWiki 2nd "Groove Radar List (SP/DP)" page.
+ * - https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29
+ * - https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29
+ * - https://bemaniwiki.com/?DanceDanceRevolution+A3/%B5%EC%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29
+ * - https://bemaniwiki.com/?DanceDanceRevolution+A3/%B5%EC%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29
+ * - https://bemaniwiki.com/?DanceDanceRevolution+A3/%BF%B7%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29
+ * - https://bemaniwiki.com/?DanceDanceRevolution+A3/%BF%B7%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29
+ * @param playStyle Play style of the charts to scrape (SP/DP).
+ * @returns Map of song name to array of groove radar data per chart
+ */
 export function scrapeGrooveRadar(
   document: Document,
   playStyle: StepChart['playStyle']

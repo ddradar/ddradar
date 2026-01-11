@@ -1,5 +1,6 @@
 import type { User as SessionUser } from '#auth-utils'
 
+/** Test user info (public) */
 export const publicUser: UserInfo = {
   id: 'public_user',
   name: 'Public User',
@@ -8,6 +9,7 @@ export const publicUser: UserInfo = {
   ddrCode: 10000000,
 }
 
+/** Test user info (private) */
 export const privateUser: UserInfo = {
   id: 'private_user',
   name: 'Private User',
@@ -16,6 +18,7 @@ export const privateUser: UserInfo = {
   ddrCode: 20000000,
 }
 
+/** Test session user info */
 export const sessionUser: SessionUser = {
   provider: 'github',
   providerId: '12345',
@@ -24,6 +27,7 @@ export const sessionUser: SessionUser = {
   avatarUrl: 'https://example.com/avatar.png',
 }
 
+/** Test stored API token */
 export const apiToken: StoredApiToken = {
   name: 'Test Token',
   hashedToken: 'hashedtoken123',

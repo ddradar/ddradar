@@ -1,3 +1,4 @@
+/** Test step chart data (for testSongData) */
 export const testStepCharts = [
   {
     playStyle: 1,

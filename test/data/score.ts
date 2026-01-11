@@ -1,3 +1,4 @@
+/** Test score record (minimal) */
 export const scoreRecord: ScoreRecord = {
   normalScore: 950000,
   exScore: null,

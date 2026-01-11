@@ -23,6 +23,12 @@ export function range<T extends number>(start: T, end: T): T[] {
   return [...Array(end - start + 1).keys()].map(i => (i + start) as T)
 }
 
+/**
+ * Divides an array into chunks of the specified size
+ * @param array Input array
+ * @param size Chunk size
+ * @returns Array of chunks
+ */
 export function chunkArray<T>(array: T[], size: number): T[][] {
   const out: T[][] = []
   for (let i = 0; i < array.length; i += size)
@@ -30,6 +36,12 @@ export function chunkArray<T>(array: T[], size: number): T[][] {
   return out
 }
 
+/**
+ * Asserts that the specified properties of an object are not null or undefined
+ * @param obj object to assert
+ * @param keys property keys to check
+ * @returns true if all specified properties are not null or undefined, false otherwise
+ */
 export function isPropertyNotNull<T, K extends keyof T>(
   obj: T,
   ...keys: K[]

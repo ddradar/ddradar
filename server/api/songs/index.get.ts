@@ -67,64 +67,73 @@ const _querySchema = z.object({
   includeCharts: z.catch(z.stringbool(), false),
 })
 
-// Cache name for this handler (expoted for clear cache usage)
+/** Cache name for "GET /api/songs" handler */
 export const cacheName = 'getSongList'
 
-// API main handler (exported for testing)
-export const handler = defineEventHandler(async event => {
-  const query = await getValidatedQuery(event, _querySchema.parse)
-
-  const hasChartConditions =
-    query.style !== undefined && query.level !== undefined
-  const includeCharts = hasChartConditions || query.includeCharts
-  const conditions = []
-  if (query.name !== undefined) conditions.push(eq(songs.nameIndex, query.name))
-  if (query.series !== undefined)
-    conditions.push(eq(songs.series, seriesList[query.series]))
-  if (hasChartConditions) {
-    conditions.push(
-      exists(
-        db
-          .select()
-          .from(charts)
-          .where(
-            and(
-              eq(charts.id, songs.id),
-              eq(charts.playStyle, query.style!),
-              eq(charts.level, query.level!)
-            )
-          )
-      )
-    )
-  }
-
-  const res: SongSearchResult[] = await db.query.songs.findMany({
-    columns: { ...ignoreTimestampCols },
-    where: and(...conditions),
-    with: {
-      charts: includeCharts
-        ? {
-            columns: { playStyle: true, difficulty: true, level: true },
-          }
-        : undefined,
-    },
-  })
-  return res.sort(compareSong)
-})
-
-// Export cached handler as default
-export default cachedEventHandler(handler, {
-  maxAge: 60 * 60, // 1 hour
-  name: cacheName,
-  /* v8 ignore next -- @preserve */
-  getKey: async event => {
+export default cachedEventHandler(
+  async event => {
     const query = await getValidatedQuery(event, _querySchema.parse)
-    return Object.entries(query)
-      .map(([key, value]) => `${key}=${value ?? 'UD'}`)
-      .sort()
-      .join('&')
+
+    const hasChartConditions =
+      query.style !== undefined && query.level !== undefined
+    const includeCharts = hasChartConditions || query.includeCharts
+    const conditions = []
+    if (query.name !== undefined)
+      conditions.push(eq(songs.nameIndex, query.name))
+    if (query.series !== undefined)
+      conditions.push(eq(songs.series, seriesList[query.series]))
+    if (hasChartConditions) {
+      conditions.push(
+        exists(
+          db
+            .select()
+            .from(charts)
+            .where(
+              and(
+                eq(charts.id, songs.id),
+                eq(charts.playStyle, query.style!),
+                eq(charts.level, query.level!)
+              )
+            )
+        )
+      )
+    }
+
+    const res: SongSearchResult[] = await db.query.songs.findMany({
+      columns: { ...ignoreTimestampCols },
+      where: and(...conditions),
+      with: {
+        charts: includeCharts
+          ? {
+              columns: { playStyle: true, difficulty: true, level: true },
+            }
+          : undefined,
+      },
+    })
+    return res.sort(compareSong)
   },
-})
+  {
+    maxAge: 60 * 60, // 1 hour
+    name: cacheName,
+    getKey: async event => {
+      const query = await getValidatedQuery(event, _querySchema.parse)
+      const hasChartConditions =
+        query.style !== undefined && query.level !== undefined
+      const withCharts = hasChartConditions || query.includeCharts
+
+      const queryString = Object.entries(query)
+        .filter(([key, value]) =>
+          typeof value === 'number' && withCharts
+            ? true
+            : ['name', 'series'].includes(key)
+        )
+        .map(([key, value]) => `${key}=${value}`)
+        .sort()
+        .join('&')
+      return `${withCharts ? 'withCharts:' : ''}${queryString || 'all'}`
+    },
+  }
+)
 
 // Define OpenAPI metadata
 defineRouteMeta({

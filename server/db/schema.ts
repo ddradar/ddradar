@@ -277,10 +277,12 @@ export const users = sqliteTable(
 // #endregion Tables
 
 // #region Relations
+/** Relations for song to charts (one-to-many) */
 export const songRelations = relations(songs, ({ many }) => ({
   charts: many(charts),
 }))
 
+/** Relations (reverse to `songRelations`) */
 export const chartRelations = relations(charts, ({ one }) => ({
   song: one(songs, {
     fields: [charts.id],
@@ -288,6 +290,7 @@ export const chartRelations = relations(charts, ({ one }) => ({
   }),
 }))
 
+/** Relations for score to chart (one-to-one) */
 export const scoreChartRelations = relations(scores, ({ one }) => ({
   chart: one(charts, {
     fields: [scores.songId, scores.playStyle, scores.difficulty],
@@ -295,6 +298,7 @@ export const scoreChartRelations = relations(scores, ({ one }) => ({
   }),
 }))
 
+/** Relations for score to song (one-to-one) */
 export const scoreSongRelations = relations(scores, ({ one }) => ({
   song: one(songs, {
     fields: [scores.songId],
@@ -302,6 +306,7 @@ export const scoreSongRelations = relations(scores, ({ one }) => ({
   }),
 }))
 
+/** Relations for score to user (one-to-one) */
 export const scoreUserRelations = relations(scores, ({ one }) => ({
   user: one(users, {
     fields: [scores.userId],
@@ -309,6 +314,7 @@ export const scoreUserRelations = relations(scores, ({ one }) => ({
   }),
 }))
 
+/** Relations (reverse to `scoreUserRelations`) */
 export const userRelations = relations(users, ({ many }) => ({
   scores: many(scores),
 }))

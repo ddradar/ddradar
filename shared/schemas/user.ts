@@ -181,6 +181,7 @@ export function getNarrowedArea(
   return []
 }
 
+/** Zod schema for API Token info */
 export const apiTokenSchema = z.object({
   /** Token ID */
   id: z.string().check(z.regex(/^[A-Za-z0-9_-]{21}$/)),
