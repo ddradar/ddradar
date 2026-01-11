@@ -28,7 +28,6 @@ export default defineEventHandler(async event => {
 
   const now = Date.now()
   const expiresAtMs = new Date(body.expiresAt).getTime()
-  /* v8 ignore if -- @preserve */
   if (Number.isNaN(expiresAtMs)) {
     throw createError({
       statusCode: 400,

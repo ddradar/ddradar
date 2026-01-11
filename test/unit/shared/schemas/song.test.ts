@@ -27,6 +27,7 @@ describe('/shared/schemas/song', () => {
 
   describe('songSchema', () => {
     const validSong = { ...testSongData }
+
     test.each([
       ...notValidObject,
       { ...validSong, id: '' },
@@ -37,6 +38,7 @@ describe('/shared/schemas/song', () => {
     ])('safeParse(%o) returns { success: false }', o =>
       expect(songSchema.safeParse(o).success).toBe(false)
     )
+
     test.each([
       validSong,
       {

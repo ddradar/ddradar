@@ -2,7 +2,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
-import { beforeAll, describe, expect, test } from 'vitest'
+import { describe, expect, test } from 'vitest'
 
 import { ClearLamp, FlareRank } from '#shared/schemas/score'
 import { Chart } from '#shared/schemas/step-chart'
@@ -36,37 +36,15 @@ const createScore = (
 })
 
 describe('/shared/scrapes/eagate', () => {
-  describe('parsePlayDataList', () => {
-    let template: string
+  describe('parsePlayDataList', async () => {
     const folder = 'music_data'
+    const template = await readFileAsync(folder, 'template.html')
+
+    /** Create source HTML. */
     const createSource = async (fileName: string) =>
       template.replace('{{ contents }}', await readFileAsync(folder, fileName))
 
-    beforeAll(async () => {
-      template = await readFileAsync(folder, 'template.html')
-    })
-
-    test.each([
-      '',
-      'foo',
-      '<html></html>',
-      '<html>\n<div id="data_tbl" />\n</html>',
-    ])('("%s") throws error', source => {
-      const document = new DOMParser().parseFromString(source, 'text/html')
-      expect(() => parsePlayDataList(document)).toThrowError('invalid html')
-    })
-    test.each(['invalid_column.html', 'invalid_chart_id.html'])(
-      '(%s) throws error',
-      async fileName => {
-        // Arrange
-        const source = await createSource(fileName)
-        const document = new DOMParser().parseFromString(source, 'text/html')
-
-        // Act - Assert
-        expect(() => parsePlayDataList(document)).toThrowError('invalid html')
-      }
-    )
-
+    /** Generate score data. */
     const scoreData = (
       song: Pick<EAGateScoreRecord, 'songId' | 'name'>,
       chart: readonly [
@@ -84,15 +62,41 @@ describe('/shared/scrapes/eagate', () => {
       ...(flareSkill !== undefined ? { flareSkill } : {}),
     })
 
+    /** 鳳 */
     const hou = { songId: 'QiPiIb8I99loq8loIq91iP6l1OOoq8oq', name: '鳳' }
+    /** 梅雪夜 */
     const ume = {
       songId: 'bi9OolI1P9oI8dDPlbQiq01Dl080PQ61',
       name: '梅雪夜',
     }
+    /** 革命(X-Special) */
     const kakX = {
       songId: 'qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb',
       name: '革命(X-Special)',
     }
+
+    test.each([
+      '',
+      'foo',
+      '<html></html>',
+      '<html>\n<div id="data_tbl" />\n</html>',
+    ])('("%s") throws error', source => {
+      const document = new DOMParser().parseFromString(source, 'text/html')
+      expect(() => parsePlayDataList(document)).toThrowError('invalid html')
+    })
+
+    test.each(['invalid_column.html', 'invalid_chart_id.html'])(
+      '(%s) throws error',
+      async fileName => {
+        // Arrange
+        const source = await createSource(fileName)
+        const document = new DOMParser().parseFromString(source, 'text/html')
+
+        // Act - Assert
+        expect(() => parsePlayDataList(document)).toThrowError('invalid html')
+      }
+    )
+
     test.each([
       ['empty.html', []],
       [
@@ -255,6 +259,7 @@ describe('/shared/scrapes/eagate', () => {
       const document = new DOMParser().parseFromString(source, 'text/html')
       expect(() => parseScoreDetail(document)).toThrowError('invalid html')
     })
+
     test.each([
       ['invalid_header.html', 'invalid html'],
       ['invalid_content.html', 'invalid html'],
@@ -268,6 +273,7 @@ describe('/shared/scrapes/eagate', () => {
       // Act - Assert
       expect(() => parseScoreDetail(document)).toThrowError(err)
     })
+
     test.each([
       [
         'sp_beg_mfc_ex.html',

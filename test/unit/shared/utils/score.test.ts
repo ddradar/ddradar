@@ -19,6 +19,7 @@ describe('/shared/utils/score', () => {
       { notes: 100, freezes: null, shocks: 25 },
       { notes: 100, freezes: 50, shocks: null },
     ])('(%o) returns false', chart => expect(hasNotesInfo(chart)).toBe(false))
+
     test.each([
       { notes: 100, freezes: 50, shocks: 25 },
       { notes: 0, freezes: 0, shocks: 0 },
@@ -33,6 +34,7 @@ describe('/shared/utils/score', () => {
           /"Invalid input"/
         )
     )
+
     test.each([
       [1, FlareRank.None, 145],
       [2, FlareRank.None, 155],
@@ -95,6 +97,7 @@ describe('/shared/utils/score', () => {
       maxCombo: null,
       flareSkill: null,
     }
+
     test.each([
       [
         { ...baseScore, exScore: 1000 },
@@ -147,6 +150,7 @@ describe('/shared/utils/score', () => {
     ])('(chart, %o) returns %o', (score, expected) =>
       expect(ValidateScoreRecord(chart, score)).toStrictEqual(expected)
     )
+
     test.each([
       baseScore,
       { ...baseScore, exScore: 200 },
@@ -203,6 +207,7 @@ describe('/shared/utils/score', () => {
       flareRank: FlareRank.None,
       flareSkill: null,
     }
+
     test.each([
       [{ clearLamp: ClearLamp.MFC }, mfcScore], // MFC
       [{ normalScore: 1000000 }, mfcScore], // MFC

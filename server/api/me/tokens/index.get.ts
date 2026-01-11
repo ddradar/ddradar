@@ -13,7 +13,6 @@ export default defineEventHandler(async event => {
       if (!tokenData) return null
 
       const tokenId = key.split(':').pop()
-      /* v8 ignore if -- @preserve */
       if (!tokenId) return null
 
       // Return without hashedToken

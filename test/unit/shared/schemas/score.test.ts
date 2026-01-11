@@ -19,6 +19,7 @@ describe('/shared/schemas/score', () => {
       maxCombo: null,
       flareSkill: null,
     }
+
     test.each([
       ...notValidObject,
       { ...validScoreRecord, normalScore: -1 },
@@ -31,6 +32,7 @@ describe('/shared/schemas/score', () => {
     ])('safeParse(%o) returns { success: false }', o =>
       expect(scoreRecordSchema.safeParse(o).success).toBe(false)
     )
+
     test.each([
       validScoreRecord,
       { ...validScoreRecord, exScore: 0, maxCombo: 0 },
@@ -63,6 +65,7 @@ describe('/shared/schemas/score', () => {
     ])('(%i) returns %s', (num, expected) =>
       expect(getDanceLevel(num)).toBe(expected)
     )
+
     test.each([-1, 10.5, NaN, Infinity, -Infinity, 1000010])(
       '(%d) throws error',
       d => expect(() => getDanceLevel(d)).toThrowError(/"Invalid input"/)

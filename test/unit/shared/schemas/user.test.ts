@@ -11,6 +11,7 @@ describe('/shared/schemas/user', () => {
       area: Area.東京都,
       isPublic: true,
     }
+
     test.each([
       ...notValidObject,
       { ...validUserInfo, id: 1 },
@@ -29,6 +30,7 @@ describe('/shared/schemas/user', () => {
     ])('safeParse(%o) returns { success: false }', o =>
       expect(userSchema.safeParse(o).success).toBe(false)
     )
+
     test.each([
       validUserInfo,
       { ...validUserInfo, id: 'UPPER-CASED' },

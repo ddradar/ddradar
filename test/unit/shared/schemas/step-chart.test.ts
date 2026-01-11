@@ -18,6 +18,7 @@ describe('/shared/schemas/step-chart', () => {
       bpm: [150],
       level: 10,
     }
+
     test.each([
       ...notValidObject,
       { ...validStepChart, playStyle: 0 },
@@ -38,6 +39,7 @@ describe('/shared/schemas/step-chart', () => {
     ])('safeParse(%o) returns { success: false }', o =>
       expect(stepChartSchema.safeParse(o).success).toBe(false)
     )
+
     test.each([
       validStepChart,
       { ...validStepChart, playStyle: PlayStyle.DOUBLE },
@@ -75,6 +77,7 @@ describe('/shared/schemas/step-chart', () => {
       (playStyle, difficulty, expected) =>
         expect(getChartName({ playStyle, difficulty })).toBe(expected)
     )
+
     test.each([null, undefined])('(%o) returns "UNKNOWN/UNKNOWN"', chart =>
       expect(getChartName(chart)).toBe('UNKNOWN/UNKNOWN')
     )
