@@ -43,7 +43,7 @@ describe('components/modal/ScoreInput.vue', () => {
   ) => {
     await wrapper.get('button')?.trigger('click')
     await wrapper.vm.$nextTick()
-    return document.querySelector('form')
+    return screen.getByRole('form') as HTMLFormElement
   }
 
   /** Open modal and get form element using testing-library */
@@ -137,18 +137,16 @@ describe('components/modal/ScoreInput.vue', () => {
         })
         const form = await openModalAndGetForm()
 
-        // Act - Find checkbox within the form
-        const failedCheckbox = form!.querySelector(
-          'input[type="checkbox"]'
-        ) as HTMLInputElement
-        await fireEvent.click(failedCheckbox)
+        // Act - Find the checkbox button (there's only one: isFailed)
+        const checkboxButton = within(form!).getByRole('checkbox')
+        await fireEvent.click(checkboxButton)
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
         const clearLampSelect = form!.querySelector(
           '[name="clearLamp"]'
         ) as HTMLSelectElement
-        expect(failedCheckbox.checked).toBe(true)
+        expect(checkboxButton.getAttribute('aria-checked')).toBe('true')
         expect(clearLampSelect.value).toBe(String(ClearLamp.Failed))
       })
 
@@ -162,19 +160,17 @@ describe('components/modal/ScoreInput.vue', () => {
         })
         const form = await openModalAndGetForm()
 
-        // Act
-        const failedCheckbox = form!.querySelector(
-          'input[type="checkbox"]'
-        ) as HTMLInputElement
+        // Act - Find the checkbox button (there's only one: isFailed)
+        const checkboxButton = within(form!).getByRole('checkbox')
 
-        await fireEvent.click(failedCheckbox)
+        await fireEvent.click(checkboxButton)
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
         const clearLampSelect = form!.querySelector(
           '[name="clearLamp"]'
         ) as HTMLSelectElement
-        expect(failedCheckbox.checked).toBe(false)
+        expect(checkboxButton.getAttribute('aria-checked')).toBe('false')
         expect(clearLampSelect.value).toBe(String(ClearLamp.Clear))
       })
     })
@@ -220,14 +216,14 @@ describe('components/modal/ScoreInput.vue', () => {
         props.chart.level,
         expected.flareRank
       )
-      const ex = form!.querySelector(
-        'input[name="exScore"]'
+      const ex = within(form!).getByLabelText(
+        /EX SCORE/i
       ) as HTMLInputElement | null
-      const maxC = form!.querySelector(
-        'input[name="maxCombo"]'
+      const maxC = within(form!).getByLabelText(
+        /MAX COMBO/i
       ) as HTMLInputElement | null
-      const flare = form!.querySelector(
-        'input[name="flareSkill"]'
+      const flare = within(form!).getByLabelText(
+        /フレアスキル|Flare Skill/i
       ) as HTMLInputElement | null
       expect(ex).toBeDefined()
       expect(maxC).toBeDefined()
@@ -249,7 +245,7 @@ describe('components/modal/ScoreInput.vue', () => {
       })
       const form = await openModalAndGetForm()
 
-      // Act - Get input by name attribute (more reliable than label text)
+      // Act - Get input by name attribute
       const normalScoreInput = form!.querySelector(
         '[name="normalScore"]'
       ) as HTMLInputElement
@@ -285,9 +281,9 @@ describe('components/modal/ScoreInput.vue', () => {
 
         // Act
         const form = await getTeleportedForms(wrapper)
-        const submitBtn = form!.querySelector(
-          'button[type="submit"]'
-        ) as HTMLButtonElement
+        const submitBtn = within(form!).getByRole('button', {
+          name: /Submit|送信/i,
+        }) as HTMLButtonElement
         await fireEvent.click(submitBtn)
         await new Promise(r => setTimeout(r, 100))
 
@@ -322,9 +318,9 @@ describe('components/modal/ScoreInput.vue', () => {
         // Act
         const form = await getTeleportedForms(wrapper)
         expect(form).toBeDefined()
-        const submitBtn = form!.querySelector(
-          'button[type="submit"]'
-        ) as HTMLButtonElement
+        const submitBtn = within(form!).getByRole('button', {
+          name: /Submit|送信/i,
+        }) as HTMLButtonElement
         await fireEvent.click(submitBtn)
         await new Promise(r => setTimeout(r, 100))
 

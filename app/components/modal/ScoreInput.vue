@@ -212,11 +212,13 @@ watch(isFailed, newVal => {
               :min="0"
               :max="1000000"
             />
-            <UCheckbox
-              v-model="isFailed"
-              :label="t('schema.score.rank.isFailed')"
-            />
           </UFormField>
+
+          <UCheckbox
+            v-model="isFailed"
+            :label="t('schema.score.rank.isFailed')"
+            aria-label="Failed"
+          />
 
           <UFormField :label="t('schema.score.exScore.label')" name="exScore">
             <UInput
@@ -276,13 +278,25 @@ watch(isFailed, newVal => {
             />
           </UFormField>
         </div>
-        <UButton type="button" @click="fillScoreRecord">
+        <UButton
+          type="button"
+          aria-label="Auto-fill score fields"
+          @click="fillScoreRecord"
+        >
           {{ t('component.score_input.auto') }}
         </UButton>
-        <UButton type="button" @click="clearForm">
+        <UButton
+          type="button"
+          aria-label="Reset form to initial state"
+          @click="clearForm"
+        >
           {{ t('component.score_input.reset') }}
         </UButton>
-        <UButton type="submit" :loading="submitting">
+        <UButton
+          type="submit"
+          aria-label="Submit score record"
+          :loading="submitting"
+        >
           {{ t('actions.save.label') }}
         </UButton>
       </UForm>

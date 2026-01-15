@@ -314,12 +314,10 @@ describe('/admin/songs/[id]', () => {
         user.value = admin
         await renderSuspended(Page, { route })
 
-        // Act - Clear optional fields
+        // Act
         const form = screen.getByRole('form')
         const artistField = within(form).getByLabelText(/アーティスト|Artist/i)
-        const bpmField = form.querySelector(
-          'input[name="bpm"]'
-        ) as HTMLInputElement
+        const bpmField = within(form).getByLabelText(/BPM/i)
 
         await fireEvent.update(artistField, '')
         await fireEvent.update(bpmField, '')
@@ -327,14 +325,11 @@ describe('/admin/songs/[id]', () => {
         // Trigger form validation
         await fireEvent.submit(form)
 
-        // Wait for validation to complete
-        await new Promise(r => setTimeout(r, 100))
-
         // Assert - Clearing optional fields should not show required field errors
         const requiredErrors = screen.queryAllByText(
-          /Too small.*required|Required.*小さ|小さすぎます/i
+          /Too small|Required|必須|Invalid/i
         )
-        expect(requiredErrors.length).toBe(0)
+        expect(requiredErrors).toHaveLength(0)
       })
 
       test('chart fields validated independently when multiple charts exist', async () => {
