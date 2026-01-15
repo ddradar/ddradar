@@ -13,9 +13,20 @@ applyTo: '**'
 - Link files/lines using workspace-relative links
 - Confirm with user before big edits (single >200 lines or cumulative >100)
 
+## Editor Diagnostics and Suppressions
+
+DO NOT ignore or suppress type-checking, linting, or editor diagnostics reported by VS Code or other IDEs. Fix reported issues before testing.
+
+- DO NOT suppress errors/warnings with comments (e.g., `// @ts-ignore`, `/* eslint-disable */`).
+- If you cannot fix an issue, report it and wait for instructions.
+
 ## Verification Protocol
 
-- Run in order: `pnpm lint:eslint {targetFile}` → `pnpm test`
+- Run in order:
+  1. `pnpm eslint {targetFile}`
+  2. `pnpm prettier --write --experimental-cli {targetFile}`
+  3. Check editor diagnostics; fix all issues
+  4. `pnpm test`
 - If any fails: stop, show logs, and request next instruction
 
 ## Safe Editing Protocol

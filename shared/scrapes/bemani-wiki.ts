@@ -1,5 +1,5 @@
 /** Scraper for BEMANIWiki 2nd. */
-import { decode } from 'he'
+import he from 'he'
 
 import { Chart, Difficulty } from '#shared/schemas/step-chart'
 import { getNumberContent, getTextContent } from '#shared/scrapes/utils'
@@ -218,6 +218,6 @@ const corrections = new Map<string, string>([
   ['Timepiece phase II', 'Timepiece phase Ⅱ'],
 ])
 function decodeHtmlEntities(text: string): string {
-  const title = decode(text)
+  const title = he.decode(text)
   return corrections.get(title) ?? title
 }

@@ -20,7 +20,7 @@ export default withNuxt(
     rules: {
       'vue/block-order': [
         'error',
-        { order: ['spec', 'script', 'template', 'style'] },
+        { order: ['spec', 'script', 'template', 'i18n', 'style'] },
       ],
       'vue/no-empty-component-block': 'error',
     },
