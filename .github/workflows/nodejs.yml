@@ -55,8 +55,6 @@ jobs:
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Generate Database Schema
-        run: pnpm run db:generate
       - name: Test
         run: pnpm test --coverage
 
