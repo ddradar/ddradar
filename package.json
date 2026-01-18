@@ -9,7 +9,7 @@
   "type": "module",
   "packageManager": "pnpm@10.12.1",
   "scripts": {
-    "build": "nuxt build",
+    "build": "NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "db:generate": "nuxt db generate",
     "db:query": "wrangler d1 execute DB",
     "deploy": "wrangler deploy",
