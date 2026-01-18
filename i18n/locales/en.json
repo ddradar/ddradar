@@ -230,7 +230,8 @@
         }
       },
       "ddrCode": {
-        "label": "DDR Code"
+        "label": "DDR Code",
+        "placeholder": "00000000"
       },
       "isPublic": {
         "label": "Profile Visibility",
@@ -246,24 +247,6 @@
     }
   },
   "page": {
-    "index": {
-      "description": "Simple, fast tool to record, analyze, and share your DDR scores.",
-      "features": {
-        "title": "Features",
-        "radar": {
-          "title": "My Groove Radar",
-          "description": "Recreate the Groove Radar feature removed since DDR A. Check and share your skills."
-        },
-        "exScore": {
-          "title": "Native EX Score Support",
-          "description": "Supports recording EX scores. You can also perform predictive calculations from normal scores and full combo types."
-        },
-        "openSource": {
-          "title": "Open Source",
-          "description": "DDRadar is an open source project. You can view and contribute to the source code on GitHub."
-        }
-      }
-    },
     "profile": {
       "alert": {
         "title": "New Registration",
