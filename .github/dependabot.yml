@@ -1,0 +1,61 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/reference/supply-chain-security/dependabot-options-reference
+
+version: 2
+updates:
+  # GitHub Actions (/.github/workflows/*.yml)
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: daily
+      time: '19:00'
+      timezone: Asia/Tokyo
+    cooldown:
+      default-days: 5
+    commit-message:
+      prefix: ci(gh-actions)
+    labels:
+      - 'dependabot :robot:'
+    reviewers:
+      - ddradar/developer
+
+  # Node.js (/**/package.json)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: daily
+      time: '18:00'
+      timezone: Asia/Tokyo
+    cooldown:
+      default-days: 5
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    groups:
+      iconify:
+        patterns:
+          - '@iconify-json/*'
+      lint-tools:
+        dependency-type: development
+        patterns:
+          - '@vitest/eslint-plugin'
+          - 'eslint*'
+          - husky
+          - lint-staged
+          - prettier
+      vitest:
+        dependency-type: development
+        patterns:
+          - '@vitest/*'
+          - vitest
+        exclude-patterns:
+          - '@vitest/eslint-plugin'
+    commit-message:
+      prefix: chore
+      prefix-development: chore
+      include: scope
+    labels:
+      - 'dependabot :robot:'
+    reviewers:
+      - ddradar/developer
+    open-pull-requests-limit: 20
