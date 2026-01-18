@@ -1,0 +1,64 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches:
+      - $default-branch
+  pull_request:
+
+jobs:
+  lint:
+    name: Lint & Format Check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Use Node.js ${{ vars.NODE_VERSION }}
+        uses: actions/setup-node@v6.2.0
+        with: &setup-node-with
+          node-version: ${{ vars.NODE_VERSION }}
+          cache: pnpm
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint
+        run: pnpm lint:eslint
+      - name: Run Prettier
+        run: pnpm lint:prettier
+      - name: Run vue-tsc (via Nuxt)
+        # Disabled until https://github.com/nuxt-hub/core/pull/758 is released
+        if: false
+        run: pnpm lint:typecheck
+
+  test:
+    name: Unit Test
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write # to use OIDC
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.1
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Use Node.js ${{ vars.NODE_VERSION }}
+        uses: actions/setup-node@v6.2.0
+        with: *setup-node-with
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Test
+        run: pnpm test --coverage
+
+      - name: Report Code Coverage to codecov
+        uses: codecov/codecov-action@v5.5.2
+        with:
+          use_oidc: true
