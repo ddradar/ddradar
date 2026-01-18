@@ -1,0 +1,56 @@
+# Please see the documentation for all configuration options:
+# https://docs.github.com/code-security/reference/supply-chain-security/dependabot-options-reference
+
+version: 2
+updates:
+  # GitHub Actions (/.github/workflows/*.yml)
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+      time: '19:00'
+      timezone: Asia/Tokyo
+    commit-message:
+      prefix: ci(gh-actions)
+    milestone: 23
+    labels:
+      - 'dependabot :robot:'
+    reviewers:
+      - ddradar/developer
+
+  # Node.js (/**/package.json)
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+      time: '18:00'
+      timezone: Asia/Tokyo
+    groups:
+      iconify:
+        patterns:
+          - '@iconify-json/*'
+      lint-tools:
+        dependency-type: development
+        patterns:
+          - '@vitest/eslint-plugin'
+          - 'eslint*'
+          - husky
+          - lint-staged
+          - prettier
+      vitest:
+        dependency-type: development
+        patterns:
+          - '@vitest/*'
+          - vitest
+        exclude-patterns:
+          - '@vitest/eslint-plugin'
+    commit-message:
+      prefix: chore
+      prefix-development: chore
+      include: scope
+    milestone: 23
+    labels:
+      - 'dependabot :robot:'
+    reviewers:
+      - ddradar/developer
+    open-pull-requests-limit: 20
