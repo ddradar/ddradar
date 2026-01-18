@@ -19,6 +19,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils/module',
     'nuxt-auth-utils',
     '@nuxtjs/i18n',
+    '@nuxt/content',
   ],
   nitro: {
     preset: 'cloudflare-module',
