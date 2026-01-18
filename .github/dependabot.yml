@@ -7,12 +7,16 @@ updates:
   - package-ecosystem: github-actions
     directory: /
     schedule:
-      interval: monthly
+      interval: daily
       time: '19:00'
       timezone: Asia/Tokyo
+    cooldown:
+      default-days: 5
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
     commit-message:
       prefix: ci(gh-actions)
-    milestone: 23
     labels:
       - 'dependabot :robot:'
     reviewers:
@@ -22,9 +26,14 @@ updates:
   - package-ecosystem: npm
     directory: /
     schedule:
-      interval: monthly
+      interval: daily
       time: '18:00'
       timezone: Asia/Tokyo
+    cooldown:
+      default-days: 5
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
     groups:
       iconify:
         patterns:
@@ -48,7 +57,6 @@ updates:
       prefix: chore
       prefix-development: chore
       include: scope
-    milestone: 23
     labels:
       - 'dependabot :robot:'
     reviewers:
