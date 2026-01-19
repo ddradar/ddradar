@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.12.1",
+  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "build": "NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "db:generate": "nuxt db generate",
