@@ -26,10 +26,3 @@ export default defineOAuthXEventHandler({
     return sendRedirect(event, '/')
   },
 })
-
-defineRouteMeta({
-  openAPI: {
-    summary: 'X (formerly Twitter) OAuth callback handler',
-    tags: ['Authentication'],
-  },
-})

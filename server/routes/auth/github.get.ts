@@ -25,10 +25,3 @@ export default defineOAuthGitHubEventHandler({
     return sendRedirect(event, '/')
   },
 })
-
-defineRouteMeta({
-  openAPI: {
-    summary: 'GitHub OAuth callback handler',
-    tags: ['Authentication'],
-  },
-})

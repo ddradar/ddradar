@@ -26,10 +26,3 @@ export default defineOAuthLineEventHandler({
     return sendRedirect(event, '/')
   },
 })
-
-defineRouteMeta({
-  openAPI: {
-    summary: 'LINE OAuth callback handler',
-    tags: ['Authentication'],
-  },
-})
