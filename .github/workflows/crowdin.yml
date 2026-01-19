@@ -25,6 +25,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.1
 
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@v2.2.1
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Crowdin Action
         uses: crowdin/github-action@v2.13.0
         with:
@@ -39,6 +46,6 @@ jobs:
           localization_branch_name: chore/l10n_crowdin_translations
           config: crowdin.yml
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
