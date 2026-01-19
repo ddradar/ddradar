@@ -1,9 +1,10 @@
-::u-page-hero
 ---
 title: DDRadar
 description: あなたのDDRスコアを記録・分析・共有するシンプル/高速なツール。
+feature: 主な機能
 ---
-::
+
+::u-page-hero{:title="title" :description="description"}
 
 ::u-page-section
 ---
