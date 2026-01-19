@@ -1,8 +1,8 @@
 diff --git a/dist/module.mjs b/dist/module.mjs
-index 8f80a9b9dee5fdfa22525854e955e395416432a0..0815d09496d42ec358c8e5877f376d3e86dd0871 100644
+index cb0df587e07404f133284b5f8d94c2a9ac46e000..751da1b826bcf7bdea7077fca12f2151c9d6ac94 100644
 --- a/dist/module.mjs
 +++ b/dist/module.mjs
-@@ -289,7 +289,7 @@ const apiToken = ${JSON.stringify(connection.apiToken)}
+@@ -446,7 +446,7 @@ const apiToken = ${JSON.stringify(connection.apiToken)}
  async function d1HttpDriver(sql, params, method) {
    if (method === 'values') method = 'all'
  

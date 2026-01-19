@@ -81,8 +81,8 @@
       "workerd"
     ],
     "patchedDependencies": {
-      "@nuxthub/core": "patches/@nuxthub__core.patch",
-      "nitropack@2.12.9": "patches/nitropack@2.12.9.patch"
+      "@nuxthub/core@0.10.4": "patches/@nuxthub__core@0.10.4.patch",
+      "nitropack@2.13.1": "patches/nitropack@2.13.1.patch"
     }
   }
 }
