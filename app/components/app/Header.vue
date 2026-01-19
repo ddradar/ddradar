@@ -1,21 +1,24 @@
 <script setup lang="ts">
 const { t } = useI18n()
 const { user, clear } = useUserSession()
+
 const displayName = computed(
   () => `${user.value?.displayName}${user.value?.id ? '' : ' (未登録)'}`
 )
 
 async function logout() {
   await clear()
-  navigateTo('/')
+  await navigateTo('/')
 }
 </script>
 
 <template>
   <UHeader>
     <template #title>
-      <NuxtLink to="/">DDRadar</NuxtLink>
+      <AppLogo class="w-auto h-6 shrink-0" />
+      <span class="font-bold text-lg">DDRadar</span>
     </template>
+
     <template #right>
       <AuthState>
         <template #default="{ loggedIn }">
