@@ -1,8 +1,5 @@
 {
   "actions": {
-    "add": {
-      "label": "追加"
-    },
     "login": {
       "label": "ログイン"
     },
@@ -13,6 +10,9 @@
       "label": "保存",
       "success": "@.capitalize:{'entity'}を保存しました。",
       "error": "@.capitalize:{'entity'}の保存に失敗しました。"
+    },
+    "add": {
+      "label": "追加"
     },
     "delete": {
       "label": "削除"
@@ -34,9 +34,15 @@
         "label": "MAX COMBO",
         "placeholder": "0 - {max}"
       },
-      "clearLamp": { "label": "クリアランプ" },
-      "rank": { "isFailed": "E判定" },
-      "flareRank": { "label": "フレアランク" },
+      "clearLamp": {
+        "label": "クリアランプ"
+      },
+      "rank": {
+        "isFailed": "E判定"
+      },
+      "flareRank": {
+        "label": "フレアランク"
+      },
       "flareSkill": {
         "label": "フレアスキル",
         "placeholder": "0 - {max}"
