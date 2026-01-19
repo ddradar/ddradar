@@ -1,9 +1,9 @@
-::u-page-hero
 ---
 title: DDRadar
 description: Simple, fast tool to record, analyze, and share your DDR scores.
 ---
-::
+
+::u-page-hero{:title="title" :description="description"}
 
 ::u-page-section
 ---
