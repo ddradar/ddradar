@@ -1,5 +1,11 @@
 {
   "actions": {
+    "add": {
+      "label": "Add"
+    },
+    "delete": {
+      "label": "Delete"
+    },
     "login": {
       "label": "Login"
     },
@@ -10,12 +16,6 @@
       "label": "Save",
       "success": "@.capitalize:{'entity'} saved successfully.",
       "error": "Failed to save @.lower:{'entity'}."
-    },
-    "add": {
-      "label": "Add"
-    },
-    "delete": {
-      "label": "Delete"
     }
   },
   "entity": "{entity}",
@@ -236,7 +236,8 @@
       "isPublic": {
         "label": "Profile Visibility",
         "description": "Allow other users to view your profile and scores."
-      }
+      },
+      "unregistered": "{name} (Unregistered)"
     }
   },
   "component": {

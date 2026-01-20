@@ -22,11 +22,7 @@ import { publicUser, sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
 
 // Mock composables
-const { navigateToMock, useCookieMock } = vi.hoisted(() => ({
-  navigateToMock: vi.fn(),
-  useCookieMock: vi.fn(),
-}))
-mockNuxtImport('navigateTo', () => navigateToMock)
+const { useCookieMock } = vi.hoisted(() => ({ useCookieMock: vi.fn() }))
 mockNuxtImport('useCookie', () => useCookieMock)
 
 // Mock API endpoints
