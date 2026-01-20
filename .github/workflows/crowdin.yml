@@ -2,7 +2,8 @@ name: Crowdin Sync
 
 on:
   push:
-    branches: [ $default-branch ]
+    branches:
+      - main
     paths:
       - 'crowdin.yml'
       - '.github/workflows/crowdin.yml'
