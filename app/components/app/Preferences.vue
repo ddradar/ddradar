@@ -1,7 +1,23 @@
 <script setup lang="ts">
+import type { SelectItem } from '@nuxt/ui'
 import { en, ja } from '@nuxt/ui/locale'
 
-const { locale, setLocale } = useI18n()
+import { PlayStyle } from '~~/shared/schemas/step-chart'
+
+const { locale, setLocale, t } = useI18n()
+
+const style = useStyleVisibility()
+const items = computed<SelectItem[]>(() => [
+  { label: t('component.preference.playStyle.both'), value: 0 },
+  {
+    label: t('component.preference.playStyle.single'),
+    value: PlayStyle.SINGLE,
+  },
+  {
+    label: t('component.preference.playStyle.double'),
+    value: PlayStyle.DOUBLE,
+  },
+])
 </script>
 
 <template>
@@ -9,29 +25,36 @@ const { locale, setLocale } = useI18n()
     <UButton variant="ghost" icon="i-lucide-settings" />
 
     <template #content>
-      <fieldset>
-        <ULocaleSelect
-          :model-value="locale"
-          :locales="[en, ja]"
-          @update:model-value="setLocale($event as typeof locale)"
-        />
-      </fieldset>
-      <fieldset><UColorModeSelect /></fieldset>
+      <div class="p-2">
+        <fieldset class="mb-2">
+          <legend
+            class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+          >
+            {{ t('component.preference.language') }}
+          </legend>
+          <ULocaleSelect
+            :model-value="locale"
+            :locales="[en, ja]"
+            @update:model-value="setLocale($event as typeof locale)"
+          />
+        </fieldset>
+        <fieldset class="mb-2">
+          <legend
+            class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+          >
+            {{ t('component.preference.colorMode') }}
+          </legend>
+          <UColorModeSelect />
+        </fieldset>
+        <fieldset class="mb-2">
+          <legend
+            class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+          >
+            {{ t('component.preference.playStyle.legend') }}
+          </legend>
+          <USelect v-model="style" :items="items" />
+        </fieldset>
+      </div>
     </template>
   </UPopover>
 </template>
-
-<i18n lang="json">
-{
-  "en": {
-    "language": "Language",
-    "colorMode": "Color Mode",
-    "login": "Login"
-  },
-  "ja": {
-    "language": "言語",
-    "colorMode": "カラーモード",
-    "login": "ログイン"
-  }
-}
-</i18n>
