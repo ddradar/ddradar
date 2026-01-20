@@ -269,7 +269,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
                 <p id="v-0-0-1-description" data-slot="description" class="text-muted">このアプリで使用するユーザーIDです。一度登録すると変更できません。</p>
               </div>
               <div class="relative mt-1">
-                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-1" type="text" name="id" placeholder="3-32文字, 半角英数字,アンダースコア・ハイフンのみ使用可能" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" disabled="" autocomplete="off" aria-invalid="false" aria-describedby="v-0-0-1-description" value="public_user">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-1" type="text" name="id" placeholder="3-32文字, 半角英数字,アンダースコア,ハイフンのみ使用可能" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" disabled="" autocomplete="off" aria-invalid="false" aria-describedby="v-0-0-1-description" value="public_user">
                   <!--v-if-->
                   <!--v-if-->
                 </div>
