@@ -2,8 +2,10 @@
 const { t } = useI18n()
 const { user, clear } = useUserSession()
 
-const displayName = computed(
-  () => `${user.value?.displayName}${user.value?.id ? '' : ' (未登録)'}`
+const displayName = computed(() =>
+  user.value?.id
+    ? user.value?.displayName
+    : t('schema.user.unregistered', { name: user.value?.displayName })
 )
 
 async function logout() {
