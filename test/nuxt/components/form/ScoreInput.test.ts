@@ -30,7 +30,6 @@ describe('components/form/ScoreInput.vue', () => {
     vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
   })
   beforeEach(() => {
-    document.body.innerHTML = ''
     mockHandler.mockClear()
     addMock.mockClear()
   })

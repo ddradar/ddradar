@@ -44,7 +44,10 @@ async function logout() {
           </UModal>
         </template>
       </AuthState>
-      <AppPreferences />
+      <UPopover>
+        <UButton variant="ghost" icon="i-lucide-settings" />
+        <template #content><FormPreferences /></template>
+      </UPopover>
     </template>
   </UHeader>
 </template>
