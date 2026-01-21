@@ -226,22 +226,19 @@ describe('/profile', () => {
         await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
-        const form = wrapper.find('form')
-        await fireEvent.submit(form.element as HTMLFormElement)
-        await new Promise(r => setTimeout(r, 100))
+        await wrapper.find('form').trigger('submit')
 
         // Assert
-        expect(mockHandler).toHaveBeenCalled()
-        expect(addMock).toHaveBeenCalledWith(
-          expect.objectContaining({ color: 'success', title: message })
-        )
-        expect(fetchMock).toHaveBeenCalled()
+        await vi.waitFor(() => {
+          expect(mockHandler).toHaveBeenCalled()
+          expect(addMock).toHaveBeenCalledWith(
+            expect.objectContaining({ color: 'success', title: message })
+          )
+          expect(fetchMock).toHaveBeenCalled()
 
-        // Verify payload structure
-        expect(capturedBody!.id).toBe(publicUser.id)
-        expect(capturedBody!.name).toBe(publicUser.name)
-        expect(capturedBody!.area).toBe(publicUser.area)
-        expect(capturedBody!.isPublic).toBe(publicUser.isPublic)
+          // Verify payload structure
+          expect(capturedBody).toStrictEqual(publicUser)
+        })
       }
     )
 
@@ -263,18 +260,15 @@ describe('/profile', () => {
         await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
-        const form = wrapper.find('form')
-        await fireEvent.submit(form.element as HTMLFormElement)
-        await new Promise(r => setTimeout(r, 100))
+        await wrapper.find('form').trigger('submit')
 
         // Assert
-        expect(mockHandler).toHaveBeenCalled()
-        expect(addMock).toHaveBeenCalledWith(
-          expect.objectContaining({
-            color: 'error',
-            title: message,
-          })
-        )
+        await vi.waitFor(() => {
+          expect(mockHandler).toHaveBeenCalled()
+          expect(addMock).toHaveBeenCalledWith(
+            expect.objectContaining({ color: 'error', title: message })
+          )
+        })
       }
     )
   })

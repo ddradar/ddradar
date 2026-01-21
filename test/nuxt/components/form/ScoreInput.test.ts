@@ -4,12 +4,11 @@ import {
   renderSuspended,
 } from '@nuxt/test-utils/runtime'
 import { fireEvent, screen, within } from '@testing-library/vue'
-import { html as beautifyHtml } from 'js-beautify'
 import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import type { ScoreRecord } from '#shared/types/score'
 import { calcFlareSkill, fillScoreRecordFromChart } from '#shared/utils/score'
-import ScoreInput from '~/components/modal/ScoreInput.vue'
+import ScoreInput from '~/components/form/ScoreInput.vue'
 import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
 import { scoreRecord } from '~~/test/data/score'
 import { testSongData as song } from '~~/test/data/song'
@@ -21,10 +20,9 @@ registerEndpoint(
   { method: 'POST', handler: mockHandler }
 )
 
-describe('components/modal/ScoreInput.vue', () => {
+describe('components/form/ScoreInput.vue', () => {
   const requiredProps = {
     id: song.id,
-    name: song.name,
     chart: { ...charts[0] }, // has notes info
   }
 
@@ -32,26 +30,9 @@ describe('components/modal/ScoreInput.vue', () => {
     vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
   })
   beforeEach(() => {
-    document.body.innerHTML = ''
     mockHandler.mockClear()
     addMock.mockClear()
   })
-
-  /** Get modal form element via mountSuspended wrapper */
-  const getTeleportedForms = async (
-    wrapper: Awaited<ReturnType<typeof mountSuspended>>
-  ) => {
-    await wrapper.get('button')?.trigger('click')
-    await wrapper.vm.$nextTick()
-    return screen.getByRole('form') as HTMLFormElement
-  }
-
-  /** Open modal and get form element using testing-library */
-  const openModalAndGetForm = async () => {
-    const trigger = await screen.findByRole('button')
-    await fireEvent.click(trigger)
-    return screen.getByRole('form') as HTMLFormElement
-  }
 
   describe('Rendering', () => {
     describe.each(locales)('(locale: %s)', locale => {
@@ -63,15 +44,9 @@ describe('components/modal/ScoreInput.vue', () => {
         const props = { ...requiredProps, chart }
         const wrapper = await mountSuspended(ScoreInput, { props })
         await wrapper.vm.$i18n.setLocale(locale)
-        const form = await getTeleportedForms(wrapper)
 
         // Assert
-        expect(form).toBeDefined()
-        const normalized = beautifyHtml(form!.outerHTML, {
-          indent_size: 2,
-          wrap_line_length: 0,
-        })
-        expect(normalized).toMatchSnapshot()
+        expect(wrapper.html()).toMatchSnapshot()
       })
     })
 
@@ -116,7 +91,7 @@ describe('components/modal/ScoreInput.vue', () => {
         await renderSuspended(ScoreInput, { props })
 
         // Assert
-        const form = await openModalAndGetForm()
+        const form = screen.getByRole('form')
         for (const [key, value] of Object.entries(expected)) {
           const el = form!.querySelector(`[name="${key}"]`) as
             | HTMLInputElement
@@ -135,7 +110,7 @@ describe('components/modal/ScoreInput.vue', () => {
         await renderSuspended(ScoreInput, {
           props: { ...requiredProps, score: scoreRecord },
         })
-        const form = await openModalAndGetForm()
+        const form = screen.getByRole('form')
 
         // Act - Find the checkbox button (there's only one: isFailed)
         const checkboxButton = within(form!).getByRole('checkbox')
@@ -158,7 +133,7 @@ describe('components/modal/ScoreInput.vue', () => {
             score: { ...scoreRecord, clearLamp: ClearLamp.Failed, rank: 'E' },
           },
         })
-        const form = await openModalAndGetForm()
+        const form = screen.getByRole('form')
 
         // Act - Find the checkbox button (there's only one: isFailed)
         const checkboxButton = within(form!).getByRole('checkbox')
@@ -181,7 +156,7 @@ describe('components/modal/ScoreInput.vue', () => {
         await renderSuspended(ScoreInput, {
           props: { ...requiredProps, score: scoreRecord },
         })
-        const form = await openModalAndGetForm()
+        const form = screen.getByRole('form')
 
         // Act
         const clearLampSelect = form!.querySelector(
@@ -198,44 +173,39 @@ describe('components/modal/ScoreInput.vue', () => {
 
     test('Auto button fills score fields', async () => {
       // Arrange
-      const props = {
-        ...requiredProps,
-        score: { ...scoreRecord, clearLamp: ClearLamp.MFC },
-      }
-      const wrapper = await mountSuspended(ScoreInput, { props })
-      const form = await getTeleportedForms(wrapper)
-
-      // Act
-      const vm = wrapper.vm as unknown as { fillScoreRecord: () => void }
-      vm.fillScoreRecord()
-      await wrapper.vm.$nextTick()
-
-      // Assert
-      const expected = fillScoreRecordFromChart(props.chart, props.score!)
+      const score = {
+        clearLamp: ClearLamp.MFC,
+        flareRank: FlareRank.IV,
+      } as ScoreRecord
+      const props = { ...requiredProps, score }
+      const expected = fillScoreRecordFromChart(props.chart, score)
       expected.flareSkill = calcFlareSkill(
         props.chart.level,
         expected.flareRank
       )
-      const ex = within(form!).getByLabelText(
-        /EX SCORE/i
-      ) as HTMLInputElement | null
-      const maxC = within(form!).getByLabelText(
-        /MAX COMBO/i
-      ) as HTMLInputElement | null
-      const flare = within(form!).getByLabelText(
-        /フレアスキル|Flare Skill/i
-      ) as HTMLInputElement | null
-      expect(ex).toBeDefined()
-      expect(maxC).toBeDefined()
-      expect(flare).toBeDefined()
-      // HTML inputs convert null to empty string
-      expect(ex!.value).toBe(
-        expected.exScore == null ? '' : String(expected.exScore)
-      )
-      expect(maxC!.value).toBe(
-        expected.maxCombo == null ? '' : String(expected.maxCombo)
-      )
-      expect(flare!.value).toBe(String(expected.flareSkill))
+      await renderSuspended(ScoreInput, { props })
+
+      // Act
+      const form = screen.getByRole('form')
+      const autoBtn = within(form!).getByRole('button', {
+        name: 'Auto-fill score fields',
+      })
+      await fireEvent.click(autoBtn)
+      await new Promise(r => setTimeout(r, 0))
+
+      // Assert
+      const normal = within(form).getByLabelText(
+        '通常スコア'
+      ) as HTMLInputElement
+      expect(normal.value).toBe(String(expected.normalScore))
+      const ex = within(form).getByLabelText('EX SCORE') as HTMLInputElement
+      const maxC = within(form).getByLabelText('MAX COMBO') as HTMLInputElement
+      const flare = within(form).getByLabelText(
+        'フレアスキル'
+      ) as HTMLInputElement
+      expect(ex.value).toBe(String(expected.exScore))
+      expect(maxC.value).toBe(String(expected.maxCombo))
+      expect(flare.value).toBe(String(expected.flareSkill))
     })
 
     test('Reset button clears form to initial state', async () => {
@@ -243,7 +213,7 @@ describe('components/modal/ScoreInput.vue', () => {
       await renderSuspended(ScoreInput, {
         props: { ...requiredProps, score: scoreRecord },
       })
-      const form = await openModalAndGetForm()
+      const form = screen.getByRole('form')
 
       // Act - Get input by name attribute
       const normalScoreInput = form!.querySelector(
@@ -273,25 +243,20 @@ describe('components/modal/ScoreInput.vue', () => {
         // Arrange
         mockHandler.mockClear()
         addMock.mockClear()
-        const wrapper = await mountSuspended(ScoreInput, {
-          props: { ...requiredProps, score: scoreRecord },
-        })
+        const props = { ...requiredProps, score: scoreRecord }
+        const wrapper = await mountSuspended(ScoreInput, { props })
         await wrapper.vm.$i18n.setLocale(locale)
-        await wrapper.vm.$nextTick()
 
         // Act
-        const form = await getTeleportedForms(wrapper)
-        const submitBtn = within(form!).getByRole('button', {
-          name: /Submit|送信/i,
-        }) as HTMLButtonElement
-        await fireEvent.click(submitBtn)
-        await new Promise(r => setTimeout(r, 100))
+        await wrapper.find('form').trigger('submit')
 
         // Assert
-        expect(mockHandler).toHaveBeenCalled()
-        expect(addMock).toHaveBeenCalledWith(
-          expect.objectContaining({ color: 'success', title: message })
-        )
+        await vi.waitFor(() => {
+          expect(mockHandler).toHaveBeenCalled()
+          expect(addMock).toHaveBeenCalledWith(
+            expect.objectContaining({ color: 'success', title: message })
+          )
+        })
       }
     )
 
@@ -304,35 +269,30 @@ describe('components/modal/ScoreInput.vue', () => {
         // Arrange
         mockHandler.mockClear()
         addMock.mockClear()
-        const apiErrorMessage = 'Invalid Body'
+        const errorMessage = 'Invalid Body'
         mockHandler.mockImplementationOnce(() => {
-          throw createError({ statusCode: 400, statusMessage: apiErrorMessage })
+          throw createError({ statusCode: 400, statusMessage: errorMessage })
         })
 
         const wrapper = await mountSuspended(ScoreInput, {
           props: { ...requiredProps, score: scoreRecord },
         })
         await wrapper.vm.$i18n.setLocale(locale)
-        await wrapper.vm.$nextTick()
 
         // Act
-        const form = await getTeleportedForms(wrapper)
-        expect(form).toBeDefined()
-        const submitBtn = within(form!).getByRole('button', {
-          name: /Submit|送信/i,
-        }) as HTMLButtonElement
-        await fireEvent.click(submitBtn)
-        await new Promise(r => setTimeout(r, 100))
+        await wrapper.find('form').trigger('submit')
 
         // Assert
-        expect(mockHandler).toHaveBeenCalled()
-        expect(addMock).toHaveBeenCalledWith(
-          expect.objectContaining({
-            color: 'error',
-            title: message,
-            description: expect.stringContaining(apiErrorMessage),
-          })
-        )
+        await vi.waitFor(() => {
+          expect(mockHandler).toHaveBeenCalled()
+          expect(addMock).toHaveBeenCalledWith(
+            expect.objectContaining({
+              color: 'error',
+              title: message,
+              description: expect.stringContaining(errorMessage),
+            })
+          )
+        })
       }
     )
   })
@@ -343,7 +303,7 @@ describe('components/modal/ScoreInput.vue', () => {
       await renderSuspended(ScoreInput, {
         props: { ...requiredProps, score: null },
       })
-      const form = await openModalAndGetForm()
+      const form = screen.getByRole('form')
 
       // Act - Set normalScore to invalid value (negative)
       const normalScoreInput = form!.querySelector(
@@ -363,7 +323,7 @@ describe('components/modal/ScoreInput.vue', () => {
       await renderSuspended(ScoreInput, {
         props: { ...requiredProps, score: scoreRecord },
       })
-      const form = await openModalAndGetForm()
+      const form = screen.getByRole('form')
 
       // Act
       const exScoreInput = within(form!).getByLabelText(
@@ -390,7 +350,7 @@ describe('components/modal/ScoreInput.vue', () => {
           },
         },
       })
-      const form = await openModalAndGetForm()
+      const form = screen.getByRole('form')
 
       // Act
       const exScoreInput = within(form!).getByLabelText(

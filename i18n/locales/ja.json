@@ -241,6 +241,16 @@
     }
   },
   "component": {
+    "preference": {
+      "language": "言語",
+      "colorMode": "カラーモード",
+      "playStyle": {
+        "legend": "プレースタイル",
+        "both": "両方表示",
+        "single": "シングルのみ",
+        "double": "ダブルのみ"
+      }
+    },
     "score_input": {
       "title": "スコア登録 - {name}",
       "auto": "自動計算",

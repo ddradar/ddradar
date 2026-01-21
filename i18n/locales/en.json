@@ -241,6 +241,16 @@
     }
   },
   "component": {
+    "preference": {
+      "language": "Language",
+      "colorMode": "Color Mode",
+      "playStyle": {
+        "legend": "Play Style",
+        "both": "Both",
+        "single": "Single only",
+        "double": "Double only"
+      }
+    },
     "score_input": {
       "title": "Score Input - {name}",
       "auto": "Autofill",
