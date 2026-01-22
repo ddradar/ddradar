@@ -19,7 +19,10 @@ export async function __getSongInfo(id: string): Promise<SongInfo | undefined> {
   const song: SongInfo | undefined = await db.query.songs.findFirst({
     columns: { ...ignoreTimestampCols },
     with: {
-      charts: { columns: { id: false, ...ignoreTimestampCols } },
+      charts: {
+        columns: { id: false, ...ignoreTimestampCols },
+        where: (charts, { isNull }) => isNull(charts.deletedAt),
+      },
     },
     where: (songs, { and, eq, isNull }) =>
       and(eq(songs.id, id), isNull(songs.deletedAt)),
