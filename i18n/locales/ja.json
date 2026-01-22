@@ -6,6 +6,9 @@
     "delete": {
       "label": "削除"
     },
+    "edit": {
+      "label": "編集"
+    },
     "login": {
       "label": "ログイン"
     },
@@ -34,9 +37,15 @@
         "label": "MAX COMBO",
         "placeholder": "0 - {max}"
       },
-      "clearLamp": { "label": "クリアランプ" },
-      "rank": { "isFailed": "E判定" },
-      "flareRank": { "label": "フレアランク" },
+      "clearLamp": {
+        "label": "クリアランプ"
+      },
+      "rank": {
+        "isFailed": "E判定"
+      },
+      "flareRank": {
+        "label": "フレアランク"
+      },
       "flareSkill": {
         "label": "フレアスキル",
         "placeholder": "0 - {max}"
@@ -60,6 +69,7 @@
         "label": "シリーズ"
       },
       "chart": {
+        "label": "譜面情報",
         "playStyle": {
           "label": "プレースタイル"
         },
