@@ -3,7 +3,11 @@ import { db, schema } from '@nuxthub/db'
 import * as z from 'zod/mini'
 
 import { seriesList } from '#shared/schemas/song'
-import { chartEquals, getChartName } from '#shared/schemas/step-chart'
+import {
+  chartEquals,
+  Difficulty,
+  getChartName,
+} from '#shared/schemas/step-chart'
 
 const runtimeConfigSchema = z.object({
   ddrCardDrawJsonUrl: z
@@ -144,10 +148,12 @@ export default defineTask({
     const insertedCounts = await Promise.all(
       importedSongs.map(async song => {
         const existingCharts = existingSongs.get(song.saHash)
-        const charts: (StepChart & Pick<SongInfo, 'id'>)[] = song.charts.map(
-          c => ({
+        const charts: (StepChart & Pick<SongInfo, 'id'>)[] = song.charts
+          .map(c => ({
             id: song.saHash,
-            playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
+            playStyle: (c.style.toLowerCase() === 'double'
+              ? 2
+              : 1) as StepChart['playStyle'],
             difficulty: data.meta.difficulties.findIndex(
               d => d.key === c.diffClass
             ) as StepChart['difficulty'],
@@ -156,8 +162,9 @@ export default defineTask({
             notes: c.step,
             freezes: c.freeze,
             shocks: c.shock,
-          })
-        )
+          }))
+          .filter(c => Object.values(Difficulty).includes(c.difficulty))
+
         if (!existingCharts) {
           const res: D1Result[] = await database.batch([
             database
@@ -168,13 +175,16 @@ export default defineTask({
                 nameKana: song.name.toUpperCase(),
                 artist: song.artist,
                 bpm: song.bpm,
-                series: seriesList.at(series.indexOf(song.folder!))!,
+                series:
+                  seriesList.at(
+                    song.folder ? series.indexOf(song.folder) : -1
+                  ) ?? 'DDR WORLD',
               })
               .onConflictDoNothing(),
             database.insert(schema.charts).values(charts).onConflictDoNothing(),
           ])
           console.log(`Added: ${song.name} (${song.saHash})`)
-          await clearSongCache(song.saHash!, false)
+          await clearSongCache(song.saHash, false)
           return res.reduce((acc, r) => acc + r.results.length, 0)
         }
 
@@ -192,7 +202,7 @@ export default defineTask({
               .map(c => getChartName(c))
               .join(', ')}`
           )
-          await clearSongCache(song.saHash!, false)
+          await clearSongCache(song.saHash, false)
         }
         return res.results.length
 
