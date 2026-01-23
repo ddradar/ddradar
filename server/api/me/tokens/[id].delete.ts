@@ -1,3 +1,4 @@
+import { kv } from '@nuxthub/kv'
 import * as z from 'zod/mini'
 
 import { apiTokenSchema } from '#shared/schemas/user'

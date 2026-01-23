@@ -1,6 +1,7 @@
 import type { D1Response } from '@cloudflare/workers-types'
+import { db } from '@nuxthub/db'
+import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
-import { scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { scoreRecordKeySchema } from '#shared/schemas/score'

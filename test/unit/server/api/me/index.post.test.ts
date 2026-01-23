@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { users } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
-import { users } from 'hub:db:schema'
 import {
   afterAll,
   beforeAll,

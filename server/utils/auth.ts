@@ -1,3 +1,5 @@
+import { db } from '@nuxthub/db'
+import { kv } from '@nuxthub/kv'
 import { eq } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 

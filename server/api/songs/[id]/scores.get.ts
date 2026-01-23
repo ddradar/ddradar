@@ -1,3 +1,5 @@
+import { db } from '@nuxthub/db'
+import { scores, users } from '@nuxthub/db/schema'
 import {
   and,
   asc,
@@ -9,7 +11,6 @@ import {
   or,
   sql,
 } from 'drizzle-orm'
-import { scores, users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'

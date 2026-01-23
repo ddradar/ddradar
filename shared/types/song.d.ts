@@ -1,4 +1,4 @@
-import type { songs } from 'hub:db:schema'
+import type { songs } from '@nuxthub/db/schema'
 
 import type { songSchema } from '#shared/schemas/song'
 import type { stepChartSchema } from '#shared/schemas/step-chart'

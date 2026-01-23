@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { users } from '@nuxthub/db/schema'
 import { and, eq } from 'drizzle-orm'
-import { users } from 'hub:db:schema'
 
 import { userSchema } from '#shared/schemas/user'
 

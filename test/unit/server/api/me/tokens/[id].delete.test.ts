@@ -1,3 +1,4 @@
+import { kv } from '@nuxthub/kv'
 import type { H3Event } from 'h3'
 import { nanoid } from 'nanoid'
 import { beforeEach, describe, expect, test, vi } from 'vitest'

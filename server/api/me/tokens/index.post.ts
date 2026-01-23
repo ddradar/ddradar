@@ -1,3 +1,4 @@
+import { kv } from '@nuxthub/kv'
 import { nanoid } from 'nanoid'
 import * as z from 'zod/mini'
 

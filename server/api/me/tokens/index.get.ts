@@ -1,3 +1,5 @@
+import { kv } from '@nuxthub/kv'
+
 export default defineEventHandler(async event => {
   // Require user session with registered user ID (not allow token-authenticated)
   const user = await requireAuthenticatedUserFromSession(event)

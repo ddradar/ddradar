@@ -21,7 +21,6 @@ export default defineConfig({
           alias: {
             '~~': resolve(__dirname, './'),
             '#shared': resolve(__dirname, './shared'),
-            'hub:db:schema': resolve(__dirname, './server/db/schema'),
           },
         },
         test: {

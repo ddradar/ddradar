@@ -1,4 +1,5 @@
-import { charts, songs } from 'hub:db:schema'
+import { db } from '@nuxthub/db'
+import { charts, songs } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'

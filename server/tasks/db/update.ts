@@ -1,6 +1,7 @@
+import { db } from '@nuxthub/db'
+import { charts } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
 import { Window } from 'happy-dom'
-import { charts } from 'hub:db:schema'
 import iconv from 'iconv-lite'
 import * as z from 'zod/mini'
 

@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { charts, scores } from '@nuxthub/db/schema'
 import { and, desc, eq, inArray, isNotNull, isNull, sql } from 'drizzle-orm'
-import { charts, scores } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import {

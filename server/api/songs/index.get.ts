@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { charts, songs } from '@nuxthub/db/schema'
 import { and, eq, exists } from 'drizzle-orm'
-import { charts, songs } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { compareSong, NameIndex, seriesList } from '#shared/schemas/song'

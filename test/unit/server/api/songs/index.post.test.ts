@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { charts, songs } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
-import { charts, songs } from 'hub:db:schema'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/songs/index.post'
