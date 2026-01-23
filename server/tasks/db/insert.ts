@@ -1,9 +1,9 @@
 import type { D1Result } from '@cloudflare/workers-types'
-import { db } from '@nuxthub/db'
+import { db, schema } from '@nuxthub/db'
 import * as z from 'zod/mini'
 
 import { seriesList } from '#shared/schemas/song'
-import { Difficulty } from '#shared/schemas/step-chart'
+import { chartEquals, getChartName } from '#shared/schemas/step-chart'
 
 const runtimeConfigSchema = z.object({
   ddrCardDrawJsonUrl: z
@@ -124,71 +124,77 @@ export default defineTask({
       config.data.ddrCardDrawJsonUrl,
       { responseType: 'json' }
     )
-    const hasChallengeChartIds = (
+
+    const existingSongs = (
       await db.query.songs.findMany({
         columns: { id: true },
-        with: {
-          charts: {
-            where: (charts, { eq }) =>
-              eq(charts.difficulty, Difficulty.CHALLENGE),
-          },
-        },
-        where: (_, { isNull, sql }) => isNull(sql`charts`),
+        with: { charts: { columns: { playStyle: true, difficulty: true } } },
       })
-    ).map(s => s.id)
-
-    const newSongsOrCharts = data.songs.filter(
-      song => song.saHash && !hasChallengeChartIds.includes(song.saHash)
+    ).reduce(
+      (acc, song) => acc.set(song.id, song.charts),
+      new Map<string, Pick<StepChart, 'playStyle' | 'difficulty'>[]>()
     )
+
+    const importedSongs = data.songs.filter(
+      (song): song is DDRCardDrawSong & { saHash: string } =>
+        song.saHash !== undefined
+    )
+    const database = db // store in a local variable for batch operations
     const series = data.meta.folders.reverse()
     const insertedCounts = await Promise.all(
-      newSongsOrCharts.map(async song => {
-        const songRes: D1Result = await db
-          .insert(schema.songs)
-          .values({
-            id: song.saHash!,
-            name: song.name,
-            nameKana: song.name.toUpperCase(),
-            artist: song.artist,
-            bpm: song.bpm,
-            series: seriesList.at(series.indexOf(song.folder!))!,
+      importedSongs.map(async song => {
+        const existingCharts = existingSongs.get(song.saHash)
+        const charts: (StepChart & Pick<SongInfo, 'id'>)[] = song.charts.map(
+          c => ({
+            id: song.saHash,
+            playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
+            difficulty: data.meta.difficulties.findIndex(
+              d => d.key === c.diffClass
+            ) as StepChart['difficulty'],
+            level: +c.lvl,
+            bpm: parseBPM(c.bpm ?? song.bpm),
+            notes: c.step,
+            freezes: c.freeze,
+            shocks: c.shock,
           })
-          .onConflictDoNothing()
-        if (songRes.results.length > 0)
-          console.log(`Added song: ${song.name} (${song.saHash})`)
-
-        // New songs or CHALLENGE charts for existing songs only
-        const charts = song.charts.filter(
-          c =>
-            songRes.results.length > 0 ||
-            data.meta.difficulties.findIndex(d => d.key === c.diffClass) ===
-              Difficulty.CHALLENGE
         )
-        if (charts.length === 0) return songRes.results.length
-        const chartRes: D1Result = await db
+        if (!existingCharts) {
+          const res: D1Result[] = await database.batch([
+            database
+              .insert(schema.songs)
+              .values({
+                id: song.saHash,
+                name: song.name,
+                nameKana: song.name.toUpperCase(),
+                artist: song.artist,
+                bpm: song.bpm,
+                series: seriesList.at(series.indexOf(song.folder!))!,
+              })
+              .onConflictDoNothing(),
+            database.insert(schema.charts).values(charts).onConflictDoNothing(),
+          ])
+          console.log(`Added: ${song.name} (${song.saHash})`)
+          await clearSongCache(song.saHash!, false)
+          return res.reduce((acc, r) => acc + r.results.length, 0)
+        }
+
+        const newCharts = charts.filter(
+          chart => !existingCharts.find(c => chartEquals(c, chart))
+        )
+        if (newCharts.length === 0) return 0
+        const res: D1Result = await database
           .insert(schema.charts)
-          .values(
-            charts.map(c => ({
-              id: song.saHash!,
-              playStyle: c.style.toLowerCase() === 'double' ? 2 : 1,
-              difficulty: data.meta.difficulties.findIndex(
-                d => d.key === c.diffClass
-              ),
-              level: +c.lvl,
-              bpm: parseBPM(c.bpm ?? song.bpm),
-              notes: c.step,
-              freezes: c.freeze,
-              shocks: c.shock,
-            }))
-          )
+          .values(newCharts)
           .onConflictDoNothing()
-        if (chartRes.results.length > 0)
+        if (res.results.length > 0) {
           console.log(
-            `Added ${chartRes.results.length} chart(s) for ${song.name}`
+            `Added charts for: ${song.name} (${song.saHash}): ${newCharts
+              .map(c => getChartName(c))
+              .join(', ')}`
           )
-        const count = songRes.results.length + chartRes.results.length
-        if (count) await clearSongCache(song.saHash!, false)
-        return count
+          await clearSongCache(song.saHash!, false)
+        }
+        return res.results.length
 
         function parseBPM(
           bpm: string | undefined
