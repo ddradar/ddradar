@@ -10,6 +10,7 @@ export type StoredApiToken = Pick<
   /** Hashed token for secure storage and lookup */
   hashedToken: string
 }
+const userRegistrationRequired = 'User registration required'
 
 /**
  * Validate API token and return user ID
@@ -33,9 +34,8 @@ async function validateTokenAndGetUserId(token: string): Promise<string> {
     reverseKey
   )
 
-  if (!tokenInfo) {
-    throw createError({ statusCode: 401, statusMessage: 'Invalid token' })
-  }
+  if (!tokenInfo)
+    throw createError({ status: 401, statusText: 'Invalid token' })
 
   // Get token details to check expiration
   const tokenKey = `user:${tokenInfo.userId}:token:${tokenInfo.tokenId}`
@@ -46,15 +46,13 @@ async function validateTokenAndGetUserId(token: string): Promise<string> {
     createdAt: string
   }>(tokenKey)
 
-  if (!tokenData) {
-    throw createError({ statusCode: 401, statusMessage: 'Invalid token' })
-  }
+  if (!tokenData)
+    throw createError({ status: 401, statusText: 'Invalid token' })
 
   // Check expiration
   const expiresAt = new Date(tokenData.expiresAt)
-  if (expiresAt < new Date()) {
-    throw createError({ statusCode: 401, statusMessage: 'Token expired' })
-  }
+  if (expiresAt < new Date())
+    throw createError({ status: 401, statusText: 'Token expired' })
 
   return tokenInfo.userId
 }
@@ -78,10 +76,7 @@ export async function getAuthenticatedUser(
   const session = await getUserSession(event)
   if (session?.user) {
     if (!session.user.id) {
-      throw createError({
-        statusCode: 403,
-        statusMessage: 'User registration required',
-      })
+      throw createError({ status: 403, statusText: userRegistrationRequired })
     }
     userIdFromSession = session.user.id
   }
@@ -108,8 +103,8 @@ export async function getAuthenticatedUser(
     userIdFromSession !== userIdFromToken
   ) {
     throw createError({
-      statusCode: 403,
-      statusMessage: 'User ID mismatch between session and token',
+      status: 403,
+      statusText: 'User ID mismatch between session and token',
     })
   }
 
@@ -136,8 +131,7 @@ export async function requireAuthenticatedUser(
   event: H3Event
 ): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
   const user = await getAuthenticatedUser(event)
-  if (!user)
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  if (!user) throw createError({ status: 401, statusText: 'Unauthorized' })
   return user
 }
 
@@ -154,9 +148,6 @@ export async function requireAuthenticatedUserFromSession(
 ): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
   const { user } = await requireUserSession(event)
   if (!user?.id)
-    throw createError({
-      statusCode: 403,
-      statusMessage: 'User registration required',
-    })
+    throw createError({ status: 403, statusText: userRegistrationRequired })
   return user as Required<Pick<SessionUser, 'id' | 'roles'>>
 }

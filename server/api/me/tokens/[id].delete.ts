@@ -16,7 +16,7 @@ export default defineEventHandler(async event => {
   const tokenData = await kv.get<StoredApiToken>(tokenKey)
 
   if (!tokenData)
-    throw createError({ statusCode: 404, statusMessage: 'Token not found' })
+    throw createError({ status: 404, statusText: 'Token not found' })
 
   // Delete reverse mapping
   await kv.del(`token:${tokenData.hashedToken}`)

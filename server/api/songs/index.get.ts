@@ -81,7 +81,7 @@ export default cachedEventHandler(
     if (query.name !== undefined)
       conditions.push(eq(songs.nameIndex, query.name))
     if (query.series !== undefined)
-      conditions.push(eq(songs.series, seriesList[query.series]))
+      conditions.push(eq(songs.series, seriesList[query.series]!))
     if (hasChartConditions) {
       conditions.push(
         exists(

@@ -7,7 +7,7 @@ export default defineNuxtRouteMiddleware(async to => {
         user.value?.roles.includes(role)
       )
     ) {
-      abortNavigation({ statusCode: 403, statusMessage: 'Forbidden' })
+      abortNavigation({ status: 403, statusText: 'Forbidden' })
     }
     return
   }

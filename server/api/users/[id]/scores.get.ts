@@ -127,7 +127,7 @@ export default defineEventHandler(
     const user = await getCachedUser(event, userId)
     // Handle user visibility (user must be public or logged-in as the user)
     if (!user || (!user.isPublic && user.id !== loginUser?.id))
-      throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+      throw createError({ status: 404, statusText: 'Not Found' })
 
     // @ts-expect-error - cannot infer type properly
     const items: Omit<ScoreSearchResult, 'user'>[] =

@@ -68,7 +68,7 @@ export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, _querySchema.parse)
 
   const song = await getCachedSongInfo(event, songId)
-  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  if (!song) throw createError({ status: 404, statusText: 'Not Found' })
 
   // @ts-expect-error - cannot infer type properly
   const items: Omit<ScoreSearchResult, 'song'>[] =

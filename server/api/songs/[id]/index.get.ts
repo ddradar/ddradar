@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
 
   const song = await getCachedSongInfo(event, id)
-  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  if (!song) throw createError({ status: 404, statusText: 'Not Found' })
   return song
 })
 

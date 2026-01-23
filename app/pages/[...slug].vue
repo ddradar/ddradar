@@ -24,7 +24,7 @@ const { data: page } = await useAsyncData(
 )
 
 if (!page.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found' })
+  throw createError({ status: 404, statusText: 'Page not found' })
 </script>
 
 <template>

@@ -27,7 +27,7 @@ export default defineEventHandler(async event => {
     .run()
 
   if (!result.meta.changes)
-    throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+    throw createError({ status: 404, statusText: 'Not Found' })
   setResponseStatus(event, 204)
 })
 

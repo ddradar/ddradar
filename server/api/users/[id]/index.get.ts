@@ -12,7 +12,7 @@ export default defineEventHandler(async event => {
   const user = await getCachedUser(event, id)
   // Handle user visibility (user must be public or logged-in as the user)
   if (!user || (!user.isPublic && user.id !== loginUser?.id))
-    throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+    throw createError({ status: 404, statusText: 'Not Found' })
 
   return user
 })
