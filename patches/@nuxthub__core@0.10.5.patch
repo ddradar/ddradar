@@ -1,0 +1,53 @@
+diff --git a/dist/module.mjs b/dist/module.mjs
+index 134fd3c5a270edbe7974e64713e0f91b0c6a773b..013581bae2ed3caeba1aeeb474eb7f890626c775 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -410,6 +410,48 @@ async function generateDatabaseSchema(nuxt, hub) {
+     });
+   }
+   nuxt.options.alias ||= {};
++  // Generate schema for nuxt prepare
++  if (nuxt.options._prepare) {
++    nuxt.hooks.hookOnce("prepare:types", async () => {
++      await buildDatabaseSchema(nuxt.options.buildDir, { relativeDir: nuxt.options.rootDir });
++      const physicalDbDir = join(nuxt.options.rootDir, "node_modules", "@nuxthub", "db");
++      await mkdir(physicalDbDir, { recursive: true });
++      try {
++        await copyFile(join(nuxt.options.buildDir, "hub/db/schema.mjs"), join(physicalDbDir, "schema.mjs"));
++        const schemaDtsSource = join(nuxt.options.buildDir, "hub/db/schema.d.mts");
++        try {
++          const schemaTypes = await readFile(schemaDtsSource, "utf-8");
++          await writeFile(join(physicalDbDir, "schema.d.mts"), schemaTypes);
++        } catch {
++          await writeFile(
++            join(physicalDbDir, "schema.d.mts"),
++            `export * from './schema.mjs'`
++          );
++        }
++        const packageJson = {
++          name: "@nuxthub/db",
++          version: "0.0.0",
++          type: "module",
++          exports: {
++            ".": {
++              types: "./db.d.ts",
++              default: "./db.mjs"
++            },
++            "./schema": {
++              types: "./schema.d.mts",
++              default: "./schema.mjs"
++            }
++          }
++        };
++        await writeFile(
++          join(physicalDbDir, "package.json"),
++          JSON.stringify(packageJson, null, 2)
++        );
++      } catch (error) {
++        log$3.warn(`Failed to copy schema to node_modules/@nuxthub/db/: ${error}`);
++      }
++    });
++  }
+   addTypeTemplate({
+     filename: "hub/db/schema.d.ts",
+     getContents: () => `declare module 'hub:db:schema' {

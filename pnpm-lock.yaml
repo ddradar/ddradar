@@ -5,9 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 patchedDependencies:
-  '@nuxthub/core@0.10.4':
-    hash: 240a78591bf8cb5c06c8553f45ea278d1c754a8a2019d17771a282b4dde44255
-    path: patches/@nuxthub__core@0.10.4.patch
+  '@nuxthub/core@0.10.5':
+    hash: 24e23a4c1a16edcceb7c980f85aa4a0091c37973bb6d4bf40734f106caa057bd
+    path: patches/@nuxthub__core@0.10.5.patch
   nitropack@2.13.1:
     hash: 9551523f65f3f5715ba294e4d515dd088af2edd26b0caa362c13e4de1837daef
     path: patches/nitropack@2.13.1.patch
@@ -26,8 +26,8 @@ importers:
         specifier: ^4.3.0
         version: 4.3.0(f2d7790fca2a31df9ddff889c608b1d4)
       '@nuxthub/core':
-        specifier: ^0.10.4
-        version: 0.10.4(patch_hash=240a78591bf8cb5c06c8553f45ea278d1c754a8a2019d17771a282b4dde44255)(@azure/identity@4.13.0)(db0@0.3.4(@libsql/client@0.17.0)(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@libsql/client@0.17.0)(better-sqlite3@12.6.2)))(ioredis@5.9.2)(magicast@0.5.1)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))
+        specifier: ^0.10.5
+        version: 0.10.5(patch_hash=24e23a4c1a16edcceb7c980f85aa4a0091c37973bb6d4bf40734f106caa057bd)(@azure/identity@4.13.0)(db0@0.3.4(@libsql/client@0.17.0)(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@libsql/client@0.17.0)(better-sqlite3@12.6.2)))(ioredis@5.9.2)(magicast@0.5.1)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))
       '@nuxtjs/i18n':
         specifier: ^10.2.1
         version: 10.2.1(@azure/identity@4.13.0)(@vue/compiler-dom@3.5.27)(db0@0.3.4(@libsql/client@0.17.0)(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@libsql/client@0.17.0)(better-sqlite3@12.6.2)))(eslint@9.39.2(jiti@2.6.1))(ioredis@5.9.2)(magicast@0.5.1)(rollup@4.55.1)(vue@3.5.27(typescript@5.9.3))
@@ -1675,8 +1675,8 @@ packages:
       rolldown:
         optional: true
 
-  '@nuxthub/core@0.10.4':
-    resolution: {integrity: sha512-X/tu4r12KTNimDFK9FICKPqVhX+EFkJ8uOuUq6BkGP8kxIQiahDWQQ6H9zJcTdcks4JeuN0UQP+hVwszrfFOaA==}
+  '@nuxthub/core@0.10.5':
+    resolution: {integrity: sha512-I733Mdv2P6FKizo4049bSMfkW4zNchcQmd5iUSnXNaJdQSUze66Qmzv4SgiXtSu7zWC0wiXzHsPYnH25+QNUDA==}
     hasBin: true
 
   '@nuxtjs/color-mode@3.5.2':
@@ -9890,7 +9890,7 @@ snapshots:
       - vue-tsc
       - yaml
 
-  '@nuxthub/core@0.10.4(patch_hash=240a78591bf8cb5c06c8553f45ea278d1c754a8a2019d17771a282b4dde44255)(@azure/identity@4.13.0)(db0@0.3.4(@libsql/client@0.17.0)(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@libsql/client@0.17.0)(better-sqlite3@12.6.2)))(ioredis@5.9.2)(magicast@0.5.1)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))':
+  '@nuxthub/core@0.10.5(patch_hash=24e23a4c1a16edcceb7c980f85aa4a0091c37973bb6d4bf40734f106caa057bd)(@azure/identity@4.13.0)(db0@0.3.4(@libsql/client@0.17.0)(better-sqlite3@12.6.2)(drizzle-orm@0.45.1(@libsql/client@0.17.0)(better-sqlite3@12.6.2)))(ioredis@5.9.2)(magicast@0.5.1)(typescript@5.9.3)(vue-tsc@3.2.2(typescript@5.9.3))':
     dependencies:
       '@cloudflare/workers-types': 4.20260103.0
       '@nuxt/kit': 4.3.0(magicast@0.5.1)

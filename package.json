@@ -36,7 +36,7 @@
     "@libsql/client": "^0.17.0",
     "@nuxt/content": "^3.11.0",
     "@nuxt/ui": "^4.3.0",
-    "@nuxthub/core": "^0.10.4",
+    "@nuxthub/core": "^0.10.5",
     "@nuxtjs/i18n": "^10.2.1",
     "better-sqlite3": "^12.6.2",
     "drizzle-orm": "^0.45.1",
@@ -81,8 +81,8 @@
       "workerd"
     ],
     "patchedDependencies": {
-      "@nuxthub/core@0.10.4": "patches/@nuxthub__core@0.10.4.patch",
-      "nitropack@2.13.1": "patches/nitropack@2.13.1.patch"
+      "nitropack@2.13.1": "patches/nitropack@2.13.1.patch",
+      "@nuxthub/core@0.10.5": "patches/@nuxthub__core@0.10.5.patch"
     }
   }
 }
