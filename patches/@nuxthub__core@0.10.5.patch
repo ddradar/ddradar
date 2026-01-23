@@ -1,8 +1,30 @@
 diff --git a/dist/module.mjs b/dist/module.mjs
-index 134fd3c5a270edbe7974e64713e0f91b0c6a773b..013581bae2ed3caeba1aeeb474eb7f890626c775 100644
+index 134fd3c5a270edbe7974e64713e0f91b0c6a773b..6d3aa1c22016b64487643542ab402fa29cfebfb2 100644
 --- a/dist/module.mjs
 +++ b/dist/module.mjs
-@@ -410,6 +410,48 @@ async function generateDatabaseSchema(nuxt, hub) {
+@@ -371,6 +371,21 @@ async function generateDatabaseSchema(nuxt, hub) {
+   if (!nuxt.options._prepare) {
+     nuxt.hooks.hookOnce("app:templatesGenerated", async () => {
+       await buildDatabaseSchema(nuxt.options.buildDir, { relativeDir: nuxt.options.rootDir });
++      
++      // Copy schema from .nuxt to buildDir if they differ (e.g., during vitest)
++      const defaultBuildDir = join(nuxt.options.rootDir, ".nuxt");
++      if (nuxt.options.buildDir !== defaultBuildDir) {
++        const schemaSourceDir = join(defaultBuildDir, "hub/db");
++        const schemaTargetDir = join(nuxt.options.buildDir, "hub/db");
++        await mkdir(schemaTargetDir, { recursive: true });
++        try {
++          await copyFile(join(schemaSourceDir, "schema.mjs"), join(schemaTargetDir, "schema.mjs"));
++          await copyFile(join(schemaSourceDir, "schema.d.mts"), join(schemaTargetDir, "schema.d.mts"));
++        } catch (e) {
++          // Ignore if files don't exist yet
++        }
++      }
++      
+       const physicalDbDir = join(nuxt.options.rootDir, "node_modules", "@nuxthub", "db");
+       await mkdir(physicalDbDir, { recursive: true });
+       try {
+@@ -410,6 +425,48 @@ async function generateDatabaseSchema(nuxt, hub) {
      });
    }
    nuxt.options.alias ||= {};
