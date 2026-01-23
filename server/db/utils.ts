@@ -1,3 +1,4 @@
+import { db, schema } from '@nuxthub/db'
 import { and, eq } from 'drizzle-orm'
 
 /** Columns to ignore timestamps (use it to `columns` property in `db.query.{schema}.findFirst/findMany`) */

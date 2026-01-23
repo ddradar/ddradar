@@ -1,3 +1,5 @@
+import { db } from '@nuxthub/db'
+import { scores, users } from '@nuxthub/db/schema'
 import {
   and,
   asc,
@@ -9,7 +11,6 @@ import {
   or,
   sql,
 } from 'drizzle-orm'
-import { scores, users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
@@ -68,7 +69,7 @@ export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, _querySchema.parse)
 
   const song = await getCachedSongInfo(event, songId)
-  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  if (!song) throw createError({ status: 404, statusText: 'Not Found' })
 
   // @ts-expect-error - cannot infer type properly
   const items: Omit<ScoreSearchResult, 'song'>[] =

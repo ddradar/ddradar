@@ -1,6 +1,7 @@
+import { db } from '@nuxthub/db'
+import { users } from '@nuxthub/db/schema'
 import { and, eq, or, sql } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { users } from 'hub:db:schema'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/users/index.get'

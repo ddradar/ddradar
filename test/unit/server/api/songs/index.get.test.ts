@@ -1,6 +1,7 @@
+import { db } from '@nuxthub/db'
+import { songs } from '@nuxthub/db/schema'
 import { and, eq, exists } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { songs } from 'hub:db:schema'
 import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { seriesList } from '#shared/schemas/song'

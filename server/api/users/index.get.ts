@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { users } from '@nuxthub/db/schema'
 import { and, eq, or, sql } from 'drizzle-orm'
-import { users } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 /** Schema for query parameters */

@@ -1,4 +1,4 @@
-import type { TimestampColumn, users } from 'hub:db:schema'
+import type { TimestampColumn, users } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { range } from '#shared/utils'

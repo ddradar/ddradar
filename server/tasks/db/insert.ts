@@ -1,4 +1,5 @@
 import type { D1Result } from '@cloudflare/workers-types'
+import { db } from '@nuxthub/db'
 import * as z from 'zod/mini'
 
 import { seriesList } from '#shared/schemas/song'
@@ -195,9 +196,9 @@ export default defineTask({
           if (!bpm) return [0]
           const parts = bpm.split('-').map(part => parseInt(part, 10))
           if (parts.length === 1) {
-            return [parts[0]]
+            return [parts[0]!]
           } else {
-            return [parts[0], parts[1], parts[1]]
+            return [parts[0]!, parts[1]!, parts[1]!]
           }
         }
       })

@@ -1,4 +1,4 @@
-import type { songs, TimestampColumn } from 'hub:db:schema'
+import type { songs, TimestampColumn } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 /** Enum for `nameIndex` */

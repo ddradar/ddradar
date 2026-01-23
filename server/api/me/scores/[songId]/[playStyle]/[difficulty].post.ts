@@ -1,4 +1,5 @@
-import { scores } from 'hub:db:schema'
+import { db } from '@nuxthub/db'
+import { scores } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { scoreRecordKeySchema, scoreRecordSchema } from '#shared/schemas/score'
@@ -17,16 +18,15 @@ export default defineEventHandler(async event => {
 
   // Get song and chart info
   const song = await getCachedSongInfo(event, params.songId)
-  if (!song) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
-  const chart = song.charts.find(c => chartEquals(c, params))
-  if (!chart) throw createError({ statusCode: 404, statusMessage: 'Not Found' })
+  const chart = song?.charts.find(c => chartEquals(c, params))
+  if (!chart) throw createError({ status: 404, statusText: 'Not Found' })
 
   // Validate score data
   const validationErrors = ValidateScoreRecord(chart, body)
   if (validationErrors.length > 0) {
     throw createError({
-      statusCode: 400,
-      statusMessage: 'Bad Request',
+      status: 400,
+      statusText: 'Bad Request',
       message: 'Score validation failed.',
       data: getReason('VALIDATION_FAILED', 0, body, undefined, {
         fields: validationErrors,

@@ -1,3 +1,4 @@
+import { kv } from '@nuxthub/kv'
 import * as z from 'zod/mini'
 
 import { apiTokenSchema } from '#shared/schemas/user'
@@ -29,21 +30,18 @@ export default defineEventHandler(async event => {
   const now = Date.now()
   const expiresAtMs = new Date(body.expiresAt).getTime()
   if (Number.isNaN(expiresAtMs)) {
-    throw createError({
-      statusCode: 400,
-      statusMessage: 'Invalid expiration date',
-    })
+    throw createError({ status: 400, statusText: 'Invalid expiration date' })
   }
   if (expiresAtMs <= now) {
     throw createError({
-      statusCode: 400,
-      statusMessage: 'Expiration must be in the future',
+      status: 400,
+      statusText: 'Expiration must be in the future',
     })
   }
   if (expiresAtMs - now > maxExpirationDays * 24 * 60 * 60 * 1000) {
     throw createError({
-      statusCode: 400,
-      statusMessage: 'Expiration too far in the future',
+      status: 400,
+      statusText: 'Expiration too far in the future',
     })
   }
 
@@ -52,7 +50,7 @@ export default defineEventHandler(async event => {
   const tokenData = await kv.get<StoredApiToken>(tokenKey)
 
   if (!tokenData) {
-    throw createError({ statusCode: 404, statusMessage: 'Token not found' })
+    throw createError({ status: 404, statusText: 'Token not found' })
   }
 
   // Update expiration date

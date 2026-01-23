@@ -1,4 +1,5 @@
-import { charts, songs } from 'hub:db:schema'
+import { db } from '@nuxthub/db'
+import { charts, songs } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
@@ -13,7 +14,7 @@ const _bodySchema = z.extend(songSchema, {
 export default defineEventHandler(async event => {
   const user = await requireAuthenticatedUser(event)
   if (!user.roles.includes('admin'))
-    throw createError({ statusCode: 403, statusMessage: 'Forbidden' })
+    throw createError({ status: 403, statusText: 'Forbidden' })
 
   const body = await readValidatedBody(event, _bodySchema.parse)
 

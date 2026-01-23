@@ -1,4 +1,4 @@
-import type { scores, TimestampColumn } from 'hub:db:schema'
+import type { scores, TimestampColumn } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'

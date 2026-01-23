@@ -1,3 +1,6 @@
+import type { db } from '@nuxthub/db'
+import * as schema from '@nuxthub/db/schema'
+import type { kv } from '@nuxthub/kv'
 import {
   createError,
   defineEventHandler,
@@ -27,28 +30,51 @@ vi.stubGlobal('useStorage', vi.fn<typeof useStorage>())
 vi.stubGlobal('useRuntimeConfig', vi.fn<typeof useRuntimeConfig>())
 
 // nuxthub
-vi.stubGlobal('db', {
-  batch: vi.fn<typeof db.batch>(),
-  insert: vi.fn(() => ({
-    values: vi.fn(() => ({
-      onConflictDoUpdate: vi.fn(() => ({ returning: vi.fn() })),
-    })),
-  })),
-  query: {
-    songs: { findFirst: vi.fn(), findMany: vi.fn() },
-    charts: { findFirst: vi.fn(), findMany: vi.fn() },
-    scores: { findFirst: vi.fn(), findMany: vi.fn() },
-    users: { findFirst: vi.fn(), findMany: vi.fn() },
-  },
-  select: vi.fn(() => ({ from: vi.fn(() => ({ where: vi.fn(() => ({})) })) })),
-  update: vi.fn(),
+vi.mock('@nuxthub/db', () => {
+  return {
+    db: {
+      batch: vi.fn<typeof db.batch>(),
+      insert: vi.fn(() => ({
+        values: vi.fn(() => ({
+          onConflictDoUpdate: vi.fn(() => ({ returning: vi.fn() })),
+        })),
+      })),
+      query: {
+        songs: {
+          findFirst: vi.fn<typeof db.query.songs.findFirst>(),
+          findMany: vi.fn<typeof db.query.songs.findMany>(),
+        },
+        charts: {
+          findFirst: vi.fn<typeof db.query.charts.findFirst>(),
+          findMany: vi.fn<typeof db.query.charts.findMany>(),
+        },
+        scores: {
+          findFirst: vi.fn<typeof db.query.scores.findFirst>(),
+          findMany: vi.fn<typeof db.query.scores.findMany>(),
+        },
+        users: {
+          findFirst: vi.fn<typeof db.query.users.findFirst>(),
+          findMany: vi.fn<typeof db.query.users.findMany>(),
+        },
+      },
+      select: vi.fn(() => ({
+        from: vi.fn(() => ({ where: vi.fn(() => ({})) })),
+      })),
+      update: vi.fn<typeof db.update>(),
+    },
+    schema,
+  }
 })
-vi.stubGlobal('kv', {
-  get: vi.fn<typeof kv.get>(),
-  set: vi.fn<typeof kv.set>(),
-  del: vi.fn<typeof kv.del>(),
-  keys: vi.fn<typeof kv.keys>(),
-  has: vi.fn<typeof kv.has>(),
+vi.mock('@nuxthub/kv', () => {
+  return {
+    kv: {
+      get: vi.fn<typeof kv.get>(),
+      set: vi.fn<typeof kv.set>(),
+      del: vi.fn<typeof kv.del>(),
+      keys: vi.fn<typeof kv.keys>(),
+      has: vi.fn<typeof kv.has>(),
+    },
+  }
 })
 
 // nuxt-auth-utils

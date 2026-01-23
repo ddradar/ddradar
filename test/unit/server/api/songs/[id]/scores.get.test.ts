@@ -1,6 +1,7 @@
+import { db } from '@nuxthub/db'
+import { scores, users } from '@nuxthub/db/schema'
 import { and, eq, inArray, isNotNull, isNull, or, sql } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { scores, users } from 'hub:db:schema'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
 import { ClearLamp } from '#shared/schemas/score'

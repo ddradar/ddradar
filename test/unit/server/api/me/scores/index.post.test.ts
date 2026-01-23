@@ -1,3 +1,4 @@
+import { db } from '@nuxthub/db'
 import type { H3Event } from 'h3'
 import {
   afterAll,

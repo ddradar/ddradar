@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { charts, songs } from '@nuxthub/db/schema'
 import { and, eq, exists } from 'drizzle-orm'
-import { charts, songs } from 'hub:db:schema'
 import * as z from 'zod/mini'
 
 import { compareSong, NameIndex, seriesList } from '#shared/schemas/song'
@@ -81,7 +82,7 @@ export default cachedEventHandler(
     if (query.name !== undefined)
       conditions.push(eq(songs.nameIndex, query.name))
     if (query.series !== undefined)
-      conditions.push(eq(songs.series, seriesList[query.series]))
+      conditions.push(eq(songs.series, seriesList[query.series]!))
     if (hasChartConditions) {
       conditions.push(
         exists(

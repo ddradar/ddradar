@@ -32,8 +32,6 @@ jobs:
       - name: Run Prettier
         run: pnpm lint:prettier
       - name: Run vue-tsc (via Nuxt)
-        # Disabled until https://github.com/nuxt-hub/core/pull/758 is released
-        if: false
         run: pnpm lint:typecheck
 
   test:

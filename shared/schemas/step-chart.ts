@@ -1,4 +1,4 @@
-import type { charts, TimestampColumn } from 'hub:db:schema'
+import type { charts, TimestampColumn } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { getEnumKey } from '#shared/utils'

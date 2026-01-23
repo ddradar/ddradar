@@ -1,5 +1,6 @@
+import { db } from '@nuxthub/db'
+import { users } from '@nuxthub/db/schema'
 import { and, eq } from 'drizzle-orm'
-import { users } from 'hub:db:schema'
 
 import { userSchema } from '#shared/schemas/user'
 
@@ -36,11 +37,8 @@ export default defineEventHandler(async event => {
       ddrCode: users.ddrCode,
     })
   if (result.length !== 1) {
-    throw createError({
-      statusCode: 409,
-      statusMessage: 'Conflict',
-      message: 'Failed to upsert. Did you register from another device?',
-    })
+    const message = 'Failed to upsert. Did you register from another device?'
+    throw createError({ status: 409, statusText: 'Conflict', message })
   }
 
   await clearUserCache(user.id ?? body.id)
