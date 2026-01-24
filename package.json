@@ -12,7 +12,6 @@
     "build": "NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "db:generate": "nuxt db generate",
     "db:query": "wrangler d1 execute DB",
-    "deploy": "wrangler deploy",
     "dev": "nuxt dev",
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "eslint --fix .",
@@ -22,7 +21,6 @@
     "lint:typecheck": "nuxt typecheck",
     "lint:prettier": "prettier -l \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\" --experimental-cli",
     "prepare": "husky && nuxt prepare",
-    "preview": "wrangler preview",
     "test": "vitest run"
   },
   "lint-staged": {

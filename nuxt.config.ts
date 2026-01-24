@@ -1,3 +1,8 @@
+const scheduledTasks = {
+  '0 6 * * 4': ['db:insert'],
+  '30 6 * * 4': ['db:update'],
+}
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
   experimental: { typedPages: true, typescriptPlugin: true },
@@ -23,15 +28,17 @@ export default defineNuxtConfig({
   ],
   nitro: {
     preset: 'cloudflare-module',
+    cloudflare: {
+      wrangler: {
+        triggers: { crons: Object.keys(scheduledTasks) },
+      },
+    },
     compressPublicAssets: true,
     experimental: {
       openAPI: true,
       tasks: true,
     },
-    scheduledTasks: {
-      '0 6 * * 4': ['db:insert'],
-      '30 6 * * 4': ['db:update'],
-    },
+    scheduledTasks,
   },
   routeRules: {
     '/api/**': {
@@ -44,7 +51,6 @@ export default defineNuxtConfig({
     },
   },
   typescript: { tsConfig: { include: ['../test/**/*'] } },
-  devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   ui: {
     theme: {
@@ -66,7 +72,11 @@ export default defineNuxtConfig({
   },
   hub: {
     cache: true,
-    db: { dialect: 'sqlite', casing: 'snake_case' },
+    db: {
+      dialect: 'sqlite',
+      casing: 'snake_case',
+      driver: 'd1',
+    },
     kv: true,
   },
   runtimeConfig: {
