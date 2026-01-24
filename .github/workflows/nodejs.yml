@@ -102,6 +102,13 @@ jobs:
       url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+
+      - name: Get Wrangler version
+        id: wrangler-version
+        run: echo "version=$(jq -r '.devDependencies.wrangler' package.json | sed 's/^\^//')" >> $GITHUB_OUTPUT
+
       - name: Download Assets
         uses: actions/download-artifact@v7.0.0
         with:
@@ -114,5 +121,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: ${{ steps.wrangler-version.outputs.version }}
           command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
           workingDirectory: .output/server
