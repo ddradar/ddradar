@@ -31,6 +31,6 @@ const nuxtUILocales = computed(() => (locale.value === 'ja' ? ja : en))
         <NuxtPage />
       </NuxtLayout>
     </UMain>
-    <UFooter />
+    <AppFooter />
   </UApp>
 </template>
