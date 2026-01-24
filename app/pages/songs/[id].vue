@@ -37,6 +37,7 @@ import type { ButtonProps } from '@nuxt/ui'
 
 import { songSchema } from '#shared/schemas/song'
 import { Difficulty, getChartName } from '#shared/schemas/step-chart'
+import { displayedBPM } from '~/utils'
 
 definePageMeta({
   validate: route =>
@@ -53,7 +54,7 @@ const style = useStyleVisibility()
 const { data: song } = await useFetch<SongInfo>(`/api/songs/${route.params.id}`)
 
 if (!song.value) {
-  throw createError({ statusCode: 404, statusMessage: 'Song not found' })
+  throw createError({ status: 404, statusText: 'Song not found' })
 }
 
 const links = computed<ButtonProps[]>(() =>
@@ -76,32 +77,19 @@ const filteredCharts = computed(() => {
   return song.value.charts.filter(c => c.playStyle === style.value)
 })
 
-/** Get difficulty color class */
-function getDifficultyColor(difficulty: StepChart['difficulty']): string {
-  switch (difficulty) {
-    case Difficulty.BEGINNER:
-      return 'bg-blue-500'
-    case Difficulty.BASIC:
-      return 'bg-yellow-500'
-    case Difficulty.DIFFICULT:
-      return 'bg-red-500'
-    case Difficulty.EXPERT:
-      return 'bg-green-500'
-    case Difficulty.CHALLENGE:
-      return 'bg-purple-500'
-    default:
-      return 'bg-gray-500'
-  }
+/** Get difficulty badge color */
+function getDifficultyColor(difficulty: StepChart['difficulty']) {
+  const value = getEnumKey(Difficulty, difficulty)
+  return (
+    (value?.toLowerCase() as Lowercase<Exclude<typeof value, undefined>>) ??
+    'neutral'
+  )
 }
 
-/** Format BPM display */
-function formatBpm(bpm: StepChart['bpm']): string {
-  if (bpm.length === 1) return bpm[0].toString()
-  return `${bpm[0]}-${bpm[2]}`
+/** Check if chart has detailed info (notes, freezes, shocks, radar) */
+function hasChartDetails(chart: StepChart): boolean {
+  return hasNotesInfo(chart) || !!chart.radar
 }
-
-/** Check if user is logged in */
-const isLoggedIn = computed(() => !!user.value?.id)
 </script>
 
 <template>
@@ -109,153 +97,150 @@ const isLoggedIn = computed(() => !!user.value?.id)
     <UPageHeader
       :title="song.name"
       :description="song.artist"
-      :headline="song.series"
+      :headline="`${song.seriesCategory} > ${song.series}`"
       :links="links"
     />
 
-    <!-- Song Info -->
-    <UCard class="mb-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div v-if="song.bpm">
-          <dt class="font-semibold">{{ t('schema.song.bpm.label') }}</dt>
-          <dd>{{ song.bpm }}</dd>
-        </div>
-        <div>
-          <dt class="font-semibold">{{ t('schema.song.series.label') }}</dt>
-          <dd>{{ song.series }}</dd>
-        </div>
-      </div>
-    </UCard>
-
     <!-- Charts Section -->
-    <UPageGrid>
-      <UPageCard
-        v-for="chart in filteredCharts"
-        :key="`${chart.playStyle}-${chart.difficulty}`"
-      >
-      </UPageCard>
-    </UPageGrid>
-    <div class="mb-6">
-      <h2 class="text-2xl font-bold mb-4">
-        {{ t('schema.song.chart.label') }}
-      </h2>
+    <div class="my-6">
+      <UEmpty
+        v-if="filteredCharts.length === 0"
+        icon="i-lucide-file-music"
+        :description="t('page.songs-id.chartCard.noData')"
+      />
 
-      <div v-if="filteredCharts.length === 0" class="text-center py-8">
-        <p class="text-gray-500">
-          No charts available for the selected play style.
-        </p>
-      </div>
-
-      <div v-else class="space-y-4">
-        <UCard
+      <UPageGrid v-else>
+        <UPageCard
           v-for="chart in filteredCharts"
           :key="`${chart.playStyle}-${chart.difficulty}`"
-          class="hover:shadow-lg transition-shadow"
+          :ui="{ header: 'mb-1' }"
         >
           <!-- Chart Header -->
-          <div class="flex items-center justify-between mb-4">
-            <div class="flex items-center gap-3">
-              <div
-                :class="getDifficultyColor(chart.difficulty)"
-                class="w-2 h-10 rounded"
-              />
-              <div>
-                <div class="font-bold text-lg">{{ getChartName(chart) }}</div>
-                <div class="text-sm text-gray-600 dark:text-gray-400">
-                  Level {{ chart.level }}
-                </div>
+          <template #header>
+            <div class="flex gap-2">
+              <UBadge
+                :color="getDifficultyColor(chart.difficulty)"
+                size="xl"
+                variant="solid"
+              >
+                {{ getChartName(chart) }}
+              </UBadge>
+              <div class="font-bold text-2xl pb-1">
+                {{ chart.level }}
               </div>
             </div>
-
-            <!-- Score Input Button (Placeholder) -->
-            <UButton
-              v-if="isLoggedIn"
-              color="primary"
-              variant="outline"
-              disabled
-              icon="i-lucide-plus"
-            >
-              Add Score (Coming Soon)
-            </UButton>
-          </div>
-
-          <!-- Chart Details -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-            <div>
-              <dt class="text-sm text-gray-600 dark:text-gray-400">
-                {{ t('schema.song.chart.bpm.label') }}
-              </dt>
-              <dd class="font-semibold">{{ formatBpm(chart.bpm) }}</dd>
-            </div>
-            <div v-if="chart.notes !== null && chart.notes !== undefined">
-              <dt class="text-sm text-gray-600 dark:text-gray-400">
-                {{ t('schema.song.chart.notes.label') }}
-              </dt>
-              <dd class="font-semibold">{{ chart.notes }}</dd>
-            </div>
-            <div v-if="chart.freezes !== null && chart.freezes !== undefined">
-              <dt class="text-sm text-gray-600 dark:text-gray-400">
-                {{ t('schema.song.chart.freezes.label') }}
-              </dt>
-              <dd class="font-semibold">{{ chart.freezes }}</dd>
-            </div>
-            <div v-if="chart.shocks !== null && chart.shocks !== undefined">
-              <dt class="text-sm text-gray-600 dark:text-gray-400">
-                {{ t('schema.song.chart.shocks.label') }}
-              </dt>
-              <dd class="font-semibold">{{ chart.shocks }}</dd>
-            </div>
-          </div>
-
-          <!-- Radar (if available) -->
-          <div v-if="chart.radar" class="mb-4">
-            <dt class="text-sm font-semibold mb-2">
-              {{ t('schema.song.chart.radar.label') }}
-            </dt>
-            <div class="grid grid-cols-5 gap-2 text-center text-sm">
-              <div>
-                <div class="text-gray-600 dark:text-gray-400">
-                  {{ t('schema.song.chart.radar.stream') }}
-                </div>
-                <div class="font-semibold">{{ chart.radar.stream }}</div>
-              </div>
-              <div>
-                <div class="text-gray-600 dark:text-gray-400">
-                  {{ t('schema.song.chart.radar.voltage') }}
-                </div>
-                <div class="font-semibold">{{ chart.radar.voltage }}</div>
-              </div>
-              <div>
-                <div class="text-gray-600 dark:text-gray-400">
-                  {{ t('schema.song.chart.radar.air') }}
-                </div>
-                <div class="font-semibold">{{ chart.radar.air }}</div>
-              </div>
-              <div>
-                <div class="text-gray-600 dark:text-gray-400">
-                  {{ t('schema.song.chart.radar.freeze') }}
-                </div>
-                <div class="font-semibold">{{ chart.radar.freeze }}</div>
-              </div>
-              <div>
-                <div class="text-gray-600 dark:text-gray-400">
-                  {{ t('schema.song.chart.radar.chaos') }}
-                </div>
-                <div class="font-semibold">{{ chart.radar.chaos }}</div>
-              </div>
-            </div>
-          </div>
+          </template>
 
           <!-- Score Records Placeholder -->
           <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-            <h3 class="font-semibold mb-2">Score Rankings</h3>
+            <h3 class="font-semibold mb-2">
+              {{ t('page.songs-id.chartCard.ranking.title') }}
+            </h3>
             <div class="text-center py-4 text-gray-500">
-              <p>Score rankings will be displayed here</p>
-              <p class="text-sm">(Coming Soon)</p>
+              <p class="text-sm">
+                {{ t('page.songs-id.chartCard.ranking.noData') }}
+              </p>
             </div>
           </div>
-        </UCard>
-      </div>
+
+          <!-- Chart Details (Collapsible) -->
+          <UCollapsible v-if="hasChartDetails(chart)">
+            <template #default="{ open }">
+              <UButton variant="ghost" color="neutral">
+                <template #leading>
+                  <UIcon
+                    :name="
+                      open ? 'i-lucide-chevron-up' : 'i-lucide-chevron-down'
+                    "
+                  />
+                </template>
+                {{
+                  open
+                    ? t('actions.collapse.hide', {
+                        entity: t('schema.song.chart.label'),
+                      })
+                    : t('actions.collapse.show', {
+                        entity: t('schema.song.chart.label'),
+                      })
+                }}
+              </UButton>
+            </template>
+
+            <template #content>
+              <!-- BPM (always visible) -->
+              <div class="mb-3">
+                <dt class="text-sm text-gray-600 dark:text-gray-400">
+                  {{ t('schema.song.chart.bpm.label') }}
+                </dt>
+                <dd class="font-semibold">{{ displayedBPM(chart.bpm) }}</dd>
+              </div>
+              <!-- Notes Details -->
+              <div
+                v-if="hasNotesInfo(chart)"
+                class="grid grid-cols-3 gap-3 mb-4"
+              >
+                <div v-if="chart.notes != null">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">
+                    {{ t('schema.song.chart.notes.label') }}
+                  </dt>
+                  <dd class="font-semibold">{{ chart.notes }}</dd>
+                </div>
+                <div v-if="chart.freezes != null">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">
+                    {{ t('schema.song.chart.freezes.label') }}
+                  </dt>
+                  <dd class="font-semibold">{{ chart.freezes }}</dd>
+                </div>
+                <div v-if="chart.shocks != null">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">
+                    {{ t('schema.song.chart.shocks.label') }}
+                  </dt>
+                  <dd class="font-semibold">{{ chart.shocks }}</dd>
+                </div>
+              </div>
+
+              <!-- Radar -->
+              <div v-if="chart.radar" class="mb-4">
+                <dt class="text-sm font-semibold mb-2">
+                  {{ t('schema.song.chart.radar.label') }}
+                </dt>
+                <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                  <div>
+                    <div class="text-gray-600 dark:text-gray-400">
+                      {{ t('schema.song.chart.radar.stream') }}
+                    </div>
+                    <div class="font-semibold">{{ chart.radar.stream }}</div>
+                  </div>
+                  <div>
+                    <div class="text-gray-600 dark:text-gray-400">
+                      {{ t('schema.song.chart.radar.voltage') }}
+                    </div>
+                    <div class="font-semibold">{{ chart.radar.voltage }}</div>
+                  </div>
+                  <div>
+                    <div class="text-gray-600 dark:text-gray-400">
+                      {{ t('schema.song.chart.radar.air') }}
+                    </div>
+                    <div class="font-semibold">{{ chart.radar.air }}</div>
+                  </div>
+                  <div>
+                    <div class="text-gray-600 dark:text-gray-400">
+                      {{ t('schema.song.chart.radar.freeze') }}
+                    </div>
+                    <div class="font-semibold">{{ chart.radar.freeze }}</div>
+                  </div>
+                  <div>
+                    <div class="text-gray-600 dark:text-gray-400">
+                      {{ t('schema.song.chart.radar.chaos') }}
+                    </div>
+                    <div class="font-semibold">{{ chart.radar.chaos }}</div>
+                  </div>
+                </div>
+              </div>
+            </template>
+          </UCollapsible>
+        </UPageCard>
+      </UPageGrid>
     </div>
   </UPage>
 </template>

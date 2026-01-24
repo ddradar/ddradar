@@ -3,6 +3,10 @@
     "add": {
       "label": "Add"
     },
+    "collapse": {
+      "hide": "Hide @.lower:{'entity'}",
+      "show": "Show @.lower:{'entity'}"
+    },
     "delete": {
       "label": "Delete"
     },
@@ -266,6 +270,15 @@
       "alert": {
         "title": "New Registration",
         "description": "To use this app, you need to register additional user information. Please fill out the required fields in the form below."
+      }
+    },
+    "songs-id": {
+      "chartCard": {
+        "noData": "No charts available for the selected play style.",
+        "ranking": {
+          "title": "Score Rankings",
+          "noData": "Coming Soon"
+        }
       }
     }
   },
