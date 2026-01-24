@@ -34,9 +34,15 @@
         "label": "MAX COMBO",
         "placeholder": "0 - {max}"
       },
-      "clearLamp": { "label": "クリアランプ" },
-      "rank": { "isFailed": "E判定" },
-      "flareRank": { "label": "フレアランク" },
+      "clearLamp": {
+        "label": "クリアランプ"
+      },
+      "rank": {
+        "isFailed": "E判定"
+      },
+      "flareRank": {
+        "label": "フレアランク"
+      },
       "flareSkill": {
         "label": "フレアスキル",
         "placeholder": "0 - {max}"
