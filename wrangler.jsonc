@@ -1,14 +1,8 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
   "name": "ddradar",
-  "compatibility_date": "2025-11-17",
-  "compatibility_flags": ["nodejs_compat"],
   "workers_dev": true,
   "preview_urls": true,
-  "main": "dist/server/index.mjs",
-  "assets": {
-    "directory": "dist/public",
-  },
   "routes": [
     {
       "pattern": "ddradar.app",
@@ -16,10 +10,6 @@
       "custom_domain": true,
     },
   ],
-  "triggers": {
-    // Exactly same patterns as `nitro.scheduledTasks` in nuxt.config.ts
-    "crons": ["0 6 * * 4", "30 6 * * 4"],
-  },
   "d1_databases": [
     {
       "binding": "DB",
