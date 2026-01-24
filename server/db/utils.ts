@@ -1,5 +1,4 @@
-import { db, schema } from '@nuxthub/db'
-import { and, eq } from 'drizzle-orm'
+import { db } from '@nuxthub/db'
 
 /** Columns to ignore timestamps (use it to `columns` property in `db.query.{schema}.findFirst/findMany`) */
 export const ignoreTimestampCols = {
@@ -39,7 +38,7 @@ export async function __getSongInfo(id: string): Promise<SongInfo | undefined> {
 export async function __getUser(id: string): Promise<UserInfo | undefined> {
   const user: UserInfo | undefined = await db.query.users.findFirst({
     columns: { ...ignoreTimestampCols, provider: false, providerId: false },
-    where: (users, { and, isNull, eq }) =>
+    where: (users, { and, eq, isNull }) =>
       and(eq(users.id, id), isNull(users.deletedAt)),
   })
   return user
@@ -53,15 +52,13 @@ export async function __getUser(id: string): Promise<UserInfo | undefined> {
  */
 export function getCurrentUser(provider: string, providerId: string) {
   return db.query.users.findFirst({
-    where: and(
-      eq(schema.users.provider, provider),
-      eq(schema.users.providerId, providerId)
-    ),
+    where: (users, { and, eq }) =>
+      and(eq(users.provider, provider), eq(users.providerId, providerId)),
   })
 }
 
 /**
- * Get step chart by key, or throw 404 error if not found
+ * Get step chart by key, or return undefined if not found
  * @param key Key to identify the step chart
  * @returns The step chart
  */
@@ -70,11 +67,13 @@ export async function getStepChart(
 ): Promise<StepChart | undefined> {
   const chart = await db.query.charts.findFirst({
     columns: { ...ignoreTimestampCols },
-    where: and(
-      eq(schema.charts.id, key.songId),
-      eq(schema.charts.playStyle, key.playStyle),
-      eq(schema.charts.difficulty, key.difficulty)
-    ),
+    where: (charts, { and, eq, isNull }) =>
+      and(
+        eq(charts.id, key.songId),
+        eq(charts.playStyle, key.playStyle),
+        eq(charts.difficulty, key.difficulty),
+        isNull(charts.deletedAt)
+      ),
   })
   return chart
 }

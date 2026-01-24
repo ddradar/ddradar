@@ -1,6 +1,6 @@
 import { db } from '@nuxthub/db'
 import { songs } from '@nuxthub/db/schema'
-import { and, eq, exists } from 'drizzle-orm'
+import { and, eq, exists, isNull } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -55,7 +55,7 @@ describe('GET /api/songs', () => {
       expect(result).toStrictEqual(mockData)
       expect(vi.mocked(db.query.songs.findMany)).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: and(...conditions),
+          where: and(isNull(songs.deletedAt), ...conditions),
           with: expect.objectContaining({
             charts: undefined,
           }),
@@ -90,11 +90,11 @@ describe('GET /api/songs', () => {
       expect(result).toStrictEqual(mockData)
       expect(vi.mocked(db.query.songs.findMany)).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: and(...conditions),
+          where: and(isNull(songs.deletedAt), ...conditions),
           with: expect.objectContaining({
-            charts: {
+            charts: expect.objectContaining({
               columns: { playStyle: true, difficulty: true, level: true },
-            },
+            }),
           }),
         })
       )

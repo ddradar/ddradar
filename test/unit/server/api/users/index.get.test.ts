@@ -1,6 +1,6 @@
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
-import { and, eq, or, sql } from 'drizzle-orm'
+import { and, eq, isNull, or, sql } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -52,7 +52,11 @@ describe('GET /api/users', () => {
       expect(result).toStrictEqual([publicUser])
       expect(vi.mocked(db.query.users.findMany)).toHaveBeenCalledWith(
         expect.objectContaining({
-          where: and(eq(users.isPublic, true), ...conditions),
+          where: and(
+            isNull(users.deletedAt),
+            eq(users.isPublic, true),
+            ...conditions
+          ),
         })
       )
     })
@@ -78,6 +82,7 @@ describe('GET /api/users', () => {
       expect(vi.mocked(db.query.users.findMany)).toHaveBeenCalledWith(
         expect.objectContaining({
           where: and(
+            isNull(users.deletedAt),
             or(eq(users.isPublic, true), eq(users.id, privateUser.id)),
             ...conditions
           ),
