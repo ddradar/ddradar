@@ -10,27 +10,44 @@
       "custom_domain": true,
     },
   ],
+  "env": {
+    "production": {
+      "d1_databases": [
+        {
+          "binding": "DB",
+          "database_id": "4dce0809-a8f5-4246-8aa3-a98d80d75f58",
+        },
+      ],
+      "kv_namespaces": [
+        {
+          "binding": "CACHE",
+          "id": "3a68c2e208034ac4a5008807742d2b93",
+        },
+        {
+          "binding": "KV",
+          "id": "3a68c2e208034ac4a5008807742d2b93",
+        },
+      ],
+    },
+  },
   "d1_databases": [
     {
       "binding": "DB",
-      "database_id": "4dce0809-a8f5-4246-8aa3-a98d80d75f58",
-      "preview_database_id": "8fe9ebda-1ec6-4a2d-96a4-2a5b393762bb",
+      "database_id": "8fe9ebda-1ec6-4a2d-96a4-2a5b393762bb",
     },
   ],
   "kv_namespaces": [
     {
       "binding": "CACHE",
-      "id": "3a68c2e208034ac4a5008807742d2b93",
-      "preview_id": "052f5579bfdb447692b026df4b8574cf",
+      "id": "052f5579bfdb447692b026df4b8574cf",
     },
     {
       "binding": "KV",
-      "id": "3a68c2e208034ac4a5008807742d2b93",
-      "preview_id": "052f5579bfdb447692b026df4b8574cf",
+      "id": "052f5579bfdb447692b026df4b8574cf",
     },
   ],
   "observability": {
-    "enabled": false,
+    "enabled": true,
     "head_sampling_rate": 1,
     "logs": {
       "enabled": true,
@@ -39,7 +56,7 @@
       "invocation_logs": true,
     },
     "traces": {
-      "enabled": false,
+      "enabled": true,
       "persist": true,
       "head_sampling_rate": 1,
     },
