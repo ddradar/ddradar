@@ -1,6 +1,6 @@
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
-import { and, eq, exists } from 'drizzle-orm'
+import { and, eq, exists, isNull } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
 import { compareSong, NameIndex, seriesList } from '#shared/schemas/song'
@@ -78,7 +78,7 @@ export default cachedEventHandler(
     const hasChartConditions =
       query.style !== undefined && query.level !== undefined
     const includeCharts = hasChartConditions || query.includeCharts
-    const conditions = []
+    const conditions = [isNull(songs.deletedAt)]
     if (query.name !== undefined)
       conditions.push(eq(songs.nameIndex, query.name))
     if (query.series !== undefined)
@@ -93,7 +93,8 @@ export default cachedEventHandler(
               and(
                 eq(charts.id, songs.id),
                 eq(charts.playStyle, query.style!),
-                eq(charts.level, query.level!)
+                eq(charts.level, query.level!),
+                isNull(charts.deletedAt)
               )
             )
         )
@@ -107,6 +108,7 @@ export default cachedEventHandler(
         charts: includeCharts
           ? {
               columns: { playStyle: true, difficulty: true, level: true },
+              where: (charts, { isNull }) => isNull(charts.deletedAt),
             }
           : undefined,
       },
