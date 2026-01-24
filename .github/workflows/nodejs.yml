@@ -60,3 +60,59 @@ jobs:
         uses: codecov/codecov-action@v5.5.2
         with:
           use_oidc: true
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Use Node.js ${{ vars.NODE_VERSION }}
+        uses: actions/setup-node@v6.2.0
+        with: *setup-node-with
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Upload Assets
+        uses: actions/upload-artifact@v6.0.0
+        with:
+          name: build-output
+          path: .output
+          include-hidden-files: true
+          retention-days: 1
+
+  deploy:
+    name: Deploy
+    needs: [build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    environment:
+      name: ${{ github.event_name == 'push' && 'production' || 'staging' }}
+      url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
+
+    steps:
+      - name: Download Assets
+        uses: actions/download-artifact@v7.0.0
+        with:
+          name: build-output
+          path: .output
+
+      - name: Deploy to Cloudflare Workers
+        id: deploy
+        uses: cloudflare/wrangler-action@v3.14.1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
+          workingDirectory: .output/server
