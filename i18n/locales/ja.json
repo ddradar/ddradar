@@ -3,8 +3,15 @@
     "add": {
       "label": "追加"
     },
+    "collapse": {
+      "hide": "@.capitalize:{'entity'}を非表示",
+      "show": "@.capitalize:{'entity'}を表示"
+    },
     "delete": {
       "label": "削除"
+    },
+    "edit": {
+      "label": "編集"
     },
     "login": {
       "label": "ログイン"
@@ -34,9 +41,15 @@
         "label": "MAX COMBO",
         "placeholder": "0 - {max}"
       },
-      "clearLamp": { "label": "クリアランプ" },
-      "rank": { "isFailed": "E判定" },
-      "flareRank": { "label": "フレアランク" },
+      "clearLamp": {
+        "label": "クリアランプ"
+      },
+      "rank": {
+        "isFailed": "E判定"
+      },
+      "flareRank": {
+        "label": "フレアランク"
+      },
       "flareSkill": {
         "label": "フレアスキル",
         "placeholder": "0 - {max}"
@@ -60,6 +73,7 @@
         "label": "シリーズ"
       },
       "chart": {
+        "label": "譜面情報",
         "playStyle": {
           "label": "プレースタイル"
         },
@@ -262,6 +276,15 @@
       "alert": {
         "title": "新規登録",
         "description": "アプリの利用には追加のユーザー情報の登録が必要です。下記のフォームに必要事項を入力してください。"
+      }
+    },
+    "songs-id": {
+      "chartCard": {
+        "noData": "選択されたプレースタイルの譜面はありません。",
+        "ranking": {
+          "title": "スコアランキング",
+          "noData": "近日公開"
+        }
       }
     }
   },

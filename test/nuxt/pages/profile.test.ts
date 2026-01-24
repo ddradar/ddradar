@@ -60,20 +60,18 @@ describe('/profile', () => {
     vi.mocked(useCookie).mockReset()
   })
 
-  // NOTE: This middleware test must run BEFORE any tests that successfully mount the component.
-  // Nuxt test-utils caches middleware execution, so if a logged-in user test runs first,
-  // the middleware won't re-execute for subsequent non-logged-in user tests.
-  // This is why this redirect test is placed at the top of the test suite.
   test('redirects to /login when not logged in', async () => {
     // Arrange
     user.value = null
+    // Append query to avoid middleware caching
+    const route = '/profile?test=notloggedin'
 
     // Act
     await mountSuspended(Page, { route })
 
     // Assert
     expect(vi.mocked(navigateTo)).toHaveBeenCalledWith('/login')
-    expect(redirectCookie.value).toBe('/profile')
+    expect(redirectCookie.value).toBe(route)
   })
 
   describe.each(locales)('(locale: %s)', locale => {

@@ -49,17 +49,15 @@ describe('/admin/songs/[id]', () => {
     vi.mocked(useUserSession).mockReset()
   })
 
-  // NOTE: These middleware tests must run BEFORE any tests that successfully mount the component.
-  // Nuxt test-utils caches middleware execution, so if an admin user test runs first,
-  // the middleware won't re-execute for subsequent non-admin user tests.
-  // This is why these 403 tests are placed at the top of the test suite.
   test.each([
-    [null],
-    [{ ...sessionUser }],
-    [{ ...sessionUser, roles: ['user'] }],
-  ])('({ user: %s }) returns 403', async loginUser => {
+    [null, 'test=null'],
+    [{ ...sessionUser }, 'test=norole'],
+    [{ ...sessionUser, roles: ['user'] }, 'test=userrole'],
+  ])('({ user: %s }) returns 403', async (loginUser, query) => {
     // Arrange
     user.value = loginUser
+    // Append query to avoid middleware caching
+    const route = `/admin/songs/${testSongData.id}?${query}`
 
     // Act & Assert
     await expect(mountSuspended(Page, { route })).rejects.toThrowError(
