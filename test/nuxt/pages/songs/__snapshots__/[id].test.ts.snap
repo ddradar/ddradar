@@ -35,11 +35,54 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">138</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">29</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">22</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">5</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -64,10 +107,29 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">264</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
                 <!--v-if-->
               </div>
             </div>
@@ -116,11 +178,54 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">319</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">67</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">52</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">25</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">17</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -145,11 +250,54 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">254</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">54</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">37</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">61</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">2</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -174,11 +322,54 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">309</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">65</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">56</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">13</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -203,11 +394,54 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
                 <p class="text-sm">Coming Soon</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> Show chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">382</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">81</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">31</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -266,11 +500,54 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">138</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">グルーヴレーダー</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">29</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">22</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">5</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -295,10 +572,29 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">264</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
                 <!--v-if-->
               </div>
             </div>
@@ -347,11 +643,54 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">319</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">グルーヴレーダー</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">67</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">52</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">25</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">17</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -376,11 +715,54 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">254</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">グルーヴレーダー</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">54</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">37</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">61</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">2</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -405,11 +787,54 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">309</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">グルーヴレーダー</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">65</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">56</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">13</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -434,11 +859,54 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
                 <p class="text-sm">近日公開</p>
               </div>
             </div>
-            <div data-state="closed" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="false" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-down" aria-hidden="true"></span> 譜面情報を表示
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" hidden="" data-state="closed" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
-                <!--v-if-->
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ノート数</dt>
+                    <dd class="font-semibold">382</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">フリーズアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">ショックアロー数</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">グルーヴレーダー</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">81</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">31</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

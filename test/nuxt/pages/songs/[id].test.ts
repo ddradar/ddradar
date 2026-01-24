@@ -51,10 +51,18 @@ describe('/songs/[id]', () => {
 
   describe.each(locales)('(locale: %s)', locale => {
     test('renders correctly', async () => {
-      // Arrange - Act
+      // Arrange
       user.value = null
       const wrapper = await mountSuspended(Page, { route })
+
+      // Act
       await wrapper.vm.$i18n.setLocale(locale)
+      // Expand all collapsible sections
+      await Promise.all(
+        wrapper
+          .findAllComponents({ name: 'UCollapsible' })
+          .map(section => section.find('button')?.trigger('click'))
+      )
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
