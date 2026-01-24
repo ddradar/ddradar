@@ -96,6 +96,10 @@ export default defineNuxtConfig({
       x: { clientId: '', clientSecret: '' },
     },
     public: {
+      community: {
+        github: 'https://github.com/ddradar/ddradar',
+        x: 'https://x.com/nogic1008',
+      },
       token: {
         maxCreationPerUser: 10,
         maxExpirationDays: 365,
