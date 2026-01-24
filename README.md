@@ -1,10 +1,9 @@
 # DDRadar
 
-[![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar "last commit")](https://github.com/ddradar/ddradar/commits/main)
-[![release version](https://img.shields.io/github/v/release/ddradar/ddradar?sort=semver "release version")](https://github.com/ddradar/ddradar/releases)
+[![last commit](https://img.shields.io/github/last-commit/ddradar/ddradar)](https://github.com/ddradar/ddradar/commits/main)
 [![Node.js CI/CD](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml)
-[![CodeFactor](https://www.codefactor.io/repository/github/ddradar/ddradar/badge "CodeFactor")](https://www.codefactor.io/repository/github/ddradar/ddradar)
-[![codecov](https://codecov.io/gh/ddradar/ddradar/branch/main/graph/badge.svg?token=ynbl5vBONK "codecov")](https://codecov.io/gh/ddradar/ddradar)
+[![CodeFactor](https://www.codefactor.io/repository/github/ddradar/ddradar/badge)](https://www.codefactor.io/repository/github/ddradar/ddradar)
+[![codecov](https://codecov.io/gh/ddradar/ddradar/graph/badge.svg?token=Y1OOPCKO5C)](https://codecov.io/gh/ddradar/ddradar)
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
 DDR Score Tracker
@@ -52,7 +51,7 @@ NUXT_OAUTH_X_CLIENT_SECRET=<Your X OAuth Client Secret>
   - `lint:typecheck`: Run vue-tsc via Nuxt CLI
   - `lint:prettier`: Run Prettier
 - `pnpm fix`: Run Lint & auto fix
-  - `lint:eslint`: Run ESLint with `--fix` option
-  - `lint:prettier`: Run Prettier with `--write` option
+  - `fix:eslint`: Run ESLint with `--fix` option
+  - `fix:prettier`: Run Prettier with `--write` option
 - `pnpm test`: Run unit test
 - `pnpm build`: Production build
