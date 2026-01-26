@@ -17,6 +17,8 @@ files:
     translation: /i18n/locales/%two_letters_code%.json
     import_eq_suggestions: true
   - source: /content/en/**/*.md
+    ignore:
+      - /content/en/index.md # Crowdin breaks MDC syntax in this file
     translation: /content/%two_letters_code%/**/%original_file_name%
     content_segmentation: false
     import_eq_suggestions: true
