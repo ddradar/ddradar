@@ -95,4 +95,3 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
-          workingDirectory: .output/server
