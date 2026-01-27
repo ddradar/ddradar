@@ -62,10 +62,14 @@ jobs:
           use_oidc: true
 
   build:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
     permissions:
       contents: read
+      deployments: write
+    environment:
+      name: ${{ github.event_name == 'push' && 'production' || 'staging' }}
+      url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
 
     steps:
       - name: Checkout
@@ -81,39 +85,8 @@ jobs:
 
       - name: Build
         run: pnpm build
-
-      - name: Upload Assets
-        uses: actions/upload-artifact@v6.0.0
-        with:
-          name: build-output
-          path: .output
-          include-hidden-files: true
-          retention-days: 1
-
-  deploy:
-    name: Deploy
-    needs: [build]
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
-    environment:
-      name: ${{ github.event_name == 'push' && 'production' || 'staging' }}
-      url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v6.0.2
-
-      - name: Get Wrangler version
-        id: wrangler-version
-        run: echo "version=$(jq -r '.devDependencies.wrangler' package.json | sed 's/^\^//')" >> $GITHUB_OUTPUT
-
-      - name: Download Assets
-        uses: actions/download-artifact@v7.0.0
-        with:
-          name: build-output
-          path: .output
+        env:
+          CLOUDFLARE_ENV: ${{ github.event_name == 'push' && 'production' || '' }}
 
       - name: Deploy to Cloudflare Workers
         id: deploy
@@ -121,6 +94,5 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          wranglerVersion: ${{ steps.wrangler-version.outputs.version }}
-          command: ${{ github.event_name == 'push' && 'deploy --env production' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
+          command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
           workingDirectory: .output/server
