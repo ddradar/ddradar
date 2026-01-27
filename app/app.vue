@@ -13,7 +13,21 @@ const actions: ButtonProps[] = [
   },
 ]
 
+const { data: navigation } = await useAsyncData(
+  'navigation',
+  async () => {
+    // Build collection name based on current locale
+    const collection = `content_${locale.value}` as const
+    const navigation = await queryCollectionNavigation(collection)
+    if (!navigation && locale.value !== 'en')
+      return await queryCollectionNavigation('content_en')
+    return navigation
+  },
+  { watch: [locale] }
+)
 const nuxtUILocales = computed(() => (locale.value === 'ja' ? ja : en))
+
+provide('navigation', navigation)
 </script>
 
 <template>

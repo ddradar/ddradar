@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { withLeadingSlash } from 'ufo'
 
+definePageMeta({ layout: 'docs' })
+
 const route = useRoute('slug')
 const { locale } = useI18n()
 const slug = computed(() =>
@@ -28,5 +30,18 @@ if (!page.value)
 </script>
 
 <template>
-  <ContentRenderer v-if="page" :value="page" />
+  <UPage v-if="page">
+    <UPageHeader
+      :title="page.title"
+      :description="page.description"
+      :links="page.links"
+    />
+    <UPageBody>
+      <ContentRenderer v-if="page" :value="page" />
+    </UPageBody>
+
+    <template v-if="page?.body?.toc?.links?.length" #right>
+      <UContentToc :links="page.body?.toc?.links" />
+    </template>
+  </UPage>
 </template>

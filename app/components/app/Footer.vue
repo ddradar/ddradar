@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { github, x } = useRuntimeConfig().public.community
+const { github, x, crowdin } = useRuntimeConfig().public.community
 </script>
 
 <template>
@@ -28,6 +28,15 @@ const { github, x } = useRuntimeConfig().public.community
         :to="x"
         target="_blank"
         aria-label="X"
+      />
+      <UButton
+        v-if="crowdin"
+        icon="i-simple-icons-crowdin"
+        color="neutral"
+        variant="ghost"
+        :to="crowdin"
+        target="_blank"
+        aria-label="Crowdin"
       />
     </template>
   </UFooter>

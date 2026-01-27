@@ -99,6 +99,7 @@ export default defineNuxtConfig({
       community: {
         github: 'https://github.com/ddradar/ddradar',
         x: 'https://x.com/nogic1008',
+        crowdin: 'https://crowdin.com/project/ddradar',
       },
       token: {
         maxCreationPerUser: 10,
