@@ -31,7 +31,9 @@ jobs:
         run: pnpm lint:eslint
       - name: Run Prettier
         run: pnpm lint:prettier
+        # temporarily disabled until nuxt-hub/core#797 is resolved
       - name: Run vue-tsc (via Nuxt)
+        if: false
         run: pnpm lint:typecheck
 
   test:

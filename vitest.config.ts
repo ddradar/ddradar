@@ -6,7 +6,8 @@ import { defineConfig } from 'vitest/config'
 export default defineConfig({
   test: {
     coverage: {
-      provider: 'v8',
+      // Use Istanbul provider to avoid remapping issues with Nuxt/Vite SSR wrappers
+      provider: 'istanbul',
       include: [
         'app/components/**/*.vue',
         'app/pages/**/*.vue',
