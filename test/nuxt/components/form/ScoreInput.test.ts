@@ -93,11 +93,11 @@ describe('components/form/ScoreInput.vue', () => {
         // Assert
         const form = screen.getByRole('form')
         for (const [key, value] of Object.entries(expected)) {
-          const el = form!.querySelector(`[name="${key}"]`) as
+          const el = form.querySelector(`[name="${key}"]`) as
             | HTMLInputElement
             | HTMLSelectElement
           expect(el).toBeDefined()
-          expect(el.value).toBe(value == null ? '' : String(value))
+          expect(el.value).toBe(String(value))
         }
       }
     )
@@ -353,15 +353,12 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act
-      const exScoreInput = within(form!).getByLabelText(
-        /EX SCORE/i
-      ) as HTMLInputElement
-      const maxComboInput = within(form!).getByLabelText(
-        /MAX COMBO/i
-      ) as HTMLInputElement
-      const flareSkillInput = within(form!).getByLabelText(
-        /フレアスキル|Flare Skill/i
-      ) as HTMLInputElement
+      const exScoreInput: HTMLInputElement =
+        within(form).getByLabelText(/EX SCORE/i)
+      const maxComboInput: HTMLInputElement =
+        within(form).getByLabelText(/MAX COMBO/i)
+      const flareSkillInput: HTMLInputElement =
+        within(form).getByLabelText(/フレアスキル|Flare Skill/i)
 
       await fireEvent.update(exScoreInput, '')
       await fireEvent.update(maxComboInput, '')

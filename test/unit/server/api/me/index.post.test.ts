@@ -122,7 +122,7 @@ describe('POST /api/me', () => {
     }
 
     // Act & Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 409, statusMessage: 'Conflict' })
     )
     expect(setUserSession).not.toHaveBeenCalled()

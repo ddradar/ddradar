@@ -11,7 +11,7 @@ export default defineNuxtConfig({
       {
         name: 'vue-spec-plugin',
         transform(_, id) {
-          if (/vue&type=spec/.test(id)) return 'export default {}'
+          if (id.includes('vue&type=spec')) return 'export default {}'
         },
       },
     ],

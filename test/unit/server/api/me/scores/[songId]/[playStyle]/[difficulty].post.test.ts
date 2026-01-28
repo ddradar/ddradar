@@ -71,7 +71,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
       }
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrowError(
+      await expect(handler(event as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(db.update).not.toHaveBeenCalled()
@@ -93,7 +93,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -120,7 +120,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -132,8 +132,8 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     { ...body, clearLamp: 10 },
     { ...body, rank: 'INVALID_RANK' },
     { ...body, flareSkill: 2000 },
-    { ...body, exScore: (testStepCharts[1]?.notes ?? 0) * 3 + 1 },
-    { ...body, maxCombo: (testStepCharts[1]?.notes ?? 0) + 1 },
+    { ...body, exScore: testStepCharts[1].notes * 3 + 1 },
+    { ...body, maxCombo: testStepCharts[1].notes + 1 },
   ])('(body: %o) returns 400 when score record is invalid', async body => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
@@ -149,7 +149,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -158,7 +158,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test.each([
     body,
     { ...body, exScore: 200 },
-    { ...body, maxCombo: testStepCharts[1]?.notes ?? null },
+    { ...body, maxCombo: testStepCharts[1].notes },
     { ...body, flareRank: FlareRank.V },
     { ...body, flareRank: FlareRank.III, flareSkill: 342 },
   ])('(body: %o) returns 200 with score', async body => {

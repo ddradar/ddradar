@@ -41,7 +41,7 @@ describe('/songs/[id]', () => {
 
   test('returns 404 error when song is not found', async () => {
     const route = `/songs/${notFoundSongId}`
-    await expect(mountSuspended(Page, { route })).rejects.toThrowError(
+    await expect(mountSuspended(Page, { route })).rejects.toThrow(
       expect.objectContaining({
         statusCode: 404,
         statusMessage: 'Song not found',

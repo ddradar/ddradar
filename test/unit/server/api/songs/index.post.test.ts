@@ -77,7 +77,7 @@ describe('POST /api/songs', () => {
     } as unknown as H3Event
 
     // Act - Assert
-    await expect(handler(event)).rejects.toThrowError(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(db.insert)).not.toHaveBeenCalled()

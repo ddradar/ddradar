@@ -43,25 +43,29 @@ describe('/shared/schemas/user', () => {
   })
 
   describe('getNarrowedArea', () => {
+    const overSeas = Object.values(Area).filter(
+      i =>
+        i !== Area.Japan &&
+        i !== Area.Undefined &&
+        i !== Area.Overseas &&
+        (i < Area.北海道 || i > Area.沖縄県)
+    )
+
     test.each([
       [Area.Undefined, []],
       [Area.北海道, []],
       [Area.Taiwan, []],
       [
         Area.Japan,
-        [
-          ...Array(Area.沖縄県 - Area.北海道 + 1)
-            .keys()
-            .map(i => i + Area.北海道),
-        ],
+        [...Array(Area.沖縄県 - Area.北海道 + 1).keys()].map(
+          i => i + Area.北海道
+        ),
       ],
       [
         Area.USA,
-        [
-          ...Array(Area.WashingtonDC - Area.Alaska + 1)
-            .keys()
-            .map(i => i + Area.Alaska),
-        ],
+        [...Array(Area.WashingtonDC - Area.Alaska + 1).keys()].map(
+          i => i + Area.Alaska
+        ),
       ],
       [
         Area.Europe,
@@ -74,16 +78,7 @@ describe('/shared/schemas/user', () => {
           Area.Portugal,
         ],
       ],
-      [
-        Area.Overseas,
-        Object.values(Area).filter(
-          i =>
-            i !== Area.Japan &&
-            i !== Area.Undefined &&
-            i !== Area.Overseas &&
-            (i < Area.北海道 || i > Area.沖縄県)
-        ),
-      ],
+      [Area.Overseas, overSeas],
     ])('(%i) returns %o', (area, expected) =>
       expect(getNarrowedArea(area)).toStrictEqual(expected)
     )

@@ -97,7 +97,20 @@ describe('/shared/schemas/song', () => {
       number,
     ][])('(%o, %o) returns %d', (a, b, expected) => {
       expect(compareSong(a, b)).toBe(expected)
-      expect(compareSong(b, a)).toBe(expected === 0 ? 0 : -expected)
+      expect(compareSong(b, a)).toBe(-expected)
+    })
+
+    test.each([
+      [
+        { nameKana: 'CANDY', nameIndex: NameIndex.C }, // CANDY♡
+        { nameKana: 'CANDY', nameIndex: NameIndex.C }, // CANDY☆
+      ],
+    ] satisfies [
+      Pick<SongInfo, 'nameKana' | 'nameIndex'>,
+      Pick<SongInfo, 'nameKana' | 'nameIndex'>,
+    ][])('(%o, %o) returns 0', (a, b) => {
+      expect(compareSong(a, b)).toBe(0)
+      expect(compareSong(b, a)).toBe(0)
     })
   })
 })

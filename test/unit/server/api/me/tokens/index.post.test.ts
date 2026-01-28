@@ -64,7 +64,7 @@ describe('POST /api/me/tokens', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(kv.keys)).not.toHaveBeenCalled()
@@ -88,7 +88,7 @@ describe('POST /api/me/tokens', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(kv.keys)).toHaveBeenCalled()
@@ -112,7 +112,7 @@ describe('POST /api/me/tokens', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 500 })
     )
     expect(vi.mocked(kv.keys)).toHaveBeenCalled()

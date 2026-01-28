@@ -49,7 +49,7 @@ describe('GET /api/songs/[id]/scores', () => {
     const event: Partial<H3Event> = { context: { params: { id } } }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(getCachedSongInfo)).not.toHaveBeenCalled()
@@ -63,7 +63,7 @@ describe('GET /api/songs/[id]/scores', () => {
     const event: Partial<H3Event> = { context: { params: { id: song.id } } }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(vi.mocked(getCachedSongInfo)).toHaveBeenCalledWith(event, song.id)
@@ -83,7 +83,7 @@ describe('GET /api/songs/[id]/scores', () => {
       ],
     ],
     [
-      'style=1&diff=0',
+      '?style=1&diff=0',
       { limit: 50, offset: 0, nextOffset: null, hasMore: false },
       [
         inArray(scores.playStyle, [PlayStyle.SINGLE]),
@@ -91,7 +91,7 @@ describe('GET /api/songs/[id]/scores', () => {
       ],
     ],
     [
-      'limit=2&offset=1',
+      '?limit=2&offset=1',
       { limit: 2, offset: 1, nextOffset: 3, hasMore: true },
       [
         inArray(scores.playStyle, [PlayStyle.SINGLE, PlayStyle.DOUBLE]),
@@ -110,9 +110,8 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${pathSuffix}`,
+          path: `/api/songs/${song.id}/scores${query}`,
           context: { params: { id: song.id } },
         }
 
@@ -151,9 +150,8 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${pathSuffix}`,
+          path: `/api/songs/${song.id}/scores${query}`,
           context: { params: { id: song.id } },
         }
 

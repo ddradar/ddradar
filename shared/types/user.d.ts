@@ -21,5 +21,3 @@ declare module '#auth-utils' {
     avatarUrl?: string
   }
 }
-
-export {}

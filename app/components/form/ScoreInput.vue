@@ -100,9 +100,9 @@ const maxFlareSkill = computed(() =>
   calcFlareSkill(chart.level, state.value.flareRank)
 )
 /** Items for clear lamp dropdown */
-const clearLampOptions: SelectItem[] = [
-  ...clearLampMap.entries().map(([value, label]) => ({ label, value })),
-]
+const clearLampOptions: SelectItem[] = [...clearLampMap.entries()].map(
+  ([value, label]) => ({ label, value })
+)
 /** Items for flare rank dropdown */
 const flareRankOptions = getSelectItems(FlareRank)
 

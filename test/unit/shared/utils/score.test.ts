@@ -30,7 +30,7 @@ describe('/shared/utils/score', () => {
     test.each([0, -1, 1.1, 21, NaN, Infinity, -Infinity])(
       `(%d, 0) throws error`,
       d =>
-        expect(() => calcFlareSkill(d, FlareRank.None)).toThrowError(
+        expect(() => calcFlareSkill(d, FlareRank.None)).toThrow(
           /"Invalid input"/
         )
     )

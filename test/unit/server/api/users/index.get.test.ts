@@ -31,10 +31,10 @@ describe('GET /api/users', () => {
       ],
     ],
     // invalid parameters
-    ['area=-1', []],
-    ['area=119', []],
-    ['code=9999999', []],
-    ['code=100000000', []],
+    ['?area=-1', []],
+    ['?area=119', []],
+    ['?code=9999999', []],
+    ['?code=100000000', []],
   ])('(query: "%s") filters by expected conditions', (query, conditions) => {
     test('without authentication', async () => {
       // Arrange
@@ -42,8 +42,7 @@ describe('GET /api/users', () => {
         publicUser,
       ] as never)
       vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-      const pathSuffix = query ? `?${query}` : ''
-      const event = { path: `/api/users${pathSuffix}` } as unknown as H3Event
+      const event = { path: `/api/users${query}` } as unknown as H3Event
 
       // Act
       const result = await handler(event)
@@ -71,8 +70,7 @@ describe('GET /api/users', () => {
         id: privateUser.id,
         roles: [],
       })
-      const pathSuffix = query ? `?${query}` : ''
-      const event = { path: `/api/users${pathSuffix}` } as unknown as H3Event
+      const event = { path: `/api/users${query}` } as unknown as H3Event
 
       // Act
       const result = await handler(event)

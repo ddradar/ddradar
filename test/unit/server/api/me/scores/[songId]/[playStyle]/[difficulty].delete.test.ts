@@ -59,7 +59,7 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
       }
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrowError(
+      await expect(handler(event as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(db.update).not.toHaveBeenCalled()
@@ -72,7 +72,7 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     const event: Partial<H3Event> = { method: 'DELETE', context: { params } }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.update).toHaveBeenCalledWith(scores)
