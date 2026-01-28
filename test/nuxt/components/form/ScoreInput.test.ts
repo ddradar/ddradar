@@ -357,8 +357,9 @@ describe('components/form/ScoreInput.vue', () => {
         within(form).getByLabelText(/EX SCORE/i)
       const maxComboInput: HTMLInputElement =
         within(form).getByLabelText(/MAX COMBO/i)
-      const flareSkillInput: HTMLInputElement =
-        within(form).getByLabelText(/フレアスキル|Flare Skill/i)
+      const flareSkillInput: HTMLInputElement = within(form).getByLabelText(
+        /フレアスキル|Flare Skill/i
+      )
 
       await fireEvent.update(exScoreInput, '')
       await fireEvent.update(maxComboInput, '')

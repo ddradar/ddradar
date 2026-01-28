@@ -1,13 +1,12 @@
 {
   "name": "ddradar",
   "version": "3.0.0",
-  "description": "DDR Score Tracker",
-  "repository": "https://github.com/ddradar/ddradar.git",
-  "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
-  "license": "MIT",
   "private": true,
+  "description": "DDR Score Tracker",
+  "license": "MIT",
+  "author": "Nogic <24802730+nogic1008@users.noreply.github.com>",
+  "repository": "https://github.com/ddradar/ddradar.git",
   "type": "module",
-  "packageManager": "pnpm@10.28.0",
   "scripts": {
     "build": "NODE_OPTIONS='--max-old-space-size=4096' nuxt build",
     "db:generate": "nuxt db generate",
@@ -16,22 +15,14 @@
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "eslint --fix .",
     "fix:oxlint": "oxlint --type-aware . --fix --fix-suggestions",
-    "fix:prettier": "prettier --write \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\" --experimental-cli",
+    "fix:oxfmt": "oxfmt",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:eslint": "eslint .",
     "lint:oxlint": "oxlint --type-aware .",
     "lint:typecheck": "nuxt typecheck",
-    "lint:prettier": "prettier -l \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\" --experimental-cli",
+    "lint:oxfmt": "oxfmt --check",
     "prepare": "husky && nuxt prepare",
     "test": "vitest run"
-  },
-  "lint-staged": {
-    "*.{js,mjs,ts,vue}": [
-      "oxlint --type-aware --fix --fix-suggestions",
-      "eslint --fix",
-      "prettier --write --experimental-cli"
-    ],
-    "*.{json,jsonc,yml}": "prettier --write --experimental-cli"
   },
   "dependencies": {
     "@libsql/client": "^0.17.0",
@@ -76,6 +67,15 @@
     "vue-tsc": "^3.2.3",
     "wrangler": "^4.60.0"
   },
+  "lint-staged": {
+    "*.{js,mjs,ts,vue}": [
+      "oxlint --type-aware --fix --fix-suggestions",
+      "eslint --fix",
+      "oxfmt --no-error-on-unmatched-pattern"
+    ],
+    "!(*.{js,mjs,ts,vue})": "oxfmt --no-error-on-unmatched-pattern"
+  },
+  "packageManager": "pnpm@10.28.0",
   "pnpm": {
     "onlyBuiltDependencies": [
       "@parcel/watcher",
