@@ -79,6 +79,7 @@
       "workerd"
     ],
     "overrides": {
+      "esbuild": "^0.27.2",
       "rolldown": "^1.0.0-rc.1",
       "vite": "^8.0.0-beta.10"
     },
