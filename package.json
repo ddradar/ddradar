@@ -27,6 +27,7 @@
   },
   "lint-staged": {
     "*.{js,mjs,ts,vue}": [
+      "oxlint --type-aware --fix --fix-suggestions",
       "eslint --fix",
       "prettier --write --experimental-cli"
     ],
