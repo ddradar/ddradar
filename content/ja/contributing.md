@@ -24,9 +24,7 @@ links:
   - 小さなバグ修正やリファクタリングなどは、Issue を作成せずに直接 Pull Request を送っても構いません。ただし、規模が大きい場合は、事前に Issue を作成し、了解を取ってから作業を始めてください。
 - Issue を送るのに、事前の連絡は必要ありません。
 - Issue のタイトルと本文はできるだけ英語で書いてください。
-  - 英語に慣れていない場合は日本語を使ってください。不正確な英語では、英語話者・日本語話者のどちらにも伝わりません。
 - バグを Issue で報告する場合、バグを再現する為の説明、エラーの情報、環境を書いてください。
-- 本文は明確に記述し、1 行のみの Issue を送ることは避けてください。
 
 ## Making Changes
 
@@ -34,15 +32,14 @@ links:
 - 変更の為にテストが必要ならば、そのテストも追加または変更してください。
 - commit は合理的(ロジック単位)に分けてください。また目的と関係のないコードの変更は含めないでください(コードフォーマットの変更、不要コードの削除など)。
 - commit メッセージが正しいフォーマットであることを確認してください。commit メッセージはできるだけ英語でお願いします。
-- commit メッセージには、下記の修飾子を先頭につけてください。([angular.js/DEVELOPERS.md](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)に準じます)
-  - **feat**: 新機能
-  - **fix**: バグ修正
-  - **docs**: ドキュメントの修正のみ
-  - **style**: コードの意味を変更しない修正 (スペース・フォーマット・セミコロンなど)
-  - **refactor**: バグや機能追加ではないコード修正
-  - **perf**: コードの高速化に寄与する修正
-  - **test**: テストの追加、または修正
-  - **chore**: ビルド構成の変更やライブラリの更新など
+  - **feat**: A new feature
+  - **fix**: A bug fix
+  - **docs**: Documentation only changes
+  - **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+  - **refactor**: A code change that neither fixes a bug nor adds a feature
+  - **perf**: A code change that improves performance
+  - **test**: Adding missing or correcting existing tests
+  - **chore**: Changes to the build process or auxiliary tools and libraries such as documentation generation
 
 ```text
 修飾子(サブカテゴリ): コミットの概要
