@@ -13,13 +13,13 @@ on:
     - cron: '0 0 * * *'
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   sync-crowdin:
     name: Sync with Crowdin
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
+    runs-on: ubuntu-slim
     strategy:
       fail-fast: false
       max-parallel: 1 # Should be 1 to avoid parallel builds
@@ -48,15 +48,30 @@ jobs:
           download_language: ${{ matrix.lc }}
           commit_message: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
           localization_branch_name: chore/l10n_${{ matrix.lc }}
-          create_pull_request: true
-          pull_request_title: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
-          pull_request_body: |
+          create_pull_request: false
+
+      - name: Create Pull Request
+        run: |
+          if git ls-remote --exit-code --heads origin $PR_BRANCH; then
+            if ! gh pr view $PR_BRANCH >/dev/null 2>&1; then
+              gh pr create \
+                --title "$PR_TITLE" \
+                --body "$PR_BODY" \
+                --head $PR_BRANCH \
+                --base ${{ github.ref_name }} \
+                --label "$PR_LABEL"
+            else
+              echo "Pull request already exists for $PR_BRANCH. Skipping creation."
+            fi
+          else
+            echo "No changes found. Skipping Pull request creation."
+          fi
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+          PR_BRANCH: 'chore/l10n_${{ matrix.lc }}'
+          PR_TITLE: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
+          PR_BODY: |
             This PR updates translation files from Crowdin.
 
             Please review the changes before merging.
-          pull_request_labels: 'documentation :memo:, i18n :globe_with_meridians:'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-          CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
-          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
+          PR_LABEL: 'documentation :memo:, i18n :globe_with_meridians:'
