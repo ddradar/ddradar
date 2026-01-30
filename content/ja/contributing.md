@@ -70,7 +70,7 @@ links:
   3. 翻訳したい言語を選択して翻訳を開始
 - 承認された翻訳は、自動的にリポジトリに同期されます。
 - ご希望の言語が利用できない場合は、Issue を作成してリクエストしてください。
-- Crowdin の翻訳対象になっていないファイルの翻訳については、[Making Changes](#making-changes) および [Pull Request](#pull-request) の手順に従ってください。
+- Crowdin の翻訳対象になっていないファイルの翻訳については、[開発する](#making-changes) および [Pull Request](#pull-request) の手順に従ってください。
 
 ## Pull Request {#pull-request}
 
