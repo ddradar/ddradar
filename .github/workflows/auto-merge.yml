@@ -5,8 +5,7 @@ on:
     types: [submitted]
 
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   auto-merge:
@@ -14,6 +13,13 @@ jobs:
     if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
     runs-on: ubuntu-slim
     steps:
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@v2.2.1
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Check reviewer
         id: check_member
         run: |
@@ -23,7 +29,7 @@ jobs:
             echo "is_member=false" >> $GITHUB_OUTPUT
           fi
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           REVIEWER: ${{ github.event.review.user.login }}
           ORGANIZATION: ${{ github.repository_owner }}
 
@@ -31,5 +37,5 @@ jobs:
         if: steps.check_member.outputs.is_member == 'true'
         run: gh pr merge "$PR_URL" --auto --squash
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
           PR_URL: ${{ github.event.pull_request.html_url }}
