@@ -1,0 +1,35 @@
+name: Auto merge PRs on approval
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  auto-merge:
+    name: Auto merge
+    if: github.event_name == 'pull_request_review' && github.event.review.state == 'approved'
+    runs-on: ubuntu-slim
+    steps:
+      - name: Check reviewer
+        id: check_member
+        run: |
+          if gh api orgs/$ORGANIZATION/members/$REVIEWER --silent; then
+            echo "is_member=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_member=false" >> $GITHUB_OUTPUT
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REVIEWER: ${{ github.event.review.user.login }}
+          ORGANIZATION: ${{ github.repository_owner }}
+
+      - name: Enable Auto merge
+        if: steps.check_member.outputs.is_member == 'true'
+        run: gh pr merge "$PR_URL" --auto --squash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          PR_URL: ${{ github.event.pull_request.html_url }}
