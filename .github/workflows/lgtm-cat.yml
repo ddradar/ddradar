@@ -10,6 +10,9 @@ jobs:
   post:
     if: (!contains(github.actor, '[bot]'))
     runs-on: ubuntu-slim
+    permissions:
+      issues: write
+      pull-requests: write
 
     steps:
       - uses: ddradar/lgtm-action@v4
