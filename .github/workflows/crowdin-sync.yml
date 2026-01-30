@@ -39,11 +39,20 @@ jobs:
         with:
           token: ${{ steps.generate-token.outputs.token }}
 
+      - name: Cache Crowdin source files
+        uses: actions/cache@v5.0.3
+        with:
+          path: ~/.crowdin/cache.json
+          key: ${{ runner.os }}-crowdin-cache-${{ github.ref_name }}-${{ hashFiles('**/crowdin.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-crowdin-cache-${{ github.ref_name }}-
+
       - name: Crowdin Action
         uses: crowdin/github-action@v2.14.0
         with:
           upload_sources: true
           upload_translations: true
+          upload_sources_args: '--cache'
           download_translations: true
           download_language: ${{ matrix.lc }}
           commit_message: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
