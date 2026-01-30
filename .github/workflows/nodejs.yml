@@ -16,13 +16,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v6.2.0
-        with: &setup-node-with
-          node-version: ${{ vars.NODE_VERSION }}
-          cache: pnpm
+      - name: Setup pnpm (with Node.js runtime)
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -46,11 +43,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v6.2.0
-        with: *setup-node-with
+      - name: Setup pnpm (with Node.js runtime)
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -76,11 +72,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
-        uses: actions/setup-node@v6.2.0
-        with: *setup-node-with
+      - name: Setup pnpm (with Node.js runtime)
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
