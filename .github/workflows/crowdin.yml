@@ -20,11 +20,13 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+    strategy:
+      fail-fast: false
+      max-parallel: 1 # Should be 1 to avoid parallel builds
+      matrix:
+        lc: [ja, ko] # Target languages https://developer.crowdin.com/language-codes/
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v6.0.2
-
       - name: Generate GitHub App Token
         id: generate-token
         uses: actions/create-github-app-token@v2.2.1
@@ -32,20 +34,27 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
+      - name: Checkout
+        uses: actions/checkout@v6.0.2
+        with:
+          token: ${{ steps.generate-token.outputs.token }}
+
       - name: Crowdin Action
         uses: crowdin/github-action@v2.14.0
         with:
           upload_sources: true
           upload_translations: true
           download_translations: true
+          download_language: ${{ matrix.lc }}
+          commit_message: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
+          localization_branch_name: chore/l10n_${{ matrix.lc }}
           create_pull_request: true
-          pull_request_title: 'chore(i18n): sync translations from Crowdin'
+          pull_request_title: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
           pull_request_body: |
             This PR updates translation files from Crowdin.
 
             Please review the changes before merging.
-          localization_branch_name: chore/l10n_crowdin_translations
-          config: crowdin.yml
+          pull_request_labels: 'documentation :memo:, i18n :globe_with_meridians:'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GH_TOKEN: ${{ steps.generate-token.outputs.token }}
