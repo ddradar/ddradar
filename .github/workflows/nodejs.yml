@@ -16,13 +16,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
+      - name: Setup Node.js
         uses: actions/setup-node@v6.2.0
         with: &setup-node-with
-          node-version: ${{ vars.NODE_VERSION }}
-          cache: pnpm
+          node-version: 24.x
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -46,9 +47,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
+      - name: Setup Node.js
         uses: actions/setup-node@v6.2.0
         with: *setup-node-with
 
@@ -71,14 +74,16 @@ jobs:
       deployments: write
     environment:
       name: ${{ github.event_name == 'push' && 'production' || 'staging' }}
-      url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
+      url: ${{ vars.ENVIRONMENT == 'production' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
 
     steps:
       - name: Checkout
         uses: actions/checkout@v6.0.2
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Use Node.js ${{ vars.NODE_VERSION }}
+      - name: Setup pnpm
+        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
+        with:
+          cache: true
+      - name: Setup Node.js
         uses: actions/setup-node@v6.2.0
         with: *setup-node-with
 
@@ -88,7 +93,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          CLOUDFLARE_ENV: ${{ github.event_name == 'push' && 'production' || '' }}
+          CLOUDFLARE_ENV: ${{ vars.ENVIRONMENT }}
 
       - name: Deploy to Cloudflare Workers
         id: deploy
@@ -96,4 +101,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
+          command: ${{ vars.ENVIRONMENT == 'production' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
