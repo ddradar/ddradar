@@ -24,6 +24,7 @@ Please follow the instructions below to ensure that you can contribute smoothly.
   - For small bug fixes or refactorings, you can send PR directly, but if they are a big change, create an issue in advance and get approval.
 - You have not to contact us before you send issue.
 - You may use English, or Japanese.
+- When reporting bug as an issue, please include a description of how to reproduce this bug, error information, and your environment.
 - Write things exactly, and Don't send issues with only one sentence.
 
 ## Making Changes
@@ -31,6 +32,7 @@ Please follow the instructions below to ensure that you can contribute smoothly.
 - Checkout your topic branch from `main` branch to create code or documents. (ex. `issue_99`, `hotfix/song-page`)
 - Add or Change test if you need.
 - Commit should be logical units. Do not include extra code changes.
+- Do not include non-ASCII characters in commit message.
 - Add prefix to commit message (inherits [angular.js/DEVELOPERS.md](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type))
   - **feat**: A new feature
   - **fix**: A bug fix
