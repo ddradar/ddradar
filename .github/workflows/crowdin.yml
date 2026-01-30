@@ -48,35 +48,15 @@ jobs:
           download_language: ${{ matrix.lc }}
           commit_message: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
           localization_branch_name: 'chore/${{ github.ref_name }}/l10n_${{ matrix.lc }}'
-          create_pull_request: false
+          create_pull_request: true
+          pull_request_title: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
+          pull_request_body: |
+            This PR updates translation files from Crowdin.
+
+            Please review the changes before merging.
+          pull_request_labels: 'documentation :memo:,i18n :globe_with_meridians:'
+          pull_request_base_branch_name: ${{ github.ref_name }}
         env:
           GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
           CROWDIN_PROJECT_ID: ${{ vars.CROWDIN_PROJECT_ID }}
           CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
-
-      - name: Create Pull Request
-        run: |
-          if git ls-remote --exit-code --heads origin "$PR_BRANCH"; then
-            PR_NUMBER=$(gh pr list --head "$PR_BRANCH" --state open --json number --jq ".[0].number // empty")
-            if [ -z "$PR_NUMBER" ]; then
-              gh pr create \
-                --title "$PR_TITLE" \
-                --body "$PR_BODY" \
-                --head "$PR_BRANCH" \
-                --base ${{ github.ref_name }} \
-                --label "$PR_LABEL"
-            else
-              echo "Open pull request #$PR_NUMBER already exists"
-            fi
-          else
-            echo "No changes found"
-          fi
-        env:
-          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
-          PR_BRANCH: 'chore/${{ github.ref_name }}/l10n_${{ matrix.lc }}'
-          PR_TITLE: 'chore(i18n): sync translations from Crowdin (${{ matrix.lc }})'
-          PR_BODY: |
-            This PR updates translation files from Crowdin.
-
-            Please review the changes before merging.
-          PR_LABEL: 'documentation :memo:,i18n :globe_with_meridians:'
