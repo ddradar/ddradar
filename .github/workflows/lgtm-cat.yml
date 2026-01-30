@@ -9,10 +9,10 @@ on:
 jobs:
   post:
     if: (!contains(github.actor, '[bot]'))
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-slim
 
     steps:
-      - uses: ddradar/lgtm-action@v3.0.0
+      - uses: ddradar/lgtm-action@v4
         with:
           image-url: ${{ vars.LGTM_IMAGE_URI }}
           search-pattern: ${{ vars.LGTM_SEARCH_PATTERN }}
