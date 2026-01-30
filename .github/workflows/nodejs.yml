@@ -71,7 +71,7 @@ jobs:
       deployments: write
     environment:
       name: ${{ github.event_name == 'push' && 'production' || 'staging' }}
-      url: ${{ github.event_name == 'push' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
+      url: ${{ vars.ENVIRONMENT == 'production' && 'https://ddradar.app' || steps.deploy.outputs.deployment-url }}
 
     steps:
       - name: Checkout
@@ -88,7 +88,7 @@ jobs:
       - name: Build
         run: pnpm build
         env:
-          CLOUDFLARE_ENV: ${{ github.event_name == 'push' && 'production' || '' }}
+          CLOUDFLARE_ENV: ${{ vars.ENVIRONMENT }}
 
       - name: Deploy to Cloudflare Workers
         id: deploy
@@ -96,4 +96,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: ${{ github.event_name == 'push' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
+          command: ${{ vars.ENVIRONMENT == 'production' && 'deploy' || format('versions upload --tag pr-{0}', github.event.pull_request.number) }}
