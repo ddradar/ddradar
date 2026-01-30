@@ -79,6 +79,15 @@ export default defineNuxtConfig({
     },
     kv: true,
   },
+  content: {
+    build: {
+      markdown: {
+        remarkPlugins: {
+          'remark-custom-heading-id': {},
+        },
+      },
+    },
+  },
   runtimeConfig: {
     ddrCardDrawJsonUrl:
       'https://raw.githubusercontent.com/noahm/DDRCardDraw/refs/heads/main/src/songs/ddr_world.json',
