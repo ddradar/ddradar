@@ -1,4 +1,4 @@
-import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import {
   afterAll,
   beforeAll,
@@ -11,6 +11,8 @@ import {
 
 import Page from '~/pages/[...slug].vue'
 import { locales } from '~~/test/nuxt/const'
+
+mockNuxtImport(queryCollection, original => vi.fn(original))
 
 describe('[...slug]', () => {
   beforeAll(() => {

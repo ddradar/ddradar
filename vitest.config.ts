@@ -10,6 +10,7 @@ export default defineConfig({
       provider: 'istanbul',
       include: [
         'app/components/**/*.vue',
+        'app/composables/**/*.ts',
         'app/pages/**/*.vue',
         'shared/**/*.ts',
         'server/api/**/*.ts',
@@ -36,7 +37,6 @@ export default defineConfig({
           name: 'nuxt',
           include: ['test/nuxt/**/*.{test,spec}.ts'],
           environment: 'nuxt',
-          setupFiles: ['test/nuxt/setup.ts'],
         },
       }),
     ],

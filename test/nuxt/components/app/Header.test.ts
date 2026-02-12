@@ -1,4 +1,4 @@
-import { mountSuspended } from '@nuxt/test-utils/runtime'
+import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import {
   afterAll,
   beforeAll,
@@ -13,6 +13,9 @@ import type { User } from '#auth-utils'
 import Header from '~/components/app/Header.vue'
 import { publicUser, sessionUser } from '~~/test/data/user'
 import { locales } from '~~/test/nuxt/const'
+
+mockNuxtImport(navigateTo, original => vi.fn(original))
+mockNuxtImport(useUserSession, original => vi.fn(original))
 
 describe('app/components/app/Header.vue', () => {
   const user = ref<User | null>(null)

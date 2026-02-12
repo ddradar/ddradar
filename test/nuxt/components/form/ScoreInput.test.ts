@@ -1,4 +1,5 @@
 import {
+  mockNuxtImport,
   mountSuspended,
   registerEndpoint,
   renderSuspended,
@@ -15,6 +16,7 @@ import { testSongData as song } from '~~/test/data/song'
 import { testStepCharts as charts } from '~~/test/data/step-chart'
 import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
 
+mockNuxtImport(useToast, original => vi.fn(original))
 registerEndpoint(
   `/api/me/scores/${song.id}/${charts[0].playStyle}/${charts[0].difficulty}`,
   { method: 'POST', handler: mockHandler }

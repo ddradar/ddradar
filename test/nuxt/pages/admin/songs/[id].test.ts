@@ -1,4 +1,5 @@
 import {
+  mockNuxtImport,
   mountSuspended,
   registerEndpoint,
   renderSuspended,
@@ -21,6 +22,9 @@ import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
+
+mockNuxtImport(useToast, original => vi.fn(original))
+mockNuxtImport(useUserSession, original => vi.fn(original))
 
 // Mock API endpoints
 registerEndpoint(`/api/songs/${testSongData.id}`, () => ({
