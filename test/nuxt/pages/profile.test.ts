@@ -22,8 +22,10 @@ import { publicUser, sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
 
 // Mock composables
-const { useCookieMock } = vi.hoisted(() => ({ useCookieMock: vi.fn() }))
-mockNuxtImport('useCookie', () => useCookieMock)
+mockNuxtImport(useCookie, original => vi.fn(original) as never)
+mockNuxtImport(useToast, original => vi.fn(original))
+mockNuxtImport(useUserSession, original => vi.fn(original))
+mockNuxtImport(navigateTo, original => vi.fn(original))
 
 // Mock API endpoints
 registerEndpoint(`/api/users/${publicUser.id}`, () => ({ ...publicUser }))
@@ -45,13 +47,13 @@ describe('/profile', () => {
       user,
       fetch: fetchMock,
     } as never)
+    vi.mocked(useCookie).mockReturnValue(redirectCookie as never)
   })
   beforeEach(() => {
     mockHandler.mockClear()
     addMock.mockClear()
     fetchMock.mockClear()
     vi.mocked(navigateTo).mockClear()
-    vi.mocked(useCookie).mockReturnValue(redirectCookie as never)
     redirectCookie.value = ''
   })
   afterAll(() => {
