@@ -117,11 +117,12 @@ export default defineNuxtConfig({
     },
   },
   i18n: {
-    defaultLocale: 'ja',
+    defaultLocale: 'en',
     strategy: 'no_prefix',
     locales: [
       { code: 'en', file: 'en.json', name: 'English' },
       { code: 'ja', file: 'ja.json', name: '日本語' },
+      { code: 'ko', file: 'ko.json', name: '한국어' },
     ],
   },
 })
