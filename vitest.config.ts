@@ -10,6 +10,7 @@ export default defineConfig({
       provider: 'istanbul',
       include: [
         'app/components/**/*.vue',
+        'app/composables/**/*.ts',
         'app/pages/**/*.vue',
         'shared/**/*.ts',
         'server/api/**/*.ts',
