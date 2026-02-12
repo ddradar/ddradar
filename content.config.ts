@@ -1,8 +1,11 @@
 import { defineCollection, defineContentConfig } from '@nuxt/content'
+import type { LocaleObject } from '@nuxtjs/i18n'
 import * as z from 'zod/mini'
 
+const locales = ['en', 'ja', 'ko'] as const satisfies LocaleObject['code'][]
+
 export default defineContentConfig({
-  collections: ['en', 'ja'].reduce(
+  collections: locales.reduce(
     (acc, locale) => {
       acc[`content_${locale}`] = defineCollection({
         type: 'page',

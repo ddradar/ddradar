@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { SelectItem } from '@nuxt/ui'
-import { en, ja } from '@nuxt/ui/locale'
+import { en, ja, ko } from '@nuxt/ui/locale'
 
 import { PlayStyle } from '~~/shared/schemas/step-chart'
 
@@ -30,7 +30,7 @@ const items = computed<SelectItem[]>(() => [
       </legend>
       <ULocaleSelect
         :model-value="locale"
-        :locales="[en, ja]"
+        :locales="[en, ja, ko]"
         @update:model-value="setLocale($event as typeof locale)"
       />
     </fieldset>
