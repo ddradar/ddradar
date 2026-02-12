@@ -92,9 +92,7 @@
       "workerd"
     ],
     "overrides": {
-      "esbuild": "^0.27.2",
-      "rolldown": "^1.0.0-rc.1",
-      "vite": "^8.0.0-beta.10"
+      "vite": "^8.0.0-beta.13"
     },
     "patchedDependencies": {
       "nitropack@2.13.1": "patches/nitropack@2.13.1.patch"
