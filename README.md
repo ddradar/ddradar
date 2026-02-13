@@ -4,8 +4,8 @@
 [![Node.js CI/CD](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml/badge.svg)](https://github.com/ddradar/ddradar/actions/workflows/nodejs.yml)
 [![CodeFactor](https://www.codefactor.io/repository/github/ddradar/ddradar/badge)](https://www.codefactor.io/repository/github/ddradar/ddradar)
 [![codecov](https://codecov.io/gh/ddradar/ddradar/graph/badge.svg?token=Y1OOPCKO5C)](https://codecov.io/gh/ddradar/ddradar)
-[![ja translation](https://img.shields.io/badge/dynamic/json?color=blue&label=日本語&style=flat&logo=crowdin&query=%24.progress.0.data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-17527316-861534.json)](https://crowdin.com/project/ddradar)
-[![ko translation](https://img.shields.io/badge/dynamic/json?color=blue&label=한국어&style=flat&logo=crowdin&query=%24.progress.1.data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-17527316-861534.json)](https://crowdin.com/project/ddradar)
+[![ja translation](https://img.shields.io/badge/dynamic/json?color=blue&label=日本語&style=flat&logo=crowdin&query=%24.progress.0.data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-17527316-861534.json)](https://crowdin.com/project/ddradar/ja)
+[![ko translation](https://img.shields.io/badge/dynamic/json?color=blue&label=한국어&style=flat&logo=crowdin&query=%24.progress.1.data.translationProgress&url=https%3A%2F%2Fbadges.awesome-crowdin.com%2Fstats-17527316-861534.json)](https://crowdin.com/project/ddradar/ko)
 [![License](https://img.shields.io/github/license/ddradar/ddradar)](LICENSE)
 
 DDR Score Tracker
