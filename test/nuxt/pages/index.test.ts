@@ -1,6 +1,7 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -56,17 +57,21 @@ describe('/', () => {
     })
   })
   beforeEach(() => vi.mocked(queryCollection).mockClear())
+  afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
   afterAll(() => vi.mocked(queryCollection).mockReset())
 
-  test.each([
-    [locales[0], ['content_en']],
-    [locales[1], ['content_ja', 'content_en']],
-  ])(
+  test.each(
+    [
+      ['content_en'],
+      ['content_ja', 'content_en'],
+      ['content_ko', 'content_en'],
+    ].map((collections, i) => [locales[i]!, collections])
+  )(
     '(locale: "%s", route: "/") renders correctly',
     async (locale, expected) => {
       // Arrange - Act
+      await useNuxtApp().$i18n.setLocale(locale)
       const wrapper = await mountSuspended(Page, { route: '/' })
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       expect(wrapper.html()).toContain('DDRadar')

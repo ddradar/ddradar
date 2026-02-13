@@ -8,6 +8,7 @@ import { fireEvent, screen, within } from '@testing-library/vue'
 import { createError, readBody } from 'h3'
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -19,7 +20,7 @@ import {
 import type { User } from '#auth-utils'
 import Page from '~/pages/profile.vue'
 import { publicUser, sessionUser } from '~~/test/data/user'
-import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
+import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
 // Mock composables
 mockNuxtImport(useCookie, original => vi.fn(original) as never)
@@ -77,6 +78,8 @@ describe('/profile', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test('renders correctly when user is already registered', async () => {
       // Arrange
       user.value = loginUser
@@ -209,10 +212,13 @@ describe('/profile', () => {
   })
 
   describe('onSubmit', () => {
-    test.each([
-      [locales[0], 'Profile saved successfully.'],
-      [locales[1], 'プロフィールを保存しました。'],
-    ])(
+    test.each(
+      withLocales(
+        'Profile saved successfully.',
+        'プロフィールを保存しました。',
+        'Profile saved successfully.'
+      )
+    )(
       '(locale: %s) submits user data and calls toast with "%s"',
       async (locale, message) => {
         // Arrange
@@ -239,13 +245,17 @@ describe('/profile', () => {
           // Verify payload structure
           expect(capturedBody).toStrictEqual(publicUser)
         })
+        await useNuxtApp().$i18n.setLocale('en')
       }
     )
 
-    test.each([
-      [locales[0], 'Failed to save profile.'],
-      [locales[1], 'プロフィールの保存に失敗しました。'],
-    ])(
+    test.each(
+      withLocales(
+        'Failed to save profile.',
+        'プロフィールの保存に失敗しました。',
+        'Failed to save profile.'
+      )
+    )(
       '(locale: %s) handles error and calls toast with error message "%s"',
       async (locale, message) => {
         // Arrange
@@ -269,6 +279,7 @@ describe('/profile', () => {
             expect.objectContaining({ color: 'error', title: message })
           )
         })
+        await useNuxtApp().$i18n.setLocale('en')
       }
     )
   })

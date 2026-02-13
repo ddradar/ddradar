@@ -5,7 +5,15 @@ import {
   renderSuspended,
 } from '@nuxt/test-utils/runtime'
 import { screen } from '@testing-library/vue'
-import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest'
 
 import type { User } from '#auth-utils'
 import Page from '~/pages/songs/[id].vue'
@@ -53,6 +61,8 @@ describe('/songs/[id]', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test('renders correctly', async () => {
       // Arrange
       user.value = null

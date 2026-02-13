@@ -1,6 +1,7 @@
 import { mockNuxtImport, mountSuspended } from '@nuxt/test-utils/runtime'
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -12,7 +13,7 @@ import {
 import type { User } from '#auth-utils'
 import Header from '~/components/app/Header.vue'
 import { publicUser, sessionUser } from '~~/test/data/user'
-import { locales } from '~~/test/nuxt/const'
+import { withLocales } from '~~/test/nuxt/const'
 
 mockNuxtImport(navigateTo, original => vi.fn(original))
 mockNuxtImport(useUserSession, original => vi.fn(original))
@@ -37,7 +38,15 @@ describe('app/components/app/Header.vue', () => {
     vi.mocked(useUserSession).mockReset()
   })
 
-  describe.each(locales)('(locale: %s)', locale => {
+  describe.each(
+    withLocales(
+      `${sessionUser.displayName} (Unregistered)`,
+      `${sessionUser.displayName} (未登録)`,
+      `${sessionUser.displayName} (Unregistered)`
+    )
+  )('(locale: %s)', (locale, name) => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test('(user: null) renders Login button', async () => {
       // Arrange - Act
       user.value = null
@@ -57,14 +66,8 @@ describe('app/components/app/Header.vue', () => {
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
     })
-  })
 
-  test.each([
-    [locales[0], 'Auth User (Unregistered)'],
-    [locales[1], 'Auth User (未登録)'],
-  ])(
-    '(locale: %s, user: <Unregistered User>) renders "%s" as user name',
-    async (locale, name) => {
+    test(`(user: <Unregistered User>) renders "${name}" as user name`, async () => {
       // Arrange - Act
       user.value = { ...sessionUser }
       const wrapper = await mountSuspended(Header)
@@ -73,6 +76,6 @@ describe('app/components/app/Header.vue', () => {
       // Assert
       const vm = wrapper.vm as unknown as Record<string, unknown>
       expect(vm.displayName).toBe(name)
-    }
-  )
+    })
+  })
 })
