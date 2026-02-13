@@ -929,3 +929,468 @@ exports[`/songs/[id] > (locale: ja) > renders noData component when song.charts 
   <!--v-if-->
 </div>"
 `;
+
+exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
+"<div data-slot="root" class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-10 m-4">
+  <!--v-if-->
+  <div data-slot="center" class="lg:col-span-10">
+    <div data-slot="root" class="relative border-b border-default py-8">
+      <div data-slot="headline" class="mb-2.5 text-sm font-semibold text-primary flex items-center gap-1.5">CLASSIC &gt; DDR 1st</div>
+      <div data-slot="container" class="">
+        <div data-slot="wrapper" class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <h1 data-slot="title" class="text-3xl sm:text-4xl text-pretty font-bold text-highlighted">PARANOiA</h1>
+          <!--v-if-->
+        </div>
+        <div data-slot="description" class="text-lg text-pretty text-muted mt-4">180</div>
+      </div>
+    </div><!-- Charts Section -->
+    <div class="my-6">
+      <div class="relative grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-beginner text-inverted"><!--v-if-->SINGLE/BEGINNER<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">4</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">138</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">29</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">22</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">5</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-basic text-inverted"><!--v-if-->SINGLE/BASIC<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">8</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">264</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <!--v-if-->
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-difficult text-inverted"><!--v-if-->SINGLE/DIFFICULT<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">9</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <!--v-if-->
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-expert text-inverted"><!--v-if-->SINGLE/EXPERT<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">11</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">319</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">67</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">52</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">25</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">17</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-basic text-inverted"><!--v-if-->DOUBLE/BASIC<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">8</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">254</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">54</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">37</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">61</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">2</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-difficult text-inverted"><!--v-if-->DOUBLE/DIFFICULT<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">13</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">309</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">65</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">56</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">13</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+        <div data-orientation="vertical" data-slot="root" class="relative flex rounded-lg bg-default ring ring-default">
+          <!--v-if-->
+          <div data-slot="container" class="relative flex flex-col flex-1 lg:grid gap-x-8 gap-y-4 p-4 sm:p-6">
+            <div data-slot="wrapper" class="flex flex-col flex-1 items-start">
+              <div data-slot="header" class="mb-1">
+                <div class="flex gap-2"><span data-slot="base" class="font-medium inline-flex items-center text-base px-2.5 py-1 gap-1.5 rounded-md bg-expert text-inverted"><!--v-if-->DOUBLE/EXPERT<!--v-if--></span>
+                  <div class="font-bold text-2xl pb-1">11</div>
+                </div>
+              </div>
+              <!--v-if-->
+              <!--v-if-->
+              <!--v-if-->
+            </div>
+            <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <div class="text-center py-4 text-gray-500">
+                <p class="text-sm">Coming Soon</p>
+              </div>
+            </div>
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+                <!--v-if-->
+              </button>
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+                <!-- BPM (always visible) -->
+                <div class="mb-3">
+                  <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
+                  <dd class="font-semibold">170-184-184</dd>
+                </div><!-- Notes Details -->
+                <div class="grid grid-cols-3 gap-3 mb-4">
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dd class="font-semibold">382</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                  <div>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dd class="font-semibold">0</dd>
+                  </div>
+                </div><!-- Radar -->
+                <div class="mb-4">
+                  <dt class="text-sm font-semibold mb-2">Groove Radar</dt>
+                  <div class="grid grid-cols-5 gap-2 text-center text-sm">
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Stream</div>
+                      <div class="font-semibold">81</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Voltage</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Air</div>
+                      <div class="font-semibold">60</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Freeze</div>
+                      <div class="font-semibold">0</div>
+                    </div>
+                    <div>
+                      <div class="text-gray-600 dark:text-gray-400">Chaos</div>
+                      <div class="font-semibold">31</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!--v-if-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;
+
+exports[`/songs/[id] > (locale: ko) > renders noData component when song.charts is empty 1`] = `
+"<div data-slot="root" class="relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0 bg-default ring ring-default">
+  <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:file-music text-muted shrink-0" aria-hidden="true" data-slot="icon"></span></span>
+    <!--v-if-->
+    <div data-slot="description" class="text-balance text-center text-sm text-muted">No charts available for the selected play style.</div>
+  </div>
+  <!--v-if-->
+  <!--v-if-->
+</div>"
+`;

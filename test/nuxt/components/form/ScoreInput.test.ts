@@ -5,7 +5,15 @@ import {
   renderSuspended,
 } from '@nuxt/test-utils/runtime'
 import { fireEvent, screen, within } from '@testing-library/vue'
-import { beforeAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import {
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  test,
+  vi,
+} from 'vitest'
 
 import type { ScoreRecord } from '#shared/types/score'
 import { calcFlareSkill, fillScoreRecordFromChart } from '#shared/utils/score'
@@ -14,7 +22,7 @@ import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
 import { scoreRecord } from '~~/test/data/score'
 import { testSongData as song } from '~~/test/data/song'
 import { testStepCharts as charts } from '~~/test/data/step-chart'
-import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
+import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
 mockNuxtImport(useToast, original => vi.fn(original))
 registerEndpoint(
@@ -38,6 +46,8 @@ describe('components/form/ScoreInput.vue', () => {
 
   describe('Rendering', () => {
     describe.each(locales)('(locale: %s)', locale => {
+      afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
       test.each([
         charts[0], // has notes info
         charts[2], // has no notes info
@@ -197,13 +207,13 @@ describe('components/form/ScoreInput.vue', () => {
 
       // Assert
       const normal = within(form).getByLabelText(
-        '通常スコア'
+        'Normal Score'
       ) as HTMLInputElement
       expect(normal.value).toBe(String(expected.normalScore))
       const ex = within(form).getByLabelText('EX SCORE') as HTMLInputElement
       const maxC = within(form).getByLabelText('MAX COMBO') as HTMLInputElement
       const flare = within(form).getByLabelText(
-        'フレアスキル'
+        'Flare Skill'
       ) as HTMLInputElement
       expect(ex.value).toBe(String(expected.exScore))
       expect(maxC.value).toBe(String(expected.maxCombo))
@@ -225,7 +235,7 @@ describe('components/form/ScoreInput.vue', () => {
 
       // Click Reset button
       const resetBtn = within(form!).getByRole('button', {
-        name: /リセット|Reset/i,
+        name: 'Reset form to initial state',
       })
       await fireEvent.click(resetBtn)
       await new Promise(r => setTimeout(r, 0))
@@ -236,10 +246,13 @@ describe('components/form/ScoreInput.vue', () => {
   })
 
   describe('Form Submission', () => {
-    test.each([
-      [locales[0], 'Score saved successfully.'],
-      [locales[1], 'スコアを保存しました。'],
-    ])(
+    test.each(
+      withLocales(
+        'Score saved successfully.',
+        'スコアを保存しました。',
+        'Score saved successfully.'
+      )
+    )(
       '(locale: %s) submits score to API with expected success message "%s"',
       async (locale, message) => {
         // Arrange
@@ -259,13 +272,17 @@ describe('components/form/ScoreInput.vue', () => {
             expect.objectContaining({ color: 'success', title: message })
           )
         })
+        await useNuxtApp().$i18n.setLocale('en')
       }
     )
 
-    test.each([
-      [locales[1], 'スコアの保存に失敗しました。'],
-      [locales[0], 'Failed to save score.'],
-    ])(
+    test.each(
+      withLocales(
+        'Failed to save score.',
+        'スコアの保存に失敗しました。',
+        'Failed to save score.'
+      )
+    )(
       '(locale: %s) handles error and calls toast with error message "%s"',
       async (locale, message) => {
         // Arrange
@@ -295,6 +312,7 @@ describe('components/form/ScoreInput.vue', () => {
             })
           )
         })
+        await useNuxtApp().$i18n.setLocale('en')
       }
     )
   })
@@ -356,13 +374,13 @@ describe('components/form/ScoreInput.vue', () => {
 
       // Act
       const exScoreInput = within(form!).getByLabelText(
-        /EX SCORE/i
+        'EX SCORE'
       ) as HTMLInputElement
       const maxComboInput = within(form!).getByLabelText(
-        /MAX COMBO/i
+        'MAX COMBO'
       ) as HTMLInputElement
       const flareSkillInput = within(form!).getByLabelText(
-        /フレアスキル|Flare Skill/i
+        'Flare Skill'
       ) as HTMLInputElement
 
       await fireEvent.update(exScoreInput, '')

@@ -1,5 +1,5 @@
 import type { Composer } from 'vue-i18n'
-import { en, ja } from 'zod/locales'
+import { en, ja, ko } from 'zod/locales'
 import * as z from 'zod/mini'
 
 export default defineNuxtPlugin({
@@ -10,6 +10,9 @@ export default defineNuxtPlugin({
     switch (locale.value) {
       case 'ja':
         z.config(ja())
+        break
+      case 'ko':
+        z.config(ko())
         break
       case 'en':
       default:

@@ -43,3 +43,25 @@ exports[`app/components/app/LoginForm.vue > (locale: ja) > renders properly 1`] 
   <!--v-if-->
 </div>"
 `;
+
+exports[`app/components/app/LoginForm.vue > (locale: ko) > renders properly 1`] = `
+"<div data-slot="root" class="w-full space-y-6">
+  <div data-slot="header" class="flex flex-col text-center">
+    <div data-slot="leading" class="mb-2"><span class="iconify i-lucide:user size-8 shrink-0 inline-block" aria-hidden="true" data-slot="leadingIcon"></span></div>
+    <div data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Login</div>
+    <!--v-if-->
+  </div>
+  <div data-slot="body" class="gap-y-6 flex flex-col">
+    <div data-slot="providers" class="space-y-3"><a href="/auth/github" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 w-full justify-center ring ring-inset ring-accented text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated focus:outline-none focus-visible:ring-2 focus-visible:ring-inverted"><span class="iconify i-simple-icons:github shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span><span data-slot="label" class="truncate">GitHub</span>
+        <!--v-if-->
+      </a><a href="/auth/x" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 w-full justify-center ring ring-inset ring-accented text-default bg-elevated hover:bg-accented/75 active:bg-accented/75 disabled:bg-elevated aria-disabled:bg-elevated focus:outline-none focus-visible:ring-2 focus-visible:ring-inverted"><span class="iconify i-simple-icons:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span><span data-slot="label" class="truncate">X (Twitter)</span>
+        <!--v-if-->
+      </a><a href="/auth/line" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 w-full justify-center text-success ring ring-inset ring-success/25 bg-success/10 hover:bg-success/15 active:bg-success/15 disabled:bg-success/10 aria-disabled:bg-success/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-success"><span class="iconify i-simple-icons:line shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span><span data-slot="label" class="truncate">LINE</span>
+        <!--v-if-->
+      </a></div>
+    <!--v-if-->
+    <!--v-if-->
+  </div>
+  <!--v-if-->
+</div>"
+`;

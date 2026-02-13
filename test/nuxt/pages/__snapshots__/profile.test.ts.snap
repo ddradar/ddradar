@@ -469,3 +469,238 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
   <!--v-if-->
 </div>"
 `;
+
+exports[`/profile > (locale: ko) > renders alert when user is not registered yet 1`] = `
+"<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-warning text-inverted mt-2"><span class="iconify i-lucide:user shrink-0 size-5" aria-hidden="true" data-slot="icon"></span>
+  <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
+    <div data-slot="title" class="text-sm font-medium">New Registration</div>
+    <div data-slot="description" class="text-sm opacity-90 mt-1">To use this app, you need to register additional user information. Please fill out the required fields in the form below.</div>
+    <!--v-if-->
+  </div>
+  <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
+    <!--v-if--><button type="button" aria-label="Close" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted focus:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-inverted p-0"><span class="iconify i-lucide:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--v-if-->
+      <!--v-if-->
+    </button>
+  </div>
+</div>"
+`;
+
+exports[`/profile > (locale: ko) > renders correctly when user is already registered 1`] = `
+"<div data-slot="root" class="flex flex-col lg:grid lg:grid-cols-10 lg:gap-10">
+  <!--v-if-->
+  <div data-slot="center" class="lg:col-span-10">
+    <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8">
+      <!--v-if-->
+      <div data-slot="root" class="rounded-lg overflow-hidden bg-default ring ring-default divide-y divide-default mt-4">
+        <!--v-if-->
+        <div data-slot="body" class="p-4 sm:p-6">
+          <form id="v-0-0-0" class="" role="form">
+            <div data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User ID</label>
+                  <!--v-if-->
+                </div>
+                <p id="v-0-0-1-description" data-slot="description" class="text-muted">The user ID used in this app. Once registered, it cannot be changed.</p>
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-1" type="text" name="id" placeholder="3-32 characters, alphanumeric, underscores, and hyphens only" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" disabled="" autocomplete="off" aria-invalid="false" aria-describedby="v-0-0-1-description" value="public_user">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm mt-4 mb-4">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User Name</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-2" type="text" name="name" placeholder="1-32 characters" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="Public User">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm mt-4 mb-4">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Area</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1"><button id="v-0-0-3" data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus:ring-2 focus:ring-inset focus:ring-primary pe-9 w-full" aria-invalid="false" role="combobox" type="button" aria-controls="reka-select-content-v-0-0-4" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+                  <!--v-if--><span data-slot="value" class="truncate pointer-events-none">Tokyo (Japan)</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
+                </button>
+                <!--teleport start-->
+                <!--teleport end--><select aria-hidden="true" tabindex="-1" style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" name="area" value="13">
+                  <!--v-if-->
+                  <option value="0">Undefined</option>
+                  <option value="1">Hokkaido (Japan)</option>
+                  <option value="2">Aomori (Japan)</option>
+                  <option value="3">Iwate (Japan)</option>
+                  <option value="4">Miyagi (Japan)</option>
+                  <option value="5">Akita (Japan)</option>
+                  <option value="6">Yamagata (Japan)</option>
+                  <option value="7">Fukushima (Japan)</option>
+                  <option value="8">Ibaraki (Japan)</option>
+                  <option value="9">Tochigi (Japan)</option>
+                  <option value="10">Gunma (Japan)</option>
+                  <option value="11">Saitama (Japan)</option>
+                  <option value="12">Chiba (Japan)</option>
+                  <option value="13">Tokyo (Japan)</option>
+                  <option value="14">Kanagawa (Japan)</option>
+                  <option value="15">Niigata (Japan)</option>
+                  <option value="16">Toyama (Japan)</option>
+                  <option value="17">Ishikawa (Japan)</option>
+                  <option value="18">Fukui (Japan)</option>
+                  <option value="19">Yamanashi (Japan)</option>
+                  <option value="20">Nagano (Japan)</option>
+                  <option value="21">Gifu (Japan)</option>
+                  <option value="22">Shizuoka (Japan)</option>
+                  <option value="23">Aichi (Japan)</option>
+                  <option value="24">Mie (Japan)</option>
+                  <option value="25">Shiga (Japan)</option>
+                  <option value="26">Kyoto (Japan)</option>
+                  <option value="27">Osaka (Japan)</option>
+                  <option value="28">Hyogo (Japan)</option>
+                  <option value="29">Nara (Japan)</option>
+                  <option value="30">Wakayama (Japan)</option>
+                  <option value="31">Tottori (Japan)</option>
+                  <option value="32">Shimane (Japan)</option>
+                  <option value="33">Okayama (Japan)</option>
+                  <option value="34">Hiroshima (Japan)</option>
+                  <option value="35">Yamaguchi (Japan)</option>
+                  <option value="36">Tokushima (Japan)</option>
+                  <option value="37">Kagawa (Japan)</option>
+                  <option value="38">Ehime (Japan)</option>
+                  <option value="39">Kochi (Japan)</option>
+                  <option value="40">Fukuoka (Japan)</option>
+                  <option value="41">Saga (Japan)</option>
+                  <option value="42">Nagasaki (Japan)</option>
+                  <option value="43">Kumamoto (Japan)</option>
+                  <option value="44">Oita (Japan)</option>
+                  <option value="45">Miyazaki (Japan)</option>
+                  <option value="46">Kagoshima (Japan)</option>
+                  <option value="47">Okinawa (Japan)</option>
+                  <option value="48">Hong Kong</option>
+                  <option value="49">Korea</option>
+                  <option value="50">Taiwan</option>
+                  <option value="51">USA</option>
+                  <option value="52">Europe</option>
+                  <option value="53">Overseas</option>
+                  <option value="54">Alaska</option>
+                  <option value="55">Alabama</option>
+                  <option value="56">Arkansas</option>
+                  <option value="57">Arizona</option>
+                  <option value="58">California</option>
+                  <option value="59">Colorado</option>
+                  <option value="60">Connecticut</option>
+                  <option value="61">Delaware</option>
+                  <option value="62">Florida</option>
+                  <option value="63">Georgia</option>
+                  <option value="64">Hawaii</option>
+                  <option value="65">Iowa</option>
+                  <option value="66">Idaho</option>
+                  <option value="67">Illinois</option>
+                  <option value="68">Indiana</option>
+                  <option value="69">Kansas</option>
+                  <option value="70">Kentucky</option>
+                  <option value="71">Louisiana</option>
+                  <option value="72">Massachusetts</option>
+                  <option value="73">Maryland</option>
+                  <option value="74">Maine</option>
+                  <option value="75">Michigan</option>
+                  <option value="76">Minnesota</option>
+                  <option value="77">Missouri</option>
+                  <option value="78">Mississippi</option>
+                  <option value="79">Montana</option>
+                  <option value="80">Nebraska</option>
+                  <option value="81">North Carolina</option>
+                  <option value="82">North Dakota</option>
+                  <option value="83">New Hampshire</option>
+                  <option value="84">New Jersey</option>
+                  <option value="85">New Mexico</option>
+                  <option value="86">Nevada</option>
+                  <option value="87">New York</option>
+                  <option value="88">Ohio</option>
+                  <option value="89">Oklahoma</option>
+                  <option value="90">Oregon</option>
+                  <option value="91">Pennsylvania</option>
+                  <option value="92">Rhode Island</option>
+                  <option value="93">South Carolina</option>
+                  <option value="94">South Dakota</option>
+                  <option value="95">Tennessee</option>
+                  <option value="96">Texas</option>
+                  <option value="97">Utah</option>
+                  <option value="98">Virginia</option>
+                  <option value="99">Vermont</option>
+                  <option value="100">Washington</option>
+                  <option value="101">Wisconsin</option>
+                  <option value="102">West Virginia</option>
+                  <option value="103">Wyoming</option>
+                  <option value="104">Washington D.C.</option>
+                  <option value="105">Japan</option>
+                  <option value="106">Canada</option>
+                  <option value="107">Singapore</option>
+                  <option value="108">Thailand</option>
+                  <option value="109">Australia</option>
+                  <option value="110">New Zealand</option>
+                  <option value="111">United Kingdom</option>
+                  <option value="112">Italy</option>
+                  <option value="113">Spain</option>
+                  <option value="114">Germany</option>
+                  <option value="115">France</option>
+                  <option value="116">Portugal</option>
+                  <option value="117">Indonesia</option>
+                  <option value="118">Philippines</option>
+                </select>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm mt-4 mb-4">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDR Code</label>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-5" type="number" name="ddrCode" placeholder="00000000" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="10000000">
+                  <!--v-if-->
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div>
+            <div data-slot="root" class="text-sm mt-4 mb-4">
+              <div data-slot="wrapper" class="">
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Profile Visibility</label>
+                  <!--v-if-->
+                </div>
+                <p id="v-0-0-6-description" data-slot="description" class="text-muted">Allow other users to view your profile and scores.</p>
+              </div>
+              <div class="relative mt-1">
+                <div data-slot="root" class="relative flex items-start w-full">
+                  <div data-slot="container" class="flex items-center h-5"><button aria-invalid="false" aria-describedby="v-0-0-6-description" data-slot="base" class="inline-flex items-center shrink-0 rounded-full border-2 border-transparent focus-visible:outline-2 focus-visible:outline-offset-2 data-[state=unchecked]:bg-accented transition-[background] duration-200 data-[state=checked]:bg-primary focus-visible:outline-primary w-9" id="v-0-0-6" role="switch" type="button" aria-checked="true" aria-required="false" data-state="checked" value="on"><span data-state="checked" data-slot="thumb" class="group pointer-events-none rounded-full bg-default shadow-lg ring-0 transition-transform duration-200 data-[state=unchecked]:translate-x-0 data-[state=unchecked]:rtl:-translate-x-0 flex items-center justify-center size-4 data-[state=checked]:translate-x-4 data-[state=checked]:rtl:-translate-x-4"></span><!-- We render single input if it's required --><input data-hidden="" tabindex="-1" style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" name="isPublic" checked="" type="checkbox" value="on"></button></div>
+                  <!--v-if-->
+                </div>
+                <!--v-if-->
+              </div>
+            </div><button type="submit" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+              <!--v-if-->Save
+              <!--v-if-->
+            </button>
+          </form>
+        </div>
+        <!--v-if-->
+      </div>
+    </div>
+  </div>
+  <!--v-if-->
+</div>"
+`;

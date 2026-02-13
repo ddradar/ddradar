@@ -1,0 +1,289 @@
+{
+  "actions": {
+    "add": {
+      "label": "Add"
+    },
+    "collapse": {
+      "hide": "Hide @.lower:{'entity'}",
+      "show": "Show @.lower:{'entity'}"
+    },
+    "delete": {
+      "label": "Delete"
+    },
+    "edit": {
+      "label": "Edit"
+    },
+    "login": {
+      "label": "Login"
+    },
+    "logout": {
+      "label": "Logout"
+    },
+    "save": {
+      "label": "Save",
+      "success": "@.capitalize:{'entity'} saved successfully.",
+      "error": "Failed to save @.lower:{'entity'}."
+    }
+  },
+  "entity": "{entity}",
+  "schema": {
+    "score": {
+      "entity": "Score",
+      "normalScore": {
+        "label": "Normal Score",
+        "placeholder": "0 - 1,000,000"
+      },
+      "exScore": {
+        "label": "EX SCORE",
+        "placeholder": "0 - {max}"
+      },
+      "maxCombo": {
+        "label": "MAX COMBO",
+        "placeholder": "0 - {max}"
+      },
+      "clearLamp": { "label": "Clear Lamp" },
+      "rank": { "isFailed": "Failed" },
+      "flareRank": { "label": "Flare Rank" },
+      "flareSkill": {
+        "label": "Flare Skill",
+        "placeholder": "0 - {max}"
+      }
+    },
+    "song": {
+      "entity": "Song",
+      "name": {
+        "label": "Name"
+      },
+      "nameKana": {
+        "label": "Furigana"
+      },
+      "artist": {
+        "label": "Artist"
+      },
+      "bpm": {
+        "label": "Displayed BPM (A3 or earlier)"
+      },
+      "series": {
+        "label": "Series"
+      },
+      "chart": {
+        "label": "Chart info",
+        "playStyle": {
+          "label": "Play Style"
+        },
+        "difficulty": {
+          "label": "Difficulty"
+        },
+        "level": {
+          "label": "Level"
+        },
+        "bpm": {
+          "label": "BPM",
+          "min": "Min",
+          "core": "Core",
+          "max": "Max"
+        },
+        "notes": {
+          "label": "Notes"
+        },
+        "freezes": {
+          "label": "Freezes arrows"
+        },
+        "shocks": {
+          "label": "Shock arrows"
+        },
+        "radar": {
+          "label": "Groove Radar",
+          "stream": "Stream",
+          "voltage": "Voltage",
+          "air": "Air",
+          "freeze": "Freeze",
+          "chaos": "Chaos"
+        }
+      }
+    },
+    "user": {
+      "entity": "Profile",
+      "id": {
+        "label": "User ID",
+        "description": "The user ID used in this app. Once registered, it cannot be changed.",
+        "placeholder": "3-32 characters, alphanumeric, underscores, and hyphens only"
+      },
+      "name": {
+        "label": "User Name",
+        "placeholder": "1-32 characters"
+      },
+      "area": {
+        "label": "Area",
+        "values": {
+          "area_0": "Undefined",
+          "area_1": "Hokkaido (Japan)",
+          "area_2": "Aomori (Japan)",
+          "area_3": "Iwate (Japan)",
+          "area_4": "Miyagi (Japan)",
+          "area_5": "Akita (Japan)",
+          "area_6": "Yamagata (Japan)",
+          "area_7": "Fukushima (Japan)",
+          "area_8": "Ibaraki (Japan)",
+          "area_9": "Tochigi (Japan)",
+          "area_10": "Gunma (Japan)",
+          "area_11": "Saitama (Japan)",
+          "area_12": "Chiba (Japan)",
+          "area_13": "Tokyo (Japan)",
+          "area_14": "Kanagawa (Japan)",
+          "area_15": "Niigata (Japan)",
+          "area_16": "Toyama (Japan)",
+          "area_17": "Ishikawa (Japan)",
+          "area_18": "Fukui (Japan)",
+          "area_19": "Yamanashi (Japan)",
+          "area_20": "Nagano (Japan)",
+          "area_21": "Gifu (Japan)",
+          "area_22": "Shizuoka (Japan)",
+          "area_23": "Aichi (Japan)",
+          "area_24": "Mie (Japan)",
+          "area_25": "Shiga (Japan)",
+          "area_26": "Kyoto (Japan)",
+          "area_27": "Osaka (Japan)",
+          "area_28": "Hyogo (Japan)",
+          "area_29": "Nara (Japan)",
+          "area_30": "Wakayama (Japan)",
+          "area_31": "Tottori (Japan)",
+          "area_32": "Shimane (Japan)",
+          "area_33": "Okayama (Japan)",
+          "area_34": "Hiroshima (Japan)",
+          "area_35": "Yamaguchi (Japan)",
+          "area_36": "Tokushima (Japan)",
+          "area_37": "Kagawa (Japan)",
+          "area_38": "Ehime (Japan)",
+          "area_39": "Kochi (Japan)",
+          "area_40": "Fukuoka (Japan)",
+          "area_41": "Saga (Japan)",
+          "area_42": "Nagasaki (Japan)",
+          "area_43": "Kumamoto (Japan)",
+          "area_44": "Oita (Japan)",
+          "area_45": "Miyazaki (Japan)",
+          "area_46": "Kagoshima (Japan)",
+          "area_47": "Okinawa (Japan)",
+          "area_48": "Hong Kong",
+          "area_49": "Korea",
+          "area_50": "Taiwan",
+          "area_51": "USA",
+          "area_52": "Europe",
+          "area_53": "Overseas",
+          "area_54": "Alaska",
+          "area_55": "Alabama",
+          "area_56": "Arkansas",
+          "area_57": "Arizona",
+          "area_58": "California",
+          "area_59": "Colorado",
+          "area_60": "Connecticut",
+          "area_61": "Delaware",
+          "area_62": "Florida",
+          "area_63": "Georgia",
+          "area_64": "Hawaii",
+          "area_65": "Iowa",
+          "area_66": "Idaho",
+          "area_67": "Illinois",
+          "area_68": "Indiana",
+          "area_69": "Kansas",
+          "area_70": "Kentucky",
+          "area_71": "Louisiana",
+          "area_72": "Massachusetts",
+          "area_73": "Maryland",
+          "area_74": "Maine",
+          "area_75": "Michigan",
+          "area_76": "Minnesota",
+          "area_77": "Missouri",
+          "area_78": "Mississippi",
+          "area_79": "Montana",
+          "area_80": "Nebraska",
+          "area_81": "North Carolina",
+          "area_82": "North Dakota",
+          "area_83": "New Hampshire",
+          "area_84": "New Jersey",
+          "area_85": "New Mexico",
+          "area_86": "Nevada",
+          "area_87": "New York",
+          "area_88": "Ohio",
+          "area_89": "Oklahoma",
+          "area_90": "Oregon",
+          "area_91": "Pennsylvania",
+          "area_92": "Rhode Island",
+          "area_93": "South Carolina",
+          "area_94": "South Dakota",
+          "area_95": "Tennessee",
+          "area_96": "Texas",
+          "area_97": "Utah",
+          "area_98": "Virginia",
+          "area_99": "Vermont",
+          "area_100": "Washington",
+          "area_101": "Wisconsin",
+          "area_102": "West Virginia",
+          "area_103": "Wyoming",
+          "area_104": "Washington D.C.",
+          "area_105": "Japan",
+          "area_106": "Canada",
+          "area_107": "Singapore",
+          "area_108": "Thailand",
+          "area_109": "Australia",
+          "area_110": "New Zealand",
+          "area_111": "United Kingdom",
+          "area_112": "Italy",
+          "area_113": "Spain",
+          "area_114": "Germany",
+          "area_115": "France",
+          "area_116": "Portugal",
+          "area_117": "Indonesia",
+          "area_118": "Philippines"
+        }
+      },
+      "ddrCode": {
+        "label": "DDR Code",
+        "placeholder": "00000000"
+      },
+      "isPublic": {
+        "label": "Profile Visibility",
+        "description": "Allow other users to view your profile and scores."
+      },
+      "unregistered": "{name} (Unregistered)"
+    }
+  },
+  "component": {
+    "preference": {
+      "language": "Language",
+      "colorMode": "Color Mode",
+      "playStyle": {
+        "legend": "Play Style",
+        "both": "Both",
+        "single": "Single only",
+        "double": "Double only"
+      }
+    },
+    "score_input": {
+      "title": "Score Input - {name}",
+      "auto": "Autofill",
+      "reset": "Reset"
+    }
+  },
+  "page": {
+    "profile": {
+      "alert": {
+        "title": "New Registration",
+        "description": "To use this app, you need to register additional user information. Please fill out the required fields in the form below."
+      }
+    },
+    "songs-id": {
+      "chartCard": {
+        "noData": "No charts available for the selected play style.",
+        "ranking": {
+          "title": "Score Rankings",
+          "noData": "Coming Soon"
+        }
+      }
+    }
+  },
+  "error": {
+    "unknown": "Unknown Error occurred",
+    "wip": "This app is currently in early development. Features may be incomplete or unstable. Please report any issues on our GitHub repository."
+  }
+}

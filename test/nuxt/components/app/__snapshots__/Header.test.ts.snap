@@ -111,3 +111,59 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
 <!--teleport start-->
 <!--teleport end-->"
 `;
+
+exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>) renders user name and Logout button 1`] = `
+"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+  <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
+    <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="focus-visible:outline-primary hover:text-default transition-colors shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+          <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
+          <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
+        </svg><span class="font-bold text-lg">DDRadar</span></a>
+    </div>
+    <div data-slot="center" class="hidden lg:flex"></div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+        <!--v-if-->
+        <!--v-if-->
+      </button>
+      <!--v-if-->
+      <!--teleport start-->
+      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+        <!--v-if-->
+        <!--v-if-->
+      </button>
+    </div>
+  </div>
+</header>
+<!--v-if-->
+<!--teleport start-->
+<!--teleport end-->"
+`;
+
+exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Login button 1`] = `
+"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+  <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
+    <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="focus-visible:outline-primary hover:text-default transition-colors shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+          <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
+          <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
+        </svg><span class="font-bold text-lg">DDRadar</span></a>
+    </div>
+    <div data-slot="center" class="hidden lg:flex"></div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+        <!--v-if-->
+        <!--v-if-->
+      </button>
+      <!--v-if-->
+      <!--teleport start-->
+      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+        <!--v-if-->
+        <!--v-if-->
+      </button>
+    </div>
+  </div>
+</header>
+<!--v-if-->
+<!--teleport start-->
+<!--teleport end-->"
+`;

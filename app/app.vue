@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { ButtonProps } from '@nuxt/ui'
-import { en, ja } from '@nuxt/ui/locale'
+import { en, ja, ko } from '@nuxt/ui/locale'
 
 const { locale, t } = useI18n()
 const { github } = useRuntimeConfig().public.community
@@ -25,7 +25,17 @@ const { data: navigation } = await useAsyncData(
   },
   { watch: [locale] }
 )
-const nuxtUILocales = computed(() => (locale.value === 'ja' ? ja : en))
+const nuxtUILocales = computed(() => {
+  switch (locale.value) {
+    case 'ja':
+      return ja
+    case 'ko':
+      return ko
+    case 'en':
+    default:
+      return en
+  }
+})
 
 provide('navigation', navigation)
 </script>

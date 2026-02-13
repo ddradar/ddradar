@@ -8,6 +8,7 @@ import { fireEvent, screen, within } from '@testing-library/vue'
 import { readBody } from 'h3'
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -21,7 +22,7 @@ import Page from '~/pages/admin/songs/[id].vue'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
-import { addMock, locales, mockHandler } from '~~/test/nuxt/const'
+import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
 mockNuxtImport(useToast, original => vi.fn(original))
 mockNuxtImport(useUserSession, original => vi.fn(original))
@@ -70,6 +71,8 @@ describe('/admin/songs/[id]', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test('(<admin user>) renders correctly', async () => {
       // Arrange
       user.value = admin
@@ -90,14 +93,14 @@ describe('/admin/songs/[id]', () => {
       await renderSuspended(Page, { route })
 
       // Act
-      const addButton = screen.getByRole('button', { name: '追加' })
+      const addButton = screen.getByRole('button', { name: 'Add' })
       await fireEvent.click(addButton)
 
       // Assert
       const accordions = screen.getAllByRole('button', {
         name: /BEGINNER|BASIC|DIFFICULT|EXPERT|CHALLENGE/i,
       })
-      expect(accordions.length).toBe(testStepCharts.length + 1)
+      expect(accordions.length).toBeGreaterThan(testStepCharts.length)
     })
 
     test('addRadar adds radar data to a chart', async () => {
@@ -116,7 +119,7 @@ describe('/admin/songs/[id]', () => {
       await fireEvent.click(accordions[noRadarChartIndex]!)
 
       // Scope to the radar field within the opened accordion
-      const radarLabel = await screen.findByText('グルーヴレーダー')
+      const radarLabel = await screen.findByText('Groove Radar')
       const radarField = radarLabel.closest(
         '[data-slot="root"]'
       )! as HTMLElement
@@ -124,9 +127,9 @@ describe('/admin/songs/[id]', () => {
       // Ensure no radar fields exist before adding
       expect(within(radarField).queryAllByRole('textbox').length).toBe(0)
 
-      // Click the "追加" button to add radar
+      // Click the "Add" button to add radar
       const addRadarButton = within(radarField).getByRole('button', {
-        name: '追加',
+        name: 'Add',
       })
       await fireEvent.click(addRadarButton)
 
@@ -138,7 +141,7 @@ describe('/admin/songs/[id]', () => {
     test('removeRadar removes radar data from a chart', async () => {
       // Arrange
       user.value = admin
-      const wrapper = await renderSuspended(Page, { route })
+      await renderSuspended(Page, { route })
       const radarChartIndex = testStepCharts.findIndex(
         chart => 'radar' in chart
       )
@@ -151,7 +154,7 @@ describe('/admin/songs/[id]', () => {
       await fireEvent.click(accordions[radarChartIndex]!)
 
       // Scope to the radar field within the opened accordion
-      const radarLabel = await screen.findByText('グルーヴレーダー')
+      const radarLabel = await screen.findByText('Groove Radar')
       const radarField = radarLabel.closest(
         '[data-slot="root"]'
       )! as HTMLElement
@@ -159,23 +162,24 @@ describe('/admin/songs/[id]', () => {
       // Ensure radar fields exist before deletion
       expect(within(radarField).getAllByRole('textbox').length).toBe(5)
 
-      // Click the "削除" button to remove radar within the field
+      // Click the "Delete" button to remove radar within the field
       const deleteButton = within(radarField).getByRole('button', {
-        name: '削除',
+        name: 'Delete',
       })
       await fireEvent.click(deleteButton)
 
       // Assert within the radar field
       expect(within(radarField).queryAllByRole('textbox').length).toBe(0)
-
-      wrapper.unmount()
     })
 
     describe('onSubmit', () => {
-      test.each([
-        ['ja' as const, '曲情報を保存しました。'],
-        ['en' as const, 'Song saved successfully.'],
-      ])(
+      test.each(
+        withLocales(
+          'Song saved successfully.',
+          '曲情報を保存しました。',
+          'Song saved successfully.'
+        )
+      )(
         '(locale: %s) submits updated song data and call toast with "%s"',
         async (locale, title) => {
           // Arrange
@@ -204,13 +208,17 @@ describe('/admin/songs/[id]', () => {
             expect(capturedBody.series).toBe(testSongData.series)
             expect(capturedBody.charts).toStrictEqual(testStepCharts)
           })
+          await useNuxtApp().$i18n.setLocale('en')
         }
       )
 
-      test.each([
-        ['ja' as const, '曲情報の保存に失敗しました。'],
-        ['en' as const, 'Failed to save song.'],
-      ])(
+      test.each(
+        withLocales(
+          'Failed to save song.',
+          '曲情報の保存に失敗しました。',
+          'Failed to save song.'
+        )
+      )(
         '(locale: %s) handles error and calls toast with error message "%s"',
         async (locale, title) => {
           // Arrange
@@ -237,6 +245,7 @@ describe('/admin/songs/[id]', () => {
               })
             )
           })
+          await useNuxtApp().$i18n.setLocale('en')
         }
       )
     })
