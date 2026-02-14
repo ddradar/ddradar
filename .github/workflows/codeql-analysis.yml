@@ -10,7 +10,6 @@ on:
 
 jobs:
   analyze:
-    if: github.event_name == 'pull_request' || !contains(github.actor, '[bot]')
     name: Analyze
     permissions:
       security-events: write
