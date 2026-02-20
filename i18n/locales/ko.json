@@ -1,96 +1,102 @@
 {
   "actions": {
     "add": {
-      "label": "Add"
+      "label": "추가"
     },
     "collapse": {
-      "hide": "Hide @.lower:{'entity'}",
-      "show": "Show @.lower:{'entity'}"
+      "hide": "@.capitalize:{'entity'} 숨기기",
+      "show": "@.capitalize:{'entity'} 표시"
     },
     "delete": {
-      "label": "Delete"
+      "label": "삭제"
     },
     "edit": {
-      "label": "Edit"
+      "label": "편집"
     },
     "login": {
-      "label": "Login"
+      "label": "로그인"
     },
     "logout": {
-      "label": "Logout"
+      "label": "로그아웃"
     },
     "save": {
-      "label": "Save",
-      "success": "@.capitalize:{'entity'} saved successfully.",
-      "error": "Failed to save @.lower:{'entity'}."
+      "label": "저장",
+      "success": "@.capitalize:{'entity'}가 저장되었습니다.",
+      "error": "@.capitalize:{'entity'}를 저장하는 데 실패했습니다."
     }
   },
   "entity": "{entity}",
   "schema": {
     "score": {
-      "entity": "Score",
+      "entity": "스코어 정보",
       "normalScore": {
-        "label": "Normal Score",
+        "label": "일반 스코어",
         "placeholder": "0 - 1,000,000"
       },
       "exScore": {
-        "label": "EX SCORE",
+        "label": "EX 스코어",
         "placeholder": "0 - {max}"
       },
       "maxCombo": {
         "label": "MAX COMBO",
         "placeholder": "0 - {max}"
       },
-      "clearLamp": { "label": "Clear Lamp" },
-      "rank": { "isFailed": "Failed" },
-      "flareRank": { "label": "Flare Rank" },
+      "clearLamp": {
+        "label": "클리어 램프"
+      },
+      "rank": {
+        "isFailed": "클리어 실패"
+      },
+      "flareRank": {
+        "label": "Flare Rank"
+      },
       "flareSkill": {
         "label": "Flare Skill",
         "placeholder": "0 - {max}"
       }
     },
     "song": {
-      "entity": "Song",
+      "entity": "노래 정보",
       "name": {
-        "label": "Name"
+        "label": "곡명"
       },
       "nameKana": {
-        "label": "Furigana"
+        "label": "요미가나"
       },
       "artist": {
-        "label": "Artist"
+        "label": "아티스트"
       },
       "bpm": {
-        "label": "Displayed BPM (A3 or earlier)"
+        "label": "표기 BPM (A3 이전)"
       },
       "series": {
-        "label": "Series"
+        "label": "버전"
       },
       "chart": {
-        "label": "Chart info",
+        "label": "차트 정보",
         "playStyle": {
-          "label": "Play Style"
+          "label": "플레이 스타일"
         },
         "difficulty": {
-          "label": "Difficulty"
+          "label": "난이도"
         },
         "level": {
           "label": "Level"
         },
         "bpm": {
           "label": "BPM",
-          "min": "Min",
-          "core": "Core",
-          "max": "Max"
+          "min": "최소",
+          "core": "코어",
+          "max": "최대"
         },
         "notes": {
-          "label": "Notes"
+          "label": "노트"
         },
         "freezes": {
-          "label": "Freezes arrows"
+          "label": "프리즈 애로우"
         },
         "shocks": {
-          "label": "Shock arrows"
+          "label": "쇼크 애로우"
         },
         "radar": {
           "label": "Groove Radar",
@@ -103,138 +109,138 @@
       }
     },
     "user": {
-      "entity": "Profile",
+      "entity": "프로필 정보",
       "id": {
-        "label": "User ID",
-        "description": "The user ID used in this app. Once registered, it cannot be changed.",
-        "placeholder": "3-32 characters, alphanumeric, underscores, and hyphens only"
+        "label": "사용자 ID",
+        "description": "이 앱에서 사용되는 사용자 ID입니다. 등록 후에는 변경할 수 없습니다.",
+        "placeholder": "3-32자, 영숫자, 밑줄 및 하이픈만 사용 가능"
       },
       "name": {
-        "label": "User Name",
-        "placeholder": "1-32 characters"
+        "label": "사용자 이름",
+        "placeholder": "1-32자"
       },
       "area": {
-        "label": "Area",
+        "label": "소속 지역",
         "values": {
-          "area_0": "Undefined",
-          "area_1": "Hokkaido (Japan)",
-          "area_2": "Aomori (Japan)",
-          "area_3": "Iwate (Japan)",
-          "area_4": "Miyagi (Japan)",
-          "area_5": "Akita (Japan)",
-          "area_6": "Yamagata (Japan)",
-          "area_7": "Fukushima (Japan)",
-          "area_8": "Ibaraki (Japan)",
-          "area_9": "Tochigi (Japan)",
-          "area_10": "Gunma (Japan)",
-          "area_11": "Saitama (Japan)",
-          "area_12": "Chiba (Japan)",
-          "area_13": "Tokyo (Japan)",
-          "area_14": "Kanagawa (Japan)",
-          "area_15": "Niigata (Japan)",
-          "area_16": "Toyama (Japan)",
-          "area_17": "Ishikawa (Japan)",
-          "area_18": "Fukui (Japan)",
-          "area_19": "Yamanashi (Japan)",
-          "area_20": "Nagano (Japan)",
-          "area_21": "Gifu (Japan)",
-          "area_22": "Shizuoka (Japan)",
-          "area_23": "Aichi (Japan)",
-          "area_24": "Mie (Japan)",
-          "area_25": "Shiga (Japan)",
-          "area_26": "Kyoto (Japan)",
-          "area_27": "Osaka (Japan)",
-          "area_28": "Hyogo (Japan)",
-          "area_29": "Nara (Japan)",
-          "area_30": "Wakayama (Japan)",
-          "area_31": "Tottori (Japan)",
-          "area_32": "Shimane (Japan)",
-          "area_33": "Okayama (Japan)",
-          "area_34": "Hiroshima (Japan)",
-          "area_35": "Yamaguchi (Japan)",
-          "area_36": "Tokushima (Japan)",
-          "area_37": "Kagawa (Japan)",
-          "area_38": "Ehime (Japan)",
-          "area_39": "Kochi (Japan)",
-          "area_40": "Fukuoka (Japan)",
-          "area_41": "Saga (Japan)",
-          "area_42": "Nagasaki (Japan)",
-          "area_43": "Kumamoto (Japan)",
-          "area_44": "Oita (Japan)",
-          "area_45": "Miyazaki (Japan)",
-          "area_46": "Kagoshima (Japan)",
-          "area_47": "Okinawa (Japan)",
-          "area_48": "Hong Kong",
-          "area_49": "Korea",
-          "area_50": "Taiwan",
-          "area_51": "USA",
-          "area_52": "Europe",
-          "area_53": "Overseas",
-          "area_54": "Alaska",
-          "area_55": "Alabama",
-          "area_56": "Arkansas",
-          "area_57": "Arizona",
-          "area_58": "California",
-          "area_59": "Colorado",
-          "area_60": "Connecticut",
-          "area_61": "Delaware",
-          "area_62": "Florida",
-          "area_63": "Georgia",
-          "area_64": "Hawaii",
-          "area_65": "Iowa",
-          "area_66": "Idaho",
-          "area_67": "Illinois",
-          "area_68": "Indiana",
-          "area_69": "Kansas",
-          "area_70": "Kentucky",
-          "area_71": "Louisiana",
-          "area_72": "Massachusetts",
-          "area_73": "Maryland",
-          "area_74": "Maine",
-          "area_75": "Michigan",
-          "area_76": "Minnesota",
-          "area_77": "Missouri",
-          "area_78": "Mississippi",
-          "area_79": "Montana",
-          "area_80": "Nebraska",
-          "area_81": "North Carolina",
-          "area_82": "North Dakota",
-          "area_83": "New Hampshire",
-          "area_84": "New Jersey",
-          "area_85": "New Mexico",
-          "area_86": "Nevada",
-          "area_87": "New York",
-          "area_88": "Ohio",
-          "area_89": "Oklahoma",
-          "area_90": "Oregon",
-          "area_91": "Pennsylvania",
-          "area_92": "Rhode Island",
-          "area_93": "South Carolina",
-          "area_94": "South Dakota",
-          "area_95": "Tennessee",
-          "area_96": "Texas",
-          "area_97": "Utah",
-          "area_98": "Virginia",
-          "area_99": "Vermont",
-          "area_100": "Washington",
-          "area_101": "Wisconsin",
-          "area_102": "West Virginia",
-          "area_103": "Wyoming",
-          "area_104": "Washington D.C.",
-          "area_105": "Japan",
-          "area_106": "Canada",
-          "area_107": "Singapore",
-          "area_108": "Thailand",
-          "area_109": "Australia",
-          "area_110": "New Zealand",
-          "area_111": "United Kingdom",
-          "area_112": "Italy",
-          "area_113": "Spain",
-          "area_114": "Germany",
-          "area_115": "France",
-          "area_116": "Portugal",
-          "area_117": "Indonesia",
-          "area_118": "Philippines"
+          "area_0": "미설정",
+          "area_1": "홋카이도 (일본)",
+          "area_2": "아오모리 (일본)",
+          "area_3": "이와테 (일본)",
+          "area_4": "미야기 (일본)",
+          "area_5": "아키타 (일본)",
+          "area_6": "야마가타 (일본)",
+          "area_7": "후쿠시마 (일본)",
+          "area_8": "이바라키 (일본)",
+          "area_9": "토치기 (일본)",
+          "area_10": "군마 (일본)",
+          "area_11": "사이타마 (일본)",
+          "area_12": "치바 (일본)",
+          "area_13": "도쿄 (일본)",
+          "area_14": "카나가와 (일본)",
+          "area_15": "니이가타 (일본)",
+          "area_16": "토야마 (일본)",
+          "area_17": "이시카와 (일본)",
+          "area_18": "후쿠이 (일본)",
+          "area_19": "야마나시 (일본)",
+          "area_20": "나가노 (일본)",
+          "area_21": "기후 (일본)",
+          "area_22": "시즈오카 (일본)",
+          "area_23": "아이치 (일본)",
+          "area_24": "미에 (일본)",
+          "area_25": "시가 (일본)",
+          "area_26": "교토 (일본)",
+          "area_27": "오사카 (일본)",
+          "area_28": "효고 (일본)",
+          "area_29": "나라 (일본)",
+          "area_30": "와카야마 (일본)",
+          "area_31": "돗토리 (일본)",
+          "area_32": "시마네 (일본)",
+          "area_33": "오카야마 (일본)",
+          "area_34": "히로시마 (일본)",
+          "area_35": "야마구치 (일본)",
+          "area_36": "도쿠시마 (일본)",
+          "area_37": "카가와 (일본)",
+          "area_38": "에히메 (일본)",
+          "area_39": "코치 (일본)",
+          "area_40": "후쿠오카 (일본)",
+          "area_41": "사가 (일본)",
+          "area_42": "나가사키 (일본)",
+          "area_43": "쿠마모토 (일본)",
+          "area_44": "오이타 (일본)",
+          "area_45": "미야자키 (일본)",
+          "area_46": "카고시마 (일본)",
+          "area_47": "오키나와 (일본)",
+          "area_48": "홍콩",
+          "area_49": "한국",
+          "area_50": "대만",
+          "area_51": "미국",
+          "area_52": "유럽",
+          "area_53": "해외",
+          "area_54": "알래스카 (미국)",
+          "area_55": "앨라배마 (미국)",
+          "area_56": "아칸소 (미국)",
+          "area_57": "애리조나 (미국)",
+          "area_58": "캘리포니아 (미국)",
+          "area_59": "콜로라도 (미국)",
+          "area_60": "커네티컷 (미국)",
+          "area_61": "델라웨어 (미국)",
+          "area_62": "플로리다 (미국)",
+          "area_63": "조지아 (미국)",
+          "area_64": "하와이 (미국)",
+          "area_65": "아이오와 (미국)",
+          "area_66": "아이다호 (미국)",
+          "area_67": "일리노이 (미국)",
+          "area_68": "인디애나 (미국)",
+          "area_69": "캔자스 (미국)",
+          "area_70": "켄터키 (미국)",
+          "area_71": "루이지애나 (미국)",
+          "area_72": "매사추세츠 (미국)",
+          "area_73": "메릴랜드 (미국)",
+          "area_74": "메인 (미국)",
+          "area_75": "미시간 (미국)",
+          "area_76": "미네소타 (미국)",
+          "area_77": "미주리 (미국)",
+          "area_78": "미시시피 (미국)",
+          "area_79": "몬태나 (미국)",
+          "area_80": "네브래스카 (미국)",
+          "area_81": "노스캐롤라이나 (미국)",
+          "area_82": "노스다코타 (미국)",
+          "area_83": "뉴햄프셔 (미국)",
+          "area_84": "뉴저지 (미국)",
+          "area_85": "뉴멕시코 (미국)",
+          "area_86": "네바다 (미국)",
+          "area_87": "뉴욕 (미국)",
+          "area_88": "오하이오 (미국)",
+          "area_89": "오클라호마 (미국)",
+          "area_90": "오리건 (미국)",
+          "area_91": "펜실베이니아 (미국)",
+          "area_92": "로드아일랜드 (미국)",
+          "area_93": "사우스캐롤라이나 (미국)",
+          "area_94": "사우스다코타 (미국)",
+          "area_95": "테네시 (미국)",
+          "area_96": "텍사스 (미국)",
+          "area_97": "유타 (미국)",
+          "area_98": "버지니아 (미국)",
+          "area_99": "버몬트 (미국)",
+          "area_100": "워싱턴 (미국)",
+          "area_101": "위스콘신 (미국)",
+          "area_102": "웨스트버지니아 (미국)",
+          "area_103": "와이오밍 (미국)",
+          "area_104": "워싱턴 D.C. (미국)",
+          "area_105": "일본",
+          "area_106": "캐나다",
+          "area_107": "싱가포르",
+          "area_108": "태국",
+          "area_109": "호주",
+          "area_110": "뉴질랜드",
+          "area_111": "영국",
+          "area_112": "이탈리아",
+          "area_113": "스페인",
+          "area_114": "독일",
+          "area_115": "프랑스",
+          "area_116": "포르투갈",
+          "area_117": "인도네시아",
+          "area_118": "필리핀"
         }
       },
       "ddrCode": {
@@ -242,48 +248,48 @@
         "placeholder": "00000000"
       },
       "isPublic": {
-        "label": "Profile Visibility",
-        "description": "Allow other users to view your profile and scores."
+        "label": "프로필 공개 설정",
+        "description": "다른 사용자가 귀하의 프로필과 스코어를 볼 수 있도록 허용합니다."
       },
-      "unregistered": "{name} (Unregistered)"
+      "unregistered": "{name} (미등록)"
     }
   },
   "component": {
     "preference": {
-      "language": "Language",
-      "colorMode": "Color Mode",
+      "language": "언어",
+      "colorMode": "화면 모드 설정",
       "playStyle": {
-        "legend": "Play Style",
-        "both": "Both",
-        "single": "Single only",
-        "double": "Double only"
+        "legend": "플레이 스타일",
+        "both": "전체 표시",
+        "single": "싱글만 표시",
+        "double": "더블만 표시"
       }
     },
     "score_input": {
-      "title": "Score Input - {name}",
-      "auto": "Autofill",
-      "reset": "Reset"
+      "title": "스코어 입력 - {name}",
+      "auto": "자동 입력",
+      "reset": "초기화"
     }
   },
   "page": {
     "profile": {
       "alert": {
-        "title": "New Registration",
-        "description": "To use this app, you need to register additional user information. Please fill out the required fields in the form below."
+        "title": "신규 등록",
+        "description": "서비스 이용을 위해 추가 사용자 정보 등록이 필요합니다. 아래 양식에 필수 항목을 입력해 주세요."
       }
     },
     "songs-id": {
       "chartCard": {
-        "noData": "No charts available for the selected play style.",
+        "noData": "선택한 플레이 스타일의 차트가 없습니다.",
         "ranking": {
-          "title": "Score Rankings",
-          "noData": "Coming Soon"
+          "title": "스코어 랭킹",
+          "noData": "곧 출시 예정"
         }
       }
     }
   },
   "error": {
-    "unknown": "Unknown Error occurred",
-    "wip": "This app is currently in early development. Features may be incomplete or unstable. Please report any issues on our GitHub repository."
+    "unknown": "알 수없는 오류가 발생했습니다",
+    "wip": "이 앱은 현재 개발 중인 단계입니다. 기능이 불완전하거나 불안정할 수 있습니다. 문제가 발생할 경우 GitHub 저장소를 통해 제보해 주세요."
   }
 }
