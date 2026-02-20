@@ -960,12 +960,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -976,15 +976,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">138</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1032,12 +1032,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -1048,15 +1048,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">264</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1080,9 +1080,9 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
             <!--v-if-->
@@ -1103,12 +1103,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -1119,15 +1119,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">319</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1175,12 +1175,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -1191,15 +1191,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">254</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1247,12 +1247,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -1263,15 +1263,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">309</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1319,12 +1319,12 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
               <!--v-if-->
             </div>
             <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-              <h3 class="font-semibold mb-2">Score Rankings</h3>
+              <h3 class="font-semibold mb-2">스코어 랭킹</h3>
               <div class="text-center py-4 text-gray-500">
-                <p class="text-sm">Coming Soon</p>
+                <p class="text-sm">곧 출시 예정</p>
               </div>
             </div>
-            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
+            <div data-state="open" data-slot="root"><button type="button" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated focus:outline-none focus-visible:bg-elevated hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
               <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
@@ -1335,15 +1335,15 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
                 </div><!-- Notes Details -->
                 <div class="grid grid-cols-3 gap-3 mb-4">
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Notes</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">노트</dt>
                     <dd class="font-semibold">382</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Freezes arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">프리즈 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                   <div>
-                    <dt class="text-sm text-gray-600 dark:text-gray-400">Shock arrows</dt>
+                    <dt class="text-sm text-gray-600 dark:text-gray-400">쇼크 애로우</dt>
                     <dd class="font-semibold">0</dd>
                   </div>
                 </div><!-- Radar -->
@@ -1388,7 +1388,7 @@ exports[`/songs/[id] > (locale: ko) > renders noData component when song.charts 
 "<div data-slot="root" class="relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0 bg-default ring ring-default">
   <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:file-music text-muted shrink-0" aria-hidden="true" data-slot="icon"></span></span>
     <!--v-if-->
-    <div data-slot="description" class="text-balance text-center text-sm text-muted">No charts available for the selected play style.</div>
+    <div data-slot="description" class="text-balance text-center text-sm text-muted">선택한 플레이 스타일의 차트가 없습니다.</div>
   </div>
   <!--v-if-->
   <!--v-if-->

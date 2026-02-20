@@ -557,7 +557,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
   <div class="space-y-4">
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Normal Score</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">일반 스코어</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -575,13 +575,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
           <!---->
           <!--v-if-->
         </button></div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
         <!--v-if-->
       </div>
     </div>
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX 스코어</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -611,7 +611,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
     </div>
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Clear Lamp</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">클리어 램프</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -678,13 +678,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
       </div>
     </div>
   </div><button type="button" aria-label="Auto-fill score fields" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Autofill
+    <!--v-if-->자동 입력
     <!--v-if-->
   </button><button type="button" aria-label="Reset form to initial state" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Reset
+    <!--v-if-->초기화
     <!--v-if-->
   </button><button type="submit" aria-label="Submit score record" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Save
+    <!--v-if-->저장
     <!--v-if-->
   </button>
 </form>"
@@ -695,7 +695,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
   <div class="space-y-4">
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Normal Score</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">일반 스코어</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -713,13 +713,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
           <!---->
           <!--v-if-->
         </button></div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
         <!--v-if-->
       </div>
     </div>
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX 스코어</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -749,7 +749,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
     </div>
     <div data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
-        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Clear Lamp</label>
+        <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">클리어 램프</label>
           <!--v-if-->
         </div>
         <!--v-if-->
@@ -816,13 +816,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
       </div>
     </div>
   </div><button type="button" aria-label="Auto-fill score fields" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Autofill
+    <!--v-if-->자동 입력
     <!--v-if-->
   </button><button type="button" aria-label="Reset form to initial state" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Reset
+    <!--v-if-->초기화
     <!--v-if-->
   </button><button type="submit" aria-label="Submit score record" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-    <!--v-if-->Save
+    <!--v-if-->저장
     <!--v-if-->
   </button>
 </form>"

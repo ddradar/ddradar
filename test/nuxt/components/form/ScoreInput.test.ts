@@ -250,7 +250,7 @@ describe('components/form/ScoreInput.vue', () => {
       withLocales(
         'Score saved successfully.',
         'スコアを保存しました。',
-        'Score saved successfully.'
+        '스코어 정보가 저장되었습니다.'
       )
     )(
       '(locale: %s) submits score to API with expected success message "%s"',
@@ -280,7 +280,7 @@ describe('components/form/ScoreInput.vue', () => {
       withLocales(
         'Failed to save score.',
         'スコアの保存に失敗しました。',
-        'Failed to save score.'
+        '스코어 정보를 저장하는 데 실패했습니다.'
       )
     )(
       '(locale: %s) handles error and calls toast with error message "%s"',

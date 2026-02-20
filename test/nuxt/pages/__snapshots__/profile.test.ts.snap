@@ -473,8 +473,8 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
 exports[`/profile > (locale: ko) > renders alert when user is not registered yet 1`] = `
 "<div data-orientation="vertical" data-slot="root" class="relative overflow-hidden w-full rounded-lg p-4 flex gap-2.5 items-start bg-warning text-inverted mt-2"><span class="iconify i-lucide:user shrink-0 size-5" aria-hidden="true" data-slot="icon"></span>
   <div data-slot="wrapper" class="min-w-0 flex-1 flex flex-col">
-    <div data-slot="title" class="text-sm font-medium">New Registration</div>
-    <div data-slot="description" class="text-sm opacity-90 mt-1">To use this app, you need to register additional user information. Please fill out the required fields in the form below.</div>
+    <div data-slot="title" class="text-sm font-medium">신규 등록</div>
+    <div data-slot="description" class="text-sm opacity-90 mt-1">서비스 이용을 위해 추가 사용자 정보 등록이 필요합니다. 아래 양식에 필수 항목을 입력해 주세요.</div>
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
@@ -498,13 +498,13 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
           <form id="v-0-0-0" class="" role="form">
             <div data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User ID</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 ID</label>
                   <!--v-if-->
                 </div>
-                <p id="v-0-0-1-description" data-slot="description" class="text-muted">The user ID used in this app. Once registered, it cannot be changed.</p>
+                <p id="v-0-0-1-description" data-slot="description" class="text-muted">이 앱에서 사용되는 사용자 ID입니다. 등록 후에는 변경할 수 없습니다.</p>
               </div>
               <div class="relative mt-1">
-                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-1" type="text" name="id" placeholder="3-32 characters, alphanumeric, underscores, and hyphens only" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" disabled="" autocomplete="off" aria-invalid="false" aria-describedby="v-0-0-1-description" value="public_user">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-1" type="text" name="id" placeholder="3-32자, 영숫자, 밑줄 및 하이픈만 사용 가능" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" disabled="" autocomplete="off" aria-invalid="false" aria-describedby="v-0-0-1-description" value="public_user">
                   <!--v-if-->
                   <!--v-if-->
                 </div>
@@ -513,13 +513,13 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User Name</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 이름</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
-                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-2" type="text" name="name" placeholder="1-32 characters" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="Public User">
+                <div data-slot="root" class="relative inline-flex items-center w-full"><input id="v-0-0-2" type="text" name="name" placeholder="1-32자" data-slot="base" class="w-full rounded-md border-0 appearance-none placeholder:text-dimmed focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary" autocomplete="off" aria-invalid="false" value="Public User">
                   <!--v-if-->
                   <!--v-if-->
                 </div>
@@ -528,13 +528,13 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Area</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">소속 지역</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1"><button id="v-0-0-3" data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus:ring-2 focus:ring-inset focus:ring-primary pe-9 w-full" aria-invalid="false" role="combobox" type="button" aria-controls="reka-select-content-v-0-0-4" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
-                  <!--v-if--><span data-slot="value" class="truncate pointer-events-none">Tokyo (Japan)</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
+                  <!--v-if--><span data-slot="value" class="truncate pointer-events-none">도쿄 (일본)</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
                 <!--teleport end--><select aria-hidden="true" tabindex="-1" style="position: absolute; border: 0px; width: 1px; height: 1px; padding: 0px; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; word-wrap: normal; top: -1px; left: -1px;" name="area" value="13">
@@ -679,10 +679,10 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Profile Visibility</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">프로필 공개 설정</label>
                   <!--v-if-->
                 </div>
-                <p id="v-0-0-6-description" data-slot="description" class="text-muted">Allow other users to view your profile and scores.</p>
+                <p id="v-0-0-6-description" data-slot="description" class="text-muted">다른 사용자가 귀하의 프로필과 스코어를 볼 수 있도록 허용합니다.</p>
               </div>
               <div class="relative mt-1">
                 <div data-slot="root" class="relative flex items-start w-full">
@@ -692,7 +692,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div><button type="submit" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-              <!--v-if-->Save
+              <!--v-if-->저장
               <!--v-if-->
             </button>
           </form>
