@@ -92,6 +92,7 @@
       "workerd"
     ],
     "overrides": {
+      "@esbuild-kit/core-utils>esbuild": "^0.25.0",
       "vite": "^8.0.0-beta.13"
     },
     "patchedDependencies": {
