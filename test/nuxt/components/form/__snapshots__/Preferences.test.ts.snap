@@ -61,7 +61,7 @@ exports[`components/form/Preferences.vue > (locale: ja) renders properly 1`] = `
 exports[`components/form/Preferences.vue > (locale: ko) renders properly 1`] = `
 "<div class="p-2">
   <fieldset class="mb-2">
-    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">Language</legend>
+    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">언어</legend>
     <!---->
     <!----><button type="button" tabindex="0" aria-label="Show popup" aria-haspopup="listbox" aria-expanded="false" aria-controls="reka-combobox-content-v-0-0-1" data-state="closed" aria-disabled="false" dir="ltr" data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary ps-9 pe-9"><span data-slot="leading" class="absolute inset-y-0 start-0 flex items-center ps-2.5"><span class="size-5 text-center">🇰🇷</span></span><span data-slot="value" class="truncate pointer-events-none">한국어</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span></button>
     <!--teleport start-->
@@ -69,7 +69,7 @@ exports[`components/form/Preferences.vue > (locale: ko) renders properly 1`] = `
     <!--v-if-->
   </fieldset>
   <fieldset class="mb-2">
-    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">Color Mode</legend>
+    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">화면 모드 설정</legend>
     <!---->
     <!----><button type="button" tabindex="0" aria-label="Show popup" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary ps-9 pe-9"><span data-slot="leading" class="absolute inset-y-0 start-0 flex items-center ps-2.5"><span class="iconify i-lucide:monitor shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="leadingIcon"></span></span><span data-slot="value" class="truncate pointer-events-none">System</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span></button>
     <!--teleport start-->
@@ -77,8 +77,8 @@ exports[`components/form/Preferences.vue > (locale: ko) renders properly 1`] = `
     <!--v-if-->
   </fieldset>
   <fieldset class="mb-2">
-    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">Play Style</legend><button data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus:ring-2 focus:ring-inset focus:ring-primary pe-9" role="combobox" type="button" aria-controls="reka-select-content-v-0-0-0" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
-      <!--v-if--><span data-slot="value" class="truncate pointer-events-none">Both</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
+    <legend class="leading-none font-semibold mb-2 select-none flex items-center gap-1">플레이 스타일</legend><button data-slot="base" class="relative group rounded-md inline-flex items-center focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-highlighted bg-default ring ring-inset ring-accented focus:ring-2 focus:ring-inset focus:ring-primary pe-9" role="combobox" type="button" aria-controls="reka-select-content-v-0-0-0" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+      <!--v-if--><span data-slot="value" class="truncate pointer-events-none">전체 표시</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
     </button>
     <!--teleport start-->
     <!--teleport end-->

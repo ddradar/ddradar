@@ -177,7 +177,7 @@ describe('/admin/songs/[id]', () => {
         withLocales(
           'Song saved successfully.',
           '曲情報を保存しました。',
-          'Song saved successfully.'
+          '노래 정보가 저장되었습니다.'
         )
       )(
         '(locale: %s) submits updated song data and call toast with "%s"',
@@ -216,7 +216,7 @@ describe('/admin/songs/[id]', () => {
         withLocales(
           'Failed to save song.',
           '曲情報の保存に失敗しました。',
-          'Failed to save song.'
+          '노래 정보를 저장하는 데 실패했습니다.'
         )
       )(
         '(locale: %s) handles error and calls toast with error message "%s"',
@@ -251,7 +251,7 @@ describe('/admin/songs/[id]', () => {
     })
 
     describe('form validation', () => {
-      test.each([/名前|Name/i, /ふりがな|Furigana/i, /シリーズ|Series/i])(
+      test.each([/Name/i, /Furigana/i, /Series/i])(
         'shows validation error when required field is empty',
         async labelPattern => {
           // Arrange
@@ -271,18 +271,14 @@ describe('/admin/songs/[id]', () => {
           await new Promise(r => setTimeout(r, 100))
 
           // Assert - Check that validation error is displayed
-          const errors = screen.queryAllByText(/Too small|Required|必須/i)
+          const errors = screen.queryAllByText(/Too small|Required/i)
           expect(errors).toHaveLength(1)
 
           expect(mockHandler).not.toHaveBeenCalled()
         }
       )
 
-      test.each([
-        /プレースタイル|Play Style/i,
-        /難易度|Difficulty/i,
-        /レベル|Level/i,
-      ])(
+      test.each([/Play Style/i, /Difficulty/i, /Level/i])(
         'shows validation error when chart required field is empty',
         async labelPattern => {
           // Arrange
@@ -311,9 +307,7 @@ describe('/admin/songs/[id]', () => {
           await new Promise(r => setTimeout(r, 100))
 
           // Assert - Check that validation error is displayed
-          const errors = screen.queryAllByText(
-            /Too small|Required|必須|Invalid/i
-          )
+          const errors = screen.queryAllByText(/Too small|Required|Invalid/i)
           expect(errors.length).toBeGreaterThan(0)
 
           expect(mockHandler).not.toHaveBeenCalled()
@@ -327,7 +321,7 @@ describe('/admin/songs/[id]', () => {
 
         // Act
         const form = screen.getByRole('form')
-        const artistField = within(form).getByLabelText(/アーティスト|Artist/i)
+        const artistField = within(form).getByLabelText(/Artist/i)
         const bpmField = within(form).getByLabelText(/BPM/i)
 
         await fireEvent.update(artistField, '')
@@ -338,7 +332,7 @@ describe('/admin/songs/[id]', () => {
 
         // Assert - Clearing optional fields should not show required field errors
         const requiredErrors = screen.queryAllByText(
-          /Too small|Required|必須|Invalid/i
+          /Too small|Required|Invalid/i
         )
         expect(requiredErrors).toHaveLength(0)
       })
@@ -357,7 +351,7 @@ describe('/admin/songs/[id]', () => {
 
         // Clear a required field in first chart
         const form = screen.getByRole('form')
-        const levelField = within(form).getByLabelText(/レベル|Level/i)
+        const levelField = within(form).getByLabelText(/Level/i)
         await fireEvent.update(levelField, '')
 
         // Submit form
@@ -365,7 +359,7 @@ describe('/admin/songs/[id]', () => {
         await new Promise(r => setTimeout(r, 100))
 
         // Assert - Error should be shown for the cleared field
-        const errors = screen.queryAllByText(/Too small|Required|必須|Invalid/i)
+        const errors = screen.queryAllByText(/Too small|Required|Invalid/i)
         expect(errors.length).toBeGreaterThan(0)
 
         // Verify other charts were not submitted

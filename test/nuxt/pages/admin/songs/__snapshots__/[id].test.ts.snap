@@ -406,12 +406,12 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
       <form id="main-form" class="" role="form">
         <div data-slot="root" class="rounded-lg overflow-hidden bg-elevated/50 divide-y divide-default mb-6">
           <div data-slot="header" class="p-4 sm:px-6">
-            <h2 class="text-xl font-bold">Song</h2>
+            <h2 class="text-xl font-bold">노래 정보</h2>
           </div>
           <div data-slot="body" class="p-4 sm:p-6">
             <div data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-0" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Name</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-0" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">곡명</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -426,7 +426,7 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
             </div>
             <div data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Furigana</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">요미가나</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -441,7 +441,7 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
             </div>
             <div data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Artist</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">아티스트</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -456,7 +456,7 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
             </div>
             <div data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">Displayed BPM (A3 or earlier)</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">표기 BPM (A3 이전)</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -471,7 +471,7 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
             </div>
             <div data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Series</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">버전</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -509,10 +509,10 @@ exports[`/admin/songs/[id] > (locale: ko) > (<admin user>) renders correctly 1`]
           </div>
           <div data-slot="footer" class="p-4 sm:px-6">
             <div class="flex gap-2 justify-end"><button type="button" id="add-button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                <!--v-if-->Add
+                <!--v-if-->추가
                 <!--v-if-->
               </button><button type="submit" id="save-button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
-                <!--v-if-->Save
+                <!--v-if-->저장
                 <!--v-if-->
               </button></div>
           </div>

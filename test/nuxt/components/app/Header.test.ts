@@ -42,7 +42,7 @@ describe('app/components/app/Header.vue', () => {
     withLocales(
       `${sessionUser.displayName} (Unregistered)`,
       `${sessionUser.displayName} (未登録)`,
-      `${sessionUser.displayName} (Unregistered)`
+      `${sessionUser.displayName} (미등록)`
     )
   )('(locale: %s)', (locale, name) => {
     afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))

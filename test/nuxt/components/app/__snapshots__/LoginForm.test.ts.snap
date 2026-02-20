@@ -48,7 +48,7 @@ exports[`app/components/app/LoginForm.vue > (locale: ko) > renders properly 1`] 
 "<div data-slot="root" class="w-full space-y-6">
   <div data-slot="header" class="flex flex-col text-center">
     <div data-slot="leading" class="mb-2"><span class="iconify i-lucide:user size-8 shrink-0 inline-block" aria-hidden="true" data-slot="leadingIcon"></span></div>
-    <div data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">Login</div>
+    <div data-slot="title" class="text-xl text-pretty font-semibold text-highlighted">로그인</div>
     <!--v-if-->
   </div>
   <div data-slot="body" class="gap-y-6 flex flex-col">

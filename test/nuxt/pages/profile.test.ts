@@ -216,7 +216,7 @@ describe('/profile', () => {
       withLocales(
         'Profile saved successfully.',
         'プロフィールを保存しました。',
-        'Profile saved successfully.'
+        '프로필 정보가 저장되었습니다.'
       )
     )(
       '(locale: %s) submits user data and calls toast with "%s"',
@@ -253,7 +253,7 @@ describe('/profile', () => {
       withLocales(
         'Failed to save profile.',
         'プロフィールの保存に失敗しました。',
-        'Failed to save profile.'
+        '프로필 정보를 저장하는 데 실패했습니다.'
       )
     )(
       '(locale: %s) handles error and calls toast with error message "%s"',
