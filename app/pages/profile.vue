@@ -143,7 +143,7 @@ async function onSubmit() {
             class="mt-4 mb-4"
           >
             <UInput
-              v-model.number="state.ddrCode"
+              v-model.number.nullable="state.ddrCode"
               type="number"
               placeholder="00000000"
               class="w-full"
