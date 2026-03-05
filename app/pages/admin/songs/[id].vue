@@ -163,7 +163,7 @@ const onSubmit = async () => {
             <UInput v-model="data.artist" />
           </UFormField>
           <UFormField :label="t('schema.song.bpm.label')" name="bpm">
-            <UInput v-model="data.bpm" />
+            <UInput v-model.nullable="data.bpm" />
           </UFormField>
           <UFormField
             :label="t('schema.song.series.label')"
