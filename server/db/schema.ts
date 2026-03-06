@@ -26,10 +26,7 @@ const systemColumns = {
     .notNull()
     .default(dateNowSql)
     .$onUpdate(() => dateNowSql),
-  updatedBy: text()
-    .notNull()
-    .default(defaultUser)
-    .$onUpdate(() => defaultUser),
+  updatedBy: text().notNull().default(defaultUser),
   deletedAt: int({ mode: 'timestamp' })
     .$type<Date | null>()
     .default(sql`NULL`),
