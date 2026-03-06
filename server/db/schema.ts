@@ -17,19 +17,24 @@ import type {
 import type { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
 import type { Area } from '#shared/schemas/user'
 
-const timestamps = {
-  createdAt: int({ mode: 'timestamp' })
-    .notNull()
-    .default(sql`(strftime('%s', 'now'))`),
+const defaultUser = 'system'
+const dateNowSql = sql`(strftime('%s', 'now'))`
+const systemColumns = {
+  createdAt: int({ mode: 'timestamp' }).notNull().default(dateNowSql),
+  createdBy: text().notNull().default(defaultUser),
   updatedAt: int({ mode: 'timestamp' })
     .notNull()
-    .default(sql`(strftime('%s', 'now'))`)
-    .$onUpdate(() => sql`(strftime('%s', 'now'))`),
+    .default(dateNowSql)
+    .$onUpdate(() => dateNowSql),
+  updatedBy: text()
+    .notNull()
+    .default(defaultUser)
+    .$onUpdate(() => defaultUser),
   deletedAt: int({ mode: 'timestamp' })
     .$type<Date | null>()
     .default(sql`NULL`),
 }
-export type TimestampColumn = keyof typeof timestamps
+export type SystemColumns = keyof typeof systemColumns
 
 // #region Tables
 /** DB schema for `Song` */
@@ -127,7 +132,7 @@ export const songs = sqliteTable(
     END`
       )
       .notNull(),
-    ...timestamps,
+    ...systemColumns,
   },
   table => [index('idx_name').on(table.nameIndex, table.nameKana)]
 )
@@ -168,7 +173,7 @@ export const charts = sqliteTable(
     shocks: int().default(0),
     /** Groove Radar data (if available) */
     radar: text({ mode: 'json' }).$type<GrooveRadar | null>(),
-    ...timestamps,
+    ...systemColumns,
   },
   table => [
     primaryKey({ columns: [table.id, table.playStyle, table.difficulty] }),
@@ -235,7 +240,7 @@ export const scores = sqliteTable(
     flareRank: int().$type<ValueOf<typeof FlareRank>>().notNull(),
     /** Flare Skill */
     flareSkill: int(),
-    ...timestamps,
+    ...systemColumns,
   },
   table => [
     primaryKey({
@@ -270,7 +275,7 @@ export const users = sqliteTable(
       .$type<string[]>()
       .notNull()
       .$default(() => []),
-    ...timestamps,
+    ...systemColumns,
   },
   table => [uniqueIndex('idx_provider').on(table.provider, table.providerId)]
 )
