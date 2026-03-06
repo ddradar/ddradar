@@ -1,4 +1,4 @@
-import type { charts, TimestampColumn } from '@nuxthub/db/schema'
+import type { charts, SystemColumns } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { getEnumKey } from '#shared/utils'
@@ -77,7 +77,7 @@ export const stepChartSchema = z.object({
     })
   ),
 }) satisfies z.ZodMiniType<
-  Omit<typeof charts.$inferInsert, 'id' | TimestampColumn>
+  Omit<typeof charts.$inferInsert, 'id' | SystemColumns>
 >
 
 /**

@@ -113,6 +113,8 @@ export default defineEventHandler(async event => {
             flareRank: score.flareRank,
             flareSkill: score.flareSkill,
             deletedAt: null,
+            createdBy: userId,
+            updatedBy: userId,
           })
           .onConflictDoUpdate({
             target: [
@@ -131,6 +133,7 @@ export default defineEventHandler(async event => {
               flareSkill: sql`CASE WHEN ${or(isNotNull(scores.deletedAt), lt(sql`COALESCE(${scores.flareSkill}, -1)`, score.flareSkill ?? -1))} THEN ${score.flareSkill ?? null} ELSE ${scores.flareSkill} END`,
               deletedAt: null,
               updatedAt: new Date(),
+              updatedBy: userId,
             },
             setWhere: or(
               isNotNull(scores.deletedAt),

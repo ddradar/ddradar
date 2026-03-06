@@ -1,4 +1,4 @@
-import type { songs, TimestampColumn } from '@nuxthub/db/schema'
+import type { songs, SystemColumns } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 /** Enum for `nameIndex` */
@@ -99,7 +99,7 @@ export const songSchema = z.object({
   bpm: z.nullish(z.string().check(z.regex(/^[0-9]+(-[0-9]+)?$/))),
   /** Series title depend on official site. */
   series: z.enum(seriesList),
-}) satisfies z.ZodMiniType<Omit<typeof songs.$inferInsert, TimestampColumn>>
+}) satisfies z.ZodMiniType<Omit<typeof songs.$inferInsert, SystemColumns>>
 
 /**
  * Compare two songs for sorting by `nameKana`.

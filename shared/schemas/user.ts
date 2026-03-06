@@ -1,4 +1,4 @@
-import type { TimestampColumn, users } from '@nuxthub/db/schema'
+import type { SystemColumns, users } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { range } from '#shared/utils'
@@ -147,7 +147,7 @@ export const userSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<
     typeof users.$inferInsert,
-    'provider' | 'providerId' | 'roles' | TimestampColumn
+    'provider' | 'providerId' | 'roles' | SystemColumns
   >
 >
 

@@ -1,4 +1,4 @@
-import type { scores, TimestampColumn } from '@nuxthub/db/schema'
+import type { scores, SystemColumns } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
@@ -163,7 +163,7 @@ export const scoreRecordSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<
     typeof scores.$inferInsert,
-    keyof ZodInfer<typeof scoreRecordKeySchema> | TimestampColumn
+    keyof ZodInfer<typeof scoreRecordKeySchema> | SystemColumns
   >
 >
 
