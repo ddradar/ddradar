@@ -188,6 +188,8 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
       difficulty: Number(params.difficulty),
       userId: publicUser.id,
       ...body,
+      createdBy: publicUser.id,
+      updatedBy: publicUser.id,
       deletedAt: null,
     })
   })
