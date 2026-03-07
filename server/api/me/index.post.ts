@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
   const body = await readValidatedBody(event, userSchema.parse)
 
   const id = user.id ?? body.id // Use existing ID if available
-  const result: UserInfo[] = await db
+  const [result]: UserInfo[] = await db
     .insert(users)
     .values({
       ...body,
@@ -40,7 +40,7 @@ export default defineEventHandler(async event => {
       area: users.area,
       ddrCode: users.ddrCode,
     })
-  if (result.length !== 1) {
+  if (!result) {
     const message = 'Failed to upsert. Did you register from another device?'
     throw createError({ status: 409, statusText: 'Conflict', message })
   }
@@ -53,7 +53,7 @@ export default defineEventHandler(async event => {
     lastAccessedAt: new Date(),
   })
 
-  return result[0]
+  return result
 })
 
 // Define OpenAPI metadata

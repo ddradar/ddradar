@@ -15,7 +15,7 @@ export default defineEventHandler(async event => {
 
   const result: D1Response = await db
     .update(scores)
-    .set({ deletedAt: new Date(), updatedAt: new Date() })
+    .set({ deletedAt: new Date(), updatedAt: new Date(), updatedBy: userId })
     .where(
       and(
         eq(scores.userId, userId),

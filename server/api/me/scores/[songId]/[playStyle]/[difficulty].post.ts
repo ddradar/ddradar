@@ -35,10 +35,10 @@ export default defineEventHandler(async event => {
   }
 
   // Upsert score record
-  const row = { ...params, userId, ...body, deletedAt: null }
+  const row = { ...params, userId, ...body, updatedBy: userId, deletedAt: null }
   const [saved] = await db
     .insert(scores)
-    .values(row)
+    .values({ ...row, createdBy: userId })
     .onConflictDoUpdate({
       target: [
         scores.songId,
@@ -46,7 +46,7 @@ export default defineEventHandler(async event => {
         scores.difficulty,
         scores.userId,
       ],
-      set: { ...row, updatedAt: new Date() },
+      set: row,
     })
     .returning({
       normalScore: scores.normalScore,

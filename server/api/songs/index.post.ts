@@ -30,9 +30,9 @@ export default defineEventHandler(async event => {
         artist: body.artist,
         bpm: body.bpm,
         series: body.series,
-        deletedAt,
         createdBy: user.id,
         updatedBy: user.id,
+        deletedAt,
       })
       .onConflictDoUpdate({
         target: songs.id,
@@ -42,8 +42,8 @@ export default defineEventHandler(async event => {
           artist: body.artist,
           bpm: body.bpm,
           series: body.series,
-          deletedAt,
           updatedBy: user.id,
+          deletedAt,
         },
       }),
     ...body.charts.map(chart =>
@@ -59,9 +59,9 @@ export default defineEventHandler(async event => {
           freezes: chart.freezes,
           shocks: chart.shocks,
           radar: chart.radar,
-          deletedAt,
           createdBy: user.id,
           updatedBy: user.id,
+          deletedAt,
         })
         .onConflictDoUpdate({
           target: [charts.id, charts.playStyle, charts.difficulty],
@@ -72,8 +72,8 @@ export default defineEventHandler(async event => {
             freezes: chart.freezes,
             shocks: chart.shocks,
             radar: chart.radar,
-            deletedAt,
             updatedBy: user.id,
+            deletedAt,
           },
         })
     ),

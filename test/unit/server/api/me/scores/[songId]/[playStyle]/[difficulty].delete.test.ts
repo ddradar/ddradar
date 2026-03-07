@@ -79,6 +79,7 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     expect(set).toHaveBeenCalledWith({
       deletedAt: expect.any(Date),
       updatedAt: expect.any(Date),
+      updatedBy: publicUser.id,
     })
     expect(where).toHaveBeenCalledWith(
       and(
@@ -109,6 +110,7 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     expect(set).toHaveBeenCalledWith({
       deletedAt: expect.any(Date),
       updatedAt: expect.any(Date),
+      updatedBy: publicUser.id,
     })
     expect(where).toHaveBeenCalledWith(
       and(
