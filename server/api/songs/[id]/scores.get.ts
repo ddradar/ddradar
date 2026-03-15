@@ -20,6 +20,7 @@ import {
   stepChartSchema,
 } from '#shared/schemas/step-chart'
 import { range, singleOrArray } from '#shared/utils'
+import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
@@ -108,19 +109,14 @@ export default defineEventHandler(async event => {
       limit: query.limit + 1, // Fetch one extra to check if there are more
     })
 
-  const hasMore = items.length > query.limit
-  const result = items.slice(0, query.limit).map(item => ({
-    ...item,
-    song: { id: song.id, name: song.name, artist: song.artist },
-  }))
-
+  const paged = buildPagenation(items, query.limit, query.offset)
   return {
-    items: result,
-    limit: query.limit,
-    offset: query.offset,
-    nextOffset: hasMore ? query.offset + query.limit : null,
-    hasMore,
-  } satisfies Pagenation<ScoreSearchResult>
+    ...paged,
+    items: paged.items.map(item => ({
+      ...item,
+      song: { id: song.id, name: song.name, artist: song.artist },
+    })),
+  }
 })
 
 // Define OpenAPI metadata
