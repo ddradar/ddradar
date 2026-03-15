@@ -23,6 +23,12 @@
       "label": "Save",
       "success": "@.capitalize:{'entity'} saved successfully.",
       "error": "Failed to save @.lower:{'entity'}."
+    },
+    "search": {
+      "label": "Search"
+    },
+    "loadMore": {
+      "label": "Load More"
     }
   },
   "entity": "{entity}",
@@ -270,6 +276,22 @@
       "alert": {
         "title": "New Registration",
         "description": "To use this app, you need to register additional user information. Please fill out the required fields in the form below."
+      }
+    },
+    "songs": {
+      "title": "Song List",
+      "tab": {
+        "level": "Level",
+        "version": "Version",
+        "title": "Title",
+        "custom": "Custom",
+        "levelHint": "Searches with play style set in preferences ({style})"
+      },
+      "searchPrompt": "Please select a search condition",
+      "seriesCategory": {
+        "classic": "Classic",
+        "white": "White",
+        "gold": "Gold"
       }
     },
     "songs-id": {

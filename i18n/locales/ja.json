@@ -23,6 +23,12 @@
       "label": "保存",
       "success": "@.capitalize:{'entity'}を保存しました。",
       "error": "@.capitalize:{'entity'}の保存に失敗しました。"
+    },
+    "search": {
+      "label": "検索"
+    },
+    "loadMore": {
+      "label": "もっと見る"
     }
   },
   "entity": "{entity}",
@@ -276,6 +282,22 @@
       "alert": {
         "title": "新規登録",
         "description": "アプリの利用には追加のユーザー情報の登録が必要です。下記のフォームに必要事項を入力してください。"
+      }
+    },
+    "songs": {
+      "title": "曲一覧",
+      "tab": {
+        "level": "レベル",
+        "version": "バージョン",
+        "title": "タイトル",
+        "custom": "個別指定",
+        "levelHint": "設定のプレースタイル（{style}）で検索します"
+      },
+      "searchPrompt": "検索条件を選択してください",
+      "seriesCategory": {
+        "classic": "クラシック",
+        "white": "ホワイト",
+        "gold": "ゴールド"
       }
     },
     "songs-id": {
