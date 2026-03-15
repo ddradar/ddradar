@@ -35,10 +35,7 @@ const _querySchema = z.object({
     ),
     undefined
   ),
-  /**
-   * Play style (`1`: SINGLE, `2`: DOUBLE)
-   * @summary Ignored if `level` is not specified.
-   */
+  /** Play style (`1`: SINGLE, `2`: DOUBLE) */
   style: z.catch(
     z.optional(
       z.coerce
@@ -49,10 +46,7 @@ const _querySchema = z.object({
     ),
     undefined
   ),
-  /**
-   * Chart level (1-20)
-   * @summary Ignored if `style` is not specified.
-   */
+  /** Chart level (1-20) */
   level: z.catch(
     z.optional(
       z.coerce
@@ -76,27 +70,30 @@ export default cachedEventHandler(
     const query = await getValidatedQuery(event, _querySchema.parse)
 
     const hasChartConditions =
-      query.style !== undefined && query.level !== undefined
+      query.style !== undefined || query.level !== undefined
     const includeCharts = hasChartConditions || query.includeCharts
+
+    // Build query conditions
     const conditions = [isNull(songs.deletedAt)]
     if (query.name !== undefined)
       conditions.push(eq(songs.nameIndex, query.name))
     if (query.series !== undefined)
       conditions.push(eq(songs.series, seriesList[query.series]!))
     if (hasChartConditions) {
+      const chartConditions = [
+        eq(charts.id, songs.id),
+        isNull(charts.deletedAt),
+      ]
+      if (query.style !== undefined)
+        chartConditions.push(eq(charts.playStyle, query.style))
+      if (query.level !== undefined)
+        chartConditions.push(eq(charts.level, query.level))
       conditions.push(
         exists(
           db
             .select()
             .from(charts)
-            .where(
-              and(
-                eq(charts.id, songs.id),
-                eq(charts.playStyle, query.style!),
-                eq(charts.level, query.level!),
-                isNull(charts.deletedAt)
-              )
-            )
+            .where(and(...chartConditions))
         )
       )
     }
@@ -121,7 +118,7 @@ export default cachedEventHandler(
     getKey: async event => {
       const query = await getValidatedQuery(event, _querySchema.parse)
       const hasChartConditions =
-        query.style !== undefined && query.level !== undefined
+        query.style !== undefined || query.level !== undefined
       const withCharts = hasChartConditions || query.includeCharts
 
       const queryString = Object.entries(query)
@@ -223,8 +220,7 @@ defineRouteMeta({
         name: 'style',
         // @ts-expect-error - not provided in nitro types
         schema: { $ref: '#/components/schemas/StepChart/properties/playStyle' },
-        description:
-          'Play style (1: SINGLE, 2: DOUBLE). Ignored if `level` is not specified.',
+        description: 'Play style (1: SINGLE, 2: DOUBLE).',
         examples: { SINGLE: { value: 1 }, DOUBLE: { value: 2 } },
       },
       {
@@ -232,7 +228,7 @@ defineRouteMeta({
         name: 'level',
         // @ts-expect-error - not provided in nitro types
         schema: { $ref: '#/components/schemas/StepChart/properties/level' },
-        description: 'Chart level (1-20). Ignored if `style` is not specified.',
+        description: 'Chart level (1-20).',
       },
       {
         in: 'query',
