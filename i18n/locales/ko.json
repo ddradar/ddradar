@@ -23,6 +23,12 @@
       "label": "저장",
       "success": "@.capitalize:{'entity'}가 저장되었습니다.",
       "error": "@.capitalize:{'entity'}를 저장하는 데 실패했습니다."
+    },
+    "search": {
+      "label": "검색"
+    },
+    "loadMore": {
+      "label": "더 보기"
     }
   },
   "entity": "{entity}",
@@ -276,6 +282,22 @@
       "alert": {
         "title": "신규 등록",
         "description": "서비스 이용을 위해 추가 사용자 정보 등록이 필요합니다. 아래 양식에 필수 항목을 입력해 주세요."
+      }
+    },
+    "songs": {
+      "title": "노래 목록",
+      "tab": {
+        "level": "레벨",
+        "version": "버전",
+        "title": "제목",
+        "custom": "상세 검색",
+        "levelHint": "설정의 플레이 스타일({style})로 검색합니다"
+      },
+      "searchPrompt": "검색 조건을 선택해 주세요",
+      "seriesCategory": {
+        "classic": "클래식",
+        "white": "화이트",
+        "gold": "골드"
       }
     },
     "songs-id": {
