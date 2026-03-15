@@ -1,22 +1,26 @@
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
-import { and, eq, exists, isNull } from 'drizzle-orm'
+import { and, asc, eq, exists, inArray, isNull } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { compareSong, NameIndex, seriesList } from '#shared/schemas/song'
+import { NameIndex, seriesList } from '#shared/schemas/song'
 import { stepChartSchema } from '#shared/schemas/step-chart'
+import { singleOrArray } from '#shared/utils'
 import { ignoreTimestampCols } from '~~/server/db/utils'
+import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
 const _querySchema = z.object({
   /** Song name index (0-36) */
   name: z.catch(
     z.optional(
-      z.coerce
-        .number()
-        .check(
-          z.refine(i => (Object.values(NameIndex) as number[]).includes(i))
-        )
+      singleOrArray(
+        z.coerce
+          .number()
+          .check(
+            z.refine(i => (Object.values(NameIndex) as number[]).includes(i))
+          )
+      )
     ),
     undefined
   ),
@@ -31,7 +35,9 @@ const _querySchema = z.object({
    */
   series: z.catch(
     z.optional(
-      z.coerce.number().check(z.refine(i => i >= 0 && i < seriesList.length))
+      singleOrArray(
+        z.coerce.number().check(z.refine(i => i >= 0 && i < seriesList.length))
+      )
     ),
     undefined
   ),
@@ -49,9 +55,13 @@ const _querySchema = z.object({
   /** Chart level (1-20) */
   level: z.catch(
     z.optional(
-      z.coerce
-        .number()
-        .check(z.refine(i => stepChartSchema.shape.level.safeParse(i).success))
+      singleOrArray(
+        z.coerce
+          .number()
+          .check(
+            z.refine(i => stepChartSchema.shape.level.safeParse(i).success)
+          )
+      )
     ),
     undefined
   ),
@@ -60,6 +70,13 @@ const _querySchema = z.object({
    * @default false when no chart conditions (`style` and `level`) specified, true when they are specified
    */
   includeCharts: z.catch(z.stringbool(), false),
+  /** Maximum number of items to return (default: 50, maximum: 100) */
+  limit: z.catch(
+    z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
+    50
+  ),
+  /** Number of items to skip. use for pagination (default: 0) */
+  offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
 })
 
 /** Cache name for "GET /api/songs" handler */
@@ -76,9 +93,14 @@ export default cachedEventHandler(
     // Build query conditions
     const conditions = [isNull(songs.deletedAt)]
     if (query.name !== undefined)
-      conditions.push(eq(songs.nameIndex, query.name))
+      conditions.push(inArray(songs.nameIndex, [query.name].flat()))
     if (query.series !== undefined)
-      conditions.push(eq(songs.series, seriesList[query.series]!))
+      conditions.push(
+        inArray(
+          songs.series,
+          [query.series].flat().map(i => seriesList[i]!)
+        )
+      )
     if (hasChartConditions) {
       const chartConditions = [
         eq(charts.id, songs.id),
@@ -87,7 +109,7 @@ export default cachedEventHandler(
       if (query.style !== undefined)
         chartConditions.push(eq(charts.playStyle, query.style))
       if (query.level !== undefined)
-        chartConditions.push(eq(charts.level, query.level))
+        chartConditions.push(inArray(charts.level, [query.level].flat()))
       conditions.push(
         exists(
           db
@@ -98,7 +120,7 @@ export default cachedEventHandler(
       )
     }
 
-    const res: SongSearchResult[] = await db.query.songs.findMany({
+    const items: SongSearchResult[] = await db.query.songs.findMany({
       columns: { ...ignoreTimestampCols },
       where: and(...conditions),
       with: {
@@ -109,8 +131,12 @@ export default cachedEventHandler(
             }
           : undefined,
       },
+      orderBy: [asc(songs.nameIndex), asc(songs.nameKana)],
+      offset: query.offset,
+      limit: query.limit + 1,
     })
-    return res.sort(compareSong)
+
+    return buildPagenation(items, query.limit, query.offset)
   },
   {
     maxAge: 60 * 60, // 1 hour
@@ -121,16 +147,19 @@ export default cachedEventHandler(
         query.style !== undefined || query.level !== undefined
       const withCharts = hasChartConditions || query.includeCharts
 
-      const queryString = Object.entries(query)
-        .filter(([key, value]) =>
-          typeof value === 'number' && withCharts
-            ? true
-            : ['name', 'series'].includes(key)
-        )
-        .map(([key, value]) => `${key}=${value}`)
-        .sort()
-        .join('&')
-      return `${withCharts ? 'withCharts:' : ''}${queryString || 'all'}`
+      const params: string[] = []
+      if (query.name !== undefined)
+        params.push(`name=${[query.name].flat().sort().join(',')}`)
+      if (query.series !== undefined)
+        params.push(`series=${[query.series].flat().sort().join(',')}`)
+      if (query.style !== undefined) params.push(`style=${query.style}`)
+      if (query.level !== undefined)
+        params.push(`level=${[query.level].flat().sort().join(',')}`)
+      if (query.offset > 0) params.push(`offset=${query.offset}`)
+      if (query.limit !== 50) params.push(`limit=${query.limit}`)
+      params.sort()
+      const queryString = params.join('&') || 'all'
+      return `${withCharts ? 'withCharts:' : ''}${queryString}`
     },
   }
 )
@@ -144,9 +173,17 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'name',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/Song/properties/nameIndex' },
+        schema: {
+          type: 'array',
+          items: {
+            $ref: '#/components/schemas/Song/properties/nameIndex',
+          },
+          // @ts-expect-error - not provided in nitro types
+          style: 'form',
+          explode: true,
+        },
         description: 'Song name index (0-36)',
+        required: false,
         examples: {
           あ行: { value: 0 },
           か行: { value: 1 },
@@ -190,8 +227,15 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'series',
-        schema: { type: 'integer', minimum: 0, maximum: 19 },
+        schema: {
+          type: 'array',
+          items: { type: 'integer', minimum: 0, maximum: 19 },
+          // @ts-expect-error - not provided in nitro types
+          style: 'form',
+          explode: true,
+        },
         description: 'Series index (0-19)',
+        required: false,
         examples: {
           'DDR 1st': { value: 0 },
           'DDR 2ndMIX': { value: 1 },
@@ -218,6 +262,7 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'style',
+        required: false,
         // @ts-expect-error - not provided in nitro types
         schema: { $ref: '#/components/schemas/StepChart/properties/playStyle' },
         description: 'Play style (1: SINGLE, 2: DOUBLE).',
@@ -226,8 +271,16 @@ defineRouteMeta({
       {
         in: 'query',
         name: 'level',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/StepChart/properties/level' },
+        required: false,
+        schema: {
+          type: 'array',
+          items: {
+            $ref: '#/components/schemas/StepChart/properties/level',
+          },
+          // @ts-expect-error - not provided in nitro types
+          style: 'form',
+          explode: true,
+        },
         description: 'Chart level (1-20).',
       },
       {
@@ -237,68 +290,107 @@ defineRouteMeta({
         description:
           'Whether to include charts data. Default is false when no chart conditions (`style` and `level`) specified, true when they are specified.',
       },
+      {
+        in: 'query',
+        name: 'limit',
+        schema: {
+          // @ts-expect-error - not provided in nitro types
+          $ref: '#/components/schemas/PaginatedResult/properties/limit',
+          default: 50,
+        },
+        description: 'Maximum number of items to return (default: 50)',
+      },
+      {
+        in: 'query',
+        name: 'offset',
+        schema: {
+          // @ts-expect-error - not provided in nitro types
+          $ref: '#/components/schemas/PaginatedResult/properties/offset',
+          default: 0,
+        },
+        description: 'Number of items to skip (default: 0)',
+      },
     ],
     responses: {
       200: {
-        description: 'List of songs',
+        description: 'Paginated list of songs',
         content: {
           'application/json': {
             schema: {
-              type: 'array',
-              items: {
-                type: 'object',
-                properties: {
-                  id: { $ref: '#/components/schemas/Song/properties/id' },
-                  name: { $ref: '#/components/schemas/Song/properties/name' },
-                  nameKana: {
-                    $ref: '#/components/schemas/Song/properties/nameKana',
-                  },
-                  nameIndex: {
-                    $ref: '#/components/schemas/Song/properties/nameIndex',
-                  },
-                  artist: {
-                    $ref: '#/components/schemas/Song/properties/artist',
-                  },
-                  bpm: { $ref: '#/components/schemas/Song/properties/bpm' },
-                  series: {
-                    $ref: '#/components/schemas/Song/properties/series',
-                  },
-                  seriesCategory: {
-                    $ref: '#/components/schemas/Song/properties/seriesCategory',
-                  },
-                  charts: {
-                    type: 'array',
-                    description: 'List of step charts (if requested)',
+              type: 'object',
+              description: 'Paginated list of songs',
+              allOf: [
+                {
+                  type: 'object',
+                  properties: {
                     items: {
-                      type: 'object',
-                      properties: {
-                        playStyle: {
-                          $ref: '#/components/schemas/StepChart/properties/playStyle',
+                      type: 'array',
+                      description: 'Array of songs',
+                      items: {
+                        type: 'object',
+                        properties: {
+                          id: {
+                            $ref: '#/components/schemas/Song/properties/id',
+                          },
+                          name: {
+                            $ref: '#/components/schemas/Song/properties/name',
+                          },
+                          nameKana: {
+                            $ref: '#/components/schemas/Song/properties/nameKana',
+                          },
+                          nameIndex: {
+                            $ref: '#/components/schemas/Song/properties/nameIndex',
+                          },
+                          artist: {
+                            $ref: '#/components/schemas/Song/properties/artist',
+                          },
+                          bpm: {
+                            $ref: '#/components/schemas/Song/properties/bpm',
+                          },
+                          series: {
+                            $ref: '#/components/schemas/Song/properties/series',
+                          },
+                          seriesCategory: {
+                            $ref: '#/components/schemas/Song/properties/seriesCategory',
+                          },
+                          charts: {
+                            type: 'array',
+                            description: 'List of step charts (if requested)',
+                            items: {
+                              type: 'object',
+                              properties: {
+                                playStyle: {
+                                  $ref: '#/components/schemas/StepChart/properties/playStyle',
+                                },
+                                difficulty: {
+                                  $ref: '#/components/schemas/StepChart/properties/difficulty',
+                                },
+                                level: {
+                                  $ref: '#/components/schemas/StepChart/properties/level',
+                                },
+                              },
+                              required: ['playStyle', 'difficulty', 'level'],
+                            },
+                            minItems: 1,
+                            maxItems: 9,
+                          },
                         },
-                        difficulty: {
-                          $ref: '#/components/schemas/StepChart/properties/difficulty',
-                        },
-                        level: {
-                          $ref: '#/components/schemas/StepChart/properties/level',
-                        },
+                        required: [
+                          'id',
+                          'name',
+                          'nameKana',
+                          'nameIndex',
+                          'artist',
+                          'bpm',
+                          'series',
+                          'seriesCategory',
+                        ],
                       },
-                      required: ['playStyle', 'difficulty', 'level'],
                     },
-                    minItems: 1,
-                    maxItems: 9,
                   },
                 },
-                required: [
-                  'id',
-                  'name',
-                  'nameKana',
-                  'nameIndex',
-                  'artist',
-                  'bpm',
-                  'series',
-                  'seriesCategory',
-                ],
-              },
+                { $ref: '#/components/schemas/PaginatedResult' },
+              ],
             },
           },
         },
