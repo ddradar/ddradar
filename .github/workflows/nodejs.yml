@@ -17,8 +17,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Setup pnpm
-        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
-        with:
+        uses: pnpm/action-setup@v5.0.0
+        with: &pnpm-setup-with
           cache: true
       - name: Setup Node.js
         uses: actions/setup-node@v6.3.0
@@ -46,9 +46,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Setup pnpm
-        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
-        with:
-          cache: true
+        uses: pnpm/action-setup@v5.0.0
+        with: *pnpm-setup-with
       - name: Setup Node.js
         uses: actions/setup-node@v6.3.0
         with: *setup-node-with
@@ -78,9 +77,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6.0.2
       - name: Setup pnpm
-        uses: pnpm/action-setup@1e1c8eafbd745f64b1ef30a7d7ed7965034c486c # commit for caching support
-        with:
-          cache: true
+        uses: pnpm/action-setup@v5.0.0
+        with: *pnpm-setup-with
       - name: Setup Node.js
         uses: actions/setup-node@v6.3.0
         with: *setup-node-with
