@@ -26,7 +26,7 @@ describe('DELETE /api/me/tokens/[id]', () => {
       }
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrowError(
+      await expect(handler(event as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(vi.mocked(kv.get)).not.toHaveBeenCalled()
@@ -71,7 +71,7 @@ describe('DELETE /api/me/tokens/[id]', () => {
     }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({
         statusCode: 404,
         statusMessage: 'Token not found',

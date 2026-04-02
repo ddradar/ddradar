@@ -85,9 +85,7 @@ describe('[...slug]', () => {
   )
 
   test('(route: "/invalid") throws error', async () => {
-    await expect(
-      mountSuspended(Page, { route: '/invalid' })
-    ).rejects.toThrowError(
+    await expect(mountSuspended(Page, { route: '/invalid' })).rejects.toThrow(
       expect.objectContaining({
         statusCode: 404,
         statusMessage: 'Page not found',

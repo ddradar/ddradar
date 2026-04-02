@@ -65,7 +65,7 @@ describe('/admin/songs/[id]', () => {
     const route = `/admin/songs/${testSongData.id}?${query}`
 
     // Act & Assert
-    await expect(mountSuspended(Page, { route })).rejects.toThrowError(
+    await expect(mountSuspended(Page, { route })).rejects.toThrow(
       expect.objectContaining({ statusCode: 403, statusMessage: 'Forbidden' })
     )
   })
