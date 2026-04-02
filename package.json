@@ -93,7 +93,8 @@
     ],
     "overrides": {
       "@esbuild-kit/core-utils>esbuild": "^0.25.0",
-      "vite": "^8.0.0-beta.13"
+      "@nuxt/test-utils>h3-next": "npm:h3@^2.0.1-rc.18",
+      "vite": "^8.0.0"
     },
     "patchedDependencies": {
       "nitropack@2.13.2": "patches/nitropack@2.13.2.patch"
