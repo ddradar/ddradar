@@ -42,10 +42,10 @@ jobs:
       - name: Cache Crowdin source files
         uses: actions/cache@v5.0.4
         with:
-          path: ~/.crowdin/cache.json
-          key: ${{ runner.os }}-crowdin-cache-${{ github.ref_name }}-${{ hashFiles('**/crowdin.yml') }}
+          path: .crowdin
+          key: crowdin-${{ github.ref_name }}-${{ hashFiles('**/crowdin.yml') }}
           restore-keys: |
-            ${{ runner.os }}-crowdin-cache-${{ github.ref_name }}-
+            crowdin-${{ github.ref_name }}-
 
       - name: Crowdin Action
         uses: crowdin/github-action@v2.16.0
