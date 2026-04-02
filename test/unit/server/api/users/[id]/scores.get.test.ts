@@ -55,7 +55,7 @@ describe('GET /api/users/[id]/scores', () => {
     const event: Partial<H3Event> = { context: { params: { id } } }
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrowError(
+    await expect(handler(event as H3Event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(getCachedUser)).not.toHaveBeenCalled()
@@ -73,7 +73,7 @@ describe('GET /api/users/[id]/scores', () => {
       }
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrowError(
+      await expect(handler(event as H3Event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 404 })
       )
       expect(vi.mocked(getCachedUser)).toHaveBeenCalledWith(
