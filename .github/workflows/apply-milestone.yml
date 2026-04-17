@@ -11,11 +11,4 @@ jobs:
   apply-milestone:
     name: Apply milestone
     if: github.event.pull_request.milestone == null
-    runs-on: ubuntu-slim
-    steps:
-      - name: Apply milestone to PR
-        run: gh pr edit "$PR_URL" --milestone "$CURRENT_MILESTONE"
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PR_URL: ${{ github.event.pull_request.html_url }}
-          CURRENT_MILESTONE: ${{ vars.CURRENT_MILESTONE }}
+    uses: ddradar/.github/.github/workflows/apply-milestone.yml@main
