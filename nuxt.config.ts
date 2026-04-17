@@ -5,6 +5,7 @@ const scheduledTasks = {
 
 export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
+  sourcemap: { client: true },
   experimental: { typedPages: true, typescriptPlugin: true },
   vite: {
     plugins: [
