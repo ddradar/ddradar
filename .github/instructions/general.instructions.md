@@ -6,6 +6,7 @@ applyTo: '**'
 
 - Read this file before every action; follow strictly
 - Use user's language in chat responses
+- Follow the [contributing guide](../../content/en/contributing.md) for coding conventions
 - Get current errors/test results before proposing changes
 - Edit one file at a time; verify immediately after each edit
 - Run lint → typecheck → tests; show logs as evidence
@@ -57,3 +58,16 @@ DO NOT ignore or suppress type-checking, linting, or editor diagnostics reported
 
 - For multi-step work, maintain concise TODOs and update at milestones
 - Before tool calls, add a brief preamble about next action and expected outcome
+
+## Log Handling
+
+- **Do NOT pipe stdout directly through filters (e.g., `cmd | grep ...`)**; this may silently discard errors.
+- For long logs, write to a file first, then search:
+  ```sh
+  pnpm test > ./pnpm-test.log 2>&1
+  grep "pattern" ./pnpm-test.log
+  ```
+
+## Issue Investigation
+
+- When investigating a problem, check issues in both the direct dependency (e.g., `@nuxt/icon`) and any consuming library (e.g., `@nuxt/ui`) that wraps it.
