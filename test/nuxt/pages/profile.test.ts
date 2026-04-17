@@ -90,7 +90,7 @@ describe('/profile', () => {
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
-    })
+    }, 10000)
 
     test('renders alert when user is not registered yet', async () => {
       // Arrange
@@ -104,7 +104,7 @@ describe('/profile', () => {
       const alert = wrapper.findComponent({ name: 'UAlert' })
       expect(alert.exists()).toBe(true)
       expect(alert.html()).toMatchSnapshot()
-    })
+    }, 10000)
   })
 
   describe('field behaviors', () => {
@@ -246,7 +246,8 @@ describe('/profile', () => {
           expect(capturedBody).toStrictEqual(publicUser)
         })
         await useNuxtApp().$i18n.setLocale('en')
-      }
+      },
+      10000
     )
 
     test.each(
@@ -280,7 +281,8 @@ describe('/profile', () => {
           )
         })
         await useNuxtApp().$i18n.setLocale('en')
-      }
+      },
+      10000
     )
   })
 

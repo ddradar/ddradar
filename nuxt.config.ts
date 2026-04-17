@@ -125,4 +125,19 @@ export default defineNuxtConfig({
       { code: 'ko', file: 'ko.json', name: '한국어' },
     ],
   },
+  $test: {
+    // Set local to avoid '[Icon] failed to load icon `xxx`' warnings during tests
+    icon: {
+      serverBundle: 'local',
+      clientBundle: {
+        scan: {
+          globInclude: [
+            '**/*.{vue,jsx,tsx,md,mdc,mdx,yml,yaml}',
+            'node_modules/@nuxt/ui/dist/shared/*.mjs',
+          ],
+          globExclude: ['dist', 'build', 'coverage', 'test', 'tests', '.*'],
+        },
+      },
+    },
+  },
 })
