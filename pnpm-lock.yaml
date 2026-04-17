@@ -88,6 +88,9 @@ importers:
       '@vitest/coverage-istanbul':
         specifier: ^4.1.4
         version: 4.1.4(vitest@4.1.4)
+      '@vitest/coverage-v8':
+        specifier: ^4.1.4
+        version: 4.1.4(vitest@4.1.4)
       '@vitest/eslint-plugin':
         specifier: ^1.6.15
         version: 1.6.15(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3)(vitest@4.1.4)
@@ -120,7 +123,7 @@ importers:
         version: 5.9.3
       vitest:
         specifier: ^4.1.4
-        version: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
+        version: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
       vue-tsc:
         specifier: ^3.2.6
         version: 3.2.6(typescript@5.9.3)
@@ -323,6 +326,10 @@ packages:
   '@babel/types@7.29.0':
     resolution: {integrity: sha512-LwdZHpScM4Qz8Xw2iKSzS+cfglZzJGvofQICy7W7v4caru4EaAmyUuO6BGrbyQ2mYV11W0U8j5mBhd14dd3B0A==}
     engines: {node: '>=6.9.0'}
+
+  '@bcoe/v8-coverage@1.0.2':
+    resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
+    engines: {node: '>=18'}
 
   '@bomb.sh/tab@0.0.14':
     resolution: {integrity: sha512-cHMk2LI430MVoX1unTt9oK1iZzQS4CYDz97MSxKLNErW69T43Z2QLFTpdS/3jVOIKrIADWfuxQ+nQNJkNV7E4w==}
@@ -3579,6 +3586,15 @@ packages:
     peerDependencies:
       vitest: 4.1.4
 
+  '@vitest/coverage-v8@4.1.4':
+    resolution: {integrity: sha512-x7FptB5oDruxNPDNY2+S8tCh0pcq7ymCe1gTHcsp733jYjrJl8V1gMUlVysuCD9Kz46Xz9t1akkv08dPcYDs1w==}
+    peerDependencies:
+      '@vitest/browser': 4.1.4
+      vitest: 4.1.4
+    peerDependenciesMeta:
+      '@vitest/browser':
+        optional: true
+
   '@vitest/eslint-plugin@1.6.15':
     resolution: {integrity: sha512-dTMjrdngmcB+DxomlKQ+SUubCTvd0m2hQQFpv5sx+GRodmeoxr2PVbphk57SVp250vpxphk9Ccwyv6fQ6+2gkA==}
     engines: {node: '>=18'}
@@ -3882,6 +3898,9 @@ packages:
   ast-kit@2.2.0:
     resolution: {integrity: sha512-m1Q/RaVOnTp9JxPX+F+Zn7IcLYMzM8kZofDImfsKZd8MbR+ikdOzTeztStWqfrqIxZnYWryyI9ePm3NGjnZgGw==}
     engines: {node: '>=20.19.0'}
+
+  ast-v8-to-istanbul@1.0.0:
+    resolution: {integrity: sha512-1fSfIwuDICFA4LKkCzRPO7F0hzFf0B7+Xqrl27ynQaa+Rh0e1Es0v6kWHPott3lU10AyAr7oKHa65OppjLn3Rg==}
 
   ast-walker-scope@0.8.3:
     resolution: {integrity: sha512-cbdCP0PGOBq0ASG+sjnKIoYkWMKhhz+F/h9pRexUdX2Hd38+WOlBkRKlqkGOSm0YQpcFMQBJeK4WspUAkwsEdg==}
@@ -5655,6 +5674,9 @@ packages:
   js-cookie@3.0.5:
     resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
     engines: {node: '>=14'}
+
+  js-tokens@10.0.0:
+    resolution: {integrity: sha512-lM/UBzQmfJRo9ABXbPWemivdCW8V2G8FHaHdypQaIy523snUjog0W71ayWXTjiR+ixeMyVHN2XcpnTd/liPg/Q==}
 
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
@@ -8533,6 +8555,8 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
+  '@bcoe/v8-coverage@1.0.2': {}
+
   '@bomb.sh/tab@0.0.14(cac@6.7.14)(citty@0.2.2)':
     optionalDependencies:
       cac: 6.7.14
@@ -9809,7 +9833,7 @@ snapshots:
       '@testing-library/vue': 8.1.0(@vue/compiler-sfc@3.5.32)(vue@3.5.32(typescript@5.9.3))
       '@vue/test-utils': 2.4.6
       happy-dom: 20.8.9
-      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
+      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - crossws
       - magicast
@@ -11751,9 +11775,23 @@ snapshots:
       magicast: 0.5.2
       obug: 2.1.1
       tinyrainbow: 3.1.0
-      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
+      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - supports-color
+
+  '@vitest/coverage-v8@4.1.4(vitest@4.1.4)':
+    dependencies:
+      '@bcoe/v8-coverage': 1.0.2
+      '@vitest/utils': 4.1.4
+      ast-v8-to-istanbul: 1.0.0
+      istanbul-lib-coverage: 3.2.2
+      istanbul-lib-report: 3.0.1
+      istanbul-reports: 3.2.0
+      magicast: 0.5.2
+      obug: 2.1.1
+      std-env: 4.0.0
+      tinyrainbow: 3.1.0
+      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
 
   '@vitest/eslint-plugin@1.6.15(@typescript-eslint/eslint-plugin@8.56.1(@typescript-eslint/parser@8.56.1(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3)(vitest@4.1.4)':
     dependencies:
@@ -11763,7 +11801,7 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.56.1(@typescript-eslint/parser@8.56.1(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3))(eslint@10.2.0(jiti@2.6.1))(typescript@5.9.3)
       typescript: 5.9.3
-      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
+      vitest: 4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
     transitivePeerDependencies:
       - supports-color
 
@@ -12101,6 +12139,12 @@ snapshots:
     dependencies:
       '@babel/parser': 7.29.2
       pathe: 2.0.3
+
+  ast-v8-to-istanbul@1.0.0:
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      estree-walker: 3.0.3
+      js-tokens: 10.0.0
 
   ast-walker-scope@0.8.3:
     dependencies:
@@ -13943,6 +13987,8 @@ snapshots:
       nopt: 7.2.1
 
   js-cookie@3.0.5: {}
+
+  js-tokens@10.0.0: {}
 
   js-tokens@4.0.0: {}
 
@@ -17033,7 +17079,7 @@ snapshots:
       - vite
       - vitest
 
-  vitest@4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3)):
+  vitest@4.1.4(@types/node@25.5.0)(@vitest/coverage-istanbul@4.1.4)(@vitest/coverage-v8@4.1.4)(happy-dom@20.8.9)(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3)):
     dependencies:
       '@vitest/expect': 4.1.4
       '@vitest/mocker': 4.1.4(vite@8.0.7(@types/node@25.5.0)(esbuild@0.27.7)(jiti@2.6.1)(terser@5.46.0)(tsx@4.21.0)(yaml@2.8.3))
@@ -17058,6 +17104,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 25.5.0
       '@vitest/coverage-istanbul': 4.1.4(vitest@4.1.4)
+      '@vitest/coverage-v8': 4.1.4(vitest@4.1.4)
       happy-dom: 20.8.9
     transitivePeerDependencies:
       - msw
