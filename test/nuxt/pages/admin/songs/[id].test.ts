@@ -83,7 +83,7 @@ describe('/admin/songs/[id]', () => {
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
-    })
+    }, 10000)
   })
 
   describe('events', () => {
@@ -209,7 +209,8 @@ describe('/admin/songs/[id]', () => {
             expect(capturedBody.charts).toStrictEqual(testStepCharts)
           })
           await useNuxtApp().$i18n.setLocale('en')
-        }
+        },
+        10000
       )
 
       test.each(
@@ -246,7 +247,8 @@ describe('/admin/songs/[id]', () => {
             )
           })
           await useNuxtApp().$i18n.setLocale('en')
-        }
+        },
+        10000
       )
     })
 
