@@ -40,7 +40,7 @@ jobs:
           token: ${{ steps.generate-token.outputs.token }}
 
       - name: Cache Crowdin source files
-        uses: actions/cache@v5.0.4
+        uses: actions/cache@v5.0.5
         with:
           path: .crowdin
           key: crowdin-${{ github.ref_name }}-${{ hashFiles('**/crowdin.yml') }}
