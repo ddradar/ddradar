@@ -43,7 +43,7 @@
     "*.{json,jsonc,yml}": "prettier --write --experimental-cli"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.2",
+    "@libsql/client": "^0.17.3",
     "@nuxt/content": "^3.13.0",
     "@nuxt/ui": "^4.6.1",
     "@nuxthub/core": "^0.10.7",
