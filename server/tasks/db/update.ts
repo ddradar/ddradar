@@ -62,43 +62,6 @@ export default defineTask({
       'Update chart info (notes, freezes, shocks, radar) from BEMANIWiki 2nd.',
   },
   async run() {
-    // Get source URLs from config and validate
-    const config = runtimeConfigSchema.safeParse(useRuntimeConfig().bemaniWiki)
-    if (!config.success) {
-      console.error('Invalid configuration:')
-      console.error(config.error.message)
-      return {
-        result: 'failure',
-        error: 'Invalid configuration: ' + config.error.message,
-      }
-    }
-    const { totalNotesUrl, grooveRadarSPUrl, grooveRadarDPUrl } = config.data
-
-    // Parse HTML using happy-dom
-    const window = new Window()
-    // notes, freezes, shocks
-    window.document.body.innerHTML = await $fetch<string>(totalNotesUrl, {
-      responseType: 'text',
-    })
-    const wikiSongs: Map<string, PartialStepChart[]> = scrapeSongNotes(
-      window.document
-    )
-    // radar (SINGLE)
-    window.document.body.innerHTML = await $fetch<string>(grooveRadarSPUrl, {
-      responseType: 'text',
-    })
-    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 1))
-    // radar (DOUBLE)
-    window.document.body.innerHTML = await $fetch<string>(grooveRadarDPUrl, {
-      responseType: 'text',
-    })
-    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 2))
-    const fetched = { songs: wikiSongs.size }
-
-    /** Song (`id`, `name`) collection to detect target `id` from `name` */
-    const allSongs = await db.query.songs.findMany({
-      columns: { id: true, name: true },
-    })
     /** Charts that have missing note or radar information (grouped by song) */
     const noInfoSongs = await db.query.charts
       .findMany({
@@ -140,6 +103,52 @@ export default defineTask({
           })[]
         )
       )
+    if (noInfoSongs.length === 0) {
+      console.log('[SKIP] No charts with missing information found.')
+      return {
+        result: 'success',
+        fetched: { songs: 0 },
+        updated: { songs: 0, charts: 0 },
+      }
+    }
+
+    // Get source URLs from config and validate
+    const config = runtimeConfigSchema.safeParse(useRuntimeConfig().bemaniWiki)
+    if (!config.success) {
+      console.error('Invalid configuration:')
+      console.error(config.error.message)
+      return {
+        result: 'failure',
+        error: 'Invalid configuration: ' + config.error.message,
+      }
+    }
+    const { totalNotesUrl, grooveRadarSPUrl, grooveRadarDPUrl } = config.data
+
+    // Parse HTML using happy-dom
+    const window = new Window()
+    // notes, freezes, shocks
+    window.document.body.innerHTML = await $fetch<string>(totalNotesUrl, {
+      responseType: 'text',
+    })
+    const wikiSongs: Map<string, PartialStepChart[]> = scrapeSongNotes(
+      window.document
+    )
+    // radar (SINGLE)
+    window.document.body.innerHTML = await $fetch<string>(grooveRadarSPUrl, {
+      responseType: 'text',
+    })
+    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 1))
+    // radar (DOUBLE)
+    window.document.body.innerHTML = await $fetch<string>(grooveRadarDPUrl, {
+      responseType: 'text',
+    })
+    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 2))
+    const fetched = { songs: wikiSongs.size }
+
+    /** Song (`id`, `name`) collection to detect target `id` from `name` */
+    const allSongs = await db.query.songs.findMany({
+      columns: { id: true, name: true },
+    })
 
     const updated = { songs: 0, charts: 0 }
     for (const [name, chartDataList] of wikiSongs) {
