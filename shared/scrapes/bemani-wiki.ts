@@ -1,8 +1,55 @@
 /** Scraper for BEMANIWiki 2nd. */
-import he from 'he'
-
 import { Chart, Difficulty } from '#shared/schemas/step-chart'
 import { getNumberContent, getTextContent } from '#shared/scrapes/utils'
+
+const corrections = new Map<string, string>([
+  ['エキサイティング!!も・ちゃ・ちゃ☆', 'エキサイティング！！も・ちゃ・ちゃ☆'],
+  ['踊れ!!バーチャルアニマル!!', '踊れ！！バーチャルアニマル！！'],
+  ['おひさし中華街!', 'おひさし中華街！'],
+  ['カジノファイヤーことみちゃん(ReGLOSS)', 'カジノファイヤーことみちゃん'],
+  ['恋はどう？モロ◎波動OK☆方程式!!', '恋はどう？モロ◎波動OK☆方程式！！'],
+  ['ちくわパフェだよ☆CKP', 'ちくわパフェだよ☆ＣＫＰ'],
+  ['闘え！ダダンダーンV', '闘え！ダダンダーンＶ'],
+  ['突撃!ガラスのニーソ姫!', '突撃！ガラスのニーソ姫！'],
+  ['轟け!恋のビーンボール!!', '轟け！恋のビーンボール！！'],
+  ['めうめうぺったんたん!!', 'めうめうぺったんたん！！'],
+  ['ロンロンへ ライライライ!', 'ロンロンへ　ライライライ！'],
+  ['BabeL 〜Next Story〜', 'BabeL ～Next Story～'],
+  ['BURNING HEAT! (3 Option MIX)', 'BURNING HEAT!(3 Option MIX)'],
+  ['GRADIUS REMIX（↑↑↓↓←→←→BA Ver.)', 'GRADIUS REMIX (↑↑↓↓←→←→BA Ver.)'],
+  ['Ha・lle・lu・jah', 'Ha･lle･lu･jah'],
+  ['KIMONO♡PRINCESS', 'KIMONO♥PRINCESS'],
+  ['Leaving･･･', 'Leaving…'],
+  [
+    'LOVE AGAIN TONIGHT～For Melissa Mix～',
+    'LOVE AGAIN TONIGHT～For Melissa MIX～',
+  ],
+  ['MITOれて!いばらきっしゅだ～りん', 'MITOれて！いばらきっしゅだ～りん'],
+  ['murmur twins (guitar pop ver.)(ReGLOSS)', 'murmur twins (guitar pop ver.)'],
+  [
+    'murmur twins (guitar pop ver.) (ReGLOSS)',
+    'murmur twins (guitar pop ver.)',
+  ],
+  ['neko*neko', 'neko＊neko'],
+  [
+    'osaka EVOLVED -毎度、おおきに!- (TYPE1)',
+    'osaka EVOLVED -毎度、おおきに！- (TYPE1)',
+  ],
+  [
+    'osaka EVOLVED -毎度、おおきに!- (TYPE2)',
+    'osaka EVOLVED -毎度、おおきに！- (TYPE2)',
+  ],
+  [
+    'osaka EVOLVED -毎度、おおきに!- (TYPE3)',
+    'osaka EVOLVED -毎度、おおきに！- (TYPE3)',
+  ],
+  [
+    'Party Lights (Tommie Sunshine’s Brooklyn Fire Remix)',
+    "Party Lights (Tommie Sunshine's Brooklyn Fire Remix)",
+  ],
+  ['smooooch・∀・', 'smooooch･∀･'],
+  ['Timepiece phase II', 'Timepiece phase Ⅱ'],
+])
 
 /**
  * Scrape song notes data from BEMANIWiki 2nd document.
@@ -25,7 +72,7 @@ export function scrapeSongNotes(
 
       let songName = getTextContent(cells[0])
       if (!songName) continue
-      songName = decodeHtmlEntities(songName)
+      songName = corrections.get(songName) ?? songName
 
       const chartDataList: Required<
         Omit<StepChart, 'bpm' | 'level' | 'radar'>
@@ -107,7 +154,8 @@ export function scrapeGrooveRadar(
 
       // Case 1: rowspan present -> first cell is song name
       if (hasRowspan) {
-        songName = decodeHtmlEntities(getTextContent(cells[cellIndex++]))
+        const firstText = getTextContent(cells[cellIndex++])
+        songName = corrections.get(firstText) ?? firstText
         const difficultyText = getTextContent(cells[cellIndex++]).toUpperCase()
         difficulty = Difficulty[difficultyText as keyof typeof Difficulty]
       } else {
@@ -121,7 +169,7 @@ export function scrapeGrooveRadar(
           difficulty = firstDifficulty
         } else {
           // New song without rowspan; difficulty is the next cell
-          songName = decodeHtmlEntities(firstText)
+          songName = corrections.get(firstText) ?? firstText
           const difficultyText = getTextContent(
             cells[cellIndex++]
           ).toUpperCase()
@@ -168,56 +216,4 @@ export function scrapeGrooveRadar(
   }
 
   return map
-}
-
-const corrections = new Map<string, string>([
-  ['エキサイティング!!も・ちゃ・ちゃ☆', 'エキサイティング！！も・ちゃ・ちゃ☆'],
-  ['踊れ!!バーチャルアニマル!!', '踊れ！！バーチャルアニマル！！'],
-  ['おひさし中華街!', 'おひさし中華街！'],
-  ['カジノファイヤーことみちゃん(ReGLOSS)', 'カジノファイヤーことみちゃん'],
-  ['恋はどう？モロ◎波動OK☆方程式!!', '恋はどう？モロ◎波動OK☆方程式！！'],
-  ['ちくわパフェだよ☆CKP', 'ちくわパフェだよ☆ＣＫＰ'],
-  ['闘え！ダダンダーンV', '闘え！ダダンダーンＶ'],
-  ['突撃!ガラスのニーソ姫!', '突撃！ガラスのニーソ姫！'],
-  ['轟け!恋のビーンボール!!', '轟け！恋のビーンボール！！'],
-  ['めうめうぺったんたん!!', 'めうめうぺったんたん！！'],
-  ['ロンロンへ ライライライ!', 'ロンロンへ　ライライライ！'],
-  ['BabeL 〜Next Story〜', 'BabeL ～Next Story～'],
-  ['GRADIUS REMIX（↑↑↓↓←→←→BA Ver.)', 'GRADIUS REMIX (↑↑↓↓←→←→BA Ver.)'],
-  ['Ha・lle・lu・jah', 'Ha･lle･lu･jah'],
-  ['KIMONO♡PRINCESS', 'KIMONO♥PRINCESS'],
-  ['Leaving･･･', 'Leaving…'],
-  [
-    'LOVE AGAIN TONIGHT～For Melissa Mix～',
-    'LOVE AGAIN TONIGHT～For Melissa MIX～',
-  ],
-  ['MITOれて!いばらきっしゅだ～りん', 'MITOれて！いばらきっしゅだ～りん'],
-  ['murmur twins (guitar pop ver.)(ReGLOSS)', 'murmur twins (guitar pop ver.)'],
-  [
-    'murmur twins (guitar pop ver.) (ReGLOSS)',
-    'murmur twins (guitar pop ver.)',
-  ],
-  ['neko*neko', 'neko＊neko'],
-  [
-    'osaka EVOLVED -毎度、おおきに!- (TYPE1)',
-    'osaka EVOLVED -毎度、おおきに！- (TYPE1)',
-  ],
-  [
-    'osaka EVOLVED -毎度、おおきに!- (TYPE2)',
-    'osaka EVOLVED -毎度、おおきに！- (TYPE2)',
-  ],
-  [
-    'osaka EVOLVED -毎度、おおきに!- (TYPE3)',
-    'osaka EVOLVED -毎度、おおきに！- (TYPE3)',
-  ],
-  [
-    'Party Lights (Tommie Sunshine’s Brooklyn Fire Remix)',
-    "Party Lights (Tommie Sunshine's Brooklyn Fire Remix)",
-  ],
-  ['smooooch・∀・', 'smooooch･∀･'],
-  ['Timepiece phase II', 'Timepiece phase Ⅱ'],
-])
-function decodeHtmlEntities(text: string): string {
-  const title = he.decode(text)
-  return corrections.get(title) ?? title
 }

@@ -77,19 +77,19 @@ export default defineTask({
     // Parse HTML using happy-dom
     const window = new Window()
     // notes, freezes, shocks
-    window.document.body.innerHTML = await $fetch(totalNotesUrl, {
+    window.document.body.innerHTML = await $fetch<string>(totalNotesUrl, {
       responseType: 'text',
     })
     const wikiSongs: Map<string, PartialStepChart[]> = scrapeSongNotes(
       window.document
     )
     // radar (SINGLE)
-    window.document.body.innerHTML = await $fetch(grooveRadarSPUrl, {
+    window.document.body.innerHTML = await $fetch<string>(grooveRadarSPUrl, {
       responseType: 'text',
     })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 1))
     // radar (DOUBLE)
-    window.document.body.innerHTML = await $fetch(grooveRadarDPUrl, {
+    window.document.body.innerHTML = await $fetch<string>(grooveRadarDPUrl, {
       responseType: 'text',
     })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 2))
