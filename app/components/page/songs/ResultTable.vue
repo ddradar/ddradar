@@ -7,6 +7,8 @@ Displays a paginated list of songs with a "Load More" button.
 
 - `pagenation`: Pagenation<SongSearchResult> — items list and pagination metadata
 - `pending`: loading indicator
+- `filterStyle`: current play style filter (1 for SINGLE, 2 for DOUBLE, other for both)
+- `filterLevels`: current level filter (array of level numbers)
 
 ## Emits
 
@@ -14,10 +16,11 @@ Displays a paginated list of songs with a "Load More" button.
 
 ## Columns
 
-- **Series**: category-colored badge with tooltip (CLASSIC/WHITE/GOLD), always shown
-- **Name**: NuxtLink to /songs/[id], always shown
-- **Artist**: plain text, always shown
-- **Charts**: difficulty level badges per chart, always shown
+- **Series**: category-colored badge with tooltip (CLASSIC/WHITE/GOLD)
+- **Name**: NuxtLink to /songs/[id]
+- **Artist**: plain text
+- **Charts**: difficulty level badges per chart, colored by difficulty and outlined if not matching current filter
+  - Chart rows are conditionally rendered based on current play style filter (SINGLE/DOUBLE/both)
 </spec>
 
 <script setup lang="ts">
@@ -36,7 +39,6 @@ const props = defineProps<{
 defineEmits<{ 'load-more': [] }>()
 
 const { t } = useI18n()
-const displayStyle = useStyleVisibility()
 
 const columns = computed<TableColumn<SongSearchResult>[]>(() => [
   { accessorKey: 'series', header: t('schema.song.series.label') },
@@ -63,14 +65,7 @@ function getSeriesCategoryColor(series: string) {
 function isMatchingChart(
   chart: Pick<StepChart, 'playStyle' | 'level'>
 ): boolean {
-  const hasChartFilter =
-    props.filterStyle !== undefined || (props.filterLevels?.length ?? 0) > 0
-  if (!hasChartFilter) return true
-  const styleMatch =
-    props.filterStyle === undefined || chart.playStyle === props.filterStyle
-  const levelMatch =
-    !props.filterLevels?.length || props.filterLevels.includes(chart.level)
-  return styleMatch && levelMatch
+  return !props.filterLevels?.length || props.filterLevels.includes(chart.level)
 }
 </script>
 
@@ -100,9 +95,9 @@ function isMatchingChart(
 
       <template #charts-cell="{ row }">
         <div class="space-y-1">
-          <!-- SINGLE row: show when displayStyle is 0 (both) or 1 (SINGLE) -->
+          <!-- SINGLE row: show when filterStyle is 0 (both) or 1 (SINGLE) -->
           <div
-            v-if="displayStyle !== PlayStyle.DOUBLE"
+            v-if="filterStyle !== PlayStyle.DOUBLE"
             class="flex flex-wrap gap-1"
           >
             <UTooltip
@@ -121,9 +116,9 @@ function isMatchingChart(
               </UBadge>
             </UTooltip>
           </div>
-          <!-- DOUBLE row: show when displayStyle is 0 (both) or 2 (DOUBLE) -->
+          <!-- DOUBLE row: show when filterStyle is 0 (both) or 2 (DOUBLE) -->
           <div
-            v-if="displayStyle !== PlayStyle.SINGLE"
+            v-if="filterStyle !== PlayStyle.SINGLE"
             class="flex flex-wrap gap-1"
           >
             <UTooltip

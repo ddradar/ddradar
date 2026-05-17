@@ -3,19 +3,24 @@
 
 4-tab search UI for the /songs page.
 
-## Tabs
+## Props
+
+- `activeTab`: currently visible tab
+- `activeLevel`: active level button state
+- `activeSeries`: active series button state
+- `activeName`: active title-index button state
+
+## Emits
+
+- `update:activeTab`: user switched the visible tab
+- `search`: user submitted one or more song search conditions
+
+## Panels
 
 - **Level**: 1–19 buttons; play style applied from `useStyleVisibility`
 - **Version**: series name buttons grouped by category (CLASSIC / WHITE / GOLD)
 - **Title**: nameIndex buttons (あ行–数字、記号)
 - **Custom**: multi-select form for fine-grained search (name, series, style, level)
-
-## Behaviour
-
-- Clicking any button in Level / Version / Title navigates with a single query condition
-- Custom tab submits multiple conditions on button press
-- Active tab is derived from the current route query; clicking a tab header only
-  changes the visible panel (no navigation)
 </spec>
 
 <script setup lang="ts">

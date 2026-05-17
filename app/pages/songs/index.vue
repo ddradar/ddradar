@@ -31,7 +31,7 @@ function getTabFromQuery(query: typeof route.query): SearchTab {
   if (query.level !== undefined) return 'level'
   if (query.series !== undefined) return 'version'
   if (query.name !== undefined) return 'title'
-  return 'custom'
+  return 'level'
 }
 
 const activeTab = ref<SearchTab>(getTabFromQuery(route.query))
