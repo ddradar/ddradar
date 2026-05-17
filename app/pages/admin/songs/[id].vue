@@ -82,7 +82,11 @@ const { data, refresh } = await useFetch<
   deep: true,
 })
 const charts = computed((): AccordionItem[] =>
-  data.value.charts.map(chart => ({ label: getChartName(chart), chart }))
+  data.value.charts.map((chart, index) => ({
+    label: getChartName(chart),
+    chart,
+    index,
+  }))
 )
 
 /** Add a new chart to the song */
@@ -187,7 +191,11 @@ const onSubmit = async () => {
 
         <UAccordion :items="charts">
           <template #content="{ item }">
-            <UForm :schema="stepChartSchema" :state="item.chart" nested>
+            <UForm
+              :schema="stepChartSchema"
+              :name="`charts.${item.index}`"
+              nested
+            >
               <UFormField
                 :label="t('schema.song.chart.playStyle.label')"
                 name="playStyle"
