@@ -9,8 +9,28 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">Song List<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -37,8 +57,28 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Log
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">Song List<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -65,8 +105,28 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">曲一覧<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -93,8 +153,28 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">曲一覧<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -121,8 +201,28 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">노래 목록<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -149,8 +249,28 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Log
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
         </svg><span class="font-bold text-lg">DDRadar</span></a>
     </div>
-    <div data-slot="center" class="hidden lg:flex"></div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-0" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="center" class="hidden lg:flex">
+      <!---->
+      <!---->
+      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+        <div style="position: relative;">
+          <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
+            <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">노래 목록<!--v-if--></span>
+                <!--v-if-->
+              </a>
+              <!--v-if-->
+              <!--v-if-->
+            </li>
+          </ul>
+        </div>
+        <!--v-if-->
+        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+          <!--v-if-->
+          <!---->
+        </div>
+      </nav>
+    </div>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 focus:outline-none focus-visible:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
