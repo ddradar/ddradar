@@ -25,24 +25,35 @@ import { NameIndex, seriesList } from '#shared/schemas/song'
 import { PlayStyle } from '#shared/schemas/step-chart'
 
 const { t } = useI18n()
-const route = useRoute()
 const style = useStyleVisibility()
 
-// --- Active tab: derived from URL, writable for local tab switching ---
-function getTabFromQuery(query: typeof route.query): string {
-  if (query.level !== undefined) return 'level'
-  if (query.series !== undefined) return 'version'
-  if (query.name !== undefined) return 'title'
-  return 'custom'
-}
+type SearchTab = 'level' | 'version' | 'title' | 'custom'
 
-const activeTab = ref(getTabFromQuery(route.query))
-watch(
-  () => route.query,
-  q => {
-    activeTab.value = getTabFromQuery(q)
+const props = withDefaults(
+  defineProps<{
+    activeTab: SearchTab
+    activeLevel?: number | null
+    activeSeries?: number | null
+    activeName?: number | null
+  }>(),
+  {
+    activeLevel: null,
+    activeSeries: null,
+    activeName: null,
   }
 )
+
+const emit = defineEmits<{
+  'update:activeTab': [value: SearchTab]
+  search: [
+    payload: { tab: SearchTab; query: Record<string, string | string[]> },
+  ]
+}>()
+
+const activeTabModel = computed({
+  get: () => props.activeTab,
+  set: value => emit('update:activeTab', value),
+})
 
 // --- Tab definitions ---
 const tabItems = computed<TabsItem[]>(() => [
@@ -52,9 +63,6 @@ const tabItems = computed<TabsItem[]>(() => [
   { label: t('page.songs.tab.custom'), value: 'custom', slot: 'custom' },
 ])
 
-// --- Level tab (1–19) ---
-const levels = Array.from({ length: 19 }, (_, i) => i + 1)
-
 /** Display label for the current style setting */
 const levelHintLabel = computed(() => {
   if (style.value === 0) return t('component.preference.playStyle.both')
@@ -62,19 +70,6 @@ const levelHintLabel = computed(() => {
     return t('component.preference.playStyle.single')
   return t('component.preference.playStyle.double')
 })
-
-const activeLevel = computed<number | null>(() => {
-  const v = route.query.level
-  if (!v) return null
-  const n = Number(Array.isArray(v) ? v[0] : v)
-  return Number.isNaN(n) ? null : n
-})
-
-function searchByLevel(level: number) {
-  const query: Record<string, string> = { level: String(level) }
-  if (style.value !== 0) query.style = String(style.value)
-  navigateTo({ query })
-}
 
 // --- Version tab: series colored by category (no headers) ---
 const seriesGroups = [
@@ -92,36 +87,16 @@ const seriesGroups = [
   },
 ]
 
-const activeSeries = computed<number | null>(() => {
-  const v = route.query.series
-  if (!v) return null
-  const n = Number(Array.isArray(v) ? v[0] : v)
-  return Number.isNaN(n) ? null : n
-})
-
-function searchBySeries(index: number) {
-  navigateTo({ query: { series: String(index) } })
-}
-
 // --- Title tab: nameIndex ---
 const nameIndexEntries = Object.entries(NameIndex) as [string, number][]
 
-const activeName = computed<number | null>(() => {
-  const v = route.query.name
-  if (!v) return null
-  const n = Number(Array.isArray(v) ? v[0] : v)
-  return Number.isNaN(n) ? null : n
-})
-
-function searchByName(index: number) {
-  navigateTo({ query: { name: String(index) } })
-}
-
 // --- Custom tab ---
-const customName = ref<number[]>([])
-const customSeries = ref<number[]>([])
-const customStyle = ref<number>(0) // 0=both, 1=SINGLE, 2=DOUBLE
-const customLevel = ref<number[]>([])
+const customFilters = reactive({
+  name: [] as number[],
+  series: [] as number[],
+  style: 0, // 0=both, 1=SINGLE, 2=DOUBLE
+  level: [] as number[],
+})
 
 const nameIndexItems = computed<SelectMenuItem[]>(() =>
   Object.entries(NameIndex).map(([label, value]) => ({ label, value }))
@@ -143,23 +118,31 @@ const styleItems = computed<SelectMenuItem[]>(() => [
   },
 ])
 
-const levelItems = computed<SelectMenuItem[]>(() =>
-  Array.from({ length: 19 }, (_, i) => ({ label: String(i + 1), value: i + 1 }))
-)
+const levelItems = Array.from({ length: 19 }, (_, i) => ({
+  label: String(i + 1),
+  value: i + 1,
+}))
 
-function submitCustomSearch() {
-  const query: Record<string, string | string[]> = {}
-  if (customName.value.length > 0) query.name = customName.value.map(String)
-  if (customSeries.value.length > 0)
-    query.series = customSeries.value.map(String)
-  if (customStyle.value !== 0) query.style = String(customStyle.value)
-  if (customLevel.value.length > 0) query.level = customLevel.value.map(String)
-  navigateTo({ query })
+function searchBy(tab: SearchTab, query: Record<string, number | number[]>) {
+  const stringQuery = Object.fromEntries(
+    Object.entries(query)
+      .filter(([key, value]) => {
+        if (Array.isArray(value)) return value.length > 0
+        if (key === 'style') return value !== 0
+        return true
+      })
+      .map(([key, value]) => [
+        key,
+        Array.isArray(value) ? value.map(String) : String(value),
+      ])
+  ) as Record<string, string | string[]>
+
+  emit('search', { tab, query: stringQuery })
 }
 </script>
 
 <template>
-  <UTabs v-model="activeTab" :items="tabItems" :unmount-on-hide="false">
+  <UTabs v-model="activeTabModel" :items="tabItems" :unmount-on-hide="false">
     <!-- Level tab -->
     <template #level>
       <div class="p-3">
@@ -168,11 +151,11 @@ function submitCustomSearch() {
         </p>
         <div class="flex flex-wrap gap-2">
           <UButton
-            v-for="level in levels"
+            v-for="level in 19"
             :key="level"
-            :variant="activeLevel === level ? 'solid' : 'outline'"
+            :variant="props.activeLevel === level ? 'solid' : 'outline'"
             class="w-10 justify-center"
-            @click="searchByLevel(level)"
+            @click="searchBy('level', { level, style })"
           >
             {{ level }}
           </UButton>
@@ -189,8 +172,8 @@ function submitCustomSearch() {
             :key="item.index"
             size="sm"
             :color="group.color"
-            :variant="activeSeries === item.index ? 'solid' : 'outline'"
-            @click="searchBySeries(item.index)"
+            :variant="props.activeSeries === item.index ? 'solid' : 'outline'"
+            @click="searchBy('version', { series: item.index })"
           >
             {{ item.name }}
           </UButton>
@@ -205,8 +188,8 @@ function submitCustomSearch() {
           v-for="[label, index] in nameIndexEntries"
           :key="index"
           size="sm"
-          :variant="activeName === index ? 'solid' : 'outline'"
-          @click="searchByName(index)"
+          :variant="props.activeName === index ? 'solid' : 'outline'"
+          @click="searchBy('title', { name: index })"
         >
           {{ label }}
         </UButton>
@@ -218,7 +201,7 @@ function submitCustomSearch() {
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
         <UFormField :label="t('schema.song.name.label')">
           <USelectMenu
-            v-model="customName"
+            v-model="customFilters.name"
             :items="nameIndexItems"
             value-key="value"
             multiple
@@ -228,7 +211,7 @@ function submitCustomSearch() {
 
         <UFormField :label="t('schema.song.series.label')">
           <USelectMenu
-            v-model="customSeries"
+            v-model="customFilters.series"
             :items="seriesItems"
             value-key="value"
             multiple
@@ -237,12 +220,16 @@ function submitCustomSearch() {
         </UFormField>
 
         <UFormField :label="t('schema.song.chart.playStyle.label')">
-          <USelect v-model="customStyle" :items="styleItems" class="w-full" />
+          <USelect
+            v-model="customFilters.style"
+            :items="styleItems"
+            class="w-full"
+          />
         </UFormField>
 
         <UFormField :label="t('schema.song.chart.level.label')">
           <USelectMenu
-            v-model="customLevel"
+            v-model="customFilters.level"
             :items="levelItems"
             value-key="value"
             multiple
@@ -251,7 +238,7 @@ function submitCustomSearch() {
         </UFormField>
 
         <div class="sm:col-span-2 flex justify-end">
-          <UButton @click="submitCustomSearch">
+          <UButton @click="searchBy('custom', customFilters)">
             {{ t('actions.search.label') }}
           </UButton>
         </div>

@@ -25,6 +25,38 @@ import SongsSearchTabs from '~/components/page/songs/SearchTabs.vue'
 const { t } = useI18n()
 const route = useRoute()
 
+type SearchTab = 'level' | 'version' | 'title' | 'custom'
+
+function getTabFromQuery(query: typeof route.query): SearchTab {
+  if (query.level !== undefined) return 'level'
+  if (query.series !== undefined) return 'version'
+  if (query.name !== undefined) return 'title'
+  return 'custom'
+}
+
+const activeTab = ref<SearchTab>(getTabFromQuery(route.query))
+const nextTabOverride = ref<SearchTab | null>(null)
+
+watch(
+  () => route.query,
+  q => {
+    if (nextTabOverride.value !== null) {
+      activeTab.value = nextTabOverride.value
+      nextTabOverride.value = null
+      return
+    }
+    activeTab.value = getTabFromQuery(q)
+  }
+)
+
+function handleSearch(payload: {
+  tab: SearchTab
+  query: Record<string, string | string[]>
+}) {
+  nextTabOverride.value = payload.tab
+  navigateTo({ query: payload.query })
+}
+
 /** API params derived from URL query (search conditions only, no pagination) */
 const baseParams = computed(() => {
   const q = route.query
@@ -38,6 +70,27 @@ const baseParams = computed(() => {
 
 /** Stable serialised key for detecting search changes */
 const baseQueryKey = computed(() => JSON.stringify(baseParams.value))
+
+const activeLevel = computed<number | null>(() => {
+  const v = route.query.level
+  if (!v) return null
+  const n = Number(Array.isArray(v) ? v[0] : v)
+  return Number.isNaN(n) ? null : n
+})
+
+const activeSeries = computed<number | null>(() => {
+  const v = route.query.series
+  if (!v) return null
+  const n = Number(Array.isArray(v) ? v[0] : v)
+  return Number.isNaN(n) ? null : n
+})
+
+const activeName = computed<number | null>(() => {
+  const v = route.query.name
+  if (!v) return null
+  const n = Number(Array.isArray(v) ? v[0] : v)
+  return Number.isNaN(n) ? null : n
+})
 
 // --- Client-side pagination state ---
 const pending = ref(false)
@@ -125,7 +178,13 @@ const displayData = computed<Pagenation<SongSearchResult>>(() => ({
     <UPageHeader :title="t('page.songs.title')" />
 
     <div class="my-4">
-      <SongsSearchTabs />
+      <SongsSearchTabs
+        v-model:active-tab="activeTab"
+        :active-level="activeLevel"
+        :active-series="activeSeries"
+        :active-name="activeName"
+        @search="handleSearch"
+      />
     </div>
 
     <template v-if="hasNoCondition">
