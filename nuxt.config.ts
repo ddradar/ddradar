@@ -1,6 +1,6 @@
 const scheduledTasks = {
-  '0 6 * * 4': ['db:insert'],
-  '30 6 * * 4': ['db:update'],
+  '0 21 * * *': ['db:insert'],
+  '30 21 * * *': ['db:update'],
 }
 
 export default defineNuxtConfig({
