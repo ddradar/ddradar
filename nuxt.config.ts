@@ -7,6 +7,13 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-12-11',
   sourcemap: { client: true },
   experimental: { typedPages: true, typescriptPlugin: true },
+  components: [
+    {
+      path: '~/components',
+      // page-specific components under components/page/ require explicit imports
+      ignore: ['page/**'],
+    },
+  ],
   vite: {
     plugins: [
       {

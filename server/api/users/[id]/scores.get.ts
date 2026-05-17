@@ -17,6 +17,7 @@ import {
 } from '#shared/schemas/step-chart'
 import { userSchema } from '#shared/schemas/user'
 import { range, singleOrArray } from '#shared/utils'
+import { buildPagenation } from '~~/server/utils/pagination'
 
 const _querySchema = z.object({
   /** Song ID */
@@ -166,18 +167,13 @@ export default defineEventHandler(
         limit: query.limit + 1, // Fetch one extra to check if there are more
       })
 
-    const hasMore = items.length > query.limit
-    const result = items.slice(0, query.limit).map(item => ({
-      ...item,
-      user: { id: user.id, name: user.name, area: user.area },
-    }))
-
+    const paged = buildPagenation(items, query.limit, query.offset)
     return {
-      items: result,
-      limit: query.limit,
-      offset: query.offset,
-      nextOffset: hasMore ? query.offset + query.limit : null,
-      hasMore,
+      ...paged,
+      items: paged.items.map(item => ({
+        ...item,
+        user: { id: user.id, name: user.name, area: user.area },
+      })),
     }
   }
 )

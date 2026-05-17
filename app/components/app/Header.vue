@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import type { NavigationMenuItem } from '@nuxt/ui'
+
 const { t } = useI18n()
 const { user, clear } = useUserSession()
+
+const menu = computed<NavigationMenuItem[]>(() => [
+  {
+    label: t('page.songs.title'),
+    to: '/songs',
+    icon: 'i-lucide-music',
+  },
+])
 
 const displayName = computed(() =>
   user.value?.id
@@ -20,6 +30,8 @@ async function logout() {
       <AppLogo class="w-auto h-6 shrink-0" />
       <span class="font-bold text-lg">DDRadar</span>
     </template>
+
+    <UNavigationMenu :items="menu" />
 
     <template #right>
       <AuthState>

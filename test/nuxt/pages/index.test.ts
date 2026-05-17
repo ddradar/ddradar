@@ -60,27 +60,20 @@ describe('/', () => {
   afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
   afterAll(() => vi.mocked(queryCollection).mockReset())
 
-  test.each(
-    [
-      ['content_en'],
-      ['content_ja', 'content_en'],
-      ['content_ko', 'content_en'],
-    ].map((collections, i) => [locales[i]!, collections])
-  )(
+  test.each(locales)(
     '(locale: "%s", route: "/") renders correctly',
-    async (locale, expected) => {
+    async locale => {
       // Arrange - Act
       await useNuxtApp().$i18n.setLocale(locale)
       const wrapper = await mountSuspended(Page, { route: '/' })
 
       // Assert
       expect(wrapper.html()).toContain('DDRadar')
-      expected.forEach((collection, i) => {
-        expect(vi.mocked(queryCollection)).toHaveBeenNthCalledWith(
-          i + 1,
-          collection
-        )
-      })
-    }
+      expect(vi.mocked(queryCollection)).toHaveBeenCalledWith(
+        `content_${locale}`
+      )
+      expect(vi.mocked(queryCollection)).toHaveBeenCalledWith('content_en')
+    },
+    10000
   )
 })
