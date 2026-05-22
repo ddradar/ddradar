@@ -1,4 +1,3 @@
-// @vitest-environment happy-dom
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -17,10 +16,9 @@ describe('shared/scrapes/bemani-wiki', () => {
     test('(total_notes.html) returns expected Map', async () => {
       // Arrange
       const source = await readFileAsync('total_notes.html')
-      const document = new DOMParser().parseFromString(source, 'text/html')
 
       // Act
-      const result = scrapeSongNotes(document)
+      const result = scrapeSongNotes(source)
 
       // Assert
       const expected = [
@@ -136,11 +134,13 @@ describe('shared/scrapes/bemani-wiki', () => {
     ] satisfies [string, StepChart['playStyle'], [string, number[][]][]][])(
       '(%s, %o) returns expected Map',
       async (file, playStyle, expected) => {
+        // Arrange
         const source = await readFileAsync(file)
-        const document = new DOMParser().parseFromString(source, 'text/html')
 
-        const result = scrapeGrooveRadar(document, playStyle)
+        // Act
+        const result = scrapeGrooveRadar(source, playStyle)
 
+        // Assert
         expect(result).toStrictEqual(
           new Map(
             expected.map(([songName, chart]) => [

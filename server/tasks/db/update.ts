@@ -1,7 +1,6 @@
 import { db } from '@nuxthub/db'
 import { charts } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
-import { Window } from 'happy-dom'
 import * as z from 'zod/mini'
 
 import { chartEquals, Difficulty, PlayStyle } from '#shared/schemas/step-chart'
@@ -124,25 +123,22 @@ export default defineTask({
     }
     const { totalNotesUrl, grooveRadarSPUrl, grooveRadarDPUrl } = config.data
 
-    // Parse HTML using happy-dom
-    const window = new Window()
-    // notes, freezes, shocks
-    window.document.body.innerHTML = await $fetch<string>(totalNotesUrl, {
+    // Parse HTML pages with cheerio-based scrapers
+    const totalNotesHtml = await $fetch<string>(totalNotesUrl, {
       responseType: 'text',
     })
-    const wikiSongs: Map<string, PartialStepChart[]> = scrapeSongNotes(
-      window.document
-    )
+    const wikiSongs: Map<string, PartialStepChart[]> =
+      scrapeSongNotes(totalNotesHtml)
     // radar (SINGLE)
-    window.document.body.innerHTML = await $fetch<string>(grooveRadarSPUrl, {
+    const grooveRadarSPHtml = await $fetch<string>(grooveRadarSPUrl, {
       responseType: 'text',
     })
-    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 1))
+    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarSPHtml, 1))
     // radar (DOUBLE)
-    window.document.body.innerHTML = await $fetch<string>(grooveRadarDPUrl, {
+    const grooveRadarDPHtml = await $fetch<string>(grooveRadarDPUrl, {
       responseType: 'text',
     })
-    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(window.document, 2))
+    mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarDPHtml, 2))
     const fetched = { songs: wikiSongs.size }
 
     /** Song (`id`, `name`) collection to detect target `id` from `name` */

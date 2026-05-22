@@ -31,7 +31,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
             <!--v-if-->
           </button>
         </div>
-        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" style="animation-duration: 0s;" data-slot="content" class="focus:outline-none w-full">
+        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="p-3">
             <p class="text-sm text-muted mb-2">Searches with play style (Both). You can change it from the settings at the top right.</p>
             <div class="flex flex-wrap gap-2"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-10 justify-center">
@@ -395,7 +395,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
             <!--v-if-->
           </button>
         </div>
-        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" style="animation-duration: 0s;" data-slot="content" class="focus:outline-none w-full">
+        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="p-3">
             <p class="text-sm text-muted mb-2">Searches with play style (Both). You can change it from the settings at the top right.</p>
             <div class="flex flex-wrap gap-2"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-10 justify-center">
@@ -722,7 +722,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
       <div data-slot="root" class="relative overflow-auto">
         <table data-slot="base" class="min-w-full overflow-clip">
           <!--v-if-->
-          <thead data-slot="thead" class="relative after:absolute after:z-1 after:h-px after:bg-primary after:animate-[carousel_2s_ease-in-out_infinite] rtl:after:animate-[carousel-rtl_2s_ease-in-out_infinite]">
+          <thead data-slot="thead" class="relative">
             <tr data-slot="tr" class="data-[selected=true]:bg-elevated/50">
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">Series</th>
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">Name</th>
@@ -732,14 +732,38 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
             <tr data-slot="separator" class="absolute z-1 left-0 w-full h-px bg-(--ui-border-accented)"></tr>
           </thead>
           <tbody data-slot="tbody" class="isolate [&amp;>tr]:data-[selectable=true]:hover:bg-elevated/50 [&amp;>tr]:data-[selectable=true]:focus-visible:outline-primary divide-y divide-default">
-            <tr>
-              <td colspan="4" data-slot="empty" class="py-6 text-center text-sm text-muted">No data</td>
+            <tr data-selected="false" data-selectable="false" data-expanded="false" data-slot="tr" class="data-[selected=true]:bg-elevated/50">
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <u-tooltip-stub text="CLASSIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+              </td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0"><a href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI" class="font-medium text-primary hover:underline">PARANOiA</a></td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">180</td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <div class="space-y-1">
+                  <!-- SINGLE row: show when filterStyle is 0 (both) or 1 (SINGLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="SINGLE/BEGINNER" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div><!-- DOUBLE row: show when filterStyle is 0 (both) or 2 (DOUBLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="DOUBLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div>
+                </div>
+              </td>
             </tr>
+            <!--v-if-->
           </tbody>
           <!--v-if-->
         </table>
       </div>
-      <!--v-if-->
+      <div class="mt-4 flex justify-center"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+          <!--v-if-->Load More
+          <!--v-if-->
+        </button></div>
     </div>
   </div>
   <!--v-if-->
@@ -1141,7 +1165,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
             <!--v-if-->
           </button>
         </div>
-        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" style="animation-duration: 0s;" data-slot="content" class="focus:outline-none w-full">
+        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="p-3">
             <p class="text-sm text-muted mb-2">プレースタイル（両方表示）で検索します。右上の設定から変更できます。</p>
             <div class="flex flex-wrap gap-2"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-10 justify-center">
@@ -1468,7 +1492,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
       <div data-slot="root" class="relative overflow-auto">
         <table data-slot="base" class="min-w-full overflow-clip">
           <!--v-if-->
-          <thead data-slot="thead" class="relative after:absolute after:z-1 after:h-px after:bg-primary after:animate-[carousel_2s_ease-in-out_infinite] rtl:after:animate-[carousel-rtl_2s_ease-in-out_infinite]">
+          <thead data-slot="thead" class="relative">
             <tr data-slot="tr" class="data-[selected=true]:bg-elevated/50">
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">シリーズ</th>
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">曲名</th>
@@ -1478,14 +1502,38 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
             <tr data-slot="separator" class="absolute z-1 left-0 w-full h-px bg-(--ui-border-accented)"></tr>
           </thead>
           <tbody data-slot="tbody" class="isolate [&amp;>tr]:data-[selectable=true]:hover:bg-elevated/50 [&amp;>tr]:data-[selectable=true]:focus-visible:outline-primary divide-y divide-default">
-            <tr>
-              <td colspan="4" data-slot="empty" class="py-6 text-center text-sm text-muted">No data</td>
+            <tr data-selected="false" data-selectable="false" data-expanded="false" data-slot="tr" class="data-[selected=true]:bg-elevated/50">
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <u-tooltip-stub text="CLASSIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+              </td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0"><a href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI" class="font-medium text-primary hover:underline">PARANOiA</a></td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">180</td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <div class="space-y-1">
+                  <!-- SINGLE row: show when filterStyle is 0 (both) or 1 (SINGLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="SINGLE/BEGINNER" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div><!-- DOUBLE row: show when filterStyle is 0 (both) or 2 (DOUBLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="DOUBLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div>
+                </div>
+              </td>
             </tr>
+            <!--v-if-->
           </tbody>
           <!--v-if-->
         </table>
       </div>
-      <!--v-if-->
+      <div class="mt-4 flex justify-center"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+          <!--v-if-->もっと見る
+          <!--v-if-->
+        </button></div>
     </div>
   </div>
   <!--v-if-->
@@ -1887,7 +1935,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
             <!--v-if-->
           </button>
         </div>
-        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" style="animation-duration: 0s;" data-slot="content" class="focus:outline-none w-full">
+        <div id="reka-tabs-v-0-0-0-content-level" role="tabpanel" data-state="active" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-level" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="p-3">
             <p class="text-sm text-muted mb-2">플레이 스타일(전체 표시)을 적용하여 검색합니다. 오른쪽 상단의 설정에서 변경할 수 있습니다.</p>
             <div class="flex flex-wrap gap-2"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 ring ring-inset ring-primary/50 text-primary hover:bg-primary/10 active:bg-primary/10 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent focus:outline-none focus-visible:ring-2 focus-visible:ring-primary w-10 justify-center">
@@ -2214,7 +2262,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
       <div data-slot="root" class="relative overflow-auto">
         <table data-slot="base" class="min-w-full overflow-clip">
           <!--v-if-->
-          <thead data-slot="thead" class="relative after:absolute after:z-1 after:h-px after:bg-primary after:animate-[carousel_2s_ease-in-out_infinite] rtl:after:animate-[carousel-rtl_2s_ease-in-out_infinite]">
+          <thead data-slot="thead" class="relative">
             <tr data-slot="tr" class="data-[selected=true]:bg-elevated/50">
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">버전</th>
               <th data-pinned="false" scope="col" data-slot="th" class="px-4 py-3.5 text-sm text-highlighted text-left rtl:text-right font-semibold [&amp;:has([role=checkbox])]:pe-0">곡명</th>
@@ -2224,14 +2272,38 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
             <tr data-slot="separator" class="absolute z-1 left-0 w-full h-px bg-(--ui-border-accented)"></tr>
           </thead>
           <tbody data-slot="tbody" class="isolate [&amp;>tr]:data-[selectable=true]:hover:bg-elevated/50 [&amp;>tr]:data-[selectable=true]:focus-visible:outline-primary divide-y divide-default">
-            <tr>
-              <td colspan="4" data-slot="empty" class="py-6 text-center text-sm text-muted">No data</td>
+            <tr data-selected="false" data-selectable="false" data-expanded="false" data-slot="tr" class="data-[selected=true]:bg-elevated/50">
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <u-tooltip-stub text="CLASSIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+              </td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0"><a href="/songs/06loOQ0DQb0DqbOibl6qO81qlIdoP9DI" class="font-medium text-primary hover:underline">PARANOiA</a></td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">180</td>
+              <td data-pinned="false" data-slot="td" class="p-4 text-sm text-muted whitespace-nowrap [&amp;:has([role=checkbox])]:pe-0">
+                <div class="space-y-1">
+                  <!-- SINGLE row: show when filterStyle is 0 (both) or 1 (SINGLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="SINGLE/BEGINNER" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="SINGLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div><!-- DOUBLE row: show when filterStyle is 0 (both) or 2 (DOUBLE) -->
+                  <div class="flex flex-wrap gap-1">
+                    <u-tooltip-stub text="DOUBLE/BASIC" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/DIFFICULT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                    <u-tooltip-stub text="DOUBLE/EXPERT" arrow="false" portal="true" defaultopen="false" open="false" disablehoverablecontent="false" disableclosingtrigger="false" disabled="false" ignorenonkeyboardfocus="false"></u-tooltip-stub>
+                  </div>
+                </div>
+              </td>
             </tr>
+            <!--v-if-->
           </tbody>
           <!--v-if-->
         </table>
       </div>
-      <!--v-if-->
+      <div class="mt-4 flex justify-center"><button type="button" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-inverted bg-primary hover:bg-primary/75 active:bg-primary/75 disabled:bg-primary aria-disabled:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+          <!--v-if-->더 보기
+          <!--v-if-->
+        </button></div>
     </div>
   </div>
   <!--v-if-->
