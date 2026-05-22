@@ -1,22 +1,24 @@
+import type { CheerioAPI } from 'cheerio'
+
 /**
- * Get trimmed text content of an element.
- * @param element Element to get text content from.
- * @returns Trimmed `.textContent`, or empty string if element is null/undefined.
+ * Get trimmed text content from a cheerio element.
  */
-export function getTextContent(element: Element | null | undefined): string {
-  return element?.textContent?.trim() || ''
+export function getTextContent(
+  $: CheerioAPI,
+  element: Parameters<CheerioAPI>[0] | null | undefined
+): string {
+  if (!element) return ''
+  return $(element).text().trim()
 }
 
 /**
- * Get number content from an element.
- * @param element Element to get number content from.
- * @param defaultValue Default value to return if parsing fails.
- * @returns Parsed number or default value if parsing fails.
+ * Get number content from a cheerio element.
  */
 export function getNumberContent<T extends number = number>(
-  element: Element | null | undefined,
+  $: CheerioAPI,
+  element: Parameters<CheerioAPI>[0] | null | undefined,
   defaultValue: T
 ): T {
-  const value = parseInt(getTextContent(element), 10) as T
+  const value = parseInt(getTextContent($, element), 10) as T
   return Number.isNaN(value) ? defaultValue : value
 }

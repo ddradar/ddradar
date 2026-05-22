@@ -1,4 +1,3 @@
-// @vitest-environment happy-dom
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
@@ -81,8 +80,7 @@ describe('/shared/scrapes/eagate', () => {
       '<html></html>',
       '<html>\n<div id="data_tbl" />\n</html>',
     ])('("%s") throws error', source => {
-      const document = new DOMParser().parseFromString(source, 'text/html')
-      expect(() => parsePlayDataList(document)).toThrow('invalid html')
+      expect(() => parsePlayDataList(source)).toThrow('invalid html')
     })
 
     test.each(['invalid_column.html', 'invalid_chart_id.html'])(
@@ -90,10 +88,9 @@ describe('/shared/scrapes/eagate', () => {
       async fileName => {
         // Arrange
         const source = await createSource(fileName)
-        const document = new DOMParser().parseFromString(source, 'text/html')
 
         // Act - Assert
-        expect(() => parsePlayDataList(document)).toThrow('invalid html')
+        expect(() => parsePlayDataList(source)).toThrow('invalid html')
       }
     )
 
@@ -239,10 +236,9 @@ describe('/shared/scrapes/eagate', () => {
     ])('(%s) returns %o', async (fileName, expected) => {
       // Arrange
       const source = await createSource(fileName)
-      const document = new DOMParser().parseFromString(source, 'text/html')
 
       // Act
-      const result = parsePlayDataList(document)
+      const result = parsePlayDataList(source)
 
       // Assert
       expect(result).toStrictEqual(expected)
@@ -256,8 +252,7 @@ describe('/shared/scrapes/eagate', () => {
       '<html></html>',
       '<html>\n<div id="music_info" />\n</html>',
     ])('("%s") throws error', source => {
-      const document = new DOMParser().parseFromString(source, 'text/html')
-      expect(() => parseScoreDetail(document)).toThrow('invalid html')
+      expect(() => parseScoreDetail(source)).toThrow('invalid html')
     })
 
     test.each([
@@ -268,10 +263,9 @@ describe('/shared/scrapes/eagate', () => {
     ])('(%s) throws "%s" error', async (fileName, err) => {
       // Arrange
       const source = await readFileAsync('music_detail', fileName)
-      const document = new DOMParser().parseFromString(source, 'text/html')
 
       // Act - Assert
-      expect(() => parseScoreDetail(document)).toThrow(err)
+      expect(() => parseScoreDetail(source)).toThrow(err)
     })
 
     test.each([
@@ -444,9 +438,8 @@ describe('/shared/scrapes/eagate', () => {
       async (fileName, expected) => {
         // Arrange
         const source = await readFileAsync('music_detail', fileName)
-        const document = new DOMParser().parseFromString(source, 'text/html')
         // Act - Assert
-        expect(parseScoreDetail(document)).toStrictEqual(expected)
+        expect(parseScoreDetail(source)).toStrictEqual(expected)
       }
     )
   })

@@ -1,4 +1,6 @@
 /** Scraper for BEMANIWiki 2nd. */
+import { load } from 'cheerio'
+
 import { Chart, Difficulty } from '#shared/schemas/step-chart'
 import { getNumberContent, getTextContent } from '#shared/scrapes/utils'
 
@@ -53,24 +55,26 @@ const corrections = new Map<string, string>([
 
 /**
  * Scrape song notes data from BEMANIWiki 2nd document.
- * @param document DOM of BEMANIWiki 2nd "Total Notes List" page.
+ * @param source HTML source of BEMANIWiki 2nd "Total Notes List" page.
  * - https://bemaniwiki.com/?DanceDanceRevolution+WORLD/%C1%B4%B6%CA%C1%ED%A5%CE%A1%BC%A5%C4%BF%F4%A5%EA%A5%B9%A5%C8
  * @returns Map of song name to array of note data (notes, freezes, shocks) per chart
  */
 export function scrapeSongNotes(
-  document: Document
+  source: string
 ): Map<string, Required<Omit<StepChart, 'bpm' | 'level' | 'radar'>>[]> {
+  const $ = load(source)
   const map: ReturnType<typeof scrapeSongNotes> = new Map()
-  for (const table of document.querySelectorAll('table')) {
+  for (const table of $('table').toArray()) {
+    const tableEl = $(table)
     // Total notes table has 2+ header rows (style, difficulties); skip others
-    if (table.querySelectorAll('thead tr').length <= 1) continue
+    if (tableEl.find('thead tr').length <= 1) continue
 
-    const rows = table.querySelectorAll('tbody tr')
+    const rows = tableEl.find('tbody tr').toArray()
     for (const row of rows) {
-      const cells = row.querySelectorAll('td')
+      const cells = $(row).find('td').toArray()
       if (cells.length < 2) continue // Series title row
 
-      let songName = getTextContent(cells[0])
+      let songName = getTextContent($, cells[0])
       if (!songName) continue
       songName = corrections.get(songName) ?? songName
 
@@ -92,7 +96,7 @@ export function scrapeSongNotes(
       ].map(([playStyle, difficulty]) => ({ playStyle, difficulty }))
       for (let i = 1; i < cells.length; i++) {
         // Parse notes data format: "notes/freezes" or "notes/freezes(shocks)"
-        const notesMatch = getTextContent(cells[i]).match(
+        const notesMatch = getTextContent($, cells[i]).match(
           /^(\d+)\/(\d+)(?:\((\d+)\))?/
         )
         if (!notesMatch) continue
@@ -112,7 +116,7 @@ export function scrapeSongNotes(
 
 /**
  * Scrape groove radar data from BEMANIWiki 2nd document.
- * @param document DOM of BEMANIWiki 2nd "Groove Radar List (SP/DP)" page.
+ * @param source HTML source of BEMANIWiki 2nd "Groove Radar List (SP/DP)" page.
  * - https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29
  * - https://bemaniwiki.com/?DanceDanceRevolution+GRAND+PRIX/%C1%B4%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28DP%29
  * - https://bemaniwiki.com/?DanceDanceRevolution+A3/%B5%EC%B6%CA%A5%B0%A5%EB%A1%BC%A5%F4%A5%EC%A1%BC%A5%C0%A1%BC%C3%CD%A5%EA%A5%B9%A5%C8%28SP%29
@@ -123,45 +127,50 @@ export function scrapeSongNotes(
  * @returns Map of song name to array of groove radar data per chart
  */
 export function scrapeGrooveRadar(
-  document: Document,
+  source: string,
   playStyle: StepChart['playStyle']
 ): Map<
   string,
   Required<Pick<StepChart, 'playStyle' | 'difficulty' | 'radar'>>[]
 > {
+  const $ = load(source)
   const map: ReturnType<typeof scrapeGrooveRadar> = new Map()
 
   // Parse all tables in the document
-  const tables = document.querySelectorAll('table')
+  const tables = $('table').toArray()
 
   for (const table of tables) {
+    const tableEl = $(table)
     // Total notes table has 2 header rows (header, groove radar properties); skip others
-    if (table.querySelectorAll('thead tr').length <= 1) continue
+    if (tableEl.find('thead tr').length <= 1) continue
 
-    const rows = table.querySelectorAll('tbody tr')
+    const rows = tableEl.find('tbody tr').toArray()
     let songName = ''
 
     for (const row of rows) {
-      const cells = row.querySelectorAll('td')
+      const cells = $(row).find('td').toArray()
       if (cells.length < 2) continue
 
       // Check if first cell has rowspan (indicates song name row)
       const firstCell = cells[0]
-      const hasRowspan = firstCell?.getAttribute('rowspan')
+      const hasRowspan = firstCell ? $(firstCell).attr('rowspan') : undefined
 
       let cellIndex = 0
       let difficulty: StepChart['difficulty'] | undefined
 
       // Case 1: rowspan present -> first cell is song name
       if (hasRowspan) {
-        const firstText = getTextContent(cells[cellIndex++])
+        const firstText = getTextContent($, cells[cellIndex++])
         songName = corrections.get(firstText) ?? firstText
-        const difficultyText = getTextContent(cells[cellIndex++]).toUpperCase()
+        const difficultyText = getTextContent(
+          $,
+          cells[cellIndex++]
+        ).toUpperCase()
         difficulty = Difficulty[difficultyText as keyof typeof Difficulty]
       } else {
         // Case 2: no rowspan. If the first cell is a difficulty label, reuse current song.
         // If it's not a difficulty label, treat it as song name (1-chart songs with no rowspan).
-        const firstText = getTextContent(cells[cellIndex++])
+        const firstText = getTextContent($, cells[cellIndex++])
         const firstDifficulty =
           Difficulty[firstText.toUpperCase() as keyof typeof Difficulty]
 
@@ -171,6 +180,7 @@ export function scrapeGrooveRadar(
           // New song without rowspan; difficulty is the next cell
           songName = corrections.get(firstText) ?? firstText
           const difficultyText = getTextContent(
+            $,
             cells[cellIndex++]
           ).toUpperCase()
           difficulty = Difficulty[difficultyText as keyof typeof Difficulty]
@@ -185,7 +195,7 @@ export function scrapeGrooveRadar(
       const values: number[] = []
       let hasInvalidValue = false
       for (let i = cellIndex; i < cellIndex + 5 && i < cells.length; i++) {
-        const value = getNumberContent(cells[i], NaN)
+        const value = getNumberContent($, cells[i], NaN)
         // Skip this row if any value is invalid (can't parse to number)
         if (isNaN(value)) {
           hasInvalidValue = true
