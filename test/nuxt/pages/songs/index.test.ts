@@ -62,6 +62,32 @@ const songsHandler = vi.fn(event => {
 
 registerEndpoint('/api/songs', songsHandler)
 
+async function waitForTabsPanelSettled(
+  wrapper: Awaited<ReturnType<typeof mountSuspended>>
+) {
+  const selector = '[role="tabpanel"][data-state="active"]'
+
+  await vi.waitFor(() => {
+    expect(wrapper.find(selector).exists()).toBe(true)
+  })
+
+  let previous: string | undefined
+  await vi.waitFor(async () => {
+    // Wait one macrotask to allow inline transition styles to settle.
+    await new Promise(resolve => setTimeout(resolve, 0))
+
+    const current = wrapper.find(selector).attributes('style') ?? ''
+    if (previous === undefined) {
+      previous = current
+      throw new Error('tabpanel style not settled yet')
+    }
+    if (current !== previous) {
+      previous = current
+      throw new Error('tabpanel style changed')
+    }
+  })
+}
+
 describe('/songs', () => {
   const mountOptions = {
     global: {
@@ -90,6 +116,7 @@ describe('/songs', () => {
         ...mountOptions,
       })
       await wrapper.vm.$i18n.setLocale(locale)
+      await waitForTabsPanelSettled(wrapper)
 
       expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
         'level'
@@ -107,6 +134,7 @@ describe('/songs', () => {
       await vi.waitFor(() => {
         expect(songsHandler).toHaveBeenCalled()
       })
+      await waitForTabsPanelSettled(wrapper)
 
       expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
         'level'
