@@ -153,10 +153,7 @@ export default defineTask({
       }
 
       const targetSong = noInfoSongs.find(s => s.name === name)
-      if (!targetSong) {
-        // No charts need updating
-        continue
-      }
+      if (!targetSong) continue // No charts need updating
 
       let updatedSongs = false
       for (const chart of targetSong.charts) {
@@ -192,14 +189,16 @@ export default defineTask({
           })
 
         if (res.length === 0) continue // No actual update
-        await clearSongCache(targetSong.id, false)
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
         updatedSongs ||= true
         updated.charts++
       }
-      if (updatedSongs) updated.songs++
+      if (updatedSongs) {
+        await clearSongCache(targetSong.id, false)
+        updated.songs++
+      }
     }
     if (updated.charts > 0) await clearSongCache('', true)
     console.log(
