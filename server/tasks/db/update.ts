@@ -124,20 +124,17 @@ export default defineTask({
     const { totalNotesUrl, grooveRadarSPUrl, grooveRadarDPUrl } = config.data
 
     // Parse HTML pages with cheerio-based scrapers
-    const totalNotesHtml = await $fetch<string>(totalNotesUrl, {
-      responseType: 'text',
-    })
+    const [totalNotesHtml, grooveRadarSPHtml, grooveRadarDPHtml] =
+      await Promise.all([
+        $fetch<string>(totalNotesUrl, { responseType: 'text' }),
+        $fetch<string>(grooveRadarSPUrl, { responseType: 'text' }),
+        $fetch<string>(grooveRadarDPUrl, { responseType: 'text' }),
+      ])
     const wikiSongs: Map<string, PartialStepChart[]> =
       scrapeSongNotes(totalNotesHtml)
     // radar (SINGLE)
-    const grooveRadarSPHtml = await $fetch<string>(grooveRadarSPUrl, {
-      responseType: 'text',
-    })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarSPHtml, 1))
     // radar (DOUBLE)
-    const grooveRadarDPHtml = await $fetch<string>(grooveRadarDPUrl, {
-      responseType: 'text',
-    })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarDPHtml, 2))
     const fetched = { songs: wikiSongs.size }
 
