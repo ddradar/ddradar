@@ -1,3 +1,4 @@
+import type { D1Result } from '@cloudflare/workers-types'
 import { db } from '@nuxthub/db'
 import { charts } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
@@ -5,7 +6,6 @@ import * as z from 'zod/mini'
 
 import { chartEquals, Difficulty, PlayStyle } from '#shared/schemas/step-chart'
 import { scrapeGrooveRadar, scrapeSongNotes } from '#shared/scrapes/bemani-wiki'
-
 type PartialStepChart = Omit<
   StepChart,
   'bpm' | 'level' | 'notes' | 'freezes' | 'shocks' | 'radar'
@@ -61,8 +61,10 @@ export default defineTask({
       'Update chart info (notes, freezes, shocks, radar) from BEMANIWiki 2nd.',
   },
   async run() {
+    /** store database instance in a local variable for batch operations */
+    const database = db
     /** Charts that have missing note or radar information (grouped by song) */
-    const noInfoSongs = await db.query.charts
+    const noInfoSongs = await database.query.charts
       .findMany({
         columns: {
           id: true,
@@ -124,25 +126,22 @@ export default defineTask({
     const { totalNotesUrl, grooveRadarSPUrl, grooveRadarDPUrl } = config.data
 
     // Parse HTML pages with cheerio-based scrapers
-    const totalNotesHtml = await $fetch<string>(totalNotesUrl, {
-      responseType: 'text',
-    })
+    const [totalNotesHtml, grooveRadarSPHtml, grooveRadarDPHtml] =
+      await Promise.all([
+        $fetch<string>(totalNotesUrl, { responseType: 'text' }),
+        $fetch<string>(grooveRadarSPUrl, { responseType: 'text' }),
+        $fetch<string>(grooveRadarDPUrl, { responseType: 'text' }),
+      ])
     const wikiSongs: Map<string, PartialStepChart[]> =
       scrapeSongNotes(totalNotesHtml)
     // radar (SINGLE)
-    const grooveRadarSPHtml = await $fetch<string>(grooveRadarSPUrl, {
-      responseType: 'text',
-    })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarSPHtml, 1))
     // radar (DOUBLE)
-    const grooveRadarDPHtml = await $fetch<string>(grooveRadarDPUrl, {
-      responseType: 'text',
-    })
     mergeSongChartMaps(wikiSongs, scrapeGrooveRadar(grooveRadarDPHtml, 2))
     const fetched = { songs: wikiSongs.size }
 
     /** Song (`id`, `name`) collection to detect target `id` from `name` */
-    const allSongs = await db.query.songs.findMany({
+    const allSongs = await database.query.songs.findMany({
       columns: { id: true, name: true },
     })
 
@@ -156,23 +155,21 @@ export default defineTask({
       }
 
       const targetSong = noInfoSongs.find(s => s.name === name)
-      if (!targetSong) {
-        // No charts need updating
-        continue
-      }
+      if (!targetSong) continue // No charts need updating
 
-      let updatedSongs = false
-      for (const chart of targetSong.charts) {
-        const wikiChart = chartDataList.find(c => chartEquals(c, chart))
-        if (!wikiChart) continue
+      const targetCharts = chartDataList.filter(chart =>
+        targetSong.charts.find(c => chartEquals(c, chart))
+      )
+      if (targetCharts.length === 0) continue // No matching charts found
 
-        const res = await db
+      const updateQueries = targetCharts.map(chart => {
+        return database
           .update(charts)
           .set({
-            notes: wikiChart.notes,
-            freezes: wikiChart.freezes,
-            shocks: wikiChart.shocks,
-            radar: wikiChart.radar,
+            notes: chart.notes,
+            freezes: chart.freezes,
+            shocks: chart.shocks,
+            radar: chart.radar,
             updatedAt: new Date(),
           })
           .where(
@@ -181,28 +178,38 @@ export default defineTask({
               eq(charts.playStyle, chart.playStyle),
               eq(charts.difficulty, chart.difficulty),
               or(
-                wikiChart.notes != null ? isNull(charts.notes) : sql`1 = 2`,
-                wikiChart.freezes != null ? isNull(charts.freezes) : sql`1 = 2`,
-                wikiChart.shocks != null ? isNull(charts.shocks) : sql`1 = 2`,
-                wikiChart.radar != null ? isNull(charts.radar) : sql`1 = 2`
+                chart.notes != null ? isNull(charts.notes) : sql`1 = 2`,
+                chart.freezes != null ? isNull(charts.freezes) : sql`1 = 2`,
+                chart.shocks != null ? isNull(charts.shocks) : sql`1 = 2`,
+                chart.radar != null ? isNull(charts.radar) : sql`1 = 2`
               )
             )
           )
-          .returning({
-            id: charts.id,
-            playStyle: charts.playStyle,
-            difficulty: charts.difficulty,
-          })
+      })
 
-        if (res.length === 0) continue // No actual update
-        await clearSongCache(targetSong.id, false)
+      const firstUpdateQuery = updateQueries[0]
+      if (!firstUpdateQuery) continue
+
+      const batchResults = await database.batch([
+        firstUpdateQuery,
+        ...updateQueries.slice(1),
+      ])
+
+      let updatedSongCharts = 0
+      for (const [index, result] of batchResults.entries()) {
+        const changes = (result as D1Result).meta.changes
+        if (!changes) continue // No actual update
+        const chart = targetCharts[index]!
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
-        updatedSongs ||= true
-        updated.charts++
+        updatedSongCharts += changes
       }
-      if (updatedSongs) updated.songs++
+      if (updatedSongCharts > 0) {
+        await clearSongCache(targetSong.id, false)
+        updated.songs++
+        updated.charts += updatedSongCharts
+      }
     }
     if (updated.charts > 0) await clearSongCache('', true)
     console.log(

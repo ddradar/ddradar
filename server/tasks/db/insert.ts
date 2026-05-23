@@ -96,9 +96,6 @@ interface DDRCardDrawChart {
    * tournament-specific grouping of charts (e.g. tier)
    */
   drawGroup?: number
-  step?: number
-  shock?: number
-  freeze?: number
   jacket?: string
   author?: string
   /**
@@ -159,9 +156,6 @@ export default defineTask({
             ) as StepChart['difficulty'],
             level: +c.lvl,
             bpm: parseBPM(c.bpm ?? song.bpm),
-            notes: c.step,
-            freezes: c.freeze,
-            shocks: c.shock,
           }))
           .filter(c => Object.values(Difficulty).includes(c.difficulty))
 
