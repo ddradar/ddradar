@@ -157,20 +157,19 @@ export default defineTask({
       const targetSong = noInfoSongs.find(s => s.name === name)
       if (!targetSong) continue // No charts need updating
 
-      const targetCharts = targetSong.charts.filter(chart =>
-        chartDataList.find(c => chartEquals(c, chart))
+      const targetCharts = chartDataList.filter(chart =>
+        targetSong.charts.find(c => chartEquals(c, chart))
       )
       if (targetCharts.length === 0) continue // No matching charts found
 
       const updateQueries = targetCharts.map(chart => {
-        const wikiChart = chartDataList.find(c => chartEquals(c, chart))!
         return database
           .update(charts)
           .set({
-            notes: wikiChart.notes,
-            freezes: wikiChart.freezes,
-            shocks: wikiChart.shocks,
-            radar: wikiChart.radar,
+            notes: chart.notes,
+            freezes: chart.freezes,
+            shocks: chart.shocks,
+            radar: chart.radar,
             updatedAt: new Date(),
           })
           .where(
@@ -179,10 +178,10 @@ export default defineTask({
               eq(charts.playStyle, chart.playStyle),
               eq(charts.difficulty, chart.difficulty),
               or(
-                wikiChart.notes != null ? isNull(charts.notes) : sql`1 = 2`,
-                wikiChart.freezes != null ? isNull(charts.freezes) : sql`1 = 2`,
-                wikiChart.shocks != null ? isNull(charts.shocks) : sql`1 = 2`,
-                wikiChart.radar != null ? isNull(charts.radar) : sql`1 = 2`
+                chart.notes != null ? isNull(charts.notes) : sql`1 = 2`,
+                chart.freezes != null ? isNull(charts.freezes) : sql`1 = 2`,
+                chart.shocks != null ? isNull(charts.shocks) : sql`1 = 2`,
+                chart.radar != null ? isNull(charts.radar) : sql`1 = 2`
               )
             )
           )
