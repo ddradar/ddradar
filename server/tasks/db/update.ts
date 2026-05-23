@@ -1,3 +1,4 @@
+import type { D1Result } from '@cloudflare/workers-types'
 import { db } from '@nuxthub/db'
 import { charts } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
@@ -5,7 +6,6 @@ import * as z from 'zod/mini'
 
 import { chartEquals, Difficulty, PlayStyle } from '#shared/schemas/step-chart'
 import { scrapeGrooveRadar, scrapeSongNotes } from '#shared/scrapes/bemani-wiki'
-
 type PartialStepChart = Omit<
   StepChart,
   'bpm' | 'level' | 'notes' | 'freezes' | 'shocks' | 'radar'
@@ -61,8 +61,10 @@ export default defineTask({
       'Update chart info (notes, freezes, shocks, radar) from BEMANIWiki 2nd.',
   },
   async run() {
+    /** store database instance in a local variable for batch operations */
+    const database = db
     /** Charts that have missing note or radar information (grouped by song) */
-    const noInfoSongs = await db.query.charts
+    const noInfoSongs = await database.query.charts
       .findMany({
         columns: {
           id: true,
@@ -139,7 +141,7 @@ export default defineTask({
     const fetched = { songs: wikiSongs.size }
 
     /** Song (`id`, `name`) collection to detect target `id` from `name` */
-    const allSongs = await db.query.songs.findMany({
+    const allSongs = await database.query.songs.findMany({
       columns: { id: true, name: true },
     })
 
@@ -155,12 +157,14 @@ export default defineTask({
       const targetSong = noInfoSongs.find(s => s.name === name)
       if (!targetSong) continue // No charts need updating
 
-      let updatedSongs = false
-      for (const chart of targetSong.charts) {
-        const wikiChart = chartDataList.find(c => chartEquals(c, chart))
-        if (!wikiChart) continue
+      const targetCharts = targetSong.charts.filter(chart =>
+        chartDataList.find(c => chartEquals(c, chart))
+      )
+      if (targetCharts.length === 0) continue // No matching charts found
 
-        const res = await db
+      const updateQueries = targetCharts.map(chart => {
+        const wikiChart = chartDataList.find(c => chartEquals(c, chart))!
+        return database
           .update(charts)
           .set({
             notes: wikiChart.notes,
@@ -182,22 +186,30 @@ export default defineTask({
               )
             )
           )
-          .returning({
-            id: charts.id,
-            playStyle: charts.playStyle,
-            difficulty: charts.difficulty,
-          })
+      })
 
-        if (res.length === 0) continue // No actual update
+      const firstUpdateQuery = updateQueries[0]
+      if (!firstUpdateQuery) continue
+
+      const batchResults = await database.batch([
+        firstUpdateQuery,
+        ...updateQueries.slice(1),
+      ])
+
+      let updatedSongCharts = 0
+      for (const [index, result] of batchResults.entries()) {
+        const changes = (result as D1Result).meta.changes
+        if (!changes) continue // No actual update
+        const chart = targetCharts[index]!
         console.log(
           `[UPDATE] ${name} (${getEnumKey(PlayStyle, chart.playStyle)}/${getEnumKey(Difficulty, chart.difficulty)})`
         )
-        updatedSongs ||= true
-        updated.charts++
+        updatedSongCharts += changes
       }
-      if (updatedSongs) {
+      if (updatedSongCharts > 0) {
         await clearSongCache(targetSong.id, false)
         updated.songs++
+        updated.charts += updatedSongCharts
       }
     }
     if (updated.charts > 0) await clearSongCache('', true)
