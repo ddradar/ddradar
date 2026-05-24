@@ -4,6 +4,7 @@ import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
 import { stepChartSchema } from '#shared/schemas/step-chart'
+import type { StepChart } from '#shared/types/song'
 
 /** Schema for request body */
 const _bodySchema = z.extend(songSchema, {
@@ -53,7 +54,7 @@ export default defineEventHandler(async event => {
           id: body.id,
           playStyle: chart.playStyle,
           difficulty: chart.difficulty,
-          bpm: chart.bpm,
+          bpm: normalizeBpm(chart.bpm),
           level: chart.level,
           notes: chart.notes,
           freezes: chart.freezes,
@@ -66,7 +67,7 @@ export default defineEventHandler(async event => {
         .onConflictDoUpdate({
           target: [charts.id, charts.playStyle, charts.difficulty],
           set: {
-            bpm: chart.bpm,
+            bpm: normalizeBpm(chart.bpm),
             level: chart.level,
             notes: chart.notes,
             freezes: chart.freezes,
@@ -82,6 +83,10 @@ export default defineEventHandler(async event => {
   await clearSongCache(body.id)
 
   return body
+
+  function normalizeBpm(bpm: StepChart['bpm']): StepChart['bpm'] {
+    return bpm[0] === bpm.at(-1) ? [bpm[0]] : bpm
+  }
 })
 
 // Define OpenAPI metadata
