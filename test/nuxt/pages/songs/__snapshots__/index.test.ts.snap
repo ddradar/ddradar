@@ -273,7 +273,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">Name</label>
                   <!--v-if-->
@@ -291,7 +291,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Series</label>
                   <!--v-if-->
@@ -309,7 +309,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Play Style</label>
                   <!--v-if-->
@@ -325,7 +325,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
@@ -352,7 +352,7 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
       </div>
     </div>
     <div data-slot="root" class="relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0 bg-default ring ring-default py-8">
-      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search text-muted shrink-0" aria-hidden="true" data-slot="icon"></span></span>
+      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search shrink-0 text-muted" aria-hidden="true" data-slot="icon"></span></span>
         <!--v-if-->
         <div data-slot="description" class="text-balance text-center text-sm text-muted">Please select a search condition</div>
       </div>
@@ -637,7 +637,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">Name</label>
                   <!--v-if-->
@@ -655,7 +655,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Series</label>
                   <!--v-if-->
@@ -673,7 +673,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Play Style</label>
                   <!--v-if-->
@@ -689,7 +689,7 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
@@ -1043,7 +1043,7 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">曲名</label>
                   <!--v-if-->
@@ -1061,7 +1061,7 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">シリーズ</label>
                   <!--v-if-->
@@ -1079,7 +1079,7 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">プレースタイル</label>
                   <!--v-if-->
@@ -1095,7 +1095,7 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">レベル</label>
                   <!--v-if-->
@@ -1122,7 +1122,7 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
       </div>
     </div>
     <div data-slot="root" class="relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0 bg-default ring ring-default py-8">
-      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search text-muted shrink-0" aria-hidden="true" data-slot="icon"></span></span>
+      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search shrink-0 text-muted" aria-hidden="true" data-slot="icon"></span></span>
         <!--v-if-->
         <div data-slot="description" class="text-balance text-center text-sm text-muted">検索条件を選択してください</div>
       </div>
@@ -1407,7 +1407,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">曲名</label>
                   <!--v-if-->
@@ -1425,7 +1425,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">シリーズ</label>
                   <!--v-if-->
@@ -1443,7 +1443,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">プレースタイル</label>
                   <!--v-if-->
@@ -1459,7 +1459,7 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">レベル</label>
                   <!--v-if-->
@@ -1813,7 +1813,7 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">곡명</label>
                   <!--v-if-->
@@ -1831,7 +1831,7 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">버전</label>
                   <!--v-if-->
@@ -1849,7 +1849,7 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
                   <!--v-if-->
@@ -1865,7 +1865,7 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
@@ -1892,7 +1892,7 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
       </div>
     </div>
     <div data-slot="root" class="relative flex flex-col items-center justify-center gap-4 rounded-lg p-4 sm:p-6 lg:p-8 min-w-0 bg-default ring ring-default py-8">
-      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search text-muted shrink-0" aria-hidden="true" data-slot="icon"></span></span>
+      <div data-slot="header" class="flex flex-col items-center gap-2 max-w-sm text-center"><span data-slot="root" class="inline-flex items-center justify-center select-none rounded-full align-middle bg-elevated shrink-0 mb-2 size-10 text-xl"><span class="iconify i-lucide:search shrink-0 text-muted" aria-hidden="true" data-slot="icon"></span></span>
         <!--v-if-->
         <div data-slot="description" class="text-balance text-center text-sm text-muted">검색 조건을 선택해 주세요</div>
       </div>
@@ -2177,7 +2177,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
         </div>
         <div id="reka-tabs-v-0-0-0-content-custom" role="tabpanel" data-state="inactive" data-orientation="horizontal" aria-labelledby="reka-tabs-v-0-0-0-trigger-custom" hidden="" tabindex="0" data-slot="content" class="focus:outline-none w-full">
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">곡명</label>
                   <!--v-if-->
@@ -2195,7 +2195,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">버전</label>
                   <!--v-if-->
@@ -2213,7 +2213,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
                   <!--v-if-->
@@ -2229,7 +2229,7 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm">
+            <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
