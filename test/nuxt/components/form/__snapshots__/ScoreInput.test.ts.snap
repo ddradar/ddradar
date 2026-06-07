@@ -1,9 +1,9 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Normal Score</label>
           <!--v-if-->
@@ -27,7 +27,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
           <!--v-if-->
@@ -42,7 +42,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -57,7 +57,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Clear Lamp</label>
           <!--v-if-->
@@ -82,7 +82,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Flare Rank</label>
           <!--v-if-->
@@ -110,7 +110,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Flare Skill</label>
           <!--v-if-->
@@ -139,9 +139,9 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
 `;
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Normal Score</label>
           <!--v-if-->
@@ -165,7 +165,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
           <!--v-if-->
@@ -180,7 +180,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -195,7 +195,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Clear Lamp</label>
           <!--v-if-->
@@ -220,7 +220,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Flare Rank</label>
           <!--v-if-->
@@ -248,7 +248,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Flare Skill</label>
           <!--v-if-->
@@ -277,9 +277,9 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
 `;
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">通常スコア</label>
           <!--v-if-->
@@ -303,7 +303,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
           <!--v-if-->
@@ -318,7 +318,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -333,7 +333,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">クリアランプ</label>
           <!--v-if-->
@@ -358,7 +358,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">フレアランク</label>
           <!--v-if-->
@@ -386,7 +386,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">フレアスキル</label>
           <!--v-if-->
@@ -415,9 +415,9 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
 `;
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">通常スコア</label>
           <!--v-if-->
@@ -441,7 +441,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX SCORE</label>
           <!--v-if-->
@@ -456,7 +456,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -471,7 +471,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">クリアランプ</label>
           <!--v-if-->
@@ -496,7 +496,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">フレアランク</label>
           <!--v-if-->
@@ -524,7 +524,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">フレアスキル</label>
           <!--v-if-->
@@ -553,9 +553,9 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
 `;
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">일반 스코어</label>
           <!--v-if-->
@@ -579,7 +579,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX 스코어</label>
           <!--v-if-->
@@ -594,7 +594,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -609,7 +609,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">클리어 램프</label>
           <!--v-if-->
@@ -634,7 +634,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Flare Rank</label>
           <!--v-if-->
@@ -662,7 +662,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Flare Skill</label>
           <!--v-if-->
@@ -691,9 +691,9 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
 `;
 
 exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
-"<form id="v-0-0-0" class="" role="form">
+"<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">일반 스코어</label>
           <!--v-if-->
@@ -717,7 +717,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default">EX 스코어</label>
           <!--v-if-->
@@ -732,7 +732,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-4" data-slot="label" class="block font-medium text-default">MAX COMBO</label>
           <!--v-if-->
@@ -747,7 +747,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">클리어 램프</label>
           <!--v-if-->
@@ -772,7 +772,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Flare Rank</label>
           <!--v-if-->
@@ -800,7 +800,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
         <!--v-if-->
       </div>
     </div>
-    <div data-slot="root" class="text-sm">
+    <div data-orientation="vertical" data-slot="root" class="text-sm">
       <div data-slot="wrapper" class="">
         <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Flare Skill</label>
           <!--v-if-->

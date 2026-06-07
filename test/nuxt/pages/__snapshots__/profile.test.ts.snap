@@ -25,8 +25,8 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
       <div data-slot="root" class="rounded-lg overflow-hidden bg-default ring ring-default divide-y divide-default mt-4">
         <!--v-if-->
         <div data-slot="body" class="p-4 sm:p-6">
-          <form id="v-0-0-0" class="" role="form">
-            <div data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
+          <form id="v-0-0-0" method="post" class="" role="form">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User ID</label>
                   <!--v-if-->
@@ -41,7 +41,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User Name</label>
                   <!--v-if-->
@@ -56,7 +56,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Area</label>
                   <!--v-if-->
@@ -192,7 +192,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDR Code</label>
                   <!--v-if-->
@@ -207,7 +207,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Profile Visibility</label>
                   <!--v-if-->
@@ -260,8 +260,8 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
       <div data-slot="root" class="rounded-lg overflow-hidden bg-default ring ring-default divide-y divide-default mt-4">
         <!--v-if-->
         <div data-slot="body" class="p-4 sm:p-6">
-          <form id="v-0-0-0" class="" role="form">
-            <div data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
+          <form id="v-0-0-0" method="post" class="" role="form">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザーID</label>
                   <!--v-if-->
@@ -276,7 +276,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザー名</label>
                   <!--v-if-->
@@ -291,7 +291,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">所属エリア</label>
                   <!--v-if-->
@@ -427,7 +427,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDRコード</label>
                   <!--v-if-->
@@ -442,7 +442,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">プロフィール公開設定</label>
                   <!--v-if-->
@@ -495,8 +495,8 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
       <div data-slot="root" class="rounded-lg overflow-hidden bg-default ring ring-default divide-y divide-default mt-4">
         <!--v-if-->
         <div data-slot="body" class="p-4 sm:p-6">
-          <form id="v-0-0-0" class="" role="form">
-            <div data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
+          <form id="v-0-0-0" method="post" class="" role="form">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 ID</label>
                   <!--v-if-->
@@ -511,7 +511,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 이름</label>
                   <!--v-if-->
@@ -526,7 +526,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">소속 지역</label>
                   <!--v-if-->
@@ -662,7 +662,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDR Code</label>
                   <!--v-if-->
@@ -677,7 +677,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
                 <!--v-if-->
               </div>
             </div>
-            <div data-slot="root" class="text-sm mt-4 mb-4">
+            <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
                 <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">프로필 공개 설정</label>
                   <!--v-if-->

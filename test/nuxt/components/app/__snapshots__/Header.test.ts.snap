@@ -12,7 +12,7 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">Song List<!--v-if--></span>
@@ -60,7 +60,7 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Log
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">Song List<!--v-if--></span>
@@ -108,7 +108,7 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">曲一覧<!--v-if--></span>
@@ -156,7 +156,7 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">曲一覧<!--v-if--></span>
@@ -204,7 +204,7 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">노래 목록<!--v-if--></span>
@@ -252,7 +252,7 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Log
     <div data-slot="center" class="hidden lg:flex">
       <!---->
       <!---->
-      <nav data-collapsed="false" data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
+      <nav data-slot="root" class="relative flex gap-1.5 [&amp;>div]:min-w-0 items-center justify-between" data-orientation="horizontal" dir="ltr" data-reka-navigation-menu="">
         <div style="position: relative;">
           <ul data-slot="list" class="isolate min-w-0 flex items-center" data-orientation="horizontal">
             <li data-menu-item="" data-slot="item" class="min-w-0 py-2"><a href="/songs" data-reka-collection-item="" data-slot="link" class="group relative w-full flex items-center gap-1.5 font-medium text-sm before:absolute before:z-[-1] before:rounded-md focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:before:ring-inset focus-visible:before:ring-2 focus-visible:before:ring-primary px-2.5 py-1.5 before:inset-x-px before:inset-y-0 text-muted hover:text-highlighted hover:before:bg-elevated/50 transition-colors before:transition-colors data-[state=open]:text-highlighted data-[state=open]:before:bg-elevated/50"><span class="iconify i-lucide:music shrink-0 size-5 text-dimmed group-hover:text-default transition-colors group-data-[state=open]:text-default" aria-hidden="true" data-slot="linkLeadingIcon"></span><span data-slot="linkLabel" class="truncate">노래 목록<!--v-if--></span>
