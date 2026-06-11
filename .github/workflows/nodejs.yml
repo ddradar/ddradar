@@ -59,7 +59,7 @@ jobs:
         run: pnpm test --coverage
 
       - name: Report Code Coverage to codecov
-        uses: codecov/codecov-action@v6.0.1
+        uses: codecov/codecov-action@v7.0.0
         with:
           use_oidc: true
 
