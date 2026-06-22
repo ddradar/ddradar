@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.8
+        uses: pnpm/action-setup@v6.0.9
         with: &pnpm-setup-with
           cache: true
       - name: Setup Node.js
@@ -46,7 +46,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.8
+        uses: pnpm/action-setup@v6.0.9
         with: *pnpm-setup-with
       - name: Setup Node.js
         uses: actions/setup-node@v6.4.0
@@ -77,7 +77,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.0
       - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.8
+        uses: pnpm/action-setup@v6.0.9
         with: *pnpm-setup-with
       - name: Setup Node.js
         uses: actions/setup-node@v6.4.0
