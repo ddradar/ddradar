@@ -45,7 +45,7 @@
   "dependencies": {
     "@libsql/client": "^0.17.4",
     "@nuxt/content": "^3.14.0",
-    "@nuxt/ui": "^4.8.2",
+    "@nuxt/ui": "^4.9.0",
     "@nuxthub/core": "^0.10.7",
     "@nuxtjs/i18n": "^10.4.0",
     "better-sqlite3": "^12.10.1",
@@ -92,7 +92,7 @@
     "overrides": {
       "@esbuild-kit/core-utils>esbuild": "^0.25.0",
       "@nuxt/test-utils>h3-next": "npm:h3@^2.0.1-rc.18",
-      "vite": "^8.0.5"
+      "vite": "^8.1.0"
     },
     "patchedDependencies": {
       "nitropack@2.13.4": "patches/nitropack@2.13.4.patch"
