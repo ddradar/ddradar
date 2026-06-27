@@ -73,6 +73,11 @@ describe('/shared/scrapes/eagate', () => {
       songId: 'qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb',
       name: '革命(X-Special)',
     }
+    /** Can't Stop Running!! */
+    const cant = {
+      songId: '101l06dOi16IlQI0qDqo6qD9DOP999Dd',
+      name: "Can't Stop Running!!",
+    }
 
     test.each([
       '',
@@ -163,6 +168,15 @@ describe('/shared/scrapes/eagate', () => {
             713
           ),
           scoreData(
+            cant,
+            Chart.ESP,
+            995000,
+            'AAA',
+            ClearLamp.FC,
+            FlareRank.EX,
+            960
+          ),
+          scoreData(
             kakX,
             Chart.CSP,
             550000,
@@ -230,6 +244,15 @@ describe('/shared/scrapes/eagate', () => {
             'C-',
             ClearLamp.Clear,
             FlareRank.None
+          ),
+          scoreData(
+            cant,
+            Chart.EDP,
+            995000,
+            'AAA',
+            ClearLamp.GFC,
+            FlareRank.EX,
+            960
           ),
         ],
       ],

@@ -11,12 +11,12 @@ const srcRegex = /^.+\/ddr\/ddrworld\/images\/playdata\/(.+)\.png$/
 
 // #region Constants for parsePlayDataList()
 /** Element id - Difficulty mapping */
-const idDifficultyMap = new Map([
-  ['beginner', Difficulty.BEGINNER],
-  ['basic', Difficulty.BASIC],
-  ['difficult', Difficulty.DIFFICULT],
-  ['expert', Difficulty.EXPERT],
-  ['challenge', Difficulty.CHALLENGE],
+const classDifficultyMap = new Map([
+  ['BEGINNER', Difficulty.BEGINNER],
+  ['BASIC', Difficulty.BASIC],
+  ['DIFFICULT', Difficulty.DIFFICULT],
+  ['EXPERT', Difficulty.EXPERT],
+  ['CHALLENGE', Difficulty.CHALLENGE],
 ])
 /** Image file name - DanceLevel mapping */
 const fileDanceLevelMap = new Map<string, ScoreRecord['rank']>([
@@ -75,28 +75,31 @@ type EAGateScoreRecord = Omit<ScoreRecordInput, 'userId' | 'exScore'> &
  */
 export function parsePlayDataList(source: string): EAGateScoreRecord[] {
   const $ = load(source)
-  const dataTable = $('#data_tbl').first()
-  if (dataTable.length === 0) throw new Error('invalid html')
-
-  const playStyle = getPlayStyle(dataTable)
+  const musicList = $('#music_list').first()
+  if (musicList.length === 0) throw new Error('invalid html')
 
   const result: ReturnType<typeof parsePlayDataList> = []
 
-  const songs = dataTable.find('.data').toArray()
-  for (const row of songs) {
-    const rowEl = $(row)
-    const { id: songId, name } = getSongInfo(rowEl)
+  const songs = musicList.find('.music-card').toArray()
+  for (const song of songs) {
+    const songEl = $(song)
+    const { id: songId, name } = getSongInfo(songEl)
     if (!songId || !name) continue
 
-    const charts = rowEl.find('.rank').toArray()
-    for (const chart of charts) {
+    const charts = songEl.find('.playdata > .rank').toArray()
+    if (charts.length !== 5) throw new Error('invalid html')
+
+    const firstDifficulty = getDifficulty($(charts[0]))
+    const playStyle = getPlayStyle(firstDifficulty)
+
+    for (const [index, chart] of charts.entries()) {
       const chartEl = $(chart)
 
-      // Difficulty
-      const difficulty = idDifficultyMap.get(
-        (chartEl.attr('id') ?? '').toLowerCase()
-      )
-      if (difficulty === undefined) throw new Error('invalid html')
+      const difficulty = getDifficulty(chartEl)
+      if (difficulty === undefined) {
+        if (playStyle === 2 && index === 0) continue
+        throw new Error('invalid html')
+      }
 
       // Normal Score
       const normalScore = getNumberContent(
@@ -107,7 +110,11 @@ export function parsePlayDataList(source: string): EAGateScoreRecord[] {
       if (isNaN(normalScore)) continue // NO PLAY or No chart
 
       // Dance Level
-      const rank = fileDanceLevelMap.get(getImgFileName(chartEl, '.data_rank'))!
+      const rankImage = getImgFileName(chartEl, '.data_rank')
+      if (rankImage === 'rank_s_none' || rankImage === 'rank_s_nodisp') continue
+
+      const rank = fileDanceLevelMap.get(rankImage)
+      if (rank === undefined) continue
 
       // Clear Lamp
       const clearLamp = fileClearLampMap.get(
@@ -142,20 +149,38 @@ export function parsePlayDataList(source: string): EAGateScoreRecord[] {
   }
   return result
 
-  /** Detect PlayStyle from element. */
-  function getPlayStyle(table: ReturnType<CheerioAPI>): StepChart['playStyle'] {
-    // Get PlayStyle from columns count
-    const headerColumns = table.find('.column').first().find('.rank').length
-    if (headerColumns === 5) return 1 // BEGINNER, BASIC, DIFFICULT, EXPERT, CHALLENGE
-    if (headerColumns === 4) return 2 // BASIC, DIFFICULT, EXPERT, CHALLENGE
+  /** Detect PlayStyle from first difficulty. */
+  function getPlayStyle(
+    firstDifficulty: StepChart['difficulty'] | undefined
+  ): StepChart['playStyle'] {
+    if (firstDifficulty === Difficulty.BEGINNER) return 1
+    if (firstDifficulty === undefined) return 2
     throw new Error('invalid html')
   }
 
-  function getSongInfo(row: ReturnType<CheerioAPI>) {
-    const songNameCol = row.find('td').first().find('.music_info').first()
-    const id = songNameCol.attr('href')?.replace(idRegex, '$2')
-    const name = getTextContent($, songNameCol.get(0))
+  function getSongInfo(
+    card: ReturnType<CheerioAPI>
+  ): Partial<Pick<SongInfo, 'id' | 'name'>> {
+    const songInfo = card.find('.chart .music_info').first()
+    const id = songInfo.attr('href')?.replace(idRegex, '$2')
+    const name = getTextContent($, songInfo.find('.music-name').first().get(0))
     return { id, name }
+  }
+
+  function getDifficulty(
+    chart: ReturnType<CheerioAPI>
+  ): StepChart['difficulty'] | undefined {
+    const classNames = new Set(
+      (chart.attr('class') ?? '')
+        .split(/\s+/)
+        .map(className => className.toUpperCase())
+        .filter(Boolean)
+    )
+    for (const className of classNames) {
+      const difficulty = classDifficultyMap.get(className)
+      if (difficulty !== undefined) return difficulty
+    }
+    return undefined
   }
 
   /** Get image file name (without extension) from cell by class name. */
