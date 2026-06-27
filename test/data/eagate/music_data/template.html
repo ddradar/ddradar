@@ -2,33 +2,57 @@
 <html>
   <body>
     <div id="wrapper" class="wrapx">
+      <nav class="main-nav" id="main-nav"></nav>
       <div id="container" class="page-wrap">
+        <header id="id_nav_menu_1"></header>
         <div id="id_ea_common_content_whole">
           <div id="id_ea_common_content" class="ea_content_center">
             <div id="ddr_body">
               <div class="ddr_body_on" id="top">
+                <div id="Gmenu_sp"></div>
+                <div id="title_bg" class="ja"></div>
+                <div id="Gmenu_pc"></div>
+                <div id="user_name" class="user_all"></div>
                 <div id="ddr_contents">
                   <div id="ddr_main">
+                    <div id="ddr_left"></div>
                     <div id="ddr_right">
+                      <div class="contents_top"></div>
                       <div class="contents_middle">
                         <div class="waku_middle_l">
                           <div class="waku_middle_r">
                             <div class="waku_middle_m">
-                              <div class="main">
-                                <div class="game_inner">{{ contents }}</div>
+                              <div id="playdata_top"></div>
+                              <div class="main-ui">
+                                <h2 class="header-ui">楽曲データ一覧</h2>
+                                <div id="error_msg"></div>
+                                <div class="music-list-container">
+                                  <div class="style-tab"></div>
+                                  <div class="music-list-setting"></div>
+                                  <p class="text">
+                                    楽曲名クリックで詳細情報が閲覧できます。
+                                  </p>
+                                  <div id="music_list">{{ contents }}</div>
+                                  <div id="paging_box"></div>
+                                </div>
+                                <div id="license"></div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
+                      <div class="contents_bottom"></div>
                     </div>
                   </div>
                 </div>
+                <p id="page-top"></p>
               </div>
             </div>
           </div>
         </div>
+        <footer></footer>
       </div>
+      <div id="page-cover"></div>
     </div>
   </body>
 </html>
