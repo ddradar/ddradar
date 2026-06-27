@@ -1,7 +1,7 @@
 import { type CheerioAPI, load } from 'cheerio'
 
 import { ClearLamp, FlareRank } from '#shared/schemas/score'
-import { Chart, Difficulty } from '#shared/schemas/step-chart'
+import { Difficulty } from '#shared/schemas/step-chart'
 import { getNumberContent, getTextContent } from '#shared/scrapes/utils'
 
 /** Music Detail page URI */
@@ -9,15 +9,6 @@ const idRegex = /^.+\/ddr\/ddrworld\/.+(img|index)=([01689bdiloqDIOPQ]{32}).*$/
 /** Image source URI */
 const srcRegex = /^.+\/ddr\/ddrworld\/images\/playdata\/(.+)\.png$/
 
-// #region Constants for parsePlayDataList()
-/** Element id - Difficulty mapping */
-const classDifficultyMap = new Map([
-  ['BEGINNER', Difficulty.BEGINNER],
-  ['BASIC', Difficulty.BASIC],
-  ['DIFFICULT', Difficulty.DIFFICULT],
-  ['EXPERT', Difficulty.EXPERT],
-  ['CHALLENGE', Difficulty.CHALLENGE],
-])
 /** Image file name - DanceLevel mapping */
 const fileDanceLevelMap = new Map<string, ScoreRecord['rank']>([
   ['rank_s_aaa', 'AAA'],
@@ -36,6 +27,22 @@ const fileDanceLevelMap = new Map<string, ScoreRecord['rank']>([
   ['rank_s_d_p', 'D+'],
   ['rank_s_d', 'D'],
   ['rank_s_e', 'E'],
+  ['rank_aaa', 'AAA'],
+  ['rank_aa_p', 'AA+'],
+  ['rank_aa', 'AA'],
+  ['rank_aa_m', 'AA-'],
+  ['rank_a_p', 'A+'],
+  ['rank_a', 'A'],
+  ['rank_a_m', 'A-'],
+  ['rank_b_p', 'B+'],
+  ['rank_b', 'B'],
+  ['rank_b_m', 'B-'],
+  ['rank_c_p', 'C+'],
+  ['rank_c', 'C'],
+  ['rank_c_m', 'C-'],
+  ['rank_d_p', 'D+'],
+  ['rank_d', 'D'],
+  ['rank_e', 'E'],
 ])
 /** Image file name - ClearLamp mapping */
 const fileClearLampMap = new Map([
@@ -61,6 +68,16 @@ const fileFlareRankMap = new Map([
   ['flare_2', FlareRank.II],
   ['flare_1', FlareRank.I],
   ['flare_none', FlareRank.None],
+])
+
+// #region Constants for parsePlayDataList()
+/** Element id - Difficulty mapping */
+const classDifficultyMap = new Map([
+  ['BEGINNER', Difficulty.BEGINNER],
+  ['BASIC', Difficulty.BASIC],
+  ['DIFFICULT', Difficulty.DIFFICULT],
+  ['EXPERT', Difficulty.EXPERT],
+  ['CHALLENGE', Difficulty.CHALLENGE],
 ])
 // #endregion
 
@@ -192,31 +209,6 @@ export function parsePlayDataList(source: string): EAGateScoreRecord[] {
 }
 
 // #region Constants for parseScoreDetail()
-/** Image file name - Difficulty mapping */
-const fileDifficultyMap = new Map<
-  string,
-  [StepChart['playStyle'], StepChart['difficulty']]
->([
-  ['songdetails_0_0', [...Chart.bSP]],
-  ['songdetails_0_1', [...Chart.BSP]],
-  ['songdetails_0_2', [...Chart.DSP]],
-  ['songdetails_0_3', [...Chart.ESP]],
-  ['songdetails_0_4', [...Chart.CSP]],
-  ['songdetails_1_1', [...Chart.BDP]],
-  ['songdetails_1_2', [...Chart.DDP]],
-  ['songdetails_1_3', [...Chart.EDP]],
-  ['songdetails_1_4', [...Chart.CDP]],
-])
-/** Element id - ClearLamp mapping */
-const clearLampIds = [
-  ['fc_marv', ClearLamp.MFC],
-  ['fc_perf', ClearLamp.PFC],
-  ['fc_great', ClearLamp.GFC],
-  ['fc_good', ClearLamp.FC],
-  // Ignored because eagete miss counts "Life 4 Failed" as "Life 4 Clear"
-  // https://x.com/nogic1008/status/1969199838043476041
-  // ['clear_life4', ClearLamp.Life4],
-] as const
 /** Text - FlareRank mapping */
 const textFlareRankMap = new Map([
   ['EX', FlareRank.EX],
@@ -246,132 +238,151 @@ export function parseScoreDetail(
   source: string
 ): EAGateScoreRecord & { rivalScores: RivalScore[] } {
   const $ = load(source)
-  const musicInfo = $('#music_info').first()
-  const songId = musicInfo
-    .find('tr')
-    .first()
-    .find('td')
-    .eq(0)
-    .find('img')
+  const musicDetail = $('.music-detail').first()
+  if (musicDetail.length === 0) throw new Error('invalid html')
+
+  const songId = musicDetail
+    .find('.music-text .jacket')
     .first()
     .attr('src')
     ?.replace(idRegex, '$2')
   if (!songId) throw new Error('invalid html')
-  const name = (musicInfo.find('tr').first().find('td').eq(1).html() ?? '')
-    .replace(/^(.+)<br.+/ms, '$1')
-    .trim()
 
-  const table = $('#music_detail_table').first()
-  if (table.length === 0) {
-    throw new Error(
-      getTextContent($, $('#popup_cnt').first().get(0)) || 'invalid html'
+  const name = getTextContent(
+    $,
+    musicDetail.find('.music-text .music-name').first().get(0)
+  )
+  if (!name) throw new Error('invalid html')
+
+  const noPlayText = getTextContent(
+    $,
+    musicDetail.find('.no-play').first().get(0)
+  )
+  if (noPlayText) throw new Error(noPlayText)
+
+  const selectedDiff = musicDetail
+    .find('.style-panel a.select, .style-panel a.selected')
+    .first()
+  if (selectedDiff.length === 0) {
+    const prompt = getTextContent(
+      $,
+      musicDetail.find('.style-panel p').first().get(0)
     )
+    throw new Error(prompt ?? 'invalid html')
   }
 
-  // Get PlayStyle and Difficulty from Logo
-  const logo = $('#diff_logo')
-    .first()
-    .find('img')
-    .first()
-    .attr('src')
-    ?.replace(srcRegex, '$1')
-  const chartMeta = fileDifficultyMap.get(logo ?? '')
-  if (!chartMeta) throw new Error('invalid html')
-  const [playStyle, difficulty] = chartMeta
+  const selectedHref = selectedDiff.attr('href') ?? ''
+  const selectedUrl = new URL(selectedHref, 'https://p.eagate.573.jp')
+  const selectedStyle = Number(selectedUrl.searchParams.get('style'))
+  const selectedDifficulty = Number(
+    selectedUrl.searchParams.get('difficulty')
+  ) as StepChart['difficulty']
+  if (
+    !Number.isInteger(selectedStyle) ||
+    !Number.isInteger(selectedDifficulty)
+  ) {
+    throw new Error('invalid html')
+  }
 
-  const rank = getTextContent($, getCell(1, 0).get(0)) as ScoreRecord['rank']
-  const flareSkill = getNumberContent($, getCell(3, 0).get(0), NaN)
+  const playData = musicDetail.find('.play-data').first()
+  if (playData.length === 0) throw new Error('invalid html')
 
-  const rivalScores: RivalScore[] = []
-  // Add Top Score
-  const topScoreElement = table.find('top_score_disp').first()
-  const topScorePlayer = topScoreElement
-    .contents()
-    .toArray()
-    .map(node => getTextContent($, node))
-    .find(text => text !== '' && text.includes('/'))
+  const clearLampImage = getDetailImageFileName(playData, '.clearkind')
+  const clearLamp = fileClearLampMap.get(clearLampImage)
+  if (clearLamp === undefined) throw new Error('invalid html')
+
+  const rankImage = getDetailImageFileName(playData, '.clearrank')
+  const rank = fileDanceLevelMap.get(rankImage)
+  if (rank === undefined) throw new Error('invalid html')
+
+  const flareRankImage = getDetailImageFileName(playData, '.flarerank')
+  const flareRank = fileFlareRankMap.get(flareRankImage)
+  if (flareRank === undefined) throw new Error('invalid html')
+
   const normalScore = getNumberContent(
     $,
-    topScoreElement.find('span').first().get(0),
+    playData.find('.best-score .value').first().get(0),
     NaN
   )
-  if (topScorePlayer && !isNaN(normalScore)) {
-    rivalScores.push({ name: topScorePlayer, normalScore })
+  if (Number.isNaN(normalScore)) throw new Error('invalid html')
+
+  const maxCombo = getNumberContent(
+    $,
+    playData.find('.maxcombo .value').first().get(0),
+    NaN
+  )
+  if (Number.isNaN(maxCombo)) throw new Error('invalid html')
+
+  const flareSkillText = getTextContent(
+    $,
+    playData.find('.flareskill .value').first().get(0)
+  )
+  const flareSkill =
+    flareSkillText === '' || flareSkillText === '---'
+      ? null
+      : Number.parseInt(flareSkillText, 10)
+  if (flareSkill !== null && Number.isNaN(flareSkill)) {
+    throw new Error('invalid html')
   }
 
-  // Add Rival Scores
-  const rivalDetailRow = $('#rival_detail_table')
-    .first()
-    .find('.rival')
-    .toArray()
-  for (const row of rivalDetailRow) {
-    const rowEl = $(row)
-    const name = getTextContent($, rowEl.find('th').first().get(0))
-    const normalScore = getNumberContent($, rowEl.find('td').eq(0).get(0), 0)
-    if (!name || !normalScore) continue
+  const rivalScores: RivalScore[] = []
+  for (const group of musicDetail.find('.rival-data .rival-group').toArray()) {
+    const groupEl = $(group)
+    if (groupEl.hasClass('player')) continue
 
-    const rank = getTextContent($, rowEl.find('td').eq(1).get(0)) as
-      | ScoreRecord['rank']
-      | ''
-    const flareRank =
-      textFlareRankMap.get(getTextContent($, rowEl.find('td').eq(2).get(0))) ??
-      FlareRank.None
+    const header = getTextContent(
+      $,
+      groupEl.find('.rival-header').first().get(0)
+    )
+    const valueCells = groupEl.find('.row-ui .count-item .value').toArray()
+    if (valueCells.length < 1) continue
 
+    const normalScoreText = getTextContent($, valueCells[0])
+    const normalScoreValue = Number.parseInt(normalScoreText, 10)
+    if (!Number.isFinite(normalScoreValue) || normalScoreValue === 0) continue
+
+    if (header.startsWith('全国トップ')) {
+      const topScoreName = header.split(' / ').slice(1).join(' / ')
+      if (topScoreName) {
+        rivalScores.push({ name: topScoreName, normalScore: normalScoreValue })
+      }
+      continue
+    }
+
+    const rivalRankText = getTextContent($, valueCells[1])
+    const rivalFlareRankText = getTextContent($, valueCells[2])
     rivalScores.push({
-      name,
-      normalScore,
-      rank: rank || undefined,
-      flareRank,
+      name: header,
+      normalScore: normalScoreValue,
+      rank:
+        rivalRankText === '---'
+          ? undefined
+          : (rivalRankText as ScoreRecord['rank']),
+      flareRank: textFlareRankMap.get(rivalFlareRankText) ?? FlareRank.None,
     })
   }
 
   return {
     songId,
     name,
-    playStyle,
-    difficulty,
-    normalScore: getNumberContent($, getCell(1, 1).get(0), 0),
-    maxCombo: getNumberContent($, getCell(5, 0).get(0), 0),
-    clearLamp:
-      getClearLamp() ?? (rank === 'E' ? ClearLamp.Failed : ClearLamp.Assisted),
+    playStyle: (selectedStyle + 1) as StepChart['playStyle'],
+    difficulty: selectedDifficulty,
+    normalScore,
+    maxCombo,
+    clearLamp,
     rank,
-    flareRank:
-      textFlareRankMap.get(getTextContent($, getCell(2, 0).get(0))) ??
-      FlareRank.None,
-    flareSkill: Number.isInteger(flareSkill) ? flareSkill : null,
+    flareRank,
+    flareSkill,
     rivalScores,
   }
 
-  /** Get cell element by row and column index. */
-  function getCell(row: number, col: number): ReturnType<CheerioAPI> {
-    return table.find('tr').eq(row).find('td').eq(col)
-  }
-
-  /** Detect ClearLamp from element. */
-  function getClearLamp():
-    | Exclude<
-        ValueOf<typeof ClearLamp>,
-        (typeof ClearLamp)['Assisted'] | (typeof ClearLamp)['Failed']
-      >
-    | undefined {
-    // Check Full Combo count
-    for (const [id, clearLamp] of clearLampIds) {
-      const count = getNumberContent(
-        $,
-        $(`#${id}`).first().find('td').first().get(0),
-        0
-      )
-      if (count > 0) return clearLamp
-    }
-    // Check Clear count (Assisted Clear is not counted on here)
-    const clearCount = getNumberContent(
-      $,
-      table.find('tr').eq(4).find('td').eq(1).get(0),
-      0
-    )
-    if (clearCount > 0) return ClearLamp.Clear
-
-    // Assisted Clear or Failed
-    return undefined
+  /** Get image file name (without extension) from a detail cell. */
+  function getDetailImageFileName(
+    cell: ReturnType<CheerioAPI>,
+    selector: string
+  ) {
+    return (
+      cell.find(selector).first().find('img').first().attr('src') ?? ''
+    ).replace(srcRegex, '$1')
   }
 }

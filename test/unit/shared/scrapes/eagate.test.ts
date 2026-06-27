@@ -281,8 +281,8 @@ describe('/shared/scrapes/eagate', () => {
     test.each([
       ['invalid_header.html', 'invalid html'],
       ['invalid_content.html', 'invalid html'],
-      ['no_select.html', '難易度を選択してください。'],
-      ['no_play.html', 'NO PLAY...'],
+      ['no_select.html', '難易度を選択してください'],
+      ['no_play.html', 'NO PLAY DATA'],
     ])('(%s) throws "%s" error', async (fileName, err) => {
       // Arrange
       const source = await readFileAsync('music_detail', fileName)
@@ -339,7 +339,7 @@ describe('/shared/scrapes/eagate', () => {
             Chart.ESP,
             974750,
             'AA+',
-            ClearLamp.Clear, // Life4 Clear ignored
+            ClearLamp.Life4,
             FlareRank.IV
           ),
           maxCombo: 387,
@@ -397,7 +397,7 @@ describe('/shared/scrapes/eagate', () => {
             Chart.DDP,
             987790,
             'AA+',
-            ClearLamp.Clear, // Life4 Clear ignored
+            ClearLamp.Life4,
             FlareRank.V
           ),
           maxCombo: 427,
