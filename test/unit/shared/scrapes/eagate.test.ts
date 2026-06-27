@@ -73,6 +73,11 @@ describe('/shared/scrapes/eagate', () => {
       songId: 'qIqqdd1Odqi1Iiolq9qqPOi0bPPld8Pb',
       name: '革命(X-Special)',
     }
+    /** Can't Stop Running!! */
+    const cant = {
+      songId: '101l06dOi16IlQI0qDqo6qD9DOP999Dd',
+      name: "Can't Stop Running!!",
+    }
 
     test.each([
       '',
@@ -163,6 +168,15 @@ describe('/shared/scrapes/eagate', () => {
             713
           ),
           scoreData(
+            cant,
+            Chart.ESP,
+            995000,
+            'AAA',
+            ClearLamp.FC,
+            FlareRank.EX,
+            960
+          ),
+          scoreData(
             kakX,
             Chart.CSP,
             550000,
@@ -231,6 +245,15 @@ describe('/shared/scrapes/eagate', () => {
             ClearLamp.Clear,
             FlareRank.None
           ),
+          scoreData(
+            cant,
+            Chart.EDP,
+            995000,
+            'AAA',
+            ClearLamp.GFC,
+            FlareRank.EX,
+            960
+          ),
         ],
       ],
     ])('(%s) returns %o', async (fileName, expected) => {
@@ -258,8 +281,8 @@ describe('/shared/scrapes/eagate', () => {
     test.each([
       ['invalid_header.html', 'invalid html'],
       ['invalid_content.html', 'invalid html'],
-      ['no_select.html', '難易度を選択してください。'],
-      ['no_play.html', 'NO PLAY...'],
+      ['no_select.html', '難易度を選択してください'],
+      ['no_play.html', 'NO PLAY DATA'],
     ])('(%s) throws "%s" error', async (fileName, err) => {
       // Arrange
       const source = await readFileAsync('music_detail', fileName)
@@ -316,7 +339,7 @@ describe('/shared/scrapes/eagate', () => {
             Chart.ESP,
             974750,
             'AA+',
-            ClearLamp.Clear, // Life4 Clear ignored
+            ClearLamp.Life4,
             FlareRank.IV
           ),
           maxCombo: 387,
@@ -374,7 +397,7 @@ describe('/shared/scrapes/eagate', () => {
             Chart.DDP,
             987790,
             'AA+',
-            ClearLamp.Clear, // Life4 Clear ignored
+            ClearLamp.Life4,
             FlareRank.V
           ),
           maxCombo: 427,

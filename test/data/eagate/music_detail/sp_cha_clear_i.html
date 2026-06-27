@@ -1,213 +1,421 @@
 <!doctype html>
 <html>
   <body>
-    <div id="popup_contents">
-      <div id="popup_cnt">
-        <div class="music_name">
-          <table id="music_info">
-            <tr>
-              <td>
-                <img
-                  src="/game/ddr/ddrworld/images/binary_jk.html?img=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&kind=1"
-                  width="200"
-                />
-              </td>
-              <td>音楽 (STARDOM Remix)<br />cosMo＠暴走P</td>
-            </tr>
-          </table>
+    <div id="error_msg"></div>
+    <div class="music-detail">
+      <div class="music-text">
+        <div>
+          <img
+            src="/game/ddr/ddrworld/images/binary_jk.html?img=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&ddrcode=10000000&kind=1"
+            class="jacket"
+          />
         </div>
-        <div id="music_detail">
-          <table id="music_detail_table">
-            <tr>
-              <td id="diff_logo" colspan="4">
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/songdetails_0_4.png"
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>ハイスコア時のランク</th>
-              <td nowrap>AA+</td>
-              <th>ハイスコア</th>
-              <td nowrap>952020</td>
-            </tr>
-            <tr>
-              <th>フレアランク</th>
-              <td nowrap>I</td>
-              <th rowspan="2">TOPスコア比較</th>
-              <td rowspan="2">
-                <top_score_disp>
-                  <p style="color: red; font-weight: bolder">全国トップ</p>
-                  XXXXXX / XXXXX<span style="float: right">999940</span
-                  ><br /><br />
-                  TOPとの差<span style="float: right">-47920</span>
-                </top_score_disp>
-              </td>
-            </tr>
-            <tr>
-              <th>フレアスキル</th>
-              <td nowrap>673</td>
-            </tr>
-            <tr>
-              <th>プレー回数</th>
-              <td nowrap>3</td>
-              <th>クリア回数</th>
-              <td nowrap>2</td>
-            </tr>
-            <tr>
-              <th>最大コンボ数</th>
-              <td nowrap>486</td>
-              <th>最終プレー時間</th>
-              <td>2024-08-10 17:53:28</td>
-            </tr>
-          </table>
+        <div class="music-name">音楽 (STARDOM Remix)</div>
+        <div class="artist-name">cosMo＠暴走P</div>
+      </div>
+      <div class="music-card">
+        <div class="chart"></div>
+        <div class="play-data item-group">
+          <div class="sub-info">
+            <div class="">
+              <div class="clearkind">
+                <div class="header">CLEAR</div>
+                <div class="value">
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/cl_clear.png"
+                    alt="通常クリア"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="clearrank">
+                <div class="header">RANK</div>
+                <div class="value">
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/rank_aa_p.png"
+                    alt="AA+"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="">
+              <div class="flarerank">
+                <div class="header">FLARE</div>
+                <div class="value">
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/flare_1.png"
+                    alt="I"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sub-info">
+            <div class="">
+              <div class="maxcombo">
+                <div class="sub-header">MAX COMBO</div>
+                <div class="value">486</div>
+              </div>
+            </div>
+            <div class="">
+              <div class="best-score">
+                <div class="header">BEST SCORE</div>
+                <div class="value">952020</div>
+              </div>
+            </div>
+            <div class="">
+              <div class="flareskill">
+                <div class="sub-header">SKILL</div>
+                <div class="value">673</div>
+              </div>
+            </div>
+          </div>
+          <div class="lastplay">
+            <div class="sub-header">LAST PLAY : 2024-08-10 17:53:28</div>
+          </div>
         </div>
-        <div id="clear_detail">
-          <table id="clear_detail_table">
-            <tr id="fc_head">
-              <th colspan="2"><h3>フルコンボ回数</h3></th>
-            </tr>
-            <tr id="fc_marv">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/cl_marv.png"
-                  alt="マーベラス"
-                />&nbsp;マーベラスフルコンボ
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="fc_perf">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/cl_perf.png"
-                  alt="パーフェクト"
-                />&nbsp;パーフェクトフルコンボ
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="fc_great">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/cl_great.png"
-                  alt="グレート"
-                />&nbsp;グレートフルコンボ
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="fc_good">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/cl_good.png"
-                  alt="グッド"
-                />&nbsp;グッドフルコンボ
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_head">
-              <th colspan="2"><h3>各種クリア回数</h3></th>
-            </tr>
-            <tr id="clear_fl_ex">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_ex.png"
-                  alt="EXクリア"
-                />&nbsp;FLARE EX クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_9">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_9.png"
-                  alt="IXクリア"
-                />&nbsp;FLARE IX クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_8">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_8.png"
-                  alt="VIIIクリア"
-                />&nbsp;FLARE VIII クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_7">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_7.png"
-                  alt="VIIクリア"
-                />&nbsp;FLARE VII クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_6">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_6.png"
-                  alt="VIクリア"
-                />&nbsp;FLARE VI クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_5">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_5.png"
-                  alt="Vクリア"
-                />&nbsp;FLARE V クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_4">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_4.png"
-                  alt="IVクリア"
-                />&nbsp;FLARE IV クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_3">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_3.png"
-                  alt="IIIクリア"
-                />&nbsp;FLARE III クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_2">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_2.png"
-                  alt="IIクリア"
-                />&nbsp;FLARE II クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-            <tr id="clear_fl_1">
-              <th>
-                <img
-                  src="/game/ddr/ddrworld/images/playdata/flare_1.png"
-                  alt="Iクリア"
-                />&nbsp;FLARE I クリア
-              </th>
-              <td nowrap>2</td>
-            </tr>
-            <tr id="clear_life4">
-              <th>
+        <div class="play-count item-group">
+          <div class="row-ui count-grid count-grid-clear" style="--cols: 4">
+            <div class="count-item">
+              <div class="header">PLAY</div>
+              <div>3</div>
+            </div>
+            <div class="count-item">
+              <div class="header">CLEAR</div>
+              <div>2</div>
+            </div>
+            <div class="count-item">
+              <div>
                 <img
                   src="/game/ddr/ddrworld/images/playdata/cl_li4clear.png"
                   alt="LIFE4"
-                />&nbsp;LIFE4 クリア
-              </th>
-              <td nowrap>0</td>
-            </tr>
-          </table>
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div class="header"></div>
+              <div></div>
+            </div>
+          </div>
+          <div class="row-ui count-grid count-grid-clear" style="--cols: 4">
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/cl_good.png"
+                  alt="FC"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/cl_great.png"
+                  alt="GFC"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/cl_perf.png"
+                  alt="PFC"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/cl_marv.png"
+                  alt="MFC"
+                />
+              </div>
+              <div>0</div>
+            </div>
+          </div>
+          <div class="row-ui count-grid count-grid-clear">
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_1.png"
+                  alt="Iクリア"
+                />
+              </div>
+              <div>2</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_2.png"
+                  alt="IIクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_3.png"
+                  alt="IIIクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_4.png"
+                  alt="IVクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_5.png"
+                  alt="Vクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+          </div>
+          <div class="row-ui count-grid count-grid-clear">
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_6.png"
+                  alt="VIクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_7.png"
+                  alt="VIIクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_8.png"
+                  alt="VIIIクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_9.png"
+                  alt="IXクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+            <div class="count-item">
+              <div>
+                <img
+                  src="/game/ddr/ddrworld/images/playdata/flare_ex.png"
+                  alt="EXクリア"
+                />
+              </div>
+              <div>0</div>
+            </div>
+          </div>
+        </div>
+        <div class="rival-data item-group">
+          <div>
+            <div class="rival-group <rival_disp>">
+              <div class="rival-header">全国トップ / XXXXXX / XXXXX</div>
+              <div class="row-ui" style="--cols: 3">
+                <div class="count-item">
+                  <div class="header">SCORE</div>
+                  <div class="value">999940</div>
+                </div>
+                <div class="count-item">
+                  <div></div>
+                  <div></div>
+                </div>
+                <div class="count-item">
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+            </div>
+            <div class="rival-group player">
+              <div class="rival-header">PLAYER</div>
+              <div class="row-ui" style="--cols: 3">
+                <div class="count-item">
+                  <div class="header">SCORE</div>
+                  <div class="value">952020</div>
+                </div>
+                <div class="count-item">
+                  <div class="header">RANK</div>
+                  <div class="value">AA+</div>
+                </div>
+                <div class="count-item">
+                  <div class="header">FLARE</div>
+                  <div class="value">I</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="style-panel">
+        <p>難易度を選択してください</p>
+        <div class="style-group">
+          <div class="style-text">
+            <img
+              src="/game/ddr/ddrworld/images/playdata/style_single.png"
+              alt="single style"
+            />
+          </div>
+          <div class="single">
+            <div
+              class="diff-item BEGINNER"
+              href="music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=0"
+            >
+              <diff0>
+                <a
+                  id="0"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=0"
+                >
+                  <div>BEGINNER</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_2.png"
+                  />
+                </a>
+              </diff0>
+            </div>
+            <div class="diff-item BASIC">
+              <diff1>
+                <a
+                  id="1"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=1"
+                >
+                  <div>BASIC</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_5.png"
+                  />
+                </a>
+              </diff1>
+            </div>
+            <div class="diff-item DIFFICULT">
+              <diff2>
+                <a
+                  id="2"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=2"
+                >
+                  <div>DIFFICULT</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_8.png"
+                  />
+                </a>
+              </diff2>
+            </div>
+            <div class="diff-item EXPERT">
+              <diff3>
+                <a
+                  id="3"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=3"
+                >
+                  <div>EXPERT</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_12.png"
+                  />
+                </a>
+              </diff3>
+            </div>
+            <div class="diff-item CHALLENGE">
+              <diff4>
+                <a
+                  id="4"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=0&difficulty=4"
+                  class="select"
+                >
+                  <div>CHALLENGE</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_17.png"
+                  />
+                </a>
+              </diff4>
+            </div>
+          </div>
+        </div>
+        <div class="style-group">
+          <div class="style-text">
+            <img
+              src="/game/ddr/ddrworld/images/playdata/style_double.png"
+              alt="double style"
+            />
+          </div>
+          <div class="double">
+            <div class="diff-item BASIC">
+              <diff11>
+                <a
+                  id="11"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=1&difficulty=1"
+                >
+                  <div>BASIC</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_5.png"
+                  />
+                </a>
+              </diff11>
+            </div>
+            <div class="diff-item DIFFICULT">
+              <diff12>
+                <a
+                  id="12"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=1&difficulty=2"
+                >
+                  <div>DIFFICULT</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_8.png"
+                  />
+                </a>
+              </diff12>
+            </div>
+            <div class="diff-item EXPERT">
+              <diff13>
+                <a
+                  id="13"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=1&difficulty=3"
+                >
+                  <div>EXPERT</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_12.png"
+                  />
+                </a>
+              </diff13>
+            </div>
+            <div class="diff-item CHALLENGE">
+              <diff14>
+                <a
+                  id="14"
+                  href="/game/ddr/ddrworld/playdata/music_detail.html?index=bdP0IOiPiQ8OlIbD1QQO8O6dPQqqb1Qb&style=1&difficulty=4"
+                >
+                  <div>CHALLENGE</div>
+                  <img
+                    src="/game/ddr/ddrworld/images/playdata/songdetails_level_17.png"
+                  />
+                </a>
+              </diff14>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+    <div id="close_btn"></div>
   </body>
 </html>
