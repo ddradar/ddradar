@@ -24,19 +24,19 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -72,19 +72,19 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Log
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -120,19 +120,19 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -168,19 +168,19 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -216,19 +216,19 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
@@ -264,19 +264,19 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Log
           </ul>
         </div>
         <!--v-if-->
-        <div data-slot="viewportWrapper" class="absolute top-full left-0 flex w-full justify-center">
+        <div data-slot="viewportWrapper" class="absolute top-full start-0 flex w-full justify-center">
           <!--v-if-->
           <!---->
         </div>
       </nav>
     </div>
-    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <div data-slot="right" class="flex items-center justify-end lg:flex-1 gap-1.5"><button type="button" data-slot="base" id="reka-popover-trigger-v-0-0-1" aria-haspopup="dialog" aria-expanded="false" aria-controls="" data-state="closed" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-primary hover:bg-primary/10 active:bg-primary/10 outline-primary/25 focus-visible:outline-3 disabled:bg-transparent aria-disabled:bg-transparent dark:disabled:bg-transparent dark:aria-disabled:bg-transparent p-1.5"><span class="iconify i-lucide:settings shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
       <!--v-if-->
       <!--teleport start-->
-      <!--teleport end--><button type="button" aria-label="Open menu" data-slot="base" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+      <!--teleport end--><button type="button" data-slot="toggle" aria-label="Open menu" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent p-1.5 lg:hidden -me-1.5"><span class="iconify i-lucide:menu shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
         <!--v-if-->
         <!--v-if-->
       </button>
