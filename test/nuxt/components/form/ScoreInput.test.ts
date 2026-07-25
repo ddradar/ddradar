@@ -106,8 +106,7 @@ describe('components/form/ScoreInput.vue', () => {
         const form = screen.getByRole('form')
         for (const [key, value] of Object.entries(expected)) {
           const el = form!.querySelector(`[name="${key}"]`) as
-            | HTMLInputElement
-            | HTMLSelectElement
+            HTMLInputElement | HTMLSelectElement
           expect(el).toBeDefined()
           expect(el.value).toBe(value == null ? '' : String(value))
         }
