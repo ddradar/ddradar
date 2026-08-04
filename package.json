@@ -47,7 +47,7 @@
     "@nuxt/content": "^3.15.2",
     "@nuxt/ui": "^4.10.0",
     "@nuxthub/core": "^0.10.8",
-    "@nuxtjs/i18n": "^10.5.0",
+    "@nuxtjs/i18n": "^10.6.0",
     "better-sqlite3": "^12.11.1",
     "cheerio": "^1.2.0",
     "drizzle-orm": "^0.45.2",
@@ -61,24 +61,24 @@
     "@iconify-json/lucide": "^1.2.120",
     "@iconify-json/simple-icons": "^1.2.92",
     "@nuxt/eslint": "^1.16.0",
-    "@nuxt/test-utils": "^4.0.3",
+    "@nuxt/test-utils": "^4.1.0",
     "@testing-library/vue": "^8.1.0",
     "@types/js-beautify": "^1.14.3",
     "@vitest/coverage-v8": "^4.1.10",
-    "@vitest/eslint-plugin": "^1.6.24",
+    "@vitest/eslint-plugin": "^1.6.26",
     "@vue/test-utils": "^2.4.11",
     "drizzle-kit": "^0.31.10",
     "eslint": "^10.8.0",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-simple-import-sort": "^13.0.0",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
     "happy-dom": "^20.11.1",
     "husky": "^9.1.7",
-    "lint-staged": "^17.2.0",
+    "lint-staged": "^17.3.0",
     "prettier": "^3.9.6",
     "typescript": "^6.0.3",
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.9",
-    "wrangler": "^4.114.0"
+    "wrangler": "^4.118.0"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
@@ -90,9 +90,7 @@
       "workerd"
     ],
     "overrides": {
-      "@esbuild-kit/core-utils>esbuild": "^0.25.0",
-      "@nuxt/test-utils>h3-next": "npm:h3@^2.0.1-rc.18",
-      "vite": "^8.1.0"
+      "@esbuild-kit/core-utils>esbuild": "^0.25.0"
     },
     "patchedDependencies": {
       "nitropack@2.13.4": "patches/nitropack@2.13.4.patch"
