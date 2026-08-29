@@ -22,12 +22,13 @@ jobs:
           cache: true
           require-lockfile: true
 
-      - name: Run ESLint
-        run: pnpm lint:eslint
-      - name: Run Prettier
-        run: pnpm lint:prettier
-      - name: Run vue-tsc (via Nuxt)
-        run: pnpm lint:typecheck
+      - parallel:
+          - name: Run ESLint
+            run: pnpm lint:eslint
+          - name: Run Prettier
+            run: pnpm lint:prettier
+          - name: Run vue-tsc (via Nuxt)
+            run: pnpm lint:typecheck
 
   test:
     name: Unit Test
@@ -47,6 +48,7 @@ jobs:
         run: pnpm test --coverage
 
       - name: Report Code Coverage to codecov
+        if: ${{ !cancelled() }}
         uses: codecov/codecov-action@v7.0.0
         with:
           use_oidc: true
