@@ -16,17 +16,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: &pnpm-setup-with
           cache: true
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: &setup-node-with
-          node-version-file: package.json
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
+          require-lockfile: true
 
       - name: Run ESLint
         run: pnpm lint:eslint
@@ -45,15 +39,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: *pnpm-setup-with
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: *setup-node-with
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Test
         run: pnpm test --coverage
@@ -76,15 +64,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: *pnpm-setup-with
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: *setup-node-with
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build
