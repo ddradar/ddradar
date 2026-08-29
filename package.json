@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "pnpm@11.24.0",
   "devEngines": {
     "runtime": {
       "name": "node",
@@ -16,7 +16,7 @@
     },
     "packageManager": {
       "name": "pnpm",
-      "version": "^10.28.0",
+      "version": "11.24.0",
       "onFail": "warn"
     }
   },
@@ -51,13 +51,18 @@
     "better-sqlite3": "^12.11.1",
     "cheerio": "^1.2.0",
     "drizzle-orm": "^0.45.2",
+    "nanoid": "^3.3.18",
     "nuxt": "^4.5.2",
     "nuxt-auth-utils": "^0.5.30",
     "remark-custom-heading-id": "^2.0.0",
+    "ufo": "^1.6.4",
     "vue": "^3.5.41",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "^4.20260702.1",
+    "h3": "^1.15.11",
+    "unstorage": "^1.17.5",
     "@iconify-json/lucide": "^1.2.123",
     "@iconify-json/simple-icons": "^1.2.93",
     "@nuxt/eslint": "^1.17.0",
@@ -79,21 +84,5 @@
     "vitest": "^4.1.10",
     "vue-tsc": "^3.3.11",
     "wrangler": "^4.123.0"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "@parcel/watcher",
-      "better-sqlite3",
-      "esbuild",
-      "sharp",
-      "unrs-resolver",
-      "workerd"
-    ],
-    "overrides": {
-      "@esbuild-kit/core-utils>esbuild": "^0.25.0"
-    },
-    "patchedDependencies": {
-      "nitropack@2.13.4": "patches/nitropack@2.13.4.patch"
-    }
   }
 }

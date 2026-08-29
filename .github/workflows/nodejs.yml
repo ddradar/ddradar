@@ -16,24 +16,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: &pnpm-setup-with
           cache: true
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: &setup-node-with
-          node-version-file: package.json
+          require-lockfile: true
 
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run ESLint
-        run: pnpm lint:eslint
-      - name: Run Prettier
-        run: pnpm lint:prettier
-      - name: Run vue-tsc (via Nuxt)
-        run: pnpm lint:typecheck
+      - parallel:
+          - name: Run ESLint
+            run: pnpm lint:eslint
+          - name: Run Prettier
+            run: pnpm lint:prettier
+          - name: Run vue-tsc (via Nuxt)
+            run: pnpm lint:typecheck
 
   test:
     name: Unit Test
@@ -45,20 +40,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: *pnpm-setup-with
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: *setup-node-with
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Test
         run: pnpm test --coverage
 
       - name: Report Code Coverage to codecov
+        if: ${{ !cancelled() }}
         uses: codecov/codecov-action@v7.0.0
         with:
           use_oidc: true
@@ -76,15 +66,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7.0.1
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v6.0.10
+      - name: Setup pnpm with Node.js runtime
+        uses: pnpm/setup@v2.1.0
         with: *pnpm-setup-with
-      - name: Setup Node.js
-        uses: actions/setup-node@v7.0.0
-        with: *setup-node-with
-
-      - name: Install Dependencies
-        run: pnpm install --frozen-lockfile
 
       - name: Build
         run: pnpm build

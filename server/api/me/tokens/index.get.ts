@@ -9,7 +9,7 @@ export default defineEventHandler(async event => {
 
   // Fetch all token details
   const tokens = await Promise.all(
-    tokenKeys.map(async key => {
+    tokenKeys.map(async (key: string) => {
       const tokenData = await kv.get<StoredApiToken>(key)
 
       if (!tokenData) return null
