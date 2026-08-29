@@ -301,6 +301,9 @@ importers:
       eslint-plugin-simple-import-sort:
         specifier: ^14.0.0
         version: 14.0.0(eslint@10.8.1(jiti@2.7.0))
+      h3:
+        specifier: ^1.15.11
+        version: 1.15.11
       happy-dom:
         specifier: ^20.11.6
         version: 20.11.6
@@ -316,6 +319,9 @@ importers:
       typescript:
         specifier: ^6.0.3
         version: 6.0.3
+      unstorage:
+        specifier: ^1.17.5
+        version: 1.17.5(db0@0.3.4(@libsql/client@0.17.4)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.17.4)(better-sqlite3@12.11.1)))(ioredis@5.11.1)
       vitest:
         specifier: ^4.1.10
         version: 4.1.10(@types/node@26.3.0)(@vitest/coverage-v8@4.1.10)(happy-dom@20.11.6)(vite@8.2.1(@types/node@26.3.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.22.4)(yaml@2.9.0))
