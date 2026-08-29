@@ -19,12 +19,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
         <!--v-if-->
       </div>
     </div>
@@ -158,12 +159,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">Failed</label>
         <!--v-if-->
       </div>
     </div>
@@ -297,12 +299,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">E判定</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">E判定</label>
         <!--v-if-->
       </div>
     </div>
@@ -436,12 +439,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">E判定</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">E判定</label>
         <!--v-if-->
       </div>
     </div>
@@ -575,12 +579,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
         <!--v-if-->
       </div>
     </div>
@@ -714,12 +719,13 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
       </div>
     </div>
     <div data-slot="root" class="relative flex items-start flex-row">
-      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden focus-visible:outline-3 outline-primary/25 focus-visible:ring-primary size-4" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
+      <div data-slot="container" class="flex items-center h-5"><button aria-label="Failed" data-slot="base" class="rounded-sm ring ring-inset ring-accented overflow-hidden size-4 outline-primary/25 focus-visible:outline-solid focus-visible:outline-3 focus-visible:ring-primary" id="v-0-0-2" role="checkbox" type="button" aria-checked="false" aria-required="false" data-state="unchecked">
           <!---->
         </button>
         <!--v-if-->
       </div>
-      <div data-slot="wrapper" class="w-full ms-2 text-sm"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
+      <div data-slot="wrapper" class="w-full ms-2 text-sm">
+        <!--v-if--><label for="v-0-0-2" data-slot="label" class="block font-medium text-default">클리어 실패</label>
         <!--v-if-->
       </div>
     </div>

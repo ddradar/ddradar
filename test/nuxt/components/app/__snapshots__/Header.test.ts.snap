@@ -1,7 +1,7 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>) renders user name and Logout button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
@@ -49,7 +49,7 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>
 `;
 
 exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Login button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
@@ -97,7 +97,7 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Log
 `;
 
 exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>) renders user name and Logout button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
@@ -145,7 +145,7 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>
 `;
 
 exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Login button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
@@ -193,7 +193,7 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
 `;
 
 exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>) renders user name and Logout button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
@@ -241,7 +241,7 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>
 `;
 
 exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Login button 1`] = `
-"<header data-slot="root" class="bg-default/75 backdrop-blur border-b border-default h-(--ui-header-height) sticky top-0 z-50">
+"<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
       <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
