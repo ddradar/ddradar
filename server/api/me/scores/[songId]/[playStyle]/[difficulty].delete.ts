@@ -1,4 +1,3 @@
-import type { D1Response } from '@cloudflare/workers-types'
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
@@ -8,6 +7,7 @@ import { scoreRecordKeySchema } from '#shared/schemas/score'
 
 /** Schema for router params */
 const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
+type D1Response = { meta: { changes: number } }
 
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)

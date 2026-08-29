@@ -207,9 +207,7 @@ overrides:
   '@esbuild-kit/core-utils>esbuild': ^0.25.0
 
 patchedDependencies:
-  nitropack@2.13.4:
-    hash: 3160607c5c9516b5f76363f002942af3195bb2a4cf156807034813c06db3916a
-    path: patches/nitropack@2.13.4.patch
+  nitropack@2.13.4: 3160607c5c9516b5f76363f002942af3195bb2a4cf156807034813c06db3916a
 
 importers:
 
@@ -239,6 +237,9 @@ importers:
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@libsql/client@0.17.4)(better-sqlite3@12.11.1)
+      nanoid:
+        specifier: ^3.3.18
+        version: 3.3.18
       nuxt:
         specifier: ^4.5.2
         version: 4.5.2(@babel/plugin-syntax-jsx@7.29.7(@babel/core@7.29.7))(@babel/plugin-syntax-typescript@7.29.7(@babel/core@7.29.7))(@libsql/client@0.17.4)(@oxc-project/types@0.144.0)(@parcel/watcher@2.5.6)(@types/node@26.3.0)(@vue/compiler-sfc@3.5.41)(better-sqlite3@12.11.1)(cac@7.0.0)(db0@0.3.4(@libsql/client@0.17.4)(better-sqlite3@12.11.1)(drizzle-orm@0.45.2(@libsql/client@0.17.4)(better-sqlite3@12.11.1)))(drizzle-orm@0.45.2(@libsql/client@0.17.4)(better-sqlite3@12.11.1))(esbuild@0.28.2)(eslint@10.8.1(jiti@2.7.0))(ioredis@5.11.1)(lightningcss@1.33.0)(magicast@0.5.4)(optionator@0.9.4)(oxc-parser@0.141.0)(rolldown@1.2.4)(rollup-plugin-visualizer@7.0.1(rolldown@1.2.4)(rollup@4.62.4))(rollup@4.62.4)(srvx@0.11.22)(terser@5.50.0)(tsx@4.22.4)(typescript@6.0.3)(vite@8.2.1(@types/node@26.3.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.22.4)(yaml@2.9.0))(vue-tsc@3.3.11(typescript@6.0.3))(yaml@2.9.0)
@@ -248,6 +249,9 @@ importers:
       remark-custom-heading-id:
         specifier: ^2.0.0
         version: 2.0.0
+      ufo:
+        specifier: ^1.6.4
+        version: 1.6.4
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@6.0.3)
