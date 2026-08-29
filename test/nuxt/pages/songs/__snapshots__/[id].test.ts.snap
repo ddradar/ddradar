@@ -38,7 +38,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -110,7 +110,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -181,7 +181,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -253,7 +253,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -325,7 +325,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -397,7 +397,7 @@ exports[`/songs/[id] > (locale: en) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> Hide chart info
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -503,7 +503,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -575,7 +575,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -646,7 +646,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -718,7 +718,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -790,7 +790,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -862,7 +862,7 @@ exports[`/songs/[id] > (locale: ja) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 譜面情報を非表示
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -968,7 +968,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-0" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-0" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -1040,7 +1040,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-1" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-1" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -1111,7 +1111,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-2" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-2" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -1183,7 +1183,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-3" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-3" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -1255,7 +1255,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-4" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-4" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
@@ -1327,7 +1327,7 @@ exports[`/songs/[id] > (locale: ko) > renders correctly 1`] = `
             <div data-state="open" data-slot="root"><button type="button" data-slot="base" aria-controls="reka-collapsible-content-v-0-0-5" aria-expanded="true" data-state="open" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors px-2.5 py-1.5 text-sm gap-1.5 text-default hover:bg-elevated active:bg-elevated outline-inverted/25 focus-visible:outline-3 hover:disabled:bg-transparent dark:hover:disabled:bg-transparent hover:aria-disabled:bg-transparent dark:hover:aria-disabled:bg-transparent"><span class="iconify i-lucide:chevron-up" aria-hidden="true"></span> 차트 정보 숨기기
                 <!--v-if-->
               </button>
-              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_ease-out] data-[state=closed]:animate-[collapsible-up_200ms_ease-out] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
+              <div data-slot="content" class="data-[state=open]:animate-[collapsible-down_200ms_var(--ease-out)] data-[state=closed]:animate-[collapsible-up_200ms_var(--ease-out)] data-[state=closed]:overflow-hidden" id="reka-collapsible-content-v-0-0-5" data-state="open" style="--reka-collapsible-content-height: 0px; --reka-collapsible-content-width: 0px;">
                 <!-- BPM (always visible) -->
                 <div class="mb-3">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">BPM</dt>
