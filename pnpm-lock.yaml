@@ -259,6 +259,9 @@ importers:
         specifier: ^4.4.3
         version: 4.4.3
     devDependencies:
+      '@cloudflare/workers-types':
+        specifier: ^4.20260702.1
+        version: 4.20260702.1
       '@iconify-json/lucide':
         specifier: ^1.2.123
         version: 1.2.123
