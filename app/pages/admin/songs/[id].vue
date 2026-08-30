@@ -178,7 +178,7 @@ const onSubmit = async () => {
           </UFormField>
 
           <template #footer>
-            <div class="flex gap-2 justify-end">
+            <div class="flex justify-end gap-2">
               <UButton id="add-button" @click="addChart">
                 {{ t('actions.add.label') }}
               </UButton>

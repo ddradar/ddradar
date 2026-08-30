@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "arrowParens": "avoid",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 80,
+  "ignorePatterns": ["*.md"],
+  "sortImports": {
+    "groups": [
+      "builtin",
+      { "newlinesBetween": true },
+      "external",
+      { "newlinesBetween": true },
+      ["internal", "subpath", "unknown"]
+    ],
+    "internalPattern": ["~/", "~~/", "#"],
+    "newlinesBetween": false
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./app/assets/css/main.css",
+    "functions": ["clsx", "cn"],
+    "preserveWhitespace": true
+  },
+  "embeddedLanguageFormatting": "auto"
+}

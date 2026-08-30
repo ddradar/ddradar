@@ -151,7 +151,7 @@ function searchBy(tab: SearchTab, query: Record<string, number | number[]>) {
     <!-- Level tab -->
     <template #level>
       <div class="p-3">
-        <p class="text-sm text-muted mb-2">
+        <p class="mb-2 text-sm text-muted">
           {{ t('page.songs.tab.levelHint', { style: levelHintLabel }) }}
         </p>
         <div class="flex flex-wrap gap-2">
@@ -203,7 +203,7 @@ function searchBy(tab: SearchTab, query: Record<string, number | number[]>) {
 
     <!-- Custom tab -->
     <template #custom>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-3">
+      <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
         <UFormField :label="t('schema.song.name.label')">
           <USelectMenu
             v-model="customFilters.name"
@@ -242,7 +242,7 @@ function searchBy(tab: SearchTab, query: Record<string, number | number[]>) {
           />
         </UFormField>
 
-        <div class="sm:col-span-2 flex justify-end">
+        <div class="flex justify-end sm:col-span-2">
           <UButton @click="searchBy('custom', customFilters)">
             {{ t('actions.search.label') }}
           </UButton>
