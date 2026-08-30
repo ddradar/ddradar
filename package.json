@@ -13,11 +13,6 @@
       "name": "node",
       "version": "24.x",
       "onFail": "warn"
-    },
-    "packageManager": {
-      "name": "pnpm",
-      "version": "11.24.0",
-      "onFail": "warn"
     }
   },
   "scripts": {
