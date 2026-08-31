@@ -4,10 +4,10 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: <Registered User>
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
@@ -52,10 +52,10 @@ exports[`app/components/app/Header.vue > (locale: en) > (user: null) renders Log
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
@@ -100,10 +100,10 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: <Registered User>
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
@@ -148,10 +148,10 @@ exports[`app/components/app/Header.vue > (locale: ja) > (user: null) renders Log
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
@@ -196,10 +196,10 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: <Registered User>
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
@@ -244,10 +244,10 @@ exports[`app/components/app/Header.vue > (locale: ko) > (user: null) renders Log
 "<header data-slot="root" class="bg-default/75 backdrop-blur-sm border-b border-default h-(--ui-header-height) sticky top-0 z-50">
   <div class="w-full max-w-(--ui-container) mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-3 h-full" data-slot="container">
     <div data-slot="left" class="lg:flex-1 flex items-center gap-1.5">
-      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="w-auto h-6 shrink-0">
+      <!--v-if--><a href="/" aria-label="DDRadar" data-slot="title" class="outline-primary/25 focus-visible:outline-3 rounded-md shrink-0 font-bold text-xl text-highlighted flex items-end gap-1.5"><svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640" fill="none" class="h-6 w-auto shrink-0">
           <path d="M245 313L56 181l281-31c82 0 149 64 153 146v7l-31 276-122-184-214 245c0-68-55-122-123-122l245-205z" fill="var(--ui-primary)"></path>
           <path fill="none" stroke="var(--ui-primary)" stroke-width="30" d="M542 280c0-100-82-182-182-182M620 280c0-144-116-260-260-260"></path>
-        </svg><span class="font-bold text-lg">DDRadar</span></a>
+        </svg><span class="text-lg font-bold">DDRadar</span></a>
     </div>
     <div data-slot="center" class="hidden lg:flex">
       <!---->
