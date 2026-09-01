@@ -16,8 +16,6 @@ updates:
       prefix: ci(gh-actions)
     labels:
       - 'dependabot :robot:'
-    reviewers:
-      - ddradar/developer
 
   # Node.js (/**/package.json)
   - package-ecosystem: npm
@@ -38,24 +36,20 @@ updates:
       lint-tools:
         dependency-type: development
         patterns:
-          - '@vitest/eslint-plugin'
           - 'eslint*'
           - husky
           - lint-staged
-          - prettier
+          - oxfmt
+          - 'oxlint*'
       vitest:
         dependency-type: development
         patterns:
           - '@vitest/*'
           - vitest
-        exclude-patterns:
-          - '@vitest/eslint-plugin'
     commit-message:
       prefix: chore
       prefix-development: chore
       include: scope
     labels:
       - 'dependabot :robot:'
-    reviewers:
-      - ddradar/developer
     open-pull-requests-limit: 20
