@@ -148,28 +148,20 @@ export default cachedEventHandler(
       const withCharts = hasChartConditions || query.includeCharts
 
       const params: string[] = []
+      function sortAndJoin(value: number | number[]) {
+        return [value]
+          .flat()
+          .sort((l, r) => l - r)
+          .join(',')
+      }
+
       if (query.name !== undefined)
-        params.push(
-          `name=${[query.name]
-            .flat()
-            .sort((l, r) => l - r)
-            .join(',')}`
-        )
+        params.push(`name=${sortAndJoin(query.name)}`)
       if (query.series !== undefined)
-        params.push(
-          `series=${[query.series]
-            .flat()
-            .sort((l, r) => l - r)
-            .join(',')}`
-        )
+        params.push(`series=${sortAndJoin(query.series)}`)
       if (query.style !== undefined) params.push(`style=${query.style}`)
       if (query.level !== undefined)
-        params.push(
-          `level=${[query.level]
-            .flat()
-            .sort((l, r) => l - r)
-            .join(',')}`
-        )
+        params.push(`level=${sortAndJoin(query.level)}`)
       if (query.offset > 0) params.push(`offset=${query.offset}`)
       if (query.limit !== 50) params.push(`limit=${query.limit}`)
       params.sort()

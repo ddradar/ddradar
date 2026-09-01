@@ -161,6 +161,7 @@ describe('GET /api/songs', () => {
       ['style=2&level=15', 'withCharts:level=15&style=2'],
       ['name=3&series=7&style=0&level=5', 'withCharts:level=5&name=3&series=7'],
       ['name=0&name=10', 'name=0,10'],
+      ['name=11&name=10', 'name=10,11'],
       ['limit=10&offset=20', 'limit=10&offset=20'],
     ])('getKey({query: "%s"}) returns "%s"', async (query, expected) => {
       // Arrange
