@@ -1,4 +1,10 @@
 {
+  "chat.tools.terminal.autoApprove": {
+    "pnpm test": true,
+    "pnpm eslint": true,
+    "pnpm oxfmt": true,
+    "pnpm oxlint": true
+  },
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.fixAll.oxc": "explicit"
