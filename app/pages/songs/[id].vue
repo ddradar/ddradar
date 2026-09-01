@@ -125,18 +125,18 @@ function hasChartDetails(chart: StepChart): boolean {
               >
                 {{ getChartName(chart) }}
               </UBadge>
-              <div class="font-bold text-2xl pb-1">
+              <div class="pb-1 text-2xl font-bold">
                 {{ chart.level }}
               </div>
             </div>
           </template>
 
           <!-- Score Records Placeholder -->
-          <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
-            <h3 class="font-semibold mb-2">
+          <div class="border-t border-gray-200 pt-4 dark:border-gray-700">
+            <h3 class="mb-2 font-semibold">
               {{ t('page.songs-id.chartCard.ranking.title') }}
             </h3>
-            <div class="text-center py-4 text-gray-500">
+            <div class="py-4 text-center text-gray-500">
               <p class="text-sm">
                 {{ t('page.songs-id.chartCard.ranking.noData') }}
               </p>
@@ -177,7 +177,7 @@ function hasChartDetails(chart: StepChart): boolean {
               <!-- Notes Details -->
               <div
                 v-if="hasNotesInfo(chart)"
-                class="grid grid-cols-3 gap-3 mb-4"
+                class="mb-4 grid grid-cols-3 gap-3"
               >
                 <div v-if="chart.notes != null">
                   <dt class="text-sm text-gray-600 dark:text-gray-400">
@@ -201,7 +201,7 @@ function hasChartDetails(chart: StepChart): boolean {
 
               <!-- Radar -->
               <div v-if="chart.radar" class="mb-4">
-                <dt class="text-sm font-semibold mb-2">
+                <dt class="mb-2 text-sm font-semibold">
                   {{ t('schema.song.chart.radar.label') }}
                 </dt>
                 <div class="grid grid-cols-5 gap-2 text-center text-sm">

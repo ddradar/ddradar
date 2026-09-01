@@ -15,8 +15,8 @@ import Header from '~/components/app/Header.vue'
 import { publicUser, sessionUser } from '~~/test/data/user'
 import { withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(navigateTo, original => vi.fn(original))
-mockNuxtImport(useUserSession, original => vi.fn(original))
+mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
+mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
 
 describe('app/components/app/Header.vue', () => {
   const user = ref<User | null>(null)
@@ -34,6 +34,7 @@ describe('app/components/app/Header.vue', () => {
     clearMock.mockClear()
     vi.mocked(navigateTo).mockClear()
   })
+
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()
   })
@@ -45,13 +46,13 @@ describe('app/components/app/Header.vue', () => {
       `${sessionUser.displayName} (미등록)`
     )
   )('(locale: %s)', (locale, name) => {
+    beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
     afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
     test('(user: null) renders Login button', async () => {
       // Arrange - Act
       user.value = null
       const wrapper = await mountSuspended(Header)
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
@@ -61,7 +62,6 @@ describe('app/components/app/Header.vue', () => {
       // Arrange - Act
       user.value = { ...sessionUser, id: publicUser.id }
       const wrapper = await mountSuspended(Header)
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
@@ -71,7 +71,6 @@ describe('app/components/app/Header.vue', () => {
       // Arrange - Act
       user.value = { ...sessionUser }
       const wrapper = await mountSuspended(Header)
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       const vm = wrapper.vm as unknown as Record<string, unknown>

@@ -13,8 +13,10 @@ const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
 export default defineEventHandler(async event => {
   // Get & Validate user inputs
   const { id: userId } = await requireAuthenticatedUser(event)
-  const params = await getValidatedRouterParams(event, _paramsSchema.parse)
-  const body = await readValidatedBody(event, scoreRecordSchema.parse)
+  const params = await getValidatedRouterParams(event, i =>
+    _paramsSchema.parse(i)
+  )
+  const body = await readValidatedBody(event, i => scoreRecordSchema.parse(i))
 
   // Get song and chart info
   const song = await getCachedSongInfo(event, params.songId)

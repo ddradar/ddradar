@@ -23,7 +23,7 @@ const _querySchema = z.object({
 
 // Never use `cachedEventHandler` because user privacy settings may change
 export default defineEventHandler(async event => {
-  const query = await getValidatedQuery(event, _querySchema.parse)
+  const query = await getValidatedQuery(event, i => _querySchema.parse(i))
   const user = await getAuthenticatedUser(event)
 
   const conditions = [

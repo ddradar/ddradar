@@ -1,8 +1,14 @@
 import { getCurrentUser } from '~~/server/db/utils'
 
 // https://docs.x.com/x-api/users/get-my-user
+interface XUser {
+  id: string
+  name: string
+  profile_image_url: string
+}
+
 export default defineOAuthXEventHandler({
-  async onSuccess(event, { user: oAuthUser }) {
+  async onSuccess(event, { user: oAuthUser }: { user: XUser }) {
     const currentUser = await getCurrentUser('x', oAuthUser.id)
     await setUserSession(event, {
       user: {
@@ -17,6 +23,7 @@ export default defineOAuthXEventHandler({
     })
     if (!currentUser) return sendRedirect(event, '/profile')
 
+    // oxlint-disable-next-line typescript/prefer-nullish-coalescing - change '' to '/'
     const to = getCookie(event, 'redirect') || '/'
     deleteCookie(event, 'redirect')
     return sendRedirect(event, to)

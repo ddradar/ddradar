@@ -24,7 +24,7 @@ const items = computed<SelectItem[]>(() => [
   <div class="p-2">
     <fieldset class="mb-2">
       <legend
-        class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+        class="mb-2 flex items-center gap-1 leading-none font-semibold select-none"
       >
         {{ t('component.preference.language') }}
       </legend>
@@ -36,7 +36,7 @@ const items = computed<SelectItem[]>(() => [
     </fieldset>
     <fieldset class="mb-2">
       <legend
-        class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+        class="mb-2 flex items-center gap-1 leading-none font-semibold select-none"
       >
         {{ t('component.preference.colorMode') }}
       </legend>
@@ -44,7 +44,7 @@ const items = computed<SelectItem[]>(() => [
     </fieldset>
     <fieldset class="mb-2">
       <legend
-        class="leading-none font-semibold mb-2 select-none flex items-center gap-1"
+        class="mb-2 flex items-center gap-1 leading-none font-semibold select-none"
       >
         {{ t('component.preference.playStyle.legend') }}
       </legend>

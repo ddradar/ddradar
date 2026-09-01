@@ -148,9 +148,8 @@ export default defineTask({
         const charts: (StepChart & Pick<SongInfo, 'id'>)[] = song.charts
           .map(c => ({
             id: song.saHash,
-            playStyle: (c.style.toLowerCase() === 'double'
-              ? 2
-              : 1) as StepChart['playStyle'],
+            playStyle:
+              c.style.toLowerCase() === 'double' ? (2 as const) : (1 as const),
             difficulty: data.meta.difficulties.findIndex(
               d => d.key === c.diffClass
             ) as StepChart['difficulty'],
@@ -186,10 +185,10 @@ export default defineTask({
           chart => !existingCharts.find(c => chartEquals(c, chart))
         )
         if (newCharts.length === 0) return 0
-        const res: D1Result = await database
+        const res = (await database
           .insert(schema.charts)
           .values(newCharts)
-          .onConflictDoNothing()
+          .onConflictDoNothing()) as D1Result
         if (res.results.length > 0) {
           console.log(
             `Added charts for: ${song.name} (${song.saHash}): ${newCharts

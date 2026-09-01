@@ -97,7 +97,7 @@ describe('/shared/schemas/song', () => {
       number,
     ][])('(%o, %o) returns %d', (a, b, expected) => {
       expect(compareSong(a, b)).toBe(expected)
-      expect(compareSong(b, a)).toBe(expected === 0 ? 0 : -expected)
+      expect(compareSong(b, a)).toBeCloseTo(-expected) // to equalize +0 and -0
     })
   })
 })

@@ -13,51 +13,54 @@ import {
 import Page from '~/pages/[...slug].vue'
 import { withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(queryCollection, original => vi.fn(original))
+mockNuxtImport(queryCollection, o => vi.fn<typeof queryCollection>(o))
 
 describe('[...slug]', () => {
   beforeAll(() => {
     vi.mocked(queryCollection).mockImplementation((collection: string) => {
       return {
-        path: vi.fn((path: string) => {
-          return {
-            first: vi.fn(async () => {
-              // Return content only for content_en
-              if (path === '/' && collection === 'content_en') {
-                return {
-                  _path: '/',
-                  title: 'DDRadar',
-                  description:
-                    'Simple, fast tool to record, analyze, and share your DDR scores.',
-                  body: {
-                    type: 'root',
-                    children: [
-                      {
-                        type: 'element',
-                        tag: 'div',
-                        props: {},
-                        children: [
-                          {
-                            type: 'element',
-                            tag: 'h1',
-                            props: {},
-                            children: [{ type: 'text', value: 'DDRadar' }],
-                          },
-                        ],
-                      },
-                    ],
-                  },
+        path: vi.fn<(path: string) => { first: () => Promise<unknown> }>(
+          (path: string) => {
+            return {
+              first: vi.fn<() => Promise<unknown>>(async () => {
+                // Return content only for content_en
+                if (path === '/' && collection === 'content_en') {
+                  return Promise.resolve({
+                    _path: '/',
+                    title: 'DDRadar',
+                    description:
+                      'Simple, fast tool to record, analyze, and share your DDR scores.',
+                    body: {
+                      type: 'root',
+                      children: [
+                        {
+                          type: 'element',
+                          tag: 'div',
+                          props: {},
+                          children: [
+                            {
+                              type: 'element',
+                              tag: 'h1',
+                              props: {},
+                              children: [{ type: 'text', value: 'DDRadar' }],
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  })
                 }
-              }
-              return null
-            }),
+                return Promise.resolve(null)
+              }),
+            }
           }
-        }),
+        ),
       } as never
     })
   })
   beforeEach(() => vi.mocked(queryCollection).mockClear())
   afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
   afterAll(() => vi.mocked(queryCollection).mockReset())
 
   test.each(

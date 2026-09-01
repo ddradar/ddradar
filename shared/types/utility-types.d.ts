@@ -14,7 +14,7 @@ export type NonNullableProps<T> = Required<{
 }>
 
 /** Pagenated result */
-export type Pagenation<T> = {
+export interface Pagenation<T> {
   /** List of items on the current page */
   items: T[]
   /** Maximum number of items to return (page size) */

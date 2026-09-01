@@ -1,12 +1,12 @@
 /** Batch Result of Score Upsert */
-export type ScoreUpsertResult = {
+export interface ScoreUpsertResult {
   severity: 'error' | 'warning'
   reason: keyof typeof Reason
   message: string
   column: number
   data: unknown
   details?: {
-    fields?: Array<{ field: string; message: string }>
+    fields?: { field: string; message: string }[]
   }
 }
 

@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { charts, scores } from '@nuxthub/db/schema'
 import { and, eq, inArray, isNotNull, isNull, sql } from 'drizzle-orm'
@@ -17,7 +18,7 @@ describe('GET /api/users/[id]/scores', () => {
     count: number,
     user: Pick<UserInfo, 'id' | 'name' | 'area'>
   ): ScoreSearchResult[] =>
-    [...Array(count)].map(() => ({
+    Array.from({ length: count }, () => ({
       song: {
         id: testSongData.id,
         name: testSongData.name,
@@ -102,7 +103,7 @@ describe('GET /api/users/[id]/scores', () => {
       inArray(charts.level, range(1, 20)),
     ],
     [
-      `id=${testSongData.id}&style=${testStepCharts[0].playStyle}&diff=${testStepCharts[0].difficulty}&lv=${testStepCharts[0].level}&clear=${ClearLamp.MFC}&flare=${FlareRank.None}&rank=AAA`,
+      `?id=${testSongData.id}&style=${testStepCharts[0].playStyle}&diff=${testStepCharts[0].difficulty}&lv=${testStepCharts[0].level}&clear=${ClearLamp.MFC}&flare=${FlareRank.None}&rank=AAA`,
       { limit: 50, offset: 0, nextOffset: null, hasMore: false },
       [
         eq(scores.songId, testSongData.id),
@@ -115,7 +116,7 @@ describe('GET /api/users/[id]/scores', () => {
       inArray(charts.level, [testStepCharts[0].level]),
     ],
     [
-      'limit=2&offset=1',
+      '?limit=2&offset=1',
       { limit: 2, offset: 1, nextOffset: 3, hasMore: true },
       [
         eq(scores.songId, scores.songId),
@@ -139,9 +140,8 @@ describe('GET /api/users/[id]/scores', () => {
         vi.mocked(getCachedUser).mockResolvedValue(publicUser)
         const items = generateScores(5, publicUser)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/users/${publicUser.id}/scores${pathSuffix}`,
+          path: `/api/users/${publicUser.id}/scores${query}`,
           context: { params: { id: publicUser.id } },
         }
 
@@ -163,7 +163,7 @@ describe('GET /api/users/[id]/scores', () => {
             ),
             with: expect.objectContaining({
               chart: { columns: { level: true }, where: conditionForCharts },
-            }),
+            }) as unknown,
           })
         )
       })
@@ -177,9 +177,8 @@ describe('GET /api/users/[id]/scores', () => {
         vi.mocked(getCachedUser).mockResolvedValue(privateUser)
         const items = generateScores(5, privateUser)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/users/${privateUser.id}/scores${pathSuffix}`,
+          path: `/api/users/${privateUser.id}/scores${query}`,
           context: { params: { id: privateUser.id } },
         }
 
@@ -201,7 +200,7 @@ describe('GET /api/users/[id]/scores', () => {
             ),
             with: expect.objectContaining({
               chart: { columns: { level: true }, where: conditionForCharts },
-            }),
+            }) as unknown,
           })
         )
       })

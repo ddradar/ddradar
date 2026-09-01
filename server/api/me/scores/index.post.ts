@@ -21,7 +21,7 @@ const requiredCols = ['normalScore', 'clearLamp', 'rank', 'flareRank'] as const
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
 
-  const body = await readValidatedBody(event, _bodySchema.parse)
+  const body = await readValidatedBody(event, i => _bodySchema.parse(i))
 
   const errorsOrWarnings: ScoreUpsertResult[] = []
   const targetScores: [number, ScoreRecordInput & ScoreRecord][] = []
@@ -65,7 +65,7 @@ export default defineEventHandler(async event => {
     // Check required properties
     if (!isPropertyNotNull(scoreData, ...requiredCols)) {
       const missingFields = Object.entries(scoreData)
-        .filter(([_, v]) => v == null)
+        .filter(([, v]) => v == null)
         .map(([k]) => k)
       const message = `Missing required properties and cannot detect other properties: ${missingFields.join(', ')}`
       addWarningOrError('MISSING_REQUIRED_PROPERTIES', column, data, message, {
@@ -96,7 +96,7 @@ export default defineEventHandler(async event => {
   const database = db
   // Upsert all valid scores in batches
   for (const chunkScores of chunkArray(targetScores, CHUNK_SIZE)) {
-    const results: ReadonlyArray<D1Response> = await database.batch(
+    const results: readonly D1Response[] = await database.batch(
       chunkScores.map(([, score]) =>
         database
           .insert(scores)

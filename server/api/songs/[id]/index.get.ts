@@ -2,11 +2,10 @@ import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
 
-/** Schema for router params */
-const _paramsSchema = z.pick(songSchema, { id: true })
-
 export default defineEventHandler(async event => {
-  const { id } = await getValidatedRouterParams(event, _paramsSchema.parse)
+  const { id } = await getValidatedRouterParams(event, i =>
+    z.pick(songSchema, { id: true }).parse(i)
+  )
 
   const song = await getCachedSongInfo(event, id)
   if (!song) throw createError({ status: 404, statusText: 'Not Found' })

@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
@@ -13,7 +14,7 @@ import {
 
 import { FlareRank } from '#shared/schemas/score'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
-import handler from '~~/server/api/me//scores/[songId]/[playStyle]/[difficulty].post'
+import handler from '~~/server/api/me/scores/[songId]/[playStyle]/[difficulty].post'
 import { notValidObject } from '~~/test/data/schema'
 import { scoreRecord } from '~~/test/data/score'
 import { testSongData } from '~~/test/data/song'
@@ -30,9 +31,9 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   const body: ScoreRecord = { ...scoreRecord }
 
   // Mocks for db.insert().values().onConflictDoUpdate().returning()
-  const returning = vi.fn()
-  const values = vi.fn(() => ({
-    onConflictDoUpdate: vi.fn(() => ({ returning })),
+  const returning = vi.fn<() => Promise<ScoreRecord[]>>()
+  const values = vi.fn<() => void>(() => ({
+    onConflictDoUpdate: vi.fn<() => void>(() => ({ returning })),
   }))
 
   beforeAll(() => {
@@ -47,6 +48,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     values.mockClear()
     returning.mockClear()
   })
+
   afterAll(() => {
     vi.mocked(requireAuthenticatedUser).mockReset()
   })
@@ -132,8 +134,8 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     { ...body, clearLamp: 10 },
     { ...body, rank: 'INVALID_RANK' },
     { ...body, flareSkill: 2000 },
-    { ...body, exScore: (testStepCharts[1]?.notes ?? 0) * 3 + 1 },
-    { ...body, maxCombo: (testStepCharts[1]?.notes ?? 0) + 1 },
+    { ...body, exScore: testStepCharts[1].notes * 3 + 1 },
+    { ...body, maxCombo: testStepCharts[1].notes + 1 },
   ])('(body: %o) returns 400 when score record is invalid', async body => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
@@ -158,7 +160,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test.each([
     body,
     { ...body, exScore: 200 },
-    { ...body, maxCombo: testStepCharts[1]?.notes ?? null },
+    { ...body, maxCombo: testStepCharts[1].notes },
     { ...body, flareRank: FlareRank.V },
     { ...body, flareRank: FlareRank.III, flareSkill: 342 },
   ])('(body: %o) returns 200 with score', async body => {

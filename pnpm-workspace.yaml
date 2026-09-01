@@ -6,6 +6,6 @@ allowBuilds:
   vue-demi: true
   workerd: true
 overrides:
-  "@esbuild-kit/core-utils>esbuild": "^0.25.0"
+  '@esbuild-kit/core-utils>esbuild': '^0.25.0'
 patchedDependencies:
-  "nitropack@2.13.4": "patches/nitropack@2.13.4.patch"
+  'nitropack@2.13.4': 'patches/nitropack@2.13.4.patch'

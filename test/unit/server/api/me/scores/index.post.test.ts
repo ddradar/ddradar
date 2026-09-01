@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import type { H3Event } from 'h3'
 import {
@@ -48,14 +49,16 @@ describe('POST /api/me/scores', () => {
   beforeAll(() => {
     const user = { id: publicUser.id, roles: sessionUser.roles }
     vi.mocked(requireAuthenticatedUser).mockResolvedValue(user)
-    vi.mocked(getStepChart).mockImplementation(async chart =>
-      chart.songId === testSongData.id
-        ? testStepCharts.find(
-            c =>
-              c.playStyle === chart.playStyle &&
-              c.difficulty === chart.difficulty
-          )
-        : undefined
+    vi.mocked(getStepChart).mockImplementation(chart =>
+      Promise.resolve(
+        chart.songId === testSongData.id
+          ? testStepCharts.find(
+              c =>
+                c.playStyle === chart.playStyle &&
+                c.difficulty === chart.difficulty
+            )
+          : undefined
+      )
     )
   })
   beforeEach(() => {
@@ -63,6 +66,7 @@ describe('POST /api/me/scores', () => {
     vi.mocked(db.batch).mockClear()
     vi.mocked(getStepChart).mockClear()
   })
+
   afterAll(() => {
     vi.mocked(requireAuthenticatedUser).mockReset()
     vi.mocked(getStepChart).mockReset()

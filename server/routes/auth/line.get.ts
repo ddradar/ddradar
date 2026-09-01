@@ -1,8 +1,14 @@
 import { getCurrentUser } from '~~/server/db/utils'
 
 // https://developers.line.biz/ja/reference/line-login/#profile
+interface LineUser {
+  userId: string
+  displayName: string
+  pictureUrl: string
+}
+
 export default defineOAuthLineEventHandler({
-  async onSuccess(event, { user: oAuthUser }) {
+  async onSuccess(event, { user: oAuthUser }: { user: LineUser }) {
     const currentUser = await getCurrentUser('line', oAuthUser.userId)
     await setUserSession(event, {
       user: {
@@ -17,6 +23,7 @@ export default defineOAuthLineEventHandler({
     })
     if (!currentUser) return sendRedirect(event, '/profile')
 
+    // oxlint-disable-next-line typescript/prefer-nullish-coalescing - change '' to '/'
     const to = getCookie(event, 'redirect') || '/'
     deleteCookie(event, 'redirect')
     return sendRedirect(event, to)

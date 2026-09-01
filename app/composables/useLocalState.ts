@@ -13,7 +13,7 @@ export default function <T>(key: string, init?: () => T | Ref<T>) {
   if (import.meta.client && localStorage) {
     keys = useState('usePersistedState-watch-keys', () => [])
     const stored = localStorage.getItem(key)
-    if (stored !== null) state.value = JSON.parse(stored)
+    if (stored !== null) state.value = JSON.parse(stored) as T
   }
 
   // Watch only if there are no other watchers

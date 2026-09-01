@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
@@ -24,9 +25,9 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     difficulty: `${Difficulty.BASIC}`,
   }
   // Mocks for db.update().set().where().run()
-  const run = vi.fn()
-  const where = vi.fn(() => ({ run }))
-  const set = vi.fn(() => ({ where }))
+  const run = vi.fn<() => Promise<{ meta: { changes: number } }>>()
+  const where = vi.fn<() => void>(() => ({ run }))
+  const set = vi.fn<() => void>(() => ({ where }))
 
   beforeAll(() => {
     vi.mocked(requireAuthenticatedUser).mockResolvedValue({
@@ -41,6 +42,7 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     where.mockClear()
     run.mockClear()
   })
+
   afterAll(() => {
     vi.mocked(requireAuthenticatedUser).mockReset()
   })
@@ -77,8 +79,8 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     )
     expect(db.update).toHaveBeenCalledWith(scores)
     expect(set).toHaveBeenCalledWith({
-      deletedAt: expect.any(Date),
-      updatedAt: expect.any(Date),
+      deletedAt: expect.any(Date) as Date,
+      updatedAt: expect.any(Date) as Date,
       updatedBy: publicUser.id,
     })
     expect(where).toHaveBeenCalledWith(
@@ -108,8 +110,8 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     // Assert
     expect(db.update).toHaveBeenCalledWith(scores)
     expect(set).toHaveBeenCalledWith({
-      deletedAt: expect.any(Date),
-      updatedAt: expect.any(Date),
+      deletedAt: expect.any(Date) as Date,
+      updatedAt: expect.any(Date) as Date,
       updatedBy: publicUser.id,
     })
     expect(where).toHaveBeenCalledWith(

@@ -11,9 +11,11 @@ const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
 
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
-  const params = await getValidatedRouterParams(event, _paramsSchema.parse)
+  const params = await getValidatedRouterParams(event, i =>
+    _paramsSchema.parse(i)
+  )
 
-  const result: D1Response = await db
+  const result = (await db
     .update(scores)
     .set({ deletedAt: new Date(), updatedAt: new Date(), updatedBy: userId })
     .where(
@@ -25,7 +27,7 @@ export default defineEventHandler(async event => {
         isNull(scores.deletedAt)
       )
     )
-    .run()
+    .run()) as D1Response
 
   if (!result.meta.changes)
     throw createError({ status: 404, statusText: 'Not Found' })

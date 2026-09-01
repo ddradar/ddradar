@@ -20,7 +20,7 @@ export function getEnumKey<TValue, TEnum extends Record<string, TValue>>(
  * @returns Array of numbers from start to end
  */
 export function range<T extends number>(start: T, end: T): T[] {
-  return [...Array(end - start + 1).keys()].map(i => (i + start) as T)
+  return Array.from({ length: end - start + 1 }, (_, i) => (i + start) as T)
 }
 
 /**

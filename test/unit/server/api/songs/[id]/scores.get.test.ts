@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { scores, users } from '@nuxthub/db/schema'
 import { and, eq, inArray, isNotNull, isNull, or, sql } from 'drizzle-orm'
@@ -15,7 +16,7 @@ import { privateUser } from '~~/test/data/user'
 describe('GET /api/songs/[id]/scores', () => {
   const song = { ...testSongData, charts: [...testStepCharts] }
   const generateScores = (count: number): ScoreSearchResult[] =>
-    [...Array(count)].map((_, i) => ({
+    Array.from({ length: count }, (_, i) => ({
       song: { id: song.id, name: song.name, artist: song.artist },
       chart: {
         playStyle: testStepCharts[0].playStyle,
@@ -83,7 +84,7 @@ describe('GET /api/songs/[id]/scores', () => {
       ],
     ],
     [
-      'style=1&diff=0',
+      '?style=1&diff=0',
       { limit: 50, offset: 0, nextOffset: null, hasMore: false },
       [
         inArray(scores.playStyle, [PlayStyle.SINGLE]),
@@ -91,7 +92,7 @@ describe('GET /api/songs/[id]/scores', () => {
       ],
     ],
     [
-      'limit=2&offset=1',
+      '?limit=2&offset=1',
       { limit: 2, offset: 1, nextOffset: 3, hasMore: true },
       [
         inArray(scores.playStyle, [PlayStyle.SINGLE, PlayStyle.DOUBLE]),
@@ -110,9 +111,8 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${pathSuffix}`,
+          path: `/api/songs/${song.id}/scores${query}`,
           context: { params: { id: song.id } },
         }
 
@@ -137,7 +137,7 @@ describe('GET /api/songs/[id]/scores', () => {
                 columns: { id: true, name: true, area: true },
                 where: or(eq(users.isPublic, true), eq(users.id, '')),
               },
-            }),
+            }) as unknown,
           })
         )
       })
@@ -151,9 +151,8 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const pathSuffix = query ? `?${query}` : ''
         const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${pathSuffix}`,
+          path: `/api/songs/${song.id}/scores${query}`,
           context: { params: { id: song.id } },
         }
 
@@ -181,7 +180,7 @@ describe('GET /api/songs/[id]/scores', () => {
                   eq(users.id, privateUser.id)
                 ),
               },
-            }),
+            }) as unknown,
           })
         )
       })

@@ -27,8 +27,8 @@ async function logout() {
 <template>
   <UHeader>
     <template #title>
-      <AppLogo class="w-auto h-6 shrink-0" />
-      <span class="font-bold text-lg">DDRadar</span>
+      <AppLogo class="h-6 w-auto shrink-0" />
+      <span class="text-lg font-bold">DDRadar</span>
     </template>
 
     <UNavigationMenu :items="menu" />

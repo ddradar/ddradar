@@ -1,11 +1,10 @@
-import type { Composer } from 'vue-i18n'
 import { en, ja, ko } from 'zod/locales'
 import * as z from 'zod/mini'
 
 export default defineNuxtPlugin({
   name: 'zod-i18n',
-  async setup(nuxtApp) {
-    const { locale } = nuxtApp.$i18n as Composer
+  setup(nuxtApp) {
+    const { locale } = nuxtApp.$i18n
 
     switch (locale.value) {
       case 'ja':

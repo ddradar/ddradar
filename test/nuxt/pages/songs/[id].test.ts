@@ -9,6 +9,7 @@ import {
   afterAll,
   afterEach,
   beforeAll,
+  beforeEach,
   describe,
   expect,
   test,
@@ -22,12 +23,14 @@ import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
 import { locales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useUserSession, original => vi.fn(original))
+mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
 
 // Mock API endpoints
 registerEndpoint(`/api/songs/${testSongData.id}`, () => ({
   ...testSongData,
-  charts: testStepCharts.map(chart => JSON.parse(JSON.stringify(chart))),
+  charts: testStepCharts.map(
+    chart => JSON.parse(JSON.stringify(chart)) as StepChart
+  ),
 }))
 const noChartsSongId = '1'.repeat(32)
 registerEndpoint(`/api/songs/${noChartsSongId}`, () => ({
@@ -48,6 +51,7 @@ describe('/songs/[id]', () => {
   beforeAll(() =>
     vi.mocked(useUserSession).mockReturnValue({ loggedIn, user } as never)
   )
+
   afterAll(() => vi.mocked(useUserSession).mockReset())
 
   test('returns 404 error when song is not found', async () => {
@@ -61,6 +65,7 @@ describe('/songs/[id]', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
     afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
     test('renders correctly', async () => {
@@ -69,8 +74,6 @@ describe('/songs/[id]', () => {
       const wrapper = await mountSuspended(Page, { route })
 
       // Act
-      await wrapper.vm.$i18n.setLocale(locale)
-      // Expand all collapsible sections
       await Promise.all(
         wrapper
           .findAllComponents({ name: 'UCollapsible' })
@@ -86,7 +89,6 @@ describe('/songs/[id]', () => {
       const route = `/songs/${noChartsSongId}`
       user.value = null
       const wrapper = await mountSuspended(Page, { route })
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       const empty = wrapper.findComponent({ name: 'UEmpty' })

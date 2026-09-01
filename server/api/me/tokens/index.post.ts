@@ -36,9 +36,8 @@ export default defineEventHandler(async event => {
   )
 
   // Validate request body
-  const body = await readValidatedBody(
-    event,
-    z.pick(apiTokenSchema, { name: true, expiresAt: true }).parse
+  const body = await readValidatedBody(event, i =>
+    z.pick(apiTokenSchema, { name: true, expiresAt: true }).parse(i)
   )
 
   // Require user session with registered user ID (not allow token-authenticated)

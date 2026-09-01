@@ -63,11 +63,10 @@ const _querySchema = z.object({
 
 export default defineEventHandler(async event => {
   const currentUser = await getAuthenticatedUser(event)
-  const { id: songId } = await getValidatedRouterParams(
-    event,
-    z.pick(songSchema, { id: true }).parse
+  const { id: songId } = await getValidatedRouterParams(event, i =>
+    z.pick(songSchema, { id: true }).parse(i)
   )
-  const query = await getValidatedQuery(event, _querySchema.parse)
+  const query = await getValidatedQuery(event, i => _querySchema.parse(i))
 
   const song = await getCachedSongInfo(event, songId)
   if (!song) throw createError({ status: 404, statusText: 'Not Found' })
