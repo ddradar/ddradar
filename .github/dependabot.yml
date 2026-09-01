@@ -36,18 +36,16 @@ updates:
       lint-tools:
         dependency-type: development
         patterns:
-          - '@vitest/eslint-plugin'
           - 'eslint*'
           - husky
           - lint-staged
-          - prettier
+          - oxfmt
+          - 'oxlint*'
       vitest:
         dependency-type: development
         patterns:
           - '@vitest/*'
           - vitest
-        exclude-patterns:
-          - '@vitest/eslint-plugin'
     commit-message:
       prefix: chore
       prefix-development: chore
