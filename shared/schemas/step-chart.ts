@@ -87,7 +87,9 @@ export const stepChartSchema = z.object({
  */
 export function getChartName(
   chart:
-    Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>> | null | undefined
+    | Readonly<Pick<StepChart, 'playStyle' | 'difficulty'>>
+    | null
+    | undefined
 ): string {
   const playStyleName = getEnumKey(PlayStyle, chart?.playStyle) ?? 'UNKNOWN'
   const difficultyName = getEnumKey(Difficulty, chart?.difficulty) ?? 'UNKNOWN'

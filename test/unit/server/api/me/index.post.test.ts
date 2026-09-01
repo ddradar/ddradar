@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
@@ -23,12 +24,12 @@ describe('POST /api/me', () => {
     ddrCode: 12345678,
   }
 
-  const returning = vi.fn()
+  const returning = vi.fn<() => Promise<UserInfo[]>>()
 
   beforeAll(() =>
     vi.mocked(db.insert).mockReturnValue({
-      values: vi.fn(() => ({
-        onConflictDoUpdate: vi.fn(() => ({ returning })),
+      values: vi.fn<() => void>(() => ({
+        onConflictDoUpdate: vi.fn<() => void>(() => ({ returning })),
       })),
     } as never)
   )
@@ -38,6 +39,7 @@ describe('POST /api/me', () => {
     vi.mocked(clearUserCache).mockClear()
     vi.mocked(setUserSession).mockClear()
   })
+
   afterAll(() => vi.mocked(db.insert).mockReset())
 
   test('(body: <valid body>, session: <new user>) creates UserInfo on DB and updates session', async () => {
@@ -68,7 +70,7 @@ describe('POST /api/me', () => {
         id: body.id,
         displayName: body.name,
       },
-      lastAccessedAt: expect.any(Date),
+      lastAccessedAt: expect.any(Date) as Date,
     })
     expect(vi.mocked(clearUserCache)).toHaveBeenCalledWith(body.id)
   })

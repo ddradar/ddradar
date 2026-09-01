@@ -30,6 +30,7 @@ describe('PATCH /api/me/tokens/:id', () => {
     vi.mocked(kv.get).mockClear()
     vi.mocked(kv.set).mockClear()
   })
+
   afterAll(() => {
     vi.mocked(useRuntimeConfig).mockReset()
     vi.mocked(requireAuthenticatedUserFromSession).mockReset()

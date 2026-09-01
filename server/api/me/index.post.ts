@@ -6,7 +6,7 @@ import { userSchema } from '#shared/schemas/user'
 
 export default defineEventHandler(async event => {
   const { user } = await requireUserSession(event)
-  const body = await readValidatedBody(event, userSchema.parse)
+  const body = await readValidatedBody(event, i => userSchema.parse(i))
 
   const id = user.id ?? body.id // Use existing ID if available
   const [result]: UserInfo[] = await db

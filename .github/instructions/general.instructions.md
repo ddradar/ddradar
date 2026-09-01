@@ -18,16 +18,17 @@ applyTo: '**'
 
 DO NOT ignore or suppress type-checking, linting, or editor diagnostics reported by VS Code or other IDEs. Fix reported issues before testing.
 
-- DO NOT suppress errors/warnings with comments (e.g., `// @ts-ignore`, `/* eslint-disable */`).
+- DO NOT suppress errors/warnings with comments (e.g., `// @ts-ignore`, `/* oxlint-disable */`).
 - If you cannot fix an issue, report it and wait for instructions.
 
 ## Verification Protocol
 
-- Run in order:
-  1. `pnpm eslint {targetFile}`
-  2. `pnpm prettier --write --experimental-cli {targetFile}`
-  3. Check editor diagnostics; fix all issues
-  4. `pnpm test`
+- Run in steps:
+  1. `pnpm oxlint {targetFile}`
+  2. `pnpm eslint {targetFile}`
+  3. `pnpm oxfmt {targetFile}`
+  4. Check editor diagnostics; fix all issues
+  5. `pnpm test`
 - If any fails: stop, show logs, and request next instruction
 
 ## Safe Editing Protocol
@@ -46,7 +47,6 @@ DO NOT ignore or suppress type-checking, linting, or editor diagnostics reported
 ## Output & References
 
 - Provide trimmed error logs and workspace-relative links
-- Example link: [../../server/api/me/index.post.ts](../../server/api/me/index.post.ts)
 
 ## Permissions
 

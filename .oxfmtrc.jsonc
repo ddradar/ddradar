@@ -12,15 +12,15 @@
       { "newlinesBetween": true },
       "external",
       { "newlinesBetween": true },
-      ["internal", "subpath", "unknown"]
+      ["internal", "subpath", "unknown"],
     ],
     "internalPattern": ["~/", "~~/", "#"],
-    "newlinesBetween": false
+    "newlinesBetween": false,
   },
   "sortTailwindcss": {
     "stylesheet": "./app/assets/css/main.css",
     "functions": ["clsx", "cn"],
-    "preserveWhitespace": true
+    "preserveWhitespace": true,
   },
-  "embeddedLanguageFormatting": "auto"
+  "embeddedLanguageFormatting": "auto",
 }

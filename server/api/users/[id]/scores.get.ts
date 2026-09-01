@@ -119,11 +119,10 @@ const _querySchema = z.object({
 
 export default defineEventHandler(
   async (event): Promise<Pagenation<ScoreSearchResult>> => {
-    const { id: userId } = await getValidatedRouterParams(
-      event,
-      z.pick(userSchema, { id: true }).parse
+    const { id: userId } = await getValidatedRouterParams(event, i =>
+      z.pick(userSchema, { id: true }).parse(i)
     )
-    const query = await getValidatedQuery(event, _querySchema.parse)
+    const query = await getValidatedQuery(event, i => _querySchema.parse(i))
     const loginUser = await getAuthenticatedUser(event)
 
     const user = await getCachedUser(event, userId)

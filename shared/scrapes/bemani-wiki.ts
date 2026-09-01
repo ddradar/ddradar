@@ -96,14 +96,14 @@ export function scrapeSongNotes(
       ].map(([playStyle, difficulty]) => ({ playStyle, difficulty }))
       for (let i = 1; i < cells.length; i++) {
         // Parse notes data format: "notes/freezes" or "notes/freezes(shocks)"
-        const notesMatch = getTextContent($, cells[i]).match(
-          /^(\d+)\/(\d+)(?:\((\d+)\))?/
+        const notesMatch = /^(\d+)\/(\d+)(?:\((\d+)\))?/.exec(
+          getTextContent($, cells[i])
         )
         if (!notesMatch) continue
 
         const notes = parseInt(notesMatch[1]!, 10)
         const freezes = parseInt(notesMatch[2]!, 10)
-        const shocks = notesMatch[3] ? parseInt(notesMatch[3]!, 10) : 0
+        const shocks = notesMatch[3] ? parseInt(notesMatch[3], 10) : 0
 
         chartDataList.push({ ...charts[i - 1]!, notes, freezes, shocks })
       }

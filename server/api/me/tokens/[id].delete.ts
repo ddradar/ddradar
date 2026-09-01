@@ -4,9 +4,8 @@ import * as z from 'zod/mini'
 import { apiTokenSchema } from '#shared/schemas/user'
 
 export default defineEventHandler(async event => {
-  const { id: tokenId } = await getValidatedRouterParams(
-    event,
-    z.pick(apiTokenSchema, { id: true }).parse
+  const { id: tokenId } = await getValidatedRouterParams(event, i =>
+    z.pick(apiTokenSchema, { id: true }).parse(i)
   )
 
   // Require user session with registered user ID (not allow token-authenticated)

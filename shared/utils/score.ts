@@ -57,7 +57,7 @@ export function calcMaxScore(
   }
 }
 
-type ValidationError = {
+interface ValidationError {
   field: keyof ScoreRecord
   message: string
 }

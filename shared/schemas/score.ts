@@ -24,7 +24,6 @@ export const ClearLamp = {
   /** Marvelous Full Combo (contains only Marvelous) */
   MFC: 7,
 } as const
-type ClearLamp = (typeof ClearLamp)[keyof typeof ClearLamp]
 /** Map for {@link ClearLamp} */
 export const clearLampMap: ReadonlyMap<number, string> = new Map([
   [0, 'Failed'],
@@ -35,7 +34,7 @@ export const clearLampMap: ReadonlyMap<number, string> = new Map([
   [5, 'Great Full Combo'],
   [6, 'Perfect Full Combo'],
   [7, 'Marvelous Full Combo'],
-] satisfies [ClearLamp, string][])
+] satisfies [(typeof ClearLamp)[keyof typeof ClearLamp], string][])
 
 const _danceLevels = [
   { border: 990000, rank: 'AAA' },

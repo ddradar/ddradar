@@ -24,13 +24,15 @@ import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useToast, original => vi.fn(original))
-mockNuxtImport(useUserSession, original => vi.fn(original))
+mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
+mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
 
 // Mock API endpoints
 registerEndpoint(`/api/songs/${testSongData.id}`, () => ({
   ...testSongData,
-  charts: testStepCharts.map(chart => JSON.parse(JSON.stringify(chart))),
+  charts: testStepCharts.map(
+    chart => JSON.parse(JSON.stringify(chart)) as StepChart
+  ),
 }))
 registerEndpoint('/api/songs/', { method: 'POST', handler: mockHandler })
 
@@ -50,6 +52,7 @@ describe('/admin/songs/[id]', () => {
     addMock.mockClear()
     user.value = null
   })
+
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()
   })
@@ -71,6 +74,7 @@ describe('/admin/songs/[id]', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
     afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
     test('(<admin user>) renders correctly', async () => {
@@ -79,7 +83,6 @@ describe('/admin/songs/[id]', () => {
 
       //  Act
       const wrapper = await mountSuspended(Page, { route })
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
@@ -120,9 +123,7 @@ describe('/admin/songs/[id]', () => {
 
       // Scope to the radar field within the opened accordion
       const radarLabel = await screen.findByText('Groove Radar')
-      const radarField = radarLabel.closest(
-        '[data-slot="root"]'
-      )! as HTMLElement
+      const radarField: HTMLElement = radarLabel.closest('[data-slot="root"]')!
 
       // Ensure no radar fields exist before adding
       expect(within(radarField).queryAllByRole('textbox').length).toBe(0)
@@ -155,9 +156,7 @@ describe('/admin/songs/[id]', () => {
 
       // Scope to the radar field within the opened accordion
       const radarLabel = await screen.findByText('Groove Radar')
-      const radarField = radarLabel.closest(
-        '[data-slot="root"]'
-      )! as HTMLElement
+      const radarField: HTMLElement = radarLabel.closest('[data-slot="root"]')!
 
       // Ensure radar fields exist before deletion
       expect(within(radarField).getAllByRole('textbox').length).toBe(5)
@@ -173,6 +172,8 @@ describe('/admin/songs/[id]', () => {
     })
 
     describe('onSubmit', () => {
+      afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
       test.each(
         withLocales(
           'Song saved successfully.',
@@ -184,6 +185,7 @@ describe('/admin/songs/[id]', () => {
         async (locale, title) => {
           // Arrange
           clearNuxtData()
+          await useNuxtApp().$i18n.setLocale(locale)
           user.value = admin
           let capturedBody: SongInfo
           mockHandler.mockImplementationOnce(async event => {
@@ -191,7 +193,6 @@ describe('/admin/songs/[id]', () => {
             return capturedBody
           })
           const wrapper = await mountSuspended(Page, { route })
-          await wrapper.vm.$i18n.setLocale(locale)
 
           // Act
           await wrapper.find('form#main-form').trigger('submit')
@@ -224,13 +225,13 @@ describe('/admin/songs/[id]', () => {
         async (locale, title) => {
           // Arrange
           clearNuxtData()
+          await useNuxtApp().$i18n.setLocale(locale)
           user.value = admin
           const errorMessage = 'Invalid Body'
           mockHandler.mockImplementationOnce(() => {
             throw createError({ statusCode: 400, statusMessage: errorMessage })
           })
           const wrapper = await mountSuspended(Page, { route })
-          await wrapper.vm.$i18n.setLocale(locale)
 
           // Act
           await wrapper.find('form#main-form').trigger('submit')
@@ -242,7 +243,7 @@ describe('/admin/songs/[id]', () => {
               expect.objectContaining({
                 color: 'error',
                 title,
-                description: expect.stringContaining(errorMessage),
+                description: expect.stringContaining(errorMessage) as string,
               })
             )
           })

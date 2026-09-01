@@ -1,6 +1,7 @@
+// oxlint-disable typescript/unbound-method
 import { db } from '@nuxthub/db'
 import { songs } from '@nuxthub/db/schema'
-import { and, asc, exists, inArray, isNull } from 'drizzle-orm'
+import { and, asc, exists, inArray, isNull, type SQLWrapper } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
 
@@ -28,6 +29,7 @@ describe('GET /api/songs', () => {
   }
 
   beforeEach(() => vi.mocked(db.query.songs.findMany).mockClear())
+
   afterAll(() => vi.mocked(cachedEventHandler).mockClear())
 
   test.each([
@@ -70,9 +72,7 @@ describe('GET /api/songs', () => {
       expect(vi.mocked(db.query.songs.findMany)).toHaveBeenCalledWith(
         expect.objectContaining({
           where: and(isNull(songs.deletedAt), ...conditions),
-          with: expect.objectContaining({
-            charts: undefined,
-          }),
+          with: expect.objectContaining({ charts: undefined }) as unknown,
           orderBy: [asc(songs.nameIndex), asc(songs.nameKana)],
         })
       )
@@ -81,13 +81,13 @@ describe('GET /api/songs', () => {
 
   test.each([
     ['includeCharts=true', []],
-    ['style=1&level=10', [exists(expect.anything())]],
+    ['style=1&level=10', [exists(expect.anything() as SQLWrapper)]],
     [
       'name=10&series=10&style=1&level=10',
       [
         inArray(songs.nameIndex, [10]),
         inArray(songs.series, [seriesList[10]!]),
-        exists(expect.anything()),
+        exists(expect.anything() as SQLWrapper),
       ],
     ],
     [
@@ -112,8 +112,8 @@ describe('GET /api/songs', () => {
           with: expect.objectContaining({
             charts: expect.objectContaining({
               columns: { playStyle: true, difficulty: true, level: true },
-            }),
-          }),
+            }) as unknown,
+          }) as unknown,
           orderBy: [asc(songs.nameIndex), asc(songs.nameKana)],
         })
       )

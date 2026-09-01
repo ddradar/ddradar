@@ -23,6 +23,7 @@ describe('GET /api/me/tokens', () => {
     vi.mocked(kv.get).mockClear()
     vi.mocked(kv.keys).mockClear()
   })
+
   afterAll(() => {
     vi.mocked(requireAuthenticatedUserFromSession).mockReset()
   })

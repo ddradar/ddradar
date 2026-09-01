@@ -16,7 +16,7 @@ export type SongBody = ZodInfer<typeof songSchema> & { charts: StepChart[] }
 export type { SeriesCategory, SeriesFolder } from '#shared/schemas/song'
 
 /** Groove Radar data */
-export type GrooveRadar = {
+export interface GrooveRadar {
   stream: number
   voltage: number
   air: number

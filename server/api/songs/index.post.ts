@@ -17,7 +17,7 @@ export default defineEventHandler(async event => {
   if (!user.roles.includes('admin'))
     throw createError({ status: 403, statusText: 'Forbidden' })
 
-  const body = await readValidatedBody(event, _bodySchema.parse)
+  const body = await readValidatedBody(event, i => _bodySchema.parse(i))
 
   const deletedAt = body.deletedAt ? new Date(body.deletedAt) : null
   const database = db

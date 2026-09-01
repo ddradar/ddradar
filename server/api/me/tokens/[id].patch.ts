@@ -15,13 +15,11 @@ export default defineEventHandler(async event => {
   )
 
   // Validate route params and body
-  const { id: tokenId } = await getValidatedRouterParams(
-    event,
-    z.pick(apiTokenSchema, { id: true }).parse
+  const { id: tokenId } = await getValidatedRouterParams(event, i =>
+    z.pick(apiTokenSchema, { id: true }).parse(i)
   )
-  const body = await readValidatedBody(
-    event,
-    z.pick(apiTokenSchema, { expiresAt: true }).parse
+  const body = await readValidatedBody(event, i =>
+    z.pick(apiTokenSchema, { expiresAt: true }).parse(i)
   )
 
   // Require user session with registered user ID (not allow token-authenticated)

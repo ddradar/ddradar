@@ -24,7 +24,7 @@ import { testSongData as song } from '~~/test/data/song'
 import { testStepCharts as charts } from '~~/test/data/step-chart'
 import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useToast, original => vi.fn(original))
+mockNuxtImport(useToast, original => vi.fn<typeof useToast>(original))
 registerEndpoint(
   `/api/me/scores/${song.id}/${charts[0].playStyle}/${charts[0].difficulty}`,
   { method: 'POST', handler: mockHandler }
@@ -46,6 +46,7 @@ describe('components/form/ScoreInput.vue', () => {
 
   describe('Rendering', () => {
     describe.each(locales)('(locale: %s)', locale => {
+      beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
       afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
       test.each([
@@ -55,7 +56,6 @@ describe('components/form/ScoreInput.vue', () => {
         // Arrange - Act
         const props = { ...requiredProps, chart }
         const wrapper = await mountSuspended(ScoreInput, { props })
-        await wrapper.vm.$i18n.setLocale(locale)
 
         // Assert
         expect(wrapper.html()).toMatchSnapshot()
@@ -105,10 +105,11 @@ describe('components/form/ScoreInput.vue', () => {
         // Assert
         const form = screen.getByRole('form')
         for (const [key, value] of Object.entries(expected)) {
-          const el = form!.querySelector(`[name="${key}"]`) as
-            HTMLInputElement | HTMLSelectElement
+          const el = form.querySelector(`[name="${key}"]`) as
+            | HTMLInputElement
+            | HTMLSelectElement
           expect(el).toBeDefined()
-          expect(el.value).toBe(value == null ? '' : String(value))
+          expect(el.value).toBe(String(value))
         }
       }
     )
@@ -124,12 +125,12 @@ describe('components/form/ScoreInput.vue', () => {
         const form = screen.getByRole('form')
 
         // Act - Find the checkbox button (there's only one: isFailed)
-        const checkboxButton = within(form!).getByRole('checkbox')
+        const checkboxButton = within(form).getByRole('checkbox')
         await fireEvent.click(checkboxButton)
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
-        const clearLampSelect = form!.querySelector(
+        const clearLampSelect = form.querySelector(
           '[name="clearLamp"]'
         ) as HTMLSelectElement
         expect(checkboxButton.getAttribute('aria-checked')).toBe('true')
@@ -147,13 +148,13 @@ describe('components/form/ScoreInput.vue', () => {
         const form = screen.getByRole('form')
 
         // Act - Find the checkbox button (there's only one: isFailed)
-        const checkboxButton = within(form!).getByRole('checkbox')
+        const checkboxButton = within(form).getByRole('checkbox')
 
         await fireEvent.click(checkboxButton)
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
-        const clearLampSelect = form!.querySelector(
+        const clearLampSelect = form.querySelector(
           '[name="clearLamp"]'
         ) as HTMLSelectElement
         expect(checkboxButton.getAttribute('aria-checked')).toBe('false')
@@ -170,7 +171,7 @@ describe('components/form/ScoreInput.vue', () => {
         const form = screen.getByRole('form')
 
         // Act
-        const clearLampSelect = form!.querySelector(
+        const clearLampSelect = form.querySelector(
           '[name="clearLamp"]'
         ) as HTMLSelectElement
 
@@ -198,7 +199,7 @@ describe('components/form/ScoreInput.vue', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const autoBtn = within(form!).getByRole('button', {
+      const autoBtn = within(form).getByRole('button', {
         name: 'Auto-fill score fields',
       })
       await fireEvent.click(autoBtn)
@@ -227,13 +228,13 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act - Get input by name attribute
-      const normalScoreInput = form!.querySelector(
+      const normalScoreInput = form.querySelector(
         '[name="normalScore"]'
       ) as HTMLInputElement
       expect(normalScoreInput.value).toBe(String(scoreRecord.normalScore))
 
       // Click Reset button
-      const resetBtn = within(form!).getByRole('button', {
+      const resetBtn = within(form).getByRole('button', {
         name: 'Reset form to initial state',
       })
       await fireEvent.click(resetBtn)
@@ -245,6 +246,8 @@ describe('components/form/ScoreInput.vue', () => {
   })
 
   describe('Form Submission', () => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test.each(
       withLocales(
         'Score saved successfully.',
@@ -257,9 +260,9 @@ describe('components/form/ScoreInput.vue', () => {
         // Arrange
         mockHandler.mockClear()
         addMock.mockClear()
+        await useNuxtApp().$i18n.setLocale(locale)
         const props = { ...requiredProps, score: scoreRecord }
         const wrapper = await mountSuspended(ScoreInput, { props })
-        await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
         await wrapper.find('form').trigger('submit')
@@ -271,7 +274,6 @@ describe('components/form/ScoreInput.vue', () => {
             expect.objectContaining({ color: 'success', title: message })
           )
         })
-        await useNuxtApp().$i18n.setLocale('en')
       }
     )
 
@@ -287,6 +289,7 @@ describe('components/form/ScoreInput.vue', () => {
         // Arrange
         mockHandler.mockClear()
         addMock.mockClear()
+        await useNuxtApp().$i18n.setLocale(locale)
         const errorMessage = 'Invalid Body'
         mockHandler.mockImplementationOnce(() => {
           throw createError({ statusCode: 400, statusMessage: errorMessage })
@@ -295,7 +298,6 @@ describe('components/form/ScoreInput.vue', () => {
         const wrapper = await mountSuspended(ScoreInput, {
           props: { ...requiredProps, score: scoreRecord },
         })
-        await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
         await wrapper.find('form').trigger('submit')
@@ -307,11 +309,10 @@ describe('components/form/ScoreInput.vue', () => {
             expect.objectContaining({
               color: 'error',
               title: message,
-              description: expect.stringContaining(errorMessage),
+              description: expect.stringContaining(errorMessage) as string,
             })
           )
         })
-        await useNuxtApp().$i18n.setLocale('en')
       }
     )
   })
@@ -325,11 +326,11 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act - Set normalScore to invalid value (negative)
-      const normalScoreInput = form!.querySelector(
+      const normalScoreInput = form.querySelector(
         '[name="normalScore"]'
       ) as HTMLInputElement
       await fireEvent.update(normalScoreInput, '-1')
-      await fireEvent.submit(form!)
+      await fireEvent.submit(form)
       await new Promise(r => setTimeout(r, 100))
 
       // Assert - Validation should prevent submission with invalid data
@@ -345,7 +346,7 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act
-      const exScoreInput = within(form!).getByLabelText(
+      const exScoreInput = within(form).getByLabelText(
         /EX SCORE/i
       ) as HTMLInputElement
       const validExScore = charts[0].notes * 2
@@ -372,13 +373,13 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act
-      const exScoreInput = within(form!).getByLabelText(
+      const exScoreInput = within(form).getByLabelText(
         'EX SCORE'
       ) as HTMLInputElement
-      const maxComboInput = within(form!).getByLabelText(
+      const maxComboInput = within(form).getByLabelText(
         'MAX COMBO'
       ) as HTMLInputElement
-      const flareSkillInput = within(form!).getByLabelText(
+      const flareSkillInput = within(form).getByLabelText(
         'Flare Skill'
       ) as HTMLInputElement
 

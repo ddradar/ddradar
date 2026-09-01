@@ -1,3 +1,4 @@
+// oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'

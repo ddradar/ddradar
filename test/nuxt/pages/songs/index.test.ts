@@ -3,7 +3,8 @@ import {
   mountSuspended,
   registerEndpoint,
 } from '@nuxt/test-utils/runtime'
-import { getQuery } from 'h3'
+import type { VueWrapper } from '@vue/test-utils'
+import { getQuery, type H3Event } from 'h3'
 import {
   afterAll,
   afterEach,
@@ -17,11 +18,13 @@ import {
 import SongsResultTable from '~/components/page/songs/ResultTable.vue'
 import SongsSearchTabs from '~/components/page/songs/SearchTabs.vue'
 import PageComponent from '~/pages/songs/index.vue'
+import type { SongSearchResult } from '~~/shared/types/song'
+import type { Pagenation } from '~~/shared/types/utility-types'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { locales } from '~~/test/nuxt/const'
 
-mockNuxtImport(navigateTo, original => vi.fn(original))
+mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
 
 const songResult: SongSearchResult = {
   ...testSongData,
@@ -39,32 +42,32 @@ const anotherSongResult: SongSearchResult = {
   nameKana: 'PARANOIA MAX',
 }
 
-const songsHandler = vi.fn(event => {
-  const query = getQuery(event)
-  if (query.offset === '50') {
+const songsHandler = vi.fn<(event: H3Event) => Pagenation<SongSearchResult>>(
+  event => {
+    const query = getQuery(event)
+    if (query.offset === '50') {
+      return {
+        items: [anotherSongResult],
+        limit: 50,
+        offset: 50,
+        nextOffset: null,
+        hasMore: false,
+      }
+    }
+
     return {
-      items: [anotherSongResult],
+      items: [songResult],
       limit: 50,
-      offset: 50,
-      nextOffset: null,
-      hasMore: false,
+      offset: 0,
+      nextOffset: 50,
+      hasMore: true,
     }
   }
-
-  return {
-    items: [songResult],
-    limit: 50,
-    offset: 0,
-    nextOffset: 50,
-    hasMore: true,
-  }
-})
+)
 
 registerEndpoint('/api/songs', songsHandler)
 
-async function waitForTabsPanelSettled(
-  wrapper: Awaited<ReturnType<typeof mountSuspended>>
-) {
+async function waitForTabsPanelSettled(wrapper: VueWrapper<unknown>) {
   const selector = '[role="tabpanel"][data-state="active"]'
 
   await vi.waitFor(() => {
@@ -89,33 +92,26 @@ async function waitForTabsPanelSettled(
 }
 
 describe('/songs', () => {
-  const mountOptions = {
-    global: {
-      stubs: {
-        UTooltip: true,
-      },
-    },
-  }
+  const mountOptions = { global: { stubs: { UTooltip: true } } }
 
   beforeEach(() => {
     clearNuxtData()
     songsHandler.mockClear()
     vi.mocked(navigateTo).mockClear()
-    useState<StepChart['playStyle'] | 0>(
-      'play-style-visibility',
-      () => 0
-    ).value = 0
+    useState('play-style-visibility', () => 0).value = 0
   })
-  afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
   afterAll(() => vi.mocked(navigateTo).mockReset())
 
   describe.each(locales)('(locale: %s)', locale => {
+    beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test('renders initial state correctly', async () => {
       const wrapper = await mountSuspended(PageComponent, {
         route: '/songs',
         ...mountOptions,
       })
-      await wrapper.vm.$i18n.setLocale(locale)
       await waitForTabsPanelSettled(wrapper)
 
       expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
@@ -125,11 +121,8 @@ describe('/songs', () => {
     })
 
     test('renders search result state correctly', async () => {
-      const wrapper = await mountSuspended(PageComponent, {
-        route: '/songs?level=4',
-        ...mountOptions,
-      })
-      await wrapper.vm.$i18n.setLocale(locale)
+      const options = { route: '/songs?level=4', ...mountOptions }
+      const wrapper = await mountSuspended(PageComponent, options)
 
       await vi.waitFor(() => {
         expect(songsHandler).toHaveBeenCalled()
@@ -146,22 +139,18 @@ describe('/songs', () => {
   test.each([
     [{ style: 0, expected: { level: '4' } }],
     [{ style: 1, expected: { level: '4', style: '1' } }],
+    [{ style: 2, expected: { level: '4', style: '2' } }],
   ] as const)(
     'level search navigates with expected query: %o',
     async ({ style, expected }) => {
-      useState<StepChart['playStyle'] | 0>('play-style-visibility').value =
-        style
-      const wrapper = await mountSuspended(PageComponent, {
-        route: '/songs',
-        ...mountOptions,
-      })
+      useState('play-style-visibility').value = style
+      const options = { route: '/songs', ...mountOptions }
+      const wrapper = await mountSuspended(PageComponent, options)
 
-      const tabs = wrapper.findComponent(SongsSearchTabs)
-      await tabs.vm.$emit('search', { tab: 'level', query: expected })
+      const tabs = wrapper.findComponent(SongsSearchTabs) as VueWrapper<unknown>
+      tabs.vm.$emit('search', { tab: 'level', query: expected })
 
-      expect(vi.mocked(navigateTo)).toHaveBeenCalledWith({
-        query: expected,
-      })
+      expect(vi.mocked(navigateTo)).toHaveBeenCalledWith({ query: expected })
     }
   )
 
@@ -172,10 +161,8 @@ describe('/songs', () => {
   ] as const)(
     'derives active tab from route query (%s)',
     async (route, expected) => {
-      const wrapper = await mountSuspended(PageComponent, {
-        route,
-        ...mountOptions,
-      })
+      const options = { route, ...mountOptions }
+      const wrapper = await mountSuspended(PageComponent, options)
 
       expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
         expected
@@ -184,14 +171,12 @@ describe('/songs', () => {
   )
 
   test('keeps custom tab active after custom search with level condition', async () => {
-    const wrapper = await mountSuspended(PageComponent, {
-      route: '/songs',
-      ...mountOptions,
-    })
-    const tabs = wrapper.findComponent(SongsSearchTabs)
+    const options = { route: '/songs', ...mountOptions }
+    const wrapper = await mountSuspended(PageComponent, options)
+    const tabs = wrapper.findComponent(SongsSearchTabs) as VueWrapper<unknown>
 
-    await tabs.vm.$emit('update:activeTab', 'custom')
-    await tabs.vm.$emit('search', { tab: 'custom', query: { level: ['4'] } })
+    tabs.vm.$emit('update:activeTab', 'custom')
+    tabs.vm.$emit('search', { tab: 'custom', query: { level: ['4'] } })
 
     await vi.waitFor(() => {
       expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
@@ -201,10 +186,8 @@ describe('/songs', () => {
   })
 
   test('loads more results when load-more is emitted', async () => {
-    const wrapper = await mountSuspended(PageComponent, {
-      route: '/songs?level=4',
-      ...mountOptions,
-    })
+    const options = { route: '/songs?level=4', ...mountOptions }
+    const wrapper = await mountSuspended(PageComponent, options)
 
     await vi.waitFor(() => {
       expect(wrapper.html()).toContain(songResult.name)
@@ -212,8 +195,10 @@ describe('/songs', () => {
 
     const initialCalls = songsHandler.mock.calls.length
 
-    const resultTable = wrapper.findComponent(SongsResultTable)
-    await resultTable.vm.$emit('load-more')
+    const resultTable = wrapper.findComponent(
+      SongsResultTable
+    ) as VueWrapper<unknown>
+    resultTable.vm.$emit('load-more')
 
     await vi.waitFor(() => {
       expect(songsHandler).toHaveBeenCalledTimes(initialCalls + 1)

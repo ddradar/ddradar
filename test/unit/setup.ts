@@ -22,7 +22,7 @@ vi.stubGlobal('setResponseStatus', setResponseStatus)
 // Nitro
 vi.stubGlobal(
   'cachedEventHandler',
-  vi.fn(h => defineEventHandler(h))
+  vi.fn((h: Parameters<typeof defineEventHandler>[0]) => defineEventHandler(h))
 )
 vi.stubGlobal('defineCachedFunction', vi.fn<typeof defineCachedFunction>())
 vi.stubGlobal('defineRouteMeta', vi.fn<typeof defineRouteMeta>())

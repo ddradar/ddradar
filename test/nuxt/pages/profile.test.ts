@@ -23,10 +23,10 @@ import { publicUser, sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
 // Mock composables
-mockNuxtImport(useCookie, original => vi.fn(original) as never)
-mockNuxtImport(useToast, original => vi.fn(original))
-mockNuxtImport(useUserSession, original => vi.fn(original))
-mockNuxtImport(navigateTo, original => vi.fn(original))
+mockNuxtImport(useCookie, o => vi.fn<typeof useCookie>(o) as never)
+mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
+mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
+mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
 
 // Mock API endpoints
 registerEndpoint(`/api/users/${publicUser.id}`, () => ({ ...publicUser }))
@@ -57,6 +57,7 @@ describe('/profile', () => {
     vi.mocked(navigateTo).mockClear()
     redirectCookie.value = ''
   })
+
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()
     vi.mocked(navigateTo).mockReset()
@@ -78,6 +79,7 @@ describe('/profile', () => {
   })
 
   describe.each(locales)('(locale: %s)', locale => {
+    beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
     afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
     test('renders correctly when user is already registered', async () => {
@@ -86,7 +88,6 @@ describe('/profile', () => {
 
       // Act
       const wrapper = await mountSuspended(Page, { route })
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       expect(wrapper.html()).toMatchSnapshot()
@@ -98,7 +99,6 @@ describe('/profile', () => {
 
       // Act
       const wrapper = await mountSuspended(Page, { route })
-      await wrapper.vm.$i18n.setLocale(locale)
 
       // Assert
       const alert = wrapper.findComponent({ name: 'UAlert' })
@@ -212,6 +212,8 @@ describe('/profile', () => {
   })
 
   describe('onSubmit', () => {
+    afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
+
     test.each(
       withLocales(
         'Profile saved successfully.',
@@ -228,8 +230,8 @@ describe('/profile', () => {
           capturedBody = await readBody(event)
           return capturedBody
         })
+        await useNuxtApp().$i18n.setLocale(locale)
         const wrapper = await mountSuspended(Page, { route })
-        await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
         await wrapper.find('form').trigger('submit')
@@ -245,7 +247,6 @@ describe('/profile', () => {
           // Verify payload structure
           expect(capturedBody).toStrictEqual(publicUser)
         })
-        await useNuxtApp().$i18n.setLocale('en')
       },
       10000
     )
@@ -267,8 +268,8 @@ describe('/profile', () => {
         mockHandler.mockImplementationOnce(() => {
           throw createError({ statusCode: 400, statusMessage: apiErrorMessage })
         })
+        await useNuxtApp().$i18n.setLocale(locale)
         const wrapper = await mountSuspended(Page, { route })
-        await wrapper.vm.$i18n.setLocale(locale)
 
         // Act
         await wrapper.find('form').trigger('submit')
@@ -280,7 +281,6 @@ describe('/profile', () => {
             expect.objectContaining({ color: 'error', title: message })
           )
         })
-        await useNuxtApp().$i18n.setLocale('en')
       },
       10000
     )

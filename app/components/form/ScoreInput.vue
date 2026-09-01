@@ -46,8 +46,6 @@ It includes form fields for [ScoreRecord](#shared/schemas/score) attributes such
 </spec>
 
 <script setup lang="ts">
-import type { SelectItem } from '@nuxt/ui'
-
 import {
   ClearLamp,
   clearLampMap,
@@ -56,7 +54,7 @@ import {
   scoreRecordSchema,
 } from '#shared/schemas/score'
 
-type ScoreInputProps = {
+interface ScoreInputProps {
   /** Song ID */
   id: string
   /** Chart data */
@@ -100,9 +98,10 @@ const maxFlareSkill = computed(() =>
   calcFlareSkill(chart.level, state.value.flareRank)
 )
 /** Items for clear lamp dropdown */
-const clearLampOptions: SelectItem[] = [
-  ...clearLampMap.entries().map(([value, label]) => ({ label, value })),
-]
+const clearLampOptions = [...clearLampMap.entries()].map(([value, label]) => ({
+  label,
+  value,
+}))
 /** Items for flare rank dropdown */
 const flareRankOptions = getSelectItems(FlareRank)
 

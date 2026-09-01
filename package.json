@@ -15,12 +15,12 @@
     "fix": "pnpm run \"/^fix:.*/\"",
     "fix:eslint": "eslint --fix .",
     "fix:oxfmt": "oxfmt",
-    "fix:prettier": "prettier --write \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\" --experimental-cli",
+    "fix:oxlint": "oxlint --fix .",
     "lint": "pnpm run \"/^lint:.*/\"",
     "lint:eslint": "eslint .",
     "lint:oxfmt": "oxfmt --check",
+    "lint:oxlint": "oxlint --type-aware .",
     "lint:typecheck": "nuxt typecheck",
-    "lint:prettier": "prettier -l \"**/*.{json,jsonc,yml,js,mjs,ts,vue}\" --experimental-cli",
     "prepare": "husky && nuxt prepare",
     "test": "vitest run"
   },
@@ -72,10 +72,11 @@
   },
   "lint-staged": {
     "*.{js,mjs,ts,vue}": [
+      "oxlint --fix",
       "eslint --fix",
-      "prettier --write --experimental-cli"
+      "oxfmt"
     ],
-    "*.{json,jsonc,yml}": "prettier --write --experimental-cli"
+    "*.{json,jsonc,yaml,yml}": "oxfmt"
   },
   "devEngines": {
     "runtime": {
