@@ -32,9 +32,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
     ),
     [PlayStyle.SINGLE, PlayStyle.DOUBLE]
   ),
@@ -46,9 +44,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.difficulty.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(stepChartSchema.shape.difficulty, i)))
     ),
     range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
   ),

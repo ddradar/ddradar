@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import * as z from 'zod/mini'
 
 import {
   ClearLamp,
@@ -29,8 +30,8 @@ describe('/shared/schemas/score', () => {
       { ...validScoreRecord, clearLamp: 8 },
       { ...validScoreRecord, rank: 'SSS' },
       { ...validScoreRecord, flareRank: 11 },
-    ])('safeParse(%o) returns { success: false }', o =>
-      expect(scoreRecordSchema.safeParse(o).success).toBe(false)
+    ])('z.validate(scoreRecordSchema, %o) returns false', o =>
+      expect(z.validate(scoreRecordSchema, o)).toBe(false)
     )
 
     test.each([
@@ -39,8 +40,8 @@ describe('/shared/schemas/score', () => {
       { ...validScoreRecord, exScore: 1000 },
       { ...validScoreRecord, maxCombo: 300 },
       { ...validScoreRecord, flareRank: FlareRank.EX, flareSkill: 296 },
-    ])('safeParse(%o) returns { success: true }', o =>
-      expect(scoreRecordSchema.safeParse(o).success).toBe(true)
+    ])('z.validate(scoreRecordSchema, %o) returns true', o =>
+      expect(z.validate(scoreRecordSchema, o)).toBe(true)
     )
   })
 

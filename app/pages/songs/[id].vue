@@ -34,6 +34,7 @@ And also provides all users score records that have been submitted for the song 
 
 <script setup lang="ts">
 import type { ButtonProps } from '@nuxt/ui'
+import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
 import { Difficulty, getChartName } from '#shared/schemas/step-chart'
@@ -41,8 +42,7 @@ import { displayedBPM } from '~/utils'
 
 definePageMeta({
   validate: route =>
-    'id' in route.params &&
-    songSchema.shape.id.safeParse(route.params.id).success,
+    'id' in route.params && z.validate(songSchema.shape.id, route.params.id),
 })
 
 const { t } = useI18n()

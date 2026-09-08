@@ -30,9 +30,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
     ),
     [PlayStyle.SINGLE, PlayStyle.DOUBLE]
   ),
@@ -44,9 +42,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.difficulty.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(stepChartSchema.shape.difficulty, i)))
     ),
     range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
   ),
@@ -55,7 +51,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(z.refine(i => stepChartSchema.shape.level.safeParse(i).success))
+        .check(z.refine(i => z.validate(stepChartSchema.shape.level, i)))
     ),
     range(1, 20)
   ),
@@ -75,9 +71,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => scoreRecordSchema.shape.clearLamp.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(scoreRecordSchema.shape.clearLamp, i)))
     ),
     range(ClearLamp.Failed, ClearLamp.MFC)
   ),
@@ -100,9 +94,7 @@ const _querySchema = z.object({
     singleOrArray(
       z.coerce
         .number()
-        .check(
-          z.refine(i => scoreRecordSchema.shape.flareRank.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(scoreRecordSchema.shape.flareRank, i)))
     ),
     range(FlareRank.None, FlareRank.EX)
   ),

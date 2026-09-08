@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import * as z from 'zod/mini'
 
 import {
   compareSong,
@@ -35,8 +36,8 @@ describe('/shared/schemas/song', () => {
       { ...validSong, nameKana: 'abc' },
       { ...validSong, bpm: 'null' },
       { ...validSong, series: 'DDR FESTIVAL' },
-    ])('safeParse(%o) returns { success: false }', o =>
-      expect(songSchema.safeParse(o).success).toBe(false)
+    ])('z.validate(songSchema, %o) returns false', o =>
+      expect(z.validate(songSchema, o)).toBe(false)
     )
 
     test.each([
@@ -51,8 +52,8 @@ describe('/shared/schemas/song', () => {
       { ...validSong, series: 'DDR WORLD' },
       { ...validSong, bpm: null },
     ] satisfies Omit<SongInfo, 'charts'>[])(
-      'safeParse(%o) returns { success: true }',
-      o => expect(songSchema.safeParse(o).success).toBe(true)
+      'z.validate(songSchema, %o) returns true',
+      o => expect(z.validate(songSchema, o)).toBe(true)
     )
   })
 

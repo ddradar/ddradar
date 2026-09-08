@@ -46,9 +46,7 @@ const _querySchema = z.object({
     z.optional(
       z.coerce
         .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
-        )
+        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
     ),
     undefined
   ),
@@ -58,9 +56,7 @@ const _querySchema = z.object({
       singleOrArray(
         z.coerce
           .number()
-          .check(
-            z.refine(i => stepChartSchema.shape.level.safeParse(i).success)
-          )
+          .check(z.refine(i => z.validate(stepChartSchema.shape.level, i)))
       )
     ),
     undefined

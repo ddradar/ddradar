@@ -38,6 +38,7 @@ This page allows administrators to edit song information, including adding and m
 
 <script setup lang="ts">
 import type { AccordionItem } from '@nuxt/ui'
+import * as z from 'zod/mini'
 
 import { seriesList, songSchema } from '#shared/schemas/song'
 import {
@@ -52,8 +53,7 @@ definePageMeta({
   middleware: 'auth',
   roles: ['admin'],
   validate: route =>
-    'id' in route.params &&
-    songSchema.shape.id.safeParse(route.params.id).success,
+    'id' in route.params && z.validate(songSchema.shape.id, route.params.id),
 })
 
 /** Select items for song.playStyle */
