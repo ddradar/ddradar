@@ -1,17 +1,18 @@
 import type { songs } from '@nuxthub/db/schema'
+import type { infer as zodInfer } from 'zod/mini'
 
 import type { songSchema } from '#shared/schemas/song'
 import type { stepChartSchema } from '#shared/schemas/step-chart'
 
 /** Song info */
-export type SongInfo = ZodInfer<typeof songSchema> &
+export type SongInfo = zodInfer<typeof songSchema> &
   Readonly<Omit<typeof songs.$inferSelect, keyof typeof songs.$inferInsert>> & {
     charts: StepChart[]
   }
 export type SongSearchResult = Omit<SongInfo, 'charts'> & {
   charts?: Pick<StepChart, 'playStyle' | 'difficulty' | 'level'>[]
 }
-export type SongBody = ZodInfer<typeof songSchema> & { charts: StepChart[] }
+export type SongBody = zodInfer<typeof songSchema> & { charts: StepChart[] }
 
 export type { SeriesCategory, SeriesFolder } from '#shared/schemas/song'
 
@@ -23,4 +24,4 @@ export interface GrooveRadar {
   freeze: number
   chaos: number
 }
-export type StepChart = ZodInfer<typeof stepChartSchema>
+export type StepChart = zodInfer<typeof stepChartSchema>

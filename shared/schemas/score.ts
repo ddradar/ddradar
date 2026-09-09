@@ -162,7 +162,7 @@ export const scoreRecordSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<
     typeof scores.$inferInsert,
-    keyof ZodInfer<typeof scoreRecordKeySchema> | SystemColumns
+    keyof z.infer<typeof scoreRecordKeySchema> | SystemColumns
   >
 >
 

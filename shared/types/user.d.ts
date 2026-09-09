@@ -1,9 +1,11 @@
+import type { infer as zodInfer } from 'zod/mini'
+
 import type { apiTokenSchema, userSchema } from '#shared/schemas/user'
 
 /** User info */
-export type UserInfo = ZodInfer<typeof userSchema>
+export type UserInfo = zodInfer<typeof userSchema>
 /** Generated token info (excepts auth fields) */
-export type ApiToken = ZodInfer<typeof apiTokenSchema>
+export type ApiToken = zodInfer<typeof apiTokenSchema>
 
 declare module '#auth-utils' {
   interface User {
