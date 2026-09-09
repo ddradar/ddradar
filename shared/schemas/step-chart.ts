@@ -37,12 +37,12 @@ export const stepChartSchema = z.object({
    * Play style
    * @description `1`: SINGLE, `2`: DOUBLE
    */
-  playStyle: z.union(Object.values(PlayStyle).map(k => z.literal(k))),
+  playStyle: z.enum(PlayStyle),
   /**
    * Difficulty
    * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
    */
-  difficulty: z.union(Object.values(Difficulty).map(k => z.literal(k))),
+  difficulty: z.enum(Difficulty),
   /**
    * Chart BPM range.
    * @description

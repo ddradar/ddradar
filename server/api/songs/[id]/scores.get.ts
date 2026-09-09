@@ -29,11 +29,7 @@ const _querySchema = z.object({
    * @description `1`: SINGLE, `2`: DOUBLE
    */
   style: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
     [PlayStyle.SINGLE, PlayStyle.DOUBLE]
   ),
   /**
@@ -41,11 +37,7 @@ const _querySchema = z.object({
    * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
    */
   diff: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.difficulty, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.difficulty)),
     range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
   ),
   /** Maximum number of items to return (default: 50, maximum: 100) */

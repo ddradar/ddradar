@@ -27,11 +27,7 @@ const _querySchema = z.object({
    * @description `1`: SINGLE, `2`: DOUBLE
    */
   style: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
     [PlayStyle.SINGLE, PlayStyle.DOUBLE]
   ),
   /**
@@ -39,20 +35,12 @@ const _querySchema = z.object({
    * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
    */
   diff: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.difficulty, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.difficulty)),
     range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
   ),
   /** Level (default: all levels) */
   lv: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.level, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.level)),
     range(1, 20)
   ),
   /**
@@ -68,11 +56,7 @@ const _querySchema = z.object({
    * - `7`: Marvelous Full Combo
    */
   clear: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(scoreRecordSchema.shape.clearLamp, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), scoreRecordSchema.shape.clearLamp)),
     range(ClearLamp.Failed, ClearLamp.MFC)
   ),
   /**
@@ -91,11 +75,7 @@ const _querySchema = z.object({
    * - `10`: FLARE EX
    */
   flare: z.catch(
-    singleOrArray(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(scoreRecordSchema.shape.flareRank, i)))
-    ),
+    singleOrArray(z.pipe(z.coerce.number(), scoreRecordSchema.shape.flareRank)),
     range(FlareRank.None, FlareRank.EX)
   ),
   /** Dance Level (default: all ranks) */

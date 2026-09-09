@@ -43,21 +43,13 @@ const _querySchema = z.object({
   ),
   /** Play style (`1`: SINGLE, `2`: DOUBLE) */
   style: z.catch(
-    z.optional(
-      z.coerce
-        .number()
-        .check(z.refine(i => z.validate(stepChartSchema.shape.playStyle, i)))
-    ),
+    z.optional(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
     undefined
   ),
   /** Chart level (1-20) */
   level: z.catch(
     z.optional(
-      singleOrArray(
-        z.coerce
-          .number()
-          .check(z.refine(i => z.validate(stepChartSchema.shape.level, i)))
-      )
+      singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.level))
     ),
     undefined
   ),
