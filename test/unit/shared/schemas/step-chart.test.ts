@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import * as z from 'zod/mini'
 
 import {
   Chart,
@@ -36,8 +37,8 @@ describe('/shared/schemas/step-chart', () => {
         ...validStepChart,
         radar: { stream: -1, voltage: 0, air: 0, freeze: 0, chaos: 0 },
       },
-    ])('safeParse(%o) returns { success: false }', o =>
-      expect(stepChartSchema.safeParse(o).success).toBe(false)
+    ])('z.validate(stepChartSchema, %o) returns false', o =>
+      expect(z.validate(stepChartSchema, o)).toBe(false)
     )
 
     test.each([
@@ -51,8 +52,8 @@ describe('/shared/schemas/step-chart', () => {
         ...validStepChart,
         radar: { stream: 5, voltage: 7, air: 3, freeze: 4, chaos: 2 },
       },
-    ])('safeParse(%o) returns { success: true }', o =>
-      expect(stepChartSchema.safeParse(o).success).toBe(true)
+    ])('z.validate(stepChartSchema, %o) returns true', o =>
+      expect(z.validate(stepChartSchema, o)).toBe(true)
     )
   })
 

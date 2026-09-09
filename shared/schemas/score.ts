@@ -135,9 +135,9 @@ export const scoreRecordSchema = z.object({
    * - `6`: Perfect Full Combo
    * - `7`: Marvelous Full Combo
    */
-  clearLamp: z.union(Object.values(ClearLamp).map(v => z.literal(v))),
+  clearLamp: z.enum(ClearLamp),
   /** Dance Level ("AAA", "AA+", "AA", "AA-", ..., "D+", "D", "E") */
-  rank: z.union(_danceLevels.map(({ rank }) => z.literal(rank))),
+  rank: z.enum(danceLevels),
   /**
    * Flare Rank
    * @description
@@ -153,7 +153,7 @@ export const scoreRecordSchema = z.object({
    * - `9`: FLARE IX
    * - `10`: FLARE EX
    */
-  flareRank: z.union(Object.values(FlareRank).map(v => z.literal(v))),
+  flareRank: z.enum(FlareRank),
   /** Flare Skill */
   flareSkill: z.pipe(
     z.nullish(z.int().check(z.nonnegative())),
@@ -162,14 +162,14 @@ export const scoreRecordSchema = z.object({
 }) satisfies z.ZodMiniType<
   Omit<
     typeof scores.$inferInsert,
-    keyof ZodInfer<typeof scoreRecordKeySchema> | SystemColumns
+    keyof z.infer<typeof scoreRecordKeySchema> | SystemColumns
   >
 >
 
 /** Schema for ScoreRecordInput */
 export const scoreRecordInputSchema = z.pipe(
   z.object({
-    ...z.partial(scoreRecordSchema).shape,
+    ...z.exactPartial(scoreRecordSchema).shape,
     ...z.omit(scoreRecordKeySchema, { userId: true }).shape,
   }),
   z.transform(value => ({

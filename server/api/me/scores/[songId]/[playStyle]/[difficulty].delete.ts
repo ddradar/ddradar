@@ -7,12 +7,12 @@ import * as z from 'zod/mini'
 import { scoreRecordKeySchema } from '#shared/schemas/score'
 
 /** Schema for router params */
-const _paramsSchema = z.omit(scoreRecordKeySchema, { userId: true })
+const paramsSchema = z.compile(z.omit(scoreRecordKeySchema, { userId: true }))
 
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
   const params = await getValidatedRouterParams(event, i =>
-    _paramsSchema.parse(i)
+    paramsSchema.parse(i)
   )
 
   const result = (await db

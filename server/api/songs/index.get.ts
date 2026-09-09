@@ -10,81 +10,65 @@ import { ignoreTimestampCols } from '~~/server/db/utils'
 import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
-const _querySchema = z.object({
-  /** Song name index (0-36) */
-  name: z.catch(
-    z.optional(
-      singleOrArray(
-        z.coerce
-          .number()
-          .check(
-            z.refine(i => (Object.values(NameIndex) as number[]).includes(i))
-          )
-      )
+const querySchema = z.compile(
+  z.object({
+    /** Song name index (0-36) */
+    name: z.catch(
+      z.optional(singleOrArray(z.pipe(z.coerce.number(), z.enum(NameIndex)))),
+      undefined
     ),
-    undefined
-  ),
-  /**
-   * Series index
-   * @description
-   * - 0: DDR 1st
-   * - 1: DDR 2ndMIX
-   * - ...
-   * - 18: DDR A3
-   * - 19: DDR WORLD
-   */
-  series: z.catch(
-    z.optional(
-      singleOrArray(
-        z.coerce.number().check(z.refine(i => i >= 0 && i < seriesList.length))
-      )
-    ),
-    undefined
-  ),
-  /** Play style (`1`: SINGLE, `2`: DOUBLE) */
-  style: z.catch(
-    z.optional(
-      z.coerce
-        .number()
-        .check(
-          z.refine(i => stepChartSchema.shape.playStyle.safeParse(i).success)
+    /**
+     * Series index
+     * @description
+     * - 0: DDR 1st
+     * - 1: DDR 2ndMIX
+     * - ...
+     * - 18: DDR A3
+     * - 19: DDR WORLD
+     */
+    series: z.catch(
+      z.optional(
+        singleOrArray(
+          z.coerce
+            .number()
+            .check(z.int(), z.nonnegative(), z.lte(seriesList.length - 1))
         )
+      ),
+      undefined
     ),
-    undefined
-  ),
-  /** Chart level (1-20) */
-  level: z.catch(
-    z.optional(
-      singleOrArray(
-        z.coerce
-          .number()
-          .check(
-            z.refine(i => stepChartSchema.shape.level.safeParse(i).success)
-          )
-      )
+    /** Play style (`1`: SINGLE, `2`: DOUBLE) */
+    style: z.catch(
+      z.optional(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
+      undefined
     ),
-    undefined
-  ),
-  /**
-   * Whether to include charts data
-   * @default false when no chart conditions (`style` and `level`) specified, true when they are specified
-   */
-  includeCharts: z.catch(z.stringbool(), false),
-  /** Maximum number of items to return (default: 50, maximum: 100) */
-  limit: z.catch(
-    z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
-    50
-  ),
-  /** Number of items to skip. use for pagination (default: 0) */
-  offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
-})
+    /** Chart level (1-20) */
+    level: z.catch(
+      z.optional(
+        singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.level))
+      ),
+      undefined
+    ),
+    /**
+     * Whether to include charts data
+     * @default false when no chart conditions (`style` and `level`) specified, true when they are specified
+     */
+    includeCharts: z.catch(z.stringbool(), false),
+    /** Maximum number of items to return (default: 50, maximum: 100) */
+    limit: z.catch(
+      z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
+      50
+    ),
+    /** Number of items to skip. use for pagination (default: 0) */
+    offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
+  })
+)
 
 /** Cache name for "GET /api/songs" handler */
 export const cacheName = 'getSongList'
 
 export default cachedEventHandler(
   async event => {
-    const query = await getValidatedQuery(event, i => _querySchema.parse(i))
+    const query = await getValidatedQuery(event, i => querySchema.parse(i))
 
     const hasChartConditions =
       query.style !== undefined || query.level !== undefined
@@ -142,7 +126,7 @@ export default cachedEventHandler(
     maxAge: 60 * 60, // 1 hour
     name: cacheName,
     getKey: async event => {
-      const query = await getValidatedQuery(event, i => _querySchema.parse(i))
+      const query = await getValidatedQuery(event, i => querySchema.parse(i))
       const hasChartConditions =
         query.style !== undefined || query.level !== undefined
       const withCharts = hasChartConditions || query.includeCharts

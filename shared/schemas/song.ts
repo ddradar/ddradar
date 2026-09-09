@@ -100,6 +100,8 @@ export const songSchema = z.object({
   /** Series title depend on official site. */
   series: z.enum(seriesList),
 }) satisfies z.ZodMiniType<Omit<typeof songs.$inferInsert, SystemColumns>>
+/** Zod compiled schema for `Song.id`. */
+export const songIdSchema = z.compile(z.pick(songSchema, { id: true }))
 
 /**
  * Compare two songs for sorting by `nameKana`.

@@ -37,22 +37,6 @@ export function chunkArray<T>(array: T[], size: number): T[][] {
 }
 
 /**
- * Asserts that the specified properties of an object are not null or undefined
- * @param obj object to assert
- * @param keys property keys to check
- * @returns true if all specified properties are not null or undefined, false otherwise
- */
-export function isPropertyNotNull<T, K extends keyof T>(
-  obj: T,
-  ...keys: K[]
-): obj is T & { [P in K]-?: NonNullable<T[P]> } {
-  for (const key of keys) {
-    if (obj[key] == null) return false
-  }
-  return true
-}
-
-/**
  * Returns a Zod schema that accepts either a single value or an array of values
  * @param schema Zod schema for the value type
  */

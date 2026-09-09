@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest'
+import * as z from 'zod/mini'
 
 import { Area, getNarrowedArea, userSchema } from '#shared/schemas/user'
 import { notValidObject } from '~~/test/data/schema'
@@ -27,8 +28,8 @@ describe('/shared/schemas/user', () => {
       { ...validUserInfo, ddrCode: 100000000 },
       { ...validUserInfo, isPublic: undefined },
       { id: 'new_user', name: 'New User', area: Area.東京都 },
-    ])('safeParse(%o) returns { success: false }', o =>
-      expect(userSchema.safeParse(o).success).toBe(false)
+    ])('z.validate(userSchema, %o) returns false', o =>
+      expect(z.validate(userSchema, o)).toBe(false)
     )
 
     test.each([
@@ -37,8 +38,8 @@ describe('/shared/schemas/user', () => {
       { ...validUserInfo, area: Area.Undefined },
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },
-    ])('safeParse(%o) returns { success: true }', o =>
-      expect(userSchema.safeParse(o).success).toBe(true)
+    ])('z.validate(userSchema, %o) returns true', o =>
+      expect(z.validate(userSchema, o)).toBe(true)
     )
   })
 
