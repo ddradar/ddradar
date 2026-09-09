@@ -2,25 +2,21 @@ import { kv } from '@nuxthub/kv'
 import * as z from 'zod/mini'
 
 import { apiTokenSchema } from '#shared/schemas/user'
+import { getTokenConfig } from '~~/server/utils/auth'
 
-/** Schema for runtimeConfig */
-const _runtimeConfigSchema = z.catch(
-  z.object({ maxExpirationDays: z.coerce.number() }),
-  { maxExpirationDays: 365 }
-)
+/** Schema for route params */
+const paramsSchema = z.compile(z.pick(apiTokenSchema, { id: true }))
+/** Schema for request body */
+const bodySchema = z.compile(z.pick(apiTokenSchema, { expiresAt: true }))
 
 export default defineEventHandler(async event => {
-  const { maxExpirationDays } = _runtimeConfigSchema.parse(
-    useRuntimeConfig(event).public.token
-  )
+  const { maxExpirationDays } = getTokenConfig(event)
 
   // Validate route params and body
   const { id: tokenId } = await getValidatedRouterParams(event, i =>
-    z.pick(apiTokenSchema, { id: true }).parse(i)
+    paramsSchema.parse(i)
   )
-  const body = await readValidatedBody(event, i =>
-    z.pick(apiTokenSchema, { expiresAt: true }).parse(i)
-  )
+  const body = await readValidatedBody(event, i => bodySchema.parse(i))
 
   // Require user session with registered user ID (not allow token-authenticated)
   const user = await requireAuthenticatedUserFromSession(event)

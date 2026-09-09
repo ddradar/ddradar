@@ -36,14 +36,11 @@ And also provides all users score records that have been submitted for the song 
 import type { ButtonProps } from '@nuxt/ui'
 import * as z from 'zod/mini'
 
-import { songSchema } from '#shared/schemas/song'
+import { songIdSchema } from '#shared/schemas/song'
 import { Difficulty, getChartName } from '#shared/schemas/step-chart'
 import { displayedBPM } from '~/utils'
 
-definePageMeta({
-  validate: route =>
-    'id' in route.params && z.validate(songSchema.shape.id, route.params.id),
-})
+definePageMeta({ validate: ({ params }) => z.validate(songIdSchema, params) })
 
 const { t } = useI18n()
 const route = useRoute('songs-id')

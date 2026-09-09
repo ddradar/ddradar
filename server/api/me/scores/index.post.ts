@@ -4,8 +4,11 @@ import { scores } from '@nuxthub/db/schema'
 import { isNotNull, lt, or, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { scoreRecordInputSchema } from '#shared/schemas/score'
-import { chunkArray, isPropertyNotNull } from '#shared/utils'
+import {
+  scoreRecordInputSchema,
+  scoreRecordSchema,
+} from '#shared/schemas/score'
+import { chunkArray } from '#shared/utils'
 import {
   fillScoreRecordFromChart,
   hasNotesInfo,
@@ -14,14 +17,24 @@ import {
 import { getStepChart } from '~~/server/db/utils'
 import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
 
-const _bodySchema = z.array(scoreRecordInputSchema).check(z.minLength(1))
+const bodySchema = z.compile(
+  z.array(scoreRecordInputSchema).check(z.minLength(1))
+)
+const scoreDataSchema = z.compile(
+  z.required(
+    z.pick(scoreRecordSchema, {
+      normalScore: true,
+      clearLamp: true,
+      rank: true,
+      flareRank: true,
+    })
+  )
+)
 const CHUNK_SIZE = 25
-const requiredCols = ['normalScore', 'clearLamp', 'rank', 'flareRank'] as const
 
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
-
-  const body = await readValidatedBody(event, i => _bodySchema.parse(i))
+  const body = await readValidatedBody(event, i => bodySchema.parse(i))
 
   const errorsOrWarnings: ScoreUpsertResult[] = []
   const targetScores: [number, ScoreRecordInput & ScoreRecord][] = []
@@ -63,7 +76,7 @@ export default defineEventHandler(async event => {
     }
 
     // Check required properties
-    if (!isPropertyNotNull(scoreData, ...requiredCols)) {
+    if (!z.validate(scoreDataSchema, scoreData)) {
       const missingFields = Object.entries(scoreData)
         .filter(([, v]) => v == null)
         .map(([k]) => k)

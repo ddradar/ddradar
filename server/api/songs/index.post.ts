@@ -7,17 +7,19 @@ import { stepChartSchema } from '#shared/schemas/step-chart'
 import type { StepChart } from '#shared/types/song'
 
 /** Schema for request body */
-const _bodySchema = z.extend(songSchema, {
-  charts: z.array(stepChartSchema),
-  deletedAt: z.optional(z.iso.datetime()),
-})
+const bodySchema = z.compile(
+  z.extend(songSchema, {
+    charts: z.array(stepChartSchema),
+    deletedAt: z.optional(z.iso.datetime()),
+  })
+)
 
 export default defineEventHandler(async event => {
   const user = await requireAuthenticatedUser(event)
   if (!user.roles.includes('admin'))
     throw createError({ status: 403, statusText: 'Forbidden' })
 
-  const body = await readValidatedBody(event, i => _bodySchema.parse(i))
+  const body = await readValidatedBody(event, i => bodySchema.parse(i))
 
   const deletedAt = body.deletedAt ? new Date(body.deletedAt) : null
   const database = db

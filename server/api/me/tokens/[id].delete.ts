@@ -3,9 +3,12 @@ import * as z from 'zod/mini'
 
 import { apiTokenSchema } from '#shared/schemas/user'
 
+/** Schema for route params */
+const paramsSchema = z.compile(z.pick(apiTokenSchema, { id: true }))
+
 export default defineEventHandler(async event => {
   const { id: tokenId } = await getValidatedRouterParams(event, i =>
-    z.pick(apiTokenSchema, { id: true }).parse(i)
+    paramsSchema.parse(i)
   )
 
   // Require user session with registered user ID (not allow token-authenticated)
@@ -18,11 +21,11 @@ export default defineEventHandler(async event => {
   if (!tokenData)
     throw createError({ status: 404, statusText: 'Token not found' })
 
-  // Delete reverse mapping
-  await kv.del(`token:${tokenData.hashedToken}`)
-
-  // Delete token data
-  await kv.del(tokenKey)
+  // Delete reverse mapping & token data
+  await Promise.all([
+    kv.del(`token:${tokenData.hashedToken}`),
+    kv.del(tokenKey),
+  ])
 
   // Return 204 No Content
   setResponseStatus(event, 204)

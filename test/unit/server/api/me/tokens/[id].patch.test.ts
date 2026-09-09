@@ -22,7 +22,7 @@ describe('PATCH /api/me/tokens/:id', () => {
 
   beforeAll(() => {
     vi.mocked(useRuntimeConfig).mockReturnValue({
-      public: { token: { maxExpirationDays: 30 } },
+      public: { token: { maxExpirationDays: 30, maxCreationPerUser: 10 } },
     } as never)
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
   })

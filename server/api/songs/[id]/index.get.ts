@@ -1,10 +1,8 @@
-import * as z from 'zod/mini'
-
-import { songSchema } from '#shared/schemas/song'
+import { songIdSchema } from '#shared/schemas/song'
 
 export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, i =>
-    z.pick(songSchema, { id: true }).parse(i)
+    songIdSchema.parse(i)
   )
 
   const song = await getCachedSongInfo(event, id)

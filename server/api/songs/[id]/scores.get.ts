@@ -13,7 +13,7 @@ import {
 } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
-import { songSchema } from '#shared/schemas/song'
+import { songIdSchema } from '#shared/schemas/song'
 import {
   Difficulty,
   PlayStyle,
@@ -23,38 +23,42 @@ import { range, singleOrArray } from '#shared/utils'
 import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
-const _querySchema = z.object({
-  /**
-   * Play Style (default: all styles)
-   * @description `1`: SINGLE, `2`: DOUBLE
-   */
-  style: z.catch(
-    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
-    [PlayStyle.SINGLE, PlayStyle.DOUBLE]
-  ),
-  /**
-   * Difficulty (default: all difficulties)
-   * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
-   */
-  diff: z.catch(
-    singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.difficulty)),
-    range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
-  ),
-  /** Maximum number of items to return (default: 50, maximum: 100) */
-  limit: z.catch(
-    z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
-    50
-  ),
-  /** Number of items to skip. use for pagination (default: 0) */
-  offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
-})
+const querySchema = z.compile(
+  z.object({
+    /**
+     * Play Style (default: all styles)
+     * @description `1`: SINGLE, `2`: DOUBLE
+     */
+    style: z.catch(
+      singleOrArray(z.pipe(z.coerce.number(), stepChartSchema.shape.playStyle)),
+      [PlayStyle.SINGLE, PlayStyle.DOUBLE]
+    ),
+    /**
+     * Difficulty (default: all difficulties)
+     * @description `0`: BEGINNER, `1`: BASIC, `2`: DIFFICULT, `3`: EXPERT, `4`: CHALLENGE
+     */
+    diff: z.catch(
+      singleOrArray(
+        z.pipe(z.coerce.number(), stepChartSchema.shape.difficulty)
+      ),
+      range(Difficulty.BEGINNER, Difficulty.CHALLENGE)
+    ),
+    /** Maximum number of items to return (default: 50, maximum: 100) */
+    limit: z.catch(
+      z.coerce.number().check(z.int(), z.positive(), z.maximum(100)),
+      50
+    ),
+    /** Number of items to skip. use for pagination (default: 0) */
+    offset: z.catch(z.coerce.number().check(z.int(), z.nonnegative()), 0),
+  })
+)
 
 export default defineEventHandler(async event => {
   const currentUser = await getAuthenticatedUser(event)
   const { id: songId } = await getValidatedRouterParams(event, i =>
-    z.pick(songSchema, { id: true }).parse(i)
+    songIdSchema.parse(i)
   )
-  const query = await getValidatedQuery(event, i => _querySchema.parse(i))
+  const query = await getValidatedQuery(event, i => querySchema.parse(i))
 
   const song = await getCachedSongInfo(event, songId)
   if (!song) throw createError({ status: 404, statusText: 'Not Found' })

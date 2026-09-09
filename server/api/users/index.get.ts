@@ -3,27 +3,33 @@ import { users } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
+import { userSchema } from '#shared/schemas/user'
+
 /** Schema for query parameters */
-const _querySchema = z.object({
-  /** User name (partial match) */
-  name: z.catch(z.optional(z.coerce.string()), undefined),
-  /** Area code */
-  area: z.catch(
-    z.optional(z.coerce.number().check(z.int(), z.minimum(0), z.maximum(118))),
-    undefined
-  ),
-  /** DDR code (8-digit number) */
-  code: z.catch(
-    z.optional(
-      z.coerce.number().check(z.int(), z.minimum(10000000), z.maximum(99999999))
+const querySchema = z.compile(
+  z.object({
+    /** User name (partial match) */
+    name: z.catch(z.optional(z.coerce.string()), undefined),
+    /** Area code */
+    area: z.catch(
+      z.optional(z.pipe(z.coerce.number(), userSchema.shape.area)),
+      undefined
     ),
-    undefined
-  ),
-})
+    /** DDR code (8-digit number) */
+    code: z.catch(
+      z.optional(
+        z.coerce
+          .number()
+          .check(z.int(), z.minimum(10000000), z.maximum(99999999))
+      ),
+      undefined
+    ),
+  })
+)
 
 // Never use `cachedEventHandler` because user privacy settings may change
 export default defineEventHandler(async event => {
-  const query = await getValidatedQuery(event, i => _querySchema.parse(i))
+  const query = await getValidatedQuery(event, i => querySchema.parse(i))
   const user = await getAuthenticatedUser(event)
 
   const conditions = [

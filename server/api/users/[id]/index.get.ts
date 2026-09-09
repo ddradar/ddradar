@@ -1,10 +1,8 @@
-import * as z from 'zod/mini'
-
-import { userSchema } from '#shared/schemas/user'
+import { userIdSchema } from '#shared/schemas/user'
 
 export default defineEventHandler(async event => {
   const { id } = await getValidatedRouterParams(event, i =>
-    z.pick(userSchema, { id: true }).parse(i)
+    userIdSchema.parse(i)
   )
   const loginUser = await getAuthenticatedUser(event)
 

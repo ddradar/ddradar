@@ -40,7 +40,7 @@ This page allows administrators to edit song information, including adding and m
 import type { AccordionItem } from '@nuxt/ui'
 import * as z from 'zod/mini'
 
-import { seriesList, songSchema } from '#shared/schemas/song'
+import { seriesList, songIdSchema, songSchema } from '#shared/schemas/song'
 import {
   Difficulty,
   getChartName,
@@ -52,8 +52,7 @@ import { getSelectItems } from '~/utils'
 definePageMeta({
   middleware: 'auth',
   roles: ['admin'],
-  validate: route =>
-    'id' in route.params && z.validate(songSchema.shape.id, route.params.id),
+  validate: ({ params }) => z.validate(songIdSchema, params),
 })
 
 /** Select items for song.playStyle */

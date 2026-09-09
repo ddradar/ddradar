@@ -2,6 +2,7 @@ import { db } from '@nuxthub/db'
 import { kv } from '@nuxthub/kv'
 import { eq } from 'drizzle-orm'
 import type { H3Event } from 'h3'
+import * as z from 'zod/mini'
 
 import type { User as SessionUser } from '#auth-utils'
 
@@ -13,6 +14,26 @@ export type StoredApiToken = Pick<
   hashedToken: string
 }
 const userRegistrationRequired = 'User registration required'
+
+/** Schema for token configuration on `runtimeConfig.public.token`. */
+const tokenConfigSchema = z.compile(
+  z.catch(
+    z.object({
+      /** Maximum number of days before the token expires */
+      maxExpirationDays: z.coerce.number(),
+      /** Maximum number of tokens a user can create */
+      maxCreationPerUser: z.coerce.number(),
+    }),
+    { maxExpirationDays: 365, maxCreationPerUser: 10 }
+  )
+)
+/** Get token configuration from runtime config.
+ * @param event Optional H3Event for accessing runtime config
+ * @returns Parsed token configuration
+ */
+export function getTokenConfig(event?: H3Event) {
+  return tokenConfigSchema.parse(useRuntimeConfig(event).public.token)
+}
 
 /**
  * Validate API token and return user ID

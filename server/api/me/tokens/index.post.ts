@@ -3,15 +3,7 @@ import { nanoid } from 'nanoid'
 import * as z from 'zod/mini'
 
 import { apiTokenSchema } from '#shared/schemas/user'
-
-/** Schema for runtimeConfig */
-const _runtimeConfigSchema = z.catch(
-  z.object({
-    maxExpirationDays: z.coerce.number(),
-    maxCreationPerUser: z.coerce.number(),
-  }),
-  { maxExpirationDays: 365, maxCreationPerUser: 10 }
-)
+import { getTokenConfig } from '~~/server/utils/auth'
 
 /** Generate a secure random token */
 function generateToken(): string {
@@ -31,9 +23,7 @@ async function hashToken(token: string): Promise<string> {
 }
 
 export default defineEventHandler(async event => {
-  const { maxExpirationDays, maxCreationPerUser } = _runtimeConfigSchema.parse(
-    useRuntimeConfig(event).public.token
-  )
+  const { maxExpirationDays, maxCreationPerUser } = getTokenConfig(event)
 
   // Validate request body
   const body = await readValidatedBody(event, i =>

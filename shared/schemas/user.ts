@@ -150,6 +150,8 @@ export const userSchema = z.object({
     'provider' | 'providerId' | 'roles' | SystemColumns
   >
 >
+/** Schema for `User.id` */
+export const userIdSchema = z.compile(z.pick(userSchema, { id: true }))
 
 /**
  * Returns the areas that are included in the specified area
