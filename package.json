@@ -27,7 +27,7 @@
   "dependencies": {
     "@libsql/client": "^0.18.0",
     "@nuxt/content": "^3.16.0",
-    "@nuxt/ui": "^4.11.0",
+    "@nuxt/ui": "^4.11.1",
     "@nuxthub/core": "^0.10.8",
     "@nuxtjs/i18n": "^10.6.0",
     "better-sqlite3": "^13.0.3",
@@ -71,9 +71,9 @@
     "*.{js,mjs,ts,vue}": [
       "oxlint --fix",
       "eslint --fix",
-      "oxfmt"
+      "oxfmt --no-error-on-unmatched-pattern"
     ],
-    "*.{json,jsonc,yaml,yml}": "oxfmt"
+    "*.{json,jsonc,yaml,yml}": "oxfmt --no-error-on-unmatched-pattern"
   },
   "devEngines": {
     "runtime": {
