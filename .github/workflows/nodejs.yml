@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
       - name: Setup pnpm with Node.js runtime
-        uses: pnpm/setup@v2.1.0
+        uses: pnpm/setup@v3.0.0
         with: &pnpm-setup-with
           cache: true
           require-lockfile: true
@@ -43,7 +43,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
       - name: Setup pnpm with Node.js runtime
-        uses: pnpm/setup@v2.1.0
+        uses: pnpm/setup@v3.0.0
         with: *pnpm-setup-with
 
       - name: Test
@@ -69,7 +69,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7.0.1
       - name: Setup pnpm with Node.js runtime
-        uses: pnpm/setup@v2.1.0
+        uses: pnpm/setup@v3.0.0
         with: *pnpm-setup-with
 
       - name: Build
