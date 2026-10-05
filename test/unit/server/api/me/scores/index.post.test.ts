@@ -1,15 +1,7 @@
 // oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import type { H3Event } from 'h3'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import { ClearLamp, FlareRank } from '#shared/schemas/score'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
@@ -60,11 +52,6 @@ describe('POST /api/me/scores', () => {
           : undefined
       )
     )
-  })
-  beforeEach(() => {
-    vi.mocked(db.insert).mockClear()
-    vi.mocked(db.batch).mockClear()
-    vi.mocked(getStepChart).mockClear()
   })
 
   afterAll(() => {

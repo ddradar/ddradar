@@ -2,15 +2,7 @@
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/me/index.post'
 import { publicUser, sessionUser } from '~~/test/data/user'
@@ -33,12 +25,6 @@ describe('POST /api/me', () => {
       })),
     } as never)
   )
-  beforeEach(() => {
-    vi.mocked(db.insert).mockClear()
-    vi.mocked(requireUserSession).mockClear()
-    vi.mocked(clearUserCache).mockClear()
-    vi.mocked(setUserSession).mockClear()
-  })
 
   afterAll(() => vi.mocked(db.insert).mockReset())
 

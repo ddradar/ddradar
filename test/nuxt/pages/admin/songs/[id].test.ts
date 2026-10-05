@@ -47,11 +47,6 @@ describe('/admin/songs/[id]', () => {
     vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
     vi.mocked(useUserSession).mockReturnValue({ loggedIn, user } as never)
   })
-  beforeEach(() => {
-    mockHandler.mockClear()
-    addMock.mockClear()
-    user.value = null
-  })
 
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()

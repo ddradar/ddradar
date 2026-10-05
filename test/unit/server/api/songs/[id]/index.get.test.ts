@@ -1,5 +1,5 @@
 import type { H3Event } from 'h3'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/songs/[id]/index.get'
 import { testSongData } from '~~/test/data/song'
@@ -10,8 +10,6 @@ describe('GET /api/songs/[id]', () => {
     ...testSongData,
     charts: [...testStepCharts],
   }
-
-  beforeEach(() => vi.mocked(getCachedSongInfo).mockClear())
 
   test(`(id: '${testSongData.id}') returns song with charts (found in DB or cache)`, async () => {
     // Arrange

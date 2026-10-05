@@ -1,19 +1,13 @@
 import { kv } from '@nuxthub/kv'
 import type { H3Event } from 'h3'
 import { nanoid } from 'nanoid'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/me/tokens/[id].delete'
 import { apiToken, sessionUser } from '~~/test/data/user'
 
 describe('DELETE /api/me/tokens/[id]', () => {
   const user = { ...sessionUser, id: 'user1' }
-
-  beforeEach(() => {
-    vi.mocked(requireAuthenticatedUserFromSession).mockClear()
-    vi.mocked(kv.get).mockClear()
-    vi.mocked(kv.del).mockClear()
-  })
 
   test.each(['', 'invalid-id'])(
     '(id: "%s") returns 400 when token id is invalid',

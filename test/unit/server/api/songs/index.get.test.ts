@@ -3,10 +3,10 @@ import { db } from '@nuxthub/db'
 import { songs } from '@nuxthub/db/schema'
 import { and, asc, exists, inArray, isNull, type SQLWrapper } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import { seriesList } from '#shared/schemas/song'
-import handler from '~~/server/api/songs/index.get'
+import handler, { getSongListCacheKey } from '~~/server/api/songs/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 
@@ -27,10 +27,6 @@ describe('GET /api/songs', () => {
     nextOffset: null,
     hasMore: false,
   }
-
-  beforeEach(() => vi.mocked(db.query.songs.findMany).mockClear())
-
-  afterAll(() => vi.mocked(cachedEventHandler).mockClear())
 
   test.each([
     ['', []],
@@ -166,10 +162,9 @@ describe('GET /api/songs', () => {
     ])('getKey({query: "%s"}) returns "%s"', async (query, expected) => {
       // Arrange
       const event = { path: `/?${query}` } as unknown as H3Event
-      const getKey = vi.mocked(cachedEventHandler).mock.calls[0]![1]!.getKey!
 
       // Act
-      const result = await getKey(event)
+      const result = await getSongListCacheKey(event)
 
       // Assert
       expect(result).toBe(expected)

@@ -50,13 +50,6 @@ describe('/profile', () => {
     } as never)
     vi.mocked(useCookie).mockReturnValue(redirectCookie as never)
   })
-  beforeEach(() => {
-    mockHandler.mockClear()
-    addMock.mockClear()
-    fetchMock.mockClear()
-    vi.mocked(navigateTo).mockClear()
-    redirectCookie.value = ''
-  })
 
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()
@@ -262,8 +255,6 @@ describe('/profile', () => {
       async (locale, message) => {
         // Arrange
         user.value = loginUser
-        mockHandler.mockClear()
-        addMock.mockClear()
         const apiErrorMessage = 'Invalid Body'
         mockHandler.mockImplementationOnce(() => {
           throw createError({ statusCode: 400, statusMessage: apiErrorMessage })
