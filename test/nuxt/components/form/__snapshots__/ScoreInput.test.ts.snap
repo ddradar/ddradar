@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: 0, …(6) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
@@ -140,7 +140,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
 </form>"
 `;
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { playStyle: 1, difficulty: 2, …(2) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
@@ -280,7 +280,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: en) > (chart: { p
 </form>"
 `;
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: 0, …(6) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
@@ -420,7 +420,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
 </form>"
 `;
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { playStyle: 1, difficulty: 2, …(2) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
@@ -560,7 +560,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ja) > (chart: { p
 </form>"
 `;
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: +0, bpm: [ 170, 184, 184 ], level: 4, notes: 138, freezes: +0, shocks: +0, radar: { stream: 29, voltage: 22, air: 5, freeze: +0, chaos: +0 } }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: 0, …(6) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
@@ -700,7 +700,7 @@ exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { p
 </form>"
 `;
 
-exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: 2, bpm: [ 170, 184, 184 ], level: 9 }) renders properly 1`] = `
+exports[`components/form/ScoreInput.vue > Rendering > (locale: ko) > (chart: { playStyle: 1, difficulty: 2, …(2) }) renders properly 1`] = `
 "<form id="v-0-0-0" method="post" class="" role="form">
   <div class="space-y-4">
     <div data-orientation="vertical" data-slot="root" class="text-sm">
