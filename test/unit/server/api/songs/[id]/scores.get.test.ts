@@ -3,7 +3,7 @@ import { db } from '@nuxthub/db'
 import { scores, users } from '@nuxthub/db/schema'
 import { and, eq, inArray, isNotNull, isNull, or, sql } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import { ClearLamp } from '#shared/schemas/score'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
@@ -37,11 +37,6 @@ describe('GET /api/songs/[id]/scores', () => {
       flareSkill: null,
       updatedAt: new Date(),
     }))
-  beforeEach(() => {
-    vi.mocked(db.query.scores.findMany).mockClear()
-    vi.mocked(getAuthenticatedUser).mockClear()
-    vi.mocked(getCachedSongInfo).mockClear()
-  })
 
   test.each(['', 'invalid-id'])('(id : "%s") returns 400', async id => {
     // Arrange

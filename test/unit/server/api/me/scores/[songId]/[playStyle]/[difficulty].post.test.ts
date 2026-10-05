@@ -2,15 +2,7 @@
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import { FlareRank } from '#shared/schemas/score'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
@@ -42,11 +34,6 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
       roles: sessionUser.roles,
     })
     vi.mocked(db.insert).mockReturnValue({ values } as never)
-  })
-  beforeEach(() => {
-    vi.mocked(db.insert).mockClear()
-    values.mockClear()
-    returning.mockClear()
   })
 
   afterAll(() => {

@@ -3,15 +3,7 @@ import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import {
-  afterAll,
-  beforeAll,
-  beforeEach,
-  describe,
-  expect,
-  test,
-  vi,
-} from 'vitest'
+import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
 import handler from '~~/server/api/me//scores/[songId]/[playStyle]/[difficulty].delete'
@@ -35,12 +27,6 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
       roles: sessionUser.roles,
     })
     vi.mocked(db.update).mockReturnValue({ set } as never)
-  })
-  beforeEach(() => {
-    vi.mocked(db.update).mockClear()
-    set.mockClear()
-    where.mockClear()
-    run.mockClear()
   })
 
   afterAll(() => {

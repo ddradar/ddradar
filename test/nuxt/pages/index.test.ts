@@ -3,7 +3,6 @@ import {
   afterAll,
   afterEach,
   beforeAll,
-  beforeEach,
   describe,
   expect,
   test,
@@ -58,7 +57,6 @@ describe('/', () => {
       } as never
     })
   })
-  beforeEach(() => vi.mocked(queryCollection).mockClear())
   afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
   afterAll(() => vi.mocked(queryCollection).mockReset())

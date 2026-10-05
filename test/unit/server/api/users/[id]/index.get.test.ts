@@ -1,15 +1,10 @@
 import type { H3Event } from 'h3'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/users/[id]/index.get'
 import { privateUser, publicUser } from '~~/test/data/user'
 
 describe('GET /api/users/[id]', () => {
-  beforeEach(() => {
-    vi.mocked(getAuthenticatedUser).mockClear()
-    vi.mocked(getCachedUser).mockClear()
-  })
-
   test.each(['', 'ab', 'a'.repeat(33), 'invalid user!'])(
     '(id: "%s") throws 400',
     async id => {

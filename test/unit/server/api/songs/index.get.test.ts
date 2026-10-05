@@ -3,7 +3,7 @@ import { db } from '@nuxthub/db'
 import { songs } from '@nuxthub/db/schema'
 import { and, asc, exists, inArray, isNull, type SQLWrapper } from 'drizzle-orm'
 import type { H3Event } from 'h3'
-import { afterAll, beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import { seriesList } from '#shared/schemas/song'
 import handler, { getSongListCacheKey } from '~~/server/api/songs/index.get'
@@ -27,10 +27,6 @@ describe('GET /api/songs', () => {
     nextOffset: null,
     hasMore: false,
   }
-
-  beforeEach(() => vi.mocked(db.query.songs.findMany).mockClear())
-
-  afterAll(() => vi.mocked(cachedEventHandler).mockClear())
 
   test.each([
     ['', []],

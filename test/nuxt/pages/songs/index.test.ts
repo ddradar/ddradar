@@ -96,8 +96,6 @@ describe('/songs', () => {
 
   beforeEach(() => {
     clearNuxtData()
-    songsHandler.mockClear()
-    vi.mocked(navigateTo).mockClear()
     useState('play-style-visibility', () => 0).value = 0
   })
 

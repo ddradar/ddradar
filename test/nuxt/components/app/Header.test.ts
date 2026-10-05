@@ -30,10 +30,6 @@ describe('app/components/app/Header.vue', () => {
       clear: clearMock,
     } as never)
   })
-  beforeEach(() => {
-    clearMock.mockClear()
-    vi.mocked(navigateTo).mockClear()
-  })
 
   afterAll(() => {
     vi.mocked(useUserSession).mockReset()

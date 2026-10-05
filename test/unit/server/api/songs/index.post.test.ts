@@ -2,7 +2,7 @@
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import { describe, expect, test, vi } from 'vitest'
 
 import handler from '~~/server/api/songs/index.post'
 import { notValidObject } from '~~/test/data/schema'
@@ -22,13 +22,6 @@ describe('POST /api/songs', () => {
     bpm: testSongData.bpm,
     charts: [...testStepCharts],
   }
-
-  beforeEach(() => {
-    vi.mocked(requireAuthenticatedUser).mockClear()
-    vi.mocked(clearSongCache).mockClear()
-    vi.mocked(db.batch).mockClear()
-    vi.mocked(db.insert).mockClear()
-  })
 
   test.each([
     { id: 'user1', roles: [] },

@@ -39,10 +39,6 @@ describe('components/form/ScoreInput.vue', () => {
   beforeAll(() => {
     vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
   })
-  beforeEach(() => {
-    mockHandler.mockClear()
-    addMock.mockClear()
-  })
 
   describe('Rendering', () => {
     describe.each(locales)('(locale: %s)', locale => {
@@ -258,8 +254,6 @@ describe('components/form/ScoreInput.vue', () => {
       '(locale: %s) submits score to API with expected success message "%s"',
       async (locale, message) => {
         // Arrange
-        mockHandler.mockClear()
-        addMock.mockClear()
         await useNuxtApp().$i18n.setLocale(locale)
         const props = { ...requiredProps, score: scoreRecord }
         const wrapper = await mountSuspended(ScoreInput, { props })
@@ -287,8 +281,6 @@ describe('components/form/ScoreInput.vue', () => {
       '(locale: %s) handles error and calls toast with error message "%s"',
       async (locale, message) => {
         // Arrange
-        mockHandler.mockClear()
-        addMock.mockClear()
         await useNuxtApp().$i18n.setLocale(locale)
         const errorMessage = 'Invalid Body'
         mockHandler.mockImplementationOnce(() => {
