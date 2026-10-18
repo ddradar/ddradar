@@ -67,6 +67,13 @@ const songsHandler = vi.fn<(event: H3Event) => Pagenation<SongSearchResult>>(
 
 registerEndpoint('/api/songs', songsHandler)
 
+function getSongsSearchTabsActiveTab(wrapper: VueWrapper<unknown>) {
+  const tabs = wrapper.findComponent(SongsSearchTabs) as VueWrapper<{
+    $props: { activeTab: string }
+  }>
+  return tabs.vm.$props.activeTab
+}
+
 async function waitForTabsPanelSettled(wrapper: VueWrapper<unknown>) {
   const selector = '[role="tabpanel"][data-state="active"]'
 
@@ -112,9 +119,7 @@ describe('/songs', () => {
       })
       await waitForTabsPanelSettled(wrapper)
 
-      expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
-        'level'
-      )
+      expect(getSongsSearchTabsActiveTab(wrapper)).toBe('level')
       expect(wrapper.html()).toMatchSnapshot()
     })
 
@@ -127,9 +132,7 @@ describe('/songs', () => {
       })
       await waitForTabsPanelSettled(wrapper)
 
-      expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
-        'level'
-      )
+      expect(getSongsSearchTabsActiveTab(wrapper)).toBe('level')
       expect(wrapper.html()).toMatchSnapshot()
     })
   })
@@ -162,9 +165,7 @@ describe('/songs', () => {
       const options = { route, ...mountOptions }
       const wrapper = await mountSuspended(PageComponent, options)
 
-      expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
-        expected
-      )
+      expect(getSongsSearchTabsActiveTab(wrapper)).toBe(expected)
     }
   )
 
@@ -177,9 +178,7 @@ describe('/songs', () => {
     tabs.vm.$emit('search', { tab: 'custom', query: { level: ['4'] } })
 
     await vi.waitFor(() => {
-      expect(wrapper.findComponent(SongsSearchTabs).props('activeTab')).toBe(
-        'custom'
-      )
+      expect(getSongsSearchTabsActiveTab(wrapper)).toBe('custom')
     })
   })
 
