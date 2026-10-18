@@ -27,7 +27,11 @@ Displays a paginated list of songs with a "Load More" button.
 import type { TableColumn } from '@nuxt/ui'
 
 import { getSeriesCategory } from '#shared/schemas/song'
-import { Difficulty, getChartName, PlayStyle } from '#shared/schemas/step-chart'
+import {
+  Difficulty,
+  getChartName,
+  PlayStyle as PlayStyleAlias,
+} from '#shared/schemas/step-chart'
 import { getEnumKey } from '#shared/utils'
 
 const props = defineProps<{
@@ -39,6 +43,7 @@ const props = defineProps<{
 defineEmits<{ 'load-more': [] }>()
 
 const { t } = useI18n()
+const PlayStyle = PlayStyleAlias
 
 const columns = computed<TableColumn<SongSearchResult>[]>(() => [
   { accessorKey: 'series', header: t('schema.song.series.label') },
