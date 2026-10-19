@@ -4,7 +4,7 @@ import { charts, songs } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/songs/index.post'
+import handler from '#server/api/songs/index.post'
 import { notValidObject } from '~~/test/data/schema'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'

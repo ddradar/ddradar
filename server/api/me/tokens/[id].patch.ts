@@ -1,8 +1,8 @@
 import { kv } from '@nuxthub/kv'
 import * as z from 'zod/mini'
 
+import { getTokenConfig } from '#server/utils/auth'
 import { apiTokenSchema } from '#shared/schemas/user'
-import { getTokenConfig } from '~~/server/utils/auth'
 
 /** Schema for route params */
 const paramsSchema = z.compile(z.pick(apiTokenSchema, { id: true }))

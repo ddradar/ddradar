@@ -5,8 +5,8 @@ import { and, eq, isNull } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
+import handler from '#server/api/me//scores/[songId]/[playStyle]/[difficulty].delete'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
-import handler from '~~/server/api/me//scores/[songId]/[playStyle]/[difficulty].delete'
 import { testSongData } from '~~/test/data/song'
 import { publicUser, sessionUser } from '~~/test/data/user'
 

@@ -1,5 +1,5 @@
-import { cacheName as getSongListKey } from '~~/server/api/songs/index.get'
-import { __getSongInfo, __getUser } from '~~/server/db/utils'
+import { cacheName as getSongListKey } from '#server/api/songs/index.get'
+import { __getSongInfo, __getUser } from '#server/db/utils'
 
 /**
  * Get song info from cache or database

@@ -2,8 +2,8 @@ import { kv } from '@nuxthub/kv'
 import { nanoid } from 'nanoid'
 import * as z from 'zod/mini'
 
+import { getTokenConfig } from '#server/utils/auth'
 import { apiTokenSchema } from '#shared/schemas/user'
-import { getTokenConfig } from '~~/server/utils/auth'
 
 /** Generate a secure random token */
 function generateToken(): string {

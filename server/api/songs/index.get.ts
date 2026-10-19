@@ -3,11 +3,11 @@ import { charts, songs } from '@nuxthub/db/schema'
 import { and, asc, eq, exists, inArray, isNull } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
+import { ignoreTimestampCols } from '#server/db/utils'
+import { buildPagenation } from '#server/utils/pagination'
 import { NameIndex, seriesList } from '#shared/schemas/song'
 import { stepChartSchema } from '#shared/schemas/step-chart'
 import { singleOrArray } from '#shared/utils'
-import { ignoreTimestampCols } from '~~/server/db/utils'
-import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
 const querySchema = z.compile(

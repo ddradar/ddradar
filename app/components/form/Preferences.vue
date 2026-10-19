@@ -2,7 +2,7 @@
 import type { SelectItem } from '@nuxt/ui'
 import { en, ja, ko } from '@nuxt/ui/locale'
 
-import { PlayStyle } from '~~/shared/schemas/step-chart'
+import { PlayStyle } from '#shared/schemas/step-chart'
 
 const { locale, setLocale, t } = useI18n()
 

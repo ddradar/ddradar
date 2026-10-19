@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/songs/[id]/index.get'
+import handler from '#server/api/songs/[id]/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 

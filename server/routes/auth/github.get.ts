@@ -1,4 +1,4 @@
-import { getCurrentUser } from '~~/server/db/utils'
+import { getCurrentUser } from '#server/db/utils'
 
 interface GitHubUser {
   id: number

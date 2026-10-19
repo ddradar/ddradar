@@ -1,4 +1,4 @@
-import { getCurrentUser } from '~~/server/db/utils'
+import { getCurrentUser } from '#server/db/utils'
 
 // https://docs.x.com/x-api/users/get-my-user
 interface XUser {

@@ -1,4 +1,4 @@
-import { getCurrentUser } from '~~/server/db/utils'
+import { getCurrentUser } from '#server/db/utils'
 
 // https://developers.line.biz/ja/reference/line-login/#profile
 interface LineUser {

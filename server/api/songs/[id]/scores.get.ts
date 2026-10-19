@@ -13,6 +13,7 @@ import {
 } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
+import { buildPagenation } from '#server/utils/pagination'
 import { songIdSchema } from '#shared/schemas/song'
 import {
   Difficulty,
@@ -20,7 +21,6 @@ import {
   stepChartSchema,
 } from '#shared/schemas/step-chart'
 import { range, singleOrArray } from '#shared/utils'
-import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
 const querySchema = z.compile(

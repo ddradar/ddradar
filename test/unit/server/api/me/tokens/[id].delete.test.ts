@@ -3,7 +3,7 @@ import type { H3Event } from 'h3'
 import { nanoid } from 'nanoid'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/me/tokens/[id].delete'
+import handler from '#server/api/me/tokens/[id].delete'
 import { apiToken, sessionUser } from '~~/test/data/user'
 
 describe('DELETE /api/me/tokens/[id]', () => {

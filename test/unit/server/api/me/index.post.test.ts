@@ -4,7 +4,7 @@ import { users } from '@nuxthub/db/schema'
 import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/me/index.post'
+import handler from '#server/api/me/index.post'
 import { publicUser, sessionUser } from '~~/test/data/user'
 
 describe('POST /api/me', () => {

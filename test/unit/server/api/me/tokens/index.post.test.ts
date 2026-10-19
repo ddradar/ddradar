@@ -2,7 +2,7 @@ import { kv } from '@nuxthub/kv'
 import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/me/tokens/index.post'
+import handler from '#server/api/me/tokens/index.post'
 import { sessionUser } from '~~/test/data/user'
 
 describe('POST /api/me/tokens', () => {

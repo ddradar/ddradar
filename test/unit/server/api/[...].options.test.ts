@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
 import { describe, expect, test } from 'vitest'
 
-import handler from '~~/server/api/[...].options'
+import handler from '#server/api/[...].options'
 
 describe('OPTIONS /api/**', () => {
   test('returns 204 No Content', () => {

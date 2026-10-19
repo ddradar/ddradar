@@ -4,6 +4,8 @@ import { scores } from '@nuxthub/db/schema'
 import { isNotNull, lt, or, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
+import { getStepChart } from '#server/db/utils'
+import { getReason, type ScoreUpsertResult } from '#server/utils/score-insert'
 import {
   scoreRecordInputSchema,
   scoreRecordSchema,
@@ -14,8 +16,6 @@ import {
   hasNotesInfo,
   ValidateScoreRecord,
 } from '#shared/utils/score'
-import { getStepChart } from '~~/server/db/utils'
-import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
 
 const bodySchema = z.compile(
   z.array(scoreRecordInputSchema).check(z.minLength(1))

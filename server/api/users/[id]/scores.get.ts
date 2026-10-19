@@ -3,6 +3,7 @@ import { charts, scores } from '@nuxthub/db/schema'
 import { and, desc, eq, inArray, isNotNull, isNull, sql } from 'drizzle-orm'
 import * as z from 'zod/mini'
 
+import { buildPagenation } from '#server/utils/pagination'
 import {
   ClearLamp,
   danceLevels,
@@ -17,7 +18,6 @@ import {
 } from '#shared/schemas/step-chart'
 import { userIdSchema } from '#shared/schemas/user'
 import { range, singleOrArray } from '#shared/utils'
-import { buildPagenation } from '~~/server/utils/pagination'
 
 /** Schema for query parameters */
 const querySchema = z.compile(

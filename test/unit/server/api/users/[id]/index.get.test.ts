@@ -1,7 +1,7 @@
 import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/users/[id]/index.get'
+import handler from '#server/api/users/[id]/index.get'
 import { privateUser, publicUser } from '~~/test/data/user'
 
 describe('GET /api/users/[id]', () => {

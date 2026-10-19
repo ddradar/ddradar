@@ -2,10 +2,10 @@ import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import * as z from 'zod/mini'
 
+import { getReason } from '#server/utils/score-insert'
 import { scoreRecordKeySchema, scoreRecordSchema } from '#shared/schemas/score'
 import { chartEquals } from '#shared/schemas/step-chart'
 import { ValidateScoreRecord } from '#shared/utils/score'
-import { getReason } from '~~/server/utils/score-insert'
 
 /** Schema for router params */
 const paramsSchema = z.compile(z.omit(scoreRecordKeySchema, { userId: true }))
