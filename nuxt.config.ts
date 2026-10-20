@@ -40,6 +40,7 @@ export default defineNuxtConfig({
     '@nuxt/content',
   ],
   nitro: {
+    imports: { presets: [] },
     preset: 'cloudflare-module',
     cloudflare: {
       wrangler: {

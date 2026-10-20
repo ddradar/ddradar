@@ -1,6 +1,8 @@
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
 import { and, asc, eq, exists, inArray, isNull } from 'drizzle-orm'
+import { getValidatedQuery } from 'h3'
+import { defineCachedEventHandler } from 'nitropack/runtime'
 import * as z from 'zod/mini'
 
 import { ignoreTimestampCols } from '#server/db/utils'
@@ -98,7 +100,7 @@ export const getSongListCacheKey = async (
 /**
  * Get Song List
  */
-export default cachedEventHandler(
+export default defineCachedEventHandler(
   async event => {
     const query = await getValidatedQuery(event, i => querySchema.parse(i))
 

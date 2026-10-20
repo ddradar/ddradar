@@ -1,3 +1,5 @@
+import { defineCachedFunction, useStorage } from 'nitropack/runtime'
+
 import { cacheName as getSongListKey } from '#server/api/songs/index.get'
 import { __getSongInfo, __getUser } from '#server/db/utils'
 
