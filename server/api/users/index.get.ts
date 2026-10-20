@@ -1,6 +1,7 @@
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
+import { defineEventHandler, getValidatedQuery } from 'nuxt/server'
 import * as z from 'zod/mini'
 
 import { userSchema } from '#shared/schemas/user'
@@ -27,7 +28,10 @@ const querySchema = z.compile(
   })
 )
 
-// Never use `cachedEventHandler` because user privacy settings may change
+/**
+ * Retrieve a list of users with optional filtering by name, area, and DDR code.
+ * Only public profiles are returned unless the requester is the user themselves.
+ */
 export default defineEventHandler(async event => {
   const query = await getValidatedQuery(event, i => querySchema.parse(i))
   const user = await getAuthenticatedUser(event)
@@ -64,53 +68,4 @@ export default defineEventHandler(async event => {
     where: and(...conditions),
   })
   return result
-})
-
-// Define OpenAPI metadata
-defineRouteMeta({
-  openAPI: {
-    summary: 'Get User List',
-    tags: ['User'],
-    description:
-      'Retrieve a list of users with optional filtering by name, area, and DDR code. ' +
-      'Only public profiles are returned unless the requester is the user themselves.',
-    parameters: [
-      {
-        in: 'query',
-        name: 'name',
-        schema: { type: 'string' },
-        required: false,
-        description: 'User name (partial match)',
-      },
-      {
-        in: 'query',
-        name: 'area',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/AreaCode' },
-        required: false,
-        description: 'Area code',
-      },
-      {
-        in: 'query',
-        name: 'code',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/User/properties/ddrCode' },
-        required: false,
-        description: 'DDR code (8-digit number)',
-      },
-    ],
-    responses: {
-      200: {
-        description: 'Array of user',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'array',
-              items: { $ref: '#/components/schemas/User' },
-            },
-          },
-        },
-      },
-    },
-  },
 })

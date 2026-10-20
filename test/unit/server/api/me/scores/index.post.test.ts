@@ -1,24 +1,21 @@
 // oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
-import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
+import handler from '#server/api/me/scores/index.post'
+import { getStepChart } from '#server/db/utils'
 import { ClearLamp, FlareRank } from '#shared/schemas/score'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
-import handler from '~~/server/api/me/scores/index.post'
-import { getStepChart } from '~~/server/db/utils'
 import { notValidObject } from '~~/test/data/schema'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { publicUser, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
-vi.mock('~~/server/db/utils', async () => {
-  const actual = await vi.importActual('~~/server/db/utils')
-  return {
-    ...actual,
-    getStepChart: vi.fn<typeof getStepChart>(),
-  }
-})
+vi.mock('#server/db/utils', async o => ({
+  ...(await o()),
+  getStepChart: vi.fn<typeof getStepChart>(),
+}))
 
 describe('POST /api/me/scores', () => {
   const score: ScoreRecordInput = {
@@ -74,20 +71,12 @@ describe('POST /api/me/scores', () => {
     [{ ...score, maxCombo: -1 }],
     [{ ...score, clearLamp: ClearLamp.MFC + 1 }],
     [{ ...score, rank: 'SSS' }],
-  ])('(body %o) returns 400', async body => {
+  ])('(body %j) returns 400', async body => {
     // Arrange
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -159,21 +148,13 @@ describe('POST /api/me/scores', () => {
       },
       [],
     ],
-  ])('(body %o) returns 200 with %o', async (score, expected, batchResult) => {
+  ])('(body %j) returns 200 with %o', async (score, expected, batchResult) => {
     // Arrange
     vi.mocked(db.batch).mockResolvedValue(batchResult)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify([score]),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent([score])
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(expected)

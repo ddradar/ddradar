@@ -5,8 +5,8 @@ import { and, asc, exists, inArray, isNull, type SQLWrapper } from 'drizzle-orm'
 import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
+import handler, { getSongListCacheKey } from '#server/api/songs/index.get'
 import { seriesList } from '#shared/schemas/song'
-import handler, { getSongListCacheKey } from '~~/server/api/songs/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 

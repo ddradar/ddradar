@@ -1,4 +1,6 @@
-import { getCurrentUser } from '~~/server/db/utils'
+import { sendRedirect, getCookie, deleteCookie } from 'h3'
+
+import { getCurrentUser } from '#server/db/utils'
 
 // https://developers.line.biz/ja/reference/line-login/#profile
 interface LineUser {

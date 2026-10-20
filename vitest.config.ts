@@ -21,6 +21,7 @@ export default defineConfig({
         resolve: {
           alias: {
             '~~': resolve(import.meta.dirname, './'),
+            '#server': resolve(import.meta.dirname, './server'),
             '#shared': resolve(import.meta.dirname, './shared'),
           },
         },

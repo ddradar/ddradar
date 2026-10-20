@@ -15,10 +15,10 @@ import {
   vi,
 } from 'vitest'
 
+import { ClearLamp, FlareRank } from '#shared/schemas/score'
 import type { ScoreRecord } from '#shared/types/score'
 import { calcFlareSkill, fillScoreRecordFromChart } from '#shared/utils/score'
 import ScoreInput from '~/components/form/ScoreInput.vue'
-import { ClearLamp, FlareRank } from '~~/shared/schemas/score'
 import { scoreRecord } from '~~/test/data/score'
 import { testSongData as song } from '~~/test/data/song'
 import { testStepCharts as charts } from '~~/test/data/step-chart'

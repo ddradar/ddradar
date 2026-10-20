@@ -2,18 +2,21 @@ import type { D1Response } from '@cloudflare/workers-types'
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
+import { createError, defineEventHandler, setResponseStatus } from 'nuxt/server'
 import * as z from 'zod/mini'
 
+import { getValidatedParams } from '#server/utils/router'
 import { scoreRecordKeySchema } from '#shared/schemas/score'
 
 /** Schema for router params */
 const paramsSchema = z.compile(z.omit(scoreRecordKeySchema, { userId: true }))
 
+/**
+ * Deletes the score record for the authenticated user corresponding to the specified song ID, play style, and difficulty.
+ */
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
-  const params = await getValidatedRouterParams(event, i =>
-    paramsSchema.parse(i)
-  )
+  const params = getValidatedParams(paramsSchema, event)
 
   const result = (await db
     .update(scores)
@@ -32,59 +35,4 @@ export default defineEventHandler(async event => {
   if (!result.meta.changes)
     throw createError({ status: 404, statusText: 'Not Found' })
   setResponseStatus(event, 204)
-})
-
-// Define OpenAPI metadata
-defineRouteMeta({
-  openAPI: {
-    summary: 'Delete the specified score record',
-    description:
-      'Deletes the score record for the authenticated user corresponding to the specified song ID, play style, and difficulty.',
-    tags: ['Score'],
-    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
-    parameters: [
-      {
-        in: 'path',
-        name: 'songId',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/Song/properties/id' },
-        required: true,
-        description: 'Song ID',
-      },
-      {
-        in: 'path',
-        name: 'playStyle',
-        // @ts-expect-error - not provided in nitro types
-        schema: { $ref: '#/components/schemas/StepChart/properties/playStyle' },
-        required: true,
-        description: 'Play Style (1: Single, 2: Double)',
-      },
-      {
-        in: 'path',
-        name: 'difficulty',
-        schema: {
-          // @ts-expect-error - not provided in nitro types
-          $ref: '#/components/schemas/StepChart/properties/difficulty',
-        },
-        required: true,
-        description:
-          'Difficulty (0: Beginner, 1: Basic, 2: Difficult, 3: Expert, 4: Challenge)',
-      },
-    ],
-    responses: {
-      204: {
-        description: 'Score record deleted successfully.',
-      },
-      401: { $ref: '#/components/responses/Unauthorized' },
-      403: { $ref: '#/components/responses/RegistrationRequired' },
-      404: {
-        description: 'Score record not found.',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
-      },
-    },
-  },
 })

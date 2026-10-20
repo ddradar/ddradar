@@ -15,11 +15,11 @@ import {
   vi,
 } from 'vitest'
 
+import type { SongSearchResult } from '#shared/types/song'
+import type { Pagenation } from '#shared/types/utility-types'
 import SongsResultTable from '~/components/page/songs/ResultTable.vue'
 import SongsSearchTabs from '~/components/page/songs/SearchTabs.vue'
 import PageComponent from '~/pages/songs/index.vue'
-import type { SongSearchResult } from '~~/shared/types/song'
-import type { Pagenation } from '~~/shared/types/utility-types'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { locales } from '~~/test/nuxt/const'

@@ -1,8 +1,8 @@
-import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/users/[id]/index.get'
+import handler from '#server/api/users/[id]/index.get'
 import { privateUser, publicUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('GET /api/users/[id]', () => {
   test.each(['', 'ab', 'a'.repeat(33), 'invalid user!'])(
@@ -10,7 +10,7 @@ describe('GET /api/users/[id]', () => {
     async id => {
       // Arrange
       vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-      const event = { context: { params: { id } } } as unknown as H3Event
+      const event = createRequestEvent(null, { id })
 
       // Act & Assert
       await expect(handler(event)).rejects.toMatchObject({ statusCode: 400 })
@@ -22,9 +22,7 @@ describe('GET /api/users/[id]', () => {
     // Arrange
     vi.mocked(getCachedUser).mockResolvedValue(publicUser)
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-    const event = {
-      context: { params: { id: publicUser.id } },
-    } as unknown as H3Event
+    const event = createRequestEvent(null, { id: publicUser.id })
 
     // Act
     const result = await handler(event)
@@ -42,9 +40,7 @@ describe('GET /api/users/[id]', () => {
     // Arrange
     vi.mocked(getCachedUser).mockResolvedValue(undefined)
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-    const event = {
-      context: { params: { id: 'not_exists_user_id' } },
-    } as unknown as H3Event
+    const event = createRequestEvent(null, { id: 'not_exists_user_id' })
 
     // Act & Assert
     await expect(handler(event)).rejects.toMatchObject({
@@ -62,9 +58,7 @@ describe('GET /api/users/[id]', () => {
     // Arrange
     vi.mocked(getCachedUser).mockResolvedValue(privateUser)
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-    const event = {
-      context: { params: { id: privateUser.id } },
-    } as unknown as H3Event
+    const event = createRequestEvent(null, { id: privateUser.id })
 
     // Act & Assert
     await expect(handler(event)).rejects.toMatchObject({
@@ -85,9 +79,7 @@ describe('GET /api/users/[id]', () => {
       id: privateUser.id,
       roles: [],
     })
-    const event = {
-      context: { params: { id: privateUser.id } },
-    } as unknown as H3Event
+    const event = createRequestEvent(null, { id: privateUser.id })
 
     // Act
     const result = await handler(event)

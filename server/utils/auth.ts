@@ -1,7 +1,7 @@
 import { db } from '@nuxthub/db'
 import { kv } from '@nuxthub/kv'
 import { eq } from 'drizzle-orm'
-import type { H3Event } from 'h3'
+import { createError, type RequestEvent, useRuntimeConfig } from 'nuxt/server'
 import * as z from 'zod/mini'
 
 import type { User as SessionUser } from '#auth-utils'
@@ -27,12 +27,12 @@ const tokenConfigSchema = z.compile(
     { maxExpirationDays: 365, maxCreationPerUser: 10 }
   )
 )
-/** Get token configuration from runtime config.
- * @param event Optional H3Event for accessing runtime config
+/**
+ * Get token configuration from runtime config.
  * @returns Parsed token configuration
  */
-export function getTokenConfig(event?: H3Event) {
-  return tokenConfigSchema.parse(useRuntimeConfig(event).public.token)
+export function getTokenConfig() {
+  return tokenConfigSchema.parse(useRuntimeConfig().public.token)
 }
 
 /**
@@ -84,13 +84,13 @@ async function validateTokenAndGetUserId(token: string): Promise<string> {
  * Get authenticated user from either session or API token
  * Supports both cookie-based session authentication and Bearer token authentication
  *
- * @param event H3Event
+ * @param event Request event
  * @returns User object from database, or null if no valid authentication found
  * @throws 401 if token validation fails without session authentication
  * @throws 403 if session and token user mismatch or user registration incomplete
  */
 export async function getAuthenticatedUser(
-  event: H3Event
+  event: RequestEvent
 ): Promise<Required<Pick<SessionUser, 'id' | 'roles'>> | null> {
   let userIdFromSession: string | undefined
   let userIdFromToken: string | undefined
@@ -105,7 +105,7 @@ export async function getAuthenticatedUser(
   }
 
   // Check API token authentication (Bearer token)
-  const auth = getHeader(event, 'authorization')
+  const auth = event.req.headers.get('authorization')
   if (auth?.startsWith('Bearer ')) {
     const token = auth.replace('Bearer ', '')
     try {
@@ -145,13 +145,13 @@ export async function getAuthenticatedUser(
  * Get authenticated user from either session or API token
  * Supports both cookie-based session authentication and Bearer token authentication
  *
- * @param event H3Event
+ * @param event Request event
  * @returns User object from database
  * @throws 401 if token validation fails without session authentication
  * @throws 403 if session and token user mismatch or user registration incomplete
  */
 export async function requireAuthenticatedUser(
-  event: H3Event
+  event: RequestEvent
 ): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
   const user = await getAuthenticatedUser(event)
   if (!user) throw createError({ status: 401, statusText: 'Unauthorized' })
@@ -161,13 +161,13 @@ export async function requireAuthenticatedUser(
 /**
  * Get authenticated user from either session
  *
- * @param event H3Event
+ * @param event Request event
  * @returns User object from database, or null if no valid authentication found
  * @throws 401 if no session
  * @throws 403 if user registration is not complete
  */
 export async function requireAuthenticatedUserFromSession(
-  event: H3Event
+  event: RequestEvent
 ): Promise<Required<Pick<SessionUser, 'id' | 'roles'>>> {
   const { user } = await requireUserSession(event)
   if (!user?.id)

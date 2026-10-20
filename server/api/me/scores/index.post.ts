@@ -2,8 +2,11 @@ import type { D1Response } from '@cloudflare/workers-types'
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { isNotNull, lt, or, sql } from 'drizzle-orm'
+import { defineEventHandler, readValidatedBody } from 'nuxt/server'
 import * as z from 'zod/mini'
 
+import { getStepChart } from '#server/db/utils'
+import { getReason, type ScoreUpsertResult } from '#server/utils/score-insert'
 import {
   scoreRecordInputSchema,
   scoreRecordSchema,
@@ -14,8 +17,6 @@ import {
   hasNotesInfo,
   ValidateScoreRecord,
 } from '#shared/utils/score'
-import { getStepChart } from '~~/server/db/utils'
-import { getReason, type ScoreUpsertResult } from '~~/server/utils/score-insert'
 
 const bodySchema = z.compile(
   z.array(scoreRecordInputSchema).check(z.minLength(1))
@@ -32,6 +33,10 @@ const scoreDataSchema = z.compile(
 )
 const CHUNK_SIZE = 25
 
+/**
+ * Create or update multiple Score records for the authenticated user.
+ * If a score is lower than the existing one, it will not be updated.
+ */
 export default defineEventHandler(async event => {
   const { id: userId } = await requireAuthenticatedUser(event)
   const body = await readValidatedBody(event, i => bodySchema.parse(i))
@@ -182,145 +187,4 @@ export default defineEventHandler(async event => {
   ) {
     errorsOrWarnings.push(getReason(reason, column, data, message, details))
   }
-})
-
-defineRouteMeta({
-  openAPI: {
-    $global: {
-      components: {
-        schemas: {
-          BatchScoreRecord: {
-            type: 'object',
-            description: 'Score record to batch create or update',
-            allOf: [
-              {
-                type: 'object',
-                properties: {
-                  songId: {
-                    $ref: '#/components/schemas/Song/properties/id',
-                  },
-                  playStyle: {
-                    $ref: '#/components/schemas/StepChart/properties/playStyle',
-                  },
-                  difficulty: {
-                    $ref: '#/components/schemas/StepChart/properties/difficulty',
-                  },
-                },
-              },
-              { $ref: '#/components/schemas/ScoreRecord', required: [] },
-            ],
-            required: ['songId', 'playStyle', 'difficulty'],
-          },
-          BatchScoreUpsertResult: {
-            type: 'object',
-            properties: {
-              severity: {
-                type: 'string',
-                description: 'Severity of the issue',
-                enum: ['error', 'warning'],
-              },
-              reason: {
-                type: 'string',
-                description: 'Reason code for the issue',
-                enum: [
-                  'CHART_NOT_FOUND',
-                  'MISSING_CHART_NOTES',
-                  'MISSING_REQUIRED_PROPERTIES',
-                  'VALIDATION_FAILED',
-                  'LOWER_THAN_EXISTING',
-                ],
-              },
-              message: {
-                type: 'string',
-                description: 'Error or warning message (human-readable)',
-              },
-              column: {
-                type: 'integer',
-                description: 'Index of the score in the input array (0-based)',
-              },
-              data: {
-                $ref: '#/components/schemas/BatchScoreRecord',
-                description: 'The score data that caused the error or warning',
-              },
-              details: {
-                type: 'object',
-                description:
-                  'Additional details about the issue (machine-readable)',
-                properties: {
-                  fields: {
-                    type: 'array',
-                    items: {
-                      type: 'object',
-                      properties: {
-                        field: {
-                          type: 'string',
-                          description: 'Name of the affected field',
-                        },
-                        message: {
-                          type: 'string',
-                          description: 'Error or warning message for the field',
-                        },
-                      },
-                      required: ['field', 'message'],
-                    },
-                    description:
-                      'List of fields that have issues and their messages',
-                  },
-                },
-              },
-            },
-            required: ['severity', 'reason', 'message', 'column', 'data'],
-          },
-        },
-      },
-    },
-    summary: 'Bulk create or update Score records',
-    description:
-      'Create or update multiple Score records for the authenticated user. If a score is lower than the existing one, it will not be updated.',
-    tags: ['Score'],
-    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
-    requestBody: {
-      description: 'Array of Score records to create or update',
-      content: {
-        'application/json': {
-          schema: {
-            type: 'array',
-            items: {
-              $ref: '#/components/schemas/BatchScoreRecord',
-              description:
-                'Score record to create or update (missing values will be filled from chart info, if possible)',
-            },
-          },
-        },
-      },
-    },
-    responses: {
-      200: {
-        description: 'Bulk score upsert result',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                count: {
-                  type: 'integer',
-                  description: 'Number of scores processed',
-                },
-                warnings: {
-                  type: 'array',
-                  description:
-                    'Array of errors or warnings for scores that were not updated or ignored some properties',
-                  items: {
-                    $ref: '#/components/schemas/BatchScoreUpsertResult',
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-      401: { $ref: '#/components/responses/Unauthorized' },
-      403: { $ref: '#/components/responses/RegistrationRequired' },
-    },
-  },
 })

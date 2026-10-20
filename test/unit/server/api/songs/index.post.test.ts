@@ -1,13 +1,13 @@
 // oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
-import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
-import handler from '~~/server/api/songs/index.post'
+import handler from '#server/api/songs/index.post'
 import { notValidObject } from '~~/test/data/schema'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('POST /api/songs', () => {
   const adminUser = { id: 'admin', roles: ['admin'] }
@@ -31,15 +31,7 @@ describe('POST /api/songs', () => {
     async (user: Awaited<ReturnType<typeof requireAuthenticatedUser>>) => {
       // Arrange
       vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(user)
-      const event = {
-        method: 'POST',
-        node: {
-          req: {
-            body: JSON.stringify(validBody),
-            headers: { 'content-type': 'application/json' },
-          },
-        },
-      } as unknown as H3Event
+      const event = createRequestEvent(validBody)
 
       // Act - Assert
       await expect(handler(event)).rejects.toMatchObject({
@@ -60,15 +52,7 @@ describe('POST /api/songs', () => {
   ])('(%o (with admin user)) returns 400 Bad Request', async body => {
     // Arrange
     vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(adminUser)
-    const event = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      },
-    } as unknown as H3Event
+    const event = createRequestEvent(body)
 
     // Act - Assert
     await expect(handler(event)).rejects.toThrow(
@@ -83,18 +67,10 @@ describe('POST /api/songs', () => {
     async body => {
       // Arrange
       vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(adminUser)
-      const event: Partial<H3Event> = {
-        method: 'POST',
-        node: {
-          req: {
-            body: JSON.stringify(body),
-            headers: { 'content-type': 'application/json' },
-          },
-        } as never,
-      }
+      const event = createRequestEvent(body)
 
       // Act
-      const result = await handler(event as H3Event)
+      const result = await handler(event)
 
       // Assert
       expect(result).toStrictEqual(body)

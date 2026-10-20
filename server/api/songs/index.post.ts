@@ -1,5 +1,6 @@
 import { db } from '@nuxthub/db'
 import { charts, songs } from '@nuxthub/db/schema'
+import { createError, defineEventHandler, readValidatedBody } from 'nuxt/server'
 import * as z from 'zod/mini'
 
 import { songSchema } from '#shared/schemas/song'
@@ -14,6 +15,9 @@ const bodySchema = z.compile(
   })
 )
 
+/**
+ * Create or update a Song data (Admin only)
+ */
 export default defineEventHandler(async event => {
   const user = await requireAuthenticatedUser(event)
   if (!user.roles.includes('admin'))
@@ -89,86 +93,4 @@ export default defineEventHandler(async event => {
   function normalizeBpm(bpm: StepChart['bpm']): StepChart['bpm'] {
     return bpm[0] === bpm.at(-1) ? [bpm[0]] : bpm
   }
-})
-
-// Define OpenAPI metadata
-defineRouteMeta({
-  openAPI: {
-    summary: 'Create or update a Song data (Admin only)',
-    tags: ['Song'],
-    description:
-      'Create or update a Song data. ' +
-      'If the song does not exist, a new song record will be created.',
-    security: [{ SessionCookieAuth: [] }, { BearerAuth: [] }],
-    requestBody: {
-      description: 'Song data to create or update',
-      required: true,
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              id: { $ref: '#/components/schemas/Song/properties/id' },
-              name: { $ref: '#/components/schemas/Song/properties/name' },
-              nameKana: {
-                $ref: '#/components/schemas/Song/properties/nameKana',
-              },
-              artist: { $ref: '#/components/schemas/Song/properties/artist' },
-              bpm: { $ref: '#/components/schemas/Song/properties/bpm' },
-              series: { $ref: '#/components/schemas/Song/properties/series' },
-              charts: { $ref: '#/components/schemas/Song/properties/charts' },
-              deletedAt: {
-                type: ['string', 'null'],
-                format: 'date-time',
-                description:
-                  'Deletion ISO 8601 timestamp. Set to null for active songs.',
-              },
-            },
-            required: ['id', 'name', 'nameKana', 'artist', 'series', 'charts'],
-          },
-        },
-      },
-    },
-    responses: {
-      200: {
-        description: 'Song created or updated successfully',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                id: { $ref: '#/components/schemas/Song/properties/id' },
-                name: { $ref: '#/components/schemas/Song/properties/name' },
-                nameKana: {
-                  $ref: '#/components/schemas/Song/properties/nameKana',
-                },
-                artist: { $ref: '#/components/schemas/Song/properties/artist' },
-                bpm: { $ref: '#/components/schemas/Song/properties/bpm' },
-                series: { $ref: '#/components/schemas/Song/properties/series' },
-                charts: { $ref: '#/components/schemas/Song/properties/charts' },
-                deletedAt: {
-                  type: ['number', 'null'],
-                  description:
-                    'Deletion UNIX timestamp. Set to null for active songs.',
-                },
-              },
-              required: [
-                'id',
-                'name',
-                'nameKana',
-                'artist',
-                'series',
-                'charts',
-              ],
-            },
-          },
-        },
-      },
-      401: { $ref: '#/components/responses/Unauthorized' },
-      403: {
-        $ref: '#/components/responses/Error',
-        description: 'User lacks admin role',
-      },
-    },
-  },
 })

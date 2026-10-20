@@ -1,33 +1,14 @@
 import type { db } from '@nuxthub/db'
 import * as schema from '@nuxthub/db/schema'
 import type { kv } from '@nuxthub/kv'
-import {
-  createError,
-  defineEventHandler,
-  getValidatedQuery,
-  getValidatedRouterParams,
-  readValidatedBody,
-  setResponseStatus,
-} from 'h3'
 import { vi } from 'vitest'
 
-// h3
-vi.stubGlobal('createError', createError)
-vi.stubGlobal('defineEventHandler', defineEventHandler)
-vi.stubGlobal('getValidatedQuery', getValidatedQuery)
-vi.stubGlobal('getValidatedRouterParams', getValidatedRouterParams)
-vi.stubGlobal('readValidatedBody', readValidatedBody)
-vi.stubGlobal('setResponseStatus', setResponseStatus)
-
 // Nitro
-vi.stubGlobal(
-  'cachedEventHandler',
-  vi.fn((h: Parameters<typeof defineEventHandler>[0]) => defineEventHandler(h))
-)
-vi.stubGlobal('defineCachedFunction', vi.fn<typeof defineCachedFunction>())
-vi.stubGlobal('defineRouteMeta', vi.fn<typeof defineRouteMeta>())
-vi.stubGlobal('useStorage', vi.fn<typeof useStorage>())
-vi.stubGlobal('useRuntimeConfig', vi.fn<typeof useRuntimeConfig>())
+vi.mock('nitropack/runtime', () => ({
+  defineCachedEventHandler: vi.fn((handler: unknown) => handler),
+  defineCachedFunction: vi.fn(),
+  useStorage: vi.fn(),
+}))
 
 // nuxthub
 vi.mock('@nuxthub/db', () => {
