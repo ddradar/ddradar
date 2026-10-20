@@ -275,14 +275,14 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">Name</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">Name</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -293,14 +293,14 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Series</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">Series</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -311,12 +311,12 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Play Style</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">Play Style</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">Both</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -327,14 +327,14 @@ exports[`/songs > (locale: en) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -639,14 +639,14 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">Name</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">Name</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -657,14 +657,14 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Series</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">Series</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -675,12 +675,12 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">Play Style</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">Play Style</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">Both</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -691,14 +691,14 @@ exports[`/songs > (locale: en) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1045,14 +1045,14 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">曲名</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">曲名</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1063,14 +1063,14 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">シリーズ</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">シリーズ</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1081,12 +1081,12 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">プレースタイル</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">プレースタイル</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">両方表示</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1097,14 +1097,14 @@ exports[`/songs > (locale: ja) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">レベル</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">レベル</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1409,14 +1409,14 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">曲名</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">曲名</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1427,14 +1427,14 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">シリーズ</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">シリーズ</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1445,12 +1445,12 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">プレースタイル</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">プレースタイル</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">両方表示</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1461,14 +1461,14 @@ exports[`/songs > (locale: ja) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">レベル</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">レベル</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1815,14 +1815,14 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">곡명</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">곡명</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1833,14 +1833,14 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">버전</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">버전</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1851,12 +1851,12 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">전체 표시</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -1867,14 +1867,14 @@ exports[`/songs > (locale: ko) > renders initial state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -2179,14 +2179,14 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
           <div class="grid grid-cols-1 gap-4 p-3 sm:grid-cols-2">
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">곡명</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">곡명</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-6" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-5" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -2197,14 +2197,14 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">버전</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" id="v-0-0-7-label" data-slot="label" class="block font-medium text-default">버전</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-6" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-8" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -2215,12 +2215,12 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-7" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" id="v-0-0-9-label" data-slot="label" class="block font-medium text-default">플레이 스타일</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
-              <div class="relative mt-1"><button id="v-0-0-7" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
+              <div class="relative mt-1"><button id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false" role="combobox" type="button" aria-expanded="false" aria-required="false" aria-autocomplete="none" dir="ltr" data-state="closed">
                   <!--v-if--><span style="pointer-events: none;" data-slot="value" class="truncate pointer-events-none">전체 표시</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
@@ -2231,14 +2231,14 @@ exports[`/songs > (locale: ko) > renders search result state correctly 1`] = `
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-9" data-slot="label" class="block font-medium text-default">Level</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-11" id="v-0-0-11-label" data-slot="label" class="block font-medium text-default">Level</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
               </div>
               <div class="relative mt-1">
                 <!---->
-                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-9" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
+                <!----><button type="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false" aria-controls="select-menu-listbox-v-0-0-12" data-state="closed" aria-disabled="false" dir="ltr" id="v-0-0-11" data-slot="base" class="relative group rounded-md inline-flex items-center disabled:cursor-not-allowed disabled:opacity-75 transition-colors px-2.5 py-1.5 text-base/5 gap-1.5 text-highlighted bg-default ring ring-inset ring-accented hover:bg-elevated disabled:bg-default outline-primary/25 focus-visible:outline-3 focus-visible:ring-primary pe-9 md:text-sm w-full" aria-invalid="false">
                   <!--v-if--><span data-slot="placeholder" class="truncate text-dimmed">&nbsp;</span><span data-slot="trailing" class="absolute inset-y-0 end-0 flex items-center pe-2.5"><span class="iconify i-lucide:chevron-down shrink-0 text-dimmed size-5" aria-hidden="true" data-slot="trailingIcon"></span></span>
                 </button>
                 <!--teleport start-->
