@@ -18,12 +18,12 @@ describe('/shared/utils/score', () => {
       { notes: null, freezes: 50, shocks: 25 },
       { notes: 100, freezes: null, shocks: 25 },
       { notes: 100, freezes: 50, shocks: null },
-    ])('(%o) returns false', chart => expect(hasNotesInfo(chart)).toBe(false))
+    ])('(%j) returns false', chart => expect(hasNotesInfo(chart)).toBe(false))
 
     test.each([
       { notes: 100, freezes: 50, shocks: 25 },
       { notes: 0, freezes: 0, shocks: 0 },
-    ])('(%o) returns true', chart => expect(hasNotesInfo(chart)).toBe(true))
+    ])('(%j) returns true', chart => expect(hasNotesInfo(chart)).toBe(true))
   })
 
   describe('calcFlareSkill', () => {
@@ -147,7 +147,7 @@ describe('/shared/utils/score', () => {
           },
         ],
       ],
-    ])('(chart, %o) returns %o', (score, expected) =>
+    ])('(chart, %j) returns %j', (score, expected) =>
       expect(ValidateScoreRecord(chart, score)).toStrictEqual(expected)
     )
 
@@ -159,7 +159,7 @@ describe('/shared/utils/score', () => {
       { ...baseScore, clearLamp: ClearLamp.GFC, exScore: 388 },
       { ...baseScore, maxCombo: 110 },
       { ...baseScore, clearLamp: ClearLamp.Life4, maxCombo: 110 },
-    ] as const)('(chart, %o) returns []', score =>
+    ] as const)('(chart, %j) returns []', score =>
       expect(ValidateScoreRecord(chart, score)).toStrictEqual([])
     )
   })
@@ -425,7 +425,7 @@ describe('/shared/utils/score', () => {
       ], // 0 point clear (FLARE I Clear)
       [{ exScore: 800 }, { exScore: 800 }], // Cannot guess anything
     ] satisfies [Partial<ScoreRecord>, Partial<ScoreRecord>][])(
-      '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %o) returns %o',
+      '({ notes: 1000, freezeArrow: 10, shockArrow: 10 }, %j) returns %j',
       (score: Partial<ScoreRecord>, expected: Partial<ScoreRecord>) =>
         expect(fillScoreRecordFromChart(chart, score)).toStrictEqual(expected)
     )
@@ -456,7 +456,7 @@ describe('/shared/utils/score', () => {
         },
       ], // Gr5 P32
     ] satisfies [Partial<ScoreRecord>, ScoreRecord][])(
-      '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %o) returns %o',
+      '({ notes: 180, freezeArrow: 10, shockArrow: 0 }, %j) returns %j',
       (incompleteScore: Partial<ScoreRecord>, expected: ScoreRecord) => {
         // Arrange
         const chart = { notes: 180, freezes: 10, shocks: 0 }

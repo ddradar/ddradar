@@ -142,7 +142,7 @@ describe('/songs', () => {
     [{ style: 1, expected: { level: '4', style: '1' } }],
     [{ style: 2, expected: { level: '4', style: '2' } }],
   ] as const)(
-    'level search navigates with expected query: %o',
+    'level search navigates with expected query: %j',
     async ({ style, expected }) => {
       useState('play-style-visibility').value = style
       const options = { route: '/songs', ...mountOptions }

@@ -28,7 +28,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
           <form id="v-0-0-0" method="post" class="" role="form">
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User ID</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" id="v-0-0-1-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User ID</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-1-description" data-slot="description" class="text-muted">The user ID used in this app. Once registered, it cannot be changed.</p>
@@ -43,7 +43,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User Name</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" id="v-0-0-2-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">User Name</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -58,7 +58,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Area</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" id="v-0-0-3-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">Area</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -194,7 +194,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDR Code</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">DDR Code</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -209,7 +209,7 @@ exports[`/profile > (locale: en) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">Profile Visibility</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" id="v-0-0-6-label" data-slot="label" class="block font-medium text-default">Profile Visibility</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-6-description" data-slot="description" class="text-muted">Allow other users to view your profile and scores.</p>
@@ -243,7 +243,7 @@ exports[`/profile > (locale: ja) > renders alert when user is not registered yet
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
-    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 p-0"><span class="iconify i-lucide:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <!--v-if--><button type="button" data-slot="close" aria-label="閉じる" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 p-0"><span class="iconify i-lucide:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
       <!--v-if-->
       <!--v-if-->
     </button>
@@ -263,7 +263,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
           <form id="v-0-0-0" method="post" class="" role="form">
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザーID</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" id="v-0-0-1-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザーID</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-1-description" data-slot="description" class="text-muted">このアプリで使用するユーザーIDです。一度登録すると変更できません。</p>
@@ -278,7 +278,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザー名</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" id="v-0-0-2-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">ユーザー名</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -293,7 +293,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">所属エリア</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" id="v-0-0-3-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">所属エリア</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -429,7 +429,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDRコード</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">DDRコード</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -444,7 +444,7 @@ exports[`/profile > (locale: ja) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">プロフィール公開設定</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" id="v-0-0-6-label" data-slot="label" class="block font-medium text-default">プロフィール公開設定</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-6-description" data-slot="description" class="text-muted">他のユーザーがあなたのプロフィール・スコアを閲覧できるようにします。</p>
@@ -478,7 +478,7 @@ exports[`/profile > (locale: ko) > renders alert when user is not registered yet
     <!--v-if-->
   </div>
   <div data-slot="actions" class="flex flex-wrap gap-1.5 shrink-0 items-center">
-    <!--v-if--><button type="button" data-slot="close" aria-label="Close" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 p-0"><span class="iconify i-lucide:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
+    <!--v-if--><button type="button" data-slot="close" aria-label="닫기" class="rounded-md font-medium inline-flex items-center disabled:cursor-not-allowed aria-disabled:cursor-not-allowed disabled:opacity-75 aria-disabled:opacity-75 transition-colors text-sm gap-1.5 text-muted hover:text-default active:text-default disabled:text-muted aria-disabled:text-muted outline-inverted/25 focus-visible:outline-3 p-0"><span class="iconify i-lucide:x shrink-0 size-5" aria-hidden="true" data-slot="leadingIcon"></span>
       <!--v-if-->
       <!--v-if-->
     </button>
@@ -498,7 +498,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
           <form id="v-0-0-0" method="post" class="" role="form">
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4" disabled="true">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 ID</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-1" id="v-0-0-1-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 ID</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-1-description" data-slot="description" class="text-muted">이 앱에서 사용되는 사용자 ID입니다. 등록 후에는 변경할 수 없습니다.</p>
@@ -513,7 +513,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 이름</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-2" id="v-0-0-2-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">사용자 이름</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -528,7 +528,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">소속 지역</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-3" id="v-0-0-3-label" data-slot="label" class="block font-medium text-default after:content-['*'] after:ms-0.5 after:text-error">소속 지역</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -664,7 +664,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" data-slot="label" class="block font-medium text-default">DDR Code</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-5" id="v-0-0-5-label" data-slot="label" class="block font-medium text-default">DDR Code</label>
                   <!--v-if-->
                 </div>
                 <!--v-if-->
@@ -679,7 +679,7 @@ exports[`/profile > (locale: ko) > renders correctly when user is already regist
             </div>
             <div data-orientation="vertical" data-slot="root" class="text-sm mt-4 mb-4">
               <div data-slot="wrapper" class="">
-                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" data-slot="label" class="block font-medium text-default">프로필 공개 설정</label>
+                <div data-slot="labelWrapper" class="flex content-center items-center justify-between gap-1"><label for="v-0-0-6" id="v-0-0-6-label" data-slot="label" class="block font-medium text-default">프로필 공개 설정</label>
                   <!--v-if-->
                 </div>
                 <p id="v-0-0-6-description" data-slot="description" class="text-muted">다른 사용자가 귀하의 프로필과 스코어를 볼 수 있도록 허용합니다.</p>

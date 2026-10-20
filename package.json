@@ -27,7 +27,7 @@
   "dependencies": {
     "@libsql/client": "^0.18.0",
     "@nuxt/content": "^3.16.2",
-    "@nuxt/ui": "^4.11.3",
+    "@nuxt/ui": "^4.12.0",
     "@nuxthub/core": "^0.10.8",
     "@nuxtjs/i18n": "^10.6.0",
     "better-sqlite3": "^13.0.3",
@@ -65,7 +65,7 @@
     "unstorage": "^1.17.6",
     "vitest": "^5.0.5",
     "vue-tsc": "^3.3.13",
-    "wrangler": "^4.131.0"
+    "wrangler": "^4.151.2"
   },
   "lint-staged": {
     "*.{js,mjs,ts,vue}": [

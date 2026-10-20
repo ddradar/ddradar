@@ -94,7 +94,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     { ...body, flareSkill: 2000 },
     { ...body, exScore: testStepCharts[1].notes * 3 + 1 },
     { ...body, maxCombo: testStepCharts[1].notes + 1 },
-  ])('(body: %o) returns 400 when score record is invalid', async body => {
+  ])('(body: %j) returns 400 when score record is invalid', async body => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
     const event = createRequestEvent(body, params)
@@ -112,7 +112,7 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     { ...body, maxCombo: testStepCharts[1].notes },
     { ...body, flareRank: FlareRank.V },
     { ...body, flareRank: FlareRank.III, flareSkill: 342 },
-  ])('(body: %o) returns 200 with score', async body => {
+  ])('(body: %j) returns 200 with score', async body => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
     returning.mockResolvedValue([{ ...body }])

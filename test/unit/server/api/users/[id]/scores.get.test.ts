@@ -59,7 +59,7 @@ describe('GET /api/users/[id]/scores', () => {
   })
 
   test.each([undefined, privateUser])(
-    'returns 404 when user is %o',
+    'returns 404 when user is %j',
     async user => {
       // Arrange
       vi.mocked(getAuthenticatedUser).mockResolvedValue(null)

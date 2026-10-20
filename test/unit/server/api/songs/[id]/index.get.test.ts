@@ -39,7 +39,7 @@ describe('GET /api/songs/[id]', () => {
     expect(vi.mocked(getCachedSongInfo)).toHaveBeenNthCalledWith(1, event, id)
   })
 
-  test.each(['', 'invalid-id'])('(id: %o) throws 400', async id => {
+  test.each(['', 'invalid-id'])('(id: %j) throws 400', async id => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(mockData)
     const event = createRequestEvent(null, { id })

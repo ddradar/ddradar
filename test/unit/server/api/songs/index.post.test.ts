@@ -27,7 +27,7 @@ describe('POST /api/songs', () => {
     { id: 'user1', roles: [] },
     { id: 'user2', roles: ['foo'] },
   ])(
-    '(%o (non-admin user)) returns 403 Forbidden',
+    '(%j (non-admin user)) returns 403 Forbidden',
     async (user: Awaited<ReturnType<typeof requireAuthenticatedUser>>) => {
       // Arrange
       vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(user)
@@ -49,7 +49,7 @@ describe('POST /api/songs', () => {
     { ...validBody, charts: 'invalid' },
     { ...validBody, charts: [null] },
     { ...validBody, deletedAt: 'invalid' },
-  ])('(%o (with admin user)) returns 400 Bad Request', async body => {
+  ])('(%j (with admin user)) returns 400 Bad Request', async body => {
     // Arrange
     vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(adminUser)
     const event = createRequestEvent(body)
@@ -63,7 +63,7 @@ describe('POST /api/songs', () => {
   })
 
   test.each([validBody, { ...validBody, deletedAt: new Date().toISOString() }])(
-    '(%o (with admin user)) returns 200',
+    '(%j (with admin user)) returns 200',
     async body => {
       // Arrange
       vi.mocked(requireAuthenticatedUser).mockResolvedValueOnce(adminUser)

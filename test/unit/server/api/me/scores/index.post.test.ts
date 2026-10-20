@@ -71,7 +71,7 @@ describe('POST /api/me/scores', () => {
     [{ ...score, maxCombo: -1 }],
     [{ ...score, clearLamp: ClearLamp.MFC + 1 }],
     [{ ...score, rank: 'SSS' }],
-  ])('(body %j) returns 400', async body => {
+  ])('(body: %j) returns 400', async body => {
     // Arrange
     const event = createRequestEvent(body)
 
@@ -148,7 +148,7 @@ describe('POST /api/me/scores', () => {
       },
       [],
     ],
-  ])('(body %j) returns 200 with %o', async (score, expected, batchResult) => {
+  ])('(body: %j) returns 200 with %j', async (score, expected, batchResult) => {
     // Arrange
     vi.mocked(db.batch).mockResolvedValue(batchResult)
     const event = createRequestEvent([score])
