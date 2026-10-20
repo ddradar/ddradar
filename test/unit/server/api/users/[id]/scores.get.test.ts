@@ -133,7 +133,7 @@ describe('GET /api/users/[id]/scores', () => {
         vi.mocked(getCachedUser).mockResolvedValue(publicUser)
         const items = generateScores(5, publicUser)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const event = createRequestEvent(null, { id: publicUser.id })
+        const event = createRequestEvent(null, { id: publicUser.id }, query)
 
         // Act
         const result = await handler(event)
@@ -167,7 +167,7 @@ describe('GET /api/users/[id]/scores', () => {
         vi.mocked(getCachedUser).mockResolvedValue(privateUser)
         const items = generateScores(5, privateUser)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const event = createRequestEvent(null, { id: privateUser.id })
+        const event = createRequestEvent(null, { id: privateUser.id }, query)
 
         // Act
         const result = await handler(event)
