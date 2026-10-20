@@ -256,7 +256,7 @@ describe('/shared/scrapes/eagate', () => {
           ),
         ],
       ],
-    ])('(%s) returns %o', async (fileName, expected) => {
+    ])('(%s) returns %j', async (fileName, expected) => {
       // Arrange
       const source = await createSource(fileName)
 
@@ -457,7 +457,7 @@ describe('/shared/scrapes/eagate', () => {
         },
       ],
     ] satisfies [string, EAGateScoreRecordWithRivals][])(
-      '(%s) returns %o',
+      '(%s) returns %j',
       async (fileName, expected) => {
         // Arrange
         const source = await readFileAsync('music_detail', fileName)

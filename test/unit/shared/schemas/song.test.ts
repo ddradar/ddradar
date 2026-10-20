@@ -36,7 +36,7 @@ describe('/shared/schemas/song', () => {
       { ...validSong, nameKana: 'abc' },
       { ...validSong, bpm: 'null' },
       { ...validSong, series: 'DDR FESTIVAL' },
-    ])('z.validate(songSchema, %o) returns false', o =>
+    ])('z.validate(songSchema, %j) returns false', o =>
       expect(z.validate(songSchema, o)).toBe(false)
     )
 
@@ -52,7 +52,7 @@ describe('/shared/schemas/song', () => {
       { ...validSong, series: 'DDR WORLD' },
       { ...validSong, bpm: null },
     ] satisfies Omit<SongInfo, 'charts'>[])(
-      'z.validate(songSchema, %o) returns true',
+      'z.validate(songSchema, %j) returns true',
       o => expect(z.validate(songSchema, o)).toBe(true)
     )
   })
@@ -96,7 +96,7 @@ describe('/shared/schemas/song', () => {
       Pick<SongInfo, 'nameKana' | 'nameIndex'>,
       Pick<SongInfo, 'nameKana' | 'nameIndex'>,
       number,
-    ][])('(%o, %o) returns %d', (a, b, expected) => {
+    ][])('(%j, %j) returns %d', (a, b, expected) => {
       expect(compareSong(a, b)).toBe(expected)
       expect(compareSong(b, a)).toBeCloseTo(-expected) // to equalize +0 and -0
     })

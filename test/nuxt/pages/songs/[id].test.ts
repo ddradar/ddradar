@@ -99,7 +99,7 @@ describe('/songs/[id]', () => {
 
   describe('Edit button', () => {
     test.each([null, { ...sessionUser }])(
-      '(user: %o) does not show edit button',
+      '(user: %j) does not show edit button',
       async loginUser => {
         // Arrange
         user.value = loginUser

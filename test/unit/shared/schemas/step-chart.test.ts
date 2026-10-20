@@ -37,7 +37,7 @@ describe('/shared/schemas/step-chart', () => {
         ...validStepChart,
         radar: { stream: -1, voltage: 0, air: 0, freeze: 0, chaos: 0 },
       },
-    ])('z.validate(stepChartSchema, %o) returns false', o =>
+    ])('z.validate(stepChartSchema, %j) returns false', o =>
       expect(z.validate(stepChartSchema, o)).toBe(false)
     )
 
@@ -52,7 +52,7 @@ describe('/shared/schemas/step-chart', () => {
         ...validStepChart,
         radar: { stream: 5, voltage: 7, air: 3, freeze: 4, chaos: 2 },
       },
-    ])('z.validate(stepChartSchema, %o) returns true', o =>
+    ])('z.validate(stepChartSchema, %j) returns true', o =>
       expect(z.validate(stepChartSchema, o)).toBe(true)
     )
   })
@@ -79,7 +79,7 @@ describe('/shared/schemas/step-chart', () => {
         expect(getChartName({ playStyle, difficulty })).toBe(expected)
     )
 
-    test.each([null, undefined])('(%o) returns "UNKNOWN/UNKNOWN"', chart =>
+    test.each([null, undefined])('(%j) returns "UNKNOWN/UNKNOWN"', chart =>
       expect(getChartName(chart)).toBe('UNKNOWN/UNKNOWN')
     )
   })
@@ -101,7 +101,7 @@ describe('/shared/schemas/step-chart', () => {
         { playStyle: PlayStyle.DOUBLE, difficulty: Difficulty.BASIC },
         false,
       ],
-    ])('(%o, %o) returns %o', (left, right, expected) =>
+    ])('(%j, %j) returns %j', (left, right, expected) =>
       expect(chartEquals(left, right)).toBe(expected)
     )
   })

@@ -30,7 +30,7 @@ describe('/shared/schemas/score', () => {
       { ...validScoreRecord, clearLamp: 8 },
       { ...validScoreRecord, rank: 'SSS' },
       { ...validScoreRecord, flareRank: 11 },
-    ])('z.validate(scoreRecordSchema, %o) returns false', o =>
+    ])('z.validate(scoreRecordSchema, %j) returns false', o =>
       expect(z.validate(scoreRecordSchema, o)).toBe(false)
     )
 
@@ -40,7 +40,7 @@ describe('/shared/schemas/score', () => {
       { ...validScoreRecord, exScore: 1000 },
       { ...validScoreRecord, maxCombo: 300 },
       { ...validScoreRecord, flareRank: FlareRank.EX, flareSkill: 296 },
-    ])('z.validate(scoreRecordSchema, %o) returns true', o =>
+    ])('z.validate(scoreRecordSchema, %j) returns true', o =>
       expect(z.validate(scoreRecordSchema, o)).toBe(true)
     )
   })

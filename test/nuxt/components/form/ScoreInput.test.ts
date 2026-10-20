@@ -48,7 +48,7 @@ describe('components/form/ScoreInput.vue', () => {
       test.each([
         charts[0], // has notes info
         charts[2], // has no notes info
-      ])('(chart: %o) renders properly', async chart => {
+      ])('(chart: %j) renders properly', async chart => {
         // Arrange - Act
         const props = { ...requiredProps, chart }
         const wrapper = await mountSuspended(ScoreInput, { props })
@@ -92,7 +92,7 @@ describe('components/form/ScoreInput.vue', () => {
         },
       ],
     ])(
-      '(score: %o) sets input fields properly',
+      '(score: %j) sets input fields properly',
       async (score: ScoreRecord | null, expected: Partial<ScoreRecord>) => {
         // Arrange - Act
         const props = { ...requiredProps, score }

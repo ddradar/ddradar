@@ -28,7 +28,7 @@ describe('/shared/schemas/user', () => {
       { ...validUserInfo, ddrCode: 100000000 },
       { ...validUserInfo, isPublic: undefined },
       { id: 'new_user', name: 'New User', area: Area.東京都 },
-    ])('z.validate(userSchema, %o) returns false', o =>
+    ])('z.validate(userSchema, %j) returns false', o =>
       expect(z.validate(userSchema, o)).toBe(false)
     )
 
@@ -38,7 +38,7 @@ describe('/shared/schemas/user', () => {
       { ...validUserInfo, area: Area.Undefined },
       { ...validUserInfo, code: 10000000 },
       { ...validUserInfo, isPublic: false },
-    ])('z.validate(userSchema, %o) returns true', o =>
+    ])('z.validate(userSchema, %j) returns true', o =>
       expect(z.validate(userSchema, o)).toBe(true)
     )
   })
@@ -82,7 +82,7 @@ describe('/shared/schemas/user', () => {
         ],
       ],
       [Area.Overseas, overSeas],
-    ])('(%i) returns %o', (area, expected) =>
+    ])('(%i) returns %j', (area, expected) =>
       expect(getNarrowedArea(area)).toStrictEqual(expected)
     )
   })

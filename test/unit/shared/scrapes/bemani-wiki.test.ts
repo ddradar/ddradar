@@ -132,7 +132,7 @@ describe('shared/scrapes/bemani-wiki', () => {
         ],
       ],
     ] satisfies [string, StepChart['playStyle'], [string, number[][]][]][])(
-      '(%s, %o) returns expected Map',
+      '(%s, %j) returns expected Map',
       async (file, playStyle, expected) => {
         // Arrange
         const source = await readFileAsync(file)
