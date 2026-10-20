@@ -1,9 +1,15 @@
 import { kv } from '@nuxthub/kv'
-import type { H3Event } from 'h3'
+import { useRuntimeConfig } from 'nuxt/server'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/tokens/index.post'
 import { sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
+
+vi.mock('nuxt/server', async o => ({
+  ...(await o()),
+  useRuntimeConfig: vi.fn<typeof useRuntimeConfig>(),
+}))
 
 describe('POST /api/me/tokens', () => {
   const user = { ...sessionUser, id: 'user1' }
@@ -34,23 +40,15 @@ describe('POST /api/me/tokens', () => {
       ...body,
       expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(), // 60 days from now (beyond maxExpirationDays)
     },
-  ])('(body: %o) returns 400 when body is invalid', async body => {
+  ])('(body: %j) returns 400 when body is invalid', async body => {
     // Arrange
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
     vi.mocked(kv.keys).mockResolvedValue([])
     vi.mocked(kv.has).mockResolvedValue(false)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(kv.keys)).not.toHaveBeenCalled()
@@ -65,18 +63,10 @@ describe('POST /api/me/tokens', () => {
       Array.from({ length: 10 }, () => '') // maxCreationPerUser reached
     )
     vi.mocked(kv.has).mockResolvedValue(false)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(kv.keys)).toHaveBeenCalled()
@@ -89,18 +79,10 @@ describe('POST /api/me/tokens', () => {
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
     vi.mocked(kv.keys).mockResolvedValue([])
     vi.mocked(kv.has).mockResolvedValue(true) // always indicate collision
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 500 })
     )
     expect(vi.mocked(kv.keys)).toHaveBeenCalled()
@@ -113,18 +95,10 @@ describe('POST /api/me/tokens', () => {
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
     vi.mocked(kv.keys).mockResolvedValue([])
     vi.mocked(kv.has).mockResolvedValue(false)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toHaveProperty('token')

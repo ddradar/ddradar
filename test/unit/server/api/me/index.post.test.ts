@@ -1,11 +1,11 @@
 // oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
-import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/index.post'
 import { publicUser, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('POST /api/me', () => {
   const body: UserInfo = {
@@ -34,18 +34,10 @@ describe('POST /api/me', () => {
       user: { ...sessionUser },
     } as never)
     returning.mockResolvedValue([publicUser])
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(publicUser)
@@ -67,18 +59,10 @@ describe('POST /api/me', () => {
       user: { ...sessionUser, id: body.id },
     } as never)
     returning.mockResolvedValue([publicUser])
-    const event: Partial<H3Event> = {
-      node: {
-        req: {
-          body: JSON.stringify({ ...body, id: 'ignored_id' }),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-      method: 'POST',
-    }
+    const event = createRequestEvent({ ...body, id: 'ignored_id' })
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(publicUser)
@@ -99,18 +83,10 @@ describe('POST /api/me', () => {
     } as never)
     returning.mockResolvedValue([])
 
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body)
 
     // Act & Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 409, statusMessage: 'Conflict' })
     )
     expect(setUserSession).not.toHaveBeenCalled()

@@ -2,13 +2,13 @@
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
 import { and, eq, isNull } from 'drizzle-orm'
-import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me//scores/[songId]/[playStyle]/[difficulty].delete'
 import { Difficulty, PlayStyle } from '#shared/schemas/step-chart'
 import { testSongData } from '~~/test/data/song'
 import { publicUser, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   const params = {
@@ -41,13 +41,10 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     '(songId: "%s", playStyle: "%s", difficulty: "%s") returns 400 when parameters are invalid',
     async (songId, playStyle, difficulty) => {
       // Arrange
-      const event: Partial<H3Event> = {
-        method: 'DELETE',
-        context: { params: { songId, playStyle, difficulty } },
-      }
+      const event = createRequestEvent(null, { songId, playStyle, difficulty })
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrow(
+      await expect(handler(event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(db.update).not.toHaveBeenCalled()
@@ -57,10 +54,10 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test('returns 404 when score does not exist', async () => {
     // Arrange
     run.mockResolvedValue({ meta: { changes: 0 } })
-    const event: Partial<H3Event> = { method: 'DELETE', context: { params } }
+    const event = createRequestEvent(null, params)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.update).toHaveBeenCalledWith(scores)
@@ -84,14 +81,10 @@ describe('DELETE /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test('returns 204 when score is deleted successfully', async () => {
     // Arrange
     run.mockResolvedValue({ meta: { changes: 1 } })
-    const event: Partial<H3Event> = {
-      method: 'DELETE',
-      context: { params },
-      node: { res: {} } as never,
-    }
+    const event = createRequestEvent(null, params)
 
     // Act
-    await handler(event as H3Event)
+    await handler(event)
 
     // Assert
     expect(db.update).toHaveBeenCalledWith(scores)

@@ -1,10 +1,16 @@
 import { kv } from '@nuxthub/kv'
-import type { H3Event } from 'h3'
 import { nanoid } from 'nanoid'
+import { useRuntimeConfig } from 'nuxt/server'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/tokens/[id].patch'
 import { apiToken, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
+
+vi.mock('nuxt/server', async o => ({
+  ...(await o()),
+  useRuntimeConfig: vi.fn<typeof useRuntimeConfig>(),
+}))
 
 describe('PATCH /api/me/tokens/:id', () => {
   const user = { ...sessionUser, id: 'user1' }
@@ -29,13 +35,10 @@ describe('PATCH /api/me/tokens/:id', () => {
     async id => {
       // Arrange
       vi.mocked(kv.get).mockResolvedValue(apiToken)
-      const event: Partial<H3Event> = {
-        context: { params: { id } },
-        node: { req: { body: JSON.stringify(body) } } as never,
-      }
+      const event = createRequestEvent(body, { id })
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrow(
+      await expect(handler(event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(vi.mocked(kv.get)).not.toHaveBeenCalled()
@@ -52,22 +55,13 @@ describe('PATCH /api/me/tokens/:id', () => {
     {
       expiresAt: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString(), // 60 days from now (beyond maxExpirationDays)
     },
-  ])('(body: %o) returns 400 when expiresAt is invalid', async body => {
+  ])('(body: %j) returns 400 when expiresAt is invalid', async body => {
     // Arrange
     vi.mocked(kv.get).mockResolvedValue(apiToken)
-    const event: Partial<H3Event> = {
-      method: 'PATCH',
-      context: { params: { id: nanoid() } },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, { id: nanoid() })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(kv.get)).not.toHaveBeenCalled()
@@ -78,19 +72,10 @@ describe('PATCH /api/me/tokens/:id', () => {
     // Arrange
     vi.mocked(kv.get).mockResolvedValue(null)
     const id = nanoid()
-    const event: Partial<H3Event> = {
-      method: 'PATCH',
-      context: { params: { id } },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, { id })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(vi.mocked(kv.get)).toHaveBeenCalledWith(
@@ -103,19 +88,10 @@ describe('PATCH /api/me/tokens/:id', () => {
     // Arrange
     vi.mocked(kv.get).mockResolvedValue(apiToken)
     const id = nanoid()
-    const event: Partial<H3Event> = {
-      method: 'PATCH',
-      context: { params: { id } },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, { id })
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(

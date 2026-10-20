@@ -1,5 +1,6 @@
 import { kv } from '@nuxthub/kv'
 import { nanoid } from 'nanoid'
+import { createError, defineEventHandler, readValidatedBody } from 'nuxt/server'
 import * as z from 'zod/mini'
 
 import { getTokenConfig } from '#server/utils/auth'
@@ -22,13 +23,20 @@ async function hashToken(token: string): Promise<string> {
   return hashArray.map(b => b.toString(16).padStart(2, '0')).join('')
 }
 
+const bodySchema = z.compile(
+  z.pick(apiTokenSchema, { name: true, expiresAt: true })
+)
+
+/**
+ * Create a new API token for the authenticated user.
+ * The token can be used for Bearer authentication in API requests.
+ * Maximum 10 tokens per user.
+ */
 export default defineEventHandler(async event => {
-  const { maxExpirationDays, maxCreationPerUser } = getTokenConfig(event)
+  const { maxExpirationDays, maxCreationPerUser } = getTokenConfig()
 
   // Validate request body
-  const body = await readValidatedBody(event, i =>
-    z.pick(apiTokenSchema, { name: true, expiresAt: true }).parse(i)
-  )
+  const body = await readValidatedBody(event, i => bodySchema.parse(i))
 
   // Require user session with registered user ID (not allow token-authenticated)
   const user = await requireAuthenticatedUserFromSession(event)
@@ -96,80 +104,4 @@ export default defineEventHandler(async event => {
 
   // Return plain token (only this time)
   return { token }
-})
-
-// Define OpenAPI metadata
-defineRouteMeta({
-  openAPI: {
-    $global: {
-      components: {
-        securitySchemes: {
-          BearerAuth: {
-            type: 'http',
-            scheme: 'bearer',
-            description:
-              'API token authentication using Bearer token in Authorization header. ' +
-              'Cannot be used to create or manage user/tokens.',
-          },
-        },
-      },
-    },
-    summary: 'Create API Token',
-    tags: ['API Token'],
-    description:
-      'Generate a new API token for the authenticated user. ' +
-      'The token can be used for Bearer authentication in API requests. ' +
-      'Maximum 10 tokens per user.',
-    security: [{ SessionCookieAuth: [] }],
-    requestBody: {
-      description: 'Token configuration',
-      required: true,
-      content: {
-        'application/json': {
-          schema: {
-            type: 'object',
-            properties: {
-              name: { $ref: '#/components/schemas/ApiToken/properties/name' },
-              expiresAt: {
-                $ref: '#/components/schemas/ApiToken/properties/expiresAt',
-              },
-            },
-            required: ['name', 'expiresAt'],
-          },
-        },
-      },
-    },
-    responses: {
-      200: {
-        description: 'Token created successfully',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-              properties: {
-                token: {
-                  type: 'string',
-                  description:
-                    'Generated API token (shown only once, save it securely)',
-                  example: 'abcdef1234567890...',
-                },
-              },
-              required: ['token'],
-            },
-          },
-        },
-      },
-      400: {
-        description:
-          'Bad Request - Expiration date is invalid or maximum token limit reached',
-        content: {
-          'application/json': {
-            schema: { $ref: '#/components/schemas/ErrorResponse' },
-          },
-        },
-      },
-      401: { $ref: '#/components/responses/Unauthorized' },
-      403: { $ref: '#/components/responses/RegistrationRequired' },
-    },
-  },
 })

@@ -2,11 +2,11 @@
 import { db } from '@nuxthub/db'
 import { users } from '@nuxthub/db/schema'
 import { and, eq, isNull, or, sql } from 'drizzle-orm'
-import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/users/index.get'
 import { privateUser, publicUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('GET /api/users', () => {
   describe.each([
@@ -38,7 +38,7 @@ describe('GET /api/users', () => {
         publicUser,
       ] as never)
       vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
-      const event = { path: `/api/users${query}` } as unknown as H3Event
+      const event = createRequestEvent(null, undefined, query)
 
       // Act
       const result = await handler(event)
@@ -66,7 +66,7 @@ describe('GET /api/users', () => {
         id: privateUser.id,
         roles: [],
       })
-      const event = { path: `/api/users${query}` } as unknown as H3Event
+      const event = createRequestEvent(null, undefined, query)
 
       // Act
       const result = await handler(event)

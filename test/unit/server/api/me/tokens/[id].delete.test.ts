@@ -1,10 +1,10 @@
 import { kv } from '@nuxthub/kv'
-import type { H3Event } from 'h3'
 import { nanoid } from 'nanoid'
 import { describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/tokens/[id].delete'
 import { apiToken, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('DELETE /api/me/tokens/[id]', () => {
   const user = { ...sessionUser, id: 'user1' }
@@ -15,12 +15,10 @@ describe('DELETE /api/me/tokens/[id]', () => {
       // Arrange
       vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
       vi.mocked(kv.get).mockResolvedValue(apiToken)
-      const event: Partial<H3Event> = {
-        context: { params: { id } },
-      }
+      const event = createRequestEvent(null, { id })
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrow(
+      await expect(handler(event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(vi.mocked(kv.get)).not.toHaveBeenCalled()
@@ -33,16 +31,13 @@ describe('DELETE /api/me/tokens/[id]', () => {
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
     vi.mocked(kv.get).mockResolvedValue(apiToken)
     const tokenId = nanoid()
-    const event: Partial<H3Event> = {
-      context: { params: { id: tokenId } },
-      node: { res: {} } as never,
-    }
+    const event = createRequestEvent(null, { id: tokenId })
 
     // Act
-    await handler(event as H3Event)
+    await handler(event)
 
     // Assert
-    expect(event.node?.res.statusCode).toBe(204)
+    expect(event.res.status).toBe(204)
     expect(vi.mocked(kv.get)).toHaveBeenCalledWith(
       `user:${user.id}:token:${tokenId}`
     )
@@ -59,13 +54,10 @@ describe('DELETE /api/me/tokens/[id]', () => {
     vi.mocked(requireAuthenticatedUserFromSession).mockResolvedValue(user)
     vi.mocked(kv.get).mockResolvedValue(null)
     const tokenId = nanoid()
-    const event: Partial<H3Event> = {
-      context: { params: { id: tokenId } },
-      node: { res: {} } as never,
-    }
+    const event = createRequestEvent(null, { id: tokenId })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({
         statusCode: 404,
         statusMessage: 'Token not found',

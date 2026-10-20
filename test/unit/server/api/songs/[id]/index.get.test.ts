@@ -1,9 +1,9 @@
-import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/songs/[id]/index.get'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('GET /api/songs/[id]', () => {
   const mockData: SongInfo = {
@@ -15,10 +15,10 @@ describe('GET /api/songs/[id]', () => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(mockData)
     const id = testSongData.id
-    const event: Partial<H3Event> = { context: { params: { id } } }
+    const event = createRequestEvent(null, { id })
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(mockData)
@@ -29,10 +29,10 @@ describe('GET /api/songs/[id]', () => {
     // Arrange
     const id = '00000000000000000000000000000000'
     vi.mocked(getCachedSongInfo).mockResolvedValue(undefined)
-    const event: Partial<H3Event> = { context: { params: { id } } }
+    const event = createRequestEvent(null, { id })
 
     // Act & Assert
-    await expect(handler(event as H3Event)).rejects.toMatchObject({
+    await expect(handler(event)).rejects.toMatchObject({
       statusCode: 404,
       statusMessage: 'Not Found',
     })
@@ -42,10 +42,10 @@ describe('GET /api/songs/[id]', () => {
   test.each(['', 'invalid-id'])('(id: %o) throws 400', async id => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(mockData)
-    const event: Partial<H3Event> = { context: { params: { id } } }
+    const event = createRequestEvent(null, { id })
 
     // Act & Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(getCachedSongInfo)).not.toHaveBeenCalled()

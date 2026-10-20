@@ -1,3 +1,5 @@
+import { sendRedirect, getCookie, deleteCookie } from 'h3'
+
 import { getCurrentUser } from '#server/db/utils'
 
 // https://docs.x.com/x-api/users/get-my-user

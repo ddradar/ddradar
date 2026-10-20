@@ -1,7 +1,6 @@
 // oxlint-disable typescript/unbound-method - to mock db methods
 import { db } from '@nuxthub/db'
 import { scores } from '@nuxthub/db/schema'
-import type { H3Event } from 'h3'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/scores/[songId]/[playStyle]/[difficulty].post'
@@ -12,6 +11,7 @@ import { scoreRecord } from '~~/test/data/score'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { publicUser, sessionUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   const params = {
@@ -48,19 +48,10 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     '(songId: "%s", playStyle: "%s", difficulty: "%s") returns 400 when parameters are invalid',
     async (songId, playStyle, difficulty) => {
       // Arrange
-      const event: Partial<H3Event> = {
-        method: 'POST',
-        context: { params: { songId, playStyle, difficulty } },
-        node: {
-          req: {
-            body: JSON.stringify(body),
-            headers: { 'content-type': 'application/json' },
-          },
-        } as never,
-      }
+      const event = createRequestEvent(body, { songId, playStyle, difficulty })
 
       // Act - Assert
-      await expect(handler(event as H3Event)).rejects.toThrow(
+      await expect(handler(event)).rejects.toThrow(
         expect.objectContaining({ statusCode: 400 })
       )
       expect(db.update).not.toHaveBeenCalled()
@@ -70,19 +61,10 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test('returns 404 when song does not exist', async () => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(undefined)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      context: { params },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, params)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -91,25 +73,14 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   test('returns 404 when chart does not exist', async () => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      context: {
-        params: {
-          ...params,
-          playStyle: `${PlayStyle.DOUBLE}`,
-          difficulty: `${Difficulty.BEGINNER}`,
-        },
-      },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, {
+      ...params,
+      playStyle: `${PlayStyle.DOUBLE}`,
+      difficulty: `${Difficulty.BEGINNER}`,
+    })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -126,19 +97,10 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
   ])('(body: %o) returns 400 when score record is invalid', async body => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      context: { params },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, params)
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(db.insert).not.toHaveBeenCalled()
@@ -154,19 +116,10 @@ describe('POST /api/me/scores/[songId]/[playStyle]/[difficulty]', () => {
     // Arrange
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
     returning.mockResolvedValue([{ ...body }])
-    const event: Partial<H3Event> = {
-      method: 'POST',
-      context: { params },
-      node: {
-        req: {
-          body: JSON.stringify(body),
-          headers: { 'content-type': 'application/json' },
-        },
-      } as never,
-    }
+    const event = createRequestEvent(body, params)
 
     // Act
-    const result = await handler(event as H3Event)
+    const result = await handler(event)
 
     // Assert
     expect(result).toStrictEqual(body)

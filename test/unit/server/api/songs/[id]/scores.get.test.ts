@@ -2,7 +2,6 @@
 import { db } from '@nuxthub/db'
 import { scores, users } from '@nuxthub/db/schema'
 import { and, eq, inArray, isNotNull, isNull, or, sql } from 'drizzle-orm'
-import type { H3Event } from 'h3'
 import { describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/songs/[id]/scores.get'
@@ -12,6 +11,7 @@ import { range } from '#shared/utils'
 import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { privateUser } from '~~/test/data/user'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('GET /api/songs/[id]/scores', () => {
   const song = { ...testSongData, charts: [...testStepCharts] }
@@ -42,10 +42,10 @@ describe('GET /api/songs/[id]/scores', () => {
     // Arrange
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
     vi.mocked(getCachedSongInfo).mockResolvedValue(song)
-    const event: Partial<H3Event> = { context: { params: { id } } }
+    const event = createRequestEvent(null, { id })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 400 })
     )
     expect(vi.mocked(getCachedSongInfo)).not.toHaveBeenCalled()
@@ -56,10 +56,10 @@ describe('GET /api/songs/[id]/scores', () => {
     // Arrange
     vi.mocked(getAuthenticatedUser).mockResolvedValue(null)
     vi.mocked(getCachedSongInfo).mockResolvedValue(undefined)
-    const event: Partial<H3Event> = { context: { params: { id: song.id } } }
+    const event = createRequestEvent(null, { id: song.id })
 
     // Act - Assert
-    await expect(handler(event as H3Event)).rejects.toThrow(
+    await expect(handler(event)).rejects.toThrow(
       expect.objectContaining({ statusCode: 404 })
     )
     expect(vi.mocked(getCachedSongInfo)).toHaveBeenCalledWith(event, song.id)
@@ -106,13 +106,10 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${query}`,
-          context: { params: { id: song.id } },
-        }
+        const event = createRequestEvent(null, { id: song.id }, query)
 
         // Act
-        const result = await handler(event as H3Event)
+        const result = await handler(event)
 
         // Assert
         expect(result).toStrictEqual({
@@ -146,13 +143,10 @@ describe('GET /api/songs/[id]/scores', () => {
         vi.mocked(getCachedSongInfo).mockResolvedValue(song)
         const items = generateScores(5)
         vi.mocked(db.query.scores.findMany).mockResolvedValue(items as never)
-        const event: Partial<H3Event> = {
-          path: `/api/songs/${song.id}/scores${query}`,
-          context: { params: { id: song.id } },
-        }
+        const event = createRequestEvent(null, { id: song.id }, query)
 
         // Act
-        const result = await handler(event as H3Event)
+        const result = await handler(event)
 
         // Assert
         expect(result).toStrictEqual({

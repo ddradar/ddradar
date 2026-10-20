@@ -1,7 +1,9 @@
 import { kv } from '@nuxthub/kv'
+import { createError, defineEventHandler, readValidatedBody } from 'nuxt/server'
 import * as z from 'zod/mini'
 
 import { getTokenConfig } from '#server/utils/auth'
+import { getValidatedParams } from '#server/utils/router'
 import { apiTokenSchema } from '#shared/schemas/user'
 
 /** Schema for route params */
@@ -10,12 +12,10 @@ const paramsSchema = z.compile(z.pick(apiTokenSchema, { id: true }))
 const bodySchema = z.compile(z.pick(apiTokenSchema, { expiresAt: true }))
 
 export default defineEventHandler(async event => {
-  const { maxExpirationDays } = getTokenConfig(event)
+  const { maxExpirationDays } = getTokenConfig()
 
   // Validate route params and body
-  const { id: tokenId } = await getValidatedRouterParams(event, i =>
-    paramsSchema.parse(i)
-  )
+  const { id: tokenId } = getValidatedParams(paramsSchema, event)
   const body = await readValidatedBody(event, i => bodySchema.parse(i))
 
   // Require user session with registered user ID (not allow token-authenticated)

@@ -1,5 +1,5 @@
 import { kv } from '@nuxthub/kv'
-import type { H3Event } from 'h3'
+import type { RequestEvent } from 'nuxt/schema'
 import { afterAll, beforeAll, describe, expect, test, vi } from 'vitest'
 
 import handler from '#server/api/me/tokens/index.get'
@@ -29,7 +29,7 @@ describe('GET /api/me/tokens', () => {
       .mockResolvedValueOnce({ ...apiToken, name: 'Token 2' })
 
     // Act
-    const result = await handler({} as H3Event)
+    const result = await handler({} as RequestEvent)
 
     // Assert
     expect(result).toStrictEqual([

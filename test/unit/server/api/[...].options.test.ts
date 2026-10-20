@@ -1,20 +1,17 @@
-import type { H3Event } from 'h3'
 import { describe, expect, test } from 'vitest'
 
 import handler from '#server/api/[...].options'
+import { createRequestEvent } from '~~/test/unit/util'
 
 describe('OPTIONS /api/**', () => {
   test('returns 204 No Content', () => {
     // Arrange
-    const event: Partial<H3Event> = {
-      method: 'OPTIONS',
-      node: { res: {} } as never,
-    }
+    const event = createRequestEvent(null)
 
     // Act
-    handler(event as H3Event)
+    handler(event)
 
     // Assert
-    expect(event.node?.res.statusCode).toBe(204)
+    expect(event.res.status).toBe(204)
   })
 })

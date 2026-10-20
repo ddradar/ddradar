@@ -1,3 +1,5 @@
+import { sendRedirect, getCookie, deleteCookie } from 'h3'
+
 import { getCurrentUser } from '#server/db/utils'
 
 interface GitHubUser {
