@@ -25,14 +25,6 @@ interface DDRCardDrawGameData {
    * Describes unique configuration options for this game
    */
   meta: {
-    /**
-     * If supplied, the parent folder name in the game select menu
-     */
-    menuParent?: string
-    /**
-     * Unix timestamp of last update to this data file
-     */
-    lastUpdated: number
     styles: string[]
     /**
      * List of all difficulty classes available
@@ -47,35 +39,20 @@ interface DDRCardDrawGameData {
        */
       color: string
     }[]
-    flags: string[]
     folders: string[]
-    usesDrawGroups?: boolean
-    /**
-     * Number of steps from one level to the next when using the `sanbaiTier` granular levels
-     */
-    granularTierResolution?: number
   }
   songs: DDRCardDrawSong[]
 }
 interface DDRCardDrawSong {
-  flags?: string[]
+  id: string
   name: string
   artist: string
-  genre?: string
-  artist_translation?: string
   bpm: string
-  name_translation?: string
-  search_hint?: string
-  date_added?: string
   charts: DDRCardDrawChart[]
   jacket: string
   folder?: string
-  saHash?: string
-  saIndex?: string
-  remyLink?: string
 }
 interface DDRCardDrawChart {
-  flags?: string[]
   /**
    * e.g. single/double
    */
@@ -88,16 +65,6 @@ interface DDRCardDrawChart {
    * in-game numeric rating
    */
   lvl: number
-  /**
-   * a more granular rating sourced from 3icecream, calculated based on community performance
-   */
-  sanbaiTier?: number
-  /**
-   * tournament-specific grouping of charts (e.g. tier)
-   */
-  drawGroup?: number
-  jacket?: string
-  author?: string
   /**
    * per-chart BPM range, if one applies
    */
@@ -136,18 +103,14 @@ export default defineTask({
       new Map<string, Pick<StepChart, 'playStyle' | 'difficulty'>[]>()
     )
 
-    const importedSongs = data.songs.filter(
-      (song): song is DDRCardDrawSong & { saHash: string } =>
-        song.saHash !== undefined
-    )
     const database = db // store in a local variable for batch operations
     const series = data.meta.folders.reverse()
     const insertedCounts = await Promise.all(
-      importedSongs.map(async song => {
-        const existingCharts = existingSongs.get(song.saHash)
+      data.songs.map(async song => {
+        const existingCharts = existingSongs.get(song.id)
         const charts: (StepChart & Pick<SongInfo, 'id'>)[] = song.charts
           .map(c => ({
-            id: song.saHash,
+            id: song.id,
             playStyle:
               c.style.toLowerCase() === 'double' ? (2 as const) : (1 as const),
             difficulty: data.meta.difficulties.findIndex(
@@ -163,7 +126,7 @@ export default defineTask({
             database
               .insert(schema.songs)
               .values({
-                id: song.saHash,
+                id: song.id,
                 name: song.name,
                 nameKana: song.name.toUpperCase(),
                 artist: song.artist,
@@ -176,8 +139,8 @@ export default defineTask({
               .onConflictDoNothing(),
             database.insert(schema.charts).values(charts).onConflictDoNothing(),
           ])
-          console.log(`Added: ${song.name} (${song.saHash})`)
-          await clearSongCache(song.saHash, false)
+          console.log(`Added: ${song.name} (${song.id})`)
+          await clearSongCache(song.id, false)
           return res.reduce((acc, r) => acc + r.results.length, 0)
         }
 
@@ -191,11 +154,11 @@ export default defineTask({
           .onConflictDoNothing()) as D1Result
         if (res.results.length > 0) {
           console.log(
-            `Added charts for: ${song.name} (${song.saHash}): ${newCharts
+            `Added charts for: ${song.name} (${song.id}): ${newCharts
               .map(c => getChartName(c))
               .join(', ')}`
           )
-          await clearSongCache(song.saHash, false)
+          await clearSongCache(song.id, false)
         }
         return res.results.length
 
