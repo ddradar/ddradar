@@ -6,7 +6,13 @@ allowBuilds:
   vue-demi: true
   workerd: true
 minimumReleaseAgeExclude:
-  - miniflare@5.20261019.0-beta
-  - wrangler@4.151.2
+  - '@nuxt/kit@4.6.4'
+  - '@nuxt/nitro-server@4.6.4'
+  - '@nuxt/schema@4.6.4'
+  - '@nuxt/vite-builder@4.6.4'
+  - '@nuxt/vite-server@4.6.4'
+  - nitropack@2.13.6
+  - nuxt@4.6.4
+  - unrouting@0.3.2
 overrides:
   '@esbuild-kit/core-utils>esbuild': '^0.25.0'
