@@ -1,4 +1,4 @@
-import { sendRedirect, getCookie, deleteCookie } from 'h3'
+import { deleteCookie, getCookie, sendRedirect } from 'nuxt/server'
 
 import { getCurrentUser } from '#server/db/utils'
 
