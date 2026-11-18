@@ -101,11 +101,11 @@ describe('components/form/ScoreInput.vue', () => {
         // Assert
         const form = screen.getByRole('form')
         for (const [key, value] of Object.entries(expected)) {
-          const el = form.querySelector(`[name="${key}"]`) as
-            | HTMLInputElement
-            | HTMLSelectElement
+          const el = form.querySelector<HTMLInputElement | HTMLSelectElement>(
+            `[name="${key}"]`
+          )
           expect(el).toBeDefined()
-          expect(el.value).toBe(String(value))
+          expect(el?.value).toBe(String(value))
         }
       }
     )
@@ -126,11 +126,10 @@ describe('components/form/ScoreInput.vue', () => {
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
-        const clearLampSelect = form.querySelector(
-          '[name="clearLamp"]'
-        ) as HTMLSelectElement
+        const clearLampSelect =
+          form.querySelector<HTMLSelectElement>('[name="clearLamp"]')
         expect(checkboxButton.getAttribute('aria-checked')).toBe('true')
-        expect(clearLampSelect.value).toBe(String(ClearLamp.Failed))
+        expect(clearLampSelect?.value).toBe(String(ClearLamp.Failed))
       })
 
       test('updates clearLamp and rank when Failed is unchecked', async () => {
@@ -150,11 +149,10 @@ describe('components/form/ScoreInput.vue', () => {
         await new Promise(r => setTimeout(r, 0))
 
         // Assert
-        const clearLampSelect = form.querySelector(
-          '[name="clearLamp"]'
-        ) as HTMLSelectElement
+        const clearLampSelect =
+          form.querySelector<HTMLSelectElement>('[name="clearLamp"]')
         expect(checkboxButton.getAttribute('aria-checked')).toBe('false')
-        expect(clearLampSelect.value).toBe(String(ClearLamp.Clear))
+        expect(clearLampSelect?.value).toBe(String(ClearLamp.Clear))
       })
     })
 
@@ -167,9 +165,8 @@ describe('components/form/ScoreInput.vue', () => {
         const form = screen.getByRole('form')
 
         // Act
-        const clearLampSelect = form.querySelector(
-          '[name="clearLamp"]'
-        ) as HTMLSelectElement
+        const clearLampSelect =
+          form.querySelector<HTMLSelectElement>('[name="clearLamp"]')!
 
         await fireEvent.update(clearLampSelect, String(ClearLamp.MFC))
         await new Promise(r => setTimeout(r, 0))
@@ -202,15 +199,12 @@ describe('components/form/ScoreInput.vue', () => {
       await new Promise(r => setTimeout(r, 0))
 
       // Assert
-      const normal = within(form).getByLabelText(
-        'Normal Score'
-      ) as HTMLInputElement
+      const normal =
+        within(form).getByLabelText<HTMLInputElement>('Normal Score')
       expect(normal.value).toBe(String(expected.normalScore))
-      const ex = within(form).getByLabelText('EX SCORE') as HTMLInputElement
-      const maxC = within(form).getByLabelText('MAX COMBO') as HTMLInputElement
-      const flare = within(form).getByLabelText(
-        'Flare Skill'
-      ) as HTMLInputElement
+      const ex = within(form).getByLabelText<HTMLInputElement>('EX SCORE')
+      const maxC = within(form).getByLabelText<HTMLInputElement>('MAX COMBO')
+      const flare = within(form).getByLabelText<HTMLInputElement>('Flare Skill')
       expect(ex.value).toBe(String(expected.exScore))
       expect(maxC.value).toBe(String(expected.maxCombo))
       expect(flare.value).toBe(String(expected.flareSkill))
@@ -224,10 +218,10 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act - Get input by name attribute
-      const normalScoreInput = form.querySelector(
+      const normalScoreInput = form.querySelector<HTMLInputElement>(
         '[name="normalScore"]'
-      ) as HTMLInputElement
-      expect(normalScoreInput.value).toBe(String(scoreRecord.normalScore))
+      )
+      expect(normalScoreInput?.value).toBe(String(scoreRecord.normalScore))
 
       // Click Reset button
       const resetBtn = within(form).getByRole('button', {
@@ -237,7 +231,7 @@ describe('components/form/ScoreInput.vue', () => {
       await new Promise(r => setTimeout(r, 0))
 
       // Assert - Form should reset to initial values
-      expect(normalScoreInput.value).toBe('0')
+      expect(normalScoreInput?.value).toBe('0')
     })
   })
 
@@ -318,9 +312,9 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act - Set normalScore to invalid value (negative)
-      const normalScoreInput = form.querySelector(
+      const normalScoreInput = form.querySelector<HTMLInputElement>(
         '[name="normalScore"]'
-      ) as HTMLInputElement
+      )!
       await fireEvent.update(normalScoreInput, '-1')
       await fireEvent.submit(form)
       await new Promise(r => setTimeout(r, 100))
@@ -338,9 +332,8 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act
-      const exScoreInput = within(form).getByLabelText(
-        /EX SCORE/i
-      ) as HTMLInputElement
+      const exScoreInput =
+        within(form).getByLabelText<HTMLInputElement>(/EX SCORE/i)
       const validExScore = charts[0].notes * 2
       await fireEvent.update(exScoreInput, String(validExScore))
       await new Promise(r => setTimeout(r, 0))
@@ -365,15 +358,12 @@ describe('components/form/ScoreInput.vue', () => {
       const form = screen.getByRole('form')
 
       // Act
-      const exScoreInput = within(form).getByLabelText(
-        'EX SCORE'
-      ) as HTMLInputElement
-      const maxComboInput = within(form).getByLabelText(
-        'MAX COMBO'
-      ) as HTMLInputElement
-      const flareSkillInput = within(form).getByLabelText(
-        'Flare Skill'
-      ) as HTMLInputElement
+      const exScoreInput =
+        within(form).getByLabelText<HTMLInputElement>('EX SCORE')
+      const maxComboInput =
+        within(form).getByLabelText<HTMLInputElement>('MAX COMBO')
+      const flareSkillInput =
+        within(form).getByLabelText<HTMLInputElement>('Flare Skill')
 
       await fireEvent.update(exScoreInput, '')
       await fireEvent.update(maxComboInput, '')
