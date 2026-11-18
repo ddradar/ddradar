@@ -12,11 +12,13 @@ import {
 import Page from '~/pages/index.vue'
 import { locales } from '~~/test/nuxt/const'
 
-mockNuxtImport(queryCollection, o => vi.fn<typeof queryCollection>(o))
+const queryCollectionMock = mockNuxtImport(queryCollection, o =>
+  vi.fn<typeof queryCollection>(o)
+)
 
 describe('/', () => {
   beforeAll(() => {
-    vi.mocked(queryCollection).mockImplementation((collection: string) => {
+    queryCollectionMock.mockImplementation((collection: string) => {
       return {
         path: vi.fn<(path: string) => { first: () => Promise<unknown> }>(
           (path: string) => {
@@ -59,7 +61,7 @@ describe('/', () => {
   })
   afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
-  afterAll(() => vi.mocked(queryCollection).mockReset())
+  afterAll(() => queryCollectionMock.mockReset())
 
   test.each(locales)(
     '(locale: "%s", route: "/") renders correctly',
@@ -70,10 +72,8 @@ describe('/', () => {
 
       // Assert
       expect(wrapper.html()).toContain('DDRadar')
-      expect(vi.mocked(queryCollection)).toHaveBeenCalledWith(
-        `content_${locale}`
-      )
-      expect(vi.mocked(queryCollection)).toHaveBeenCalledWith('content_en')
+      expect(queryCollectionMock).toHaveBeenCalledWith(`content_${locale}`)
+      expect(queryCollectionMock).toHaveBeenCalledWith('content_en')
     },
     10000
   )

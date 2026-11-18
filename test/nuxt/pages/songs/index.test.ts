@@ -24,7 +24,9 @@ import { testSongData } from '~~/test/data/song'
 import { testStepCharts } from '~~/test/data/step-chart'
 import { locales } from '~~/test/nuxt/const'
 
-mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
+const navigateToMock = mockNuxtImport(navigateTo, o =>
+  vi.fn<typeof navigateTo>(o)
+)
 
 const songResult: SongSearchResult = {
   ...testSongData,
@@ -106,7 +108,7 @@ describe('/songs', () => {
     useState('play-style-visibility', () => 0).value = 0
   })
 
-  afterAll(() => vi.mocked(navigateTo).mockReset())
+  afterAll(() => navigateToMock.mockReset())
 
   describe.each(locales)('(locale: %s)', locale => {
     beforeEach(async () => await useNuxtApp().$i18n.setLocale(locale))
@@ -151,7 +153,7 @@ describe('/songs', () => {
       const tabs = wrapper.findComponent(SongsSearchTabs) as VueWrapper<unknown>
       tabs.vm.$emit('search', { tab: 'level', query: expected })
 
-      expect(vi.mocked(navigateTo)).toHaveBeenCalledWith({ query: expected })
+      expect(navigateToMock).toHaveBeenCalledWith({ query: expected })
     }
   )
 

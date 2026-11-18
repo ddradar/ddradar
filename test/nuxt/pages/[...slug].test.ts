@@ -12,11 +12,13 @@ import {
 import Page from '~/pages/[...slug].vue'
 import { withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(queryCollection, o => vi.fn<typeof queryCollection>(o))
+const queryCollectionMock = mockNuxtImport(queryCollection, o =>
+  vi.fn<typeof queryCollection>(o)
+)
 
 describe('[...slug]', () => {
   beforeAll(() => {
-    vi.mocked(queryCollection).mockImplementation((collection: string) => {
+    queryCollectionMock.mockImplementation((collection: string) => {
       return {
         path: vi.fn<(path: string) => { first: () => Promise<unknown> }>(
           (path: string) => {
@@ -59,7 +61,7 @@ describe('[...slug]', () => {
   })
   afterEach(async () => await useNuxtApp().$i18n.setLocale('en'))
 
-  afterAll(() => vi.mocked(queryCollection).mockReset())
+  afterAll(() => queryCollectionMock.mockReset())
 
   test.each(
     withLocales(
@@ -77,10 +79,7 @@ describe('[...slug]', () => {
       // Assert
       expect(wrapper.html()).toContain('DDRadar')
       expected.forEach((collection, i) => {
-        expect(vi.mocked(queryCollection)).toHaveBeenNthCalledWith(
-          i + 1,
-          collection
-        )
+        expect(queryCollectionMock).toHaveBeenNthCalledWith(i + 1, collection)
       })
     }
   )
