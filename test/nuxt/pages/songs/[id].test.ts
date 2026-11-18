@@ -23,7 +23,9 @@ import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
 import { locales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
+const useUserSessionMock = mockNuxtImport(useUserSession, o =>
+  vi.fn<typeof useUserSession>(o)
+)
 
 // Mock API endpoints
 registerEndpoint(`/api/songs/${testSongData.id}`, () => ({
@@ -49,10 +51,10 @@ describe('/songs/[id]', () => {
   const loggedIn = computed(() => !!user.value)
 
   beforeAll(() =>
-    vi.mocked(useUserSession).mockReturnValue({ loggedIn, user } as never)
+    useUserSessionMock.mockReturnValue({ loggedIn, user } as never)
   )
 
-  afterAll(() => vi.mocked(useUserSession).mockReset())
+  afterAll(() => useUserSessionMock.mockReset())
 
   test('returns 404 error when song is not found', async () => {
     const route = `/songs/${notFoundSongId}`

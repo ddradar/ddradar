@@ -24,7 +24,7 @@ import { testSongData as song } from '~~/test/data/song'
 import { testStepCharts as charts } from '~~/test/data/step-chart'
 import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useToast, original => vi.fn<typeof useToast>(original))
+const useToastMock = mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
 registerEndpoint(
   `/api/me/scores/${song.id}/${charts[0].playStyle}/${charts[0].difficulty}`,
   { method: 'POST', handler: mockHandler }
@@ -37,7 +37,7 @@ describe('components/form/ScoreInput.vue', () => {
   }
 
   beforeAll(() => {
-    vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
+    useToastMock.mockReturnValue({ add: addMock } as never)
   })
 
   describe('Rendering', () => {

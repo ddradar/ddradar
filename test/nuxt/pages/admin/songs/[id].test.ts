@@ -24,8 +24,10 @@ import { testStepCharts } from '~~/test/data/step-chart'
 import { sessionUser } from '~~/test/data/user'
 import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
-mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
-mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
+const useToastMock = mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
+const useUserSessionMock = mockNuxtImport(useUserSession, o =>
+  vi.fn<typeof useUserSession>(o)
+)
 
 // Mock API endpoints
 registerEndpoint(`/api/songs/${testSongData.id}`, () => ({
@@ -44,12 +46,13 @@ describe('/admin/songs/[id]', () => {
   const loggedIn = computed(() => !!user.value)
 
   beforeAll(() => {
-    vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
-    vi.mocked(useUserSession).mockReturnValue({ loggedIn, user } as never)
+    useToastMock.mockReturnValue({ add: addMock } as never)
+    useUserSessionMock.mockReturnValue({ loggedIn, user } as never)
   })
 
   afterAll(() => {
-    vi.mocked(useUserSession).mockReset()
+    useToastMock.mockReset()
+    useUserSessionMock.mockReset()
   })
 
   test.each([

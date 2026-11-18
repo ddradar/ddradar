@@ -16,7 +16,9 @@ import { publicUser, sessionUser } from '~~/test/data/user'
 import { withLocales } from '~~/test/nuxt/const'
 
 mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
-mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
+const useUserSessionMock = mockNuxtImport(useUserSession, o =>
+  vi.fn<typeof useUserSession>(o)
+)
 
 describe('app/components/app/Header.vue', () => {
   const user = ref<User | null>(null)
@@ -24,7 +26,7 @@ describe('app/components/app/Header.vue', () => {
   const clearMock = vi.fn<ReturnType<typeof useUserSession>['clear']>()
 
   beforeAll(() => {
-    vi.mocked(useUserSession).mockReturnValue({
+    useUserSessionMock.mockReturnValue({
       loggedIn,
       user,
       clear: clearMock,
@@ -32,7 +34,7 @@ describe('app/components/app/Header.vue', () => {
   })
 
   afterAll(() => {
-    vi.mocked(useUserSession).mockReset()
+    useUserSessionMock.mockReset()
   })
 
   describe.each(

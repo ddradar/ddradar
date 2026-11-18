@@ -24,9 +24,13 @@ import { addMock, locales, mockHandler, withLocales } from '~~/test/nuxt/const'
 
 // Mock composables
 mockNuxtImport(useCookie, o => vi.fn<typeof useCookie>(o) as never)
-mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
-mockNuxtImport(useUserSession, o => vi.fn<typeof useUserSession>(o))
-mockNuxtImport(navigateTo, o => vi.fn<typeof navigateTo>(o))
+const useToastMock = mockNuxtImport(useToast, o => vi.fn<typeof useToast>(o))
+const useUserSessionMock = mockNuxtImport(useUserSession, o =>
+  vi.fn<typeof useUserSession>(o)
+)
+const navigateToMock = mockNuxtImport(navigateTo, o =>
+  vi.fn<typeof navigateTo>(o)
+)
 
 // Mock API endpoints
 registerEndpoint(`/api/users/${publicUser.id}`, () => ({ ...publicUser }))
@@ -42,8 +46,8 @@ describe('/profile', () => {
   const redirectCookie = { value: '' }
 
   beforeAll(() => {
-    vi.mocked(useToast).mockReturnValue({ add: addMock } as never)
-    vi.mocked(useUserSession).mockReturnValue({
+    useToastMock.mockReturnValue({ add: addMock } as never)
+    useUserSessionMock.mockReturnValue({
       loggedIn,
       user,
       fetch: fetchMock,
@@ -52,8 +56,8 @@ describe('/profile', () => {
   })
 
   afterAll(() => {
-    vi.mocked(useUserSession).mockReset()
-    vi.mocked(navigateTo).mockReset()
+    useUserSessionMock.mockReset()
+    navigateToMock.mockReset()
     vi.mocked(useCookie).mockReset()
   })
 
@@ -67,7 +71,7 @@ describe('/profile', () => {
     await mountSuspended(Page, { route })
 
     // Assert
-    expect(vi.mocked(navigateTo)).toHaveBeenCalledWith('/login')
+    expect(navigateToMock).toHaveBeenCalledWith('/login')
     expect(redirectCookie.value).toBe(route)
   })
 
