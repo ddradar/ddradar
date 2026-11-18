@@ -108,9 +108,8 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const idField = within(form).getByLabelText(
-        /ユーザーID|User ID/i
-      ) as HTMLInputElement
+      const idField =
+        within(form).getByLabelText<HTMLInputElement>(/ユーザーID|User ID/i)
 
       // Assert
       expect(idField.disabled).toBe(true)
@@ -124,9 +123,8 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const idField = within(form).getByLabelText(
-        /ユーザーID|User ID/i
-      ) as HTMLInputElement
+      const idField =
+        within(form).getByLabelText<HTMLInputElement>(/ユーザーID|User ID/i)
 
       // Assert
       expect(idField.disabled).toBe(false)
@@ -140,9 +138,8 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const nameField = within(form).getByLabelText(
-        /ユーザー名|Name/i
-      ) as HTMLInputElement
+      const nameField =
+        within(form).getByLabelText<HTMLInputElement>(/ユーザー名|Name/i)
 
       // Assert
       expect(nameField.value).toBe(sessionUser.displayName)
@@ -155,9 +152,7 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const isPublicSwitch = within(form).getByRole(
-        'switch'
-      ) as HTMLButtonElement
+      const isPublicSwitch = within(form).getByRole<HTMLButtonElement>('switch')
 
       // Assert
       expect(isPublicSwitch.getAttribute('aria-checked')).toBe('false')
@@ -170,9 +165,7 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const isPublicSwitch = within(form).getByRole(
-        'switch'
-      ) as HTMLButtonElement
+      const isPublicSwitch = within(form).getByRole<HTMLButtonElement>('switch')
 
       // Assert
       expect(isPublicSwitch.getAttribute('aria-checked')).toBe(
@@ -187,9 +180,7 @@ describe('/profile', () => {
 
       // Act
       const form = screen.getByRole('form')
-      const isPublicSwitch = within(form).getByRole(
-        'switch'
-      ) as HTMLButtonElement
+      const isPublicSwitch = within(form).getByRole<HTMLButtonElement>('switch')
 
       const initialState = isPublicSwitch.getAttribute('aria-checked')
       await fireEvent.click(isPublicSwitch)
