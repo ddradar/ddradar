@@ -18,8 +18,8 @@ importers:
         specifier: ^3.17.0
         version: 3.17.0(@libsql/client@0.18.0)(@nuxt/schema@4.6.4)(@oxc-project/types@0.155.0)(@valibot/to-json-schema@1.7.1(valibot@1.4.2(typescript@6.0.3)))(better-sqlite3@13.2.0)(confbox@0.2.4)(dotenv@17.4.2)(esbuild@0.28.2)(giget@3.3.1)(magic-string@1.4.5)(magicast@0.5.5)(mlly@1.8.2)(oxc-parser@0.141.0)(rolldown@1.2.15)(rollup@4.67.4)(supports-color@10.2.2)(valibot@1.4.2(typescript@6.0.3))(vite@8.3.5(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.22.4)(yaml@2.9.1))
       '@nuxt/ui':
-        specifier: ^4.13.0
-        version: 4.13.0(84326b4843c3a7fb36bbe9d8f7cafc74)
+        specifier: ^4.13.1
+        version: 4.13.1(84326b4843c3a7fb36bbe9d8f7cafc74)
       '@nuxthub/core':
         specifier: ^0.10.12
         version: 0.10.12(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.3)(@nuxt/schema@4.6.4)(confbox@0.2.4)(db0@0.3.4(@libsql/client@0.18.0)(better-sqlite3@13.2.0)(drizzle-orm@0.45.4(@cloudflare/workers-types@5.20260910.1)(@libsql/client@0.18.0)(better-sqlite3@13.2.0)))(dotenv@17.4.2)(giget@3.3.1)(ioredis@5.11.1(supports-color@10.2.2))(jiti@2.7.0)(magic-string@1.4.5)(magicast@0.5.5)(mlly@1.8.2)(oxc-parser@0.141.0)(rolldown@1.2.15)(typescript@6.0.3)(unplugin@3.7.0(esbuild@0.28.2)(rolldown@1.2.15)(rollup@4.67.4)(vite@8.3.5(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.22.4)(yaml@2.9.1)))(vue-tsc@3.3.14(typescript@6.0.3))
@@ -1463,8 +1463,8 @@ packages:
       vitest:
         optional: true
 
-  '@nuxt/ui@4.13.0':
-    resolution: {integrity: sha512-YCvG1LdI2QLAxCAf6PVtn/iIxXmJm0PvaCP7CGFQSF/y0rJgzplsWWkN7iNlcyTJsuIIQ3NcNHOd8JX5lEP78Q==}
+  '@nuxt/ui@4.13.1':
+    resolution: {integrity: sha512-tpRFyjqwev8PzLsIjCRPhMmjs/H2WYKW2fFw52L388cNeZ0m/3mtqEnbMj2kOv9zJ9NByZELOXYkOHZDvIgABw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     peerDependencies:
       '@inertiajs/vue3': ^2.0.7 || ^3
@@ -7133,8 +7133,8 @@ packages:
     resolution: {integrity: sha512-yEFYrVhod+hdNyx7g5Bnkkb0G6si8HJurOoOEgC8B/O0uXLHlaey/65KRv6cuWBNhBgHKAROVpc7QyYqE5gFng==}
     engines: {node: '>=20'}
 
-  tailwind-merge@3.7.0:
-    resolution: {integrity: sha512-XPPUyAc+cvspz3lHTcR/QgPfW2A0lv/xQNIjX3HGhLR+Nq2lHaLq5MtTesHn8GUr3W3DguT2KT5x3NVgRtYwmA==}
+  tailwind-merge@3.7.1:
+    resolution: {integrity: sha512-v7y4BV4FUlO8exj/4M5UXKeoowDiuugVUg3tkMNIyOUCOHy5xp8+5aWQeXCtZ2491sUV1YPsVeM9EveZ6/xuZQ==}
 
   tailwind-variants@3.2.2:
     resolution: {integrity: sha512-Mi4kHeMTLvKlM98XPnK+7HoBPmf4gygdFmqQPaDivc3DpYS6aIY6KiG/PgThrGvii5YZJqRsPz0aPyhoFzmZgg==}
@@ -9747,7 +9747,7 @@ snapshots:
       - vite
       - webpack
 
-  '@nuxt/ui@4.13.0(84326b4843c3a7fb36bbe9d8f7cafc74)':
+  '@nuxt/ui@4.13.1(84326b4843c3a7fb36bbe9d8f7cafc74)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@iconify/vue': 5.0.5(vue@3.5.46(typescript@6.0.3))
@@ -9802,8 +9802,8 @@ snapshots:
       pathe: 2.0.3
       reka-ui: 2.11.0(vue@3.5.46(typescript@6.0.3))
       scule: 1.3.0
-      tailwind-merge: 3.7.0
-      tailwind-variants: 3.2.2(tailwind-merge@3.7.0)(tailwindcss@4.3.5)
+      tailwind-merge: 3.7.1
+      tailwind-variants: 3.2.2(tailwind-merge@3.7.1)(tailwindcss@4.3.5)
       tailwindcss: 4.3.5
       tinyglobby: 0.2.17
       typescript: 6.0.3
@@ -16013,13 +16013,13 @@ snapshots:
 
   tagged-tag@1.0.0: {}
 
-  tailwind-merge@3.7.0: {}
+  tailwind-merge@3.7.1: {}
 
-  tailwind-variants@3.2.2(tailwind-merge@3.7.0)(tailwindcss@4.3.5):
+  tailwind-variants@3.2.2(tailwind-merge@3.7.1)(tailwindcss@4.3.5):
     dependencies:
       tailwindcss: 4.3.5
     optionalDependencies:
-      tailwind-merge: 3.7.0
+      tailwind-merge: 3.7.1
 
   tailwindcss@4.3.5: {}
 
